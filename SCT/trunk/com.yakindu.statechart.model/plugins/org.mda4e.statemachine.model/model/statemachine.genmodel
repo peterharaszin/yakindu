@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.mda4e.statemachine.model/src-gen"
+    modelPluginID="org.mda4e.statemachine.model" modelName="Statemachine" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false">
+  <foreignModel>statemachine.ecore</foreignModel>
+  <genPackages prefix="Statemachine" disposableProviderFactory="true" loadInitialization="true"
+      ecorePackage="statemachine.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="statemachine.ecore#//PseudoTypes">
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/initial"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/deepHistory"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/shallowHistory"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/join"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/fork"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/junction"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/choice"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/entryPoint"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/exitPoint"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//PseudoTypes/terminate"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="statemachine.ecore#//DataTypes">
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//DataTypes/int"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//DataTypes/double"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//DataTypes/boolean"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="statemachine.ecore#//IOTypes">
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//IOTypes/local"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//IOTypes/output"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//IOTypes/input"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="statemachine.ecore#//TriggerTypes">
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//TriggerTypes/either"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//TriggerTypes/rising"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//TriggerTypes/falling"/>
+      <genEnumLiterals ecoreEnumLiteral="statemachine.ecore#//TriggerTypes/functionCall"/>
+    </genEnums>
+    <genClasses ecoreClass="statemachine.ecore#//Region">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine.ecore#//Region/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Region/priority"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//Node">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Node/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Node/id"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//Transition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statemachine.ecore#//Transition/targetNode"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Transition/priority"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Transition/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Transition/id"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference statemachine.ecore#//Transition/sourceNode"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//State">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//State/entry"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//State/do"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//State/exit"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine.ecore#//State/region"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//Pseudostate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Pseudostate/pseudoType"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//DataElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//DataElement/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//DataElement/ioType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//DataElement/port"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Variable/dataType"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//Event">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Event/trigger"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//Statechart">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine.ecore#//Statechart/dataElement"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine.ecore#//Statechart/region"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Statechart/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference statemachine.ecore#//Statechart/transition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute statemachine.ecore#//Statechart/UUID"/>
+    </genClasses>
+    <genClasses ecoreClass="statemachine.ecore#//FinalState"/>
+  </genPackages>
+</genmodel:GenModel>

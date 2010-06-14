@@ -1,0 +1,65 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Navigation;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Tools;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Transition;
+extension org::openarchitectureware::util::stdlib::io;
+
+
+// a transition must be named
+context Transition ERROR "transitions from states must have an expression" :
+	 (Pseudostate.isInstance(sourceNode)) || (State.isInstance(sourceNode) && expression != null && expression.trim() !="");
+
+	// Vordefinierter Constraint
+context State ERROR "States must have at least one incoming Transition.":
+	((Statechart)eRootContainer).transition.select(s|s.targetNode==this).size>=1;
+
+// Aufgabe 1: Jeder State muss einen Namen besitzen.
+context State ERROR "A state must have a name." : 
+	name != null && name.trim() != "";
+
+// Aufgabe 2: Innerhalb einer Region m�ssen die Namen der States eindeutig sein.  
+context State ERROR "State names must be unique within a region." :
+	((Region) eContainer).state.typeSelect(State).select(e|e.name == this.name).size == 1;
+
+context Transition ERROR "transitions must be between states in the same region: [transition id : "+id+"]":
+	sourceNode.getParentRegion().state.contains(targetNode);
+
+//context Transition ERROR "event "+expression+" on the transition of id : "+id+" must be declared" :
+//	expression.getSignalsOnly()==null || expression.hasAfterClause() || getStatechart().getEvents().name.containsAll(expression.getSignalsOnly());
+
+context Transition ERROR "maximal eine 'after'-Anweisung pro Transition erlaubt [transition id : "+id+"]":
+	expression==null || expression.split("after").size<=2;
+
+context State ERROR "Prioritäten der Regionen eines Zustandes müssen eindeutig sein oder gleich '0'/nicht gesetzt" :
+	region.size==0 
+	|| region.size==1 
+	|| !region.exists(e|e.priority!=0 && region.select(f|e.priority==f.priority).size>1);
+
+context Statechart ERROR "Prioritäten der Regionen im Statechart müssen eindeutig sein oder gleich '0'/nicht gesetzt" :
+	region.size==0 
+	|| region.size==1 
+	|| !region.exists(e|e.priority!=0 && region.select(f|e.priority==f.priority).size>1);
+
+context Transition ERROR "Prioritäten der ausgehenden Transitionen eines Zustandes müssen eindeutig sein oder gleich '0'/nicht gesetzt" :
+	priority == 0
+	|| sourceNode.getStatechart().transition.select(e|e.sourceNode==sourceNode && e.priority==priority).size==1;
+
+context Pseudostate ERROR "Nur der Pseudostate initial wird unterstützt":
+	pseudoType.toString()=="initial";
+
+context DataElement ERROR "Der Port entspricht keiner gültigen Adresse. Die letzte Stelle muss zwischen 0 und 7 sein.":
+	(port-(port/10)*10)<8;
+
+context DataElement ERROR "Alle Namen der Objekte vom Typ DataElement müssen eindeutig sein.":
+	((Statechart)eContainer).dataElement.select(e|e.name==name).size==1;
+

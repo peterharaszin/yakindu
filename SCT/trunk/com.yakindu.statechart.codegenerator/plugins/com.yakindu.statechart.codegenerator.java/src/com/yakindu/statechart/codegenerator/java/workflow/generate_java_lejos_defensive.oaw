@@ -1,0 +1,9 @@
+<workflow> 
+   <cartridge file="com/yakindu/statechart/codegenerator/java/workflow/generate_java_me_defensive.oaw" model="${model}" src-gen="${src-gen}"/> 
+   <component adviceTarget="generator" 
+              id="reflectionAdvice" 
+              class="org.eclipse.xpand2.GeneratorAdvice"> 
+      <advices value="com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::LejosTimingService"/>
+      <fileEncoding value='utf-8' />
+   </component> 
+</workflow>

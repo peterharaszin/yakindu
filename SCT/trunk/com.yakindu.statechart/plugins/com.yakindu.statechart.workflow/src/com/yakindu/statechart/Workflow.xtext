@@ -1,0 +1,18 @@
+grammar com.yakindu.statechart.Workflow with org.eclipse.xtext.common.Terminals
+
+generate workflow "http://www.yakindu.com/statechart/Workflow"
+
+Workflow :
+	(models+=Model)+ target=Target platform=TargetPlatform;
+
+Model :
+	'modelFile' model=STRING;
+	
+Target :
+	'targetDir' target=STRING;
+	
+TargetPlatform :
+	'targetPlatform' targetplatform=Platform (defensive?="defensive")?;
+	
+Platform :
+	'c' | 'java' | 'javame' | 'lejos';

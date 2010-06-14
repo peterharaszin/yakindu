@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<workflow>
+	<property name="umlModel" value="model/Simple.uml"/>
+	<property name="src-gen" value="src-gen"/>
+	<property name="config" value="src/" />
+
+	<!-- Generator call with model-file and output-folder -->
+    <cartridge file='com/yakindu/statechart/transformation/uml2/transform.oaw' 
+    	project="com.yakindu.statechart.transformation.examples.uml2"
+    	umlModel="${umlModel}" 
+    	src-gen="${src-gen}" 
+    	config="${config}" />
+    
+</workflow>

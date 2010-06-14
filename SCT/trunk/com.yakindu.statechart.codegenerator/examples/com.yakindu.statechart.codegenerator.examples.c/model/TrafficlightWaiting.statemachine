@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="TrafficlightWaiting" UUID="ea44c67e-e1df-43eb-ba64-9bc858c27ca9">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="tl_red" ioType="output" port="1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress2" ioType="input" port="2"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress1" ioType="input" port="3"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="tl_green" ioType="output" port="4"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="tl_yellow" ioType="output" port="5"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress3" ioType="input" port="6"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress4" ioType="input" port="7"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress5" ioType="input" port="8"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress6" ioType="input" port="9"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="ped_request" ioType="output" port="10"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="ped_green" ioType="output" port="11"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="ped_red" ioType="output" port="12"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="stateID" ioType="output" port="13"/>
+  <region priority="12">
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" name=""/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="StreetGreen" id="1" entry="tl_red = 0; tl_green = 1; tl_yellow = 0; ped_red = 1; ped_green = 0; ped_request = 0;stateID = 1;" exit=""/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="StreetAmber" id="2" entry="tl_red = 0; tl_green = 0; tl_yellow = 1; stateID = 3;" do=""/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="StreetRed" id="3" entry="tl_red = 1; tl_green = 0; tl_yellow = 0; stateID = 4;" exit=""/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="PedGreen" id="4" entry="ped_red = 0; ped_green = 1; stateID = 5;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="PedWaiting" id="5" entry="stateID = 2;">
+      <region priority="11">
+        <state xsi:type="org.mda4e.statemachine.model:State" name="waitOn" id="6" entry="ped_request = 1;"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="waitOff" id="7" entry="ped_request = 0;"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="8"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="PedRed" id="9" entry="ped_red = 1; ped_green = 0; stateID = 6;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="StreetPrepare" id="10" entry="tl_red = 1; tl_yellow = 1; tl_green = 0; stateID = 7;"/>
+  </region>
+  <transition targetNode="//@region.0/@state.1" id="11" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.5" priority="1" expression="keypress1" id="12" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.3" expression="after(2s)" id="13" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.4" expression="after(2s)" id="14" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.6" priority="1" expression="after(7s)" id="15" sourceNode="//@region.0/@state.4"/>
+  <transition targetNode="//@region.0/@state.5/@region.0/@state.1" priority="1" expression="after(500)" id="16" sourceNode="//@region.0/@state.5/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.5/@region.0/@state.0" priority="1" expression="" id="17" sourceNode="//@region.0/@state.5/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.5/@region.0/@state.0" priority="1" expression="after(500)" id="18" sourceNode="//@region.0/@state.5/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2" priority="2" expression="after(7s)/ped_request = 0;" id="19" sourceNode="//@region.0/@state.5"/>
+  <transition targetNode="//@region.0/@state.7" priority="1" expression="after(3s)" id="20" sourceNode="//@region.0/@state.6"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="after(2s)" id="21" sourceNode="//@region.0/@state.7"/>
+</org.mda4e.statemachine.model:Statechart>

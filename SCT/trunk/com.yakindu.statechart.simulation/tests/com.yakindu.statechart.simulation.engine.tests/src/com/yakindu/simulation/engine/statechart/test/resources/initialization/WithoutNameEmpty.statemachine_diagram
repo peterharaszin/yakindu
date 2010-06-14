@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" xmi:id="_zxZeUPO2Ed223cJtpdevIw" type="Statemachine" name="WithoutNameEmpty.statemachine_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_bY3aQPwnEd2-NaDT2lNxWA" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_bY3aQ_wnEd2-NaDT2lNxWA" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_bY3aRPwnEd2-NaDT2lNxWA" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_cY23oPwnEd2-NaDT2lNxWA" type="3003">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_cY23ofwnEd2-NaDT2lNxWA" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="WithoutNameEmpty.statemachine#//@region.0/@state.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_cY23ovwnEd2-NaDT2lNxWA" x="66" y="68"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_bY3aRfwnEd2-NaDT2lNxWA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_bY3aRvwnEd2-NaDT2lNxWA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_bY3aQfwnEd2-NaDT2lNxWA" fontHeight="8" fillColor="0" lineColor="0"/>
+    <element xmi:type="org.mda4e.statemachine.model:Region" href="WithoutNameEmpty.statemachine#//@region.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_bY3aQvwnEd2-NaDT2lNxWA" x="70" y="89" width="405" height="340"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_zxZeUfO2Ed223cJtpdevIw"/>
+  <element xmi:type="org.mda4e.statemachine.model:Statechart" href="WithoutNameEmpty.statemachine#/"/>
+</notation:Diagram>

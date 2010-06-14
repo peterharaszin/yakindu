@@ -1,0 +1,15 @@
+RULE_ID=5
+RULE_STRING=4
+RULE_ANY_OTHER=10
+RULE_INT=6
+RULE_WS=9
+RULE_SL_COMMENT=8
+RULE_ML_COMMENT=7
+'javame'=17
+'targetPlatform'=13
+'c'=15
+'defensive'=14
+'lejos'=18
+'java'=16
+'targetDir'=12
+'modelFile'=11

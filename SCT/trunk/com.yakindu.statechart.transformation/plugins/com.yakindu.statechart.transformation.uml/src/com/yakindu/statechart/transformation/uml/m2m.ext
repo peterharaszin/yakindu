@@ -1,0 +1,268 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+extension org::eclipse::xtend::util::stdlib::io;
+extension org::eclipse::xtend::util::stdlib::counter;
+extension org::eclipse::xtend::util::stdlib::uid;
+extension org::eclipse::xtend::typesystem::uml2::profile::profiling;
+
+
+statemachine::Node get(uml::Vertex v):
+	JAVA com.yakindu.statechart.transformation.util.Bag.get(java.lang.Object)
+;
+	
+statemachine::State put(uml::Vertex v, statemachine::Node n):
+	JAVA com.yakindu.statechart.transformation.util.Bag.put(java.lang.Object, java.lang.Object)
+;
+
+Void clear():
+	JAVA com.yakindu.statechart.transformation.util.Bag.clear()
+;
+
+private cached String YAKINDU_PRIORITY():
+	"Yakindu::Priority"
+;
+
+private cached String YAKINDU_EVENT():
+	"Yakindu::Event"
+;
+
+private cached String YAKINDU_VARIABLE():
+	"Yakindu::Variable"
+;
+
+private int nextId():
+	counterInc("m2m::Id") ->
+	counterGet("m2m::Id")
+;
+
+private Void resetId():
+	counterReset("m2m::Id")
+;
+
+private int nextPriority():
+	counterInc("m2m::Priority") ->
+	counterGet("m2m::Priority")
+;
+
+private Void resetPriority():
+	counterReset("m2m::Priority")
+;
+
+// transforms an UML State Machine in the UML Model into a Statechart
+create List transform(uml::Model model):
+	addAll(model.eAllContents.typeSelect(uml::StateMachine).createStatechart())
+;
+
+create List transform(ecore::EObject model):
+	addAll(model.eAllContents.typeSelect(uml::StateMachine).createStatechart())
+;
+
+create statemachine::Statechart createStatechart(uml::StateMachine sm):
+	clear() ->
+	resetId() ->
+	resetPriority() ->
+	handle(sm, this) ->
+	sm.eAllContents.typeSelect(uml::Signal).addEvent(this) ->
+	sm.eAllContents.typeSelect(uml::Class).addVariable(this)
+;
+
+handle(uml::StateMachine sm, statemachine::Statechart sc) :
+	sc.setName(sm.name) ->
+	sc.setUUID(uid(sc)) ->
+	sc.region.addAll(sm.region.createRegion()) ->
+	sc.transition.addAll(sm.eAllContents.typeSelect(uml::Transition).createTransition())
+;
+
+// transforms an UML Signal with the Yakindu::Event stereotype to a statemachine Event
+Void addEvent(uml::Signal s, statemachine::Statechart sc):
+	if(s.getAppliedStereotype(YAKINDU_EVENT()) != null) then
+		sc.dataElement.add(createEvent(s))
+;
+
+create statemachine::Event createEvent(uml::Signal s):
+	let name = (String)s.getValue(s.getAppliedStereotype(YAKINDU_EVENT()), "name"):
+		setName(name.trim().length > 0 ? name : s.name) -> 
+	setIoType(map2IOTypes(((uml::EnumerationLiteral)s.getValue(s.getAppliedStereotype(YAKINDU_EVENT()), "ioType")).name)) ->
+	setPort((Integer)s.getValue(s.getAppliedStereotype(YAKINDU_EVENT()), "port")) ->
+	setTrigger(map2TriggerTypes(((uml::EnumerationLiteral)s.getValue(s.getAppliedStereotype(YAKINDU_EVENT()), "triggerType")).name))
+;
+
+Void addVariable(uml::Class c, statemachine::Statechart sc):
+	if(c.getAppliedStereotype(YAKINDU_VARIABLE()) != null) then
+		sc.dataElement.add(createVariable(c))
+;
+
+// transforms an UML Class with the Yakindu::Variable stereotype to a statemachine Variable
+create statemachine::Variable createVariable(uml::Class c) :
+	let name = (String)c.getValue(c.getAppliedStereotype(YAKINDU_VARIABLE()), "name"):
+		setName(name.trim().length > 0 ? name : c.name) ->
+	setIoType(map2IOTypes(((uml::EnumerationLiteral)c.getValue(c.getAppliedStereotype(YAKINDU_VARIABLE()), "ioType")).name)) ->
+	setPort((Integer)c.getValue(c.getAppliedStereotype(YAKINDU_VARIABLE()), "port")) ->
+	setDataType(map2DataTypes(((uml::EnumerationLiteral)c.getValue(c.getAppliedStereotype(YAKINDU_VARIABLE()), "dataType")).name))
+;
+
+// transforms an UML Region to a statemachine Region	
+create statemachine::Region createRegion(uml::Region r) :
+	r.ownedMember.typeSelect(uml::State).createState(this) ->
+	r.ownedMember.typeSelect(uml::Pseudostate).createPseudostate(this) ->
+	if(r.getAppliedStereotype(YAKINDU_PRIORITY()) != null) then
+		setPriority((Integer)(r.getValue(r.getAppliedStereotype(YAKINDU_PRIORITY()), "priority")))
+	else
+		// setting default priority
+		setPriority(nextPriority())
+;
+
+create statemachine::Transition createTransition(uml::Transition t) :
+	setSourceNode(get(t.source)) ->
+	setTargetNode(get(t.target)) ->
+	setId(nextId()) ->
+	t.trigger.addTrigger(this) ->
+	// checks if a guard is set. if so, take the text specified in the guard
+	if(t.guard != null) then
+		setExpression(expression == null ? "[" + t.guard.specification.stringValue() + "]" : expression + " [" + t.guard.specification.stringValue() + "]") ->
+	// checks if an effect is set. if so, take the NAME of the effect and append it to the expression
+	if(t.effect != null) then
+		setExpression(expression == null ? "/" + t.effect.name : expression + " /" + t.effect.name) ->
+	if(t.getAppliedStereotype(YAKINDU_PRIORITY()) != null) then
+		setPriority((Integer)t.getValue(t.getAppliedStereotype(YAKINDU_PRIORITY()), "priority"))
+	else
+		// setting default priority
+		setPriority(nextPriority())
+;
+
+// adds all Trigger to the expression attribute
+addTrigger(uml::Trigger t, statemachine::Transition st) :
+	if(t.event != null) then
+		st.setExpression(st.expression == null ? t.event.parseEvent() : st.expression + ", " + t.event.parseEvent())
+;
+
+// encountered an Event which is not currently supported
+String parseEvent(uml::Event e) :
+	""
+;
+
+// only uses the name of SignalEvent
+String parseEvent(uml::SignalEvent e) :
+	e.signal.name
+;
+
+// only uses the operation name and adds "()" 
+String parseEvent(uml::CallEvent e) :
+	e.operation.name + "()"
+;
+
+// uses "after(..)" if it is a relative TimeEvent, otherwise "at(...)"
+String parseEvent(uml::TimeEvent e) :
+	if(e.isRelative) then
+		"after(" + e.when.stringValue() + ")"
+	else
+		"at(" + e.when.stringValue() + ")"
+;	
+
+// creates a state 
+create statemachine::State createState(uml::State s, statemachine::Region r) :
+	setDo(s.doActivity != null ? s.doActivity.name : null) ->
+	setEntry(s.entry != null ? s.entry.name : null) ->
+	setExit(s.exit != null ? s.exit.name : null) ->
+	setName(s.name) ->
+	setId(nextId()) ->
+	r.state.add(this) ->
+	region.addAll(s.region.createRegion()) ->
+	put(s, this)
+;
+
+create statemachine::FinalState createState(uml::FinalState s, statemachine::Region r) :
+	setDo(s.doActivity != null ? s.doActivity.name : null) ->
+	setEntry(s.entry != null ? s.entry.name : null) ->
+	setExit(s.exit != null ? s.exit.name : null) ->
+	setName(s.name) ->
+	setId(nextId()) ->
+	r.state.add(this) ->
+	put(s, this)
+;
+
+create statemachine::Pseudostate createPseudostate(uml::Pseudostate ps, statemachine::Region r) :
+	setPseudoType(mapUml2State(ps.kind)) ->
+	r.state.add(this) ->
+	setId(nextId()) ->
+	put(ps, this)
+;
+
+// - MAPPINGS -
+	
+// maps the uml state types to the statemachine state types
+statemachine::PseudoTypes mapUml2State(uml::PseudostateKind  psk) :
+	switch (psk) {
+		case uml::PseudostateKind::initial:
+			statemachine::PseudoTypes::initial
+		case uml::PseudostateKind::deepHistory:
+			statemachine::PseudoTypes::deepHistory
+		case uml::PseudostateKind::shallowHistory:
+			statemachine::PseudoTypes::shallowHistory
+		case uml::PseudostateKind::join:
+			statemachine::PseudoTypes::join
+		case uml::PseudostateKind::fork:
+			statemachine::PseudoTypes::fork
+		case uml::PseudostateKind::junction:
+			statemachine::PseudoTypes::junction
+		case uml::PseudostateKind::choice:
+			statemachine::PseudoTypes::choice
+		case uml::PseudostateKind::entryPoint:
+			statemachine::PseudoTypes::entryPoint
+		case uml::PseudostateKind::exitPoint:
+			statemachine::PseudoTypes::exitPoint
+		case uml::PseudostateKind::terminate:
+			statemachine::PseudoTypes::terminate
+		default:
+			statemachine::PseudoTypes::initial
+	}
+;
+
+statemachine::IOTypes map2IOTypes(String ioType) :
+	switch(ioType) {
+		case "local":
+			statemachine::IOTypes::local
+		case "output":
+			statemachine::IOTypes::output
+		case "input":
+			statemachine::IOTypes::input
+		default:
+			statemachine::IOTypes::local
+	}
+;
+	
+statemachine::TriggerTypes map2TriggerTypes(String triggerType) :
+	switch(triggerType) {
+		case "either":
+			statemachine::TriggerTypes::either
+		case "rising":
+			statemachine::TriggerTypes::rising
+		case "falling":
+			statemachine::TriggerTypes::falling
+		case "functionCall":
+			statemachine::TriggerTypes::functionCall
+		default:
+			statemachine::TriggerTypes::either
+	}
+;	
+	
+statemachine::DataTypes map2DataTypes(String datatype) :
+	switch(datatype) {
+		case "int":
+			statemachine::DataTypes::int
+		case "double":
+			statemachine::DataTypes::double
+		case "boolean":
+			statemachine::DataTypes::boolean
+		default:
+			statemachine::DataTypes::int
+	}
+;

@@ -1,0 +1,63 @@
+<workflow> 
+	<property name="umlModel" value="No input model specified." /> 
+	<property name="src-gen" value="src-gen" /> 
+	
+	<!-- 	Feature Configuration -->
+	<property name="config" value="com/yakindu/statechart/transformation/uml2" />
+    <property file ="${config}/config.properties"/> 
+	
+	<!-- prepare for performing uml stuff -->
+    <bean class="com.yakindu.statechart.transformation.uml2.YakinduSetup" standardUML2Setup="true" > 
+    </bean>
+    
+    <!-- set up EMF for standalone execution -->
+    <bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri=".." >
+    	<registerGeneratedEPackage value="statemachine.StatemachinePackage"/>
+    </bean>
+ 
+ 	<!--UML2 Metamodell-->
+	<bean id="uml2MetaModel" class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel" />
+ 
+    <!--UML2 Profile - Metamodell-->
+	<bean id="profileMetaModel" class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel">
+		<profile value="Yakindu.profile.uml"/>
+	</bean>
+ 
+	<!-- load model and store it in slot 'model' --> 
+	<component class="org.eclipse.emf.mwe.utils.Reader">
+		<uri value="${umlModel}" />
+		<modelSlot value="umlModel" />
+	</component>
+ 
+	<!-- directory clean --> 
+	<component id="dirCleaner" class="org.eclipse.emf.mwe.utils.DirectoryCleaner" directory="src-gen"/>
+	
+	<component class="org.eclipse.xtend.check.CheckComponent">	
+		<metaModel idRef="profileMetaModel"/>	
+        <metaModel idRef="uml2MetaModel"/>
+		<checkFile value="com::yakindu::statechart::transformation::uml2::validateUMLModel" />
+		<emfAllChildrenSlot value="umlModel" />
+		<abortOnError value="true"/>
+	</component>
+	
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel idRef="profileMetaModel"/>	
+        <metaModel idRef="uml2MetaModel"/>
+		<invoke value="com::yakindu::statechart::transformation::uml2::m2m::transform(umlModel)"/>
+		<outputSlot value="model"/>
+	</component>
+	
+	<if cond="${model_extension}">
+		<component class="org.eclipse.xtend.XtendComponent">
+			<metaModel idRef="profileMetaModel"/>	
+        	<metaModel idRef="uml2MetaModel"/>>
+			<invoke value="com::yakindu::statechart::transformation::uml2::model_extension::extend(model, umlModel)"/>
+		</component>
+	</if>
+	
+	<component class="com.yakindu.statechart.transformation.uml2.StatechartWriter">
+		<useSingleGlobalResourceSet value="true"/>
+		<modelSlot value="model"/>
+		<uri value="${src-gen}/"/>	
+	</component>	
+</workflow>

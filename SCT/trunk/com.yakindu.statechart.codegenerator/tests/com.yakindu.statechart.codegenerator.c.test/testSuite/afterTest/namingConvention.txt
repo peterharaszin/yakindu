@@ -1,0 +1,5 @@
+The names within this project need to follow the following rules:
+
+The sub-makefile is named as the testfile, but without the prefix _test.
+
+So a testcase has the following names:

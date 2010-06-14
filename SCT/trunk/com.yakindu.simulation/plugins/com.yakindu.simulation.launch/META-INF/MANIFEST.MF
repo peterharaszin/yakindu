@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Simulation Launch
+Bundle-SymbolicName: com.yakindu.simulation.launch
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: YAKINDU.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.debug.core,
+ com.ibm.icu,
+ org.mda4e.simulation.core
+Export-Package: com.yakindu.simulation.launch,
+ com.yakindu.simulation.launch.debug
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: com.yakindu.simulation.launch.Activator

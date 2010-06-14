@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/com.yakindu.statechart.model.expressions/src-gen"
+    editDirectory="/com.yakindu.statechart.model.expressions.edit/src" editorDirectory="/com.yakindu.statechart.model.expressions.editor/src"
+    modelPluginID="com.yakindu.statechart.model.expressions" forceOverwrite="true"
+    modelName="StatechartExpressions" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="com.yakindu.statechart.model.expressions.edit"
+    editorPluginID="com.yakindu.statechart.model.expressions.editor">
+  <genPackages prefix="Statechartexpressions" basePackage="com.yakindu.statechart.model.expressions"
+      disposableProviderFactory="true" ecorePackage="StatechartExpressions.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//TimeUnit">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//TimeUnit/second"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//TimeUnit/millisecond"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//TimeUnit/nanosecond"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//AssignmentOperator">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/assign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/multAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/divAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/modAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/addAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/subAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/leftShiftAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/rightShiftAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/andAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/xorAssign"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AssignmentOperator/orAssign"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//EqualityOperator">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//EqualityOperator/equals"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//EqualityOperator/notEquals"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//RelationalOperator">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//RelationalOperator/smaller"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//RelationalOperator/greater"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//RelationalOperator/smallerEqual"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//RelationalOperator/greaterEqual"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//ShiftOperator">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//ShiftOperator/left"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//ShiftOperator/right"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//AdditiveOperator">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AdditiveOperator/plus"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//AdditiveOperator/minus"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//MultiplicativeOperator">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//MultiplicativeOperator/mul"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//MultiplicativeOperator/div"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//MultiplicativeOperator/mod"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="StatechartExpressions.ecore#//UnaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//UnaryOperator/positive"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//UnaryOperator/negative"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//UnaryOperator/complement"/>
+      <genEnumLiterals ecoreEnumLiteral="StatechartExpressions.ecore#//UnaryOperator/not"/>
+    </genEnums>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//Expression"/>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//TriggerExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//TriggerExpression/triggers"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//GuardExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//GuardExpression/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//ActionExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//ActionExpression/statement"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//Trigger">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//Trigger/event"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//Event"/>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//SignalEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//SignalEvent/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//TimeEvent">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//TimeEvent/duration"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//TimeExpression"/>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//VariableReference">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//VariableReference/variable"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//Variable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//Variable/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//TimeConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//TimeConstant/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//TimeConstant/unit"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//Statement"/>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//VariableAssignment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//VariableAssignment/variableReference"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//VariableAssignment/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//VariableAssignment/value"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//ProcedureCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//ProcedureCall/procedure"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//Procedure">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//Procedure/identifier"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//EventRaising">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//EventRaising/event"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//BooleanOrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BooleanOrExpression/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BooleanOrExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//BooleanAndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BooleanAndExpression/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BooleanAndExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//BitwiseXorExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BitwiseXorExpression/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BitwiseXorExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//BitwiseOrExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BitwiseOrExpression/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BitwiseOrExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//BitwiseAndExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BitwiseAndExpression/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//BitwiseAndExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//EqualityExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//EqualityExpression/operand1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//EqualityExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//EqualityExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//RelationalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//RelationalExpression/operand1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//RelationalExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//RelationalExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//ConditionalExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//ConditionalExpression/operand1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//ConditionalExpression/operand2"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//ConditionalExpression/operand3"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//ShiftExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//ShiftExpression/operand1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//ShiftExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//ShiftExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//AdditiveExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//AdditiveExpression/operand1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//AdditiveExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//AdditiveExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//MultiplicativeExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//MultiplicativeExpression/operand1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//MultiplicativeExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//MultiplicativeExpression/operand2"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//UnaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//UnaryExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//UnaryExpression/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//PrimaryExpression"/>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//NestedExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference StatechartExpressions.ecore#//NestedExpression/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="StatechartExpressions.ecore#//LiteralValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute StatechartExpressions.ecore#//LiteralValue/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

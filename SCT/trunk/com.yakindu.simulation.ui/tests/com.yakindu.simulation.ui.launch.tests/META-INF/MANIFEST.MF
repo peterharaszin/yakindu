@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU Core Simulation Launch Tests
+Bundle-SymbolicName: com.yakindu.simulation.ui.launch.test
+Bundle-Version: 1.1.0.qualifier
+Require-Bundle: com.yakindu.simulation.launch;bundle-version="1.1.0",
+ com.yakindu.simulation.ui.launch;bundle-version="1.1.0",
+ org.junit,
+ org.eclipse.debug.core,
+ org.eclipse.core.runtime,
+ org.mda4e.simulation.core;bundle-version="0.1.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: YAKINDU.org
+Bundle-ClassPath: bin-groovy/,
+ .

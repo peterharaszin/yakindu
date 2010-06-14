@@ -1,0 +1,101 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Sps»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Names»
+
+«DEFINE main FOR statemachine::Statechart»
+«FILE awlDirectory()+'FC1.AWL'»
+«EXPAND writeIntro-»
+«EXPAND readInput-»
+«EXPAND writeEnd-»
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE writeIntro FOR Statechart»
+//{{V2}}
+FUNCTION FC1 : VOID
+TITLE=Ein- und Ausgänge setzen
+//Dieser Block setzt nach einem kompletten Durchlauf alle Ein- und Ausgänge
+//Please leave this file as it is. Changes should be done in the model.
+
+«EXPAND com::yakindu::statechart::codegenerator::sps::templates::Statemachine::intro FOR this»
+«REM»
+VAR_INPUT
+END_VAR
+
+VAR_OUTPUT
+END_VAR
+
+VAR_IN_OUT
+END_VAR
+
+VAR_TEMP
+END_VAR
+«ENDREM»
+BEGIN
+«ENDDEFINE»
+
+«DEFINE readInput FOR Statechart»
+NETWORK
+TITLE= Read input
+//{{a}}
+//set all input variables and events
+
+//Events
+	«FOREACH dataElement.typeSelect(Event).select(e|e.ioType.toString()=="input").sortBy(e|e.port) AS e-»
+		«EXPAND input FOR e-»
+	«ENDFOREACH-»
+//Lokale Variablen
+	«FOREACH dataElement.typeSelect(Variable).select(e|e.ioType.toString()=="input").sortBy(e|e.port) AS e-»
+		«EXPAND input FOR e-»
+	«ENDFOREACH-»
+
+
+«ENDDEFINE»
+
+«DEFINE writeEnd FOR Statechart»
+END_FUNCTION
+
+«ENDDEFINE»
+
+«DEFINE input FOR DataElement»
+«ENDDEFINE»
+
+«DEFINE input FOR Event»
+«IF trigger.toString()=="rising" -»
+       SET  ;
+       U    E         «port/10».«port-((port/10)*10)»;
+       UN   DB1.«getEventTriggerName()»;
+       =    DB1.«getEventName()»;
+       SET  ;
+       U    E         «port/10».«port-((port/10)*10)»;
+       =    DB1.«getEventTriggerName()»;
+«ELSEIF trigger.toString()=="falling" -»
+       SET  ;
+       UN    E         «port/10».«port-((port/10)*10)»;
+       U   DB1.«getEventTriggerName()»;
+       =    DB1.«getEventName()»;
+       SET  ;
+       U    E         «port/10».«port-((port/10)*10)»;
+       =    DB1.«getEventTriggerName()»;
+«ELSE-»
+       SET  ;
+       U    E         «port/10».«port-((port/10)*10)»;
+       =    DB1.«getEventName()»;
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE input FOR Variable»
+       U    E         «port/10».«port-((port/10)*10)»;
+       =    DB1.«getVarName()»;
+«ENDDEFINE»

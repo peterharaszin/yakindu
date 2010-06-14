@@ -1,0 +1,46 @@
+<workflow>
+	<!--  Check Component -->
+	
+	<component class="org.eclipse.xtend.check.CheckComponent">
+		<metaModel id="mm"
+			class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
+		<emfAllChildrenSlot value="theModel" />
+		<!--metaModel id="mm"/>
+		<expression value="${model}.eAllContents"/-->
+		<checkFile value="com::yakindu::statechart::codegenerator::sps::checks::Check"/>
+	</component>
+
+	<!-- End Parser -->
+
+	<!-- Debug loaded model -->
+	<!--component id="debugwriter" class="oaw.emf.XmiWriter">
+		<modelFile value="${debugDir}/debug.xmi" />
+		<inputSlot value="${model}" />
+	</component-->
+	
+	<!-- Generator -->
+	<component id='gen' class='oaw.xpand2.Generator'>
+		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel"
+			metaModelPackage="${metaModelPackage}"/>
+
+		<expand
+			value='com::yakindu::statechart::codegenerator::sps::templates::Root::main FOR theModel' />
+		<outlet path='${targetDir}' append='false'>
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/>
+		</outlet>
+		<!-- default output-->
+		<outlet name='DEFAULT' path='${targetDir}' append='false'>
+			<postprocessor class="org.eclipse.xpand2.output.JavaBeautifier"/>
+		</outlet>
+		<!-- append output -->
+ 		<outlet name='APPEND_TO_FILE' path='${targetDir}'
+			append='true'>
+		</outlet>
+
+		<fileEncoding value='utf-8' />
+	</component>
+	
+	<component class='com.yakindu.statechart.codegenerator.sps.component.ConvertToStep7'
+		directories='${targetDir}' step7File='${targetDir}/step7.awl' />
+
+</workflow>

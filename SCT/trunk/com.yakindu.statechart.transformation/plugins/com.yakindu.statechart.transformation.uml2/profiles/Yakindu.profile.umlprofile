@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:uml2tools.notation="http://www.eclipse.org/mdt/uml2tools/gmf/notation/ext/2008" xmi:id="_m5jdACVCEd-s7rfKAs_qeA" type="UMLProfile" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_nRQLUCVCEd-s7rfKAs_qeA" type="2007">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRQLUiVCEd-s7rfKAs_qeA" type="5009"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRQLUyVCEd-s7rfKAs_qeA" type="7005" collapsed="true">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRQLVCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRQLVSVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRQLViVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Profile" href="Yakindu.profile.uml#_12_5_1_ed20351_1236852562585_483655_232"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRQLUSVCEd-s7rfKAs_qeA"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nRQLVyVCEd-s7rfKAs_qeA" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRQLWSVCEd-s7rfKAs_qeA" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nR2BMCVCEd-s7rfKAs_qeA" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRQLWiVCEd-s7rfKAs_qeA" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRQLWyVCEd-s7rfKAs_qeA" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRQLXCVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRQLXSVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRQLXiVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRQLXyVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRQLYCVCEd-s7rfKAs_qeA" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRQLYSVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRQLYiVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRQLYyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRQLZCVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRQLZSVCEd-s7rfKAs_qeA" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRQLZiVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRQLZyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRQLaCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRQLaSVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="Yakindu.profile.uml#_12_5_1_ed20351_1236853945339_957987_231"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRQLWCVCEd-s7rfKAs_qeA" x="160"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nRZVQCVCEd-s7rfKAs_qeA" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVQiVCEd-s7rfKAs_qeA" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nSStICVCEd-s7rfKAs_qeA" bold="true" italic="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVQyVCEd-s7rfKAs_qeA" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVRCVCEd-s7rfKAs_qeA" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVRSVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVRiVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVRyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVSCVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVSSVCEd-s7rfKAs_qeA" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVSiVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVSyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVTCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVTSVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVTiVCEd-s7rfKAs_qeA" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVTyVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVUCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVUSVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVUiVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="Yakindu.profile.uml#_12_5_1_ed20351_1238676804114_26801_122"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRZVQSVCEd-s7rfKAs_qeA" x="452" y="191"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nRZVUyVCEd-s7rfKAs_qeA" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVVSVCEd-s7rfKAs_qeA" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nSStJyVCEd-s7rfKAs_qeA" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVViVCEd-s7rfKAs_qeA" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVVyVCEd-s7rfKAs_qeA" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVWCVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVWSVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVWiVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVWyVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVXCVCEd-s7rfKAs_qeA" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVXSVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVXiVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVXyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVYCVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVYSVCEd-s7rfKAs_qeA" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVYiVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVYyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVZCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVZSVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="Yakindu.profile.uml#_12_5_1_ed20351_1238676904010_154890_129"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRZVVCVCEd-s7rfKAs_qeA" x="326"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nRZVZiVCEd-s7rfKAs_qeA" type="2001">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVaCVCEd-s7rfKAs_qeA" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nSStKiVCEd-s7rfKAs_qeA" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVaSVCEd-s7rfKAs_qeA" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVaiVCEd-s7rfKAs_qeA" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVayVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVbCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVbSVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVbiVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVbyVCEd-s7rfKAs_qeA" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVcCVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVcSVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVciVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVcyVCEd-s7rfKAs_qeA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVdCVCEd-s7rfKAs_qeA" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVdSVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVdiVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVdyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVeCVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="Yakindu.profile.uml#_12_5_1_ed20351_1238676965301_119694_136"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRZVZyVCEd-s7rfKAs_qeA" x="545"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nRZVjCVCEd-s7rfKAs_qeA" type="2003">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVjiVCEd-s7rfKAs_qeA" type="5005">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nSvZECVCEd-s7rfKAs_qeA" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVjyVCEd-s7rfKAs_qeA" type="5011"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVkCVCEd-s7rfKAs_qeA" type="7004">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVkSVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVkiVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVkyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVlCVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Enumeration" href="Yakindu.profile.uml#_12_5_1_ed20351_1238677012260_591192_144"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRZVjSVCEd-s7rfKAs_qeA" x="905"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nRZVlSVCEd-s7rfKAs_qeA" type="2003">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVlyVCEd-s7rfKAs_qeA" type="5005">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nSvZFyVCEd-s7rfKAs_qeA" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVmCVCEd-s7rfKAs_qeA" type="5011"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVmSVCEd-s7rfKAs_qeA" type="7004">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVmiVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVmyVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVnCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVnSVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Enumeration" href="Yakindu.profile.uml#_12_5_1_ed20351_1238677112149_391603_148"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRZVliVCEd-s7rfKAs_qeA" x="1067"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_nRZVniVCEd-s7rfKAs_qeA" type="2003">
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVoCVCEd-s7rfKAs_qeA" type="5005">
+      <styles xmi:type="notation:FontStyle" xmi:id="_nS5KECVCEd-s7rfKAs_qeA" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_nRZVoSVCEd-s7rfKAs_qeA" type="5011"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_nRZVoiVCEd-s7rfKAs_qeA" type="7004">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_nRZVoyVCEd-s7rfKAs_qeA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_nRZVpCVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_nRZVpSVCEd-s7rfKAs_qeA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_nRZVpiVCEd-s7rfKAs_qeA"/>
+    </children>
+    <element xmi:type="uml:Enumeration" href="Yakindu.profile.uml#_12_5_1_ed20351_1238677165157_601130_153"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nRZVnyVCEd-s7rfKAs_qeA" x="1231"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_et-hsCVNEd-s7rfKAs_qeA" type="2006">
+    <children xmi:type="notation:DecorationNode" xmi:id="_et-htSVNEd-s7rfKAs_qeA" type="5008"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_et-hsSVNEd-s7rfKAs_qeA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_et-hsiVNEd-s7rfKAs_qeA"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_et-hsyVNEd-s7rfKAs_qeA"/>
+    <element xmi:type="uml:ElementImport" href="Yakindu.profile.uml#_et0wsCVNEd-s7rfKAs_qeA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_et-htCVNEd-s7rfKAs_qeA" x="465" y="370"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_m5jdASVCEd-s7rfKAs_qeA"/>
+  <styles xmi:type="uml2tools.notation:U2TDiagramCanonicalStyle" xmi:id="_m5jdAiVCEd-s7rfKAs_qeA"/>
+  <element xmi:type="uml:Profile" href="Yakindu.profile.uml#_12_5_1_ed20351_1236852562585_483655_232"/>
+  <edges xmi:type="notation:Connector" xmi:id="_nTV2ACVCEd-s7rfKAs_qeA" type="4001" source="_nRZVUyVCEd-s7rfKAs_qeA" target="_nRZVQCVCEd-s7rfKAs_qeA">
+    <styles xmi:type="notation:FontStyle" xmi:id="_nTV2ASVCEd-s7rfKAs_qeA"/>
+    <element xmi:type="uml:Generalization" href="Yakindu.profile.uml#_12_5_1_ed20351_1238676924935_970870_135"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nTV2AiVCEd-s7rfKAs_qeA" points="[0, 0, -84, -102]$[84, 102, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nUiI0CVCEd-s7rfKAs_qeA" id="(0.4968553459119497,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nUiI0SVCEd-s7rfKAs_qeA" id="(0.33035714285714285,0.0)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_nTx64CVCEd-s7rfKAs_qeA" type="4001" source="_nRZVZiVCEd-s7rfKAs_qeA" target="_nRZVQCVCEd-s7rfKAs_qeA">
+    <styles xmi:type="notation:FontStyle" xmi:id="_nTx64SVCEd-s7rfKAs_qeA"/>
+    <element xmi:type="uml:Generalization" href="Yakindu.profile.uml#_12_5_1_ed20351_1238677358301_10503_291"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_nTx64iVCEd-s7rfKAs_qeA" points="[0, 0, 85, -102]$[-85, 102, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nUiI0iVCEd-s7rfKAs_qeA" id="(0.49624060150375937,1.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_nUiI0yVCEd-s7rfKAs_qeA" id="(0.6607142857142857,0.0)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_jZo_kCVNEd-s7rfKAs_qeA" type="4002" source="_nRZVQCVCEd-s7rfKAs_qeA" target="_et-hsCVNEd-s7rfKAs_qeA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_jZo_lCVNEd-s7rfKAs_qeA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_jZo_lSVNEd-s7rfKAs_qeA" y="-15"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_jZo_kSVNEd-s7rfKAs_qeA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_jZo_kiVNEd-s7rfKAs_qeA"/>
+    <element xmi:type="uml:Extension" href="Yakindu.profile.uml#_jZfOkCVNEd-s7rfKAs_qeA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_jZo_kyVNEd-s7rfKAs_qeA" points="[2, 28, -2, -82]$[20, 90, 16, -20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_jZo_liVNEd-s7rfKAs_qeA" id="(0.42857142857142855,0.7606837606837606)"/>
+  </edges>
+</notation:Diagram>

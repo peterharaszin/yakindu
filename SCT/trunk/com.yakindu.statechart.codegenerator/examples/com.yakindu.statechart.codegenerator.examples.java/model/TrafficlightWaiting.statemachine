@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="TrafficlightWaiting" UUID="b304b1ed-f634-41d0-97e8-d48f57b78336">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="tl_red" ioType="output" port="1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress2" ioType="input" port="2"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress1" ioType="input" port="3"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="tl_green" ioType="output" port="4"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="tl_yellow" ioType="output" port="5"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress3" ioType="input" port="6"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress4" ioType="input" port="7"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress5" ioType="input" port="8"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="keypress6" ioType="input" port="9"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="ped_request" ioType="output" port="10"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="ped_green" ioType="output" port="11"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="ped_red" ioType="output" port="12"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="stateID" ioType="output" port="13"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="ped_blinking_rate" ioType="output" port="14"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="dutch" dataType="boolean"/>
+  <region priority="12">
+    <state xsi:type="org.mda4e.statemachine.model:State" name="on">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="StreetGreen" id="1" entry="var(tl_red) = 0; var(tl_green) = 1; var(tl_yellow) = 0; var(ped_red) = 1; var(ped_green) = 0; var(ped_request) = 0; var(stateID) = 1;" exit=""/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="StreetPrepare" id="2" entry="var(tl_red) = 1; var(tl_yellow) = 1; var(tl_green) = 0; var(stateID) = 7;"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="PedRed" id="3" entry="var(ped_red) = 1; var(ped_green) = 0; var(stateID) = 6;"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="PedGreen" id="4" entry="var(ped_red) = 0; var(ped_green) = 1; var(stateID) = 5;"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="StreetRed" id="5" entry="var(tl_red) = 1; var(tl_green) = 0; var(tl_yellow) = 0; var(stateID) = 4;" exit=""/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="StreetAmber" id="6" entry="var(tl_red) = 0; var(tl_green) = 0; var(tl_yellow) = 1; var(stateID) = 3;" do=""/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="PedWaiting" id="7" entry="var(stateID) = 2;">
+          <region priority="11">
+            <state xsi:type="org.mda4e.statemachine.model:State" name="waitOn" id="8" entry="var(ped_request) = 1;"/>
+            <state xsi:type="org.mda4e.statemachine.model:State" name="waitOff" id="9" entry="var(ped_request) = 0;"/>
+            <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="10"/>
+          </region>
+        </state>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="11" pseudoType="shallowHistory"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="12" pseudoType="deepHistory"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="13" pseudoType="choice"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="14" pseudoType="junction"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="15"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="off" id="16"/>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="17"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="freeze" id="18"/>
+  </region>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0" id="19" sourceNode="//@region.0/@state.0/@region.0/@state.7"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.6" priority="1" expression="keypress1" id="20" sourceNode="//@region.0/@state.0/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.4" expression="after(2s)" id="21" sourceNode="//@region.0/@state.0/@region.0/@state.5"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.3" expression="after(2s)" id="22" sourceNode="//@region.0/@state.0/@region.0/@state.4"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" expression="after(7s)" id="23" sourceNode="//@region.0/@state.0/@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.6/@region.0/@state.1" priority="1" expression="after(ped_blinking_rate)" id="24" sourceNode="//@region.0/@state.0/@region.0/@state.6/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.6/@region.0/@state.0" priority="1" expression="" id="25" sourceNode="//@region.0/@state.0/@region.0/@state.6/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.6/@region.0/@state.0" priority="1" expression="after(ped_blinking_rate)" id="26" sourceNode="//@region.0/@state.0/@region.0/@state.6/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.5" priority="2" expression="after(10s)/var(ped_request) = 0;" id="27" sourceNode="//@region.0/@state.0/@region.0/@state.6"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.9" priority="1" expression="after(3s)" id="28" sourceNode="//@region.0/@state.0/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.10" priority="1" expression="after(2s)" id="29" sourceNode="//@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" expression="/var(ped_blinking_rate) = 500; dutch = false;" id="30" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.7" priority="1" expression="keypress2" id="31" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="keypress2" id="32" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0" priority="1" id="33" sourceNode="//@region.0/@state.0/@region.0/@state.8"/>
+  <transition targetNode="//@region.0/@state.3" priority="2" expression="keypress3" id="34" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.8" priority="1" expression="keypress3" id="35" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.0" priority="3" expression="keypress4/ped_blinking_rate+=500;" id="36" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0" priority="4" expression="keypress5/ped_blinking_rate = ped_blinking_rate >= 1000 ? ped_blinking_rate - 500 : 500;" id="37" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1" priority="1" expression="[dutch == false]" id="38" sourceNode="//@region.0/@state.0/@region.0/@state.9"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0" priority="1" id="39" sourceNode="//@region.0/@state.0/@region.0/@state.10"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.10" priority="2" expression="[dutch == true]" id="40" sourceNode="//@region.0/@state.0/@region.0/@state.9"/>
+  <transition targetNode="//@region.0/@state.0" priority="5" expression="keypress6/dutch = dutch ? false : true;" id="41" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0" priority="1" id="42" sourceNode="//@region.0/@state.0/@region.0/@state.11"/>
+</org.mda4e.statemachine.model:Statechart>

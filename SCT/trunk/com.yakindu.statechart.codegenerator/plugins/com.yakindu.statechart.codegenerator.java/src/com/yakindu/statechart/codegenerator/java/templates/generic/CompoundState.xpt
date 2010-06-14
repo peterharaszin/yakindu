@@ -1,0 +1,164 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+
+«FILE getLibraryPackagePath() + "CompoundState.java"»
+package «getLibraryPackage()»;
+
+«EXPAND Imports»
+
+/**
+ * Representation of a state that contains nested regions with sub-states.
+ * Composite states may have an arbitrary number of nested regions, which are
+ * virtually executed in parallel (in fact, there execution is sequentialized
+ * based on their priorities). As a composite state always is "in" its
+ * sub-states, it may itself not contain a do action.
+ */
+public class CompoundState extends State {
+	«EXPAND CompoundStateClassBody»
+}
+  «ENDFILE»
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
+«ENDDEFINE»
+
+«DEFINE CompoundStateClassBody FOR Object»
+	«EXPAND Declarations»
+
+	public CompoundState(String id, String name, Region container, Action entryAction,
+			Action exitAction) {
+		super(id, name, container, entryAction, exitAction);
+	}
+
+	«EXPAND getRegionsMethod»
+
+	«EXPAND enterMethod»
+	
+	«EXPAND shallowEnterMethod»
+
+	«EXPAND reenterMethod»
+	
+	«EXPAND reactLocallyOnMethod»
+
+	«EXPAND leaveMethod»
+	
+	«EXPAND shallowLeaveMethod»
+«ENDDEFINE»
+
+
+«DEFINE Declarations FOR Object»
+	// the nested regions of this state, sorted by priority
+	private List<Region> regions = new ArrayList<Region>();
+«ENDDEFINE»
+
+«DEFINE enterMethod FOR Object»
+	protected void enter() {
+		«EXPAND enterMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE enterMethodBody FOR Object»
+	shallowEnter();
+	// now enter all nested regions (in the order of their priority)
+	for (Region region : regions) {
+		region.enter();
+	}
+«ENDDEFINE»
+
+
+«DEFINE shallowEnterMethod FOR Object»
+	protected void shallowEnter(){
+		«EXPAND shallowEnterMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE shallowEnterMethodBody FOR Object»
+	// let the super implementation request time events and execute the entry action of this state
+	super.enter();
+«ENDDEFINE»
+
+«DEFINE reenterMethod FOR Object»
+	protected void reenter(HistoryMode history) {
+		«EXPAND reeenterMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE reeenterMethodBody FOR Object»
+	shallowEnter();
+	// let the nested regions re-enter their former states
+	for (Region region : regions) {
+	    // if we have are in DEEP history mode, notify our nested regions 
+	    // to reenter into their former states as well
+	    if(history == HistoryMode.DEEP){
+			region.reenter(history);
+	    }
+	    else{
+	    	region.enter();
+	    }
+	}
+«ENDDEFINE»
+
+
+«DEFINE reactLocallyOnMethod FOR Object»
+	protected void reactLocallyOn(Set<Event> events) {
+		// as a compound state does not locally react on events (it may not
+		// specify a do action), forward to the nested regions (in the order of
+		// their priority)
+		for (Region region : regions) {
+			region.reactOn(events);
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE leaveMethod FOR Object»
+	protected void leave() {
+		«EXPAND leaveMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE leaveMethodBody FOR Object»
+	// leave all nested regions (in the reverse order of their priority)
+	for (ListIterator<Region> iterator = regions
+			.listIterator(regions.size()); iterator.hasPrevious();) {
+		iterator.previous().leave();
+	}
+	shallowLeave();
+«ENDDEFINE»
+
+«DEFINE shallowLeaveMethod FOR Object»
+	protected void shallowLeave() {
+	    «EXPAND shallowLeaveMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE shallowLeaveMethodBody FOR Object»
+	// let the super implementation execute the exit action of this state
+	super.leave();
+«ENDDEFINE»
+
+«DEFINE getRegionsMethod FOR Object»
+	protected List<Region> getRegions() {
+		«EXPAND getRegionsMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getRegionsMethodBody FOR Object»
+	return regions;
+«ENDDEFINE»

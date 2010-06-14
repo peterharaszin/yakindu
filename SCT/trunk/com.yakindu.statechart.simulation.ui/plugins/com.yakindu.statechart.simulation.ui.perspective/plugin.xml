@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.yakindu.simulation.view.PerspectiveFactory"
+            icon="%PerspectiveIcon"
+            id="com.yakindu.simulation.view.yakinduPerspective"
+            name="%PerspectiveName">
+      </perspective>
+   </extension>
+   <extension
+         id="nature"
+         name="%NatureName"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.yakindu.simulation.perspective.YakinduNature">
+         </run>
+      </runtime>
+      <requires-nature
+            id="org.eclipse.xtend.shared.ui.xtendXPandNature">
+      </requires-nature>
+      <requires-nature
+            id="org.eclipse.jdt.core.javanature">
+      </requires-nature>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.navigator.ProjectExplorer#PopupMenu?after=additions">
+         <menu
+               icon="icons/yakindu_icon.png"
+               id="com.yakindu.simulation.perspective.yakinduMenu"
+               label="%NatureName"
+               mnemonic="y"
+               tooltip="%NatureMenuTooltip">
+            <dynamic
+                  class="com.yakindu.simulation.perspective.ToggleNatureContribution"
+                  id="com.yakindu.simulation.perspective.toggleNature">
+               <visibleWhen
+                     checkEnabled="true">
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
+                     <instanceof
+                           value="org.eclipse.core.resources.IProject">
+                     </instanceof>
+                  </iterate>
+               </visibleWhen>
+            </dynamic>
+         </menu>
+      </menuContribution>
+   </extension>
+
+</plugin>

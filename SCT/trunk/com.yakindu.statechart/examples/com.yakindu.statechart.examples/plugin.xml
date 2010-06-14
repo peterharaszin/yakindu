@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<?eclipse version="3.2"?>
+<plugin>
+<extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="com.yakindu.statechart.examples"
+            parentCategory="org.eclipse.ui.Examples"
+            name="%NewCategory">
+      </category>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/com.yakindu.statechart.examples"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="%YakinduIcon"
+            id="com.yakindu.statechart.examples.projectWizard"
+            name="%NewProjectWizard"
+            project="true">
+         <description>
+            %newWizardDescription
+         </description>
+      </wizard>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/com.yakindu.statechart.examples"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="%YakinduIcon"
+            id="com.yakindu.statechart.examples.projectWizard.java"
+            name="%NewProjectWizardJava"
+            project="true">
+         <description>
+            %newWizardDescriptionJava
+         </description>
+      </wizard>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/com.yakindu.statechart.examples"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="%YakinduIcon"
+            id="com.yakindu.statechart.examples.projectWizard.c"
+            name="%NewProjectWizardC"
+            project="true">
+         <description>
+            %newWizardDescriptionC
+         </description>
+      </wizard>
+      <wizard
+            canFinishEarly="true"
+            category="org.eclipse.ui.Examples/com.yakindu.statechart.examples"
+            class="org.eclipse.emf.common.ui.wizard.ExampleInstallerWizard"
+            icon="%YakinduIcon"
+            id="com.yakindu.statechart.transformation.examples.projectWizard.uml2"
+            name="%NewProjectWizardUml2"
+            project="true">
+         <description>
+            %newWizardDescriptionUml2
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.emf.common.ui.examples">
+      <example
+            id="org.yakindu.simulation.launch.examples"
+            wizardID="com.yakindu.statechart.examples.projectWizard">
+         <projectDescriptor
+               contentURI="/examples/StaircaseLighting/"
+               description="%StaircaseDescription"
+               name="%StaircaseName">
+         </projectDescriptor>
+         <projectDescriptor
+               contentURI="/examples/Safe/"
+               description="%SafeDescription"
+               name="%SafeName">
+         </projectDescriptor>
+         <projectDescriptor
+               contentURI="/examples/TrafficLight/"
+               description="%TrafficLightDescription"
+               name="%TrafficLightName">
+         </projectDescriptor>
+      </example>
+      <example
+            id="org.yakindu.simulation.launch.examples.java"
+            wizardID="com.yakindu.statechart.examples.projectWizard.java">
+         <projectDescriptor
+               contentURI="platform:/plugin/com.yakindu.statechart.codegenerator.examples.java/"
+               description="%JavaDescription"
+               name="%JavaName">
+         </projectDescriptor>
+      </example>
+      <example
+            id="org.yakindu.simulation.launch.examples.c"
+            wizardID="com.yakindu.statechart.examples.projectWizard.c">
+         <projectDescriptor
+               contentURI="platform:/plugin/com.yakindu.statechart.codegenerator.examples.c/"
+               description="%CDescription"
+               name="%CName">
+         </projectDescriptor>
+      </example>
+       <example
+            id="org.yakindu.statechart.transformation.examples.uml2"
+            wizardID="com.yakindu.statechart.transformation.examples.projectWizard.uml2">
+         <projectDescriptor
+               contentURI="platform:/plugin/com.yakindu.statechart.transformation.examples.uml2/"
+               description="%Uml2Description"
+               name="%Uml2Name">
+         </projectDescriptor>
+      </example>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="com.yakindu.simulation.view.yakinduPerspective">
+         <newWizardShortcut
+               id="org.yakindu.simulation.statemachine.launch.projectWizard">
+         </newWizardShortcut>
+      </perspectiveExtension>
+   </extension>
+</plugin>

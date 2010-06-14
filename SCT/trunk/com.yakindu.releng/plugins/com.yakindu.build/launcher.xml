@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<project name="PDE-Build" default="all" basedir=".">
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="ant/ant-contrib-1.0b3.jar" />
+	<property environment="env" />
+
+	<property file="${launcher.build.file.prefix}.properties"/>
+	<property file="user.properties"/>
+	<property file="server.properties"/>
+	<property file="pde-build/build.properties"/>
+	<property file="versions.properties"/>
+
+	<property name="p2.builder" value="${launcherLocation}" />
+	<!-- only temporary and will be deleted after installation -->
+	<property name="downloadDirectory" value="${buildDirectory}/downloads" />
+
+	<target name="clean">
+		<!-- target directory -->
+		<delete dir="${buildDirectory}" />
+		<ant antfile="test.xml" dir="test" target="clean"/>
+		<ant antfile="${launcher.build.file.prefix}.xml" dir="${basedir}" target="clean" inheritall="true"/>
+	</target>
+	<target name="prepareLauncherDirectory">
+		<if>
+			<not>
+				<available file="${launcher}" />
+			</not>
+			<then>
+				<mkdir dir="${launcher}" />
+				<antcall target="prepareLauncher" />
+			</then>
+		</if>
+	</target>
+
+	<target name="prepareLauncher">
+		<echo message="Preparing launcher ..." />
+
+		<property name="download.eclipse.src" value="${downloadMirror}/eclipse/downloads/drops/${launcherBuildType}-${launcherBuildMilestone}-${launcherBuildID}" />
+		<if>
+			<equals arg1="${launcheros}" arg2="win32" />
+			<then>
+				<property name="eclipse.sdk.filename" value="eclipse-SDK-${launcherBuildMilestone}-${launcheros}-${launcherws}.${launcherArchiveFormat}" />
+			</then>
+			<elseif>
+				<equals arg1="${launcherarch}" arg2="x86_64" />
+				<then>
+					<property name="eclipse.sdk.filename" value="eclipse-SDK-${launcherBuildMilestone}-${launcheros}-${launcherws}-${launcherarch}.${launcherArchiveFormat}" />
+				</then>
+			</elseif>
+			<else>
+				<property name="eclipse.sdk.filename" value="eclipse-SDK-${launcherBuildMilestone}-${launcheros}-${launcherws}.${launcherArchiveFormat}" />
+			</else>
+		</if>
+
+		<get src="${download.eclipse.src}/${eclipse.sdk.filename}" dest="${downloadDirectory}/${eclipse.sdk.filename}" />
+
+		<!-- use unzip executable of choice -->
+		<if>
+			<equals arg1="${launcherArchiveFormat}" arg2="zip" />
+			<then>
+				<unzip src="${downloadDirectory}/${eclipse.sdk.filename}" dest="${launcher}/" />
+			</then>
+			<else>
+				<untar src="${downloadDirectory}/${eclipse.sdk.filename}" dest="${launcher}/" compression="gzip" />
+			</else>
+		</if>
+
+		<!-- if we are on macosx, ensure builder is executable -->
+		<if>
+			<equals arg1="${launcheros}" arg2="macosx" />
+			<then>
+				<chmod file="${launcherLocation}/eclipse" perm="ugo+rx" />
+				<chmod file="${launcherLocation}/Eclipse.app/Contents/MacOS/eclipse" perm="ugo+rx" />
+			</then>
+		</if>
+
+		<echo message="Preparing launcher done." />
+	</target>
+
+	<target name="prepareBaseDirectory">
+		<!-- base only has to be prepared, if it does not exist or if the user explicitly specifies to do so (skipBase=false) -->
+		<if>
+			<or>
+				<equals arg1="${skipBase}" arg2="false" />
+				<not>
+					<available file="${base}" />
+				</not>
+			</or>
+			<then>
+				<mkdir dir="${base}" />
+				<antcall target="prepareBase" />
+			</then>
+		</if>
+	</target>
+
+	<target name="prepareBase">
+		<echo message="Preparing base ..." />
+
+		<!-- download the sdk and delta pack -->
+		<property name="download.eclipse.src" value="${downloadMirror}/eclipse/downloads/drops/${baseBuildType}-${baseBuildMilestone}-${baseBuildID}" />
+		<if>
+			<equals arg1="${baseos}" arg2="win32" />
+			<then>
+				<property name="eclipse.sdk.filename" value="eclipse-SDK-${baseBuildMilestone}-${baseos}.${baseArchiveFormat}" />
+			</then>
+			<elseif>
+				<equals arg1="${basearch}" arg2="x86_64" />
+				<then>
+					<property name="eclipse.sdk.filename" value="eclipse-SDK-${baseBuildMilestone}-${baseos}-${basews}-${basearch}.${baseArchiveFormat}" />
+				</then>
+			</elseif>
+			<else>
+				<property name="eclipse.sdk.filename" value="eclipse-SDK-${baseBuildMilestone}-${baseos}-${basews}.${baseArchiveFormat}" />
+			</else>
+		</if>
+		<property name="eclipse.rcp-delta-pack.filename" value="eclipse-${baseBuildMilestone}-delta-pack.zip" />
+
+		<get src="${download.eclipse.src}/${eclipse.sdk.filename}" dest="${downloadDirectory}/${eclipse.sdk.filename}" />
+		<if>
+			<equals arg1="${baseArchiveFormat}" arg2="zip" />
+			<then>
+				<unzip src="${downloadDirectory}/${eclipse.sdk.filename}" dest="${base}/" />
+			</then>
+			<else>
+				<untar src="${downloadDirectory}/${eclipse.sdk.filename}" dest="${base}/" compression="gzip" />
+			</else>
+		</if>
+
+		<get src="${download.eclipse.src}/${eclipse.rcp-delta-pack.filename}" dest="${downloadDirectory}/${eclipse.rcp-delta-pack.filename}" />
+		<unzip src="${downloadDirectory}/${eclipse.rcp-delta-pack.filename}" dest="${base}/" />
+
+		<!-- install EMF SDK -->
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.emf.sdk.feature.group" />
+			<property name="p2.version" value="2.4.2.v200902171115" />
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+
+		<!-- install MDT UML2 SDK -->
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.uml2.sdk.feature.group" />
+			<property name="p2.version" value="2.2.2.v200902101430" />
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.emf.emfqtv.all.sdk.feature.group" />
+			<property name="p2.version" value="1.3.1.v20090819-1457-4778_90GCMOEJccDOSfSYw5qz-LE" />
+				<property name="p2.profile" value="SDKProfile" />
+				<property name="p2.os" value="${baseos}" />
+				<property name="p2.ws" value="${basews}" />
+				<property name="p2.arch" value="${basearch}" />
+				<property name="p2.install.path" value="${baseLocation}" />
+				<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+			</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.emf.ecoretools.sdk.feature.group" />
+			<property name="p2.version" value="0.9.0.v200906221231" />
+				<property name="p2.profile" value="SDKProfile" />
+				<property name="p2.os" value="${baseos}" />
+				<property name="p2.ws" value="${basews}" />
+				<property name="p2.arch" value="${basearch}" />
+				<property name="p2.install.path" value="${baseLocation}" />
+				<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+			</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.emf.sdk.feature.group" />
+			<property name="p2.version" value="2.5.0.v200906151043" />
+				<property name="p2.profile" value="SDKProfile" />
+				<property name="p2.os" value="${baseos}" />
+				<property name="p2.ws" value="${basews}" />
+				<property name="p2.arch" value="${basearch}" />
+				<property name="p2.install.path" value="${baseLocation}" />
+				<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+			</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.emf.compare.sdk.feature.group" />
+			<property name="p2.version" value="1.0.1.v200909161031" />
+				<property name="p2.profile" value="SDKProfile" />
+				<property name="p2.os" value="${baseos}" />
+				<property name="p2.ws" value="${basews}" />
+				<property name="p2.arch" value="${basearch}" />
+				<property name="p2.install.path" value="${baseLocation}" />
+				<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+			</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.gmf.sdk.feature.group" />
+			<property name="p2.version" value="2.2.1.v20090814-1000-7C7F1BLxlfAqjMDHunFV5S-_YY-Q" />
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.jet.sdk.feature.group" />
+			<property name="p2.version" value="1.0.1.v200908201022-4-2866DoIsTFMnLmIME_FE"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.emf.mwe.sdk.feature.group" />
+			<property name="p2.version" value="0.7.2.v200908120417"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.ocl.all.sdk.feature.group" />
+			<property name="p2.version" value="1.3.0.v200901271800-787B8aA3PRRgQUXlKwbe1tshdIma"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.m2m.qvt.oml.sdk.feature.group" />
+			<property name="p2.version" value="2.0.1.v20090701-2200-7N-5CLrGiFfYqKJ7FOaWVaJlXLqT"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.uml2.sdk.feature.group" />
+			<property name="p2.version" value="3.0.1.v200908281330"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.uml2tools.sdk.feature.group" />
+			<property name="p2.version" value="0.9.0.v200906190654"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.xpand.sdk.feature.group" />
+			<property name="p2.version" value="0.7.2.v200908120436"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.xtext.sdk.feature.group" />
+			<property name="p2.version" value="0.7.2.v200908120607"/>
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://download.eclipse.org/releases/galileo" />
+		</ant>
+		
+		<!-- openArchitectureWare uml2 adapter -->
+<!--		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.openarchitectureware.uml2.adapter.feature.group" />
+			<property name="p2.version" value="4.3.1.20090107-2000PRD" />
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://oawbranch.pluginbuilder.org/releases/p2-updateSite/" />
+		</ant>
+-->
+		<!-- openArchitectureWare xtext -->
+<!--		<ant antfile="p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.openarchitectureware.xtext.feature.feature.group" />
+			<property name="p2.version" value="4.3.1.20090107-2000PRD" />
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.install.path" value="${baseLocation}" />
+			<property name="p2.build.repo" value="http://oawbranch.pluginbuilder.org/releases/p2-updateSite/" />
+		</ant>
+-->
+
+		<echo message="Preparing base done." />
+	</target>
+
+	<target name="prepareBuildDirectory">
+		<mkdir dir="${downloadDirectory}" />
+
+		<antcall target="prepareLauncherDirectory" />
+		<antcall target="prepareBaseDirectory" />
+		<antcall target="prepareETF" />
+
+		<mkdir dir="${buildDirectory}" />
+		<antcall target="prepareFeatures" />
+		<antcall target="preparePlugins" />
+
+		<antcall target="init-repo" />
+
+		<!-- copy map files -->
+
+		<delete dir="${downloadDirectory}" />
+	</target>
+
+	<target name="preparePlugins">
+		<echo message="base: ${repository}"/>
+		<mkdir dir="${buildDirectory}${file.separator}plugins" />
+		
+		<!-- Copy plugins -->
+		<echo>Copy plugins from ${repository} to ${buildDirectory}/plugins</echo>
+		<copy todir="${buildDirectory}${file.separator}plugins">
+			<mapper type="regexp" from="[^/\\]*[/\\]plugins[/\\](.*)$$" to="\1"/>
+			<fileset dir="${repository}">
+				<include name="com.yakindu*/**" />
+				<include name="org.mda4e.*/**" />
+				<!--exclude name="com.yakindu.*updatesite/**" /-->
+				<exclude name="com.yakindu*feature/**" />
+				<exclude name="**/target" />
+				<exclude name="**/*.class" />
+				<exclude name="*/bin/**" />
+				<exclude name=".svn" />
+			</fileset>
+		</copy>
+
+		<!-- Copy examples -->
+		<echo>Copy examples from ${repository} to ${buildDirectory}/plugins</echo>
+		<copy todir="${buildDirectory}/plugins">
+			<mapper type="regexp" from="[^/\\]*[/\\]examples[/\\](.*)$$" to="\1"/>
+			<fileset dir="${repository}">
+				<include name="com.yakindu*/**" />
+				<include name="org.mda4e.*/**" />
+				<exclude name="com.yakindu.*updatesite/**" />
+				<exclude name="com.yakindu*feature/**" />
+				<exclude name="**/target" />
+				<exclude name="**/*.class" />
+				<exclude name="*/bin/**" />
+				<exclude name=".svn" />
+			</fileset>
+		</copy>		
+		
+		<!-- add tests -->
+		<copy todir="${buildDirectory}/plugins">
+			<mapper type="regexp" from="[^/\\]*[/\\]tests[/\\](.*)$$" to="\1"/>
+			<fileset dir="${repository}">
+				<include name="com.yakindu*/tests/**" />
+				<include name="org.mda4e.*/**" />
+				<exclude name="**/org.junit4_*.jar" />
+				<exclude name="**/target" />
+				<exclude name="**/*.class" />
+				<exclude name="*/bin/**" />
+				<exclude name=".svn" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="prepareFeatures">
+		<mkdir dir="${buildDirectory}${file.separator}features" />
+		<echo>Copy features from ${repository} to ${buildDirectory}/features</echo>
+		<copy todir="${buildDirectory}/features">
+			<fileset dir="${repository}">
+				<include name="**/features/com.yakindu*feature/**" />
+			</fileset>
+			<mapper type="regexp" from="[^/\\]*features[/\\](.*)$$" to="\1"/>
+		</copy>
+	</target>
+
+	<target name="init-repo">
+		<mkdir dir="${buildDirectory}/repo"/>
+		<if>
+			<not>
+				<equals arg1="${skipScp}" arg2="true" />
+			</not>
+			<then>
+				<scp todir="${buildDirectory}/repo" 
+					keyfile="${yakindu.keyFile}"
+					failonerror="${scp.fail_on_error}"
+					passphrase="${yakindu.passphrase}"
+					trust="true"
+					file="${update.site.scp}"
+					sftp="true">
+				</scp>
+			</then>
+		</if>
+	</target>
+
+	<target name="prepareETF">
+		<if>
+			<not>
+				<available file="${etf.directory}" />
+			</not>
+			<then>
+				<echo message="Preparing eclipse testing framework ..." />
+				<mkdir dir="${etf.directory}" />
+
+				<!-- download the eclipse testing framework and patch for JUnit4 -->
+				<property name="download.eclipse.src" value="${downloadMirror}/eclipse/downloads/drops/${baseBuildType}-${baseBuildMilestone}-${baseBuildID}" />
+				<property name="eclipse.etf.filename" value="eclipse-test-framework-${baseBuildMilestone}.zip" />
+				<get src="${download.eclipse.src}/${eclipse.etf.filename}" dest="${downloadDirectory}/${eclipse.etf.filename}" />
+				<unzip src="${downloadDirectory}/${eclipse.etf.filename}" dest="${etf.directory}/" />
+				<ant antfile="p2.xml" target="p2.generator">
+					<property name="sourceDir" value="${etf.directory}/eclipse" />
+					<!--<property name="p2.version" value="${buildMilestone}.${forceContextQualifier}" />-->
+					<property name="repoDir" value="${etf.directory}/repo" />
+				</ant>
+			</then>
+		</if>
+
+	</target>
+
+	<!--
+		PDE Build expects that the build directory contains a "plugins" 
+		directory and a "features" directory. These directories should contain
+		the various plug-ins and features to be built.
+		
+		It's possible to use the CVS checkout process that is built into 
+		PDE Build. This is done with map files and is beyond the scope of 
+		this tutorial. 
+		
+		This tutorial simply copies the projects directly from your workspace
+		into the appropriate build directory folders.
+	-->
+
+	<!--
+		This target actually executes the PDE Build process by launching the 
+		Eclipse antRunner application.
+	-->
+	<target name="pde-build">
+		<path id="equinox.launcher">
+            <first count="1">
+                <sort>
+                    <fileset dir="${launcherLocation}/plugins" includes="org.eclipse.equinox.launcher_*.jar" />
+                    <!-- Seems the default order is oldest > newest so we must reverse it.
+                       The 'reverse' and 'date' comparators are in the internal antlib
+                       org.apache.tools.ant.types.resources.comparators.
+                    -->
+                    <reverse xmlns="antlib:org.apache.tools.ant.types.resources.comparators">
+                        <!-- 'date' inherits 'reverse's namespace -->
+                        <date />
+                    </reverse>
+                </sort>
+            </first>
+        </path>
+		<property name="equinox.launcher.jar.location" refid="equinox.launcher" />
+		<echo message="Launcher: ${equinox.launcher.jar.location}"/>
+				
+		<java jar="${equinox.launcher.jar.location}" fork="true" failonerror="true">
+			<arg value="-application" />
+			<arg value="org.eclipse.ant.core.antRunner" />
+			<arg value="-clean" />
+			<arg value="-nosplash" />
+			<!--arg value="-consoleLog"/>
+			<arg value="-debug" />
+			<arg value="-verbose"/-->
+			<arg value="-data"/>
+			<arg value="${buildDirectory}/launcher_workspace"/>
+			<arg value="-buildfile" />
+			<arg value="${basedir}/${launcher.build.file.prefix}.xml" />
+			<arg value="-Dtimestamp=${timestamp}" />
+			<arg value="-DskipScp=${skipScp}" />
+			<jvmarg line="-Xms512m -Xmx1024m -XX:MaxPermSize=512m" />
+		</java>
+	</target>
+
+	<target name="all" depends="clean, prepareBuildDirectory, init-repo, pde-build">
+	</target>
+
+</project>

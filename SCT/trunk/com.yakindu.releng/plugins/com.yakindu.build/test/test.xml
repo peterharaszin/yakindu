@@ -1,0 +1,214 @@
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<project name="Library" default="all" basedir=".">
+
+	<property file="../user.properties"/>
+	<property file="test.properties"/>
+
+	<taskdef resource="emma_ant.properties" classpath="emma/emma.jar:emma/emma_ant.jar" />
+
+	<target name="all">
+
+		<antcall target="init"/>
+		<antcall target="setup.eclipse.test.home"/>
+
+		<antcall target="instrument_jars" />
+
+		<ant antfile="${eclipse.test.home}/plugins/com.yakindu.tests_1.1.0.${forceContextQualifier}/test.xml" target="preJunit" inheritall="true"/>
+		<antcall target="core-test" />
+		<antcall target="ui-test" />
+		<ant antfile="${eclipse.test.home}/plugins/com.yakindu.tests_1.1.0.${forceContextQualifier}/test.xml" target="postJunit" inheritall="true"/>
+
+		<antcall target="collect_coverage" />
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="${testDirectory}"/>
+		<mkdir dir="${coverage-reports.dir}"/>
+	</target>
+
+	<target name="clean" description="deletes all build artifacts">
+		<delete dir="${testDirectory}"/>
+		<delete dir="${coverage-reports.dir}"/>
+		<delete dir="${eclipse.test.home}"/>
+	</target>
+
+	<target name="instrument_jars" depends="" description="executes the tests">
+		<echo message="Instrumentation directory: ${eclipse.test.home}/plugins"/>
+		<!-- instrument .jar files of sc.viper plugins to enable code coverage measurement -->
+		<emma>
+			<instr mode="overwrite" merge="no" outfile="${coverage-reports.dir}/metadata.emma" filter="+com.yakindu.*, +org.mda4e.*">
+				<instrpath>
+					<fileset dir="${eclipse.test.home}/plugins" includes="com.yakindu.*/*.jar" excludes="*.test.jar" />
+					<fileset dir="${eclipse.test.home}/plugins" includes="com.yakindu.*.jar" excludes="*.test.jar, *examples*.jar" />
+				</instrpath>
+			</instr>
+		</emma>
+	</target>
+
+	<target name="collect_coverage">
+		<emma>
+			<report >
+				<sourcepath>
+					<dirset dir="${buildDirectory}/plugins">
+						<include name="com.yakindu**/src" />
+					</dirset>
+				</sourcepath>
+				<fileset dir="${coverage-reports.dir}" >
+					<include name="*.emma" />
+				</fileset>
+				<xml outfile="${coverage-reports.dir}/coverage.xml" />
+				<html outfile="${coverage-reports.dir}/coverage.html" />
+			</report>
+		</emma>
+	</target>
+
+	<target name="setup.eclipse.test.home">
+		<mkdir dir="${eclipse.test.home}"/>
+		<echo message="Exec: cp -R ${baseLocation}/. ${eclipse.test.home}"/>
+		<exec executable="cp">
+			<arg value="-R"/>
+			<arg value="${baseLocation}/."/>
+			<arg value="${eclipse.test.home}"/>
+		</exec>
+		<exec executable="chmod">
+			<arg value="u+x" />
+			<arg value="${eclipse.test.home}/eclipse" />
+		</exec>
+		<!-- install com.yakindu feature via the p2 director -->
+		<ant antfile="../p2.xml" target="p2.director">
+			<property name="p2.installIU" value="com.yakindu.tests.feature.feature.group" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.builder" value="${baseLocation}" />
+			<property name="p2.director.workspace" value="${eclipse.test.home}/p2_workspace" />
+			<property name="p2.install.path" value="${eclipse.test.home}" />
+		</ant>
+		<!-- copy etf to dropins -->
+<!--		<copy todir="${eclipse.test.home}/dropins" overwrite="true">
+					<fileset dir="${etf.directory}">
+						<include name="eclipse/**" />
+						<exclude name=".svn" />
+					</fileset>
+				</copy>
+-->		<!-- install eclipse testing framework -->
+		<ant antfile="../p2.xml" target="p2.director">
+			<property name="p2.installIU" value="org.eclipse.test.feature.group" />
+			<property name="p2.os" value="${baseos}" />
+			<property name="p2.ws" value="${basews}" />
+			<property name="p2.arch" value="${basearch}" />
+			<property name="p2.profile" value="SDKProfile" />
+			<property name="p2.builder" value="${baseLocation}" />
+			<property name="p2.director.workspace" value="${eclipse.test.home}/p2_workspace" />
+			<property name="p2.build.repo" value="file:${etf.directory}/repo" />
+			<property name="p2.install.path" value="${eclipse.test.home}" />
+		</ant>
+	</target>
+
+	<target name="core-test">
+		<antcall target="eclipse-test">
+			<param name="application" value="org.eclipse.test.coretestapplication" />
+			<param name="classname" value="com.yakindu.tests.AllCoreTests" />
+		</antcall>
+	</target>
+
+	<target name="ui-test">
+		<antcall target="eclipse-test">
+			<param name="application" value="org.eclipse.test.uitestapplication" />
+			<param name="classname" value="com.yakindu.tests.AllUITests" />
+		</antcall>
+	</target>
+
+
+	<target name="eclipse-test">
+		<!-- 
+		Parameters to this target:
+		data-dir		- the directory for Eclipse to write its data
+		plugin-name		- the name of the plugin to test
+		classname		- the name of the test class
+		vmargs			- a string containing arguments to pass to the VM - defaults to ""
+		-->
+		<property name="org.eclipse.ant.optional.junit" value="org.eclipse.ant.optional.junit_3.2.100"/>
+		<property name="plugin-name" value="com.yakindu.tests"/>
+		<property name="vmargs" value=" -Xms256m -Xmx512m -Demma.coverage.out.file=${coverage-reports.dir}/metadata.emma" />
+		<property name="formatter" value="org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter" />
+		<property name="extraVMargs" value="" />
+		<property name="plugin-path" value="" />
+		<property name="timeout" value="7200000" />
+		<property name="test-output" value="${testDirectory}/${classname}.xml" />
+		<property name="emma.lib" value="${basedir}/emma/emma.jar"/>
+		<property name="xdisplay" value=":0"/>
+		<echo message="Running ${classname}" />
+
+		<path id="equinox.launcher">
+            <first count="1">
+                <sort>
+                    <fileset dir="${eclipse.test.home}/plugins" includes="**/org.eclipse.equinox.launcher_*.jar" />
+                    <!-- Seems the default order is oldest > newest so we must reverse it.
+                       The 'reverse' and 'date' comparators are in the internal antlib
+                       org.apache.tools.ant.types.resources.comparators.
+                    -->
+                    <reverse xmlns="antlib:org.apache.tools.ant.types.resources.comparators">
+                        <!-- 'date' inherits 'reverse's namespace -->
+                        <date />
+                    </reverse>
+                </sort>
+            </first>
+        </path>
+		<property name="equinox.launcher.jar.location" refid="equinox.launcher" />
+		<echo message="Launcher: ${equinox.launcher.jar.location}"/>
+
+		<delete dir="${eclipse.test.home}/workspace" quiet="true" />
+		<!-- Produces the file '${default-filename}' -->
+		<java jar="${equinox.launcher.jar.location}" fork="true" dir="${eclipse.test.home}" 
+			timeout="${timeout}" logError="true">
+			<arg line="-Demma.coverage.out.merge=true" />
+			<arg line="-Demma.coverage.out.file=${coverage-reports.dir}/metadata.emma" />
+			<arg line="-application ${application}" />
+			<arg line="-dev bin,${emma.lib}"/>
+			<arg line="-debug"/>
+			<arg line="-clean"/>
+			<arg line="-profile SDKProfile" />
+			<arg line="-data ${eclipse.test.home}/workspace" />
+			<arg line="formatter=${formatter},${test-output}" />
+			<arg line="-testPluginName ${plugin-name}" />
+			<arg line="-className ${classname}" />
+			<arg line="-os ${baseos}" />
+			<arg line="-ws ${basews}" />
+			<arg line="-arch ${basearch}" />
+			<arg line="-consolelog" />
+			<jvmarg line="${vmargs}" />
+			<env key="DISPLAY" value="${xdisplay}"/>
+		</java>
+
+		<!-- copy the result to destination for further processing -->
+		<property name="junit-report-output" value="../../results" />
+		<!--<junitreport todir="${junit-report-output}/xml" tofile="${plugin-name}_${platform}.xml">
+				<fileset file="${test-output}" />
+			</junitreport>
+			-->
+		<!--save .log content and *.log content from configuration directory-->
+		<!--<concat destfile="${junit-report-output}/${classname}.log">
+				<fileset dir="${eclipse.test.home}" includes="${workspace.dir}/.metadata/*.log"/>
+				<fileset dir="${eclipse.test.home}" includes="configuration/*.log"/>
+			</concat>-->
+	</target>
+
+	<!-- ================================= 
+          target: all              
+         ================================= -->
+
+
+</project>

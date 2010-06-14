@@ -1,0 +1,3 @@
+ENV_OBJ = environment/scheduler.o environment/task.o environment/event.o environment/outputTask.o environment/outputEvent.o \
+          environment/keyTask.o environment/keyEvent.o environment/statemachineTask.o \
+          environment/statemachineEvent.o environment/cppAdditions.o environment/TimerService.o environment/TimerServiceEvent.o

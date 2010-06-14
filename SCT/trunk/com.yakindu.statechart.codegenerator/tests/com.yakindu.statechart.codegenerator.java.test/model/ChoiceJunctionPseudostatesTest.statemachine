@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="ChoiceJunctionPseudostatesTest" UUID="faf4c7da-e090-41f6-8413-f078b01d1b9b">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="decision" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event2" port="1"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState1" id="1" entry=""/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState2" id="2"/>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="3" pseudoType="choice"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState3" id="4"/>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="5" pseudoType="junction"/>
+  </region>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="/decision = true;" id="6" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.3" priority="1" expression="event1" id="7" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2" priority="2" expression="[decision]" id="8" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.4" priority="1" expression="[!decision]" id="9" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.5" priority="1" expression="event2" id="10" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.5" priority="1" expression="event2" id="11" sourceNode="//@region.0/@state.4"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="/decision =  decision ? false : true;" id="12" sourceNode="//@region.0/@state.5"/>
+</org.mda4e.statemachine.model:Statechart>

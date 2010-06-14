@@ -1,0 +1,16 @@
+<workflow> 
+   <cartridge file="com/yakindu/statechart/codegenerator/java/workflow/generate_java.oaw" model="${model}" src-gen="${src-gen}"/> 
+   <component adviceTarget="generator" 
+              id="reflectionAdvice" 
+              class="org.eclipse.xpand2.GeneratorAdvice"> 
+      <advices value="com::yakindu::statechart::codegenerator::java::templates::advices::DefensiveStatechart,
+      				  com::yakindu::statechart::codegenerator::java::templates::generic::advices::DefensiveAbstractStatechart,
+      				  com::yakindu::statechart::codegenerator::java::templates::generic::advices::DefensiveRegion,
+      				  com::yakindu::statechart::codegenerator::java::templates::generic::advices::DefensiveNode,
+      				  com::yakindu::statechart::codegenerator::java::templates::generic::advices::DefensiveState,
+      				  com::yakindu::statechart::codegenerator::java::templates::generic::advices::DefensivePseudostate,
+      				  com::yakindu::statechart::codegenerator::java::templates::generic::advices::DefensiveTransition,
+      				  com::yakindu::statechart::codegenerator::java::templates::generic::advices::DefensiveCompoundState"/> 
+      <fileEncoding value='utf-8' />
+   </component> 
+</workflow>

@@ -1,0 +1,48 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+import statechartexpressions;
+
+extension com::yakindu::statechart::model::Extensions;
+
+ActionExpression getEntryActionExpression(State this) : 
+    this.entry != null ? parseActionExpression(this.entry) : null;
+    
+ActionExpression getDoActionExpression(State this) : 
+    this.do != null ? parseActionExpression(this.do) : null;
+    
+ActionExpression getExitActionExpression(State this) : 
+    this.exit != null ? parseActionExpression(this.exit) : null;
+
+String getId(State this):
+  getId(this.eContainer) + "_STATE_" + this.name; // name is unique within region, so use this within the identifier
+
+boolean isSimpleState(State this) : 
+  	this.region.isEmpty;
+
+boolean isCompoundState(State this) : 
+	!this.region.isEmpty;
+	
+boolean hasEntryAction(State this) : 
+    this.entry != null && !this.entry.matches("");
+    
+boolean hasDoAction(State this) : 
+    this.do!= null && !this.do.matches("");
+    
+boolean hasExitAction(State this) : 
+    this.exit != null && !this.exit.matches("");
+    
+List[Region] getNestedRegions(State this):
+   {}.addAll(region).addAll(region.getNestedRegions()).flatten();
+
+boolean hasRegions(State this) : !region.isEmpty;
+
+	

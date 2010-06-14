@@ -1,0 +1,109 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::IDs»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Sps»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Tools»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::JumpMarks»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Variable»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Navigation»
+
+«DEFINE main FOR statemachine::Node»
+«ENDDEFINE»
+
+«DEFINE main FOR statemachine::State»
+«FILE awlDirectory()+'FC'+stateID()+'.AWL'»
+«EXPAND fc FOR this»
+«ENDFILE»
+«EXPAND com::yakindu::statechart::codegenerator::sps::templates::Region::main FOREACH region»
+«ENDDEFINE»
+
+«DEFINE fc FOR State»
+//{{V2}}
+FUNCTION FC«stateID()» : VOID
+TITLE=«name»
+//Zustand «name» mit ID «id»
+«EXPAND com::yakindu::statechart::codegenerator::sps::templates::Statemachine::intro FOR this»
+
+
+VAR_INPUT
+       enter:BOOL := FALSE ; //enter this region
+       exit:BOOL := FALSE  ;  //exit this region
+       reset:BOOL := FALSE  ; //reset this state 
+END_VAR
+«REM»
+VAR_OUTPUT
+END_VAR
+
+VAR_IN_OUT
+END_VAR
+
+VAR_TEMP
+END_VAR«ENDREM»
+BEGIN
+NETWORK
+TITLE=   «name»: Beim Betreten
+
+
+ 
+       U    #enter;
+       UN   #exit;
+       UN   #reset;
+       SPBN stp1;
+«EXPAND action2AWL(this) FOREACH entry.split(";")-»
+«FOREACH region.sortBy(e|e.priority) AS r-»
+      CALL  FB    «r.regionID()»,DB«r.regionID()»(
+         reset := FALSE,
+         exit := FALSE);
+«ENDFOREACH-»
+stp1  :NOP  1
+
+NETWORK
+TITLE= «name»: Im Zustand
+
+
+
+       UN   #enter;
+       UN   #exit;
+       UN   #reset;
+       SPBN stp2;
+«EXPAND action2AWL(this) FOREACH do.split(";")»
+«FOREACH region AS r-»
+      CALL  FB    «r.regionID()»,DB«r.regionID()»(
+         reset := FALSE,
+         exit := FALSE );
+«ENDFOREACH-»
+stp2  :NOP  1
+
+NETWORK
+TITLE= «name»: Beim Verlassen oder Reset
+
+
+
+       UN  #enter;
+       U   #exit;
+       O   #reset;
+       SPBN stp3;
+«FOREACH region AS r-»
+      CALL  FB    «r.regionID()»,DB«r.regionID()»(
+         reset := #reset,
+         exit := #exit );
+«ENDFOREACH-»
+«EXPAND action2AWL(this) FOREACH exit.split(";")»
+stp3   :NOP 1;
+
+END_FUNCTION
+«ENDDEFINE»
+
+«DEFINE action2AWL(State s) FOR String-»
+	«trim().action2AWL(s.getStatechart())-»
+«ENDDEFINE»

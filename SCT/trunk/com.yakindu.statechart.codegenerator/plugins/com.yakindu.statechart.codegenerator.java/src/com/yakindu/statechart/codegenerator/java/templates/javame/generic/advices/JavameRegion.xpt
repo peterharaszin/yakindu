@@ -1,0 +1,76 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::Imports FOR Object» 
+	import java.util.Vector;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::Declarations FOR Object»
+	private String id;
+	private int priority;
+	private AbstractStatechart owningStatechart;
+	private CompoundState owningState;
+
+	private Vector nodes = new Vector();
+
+	protected State currentState;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::Constructors FOR Object»
+	public Region(String id, int priority, AbstractStatechart owner) {
+		this.id = id;
+		this.priority = priority;
+		this.owningStatechart = owner;
+		this.owningStatechart.getRegions().addElement(this);
+	}
+
+	public Region(String id, int priority, CompoundState owner) {
+		this.id = id;
+		this.priority = priority;
+		this.owningState = owner;
+		this.owningState.getRegions().addElement(this);
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::reenterMethod FOR Object»
+	protected void reenter(int history) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::Region::reenterMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::reactOnMethod FOR Object»
+	protected void reactOn(Vector events) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::Region::reactOnMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::getNodesMethod FOR Object»
+	protected Vector getNodes() {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::Region::getNodesMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::getInitialNodeMethod FOR Object»
+	private Node getInitialNode() {
+		for (int i = 0; i < nodes.size(); i++) {
+			Node node = (Node) nodes.elementAt(i);
+			if (node instanceof Pseudostate
+					&& ((Pseudostate) node).getKind() == PseudostateKind.INITIAL) {
+				return node;
+			}
+		}
+		throw new IllegalStateException("No initial state present");
+	}
+«ENDAROUND»

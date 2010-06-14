@@ -1,0 +1,66 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+context Statechart ERROR "Name of Statechart is wrong!" :
+	this.name == "PedestrianTrafficLightGER";
+
+// TODO: need to check priority here!
+/*context Region ERROR "Priority must be equal or greater 0" :
+	this.priority >= 0;*/
+	
+context State ERROR "Name must be set" :
+	name != null;
+	
+context State if (name == "On") ERROR  "'"+name+"' does not have the right entry" :
+	entry == "red=green=warning=0;";
+			
+context State if (name == "Blocked") ERROR "'"+name+"' does not have the right entry":
+	entry == "red=blocked=1;unblocked=0;";
+	
+context State if (name == "Wait") ERROR "'"+name+"' does not have the right entry":
+	entry == "wait=1;";
+
+context State if (name == "Wait") ERROR "'"+name+"' does not have the right exit":
+	exit == "red=0; wait=0;";
+	
+context State if (name == "Unblocked") ERROR "'"+name+"' does not have the right entry":
+	entry == "green=unblocked=1;blocked=0;";
+
+context State if (name == "Unblocked") ERROR "'"+name+"' does not have the right exit":
+	exit == "green=0;";
+	
+context State if (name == "Off") ERROR "'"+name+"' does not have the right entry":
+	entry == "red=green=warning=0;off=1;";
+	
+context State if (name == "Off") ERROR "'"+name+"' does not have the right exit":
+	exit == "off=0;";
+	
+context Transition if (sourceNode.name == "Blocked" && targetNode.name == "Wait") ERROR "Transition between '"+sourceNode.name+"' and '"+targetNode.name+"' does not have the right expression" :
+	expression == "ev_pedestrianRequest";
+	
+context Transition if (sourceNode.name == "Wait" && targetNode.name == "Unblocked") ERROR "Transition between '"+sourceNode.name+"' and '"+targetNode.name+"' does not have the right expression" :
+	this.expression == "ev_unblock";
+	
+context Transition if (sourceNode.name == "Unblocked" && this.targetNode.name == "Blocked") ERROR "Transition between '"+sourceNode.name+"' and '"+targetNode.name+"' does not have the right expression" :
+	expression == "ev_block";
+	
+context Transition if (sourceNode.name == "On" && this.targetNode.name == "Off") ERROR "Transition between '"+sourceNode.name+"' and '"+targetNode.name+"' does not have the right expression" :
+	expression == "ev_off";
+	
+context Transition if (sourceNode.name == "Off" && this.targetNode.name == "On") ERROR "Transition between '"+sourceNode.name+"' and '"+targetNode.name+"' does not have the right expression" :
+	expression == "ev_on";
+	
+context Transition if (Pseudostate.isInstance(sourceNode) && targetNode.name == "Blocked") ERROR "Pseudostate must be 'initial'" :
+	((Pseudostate) sourceNode).pseudoType == statemachine::PseudoTypes::initial;
+	
+context Transition if (Pseudostate.isInstance(sourceNode) && targetNode.name == "Off") ERROR "Pseudostate must be 'initial'" :
+	((Pseudostate) sourceNode).pseudoType == statemachine::PseudoTypes::initial;

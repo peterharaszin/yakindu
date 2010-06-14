@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" xmi:id="_IvNWsf7IEd2GKeqL8mjoDg" type="Statemachine" name="VariableWithoutName.statemachine_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_Ji-V8P7IEd2GKeqL8mjoDg" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_Ji-V8_7IEd2GKeqL8mjoDg" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_Ji-V9P7IEd2GKeqL8mjoDg" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_J4prAP7IEd2GKeqL8mjoDg" type="3003">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_J4prAf7IEd2GKeqL8mjoDg" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="VariableWithoutName.statemachine#//@region.0/@state.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J4prAv7IEd2GKeqL8mjoDg" x="60" y="109"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_KMzWEP7IEd2GKeqL8mjoDg" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_KM5csP7IEd2GKeqL8mjoDg" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_KM5csf7IEd2GKeqL8mjoDg" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_KM5csv7IEd2GKeqL8mjoDg" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_KM5cs_7IEd2GKeqL8mjoDg" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_KM_jUP7IEd2GKeqL8mjoDg" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_KM_jUf7IEd2GKeqL8mjoDg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_KM_jUv7IEd2GKeqL8mjoDg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_KMzWEf7IEd2GKeqL8mjoDg" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="VariableWithoutName.statemachine#//@region.0/@state.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KMzWEv7IEd2GKeqL8mjoDg" x="201" y="104"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_Ji-V9f7IEd2GKeqL8mjoDg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_Ji-V9v7IEd2GKeqL8mjoDg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_Ji-V8f7IEd2GKeqL8mjoDg" fontHeight="8" fillColor="0" lineColor="0"/>
+    <element xmi:type="org.mda4e.statemachine.model:Region" href="VariableWithoutName.statemachine#//@region.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ji-V8v7IEd2GKeqL8mjoDg" x="13" y="14" width="528" height="466"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_IvNWsv7IEd2GKeqL8mjoDg"/>
+  <element xmi:type="org.mda4e.statemachine.model:Statechart" href="VariableWithoutName.statemachine#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_K8REIP7IEd2GKeqL8mjoDg" type="4001" source="_J4prAP7IEd2GKeqL8mjoDg" target="_KMzWEP7IEd2GKeqL8mjoDg">
+    <children xmi:type="notation:Node" xmi:id="_K8XKwP7IEd2GKeqL8mjoDg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K8XKwf7IEd2GKeqL8mjoDg" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_K8XKwv7IEd2GKeqL8mjoDg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_K8XKw_7IEd2GKeqL8mjoDg" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_K8REIf7IEd2GKeqL8mjoDg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_K8REIv7IEd2GKeqL8mjoDg" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="VariableWithoutName.statemachine#//@transition.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_K8REI_7IEd2GKeqL8mjoDg" points="[20, 4, -135, -25]$[189, 74, 34, 45]"/>
+  </edges>
+</notation:Diagram>

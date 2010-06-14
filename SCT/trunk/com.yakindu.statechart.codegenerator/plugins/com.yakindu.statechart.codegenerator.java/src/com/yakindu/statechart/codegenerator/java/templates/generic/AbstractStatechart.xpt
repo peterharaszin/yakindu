@@ -1,0 +1,230 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+ «FILE getLibraryPackagePath() + "AbstractStatechart.java"»
+package «getLibraryPackage()»;
+
+«EXPAND Imports»
+
+public abstract class AbstractStatechart {
+	«EXPAND StatechartClassBody»	
+}
+  «ENDFILE»
+«ENDDEFINE»
+
+«DEFINE StatechartClassBody FOR Object»
+	«EXPAND raisedEventsVariable»
+
+	// ------------------------------------------------------------------------
+	// (EXTERNAL) EVENT-INTERFACE IMPLEMENTATION
+	// ------------------------------------------------------------------------
+	«EXPAND setEventMethod»
+	
+	// ------------------------------------------------------------------------
+	// (INTERNAL) TIMING-SERVICE-INTERFACE IMPLEMENTATION
+	// ------------------------------------------------------------------------
+	«EXPAND requestTimeEventMethod»
+	
+	«EXPAND cancelTimeEventMethod»
+	
+	// ------------------------------------------------------------------------
+	// (EXTERNAL) EXECUTION-INTERFACE IMPLEMENTATION
+	// ------------------------------------------------------------------------
+	«EXPAND enterMethod»
+
+	«EXPAND runCycleMethod»
+	
+	«EXPAND leaveMethod»
+	
+	// ------------------------------------------------------------------------
+	// INITIALIZATION CODE
+	// ------------------------------------------------------------------------
+
+	// the unique id of this statechart instance
+	private String id;
+
+	// the nested regions of this state, sorted by priority
+	«EXPAND ListVariable»
+	
+	// used to request time events from environment
+	protected TimingService timingService  = null;
+	
+    protected AbstractStatechart(String id) {
+		this.id = id;
+		this.timingService = new DefaultTimingService(this);
+	}
+	
+	protected AbstractStatechart(String id, TimingService timingService) {
+		this.id = id;
+		this.timingService = timingService;
+	}
+
+	«EXPAND getRegionsMethod»	
+	
+	«EXPAND getTransitionsMethod»
+
+	// ------------------------------------------------------------------------
+	// INTERNAL STATECHART BEHAVIOUR
+	// ------------------------------------------------------------------------
+	«EXPAND reactOnMethod»
+	
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+«ENDDEFINE»
+
+«DEFINE raisedEventsVariable FOR Object»
+	protected Set<Event> raisedEvents = new HashSet<Event>();
+«ENDDEFINE»
+
+«DEFINE ListVariable FOR Object»
+	private List<Region> regions = new ArrayList<Region>();
+	
+	private List<Transition> transitions = new ArrayList<Transition>();
+«ENDDEFINE»
+
+«REM» 
+	requestTimeEvent(TimeEvent event) method 
+«ENDREM»
+«DEFINE requestTimeEventMethod FOR Object»
+	protected void requestTimeEvent(TimeEvent event) {
+	    timingService.requestTimeEvent(event);
+	}
+«ENDDEFINE»
+
+«REM» 
+	cancelTimeEvent(TimeEvent event) method 
+«ENDREM»
+«DEFINE cancelTimeEventMethod FOR Object»
+	protected void cancelTimeEvent(TimeEvent event) {
+		timingService.cancelTimeEvent(event);
+	}
+«ENDDEFINE»
+
+«REM» 
+	setEvent(Event event) method 
+«ENDREM»
+«DEFINE setEventMethod FOR Object»
+public void setEvent(Event event) {
+	«EXPAND setEventMethodBody»	
+}
+«ENDDEFINE»
+
+«DEFINE setEventMethodBody FOR Object»
+	synchronized (raisedEvents) {
+		raisedEvents.add(event);
+	}
+«ENDDEFINE»
+
+«REM» 
+	runCycle() method 
+«ENDREM»
+
+«DEFINE runCycleMethod FOR Object»
+	public void runCycle() {
+	    «EXPAND runCycleMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE runCycleMethodBody FOR Object»
+	Set<Event> currentEvents = new HashSet<Event>();
+	synchronized (raisedEvents) {
+		currentEvents.addAll(raisedEvents);
+		raisedEvents.clear();
+	}
+	reactOn(currentEvents);
+«ENDDEFINE»
+
+«REM» 
+	enter() method 
+«ENDREM»
+«DEFINE enterMethod FOR Object»
+	public void enter() {
+		«EXPAND enterMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE enterMethodBody FOR Object»
+	// enter all nested regions (in the order of their priority)
+	for (Region region : regions) {
+		region.enter();
+	}
+«ENDDEFINE»
+
+
+«REM» 
+	leave() method 
+«ENDREM»
+«DEFINE leaveMethod FOR Object»
+	public void leave() {
+		«EXPAND leaveMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE leaveMethodBody FOR Object»
+	// leave all nested regions (in the reverse order of their priority)
+	for (ListIterator<Region> iterator = regions.listIterator(regions.size()); iterator.hasPrevious();) {
+		iterator.previous().leave();
+	}
+«ENDDEFINE»
+
+«REM» 
+	getRegions() method 
+«ENDREM»
+«DEFINE getRegionsMethod FOR Object»
+	protected List<Region> getRegions() {
+		«EXPAND getRegionsMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getRegionsMethodBody FOR Object»
+	return regions;
+«ENDDEFINE»
+
+«REM» 
+	getTransitions() method 
+«ENDREM»
+«DEFINE getTransitionsMethod FOR Object»
+	protected List<Transition> getTransitions() {
+		«EXPAND getTransitionsMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getTransitionsMethodBody FOR Object»
+	return transitions;
+«ENDDEFINE»
+
+«REM» 
+	reactOn(Set<Event> events) method 
+«ENDREM»
+«DEFINE reactOnMethod FOR Object»
+	private void reactOn(Set<Event> events) {
+		«EXPAND reactOnMethodBody»	
+	}
+«ENDDEFINE»
+
+«DEFINE reactOnMethodBody FOR Object»
+	// pass events to our nested regions (in the order of their priority)
+	for (Region region : regions) {
+		region.reactOn(events);
+	}
+«ENDDEFINE»

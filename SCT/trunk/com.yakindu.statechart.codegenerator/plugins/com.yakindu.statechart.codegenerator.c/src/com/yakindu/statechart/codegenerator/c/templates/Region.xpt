@@ -1,0 +1,447 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::c::extensions::Extensions»
+
+«DEFINE region FOR Region»
+«EXPAND header FOR this»
+«EXPAND body FOR this»
+«ENDDEFINE»
+
+
+«DEFINE header FOR Region»
+«FILE filename()+".h"»
+#ifndef «fileDefine()»
+#define «fileDefine()»
+
+#include "«baseInterface()».h"
+#include "definitions.h"
+#include "«handleFilename()».h"
+#include "«timerIface()».h"
+/* #include "sys.h" */
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+/*! Function calls the cycle of this region */
+extern BOOL «cycleFuncName()»(«regionHandleTypeName()»* rhandle);
+extern BOOL «isInFuncName()»(«basestatetype()» testState);
+extern void «enterFuncName()»(«regionHandleTypeName()»* rhandle);
+extern void «exitFuncName()»(«regionHandleTypeName()»* rhandle, «basestatetype()» oldState);
+
+#ifdef __cplusplus
+ }
+#endif
+
+#endif
+
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE body FOR Region»
+«FILE filename()+".c"»
+#include "definitions.h"
+
+#include "«filename()».h"
+
+«FOREACH state.typeSelect(State) AS s -»
+  «IF s.region.size > 0 -»
+/* Include all nested states/regions */
+    «FOREACH s.region AS reg -» 
+#include "«reg.filename()».h"
+    «ENDFOREACH -»
+  «ENDIF -»
+«ENDFOREACH -»
+
+/* var() gives complete access to the variable 
+   this is only used for better readablility */
+#define var(x) (rhandle->global->ihandle.x)
+
+/* send() raises a trigger. This is implemented for easier readablility */
+#define send(x) («baseInterface()»_raiseTrigger(&rhandle->global->ihandle,x))
+
+/* Forward Declaration of internal functions */
+«FOREACH state AS s -»
+static void «s.handleStateFuncName()»(«regionHandleTypeName()»* rhandle);
+«ENDFOREACH -»
+
+«FOREACH state AS s -»
+static BOOL «s.analyseTransitionName()»(«regionHandleTypeName()»* rhandle);
+«ENDFOREACH -»
+
+«FOREACH state AS s -»
+static void «s.enterFuncName()»(«regionHandleTypeName()»* rhandle);
+«ENDFOREACH -»
+
+«FOREACH state AS s -»
+static void «s.exitFuncName()»(«regionHandleTypeName()»* rhandle, «basestatetype()» oldState);
+«ENDFOREACH -»
+
+static «basestatetype()» getLocalStateInThisRegion(«basestatetype()» globalState);
+
+/* End of forward declarations */
+
+/*! The function returns the state on this hierarchy level, the state given as parameter belongs to.
+    
+    The state machine does only store the actual state of a state machine. The state, this actual state
+    is nested in can be extracted by this function.
+    
+    Every region level provides this function to get the right state in this hierarchy level. 
+
+*/
+«basestatetype()» getLocalStateInThisRegion(«basestatetype()» globalState)
+{
+    «basestatetype()» stateInThisRegion;
+    
+	switch (globalState) {
+    «FOREACH state AS s»
+      /* look for state in this region */
+      case «s.getStateEnumName()»: {
+        stateInThisRegion = «s.getStateEnumName()»;
+	 	break;
+	  }
+
+      «IF s.eAllContents.typeSelect(Node).size > 0 -»
+      /* Nested states within subsequent region */
+	  «FOREACH s.eAllContents.typeSelect(Node) AS subState -»
+	  case «subState.getStateEnumName()»: {
+        stateInThisRegion = «s.getStateEnumName()»;
+	    break;	  
+	  }
+	  
+      «ENDFOREACH -»
+      «ENDIF -»
+
+    «ENDFOREACH -»
+    
+    default: {
+      /* error: using the inital state - only for completeness */
+      stateInThisRegion = «getInitialStateName()»;
+      break;
+    }
+  }
+  
+  return(stateInThisRegion);
+}
+
+BOOL «cycleFuncName()»(«regionHandleTypeName()»* rhandle)
+{
+	«basestatetype()» oldState = rhandle->global->state;
+	«basestatetype()» localState = getLocalStateInThisRegion(rhandle->global->state);
+	
+	/* clean transition information */
+	rhandle->global->transition = «transitionNoName()»;
+	
+    /* handle actual state and find transitions */
+	switch (localState) {
+    «FOREACH state AS s -»
+    
+      case «s.getStateEnumName()»: {
+        «s.handleStateFuncName()»(rhandle);
+	 	break;
+	  }  
+    «ENDFOREACH-»
+	  
+    default: {
+        «handleInitialStateFuncName()»(rhandle);
+      }
+	}
+	
+	/* if the new state is within this region but the local state has changed,
+	   then run the enter entries */
+	if (((«isInFuncName()»(rhandle->global->state) == TRUE) && 
+	    (localState != getLocalStateInThisRegion(rhandle->global->state))) ||
+	    ((rhandle->global->state == localState) && (rhandle->global->transition != «transitionNoName()»))) {
+
+	  /* run the state exit actions from this point */
+      «exitFuncName()»(rhandle, oldState);
+
+      /* run the transition action */
+	  if (rhandle->global->transition != «transitionNoName()»)
+	    «basename()»_callTransitionAction(rhandle->global);
+	  
+	  /* run the state entry actions from this point */
+	  «enterFuncName()»(rhandle);
+	}
+	
+  return(rhandle->global->state == oldState);
+}
+
+BOOL «isInFuncName()»(«basestatetype()» testState)
+{
+	BOOL retvalue = FALSE;
+	
+	switch (testState) {
+	«FOREACH eAllContents.typeSelect(Node) AS state»
+	case «state.getStateEnumName()»: {
+		retvalue = TRUE;
+		break;
+	}
+	«ENDFOREACH»
+	default: {
+	  retvalue = FALSE;
+	}
+	
+	}
+	
+	return(retvalue);
+}
+
+void «enterFuncName()»(«regionHandleTypeName()»* rhandle)
+{
+  «basestatetype()» localState = getLocalStateInThisRegion(rhandle->global->state);
+  
+  /* running through all local states in this region */
+  switch (localState) {
+    «FOREACH state AS s -»
+    /* look for state in this region */
+    case «s.getStateEnumName()»: {
+      «enterFuncName(s)»(rhandle);
+	  break;
+	}
+
+    «ENDFOREACH -»	  
+    default: {
+        rhandle->global->state = «initialStateName()»;
+        «enterInitialStateFuncName()»(rhandle);
+      }
+	}
+	
+    return;
+}
+
+void «exitFuncName()»(«regionHandleTypeName()»* rhandle, «basestatetype()» oldState)
+{
+    «basestatetype()» localState = getLocalStateInThisRegion(oldState);
+
+    /* running through all local states in this region */
+    switch (localState) {
+    «FOREACH state AS s -»
+      case «s.getStateEnumName()»: {
+        «s.exitFuncName()»(rhandle, oldState);
+	 	break;
+	  }
+
+    «ENDFOREACH -»
+	  
+    default: {
+        /* can't do anything here */
+      }
+	}
+
+    return;
+}
+
+«EXPAND createState FOREACH state»
+
+«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE createState FOR Node»
+«ENDDEFINE»
+
+«DEFINE createState FOR State»
+«EXPAND EnterState»
+«EXPAND ExitState»
+«EXPAND HandleState»
+«EXPAND AnalyseTransition»
+«ENDDEFINE»
+
+«DEFINE createState FOR Pseudostate»
+«EXPAND EnterState»
+«EXPAND ExitState»
+«EXPAND HandleState»
+«EXPAND AnalyseTransition»
+«ENDDEFINE»
+
+«DEFINE EnterState FOR State»
+void «enterFuncName()»(«regionHandleTypeName()»* rhandle)
+{
+	«FOREACH getOutgoingTransitions().select(e|e.isTimeTriggered()) AS timeTransition -»
+	«timerIface()»_installTimer((void*) &rhandle->global->ihandle, (uint32) «timeTransition.timeTriggerName()», «timeTransition.getTimeTrigger().duration()»); 
+	«ENDFOREACH -»	    
+    «IF hasEntryAction() -»
+    /* "Enter" action in this state */
+	«FOREACH this.getEntryActionExpression().statement AS action -»
+      «action.toCCode()»
+    «ENDFOREACH»
+	«ELSE -»
+	/* no "Enter" action defined */      
+	«ENDIF -»
+			
+    «IF region.size > 0 -»
+    /* enter the subsequent region states */
+    «ENDIF -»
+    «FOREACH region AS reg -»
+	«reg.enterFuncName()»(&rhandle->«reg.regionHandleName()»);
+	«ENDFOREACH -»
+}
+«ENDDEFINE»
+
+«DEFINE ExitState FOR State»
+void «exitFuncName()»(«regionHandleTypeName()»* rhandle, «basestatetype()» oldState)
+{
+	«FOREACH getOutgoingTransitions().select(e|e.isTimeTriggered()) AS timeTransition -»
+	«timerIface()»_resetTimer((void*) &rhandle->global->ihandle, (uint32)«timeTransition.timeTriggerName()»); 
+	«ENDFOREACH -»	    
+
+   «IF region.size > 0 -»
+   /* Exit all subregions */
+   «FOREACH region AS reg -»
+   «exitFuncName(reg)»(&rhandle->«reg.regionHandleName()», oldState);
+   «ENDFOREACH -»
+   «ENDIF -»
+   «IF hasExitAction() -»
+   /* if this state should be left, start the exit action */
+	«FOREACH this.getExitActionExpression().statement AS action»
+      «action.toCCode()»
+    «ENDFOREACH»
+  «ELSE -»
+   /* no "Exit" action specified */
+   «ENDIF -»
+          
+   /* remember the old state */
+   «IF hasDeepHistoryState() -»
+   rhandle->deepHistory    = oldState;
+   «ENDIF -»
+   «IF hasShallowHistoryState() -»
+   rhandle->shallowHistory = «getStateEnumName()»;
+   «ENDIF -»
+   
+   return;
+}
+«ENDDEFINE»
+
+«DEFINE EnterState FOR Pseudostate»
+void «enterFuncName()»(«regionHandleTypeName()»* rhandle)
+{
+	«FOREACH getOutgoingTransitions().select(e|e.isTimeTriggered()) AS timeTransition -»
+	«timerIface()»_installTimer((void*) &rhandle->global->ihandle, (uint32) «timeTransition.timeTriggerName()», «timeTransition.getTimeTrigger().duration()»); 
+	«ENDFOREACH -»	 
+	
+	/* rhandle->global->state = «getStateEnumName()»;  */ 
+} 
+«ENDDEFINE»
+
+«DEFINE ExitState FOR Pseudostate»
+void «exitFuncName()»(«regionHandleTypeName()»* rhandle, «basestatetype()» oldState)
+{
+	«FOREACH getOutgoingTransitions().select(e|e.isTimeTriggered()) AS timeTransition -»
+	«timerIface()»_resetTimer((void*) rhandle->ihandle, (uint32) «timeTransition.timeTriggerName()»); 
+	«ENDFOREACH -»	    
+} 
+«ENDDEFINE»
+
+
+
+«DEFINE HandleState FOR State»
+void «handleStateFuncName()»(«regionHandleTypeName(this)»* rhandle)
+{
+	BOOL      activeTransition;
+
+	activeTransition = «analyseTransitionName(this)»(rhandle);
+	
+	«IF (hasDoAction() || (region.size > 0)) -»
+	if (activeTransition == FALSE) {
+	
+		«IF hasDoAction() -»
+		/* "Do" action in this state */
+		«FOREACH this.getDoActionExpression().statement AS action»
+	      «action.toCCode()»
+	    «ENDFOREACH»
+	    «ELSE -»
+	    /* No "Do" action specified */
+		«ENDIF -»
+
+        «IF region.size > 0 -»
+	   /* Calling the region cycle */
+	    «ENDIF -»
+
+        «FOREACH region AS reg -»
+        «reg.cycleFuncName()»(&rhandle->«reg.regionHandleName()»);
+        
+        /* if the new state is not within this states region, exit this state */
+	    «ENDFOREACH -»
+	    
+	}	
+	«ENDIF -»
+  return;
+}
+«ENDDEFINE»
+
+
+
+«DEFINE HandleState FOR Pseudostate»
+void «handleStateFuncName()»(«regionHandleName(this)»* rhandle)
+{
+	(void)«analyseTransitionName(this)»(rhandle);
+
+    return;
+}
+«ENDDEFINE»
+
+
+
+«DEFINE AnalyseTransition FOR Node»
+BOOL «analyseTransitionName()»(«regionHandleName(this)»* rhandle)
+{
+  BOOL isTriggerSet = FALSE;
+  
+  /* Run through all transitions in order of their priority */
+  «FOREACH getOutgoingTransitions().sortBy(e|e.priority) AS transition -»
+  
+  /* test for transition "«transition.expression»" */
+  if (isTriggerSet == FALSE)
+  {
+    /* run through the triggers */    
+	if ( «IF (transition.isSignalTriggered() || transition.isTimeTriggered()) && transition.hasGuard() -» ( «ENDIF -»
+«IF transition.isSignalTriggered() -»
+«FOREACH transition.getSignalTriggers() AS trigger SEPARATOR "||" -» «baseInterface()»_isTriggerRaised(&rhandle->global->ihandle,«trigger.getTriggerName()») «ENDFOREACH-»«ENDIF -»
+«IF transition.isSignalTriggered() && transition.isTimeTriggered() -» || «ENDIF -»
+«IF transition.isTimeTriggered() -» «baseInterface()»_isTriggerRaised(&rhandle->global->ihandle,«transition.timeTriggerName()») «ENDIF -»
+«IF (transition.isSignalTriggered() || transition.isTimeTriggered()) && transition.hasGuard() -» ) && «ENDIF -»
+«IF transition.hasGuard() -» («transition.getGuardExpression().expression.toCCode()»)«ENDIF -»
+«IF (!transition.isSignalTriggered() && !transition.isTimeTriggered() && !transition.hasGuard()) -» (1 == 1) «ENDIF -»)  
+    {
+      «FOREACH transition.getSignalTriggers() AS trigger -» 
+      «baseInterface()»_resetTrigger(&rhandle->global->ihandle,«trigger.getTriggerName()»); 
+      «ENDFOREACH -»
+	  «IF transition.isTimeTriggered() -»
+      «baseInterface()»_resetTrigger(&rhandle->global->ihandle,«transition.timeTriggerName()»); 
+      «ENDIF -»
+          
+      /* return new status */
+	  rhandle->global->state      = «transition.targetNode.getStateEnumName()»;
+	  rhandle->global->transition = «transition.transitionName()»;
+	
+	  isTriggerSet = TRUE;
+    }
+  }
+  «ENDFOREACH -»
+
+    «IF this.getStateName() == "ShallowHistory" -»
+  /* use the shallow history information */
+  rhandle->global->state = rhandle->shallowHistory;
+  isTriggerSet = TRUE;
+    «ENDIF -»        
+
+    «IF this.getStateName() == "DeepHistory" -»
+  /* use the deep history information */
+  rhandle->global->state = rhandle->deepHistory;
+  isTriggerSet = TRUE; 
+    «ENDIF -»
+
+  return(isTriggerSet);
+}
+«ENDDEFINE»

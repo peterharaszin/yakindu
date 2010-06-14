@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: YAKINDU SCT Manual
-Bundle-SymbolicName: com.yakindu.manual;singleton:=true
-Bundle-Version: 1.1.0.qualifier
-Bundle-Vendor: YAKINDU.org
-Require-Bundle: org.eclipse.help

@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: YAKINDU Logging
-Bundle-SymbolicName: com.yakindu.logging-fragment
-Bundle-Version: 1.1.0.qualifier
-Bundle-Vendor: YAKINDU.org
-Fragment-Host: org.eclipse.xtext.log4j;bundle-version="1.2.15.v200907171100"

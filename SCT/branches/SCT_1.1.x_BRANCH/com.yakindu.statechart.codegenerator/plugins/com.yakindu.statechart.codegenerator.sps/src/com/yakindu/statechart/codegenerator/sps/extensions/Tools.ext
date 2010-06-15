@@ -1,0 +1,48 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+extension com::yakindu::statechart::codegenerator::sps::extensions::Navigation;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Variable;
+
+//extension extensions::TreeTools;
+
+
+List[Region] getAncestorRegions(emf::EObject this): {} ;
+List[Region] getAncestorRegions(Region this):
+	eContainer == null ? {} : eContainer.getAncestorRegions();
+List[Region] getAncestorRegions(Node this): 
+	eContainer.getAncestorRegions().add(getParentRegion()) ;
+
+boolean exitsParentRegion(Transition this) :
+	sourceNode.getParentRegion().substates().contains(targetNode);
+
+List[State] substates(Region this) :
+	state.typeSelect(State).addAll(state.substates());
+
+List[State] substates(State this) :
+	region.substates();
+
+List[State] substates(Node this) :
+	{};
+
+boolean isAccrossParallelRegions(Transition this):
+	sourceNode.getAncestorRegions().getParallelRegions().contains(targetNode.getParentRegion());
+
+List[Region] getParallelRegions(Region this):
+	Statechart.isInstance(eContainer) ? getStatechart().region.reject(e|e==this) : getParentState().region.reject(e|e==this);
+
+State getParentState(Region this):
+	State.isInstance(eContainer) ? eContainer : getStatechart();
+
+Region getParentRegion(emf::EObject this) : null;
+Region getParentRegion(Node this) : (Region) this.eContainer;
+Region getParentRegion(Region this) : getParentRegion(eContainer);

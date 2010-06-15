@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<associateSites>
+	<associateSite url="GMF Update Site" label="http://download.eclipse.org/modeling/gmf/updates/releases/"/>
+	<associateSite url="anymede Update Site" label="http://download.eclipse.org/releases/ganymede"/>
+	<associateSite url="EMF Update Site" label="http://download.eclipse.org/modeling/emf/updates/"/>
+	<associateSite url="openArchitectureWare" label="http://oawbranch.pluginbuilder.org/releases/p2-updateSite/"/>
+</associateSites>

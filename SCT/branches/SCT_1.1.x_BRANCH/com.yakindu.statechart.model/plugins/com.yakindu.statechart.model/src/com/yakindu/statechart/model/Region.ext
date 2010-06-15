@@ -1,0 +1,31 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+extension com::yakindu::statechart::model::Extensions;
+
+String getId(Region this):
+ 	getId(this.eContainer) + "_REGION_" + this.eContainer.eContents.typeSelect(Region).indexOf(this);
+
+int priority(Node this) : ((Region)eContainer).priority;
+
+cached List[Region] getAllRegions(Statechart chart) :
+	chart.eAllContents.typeSelect(Region);
+
+cached List[Region] getNestedRegions(Region this):
+   state.typeSelect(State).collect(e|e.getNestedRegions()).flatten();
+
+Pseudostate getInitialState(Region this) : 
+	state.typeSelect(Pseudostate).select(e|e.pseudoType == PseudoTypes::initial).first();
+
+Statechart getStatechart(Region this) :
+	Statechart.isInstance(this.eContainer) ? this.eContainer : getStatechart((State)this.eContainer);
+	

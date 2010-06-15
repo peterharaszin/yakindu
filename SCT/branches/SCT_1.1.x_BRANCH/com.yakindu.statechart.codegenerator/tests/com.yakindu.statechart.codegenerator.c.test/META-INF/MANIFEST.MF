@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT C Code Generator Tests
+Bundle-SymbolicName: com.yakindu.statechart.codegenerator.c.test;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Require-Bundle: org.mda4e.statemachine.model;bundle-version="1.1.0",
+ com.yakindu.statechart.codegenerator.c;bundle-version="1.1.0",
+ org.eclipse.emf.mwe.core;bundle-version="0.7.2"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.yakindu.statechart.codegenerator.c.test.workflow
+Bundle-Vendor: YAKINDU.org

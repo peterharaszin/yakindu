@@ -1,0 +1,60 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+extension com::yakindu::statechart::codegenerator::sps::extensions::Navigation;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Variable;
+
+cached List[statemachine::Transition] outTransitions(statemachine::Node this) :
+	getStatechart().transition.select(e|e.sourceNode==this).sortBy(e|e.priority);
+
+cached List[statemachine::Transition] inTransitions(statemachine::Node this) :
+	getStatechart().transition.select(e|e.targetNode==this).sortBy(e|e.priority);
+
+cached List[statemachine::Transition] timedOutTransitions(statemachine::Node this) :
+	outTransitions().select(e|e.timerForTransition().size>1);
+
+cached List[statemachine::Transition] outTransitions(statemachine::Region this) :
+	getStatechart().transition.select(e|this.state.exists(f|f==e.sourceNode)).sortBy(e|e.priority);
+
+cached List[statemachine::Transition] timedOutTransitions(statemachine::Region this) :
+	outTransitions().select(e|e.timerForTransition().size>0);
+
+cached List[String] actions(statemachine::Transition this) :
+	expression.getActions().select(e|e!="");
+private List[String] getActions(String expression) : 
+	JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.getActions(java.lang.String);
+
+cached String guard(statemachine::Transition this) :
+	expression.getGuard();
+private String getGuard(String expression) : 
+	JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.getGuard(java.lang.String);
+
+cached List[String] trigger(statemachine::Transition this) :
+	expression.getTrigger().select(e|e!="");
+
+private List[String] getTrigger(String expression) : 
+	JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.getTrigger(java.lang.String);
+
+cached List[String] conjExpression(String this) :
+	split("&").trim();
+
+cached List[String] timerForTransition(statemachine::Transition this) :
+	trigger().conjExpression().select(f|f.startsWith("after"));
+	
+boolean hasAfterClause(String expression) :
+	(expression == null) ? false : expression.toLowerCase().contains("after");
+
+int getDelayPeriod(Transition this):
+    getDelayPeriod(this.expression);
+    
+int getDelayPeriod(String expression) : 
+    JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.getDelayTimeFromAction(java.lang.String);

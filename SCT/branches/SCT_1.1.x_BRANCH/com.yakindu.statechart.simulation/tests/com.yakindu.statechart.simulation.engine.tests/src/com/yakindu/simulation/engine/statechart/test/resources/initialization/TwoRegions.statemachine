@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="TwoRegions" UUID="633802c0-c844-445a-be09-1b207fb55e63">
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="State1">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="1"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="State2" id="2">
+          <region>
+            <state xsi:type="org.mda4e.statemachine.model:State" name="State4" id="3"/>
+            <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="4"/>
+            <state xsi:type="org.mda4e.statemachine.model:State" name="State6" id="5"/>
+          </region>
+          <region priority="1">
+            <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="6"/>
+            <state xsi:type="org.mda4e.statemachine.model:State" name="State5" id="7"/>
+            <state xsi:type="org.mda4e.statemachine.model:State" name="State7" id="8"/>
+          </region>
+        </state>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="State3" id="9"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="10"/>
+  </region>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="11" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1" priority="1" id="12" sourceNode="//@region.0/@state.0/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" id="13" sourceNode="//@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.0" priority="1" id="14" sourceNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1/@region.1/@state.1" priority="1" id="15" sourceNode="//@region.0/@state.0/@region.0/@state.1/@region.1/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.2" priority="1" id="16" sourceNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1/@region.1/@state.2" priority="1" id="17" sourceNode="//@region.0/@state.0/@region.0/@state.1/@region.1/@state.1"/>
+</org.mda4e.statemachine.model:Statechart>

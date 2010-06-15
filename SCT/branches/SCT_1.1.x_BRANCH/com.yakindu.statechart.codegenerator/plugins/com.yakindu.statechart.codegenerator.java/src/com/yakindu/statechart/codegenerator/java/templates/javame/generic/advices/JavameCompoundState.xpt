@@ -1,0 +1,80 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::Imports FOR Object» 
+	import java.util.Vector;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::Declarations FOR Object»
+	// the nested regions of this state, sorted by priority
+	private Vector regions = new Vector();
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::enterMethodBody FOR Object»
+	shallowEnter();
+	// now enter all nested regions (in the order of their priority)
+	for (int i = 0; i < regions.size(); i++) {
+		Region region = (Region) regions.elementAt(i);
+		region.enter();
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::reenterMethod FOR Object»
+	protected void reenter(int history) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::reeenterMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::reeenterMethodBody FOR Object»
+	shallowEnter();
+	// let the nested regions re-enter their former states
+	for (int i = 0; i < regions.size(); i++) {
+		Region region = (Region) regions.elementAt(i);
+	    // if we have are in DEEP history mode, notify our nested regions 
+	    // to reenter into their former states as well
+	    if(history == HistoryMode.DEEP){
+			region.reenter(history);
+	    }
+	    else{
+	    	region.enter();
+	    }
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::reactLocallyOnMethod FOR Object»
+	protected void reactLocallyOn(Vector events) {
+		// as a compound state does not locally react on events (it may not
+		// specify a do action), forward to the nested regions (in the order of
+		// their priority)
+		for (int i = 0; i < regions.size(); i++) {
+			Region region = (Region) regions.elementAt(i);
+			region.reactOn(events);
+		}
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::leaveMethodBody FOR Object»
+	// leave all nested regions (in the reverse order of their priority)
+	for (int i = 0, j = regions.size()-1; i < regions.size(); i++, j--) {
+		((Region) regions.elementAt(j)).leave();
+	}
+	shallowLeave();
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::getRegionsMethod FOR Object»
+	protected Vector getRegions() {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::CompoundState::getRegionsMethodBody»
+	}
+«ENDAROUND»

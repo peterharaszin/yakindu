@@ -1,0 +1,62 @@
+<workflow>
+	 <property name="project" value="com.yakindu.statechart.transformation.examples.uml" />
+	 <property name="package" value="com/yakindu/statechart/transformation/uml" />
+	 <property name="umlModel" value="${package}/sample/Simple_2Statemachines.uml"/>
+	 <property name="srcgen" value="src-gen"/>
+	 <property name="modelPackage" value="statemachine.StatemachinePackage"/>
+	 <!-- 	Feature Configuration -->
+     <property file ="${package}/config.properties"/>
+	 
+	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
+		<platformUri value=".." />
+    	<registerGeneratedEPackage value="statemachine.StatemachinePackage"/>
+   	</bean>
+	
+    <bean class="org.eclipse.xtend.typesystem.uml2.Setup" standardUML2Setup="true"/>
+
+	<component class="org.eclipse.xtend.typesystem.emf.XmiReader">
+		<modelFile value="${umlModel}"/>
+		<outputSlot value="umlmodel"/>
+	</component>
+	
+	<component class="org.eclipse.xtend.check.CheckComponent">	
+		<metaModel id="mm.profile"
+			class="org.eclipse.xtend.typesystem.uml2.profile.ProfileMetaModel">
+			<profile value="platform:/resource/${project}/${package}/profile/Yakindu.profile.uml" />
+		</metaModel>
+		<checkFile value="com::yakindu::statechart::transformation::uml::validateUMLModel" />
+		<emfAllChildrenSlot value="umlmodel" />
+		<abortOnError value="true"/>
+	</component>
+
+
+	<component class="org.eclipse.xtend.XtendComponent">
+		<metaModel id="mm" class="org.eclipse.xtend.typesystem.emf.EmfMetaModel">
+			<metaModelPackage value="${modelPackage}"/>
+		</metaModel>
+		<metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel" 
+	           metaModelPackage="org.eclipse.emf.ecore.EcorePackage"/>
+		<metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
+		<invoke value="com::yakindu::statechart::transformation::uml::m2m::transform(umlmodel)"/>
+		<outputSlot value="model"/>
+	</component>
+	
+	<if cond="${model_extension}">
+		<component class="org.eclipse.xtend.XtendComponent">
+			<metaModel id="mm" class="org.eclipse.xtend.typesystem.emf.EmfMetaModel">
+				<metaModelPackage value="${modelPackage}"/>
+			</metaModel>
+			<metaModel class="org.eclipse.xtend.typesystem.emf.EmfMetaModel" 
+		           metaModelPackage="org.eclipse.emf.ecore.EcorePackage"/>
+		    <metaModel class="org.eclipse.xtend.typesystem.uml2.UML2MetaModel"/>
+			<invoke value="com::yakindu::statechart::transformation::uml::model_extension::extend(model, umlmodel)"/>
+		</component>
+	</if>
+
+	<component class="com.yakindu.statechart.transformation.util.StatechartWriter">
+		<useSingleGlobalResourceSet value="true"/>
+		<modelSlot value="model"/>
+		<uri value="${srcgen}/"/>	
+	</component>	
+</workflow>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="Heater_controlled" UUID="34660748-26f1-4e04-899e-21104c1095ca">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="WishTemp" ioType="input" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="Heatflow" ioType="output" port="2" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="RoomTemp" ioType="input" port="1" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="MDot" port="3" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="BurnerTemp" ioType="input" port="4" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="c" port="5" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="Level" ioType="output" port="6"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="StartTemp" port="7" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="RoomTemp_old" port="8" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="TestEvent"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="Burner_Off" id="1" entry="Heatflow=0;Level=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="Burner_On" id="2" entry="">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="3"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="Level_1" id="4" entry="MDot=300;c=1005.4;Level=1;RoomTemp_old=RoomTemp;" do="Heatflow=MDot*c*(BurnerTemp-RoomTemp);"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="Level_2" id="5" entry="MDot=800;c=1005.4;Level=2;RoomTemp_old=RoomTemp;" do="Heatflow=MDot*c*(BurnerTemp-RoomTemp);"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="Level_3" id="6" entry="MDot=1600;c=1005.4;Level=3;RoomTemp_old=RoomTemp;" do="Heatflow=MDot*c*(BurnerTemp-RoomTemp);"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="Level_4" id="7" entry="MDot=3600;c=1005.4;Level=4;" do="Heatflow=MDot*c*(BurnerTemp-RoomTemp);"/>
+      </region>
+    </state>
+  </region>
+  <transition targetNode="//@region.0/@state.1" id="8" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" expression="[RoomTemp&lt;WishTemp-0.2]" id="9" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.1" expression="[RoomTemp>WishTemp+0.4]" id="10" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.1" id="11" sourceNode="//@region.0/@state.2/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.2" expression="[RoomTemp&lt;RoomTemp_old-0.1]" id="12" sourceNode="//@region.0/@state.2/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.3" expression="[RoomTemp&lt;RoomTemp_old-0.1]" id="13" sourceNode="//@region.0/@state.2/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.4" expression="[RoomTemp&lt;RoomTemp_old-0.1]" id="14" sourceNode="//@region.0/@state.2/@region.0/@state.3"/>
+</org.mda4e.statemachine.model:Statechart>

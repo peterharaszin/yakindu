@@ -1,0 +1,59 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+import statechartexpressions;
+
+extension com::yakindu::statechart::model::Extensions;
+
+String getId(Transition this):
+  getId(this.eContainer) + "_TRANSITION_" + this.id;
+
+private String extractTriggerExpressionString(String expressionString) :
+	JAVA com.yakindu.statechart.model.JavaExtensions.extractTriggerExpressionString(java.lang.String);
+
+private String extractGuardExpressionString(String expressionString) :
+	JAVA com.yakindu.statechart.model.JavaExtensions.extractGuardExpressionString(java.lang.String);
+
+private String extractActionExpressionString(String expressionString) :
+	JAVA com.yakindu.statechart.model.JavaExtensions.extractActionExpressionString(java.lang.String);
+
+TriggerExpression getTriggerExpression(Transition this) : 
+    this.expression != null && extractTriggerExpressionString(this.expression) != null ? parseTriggerExpression(extractTriggerExpressionString(this.expression)) : null;
+  
+GuardExpression getGuardExpression(Transition this) : 
+    this.expression != null && extractGuardExpressionString(this.expression) != null ? parseGuardExpression(extractGuardExpressionString(this.expression)) : null;
+
+ActionExpression getActionExpression(Transition this) : 
+    this.expression != null && extractActionExpressionString(this.expression) != null ? parseActionExpression(extractActionExpressionString(this.expression)) : null;
+
+List[Trigger] getTriggers(Transition this) : 
+    this.getTriggerExpression() != null ? this.getTriggerExpression().getTriggers() : {};
+    
+Trigger getTimeTrigger(Transition this) : 
+	this.getTriggers().select(e|TimeEvent.isInstance(e.event)).first(); 
+	
+List[Trigger] getSignalTriggers(Transition this) : 
+   this.getTriggers().select(e|SignalEvent.isInstance(e.event));
+ 
+boolean hasTriggers(Transition this) :
+    !this.getTriggers().isEmpty;
+    
+boolean hasGuard(Transition this) : 
+    this.getGuardExpression() != null;
+    
+boolean isTimeTriggered(Transition this) : 
+	this.getTriggerExpression() != null && this.getTriggerExpression().getTimeTrigger() != null;
+	
+boolean isSignalTriggered(Transition this) : 
+    this.getTriggerExpression() != null && this.getTriggerExpression().getSignalTriggers() != null && !this.getTriggerExpression().getSignalTriggers().isEmpty;
+    
+boolean hasAction(Transition this) : 
+    this.getActionExpression() != null;

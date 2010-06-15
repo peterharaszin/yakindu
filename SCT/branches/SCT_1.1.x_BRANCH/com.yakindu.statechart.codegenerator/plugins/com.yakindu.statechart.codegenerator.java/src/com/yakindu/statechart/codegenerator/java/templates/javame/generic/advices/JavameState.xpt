@@ -1,0 +1,83 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::Imports FOR Object» 
+	import java.util.Vector;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::getEnabledOutgoingTransitionMethod FOR Object»
+	private Transition getEnabledOutgoingTransitionOfHighestPriority(Vector events) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::State::getEnabledOutgoingTransitionMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::getEnabledOutgoingTransitionMethodBody FOR Object»
+		for (int i = 0; i < outgoingTransitions.size(); i++) { /* sorted by priority */
+			Transition transition = (Transition) outgoingTransitions.elementAt(i);
+			if (transition.isTriggeredBy(events) && transition.isEnabled()) {
+				return transition;
+			}
+		}
+		return null;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::reactLocallyOnMethod FOR Object»
+	protected abstract void reactLocallyOn(Vector events);
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::enterMethodBody FOR Object»
+	owningRegion.setCurrentState(this);
+	
+	// see if we have transitions that are time-triggered
+	for (int i = 0; i < outgoingTransitions.size(); i++) {
+		Transition transition = (Transition) outgoingTransitions.elementAt(i);
+		if (transition.isTimeTriggered()) {
+			// register timer with timing service
+			getStatechart().requestTimeEvent(transition.getTimeTrigger());
+		}
+	}
+
+	// execute entry action
+	if (entryAction != null) {
+		entryAction.execute();
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::reenterMethod FOR Object»
+	protected void reenter(int history) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::State::reenterMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::reactOnMethod FOR Object»
+	protected void reactOn(Vector events) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::State::reactOnMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::State::leaveMethodBody FOR Object»
+	// see if we have transitions that are time-triggered
+	for (int i = 0; i < outgoingTransitions.size(); i++) {
+		Transition transition = (Transition) outgoingTransitions.elementAt(i);
+		if (transition.isTimeTriggered()) {
+			// cancel all time events that could have been requested
+			getStatechart().cancelTimeEvent(transition.getTimeTrigger());
+		}
+	}
+	
+	if (exitAction != null) {
+		exitAction.execute();
+	}
+«ENDAROUND»

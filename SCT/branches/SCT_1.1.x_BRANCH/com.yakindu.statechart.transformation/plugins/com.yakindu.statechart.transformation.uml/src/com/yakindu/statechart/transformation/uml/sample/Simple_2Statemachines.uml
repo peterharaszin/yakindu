@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Yakindu="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0 ../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ">
+  <uml:Model xmi:id="__YjXsCppEd6QPfGcL5q-zA" name="example">
+    <packageImport xmi:id="__YjXsSppEd6QPfGcL5q-zA">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_OYBnsCpqEd6QPfGcL5q-zA" name="Example" isActive="true">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_TkQcACpqEd6QPfGcL5q-zA" name="StateMachine_0">
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_XoZKYCprEd6QPfGcL5q-zA" name="keypress"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_kzMXwCprEd6QPfGcL5q-zA" name="testvar"/>
+        <region xmi:id="_TkQcASpqEd6QPfGcL5q-zA" name="Region_0">
+          <subvertex xmi:type="uml:State" xmi:id="_VusTQCpqEd6QPfGcL5q-zA" name="State_0"/>
+          <subvertex xmi:type="uml:State" xmi:id="_WNXMQCpqEd6QPfGcL5q-zA" name="State_1"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_ZOok4CpqEd6QPfGcL5q-zA" name="Initial_0"/>
+          <transition xmi:id="_YUq3ACpqEd6QPfGcL5q-zA" name="From_State_0_to_State_1_Transition_0" target="_WNXMQCpqEd6QPfGcL5q-zA" source="_VusTQCpqEd6QPfGcL5q-zA">
+            <trigger xmi:id="_esh7gCprEd6QPfGcL5q-zA" name="Trigger_0" event="_esb04CprEd6QPfGcL5q-zA"/>
+          </transition>
+          <transition xmi:id="_arVMYCpqEd6QPfGcL5q-zA" name="From_Initial_0_to_State_0_Transition_0" target="_VusTQCpqEd6QPfGcL5q-zA" source="_ZOok4CpqEd6QPfGcL5q-zA">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_wiPY0CprEd6QPfGcL5q-zA" name="testvar=1;"/>
+          </transition>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="_dtA_QCprEd6QPfGcL5q-zA" name="Reception_0" signal="_XoZKYCprEd6QPfGcL5q-zA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_esb04CprEd6QPfGcL5q-zA" name="SignalEvent_0" signal="_XoZKYCprEd6QPfGcL5q-zA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_hiFEwEUkEd6MKLDpaW2rwQ" name="Example2" isActive="true">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_3MY1EEUkEd6MKLDpaW2rwQ" name="StateMachine_1">
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_Kc6RQEUqEd6MKLDpaW2rwQ" name="keypress"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_Kc6RQUUqEd6MKLDpaW2rwQ" name="testvar"/>
+        <region xmi:id="_3MY1EUUkEd6MKLDpaW2rwQ" name="Region_0">
+          <subvertex xmi:type="uml:State" xmi:id="_4rq2gEUkEd6MKLDpaW2rwQ" name="State_0"/>
+          <subvertex xmi:type="uml:State" xmi:id="_5J5DkEUkEd6MKLDpaW2rwQ" name="State_1"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_6CMkkEUkEd6MKLDpaW2rwQ" name="Initial_0"/>
+          <transition xmi:id="_6zCLoEUkEd6MKLDpaW2rwQ" name="From_Initial_0_to_State_0_Transition_0" target="_4rq2gEUkEd6MKLDpaW2rwQ" source="_6CMkkEUkEd6MKLDpaW2rwQ">
+            <trigger xmi:id="_fu1wEEUlEd6MKLDpaW2rwQ" name="Trigger_0" event="_blgJ4EUqEd6MKLDpaW2rwQ"/>
+          </transition>
+          <transition xmi:id="_7NbooEUkEd6MKLDpaW2rwQ" name="From_State_0_to_State_1_Transition_0" target="_5J5DkEUkEd6MKLDpaW2rwQ" source="_4rq2gEUkEd6MKLDpaW2rwQ">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_kfuFIEUlEd6MKLDpaW2rwQ" name="testvar = 2;"/>
+          </transition>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="_fNunEEUlEd6MKLDpaW2rwQ" name="Reception_0" signal="_Kc6RQEUqEd6MKLDpaW2rwQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_blgJ4EUqEd6MKLDpaW2rwQ" name="SignalEvent_1" signal="_Kc6RQEUqEd6MKLDpaW2rwQ"/>
+    <profileApplication xmi:id="__YjXsippEd6QPfGcL5q-zA">
+      <eAnnotations xmi:id="__YjXsyppEd6QPfGcL5q-zA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_hRSacCpvEd6I_957_i8Iwg">
+      <eAnnotations xmi:id="_hRX6ACpvEd6I_957_i8Iwg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ"/>
+      </eAnnotations>
+      <appliedProfile href="../profile/Yakindu.profile.uml#_12_5_1_ed20351_1236852562585_483655_232"/>
+    </profileApplication>
+  </uml:Model>
+  <Yakindu:Priority xmi:id="_idQPkCp1Ed6I_957_i8Iwg" base_Transition="_YUq3ACpqEd6QPfGcL5q-zA"/>
+  <Yakindu:Priority xmi:id="_tuAogCstEd6KkZEenYQHDg" base_Transition="_arVMYCpqEd6QPfGcL5q-zA"/>
+  <Yakindu:Event xmi:id="_mQnMQEUrEd6MKLDpaW2rwQ" port="1" base_Signal="_XoZKYCprEd6QPfGcL5q-zA"/>
+  <Yakindu:Event xmi:id="_oKk-kEUrEd6MKLDpaW2rwQ" port="3" base_Signal="_Kc6RQEUqEd6MKLDpaW2rwQ"/>
+  <Yakindu:Variable xmi:id="_qhytkEUrEd6MKLDpaW2rwQ" port="4" base_Class="_Kc6RQUUqEd6MKLDpaW2rwQ"/>
+  <Yakindu:Variable xmi:id="_rt4tQEUrEd6MKLDpaW2rwQ" port="2" base_Class="_kzMXwCprEd6QPfGcL5q-zA"/>
+</xmi:XMI>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Model
+Bundle-SymbolicName: com.yakindu.statechart.model
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: YAKINDU.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.yakindu.statechart.model
+Require-Bundle: org.mda4e.statemachine.model;bundle-version="1.1.0";visibility:=reexport,
+ com.yakindu.statechart.model.expressions;bundle-version="1.1.0";visibility:=reexport

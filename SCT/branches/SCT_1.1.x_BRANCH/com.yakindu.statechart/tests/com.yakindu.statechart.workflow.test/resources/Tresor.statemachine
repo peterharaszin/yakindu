@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="Tresor" UUID="9488d36f-5c17-4b49-a71a-92c33c32c5f5">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="led_rot" ioType="output" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="led_gelb" ioType="output" port="1" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="led_gruen" ioType="output" port="2" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="power" ioType="output" port="16" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="taster_1" ioType="input" port="80" trigger="rising"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="taster_2" ioType="input" port="81" trigger="rising"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="taster_3" ioType="input" port="82" trigger="rising"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="taster_4" ioType="input" port="83" trigger="rising"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="taster_5" ioType="input" port="84" trigger="rising"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="taster_6" ioType="input" port="85" trigger="rising"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="Tresor_zu" id="1" entry="power=true; led_rot=true; led_gelb=false; led_gruen=false;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="Richtige_Taste_1" id="2" entry="led_gelb=true;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="Tresor_offen" id="3" entry="led_rot=false; led_gelb=false; led_gruen=true;"/>
+  </region>
+  <transition targetNode="//@region.0/@state.1" id="4" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" expression="taster_3" id="5" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.3" expression="taster_2" id="6" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="taster_1,taster_2,taster_4,taster_5,taster_6" id="7" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="taster_1,taster_2,taster_3,taster_4,taster_5,taster_6" id="8" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="taster_1,taster_3,taster_4,taster_5,taster_6" id="9" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.1" expression="after(5s)" id="10" sourceNode="//@region.0/@state.3"/>
+</org.mda4e.statemachine.model:Statechart>

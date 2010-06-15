@@ -1,0 +1,59 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+  «FILE getLibraryPackagePath() + "SimpleState.java"»
+package «getLibraryPackage()»;
+
+«EXPAND Imports»
+
+/**
+ * Representation of a simple state without nested regions. A simple state may
+ * specify a do action, which is executed when the statechart resides "in" this
+ * state.
+ */
+public class SimpleState extends State {
+	«EXPAND SimpleStateClassBody»
+}
+
+  «ENDFILE» 
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.Set;
+«ENDDEFINE»
+
+«DEFINE SimpleStateClassBody FOR Object»
+	private Action doAction;
+
+	public SimpleState(String id, String name, Region owningRegion, Action entryAction,
+			Action doAction, Action exitAction) {
+		super(id, name, owningRegion, entryAction, exitAction);
+		this.doAction = doAction;
+	}
+
+	«EXPAND reactLocallyOnMethod»
+«ENDDEFINE»
+
+«DEFINE reactLocallyOnMethod FOR Object»
+	protected void reactLocallyOn(Set<Event> events) {
+		«EXPAND reactLocallyOnMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE reactLocallyOnMethodBody FOR Object»
+		if (doAction != null) {
+			doAction.execute();
+		}
+«ENDDEFINE»

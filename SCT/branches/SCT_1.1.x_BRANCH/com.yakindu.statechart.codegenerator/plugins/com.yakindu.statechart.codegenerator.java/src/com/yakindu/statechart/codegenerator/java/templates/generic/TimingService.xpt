@@ -1,0 +1,94 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+   «FILE getLibraryPackagePath() + "TimingService.java"»
+package «getLibraryPackage()»;
+
+public interface TimingService {
+
+	public void requestTimeEvent(TimeEvent timeEvent);
+
+	public void cancelTimeEvent(TimeEvent timeEvent);
+
+}
+  «ENDFILE»
+  
+  «FILE getLibraryPackagePath() + "DefaultTimingService.java"»
+package «getLibraryPackage()»;
+
+«EXPAND Imports»
+
+public class DefaultTimingService implements TimingService{
+
+	private final AbstractStatechart statechart;
+
+	public DefaultTimingService(AbstractStatechart statechart) {
+		this.statechart = statechart;
+	}
+
+	«EXPAND canceledRequestedEventsVariable»
+
+	«EXPAND requestTimeEventMethod»
+
+	«EXPAND cancelTimeEventMethod»
+}
+  «ENDFILE»
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+«ENDDEFINE»
+
+«DEFINE canceledRequestedEventsVariable FOR Object»
+	private Set<TimeEvent> canceledRequestedEvents = new HashSet<TimeEvent>();
+«ENDDEFINE»
+
+«DEFINE requestTimeEventMethod FOR Object»
+	public void requestTimeEvent(final TimeEvent timeEvent) {
+		«EXPAND requestTimeEventMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE requestTimeEventMethodBody FOR Object»
+		canceledRequestedEvents.remove(timeEvent);
+	
+		// run a timer (there is an own thread for this);
+		Timer timer = new Timer();
+		timer.schedule(new TimerTask() {
+
+			@Override
+			public void run() {
+				if (canceledRequestedEvents.contains(timeEvent)) {
+					canceledRequestedEvents.remove(timeEvent);
+				} else {
+					statechart.setEvent(timeEvent);
+				}
+			}
+
+		}, timeEvent.getDuration());
+«ENDDEFINE»
+
+«DEFINE cancelTimeEventMethod FOR Object»
+	public void cancelTimeEvent(final TimeEvent timeEvent) {
+		«EXPAND cancelTimeEventMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE cancelTimeEventMethodBody FOR Object»
+		canceledRequestedEvents.add(timeEvent);
+«ENDDEFINE»

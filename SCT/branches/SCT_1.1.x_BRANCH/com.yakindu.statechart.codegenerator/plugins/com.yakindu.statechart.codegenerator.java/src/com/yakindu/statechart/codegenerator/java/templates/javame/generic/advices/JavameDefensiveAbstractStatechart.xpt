@@ -1,0 +1,106 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::StatechartClassBody FOR Object» 
+   	// marker to indicate that initialization is done
+	private boolean initialized = false;
+	
+	// marker to keep track if statechart was entered or not
+	private boolean entered = false;
+	
+   	«targetDef.proceed()» 
+   	
+   	protected void finalizeInitialization() {
+	 	assertNotInitialized();
+	  	
+	  	// sort regions by priority
+	  	assertRegionsSortedByPriority();
+	  	
+	  	for(int i = 0; i < regions.size(); i++) {
+	  		Region region = (Region) regions.elementAt(i);
+	   	 	region.finalizeInitialization();
+	  	}
+	  	
+	  	for(int i = 0; i < transitions.size(); i++) {
+	  		Transition transition = (Transition) transitions.elementAt(i);
+			transition.finalizeInitialization();
+		}
+	  	
+	  	initialized = true;
+	  	assertInitialized();
+	}
+	
+	private void assertRegionsSortedByPriority() {
+		// check regions are sorted by priority
+		Vector regionsCopy = new Vector();
+		for(int i = 0; i < regions.size(); i++) {
+			regionsCopy.addElement(regions.elementAt(i));
+		}
+		Collections.sort(regionsCopy);
+		if(!regionsCopy.equals(regions)){
+			throw new IllegalArgumentException("Regions not sorted by priority");
+		}
+	}
+   	
+   	private void assertInitialized(){
+		if(!initialized){
+			throw new IllegalStateException("Statechart is not yet initialized");
+		}
+	}
+	
+	private void assertNotInitialized(){
+		if(initialized){
+			throw new IllegalStateException("Statechart was already initialized");
+		}
+	}
+	
+	private void assertEntered(){
+		if(!entered){
+			throw new IllegalStateException("Statechart is not yet entered");
+		}
+	}
+	
+	private void assertNotEntered(){
+		if(entered){
+			throw new IllegalStateException("Statechart was already entered");
+		}
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::setEventMethodBody FOR Object»
+	assertInitialized();
+	assertEntered();
+	«targetDef.proceed()»
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::enterMethodBody FOR Object»
+	assertInitialized();
+	assertNotEntered();
+	«targetDef.proceed()»	    
+	entered = true;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::runCycleMethodBody FOR Object»
+	assertInitialized();
+	assertEntered();
+	«targetDef.proceed()»
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::leaveMethodBody FOR Object»
+    assertInitialized();
+   	assertEntered();	    
+  	«targetDef.proceed()»
+	entered = false;
+«ENDAROUND»

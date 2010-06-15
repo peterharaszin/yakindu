@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="NotSupported" UUID="fbcd390c-74b2-4ec4-a4b2-4817e9c492fb">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="action" dataType="double"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="exit" port="1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="number" port="2"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="start" port="3" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="e_either" port="4"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="e_rising" ioType="input" port="5" trigger="rising"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="e_falling" ioType="output" port="6" trigger="falling"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="State1" entry="start=1" do="action=action+1">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="1"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="2" pseudoType="choice"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="State2" id="3" entry="exit=2"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="State3" id="4" entry="number=number+1"/>
+        <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="5"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="6" pseudoType="deepHistory"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="7"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="State4" id="8">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="9"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="10" pseudoType="junction"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="State5" id="11" entry="exit=3"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="State6" id="12" entry="exit=4"/>
+        <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="13"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="14" pseudoType="shallowHistory"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="State7" id="15">
+      <region priority="1">
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="16"/>
+        <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="17"/>
+      </region>
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="18"/>
+        <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="19"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="20"/>
+  </region>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="21" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1" priority="1" id="22" sourceNode="//@region.0/@state.0/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" expression="after(1)" id="23" sourceNode="//@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.3" expression="[action==1000]" id="24" sourceNode="//@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.4" priority="1" id="25" sourceNode="//@region.0/@state.0/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1" priority="1" id="26" sourceNode="//@region.0/@state.0/@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.4" priority="2" expression="/exit=1" id="27" sourceNode="//@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2" priority="1" expression="[exit!=0]" id="28" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.1" priority="1" id="29" sourceNode="//@region.0/@state.2/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.2" id="30" sourceNode="//@region.0/@state.2/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.3" priority="1" id="31" sourceNode="//@region.0/@state.2/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.4" priority="1" id="32" sourceNode="//@region.0/@state.2/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.4" priority="1" id="33" sourceNode="//@region.0/@state.2/@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.3" priority="1" expression="[exit>2]" id="34" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.2" priority="1" id="35" sourceNode="//@region.0/@state.2/@region.0/@state.5"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.3" priority="1" id="36" sourceNode="//@region.0/@state.0/@region.0/@state.5"/>
+  <transition targetNode="//@region.0/@state.4" priority="1" id="37" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.3/@region.0/@state.1" priority="1" id="38" sourceNode="//@region.0/@state.3/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.3/@region.1/@state.1" priority="1" id="39" sourceNode="//@region.0/@state.3/@region.1/@state.0"/>
+</org.mda4e.statemachine.model:Statechart>

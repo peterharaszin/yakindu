@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<!-- ====================================================================== 
+     08.01.2009 10:36:09                                                        
+
+     Yakindu Blocksystem    
+     Automatischer Start der oaw workflows
+                   
+     schwertfeger                                                  
+     ====================================================================== -->
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>Yakindu-state-chart-tools</artifactId>
+  <groupId>yakindu</groupId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>mda4e</module>
+  </modules>
+  
+  <pluginRepositories>
+   <pluginRepository>
+    <id>mc-release</id>
+    <name>Local Maven repository of releases</name>
+    <url>http://mc-repo.googlecode.com/svn/maven2/releases</url>
+    <snapshots>
+        <enabled>false</enabled>
+    </snapshots>
+    <releases>
+        <enabled>true</enabled>
+    </releases>
+   </pluginRepository>
+   <pluginRepository>
+    <id>mc-release</id>
+    <name>Local Maven repository of releases</name>
+    <url>http://mc-repo.googlecode.com/svn/maven2/snapshots</url>
+    <snapshots>
+        <enabled>true</enabled>
+    </snapshots>
+    <releases>
+        <enabled>false</enabled>
+    </releases>
+   </pluginRepository>
+  </pluginRepositories>
+  
+  <build>
+    <plugins>
+<!--      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>-->
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>compile</phase>
+            <configuration>
+              <tasks>
+                <echo message="eclipseLocation: ${eclipseLocation}"/>
+                <ant antfile="${basedir}/build.xml">
+                  <target name="runBuild"/>
+                </ant>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+        <dependencies>
+          <!-- for junit -->
+		  <dependency>
+		    <groupId>ant</groupId>
+		    <artifactId>ant-junit</artifactId>
+		    <version>1.6.5</version>
+		  </dependency>
+          <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.0</version>
+            <!--scope>compile</scope-->
+          </dependency> 
+		  <!-- for XSLT (with checkstyle) -->
+          <dependency>
+            <groupId>ant</groupId>
+            <artifactId>ant-trax</artifactId>
+            <version>1.6.5</version>
+          </dependency>
+          <!-- for ssh -->
+          <dependency>
+            <groupId>org.apache.ant</groupId>
+            <artifactId>ant-jsch</artifactId>
+            <version>1.7.0</version>
+          </dependency>
+          <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.31</version>
+          </dependency>
+          <!-- for regexp in matcher -->
+          <dependency>
+ 	        <groupId>ant</groupId>
+ 	        <artifactId>ant-apache-regexp</artifactId>
+ 	        <version>1.6.5</version>
+ 	      </dependency>
+          <dependency>
+             <groupId>jakarta-regexp</groupId>
+             <artifactId>jakarta-regexp</artifactId>
+             <version>1.4</version>
+         </dependency>
+       </dependencies>    
+      </plugin>
+      <plugin>
+            <groupId>com.google.code.maven-license-plugin</groupId>
+            <artifactId>maven-license-plugin</artifactId>
+            <configuration>
+            <headerDefinitions>
+              <headerDefinition>texComment.xml</headerDefinition>
+              <headerDefinition>expandComment.xml</headerDefinition>
+            </headerDefinitions>
+                <basedir>${basedir}/../../..</basedir>
+                <header>${basedir}/src/etc/header.txt</header>
+                <quiet>false</quiet>
+                <failIfMissing>true</failIfMissing>
+                <aggregate>false</aggregate>
+                <includes>
+                    <include>**/*.tex</include>
+                    <include>**/*.java</include>
+                    <include>**/*.c</include>
+                    <include>**/*.h</include>
+                    <include>**/*.xml</include>
+                    <include>**/*.statemachine</include>
+                    <include>**/*.statemachine_diagram</include>
+                    <include>**/*.xpt</include>
+                    <include>**/*.ext</include>
+                    <include>**/*.chk</include>
+                    <include>**/*.cpp</include>
+                </includes>
+                <excludes>
+                    <exclude>EXTERNALS/**</exclude>
+                    <exclude>**/org.mda4e.*/**</exclude>
+                	<exclude>**/org/openarchitectureware/workflow/ant/**</exclude>
+                </excludes>
+                <useDefaultExcludes>true</useDefaultExcludes>
+                <mapping>
+                    <statemachine>XML_STYLE</statemachine>
+                    <statemachine_diagram>XML_STYLE</statemachine_diagram>
+<!--                    <jwc>XML_STYLE</jwc>-->
+                    <application>XML_STYLE</application>
+                    <tex>TEX_COMMENT_STYLE</tex>
+                    <c>JAVADOC_STYLE</c>
+                    <ext>JAVADOC_STYLE</ext>
+                    <chk>JAVADOC_STYLE</chk>
+                    <cpp>JAVADOC_STYLE</cpp>
+                    <xpt>EXPAND_COMMENT_STYLE</xpt>
+                </mapping>
+                <useDefaultMapping>true</useDefaultMapping>
+                <properties>
+                    <year>${project.inceptionYear}</year>
+                    <email>my@email.com</email>
+                </properties>
+                <encoding>UTF-8</encoding>
+<!--                <headerDefinitions>
+                    <headerDefinition>def1.xml</headerDefinition>
+                    <headerDefinition>def2.xml</headerDefinition>
+                </headerDefinitions>-->
+            </configuration>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                    <phase>compile</phase>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+  </build>
+</project>

@@ -1,0 +1,85 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::RegionClassBody FOR Object» 
+	// marker to indicate that initialization is done
+	private boolean initialized = false;
+	
+	// marker to keep track if the region was entered or not
+	private boolean entered = false;
+	
+	«targetDef.proceed()»
+	
+	protected void finalizeInitialization() {
+		assertNotInitialized();
+		initialized = true;
+		for (int i = 0; i < nodes.size(); i++) {
+			Node node = (Node) nodes.elementAt(i);
+			node.finalizeInitialization();
+		}
+		assertInitialized();
+	}
+	
+	private void assertInitialized(){
+		if(!initialized){
+			throw new IllegalStateException("Region not yet initialized");
+		}
+	}
+	
+	private void assertNotInitialized(){
+		if(initialized){
+			throw new IllegalStateException("Region not yet initialized");
+		}
+	}
+	
+	private void assertEntered(){
+		if(!entered){
+			throw new IllegalStateException("Region was not entered");
+		}
+	}
+	
+	private void assertNotEntered(){
+		if(entered){
+			throw new IllegalStateException("Region was already entered");
+		}
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::enterMethodBody FOR Object»
+	assertInitialized();
+	assertNotEntered();
+	«targetDef.proceed()»
+	entered = true;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::reenterMethodBody FOR Object»
+	assertInitialized();
+	assertNotEntered();
+	«targetDef.proceed()»
+	entered = true;	
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::reactOnMethodBody FOR Object»
+	assertInitialized();
+	assertEntered();
+	«targetDef.proceed()»
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Region::leaveMethodBody FOR Object»
+	assertInitialized();
+	assertEntered();
+	«targetDef.proceed()»
+	entered = false;
+«ENDAROUND»	

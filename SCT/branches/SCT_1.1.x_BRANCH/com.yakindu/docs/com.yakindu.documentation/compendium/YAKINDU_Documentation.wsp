@@ -1,0 +1,10 @@
+[main]
+.\compendium.tex
+
+[texfiles]
+..\Java-Codegenerator\introduction.tex
+..\Java-Codegenerator\example.tex
+..\Java-Codegenerator\generation.tex
+..\Java-Codegenerator\integration.tex
+..\Java-Codegenerator\sourcecode.tex
+

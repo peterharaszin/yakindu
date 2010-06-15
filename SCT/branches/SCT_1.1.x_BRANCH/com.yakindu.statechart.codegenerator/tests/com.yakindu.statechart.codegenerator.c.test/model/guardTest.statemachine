@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="guardTest" UUID="67cbef38-e167-4067-9974-be94a7a75286">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="trigger1" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="trigger2" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="trigger3" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="trigger4" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="startState" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="state1" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="state2" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="state3" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="out" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="gValue" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="trigger5" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="value1" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="value2" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="state4" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="state5" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="state6" ioType="output"/>
+  <region priority="10">
+    <state xsi:type="org.mda4e.statemachine.model:State" name="startState" entry="startState=1;" exit="startState=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state1" id="1" entry="state1=1; value2 +=1;" exit="state1=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state2" id="2" entry="state2=1;" exit="state2=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state3" id="3" entry="state3=1;" exit="state3=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="4"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state4" id="5" entry="state4=1; value2 = 0;" exit="state4=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="6" pseudoType="choice"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state5" id="7" entry="state5=1;" exit="state5=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state6" id="8" entry="state6=1;" exit="state6=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="9" pseudoType="junction"/>
+  </region>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="10" sourceNode="//@region.0/@state.4"/>
+  <transition targetNode="//@region.0/@state.1" priority="4" expression="trigger1[gValue == 3]" id="11" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" priority="2" expression="trigger1[gValue > 3]" id="12" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.3" priority="6" expression="trigger2[gValue &lt; 3]/out=4;" id="13" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.1" priority="3" expression="trigger2[gValue == 3]/out=1;" id="14" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" priority="1" expression="trigger2[gValue > 3]/out=2;" id="15" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.3" priority="5" expression="trigger3/out=3;" id="16" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" expression="trigger4" id="17" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" expression="trigger4" id="18" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" expression="trigger4" id="19" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.5" priority="8" expression="[value1 >10 &amp;&amp; value2 > 2]" id="20" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" expression="trigger4" id="21" sourceNode="//@region.0/@state.5"/>
+  <transition targetNode="//@region.0/@state.6" priority="7" expression="[value2==10]" id="22" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.7" priority="1" expression="[value1>100]" id="23" sourceNode="//@region.0/@state.6"/>
+  <transition targetNode="//@region.0/@state.8" priority="2" expression="[value1&lt;=100]" id="24" sourceNode="//@region.0/@state.6"/>
+  <transition targetNode="//@region.0/@state.9" priority="1" expression="trigger4" id="25" sourceNode="//@region.0/@state.7"/>
+  <transition targetNode="//@region.0/@state.9" priority="1" expression="trigger4" id="26" sourceNode="//@region.0/@state.8"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="27" sourceNode="//@region.0/@state.9"/>
+</org.mda4e.statemachine.model:Statechart>

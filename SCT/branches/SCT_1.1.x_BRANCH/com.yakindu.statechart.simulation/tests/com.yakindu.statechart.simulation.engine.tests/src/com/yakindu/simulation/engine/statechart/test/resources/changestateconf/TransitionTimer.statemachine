@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="TransitionTimer" UUID="b0ae131c-e273-4f58-8cc7-75d623acc77c">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="curState"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="State1" id="1" entry="curState=1;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="State2" id="2" entry="curState=2;"/>
+    <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="3"/>
+  </region>
+  <transition targetNode="//@region.0/@state.2" priority="1" expression="after(200ms)" id="4" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" id="5" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.3" priority="1" id="6" sourceNode="//@region.0/@state.2"/>
+</org.mda4e.statemachine.model:Statechart>

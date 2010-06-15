@@ -1,0 +1,74 @@
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<!-- ===================================================================== -->
+<!-- Custom targets called from a project's generated build.xml            -->
+<!-- Set customTestCallbacks=<path/to/this/file> in your build.properties.-->
+<!-- ===================================================================== -->
+<project name="Build specific targets and properties" default="noDefault">
+
+	<property environment="env"/>
+	<property file="build.properties"/>
+	
+	<!-- ===================================================================== -->
+	<!-- Default target                                                        -->
+	<!-- ===================================================================== -->
+	<target name="noDefault">
+		<echo message="This file must be called with explicit targets" />
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do before the target build.jars                              -->
+	<!-- Available parameters :                                                -->
+	<!--                 plugin.location	                                   -->
+	<!-- ===================================================================== -->
+	
+	<target name="pre.junit">
+		<!-- test generated code -->
+		<echo message="TESTING GENERATING CODE ..." />
+		<echo message="target dir ${plugin.location}/testSuite/afterTest" />
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/test_dept"/> </exec>
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/sm_afterTest_enter_test"/> </exec>
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/sm_afterTest_exit_test"/> </exec>
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/sm_afterTest_runCycle_state1_test"/> </exec>
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/sm_afterTest_runCycle_state2_test"/> </exec>
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/sm_afterTest_runCycle_state3_test"/> </exec>
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/sm_afterTest_runCycle_state4_test"/> </exec>
+		<exec executable="chmod"> <arg value="u+x"/>
+			<arg value="${plugin.location}/testSuite/afterTest/sm_afterTest_runCycle_stateInitial_test"/> </exec>
+
+		<exec executable="make" dir="${plugin.location}/testSuite/afterTest">
+			<arg line="-f Makefile check" />
+			<arg line="--include-dir=${test_dept.path}/include"/>
+			<env key="PATH" value="${env.PATH}:${test_dept.path}/bin"/>
+		</exec>
+		<copy file="${plugin.location}/testSuite/afterTest/c_test.xml" 
+			tofile="${test-reports.dir}/com.yakindu.statechart.codegenerator.c.Tests.xml" 
+			failonerror="false"/>
+		<echo message="DONE!" />
+	</target>
+
+	<!-- ===================================================================== -->
+	<!-- Steps to do after the target build.jars                               -->
+	<!-- Available parameters :                                                -->
+	<!--                                                                       -->
+	<!-- ===================================================================== -->
+	<target name="post.junit">
+	</target>
+</project>

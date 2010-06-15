@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<workflow>
+	<!-- src-gen point to output folder for generated code --> 
+	<property name="src-gen" value="src-gen" />
+	
+	<!-- Generator call with model-file and output-folder -->
+    <cartridge file='com/yakindu/statechart/codegenerator/java/test/workflow/generate_ChoiceJunctionPseudostatesTest.oaw' src-gen="${src-gen}"/>
+    <cartridge file='com/yakindu/statechart/codegenerator/java/test/workflow/generate_HistoryPseudostatesTest.oaw' src-gen="${src-gen}"/>
+    <cartridge file='com/yakindu/statechart/codegenerator/java/test/workflow/generate_StatesTest.oaw' src-gen="${src-gen}"/>
+    <cartridge file='com/yakindu/statechart/codegenerator/java/test/workflow/generate_TimingTest.oaw' src-gen="${src-gen}"/>
+    <cartridge file='com/yakindu/statechart/codegenerator/java/test/workflow/generate_TransitionsTest.oaw' src-gen="${src-gen}"/>
+    
+</workflow>

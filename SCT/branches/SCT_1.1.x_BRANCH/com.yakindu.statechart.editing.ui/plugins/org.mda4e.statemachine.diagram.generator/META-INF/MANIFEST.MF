@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MDA4E Statechart Diagram Definitions
+Bundle-SymbolicName: org.mda4e.statemachine.diagram.generator
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: www.mda4e.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

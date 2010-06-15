@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="afterTest" UUID="f5821998-5b6b-41b6-98ba-7e82c3f8ad33">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="trigger1" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="trigger2" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="key1" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="key2" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="waitTime" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="st" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="outputEvent1" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="outputEvent2" ioType="output"/>
+  <region priority="10">
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state1" entry="st = 1;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state2" id="1" entry="st = 2;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state3" id="2" entry="waitTime += 100;" exit="raise(outputEvent1);"/>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="3"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state4" id="4" entry="waitTime -= 100;" exit="raise(outputEvent2);"/>
+  </region>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="after(waitTime)" id="5" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="6" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.2" priority="3" expression="key1[waitTime &lt; 2000]" id="7" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="8" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" expression="trigger1,trigger2" id="9" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.4" priority="2" expression="key2[waitTime > 200]" id="10" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="11" sourceNode="//@region.0/@state.4"/>
+</org.mda4e.statemachine.model:Statechart>

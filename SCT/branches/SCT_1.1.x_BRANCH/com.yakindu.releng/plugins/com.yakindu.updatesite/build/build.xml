@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<!-- ====================================================================== 
+     16.12.2008 10:18:09                                                        
+
+     Yakindu Statemachine    
+     Automatischer Build der Yakindu Statemachine
+                   
+     weise                                                                
+     ====================================================================== -->
+<project name="Yakindu update site" default="main" basedir=".">
+	<description>
+            Automatischer Build der update site
+    </description>
+	<taskdef resource="net/sf/antcontrib/antlib.xml" classpath="${lib.dir}/ant/ant-contrib-1.0b3.jar" />
+
+	<target name="clean">
+		<delete dir="${update.site.home}"/>
+	</target>
+
+    <!-- ================================= 
+          target: default              
+         ================================= --><!--depends="init"-->
+    <target name="main"  description="Automatischer Build der Yakindu update site">
+    	<antcall target="create_update_site"/>
+    	<!-- no scp while stefan is not here -->
+		<antcall target="copy_update_site"/>
+    </target>
+	
+	<target name="create_update_site">
+		<echo message="Cleanup update site before:"/>
+		<mkdir dir="${update.site.home}"/>
+		<delete>
+			<fileset dir="${update.site.home}">
+				<include name="**/*.jar" />
+			</fileset>
+		</delete>
+		
+		<copy todir="${update.site.home}" overwrite="true">
+			<fileset dir="${buildDirectory}/repo">
+				<include name="plugins/*.jar" />
+				<include name="features/*.jar" />
+				<include name="*.xml" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copy_update_site">
+		<echo>skipScp: ${skipScp}</echo>
+		<echo>scp.fail_on_error: ${scp.fail_on_error}</echo>
+		<echo>lib.dir: ${lib.dir}</echo>
+		<if>
+			<not>
+				<equals arg1="${skipScp}" arg2="true" />
+			</not>
+			<then>
+				<echo>Transfer build from ${update.site.home} </echo>
+				<echo>  to Update site source at ${update.site.scp}</echo>
+				<scp todir="${update.site.scp}"
+						keyfile="${yakindu.keyFile}"
+						failonerror="${scp.fail_on_error}"
+						passphrase="${yakindu.passphrase}"
+						trust="true" verbose="true"
+						sftp="true">
+					<fileset dir="${update.site.home}">
+						<include name="*.xml"/>
+					</fileset>
+				</scp>
+				<scp todir="${update.site.scp}"
+						keyfile="${yakindu.keyFile}"
+						failonerror="${scp.fail_on_error}"
+						passphrase="${yakindu.passphrase}"
+						trust="true" verbose="true"
+						sftp="true">
+					<fileset dir="${update.site.home}">
+						<include name="plugins/*.jar"/>
+					</fileset>
+				</scp>
+				<scp todir="${update.site.scp}"
+						keyfile="${yakindu.keyFile}"
+						failonerror="${scp.fail_on_error}"
+						passphrase="${yakindu.passphrase}"
+						trust="true" verbose="true"
+						sftp="true">
+					<fileset dir="${update.site.home}">
+						<include name="features/*.jar"/>
+					</fileset>
+				</scp>
+				</then>
+			</if>
+	</target>
+</project>

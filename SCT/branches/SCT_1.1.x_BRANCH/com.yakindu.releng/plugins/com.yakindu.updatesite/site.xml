@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<site associateSitesURL="http://updates.yakindu.com/release/associateSites.xml">
+   <description url="http://updates.yakindu.com/galileo/daily">
+      The Yakindu Update-Site.
+   </description>
+   <feature url="features/org.itemis.yakindu.feature_1.0.0.200902271259.jar" id="org.itemis.yakindu.feature" version="1.0.0.200902271259">
+      <category name="Yakindu"/>
+   </feature>
+   <category-def name="Yakindu" label="Yakindu">
+      <description>
+         Editor for statecharts and simulation and code generation engine.
+      </description>
+   </category-def>
+</site>

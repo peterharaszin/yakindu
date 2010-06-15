@@ -1,0 +1,52 @@
+/**
+ * Copyright (c) 2006-2009 committers of mda4e and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of mda4e (http://www.mda4e.org/) - initial API and implementation
+ *
+ */
+import statemachine;
+import emf;
+
+Statechart Statechart() : GLOBALVAR statechart;
+EObject SelectedElement() : GLOBALVAR selectedElement;
+
+List[Variable] getVariables() : 
+    Statechart().dataElement.select(e|Variable.isInstance(e));
+    
+List[Event] getEvents() : 
+    Statechart().dataElement.select(e|Event.isInstance(e));
+    
+boolean isInitial(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::initial;
+	
+boolean isDeepHistory(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::deepHistory;
+	
+boolean isShallowHistory(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::shallowHistory;
+	
+boolean isJoin(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::join;
+	
+boolean isFork(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::fork;
+
+boolean isJunction(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::junction;
+
+boolean isChoice(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::choice;
+
+boolean isEntryPoint(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::entryPoint;
+
+boolean isExitPoint(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::exitPoint;
+
+boolean isTerminate(Pseudostate ps) :
+	ps.pseudoType == PseudoTypes::terminate;

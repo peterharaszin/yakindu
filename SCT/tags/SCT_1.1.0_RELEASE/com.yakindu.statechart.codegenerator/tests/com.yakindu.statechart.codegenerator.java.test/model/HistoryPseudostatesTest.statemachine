@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="HistoryPseudostatesTest" UUID="be42e065-b039-4c15-9814-f42e8f46c772">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event1" port="1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event2" port="2"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="CompoundState1ToSimpleState1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="SimpleState1ToCompoundState1DeepHistory" port="3"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="SimpleState1ToCompoundState1ShallowHistory" port="4"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="CompoundState1">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="1" pseudoType="deepHistory"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="CompoundState2" id="2">
+          <region>
+            <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState3" id="3"/>
+            <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState4" id="4"/>
+            <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="5"/>
+          </region>
+        </state>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState2" id="6"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="7" pseudoType="shallowHistory"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="8"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="9"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState1" id="10"/>
+  </region>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="11" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" id="12" sourceNode="//@region.0/@state.0/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1" priority="1" expression="event1" id="13" sourceNode="//@region.0/@state.0/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.2" priority="1" expression="CompoundState1ToSimpleState1" id="14" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0" priority="1" expression="SimpleState1ToCompoundState1DeepHistory" id="15" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.0" priority="1" id="16" sourceNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.1" priority="1" expression="event2" id="17" sourceNode="//@region.0/@state.0/@region.0/@state.1/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" id="18" sourceNode="//@region.0/@state.0/@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.3" priority="2" expression="SimpleState1ToCompoundState1ShallowHistory" id="19" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" id="20" sourceNode="//@region.0/@state.0/@region.0/@state.4"/>
+</org.mda4e.statemachine.model:Statechart>

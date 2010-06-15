@@ -1,0 +1,129 @@
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<project name="P2 related tasks">
+
+	<target name="p2.director">
+		<echo message="Installing ${p2.installIU} from ${p2.build.repo} into ${p2.install.path}" />
+
+		<!-- HACK, delete prefs (which seem to be recreated when starting eclipse -->
+		<!--<delete>
+			<fileset dir="${p2.builder}/configuration/.settings">
+				<include name="org.eclipse.equinox.p2.artifact.repository.prefs" />
+				<include name="org.eclipse.equinox.p2.metadata.repository.prefs" />
+			</fileset>
+		</delete>-->
+		
+		<property name="p2.director.workspace" value="${p2.builder}/p2_workspace" />
+		<delete dir="${p2.director.workspace}" />
+		<mkdir dir="${p2.director.workspace}" />
+		
+		<path id="equinox.launcher">
+            <first count="1">
+                <sort>
+                    <fileset dir="${launcherLocation}/plugins" includes="**/org.eclipse.equinox.launcher_*.jar" />
+                    <!-- Seems the default order is oldest > newest so we must reverse it.
+                       The 'reverse' and 'date' comparators are in the internal antlib
+                       org.apache.tools.ant.types.resources.comparators.
+                    -->
+                    <reverse xmlns="antlib:org.apache.tools.ant.types.resources.comparators">
+                        <!-- 'date' inherits 'reverse's namespace -->
+                        <date />
+                    </reverse>
+                </sort>
+            </first>
+        </path>
+		<property name="equinox.launcher.jar.location" refid="equinox.launcher" />
+		<echo message="Launcher: ${equinox.launcher.jar.location}"/>
+
+		<java jar="${equinox.launcher.jar.location}" fork="true" failonerror="true"
+			dir="${p2.builder}">
+			<!--arg line="-vm ${JavaSE-1.6-dir}/bin/java" /-->
+			<arg line="-application org.eclipse.equinox.p2.director" />
+			<arg line="-data ${p2.director.workspace}" />
+			<arg line="-clean" />
+			<arg line="-nosplash" />
+			<arg line="-debug" />
+			<arg line="-consoleLog" />
+			<arg line="-installIU ${p2.installIU}" />
+			<!--<arg line="-version ${p2.version}" />-->
+			<arg line="-profile ${p2.profile}" />
+			<arg line="-profileProperties org.eclipse.update.install.features=true" />
+			<arg line="-p2.os ${p2.os}" />
+			<arg line="-p2.ws ${p2.ws}" />
+			<arg line="-p2.arch ${p2.arch}" />
+			<arg line="-repository ${p2.build.repo}" />
+			<arg line="-destination ${p2.install.path}" />
+			<arg line="-bundlepool ${p2.install.path}" />
+			<arg line="-roaming" />
+			<jvmarg line="-Xms512m -Xmx1024m -XX:MaxPermSize=512m" />
+			<jvmarg line="-Declipse.p2.data.area=${p2.install.path}/p2" />
+			<jvmarg line="-Declipse.p2.MD5Check=false" />
+		</java>
+		
+		<!-- delete the metadata cache as well as the artifacts for unzipped bundles -->
+		<delete failonerror="false" includeEmptyDirs="true" dir="${p2.install.path}/p2/org.eclipse.equinox.p2.core/cache" />
+		
+		<delete dir="${p2.director.workspace}" />
+		<echo message="done." />
+	</target>
+	
+	<target name="p2.generator">
+		<echo message="Generating p2 metadata for bundles under ${sourceDir} into ${repoDir}" />
+		<mkdir dir="${repoDir}" />
+		<property name="p2.director.workspace" value="${repoDir}/p2_workspace" />
+		<delete dir="${p2.director.workspace}" />
+		<mkdir dir="${p2.director.workspace}" />
+		
+		<path id="equinox.launcher">
+            <first count="1">
+                <sort>
+                    <fileset dir="${launcherLocation}/plugins" includes="**/org.eclipse.equinox.launcher_*.jar" />
+                    <!-- Seems the default order is oldest > newest so we must reverse it.
+                       The 'reverse' and 'date' comparators are in the internal antlib
+                       org.apache.tools.ant.types.resources.comparators.
+                    -->
+                    <reverse xmlns="antlib:org.apache.tools.ant.types.resources.comparators">
+                        <!-- 'date' inherits 'reverse's namespace -->
+                        <date />
+                    </reverse>
+                </sort>
+            </first>
+        </path>
+		<property name="equinox.launcher.jar.location" refid="equinox.launcher" />
+		<echo message="Launcher: ${equinox.launcher.jar.location}"/>
+
+		<java jar="${equinox.launcher.jar.location}" fork="true" failonerror="true"
+			dir="${p2.builder}">
+			<!--arg line="-vm ${JavaSE-1.6-dir}/bin/java" /-->
+			<arg line="-application org.eclipse.equinox.p2.metadata.generator.EclipseGenerator" />
+			<arg line="-source ${sourceDir}" />
+			<arg line="-data ${p2.director.workspace}" />
+			<arg line="-metadataRepository file:${repoDir}"/>
+			<arg line="-metadataRepositoryName 'My Update Site'"/>
+			<arg line="-artifactRepository file:${repoDir}"/>
+			<arg line="-artifactRepositoryName 'My Artifacts'"/>
+			<arg line="-clean" />
+			<arg line="-nosplash" />
+			<arg line="-debug" />
+			<arg line="-consoleLog" />
+			<arg line="--launcher.suppressErrors" />
+			<arg line="-publishArtifacts" />
+			<arg line="-publishArtifactRepository" />
+			<arg line="-compress" />
+			<arg line="-noDefaultIUs" />
+			<jvmarg line="-Xms256m -Xmx512m -XX:MaxPermSize=256m" />
+		</java>
+		<delete dir="${p2.director.workspace}" />
+		<echo message="done." />
+	</target>
+</project>

@@ -1,0 +1,277 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::IDs»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Names»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Variable»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Sps»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::JumpMarks»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Navigation»
+«EXTENSION com::yakindu::statechart::codegenerator::sps::extensions::Transition»
+
+«DEFINE main FOR Region»
+«FILE awlDirectory()+'DB'+regionID()+'.AWL'»
+«EXPAND db»
+«ENDFILE»
+«FILE awlDirectory()+'FB'+regionID()+'.AWL'»
+«EXPAND regionFB»
+«ENDFILE»
+«FOREACH state AS e»
+	«EXPAND com::yakindu::statechart::codegenerator::sps::templates::State::main FOR e»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE db FOR Region»
+DATA_BLOCK DB«regionID()»
+«EXPAND com::yakindu::statechart::codegenerator::sps::templates::Statemachine::intro FOR this-»
+
+ FB«regionID()»
+BEGIN
+   reset := FALSE;
+   exit := FALSE;
+   state := 0;
+   gestartet := FALSE;
+END_DATA_BLOCK
+«ENDDEFINE»
+
+«DEFINE regionFB FOR Region»
+//{{V2}}
+FUNCTION_BLOCK FB «regionID()»
+TITLE=Region «regionID()»
+//Please leave this file as it is. Changes should be done in the model.
+«EXPAND com::yakindu::statechart::codegenerator::sps::templates::Statemachine::intro FOR this-»
+
+«REM»Regionen müssen dem noch aktuellen Zustand Bescheid sagen können und evtl. Timer resetten«ENDREM»
+VAR_INPUT
+       reset : BOOL ;  //Zustand resetten
+       exit : BOOL ;  //Zustand verlassen
+END_VAR
+«REM»
+VAR_OUTPUT
+END_VAR
+
+VAR_IN_OUT
+END_VAR
+«ENDREM»
+VAR
+       state : INT ;  //Nummer des aktuellen Zustandes
+       gestartet : BOOL ; //gibt an, ob die Region schon gestartet wurde
+END_VAR
+«REM»
+VAR_TEMP
+END_VAR
+«ENDREM»
+BEGIN
+NETWORK
+TITLE= Region «regionID()» mit Priorität «priority» betreten
+
+
+
+       UN   #reset;
+       UN   #gestartet;
+       UN   #exit;
+//Sprung, falls kein Reset gewünscht
+       SPBN stp1;
+       S    #gestartet;
+«EXPAND enter FOR this-»
+stp1  :NOP 1;
+
+NETWORK
+TITLE= Region «regionID()» mit Priorität «priority» durchlaufen
+
+
+
+       UN   #reset;
+       U    #gestartet;
+       UN   #exit;
+//Sprung, falls kein Reset gewünscht
+       SPBN stp2;
+«EXPAND do FOR this-»
+stp2  :NOP 1;
+
+NETWORK
+TITLE= Region «regionID()» mit Priorität «priority» verlassen
+
+
+
+       UN   #reset;
+       U    #gestartet;
+       U    #exit;
+//Sprung, falls kein Reset gewünscht
+       SPBN stp3;
+«EXPAND exit FOR this-»
+stp3  :NOP 1;
+
+NETWORK
+TITLE= Region «regionID()» mit Priorität «priority» falls reset gesetzt
+
+
+
+       U    #reset;
+//Sprung, falls kein Reset gewünscht
+       SPBN stp4;
+«EXPAND reset FOR this-»
+stp4  :NOP 1;
+
+END_FUNCTION_BLOCK
+«ENDDEFINE»
+
+«DEFINE enter FOR Region-»
+       CALL FC       «outTransitions(initialState()).get(0).targetNode.stateID()»(
+«fcCallParameters(true, false, false)» );
+       L    «outTransitions(initialState()).get(0).targetNode.stateID()»;
+       T    #state;
+«EXPAND setTimer FOREACH outTransitions()»
+«ENDDEFINE»
+
+«DEFINE do FOR Region-»
+«EXPAND requestStates FOREACH getStates()-»
+«ENDDEFINE»
+
+«DEFINE exit FOR Region-»
+       «FOREACH state AS e-»
+	       «EXPAND exitState FOR e-»
+       «ENDFOREACH-»
+       CLR;
+       =    #gestartet;
+       «EXPAND clearTimer FOR this-»
+«ENDDEFINE»
+
+«DEFINE reset FOR Region-»
+       «FOREACH state AS e-»
+	       «EXPAND resetState FOR e-»
+       «ENDFOREACH-»
+       CLR;
+       =    #gestartet;
+       L    «outTransitions(initialState()).get(0).targetNode.stateID()»;
+       T    #state;
+       «EXPAND clearTimer FOR this-»
+«ENDDEFINE»
+
+«DEFINE clearTimer FOR Region-»
+«FOREACH timedOutTransitions() AS e-»
+       R    T         «e.transitionID()»;
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«DEFINE exitState FOR Node-»
+«ENDDEFINE»
+
+«DEFINE exitState FOR State-»
+       CALL FC       «stateID()» (
+«fcCallParameters(false, true, false)» );
+«ENDDEFINE»
+
+«DEFINE resetState FOR Node-»
+«ENDDEFINE»
+
+«DEFINE resetState FOR State-»
+       CALL FC       «stateID()» (
+«fcCallParameters(false, false, true)» );
+«ENDDEFINE»
+
+«DEFINE requestStates FOR Node-»
+// tests für Zustand "«name»" mit id «id»
+       L    #state;
+       L    «stateID()»;
+       <>I;
+       SPBB «nextJumpPos()»;                        // Sind nicht in diesem Zustand
+«EXPAND checkTransition FOREACH outTransitions()-»
+// Keine Transition gefunden, also Zustand beibehalten
+       CALL FC       «stateID()» (
+«fcCallParameters(false, false, false)» );
+       SPA  stp2;
+«nextJumpPos()»  :NOP 1;
+«ENDDEFINE»
+
+
+«DEFINE checkTransition FOR Transition»
+«IF expression!=null && expression.trim() != "" -»
+«IF guard() != null-»
+«EXPAND checkBooleanExpression(this) FOR guard()-»
+       SPBN «nextJumpPos()»;                         // falls der Guard nicht erfüllt ist, weiter bei der nächsten Transition
+«ENDIF-»
+«FOREACH trigger() AS e-»
+	«IF trigger().size>1-»
+       O(    ;
+	«ENDIF-»
+	«REM» VKE=1 nach diesem Block bedeutet dieser Transition folgen «ENDREM-»
+	«FOREACH conjExpression(e) AS conj-»
+		«IF conjExpression(e).size>1-»
+       U(    ;
+		«ENDIF-»
+		«EXPAND checkEvent(this) FOR conj-»
+		«IF conjExpression(e).size>1-»
+       )    ;
+		«ENDIF-»
+	«ENDFOREACH-»
+	«REM» Ende der Bedingungen für die Transition «ENDREM-»
+	«IF trigger().size>1-»
+       )    ;
+	«ENDIF-»
+«ENDFOREACH-»
+«ELSE-»
+       SET;
+«ENDIF-»
+       SPBN «nextJumpPos()»;                         // falls die obige Transition nicht erfüllt ist, weiter bei der zweiten
+«REM»TODO: Action durchführen «ENDREM»
+       L    «targetNode.stateID()»;                            //Zustand entsprechend der Kante setzen
+       T    #state;
+«FOREACH trigger() AS e-»
+	«FOREACH conjExpression(e) AS conj-»
+		«IF conj.startsWith("after")-»
+       SET;
+       L    S5T#«conj.getDelayPeriod()»MS;
+       R    T         «transitionID()»;
+       CLR;
+       SS   T         «transitionID()»;
+		«ENDIF-»
+	«ENDFOREACH-»
+«ENDFOREACH-»
+       CALL FC       «sourceNode.stateID()»(
+«fcCallParameters(false, true, false)» );
+       CALL FC       «targetNode.stateID()»(
+«fcCallParameters(true, false, false)» );
+       SPA  stp2;                         // Der Zustand wurde abgearbeitet, also ende
+«nextJumpPos()»    :NOP 1;
+«ENDDEFINE»
+
+«DEFINE checkEvent(Transition parent) FOR String-»
+	«IF hasAfterClause()-»
+       SET;
+       L    S5T#«getDelayPeriod()»MS;
+       SS   T         «parent.transitionID()»;
+       U    T         «parent.transitionID()»;
+	«ELSE-»
+		«EXPAND checkBooleanExpression(parent) FOR this-»
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE setTimer FOR Transition-»
+	«IF expression!=null && expression.trim() != "" -»
+		«FOREACH trigger() AS e-»
+			«FOREACH conjExpression(e) AS conj-»
+				«IF conj.hasAfterClause()-»
+       SET;
+       L    S5T#«conj.getDelayPeriod()»MS;
+       R    T         «transitionID()»;
+       CLR;
+       SS   T         «transitionID()»;
+       			«ENDIF-»
+       		«ENDFOREACH-»
+       	«ENDFOREACH-»
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE checkBooleanExpression(Transition parent) FOR String-»
+«booleanExp2AWL(parent.getStatechart())-»
+«ENDDEFINE»

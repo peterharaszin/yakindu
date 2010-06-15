@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Yakindu="http://www.yakindu.com/statechart/transformation/uml" xmlns:Yakindu_1="http:///schemas/Yakindu/_mfO3gCVNEd-s7rfKAs_qeA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.yakindu.com/statechart/transformation/uml pathmap://YAKINDU_UML_PROFILES/Yakindu.profile.uml#_iKt5ECMCEd-ZV6RVZId1Gg http:///schemas/Yakindu/_mfO3gCVNEd-s7rfKAs_qeA/0 pathmap://YAKINDU_UML_PROFILES/Yakindu.profile.uml#_mfO3giVNEd-s7rfKAs_qeA">
+  <uml:Model xmi:id="_Bbu7oASzEd60juzEC_7XdQ" name="sample">
+    <packageImport xmi:id="_Bbu7oQSzEd60juzEC_7XdQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:StateMachine" xmi:id="_E5T9oChqEd-FbJK_3K6ZBQ" name="StateMachine_0">
+      <ownedAttribute xmi:id="_PMMvcCh6Ed-Tlf26k3Y5Dg" name="tl_red"/>
+      <ownedAttribute xmi:id="_bziDYCh6Ed-Tlf26k3Y5Dg" name="tl_green"/>
+      <nestedClassifier xmi:type="uml:Signal" xmi:id="_1e_U8Ch6Ed-Tlf26k3Y5Dg" name="keypress"/>
+      <region xmi:id="_FBGAoChqEd-FbJK_3K6ZBQ" name="Region">
+        <subvertex xmi:type="uml:State" xmi:id="_KYgxQChqEd-FbJK_3K6ZBQ" name="State_0">
+          <entry xmi:type="uml:OpaqueBehavior" xmi:id="_oHzRYCh6Ed-Tlf26k3Y5Dg" name="tl_red=0; tl_green=0;"/>
+        </subvertex>
+        <subvertex xmi:type="uml:State" xmi:id="_L6_QoChqEd-FbJK_3K6ZBQ" name="State_1"/>
+        <subvertex xmi:type="uml:Pseudostate" xmi:id="_NgyJwChqEd-FbJK_3K6ZBQ"/>
+        <transition xmi:id="_PxZhgChqEd-FbJK_3K6ZBQ" source="_NgyJwChqEd-FbJK_3K6ZBQ" target="_KYgxQChqEd-FbJK_3K6ZBQ"/>
+        <transition xmi:id="_A_j_sCh8Ed-Tlf26k3Y5Dg" name="From_State_1_To_State_0" source="_L6_QoChqEd-FbJK_3K6ZBQ" target="_KYgxQChqEd-FbJK_3K6ZBQ">
+          <trigger xmi:id="_Hy-NMCh8Ed-Tlf26k3Y5Dg" name="Trigger_1" event="_KF5SECh8Ed-Tlf26k3Y5Dg"/>
+        </transition>
+        <transition xmi:id="_QOXKUChqEd-FbJK_3K6ZBQ" name="From_State_0_To_State_1" source="_KYgxQChqEd-FbJK_3K6ZBQ" target="_L6_QoChqEd-FbJK_3K6ZBQ">
+          <trigger xmi:id="_93MWACh6Ed-Tlf26k3Y5Dg" name="Trigger_0" event="_LYohwCh7Ed-Tlf26k3Y5Dg"/>
+        </transition>
+      </region>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_LYohwCh7Ed-Tlf26k3Y5Dg" name="keypress" signal="_1e_U8Ch6Ed-Tlf26k3Y5Dg"/>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_KF5SECh8Ed-Tlf26k3Y5Dg" name="timeEvent" isRelative="true">
+      <when xmi:id="_XFzMICh-Ed-Tlf26k3Y5Dg" name="2s">
+        <expr xmi:type="uml:OpaqueExpression" xmi:id="StringExpression-stringValue-spec-_specification" name="2s" language="">
+          <body>2s</body>
+        </expr>
+      </when>
+    </packagedElement>
+    <profileApplication xmi:id="_lQUtMCMEEd-Zvb8PhxmOtQ">
+      <eAnnotations xmi:id="_lQXwgCMEEd-Zvb8PhxmOtQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://YAKINDU_UML_PROFILES/Yakindu.profile.uml#_mfO3giVNEd-s7rfKAs_qeA"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://YAKINDU_UML_PROFILES/Yakindu.profile.uml#_12_5_1_ed20351_1236852562585_483655_232"/>
+    </profileApplication>
+  </uml:Model>
+  <Yakindu:Priority xmi:id="_nacbYCMEEd-Zvb8PhxmOtQ" base_Region="_HyrPkQSzEd60juzEC_7XdQ"/>
+  <Yakindu:Priority xmi:id="_othz4CMEEd-Zvb8PhxmOtQ" base_Transition="_RdM0IASzEd60juzEC_7XdQ"/>
+  <Yakindu:Priority xmi:id="_pgs9QCMEEd-Zvb8PhxmOtQ" base_Transition="_R9ZXIASzEd60juzEC_7XdQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_quN5QCMEEd-Zvb8PhxmOtQ" base_Transition="_WmoMEASzEd60juzEC_7XdQ" priority="2"/>
+  <Yakindu_1:Variable xmi:id="_TmgXkCh6Ed-Tlf26k3Y5Dg" name="tl_red" base_Property="_PMMvcCh6Ed-Tlf26k3Y5Dg"/>
+  <Yakindu_1:Variable xmi:id="_dUSEcCh6Ed-Tlf26k3Y5Dg" name="tl_green" port="1" base_Property="_bziDYCh6Ed-Tlf26k3Y5Dg"/>
+  <Yakindu_1:Event xmi:id="_s-EnUCh7Ed-Tlf26k3Y5Dg" name="keypress" port="4" base_Signal="_1e_U8Ch6Ed-Tlf26k3Y5Dg"/>
+  <Yakindu_1:Priority xmi:id="_WZ5BACiBEd-Tlf26k3Y5Dg" base_Transition="_A_j_sCh8Ed-Tlf26k3Y5Dg" priority="20"/>
+</xmi:XMI>

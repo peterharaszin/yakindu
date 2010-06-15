@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<workflow>
+	<!-- srcgen point to output folder for generated statechart --> 
+	<property name="src-gen" value="src-gen" />
+	<!-- package to generate the statemachine into -->
+	<property name="package" value="src/model" />
+	<!-- model is the uml model file -->
+	<property name="model" value="${package}/sample/Simple.uml"/>
+
+	 <property name="umlModel" value="${package}/sample/Simple_2Statemachines.uml"/>
+	 <property name="srcgen" value="src-gen"/>
+
+	<!-- Generator call with model-file and output-folder -->
+    <cartridge file='com/yakindu/statechart/transformation/uml/transform.oaw' 
+    	project="com.yakindu.statechart.transformation.examples.uml"
+    	umlModel="${model}" 
+    	srcgen="${src-gen}" 
+    	package="${package}" />
+    
+</workflow>

@@ -1,0 +1,563 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Java-Code Generator</TITLE>
+<META NAME="description" CONTENT="Java-Code Generator">
+<META NAME="keywords" CONTENT="compendium">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="compendium.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="compendium.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html267"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/opt/local/share/lib/latex2html/icons/next.png"></A> 
+<A NAME="tex2html263"
+  HREF="compendium.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/opt/local/share/lib/latex2html/icons/up.png"></A> 
+<A NAME="tex2html257"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/opt/local/share/lib/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html265"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="file:/opt/local/share/lib/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html268"
+  HREF="node7.html">UML Transformation</A>
+<B> Up:</B> <A NAME="tex2html264"
+  HREF="compendium.html">compendium</A>
+<B> Previous:</B> <A NAME="tex2html258"
+  HREF="node5.html">C-Code Generator</A>
+ &nbsp; <B>  <A NAME="tex2html266"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html269"
+  HREF="node6.html#SECTION00610000000000000000">Introduction</A>
+<LI><A NAME="tex2html270"
+  HREF="node6.html#SECTION00620000000000000000">Setting Up The Example Project</A>
+<LI><A NAME="tex2html271"
+  HREF="node6.html#SECTION00630000000000000000">Generating Source Code</A>
+<UL>
+<LI><A NAME="tex2html272"
+  HREF="node6.html#SECTION00631000000000000000">Create Xtend Project</A>
+<LI><A NAME="tex2html273"
+  HREF="node6.html#SECTION00632000000000000000">Manage Dependencies</A>
+<LI><A NAME="tex2html274"
+  HREF="node6.html#SECTION00633000000000000000">Create MWE Workflow File</A>
+<LI><A NAME="tex2html275"
+  HREF="node6.html#SECTION00634000000000000000">Execute MWE Workflow</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html276"
+  HREF="node6.html#SECTION00640000000000000000">The Generated Source Code</A>
+<LI><A NAME="tex2html277"
+  HREF="node6.html#SECTION00650000000000000000">Integrating Generated Java Code</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00600000000000000000"></A>
+<A NAME="sec:JavaCodeGenerator"></A>
+<BR>
+Java-Code Generator
+</H1>
+
+<H1><A NAME="SECTION00610000000000000000">
+Introduction</A>
+</H1>
+
+<P>
+The creation of a YAKINDU Statechart is shown within the YAKINDU Tutorial in
+full detail. However, what is left is how the state machine models can be used
+to create Java source code. This will be demonstrated in the following, making
+use of the <SPAN  CLASS="textit">TrafficLight</SPAN> demo project deployed with the YAKINDU
+Statechart tools.
+
+<P>
+
+
+<H1><A NAME="SECTION00620000000000000000">
+Setting Up The Example Project</A>
+</H1>
+
+<P>
+The reference example used within this documentation is the <SPAN  CLASS="textit">TrafficLight</SPAN>
+example project deployed with the YAKINDU distribution. To set it up in your
+local workspace, use the YAKINDU Example Project Wizard as depicted by Figures
+<A HREF="#fig:screenshot1">5.1</A> and <A HREF="#fig:screenshot2">5.2</A>. 
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot1"></A><A NAME="1053"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.1:</STRONG>
+Opening the Example Creation Wizard</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img46.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot1}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot2"></A><A NAME="1054"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.2:</STRONG>
+Creating Statechart Example Projects</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img47.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot2}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+After successful completion, the Example Project Wizard will create the YAKINDU
+Statechart example projects within the workspace, out of which one -
+<SPAN  CLASS="textit">TrafficLight</SPAN> - will serve as demonstration example in the following. As
+outlined within Figure <A HREF="#fig:screenshot3">5.3</A>, it denotes a state chart to control
+a simple traffic light with a corresponding pedestrian light.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot3"></A><A NAME="1055"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.3:</STRONG>
+Traffic Light Example Project Contents</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img48.png"
+ ALT="\includegraphics[width=\textwidth]{./Pictures/Screenshot3}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+
+<H1><A NAME="SECTION00630000000000000000">
+Generating Source Code</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00631000000000000000">
+Create Xtend Project</A>
+</H2>
+The starting point to create Java source code from a YAKINDU Statechart model
+is to set up a Java project to contain the generated code. For the sake of
+simplicity, we will instead create a new Xtend project for this purpose (Xtend
+projects also possess the Java as well as the PDE Plugin project nature), as
+this allows to easily manage dependencies and execute MWE workflows. As
+outlined by Figures <A HREF="#fig:screenshot4">5.4</A>, <A HREF="#fig:screenshot5">5.5</A>, and
+<A HREF="#fig:screenshot6">5.6</A>, creating an Xtend project is easily done using the
+respective project creation wizard. Here, we choose <SPAN  CLASS="textit">TrafficLightJavaDemo</SPAN>
+as the name of the project.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot4"></A><A NAME="1147"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.4:</STRONG>
+Open New Wizard</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img49.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot4}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot5"></A><A NAME="1148"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.5:</STRONG>
+Selecting to Create a new Xpand Project</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img50.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot5}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot6"></A><A NAME="1149"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.6:</STRONG>
+Xtend Project Creation Wizard</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img51.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot6}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00632000000000000000">
+Manage Dependencies</A>
+</H2>
+Having created the <SPAN  CLASS="textit">TrafficLightJavaDemo</SPAN> project by means of the Xtend
+project wizard, the next step is to make the YAKINDU Java code generator plugin
+visible within the local project's classpath, so the Java code generation
+cartridge file, which is deployed by the code generator plugin, can be
+referenced from a local MWE workflow (to be set up as the next step). As we
+have created a Xpand project (which is implicitly also a PDE plugin project, as
+the Xpand project wizard adds the PDE plugin project nature to it), we may simply
+do so by adding the YAKINDU Statchart Java code generator plugin to the list of
+dependent plugins of our local project. As outlined by Figures
+<A HREF="#fig:screenshot8">5.7</A> and <A HREF="#fig:screenshot9">5.8</A>, this can be simply achieved by
+opening the manifest editor on the <TT>MANIFEST.MF</TT> file located within the
+<TT>META-INF</TT> folder of the project, selecting the <TT>Dependencies</TT>
+tab (depicted by Figure <A HREF="#fig:screenshot8">5.7</A>, then by choosing to <SPAN  CLASS="textit">Add</SPAN> a
+new dependency and selecting the YAKINDU Statechart Java code generator
+plugin in the resulting dialog (depicted Figure <A HREF="#fig:screenshot9">5.8</A>).
+Also the following Plug-Ins are required:
+
+<UL>
+<LI>org.eclipse.jface.text
+</LI>
+<LI>org.eclipse.emf.mwe.utils
+</LI>
+<LI>org.eclipse.emf.ecore.xmi
+</LI>
+<LI>org.antlr.runtime
+</LI>
+<LI>org.eclipse.xtext
+</LI>
+<LI>org.eclipse.xtext.log4j
+</LI>
+<LI>com.ibm.icu
+</LI>
+<LI>org.eclipse.core.runtime
+</LI>
+<LI>org.eclipse.jdt.core
+</LI>
+</UL>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot8"></A><A NAME="1150"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.7:</STRONG>
+Manifest Editor</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img52.png"
+ ALT="\includegraphics[width=\textwidth]{./Pictures/Screenshot8}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot9"></A><A NAME="1151"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.8:</STRONG>
+Adding Plugin Dependency</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img53.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot9}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00633000000000000000">
+Create MWE Workflow File</A>
+</H2>
+As the YAKINDU Java code generator plugin provides an OAW workflow cartridge
+that may most simply be called from within a local MWE workflow file, the next
+step is to now set up such an MWE workflow file. This can be done as depicted
+by Figures <A HREF="#fig:screenshot10">5.9</A>, <A HREF="#fig:screenshot11">5.10</A>, and
+<A HREF="#fig:screenshot12">5.11</A>, choosing <TT>generate.wme</TT> as the name of the
+workflow file.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot10"></A><A NAME="1152"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.9:</STRONG>
+Opening New File Creation Wizard</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img54.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot10}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot11"></A><A NAME="1153"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.10:</STRONG>
+Selecting to Create a new MWE Workflow File</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img55.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot11}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot12"></A><A NAME="1154"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.11:</STRONG>
+Specifying Name of MWE Workflow File</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img56.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot12}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The contents of the workflow file has to be added as outlined by
+<A HREF="#fig:screenshot13">5.12</A>. Basically, the location of the input YAKINDU
+Statechart model (property <TT>model</TT>), as well as that of the output
+folder (property <TT>src-gen</TT>), the Java source code has to be generated
+into, have to be specified by means of workflow properties, being then passed
+to the YAKINDU Statechart Java code generator cartridge
+(<SPAN  CLASS="textit">generate_java_defensive.oaw</SPAN>), which performs the actual code
+generation.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot13"></A><A NAME="1155"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.12:</STRONG>
+</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img57.png"
+ ALT="\includegraphics[width=\textwidth]{./Pictures/Screenshot13}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+In fact, the YAKINDU Statechart Java Codegenerator provides a lot of workflow
+cartridges, namely <SPAN  CLASS="textit">generate_java.oaw</SPAN>, <SPAN  CLASS="textit">generate_java_me.oaw</SPAN> and
+<SPAN  CLASS="textit">generate_java_lejos.oaw</SPAN>. Each has a defensive-version, which
+basically generate the same sort of
+Java source code, with the restriction that the <SPAN  CLASS="textit">defensive</SPAN> version
+generates additional defensive code, being used to check pre- and
+post-conditions as well as invariants at runtime.
+The Java-Codegenerator generates normal JavaSE-Code. The JavaME-Code is designed
+for mobile devices, which doesn't supports all Javaclasses.
+The third workflow cartridge generate Java-Code for leJOS, which can deploy on a
+LEGO Mindstorm.
+
+<P>
+
+<H2><A NAME="SECTION00634000000000000000">
+Execute MWE Workflow</A>
+</H2>
+Having specified all relevant workflow properties, and having specified to
+call the code generator cartridge, the MWE workflow may then be simply
+executed as depicted by Figure <A HREF="#fig:screenshot14">5.13</A>. It will generate Java
+source code into the selected folder (here, the local <TT>src-gen</TT> folder
+within the <SPAN  CLASS="textit">TrafficLightJavaDemo</SPAN> project).
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot14"></A><A NAME="1156"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.13:</STRONG>
+Contents of MWE Workflow File</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img58.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot14}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+
+<H1><A NAME="SECTION00640000000000000000">
+The Generated Source Code</A>
+</H1>
+
+<P>
+The Java source code generated by the YAKINDU Statechart Java code generator
+consists of a set of generic classes (located within the
+<TT>com.yakindu.statechart</TT> package) and a model specific state chart
+implementation class, named according to the respective Statechart, here
+<TT>TrafficLightStatechart</TT> within <TT>trafficlight</TT> package),
+which is outlined by Figure <A HREF="#fig:screenshot22">5.14</A>. It is the single class
+that may be directly used by clients to integrate the generated code with
+manually written or other generated code.
+
+<P>
+To obtain a new instance of the state chart implementation, the generated
+implementation class offers a static method named <TT>createInstance()</TT>.
+It returns a completely initialized state chart instance, which may be started
+(via <TT>enter()</TT>), cyclically executed (via <TT>runCycle()</TT>), and
+stopped again (via <TT>leave()</TT>).
+
+<P>
+Feeding the state chart with external events is done by passing respective
+event constants (declared within the state chart implementation class) into
+the state chart instance (via <TT>setEvent()</TT>) prior to executing a new
+cycle (via <TT>runCyle()</TT>). Setting variable values is similarly possible
+via respective selector methods generated into the implementation class (a
+pair of getter and setter for each variable of the state chart). On each call
+to <TT>runCycle()</TT>, the state chart reacts on all events currently raised
+(since the completion of the prior cycle) and reads the variable values as
+they are set when calling <TT>runCycle()</TT>. After <TT>runCycle()</TT> has
+been completed, all events raised prior to its execution will be cleared and
+the variables reflect the values as they result from the reaction of the state
+chart.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot22"></A><A NAME="1229"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.14:</STRONG>
+</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img59.png"
+ ALT="\includegraphics[width=\textwidth]{./Pictures/Screenshot22}"></TD></TR>
+</TABLE>
+</DIV>
+
+
+<H1><A NAME="SECTION00650000000000000000">
+Integrating Generated Java Code</A>
+</H1>
+
+<P>
+A demonstration example that reflects the integration of the Java code,
+generated for the <SPAN  CLASS="textit">TrafficLight</SPAN> example with manually written code is
+deployed with the YAKINDU Statechart tools and may be created using the
+example wizard as outlined by Figures <A HREF="#fig:screenshot17">5.15</A> and
+<A HREF="#fig:screenshot18">5.16</A>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot17"></A><A NAME="1276"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.15:</STRONG>
+Opening the Example Wizard</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img60.png"
+ ALT="\includegraphics[width=0.45\textwidth]{./Pictures/Screenshot17}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot18"></A><A NAME="1277"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.16:</STRONG>
+Creating a new Java Code Generator Example Project</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img61.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot18}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+As depicted by Figure <A HREF="#fig:screenshot19">5.17</A> it contains some manually written
+code (within the <TT>src</TT> folder) that realizes a Draw2d visualization of
+a traffic light, being adapted (within the <TT>CrossingDemo</TT> main class)
+to the generated source code of the <SPAN  CLASS="textit">TrafficLight</SPAN> example (contained in
+the <TT>src-gen</TT> folder of the example project).
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot19"></A><A NAME="1278"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.17:</STRONG>
+Traffic Light Java Demo Project Contents</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img62.png"
+ ALT="\includegraphics[width=\textwidth]{./Pictures/Screenshot19}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+As outlined in Figures <A HREF="#fig:screenshot20">5.18</A> and <A HREF="#fig:screenshot21">5.19</A>, the
+<TT>CrossingDemo</TT> main class within the example project may be executed as
+a Java application. It shows a visualization of the <SPAN  CLASS="textit">TrafficLight</SPAN> state
+chart variable values (by means of colors of the traffic and pedestrian lights
+contained) and offers a button group, which prolongs respectively named events
+to the <SPAN  CLASS="textit">TrafficLight</SPAN> state chart.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot20"></A><A NAME="1279"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.18:</STRONG>
+Running CrossingDemo as Java Application</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img63.png"
+ ALT="\includegraphics[width=0.45\textwidth]{./Pictures/Screenshot20}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:screenshot21"></A><A NAME="1280"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.19:</STRONG>
+CrossingDemo Application</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img64.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Screenshot21}"></TD></TR>
+</TABLE>
+</DIV>
+
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html267"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/opt/local/share/lib/latex2html/icons/next.png"></A> 
+<A NAME="tex2html263"
+  HREF="compendium.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/opt/local/share/lib/latex2html/icons/up.png"></A> 
+<A NAME="tex2html257"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/opt/local/share/lib/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html265"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="file:/opt/local/share/lib/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html268"
+  HREF="node7.html">UML Transformation</A>
+<B> Up:</B> <A NAME="tex2html264"
+  HREF="compendium.html">compendium</A>
+<B> Previous:</B> <A NAME="tex2html258"
+  HREF="node5.html">C-Code Generator</A>
+ &nbsp; <B>  <A NAME="tex2html266"
+  HREF="node1.html">Contents</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Axel Terfloth_
+2010-05-29
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2006-2009 committers of mda4e and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of mda4e (http://www.mda4e.org/) - initial API and implementation
+
+
+-->
+<?eclipse version="3.2"?>
+<plugin>
+	<extension point="org.eclipse.ui.editors">
+     <editor
+        id="org.mda4e.statemachine.contribution.part.OurStatemachineDiagramEditorID"
+        name="%EditorName"
+        icon="%EditorIcon"
+        extensions="statemachine_diagram"
+        default="true"
+        class="org.mda4e.statemachine.contribution.part.OurStatemachineDiagramEditor"
+        matchingStrategy="statemachine.diagram.part.StatemachineMatchingStrategy"
+        contributorClass="statemachine.diagram.part.StatemachineDiagramActionBarContributor">
+     </editor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="org.mda4e.statemachine.contribution"
+            name="%ViewCategory"/>
+      <view
+            allowMultiple="false"
+            category="org.mda4e.statemachine.contribution"
+            class="org.mda4e.statemachine.contribution.views.DataElementExplorer"
+            icon="%DataElementExplorerIcon"
+            id="org.mda4e.statemachine.contribution.dataElementExplorer"
+            name="%DataElementExplorerName">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="org.eclipse.ui.resourcePerspective">
+         <view
+               id="org.mda4e.statemachine.contribution.dataElementExplorer"
+               ratio="0.5"
+               relationship="right"
+               relative="org.eclipse.ui.views.TaskList"/>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
+      <editpartProvider class="org.mda4e.statemachine.contribution.providers.OurStatemachineEditPartProvider">
+         <Priority name="Medium"/>
+      </editpartProvider>
+   </extension>
+    <extension
+          point="org.eclipse.ui.newWizards">
+       <category
+             id="org.mda4e.statemachine.contribution.mda4e"
+             name="%NewDiagramCategoryName">
+       </category>
+       <wizard
+             category="org.mda4e.statemachine.contribution.mda4e"
+             class="org.mda4e.statemachine.contribution.part.OurStatemachineCreationWizard"
+             icon="%NewStatemachineIcon"
+             id="org.mda4e.statemachine.contribution.StatemachineCreationWizard"
+             name="Statemachine Diagram">
+       </wizard>
+    </extension>
+    
+    <extension id="ValidationContributionItemProvider" name="Validation"
+      point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+      <?gmfgen generated="false"?>
+      <contributionItemProvider
+            checkPluginLoaded="false"
+            class="org.mda4e.statemachine.contribution.providers.ContributionValidationProvider">
+         <Priority name="Medium"/>
+         <partContribution id="statemachine.diagram.part.StatemachineDiagramEditorID">
+            <partMenuGroup menubarPath="/diagramMenu/" id="validationGroup"/>
+            <partAction id="validateAction" menubarPath="/diagramMenu/validationGroup"/>
+         </partContribution>
+      </contributionItemProvider>
+   </extension>
+    
+    <extension
+          point="org.eclipse.ui.preferencePages">
+       <page
+             category="org.mda4e.statemachine.contribution.mda4ePrefs"
+             class="org.mda4e.statemachine.contribution.preferences.AppearancePreferences"
+             id="org.mda4e.statemachine.contribution.appearancepreferences"
+             name="%PreferencePageAppearance">
+       </page>
+       <page
+             class="org.mda4e.statemachine.contribution.preferences.MDA4EGeneralPreferences"
+             id="org.mda4e.statemachine.contribution.mda4ePrefs"
+             name="%PreferencePage">
+       </page>
+    </extension>
+    <extension
+          point="org.eclipse.core.runtime.preferences">
+       <initializer
+             class="org.mda4e.statemachine.contribution.preferences.PreferenceInitializer">
+       </initializer>
+    </extension>
+    <extension
+          point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
+       <ParserProvider
+             class="org.mda4e.statemachine.contribution.providers.ExpressionLanguageParserProvider">
+          <Priority
+                name="Medium">
+          </Priority>
+       </ParserProvider>
+    </extension>
+    
+    <extension id="parserValidationDecoratorProvider" name="ParserValidationDecoratorProvider" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider class="org.mda4e.statemachine.contribution.providers.ParserValidationDecoratorProvider">
+         <Priority name="Medium"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+    <extension
+          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+       <metamodel
+             nsURI="org.mda4e.statemachine.model">
+          <adviceBinding
+                class="org.mda4e.statemachine.contribution.diagram.EditHelperAdvice1"
+                id="org.mda4e.statemachine.contribution.diagram.adviceBinding1"
+                inheritance="none"
+                typeId="org.mda4e.statemachine.diagram.Transition_4001">
+          </adviceBinding>
+       </metamodel>
+    </extension>
+    <extension
+          point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+       <binding
+             context="org.mda4e.statemachine.diagram.TypeContext">
+          <advice
+                ref="org.mda4e.statemachine.contribution.diagram.adviceBinding1">
+          </advice>
+       </binding>
+    </extension>
+    <extension
+          point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            adaptable="false"
+            id="org.mda4e.statemachine.diagram.objectContribution1"
+            objectClass="statemachine.diagram.edit.parts.TransitionEditPart">
+         <menu
+               id="ArrangeTransitionsPriority"
+               label="Arrange Transitions Priority">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="org.mda4e.statemachine.contribution.diagram.LowerPriorityAction"
+               id="org.mda4e.statemachine.diagram.lowerPriorityAction"
+               label="Lower Priority"
+               menubarPath="ArrangeTransitionsPriority/group1">
+         </action>
+         <action
+               class="org.mda4e.statemachine.contribution.diagram.RaisePriorityAction"
+               id="org.mda4e.statemachine.diagram.raisePriorityAction"
+               label="Raise Priority"
+               menubarPath="ArrangeTransitionsPriority/group1">
+         </action>
+         <action
+               class="org.mda4e.statemachine.contribution.diagram.SetLowestPriorityAction"
+               id="org.mda4e.statemachine.diagram.setLowestPriorityAction"
+               label="Set Lowest Priority"
+               menubarPath="ArrangeTransitionsPriority/group1">
+         </action>
+         <action
+               class="org.mda4e.statemachine.contribution.diagram.SetHighestPriorityAction"
+               id="org.mda4e.statemachine.diagram.setHighestPriorityAction"
+               label="Set Highest Priority"
+               menubarPath="ArrangeTransitionsPriority/group1">
+         </action>
+         <action
+               class="org.mda4e.statemachine.contribution.diagram.ChangePriorityAction"
+               id="org.mda4e.statemachine.diagram.changePriorityAction"
+               label="Change Priority"
+               menubarPath="ArrangeTransitionsPriority/group1">
+         </action>
+         <action
+               class="org.mda4e.statemachine.contribution.diagram.NormalizePrioritiesAction"
+               id="org.mda4e.statemachine.diagram.normalizePrioritiesAction"
+               label="Normalize Priorities"
+               menubarPath="ArrangeTransitionsPriority/group1">
+         </action>
+      </objectContribution>
+    </extension>
+    
+</plugin>

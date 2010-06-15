@@ -1,0 +1,78 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Node::NodeClassBody FOR Object» 
+ 	// marker to indicate that initialization is done
+	protected boolean initialized = false;	
+	
+	«targetDef.proceed()»
+	
+	protected void finalizeInitialization() {
+		assertNotInitialized();
+		
+		// check outgoing transitions are sorted by priority
+		assertOutgoingTransitionsSortedByPriority();
+	
+		initialized = true;
+		assertInitialized();
+	}
+	
+	private void assertOutgoingTransitionsSortedByPriority() {
+		// check regions are sorted by priority
+		List<Transition> outgoingTransitionsCopy = new ArrayList<Transition>();
+		outgoingTransitionsCopy.addAll(outgoingTransitions);
+		Collections.sort(outgoingTransitionsCopy, new Comparator<Transition>() {
+			public int compare(Transition o1, Transition o2) {
+				return o1.getPriority() - o2.getPriority();
+			}
+		});
+		if(!outgoingTransitionsCopy.equals(outgoingTransitions)){
+			throw new IllegalArgumentException("Outgoing transitions not sorted by priority");
+		}
+	}
+	
+	protected void assertInitialized(){
+		if(!initialized){
+			throw new IllegalStateException("Node not yet initialized");
+		}
+	}
+	
+	protected void assertNotInitialized(){
+		if(initialized){
+			throw new IllegalStateException("Node not yet initialized");
+		}
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Node::Imports FOR Object»
+«targetDef.proceed()»
+import java.util.Collections;
+import java.util.Comparator;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Node::getIncomingTransitionsMethodBody FOR Object»
+	if (!initialized) {
+		return incomingTransitions;
+	}
+	return Collections.unmodifiableList(incomingTransitions);
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Node::getOutgoingTransitionsMethodBody FOR Object»
+	if (!initialized) {
+		return outgoingTransitions;
+	}
+	return Collections.unmodifiableList(outgoingTransitions);
+«ENDAROUND»
+	

@@ -1,0 +1,21 @@
+<workflow> 
+   <cartridge file="com/yakindu/statechart/codegenerator/java/workflow/generate_java.oaw" model="${model}" src-gen="${src-gen}"/> 
+   <component adviceTarget="generator" 
+              id="reflectionAdvice" 
+              class="org.eclipse.xpand2.GeneratorAdvice"> 
+      <advices value="com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameAbstractStatechart,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameCompoundState,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameFinalState,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameHistoryMode,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameNode,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavamePseudostate,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavamePseudostateKind,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameRegion,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameSimpleState,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameState,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameTimingService,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::generic::advices::JavameTransition,
+      				com::yakindu::statechart::codegenerator::java::templates::javame::advices::JavameStatechart"/> 
+      <fileEncoding value='utf-8' />
+   </component> 
+</workflow>

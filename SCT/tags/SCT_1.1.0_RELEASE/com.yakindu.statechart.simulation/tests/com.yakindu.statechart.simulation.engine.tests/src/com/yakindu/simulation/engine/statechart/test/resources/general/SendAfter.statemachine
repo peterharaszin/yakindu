@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="SendAfter" UUID="01e5a9a3-7713-42eb-9304-a8cdb695021b">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="count" port="1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event1" port="2"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="activeState" port="3"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="behaviour" port="4"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="finish" port="5"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state 1" id="1" entry="activeState=1; send(event1);" do="count=count+1; send(event1);" exit=""/>
+    <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="2"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="state 2" id="3" entry="activeState=2"/>
+  </region>
+  <transition targetNode="//@region.0/@state.1" expression="" id="4" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" expression="after(1s)" id="5" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.3" priority="1" expression="event1 [count>=4] / behaviour=1" id="6" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2" expression="finish" id="7" sourceNode="//@region.0/@state.1"/>
+</org.mda4e.statemachine.model:Statechart>

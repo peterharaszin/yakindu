@@ -1,0 +1,155 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«EXTENSION com::yakindu::statechart::codegenerator::c::extensions::Extensions»
+
+«DEFINE statesDefinition FOR Statechart»
+«FILE handleFilename()+".h"»
+#ifndef «handleFilename().toUpperCase()»_H
+#define «handleFilename().toUpperCase()»_H
+
+#include "definitions.h"
+#include "«baseInterface().toFirstLower()».h"
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+/*! Enumeration to identify the states 
+**/
+typedef enum {
+  «FOREACH getAllRegions(this) AS reg -» 
+  «FOREACH reg.state AS s -» 
+  «getStateEnumName(s)»,
+  «ENDFOREACH-»
+  
+  «ENDFOREACH-»
+  «getStateEnumMax()»
+} «basestatetype()»;
+
+/*! Enumeration to identify the transition uniquely 
+**/
+typedef enum {
+  «transitionNoName()»,
+  «FOREACH eAllContents.typeSelect(Transition) AS transition -»
+  «transitionName(transition)»,
+  «ENDFOREACH -»
+  «transitionNameMAX()»
+} «transitiontype()»;
+
+/* Forward declaration of the main handle "«baseHandle()»" */
+struct «baseHandle()»;
+«REM»
+ «FOREACH getNestedRegions(region.first()).reverse() AS reg»
+«ENDREM»
+«FOREACH getNestedRegions() AS reg»
+/*! Structure to carry all neccessary information for one region.
+
+**/
+typedef struct {
+
+/*  «baseIfaceHandle()»*   ihandle; */
+  struct «baseHandle()»*    global; /*!< keep a pointer to the global handle */
+«IF reg.hasDeepHistoryState() -»
+  «basestatetype()»    deepHistory; /*!< keep history information regarding the global level */
+«ENDIF -»
+«IF reg.hasShallowHistoryState() -»
+  «basestatetype()»    shallowHistory; /*!< keep history information regarding the actual level */
+«ENDIF -»
+
+«FOREACH reg.state.typeSelect(State) AS s -»
+  «FOREACH s.region AS r -»
+  «r.regionHandleTypeName()» «r.regionHandleName()»;
+  «ENDFOREACH -»
+«ENDFOREACH -»
+  
+} «reg.regionHandleTypeName()»;
+«ENDFOREACH-»
+
+
+typedef struct «baseHandle()» {
+  «basestatetype()»       state;
+  «transitiontype()»  transition;
+  «region.first().regionHandleTypeName()» startHandle;
+  «baseIfaceHandle()»  ihandle;
+} «baseHandle()»;
+
+«FOREACH getAllRegions() AS reg -» 
+extern void «reg.initHandleFuncName()»(«reg.regionHandleTypeName()»* rhandle, «baseIfaceHandle()»* ihandle, «baseHandle()»* global);
+«ENDFOREACH-»
+
+extern void «basename()»_callTransitionAction(«baseHandle()»* SMGlobal);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+«ENDFILE»
+
+«FILE handleFilename()+".c"»
+#include "«handleFilename()».h"
+
+#define var(x) (global->ihandle.x)
+#define send(x) («baseInterface()»_raiseTrigger(&SMGlobal->ihandle,x))
+ 
+«FOREACH getAllRegions(this) AS reg» 
+void «reg.initHandleFuncName()»(«reg.regionHandleTypeName()»* rhandle, «baseIfaceHandle()»* ihandle, «baseHandle()»* global)
+{
+  /* maintain pointers */ 
+  rhandle->global  = global;
+
+  «IF reg.hasDeepHistoryState() -» 
+  rhandle->deepHistory    = «reg.getInitialStateName()»;
+  
+  «ENDIF -»
+  «IF reg.hasShallowHistoryState() -» 
+  rhandle->shallowHistory = «reg.getInitialStateName()»;
+
+  «ENDIF -»  
+  
+  «FOREACH reg.state.typeSelect(State) AS s -»
+    «FOREACH s.region AS r -»
+    «r.initHandleFuncName()»(&rhandle->«r.regionHandleName()», ihandle, global);
+    «ENDFOREACH -»
+  «ENDFOREACH-»
+   
+}
+«ENDFOREACH»
+
+void «basename()»_callTransitionAction(«baseHandle()»* global)
+{
+  switch (global->transition) {
+  
+  «FOREACH eAllContents.typeSelect(Transition) AS transition -»
+  «IF transition.hasAction() -»
+  case «transition.transitionName()»: {
+  «FOREACH transition.getActionExpression().statement AS action -» 
+	«action.toCCode()»
+  «ENDFOREACH -»
+    break;
+  }
+  
+  «ENDIF -»
+  «ENDFOREACH -»
+  default: {
+   /* nothing to do here */
+  }
+  
+  }
+  
+  return;
+}
+
+«ENDFILE»
+
+
+«ENDDEFINE»

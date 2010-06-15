@@ -1,0 +1,86 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::Imports FOR Object» 
+	import java.util.Vector;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::raisedEventsVariable FOR Object»
+	protected Vector raisedEvents = new Vector();
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::ListVariable FOR Object»
+	private Vector regions = new Vector();
+	
+	private Vector transitions = new Vector();
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::setEventMethodBody FOR Object»
+	synchronized (raisedEvents) {
+		raisedEvents.addElement(event);
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::runCycleMethodBody FOR Object»
+	Vector currentEvents = new Vector();
+	synchronized (raisedEvents) {
+		for(int i = 0; i < raisedEvents.size(); i++) {
+			currentEvents.addElement(raisedEvents.elementAt(i));
+		}
+		raisedEvents.removeAllElements();
+	}
+	reactOn(currentEvents);
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::enterMethodBody FOR Object»
+	// enter all nested regions (in the order of their priority)
+	for (int i = 0; i < regions.size(); i++) {
+		Region region = (Region) regions.elementAt(i);
+		region.enter();
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::leaveMethodBody FOR Object»
+	// leave all nested regions (in the reverse order of their priority)
+	for (int i = 0, j = regions.size()-1; i < regions.size(); i++, j--) {
+		((Region) regions.elementAt(j)).leave();
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::getRegionsMethod FOR Object»
+	protected Vector getRegions() {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::getRegionsMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::getTransitionsMethod FOR Object»
+	protected Vector getTransitions() {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::getTransitionsMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::reactOnMethod FOR Object»
+	private void reactOn(Vector events) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::reactOnMethodBody»	
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::reactOnMethodBody FOR Object»
+	// pass events to our nested regions (in the order of their priority)
+	for (int i = 0; i < regions.size(); i++) {
+		Region region = (Region) regions.elementAt(i);
+		region.reactOn(events);
+	}
+«ENDAROUND»

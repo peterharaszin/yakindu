@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Runtime Test
+Bundle-SymbolicName: com.yakindu.statechart.runtime.test
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: YAKINDU.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.junit;bundle-version="3.8.0",
+ com.yakindu.statechart.runtime;bundle-version="1.0.0",
+ com.yakindu.statechart.model.expressions;bundle-version="1.0.0",
+ org.mda4e.statemachine.model;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: com.yakindu.statechart.runtime.builder.test,
+ com.yakindu.statechart.runtime.test

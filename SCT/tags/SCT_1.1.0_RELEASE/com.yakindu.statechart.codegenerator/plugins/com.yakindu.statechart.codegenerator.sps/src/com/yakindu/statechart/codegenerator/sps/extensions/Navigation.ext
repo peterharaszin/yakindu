@@ -1,0 +1,46 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+extension com::yakindu::statechart::codegenerator::sps::extensions::Sps;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Transition;
+
+
+cached Node nextNode(Node this) :
+	JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.nextNode(statemachine.Node);
+
+cached Statechart getStatechart(Transition this) :
+	(Statechart)eRootContainer;
+
+cached Statechart getStatechart(Node this) :
+	(Statechart)eRootContainer;
+
+cached Statechart getStatechart(Region this) :
+	(Statechart)eRootContainer;
+
+cached Statechart getStatechart(Statechart this) :
+	(Statechart)eRootContainer;
+
+cached Statechart getStatechart(emf::EObject this) :
+	null;
+
+cached Region getRegion(Node this):
+	(Region)eContainer;
+
+cached Transition nextTransitionRegion(Transition this) :
+	nextTransition(this, outTransitions(this.sourceNode.getRegion()));
+
+cached Transition nextTransitionState(Transition this) :
+	nextTransition(this, outTransitions(this.sourceNode));
+
+private cached Transition nextTransition(Transition this, List l) :
+	JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.nextTransition(statemachine.Transition, java.util.List);
+	

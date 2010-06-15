@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="TimingTest" UUID="f95b8c77-9b7c-433a-80e9-9cde9c8457a6">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="returnTime"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="abort"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState1" id="1"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState2" id="2"/>
+    <state xsi:type="org.mda4e.statemachine.model:FinalState" name="FinalState" id="3"/>
+  </region>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="/returnTime = 3000;" id="4" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" priority="1" expression="after(1s)" id="5" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="after(returnTime)" id="6" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.3" priority="2" expression="abort" id="7" sourceNode="//@region.0/@state.2"/>
+</org.mda4e.statemachine.model:Statechart>

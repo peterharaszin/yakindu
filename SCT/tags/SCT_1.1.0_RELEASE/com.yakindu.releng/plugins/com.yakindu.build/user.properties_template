@@ -1,0 +1,37 @@
+#scp.fail_on_error=false
+skipScp = true
+
+workspace.home = /Users/schwertfeger/temp/YakinduBuild
+repository = /Users/schwertfeger/Documents/boris/neuesSVN
+
+#downloadMirror = http://sunsite.informatik.rwth-aachen.de
+downloadMirror = http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse
+
+eclipse.test.home.os = $os
+eclipse.test.home.ws = $ws
+eclipse.test.home.arch = $arch
+
+baseos=macosx
+basews=carbon
+basearch=x86
+
+launcheros=macosx
+launcherws=carbon
+launcherarch=x86
+
+
+#baseos=win32
+#basews=win32
+#basearch=x86
+
+#launcheros=win32
+#launcherws=win32
+#launcherarch=x86
+
+#baseos=linux
+#basews=gtk
+#basearch=x86_64
+
+#launcheros=linux
+#launcherws=gtk
+#launcherarch=x86_64

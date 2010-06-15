@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MDA4E Statechart Simulation Interface
+Bundle-SymbolicName: org.mda4e.simulation.statemachine
+Bundle-Version: 1.1.0.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.mda4e.simulation.core;bundle-version="1.1.0",
+ org.mda4e.statemachine.model;bundle-version="1.1.0",
+ org.eclipse.emf.common;bundle-version="2.4.0";visibility:=reexport,
+ org.eclipse.emf.ecore;bundle-version="2.4.0";visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.4.0";visibility:=reexport
+Export-Package: org.mda4e.simulation.statemachine,
+ org.mda4e.simulation.statemachine.event,
+ org.mda4e.simulation.statemachine.tools
+Bundle-Vendor: www.mda4e.org

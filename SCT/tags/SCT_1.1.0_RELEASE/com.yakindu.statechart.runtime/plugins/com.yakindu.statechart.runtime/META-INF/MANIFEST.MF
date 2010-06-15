@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Runtime
+Bundle-SymbolicName: com.yakindu.statechart.runtime
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: YAKINDU.org
+Require-Bundle: org.mda4e.statemachine.model;bundle-version="1.1.0",
+ com.yakindu.statechart.codegenerator.java;bundle-version="1.1.0",
+ org.eclipse.xtext;bundle-version="0.7.2",
+ org.eclipse.emf.mwe.core;bundle-version="0.7.2"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy
+Export-Package: com.yakindu.statechart.runtime,
+ com.yakindu.statechart.runtime.builder

@@ -1,0 +1,160 @@
+/**
+ * Copyright (c) 2006-2009 committers of mda4e and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of mda4e (http://www.mda4e.org/) - initial API and implementation
+ *
+ */
+import statemachine;
+//extension statemachine;
+
+/*
+TODO:
+  
+  - FEHLER: Transitionen die von Pseudostates (Ausser Junction, Join und Initial)
+  			ausgehen dürfen keinen Trigger haben.
+
+  - FEHLER:	Transitionen die als Quelle einen Fork haben dürfen weder Guards noch
+  			haben.
+  Zur Info: Checks müssen false zurückgeben um als Fehler angezeigt zu werden. 
+*/
+
+/*
+FEHLER: Datenelemente müssen eindeutige Namen haben.
+*/	
+context Statechart
+ERROR "Variables and events must have unique names" :
+	
+	dataElement.typeSelect(DataElement).forAll(s1| !dataElement.typeSelect(DataElement).
+  		exists(s2| (s1 != s2) && (s1.name == s2.name) ));
+
+/*
+FEHLER: Datenelemente mit gleichem I/O Typ müssen einen eindeutigen Port haben.
+*/	  		
+//context Statechart
+//ERROR "Variables with similar I/O could not use the same port" :
+//	
+//	dataElement.typeSelect(Variable).forAll(s1| !dataElement.typeSelect(Variable).
+ // 		exists(s2| (s1 != s2) && (s1.ioType == s2.ioType) && (s1.port == s2.port) ));
+		
+//context Statechart
+//ERROR "Events with similar I/O type should not use the same port" :
+//	
+//	dataElement.typeSelect(Event).forAll(s1| !dataElement.typeSelect(Event).
+//	 		exists(s2| (s1 != s2) && (s1.ioType == s2.ioType) && (s1.port == s2.port) ));
+//
+/*
+FEHLER: RootRegionen müssen eindeutige Prioritäten haben.
+*/	
+context Region if (Statechart.isInstance(eContainer))
+ERROR "Main regions must have different priorities" :
+	((Statechart)eContainer).region.select(s| s.priority == priority).size == 1;
+
+/*
+FEHLER: RootRegionen müssen einen Initial-State haben.
+*/
+context Region if (Statechart.isInstance(eContainer))
+ERROR "Region "+ priority +" in statechart "+ ((Statechart)eContainer).name +" must have an initial state" :
+	eContents.typeSelect(Pseudostate).select(s1|s1.pseudoType==PseudoTypes::initial).size != 0;
+
+/*
+FEHLER: Regions haben mehr als einen Initial State.
+*/
+context Region if (Statechart.isInstance(eContainer))
+ERROR "Region "+ priority +" in statechart "+ ((Statechart)eContainer).name +" can only have one initial state" :
+	eContents.typeSelect(Pseudostate).select(s1|s1.pseudoType==PseudoTypes::initial).size <= 1;
+
+/*
+FEHLER: StateRegionen müssen eindeutige Prioritäten haben.
+*/	
+context Region if (State.isInstance(eContainer))
+ERROR "State "+ ((State)eContainer).name +" regions must have different priorities" :
+	((State)eContainer).region.select(s| s.priority == priority).size == 1;
+
+/*
+FEHLER:	State Regions auf Inital-States prüfen.
+TODO:	Ausser es wird ein State direkt von einer anderen Region angesprungen.
+*/
+context Region if (State.isInstance(eContainer))
+ERROR "Region "+ priority +" in state "+ ((State)eContainer).name +" can only have one initial state" :
+	eContents.typeSelect(Pseudostate).select(s1|s1.pseudoType==PseudoTypes::initial).size <= 1;
+
+/*
+FEHLER: States müssen einen Namen haben.
+*/
+context State
+ERROR "States must have a name. A states name may not consists of blanks" :
+	(name != null) && (name.trim()!="");
+/*
+FEHLER: States müssen eindeutige Namen haben.
+*/
+context State
+ERROR "States within the same region must have unique names" :
+	((Region)eContainer).state.typeSelect(State).select(s| s.name == name).size <= 1;
+
+/*
+Fehler: States ohne Substates müssen eine eingehende Transition haben.
+*/
+context State if (region == null || region.size == 0)
+ERROR "States without regions must have an incoming transition" :
+	((Statechart)eRootContainer).transition.select(t|t.targetNode==this).size>=1;
+
+/*
+Fehler: States oder ihre Substates müssen eine eingehende Transition haben.
+*/
+context State if (region != null && region.size > 0)
+ERROR "States or substates must have an incoming transition" :
+	(((Statechart)eRootContainer).transition.select(t|t.targetNode==this).size>=1)
+	|| (((Statechart)eRootContainer).transition.select(t|this.eAllContents.contains(t.targetNode) && !this.eAllContents.contains(t.sourceNode)).size>=1);
+
+/*
+FEHLER: Initial States dürfen nur eine abgehende Transition haben.
+*/
+context Pseudostate if (pseudoType==PseudoTypes::initial)
+ERROR "Initial States may only have one outgoing transition":
+	((Statechart)eRootContainer).transition.select(t|t.sourceNode==this).size<=1;
+
+/*
+FEHLER: Transition hat als Ziel einen Initial-State.
+*/
+context Transition if (Pseudostate.isInstance(targetNode))
+ERROR "Initial states are not allowed as transition target nodes":
+	((Pseudostate)targetNode).pseudoType!=PseudoTypes::initial;
+
+/*
+FEHLER: bei Transitionen die als Quelle einen Endpoint haben.
+*/
+context Transition
+ERROR "Final states are not allowed as transition source nodes":
+	!FinalState.isInstance(sourceNode);
+/*
+FEHLER: Transitionen die von Initial-States der RootRegions (oberste Ebene)
+		ausgehen dürfen keinen Trigger und Guard haben. Aktionen sind erlaubt.
+*/
+/*
+context Transition if (Pseudostate.isInstance(sourceNode) && (Statechart.isInstance(sourceNode.eContainer.eContainer)))
+ERROR "Transition expressions within root regions are not allowed to have triggers or guards" :
+	(((Pseudostate)sourceNode).pseudoType==PseudoTypes::initial)  ?
+	getTrigger(expression)!=null || getTrigger(expression).size!=0 ||
+	getGuard(expression)!=null || getGuard(expression)!="" : true;
+*/
+/*
+FEHLER: Transitionen die als Quelle einen Fork haben dürfen als Ziel keinen
+  			Pseudostate haben.
+*/
+context Transition if (Pseudostate.isInstance(sourceNode) && Pseudostate.isInstance(targetNode))
+ERROR "If transitions source node is a fork then transitions target node could not be a pseudostate":
+	((Pseudostate)sourceNode).pseudoType!=PseudoTypes::fork;
+	
+/*	
+FEHLER: Transitionen mit gleicher Quelle muessen unterschiedliche Prioritaeten haben.
+*/
+context Node
+ERROR "Every transition of one source node need to have a unique priority.":
+	((Statechart)eRootContainer).transition.select(e|this == e.sourceNode).priority.forAll(p|
+		((Statechart)eRootContainer).transition.select(e|this == e.sourceNode && p == e.priority).size == 1
+	);

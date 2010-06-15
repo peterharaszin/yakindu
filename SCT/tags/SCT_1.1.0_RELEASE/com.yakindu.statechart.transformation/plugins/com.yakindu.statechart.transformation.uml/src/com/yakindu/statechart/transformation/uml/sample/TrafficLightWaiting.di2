@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="ASCII"?>
+<di2:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di2="http://www.papyrusuml.org" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="255:255:255" foregroundColor="255:255:255" backgroundColor="255:255:255" borderColor="255:255:255" position="0:0" name="State Machine diagram of Class_0" type="StateMachineDiagram">
+  <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="//@contained.0/@contained.0" position="-57:-38" size="1073:611">
+    <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+    <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+    <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0" semanticChild="//@contained.0/@contained.0/@contained.0" position="0:20" size="1073:591">
+      <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+      <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      <property key="zone" value=""/>
+      <property key="dropLocation" value=""/>
+      <contained xsi:type="di2:GraphNode" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0" position="0:0" size="100:100">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="27:126" size="100:48">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+        <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+        <property key="StateDisplayEntry" value="StateNotDisplay"/>
+        <property key="StateDisplayExit" value="StateNotDisplay"/>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_FbN08BVGEd6u3aSfeeHlrQ"/>
+        </semanticModel>
+        <anchorage position="127:153" graphEdge="//@contained.0/@contained.0/@contained.7"/>
+        <anchorage position="127:129" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.21"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="29:254" size="100:49">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+        <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+        <property key="StateDisplayEntry" value="StateNotDisplay"/>
+        <property key="StateDisplayExit" value="StateNotDisplay"/>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_FwXlkBVGEd6u3aSfeeHlrQ"/>
+        </semanticModel>
+        <anchorage position="129:284" graphEdge="//@contained.0/@contained.0/@contained.8"/>
+        <anchorage position="129:275" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.22"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="//@contained.0/@contained.0/@contained.3/@contained.0" position="241:18" size="706:496">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+        <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+        <property key="StateDisplayEntry" value="StateNotDisplay"/>
+        <property key="StateDisplayExit" value="StateNotDisplay"/>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.3" semanticChild="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.0" position="0:20" size="706:476">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          <property key="zone" value=""/>
+          <property key="dropLocation" value=""/>
+          <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+          <contained xsi:type="di2:GraphNode" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.3/@contained.0" position="0:0" size="100:100">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="331:9" size="100:35">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+            <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+            <property key="StateDisplayEntry" value="StateNotDisplay"/>
+            <property key="StateDisplayExit" value="StateNotDisplay"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_OIgqUBVIEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="402:44" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.14"/>
+            <anchorage position="330:14" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.19"/>
+            <anchorage position="330:25" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.20"/>
+            <anchorage position="330:41" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.13"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0" position="160:71" size="455:117">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+            <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+            <property key="StateDisplayEntry" value="StateNotDisplay"/>
+            <property key="StateDisplayExit" value="StateNotDisplay"/>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2" semanticChild="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.0" position="0:20" size="455:97">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="zone" value=""/>
+              <property key="dropLocation" value=""/>
+              <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+              <contained xsi:type="di2:GraphNode" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0" position="0:0" size="125:79">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              </contained>
+              <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.2" position="5:43" size="14:14">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                <property key="PSEUDOSTATE_DISPLAY" value="PSEUDOSTATE_DISPLAY_HORIZONTAL"/>
+                <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+                  <element xsi:type="uml:Pseudostate" href="TrafficLightWaiting.uml#_T1p94BVJEd6u3aSfeeHlrQ"/>
+                </semanticModel>
+                <anchorage position="17:53" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.5"/>
+              </contained>
+              <contained xsi:type="di2:GraphNode" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.1" position="5:64" size="100:100">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              </contained>
+              <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="64:29" size="100:45">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+                <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+                <property key="StateDisplayEntry" value="StateNotDisplay"/>
+                <property key="StateDisplayExit" value="StateNotDisplay"/>
+                <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+                  <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_VXY2YBVJEd6u3aSfeeHlrQ"/>
+                </semanticModel>
+                <anchorage position="63:52" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.5"/>
+                <anchorage position="164:37" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.6"/>
+                <anchorage position="164:57" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.7"/>
+              </contained>
+              <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="324:20" size="100:46">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+                <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+                <property key="StateDisplayEntry" value="StateNotDisplay"/>
+                <property key="StateDisplayExit" value="StateNotDisplay"/>
+                <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+                  <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_VqOS0BVJEd6u3aSfeeHlrQ"/>
+                </semanticModel>
+                <anchorage position="323:38" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.6"/>
+                <anchorage position="323:58" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.7"/>
+              </contained>
+              <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.1/@anchorage.0 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.3/@anchorage.0">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+                <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                </contained>
+                <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                  <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+                  <property key="TransitionDisplayTriggers" value="TransitionNotDisplay"/>
+                  <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+                  <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+                </contained>
+                <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                </contained>
+                <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+                  <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_gN8JMBVJEd6u3aSfeeHlrQ"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.3/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.4/@anchorage.0">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+                <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="-2:-21" size="42:10">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                </contained>
+                <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="-2:-10" size="98:10">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                  <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+                  <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+                  <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+                  <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+                </contained>
+                <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                </contained>
+                <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+                  <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_gyZhIBVJEd6u3aSfeeHlrQ"/>
+                </semanticModel>
+              </contained>
+              <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.4/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@contained.0/@contained.3/@anchorage.2">
+                <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+                <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                </contained>
+                <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                  <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+                  <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+                  <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+                  <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+                </contained>
+                <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+                  <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+                  <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+                </contained>
+                <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+                  <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_hEevoBVJEd6u3aSfeeHlrQ"/>
+                </semanticModel>
+              </contained>
+              <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+                <element xsi:type="uml:Region" href="TrafficLightWaiting.uml#_4CmGoBVIEd6u3aSfeeHlrQ"/>
+              </semanticModel>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_y6PFsBVIEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="396:188" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.4"/>
+            <anchorage position="402:70" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.14"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="348:231" size="100:31">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+            <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+            <property key="StateDisplayEntry" value="StateNotDisplay"/>
+            <property key="StateDisplayExit" value="StateNotDisplay"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_zOmhQBVKEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="396:230" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.4"/>
+            <anchorage position="401:262" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.6"/>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@anchorage.0 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.3/@anchorage.0">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="44:8" size="42:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="65:-6" size="114:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_6R9PQBVKEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="351:312" size="100:33">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+            <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+            <property key="StateDisplayEntry" value="StateNotDisplay"/>
+            <property key="StateDisplayExit" value="StateNotDisplay"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_hc0FMBVLEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="401:311" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.6"/>
+            <anchorage position="350:327" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.10"/>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.3/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.5/@anchorage.0">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="33:12" size="42:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="21:-1" size="10:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_qxlcMBVLEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="36:307" size="100:43">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+            <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+            <property key="StateDisplayEntry" value="StateNotDisplay"/>
+            <property key="StateDisplayExit" value="StateNotDisplay"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_0rlAIBVLEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="136:326" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.10"/>
+            <anchorage position="97:306" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.11"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="35:174" size="100:40">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+            <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+            <property key="StateDisplayEntry" value="StateNotDisplay"/>
+            <property key="StateDisplayExit" value="StateNotDisplay"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_-3DVoBVLEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="97:214" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.11"/>
+            <anchorage position="92:173" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.12"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="38:73" size="100:39">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="StateDisplayDeferrableTriggers" value="StateNotDisplay"/>
+            <property key="StateDisplayDoActivity" value="StateNotDisplay"/>
+            <property key="StateDisplayEntry" value="StateNotDisplay"/>
+            <property key="StateDisplayExit" value="StateNotDisplay"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_VYFSkBVMEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="93:112" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.12"/>
+            <anchorage position="138:73" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.13"/>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.5/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.7/@anchorage.0">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_kxRqIBVMEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.7/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.8/@anchorage.0">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="30:12" size="42:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="16:-1" size="10:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_rJ1HoBVMEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.8/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.9/@anchorage.0">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="30:13" size="42:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="14:1" size="10:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_zv6zsBVMEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.9/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.1/@anchorage.3">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="87:-1" size="42:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="52:2" size="10:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_8NSooBVMEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.1/@anchorage.0 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.2/@anchorage.1">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="36:10" size="42:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="32:0" size="44:10">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_RQf8sBVNEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.16" position="53:13" size="16:16">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PSEUDOSTATE_DISPLAY" value="PSEUDOSTATE_DISPLAY_HORIZONTAL"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Pseudostate" href="TrafficLightWaiting.uml#_VEjVwBVQEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="67:23" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.19"/>
+            <anchorage position="54:26" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.21"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.15" position="53:34" size="100:100">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.18" position="54:38" size="16:16">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PSEUDOSTATE_DISPLAY" value="PSEUDOSTATE_DISPLAY_HORIZONTAL"/>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Pseudostate" href="TrafficLightWaiting.uml#_V9JxsBVQEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+            <anchorage position="69:47" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.20"/>
+            <anchorage position="59:53" graphEdge="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.22"/>
+          </contained>
+          <contained xsi:type="di2:GraphNode" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.17" position="54:59" size="100:100">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.15/@anchorage.0 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.1/@anchorage.1">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_Z96RYBVQEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@contained.0/@contained.17/@anchorage.0 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.1/@anchorage.2">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_atSf4BVQEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.1/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.15/@anchorage.1">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_fW69cBVQEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.2/@anchorage.1 //@contained.0/@contained.0/@contained.3/@contained.0/@contained.17/@anchorage.1">
+            <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+            <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+            <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+              <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+              <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+              <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+            </contained>
+            <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+              <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+              <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+            </contained>
+            <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+              <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_kKkSoBVQEd6u3aSfeeHlrQ"/>
+            </semanticModel>
+          </contained>
+          <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+            <element xsi:type="uml:Region" href="TrafficLightWaiting.uml#_Ior2gBVGEd6u3aSfeeHlrQ"/>
+          </semanticModel>
+        </contained>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:State" href="TrafficLightWaiting.uml#_IUZokBVGEd6u3aSfeeHlrQ"/>
+        </semanticModel>
+        <anchorage position="240:168" graphEdge="//@contained.0/@contained.0/@contained.7"/>
+        <anchorage position="240:24" graphEdge="//@contained.0/@contained.0/@contained.6"/>
+        <anchorage position="240:212" graphEdge="//@contained.0/@contained.0/@contained.8"/>
+        <anchorage position="911:514" graphEdge="//@contained.0/@contained.0/@contained.9"/>
+        <anchorage position="880:514" graphEdge="//@contained.0/@contained.0/@contained.9"/>
+        <anchorage position="531:514" graphEdge="//@contained.0/@contained.0/@contained.10"/>
+        <anchorage position="493:514" graphEdge="//@contained.0/@contained.0/@contained.10"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticChild="//@contained.0/@contained.0/@contained.5" position="57:45" size="14:14">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="PSEUDOSTATE_DISPLAY" value="PSEUDOSTATE_DISPLAY_HORIZONTAL"/>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:Pseudostate" href="TrafficLightWaiting.uml#_O0PZ0BVGEd6u3aSfeeHlrQ"/>
+        </semanticModel>
+        <anchorage position="66:45" graphEdge="//@contained.0/@contained.0/@contained.6"/>
+      </contained>
+      <contained xsi:type="di2:GraphNode" fontFamily="Arial" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" semanticParent="//@contained.0/@contained.0/@contained.4" position="57:66" size="100:100">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+      </contained>
+      <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.4/@anchorage.0 //@contained.0/@contained.0/@contained.3/@anchorage.1">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+        <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayTriggers" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_Qa7DwBVGEd6u3aSfeeHlrQ"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@anchorage.0 //@contained.0/@contained.0/@contained.1/@anchorage.0">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+        <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+          <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_SjmAcBVGEd6u3aSfeeHlrQ"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@anchorage.2 //@contained.0/@contained.0/@contained.2/@anchorage.0">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+        <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+          <property key="TransitionDisplayEffect" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_fWuUsBVGEd6u3aSfeeHlrQ"/>
+        </semanticModel>
+      </contained>
+      <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@anchorage.3 //@contained.0/@contained.0/@contained.3/@anchorage.4">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+        <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+          <property key="TransitionDisplayEffect" value="TransitionDisplay"/>
+          <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_QOphUBVREd6u3aSfeeHlrQ"/>
+        </semanticModel>
+        <waypoints>855:527</waypoints>
+        <waypoints>824:527</waypoints>
+      </contained>
+      <contained xsi:type="di2:GraphEdge" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="0:0:0" backgroundColor="0:0:0" borderColor="0:0:0" anchor="//@contained.0/@contained.0/@contained.3/@anchorage.5 //@contained.0/@contained.0/@contained.3/@anchorage.6">
+        <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+        <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        <property key="PropStereoDisplay" value="Yakindu::Priority"/>
+        <contained xsi:type="di2:GraphNode" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:10" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:20" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+          <property key="TransitionDisplayGuard" value="TransitionNotDisplay"/>
+          <property key="TransitionDisplayTriggers" value="TransitionDisplay"/>
+          <property key="TransitionDisplayEffect" value="TransitionDisplay"/>
+          <property key="TransitionDisplayStereotypes" value="TransitionDisplay"/>
+        </contained>
+        <contained xsi:type="di2:GraphNode" isVisible="true" fontFamily="Arial" fontSize="9" lineStyle="solid" fontColor="0:0:0" foregroundColor="248:249:214" backgroundColor="248:249:214" borderColor="157:124:47" position="0:30" size="100:100">
+          <property key="STEREOTYPE_DISPLAY_LOCATION" value="Comment"/>
+          <property key="QUALIFIED_NAME_DEPTH" value="0"/>
+        </contained>
+        <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+          <element xsi:type="uml:Transition" href="TrafficLightWaiting.uml#_RaPxwBVREd6u3aSfeeHlrQ"/>
+        </semanticModel>
+        <waypoints>475:527</waypoints>
+        <waypoints>437:527</waypoints>
+      </contained>
+      <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+        <element xsi:type="uml:Region" href="TrafficLightWaiting.uml#_zxEucRVFEd6u3aSfeeHlrQ"/>
+      </semanticModel>
+    </contained>
+    <semanticModel xsi:type="di2:Uml1SemanticModelBridge" presentation="TextStereotype">
+      <element xsi:type="uml:StateMachine" href="TrafficLightWaiting.uml#_zxEucBVFEd6u3aSfeeHlrQ"/>
+    </semanticModel>
+  </contained>
+  <owner xsi:type="di2:Uml1SemanticModelBridge">
+    <element xsi:type="uml:Class" href="TrafficLightWaiting.uml#_v8fpkBVFEd6u3aSfeeHlrQ"/>
+  </owner>
+</di2:Diagram>

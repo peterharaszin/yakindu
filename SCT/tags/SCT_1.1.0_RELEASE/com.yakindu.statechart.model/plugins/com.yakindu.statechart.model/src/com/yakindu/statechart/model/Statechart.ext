@@ -1,0 +1,43 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+extension com::yakindu::statechart::model::Extensions;
+
+String getId(Statechart this):
+	"STATECHART_" + this.name; // should also be unique (but better readable than UUID)
+  
+List[Variable] getVariables(Statechart this):
+	eContents.typeSelect(Variable);
+	
+cached List[Event] getSignalEvents(Statechart this): 
+	this.dataElement.select(e|Event.isInstance(e));
+
+// TODO: This may be altered when the statechart meta-model is refactored	
+cached List[Event] getTimeEvents(Statechart this):
+    eAllContents.typeSelect(Transition).select(e|e.isTimeTriggered()).collect(e|createDummyTimeEvent(e));
+	
+// TODO: This may be removed when the statechart meta-model is refactored
+create Event createDummyTimeEvent(Transition transition):
+    setName(transition.id.toString());
+    
+Transition getTransitionById(Statechart this, String id):
+  this.eAllContents.typeSelect(Transition).selectFirst(e|e.id.toString().compareTo(id) == 0);
+  
+List[Region] getNestedRegions(Statechart chart) :
+	getNestedRegions(chart.region.first()).reverse().add(chart.region.first());
+
+ 
+boolean hasAnyStateActions(Statechart this) :
+	this.getAllRegions().state.typeSelect(State).exists(e|e.hasEntryAction()) ||
+	this.getAllRegions().state.typeSelect(State).exists(e|e.hasDoAction()) ||
+	this.getAllRegions().state.typeSelect(State).exists(e|e.hasExitAction()) ? true : false;
+ 

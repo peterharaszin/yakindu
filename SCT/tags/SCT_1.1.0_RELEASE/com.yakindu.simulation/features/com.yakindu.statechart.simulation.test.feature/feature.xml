@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<feature
+      id="com.yakindu.statechart.simulation.test.feature"
+      label="YAKINDU SCT Simulation Tests"
+      version="1.0.0.qualifier"
+      provider-name="YAKINDU.org">
+
+   <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <includes
+         id="com.yakindu.simulation.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="com.yakindu.statechart.simulation.feature"
+         version="0.0.0"/>
+
+   <requires>
+      <import feature="org.eclipse.sdk" version="3.5.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.xtext.runtime" version="0.7.1" match="greaterOrEqual"/>
+   </requires>
+
+</feature>

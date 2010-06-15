@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="historyTest" UUID="4e92519f-2ff8-4102-a5bb-5f389bf9dc6c">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event1" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event2" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event3" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event4" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event5" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="inState0" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="inState1" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="inState2" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="inState3" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="inState4" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="inState5" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="inState6" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event6" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="counter" ioType="output"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="key1" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="key2" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event7" ioType="input"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="selfTrans" ioType="output"/>
+  <region priority="10">
+    <state xsi:type="org.mda4e.statemachine.model:State" name="mainState" entry="inState0 = 0; inState1 = 0; inState2 = 0; inState3=0; inState4=0 ; inState5=0; inState6=0;">
+      <region priority="11">
+        <state xsi:type="org.mda4e.statemachine.model:State" name="state0" id="1" entry="inState0 = 1;" exit="inState0 = 0;">
+          <region priority="12">
+            <state xsi:type="org.mda4e.statemachine.model:State" name="state3" id="2" entry="inState3 = 1;" exit="inState3 = 0;">
+              <region priority="13">
+                <state xsi:type="org.mda4e.statemachine.model:State" name="state4" id="3" entry="inState4 = 1;" exit="inState4 = 0;"/>
+                <state xsi:type="org.mda4e.statemachine.model:State" name="state5" id="4" entry="inState5 = 1;" exit="inState5 = 0;"/>
+                <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="5"/>
+              </region>
+            </state>
+            <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="6"/>
+          </region>
+        </state>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="7"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="state1" id="8" entry="inState1 = 1;" exit="inState1 = 0;"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="state2" id="9" entry="inState2 = 1;" exit="inState2 = 0;">
+          <region priority="14">
+            <state xsi:type="org.mda4e.statemachine.model:State" name="state6" id="10" entry="inState6 = 1;" exit="inState6 = 0;"/>
+            <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="11"/>
+          </region>
+        </state>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="12" pseudoType="shallowHistory"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="13" pseudoType="deepHistory"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="14"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="stateKey1" id="15" entry="counter += 1; inState0=0; inState1=0; inState3=0; inState4=0;inState5=0; inState6=0;"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="stateKey2" id="16" entry="counter +=2; inState0=0; inState1=0; inState3=0; inState4=0;inState5=0; inState6=0;"/>
+  </region>
+  <transition targetNode="//@region.0/@state.0" priority="1" id="17" sourceNode="//@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" id="18" sourceNode="//@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0" priority="1" id="19" sourceNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.0" priority="1" id="20" sourceNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.1" priority="1" expression="event1" id="21" sourceNode="//@region.0/@state.0/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.0" priority="1" expression="event2" id="22" sourceNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.3/@region.0/@state.0" priority="1" id="23" sourceNode="//@region.0/@state.0/@region.0/@state.3/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.3/@region.0/@state.0" priority="1" expression="event3" id="24" sourceNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="2" expression="event4" id="25" sourceNode="//@region.0/@state.0/@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0" priority="3" expression="event5" id="26" sourceNode="//@region.0/@state.0/@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.2" priority="1" expression="event6" id="27" sourceNode="//@region.0/@state.0/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" priority="1" expression="key1" id="28" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.3" priority="1" expression="key2" id="29" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.5" priority="1" id="30" sourceNode="//@region.0/@state.3"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.4" priority="1" id="31" sourceNode="//@region.0/@state.2"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.1" priority="2" expression="event4/selfTrans+=2;" id="32" sourceNode="//@region.0/@state.0/@region.0/@state.0/@region.0/@state.0/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.0/@region.0/@state.0" priority="2" expression="event7/selfTrans+=1;" id="33" sourceNode="//@region.0/@state.0/@region.0/@state.0"/>
+</org.mda4e.statemachine.model:Statechart>

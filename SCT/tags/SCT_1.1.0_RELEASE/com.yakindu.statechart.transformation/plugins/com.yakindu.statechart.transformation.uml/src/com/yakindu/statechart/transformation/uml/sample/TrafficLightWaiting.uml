@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Yakindu="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0 ../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ">
+  <uml:Model xmi:id="__XXY8BVBEd6u3aSfeeHlrQ" name="TrafficLightWaiting">
+    <packageImport xmi:id="__XXY8RVBEd6u3aSfeeHlrQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_v8fpkBVFEd6u3aSfeeHlrQ" name="Class_0" isActive="true">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_zxEucBVFEd6u3aSfeeHlrQ" name="TrafficlightWaiting">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_rk4BcBrJEd659NoDBnJk6g" name="tl_red"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_sm9JgBrJEd659NoDBnJk6g" name="tl_green"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_tbouwBrJEd659NoDBnJk6g" name="tl_yellow"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_uOuYkBrJEd659NoDBnJk6g" name="ped_request"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_vJuBMBrJEd659NoDBnJk6g" name="ped_green"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_wHMWEBrJEd659NoDBnJk6g" name="ped_red"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_w9V68BrJEd659NoDBnJk6g" name="stateID"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_x_QD4BrJEd659NoDBnJk6g" name="ped_blinking_rate"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_rlYwUBVOEd6u3aSfeeHlrQ" name="keypress1"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_n9PvgBVPEd6u3aSfeeHlrQ" name="keypress2"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_oi4MIBVPEd6u3aSfeeHlrQ" name="keypress3"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_ow0hgBVPEd6u3aSfeeHlrQ" name="keypress4"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_pEay8BVPEd6u3aSfeeHlrQ" name="keypress5"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_pj3IABVPEd6u3aSfeeHlrQ" name="keypress6"/>
+        <region xmi:id="_zxEucRVFEd6u3aSfeeHlrQ" name="Region_0">
+          <subvertex xmi:type="uml:State" xmi:id="_FbN08BVGEd6u3aSfeeHlrQ" name="off"/>
+          <subvertex xmi:type="uml:State" xmi:id="_FwXlkBVGEd6u3aSfeeHlrQ" name="freeze"/>
+          <subvertex xmi:type="uml:State" xmi:id="_IUZokBVGEd6u3aSfeeHlrQ" name="on">
+            <region xmi:id="_Ior2gBVGEd6u3aSfeeHlrQ" name="Region_0">
+              <subvertex xmi:type="uml:State" xmi:id="_OIgqUBVIEd6u3aSfeeHlrQ" name="StreetGreen">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_nkLMYBVIEd6u3aSfeeHlrQ" name="var(tl_red) = 0; var(tl_green) = 1; var(tl_yellow) = 0; var(ped_red) = 1; var(ped_green) = 0; var(ped_request) = 0; var(stateID) = 1; var(ped_blinking_rate) = 500;"/>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_y6PFsBVIEd6u3aSfeeHlrQ" name="PedWaiting">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_7a2b4BVIEd6u3aSfeeHlrQ" name="var(stateID) = 2;"/>
+                <region xmi:id="_4CmGoBVIEd6u3aSfeeHlrQ" name="Region_0">
+                  <subvertex xmi:type="uml:Pseudostate" xmi:id="_T1p94BVJEd6u3aSfeeHlrQ" name="Initial_0"/>
+                  <subvertex xmi:type="uml:State" xmi:id="_VXY2YBVJEd6u3aSfeeHlrQ" name="waitOn">
+                    <entry xmi:type="uml:OpaqueBehavior" xmi:id="_df1kMBVJEd6u3aSfeeHlrQ" name="var(ped_request) = 1;"/>
+                  </subvertex>
+                  <subvertex xmi:type="uml:State" xmi:id="_VqOS0BVJEd6u3aSfeeHlrQ" name="waitOff">
+                    <entry xmi:type="uml:OpaqueBehavior" xmi:id="_kB9NYBVJEd6u3aSfeeHlrQ" name="var(ped_request) = 0;"/>
+                  </subvertex>
+                  <transition xmi:id="_gN8JMBVJEd6u3aSfeeHlrQ" name="From_Initial_0_to_waitOn_Transition_0" target="_VXY2YBVJEd6u3aSfeeHlrQ" source="_T1p94BVJEd6u3aSfeeHlrQ"/>
+                  <transition xmi:id="_gyZhIBVJEd6u3aSfeeHlrQ" name="From_waitOn_to_waitOff_Transition_0" target="_VqOS0BVJEd6u3aSfeeHlrQ" source="_VXY2YBVJEd6u3aSfeeHlrQ">
+                    <trigger xmi:id="_8iAbwBVJEd6u3aSfeeHlrQ" name="Trigger_0" event="_8OcmkBVJEd6u3aSfeeHlrQ"/>
+                  </transition>
+                  <transition xmi:id="_hEevoBVJEd6u3aSfeeHlrQ" name="From_waitOff_to_waitOn_Transition_0" target="_VXY2YBVJEd6u3aSfeeHlrQ" source="_VqOS0BVJEd6u3aSfeeHlrQ">
+                    <trigger xmi:id="_i7bNsBVKEd6u3aSfeeHlrQ" name="Trigger_0" event="_ihUroBVKEd6u3aSfeeHlrQ"/>
+                  </transition>
+                </region>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_zOmhQBVKEd6u3aSfeeHlrQ" name="StreetAmber">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_24UZ8BVKEd6u3aSfeeHlrQ" name="var(tl_red) = 0; var(tl_green) = 0; var(tl_yellow) = 1; var(stateID) = 3;"/>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_hc0FMBVLEd6u3aSfeeHlrQ" name="StreetRed">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_lJcH8BVLEd6u3aSfeeHlrQ" name="var(tl_red) = 1; var(tl_green) = 0; var(tl_yellow) = 0; var(stateID) = 4;"/>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_0rlAIBVLEd6u3aSfeeHlrQ" name="PedGreen">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_4EDX0BVLEd6u3aSfeeHlrQ" name="var(ped_red) = 0; var(ped_green) = 1; var(stateID) = 5;"/>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_-3DVoBVLEd6u3aSfeeHlrQ" name="PedRed">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_bW-S4BVMEd6u3aSfeeHlrQ" name="var(ped_red) = 1; var(ped_green) = 0; var(stateID) = 6;"/>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_VYFSkBVMEd6u3aSfeeHlrQ" name="StreetPrepare">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_grTTQBVMEd6u3aSfeeHlrQ" name="var(tl_red) = 1; var(tl_yellow) = 1; var(tl_green) = 0; var(stateID) = 7;" visibility="package"/>
+              </subvertex>
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_VEjVwBVQEd6u3aSfeeHlrQ" name="ShallowHistory_0" kind="shallowHistory"/>
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_V9JxsBVQEd6u3aSfeeHlrQ" name="DeepHistory_0" kind="deepHistory"/>
+              <transition xmi:id="_6R9PQBVKEd6u3aSfeeHlrQ" name="From_PedWaiting_to_StreetAmber_Transition_0" target="_zOmhQBVKEd6u3aSfeeHlrQ" source="_y6PFsBVIEd6u3aSfeeHlrQ">
+                <effect xmi:type="uml:OpaqueBehavior" xmi:id="_Ji30kBVLEd6u3aSfeeHlrQ" name="var(ped_request) = 0;"/>
+                <trigger xmi:id="_F1XoEBVLEd6u3aSfeeHlrQ" name="Trigger_0" event="_Fitx0BVLEd6u3aSfeeHlrQ"/>
+              </transition>
+              <transition xmi:id="_qxlcMBVLEd6u3aSfeeHlrQ" name="From_StreetAmber_to_StreetRed_Transition_0" target="_hc0FMBVLEd6u3aSfeeHlrQ" source="_zOmhQBVKEd6u3aSfeeHlrQ">
+                <trigger xmi:id="_tnWIYBVLEd6u3aSfeeHlrQ" name="Trigger_0" event="_teV9YBVLEd6u3aSfeeHlrQ"/>
+              </transition>
+              <transition xmi:id="_kxRqIBVMEd6u3aSfeeHlrQ" name="From_StreetRed_to_PedGreen_Transition_0" target="_0rlAIBVLEd6u3aSfeeHlrQ" source="_hc0FMBVLEd6u3aSfeeHlrQ">
+                <trigger xmi:id="_nPicUBVMEd6u3aSfeeHlrQ" name="Trigger_0" event="_m2fqMBVMEd6u3aSfeeHlrQ"/>
+              </transition>
+              <transition xmi:id="_rJ1HoBVMEd6u3aSfeeHlrQ" name="From_PedGreen_to_PedRed_Transition_0" target="_-3DVoBVLEd6u3aSfeeHlrQ" source="_0rlAIBVLEd6u3aSfeeHlrQ">
+                <trigger xmi:id="_v5KkkBVMEd6u3aSfeeHlrQ" name="Trigger_0" event="_vqHb8BVMEd6u3aSfeeHlrQ"/>
+              </transition>
+              <transition xmi:id="_zv6zsBVMEd6u3aSfeeHlrQ" name="From_PedRed_to_StreetPrepare_Transition_0" target="_VYFSkBVMEd6u3aSfeeHlrQ" source="_-3DVoBVLEd6u3aSfeeHlrQ">
+                <trigger xmi:id="_2OE4MBVMEd6u3aSfeeHlrQ" name="Trigger_0" event="_2CJ8EBVMEd6u3aSfeeHlrQ"/>
+              </transition>
+              <transition xmi:id="_8NSooBVMEd6u3aSfeeHlrQ" name="From_StreetPrepare_to_StreetGreen_Transition_0" target="_OIgqUBVIEd6u3aSfeeHlrQ" source="_VYFSkBVMEd6u3aSfeeHlrQ">
+                <trigger xmi:id="_D4hO8BVNEd6u3aSfeeHlrQ" name="Trigger_0" event="_Dvf10BVNEd6u3aSfeeHlrQ"/>
+              </transition>
+              <transition xmi:id="_RQf8sBVNEd6u3aSfeeHlrQ" name="From_StreetGreen_to_PedWaiting_Transition_0" target="_y6PFsBVIEd6u3aSfeeHlrQ" source="_OIgqUBVIEd6u3aSfeeHlrQ">
+                <trigger xmi:id="_7jxqMBVPEd6u3aSfeeHlrQ" name="Trigger_0" event="_7jlc8BVPEd6u3aSfeeHlrQ"/>
+              </transition>
+              <transition xmi:id="_Z96RYBVQEd6u3aSfeeHlrQ" name="From_ShallowHistory_0_to_StreetGreen_Transition_0" target="_OIgqUBVIEd6u3aSfeeHlrQ" source="_VEjVwBVQEd6u3aSfeeHlrQ"/>
+              <transition xmi:id="_atSf4BVQEd6u3aSfeeHlrQ" name="From_DeepHistory_0_to_StreetGreen_Transition_0" target="_OIgqUBVIEd6u3aSfeeHlrQ" source="_V9JxsBVQEd6u3aSfeeHlrQ"/>
+            </region>
+          </subvertex>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_O0PZ0BVGEd6u3aSfeeHlrQ" name="Initial_0"/>
+          <transition xmi:id="_Qa7DwBVGEd6u3aSfeeHlrQ" name="From_Initial_0_to_on_Transition_0" target="_IUZokBVGEd6u3aSfeeHlrQ" source="_O0PZ0BVGEd6u3aSfeeHlrQ"/>
+          <transition xmi:id="_SjmAcBVGEd6u3aSfeeHlrQ" name="From_on_to_off_Transition_0" target="_FbN08BVGEd6u3aSfeeHlrQ" source="_IUZokBVGEd6u3aSfeeHlrQ">
+            <trigger xmi:id="_xrruQBVQEd6u3aSfeeHlrQ" name="Trigger_0" event="_pBJnEBVQEd6u3aSfeeHlrQ"/>
+          </transition>
+          <transition xmi:id="_fWuUsBVGEd6u3aSfeeHlrQ" name="From_on_to_freeze_Transition_1" target="_FwXlkBVGEd6u3aSfeeHlrQ" source="_IUZokBVGEd6u3aSfeeHlrQ">
+            <trigger xmi:id="_09T3EBVQEd6u3aSfeeHlrQ" name="Trigger_0" event="_09HCwBVQEd6u3aSfeeHlrQ"/>
+          </transition>
+          <transition xmi:id="_fW69cBVQEd6u3aSfeeHlrQ" name="From_off_to_ShallowHistory_0_Transition_0" target="_VEjVwBVQEd6u3aSfeeHlrQ" source="_FbN08BVGEd6u3aSfeeHlrQ">
+            <trigger xmi:id="_pBaFwBVQEd6u3aSfeeHlrQ" name="Trigger_0" event="_pBJnEBVQEd6u3aSfeeHlrQ"/>
+          </transition>
+          <transition xmi:id="_kKkSoBVQEd6u3aSfeeHlrQ" name="From_freeze_to_DeepHistory_0_Transition_0" target="_V9JxsBVQEd6u3aSfeeHlrQ" source="_FwXlkBVGEd6u3aSfeeHlrQ">
+            <trigger xmi:id="__1HuIBVQEd6u3aSfeeHlrQ" name="Trigger_0" event="_09HCwBVQEd6u3aSfeeHlrQ"/>
+          </transition>
+          <transition xmi:id="_QOphUBVREd6u3aSfeeHlrQ" name="From_on_to_on_Transition_0" target="_IUZokBVGEd6u3aSfeeHlrQ" source="_IUZokBVGEd6u3aSfeeHlrQ">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_fcAcUBVREd6u3aSfeeHlrQ" name="ped_blinking_rate+=500;"/>
+            <trigger xmi:id="_eeiHcBVREd6u3aSfeeHlrQ" name="Trigger_0" event="_eeTd8BVREd6u3aSfeeHlrQ"/>
+          </transition>
+          <transition xmi:id="_RaPxwBVREd6u3aSfeeHlrQ" name="From_on_to_on_Transition_1" target="_IUZokBVGEd6u3aSfeeHlrQ" source="_IUZokBVGEd6u3aSfeeHlrQ">
+            <effect xmi:type="uml:OpaqueBehavior" xmi:id="_lDnlEBVREd6u3aSfeeHlrQ" name="ped_blinking_rate = ped_blinking_rate >= 1000 ? ped_blinking_rate - 500 : 500;"/>
+            <trigger xmi:id="_kfwqEBVREd6u3aSfeeHlrQ" name="Trigger_0" event="_kfiAkBVREd6u3aSfeeHlrQ"/>
+          </transition>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="_5r5ikBVPEd6u3aSfeeHlrQ" name="Reception_0" signal="_rlYwUBVOEd6u3aSfeeHlrQ"/>
+      <ownedReception xmi:id="_nkgC4BVQEd6u3aSfeeHlrQ" name="Reception_1" signal="_n9PvgBVPEd6u3aSfeeHlrQ"/>
+      <ownedReception xmi:id="_xK58cBVQEd6u3aSfeeHlrQ" name="Reception_2" signal="_n9PvgBVPEd6u3aSfeeHlrQ"/>
+      <ownedReception xmi:id="_0kQd4BVQEd6u3aSfeeHlrQ" name="Reception_3" signal="_oi4MIBVPEd6u3aSfeeHlrQ"/>
+      <ownedReception xmi:id="__H4NoBVQEd6u3aSfeeHlrQ" name="Reception_4" signal="_oi4MIBVPEd6u3aSfeeHlrQ"/>
+      <ownedReception xmi:id="_d1KaUBVREd6u3aSfeeHlrQ" name="Reception_5" signal="_ow0hgBVPEd6u3aSfeeHlrQ"/>
+      <ownedReception xmi:id="_kGiRwBVREd6u3aSfeeHlrQ" name="Reception_6" signal="_pEay8BVPEd6u3aSfeeHlrQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_8OcmkBVJEd6u3aSfeeHlrQ" name="TimeEvent_0" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_RqaY4BVKEd6u3aSfeeHlrQ" value="ped_blinking_rate"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_ihUroBVKEd6u3aSfeeHlrQ" name="TimeEvent_1" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_ihcncBVKEd6u3aSfeeHlrQ" value="ped_blinking_rate"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_Fitx0BVLEd6u3aSfeeHlrQ" name="TimeEvent_2" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_Fi1toBVLEd6u3aSfeeHlrQ" value="30s"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_teV9YBVLEd6u3aSfeeHlrQ" name="TimeEvent_3" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_ted5MBVLEd6u3aSfeeHlrQ" value="2s"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_m2fqMBVMEd6u3aSfeeHlrQ" name="TimeEvent_4" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_m2o0IBVMEd6u3aSfeeHlrQ" value="2s"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_vqHb8BVMEd6u3aSfeeHlrQ" name="TimeEvent_5" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_vqQl4BVMEd6u3aSfeeHlrQ" value="7s"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_2CJ8EBVMEd6u3aSfeeHlrQ" name="TimeEvent_6" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_2CTtEBVMEd6u3aSfeeHlrQ" value="3s"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:TimeEvent" xmi:id="_Dvf10BVNEd6u3aSfeeHlrQ" name="TimeEvent_7" isRelative="true">
+      <when xmi:type="uml:LiteralString" xmi:id="_Dvpm0BVNEd6u3aSfeeHlrQ" value="2s"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_7jlc8BVPEd6u3aSfeeHlrQ" name="SignalEvent_1" signal="_rlYwUBVOEd6u3aSfeeHlrQ"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_pBJnEBVQEd6u3aSfeeHlrQ" name="SignalEvent_2" signal="_n9PvgBVPEd6u3aSfeeHlrQ"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_09HCwBVQEd6u3aSfeeHlrQ" name="SignalEvent_3" signal="_oi4MIBVPEd6u3aSfeeHlrQ"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_eeTd8BVREd6u3aSfeeHlrQ" name="SignalEvent_4" signal="_ow0hgBVPEd6u3aSfeeHlrQ"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_kfiAkBVREd6u3aSfeeHlrQ" name="SignalEvent_5" signal="_pEay8BVPEd6u3aSfeeHlrQ"/>
+    <profileApplication xmi:id="__XXY8hVBEd6u3aSfeeHlrQ">
+      <eAnnotations xmi:id="__XXY8xVBEd6u3aSfeeHlrQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_-PMFsCT0Ed60h-47QpOCrg">
+      <eAnnotations xmi:id="_-PaIICT0Ed60h-47QpOCrg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ"/>
+      </eAnnotations>
+      <appliedProfile href="../profile/Yakindu.profile.uml#_12_5_1_ed20351_1236852562585_483655_232"/>
+    </profileApplication>
+  </uml:Model>
+  <Yakindu:Priority xmi:id="_NIs3oCT1Ed60h-47QpOCrg" base_Region="_zxEucRVFEd6u3aSfeeHlrQ" priority="12"/>
+  <Yakindu:Priority xmi:id="_MyfFICT3Ed60h-47QpOCrg" base_Region="_Ior2gBVGEd6u3aSfeeHlrQ"/>
+  <Yakindu:Priority xmi:id="_ispPUCT3Ed60h-47QpOCrg" base_Region="_4CmGoBVIEd6u3aSfeeHlrQ" priority="11"/>
+  <Yakindu:Priority xmi:id="_tzFYQCT3Ed60h-47QpOCrg" base_Transition="_SjmAcBVGEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_vIBK4CT3Ed60h-47QpOCrg" base_Transition="_fWuUsBVGEd6u3aSfeeHlrQ" priority="2"/>
+  <Yakindu:Priority xmi:id="_wuPh0CT3Ed60h-47QpOCrg" base_Transition="_fW69cBVQEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_x7A28CT3Ed60h-47QpOCrg" base_Transition="_kKkSoBVQEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_zPxqcCT3Ed60h-47QpOCrg" base_Transition="_QOphUBVREd6u3aSfeeHlrQ" priority="3"/>
+  <Yakindu:Priority xmi:id="_0UvHYCT3Ed60h-47QpOCrg" base_Transition="_RaPxwBVREd6u3aSfeeHlrQ" priority="4"/>
+  <Yakindu:Priority xmi:id="_6aY3ACT3Ed60h-47QpOCrg" base_Transition="_gN8JMBVJEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_7yboACT3Ed60h-47QpOCrg" base_Transition="_gyZhIBVJEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_9gwLACT3Ed60h-47QpOCrg" base_Transition="_hEevoBVJEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="__1spICT3Ed60h-47QpOCrg" base_Transition="_6R9PQBVKEd6u3aSfeeHlrQ" priority="2"/>
+  <Yakindu:Priority xmi:id="_GwyL8CT4Ed60h-47QpOCrg" base_Transition="_qxlcMBVLEd6u3aSfeeHlrQ"/>
+  <Yakindu:Priority xmi:id="_H8LBACT4Ed60h-47QpOCrg" base_Transition="_kxRqIBVMEd6u3aSfeeHlrQ"/>
+  <Yakindu:Priority xmi:id="_JaLQECT4Ed60h-47QpOCrg" base_Transition="_rJ1HoBVMEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_LBt1oCT4Ed60h-47QpOCrg" base_Transition="_zv6zsBVMEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_NAAuUCT4Ed60h-47QpOCrg" base_Transition="_8NSooBVMEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_OWqYMCT4Ed60h-47QpOCrg" base_Transition="_RQf8sBVNEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_P_jBkCT4Ed60h-47QpOCrg" base_Transition="_Z96RYBVQEd6u3aSfeeHlrQ"/>
+  <Yakindu:Priority xmi:id="_RlBxoCT4Ed60h-47QpOCrg" base_Transition="_atSf4BVQEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_G8BWICT5Ed60h-47QpOCrg" base_Transition="_Qa7DwBVGEd6u3aSfeeHlrQ" priority="1"/>
+  <Yakindu:Event xmi:id="_epGIECT8Ed60h-47QpOCrg" ioType="input" port="3" base_Signal="_rlYwUBVOEd6u3aSfeeHlrQ"/>
+  <Yakindu:Event xmi:id="_KaiN8CUFEd60h-47QpOCrg" ioType="input" port="2" base_Signal="_n9PvgBVPEd6u3aSfeeHlrQ"/>
+  <Yakindu:Event xmi:id="_TTkEICUFEd60h-47QpOCrg" ioType="input" port="6" base_Signal="_oi4MIBVPEd6u3aSfeeHlrQ"/>
+  <Yakindu:Event xmi:id="_YnbxgCUFEd60h-47QpOCrg" ioType="input" port="7" base_Signal="_ow0hgBVPEd6u3aSfeeHlrQ"/>
+  <Yakindu:Event xmi:id="_dTB98CUFEd60h-47QpOCrg" ioType="input" port="8" base_Signal="_pEay8BVPEd6u3aSfeeHlrQ"/>
+  <Yakindu:Event xmi:id="_hxwMACUFEd60h-47QpOCrg" ioType="input" port="9" base_Signal="_pj3IABVPEd6u3aSfeeHlrQ"/>
+  <Yakindu:Variable xmi:id="_2TIlYCUFEd60h-47QpOCrg" ioType="output" port="1" base_Class="_rk4BcBrJEd659NoDBnJk6g"/>
+  <Yakindu:Variable xmi:id="_8qESQCUFEd60h-47QpOCrg" ioType="output" port="4" base_Class="_sm9JgBrJEd659NoDBnJk6g"/>
+  <Yakindu:Variable xmi:id="_DA1nECUGEd60h-47QpOCrg" ioType="output" port="5" base_Class="_tbouwBrJEd659NoDBnJk6g"/>
+  <Yakindu:Variable xmi:id="_JFt6oCUGEd60h-47QpOCrg" ioType="output" port="10" base_Class="_uOuYkBrJEd659NoDBnJk6g"/>
+  <Yakindu:Variable xmi:id="_OfxvkCUGEd60h-47QpOCrg" ioType="output" port="11" base_Class="_vJuBMBrJEd659NoDBnJk6g"/>
+  <Yakindu:Variable xmi:id="_TmntkCUGEd60h-47QpOCrg" ioType="output" port="12" base_Class="_wHMWEBrJEd659NoDBnJk6g"/>
+  <Yakindu:Variable xmi:id="_ZbnyECUGEd60h-47QpOCrg" ioType="output" port="13" base_Class="_w9V68BrJEd659NoDBnJk6g"/>
+  <Yakindu:Variable xmi:id="_fUseQCUGEd60h-47QpOCrg" ioType="output" port="14" base_Class="_x_QD4BrJEd659NoDBnJk6g"/>
+</xmi:XMI>

@@ -1,0 +1,405 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«EXTENSION com::yakindu::statechart::codegenerator::c::extensions::Extensions»
+
+«DEFINE interface FOR Statechart»
+
+«FILE rootFilename()+".h" -»
+#include "«handleFilename()».h"
+#include "«baseInterface()».h"
+#include "«filename(region.first())».h"
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+/** @brief Function to initialize the state machine handle 
+ *
+ * The handle is initialized completely, the interface communication is set up and the 
+ * state is set to the initial state of the most global region.
+ * 
+ * The function did not allocate any new memory from the heap, so the size of a handle 
+ * structure is of static size and does not change during initialization or operation. 
+ * 
+ * @param handle
+ * : The handle must be a pointer to a valid memory region, great enough
+ *         to hold the handle data.
+ *  
+*/
+extern void «basename()»_init(«baseHandle()»* handle);
+
+/** @brief Function to call one cycle of the state machine
+ * 
+ * The call to «basename()»_runCycle() initiates one run to completion cycle process of the state machine. 
+ *
+ * @param handle
+ * : A valid/initialized state machine handle
+ *
+ * Please be aware that, if there are uncondition transitions between two states or the transitions (e.g. guards)
+ * are always taken, the do-while loop runs infinite!
+ *
+ */
+extern void «basename()»_runCycle(«baseHandle()»* handle);
+
+/** @brief Function to clean up the external triggers.
+ * 
+ * Function can be called explicitly, but is called whenever «basename()»_runCycle() is called
+ *
+ * @param handle
+ * : A valid/initialized state machine handle
+ *   
+*/
+extern void «basename()»_cleanUnusedTriggers(«baseHandle()»* handle);
+
+«FOREACH getIntVariables() AS var -»
+  «IF var.ioType.toString() == "output" -»
+/** @brief Function to access the integer value of variable \em «var.name»  for reading
+ * 
+ * Function gives read access to the variable \em «var.name» , created by the state machine editor.
+ * This function is only available if the variable is marked as output.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, variable \em «var.name»  belongs to.
+ * 
+ * @return
+ * The actual value of variable \em «var.name» .   
+*/
+extern int32 «basename()»_getVar_«var.name»(«baseHandle()»* handle);
+  «ENDIF-»
+  «IF var.ioType.toString() == "input" -»  
+/** @brief Function to access the integer value of variable \em «var.name» for writing
+ * 
+ * Function gives write access to the variable \em «var.name», created by the state machine editor.
+ * This function is only available if the variable is marked as input.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, variable \em «var.name» belongs to.
+ *
+ * @param value
+ * The value, the variable \em «var.name» should be changed to. 
+*/
+extern void  «basename()»_setVar_«var.name»(«baseHandle()»* handle, uint32 value);
+  «ENDIF-»
+«ENDFOREACH-»
+
+«FOREACH getBoolVariables() AS var -»
+  «IF var.ioType.toString() == "output" -»
+/** @brief Function to access the boolean value of variable \em «var.name»  for reading
+ * 
+ * Function gives read access to the variable \em «var.name», created by the state machine editor.
+ * This function is only available if the variable is marked as output.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, variable \em «var.name»  belongs to.
+ * 
+ * @return
+ * The actual value of variable \em «var.name» .   
+*/
+extern BOOL «basename()»_getVar_«var.name»(«baseHandle()»* handle);
+  «ENDIF-»
+  «IF var.ioType.toString() == "input" -»  
+/** @brief Function to access the boolean value of variable \em «var.name»  for writing
+ * 
+ * Function gives write access to the variable \em «var.name», created by the state machine editor.
+ * This function is only available if the variable is marked as input.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, variable \em «var.name»  belongs to.
+ *
+ * @param value
+ * The value, the variable \em «var.name»  should be changed to. 
+*/
+extern void «basename()»_setVar_«var.name»(«baseHandle()»* handle, BOOL value);
+  «ENDIF-»
+«ENDFOREACH-»
+
+«FOREACH getFloatVariables() AS var -»
+  «IF var.ioType.toString() == "output" -»
+/** @brief Function to access the floating point value of variable \em «var.name»  for reading
+ * 
+ * Function gives read access to the variable \em «var.name» , created by the state machine editor.
+ * This function is only available if the variable is marked as output.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, variable \em «var.name»  belongs to.
+ * 
+ * @return
+ * The actual value of variable \em «var.name» .   
+*/
+extern float «basename()»_getVar_«var.name»(«baseHandle()»* handle);
+  «ENDIF-»
+  «IF var.ioType.toString() == "input" -»  
+/** @brief Function to access the floating point value of variable \em «var.name»  for writing
+ * 
+ * Function gives write access to the variable \em «var.name» , created by the state machine editor.
+ * This function is only available if the variable is marked as input.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, variable \em «var.name»  belongs to.
+ *
+ * @param value
+ * The value, the variable \em «var.name»  should be changed to. 
+*/
+extern void «basename()»_setVar_«var.name»(«baseHandle()»* handle, float value);
+  «ENDIF-»
+«ENDFOREACH-»
+
+«FOREACH getSignalEvents() AS ev -»
+  «IF ev.ioType.toString() == "output" -»
+/** @brief Function to access the trigger \em «ev.name» for reading
+ * 
+ * Function gives read access to the trigger \em «ev.name», created by the state machine editor.
+ * This function is only available if the trigger is marked as output.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, the trigger \em «ev.name» belongs to.
+ * 
+ * @return
+ * The actual status of trigger \em «ev.name»; true if set, false if not.   
+*/
+extern BOOL «basename()»_getTrigger_«ev.name»(«baseHandle()»* handle);
+  «ENDIF-»
+  «IF ev.ioType.toString() == "input" -»
+/** @brief Function to raise trigger \em «ev.name» 
+ * 
+ * Function raises the trigger \em «ev.name», created by the state machine editor.
+ * This function is only available if the trigger is marked as input.
+ *
+ * @param handle
+ * : A valid/initialized state machine handle, the trigger \em «ev.name» belongs to.
+ * 
+*/
+extern void «basename()»_raiseTrigger_«ev.name»(«baseHandle()»* handle);    
+  «ENDIF-»
+«ENDFOREACH»
+
+#ifdef __cplusplus
+  }
+#endif
+
+«ENDFILE»
+
+«FILE rootFilename()+".c" -»
+#include "«rootFilename()».h"
+
+void «basename()»_init(«baseHandle()»* SMGlobal)
+{
+  SMGlobal->state = «region.first().getInitialStateName()»;
+
+  «baseInterface()»_initInterfaceHandle(&SMGlobal->ihandle);
+
+  «region.first().initHandleFuncName()»(&SMGlobal->startHandle, &SMGlobal->ihandle, SMGlobal);
+} 
+
+void «basename()»_runCycle(«baseHandle()»* SMGlobal) 
+{
+  while («cycleFuncName(region.first())»(&SMGlobal->startHandle) == FALSE)
+    «basename()»_cleanUnusedTriggers(SMGlobal);
+
+  return;
+}
+
+void «basename()»_cleanUnusedTriggers(«baseHandle()»* handle)
+{
+«FOREACH getSignalEvents() AS ev -»
+  «IF ev.ioType.toString() == "input" -»
+  handle->ihandle.trigger[«ev.name»] = FALSE;
+  «ENDIF-»
+«ENDFOREACH»  
+}
+
+«FOREACH getIntVariables() AS var -»
+  «IF var.ioType.toString() == "output" -»
+int32 «basename()»_getVar_«var.name»(«baseHandle()»* bHandle)
+{
+  return(bHandle->ihandle.«var.name»);
+}
+
+  «ENDIF-»
+  «IF var.ioType.toString() == "input" -»  
+void  «basename()»_setVar_«var.name»(«baseHandle()»* bHandle, uint32 value)
+{
+  bHandle->ihandle.«var.name» = value;
+}
+
+  «ENDIF-»
+«ENDFOREACH-»
+
+«FOREACH getBoolVariables() AS var -»
+  «IF var.ioType.toString() == "output" -»
+BOOL «basename()»_getVar_«var.name»(«baseHandle()»* bHandle);
+{
+  return(bHandle->ihandle.«var.name»);
+}
+
+  «ENDIF-»
+  «IF var.ioType.toString() == "input" -»  
+void «basename()»_setVar_«var.name»(«baseHandle()»* bHandle, BOOL value);
+{
+  bHandle->ihandle.«var.name» = value;
+}
+
+  «ENDIF-»
+«ENDFOREACH-»
+
+«FOREACH getFloatVariables() AS var -»
+  «IF var.ioType.toString() == "output" -»
+float «basename()»_getVar_«var.name»(«baseHandle()»* bHandle);
+{
+  return(bHandle->ihandle.«var.name»);
+}
+
+  «ENDIF-»
+  «IF var.ioType.toString() == "input" -»  
+void «basename()»_setVar_«var.name»(«baseHandle()»* bHandle, float value);
+{
+  bHandle->ihandle.«var.name» = value;
+}
+
+  «ENDIF-»
+«ENDFOREACH-»
+
+«FOREACH getSignalEvents() AS ev -»
+  «IF ev.ioType.toString() == "output" -»
+BOOL «basename()»_getTrigger_«ev.name»(«baseHandle()»* bHandle)
+{
+  return(bHandle->ihandle.trigger[«ev.name»]);
+}
+
+  «ENDIF-»
+  «IF ev.ioType.toString() == "input" -»
+void «basename()»_raiseTrigger_«ev.name»(«baseHandle()»* bHandle)
+{
+  bHandle->ihandle.trigger[«ev.name»] = TRUE;
+}
+  «ENDIF-»
+«ENDFOREACH»
+
+«ENDFILE»
+
+
+«FILE baseInterface().toFirstLower()+".h"»
+#ifndef «baseInterface().toUpperCase()»_H
+#define «baseInterface().toUpperCase()»_H
+
+#include "definitions.h"
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+typedef enum {
+
+  /* Signals defined by editor */
+  «FOREACH getSignalEvents() AS ev -»
+  «ev.name»,
+  «ENDFOREACH-»
+  
+  /* time trigger signals */
+  «FOREACH transition AS tr -»  
+  «IF tr.isTimeTriggered() -»
+  «tr.timeTriggerName()»,
+  «ENDIF -»
+  «ENDFOREACH -»
+  
+  «triggerEnumMax()»
+} «triggerEnumType()»;
+
+typedef struct {
+
+  «triggerEnumType()» trigger[«triggerEnumMax()»];
+
+  «IF getIntVariables().size > 0 -»
+  «FOREACH getIntVariables() AS var -»
+  int32 «var.name»;
+  «ENDFOREACH-»
+  «ELSE -»
+  /* There is no integer variable */
+  «ENDIF -»
+
+  «IF getBoolVariables().size > 0 -»
+  «FOREACH getBoolVariables() AS var -»
+  BOOL «var.name»;
+  «ENDFOREACH-»
+  «ELSE -»
+  /* There is no boolean variable */
+  «ENDIF -»
+
+  «IF getFloatVariables().size > 0 -»
+  «FOREACH getFloatVariables() AS var -»
+  float «var.name»;
+  «ENDFOREACH-»
+  «ELSE -»
+  /* There is no floating point variable */
+  «ENDIF -»
+
+} «baseIfaceHandle()»;
+
+extern void «baseInterface()»_initInterfaceHandle(«baseIfaceHandle()»* handle);
+extern void «baseInterface()»_raiseTrigger(«baseIfaceHandle()»* handle, «triggerEnumType()» type);
+extern void «baseInterface()»_resetTrigger(«baseIfaceHandle()»* handle, «triggerEnumType()» type);
+extern BOOL «baseInterface()»_isTriggerRaised(«baseIfaceHandle()»* handle, «triggerEnumType()» type);
+
+#ifdef __cplusplus
+ }
+#endif
+
+#endif
+«ENDFILE»
+
+«FILE baseInterface().toFirstLower()+".c" -»
+#include "«baseInterface().toFirstLower()».h"
+
+void «baseInterface()»_initInterfaceHandle(«baseIfaceHandle()»* handle)
+{
+  uint8 i;
+
+  /* Clean triggers */  
+  for(i = 0; i<«triggerEnumMax()»; ++i)
+    handle->trigger[i] = FALSE;
+  
+  /* Clean integer variables */
+  «FOREACH getIntVariables() AS var -»
+  handle->«var.name» = 0;
+  «ENDFOREACH-»
+
+  /* Clean boolean variables */
+  «FOREACH getBoolVariables() AS var -»
+  handle->«var.name» = FALSE;
+  «ENDFOREACH-»
+
+  /* Clean float variables */
+  «FOREACH getFloatVariables() AS var -»
+  handle->«var.name» = 0.0;
+  «ENDFOREACH-»
+  
+}
+
+void «baseInterface()»_raiseTrigger(«baseIfaceHandle()»* handle, «triggerEnumType()» type)
+{
+  handle->trigger[type] = TRUE;
+}
+
+BOOL «baseInterface()»_isTriggerRaised(«baseIfaceHandle()»* handle, «triggerEnumType()» type)
+{
+  return(handle->trigger[type]);
+}
+
+void «baseInterface()»_resetTrigger(«baseIfaceHandle()»* handle, «triggerEnumType()» type)
+{
+  handle->trigger[type] = FALSE;
+}
+ 
+
+«ENDFILE»
+
+«ENDDEFINE»

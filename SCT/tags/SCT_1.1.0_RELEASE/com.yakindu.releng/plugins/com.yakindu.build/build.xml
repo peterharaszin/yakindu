@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<!-- ====================================================================== 
+     16.12.2008 10:18:09                                                        
+
+     Yakindu Statemachine    
+     Automatischer Build der Yakindu Statemachine
+                   
+     weise                                                                
+     ====================================================================== -->
+<project name="Yakindu Statemachine" default="runBuild" basedir=".">
+	<property environment="env" />
+
+	<description>
+            Automatischer Build der Yakindu Statemachine
+    </description>
+
+	<tstamp>
+		<format property="forceContextQualifier" pattern="'v'yyyyMMdd-HHmm"/>
+	</tstamp>
+	<property file="user.properties"/>
+	<property file="server.properties"/>
+	<property file="pde-build/build.properties"/>
+	
+	<target name="clean" depends="clean-tests">
+	</target>
+
+	<target name="clean-tests">
+		<delete dir="${buildDirectory}/tests" />
+	</target>
+
+    <!-- ================================= 
+          target: default              
+         ================================= -->
+    <!--" depends="init,generateWithOAW,main,test,updateSite" -->
+    <target name="runBuild" description="Automatischer Build der Yakindu Statemachine">
+    	<echo message="Repository Location: ${repository}"/>
+    	<echo message="baseLocation: ${baseLocation}"/>
+    	<echo message="workspace: ${workspace.home}"/>
+    	<echo message="buildDirectory: ${buildDirectory}"/>
+    	
+    	<ant antfile="${eclipse.pdebuild.scripts}/build.xml" target="main" inheritall="true"/>
+    	<!-- save update site -->
+		<ant antfile="build/build.xml" dir="${buildDirectory}/plugins/com.yakindu.updatesite" target="create_update_site" inheritall="true"/>
+		<ant antfile="${eclipse.pdebuild.scripts}/build.xml" target="main" inheritall="true">
+    		<property name="topLevelElementId" value="com.yakindu.tests.feature"/>
+    	</ant>
+
+    	<ant antfile="test.xml" dir="test" target="all" inheritall="true"/>
+    	<ant antfile="check.xml" dir="codestyle" target="all" inheritall="true"/>
+		<ant antfile="build/build.xml" dir="${buildDirectory}/plugins/com.yakindu.updatesite" target="copy_update_site" inheritall="true">
+			<property name="lib.dir" location="." />
+		</ant>
+    		
+    </target>
+	
+</project>

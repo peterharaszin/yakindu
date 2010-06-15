@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Simulation Views
+Bundle-SymbolicName: com.yakindu.statechart.simulation.ui.views;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-Activator: com.yakindu.simulation.view.statemachine.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.mda4e.simulation.core,
+ org.mda4e.simulation.statemachine;bundle-version="1.1.0",
+ org.mda4e.statemachine.model;bundle-version="1.1.0",
+ org.eclipse.help,
+ com.yakindu.statechart.simulation.engine;bundle-version="1.1.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.apache.log4j
+Bundle-Vendor: YAKINDU.org

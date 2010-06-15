@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Simulation Launch Tests
+Bundle-SymbolicName: com.yakindu.statechart.simulation.ui.launch.test
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: YAKINDU.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

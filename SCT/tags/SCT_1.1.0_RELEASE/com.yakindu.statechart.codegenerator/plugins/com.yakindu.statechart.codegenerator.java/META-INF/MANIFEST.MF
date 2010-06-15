@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Java Code Generator
+Bundle-SymbolicName: com.yakindu.statechart.codegenerator.java;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Require-Bundle: com.yakindu.statechart.model;bundle-version="1.1.0";visibility:=reexport,
+ org.eclipse.xtend;bundle-version="0.7.1",
+ org.eclipse.xpand;bundle-version="0.7.1",
+ org.eclipse.emf.mwe.core;bundle-version="0.7.1",
+ org.eclipse.emf.mwe.utils;bundle-version="0.7.1",
+ org.eclipse.jface.text;bundle-version="3.5.0"
+Export-Package: com.yakindu.statechart.codegenerator.java.extensions,
+ com.yakindu.statechart.codegenerator.java.templates,
+ com.yakindu.statechart.codegenerator.java.templates.advices,
+ com.yakindu.statechart.codegenerator.java.templates.generic,
+ com.yakindu.statechart.codegenerator.java.templates.generic.advices,
+ com.yakindu.statechart.codegenerator.java.workflow
+Bundle-Vendor: YAKINDU.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

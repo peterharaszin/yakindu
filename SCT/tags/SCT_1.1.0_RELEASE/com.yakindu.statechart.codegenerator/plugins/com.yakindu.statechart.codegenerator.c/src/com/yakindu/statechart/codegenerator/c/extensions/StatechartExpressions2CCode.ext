@@ -1,0 +1,141 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+import statechartexpressions;
+  
+
+// Expression Language
+String toCCode(Statement statement) : 
+	null; //polymorphic placeholder (abstract rule)
+
+String toCCode(ProcedureCall procedureCall) : 
+	procedureCall.procedure.identifier + "();";
+
+String toCCode(VariableAssignment variableAssignment) : 
+	"var(" + variableAssignment.variableReference.variable.identifier + ") = " + getAssignmentValue(variableAssignment) + ";";
+	
+private String getAssignmentValue(VariableAssignment variableAssignment) : 
+	switch(variableAssignment.operator) {
+		case(AssignmentOperator::assign) : variableAssignment.value.toCCode()
+		case(AssignmentOperator::multAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " * " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::divAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " / " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::modAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " % " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::addAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " + " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::subAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " - " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::leftShiftAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " << " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::rightShiftAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " >> " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::andAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " & " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::xorAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " ^ " + "(" + variableAssignment.value.toCCode() + ")"
+		case(AssignmentOperator::orAssign) : "var(" + variableAssignment.variableReference.variable.identifier + ")" + " | " + "(" + variableAssignment.value.toCCode() + ")"
+		default : ""
+	};
+
+String toCCode(EventRaising eventRaising) : 
+  	"send(" + eventRaising.event.identifier + ");";
+
+String toCCode(ConditionalExpression expression) : 
+    expression.operand1.toCCode() 
+    + (expression.operand2 != null ? "?" + expression.operand2.toCCode() + ":" + expression.operand3.toCCode() : "");
+
+String toCCode(BooleanAndExpression expression) :
+  	expression.operand1.toCCode() + (expression.operand2 != null ? "&&" + expression.operand2.toCCode() : "");
+  	
+String toCCode(BooleanOrExpression expression) :
+  	expression.operand1.toCCode() + (expression.operand2 != null ? "||" + expression.operand2.toCCode() : "");
+	
+String toCCode(BitwiseXorExpression expression) :
+ 	expression.operand1.toCCode() + (expression.operand2 != null ? "^" + expression.operand2.toCCode() : "");
+
+String toCCode(BitwiseOrExpression expression) :
+ 	expression.operand1.toCCode() + (expression.operand2 != null ? "|" + expression.operand2.toCCode() : "");
+  
+String toCCode(BitwiseAndExpression expression) :
+ 	expression.operand1.toCCode() + (expression.operand2 != null ? "&" + expression.operand2.toCCode() : "");
+  
+String toCCode(EqualityExpression expression) : 
+    expression.operand1.toCCode() + (expression.operand2 != null ? expression.operator.toCCode() + expression.operand2.toCCode() : "");
+    
+String toCCode(EqualityOperator operator) : 
+    switch(operator) {
+    	case(EqualityOperator::equals) : "=="
+    	case(EqualityOperator::notEquals) : "!="
+    	default : ""
+    };
+    
+String toCCode(RelationalExpression expression) : 
+   expression.operand1.toCCode() + (expression.operand2 != null ? expression.operator.toCCode() + expression.operand2.toCCode() : "");
+   
+String toCCode(RelationalOperator operator) : 
+   	switch(operator) {
+   		case(RelationalOperator::smaller) : "<"
+   		case(RelationalOperator::greater) : ">"
+   		case(RelationalOperator::smallerEqual) : "<="
+   		case(RelationalOperator::greaterEqual) : ">="
+   		default : ""
+   	};
+  
+String toCCode(ShiftExpression expression) : 
+	expression.operand1.toCCode() + (expression.operand2 != null ? expression.operator.toCCode() + expression.operand2.toCCode() : "");
+  	
+	
+String toCCode(ShiftOperator operator) : 
+    switch(operator) {
+    	case(ShiftOperator::left) : "<<"
+    	case(ShiftOperator::right) : ">>"
+    	default : ""
+    };
+	
+String toCCode(AdditiveExpression expression) : 
+    expression.operand1.toCCode() + (expression.operand2 != null ? expression.operator.toCCode() + expression.operand2.toCCode() : "");
+  	
+    
+String toCCode(AdditiveOperator operator) : 
+    switch(operator) {
+    	case(AdditiveOperator::plus) : "+"
+    	case(AdditiveOperator::minus) : "-"
+    	default : ""
+    };
+    
+String toCCode(MultiplicativeExpression expression ) : 
+  expression.operand1.toCCode() + (expression.operand2 != null ? expression.operator.toCCode() + expression.operand2.toCCode() : "");
+  	
+  
+ String toCCode(MultiplicativeOperator operator) :
+  	switch(operator) {
+  		case(MultiplicativeOperator::mul) : "*"
+  		case(MultiplicativeOperator::div) : "/"
+  		case(MultiplicativeOperator::mod) : "%"
+  		default : ""
+  	};
+  
+String toCCode(UnaryExpression expression) : 
+  	(expression.operator != UnaryOperator::positive ? expression.operator.toCCode() : "") + expression.operand.toCCode();
+  	
+String toCCode(UnaryOperator operator) : 
+	switch(operator) {
+		case(UnaryOperator::positive) : "+"
+		case(UnaryOperator::negative) : "-"
+		case(UnaryOperator::complement) : "~"
+		case(UnaryOperator::not) : "!"
+		default : ""
+	};
+	
+String toCCode(PrimaryExpression primaryExpression) : 
+   	null; // polymorphic placeholder (abstract rule)
+	
+String toCCode(LiteralValue literalValue) :
+	literalValue.value.toString();
+	
+String toCCode(NestedExpression expression) : 
+    "(" + expression.toCCode() + ")";
+    
+String toCCode(VariableReference variableReference) : 
+    "var(" + variableReference.variable.identifier + ")";

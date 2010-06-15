@@ -1,0 +1,7 @@
+# Tracing options for the org.mda4e.statemachine.diagram plug-in
+
+# Common issues
+org.mda4e.statemachine.diagram/debug=false
+
+# Visual IDs
+org.mda4e.statemachine.diagram/debug/visualID=false

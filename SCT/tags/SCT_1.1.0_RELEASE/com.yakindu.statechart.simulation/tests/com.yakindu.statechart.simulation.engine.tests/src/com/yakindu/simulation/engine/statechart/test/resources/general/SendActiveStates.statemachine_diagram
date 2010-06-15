@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" xmi:id="_xuDtwQKBEd6bkphStdqDhg" type="Statemachine" name="SendActiveStates.statemachine_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_ygrdgAKBEd6bkphStdqDhg" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_yhD4AAKBEd6bkphStdqDhg" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_yhJ-oAKBEd6bkphStdqDhg" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_zd_aUAKBEd6bkphStdqDhg" type="3003">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_zd_aUQKBEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="SendActiveStates.statemachine#//@region.0/@state.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_zd_aUgKBEd6bkphStdqDhg" x="33" y="36"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_06WDkAKBEd6bkphStdqDhg" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_06cKMAKBEd6bkphStdqDhg" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_06oXcAKBEd6bkphStdqDhg" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_06oXcQKBEd6bkphStdqDhg" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_06ueEAKBEd6bkphStdqDhg" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_066rUAKBEd6bkphStdqDhg" type="7002">
+          <children xmi:type="notation:Node" xmi:id="_3NzT8AKBEd6bkphStdqDhg" type="3002">
+            <children xmi:type="notation:Node" xmi:id="_3N5akAKBEd6bkphStdqDhg" type="5001"/>
+            <children xmi:type="notation:Node" xmi:id="_3N_hMAKBEd6bkphStdqDhg" type="7003">
+              <children xmi:type="notation:Node" xmi:id="_4I64YAKBEd6bkphStdqDhg" type="3003">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_4I64YQKBEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="SendActiveStates.statemachine#//@region.0/@state.1/@region.0/@state.0"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_4I64YgKBEd6bkphStdqDhg" x="34" y="33"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_5y1cgAKBEd6bkphStdqDhg" type="3001">
+                <children xmi:type="notation:Node" xmi:id="_5y7jIAKBEd6bkphStdqDhg" type="5002"/>
+                <children xmi:type="notation:Node" xmi:id="_5y7jIQKBEd6bkphStdqDhg" type="5003"/>
+                <children xmi:type="notation:Node" xmi:id="_5y7jIgKBEd6bkphStdqDhg" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_5y7jIwKBEd6bkphStdqDhg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_5y7jJAKBEd6bkphStdqDhg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_5y7jJQKBEd6bkphStdqDhg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_5y7jJgKBEd6bkphStdqDhg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_5y1cgQKBEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:State" href="SendActiveStates.statemachine#//@region.0/@state.1/@region.0/@state.1"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5y1cggKBEd6bkphStdqDhg" x="119" y="31" width="139" height="96"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_8CkqgAKBEd6bkphStdqDhg" type="3001">
+                <children xmi:type="notation:Node" xmi:id="_8CqxIAKBEd6bkphStdqDhg" type="5002"/>
+                <children xmi:type="notation:Node" xmi:id="_8CqxIQKBEd6bkphStdqDhg" type="5003"/>
+                <children xmi:type="notation:Node" xmi:id="_8CqxIgKBEd6bkphStdqDhg" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_8CqxIwKBEd6bkphStdqDhg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_8CqxJAKBEd6bkphStdqDhg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_8CqxJQKBEd6bkphStdqDhg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_8CqxJgKBEd6bkphStdqDhg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_8CkqgQKBEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:State" href="SendActiveStates.statemachine#//@region.0/@state.1/@region.0/@state.2"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8CkqggKBEd6bkphStdqDhg" x="344" y="33" width="148" height="92"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_AUYd8AKCEd6bkphStdqDhg" type="3001">
+                <children xmi:type="notation:Node" xmi:id="_AUekkAKCEd6bkphStdqDhg" type="5002"/>
+                <children xmi:type="notation:Node" xmi:id="_AUekkQKCEd6bkphStdqDhg" type="5003"/>
+                <children xmi:type="notation:Node" xmi:id="_AUekkgKCEd6bkphStdqDhg" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_AUekkwKCEd6bkphStdqDhg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_AUeklAKCEd6bkphStdqDhg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_AUeklQKCEd6bkphStdqDhg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_AUeklgKCEd6bkphStdqDhg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_AUYd8QKCEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:State" href="SendActiveStates.statemachine#//@region.0/@state.1/@region.0/@state.3"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_AUYd8gKCEd6bkphStdqDhg" x="347" y="159" width="145" height="87"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_DmfH4AKCEd6bkphStdqDhg" type="3004">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_DmfH4QKCEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:FinalState" href="SendActiveStates.statemachine#//@region.0/@state.1/@region.0/@state.4"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DmfH4gKCEd6bkphStdqDhg" x="194" y="189"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_3N_hMQKBEd6bkphStdqDhg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_3N_hMgKBEd6bkphStdqDhg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_3NzT8QKBEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+            <element xmi:type="org.mda4e.statemachine.model:Region" href="SendActiveStates.statemachine#//@region.0/@state.1/@region.0"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3NzT8gKBEd6bkphStdqDhg" x="-3" width="562" height="425"/>
+          </children>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_066rUQKBEd6bkphStdqDhg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_066rUgKBEd6bkphStdqDhg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_06WDkQKBEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="SendActiveStates.statemachine#//@region.0/@state.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_06WDkgKBEd6bkphStdqDhg" x="164" y="34" width="577" height="528"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_eh3wQQKCEd6qE9ZlHd4y8w" type="3004">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_eh3wQgKCEd6qE9ZlHd4y8w" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:FinalState" href="SendActiveStates.statemachine#//@region.0/@state.2"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eh3wQwKCEd6qE9ZlHd4y8w" x="36" y="205"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_yhJ-oQKBEd6bkphStdqDhg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_yhJ-ogKBEd6bkphStdqDhg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_ygrdgQKBEd6bkphStdqDhg" fontHeight="8" fillColor="0" lineColor="0"/>
+    <element xmi:type="org.mda4e.statemachine.model:Region" href="SendActiveStates.statemachine#//@region.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ygrdggKBEd6bkphStdqDhg" x="6" y="-3" width="771" height="627"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_xuDtwgKBEd6bkphStdqDhg"/>
+  <element xmi:type="org.mda4e.statemachine.model:Statechart" href="SendActiveStates.statemachine#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_61HY4AKBEd6bkphStdqDhg" type="4001" source="_zd_aUAKBEd6bkphStdqDhg" target="_06WDkAKBEd6bkphStdqDhg">
+    <children xmi:type="notation:Node" xmi:id="_61TmIAKBEd6bkphStdqDhg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_61TmIQKBEd6bkphStdqDhg" x="2" y="-14"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_61fzYAKBEd6bkphStdqDhg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_61fzYQKBEd6bkphStdqDhg" x="33" y="20"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_61HY4QKBEd6bkphStdqDhg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_61HY4gKBEd6bkphStdqDhg" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="SendActiveStates.statemachine#//@transition.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_61HY4wKBEd6bkphStdqDhg" points="[20, 2, -156, -23]$[127, -22, -49, -47]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_61l6AAKBEd6bkphStdqDhg" id="(0.112651646,0.08901515)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7NeOgAKBEd6bkphStdqDhg" type="4001" source="_4I64YAKBEd6bkphStdqDhg" target="_5y1cgAKBEd6bkphStdqDhg">
+    <children xmi:type="notation:Node" xmi:id="_7NeOhAKBEd6bkphStdqDhg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7NeOhQKBEd6bkphStdqDhg" x="1" y="-14"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7NeOhgKBEd6bkphStdqDhg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7NeOhwKBEd6bkphStdqDhg" x="19" y="20"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7NeOgQKBEd6bkphStdqDhg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7NeOggKBEd6bkphStdqDhg" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="SendActiveStates.statemachine#//@transition.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7NeOgwKBEd6bkphStdqDhg" points="[20, 5, -114, -21]$[65, 27, -69, 1]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_9TRdYAKBEd6bkphStdqDhg" type="4001" source="_5y1cgAKBEd6bkphStdqDhg" target="_8CkqgAKBEd6bkphStdqDhg">
+    <children xmi:type="notation:Node" xmi:id="_9TRdZAKBEd6bkphStdqDhg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9TRdZQKBEd6bkphStdqDhg" x="-2" y="-17"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_9TRdZgKBEd6bkphStdqDhg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9TRdZwKBEd6bkphStdqDhg" x="29" y="14"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_9TRdYQKBEd6bkphStdqDhg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9TRdYgKBEd6bkphStdqDhg" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="SendActiveStates.statemachine#//@transition.2"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9TRdYwKBEd6bkphStdqDhg" points="[70, 2, -160, 2]$[164, 46, -66, 46]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Bakp8AKCEd6bkphStdqDhg" type="4001" source="_8CkqgAKBEd6bkphStdqDhg" target="_AUYd8AKCEd6bkphStdqDhg">
+    <children xmi:type="notation:Node" xmi:id="_Bakp9AKCEd6bkphStdqDhg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Bakp9QKCEd6bkphStdqDhg" x="-12" y="-42"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_Bakp9gKCEd6bkphStdqDhg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Bakp9wKCEd6bkphStdqDhg" x="19" y="21"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Bakp8QKCEd6bkphStdqDhg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Bakp8gKCEd6bkphStdqDhg" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="SendActiveStates.statemachine#//@transition.3"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Bakp8wKCEd6bkphStdqDhg" points="[-4, 16, 13, -52]$[-47, 50, -30, -18]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Bakp-AKCEd6bkphStdqDhg" id="(0.33783785,0.8369565)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Bakp-QKCEd6bkphStdqDhg" id="(0.20689656,0.20689656)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_EI-J4AKCEd6bkphStdqDhg" type="4001" source="_AUYd8AKCEd6bkphStdqDhg" target="_DmfH4AKCEd6bkphStdqDhg">
+    <children xmi:type="notation:Node" xmi:id="_EI-J5AKCEd6bkphStdqDhg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_EI-J5QKCEd6bkphStdqDhg" x="-35" y="-15"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_EI-J5gKCEd6bkphStdqDhg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_EI-J5wKCEd6bkphStdqDhg" x="4" y="16"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_EI-J4QKCEd6bkphStdqDhg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_EI-J4gKCEd6bkphStdqDhg" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="SendActiveStates.statemachine#//@transition.4"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EI-J4wKCEd6bkphStdqDhg" points="[-27, 3, 143, -15]$[-190, 19, -20, 1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EJEQgAKCEd6bkphStdqDhg" id="(0.19310345,0.50574714)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_e65UQAKCEd6qE9ZlHd4y8w" type="4001" source="_06WDkAKBEd6bkphStdqDhg" target="_eh3wQQKCEd6qE9ZlHd4y8w">
+    <children xmi:type="notation:Node" xmi:id="_e6_a4AKCEd6qE9ZlHd4y8w" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_e6_a4QKCEd6qE9ZlHd4y8w" x="12" y="38"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_e6_a4gKCEd6qE9ZlHd4y8w" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_e6_a4wKCEd6qE9ZlHd4y8w" x="38" y="-22"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_e65UQQKCEd6qE9ZlHd4y8w" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_e65UQgKCEd6qE9ZlHd4y8w" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="SendActiveStates.statemachine#//@transition.5"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_e65UQwKCEd6qE9ZlHd4y8w" points="[-44, 147, 69, -213]$[-93, 380, 20, 20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_e7LoIAKCEd6qE9ZlHd4y8w" id="(0.0779896,0.09848485)"/>
+  </edges>
+</notation:Diagram>

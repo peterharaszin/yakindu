@@ -1,0 +1,115 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+  «FILE getLibraryPackagePath() + "Node.java"»
+package «getLibraryPackage()»;
+
+«EXPAND Imports»
+
+/**
+ * Representation of a node (which is the abstract super concept of State and
+ * Pseudostate). A node may have incoming and outgoing transitions. As the
+ * statechart may only reside "in" states, pseudostates will normally directly
+ * trigger an outgoing transition when being entered.
+ */
+public abstract class Node {
+	«EXPAND NodeClassBody»
+}
+«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.ArrayList;
+import java.util.List;
+«ENDDEFINE»
+
+«DEFINE NodeClassBody FOR Object»
+	private String id;
+	protected Region owningRegion;
+
+	«EXPAND ListVariable»
+
+	
+	«EXPAND Constructor»
+
+	
+	public String getId() {
+		return id;
+	}
+	
+	protected Region getOwningRegion() {
+		return owningRegion;
+	}
+
+   	«EXPAND getIncomingTransitionsMethod»
+   	
+   	«EXPAND getOutgoingTransitionsMethod»
+	
+	«EXPAND getEnabledOutgoingTransitionMethod»
+
+	protected abstract void enter();
+
+	protected abstract void leave();
+
+«ENDDEFINE»
+
+
+«DEFINE ListVariable FOR Object»
+	protected List<Transition> incomingTransitions = new ArrayList<Transition>();
+	protected List<Transition> outgoingTransitions = new ArrayList<Transition>();
+«ENDDEFINE»
+
+«DEFINE Constructor FOR Object»
+	public Node(String id, Region owner) {
+		this.id = id;
+		this.owningRegion = owner;
+		this.owningRegion.getNodes().add(this);
+	}
+«ENDDEFINE»
+
+«DEFINE getEnabledOutgoingTransitionMethod FOR Object»
+	protected Transition getEnabledOutgoingTransitionOfHighestPriority() {
+		«EXPAND getEnabledOutgoingTransitionMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getEnabledOutgoingTransitionMethodBody FOR Object»
+		for (Transition transition : outgoingTransitions ) {
+			if (transition.isEnabled()) {
+				return transition;
+			}
+		}
+		return null;
+«ENDDEFINE»
+
+«DEFINE getIncomingTransitionsMethod FOR Object»
+ 	protected List<Transition> getIncomingTransitions() {
+		«EXPAND getIncomingTransitionsMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getIncomingTransitionsMethodBody FOR Object»
+	return incomingTransitions;
+«ENDDEFINE»
+
+«DEFINE getOutgoingTransitionsMethod FOR Object»
+	protected List<Transition> getOutgoingTransitions() {
+		«EXPAND getOutgoingTransitionsMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getOutgoingTransitionsMethodBody FOR Object»
+	return outgoingTransitions;
+«ENDDEFINE»

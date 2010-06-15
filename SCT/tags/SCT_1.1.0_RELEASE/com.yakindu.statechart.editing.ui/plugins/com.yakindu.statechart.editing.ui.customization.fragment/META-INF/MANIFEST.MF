@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Editing Fragment
+Bundle-SymbolicName: com.yakindu.statechart.editing.ui.customization.fragment
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: YAKINDU.org
+Fragment-Host: org.mda4e.statemachine.contribution.diagram
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

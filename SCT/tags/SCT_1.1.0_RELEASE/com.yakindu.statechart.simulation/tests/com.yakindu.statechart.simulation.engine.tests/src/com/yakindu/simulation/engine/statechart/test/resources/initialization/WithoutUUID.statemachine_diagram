@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" xmi:id="_c-j_sfO2Ed223cJtpdevIw" type="Statemachine" name="WithoutUUID.statemachine_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_ohT3MPwnEd2-NaDT2lNxWA" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_ohT3M_wnEd2-NaDT2lNxWA" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_ohT3NPwnEd2-NaDT2lNxWA" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_otcOsPwnEd2-NaDT2lNxWA" type="3003">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_otcOsfwnEd2-NaDT2lNxWA" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="WithoutUUID.statemachine#//@region.0/@state.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_otcOsvwnEd2-NaDT2lNxWA" x="66" y="84"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ohT3NfwnEd2-NaDT2lNxWA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ohT3NvwnEd2-NaDT2lNxWA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_ohT3MfwnEd2-NaDT2lNxWA" fontHeight="8" fillColor="0" lineColor="0"/>
+    <element xmi:type="org.mda4e.statemachine.model:Region" href="WithoutUUID.statemachine#//@region.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ohT3MvwnEd2-NaDT2lNxWA" x="70" y="103" width="294" height="270"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_c-j_svO2Ed223cJtpdevIw"/>
+  <element xmi:type="org.mda4e.statemachine.model:Statechart" href="WithoutUUID.statemachine#/"/>
+</notation:Diagram>

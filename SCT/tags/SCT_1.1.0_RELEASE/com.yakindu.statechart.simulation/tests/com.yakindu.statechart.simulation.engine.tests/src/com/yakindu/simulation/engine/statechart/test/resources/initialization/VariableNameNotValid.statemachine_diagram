@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2009 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" xmi:id="_uFyLkP7IEd2GKeqL8mjoDg" type="Statemachine" name="VariableNameNotValid.statemachine_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_u4T0sP7IEd2GKeqL8mjoDg" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_u4T0s_7IEd2GKeqL8mjoDg" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_u4T0tP7IEd2GKeqL8mjoDg" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_vNUbYP7IEd2GKeqL8mjoDg" type="3003">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_vNUbYf7IEd2GKeqL8mjoDg" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="VariableNameNotValid.statemachine#//@region.0/@state.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vNUbYv7IEd2GKeqL8mjoDg" x="65" y="78"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_vhFr8P7IEd2GKeqL8mjoDg" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_vhFr8_7IEd2GKeqL8mjoDg" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_vhFr9P7IEd2GKeqL8mjoDg" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_vhFr9f7IEd2GKeqL8mjoDg" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_vhFr9v7IEd2GKeqL8mjoDg" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_vhLykP7IEd2GKeqL8mjoDg" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_vhLykf7IEd2GKeqL8mjoDg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_vhLykv7IEd2GKeqL8mjoDg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_vhFr8f7IEd2GKeqL8mjoDg" fontHeight="8" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="VariableNameNotValid.statemachine#//@region.0/@state.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vhFr8v7IEd2GKeqL8mjoDg" x="204" y="61" width="131" height="139"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_u4T0tf7IEd2GKeqL8mjoDg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_u4T0tv7IEd2GKeqL8mjoDg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_u4T0sf7IEd2GKeqL8mjoDg" fontHeight="8" fillColor="0" lineColor="0"/>
+    <element xmi:type="org.mda4e.statemachine.model:Region" href="VariableNameNotValid.statemachine#//@region.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_u4T0sv7IEd2GKeqL8mjoDg" x="4" y="11" width="410" height="359"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_uFyLkf7IEd2GKeqL8mjoDg"/>
+  <element xmi:type="org.mda4e.statemachine.model:Statechart" href="VariableNameNotValid.statemachine#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_wR5d0P7IEd2GKeqL8mjoDg" type="4001" source="_vNUbYP7IEd2GKeqL8mjoDg" target="_vhFr8P7IEd2GKeqL8mjoDg">
+    <children xmi:type="notation:Node" xmi:id="_wR_kc_7IEd2GKeqL8mjoDg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wR_kdP7IEd2GKeqL8mjoDg" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_wR_kdf7IEd2GKeqL8mjoDg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_wR_kdv7IEd2GKeqL8mjoDg" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_wR_kcP7IEd2GKeqL8mjoDg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_wR_kcf7IEd2GKeqL8mjoDg" fontHeight="8"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="VariableNameNotValid.statemachine#//@transition.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_wR_kcv7IEd2GKeqL8mjoDg" points="[20, -1, -141, 3]$[139, -37, -22, -33]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_wSFrEP7IEd2GKeqL8mjoDg" id="(0.32061067,0.23741007)"/>
+  </edges>
+</notation:Diagram>

@@ -1,0 +1,40 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+// Ausgehende Kanten m�ssen auch von unteren Zust�nden betrachtet werden!
+
+import statemachine;
+
+extension com::yakindu::statechart::codegenerator::sps::extensions::Navigation;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Tools;
+extension com::yakindu::statechart::codegenerator::sps::extensions::Transition;
+
+
+String awlDirectory() : 'OFFLINE/';
+
+cached String action2AWL(String this, Statechart s) :
+	JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.action2AWL(java.lang.String, statemachine.Statechart);
+
+cached String booleanExp2AWL(String this, Statechart s) :
+	JAVA com.yakindu.statechart.codegenerator.sps.extensions.Utils.evaluateBool(java.lang.String, statemachine.Statechart);
+
+cached List[State] getStates(Region this) :
+	state.select(e|State.isInstance(e));
+
+cached List[State] getInitialState(Region this) :
+	state.select(e|Pseudostate.isInstance(e) && ((Pseudostate)e).pseudoType=="INITIAL");
+
+cached State initialState(Region this) :
+	state.selectFirst(e|Pseudostate.isInstance(e));
+
+cached String fcCallParameters(boolean enter, boolean exit, boolean reset) :
+"         enter                    := "+enter.toString().toUpperCase()+",
+         exit                     := "+exit.toString().toUpperCase()+",
+         reset                    := "+reset.toString().toUpperCase();

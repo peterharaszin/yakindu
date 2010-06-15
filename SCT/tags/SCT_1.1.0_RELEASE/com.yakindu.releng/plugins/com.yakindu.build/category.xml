@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.yakindu.feature_1.1.0.qualifier.jar" id="com.yakindu.feature" version="1.1.0.qualifier">
+      <category name="YAKINDU 1.1"/>
+   </feature>
+   <feature url="features/com.yakindu.sdk.feature_1.1.0.qualifier.jar" id="com.yakindu.sdk.feature" version="1.1.0.qualifier">
+      <category name="YAKINDU 1.1"/>
+   </feature>
+   <category-def name="YAKINDU 1.1" label="YAKINDU 1.1">
+      <description>
+         The YAKINDU Tools
+      </description>
+   </category-def>
+</site>

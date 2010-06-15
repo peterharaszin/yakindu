@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.yakindu.simulation.view.statemachine"
+            name="Yakindu">
+      </category>
+      <view
+            allowMultiple="true"
+            category="com.yakindu.simulation.view.statemachine"
+            class="com.yakindu.simulation.view.statemachine.presentation.StatemachineView"
+            icon="icons/yakindu_icon.png"
+            id="com.yakindu.simulation.view.statemachine.StatemachineView"
+            name="Yakindu Statemachine View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.mda4e.simulation.controller">
+      <simulationController
+            Class="com.yakindu.simulation.view.statemachine.ViewControllerAdapter"
+            Name="Yakindu View Controller">
+      </simulationController>
+   </extension>
+</plugin>

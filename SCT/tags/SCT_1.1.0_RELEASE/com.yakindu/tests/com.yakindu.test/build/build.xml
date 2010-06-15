@@ -1,0 +1,40 @@
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<project name="org.openarchitectureware.testbench" default="all" basedir="..">
+	<dirname property="this.openarchitectureware.testbench.basedir" file="${ant.file.org.openarchitectureware.testbench}"/>
+	<property file="${this.openarchitectureware.testbench.basedir}/build.properties"/>
+	
+	<import file="${this.openarchitectureware.testbench.basedir}/../../com.yakindu.build/test/ant/test.xml"/>
+
+	<path id="compile.classpath">
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+<!--		<fileset dir="lib" includes="*.jar"/>-->
+		<fileset dir="${eclipse.plugin.dir}" includes="org.openarchitectureware.core.emftools_*.jar"/>
+		<fileset dir="${eclipse.plugin.dir}" includes="org.openarchitectureware.core.expressions_*.jar"/>
+		<fileset dir="${eclipse.plugin.dir}" includes="org.openarchitectureware.core.workflow_*.jar"/>
+		<fileset dir="${eclipse.plugin.dir}" includes="org.openarchitectureware.core.xpand2_*.jar"/>
+		<fileset dir="${eclipse.plugin.dir}" includes="org.eclipse.ui*.jar"/>
+		<fileset dir="${eclipse.plugin.dir}" includes="org.eclipse.core.runtime*.jar"/>
+<!--		<fileset dir="${buildDirectory}/tmp/${archivePrefix}">
+			<include name="plugins/*.jar" />
+			<include name="features/*.jar" />
+		</fileset>-->
+<!--		<fileset dir="${eclipse.plugin.dir}" includes="org.apache.log4j_*/*.jar"/>
+		<fileset dir="${eclipse.plugin.dir}" includes="org.apache.commons.logging_*/*.jar"/>-->
+		<fileset dir="${eclipse.plugin.dir}" includes="org.junit4_*/*.jar"/>
+	</path>
+	
+	<target name="test">
+	<!-- Still no tests in this package, but classes are named like -->
+	</target>
+</project>

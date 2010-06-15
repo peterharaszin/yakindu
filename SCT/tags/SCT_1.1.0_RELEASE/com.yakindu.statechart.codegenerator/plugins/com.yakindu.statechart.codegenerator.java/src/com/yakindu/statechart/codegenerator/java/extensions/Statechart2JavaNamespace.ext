@@ -1,0 +1,34 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+import statechartexpressions;
+
+
+String getLibraryPackage():
+  "com.yakindu.statechart";
+
+String getLibraryPackagePath():
+   getPathFromPackage(getLibraryPackage());
+   
+String getJavaTypeName(DataTypes this):
+  this.toString();
+  
+String getImplPackage(Statechart this):
+	this.name.toLowerCase();
+	
+String getImplPackagePath(Statechart this):
+	getPathFromPackage(getImplPackage(this));
+  
+String getStatechartImplClassName(Statechart this):
+	this.name.toFirstUpper() + "Statechart";
+	
+private String getPathFromPackage(String packageName):
+    packageName.replaceAll("\\.", "/") + "/";

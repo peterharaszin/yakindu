@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" xmi:id="_6TYgcATUEd6LwNdYxuCAZA" type="Statemachine" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_7ajj4ATUEd6LwNdYxuCAZA" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_7apDcATUEd6LwNdYxuCAZA" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_7aqRkATUEd6LwNdYxuCAZA" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_7avKEATUEd6LwNdYxuCAZA" type="3003">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7avKEQTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="TrafficlightWaiting.statemachine#//@region.0/@state.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7avKEgTUEd6LwNdYxuCAZA" x="7" y="11"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_7avxIATUEd6LwNdYxuCAZA" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_7aw_QATUEd6LwNdYxuCAZA" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_7axmUATUEd6LwNdYxuCAZA" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_7ayNYATUEd6LwNdYxuCAZA" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_7ay0cATUEd6LwNdYxuCAZA" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_7azbgATUEd6LwNdYxuCAZA" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_7azbgQTUEd6LwNdYxuCAZA"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_7azbggTUEd6LwNdYxuCAZA"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7avxIQTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7avxIgTUEd6LwNdYxuCAZA" x="76" y="4"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_7a0CkATUEd6LwNdYxuCAZA" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_7a0CkwTUEd6LwNdYxuCAZA" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_7a0poATUEd6LwNdYxuCAZA" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_7a0poQTUEd6LwNdYxuCAZA" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_7a0pogTUEd6LwNdYxuCAZA" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_7a1QsATUEd6LwNdYxuCAZA" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_7a1QsQTUEd6LwNdYxuCAZA"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_7a1QsgTUEd6LwNdYxuCAZA"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7a0CkQTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.2"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7a0CkgTUEd6LwNdYxuCAZA" x="570" y="702"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_7a1QswTUEd6LwNdYxuCAZA" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_7a13wATUEd6LwNdYxuCAZA" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_7a13wQTUEd6LwNdYxuCAZA" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_7a13wgTUEd6LwNdYxuCAZA" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_7a2e0ATUEd6LwNdYxuCAZA" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_7a3F4ATUEd6LwNdYxuCAZA" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_7a3F4QTUEd6LwNdYxuCAZA"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_7a3F4gTUEd6LwNdYxuCAZA"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7a1QtATUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.3"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7a1QtQTUEd6LwNdYxuCAZA" x="10" y="578"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_7a3F4wTUEd6LwNdYxuCAZA" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_7a3F5gTUEd6LwNdYxuCAZA" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_7a3s8ATUEd6LwNdYxuCAZA" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_7a3s8QTUEd6LwNdYxuCAZA" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_7a3s8gTUEd6LwNdYxuCAZA" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_7a3s8wTUEd6LwNdYxuCAZA" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_7a3s9ATUEd6LwNdYxuCAZA"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_7a3s9QTUEd6LwNdYxuCAZA"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7a3F5ATUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.4"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7a3F5QTUEd6LwNdYxuCAZA" x="56" y="420"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_7a4UAATUEd6LwNdYxuCAZA" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_7a4UAwTUEd6LwNdYxuCAZA" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_7a47EATUEd6LwNdYxuCAZA" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_7a47EQTUEd6LwNdYxuCAZA" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_7a47EgTUEd6LwNdYxuCAZA" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_7a5iIATUEd6LwNdYxuCAZA" type="7002">
+          <children xmi:type="notation:Node" xmi:id="_7bYDQATUEd6LwNdYxuCAZA" type="3002">
+            <children xmi:type="notation:Node" xmi:id="_7bZRYATUEd6LwNdYxuCAZA" type="5001"/>
+            <children xmi:type="notation:Node" xmi:id="_7bZ4cATUEd6LwNdYxuCAZA" type="7003">
+              <children xmi:type="notation:Node" xmi:id="_7bcUsATUEd6LwNdYxuCAZA" type="3001">
+                <children xmi:type="notation:Node" xmi:id="_7bcUswTUEd6LwNdYxuCAZA" type="5002"/>
+                <children xmi:type="notation:Node" xmi:id="_7bc7wATUEd6LwNdYxuCAZA" type="5003"/>
+                <children xmi:type="notation:Node" xmi:id="_7bc7wQTUEd6LwNdYxuCAZA" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_7bc7wgTUEd6LwNdYxuCAZA" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_7bc7wwTUEd6LwNdYxuCAZA" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_7bc7xATUEd6LwNdYxuCAZA"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_7bc7xQTUEd6LwNdYxuCAZA"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_7bcUsQTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.0"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7bcUsgTUEd6LwNdYxuCAZA" x="89"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_7bdi0ATUEd6LwNdYxuCAZA" type="3001">
+                <children xmi:type="notation:Node" xmi:id="_7beJ4ATUEd6LwNdYxuCAZA" type="5002"/>
+                <children xmi:type="notation:Node" xmi:id="_7beJ4QTUEd6LwNdYxuCAZA" type="5003"/>
+                <children xmi:type="notation:Node" xmi:id="_7bew8ATUEd6LwNdYxuCAZA" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_7bew8QTUEd6LwNdYxuCAZA" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_7bew8gTUEd6LwNdYxuCAZA" type="7002">
+                  <children xmi:type="notation:Node" xmi:id="_em5DcA8VEd6I_LTt7C9nXw" type="3002">
+                    <children xmi:type="notation:Node" xmi:id="_em5qgA8VEd6I_LTt7C9nXw" type="5001"/>
+                    <children xmi:type="notation:Node" xmi:id="_em6RkA8VEd6I_LTt7C9nXw" type="7003">
+                      <children xmi:type="notation:Node" xmi:id="_tmaWwA8VEd6I_LTt7C9nXw" type="3001">
+                        <children xmi:type="notation:Node" xmi:id="_tmaWww8VEd6I_LTt7C9nXw" type="5002"/>
+                        <children xmi:type="notation:Node" xmi:id="_tma90A8VEd6I_LTt7C9nXw" type="5003"/>
+                        <children xmi:type="notation:Node" xmi:id="_tma90Q8VEd6I_LTt7C9nXw" type="5004"/>
+                        <children xmi:type="notation:Node" xmi:id="_tmbk4A8VEd6I_LTt7C9nXw" type="5005"/>
+                        <children xmi:type="notation:Node" xmi:id="_tmbk4Q8VEd6I_LTt7C9nXw" type="7002">
+                          <styles xmi:type="notation:SortingStyle" xmi:id="_tmbk4g8VEd6I_LTt7C9nXw"/>
+                          <styles xmi:type="notation:FilteringStyle" xmi:id="_tmbk4w8VEd6I_LTt7C9nXw"/>
+                        </children>
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="_tmaWwQ8VEd6I_LTt7C9nXw" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.1/@region.0/@state.0"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_tmaWwg8VEd6I_LTt7C9nXw" x="74" y="5" width="149" height="104"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="_xUOsUA8VEd6I_LTt7C9nXw" type="3001">
+                        <children xmi:type="notation:Node" xmi:id="_xUOsUw8VEd6I_LTt7C9nXw" type="5002"/>
+                        <children xmi:type="notation:Node" xmi:id="_xUOsVA8VEd6I_LTt7C9nXw" type="5003"/>
+                        <children xmi:type="notation:Node" xmi:id="_xUOsVQ8VEd6I_LTt7C9nXw" type="5004"/>
+                        <children xmi:type="notation:Node" xmi:id="_xUOsVg8VEd6I_LTt7C9nXw" type="5005"/>
+                        <children xmi:type="notation:Node" xmi:id="_xUPTYA8VEd6I_LTt7C9nXw" type="7002">
+                          <styles xmi:type="notation:SortingStyle" xmi:id="_xUPTYQ8VEd6I_LTt7C9nXw"/>
+                          <styles xmi:type="notation:FilteringStyle" xmi:id="_xUPTYg8VEd6I_LTt7C9nXw"/>
+                        </children>
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="_xUOsUQ8VEd6I_LTt7C9nXw" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.1/@region.0/@state.1"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xUOsUg8VEd6I_LTt7C9nXw" x="351" y="6" width="151" height="104"/>
+                      </children>
+                      <children xmi:type="notation:Node" xmi:id="__yJucA8VEd6I_LTt7C9nXw" type="3003">
+                        <styles xmi:type="notation:ShapeStyle" xmi:id="__yJucQ8VEd6I_LTt7C9nXw" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.1/@region.0/@state.2"/>
+                        <layoutConstraint xmi:type="notation:Bounds" xmi:id="__yJucg8VEd6I_LTt7C9nXw" x="3" y="12"/>
+                      </children>
+                      <styles xmi:type="notation:SortingStyle" xmi:id="_em6RkQ8VEd6I_LTt7C9nXw"/>
+                      <styles xmi:type="notation:FilteringStyle" xmi:id="_em6Rkg8VEd6I_LTt7C9nXw"/>
+                    </children>
+                    <styles xmi:type="notation:ShapeStyle" xmi:id="_em5DcQ8VEd6I_LTt7C9nXw" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                    <element xmi:type="org.mda4e.statemachine.model:Region" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.1/@region.0"/>
+                    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_em5Dcg8VEd6I_LTt7C9nXw" x="-2" y="1" width="635" height="151"/>
+                  </children>
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_7bew8wTUEd6LwNdYxuCAZA"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_7bew9ATUEd6LwNdYxuCAZA"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_7bdi0QTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.1"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7bdi0gTUEd6LwNdYxuCAZA" x="17" y="122" width="493" height="275"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_7bew9QTUEd6LwNdYxuCAZA" type="3003">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_7bew9gTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.2"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7bew9wTUEd6LwNdYxuCAZA" x="1" y="6"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_GjSZ4BIdEd6s0LCNO4IE7g" type="3006">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_GjSZ4RIdEd6s0LCNO4IE7g" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0/@state.3"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GjSZ4hIdEd6s0LCNO4IE7g" x="16" y="84"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_7bZ4cQTUEd6LwNdYxuCAZA"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_7bZ4cgTUEd6LwNdYxuCAZA"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_7bYDQQTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+            <element xmi:type="org.mda4e.statemachine.model:Region" href="TrafficlightWaiting.statemachine#//@region.0/@state.5/@region.0"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7bYDQgTUEd6LwNdYxuCAZA" width="544" height="448"/>
+          </children>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_7a5iIQTUEd6LwNdYxuCAZA"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_7a5iIgTUEd6LwNdYxuCAZA"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7a4UAQTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.5"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7a4UAgTUEd6LwNdYxuCAZA" x="611" y="119" width="569" height="560"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_7a5iIwTUEd6LwNdYxuCAZA" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_7a6JMATUEd6LwNdYxuCAZA" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_7a6JMQTUEd6LwNdYxuCAZA" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_7a6JMgTUEd6LwNdYxuCAZA" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_7a6JMwTUEd6LwNdYxuCAZA" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_7bJZwATUEd6LwNdYxuCAZA" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_7bJZwQTUEd6LwNdYxuCAZA"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_7bJZwgTUEd6LwNdYxuCAZA"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7a5iJATUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.6"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7a5iJQTUEd6LwNdYxuCAZA" x="54" y="271"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_7bKA0ATUEd6LwNdYxuCAZA" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_7bLO8ATUEd6LwNdYxuCAZA" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_7bLO8QTUEd6LwNdYxuCAZA" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_7bLO8gTUEd6LwNdYxuCAZA" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_7bL2AATUEd6LwNdYxuCAZA" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_7bL2AQTUEd6LwNdYxuCAZA" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_7bL2AgTUEd6LwNdYxuCAZA"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_7bL2AwTUEd6LwNdYxuCAZA"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_7bKA0QTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="TrafficlightWaiting.statemachine#//@region.0/@state.7"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7bKA0gTUEd6LwNdYxuCAZA" x="17" y="133"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_R7M5wBhyEd6F2-_xBHp2Ag" type="3006">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_R7M5wRhyEd6F2-_xBHp2Ag" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="TrafficlightWaiting.statemachine#//@region.0/@state.8"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_R7M5whhyEd6F2-_xBHp2Ag" x="441" y="441"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_7aqRkQTUEd6LwNdYxuCAZA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_7aqRkgTUEd6LwNdYxuCAZA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_7ajj4QTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13" fillColor="0" lineColor="0"/>
+    <element xmi:type="org.mda4e.statemachine.model:Region" href="TrafficlightWaiting.statemachine#//@region.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_7ajj4gTUEd6LwNdYxuCAZA" width="1210" height="867"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_6TZHgATUEd6LwNdYxuCAZA"/>
+  <element xmi:type="org.mda4e.statemachine.model:Statechart" href="TrafficlightWaiting.statemachine#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_7bvPoATUEd6LwNdYxuCAZA" type="4001" source="_7avKEATUEd6LwNdYxuCAZA" target="_7avxIATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7bxE0ATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7bxE0QTUEd6LwNdYxuCAZA" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7byS8ATUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7byS8QTUEd6LwNdYxuCAZA" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7bvPoQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7bvPogTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7bvPowTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7b2kYATUEd6LwNdYxuCAZA" type="4001" source="_7avxIATUEd6LwNdYxuCAZA" target="_7a4UAATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7b3LcATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7b3LcQTUEd6LwNdYxuCAZA" x="-25" y="33"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7b3LcgTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7b3LcwTUEd6LwNdYxuCAZA" x="16" y="-20"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7b2kYQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7b2kYgTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7b2kYwTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7b6OwATUEd6LwNdYxuCAZA" type="4001" source="_7a0CkATUEd6LwNdYxuCAZA" target="_7a1QswTUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7b610wTUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7b611ATUEd6LwNdYxuCAZA" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7b611QTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7b611gTUEd6LwNdYxuCAZA" x="2" y="17"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7b610ATUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7b610QTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.2"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7b610gTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7b9SEATUEd6LwNdYxuCAZA" type="4001" source="_7a1QswTUEd6LwNdYxuCAZA" target="_7a3F4wTUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7b95IATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7b95IQTUEd6LwNdYxuCAZA" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7b95IgTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7b95IwTUEd6LwNdYxuCAZA" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7b9SEQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7b9SEgTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.3"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7b9SEwTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7cAVYATUEd6LwNdYxuCAZA" type="4001" source="_7a3F4wTUEd6LwNdYxuCAZA" target="_7a5iIwTUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7cAVZATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cAVZQTUEd6LwNdYxuCAZA" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7cAVZgTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cAVZwTUEd6LwNdYxuCAZA" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7cAVYQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7cAVYgTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.4"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7cAVYwTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7cCKkATUEd6LwNdYxuCAZA" type="4001" source="_7bcUsATUEd6LwNdYxuCAZA" target="_7bdi0ATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7cCxoATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cCxoQTUEd6LwNdYxuCAZA" x="-40" y="15"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7cCxogTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cCxowTUEd6LwNdYxuCAZA" x="-9" y="25"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7cCKkQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7cCKkgTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.5"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7cCKkwTUEd6LwNdYxuCAZA" points="[2, 0, -116, -114]$[127, 0, 9, -114]$[119, 110, 1, -4]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_JUL60A8VEd6I_LTt7C9nXw" id="(0.9866667,0.40707964)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_KVJokA8VEd6I_LTt7C9nXw" id="(0.78532606,0.0044444446)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7cFN4ATUEd6LwNdYxuCAZA" type="4001" source="_7bew9QTUEd6LwNdYxuCAZA" target="_7bcUsATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7cFN5ATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cFN5QTUEd6LwNdYxuCAZA" x="-12" y="10"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7cFN5gTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cF08ATUEd6LwNdYxuCAZA" x="5" y="-15"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7cFN4QTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7cFN4gTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.6"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7cFN4wTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7cI4QATUEd6LwNdYxuCAZA" type="4001" source="_7bdi0ATUEd6LwNdYxuCAZA" target="_7bcUsATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7cJfUgTUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cJfUwTUEd6LwNdYxuCAZA" x="23" y="27"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7cJfVATUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cJfVQTUEd6LwNdYxuCAZA" x="19" y="20"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7cI4QQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7cJfUATUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.7"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7cJfUQTUEd6LwNdYxuCAZA" points="[0, 0, 169, 137]$[0, -137, 169, 0]$[-162, -137, 7, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_H8cr0A8VEd6I_LTt7C9nXw" id="(0.8532609,0.0)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_I0l0wA8VEd6I_LTt7C9nXw" id="(0.96,0.15929204)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7cMioATUEd6LwNdYxuCAZA" type="4001" source="_7a4UAATUEd6LwNdYxuCAZA" target="_7a0CkATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7cMipATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cMipQTUEd6LwNdYxuCAZA" x="45" y="120"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7cMipgTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cMipwTUEd6LwNdYxuCAZA" y="-100"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7cMioQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7cMiogTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.8"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7cMiowTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7cO-4ATUEd6LwNdYxuCAZA" type="4001" source="_7a5iIwTUEd6LwNdYxuCAZA" target="_7bKA0ATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7cPl8ATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cPl8QTUEd6LwNdYxuCAZA" x="10" y="38"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7cPl8gTUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cPl8wTUEd6LwNdYxuCAZA" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7cO-4QTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7cO-4gTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.9"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7cO-4wTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_7cSCMATUEd6LwNdYxuCAZA" type="4001" source="_7bKA0ATUEd6LwNdYxuCAZA" target="_7avxIATUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_7cSCNATUEd6LwNdYxuCAZA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cSCNQTUEd6LwNdYxuCAZA" x="46" y="25"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_7cSpQATUEd6LwNdYxuCAZA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_7cSpQQTUEd6LwNdYxuCAZA" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_7cSCMQTUEd6LwNdYxuCAZA" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_7cSCMgTUEd6LwNdYxuCAZA" fontName="Lucida Grande" fontHeight="13"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.10"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_7cSCMwTUEd6LwNdYxuCAZA" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Rlxe0A1aEd6yGdJh3Dqzfw" type="4001" source="_7bdi0ATUEd6LwNdYxuCAZA" target="_7a5iIwTUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_RmDysA1aEd6yGdJh3Dqzfw" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RmDysQ1aEd6yGdJh3Dqzfw" x="54" y="-35"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_RmEZwA1aEd6yGdJh3Dqzfw" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_RmEZwQ1aEd6yGdJh3Dqzfw" x="23" y="-17"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Rlxe0Q1aEd6yGdJh3Dqzfw" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Rlxe0g1aEd6yGdJh3Dqzfw" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.11"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Rlxe0w1aEd6yGdJh3Dqzfw" points="[-36, -9, 332, 68]$[-309, -77, 59, 0]$[-356, -77, 12, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RmG2AA1aEd6yGdJh3Dqzfw" id="(0.07333333,0.15044248)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_RmG2AQ1aEd6yGdJh3Dqzfw" id="(0.9577465,0.67256635)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_UHGzIA1aEd6yGdJh3Dqzfw" type="4001" source="_7bcUsATUEd6LwNdYxuCAZA" target="_7a5iIwTUEd6LwNdYxuCAZA">
+    <children xmi:type="notation:Node" xmi:id="_UHHaMA1aEd6yGdJh3Dqzfw" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_UHHaMQ1aEd6yGdJh3Dqzfw" x="57" y="22"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_UHHaMg1aEd6yGdJh3Dqzfw" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_UHHaMw1aEd6yGdJh3Dqzfw" x="83" y="-11"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_UHGzIQ1aEd6yGdJh3Dqzfw" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_UHGzIg1aEd6yGdJh3Dqzfw" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.12"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_UHGzIw1aEd6yGdJh3Dqzfw" points="[-1, 1, 206, 0]$[-203, 1, 4, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_UHIoUA1aEd6yGdJh3Dqzfw" id="(0.05859375,0.57522124)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_UHIoUQ1aEd6yGdJh3Dqzfw" id="(0.9802817,0.061946902)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_2U5w4A8VEd6I_LTt7C9nXw" type="4001" source="_tmaWwA8VEd6I_LTt7C9nXw" target="_xUOsUA8VEd6I_LTt7C9nXw">
+    <children xmi:type="notation:Node" xmi:id="_2U6X8A8VEd6I_LTt7C9nXw" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_2U6X8Q8VEd6I_LTt7C9nXw" x="5" y="11"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_2U6X8g8VEd6I_LTt7C9nXw" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_2U6X8w8VEd6I_LTt7C9nXw" x="10" y="-12"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_2U5w4Q8VEd6I_LTt7C9nXw" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_2U5w4g8VEd6I_LTt7C9nXw" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.13"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2U5w4w8VEd6I_LTt7C9nXw" points="[2, 0, -80, 0]$[72, -4, -10, -4]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2U8NIA8VEd6I_LTt7C9nXw" id="(0.9882353,0.23076923)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2U8NIQ8VEd6I_LTt7C9nXw" id="(0.056818184,0.21153846)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_5MIcsA8VEd6I_LTt7C9nXw" type="4001" source="_xUOsUA8VEd6I_LTt7C9nXw" target="_tmaWwA8VEd6I_LTt7C9nXw">
+    <children xmi:type="notation:Node" xmi:id="_5MJDwA8VEd6I_LTt7C9nXw" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_5MJDwQ8VEd6I_LTt7C9nXw" x="-5" y="9"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_5MJDwg8VEd6I_LTt7C9nXw" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_5MJDww8VEd6I_LTt7C9nXw" x="6" y="-16"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_5MIcsQ8VEd6I_LTt7C9nXw" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_5MIcsg8VEd6I_LTt7C9nXw" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.14"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5MIcsw8VEd6I_LTt7C9nXw" points="[-5, 1, 74, 0]$[-75, 2, 4, 1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5MKR4A8VEd6I_LTt7C9nXw" id="(0.028409092,0.6826923)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5MKR4Q8VEd6I_LTt7C9nXw" id="(0.9764706,0.7019231)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_Ak8dUA8WEd6I_LTt7C9nXw" type="4001" source="__yJucA8VEd6I_LTt7C9nXw" target="_tmaWwA8VEd6I_LTt7C9nXw">
+    <children xmi:type="notation:Node" xmi:id="_Ak9EYA8WEd6I_LTt7C9nXw" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Ak9EYQ8WEd6I_LTt7C9nXw" x="-9" y="-15"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_Ak9EYg8WEd6I_LTt7C9nXw" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Ak9EYw8WEd6I_LTt7C9nXw" x="10" y="19"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_Ak8dUQ8WEd6I_LTt7C9nXw" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Ak8dUg8WEd6I_LTt7C9nXw" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.15"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ak8dUw8WEd6I_LTt7C9nXw" points="[20, 1, -53, -6]$[61, 3, -12, -4]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Ak-5kA8WEd6I_LTt7C9nXw" id="(0.086330935,0.32692307)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_HGcKQBIdEd6s0LCNO4IE7g" type="4001" source="_7a5iIwTUEd6LwNdYxuCAZA" target="_GjSZ4BIdEd6s0LCNO4IE7g">
+    <children xmi:type="notation:Node" xmi:id="_HGcxUBIdEd6s0LCNO4IE7g" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_HGcxURIdEd6s0LCNO4IE7g" x="1" y="-15"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_HGcxUhIdEd6s0LCNO4IE7g" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_HGcxUxIdEd6s0LCNO4IE7g" x="-1" y="13"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_HGcKQRIdEd6s0LCNO4IE7g" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_HGcKQhIdEd6s0LCNO4IE7g" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.16"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_HGcKQxIdEd6s0LCNO4IE7g" points="[11, 2, -244, -49]$[249, 52, -6, 1]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_HGemgBIdEd6s0LCNO4IE7g" id="(0.97183096,0.31858408)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_HGemgRIdEd6s0LCNO4IE7g" id="(0.24,0.56)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_dUvXIRhtEd6F2-_xBHp2Ag" type="4001" source="_7a4UAATUEd6LwNdYxuCAZA" target="_R7M5wBhyEd6F2-_xBHp2Ag">
+    <children xmi:type="notation:Node" xmi:id="_dVDgMBhtEd6F2-_xBHp2Ag" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_dVDgMRhtEd6F2-_xBHp2Ag" x="25" y="-19"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_dVEHQBhtEd6F2-_xBHp2Ag" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_dVEHQRhtEd6F2-_xBHp2Ag" x="-18" y="11"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_dUvXIhhtEd6F2-_xBHp2Ag" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_dUvXIxhtEd6F2-_xBHp2Ag" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="TrafficlightWaiting.statemachine#//@transition.17"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_dUvXJBhtEd6F2-_xBHp2Ag" points="[-2, 0, 169, 66]$[-135, -7, 36, 59]$[-168, -62, 3, 4]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_dVGjgBhtEd6F2-_xBHp2Ag" id="(0.0052724076,0.73035717)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_S8G9IBhyEd6F2-_xBHp2Ag" id="(0.52,0.88)"/>
+  </edges>
+</notation:Diagram>

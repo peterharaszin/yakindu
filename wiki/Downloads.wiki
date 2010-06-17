@@ -1,0 +1,13 @@
+#Yakindu File Downloads
+
+= Yakindu File Downloads =
+
+We currently do use the _Eclipse Labs_ file downloads service. For downloads follow
+
+http://www.yakindu.com/yakindu/language=en/20658/downloads (english)
+
+or 
+
+http://www.yakindu.de/yakindu/language=de/20654/downloads (german)
+
+These pages also contain information about the  available update sites.

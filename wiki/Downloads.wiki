@@ -1,6 +1,5 @@
 
-
-== Yakindu File Downloads =?
+== Yakindu File Downloads ==
 
 We currently do use the _Eclipse Labs_ file downloads service. For downloads follow
 

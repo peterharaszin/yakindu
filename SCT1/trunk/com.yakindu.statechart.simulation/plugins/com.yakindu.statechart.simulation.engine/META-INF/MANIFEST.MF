@@ -6,9 +6,9 @@ Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: com.yakindu.simulation.engine.statechart.Activator
 Require-Bundle: org.mda4e.simulation.core,
  org.mda4e.simulation.statemachine,
- org.eclipse.xtext.log4j,
  com.yakindu.statechart.runtime;bundle-version="1.1.0",
- com.yakindu.statechart.model.expressions;bundle-version="1.1.0"
+ com.yakindu.statechart.model.expressions;bundle-version="1.1.0",
+ org.apache.log4j;bundle-version="1.2.15"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Import-Package: org.eclipse.debug.core,

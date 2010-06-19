@@ -13,7 +13,7 @@
 */
 package com.yakindu.statechart.model.expressions.contentassist;
 
-import com.yakindu.statechart.model.expressions.contentassist.AbstractStatechartExpressionsProposalProvider;
+import com.yakindu.statechart.model.expressions.ui.contentassist.AbstractStatechartExpressionsProposalProvider;
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant
  */

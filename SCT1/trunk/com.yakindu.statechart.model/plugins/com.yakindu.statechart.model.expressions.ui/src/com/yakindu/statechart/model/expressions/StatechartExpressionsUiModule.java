@@ -13,9 +13,17 @@
  */
 package com.yakindu.statechart.model.expressions;
 
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+
+import com.yakindu.statechart.model.expressions.ui.AbstractStatechartExpressionsUiModule;
+
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class StatechartExpressionsUiModule extends com.yakindu.statechart.model.expressions.AbstractStatechartExpressionsUiModule {
+public class StatechartExpressionsUiModule extends AbstractStatechartExpressionsUiModule {
 
+	public StatechartExpressionsUiModule(AbstractUIPlugin plugin) {
+		super(plugin);
+	}
+	
 }

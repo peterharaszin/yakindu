@@ -43,7 +43,7 @@
 			
             
 			<!-- scoping API -->
-			<fragment class="org.eclipse.xtext.generator.scoping.JavaScopingFragment"/>
+			<fragment class="org.eclipse.xtext.generator.scoping.ImportNamespacesScopingFragment"/>
 			
 			<!-- formatter API -->
 			<fragment class="org.eclipse.xtext.generator.formatting.FormatterFragment"/>
@@ -64,7 +64,7 @@
 				delegate="de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
 				message="You are generating without ANTLR. It is highly recommended to download and use the plugin 'de.itemis.xtext.antlr' \n\t using the update site http://download.itemis.com/updates/.">
 			</fragment>
-			<fragment class="de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"/> 
+			<fragment class="de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"/>
 			
 
 			<!-- project wizard (optional) -->

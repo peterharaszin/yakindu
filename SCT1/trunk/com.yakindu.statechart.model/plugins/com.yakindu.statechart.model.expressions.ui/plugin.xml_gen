@@ -6,7 +6,7 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="com.yakindu.statechart.model.expressions.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.XtextEditor"
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="se"
@@ -17,8 +17,8 @@
     <extension
         point="org.eclipse.ui.handlers">
         <handler
-            class="com.yakindu.statechart.model.expressions.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.hyperlinking.OpenDeclarationHandler"
-            commandId="org.eclipse.xtext.ui.common.editor.hyperlinking.OpenDeclaration">
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+            commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
             <activeWhen>
                 <reference
                     definitionId="com.yakindu.statechart.model.expressions.StatechartExpressions.Editor.opened">
@@ -26,7 +26,7 @@
             </activeWhen>
         </handler>
         <handler
-            class="com.yakindu.statechart.model.expressions.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.handler.ValidateActionHandler"
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
             commandId="com.yakindu.statechart.model.expressions.StatechartExpressions.validate">
          <activeWhen>
             <reference
@@ -40,7 +40,7 @@
             <and>
                 <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
                 <with variable="activeEditor">
-                    <test property="org.eclipse.xtext.ui.core.editor.XtextEditor.languageName" 
+                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
                         value="com.yakindu.statechart.model.expressions.StatechartExpressions" 
                         forcePluginActivation="true"/>
                 </with>        
@@ -50,22 +50,21 @@
     <extension
             point="org.eclipse.ui.preferencePages">
         <page
-            class="com.yakindu.statechart.model.expressions.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.preferences.LanguageRootPreferencePage"
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="com.yakindu.statechart.model.expressions.StatechartExpressions"
-            name="StatechartExpressions"
-            category="org.eclipse.xtext.languages">
+            name="StatechartExpressions">
             <keywordReference id="com.yakindu.statechart.model.expressions.ui.keyword_StatechartExpressions"/>
         </page>
         <page
             category="com.yakindu.statechart.model.expressions.StatechartExpressions"
-            class="com.yakindu.statechart.model.expressions.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
             id="com.yakindu.statechart.model.expressions.StatechartExpressions.coloring"
             name="Syntax Coloring">
             <keywordReference id="com.yakindu.statechart.model.expressions.ui.keyword_StatechartExpressions"/>
         </page>
         <page
             category="com.yakindu.statechart.model.expressions.StatechartExpressions"
-            class="com.yakindu.statechart.model.expressions.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.common.editor.templates.XtextTemplatePreferencePage"
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
             id="com.yakindu.statechart.model.expressions.StatechartExpressions.templates"
             name="Templates">
             <keywordReference id="com.yakindu.statechart.model.expressions.ui.keyword_StatechartExpressions"/>
@@ -87,7 +86,7 @@
     </extension>
     <extension point="org.eclipse.ui.menus">
         <menuContribution
-            locationURI="popup:#TextEditorContext?after=group.open">
+            locationURI="popup:#TextEditorContext?after=group.edit">
              <command
                  commandId="com.yakindu.statechart.model.expressions.StatechartExpressions.validate"
                  style="push"
@@ -100,16 +99,43 @@
          </command>  
          </menuContribution>
     </extension>
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
+			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
+				<visibleWhen checkEnabled="false">
+                	<reference definitionId="com.yakindu.statechart.model.expressions.StatechartExpressions.Editor.opened">
+                	</reference>
+            	</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+	    <handler
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+            commandId="org.eclipse.xtext.ui.editor.FindReferences">
+            <activeWhen>
+                <reference
+                    definitionId="com.yakindu.statechart.model.expressions.StatechartExpressions.Editor.opened">
+                </reference>
+            </activeWhen>
+        </handler>
+    </extension>   
 
 <!-- adding resource factories -->
 
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="com.yakindu.statechart.model.expressions.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.resource.XtextResourceFactory"
+			class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="se">
 		</parser>
 	</extension>
+	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
+        <resourceServiceProvider
+            class="com.yakindu.statechart.model.expressions.ui.StatechartExpressionsExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+            uriExtension="se">
+        </resourceServiceProvider>
+    </extension>
 
 
 

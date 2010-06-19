@@ -11,6 +11,7 @@
  */
 package org.mda4e.statemachine.contribution.helper;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -223,4 +225,10 @@ public class TransitionContainer implements Transition {
 		throw new RuntimeException("Should never be called!");
 	}
 
+	public Object eInvoke(EOperation arg0, EList<?> arg1)
+			throws InvocationTargetException {
+		throw new RuntimeException("Should never be called!");
+	}
+
+	
 }

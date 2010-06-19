@@ -1,0 +1,2 @@
+
+SM_AFTERTEST_OBJ = afterTest_Iface.o afterTest_Handle.o afterTest.o  sm_afterTest.o 

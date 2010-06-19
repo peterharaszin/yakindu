@@ -24,7 +24,8 @@ Require-Bundle: org.eclipse.platform,
  org.eclipse.xtext;bundle-version="0.7.0",
  org.eclipse.xtend.typesystem.emf,
  org.eclipse.xtend;bundle-version="0.7.0",
- org.eclipse.xtext.log4j;bundle-version="1.2.15"
+ org.apache.log4j;bundle-version="1.2.15",
+ org.apache.commons.logging;bundle-version="1.1.1"
 Export-Package: org.mda4e.statemachine.contribution.actions,
  org.mda4e.statemachine.contribution.commands,
  org.mda4e.statemachine.contribution.edit.parts,

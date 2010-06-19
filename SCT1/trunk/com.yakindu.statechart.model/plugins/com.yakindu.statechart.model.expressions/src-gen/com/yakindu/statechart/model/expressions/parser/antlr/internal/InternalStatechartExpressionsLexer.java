@@ -1,13 +1,3 @@
-/**
- * Copyright (c) 2010 committers of YAKINDU and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     committers of YAKINDU - initial API and implementation
- */
 package com.yakindu.statechart.model.expressions.parser.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
@@ -20,6 +10,7 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+@SuppressWarnings("all")
 public class InternalStatechartExpressionsLexer extends Lexer {
     public static final int T14=14;
     public static final int T29=29;
@@ -883,10 +874,10 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_BOOLEAN_LITERAL() throws RecognitionException {
         try {
             int _type = RULE_BOOLEAN_LITERAL;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2324:22: ( ( 'true' | 'false' ) )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2324:24: ( 'true' | 'false' )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2547:22: ( ( 'true' | 'false' ) )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2547:24: ( 'true' | 'false' )
             {
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2324:24: ( 'true' | 'false' )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2547:24: ( 'true' | 'false' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -898,13 +889,13 @@ public class InternalStatechartExpressionsLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("2324:24: ( 'true' | 'false' )", 1, 0, input);
+                    new NoViableAltException("2547:24: ( 'true' | 'false' )", 1, 0, input);
 
                 throw nvae;
             }
             switch (alt1) {
                 case 1 :
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2324:25: 'true'
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2547:25: 'true'
                     {
                     match("true"); 
 
@@ -912,7 +903,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2324:32: 'false'
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2547:32: 'false'
                     {
                     match("false"); 
 
@@ -936,8 +927,8 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_HEX_LITERAL() throws RecognitionException {
         try {
             int _type = RULE_HEX_LITERAL;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2326:18: ( '0' ( 'x' | 'X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2326:20: '0' ( 'x' | 'X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2549:18: ( '0' ( 'x' | 'X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2549:20: '0' ( 'x' | 'X' ) ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             {
             match('0'); 
             if ( input.LA(1)=='X'||input.LA(1)=='x' ) {
@@ -950,7 +941,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2326:34: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2549:34: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             int cnt2=0;
             loop2:
             do {
@@ -1003,10 +994,10 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_FLOATING_POINT_LITERAL() throws RecognitionException {
         try {
             int _type = RULE_FLOATING_POINT_LITERAL;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:29: ( ( '0' .. '9' )* '.' ( '0' .. '9' )* ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )? ( 'f' | 'F' | 'd' | 'D' )? )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:31: ( '0' .. '9' )* '.' ( '0' .. '9' )* ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )? ( 'f' | 'F' | 'd' | 'D' )?
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:29: ( ( '0' .. '9' )* '.' ( '0' .. '9' )* ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )? ( 'f' | 'F' | 'd' | 'D' )? )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:31: ( '0' .. '9' )* '.' ( '0' .. '9' )* ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )? ( 'f' | 'F' | 'd' | 'D' )?
             {
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:31: ( '0' .. '9' )*
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:31: ( '0' .. '9' )*
             loop3:
             do {
                 int alt3=2;
@@ -1019,7 +1010,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:32: '0' .. '9'
+            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:32: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1032,7 +1023,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:47: ( '0' .. '9' )*
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:47: ( '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -1045,7 +1036,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:48: '0' .. '9'
+            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:48: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1057,7 +1048,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                 }
             } while (true);
 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:59: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )?
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:59: ( ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+ )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1066,7 +1057,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:60: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:60: ( 'e' | 'E' ) ( '+' | '-' )? ( '0' .. '9' )+
                     {
                     if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                         input.consume();
@@ -1078,7 +1069,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                         recover(mse);    throw mse;
                     }
 
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:70: ( '+' | '-' )?
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:70: ( '+' | '-' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -1105,7 +1096,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                     }
 
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:81: ( '0' .. '9' )+
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:81: ( '0' .. '9' )+
                     int cnt6=0;
                     loop6:
                     do {
@@ -1119,7 +1110,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:82: '0' .. '9'
+                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:82: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -1141,7 +1132,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
             }
 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2328:95: ( 'f' | 'F' | 'd' | 'D' )?
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2551:95: ( 'f' | 'F' | 'd' | 'D' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1182,10 +1173,10 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2330:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2330:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2553:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2553:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2330:11: ( '^' )?
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2553:11: ( '^' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1194,7 +1185,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2330:11: '^'
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2553:11: '^'
                     {
                     match('^'); 
 
@@ -1213,7 +1204,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2330:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2553:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop10:
             do {
                 int alt10=2;
@@ -1261,10 +1252,10 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2332:10: ( ( '0' .. '9' )+ )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2332:12: ( '0' .. '9' )+
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2555:10: ( ( '0' .. '9' )+ )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2555:12: ( '0' .. '9' )+
             {
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2332:12: ( '0' .. '9' )+
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2555:12: ( '0' .. '9' )+
             int cnt11=0;
             loop11:
             do {
@@ -1278,7 +1269,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2332:13: '0' .. '9'
+            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2555:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1308,10 +1299,10 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1323,16 +1314,16 @@ public class InternalStatechartExpressionsLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("2334:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 14, 0, input);
+                    new NoViableAltException("2557:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 14, 0, input);
 
                 throw nvae;
             }
             switch (alt14) {
                 case 1 :
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop12:
                     do {
                         int alt12=3;
@@ -1348,7 +1339,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1365,7 +1356,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:62: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:62: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1391,10 +1382,10 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop13:
                     do {
                         int alt13=3;
@@ -1410,7 +1401,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                         switch (alt13) {
                     	case 1 :
-                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -1427,7 +1418,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2334:129: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2557:129: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -1469,12 +1460,12 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2336:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2336:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2559:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2559:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2336:24: ( options {greedy=false; } : . )*
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2559:24: ( options {greedy=false; } : . )*
             loop15:
             do {
                 int alt15=2;
@@ -1499,7 +1490,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2336:52: .
+            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2559:52: .
             	    {
             	    matchAny(); 
 
@@ -1527,12 +1518,12 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop16:
             do {
                 int alt16=2;
@@ -1545,7 +1536,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1566,7 +1557,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                 }
             } while (true);
 
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:40: ( ( '\\r' )? '\\n' )?
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:40: ( ( '\\r' )? '\\n' )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
@@ -1575,9 +1566,9 @@ public class InternalStatechartExpressionsLexer extends Lexer {
             }
             switch (alt18) {
                 case 1 :
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:41: ( '\\r' )? '\\n'
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:41: ( '\\r' )? '\\n'
                     {
-                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:41: ( '\\r' )?
+                    // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:41: ( '\\r' )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -1586,7 +1577,7 @@ public class InternalStatechartExpressionsLexer extends Lexer {
                     }
                     switch (alt17) {
                         case 1 :
-                            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2338:41: '\\r'
+                            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2561:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1616,10 +1607,10 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2340:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2340:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2563:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2563:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2340:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2563:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt19=0;
             loop19:
             do {
@@ -1672,8 +1663,8 @@ public class InternalStatechartExpressionsLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2342:16: ( . )
-            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2342:18: .
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2565:16: ( . )
+            // ../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g:2565:18: .
             {
             matchAny(); 
 

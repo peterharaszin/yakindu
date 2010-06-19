@@ -5,7 +5,7 @@ Bundle-SymbolicName: com.yakindu.statechart.model.expressions;singleton:=true
 Bundle-Version: 1.1.0.qualifier
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
- de.itemis.xtext.antlr;resolution:=optional,
+ de.itemis.xtext.antlr;bundle-version="1.0.0";resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.xtext.log4j;resolution:=optional,
@@ -30,5 +30,6 @@ Export-Package: com.yakindu.statechart.model.expressions,
  com.yakindu.statechart.model.expressions.validation,
  com.yakindu.statechart.model.expressions.statechartexpressions.impl,
  com.yakindu.statechart.model.expressions.statechartexpressions.util,
- com.yakindu.statechart.model.expressions.parser.antlr
-
+ com.yakindu.statechart.model.expressions.parser.antlr,
+ com.yakindu.statechart.model.expressions.parser.antlr.internal
+Import-Package: org.apache.log4j

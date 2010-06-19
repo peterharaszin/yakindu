@@ -1,13 +1,3 @@
-/**
- * Copyright (c) 2010 committers of YAKINDU and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *     committers of YAKINDU - initial API and implementation
- */
 package com.yakindu.statechart.runtime;
 
 import java.util.ArrayList;
@@ -68,8 +58,10 @@ public class Transition {
 	}
 
 	protected boolean isTriggeredBy(Set<Event> events) {
+
 		return !Collections.disjoint(this.signalTriggers, events)
 				|| (timeTrigger != null && events.contains(timeTrigger));
+
 	}
 
 	public String getId() {
@@ -123,6 +115,7 @@ public class Transition {
 
 	private List<CompoundState> getEnclosingStatesToEnter(Node targetNode,
 			Region commonAncestorRegion) {
+
 		// compute all enclosing state that have to be entered
 		List<CompoundState> enclosingStatesToEnter = new ArrayList<CompoundState>();
 		Region targetRegion = targetNode.getOwningRegion();
@@ -133,12 +126,14 @@ public class Transition {
 
 		}
 		Collections.reverse(enclosingStatesToEnter); // ensure entering is done
-		// in reverse order
+														// in reverse order
 		return enclosingStatesToEnter;
+
 	}
 
 	private List<CompoundState> getEnclosingStatesToLeave(Node sourceNode,
 			Region commonAncestorRegion) {
+
 		// compute all enclosing compound states up to the ancestor region
 		List<CompoundState> enclosingStatesToLeave = new ArrayList<CompoundState>();
 		Region sourceRegion = sourceNode.getOwningRegion();
@@ -148,6 +143,7 @@ public class Transition {
 			sourceRegion = state.getOwningRegion();
 		}
 		return enclosingStatesToLeave;
+
 	}
 
 	private Region getCommonAncestorRegion(Node sourceNode, Node targetNode) {

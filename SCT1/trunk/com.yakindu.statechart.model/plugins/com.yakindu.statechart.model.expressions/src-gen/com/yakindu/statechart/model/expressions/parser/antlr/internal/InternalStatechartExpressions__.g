@@ -51,34 +51,34 @@ T54 : '%' ;
 T55 : '~' ;
 T56 : '!' ;
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2324
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2547
 RULE_BOOLEAN_LITERAL : ('true'|'false');
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2326
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2549
 RULE_HEX_LITERAL : '0' ('x'|'X') ('0'..'9'|'a'..'f'|'A'..'F')+;
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2328
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2551
 RULE_FLOATING_POINT_LITERAL : ('0'..'9')* '.' ('0'..'9')* (('e'|'E') ('+'|'-')? ('0'..'9')+)? ('f'|'F'|'d'|'D')?;
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2330
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2553
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2332
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2555
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2334
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2557
 RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2336
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2559
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2338
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2561
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2340
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2563
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2342
+// $ANTLR src "../com.yakindu.statechart.model.expressions/src-gen/com/yakindu/statechart/model/expressions/parser/antlr/internal/InternalStatechartExpressions.g" 2565
 RULE_ANY_OTHER : .;
 
 

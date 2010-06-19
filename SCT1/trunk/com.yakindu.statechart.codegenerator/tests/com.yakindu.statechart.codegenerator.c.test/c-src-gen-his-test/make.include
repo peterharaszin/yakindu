@@ -1,2 +1,0 @@
-
-SM_HISTORYTEST_OBJ = historyTest_Iface.o historyTest_Handle.o historyTest.o  sm_historyTest_MainState_State0.o  sm_historyTest_MainState_State0_State3.o  sm_historyTest_MainState.o  sm_historyTest.o  sm_historyTest_MainState_State2.o 

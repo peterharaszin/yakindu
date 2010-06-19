@@ -1,2 +1,0 @@
-
-SM_GUARDTEST_OBJ = guardTest_Iface.o guardTest_Handle.o guardTest.o  sm_guardTest.o 

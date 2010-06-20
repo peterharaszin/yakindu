@@ -39,5 +39,6 @@ public class StatechartExpressionsStandaloneSetupGenerated implements ISetup {
 
 
 
+
 	}
 }

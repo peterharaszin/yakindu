@@ -1,7 +1,6 @@
-
 == Yakindu File Downloads ==
 
-We currently do use the _Eclipse Labs_ file downloads service. For downloads follow
+We currently do *not* use the _Eclipse Labs_ file downloads service. For downloads follow
 
 http://www.yakindu.com/yakindu/language=en/20658/downloads (english)
 

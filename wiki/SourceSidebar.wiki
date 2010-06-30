@@ -1,0 +1,5 @@
+#summary Sidebar for source pages
+ * [RepositoryStructure Repository Structure]
+ * [http://code.google.com/a/eclipselabs.org/p/yakindu/source/checkout Checkout]
+ * [http://code.google.com/a/eclipselabs.org/p/yakindu/source/browse Browse]
+ * [http://code.google.com/a/eclipselabs.org/p/yakindu/source/list Changes]

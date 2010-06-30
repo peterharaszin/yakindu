@@ -8,3 +8,9 @@ Yakindu consists of different moduls. For each of these modules an top level fol
  * *SCT1* - the implementation of the 1.x versons of the _Statechart Tools_
  * *SCT2* - will contain the upcoming 2.x versions of the _Statechart Tools
 
+These module contain different versions and branches:
+
+ * SCT1/trunk - ongoing work on SCT for Helios (v 1.2)
+ * SCT1/branches/SCT_1.1.x_BRANCH - SCT for Galileo
+ * DAMOS/tags/DSM_0.1_RELEASE - the current DAMOS 0.1 release (will be branched for maintenance releases)
+ * DAMOS/trunk - development for DAMOS 0.2 release

@@ -244,9 +244,7 @@ litigation.
          version="0.0.0"/>
 
    <requires>
-      <import plugin="org.eclipse.xtext.log4j"/>
-      <import feature="org.eclipse.sdk" version="3.4.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.emf" version="2.4.2" match="greaterOrEqual"/>
+      <import plugin="org.apache.log4j"/>
       <import feature="com.yakindu.simulation.feature" version="1.0.0" match="greaterOrEqual"/>
       <import feature="com.yakindu.statechart.model.feature" version="1.0.0" match="greaterOrEqual"/>
       <import feature="com.yakindu.statechart.runtime.feature" version="1.0.0" match="compatible"/>

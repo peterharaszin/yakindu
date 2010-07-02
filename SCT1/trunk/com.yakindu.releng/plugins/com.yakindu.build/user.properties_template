@@ -2,7 +2,7 @@
 skipScp = true
 
 workspace.home = /Users/schwertfeger/temp/YakinduBuild
-repository = /Users/schwertfeger/Documents/boris/neuesSVN
+repository = /Users/schwertfeger/Documents/Yakindu/eclipseLab-svn
 
 #downloadMirror = http://sunsite.informatik.rwth-aachen.de
 downloadMirror = http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse
@@ -11,14 +11,17 @@ eclipse.test.home.os = $os
 eclipse.test.home.ws = $ws
 eclipse.test.home.arch = $arch
 
-baseos=macosx
-basews=carbon
-basearch=x86
-
 launcheros=macosx
 launcherws=carbon
 launcherarch=x86
 
+baseos=${launcheros}
+basews=${launcherws}
+basearch=${launcherarch}
+
+#baseos=macosx
+#basews=cocoa
+#basearch=x86_64
 
 #baseos=win32
 #basews=win32

@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.gef.palette.PaletteContainer;
 import org.eclipse.gef.palette.PaletteDrawer;
 import org.eclipse.gef.palette.PaletteEntry;
 import org.eclipse.gef.palette.PaletteRoot;
@@ -32,10 +33,10 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.part.BlockDiagramEditor;
-import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
-import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
+import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
+import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
 
 /**
  * @author Andreas Unger
@@ -60,7 +61,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		if (toolbar != null) {
 			contributeToolbar(blockDiagramEditor, content, toolbar, predefinedEntries);
 		}
-		contributeInfrastructureComponents(blockDiagramEditor, content, root, predefinedEntries);
+		contributeBuiltinComponents(blockDiagramEditor, content, root, predefinedEntries);
 		contributeBlocks(blockDiagramEditor, content, root, predefinedEntries);
 	}
 		
@@ -70,17 +71,22 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected void contributeInfrastructureComponents(BlockDiagramEditor editor, Object content, PaletteRoot root, Map predefinedEntries) {
-		List<PaletteEntry> entries = createInfrastructureEntries(editor);
+	protected void contributeBuiltinComponents(BlockDiagramEditor editor, Object content, PaletteRoot root, Map predefinedEntries) {
+		List<PaletteEntry> entries = createBuiltinComponentEntries(editor);
 		if (entries != null && !entries.isEmpty()) {
-			PaletteDrawer drawer = new PaletteDrawer("Infrastructure");
-			drawer.setInitialState(PaletteDrawer.INITIAL_STATE_CLOSED);
-			root.add(drawer);
-			drawer.addAll(entries);
+			PaletteContainer builtinComponentContainer = createBuiltinComponentContainer();
+			builtinComponentContainer.addAll(entries);
+			root.add(builtinComponentContainer);
 		}
 	}
 	
-	protected List<PaletteEntry> createInfrastructureEntries(BlockDiagramEditor editor) {
+	protected PaletteContainer createBuiltinComponentContainer() {
+		PaletteDrawer drawer = new PaletteDrawer("Built-in Components");
+		drawer.setInitialState(PaletteDrawer.INITIAL_STATE_CLOSED);
+		return drawer;
+	}
+	
+	protected List<PaletteEntry> createBuiltinComponentEntries(BlockDiagramEditor editor) {
 		List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
 		entries.add(new SubsystemCreationToolEntry(editor));
 		entries.add(new ElementCreationToolEntry(ElementTypes.INPORT, null, null));

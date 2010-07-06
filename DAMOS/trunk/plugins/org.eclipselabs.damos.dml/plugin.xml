@@ -19,6 +19,13 @@
             uri="http://www.eclipselabs.org/damos/DML/1.0.0">
       </package>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipselabs.damos.dml.resource.DMLResourceFactory"
+            type="dml">
+      </parser>
+   </extension>
 
 
 </plugin>

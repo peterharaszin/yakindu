@@ -32,7 +32,9 @@ import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public abstract class PortEditPart extends ShapeNodeEditPart {
 
+	private static final String PARENT_SEMANTIC_ELEMENT = "ParentSemanticElement";
 	private static final PortEditPartDelegate PASSIVE_DELEGATE = new PortEditPartDelegate(null);
+	
 	private PortEditPartDelegate delegate;
 
 	private TerminalFigure terminalFigure;
@@ -116,7 +118,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		super.createDefaultEditPolicies();
 		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#addSemanticListeners()
 	 */
@@ -124,7 +126,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		super.addSemanticListeners();
 		EObject o = resolveSemanticElement();
 		if (o instanceof Port) {
-			addListenerFilter("ParentSemanticElement", this, ((Port) o).getComponent());
+			addListenerFilter(PARENT_SEMANTIC_ELEMENT, this, ((Port) o).getComponent());
 		}
 		getDelegate().addSemanticListeners();
 	}
@@ -134,7 +136,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	 */
 	protected void removeSemanticListeners() {
 		getDelegate().removeSemanticListeners();
-		removeListenerFilter("ParentSemanticElement");
+		removeListenerFilter(PARENT_SEMANTIC_ELEMENT);
 		super.removeSemanticListeners();
 	}
 	

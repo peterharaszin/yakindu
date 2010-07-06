@@ -241,9 +241,6 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#getSourceConnectionAnchorAt(org.eclipse.draw2d.geometry.Point)
 	 */
 	public ConnectionAnchor getSourceConnectionAnchorAt(Point p) {
-		if (p == null) {
-			return getConnectionAnchor(szAnchor);
-		}
 		return connectionAnchor;
 	}
 	
@@ -251,9 +248,6 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#getTargetConnectionAnchorAt(org.eclipse.draw2d.geometry.Point)
 	 */
 	public ConnectionAnchor getTargetConnectionAnchorAt(Point p) {
-		if (p == null) {
-			return getConnectionAnchor(szAnchor);
-		}
 		return connectionAnchor;
 	}
 	

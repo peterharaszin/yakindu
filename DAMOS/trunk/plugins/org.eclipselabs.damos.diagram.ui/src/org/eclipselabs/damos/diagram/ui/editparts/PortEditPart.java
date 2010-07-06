@@ -19,11 +19,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.NodeListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
 import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.PortEditPartDelegate;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortConnectionHandleEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortCreationEditPolicy;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
@@ -37,8 +40,6 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	
 	private PortEditPartDelegate delegate;
 
-	private TerminalFigure terminalFigure;
-	
 	private NodeListener nodeListener = new NodeListener() {
 		
 		public void sourceConnectionAdded(ConnectionEditPart connection, int index) {
@@ -113,12 +114,17 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		removeTerminalBorderFigure();
 		super.deactivate();
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#createDefaultEditPolicies()
+	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new PortCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new PortConnectionHandleEditPolicy());
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#addSemanticListeners()
 	 */
@@ -199,7 +205,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	}
 
 	protected void refreshTerminalFigure(Fragment selectedFragment, ConnectionEditPart excludedConnection) {
-		if (terminalFigure == null) {
+		if (getTerminalFigure() == null) {
 			return;
 		}
 		
@@ -208,7 +214,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 			Port port = (Port) element;
 			if (port.getComponent().getOwningFragment() != selectedFragment
 					&& !DMLUtil.isChildFragment(selectedFragment, port.getComponent().getOwningFragment())) {
-				terminalFigure.setBlank(true);
+				getTerminalFigure().setBlank(true);
 				return;
 			}
 		}
@@ -224,7 +230,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 				++connectionCount;
 			}
 		}
-		terminalFigure.setBlank(connectionCount != 0);
+		getTerminalFigure().setBlank(connectionCount != 0);
 	}
 	
 	private boolean objectIsConnectionAndBelongsToFragment(Object o, Fragment selectedFragment) {
@@ -243,30 +249,33 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 
 	@SuppressWarnings("unchecked")
 	protected void addTerminalFigure() {
-		if (terminalFigure == null) {
-			IFigure hostFigure = getFigure();
-			if (hostFigure instanceof PortFigure) {
-				terminalFigure = ((PortFigure) hostFigure).getTerminalFigure();
-				terminalFigure.setBlank(true);
-				IFigure parent = getTerminalParentFigure();
-				if (parent != null) {
-					parent.add(terminalFigure, new Rectangle(0, 0, -1, -1));
-				}
-				getViewer().getVisualPartMap().put(terminalFigure, this);
+		if (getTerminalFigure() != null) {
+			getTerminalFigure().setBlank(true);
+			IFigure parent = getTerminalParentFigure();
+			if (parent != null) {
+				parent.add(getTerminalFigure(), new Rectangle(0, 0, -1, -1));
 			}
+			getViewer().getVisualPartMap().put(getTerminalFigure(), this);
 		}
 	}
 	
 	protected void removeTerminalFigure() {
-		if (terminalFigure != null) {
-			getViewer().getVisualPartMap().remove(terminalFigure);
+		if (getTerminalFigure() != null) {
+			getViewer().getVisualPartMap().remove(getTerminalFigure());
 			IFigure parent = getTerminalParentFigure();
 			if (parent != null) {
-				parent.remove(terminalFigure);
+				parent.remove(getTerminalFigure());
 			}
-			terminalFigure.invalidate();
-			terminalFigure = null;
+			getTerminalFigure().invalidate();
 		}
+	}
+	
+	protected TerminalFigure getTerminalFigure() {
+		IFigure hostFigure = getFigure();
+		if (hostFigure instanceof PortFigure) {
+			return ((PortFigure) hostFigure).getTerminalFigure();
+		}
+		return null;
 	}
 	
 	protected IFigure getTerminalParentFigure() {

@@ -187,7 +187,8 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//QualifiedElement">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/qualifiedName"/>
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" createChild="false"
+          ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/name"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//CategorizedElement">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

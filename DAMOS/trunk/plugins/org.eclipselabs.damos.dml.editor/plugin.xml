@@ -41,24 +41,8 @@
             contributorClass="org.eclipselabs.damos.dml.editor.presentation.DMLActionBarContributor"
             extensions="dml"
             icon="icons/full/obj16/DMLModelFile.gif"
-            id="org.eclipselabs.damos.semantic.blocktype.presentation.dmlModelEditor"
+            id="org.eclipselabs.damos.presentation.dmlModelEditor"
             name="%_UI_DMLEditor_label">
-      </editor>
-      <editor
-            class="org.eclipselabs.damos.dml.editor.presentation.DMLEditor"
-            contributorClass="org.eclipselabs.damos.dml.editor.presentation.BlockTypeActionBarContributor"
-            extensions="blocktype"
-            icon="icons/full/obj16/BlockTypeFile.gif"
-            id="org.eclipselabs.damos.semantic.blocktype.presentation.blockTypeEditor"
-            name="%_UI_BlockTypeEditor_label">
-      </editor>
-      <editor
-            class="org.eclipselabs.damos.dml.editor.presentation.DMLEditor"
-            contributorClass="org.eclipselabs.damos.dml.editor.presentation.CategoryActionBarContributor"
-            extensions="category"
-            icon="icons/full/obj16/CategoryFile.gif"
-            id="org.eclipselabs.damos.semantic.blocktype.presentation.categoryEditor"
-            name="%_UI_CategoryEditor_label">
       </editor>
    </extension>
 

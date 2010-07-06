@@ -67,7 +67,6 @@ public class QualifiedElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addQualifiedNamePropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -86,28 +85,6 @@ public class QualifiedElementItemProvider
 				 getString("_UI_QualifiedElement_qualifiedName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_qualifiedName_feature", "_UI_QualifiedElement_type"),
 				 DMLPackage.Literals.QUALIFIED_ELEMENT__QUALIFIED_NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_QualifiedElement_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_name_feature", "_UI_QualifiedElement_type"),
-				 DMLPackage.Literals.QUALIFIED_ELEMENT__NAME,
 				 true,
 				 false,
 				 false,

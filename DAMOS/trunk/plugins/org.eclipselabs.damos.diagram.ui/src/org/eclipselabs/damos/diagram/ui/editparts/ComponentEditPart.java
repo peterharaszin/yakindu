@@ -27,7 +27,7 @@ import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
 import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
 import org.eclipselabs.damos.diagram.ui.editpolicies.ComponentCanonicalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.ComponentComponentEditPolicy;
-import org.eclipselabs.damos.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.TransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentEditPartDelegate;
@@ -42,7 +42,7 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	private static final ComponentEditPartDelegate PASSIVE_DELEGATE = new ComponentEditPartDelegate(null);
 	private ComponentEditPartDelegate delegate;
 
-	private FragmentSelectionChangeListener fragmentChangeListener = new FragmentSelectionChangeListener() {
+	private IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
 		
 		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
 			refreshVisibility();
@@ -86,9 +86,9 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ComponentCanonicalEditPolicy());
-		installEditPolicy(EditPolicyRoles.TRANSFORM_ROLE, new TransformEditPolicy());
+		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		installEditPolicy(IEditPolicyRoles.CANONICAL_ROLE, new ComponentCanonicalEditPolicy());
+		installEditPolicy(IEditPolicyRoles.TRANSFORM_ROLE, new TransformEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentComponentEditPolicy());
 		getDelegate().createDefaultEditPolicies();
 	}

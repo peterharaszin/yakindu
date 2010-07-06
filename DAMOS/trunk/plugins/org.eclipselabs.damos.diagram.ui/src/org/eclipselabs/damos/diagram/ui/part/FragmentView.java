@@ -22,7 +22,7 @@ import org.eclipse.ui.part.PageBook;
 import org.eclipse.ui.part.PageBookView;
 import org.eclipselabs.damos.common.ui.viewers.FragmentTreeContentProvider;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeListener;
+import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.diagram.ui.viewers.FragmentTreeLabelProvider;
 import org.eclipselabs.damos.dml.Fragment;
@@ -89,7 +89,7 @@ public class FragmentView extends PageBookView {
 		private FragmentSelectionManager fragmentManager;
 		private TreeViewer treeViewer;
 		
-		private FragmentSelectionChangeListener fragmentChangeListener = new FragmentSelectionChangeListener() {
+		private IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
 			
 			public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
 				if (treeViewer != null) {

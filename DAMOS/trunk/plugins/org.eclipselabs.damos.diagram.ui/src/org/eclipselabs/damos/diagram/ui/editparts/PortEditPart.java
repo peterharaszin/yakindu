@@ -20,7 +20,7 @@ import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.NodeListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
 import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.PortEditPartDelegate;
@@ -57,7 +57,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		
 	};
 	
-	FragmentSelectionChangeListener fragmentChangeListener = new FragmentSelectionChangeListener() {
+	IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
 		
 		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
 			refreshTerminalFigure(event.getSelectedFragment(), null);
@@ -114,7 +114,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	/* (non-Javadoc)

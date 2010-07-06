@@ -32,7 +32,7 @@ public class FragmentSelectionManager {
 
 	private System system;
 	private Fragment selectedFragment;
-	private Set<FragmentSelectionChangeListener> changeListeners = new HashSet<FragmentSelectionChangeListener>();
+	private Set<IFragmentSelectionChangeListener> changeListeners = new HashSet<IFragmentSelectionChangeListener>();
 
 	private Adapter adapter = new EContentAdapter() {
 		
@@ -92,16 +92,16 @@ public class FragmentSelectionManager {
 		fireFragmentSelectionChangeEvent(new FragmentSelectionChangeEvent(this, selectedFragment));
 	}
 	
-	public void addFragmentSelectionChangeListener(FragmentSelectionChangeListener l) {
+	public void addFragmentSelectionChangeListener(IFragmentSelectionChangeListener l) {
 		changeListeners.add(l);
 	}
 	
-	public void removeFragmentSelectionChangeListener(FragmentSelectionChangeListener l) {
+	public void removeFragmentSelectionChangeListener(IFragmentSelectionChangeListener l) {
 		changeListeners.remove(l);
 	}
 	
 	protected void fireFragmentSelectionChangeEvent(FragmentSelectionChangeEvent event) {
-		for (FragmentSelectionChangeListener l : changeListeners) {
+		for (IFragmentSelectionChangeListener l : changeListeners) {
 			l.fragmentSelectionChanged(event);
 		}
 	}

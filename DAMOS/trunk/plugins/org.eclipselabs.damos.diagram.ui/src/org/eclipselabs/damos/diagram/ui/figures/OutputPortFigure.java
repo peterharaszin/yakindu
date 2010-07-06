@@ -40,7 +40,7 @@ public class OutputPortFigure extends PortFigure {
 	
 	private static class OutputTerminalFigure extends PolylineTerminalFigure {
 		
-		private static final int SIZE = FigureConstants.DEFAULT_TERMINAL_SIZE;
+		private static final int SIZE = IFigureConstants.DEFAULT_TERMINAL_SIZE;
 
 		private static final PointList POLYLINE = new PointList();
 

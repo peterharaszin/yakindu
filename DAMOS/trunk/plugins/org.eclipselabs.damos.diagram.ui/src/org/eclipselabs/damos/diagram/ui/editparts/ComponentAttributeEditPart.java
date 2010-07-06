@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.dml.Component;
 
 /**
@@ -32,7 +32,7 @@ public abstract class ComponentAttributeEditPart extends AbstractBorderItemEditP
 	
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
 	protected void refreshVisuals() {

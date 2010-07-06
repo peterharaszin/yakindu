@@ -14,7 +14,7 @@ package org.eclipselabs.damos.diagram.ui.editpolicies;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipselabs.damos.diagram.ui.requests.RequestConstants;
+import org.eclipselabs.damos.diagram.ui.requests.IRequestConstants;
 
 /**
  * @author Andreas Unger
@@ -26,7 +26,7 @@ public class NonRotatableTransformEditPolicy extends TransformEditPolicy {
 	 * @see org.eclipselabs.damos.diagram.ui.editpolicies.TransformEditPolicy#getCommand(org.eclipse.gef.Request)
 	 */
 	public Command getCommand(Request request) {
-		if (RequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())) {
+		if (IRequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())) {
 			return null;
 		}
 		return super.getCommand(request);
@@ -36,7 +36,7 @@ public class NonRotatableTransformEditPolicy extends TransformEditPolicy {
 	 * @see org.eclipselabs.damos.diagram.ui.editpolicies.TransformEditPolicy#getTargetEditPart(org.eclipse.gef.Request)
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (RequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())) {
+		if (IRequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())) {
 			return null;
 		}
 		return super.getTargetEditPart(request);

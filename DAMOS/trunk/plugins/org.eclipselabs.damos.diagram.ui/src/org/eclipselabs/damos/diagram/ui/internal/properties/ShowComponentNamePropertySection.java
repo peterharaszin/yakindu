@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.properties.AbstractCheckboxPropertySection;
-import org.eclipselabs.damos.diagram.ui.view.SemanticHints;
+import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 
 /**
  * @author Andreas Unger
@@ -51,7 +51,7 @@ public class ShowComponentNamePropertySection extends AbstractCheckboxPropertySe
 			View view = editPart.getNotationView();
 			if (view != null) {
 				for (View childView : (List<View>) view.getChildren()) {
-					if (SemanticHints.COMPONENT_NAME.equals(childView.getType())) {
+					if (ISemanticHints.COMPONENT_NAME.equals(childView.getType())) {
 						return childView.isVisible();
 					}
 				}
@@ -66,7 +66,7 @@ public class ShowComponentNamePropertySection extends AbstractCheckboxPropertySe
 	@SuppressWarnings("unchecked")
 	protected void setPropertyValue(EObject object, Object value) {
 		for (View childView : (List<View>) ((View) object).getChildren()) {
-			if (SemanticHints.COMPONENT_NAME.equals(childView.getType())) {
+			if (ISemanticHints.COMPONENT_NAME.equals(childView.getType())) {
 				childView.setVisible((Boolean) value);
 			}
 		}

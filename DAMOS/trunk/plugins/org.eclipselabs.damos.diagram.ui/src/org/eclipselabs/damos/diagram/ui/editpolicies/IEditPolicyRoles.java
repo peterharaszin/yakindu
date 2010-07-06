@@ -11,11 +11,13 @@
 
 package org.eclipselabs.damos.diagram.ui.editpolicies;
 
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+
 /**
  * @author Andreas Unger
  *
  */
-public interface EditPolicyRoles extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles {
+public interface IEditPolicyRoles extends EditPolicyRoles {
 
 	String TRANSFORM_ROLE = "transformRole";
 	String ADJUST_INPUT_COUNT_ROLE = "adjustInputCountRole";

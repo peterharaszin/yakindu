@@ -14,7 +14,7 @@ package org.eclipselabs.damos.diagram.ui.figures;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
-public class ConnectionFigure extends PolylineConnectionEx implements FigureConstants {
+public class ConnectionFigure extends PolylineConnectionEx implements IFigureConstants {
 	
 	public ConnectionFigure() {
 		PolygonDecoration decoration = new PolygonDecoration();

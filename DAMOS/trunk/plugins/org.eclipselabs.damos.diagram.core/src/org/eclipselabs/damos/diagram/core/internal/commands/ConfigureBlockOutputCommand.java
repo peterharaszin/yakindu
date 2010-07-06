@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipselabs.damos.diagram.core.internal.requests.RequestParameterConstants;
+import org.eclipselabs.damos.diagram.core.internal.requests.IRequestParameterConstants;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -46,7 +46,7 @@ public class ConfigureBlockOutputCommand extends ConfigureElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConfigureRequest request = (ConfigureRequest) getRequest();
     	BlockOutput output = (BlockOutput) request.getElementToConfigure();
-    	OutputDefinition definition = (OutputDefinition) request.getParameter(RequestParameterConstants.OUTPUT_DEFINITION);
+    	OutputDefinition definition = (OutputDefinition) request.getParameter(IRequestParameterConstants.OUTPUT_DEFINITION);
     	output.setDefinition(definition);
     	
 		for (int i = 0; i < definition.getMinimumPortCount(); ++i) {

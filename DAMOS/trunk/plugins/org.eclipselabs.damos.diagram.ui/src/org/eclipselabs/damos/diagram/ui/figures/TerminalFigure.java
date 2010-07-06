@@ -45,7 +45,7 @@ public abstract class TerminalFigure extends NodeFigure {
 	 */
 	public TerminalFigure(PortFigure owner) {
 		this.owner = owner;
-		setForegroundColor(FigureConstants.DEFAULT_TERMINAL_COLOR);
+		setForegroundColor(IFigureConstants.DEFAULT_TERMINAL_COLOR);
 	}
 	
 	/**

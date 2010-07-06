@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.view.SemanticHints;
+import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 import org.eclipselabs.damos.diagram.ui.view.factories.BlockDiagramViewFactory;
 import org.eclipselabs.damos.diagram.ui.view.factories.ComponentNameViewFactory;
 import org.eclipselabs.damos.diagram.ui.view.factories.ComponentViewFactory;
@@ -93,7 +93,7 @@ public class ViewProvider extends AbstractViewProvider {
 		}
 
 		if (DMLPackage.Literals.COMPONENT.isSuperTypeOf(eClass)) {
-			if (SemanticHints.COMPONENT_NAME.equals(semanticHint)) {
+			if (ISemanticHints.COMPONENT_NAME.equals(semanticHint)) {
 				return ComponentNameViewFactory.class;
 			}
 			if (DMLPackage.Literals.BLOCK.isSuperTypeOf(eClass)) {

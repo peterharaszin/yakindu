@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 
-public class SubsystemFigure extends StandardComponentFigure implements FigureConstants {
+public class SubsystemFigure extends StandardComponentFigure implements IFigureConstants {
 	
 	private int borderStyle = SWT.LINE_DASH;
 	private Label leftTextIcon;
@@ -56,7 +56,7 @@ public class SubsystemFigure extends StandardComponentFigure implements FigureCo
 		return minSize;
 	}
 
-	protected void paintCanvas(CanvasContext cc) {
+	protected void paintCanvas(ICanvasContext cc) {
 		Dimension size = getCanvasSize();
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
 		cc.setLineStyle(borderStyle);

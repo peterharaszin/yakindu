@@ -30,7 +30,7 @@ import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class ConnectionEditPart extends ConnectionNodeEditPart {
 
-	private FragmentSelectionChangeListener fragmentChangeListener = new FragmentSelectionChangeListener() {
+	private IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
 		
 		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
 			refreshVisibility();

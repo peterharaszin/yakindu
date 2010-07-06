@@ -34,7 +34,7 @@ import org.eclipselabs.damos.diagram.ui.internal.editparts.BlockDiagramRootEditP
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentNameEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackComponentEditPart;
-import org.eclipselabs.damos.diagram.ui.view.SemanticHints;
+import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
@@ -129,7 +129,7 @@ public class EditPartProvider extends AbstractEditPartProvider {
 		
 		if (element instanceof Component) {
 			String semanticHint = view.getType();
-			if (SemanticHints.COMPONENT_NAME.equals(semanticHint)) {
+			if (ISemanticHints.COMPONENT_NAME.equals(semanticHint)) {
 				return ComponentNameEditPart.class;
 			}
 			if (element instanceof Inoutport) {

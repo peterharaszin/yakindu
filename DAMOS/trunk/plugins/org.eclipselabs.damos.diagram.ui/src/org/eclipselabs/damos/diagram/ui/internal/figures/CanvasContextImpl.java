@@ -18,14 +18,14 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
 import org.eclipselabs.damos.diagram.core.internal.util.MathUtil;
-import org.eclipselabs.damos.diagram.ui.figures.CanvasContext;
+import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
 
 /**
  * @author Andreas Unger
  *
  */
-public class CanvasContextImpl implements CanvasContext {
+public class CanvasContextImpl implements ICanvasContext {
 
 	private Graphics graphics;
 	private Dimension canvasSize;

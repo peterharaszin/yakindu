@@ -33,7 +33,7 @@ public abstract class PolylineTerminalFigure extends PolypointTerminalFigure {
 	protected void paintFigure(Graphics graphics) {
 		PointList points = getTransformedPointList();
 		if (points != null) {
-			graphics.setLineWidth(FigureConstants.DEFAULT_LINE_WIDTH);
+			graphics.setLineWidth(IFigureConstants.DEFAULT_LINE_WIDTH);
 			graphics.drawPolyline(points);
 		}
 	}

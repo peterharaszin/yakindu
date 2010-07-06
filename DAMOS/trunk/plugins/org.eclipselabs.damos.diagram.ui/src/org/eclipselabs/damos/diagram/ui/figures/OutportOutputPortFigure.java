@@ -40,7 +40,7 @@ public class OutportOutputPortFigure extends PortFigure {
 	
 	private static class OutputTerminalFigure extends PolygonTerminalFigure {
 		
-		private static final int SIZE = FigureConstants.DEFAULT_TERMINAL_SIZE;
+		private static final int SIZE = IFigureConstants.DEFAULT_TERMINAL_SIZE;
 
 		private static final PointList POLYGON = new PointList();
 

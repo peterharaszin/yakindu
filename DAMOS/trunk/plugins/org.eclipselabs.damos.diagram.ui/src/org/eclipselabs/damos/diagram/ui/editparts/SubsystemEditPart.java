@@ -70,7 +70,7 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 
 	};
 
-	private FragmentSelectionChangeListener fragmentSelectionChangeListener = new FragmentSelectionChangeListener() {
+	private IFragmentSelectionChangeListener fragmentSelectionChangeListener = new IFragmentSelectionChangeListener() {
 		
 		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
 			refreshRealizationIndicators();

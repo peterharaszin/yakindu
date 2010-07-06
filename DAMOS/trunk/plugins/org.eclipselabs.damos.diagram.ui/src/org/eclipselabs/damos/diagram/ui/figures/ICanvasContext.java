@@ -19,7 +19,7 @@ import org.eclipse.swt.graphics.Color;
  * @author Andreas Unger
  *
  */
-public interface CanvasContext {
+public interface ICanvasContext {
 
 	void clipRect(Rectangle r);
 

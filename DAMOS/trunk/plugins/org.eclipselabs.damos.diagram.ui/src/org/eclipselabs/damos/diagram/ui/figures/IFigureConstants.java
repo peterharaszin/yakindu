@@ -17,7 +17,7 @@ import org.eclipse.swt.graphics.Color;
  * @author Andreas Unger
  *
  */
-public interface FigureConstants {
+public interface IFigureConstants {
 
 	int UNIT = 26;
 

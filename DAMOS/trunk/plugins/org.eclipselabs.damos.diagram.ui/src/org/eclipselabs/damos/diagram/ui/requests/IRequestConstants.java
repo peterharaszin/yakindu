@@ -15,7 +15,7 @@ package org.eclipselabs.damos.diagram.ui.requests;
  * @author Andreas Unger
  *
  */
-public interface RequestConstants extends org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants {
+public interface IRequestConstants extends org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants {
 
 	public static final String REQ_FLIP_COMPONENT = "flipComponent";
 	public static final String REQ_ROTATE_COMPONENT = "rotateComponent";

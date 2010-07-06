@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2009 Andreas Unger and others.
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,15 +9,14 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.core.internal.requests;
+package org.eclipselabs.damos.diagram.ui.editparts;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface RequestParameterConstants {
+public interface IFragmentSelectionChangeListener {
 
-	String INPUT_DEFINITION = "inputDefinition";
-	String OUTPUT_DEFINITION = "outputDefinition";
-
+	void fragmentSelectionChanged(FragmentSelectionChangeEvent event);
+	
 }

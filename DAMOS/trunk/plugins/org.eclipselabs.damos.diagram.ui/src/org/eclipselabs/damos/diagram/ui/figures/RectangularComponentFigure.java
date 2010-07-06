@@ -13,12 +13,12 @@ package org.eclipselabs.damos.diagram.ui.figures;
 
 import org.eclipse.draw2d.geometry.Dimension;
 
-public class RectangularComponentFigure extends StandardComponentFigure implements FigureConstants {
+public class RectangularComponentFigure extends StandardComponentFigure implements IFigureConstants {
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#paintFigure(org.eclipse.draw2d.Graphics)
 	 */
-	protected void paintCanvas(CanvasContext cc) {
+	protected void paintCanvas(ICanvasContext cc) {
 		Dimension size = getCanvasSize();
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
 		cc.drawRectangle(

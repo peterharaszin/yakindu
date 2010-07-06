@@ -149,7 +149,7 @@ public abstract class ComponentFigure extends NodeFigure {
 		paintCanvas(new CanvasContextImpl(graphics, getCanvasSize(), flipped, rotation));
 	}
 
-	protected void paintCanvas(CanvasContext cc) {
+	protected void paintCanvas(ICanvasContext cc) {
 	}
 
 }

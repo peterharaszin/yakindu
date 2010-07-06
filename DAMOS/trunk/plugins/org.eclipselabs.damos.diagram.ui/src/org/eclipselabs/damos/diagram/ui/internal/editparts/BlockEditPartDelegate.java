@@ -18,7 +18,7 @@ import org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.PortEditPart;
 import org.eclipselabs.damos.diagram.ui.editpolicies.AdjustInputCountEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.AdjustOutputCountEditPolicy;
-import org.eclipselabs.damos.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.properties.ParametersPropertySectionDelegate;
 import org.eclipselabs.damos.dml.Block;
 
@@ -39,8 +39,8 @@ public class BlockEditPartDelegate extends ComponentEditPartDelegate {
 	}
 	
 	public void createDefaultEditPolicies() {
-		editPart.installEditPolicy(EditPolicyRoles.ADJUST_INPUT_COUNT_ROLE, new AdjustInputCountEditPolicy());
-		editPart.installEditPolicy(EditPolicyRoles.ADJUST_OUTPUT_COUNT_ROLE, new AdjustOutputCountEditPolicy());
+		editPart.installEditPolicy(IEditPolicyRoles.ADJUST_INPUT_COUNT_ROLE, new AdjustInputCountEditPolicy());
+		editPart.installEditPolicy(IEditPolicyRoles.ADJUST_OUTPUT_COUNT_ROLE, new AdjustOutputCountEditPolicy());
 	}
 		
 	public void addSemanticListeners() {

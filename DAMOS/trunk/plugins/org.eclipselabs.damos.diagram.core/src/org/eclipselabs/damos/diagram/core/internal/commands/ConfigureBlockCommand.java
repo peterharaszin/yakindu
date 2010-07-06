@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipselabs.damos.diagram.core.internal.requests.RequestParameterConstants;
+import org.eclipselabs.damos.diagram.core.internal.requests.IRequestParameterConstants;
 import org.eclipselabs.damos.diagram.core.internal.util.ConfigureUtil;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.dml.Block;
@@ -64,7 +64,7 @@ public class ConfigureBlockCommand extends ConfigureElementCommand {
                     block,
                     ElementTypes.BLOCK_INPUT,
                     DMLPackage.Literals.COMPONENT__INPUTS);
-            createRequest.setParameter(RequestParameterConstants.INPUT_DEFINITION, definition);
+            createRequest.setParameter(IRequestParameterConstants.INPUT_DEFINITION, definition);
             ICommand command = ElementTypes.BLOCK.getEditCommand(createRequest);
             command.execute(null, null);
 		}
@@ -77,7 +77,7 @@ public class ConfigureBlockCommand extends ConfigureElementCommand {
                     block,
                     ElementTypes.BLOCK_OUTPUT,
                     DMLPackage.Literals.COMPONENT__OUTPUTS);
-            createRequest.setParameter(RequestParameterConstants.OUTPUT_DEFINITION, definition);
+            createRequest.setParameter(IRequestParameterConstants.OUTPUT_DEFINITION, definition);
             ICommand command = ElementTypes.BLOCK.getEditCommand(createRequest);
             command.execute(null, null);
 		}

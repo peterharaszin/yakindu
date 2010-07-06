@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipselabs.damos.diagram.core.internal.commands.FlipComponentCommand;
 import org.eclipselabs.damos.diagram.core.internal.commands.ResetFlipAndRotateComponentCommand;
 import org.eclipselabs.damos.diagram.core.internal.commands.RotateComponentCommand;
-import org.eclipselabs.damos.diagram.ui.requests.RequestConstants;
+import org.eclipselabs.damos.diagram.ui.requests.IRequestConstants;
 
 /**
  * @author Andreas Unger
@@ -34,13 +34,13 @@ public class TransformEditPolicy extends AbstractEditPolicy {
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getCommand(org.eclipse.gef.Request)
 	 */
 	public Command getCommand(Request request) {
-		if (RequestConstants.REQ_FLIP_COMPONENT.equals(request.getType())) {
+		if (IRequestConstants.REQ_FLIP_COMPONENT.equals(request.getType())) {
 			return createFlipComponentCommand();
 		}
-		if (RequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())) {
+		if (IRequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())) {
 			return createRotateComponentCommand();
 		}
-		if (RequestConstants.REQ_RESET_FLIP_AND_ROTATE_COMPONENT.equals(request.getType())) {
+		if (IRequestConstants.REQ_RESET_FLIP_AND_ROTATE_COMPONENT.equals(request.getType())) {
 			return createResetFlipAndRotateComponentCommand();
 		}
 		return super.getCommand(request);
@@ -50,9 +50,9 @@ public class TransformEditPolicy extends AbstractEditPolicy {
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getTargetEditPart(org.eclipse.gef.Request)
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (RequestConstants.REQ_FLIP_COMPONENT.equals(request.getType())
-				|| RequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())
-				|| RequestConstants.REQ_RESET_FLIP_AND_ROTATE_COMPONENT.equals(request.getType())) {
+		if (IRequestConstants.REQ_FLIP_COMPONENT.equals(request.getType())
+				|| IRequestConstants.REQ_ROTATE_COMPONENT.equals(request.getType())
+				|| IRequestConstants.REQ_RESET_FLIP_AND_ROTATE_COMPONENT.equals(request.getType())) {
 			return getHost();
 		}
 		return super.getTargetEditPart(request);

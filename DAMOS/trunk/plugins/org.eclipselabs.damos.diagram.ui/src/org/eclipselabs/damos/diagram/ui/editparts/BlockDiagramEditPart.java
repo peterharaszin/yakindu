@@ -16,7 +16,7 @@ import org.eclipse.gef.SnapToGeometry;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.SnapToPortFeedbackPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.SnapToPort;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.BlockDiagramCreationEditPolicy;
@@ -47,9 +47,9 @@ public class BlockDiagramEditPart extends DiagramEditPart {
 
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-		installEditPolicy(EditPolicyRoles.SNAP_TO_PORT_FEEDBACK_ROLE, new SnapToPortFeedbackPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new BlockDiagramCreationEditPolicy());
+		removeEditPolicy(IEditPolicyRoles.POPUPBAR_ROLE);
+		installEditPolicy(IEditPolicyRoles.SNAP_TO_PORT_FEEDBACK_ROLE, new SnapToPortFeedbackPolicy());
+		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new BlockDiagramCreationEditPolicy());
 	}
 	
 	@SuppressWarnings("unchecked")

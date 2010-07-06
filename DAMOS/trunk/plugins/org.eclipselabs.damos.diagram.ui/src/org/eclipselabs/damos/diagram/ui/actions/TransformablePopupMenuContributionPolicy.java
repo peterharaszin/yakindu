@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.diagram.ui.actions;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipselabs.damos.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 
 public class TransformablePopupMenuContributionPolicy extends AbstractPopupMenuContributionPolicy {
 
@@ -20,7 +20,7 @@ public class TransformablePopupMenuContributionPolicy extends AbstractPopupMenuC
 	 * @see org.eclipselabs.damos.diagram.ui.actions.AbstractPopupMenuContributionPolicy#appliesTo(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
 	 */
 	protected boolean appliesTo(IGraphicalEditPart editPart) {
-		return editPart.getEditPolicy(EditPolicyRoles.TRANSFORM_ROLE) != null;
+		return editPart.getEditPolicy(IEditPolicyRoles.TRANSFORM_ROLE) != null;
 	}
 	
 }

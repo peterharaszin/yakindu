@@ -16,7 +16,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipselabs.damos.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Output;
@@ -28,7 +28,7 @@ public class AdjustableOutputCountPopupMenuContributionPolicy extends AbstractPo
 	 * @see org.eclipselabs.damos.diagram.ui.actions.AbstractPopupMenuContributionPolicy#appliesTo(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
 	 */
 	protected boolean appliesTo(IGraphicalEditPart editPart) {
-		EditPolicy editPolicy = editPart.getEditPolicy(EditPolicyRoles.ADJUST_OUTPUT_COUNT_ROLE);
+		EditPolicy editPolicy = editPart.getEditPolicy(IEditPolicyRoles.ADJUST_OUTPUT_COUNT_ROLE);
 		if (editPolicy == null) {
 			return false;
 		}

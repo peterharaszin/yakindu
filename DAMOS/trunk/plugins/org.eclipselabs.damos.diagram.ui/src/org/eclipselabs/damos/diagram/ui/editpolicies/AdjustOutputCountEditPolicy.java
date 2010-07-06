@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
-import org.eclipselabs.damos.diagram.ui.requests.RequestConstants;
+import org.eclipselabs.damos.diagram.ui.requests.IRequestConstants;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -48,10 +48,10 @@ public class AdjustOutputCountEditPolicy extends AbstractEditPolicy {
 	 * .gef.Request)
 	 */
 	public Command getCommand(Request request) {
-		if (RequestConstants.REQ_ADD_OUTPUT.equals(request.getType())) {
+		if (IRequestConstants.REQ_ADD_OUTPUT.equals(request.getType())) {
 			return createAddOutputCommand();
 		}
-		if (RequestConstants.REQ_REMOVE_OUTPUT.equals(request.getType())) {
+		if (IRequestConstants.REQ_REMOVE_OUTPUT.equals(request.getType())) {
 			return createRemoveOutputCommand();
 		}
 		return super.getCommand(request);
@@ -65,7 +65,7 @@ public class AdjustOutputCountEditPolicy extends AbstractEditPolicy {
 	 * .eclipse.gef.Request)
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (RequestConstants.REQ_ADD_OUTPUT.equals(request.getType()) || RequestConstants.REQ_REMOVE_OUTPUT.equals(request.getType())) {
+		if (IRequestConstants.REQ_ADD_OUTPUT.equals(request.getType()) || IRequestConstants.REQ_REMOVE_OUTPUT.equals(request.getType())) {
 			return getHost();
 		}
 		return super.getTargetEditPart(request);

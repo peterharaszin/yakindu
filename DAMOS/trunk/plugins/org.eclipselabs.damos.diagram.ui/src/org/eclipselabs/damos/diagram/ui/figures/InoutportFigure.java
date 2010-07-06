@@ -17,7 +17,7 @@ import org.eclipse.draw2d.geometry.Dimension;
  * @author Andreas Unger
  *
  */
-public class InoutportFigure extends StandardComponentFigure implements FigureConstants {
+public class InoutportFigure extends StandardComponentFigure implements IFigureConstants {
 
 	private int[] points = new int[10];
 	
@@ -31,7 +31,7 @@ public class InoutportFigure extends StandardComponentFigure implements FigureCo
 		return minSize;
 	}
 
-	protected void paintCanvas(CanvasContext cc) {
+	protected void paintCanvas(ICanvasContext cc) {
 		Dimension size = getCanvasSize();
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
 

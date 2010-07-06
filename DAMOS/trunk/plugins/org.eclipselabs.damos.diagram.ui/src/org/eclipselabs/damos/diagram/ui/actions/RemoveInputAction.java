@@ -14,7 +14,7 @@ package org.eclipselabs.damos.diagram.ui.actions;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction;
 import org.eclipse.ui.IWorkbenchPage;
-import org.eclipselabs.damos.diagram.ui.requests.RequestConstants;
+import org.eclipselabs.damos.diagram.ui.requests.IRequestConstants;
 
 /**
  * @author Andreas Unger
@@ -41,7 +41,7 @@ public class RemoveInputAction extends DiagramAction {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#createTargetRequest()
 	 */
 	protected Request createTargetRequest() {
-		return new Request(RequestConstants.REQ_REMOVE_INPUT);
+		return new Request(IRequestConstants.REQ_REMOVE_INPUT);
 	}
 
 	/* (non-Javadoc)

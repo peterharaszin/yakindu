@@ -39,7 +39,7 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 	
 	protected TerminalFigure terminalFigure;
 	protected IFigure terminalBorderFigure;
-	protected int terminalPadding = 3 * FigureConstants.DEFAULT_LINE_WIDTH;
+	protected int terminalPadding = 3 * IFigureConstants.DEFAULT_LINE_WIDTH;
 	
 	private ConnectionAnchor connectionAnchor;
 

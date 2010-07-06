@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationFactory;
-import org.eclipselabs.damos.diagram.ui.view.SemanticHints;
+import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 
 public class ComponentViewFactory extends AbstractShapeViewFactory {
 
@@ -31,7 +31,7 @@ public class ComponentViewFactory extends AbstractShapeViewFactory {
         style.setLineColor((FigureUtilities.colorToInteger(ColorConstants.black)).intValue());
         style.setFontColor((FigureUtilities.colorToInteger(ColorConstants.black)).intValue());
         
-        getViewService().createNode(element, view, SemanticHints.COMPONENT_NAME, ViewUtil.APPEND, persisted, getPreferencesHint());
+        getViewService().createNode(element, view, ISemanticHints.COMPONENT_NAME, ViewUtil.APPEND, persisted, getPreferencesHint());
 	}
 	
 	/* (non-Javadoc)

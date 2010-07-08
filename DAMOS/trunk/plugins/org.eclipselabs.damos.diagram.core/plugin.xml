@@ -25,6 +25,12 @@
                name="Connection">
          </metamodelType>
          <metamodelType
+               eclass="Port"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelper.PortEditHelper"
+               id="org.eclipselabs.damos.diagram.port"
+               name="Port">
+         </metamodelType>
+         <metamodelType
                eclass="Inport"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelper.InportEditHelper"
                id="org.eclipselabs.damos.diagram.inport"

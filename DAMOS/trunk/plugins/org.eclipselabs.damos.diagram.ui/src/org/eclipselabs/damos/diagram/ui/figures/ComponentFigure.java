@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.diagram.ui.figures;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -64,13 +67,19 @@ public abstract class ComponentFigure extends NodeFigure {
 		return null;
 	}
 	
-	public IFigure getContentFigure() {
+	public List<IFigure> getContentFigures() {
+		List<IFigure> contentFigures = new ArrayList<IFigure>();
 		for (Object o : getChildren()) {
 			if (!(o instanceof PortFigure || o instanceof TerminalBorderFigure)) {
-				return (IFigure) o;
+				contentFigures.add((IFigure) o);
 			}
 		}
-		return null;
+		return contentFigures;
+	}
+
+	public IFigure getPrimaryContentFigure() {
+		List<IFigure> contentFigures = getContentFigures();
+		return contentFigures.isEmpty() ? null : contentFigures.get(0);
 	}
 
 	/* (non-Javadoc)

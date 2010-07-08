@@ -44,7 +44,7 @@ public class StandardComponentLayout extends AbstractLayout {
 	private int horizontalContentAlignment = SWT.CENTER;
 	private int verticalContentAlignment = SWT.CENTER;
 	
-	private ComponentMetrics blockMetrics;
+	private ComponentMetrics componentMetrics;
 	private List<PortFigure> westPortFigures;
 	private List<PortFigure> eastPortFigures;
 	private List<PortFigure> northPortFigures;
@@ -158,10 +158,10 @@ public class StandardComponentLayout extends AbstractLayout {
 	}
 	
 	protected ComponentMetrics getComponentMetrics(ComponentFigure componentFigure) {
-		if (blockMetrics == null) {
-			blockMetrics = calculateComponentMetrics(componentFigure);
+		if (componentMetrics == null) {
+			componentMetrics = calculateComponentMetrics(componentFigure);
 		}
-		return blockMetrics;
+		return componentMetrics;
 	}
 	
 	protected ComponentMetrics calculateComponentMetrics(ComponentFigure componentFigure) {
@@ -407,7 +407,7 @@ public class StandardComponentLayout extends AbstractLayout {
 	 */
 	public void invalidate() {
 		super.invalidate();
-		blockMetrics = null;
+		componentMetrics = null;
 		westPortFigures = null;
 		eastPortFigures = null;
 		northPortFigures = null;
@@ -462,13 +462,13 @@ public class StandardComponentLayout extends AbstractLayout {
 	
 	protected IFigure getContentFigure(ComponentFigure componentFigure) {
 		if (contentFigure == null) {
-			contentFigure = componentFigure.getContentFigure();
+			contentFigure = componentFigure.getPrimaryContentFigure();
 		}
 		return contentFigure;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.diagram.figures.StandardBlockLayout#calculateContentAlignment()
+	 * @see org.eclipselabs.damos.diagram.figures.StandardComponentLayout#calculateContentAlignment()
 	 */
 	protected Alignment calculateContentAlignment(ComponentFigure componentFigure) {
 		return Geometry.transformAlignment(
@@ -476,7 +476,7 @@ public class StandardComponentLayout extends AbstractLayout {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.diagram.figures.StandardBlockLayout#getPortFigures(org.eclipse.draw2d.IFigure, int)
+	 * @see org.eclipselabs.damos.diagram.figures.StandardComponentLayout#getPortFigures(org.eclipse.draw2d.IFigure, int)
 	 */
 	protected List<PortFigure> getPortFigures(ComponentFigure componentFigure, int side) {
 		int reversedSide = Geometry.reverseTransformSide(side, componentFigure.isFlipped(), componentFigure.getRotation());

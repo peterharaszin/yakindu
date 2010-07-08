@@ -75,7 +75,7 @@ public abstract class EditableContentComponentEditPart extends StandardComponent
 	}
 	
 	protected ILabelDelegate getContentLabel() {
-		IFigure figure = getComponentFigure().getContentFigure();
+		IFigure figure = getComponentFigure().getPrimaryContentFigure();
 		if (figure instanceof LabelEx) {
 			return new LabelExDelegate((LabelEx) figure);
 		}

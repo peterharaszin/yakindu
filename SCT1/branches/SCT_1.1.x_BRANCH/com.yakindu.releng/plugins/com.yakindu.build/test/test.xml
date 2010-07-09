@@ -149,7 +149,7 @@
 		<property name="timeout" value="7200000" />
 		<property name="test-output" value="${testDirectory}/${classname}.xml" />
 		<property name="emma.lib" value="${basedir}/emma/emma.jar"/>
-		<property name="xdisplay" value=":0"/>
+		<property name="xdisplay" value=":1.0"/>
 		<echo message="Running ${classname}" />
 
 		<path id="equinox.launcher">

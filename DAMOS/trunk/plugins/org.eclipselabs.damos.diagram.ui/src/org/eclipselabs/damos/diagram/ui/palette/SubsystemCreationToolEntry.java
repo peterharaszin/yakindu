@@ -18,14 +18,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Tool;
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
-import org.eclipselabs.damos.diagram.ui.part.BlockDiagramEditor;
 import org.eclipselabs.damos.diagram.ui.tools.SubsystemCreationTool;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.SystemInterface;
@@ -34,14 +32,10 @@ import org.eclipselabs.damos.dml.SystemInterface;
  * @author Andreas Unger
  *
  */
-public class SubsystemCreationToolEntry extends CombinedTemplateCreationEntry {
+public class SubsystemCreationToolEntry extends ComponentCreationToolEntry {
 
-	private BlockDiagramEditor editor;
-	
-	public SubsystemCreationToolEntry(BlockDiagramEditor editor) {
-		super("Subsystem", "Create subsystem", null, null, null, null);
-		setTemplate(this);
-		this.editor = editor;
+	public SubsystemCreationToolEntry(IEditorPart editor) {
+		super(editor, "Subsystem", "Create subsystem");
 	}
 
 	public Tool createTool() {
@@ -53,7 +47,7 @@ public class SubsystemCreationToolEntry extends CombinedTemplateCreationEntry {
 				return tool;
 			}
 		} catch (Exception e) {
-			MessageDialog.openError(editor.getSite().getShell(), "Subsystem Creation", "Subsystem creation failed: " + e.getLocalizedMessage());
+			MessageDialog.openError(getEditor().getSite().getShell(), "Subsystem Creation", "Subsystem creation failed: " + e.getLocalizedMessage());
 		}
 		return null;
 	}
@@ -70,8 +64,7 @@ public class SubsystemCreationToolEntry extends CombinedTemplateCreationEntry {
 			Object firstResult = d.getFirstResult();
 			if (firstResult instanceof IFile) {
 				IFile file = (IFile) firstResult;
-				TransactionalEditingDomain editingDomain = editor.getEditingDomain();
-				ResourceSet resourceSet = editingDomain.getResourceSet();
+				ResourceSet resourceSet = getEditingDomain().getResourceSet();
 				Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), false), true);
 				SystemInterface interface_ = (SystemInterface) EcoreUtil.getObjectByType(resource.getContents(), DMLPackage.Literals.SYSTEM_INTERFACE);
 				if (interface_ != null) {

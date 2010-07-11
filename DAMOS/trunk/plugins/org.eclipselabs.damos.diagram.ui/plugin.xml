@@ -423,6 +423,9 @@
          point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
       <paletteProvider
             class="org.eclipselabs.damos.diagram.ui.palette.PaletteProvider">
+         <editor
+               id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor">
+         </editor>
          <Priority
                name="Lowest">
          </Priority>

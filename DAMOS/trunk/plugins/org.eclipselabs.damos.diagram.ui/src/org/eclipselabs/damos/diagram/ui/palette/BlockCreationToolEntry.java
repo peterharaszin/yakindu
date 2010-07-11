@@ -13,11 +13,9 @@ package org.eclipselabs.damos.diagram.ui.palette;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Tool;
-import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipselabs.damos.diagram.ui.part.BlockDiagramEditor;
+import org.eclipse.ui.IEditorPart;
 import org.eclipselabs.damos.diagram.ui.tools.BlockCreationTool;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
@@ -26,15 +24,12 @@ import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
  * @author Andreas Unger
  * 
  */
-public class BlockCreationToolEntry extends CombinedTemplateCreationEntry {
+public class BlockCreationToolEntry extends ComponentCreationToolEntry {
 
-	private BlockDiagramEditor editor;
 	private IBlockTypeDescriptor blockTypeDescriptor;
 
-	public BlockCreationToolEntry(BlockDiagramEditor editor, IBlockTypeDescriptor blockTypeDescriptor) {
-		super(blockTypeDescriptor.getName(), "Create " + blockTypeDescriptor.getName() + " block", null, null, null, null);
-		setTemplate(this);
-		this.editor = editor;
+	public BlockCreationToolEntry(IEditorPart editor, IBlockTypeDescriptor blockTypeDescriptor) {
+		super(editor, blockTypeDescriptor.getName(), "Create " + blockTypeDescriptor.getName() + " block");
 		this.blockTypeDescriptor = blockTypeDescriptor;
 	}
 
@@ -47,14 +42,13 @@ public class BlockCreationToolEntry extends CombinedTemplateCreationEntry {
 				return tool;
 			}
 		} catch (Exception e) {
-			MessageDialog.openError(editor.getSite().getShell(), "Block Creation", "Block creation failed: " + e.getLocalizedMessage());
+			MessageDialog.openError(getEditor().getSite().getShell(), "Block Creation", "Block creation failed: " + e.getLocalizedMessage());
 		}
 		return null;
 	}
 
 	protected BlockType getBlockType(IBlockTypeDescriptor blockTypeDescriptor) {
-		TransactionalEditingDomain editingDomain = editor.getEditingDomain();
-		ResourceSet resourceSet = editingDomain.getResourceSet();
+		ResourceSet resourceSet = getEditingDomain().getResourceSet();
 		EObject element;
 		try {
 			element = resourceSet.getEObject(blockTypeDescriptor.getUri(), true);

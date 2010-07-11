@@ -6,20 +6,20 @@
  */
 package org.eclipselabs.damos.dml.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.BlockOutputPort;
-import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.BlockPort;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.dml.Output;
-import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.dml.internal.operations.OutputPortOperations;
+import org.eclipselabs.damos.dml.ParameterizedElement;
+import org.eclipselabs.damos.dml.internal.operations.ParameterizedElementOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,13 +28,23 @@ import org.eclipselabs.damos.dml.internal.operations.OutputPortOperations;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.impl.BlockOutputPortImpl#getOutput <em>Output</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.BlockOutputPortImpl#getArguments <em>Arguments</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPort {
+public class BlockOutputPortImpl extends OutputPortImpl implements BlockOutputPort {
+	/**
+	 * The cached value of the '{@link #getArguments() <em>Arguments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getArguments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Argument> arguments;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -59,40 +69,11 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Output getOutput() {
-		if (eContainerFeatureID() != DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT) return null;
-		return (Output)eContainer();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetOutput(Output newOutput, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newOutput, DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT, msgs);
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOutput(Output newOutput) {
-		if (newOutput != eInternalContainer() || (eContainerFeatureID() != DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT && newOutput != null)) {
-			if (EcoreUtil.isAncestor(this, newOutput))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			if (newOutput != null)
-				msgs = ((InternalEObject)newOutput).eInverseAdd(this, DMLPackage.OUTPUT__PORTS, Output.class, msgs);
-			msgs = basicSetOutput(newOutput, msgs);
-			if (msgs != null) msgs.dispatch();
+	public EList<Argument> getArguments() {
+		if (arguments == null) {
+			arguments = new EObjectContainmentEList<Argument>(Argument.class, this, DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS);
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT, newOutput, newOutput));
+		return arguments;
 	}
 
 	/**
@@ -100,8 +81,8 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Connection> getOutgoingConnections() {
-		return OutputPortOperations.getOutgoingConnections(this);
+	public Argument getArgument(String parameterName) {
+		return ParameterizedElementOperations.getArgument(this, parameterName);
 	}
 
 	/**
@@ -109,24 +90,8 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Connection> getOutgoingConnections(Fragment context) {
-		return OutputPortOperations.getOutgoingConnections(this, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT:
-				if (eInternalContainer() != null)
-					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetOutput((Output)otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
+	public String getArgumentStringValue(String parameterName) {
+		return ParameterizedElementOperations.getArgumentStringValue(this, parameterName);
 	}
 
 	/**
@@ -137,8 +102,8 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT:
-				return basicSetOutput(null, msgs);
+			case DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS:
+				return ((InternalEList<?>)getArguments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -149,24 +114,10 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
-			case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT:
-				return eInternalContainer().eInverseRemove(this, DMLPackage.OUTPUT__PORTS, Output.class, msgs);
-		}
-		return super.eBasicRemoveFromContainerFeature(msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT:
-				return getOutput();
+			case DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS:
+				return getArguments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -176,11 +127,13 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT:
-				setOutput((Output)newValue);
+			case DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS:
+				getArguments().clear();
+				getArguments().addAll((Collection<? extends Argument>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,8 +147,8 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT:
-				setOutput((Output)null);
+			case DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS:
+				getArguments().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -209,8 +162,8 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT:
-				return getOutput() != null;
+			case DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS:
+				return arguments != null && !arguments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -222,9 +175,14 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == OutputPort.class) {
+		if (baseClass == ParameterizedElement.class) {
 			switch (derivedFeatureID) {
-				case DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT: return DMLPackage.OUTPUT_PORT__OUTPUT;
+				case DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS: return DMLPackage.PARAMETERIZED_ELEMENT__ARGUMENTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == BlockPort.class) {
+			switch (derivedFeatureID) {
 				default: return -1;
 			}
 		}
@@ -238,9 +196,14 @@ public class BlockOutputPortImpl extends BlockPortImpl implements BlockOutputPor
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == OutputPort.class) {
+		if (baseClass == ParameterizedElement.class) {
 			switch (baseFeatureID) {
-				case DMLPackage.OUTPUT_PORT__OUTPUT: return DMLPackage.BLOCK_OUTPUT_PORT__OUTPUT;
+				case DMLPackage.PARAMETERIZED_ELEMENT__ARGUMENTS: return DMLPackage.BLOCK_OUTPUT_PORT__ARGUMENTS;
+				default: return -1;
+			}
+		}
+		if (baseClass == BlockPort.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

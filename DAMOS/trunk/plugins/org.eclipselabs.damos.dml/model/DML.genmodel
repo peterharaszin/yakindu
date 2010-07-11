@@ -90,6 +90,8 @@
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//OutputPort">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
           ecoreFeature="ecore:EReference DML.ecore#//OutputPort/output"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DML.ecore#//OutputPort/signal"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DML.ecore#//OutputPort/getOutgoingConnections"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DML.ecore#//OutputPort/getOutgoingConnections.1">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DML.ecore#//OutputPort/getOutgoingConnections.1/context"/>
@@ -101,6 +103,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Output/ports"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//SignalSpecification"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//BlockInput">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//BlockInput/definition"/>

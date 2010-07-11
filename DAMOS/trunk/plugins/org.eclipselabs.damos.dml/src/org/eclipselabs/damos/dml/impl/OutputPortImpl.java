@@ -18,6 +18,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.internal.operations.OutputPortOperations;
 
 /**
@@ -28,12 +29,32 @@ import org.eclipselabs.damos.dml.internal.operations.OutputPortOperations;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.OutputPortImpl#getOutput <em>Output</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.OutputPortImpl#getSignal <em>Signal</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class OutputPortImpl extends PortImpl implements OutputPort {
+	/**
+	 * The cached value of the '{@link #getSignal() <em>Signal</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSignal()
+	 * @generated
+	 * @ordered
+	 */
+	protected SignalSpecification signal;
+
+	/**
+	 * This is true if the Signal containment reference has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean signalESet;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -99,6 +120,101 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public SignalSpecification getSignal() {
+		return signal;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSignal(SignalSpecification newSignal, NotificationChain msgs) {
+		SignalSpecification oldSignal = signal;
+		signal = newSignal;
+		boolean oldSignalESet = signalESet;
+		signalESet = true;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.OUTPUT_PORT__SIGNAL, oldSignal, newSignal, !oldSignalESet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSignal(SignalSpecification newSignal) {
+		if (newSignal != signal) {
+			NotificationChain msgs = null;
+			if (signal != null)
+				msgs = ((InternalEObject)signal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.OUTPUT_PORT__SIGNAL, null, msgs);
+			if (newSignal != null)
+				msgs = ((InternalEObject)newSignal).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLPackage.OUTPUT_PORT__SIGNAL, null, msgs);
+			msgs = basicSetSignal(newSignal, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
+			boolean oldSignalESet = signalESet;
+			signalESet = true;
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.OUTPUT_PORT__SIGNAL, newSignal, newSignal, !oldSignalESet));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicUnsetSignal(NotificationChain msgs) {
+		SignalSpecification oldSignal = signal;
+		signal = null;
+		boolean oldSignalESet = signalESet;
+		signalESet = false;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DMLPackage.OUTPUT_PORT__SIGNAL, oldSignal, null, oldSignalESet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetSignal() {
+		if (signal != null) {
+			NotificationChain msgs = null;
+			msgs = ((InternalEObject)signal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.OUTPUT_PORT__SIGNAL, null, msgs);
+			msgs = basicUnsetSignal(msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
+			boolean oldSignalESet = signalESet;
+			signalESet = false;
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.UNSET, DMLPackage.OUTPUT_PORT__SIGNAL, null, null, oldSignalESet));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetSignal() {
+		return signalESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Connection> getOutgoingConnections() {
 		return OutputPortOperations.getOutgoingConnections(this);
 	}
@@ -138,6 +254,8 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 		switch (featureID) {
 			case DMLPackage.OUTPUT_PORT__OUTPUT:
 				return basicSetOutput(null, msgs);
+			case DMLPackage.OUTPUT_PORT__SIGNAL:
+				return basicUnsetSignal(msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -166,6 +284,8 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 		switch (featureID) {
 			case DMLPackage.OUTPUT_PORT__OUTPUT:
 				return getOutput();
+			case DMLPackage.OUTPUT_PORT__SIGNAL:
+				return getSignal();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,6 +300,9 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 		switch (featureID) {
 			case DMLPackage.OUTPUT_PORT__OUTPUT:
 				setOutput((Output)newValue);
+				return;
+			case DMLPackage.OUTPUT_PORT__SIGNAL:
+				setSignal((SignalSpecification)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -196,6 +319,9 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 			case DMLPackage.OUTPUT_PORT__OUTPUT:
 				setOutput((Output)null);
 				return;
+			case DMLPackage.OUTPUT_PORT__SIGNAL:
+				unsetSignal();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -210,6 +336,8 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 		switch (featureID) {
 			case DMLPackage.OUTPUT_PORT__OUTPUT:
 				return getOutput() != null;
+			case DMLPackage.OUTPUT_PORT__SIGNAL:
+				return isSetSignal();
 		}
 		return super.eIsSet(featureID);
 	}

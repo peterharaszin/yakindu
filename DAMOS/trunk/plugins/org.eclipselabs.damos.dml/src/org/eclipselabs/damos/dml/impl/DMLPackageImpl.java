@@ -57,6 +57,7 @@ import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
@@ -127,6 +128,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass outputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass signalSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -668,6 +676,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getOutputPort_Signal() {
+		return (EReference)outputPortEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOutput() {
 		return outputEClass;
 	}
@@ -688,6 +705,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EReference getOutput_Ports() {
 		return (EReference)outputEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSignalSpecification() {
+		return signalSpecificationEClass;
 	}
 
 	/**
@@ -1497,10 +1523,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		outputPortEClass = createEClass(OUTPUT_PORT);
 		createEReference(outputPortEClass, OUTPUT_PORT__OUTPUT);
+		createEReference(outputPortEClass, OUTPUT_PORT__SIGNAL);
 
 		outputEClass = createEClass(OUTPUT);
 		createEReference(outputEClass, OUTPUT__COMPONENT);
 		createEReference(outputEClass, OUTPUT__PORTS);
+
+		signalSpecificationEClass = createEClass(SIGNAL_SPECIFICATION);
 
 		blockInputEClass = createEClass(BLOCK_INPUT);
 		createEReference(blockInputEClass, BLOCK_INPUT__DEFINITION);
@@ -1680,8 +1709,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockPortEClass.getESuperTypes().add(this.getPort());
 		blockInputPortEClass.getESuperTypes().add(this.getBlockPort());
 		blockInputPortEClass.getESuperTypes().add(this.getInputPort());
-		blockOutputPortEClass.getESuperTypes().add(this.getBlockPort());
 		blockOutputPortEClass.getESuperTypes().add(this.getOutputPort());
+		blockOutputPortEClass.getESuperTypes().add(this.getBlockPort());
 		subsystemEClass.getESuperTypes().add(this.getComponent());
 		inletEClass.getESuperTypes().add(this.getInoutlet());
 		outletEClass.getESuperTypes().add(this.getInoutlet());
@@ -1763,6 +1792,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(outputPortEClass, OutputPort.class, "OutputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOutputPort_Output(), this.getOutput(), this.getOutput_Ports(), "output", null, 1, 1, OutputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getOutputPort_Signal(), this.getSignalSpecification(), null, "signal", null, 0, 1, OutputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		addEOperation(outputPortEClass, this.getConnection(), "getOutgoingConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
@@ -1772,6 +1802,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(outputEClass, Output.class, "Output", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOutput_Component(), this.getComponent(), this.getComponent_Outputs(), "component", null, 1, 1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getOutput_Ports(), this.getOutputPort(), this.getOutputPort_Output(), "ports", null, 0, -1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(signalSpecificationEClass, SignalSpecification.class, "SignalSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(blockInputEClass, BlockInput.class, "BlockInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockInput_Definition(), this.getInputDefinition(), null, "definition", null, 1, 1, BlockInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

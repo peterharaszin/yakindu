@@ -75,6 +75,8 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="output" ordered="false"
         lowerBound="1" eType="#//Output" eOpposite="#//Output/ports"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signal" ordered="false"
+        eType="#//SignalSpecification" unsettable="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Output" eSuperTypes="#//Inoutput">
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
@@ -82,6 +84,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
         eType="#//OutputPort" containment="true" eOpposite="#//OutputPort/output"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SignalSpecification" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="BlockInput" eSuperTypes="#//Input #//BlockInoutput">
     <eAnnotations source="duplicates">
       <contents xsi:type="ecore:EOperation" name="isDirectFeedthrough" ordered="false"
@@ -227,7 +230,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="System" eSuperTypes="#//Fragment"/>
   <eClassifiers xsi:type="ecore:EClass" name="BlockPort" abstract="true" eSuperTypes="#//ParameterizedElement #//Port"/>
   <eClassifiers xsi:type="ecore:EClass" name="BlockInputPort" eSuperTypes="#//BlockPort #//InputPort"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BlockOutputPort" eSuperTypes="#//BlockPort #//OutputPort"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockOutputPort" eSuperTypes="#//OutputPort #//BlockPort"/>
   <eClassifiers xsi:type="ecore:EClass" name="Subsystem" eSuperTypes="#//Component">
     <eOperations name="getRealizations" ordered="false" upperBound="-1" eType="#//SubsystemRealization"/>
     <eOperations name="getRealization" ordered="false" eType="#//SubsystemRealization">

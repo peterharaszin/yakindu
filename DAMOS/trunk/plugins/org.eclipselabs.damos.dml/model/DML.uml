@@ -91,6 +91,10 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_rgjtUMB5Ed6Vk-PE2115fA" name="OutputPort">
       <generalization xmi:id="_MztosMB9Ed6Vk-PE2115fA" general="_vaIm8MB5Ed6Vk-PE2115fA"/>
       <ownedAttribute xmi:id="_YaioQDgmEd-myemPdpf9Bg" name="output" type="_q_KE4DgkEd-myemPdpf9Bg" association="_cJ85QDgmEd-myemPdpf9Bg"/>
+      <ownedAttribute xmi:id="__cvLUIzyEd-MjuTy8qt7UQ" name="signal" type="_2YrJ0IzyEd-MjuTy8qt7UQ" aggregation="composite" association="_DJei0IzzEd-MjuTy8qt7UQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B_pM8IzzEd-MjuTy8qt7UQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B_p0AIzzEd-MjuTy8qt7UQ"/>
+      </ownedAttribute>
       <ownedOperation xmi:id="_9zP4cCtfEd-10ajEDIbouA" name="getOutgoingConnections">
         <ownedParameter xmi:id="_t5opIFInEd-FQsGnF5cJ1Q" type="_h1_sgMB5Ed6Vk-PE2115fA" direction="return">
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mUUoIFIoEd-FQsGnF5cJ1Q" value="*"/>
@@ -601,6 +605,10 @@
     <packagedElement xmi:type="uml:Association" xmi:id="_ZPsDEIU_Ed-0gI62qSIIbg" memberEnd="_ZPsqIIU_Ed-0gI62qSIIbg _NC5WEIU_Ed-0gI62qSIIbg">
       <ownedEnd xmi:id="_ZPsqIIU_Ed-0gI62qSIIbg" type="_zB8VoIU-Ed-0gI62qSIIbg" association="_ZPsDEIU_Ed-0gI62qSIIbg"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_2YrJ0IzyEd-MjuTy8qt7UQ" name="SignalSpecification" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_DJei0IzzEd-MjuTy8qt7UQ" memberEnd="_DJfJ4IzzEd-MjuTy8qt7UQ __cvLUIzyEd-MjuTy8qt7UQ">
+      <ownedEnd xmi:id="_DJfJ4IzzEd-MjuTy8qt7UQ" type="_rgjtUMB5Ed6Vk-PE2115fA" association="_DJei0IzzEd-MjuTy8qt7UQ"/>
+    </packagedElement>
     <profileApplication xmi:id="_e73TIMB4Ed6Vk-PE2115fA">
       <eAnnotations xmi:id="_e76WcMB4Ed6Vk-PE2115fA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
@@ -616,4 +624,5 @@
   <Ecore:EPackage xmi:id="_ZIxTAH39Ed-EWvFDOLE-rQ" base_Package="_beJ2IMB4Ed6Vk-PE2115fA" packageName="dml" nsPrefix="dml" nsURI="http://www.eclipselabs.org/damos/DML/1.0.0" basePackage="org.eclipselabs.damos" prefix="DML"/>
   <Ecore:EAttribute xmi:id="_4e3EgIOBEd-Jwv-I5tZZDg" isTransient="true" base_Property="_2usucIOBEd-Jwv-I5tZZDg"/>
   <Ecore:EAttribute xmi:id="_GBaQUIU_Ed-0gI62qSIIbg" isUnsettable="true" base_Property="__PBWgIU-Ed-0gI62qSIIbg"/>
+  <Ecore:EReference xmi:id="_jrCJgIzzEd-MjuTy8qt7UQ" isUnsettable="true" base_Property="__cvLUIzyEd-MjuTy8qt7UQ"/>
 </xmi:XMI>

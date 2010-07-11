@@ -17,5 +17,5 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface BlockOutputPort extends BlockPort, OutputPort {
+public interface BlockOutputPort extends OutputPort, BlockPort {
 } // BlockOutputPort

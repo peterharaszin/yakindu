@@ -53,6 +53,7 @@ import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
@@ -198,6 +199,12 @@ public class DMLSwitch<T> {
 				Output output = (Output)theEObject;
 				T result = caseOutput(output);
 				if (result == null) result = caseInoutput(output);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.SIGNAL_SPECIFICATION: {
+				SignalSpecification signalSpecification = (SignalSpecification)theEObject;
+				T result = caseSignalSpecification(signalSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -386,10 +393,10 @@ public class DMLSwitch<T> {
 			case DMLPackage.BLOCK_OUTPUT_PORT: {
 				BlockOutputPort blockOutputPort = (BlockOutputPort)theEObject;
 				T result = caseBlockOutputPort(blockOutputPort);
-				if (result == null) result = caseBlockPort(blockOutputPort);
 				if (result == null) result = caseOutputPort(blockOutputPort);
-				if (result == null) result = caseParameterizedElement(blockOutputPort);
+				if (result == null) result = caseBlockPort(blockOutputPort);
 				if (result == null) result = casePort(blockOutputPort);
+				if (result == null) result = caseParameterizedElement(blockOutputPort);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -620,6 +627,21 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseOutput(Output object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Signal Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Signal Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSignalSpecification(SignalSpecification object) {
 		return null;
 	}
 

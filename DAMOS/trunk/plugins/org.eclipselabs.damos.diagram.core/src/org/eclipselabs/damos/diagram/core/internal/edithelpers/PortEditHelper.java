@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.core.internal.edithelper;
+package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 
 import java.util.Collection;
 

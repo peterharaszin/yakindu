@@ -9,18 +9,21 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.core.internal.edithelper;
+package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipselabs.damos.diagram.core.internal.commands.ConfigureBlockCommand;
+import org.eclipselabs.damos.diagram.core.internal.commands.ConfigureBlockOutputPortCommand;
 import org.eclipselabs.damos.dml.DMLPackage;
 
-public class BlockEditHelper extends AbstractEditHelper {
+/**
+ * @author Andreas Unger
+ *
+ */
+public class BlockOutputPortEditHelper extends PortEditHelper {
 
 	protected ICommand getConfigureCommand(ConfigureRequest request) {
-		return new ConfigureBlockCommand(request, DMLPackage.Literals.BLOCK);
+		return new ConfigureBlockOutputPortCommand(request, DMLPackage.Literals.BLOCK_OUTPUT_PORT);
 	}
-	
+
 }

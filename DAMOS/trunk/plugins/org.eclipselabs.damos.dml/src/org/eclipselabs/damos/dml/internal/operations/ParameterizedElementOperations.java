@@ -8,7 +8,6 @@ package org.eclipselabs.damos.dml.internal.operations;
 
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.ParameterizedElement;
-import org.eclipselabs.damos.dml.ValueSpecification;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,11 +55,8 @@ public class ParameterizedElementOperations {
 	 */
 	public static  String getArgumentStringValue(ParameterizedElement parameterizedElement, String parameterName) {
 		Argument argument = parameterizedElement.getArgument(parameterName);
-		if (argument != null) {
-			ValueSpecification value = argument.getValue();
-			if (value != null) {
-				return value.stringValue();
-			}
+		if (argument != null && argument.isSetValue()) {
+			return argument.getValue().stringValue();
 		}
 		return null;
 	}

@@ -14,6 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipselabs.damos.common;bundle-version="0.2.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipselabs.damos.dml,
+ org.eclipselabs.damos.dml.impl,
  org.eclipselabs.damos.dml.registry,
  org.eclipselabs.damos.dml.util
 Bundle-Activator: org.eclipselabs.damos.dml.DMLPlugin$Implementation

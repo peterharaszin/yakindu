@@ -143,7 +143,10 @@
       </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_ElO5cMB_Ed6Vk-PE2115fA" name="Argument">
-      <ownedAttribute xmi:id="_cIVgYMxREd6zerZhbgvLIA" name="value" type="_hL8VcFKeEd-LasUmVDFanw" aggregation="composite" association="_NGpk4FLPEd-LasUmVDFanw"/>
+      <ownedAttribute xmi:id="_cIVgYMxREd6zerZhbgvLIA" name="value" type="_hL8VcFKeEd-LasUmVDFanw" aggregation="composite" association="_NGpk4FLPEd-LasUmVDFanw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_DeoL0I2VEd-FdeLWbsCQCQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_DeqoEI2VEd-FdeLWbsCQCQ"/>
+      </ownedAttribute>
       <ownedAttribute xmi:id="_Rms4MMxSEd6zerZhbgvLIA" name="parameter" type="_12_t8MB_Ed6Vk-PE2115fA" association="_UWjwsMxSEd6zerZhbgvLIA"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_TIGtAMB_Ed6Vk-PE2115fA" memberEnd="_TIHUEMB_Ed6Vk-PE2115fA _Rn9v8MB_Ed6Vk-PE2115fA">
@@ -637,4 +640,5 @@
   <Ecore:EReference xmi:id="_jrCJgIzzEd-MjuTy8qt7UQ" isUnsettable="true" base_Property="__cvLUIzyEd-MjuTy8qt7UQ"/>
   <Ecore:EReference xmi:id="_gqWgII2KEd-FdeLWbsCQCQ" isUnsettable="true" base_Property="_eJ3gYI2KEd-FdeLWbsCQCQ"/>
   <Ecore:EAttribute xmi:id="_vhKjYI2KEd-FdeLWbsCQCQ" isTransient="true" base_Property="_sbhBEI2KEd-FdeLWbsCQCQ"/>
+  <Ecore:EReference xmi:id="_NVm4AI2VEd-FdeLWbsCQCQ" isUnsettable="true" base_Property="_cIVgYMxREd6zerZhbgvLIA"/>
 </xmi:XMI>

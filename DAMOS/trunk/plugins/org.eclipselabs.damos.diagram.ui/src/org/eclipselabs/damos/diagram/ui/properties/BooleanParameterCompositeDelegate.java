@@ -47,8 +47,12 @@ public class BooleanParameterCompositeDelegate extends CheckboxPropertyComposite
 	}
 
 	public void refreshParameter() {
-		String value = argument.getValue().stringValue();
-		getCheckboxWidget().setSelection(yesExpression.getExpression().equals(value));
+		if (argument.isSetValue()) {
+			String value = argument.getValue().stringValue();
+			getCheckboxWidget().setSelection(yesExpression.getExpression().equals(value));
+		} else {
+			getCheckboxWidget().setSelection(false);
+		}
 	}
 
 	/* (non-Javadoc)

@@ -36,9 +36,11 @@ public interface Argument extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #isSetValue()
+	 * @see #unsetValue()
 	 * @see #setValue(ValueSpecification)
 	 * @see org.eclipselabs.damos.dml.DMLPackage#getArgument_Value()
-	 * @model containment="true" required="true" ordered="false"
+	 * @model containment="true" unsettable="true" ordered="false"
 	 * @generated
 	 */
 	ValueSpecification getValue();
@@ -48,10 +50,35 @@ public interface Argument extends EObject {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Value</em>' containment reference.
+	 * @see #isSetValue()
+	 * @see #unsetValue()
 	 * @see #getValue()
 	 * @generated
 	 */
 	void setValue(ValueSpecification value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipselabs.damos.dml.Argument#getValue <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetValue()
+	 * @see #getValue()
+	 * @see #setValue(ValueSpecification)
+	 * @generated
+	 */
+	void unsetValue();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipselabs.damos.dml.Argument#getValue <em>Value</em>}' containment reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Value</em>' containment reference is set.
+	 * @see #unsetValue()
+	 * @see #getValue()
+	 * @see #setValue(ValueSpecification)
+	 * @generated
+	 */
+	boolean isSetValue();
 
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference.

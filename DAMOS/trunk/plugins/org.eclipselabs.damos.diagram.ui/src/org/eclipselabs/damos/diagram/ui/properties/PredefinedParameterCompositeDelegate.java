@@ -23,7 +23,6 @@ import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.ExpressionParameter;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
-import org.eclipselabs.damos.dml.ValueSpecification;
 
 /**
  * @author Andreas Unger
@@ -46,10 +45,9 @@ public class PredefinedParameterCompositeDelegate extends ComboPropertyComposite
 	}
 	
 	public void refreshParameter() {
-		boolean selected = false;
-		ValueSpecification valueSpec = argument.getValue();
-		if (valueSpec != null) {
-			String value = valueSpec.stringValue();
+		if (argument.isSetValue()) {
+			boolean selected = false;
+			String value = argument.getValue().stringValue();
 			if (value != null) {
 				PredefinedExpressionEntry entry = getParameter().getPredefinedExpression(value);
 				if (entry != null) {
@@ -57,9 +55,12 @@ public class PredefinedParameterCompositeDelegate extends ComboPropertyComposite
 					selected = true;
 				}
 			}
-		}
-		if (!selected) {
-			getControl().setText(valueSpec.stringValue());
+			if (!selected) {
+				getControl().setText(argument.getValue().stringValue());
+			}
+		} else {
+			getControl().deselectAll();
+			getControl().setText("");
 		}
 	}
 	

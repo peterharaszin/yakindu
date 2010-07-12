@@ -42,7 +42,11 @@ public class ExpressionParameterCompositeDelegate extends TextPropertyCompositeD
 	}
 	
 	public void refreshParameter() {
-		getControl().setText(argument.getValue().stringValue());
+		if (argument.isSetValue()) {
+			getControl().setText(argument.getValue().stringValue());
+		} else {
+			getControl().setText("");
+		}
 	}
 	
 	/* (non-Javadoc)

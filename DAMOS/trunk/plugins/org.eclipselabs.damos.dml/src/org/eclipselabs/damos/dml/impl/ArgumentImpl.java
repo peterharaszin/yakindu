@@ -43,6 +43,15 @@ public class ArgumentImpl extends EObjectImpl implements Argument {
 	protected ValueSpecification value;
 
 	/**
+	 * This is true if the Value containment reference has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean valueESet;
+
+	/**
 	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -88,8 +97,10 @@ public class ArgumentImpl extends EObjectImpl implements Argument {
 	public NotificationChain basicSetValue(ValueSpecification newValue, NotificationChain msgs) {
 		ValueSpecification oldValue = value;
 		value = newValue;
+		boolean oldValueESet = valueESet;
+		valueESet = true;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.ARGUMENT__VALUE, oldValue, newValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.ARGUMENT__VALUE, oldValue, newValue, !oldValueESet);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -110,8 +121,58 @@ public class ArgumentImpl extends EObjectImpl implements Argument {
 			msgs = basicSetValue(newValue, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.ARGUMENT__VALUE, newValue, newValue));
+		else {
+			boolean oldValueESet = valueESet;
+			valueESet = true;
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.ARGUMENT__VALUE, newValue, newValue, !oldValueESet));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicUnsetValue(NotificationChain msgs) {
+		ValueSpecification oldValue = value;
+		value = null;
+		boolean oldValueESet = valueESet;
+		valueESet = false;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DMLPackage.ARGUMENT__VALUE, oldValue, null, oldValueESet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetValue() {
+		if (value != null) {
+			NotificationChain msgs = null;
+			msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.ARGUMENT__VALUE, null, msgs);
+			msgs = basicUnsetValue(msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
+			boolean oldValueESet = valueESet;
+			valueESet = false;
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.UNSET, DMLPackage.ARGUMENT__VALUE, null, null, oldValueESet));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetValue() {
+		return valueESet;
 	}
 
 	/**
@@ -161,7 +222,7 @@ public class ArgumentImpl extends EObjectImpl implements Argument {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DMLPackage.ARGUMENT__VALUE:
-				return basicSetValue(null, msgs);
+				return basicUnsetValue(msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -210,7 +271,7 @@ public class ArgumentImpl extends EObjectImpl implements Argument {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DMLPackage.ARGUMENT__VALUE:
-				setValue((ValueSpecification)null);
+				unsetValue();
 				return;
 			case DMLPackage.ARGUMENT__PARAMETER:
 				setParameter((Parameter)null);
@@ -228,7 +289,7 @@ public class ArgumentImpl extends EObjectImpl implements Argument {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DMLPackage.ARGUMENT__VALUE:
-				return value != null;
+				return isSetValue();
 			case DMLPackage.ARGUMENT__PARAMETER:
 				return parameter != null;
 		}

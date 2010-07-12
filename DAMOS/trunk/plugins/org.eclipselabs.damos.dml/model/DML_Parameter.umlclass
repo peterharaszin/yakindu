@@ -435,7 +435,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_NG-VAVLPEd-LasUmVDFanw" y="15"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_NG-VAlLPEd-LasUmVDFanw" type="6009">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_NG-VA1LPEd-LasUmVDFanw" y="15"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_NG-VA1LPEd-LasUmVDFanw" x="-4" y="-28"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_NG-VBFLPEd-LasUmVDFanw" type="6019">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_NG-VBVLPEd-LasUmVDFanw" y="40"/>

@@ -119,6 +119,8 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
           ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/manyPorts"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DML.ecore#//InoutputDefinition/dataType"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//ParameterableElement">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
@@ -131,6 +133,7 @@
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//ValueSpecification">
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DML.ecore#//ValueSpecification/stringValue"/>
     </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//DataTypeSpecification"/>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//DirectFeedthroughPolicy">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" notify="false" createChild="false"
           ecoreFeature="ecore:EReference DML.ecore#//DirectFeedthroughPolicy/inputDefinition"/>
@@ -178,7 +181,6 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference DML.ecore#//PredefinedExpressionEntry/expression"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//DataTypeSpecification"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//BlockType">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
@@ -192,6 +194,7 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/qualifiedName"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" createChild="false"
           ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/name"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/qualifier"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//CategorizedElement">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"

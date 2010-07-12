@@ -847,6 +847,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getInoutputDefinition_DataType() {
+		return (EReference)inoutputDefinitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOutputDefinition() {
 		return outputDefinitionEClass;
 	}
@@ -1119,6 +1128,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EAttribute getQualifiedElement_Name() {
 		return (EAttribute)qualifiedElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getQualifiedElement_Qualifier() {
+		return (EAttribute)qualifiedElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1544,6 +1562,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MANY_PORTS);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__NAME);
+		createEReference(inoutputDefinitionEClass, INOUTPUT_DEFINITION__DATA_TYPE);
 
 		parameterableElementEClass = createEClass(PARAMETERABLE_ELEMENT);
 		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__PARAMETERS);
@@ -1552,6 +1571,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEAttribute(parameterEClass, PARAMETER__NAME);
 
 		valueSpecificationEClass = createEClass(VALUE_SPECIFICATION);
+
+		dataTypeSpecificationEClass = createEClass(DATA_TYPE_SPECIFICATION);
 
 		directFeedthroughPolicyEClass = createEClass(DIRECT_FEEDTHROUGH_POLICY);
 		createEReference(directFeedthroughPolicyEClass, DIRECT_FEEDTHROUGH_POLICY__INPUT_DEFINITION);
@@ -1580,8 +1601,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEAttribute(predefinedExpressionEntryEClass, PREDEFINED_EXPRESSION_ENTRY__ALIAS);
 		createEReference(predefinedExpressionEntryEClass, PREDEFINED_EXPRESSION_ENTRY__EXPRESSION);
 
-		dataTypeSpecificationEClass = createEClass(DATA_TYPE_SPECIFICATION);
-
 		blockTypeEClass = createEClass(BLOCK_TYPE);
 		createEReference(blockTypeEClass, BLOCK_TYPE__INPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__OUTPUT_DEFINITIONS);
@@ -1589,6 +1608,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		qualifiedElementEClass = createEClass(QUALIFIED_ELEMENT);
 		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__QUALIFIED_NAME);
 		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__NAME);
+		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__QUALIFIER);
 
 		categorizedElementEClass = createEClass(CATEGORIZED_ELEMENT);
 		createEReference(categorizedElementEClass, CATEGORIZED_ELEMENT__BELONGING_CATEGORIES);
@@ -1818,6 +1838,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEAttribute(getInoutputDefinition_MaximumPortCount(), ecorePackage.getEInt(), "maximumPortCount", "1", 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_ManyPorts(), ecorePackage.getEBoolean(), "manyPorts", null, 1, 1, InoutputDefinition.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_Name(), ecorePackage.getEString(), "name", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getInoutputDefinition_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(parameterableElementEClass, ParameterableElement.class, "ParameterableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParameterableElement_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, ParameterableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1830,6 +1851,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(valueSpecificationEClass, ValueSpecification.class, "ValueSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		addEOperation(valueSpecificationEClass, ecorePackage.getEString(), "stringValue", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(dataTypeSpecificationEClass, DataTypeSpecification.class, "DataTypeSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(directFeedthroughPolicyEClass, DirectFeedthroughPolicy.class, "DirectFeedthroughPolicy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDirectFeedthroughPolicy_InputDefinition(), this.getInputDefinition(), this.getInputDefinition_DirectFeedthroughPolicy(), "inputDefinition", null, 1, 1, DirectFeedthroughPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1872,8 +1895,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEAttribute(getPredefinedExpressionEntry_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, PredefinedExpressionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getPredefinedExpressionEntry_Expression(), this.getExpressionSpecification(), null, "expression", null, 1, 1, PredefinedExpressionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(dataTypeSpecificationEClass, DataTypeSpecification.class, "DataTypeSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(blockTypeEClass, BlockType.class, "BlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockType_InputDefinitions(), this.getInputDefinition(), null, "inputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_OutputDefinitions(), this.getOutputDefinition(), null, "outputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1884,6 +1905,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(qualifiedElementEClass, QualifiedElement.class, "QualifiedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getQualifiedElement_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 1, 1, QualifiedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getQualifiedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, QualifiedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getQualifiedElement_Qualifier(), ecorePackage.getEString(), "qualifier", null, 1, 1, QualifiedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(categorizedElementEClass, CategorizedElement.class, "CategorizedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCategorizedElement_BelongingCategories(), this.getCategory(), null, "belongingCategories", null, 0, -1, CategorizedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

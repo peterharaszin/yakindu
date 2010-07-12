@@ -7,9 +7,12 @@
 package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 
 /**
@@ -23,6 +26,7 @@ import org.eclipselabs.damos.dml.InoutputDefinition;
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getMaximumPortCount <em>Maximum Port Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#isManyPorts <em>Many Ports</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getDataType <em>Data Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,6 +102,25 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataTypeSpecification dataType;
+
+	/**
+	 * This is true if the Data Type containment reference has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean dataTypeESet;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -196,6 +219,115 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public DataTypeSpecification getDataType() {
+		return dataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDataType(DataTypeSpecification newDataType, NotificationChain msgs) {
+		DataTypeSpecification oldDataType = dataType;
+		dataType = newDataType;
+		boolean oldDataTypeESet = dataTypeESet;
+		dataTypeESet = true;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE, oldDataType, newDataType, !oldDataTypeESet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataType(DataTypeSpecification newDataType) {
+		if (newDataType != dataType) {
+			NotificationChain msgs = null;
+			if (dataType != null)
+				msgs = ((InternalEObject)dataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE, null, msgs);
+			if (newDataType != null)
+				msgs = ((InternalEObject)newDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE, null, msgs);
+			msgs = basicSetDataType(newDataType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
+			boolean oldDataTypeESet = dataTypeESet;
+			dataTypeESet = true;
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE, newDataType, newDataType, !oldDataTypeESet));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicUnsetDataType(NotificationChain msgs) {
+		DataTypeSpecification oldDataType = dataType;
+		dataType = null;
+		boolean oldDataTypeESet = dataTypeESet;
+		dataTypeESet = false;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE, oldDataType, null, oldDataTypeESet);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetDataType() {
+		if (dataType != null) {
+			NotificationChain msgs = null;
+			msgs = ((InternalEObject)dataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE, null, msgs);
+			msgs = basicUnsetDataType(msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
+			boolean oldDataTypeESet = dataTypeESet;
+			dataTypeESet = false;
+			if (eNotificationRequired())
+				eNotify(new ENotificationImpl(this, Notification.UNSET, DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE, null, null, oldDataTypeESet));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetDataType() {
+		return dataTypeESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
+				return basicUnsetDataType(msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -207,6 +339,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return isManyPorts();
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
 				return getName();
+			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
+				return getDataType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -227,6 +361,9 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return;
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
 				setName((String)newValue);
+				return;
+			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
+				setDataType((DataTypeSpecification)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -249,6 +386,9 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
+				unsetDataType();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -269,6 +409,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return isManyPorts() != MANY_PORTS_EDEFAULT;
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
+				return isSetDataType();
 		}
 		return super.eIsSet(featureID);
 	}

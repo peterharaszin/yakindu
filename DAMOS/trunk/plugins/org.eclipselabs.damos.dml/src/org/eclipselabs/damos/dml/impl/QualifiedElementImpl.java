@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.QualifiedElement;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl#getQualifier <em>Qualifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +67,16 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getQualifier() <em>Qualifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUALIFIER_EDEFAULT = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -138,10 +149,27 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	 * @generated NOT
 	 */
 	public String getName() {
-		String name = getQualifiedName();
-		if (name != null) {
-			String[] segments = name.split("::");
+		String qualifiedName = getQualifiedName();
+		if (qualifiedName != null) {
+			String[] segments = qualifiedName.split("::");
 			return segments[segments.length - 1];
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getQualifier() {
+		String qualifiedName = getQualifiedName();
+		if (qualifiedName != null) {
+			int index = qualifiedName.lastIndexOf("::");
+			if (index >= 0) {
+				return qualifiedName.substring(0, index);
+			}
+			return qualifiedName;
 		}
 		return null;
 	}
@@ -158,6 +186,8 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 				return getQualifiedName();
 			case DMLPackage.QUALIFIED_ELEMENT__NAME:
 				return getName();
+			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIER:
+				return getQualifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -204,6 +234,8 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 				return isSetQualifiedName();
 			case DMLPackage.QUALIFIED_ELEMENT__NAME:
 				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIER:
+				return QUALIFIER_EDEFAULT == null ? getQualifier() != null : !QUALIFIER_EDEFAULT.equals(getQualifier());
 		}
 		return super.eIsSet(featureID);
 	}

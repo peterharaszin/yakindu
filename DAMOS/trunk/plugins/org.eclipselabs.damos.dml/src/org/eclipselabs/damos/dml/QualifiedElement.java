@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.QualifiedElement#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.QualifiedElement#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.QualifiedElement#getQualifier <em>Qualifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,5 +94,20 @@ public interface QualifiedElement extends EObject {
 	 * @generated
 	 */
 	String getName();
+
+	/**
+	 * Returns the value of the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualifier</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Qualifier</em>' attribute.
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getQualifiedElement_Qualifier()
+	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	String getQualifier();
 
 } // QualifiedElement

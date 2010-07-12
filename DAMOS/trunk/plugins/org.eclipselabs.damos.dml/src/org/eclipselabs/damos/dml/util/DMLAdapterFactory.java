@@ -191,6 +191,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createValueSpecificationAdapter();
 			}
 			@Override
+			public Adapter caseDataTypeSpecification(DataTypeSpecification object) {
+				return createDataTypeSpecificationAdapter();
+			}
+			@Override
 			public Adapter caseDirectFeedthroughPolicy(DirectFeedthroughPolicy object) {
 				return createDirectFeedthroughPolicyAdapter();
 			}
@@ -221,10 +225,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter casePredefinedExpressionEntry(PredefinedExpressionEntry object) {
 				return createPredefinedExpressionEntryAdapter();
-			}
-			@Override
-			public Adapter caseDataTypeSpecification(DataTypeSpecification object) {
-				return createDataTypeSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseBlockType(BlockType object) {

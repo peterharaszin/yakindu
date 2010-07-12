@@ -257,6 +257,12 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLPackage.DATA_TYPE_SPECIFICATION: {
+				DataTypeSpecification dataTypeSpecification = (DataTypeSpecification)theEObject;
+				T result = caseDataTypeSpecification(dataTypeSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLPackage.DIRECT_FEEDTHROUGH_POLICY: {
 				DirectFeedthroughPolicy directFeedthroughPolicy = (DirectFeedthroughPolicy)theEObject;
 				T result = caseDirectFeedthroughPolicy(directFeedthroughPolicy);
@@ -309,12 +315,6 @@ public class DMLSwitch<T> {
 			case DMLPackage.PREDEFINED_EXPRESSION_ENTRY: {
 				PredefinedExpressionEntry predefinedExpressionEntry = (PredefinedExpressionEntry)theEObject;
 				T result = casePredefinedExpressionEntry(predefinedExpressionEntry);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.DATA_TYPE_SPECIFICATION: {
-				DataTypeSpecification dataTypeSpecification = (DataTypeSpecification)theEObject;
-				T result = caseDataTypeSpecification(dataTypeSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

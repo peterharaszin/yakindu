@@ -541,7 +541,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputDefinition()
 	 * @generated
 	 */
-	int OUTPUT_DEFINITION = 20;
+	int OUTPUT_DEFINITION = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterizedElementImpl <em>Parameterized Element</em>}' class.
@@ -551,7 +551,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterizedElement()
 	 * @generated
 	 */
-	int PARAMETERIZED_ELEMENT = 21;
+	int PARAMETERIZED_ELEMENT = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ArgumentImpl <em>Argument</em>}' class.
@@ -561,7 +561,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getArgument()
 	 * @generated
 	 */
-	int ARGUMENT = 22;
+	int ARGUMENT = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionParameterImpl <em>Expression Parameter</em>}' class.
@@ -571,7 +571,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionParameter()
 	 * @generated
 	 */
-	int EXPRESSION_PARAMETER = 23;
+	int EXPRESSION_PARAMETER = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
@@ -647,13 +647,22 @@ public interface DMLPackage extends EPackage {
 	int INOUTPUT_DEFINITION__NAME = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INOUTPUT_DEFINITION__DATA_TYPE = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Inoutput Definition</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_DEFINITION_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 4;
+	int INOUTPUT_DEFINITION_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -699,6 +708,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_DEFINITION__NAME = INOUTPUT_DEFINITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DEFINITION__DATA_TYPE = INOUTPUT_DEFINITION__DATA_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Direct Feedthrough Policy</b></em>' containment reference.
@@ -773,7 +791,56 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDirectFeedthroughPolicy()
 	 * @generated
 	 */
-	int DIRECT_FEEDTHROUGH_POLICY = 18;
+	int DIRECT_FEEDTHROUGH_POLICY = 19;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockOutputImpl <em>Block Output</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.BlockOutputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockOutput()
+	 * @generated
+	 */
+	int BLOCK_OUTPUT = 20;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl <em>Expression Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionSpecification()
+	 * @generated
+	 */
+	int EXPRESSION_SPECIFICATION = 25;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl <em>Predefined Expression Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPredefinedExpressionEntry()
+	 * @generated
+	 */
+	int PREDEFINED_EXPRESSION_ENTRY = 26;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl <em>Data Type Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDataTypeSpecification()
+	 * @generated
+	 */
+	int DATA_TYPE_SPECIFICATION = 18;
+
+	/**
+	 * The number of structural features of the '<em>Data Type Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_SPECIFICATION_FEATURE_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Input Definition</b></em>' container reference.
@@ -792,16 +859,6 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int DIRECT_FEEDTHROUGH_POLICY_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockOutputImpl <em>Block Output</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.BlockOutputImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockOutput()
-	 * @generated
-	 */
-	int BLOCK_OUTPUT = 19;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -883,6 +940,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OUTPUT_DEFINITION__NAME = INOUTPUT_DEFINITION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT_DEFINITION__DATA_TYPE = INOUTPUT_DEFINITION__DATA_TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Output Definition</em>' class.
@@ -984,16 +1050,6 @@ public interface DMLPackage extends EPackage {
 	int EXPRESSION_PARAMETER_FEATURE_COUNT = PARAMETER_FEATURE_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl <em>Expression Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionSpecification()
-	 * @generated
-	 */
-	int EXPRESSION_SPECIFICATION = 24;
-
-	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1010,16 +1066,6 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPRESSION_SPECIFICATION_FEATURE_COUNT = VALUE_SPECIFICATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl <em>Predefined Expression Entry</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPredefinedExpressionEntry()
-	 * @generated
-	 */
-	int PREDEFINED_EXPRESSION_ENTRY = 25;
 
 	/**
 	 * The feature id for the '<em><b>Alias</b></em>' attribute.
@@ -1047,25 +1093,6 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int PREDEFINED_EXPRESSION_ENTRY_FEATURE_COUNT = 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl <em>Data Type Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDataTypeSpecification()
-	 * @generated
-	 */
-	int DATA_TYPE_SPECIFICATION = 26;
-
-	/**
-	 * The number of structural features of the '<em>Data Type Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_SPECIFICATION_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl <em>Qualified Element</em>}' class.
@@ -1096,13 +1123,22 @@ public interface DMLPackage extends EPackage {
 	int QUALIFIED_ELEMENT__NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALIFIED_ELEMENT__QUALIFIER = 2;
+
+	/**
 	 * The number of structural features of the '<em>Qualified Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUALIFIED_ELEMENT_FEATURE_COUNT = 2;
+	int QUALIFIED_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CategorizedElementImpl <em>Categorized Element</em>}' class.
@@ -1243,6 +1279,15 @@ public interface DMLPackage extends EPackage {
 	int BLOCK_TYPE__NAME = QUALIFIED_ELEMENT__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_TYPE__QUALIFIER = QUALIFIED_ELEMENT__QUALIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1322,6 +1367,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CATEGORY__NAME = QUALIFIED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CATEGORY__QUALIFIER = QUALIFIED_ELEMENT__QUALIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
@@ -2631,6 +2685,17 @@ public interface DMLPackage extends EPackage {
 	EAttribute getInoutputDefinition_Name();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Data Type</em>'.
+	 * @see org.eclipselabs.damos.dml.InoutputDefinition#getDataType()
+	 * @see #getInoutputDefinition()
+	 * @generated
+	 */
+	EReference getInoutputDefinition_DataType();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OutputDefinition <em>Output Definition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2956,6 +3021,17 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getQualifiedElement_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.QualifiedElement#getQualifier <em>Qualifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Qualifier</em>'.
+	 * @see org.eclipselabs.damos.dml.QualifiedElement#getQualifier()
+	 * @see #getQualifiedElement()
+	 * @generated
+	 */
+	EAttribute getQualifiedElement_Qualifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.CategorizedElement <em>Categorized Element</em>}'.
@@ -3718,6 +3794,14 @@ public interface DMLPackage extends EPackage {
 		EAttribute INOUTPUT_DEFINITION__NAME = eINSTANCE.getInoutputDefinition_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Data Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INOUTPUT_DEFINITION__DATA_TYPE = eINSTANCE.getInoutputDefinition_DataType();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OutputDefinitionImpl <em>Output Definition</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3992,6 +4076,14 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute QUALIFIED_ELEMENT__NAME = eINSTANCE.getQualifiedElement_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualifier</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUALIFIED_ELEMENT__QUALIFIER = eINSTANCE.getQualifiedElement_Qualifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CategorizedElementImpl <em>Categorized Element</em>}' class.

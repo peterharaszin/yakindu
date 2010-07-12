@@ -226,6 +226,10 @@
       <ownedAttribute xmi:id="_-KZ88IN_Ed-Jwv-I5tZZDg" name="name" aggregation="composite">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_eJ3gYI2KEd-FdeLWbsCQCQ" name="dataType" type="_i30UgIOKEd-Jwv-I5tZZDg" aggregation="composite" association="_kh1IAI2KEd-FdeLWbsCQCQ">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_gAzM0I2KEd-FdeLWbsCQCQ" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_gAzM0Y2KEd-FdeLWbsCQCQ"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_C5trcMCCEd6Vk-PE2115fA" name="InputDefinition">
       <generalization xmi:id="_0YpZQMCCEd6Vk-PE2115fA" general="_2FaSgMCBEd6Vk-PE2115fA"/>
@@ -544,6 +548,9 @@
       <ownedAttribute xmi:id="_2usucIOBEd-Jwv-I5tZZDg" name="name" isReadOnly="true" isDerived="true" aggregation="composite">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_sbhBEI2KEd-FdeLWbsCQCQ" name="qualifier" isReadOnly="true" isDerived="true" aggregation="composite">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_uXfNUHupEd-aYImtM56L0Q" memberEnd="_uXf0YHupEd-aYImtM56L0Q _j2BiMFMDEd-5QtE4GpLOmA">
       <ownedEnd xmi:id="_uXf0YHupEd-aYImtM56L0Q" type="_4IfPcMB_Ed6Vk-PE2115fA" association="_uXfNUHupEd-aYImtM56L0Q"/>
@@ -609,6 +616,9 @@
     <packagedElement xmi:type="uml:Association" xmi:id="_DJei0IzzEd-MjuTy8qt7UQ" memberEnd="_DJfJ4IzzEd-MjuTy8qt7UQ __cvLUIzyEd-MjuTy8qt7UQ">
       <ownedEnd xmi:id="_DJfJ4IzzEd-MjuTy8qt7UQ" type="_rgjtUMB5Ed6Vk-PE2115fA" association="_DJei0IzzEd-MjuTy8qt7UQ"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kh1IAI2KEd-FdeLWbsCQCQ" memberEnd="_kiHb4I2KEd-FdeLWbsCQCQ _eJ3gYI2KEd-FdeLWbsCQCQ">
+      <ownedEnd xmi:id="_kiHb4I2KEd-FdeLWbsCQCQ" type="_2FaSgMCBEd6Vk-PE2115fA" association="_kh1IAI2KEd-FdeLWbsCQCQ"/>
+    </packagedElement>
     <profileApplication xmi:id="_e73TIMB4Ed6Vk-PE2115fA">
       <eAnnotations xmi:id="_e76WcMB4Ed6Vk-PE2115fA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
@@ -625,4 +635,6 @@
   <Ecore:EAttribute xmi:id="_4e3EgIOBEd-Jwv-I5tZZDg" isTransient="true" base_Property="_2usucIOBEd-Jwv-I5tZZDg"/>
   <Ecore:EAttribute xmi:id="_GBaQUIU_Ed-0gI62qSIIbg" isUnsettable="true" base_Property="__PBWgIU-Ed-0gI62qSIIbg"/>
   <Ecore:EReference xmi:id="_jrCJgIzzEd-MjuTy8qt7UQ" isUnsettable="true" base_Property="__cvLUIzyEd-MjuTy8qt7UQ"/>
+  <Ecore:EReference xmi:id="_gqWgII2KEd-FdeLWbsCQCQ" isUnsettable="true" base_Property="_eJ3gYI2KEd-FdeLWbsCQCQ"/>
+  <Ecore:EAttribute xmi:id="_vhKjYI2KEd-FdeLWbsCQCQ" isTransient="true" base_Property="_sbhBEI2KEd-FdeLWbsCQCQ"/>
 </xmi:XMI>

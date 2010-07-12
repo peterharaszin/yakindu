@@ -67,6 +67,7 @@ public class QualifiedElementItemProvider
 			super.getPropertyDescriptors(object);
 
 			addQualifiedNamePropertyDescriptor(object);
+			addQualifierPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -85,6 +86,28 @@ public class QualifiedElementItemProvider
 				 getString("_UI_QualifiedElement_qualifiedName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_qualifiedName_feature", "_UI_QualifiedElement_type"),
 				 DMLPackage.Literals.QUALIFIED_ELEMENT__QUALIFIED_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Qualifier feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addQualifierPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_QualifiedElement_qualifier_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_qualifier_feature", "_UI_QualifiedElement_type"),
+				 DMLPackage.Literals.QUALIFIED_ELEMENT__QUALIFIER,
 				 true,
 				 false,
 				 false,
@@ -121,6 +144,7 @@ public class QualifiedElementItemProvider
 		switch (notification.getFeatureID(QualifiedElement.class)) {
 			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME:
 			case DMLPackage.QUALIFIED_ELEMENT__NAME:
+			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

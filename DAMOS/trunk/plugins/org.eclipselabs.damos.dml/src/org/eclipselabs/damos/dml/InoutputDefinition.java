@@ -21,6 +21,7 @@ package org.eclipselabs.damos.dml;
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getMaximumPortCount <em>Maximum Port Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#isManyPorts <em>Many Ports</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -123,5 +124,58 @@ public interface InoutputDefinition extends ParameterableElement {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data Type</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Type</em>' containment reference.
+	 * @see #isSetDataType()
+	 * @see #unsetDataType()
+	 * @see #setDataType(DataTypeSpecification)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getInoutputDefinition_DataType()
+	 * @model containment="true" unsettable="true" ordered="false"
+	 * @generated
+	 */
+	DataTypeSpecification getDataType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Type</em>' containment reference.
+	 * @see #isSetDataType()
+	 * @see #unsetDataType()
+	 * @see #getDataType()
+	 * @generated
+	 */
+	void setDataType(DataTypeSpecification value);
+
+	/**
+	 * Unsets the value of the '{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSetDataType()
+	 * @see #getDataType()
+	 * @see #setDataType(DataTypeSpecification)
+	 * @generated
+	 */
+	void unsetDataType();
+
+	/**
+	 * Returns whether the value of the '{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}' containment reference is set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return whether the value of the '<em>Data Type</em>' containment reference is set.
+	 * @see #unsetDataType()
+	 * @see #getDataType()
+	 * @see #setDataType(DataTypeSpecification)
+	 * @generated
+	 */
+	boolean isSetDataType();
 
 } // InoutputDefinition

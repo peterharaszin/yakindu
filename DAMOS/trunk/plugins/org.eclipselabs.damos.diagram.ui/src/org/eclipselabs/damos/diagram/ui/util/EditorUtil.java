@@ -45,7 +45,7 @@ import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.System;
 
@@ -126,7 +126,7 @@ public class EditorUtil extends IDEEditorUtil {
 						try {
 							semanticFile.create(new ByteArrayInputStream(new byte[0]), false, progressMonitor);
 						} catch (CoreException e) {
-							Log.error(DSMDiagramUIPlugin.getDefault(), IStatus.ERROR, e.getMessage(), e);
+							Log.error(DiagramUIPlugin.getDefault(), IStatus.ERROR, e.getMessage(), e);
 							return null;
 						}
 					}
@@ -165,7 +165,7 @@ public class EditorUtil extends IDEEditorUtil {
 					}
 
 				} catch (Exception e) {
-					Trace.catching(DSMDiagramUIPlugin.getDefault(), DebugOptions.EXCEPTIONS_CATCHING,
+					Trace.catching(DiagramUIPlugin.getDefault(), DebugOptions.EXCEPTIONS_CATCHING,
 							EditorUtil.class, "createNewDiagramFile", //$NON-NLS-1$
 							e);
 				}
@@ -176,7 +176,7 @@ public class EditorUtil extends IDEEditorUtil {
 						notationResource.getContents().add(system);
 					}
 
-					Diagram view = ViewService.createDiagram(system, kind, DSMDiagramUIPlugin.DIAGRAM_PREFERENCES_HINT);
+					Diagram view = ViewService.createDiagram(system, kind, DiagramUIPlugin.DIAGRAM_PREFERENCES_HINT);
 					
 					String name = newDiagramFile.getFullPath().removeFileExtension().lastSegment();
 
@@ -193,9 +193,9 @@ public class EditorUtil extends IDEEditorUtil {
 						notationResource.save(Collections.EMPTY_MAP);
 						system.eResource().save(Collections.EMPTY_MAP);
 					} catch (IOException e) {
-						Trace.catching(DSMDiagramUIPlugin.getDefault(), DebugOptions.EXCEPTIONS_CATCHING,
+						Trace.catching(DiagramUIPlugin.getDefault(), DebugOptions.EXCEPTIONS_CATCHING,
 								EditorUtil.class, "createNewDiagramFile", e); //$NON-NLS-1$
-						Log.error(DSMDiagramUIPlugin.getDefault(), StatusCodes.IGNORED_EXCEPTION_WARNING, e
+						Log.error(DiagramUIPlugin.getDefault(), StatusCodes.IGNORED_EXCEPTION_WARNING, e
 								.getLocalizedMessage());
 					}
 				}
@@ -208,9 +208,9 @@ public class EditorUtil extends IDEEditorUtil {
 			op.execute(new NullProgressMonitor(), null);
 
 		} catch (ExecutionException e) {
-			Trace.catching(DSMDiagramUIPlugin.getDefault(), DebugOptions.EXCEPTIONS_CATCHING,
+			Trace.catching(DiagramUIPlugin.getDefault(), DebugOptions.EXCEPTIONS_CATCHING,
 					EditorUtil.class, "createNewDiagramFile", e); //$NON-NLS-1$
-			Log.error(DSMDiagramUIPlugin.getDefault(), StatusCodes.IGNORED_EXCEPTION_WARNING, e
+			Log.error(DiagramUIPlugin.getDefault(), StatusCodes.IGNORED_EXCEPTION_WARNING, e
 					.getLocalizedMessage());
 		}
 

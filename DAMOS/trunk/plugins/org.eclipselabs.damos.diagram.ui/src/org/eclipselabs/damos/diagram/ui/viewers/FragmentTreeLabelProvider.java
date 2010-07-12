@@ -20,7 +20,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.DMLUtil;
@@ -45,9 +45,9 @@ public class FragmentTreeLabelProvider extends BaseLabelProvider implements ILab
 		fontData.setStyle(SWT.BOLD);
 		this.boldFont = new Font(defaultFont.getDevice(), fontData);
 		
-		visibleImageDescriptor = DSMDiagramUIPlugin.imageDescriptorFromPlugin(DSMDiagramUIPlugin.PLUGIN_ID, "icons/fragment_visible.gif");
+		visibleImageDescriptor = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/fragment_visible.gif");
 		visibleImage = JFaceResources.getResources().createImageWithDefault(visibleImageDescriptor);
-		invisibleImageDescriptor = DSMDiagramUIPlugin.imageDescriptorFromPlugin(DSMDiagramUIPlugin.PLUGIN_ID, "icons/fragment_invisible.gif");
+		invisibleImageDescriptor = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/fragment_invisible.gif");
 		invisibleImage = JFaceResources.getResources().createImageWithDefault(invisibleImageDescriptor);
 	}
 

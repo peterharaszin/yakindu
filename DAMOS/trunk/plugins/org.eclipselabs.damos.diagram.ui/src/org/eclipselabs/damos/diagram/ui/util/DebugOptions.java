@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.diagram.ui.util;
 
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 
 public final class DebugOptions {
 
@@ -24,7 +24,7 @@ public final class DebugOptions {
 		//Limiting the scope of the constructor so that no-one can initialize.
 	}
 
-	public static final String DEBUG = DSMDiagramUIPlugin.PLUGIN_ID + "/debug"; //$NON-NLS-1$
+	public static final String DEBUG = DiagramUIPlugin.PLUGIN_ID + "/debug"; //$NON-NLS-1$
 
 	public static final String EXCEPTIONS_CATCHING = DEBUG + "/exceptions/catching"; //$NON-NLS-1$
 	public static final String EXCEPTIONS_THROWING = DEBUG + "/exceptions/throwing"; //$NON-NLS-1$

@@ -13,7 +13,7 @@ package org.eclipselabs.damos.diagram.ui.part;
 
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.editor.FileDiagramEditorWithFlyoutPalette;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 
 public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
@@ -26,7 +26,7 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 	}
 	
 	protected PreferencesHint getPreferencesHint() {
-		return DSMDiagramUIPlugin.DIAGRAM_PREFERENCES_HINT;
+		return DiagramUIPlugin.DIAGRAM_PREFERENCES_HINT;
 	}
 	
 	/* (non-Javadoc)

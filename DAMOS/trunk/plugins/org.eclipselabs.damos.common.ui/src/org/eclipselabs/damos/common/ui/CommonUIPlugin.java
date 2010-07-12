@@ -6,18 +6,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class DSMCommonUIPlugin extends AbstractUIPlugin {
+public class CommonUIPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.common.ui";
 
 	// The shared instance
-	private static DSMCommonUIPlugin plugin;
+	private static CommonUIPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public DSMCommonUIPlugin() {
+	public CommonUIPlugin() {
 	}
 
 	/*
@@ -43,7 +43,7 @@ public class DSMCommonUIPlugin extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static DSMCommonUIPlugin getDefault() {
+	public static CommonUIPlugin getDefault() {
 		return plugin;
 	}
 

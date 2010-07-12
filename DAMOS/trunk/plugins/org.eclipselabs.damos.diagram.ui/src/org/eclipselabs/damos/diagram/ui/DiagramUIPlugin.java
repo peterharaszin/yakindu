@@ -18,7 +18,7 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class DSMDiagramUIPlugin extends AbstractUIPlugin {
+public class DiagramUIPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.diagram.ui";
@@ -31,12 +31,12 @@ public class DSMDiagramUIPlugin extends AbstractUIPlugin {
 	public static final String EDITOR_ID = "org.eclipselabs.damos.diagram.ui.blockDiagramEditor"; //$NON-NLS-1$
 
 	// The shared instance
-	private static DSMDiagramUIPlugin plugin;
+	private static DiagramUIPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public DSMDiagramUIPlugin() {
+	public DiagramUIPlugin() {
 	}
 
 	/*
@@ -63,7 +63,7 @@ public class DSMDiagramUIPlugin extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static DSMDiagramUIPlugin getDefault() {
+	public static DiagramUIPlugin getDefault() {
 		return plugin;
 	}
 

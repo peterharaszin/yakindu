@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Damos Common UI
 Bundle-SymbolicName: org.eclipselabs.damos.common.ui
 Bundle-Version: 0.2.0.qualifier
-Bundle-Activator: org.eclipselabs.damos.common.ui.DSMCommonUIPlugin
+Bundle-Activator: org.eclipselabs.damos.common.ui.CommonUIPlugin
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

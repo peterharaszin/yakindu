@@ -6,18 +6,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class DSMDiagramCorePlugin extends Plugin {
+public class DiagramCorePlugin extends Plugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.diagram.core";
 
 	// The shared instance
-	private static DSMDiagramCorePlugin plugin;
+	private static DiagramCorePlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public DSMDiagramCorePlugin() {
+	public DiagramCorePlugin() {
 	}
 
 	/*
@@ -43,7 +43,7 @@ public class DSMDiagramCorePlugin extends Plugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static DSMDiagramCorePlugin getDefault() {
+	public static DiagramCorePlugin getDefault() {
 		return plugin;
 	}
 

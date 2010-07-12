@@ -25,7 +25,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.figures.SubsystemFigure;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
@@ -199,7 +199,7 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 	
 	private Image getBlankImage() {
 		if (blankImageDescriptor == null) {
-			blankImageDescriptor = DSMDiagramUIPlugin.imageDescriptorFromPlugin(DSMDiagramUIPlugin.PLUGIN_ID, "icons/blank.gif");
+			blankImageDescriptor = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/blank.gif");
 		}
 		if (blankImage == null) {
 			blankImage = blankImageDescriptor.createImage();
@@ -209,7 +209,7 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 	
 	private Image getImplementationImage() {
 		if (implementationImageDescriptor == null) {
-			implementationImageDescriptor = DSMDiagramUIPlugin.imageDescriptorFromPlugin(DSMDiagramUIPlugin.PLUGIN_ID, "icons/implm_co.gif");
+			implementationImageDescriptor = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/implm_co.gif");
 		}
 		if (implementationImage == null) {
 			implementationImage = implementationImageDescriptor.createImage();
@@ -219,7 +219,7 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 	
 	private Image getOverrideImage() {
 		if (overrideImageDescriptor == null) {
-			overrideImageDescriptor = DSMDiagramUIPlugin.imageDescriptorFromPlugin(DSMDiagramUIPlugin.PLUGIN_ID, "icons/over_co.gif");
+			overrideImageDescriptor = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/over_co.gif");
 		}
 		if (overrideImage == null) {
 			overrideImage = overrideImageDescriptor.createImage();

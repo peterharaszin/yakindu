@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 
 /**
  * @author Andreas Unger
@@ -90,7 +90,7 @@ abstract class AbstractViewEditPartProviderDelegate {
 		mappings = new HashMap<String, BlockTypeMapping>();
 		
 		IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(
-				DSMDiagramUIPlugin.PLUGIN_ID, getExtensionPointName());
+				DiagramUIPlugin.PLUGIN_ID, getExtensionPointName());
 
 		for (IExtension extension : extensionPoint.getExtensions()) {
 			for (IConfigurationElement configurationElement : extension.getConfigurationElements()) {
@@ -98,8 +98,8 @@ abstract class AbstractViewEditPartProviderDelegate {
 					try {
 						loadNotationElement(configurationElement);
 					} catch (Exception e) {
-						DSMDiagramUIPlugin.getDefault().getLog().log(
-								new Status(IStatus.ERROR, DSMDiagramUIPlugin.PLUGIN_ID,
+						DiagramUIPlugin.getDefault().getLog().log(
+								new Status(IStatus.ERROR, DiagramUIPlugin.PLUGIN_ID,
 										"Failed to load block type in plug-in '"
 										+ extension.getContributor().getName()
 										+ "' in extension of '"
@@ -175,8 +175,8 @@ abstract class AbstractViewEditPartProviderDelegate {
 				String nsid = configurationElement.getDeclaringExtension().getNamespaceIdentifier();
 				clazz = Platform.getBundle(nsid).loadClass(className);
 			} catch (ClassNotFoundException e) {
-				DSMDiagramUIPlugin.getDefault().getLog().log(
-						new Status(IStatus.ERROR, DSMDiagramUIPlugin.PLUGIN_ID,
+				DiagramUIPlugin.getDefault().getLog().log(
+						new Status(IStatus.ERROR, DiagramUIPlugin.PLUGIN_ID,
 								"Failed to load class '"
 								+ className
 								+ "' in plug-in '"

@@ -31,7 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
@@ -43,8 +43,8 @@ import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
  */
 public class PaletteProvider extends AbstractProvider implements IPaletteProvider {
 
-	private static final ImageDescriptor CONNECTION_16_IMAGE_DESCRIPTOR = DSMDiagramUIPlugin.imageDescriptorFromPlugin(DSMDiagramUIPlugin.PLUGIN_ID, "icons/full/etool16/connection.gif");
-	private static final ImageDescriptor CONNECTION_24_IMAGE_DESCRIPTOR = DSMDiagramUIPlugin.imageDescriptorFromPlugin(DSMDiagramUIPlugin.PLUGIN_ID, "icons/full/etool24/connection.gif");
+	private static final ImageDescriptor CONNECTION_16_IMAGE_DESCRIPTOR = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/full/etool16/connection.gif");
+	private static final ImageDescriptor CONNECTION_24_IMAGE_DESCRIPTOR = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/full/etool24/connection.gif");
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider#contributeToPalette(org.eclipse.ui.IEditorPart, java.lang.Object, org.eclipse.gef.palette.PaletteRoot, java.util.Map)

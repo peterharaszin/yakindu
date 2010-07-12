@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.diagram.ui.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 
 public class BlockDiagramActionBarContributor extends DiagramActionBarContributor {
 
@@ -21,7 +21,7 @@ public class BlockDiagramActionBarContributor extends DiagramActionBarContributo
 	}
 
 	protected String getEditorId() {
-		return DSMDiagramUIPlugin.EDITOR_ID;
+		return DiagramUIPlugin.EDITOR_ID;
 	}
 
 }

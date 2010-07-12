@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 
 /**
  * @author Andreas Unger
@@ -55,12 +55,12 @@ public abstract class PropertyCompositeDelegate implements IPropertyCompositeDel
         try {
             IStatus status = history.execute(operation, new NullProgressMonitor(), null);
             if (!status.isOK()) {
-            	DSMDiagramUIPlugin.getDefault().getLog().log(status);
+            	DiagramUIPlugin.getDefault().getLog().log(status);
             }
         } catch (ExecutionException e) {
-        	DSMDiagramUIPlugin.getDefault().getLog().log(new Status(
+        	DiagramUIPlugin.getDefault().getLog().log(new Status(
         			IStatus.ERROR,
-        			DSMDiagramUIPlugin.PLUGIN_ID,
+        			DiagramUIPlugin.PLUGIN_ID,
         			"Operation execution failed", e));
         }
 	}

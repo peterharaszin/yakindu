@@ -15,7 +15,7 @@ import org.eclipse.gef.rulers.RulerProvider;
 import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramPreferenceInitializer;
 import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipselabs.damos.diagram.ui.DSMDiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 
 /**
  * @author Andreas Unger
@@ -39,7 +39,7 @@ public class BlockDiagramPreferenceInitializer extends DiagramPreferenceInitiali
 	 * @see org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramPreferenceInitializer#getPreferenceStore()
 	 */
 	protected IPreferenceStore getPreferenceStore() {
-		return DSMDiagramUIPlugin.getDefault().getPreferenceStore();
+		return DiagramUIPlugin.getDefault().getPreferenceStore();
 	}
 
 }

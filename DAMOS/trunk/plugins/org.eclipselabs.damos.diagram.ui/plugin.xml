@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
-   <extension-point id="viewFactories" name="View Factories" schema="schema/viewFactories.exsd"/>
-   <extension-point id="editParts" name="EditParts" schema="schema/editParts.exsd"/>
+   <extension-point id="blockViewFactories" name="Block ViewFactories" schema="schema/blockViewFactories.exsd"/>
+   <extension-point id="blockEditParts" name="Block EditParts" schema="schema/blockEditParts.exsd"/>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer

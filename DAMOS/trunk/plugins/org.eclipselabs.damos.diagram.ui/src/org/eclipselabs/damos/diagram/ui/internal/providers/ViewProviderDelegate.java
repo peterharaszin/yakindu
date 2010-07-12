@@ -21,7 +21,7 @@ public class ViewProviderDelegate extends AbstractViewEditPartProviderDelegate {
 	 * @see org.eclipselabs.damos.diagram.ui.internal.services.AbstractNotationMappingService#getExtensionPointName()
 	 */
 	protected String getExtensionPointName() {
-		return "viewFactories";
+		return "blockViewFactories";
 	}
 
 	/* (non-Javadoc)

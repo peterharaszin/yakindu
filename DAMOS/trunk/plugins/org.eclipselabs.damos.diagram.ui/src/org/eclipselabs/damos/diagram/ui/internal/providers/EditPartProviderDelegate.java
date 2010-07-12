@@ -21,7 +21,7 @@ public class EditPartProviderDelegate extends AbstractViewEditPartProviderDelega
 	 * @see org.eclipselabs.damos.diagram.ui.internal.services.AbstractNotationMappingService#getExtensionPointName()
 	 */
 	protected String getExtensionPointName() {
-		return "editParts";
+		return "blockEditParts";
 	}
 
 	/* (non-Javadoc)

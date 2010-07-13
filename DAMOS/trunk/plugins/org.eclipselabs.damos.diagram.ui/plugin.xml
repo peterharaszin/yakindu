@@ -66,25 +66,25 @@
             contributorId="org.eclipselabs.damos.diagram.ui">
          <propertyTab
                category="domain"
-               id="org.eclipselabs.damos.diagram.tab.general"
+               id="org.eclipselabs.damos.diagram.ui.tabs.general"
                label="General">
          </propertyTab>
          <propertyTab
-               afterTab="org.eclipselabs.damos.diagram.tab.general"
+               afterTab="org.eclipselabs.damos.diagram.ui.tabs.general"
                category="domain"
-               id="org.eclipselabs.damos.diagram.tab.parameters"
+               id="org.eclipselabs.damos.diagram.ui.tabs.parameters"
                label="Parameters">
          </propertyTab>
          <propertyTab
-               afterTab="org.eclipselabs.damos.diagram.tab.parameters"
+               afterTab="org.eclipselabs.damos.diagram.ui.tabs.parameters"
                category="visual"
-               id="org.eclipselabs.damos.diagram.tab.appearance"
+               id="org.eclipselabs.damos.diagram.ui.tabs.appearance"
                label="Appearance">
          </propertyTab>
          <propertyTab
-               afterTab="org.eclipselabs.damos.diagram.tab.appearance"
+               afterTab="org.eclipselabs.damos.diagram.ui.tabs.appearance"
                category="visual"
-               id="org.eclipselabs.damos.diagram.tab.diagram"
+               id="org.eclipselabs.damos.diagram.ui.tabs.diagram"
                label="Rulers &amp; Grid">
          </propertyTab>
       </propertyTabs>
@@ -96,43 +96,43 @@
          <propertySection
                class="org.eclipselabs.damos.diagram.ui.internal.properties.ComponentNamePropertySection"
                enablesFor="1"
-               id="org.eclipselabs.damos.diagram.section.blockName"
-               tab="org.eclipselabs.damos.diagram.tab.general">
+               id="org.eclipselabs.damos.diagram.ui.sections.blockName"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.general">
             <input
                   type="org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart">
             </input>
          </propertySection>
          <propertySection
-               afterSection="org.eclipselabs.damos.diagram.section.blockName"
+               afterSection="org.eclipselabs.damos.diagram.ui.sections.blockName"
                class="org.eclipselabs.damos.diagram.ui.internal.properties.InoutportDataTypePropertySection"
                enablesFor="1"
                filter="org.eclipselabs.damos.diagram.ui.internal.properties.InoutportDataTypePropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.section.inoutportDataType"
-               tab="org.eclipselabs.damos.diagram.tab.general">
+               id="org.eclipselabs.damos.diagram.ui.sections.inoutportDataType"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.general">
          </propertySection>
          <propertySection
                class="org.eclipselabs.damos.diagram.ui.internal.properties.ParametersPropertySection"
                enablesFor="1"
                filter="org.eclipselabs.damos.diagram.ui.internal.properties.ParametersPropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.section.parameters"
-               tab="org.eclipselabs.damos.diagram.tab.parameters">
+               id="org.eclipselabs.damos.diagram.ui.sections.parameters"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.parameters">
          </propertySection>
          <propertySection
                class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.section.diagramColorsAndFonts"
-               tab="org.eclipselabs.damos.diagram.tab.appearance">
+               id="org.eclipselabs.damos.diagram.ui.sections.diagramColorsAndFonts"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.appearance">
          </propertySection>
          <propertySection
                class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.section.rulerGrid"
-               tab="org.eclipselabs.damos.diagram.tab.diagram">
+               id="org.eclipselabs.damos.diagram.ui.sections.rulerGrid"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.diagram">
          </propertySection>
          <propertySection
                class="org.eclipselabs.damos.diagram.ui.internal.properties.ShowComponentNamePropertySection"
-               id="org.eclipselabs.damos.diagram.section.showName"
-               tab="org.eclipselabs.damos.diagram.tab.appearance">
+               id="org.eclipselabs.damos.diagram.ui.sections.showName"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.appearance">
             <input
                   type="org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart">
             </input>
@@ -140,14 +140,14 @@
          <propertySection
                class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.section.connectionAppearance"
-               tab="org.eclipselabs.damos.diagram.tab.appearance">
+               id="org.eclipselabs.damos.diagram.ui.sections.connectionAppearance"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.appearance">
          </propertySection>
          <propertySection
                class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.section.shapeColorsAndFonts"
-               tab="org.eclipselabs.damos.diagram.tab.appearance">
+               id="org.eclipselabs.damos.diagram.ui.sections.shapeColorsAndFonts"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.appearance">
          </propertySection>
       </propertySections>
    </extension>

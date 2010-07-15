@@ -12,10 +12,11 @@
 package org.eclipselabs.damos.diagram.ui.util;
 
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.util.IDEEditorFileCreator;
-import org.eclipselabs.damos.dml.util.DMLConstants;
 
 public class FileCreator extends IDEEditorFileCreator {
 	
+	private static final String FILE_EXTENSION = "blockdiagram";
+
 	private static FileCreator instance;
 
 	private FileCreator() {
@@ -29,7 +30,7 @@ public class FileCreator extends IDEEditorFileCreator {
 	}
 	
 	public String getExtension() {
-		return "." + DMLConstants.FILE_EXTENSION;
+		return "." + FILE_EXTENSION;
 	}
 
 }

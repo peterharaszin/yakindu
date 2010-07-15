@@ -17,10 +17,12 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipselabs.damos.diagram.ui.editparts,
+Export-Package: org.eclipselabs.damos.diagram.ui,
+ org.eclipselabs.damos.diagram.ui.editparts,
  org.eclipselabs.damos.diagram.ui.editpolicies,
  org.eclipselabs.damos.diagram.ui.figures,
  org.eclipselabs.damos.diagram.ui.palette,
+ org.eclipselabs.damos.diagram.ui.part,
  org.eclipselabs.damos.diagram.ui.properties,
  org.eclipselabs.damos.diagram.ui.view.factories,
  org.eclipselabs.damos.diagram.ui.view.util

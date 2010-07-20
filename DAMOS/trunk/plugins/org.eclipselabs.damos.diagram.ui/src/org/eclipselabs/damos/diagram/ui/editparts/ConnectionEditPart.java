@@ -123,8 +123,6 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 		Object feature = notification.getFeature();
 		if (DMLPackage.Literals.FRAGMENT_ELEMENT__OWNING_FRAGMENT == feature) {
 			refreshVisibility();
-			getSource().refresh();
-			getTarget().refresh();
 		} else if (DMLPackage.Literals.CONNECTION__SOURCE_PORT == feature || DMLPackage.Literals.CONNECTION__TARGET_PORT == feature) {
 			refreshConnectionType();
 		} else {

@@ -38,8 +38,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
-import org.eclipselabs.damos.common.ui.viewers.FragmentTreeContentProvider;
 import org.eclipselabs.damos.common.ui.viewers.FragmentLabelProvider;
+import org.eclipselabs.damos.common.ui.viewers.FragmentTreeContentProvider;
 import org.eclipselabs.damos.dml.Fragment;
 
 /**

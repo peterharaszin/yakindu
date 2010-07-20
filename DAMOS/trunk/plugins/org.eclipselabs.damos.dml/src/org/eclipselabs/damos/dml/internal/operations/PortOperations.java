@@ -73,7 +73,7 @@ public class PortOperations {
 					nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.Literals.CONNECTION__TARGET_PORT))
 					|| nonNavigableInverseReference.getEStructuralFeature() == reference) {
 				EObject referenceEObject = nonNavigableInverseReference.getEObject();
-				if (referenceEObject instanceof Connection) {
+				if (referenceEObject instanceof Connection && referenceEObject.eContainer() != null) {
 					connections.add((Connection) referenceEObject);
 				}
 			}

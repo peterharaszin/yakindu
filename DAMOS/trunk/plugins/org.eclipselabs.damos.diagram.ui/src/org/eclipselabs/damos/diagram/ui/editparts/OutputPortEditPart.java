@@ -11,9 +11,14 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.figures.OutputPortFigure;
+import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.OutputPort;
 
 /**
  * @author Andreas Unger
@@ -30,6 +35,18 @@ public class OutputPortEditPart extends PortEditPart {
 
 	protected NodeFigure createNodeFigure() {
 		return new OutputPortFigure();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.PortEditPart#getConnections()
+	 */
+	@Override
+	protected List<Connection> getConnections() {
+		OutputPort port = (OutputPort) resolveSemanticElement();
+		if (port != null) {
+			return port.getOutgoingConnections();
+		}
+		return Collections.emptyList();
 	}
 
 }

@@ -11,13 +11,13 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import java.util.List;
+
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Layer;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gef.ConnectionEditPart;
-import org.eclipse.gef.NodeListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
@@ -31,7 +31,10 @@ import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.util.ConnectionEvent;
+import org.eclipselabs.damos.dml.util.ConnectionEventBroker;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.IConnectionListener;
 
 public abstract class PortEditPart extends ShapeNodeEditPart {
 
@@ -40,30 +43,18 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	
 	private PortEditPartDelegate delegate;
 
-	private NodeListener nodeListener = new NodeListener() {
-		
-		public void sourceConnectionAdded(ConnectionEditPart connection, int index) {
-			refreshTerminalFigure(null);
-		}
+	private IConnectionListener connectionChangeListener = new IConnectionListener() {
 
-		public void targetConnectionAdded(ConnectionEditPart connection, int index) {
-			refreshTerminalFigure(null);
-		}
-		
-		public void removingSourceConnection(ConnectionEditPart connection, int index) {
-			refreshTerminalFigure(connection);
-		}
-
-		public void removingTargetConnection(ConnectionEditPart connection, int index) {
-			refreshTerminalFigure(connection);
+		public void connectionChanged(ConnectionEvent event) {
+			refreshTerminalFigure();
 		}
 		
 	};
-	
+
 	IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
 		
 		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
-			refreshTerminalFigure(event.getSelectedFragment(), null);
+			refreshTerminalFigure(event.getSelectedFragment());
 		}
 		
 	};
@@ -93,11 +84,14 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		super.activate();
 		addTerminalBorderFigure();
 		addTerminalFigure();
-		refreshTerminalFigure(null);
-		addNodeListener(nodeListener);
+		refreshTerminalFigure();
 		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getParent().getRoot().getContents().getAdapter(FragmentSelectionManager.class);
 		if (fragmentManager != null) {
 			fragmentManager.addFragmentSelectionChangeListener(fragmentChangeListener);
+		}
+		Port port = (Port) resolveSemanticElement();
+		if (port != null) {
+			ConnectionEventBroker.addConnectionListener(port, connectionChangeListener);
 		}
 	}
 	
@@ -105,11 +99,11 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
 	 */
 	public void deactivate() {
+		ConnectionEventBroker.removeConnectionListener(connectionChangeListener);
 		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getParent().getRoot().getContents().getAdapter(FragmentSelectionManager.class);
 		if (fragmentManager != null) {
 			fragmentManager.removeFragmentSelectionChangeListener(fragmentChangeListener);
 		}
-		removeNodeListener(nodeListener);
 		removeTerminalFigure();
 		removeTerminalBorderFigure();
 		super.deactivate();
@@ -155,7 +149,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		refreshTerminalFigure(null);
+		refreshTerminalFigure();
 	}
 	
 	/* (non-Javadoc)
@@ -171,7 +165,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	@Override
 	protected void handleNotificationEvent(Notification notification) {
 		if (notification.getFeature() == DMLPackage.Literals.FRAGMENT_ELEMENT__OWNING_FRAGMENT) {
-			refreshTerminalFigure(null);
+			refreshTerminalFigure();
 		} else {
 			super.handleNotificationEvent(notification);
 		}
@@ -197,14 +191,14 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		}
 	}
 	
-	protected final void refreshTerminalFigure(ConnectionEditPart excludedConnection) {
+	protected final void refreshTerminalFigure() {
 		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
 		if (fragmentManager != null) {
-			refreshTerminalFigure(fragmentManager.getSelectedFragment(), excludedConnection);
+			refreshTerminalFigure(fragmentManager.getSelectedFragment());
 		}
 	}
 
-	protected void refreshTerminalFigure(Fragment selectedFragment, ConnectionEditPart excludedConnection) {
+	protected void refreshTerminalFigure(Fragment selectedFragment) {
 		if (getTerminalFigure() == null) {
 			return;
 		}
@@ -215,38 +209,21 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 			if (port.getComponent().getOwningFragment() != selectedFragment
 					&& !DMLUtil.isChildFragment(selectedFragment, port.getComponent().getOwningFragment())) {
 				getTerminalFigure().setBlank(true);
-				return;
+			} else {
+				int connectionCount = 0;
+				for (Connection connection : getConnections()) {
+					if (connection.getOwningFragment() == selectedFragment
+							|| DMLUtil.isChildFragment(selectedFragment, connection.getOwningFragment())) {
+						++connectionCount;
+					}
+				}
+				getTerminalFigure().setBlank(connectionCount != 0);
 			}
 		}
-
-		int connectionCount = 0;
-		for (Object o : getSourceConnections()) {
-			if (o != excludedConnection && objectIsConnectionAndBelongsToFragment(o, selectedFragment)) {
-				++connectionCount;
-			}
-		}
-		for (Object o : getTargetConnections()) {
-			if (o != excludedConnection && objectIsConnectionAndBelongsToFragment(o, selectedFragment)) {
-				++connectionCount;
-			}
-		}
-		getTerminalFigure().setBlank(connectionCount != 0);
 	}
 	
-	private boolean objectIsConnectionAndBelongsToFragment(Object o, Fragment selectedFragment) {
-		if (o instanceof org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) {
-			org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart connectionEditPart = (org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart) o;
-			EObject element = connectionEditPart.resolveSemanticElement();
-			if (element instanceof Connection) {
-				Connection connection = (Connection) element;
-				if (connection.getOwningFragment() == selectedFragment || DMLUtil.isChildFragment(selectedFragment, connection.getOwningFragment())) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
+	protected abstract List<Connection> getConnections();
+	
 	@SuppressWarnings("unchecked")
 	protected void addTerminalFigure() {
 		if (getTerminalFigure() != null) {

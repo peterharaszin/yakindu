@@ -19,10 +19,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
@@ -45,6 +47,18 @@ public class DMLUtil {
 	public static ResourceSet getResourceSet(EObject eObject) {
 		Resource resource = eObject.eResource();
 		return resource != null ? resource.getResourceSet() : null;
+	}
+	
+	public static Notifier getRootNotifier(EObject eObject) {
+		Resource resource = eObject.eResource();
+		if (resource != null) {
+			ResourceSet resourceSet = resource.getResourceSet();
+			if (resourceSet != null) {
+				return resourceSet;
+			}
+			return resource;
+		}
+		return EcoreUtil.getRootContainer(eObject);
 	}
 		
 	public static String getArgumentValue(ParameterizedElement element, String parameterName, String defaultValue) {

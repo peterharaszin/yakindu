@@ -22,8 +22,8 @@ import org.eclipse.ui.part.PageBook;
 import org.eclipse.ui.part.PageBookView;
 import org.eclipselabs.damos.common.ui.viewers.FragmentTreeContentProvider;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
-import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
+import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
 import org.eclipselabs.damos.diagram.ui.viewers.FragmentTreeLabelProvider;
 import org.eclipselabs.damos.dml.Fragment;
 

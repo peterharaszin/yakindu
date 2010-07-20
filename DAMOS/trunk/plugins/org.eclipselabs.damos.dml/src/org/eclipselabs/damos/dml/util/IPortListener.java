@@ -16,8 +16,8 @@ package org.eclipselabs.damos.dml.util;
  * @author Andreas Unger
  *
  */
-public interface IConnectionListener {
+public interface IPortListener {
 
-	void connectionChanged(ConnectionEvent event);
+	void handlePortEvent(PortEvent event);
 	
 }

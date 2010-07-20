@@ -17,10 +17,11 @@ import java.util.EventObject;
  * @author Andreas Unger
  *
  */
-public class ConnectionEvent extends EventObject {
+public class PortEvent extends EventObject {
 
-	public static final int CONNECTED = 0;
-	public static final int DISCONNECTED = 1;
+	public static final int CONNECTION_CONNECTED = 0;
+	public static final int CONNECTION_DISCONNECTED = 1;
+	public static final int SIGNAL_CHANGED = 3;
 	
 	/**
 	 * 
@@ -32,7 +33,7 @@ public class ConnectionEvent extends EventObject {
 	/**
 	 * @param source
 	 */
-	public ConnectionEvent(Object source, int eventType) {
+	public PortEvent(Object source, int eventType) {
 		super(source);
 		this.eventType = eventType;
 	}

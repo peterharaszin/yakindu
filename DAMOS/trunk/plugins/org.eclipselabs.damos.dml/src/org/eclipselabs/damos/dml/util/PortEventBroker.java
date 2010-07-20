@@ -26,19 +26,20 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Port;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ConnectionEventBroker extends EContentAdapter {
+public class PortEventBroker extends EContentAdapter {
 
-	private static final Map<IConnectionListener, List<WeakReference<ConnectionEventBroker>>> instanceMap = new HashMap<IConnectionListener, List<WeakReference<ConnectionEventBroker>>>();
+	private static final Map<IPortListener, List<WeakReference<PortEventBroker>>> instanceMap = new HashMap<IPortListener, List<WeakReference<PortEventBroker>>>();
 	
-	private final WeakReference<ConnectionEventBroker> instance = new WeakReference<ConnectionEventBroker>(this);
+	private final WeakReference<PortEventBroker> instance = new WeakReference<PortEventBroker>(this);
 	
-	private Map<Port, List<IConnectionListener>> listenerMap = new WeakHashMap<Port, List<IConnectionListener>>();
+	private Map<Port, List<IPortListener>> listenerMap = new WeakHashMap<Port, List<IPortListener>>();
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.emf.ecore.util.EContentAdapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
@@ -52,11 +53,11 @@ public class ConnectionEventBroker extends EContentAdapter {
 			if (feature == DMLPackage.Literals.CONNECTION__SOURCE_PORT || feature == DMLPackage.Literals.CONNECTION__TARGET_PORT) {
 				Port oldPort = (Port) notification.getOldValue();
 				if (oldPort != null) {
-					fireConnectionEvent(oldPort, new ConnectionEvent(notifier, ConnectionEvent.DISCONNECTED));
+					fireConnectionEvent(oldPort, new PortEvent(notifier, PortEvent.CONNECTION_DISCONNECTED));
 				}
 				Port newPort = (Port) notification.getNewValue();
 				if (newPort != null) {
-					fireConnectionEvent(newPort, new ConnectionEvent(notifier, ConnectionEvent.CONNECTED));
+					fireConnectionEvent(newPort, new PortEvent(notifier, PortEvent.CONNECTION_CONNECTED));
 				}
 			}
 		} else if (notifier instanceof Fragment) {
@@ -64,39 +65,49 @@ public class ConnectionEventBroker extends EContentAdapter {
 				switch (notification.getEventType()) {
 				case Notification.ADD:
 					if (notification.getNewValue() instanceof Connection) {
-						fireConnectionEvent((Connection) notification.getNewValue(), ConnectionEvent.CONNECTED);
+						fireConnectionEvent((Connection) notification.getNewValue(), PortEvent.CONNECTION_CONNECTED);
 					}
 				case Notification.ADD_MANY:
 					if (notification.getNewValue() instanceof List<?>) {
-						fireConnectionEvent((List<?>) notification.getNewValue(), ConnectionEvent.CONNECTED);
+						fireConnectionEvent((List<?>) notification.getNewValue(), PortEvent.CONNECTION_CONNECTED);
 					}
 				case Notification.REMOVE:
 					if (notification.getOldValue() instanceof Connection) {
-						fireConnectionEvent((Connection) notification.getOldValue(), ConnectionEvent.DISCONNECTED);
+						fireConnectionEvent((Connection) notification.getOldValue(), PortEvent.CONNECTION_DISCONNECTED);
 					}
 				case Notification.REMOVE_MANY:
 					if (notification.getOldValue() instanceof List<?>) {
-						fireConnectionEvent((List<?>) notification.getOldValue(), ConnectionEvent.DISCONNECTED);
+						fireConnectionEvent((List<?>) notification.getOldValue(), PortEvent.CONNECTION_DISCONNECTED);
+					}
+				}
+			}
+		} else if (notifier instanceof OutputPort) {
+			if (notification.getFeature() == DMLPackage.Literals.OUTPUT_PORT__SIGNAL) {
+				List<Connection> outgoingConnections = ((OutputPort) notifier).getOutgoingConnections();
+				if (!outgoingConnections.isEmpty()) {
+					PortEvent event = new PortEvent(notifier, PortEvent.SIGNAL_CHANGED);
+					for (Connection connection : outgoingConnections) {
+						fireConnectionEvent(connection.getTargetPort(), event);
 					}
 				}
 			}
 		}
 	}
 	
-	public static void addConnectionListener(Port port, IConnectionListener listener) {
-		ConnectionEventBroker broker = (ConnectionEventBroker) EcoreUtil.getAdapter(port.eAdapters(), ConnectionEventBroker.class);
+	public static void addPortListener(Port port, IPortListener listener) {
+		PortEventBroker broker = (PortEventBroker) EcoreUtil.getAdapter(port.eAdapters(), PortEventBroker.class);
 		if (broker == null) {
-			broker = new ConnectionEventBroker();
+			broker = new PortEventBroker();
 			DMLUtil.getRootNotifier(port).eAdapters().add(broker);
 		}
-		broker.doAddConnectionListener(port, listener);
+		broker.doAddPortListener(port, listener);
 	}
 	
-	private void doAddConnectionListener(Port port, IConnectionListener listener) {
+	private void doAddPortListener(Port port, IPortListener listener) {
 		boolean added = false;
-		List<IConnectionListener> listeners = listenerMap.get(port);
+		List<IPortListener> listeners = listenerMap.get(port);
 		if (listeners == null) {
-			listeners = new ArrayList<IConnectionListener>();
+			listeners = new ArrayList<IPortListener>();
 			listeners.add(listener);
 			listenerMap.put(port, listeners);
 			added = true;
@@ -106,9 +117,9 @@ public class ConnectionEventBroker extends EContentAdapter {
 		}
 		if (added) {
 			synchronized (instanceMap) {
-				List<WeakReference<ConnectionEventBroker>> brokers = instanceMap.get(listener);
+				List<WeakReference<PortEventBroker>> brokers = instanceMap.get(listener);
 				if (brokers == null) {
-					brokers = new ArrayList<WeakReference<ConnectionEventBroker>>();
+					brokers = new ArrayList<WeakReference<PortEventBroker>>();
 					instanceMap.put(listener, brokers);
 				}
 				brokers.add(instance);
@@ -116,15 +127,15 @@ public class ConnectionEventBroker extends EContentAdapter {
 		}
 	}
 	
-	public static void removeConnectionChangeListener(Port port, IConnectionListener listener) {
-		ConnectionEventBroker broker = (ConnectionEventBroker) EcoreUtil.getAdapter(port.eAdapters(), ConnectionEventBroker.class);
+	public static void removePortListener(Port port, IPortListener listener) {
+		PortEventBroker broker = (PortEventBroker) EcoreUtil.getAdapter(port.eAdapters(), PortEventBroker.class);
 		if (broker != null) {
-			broker.doRemoveConnectionListener(port, listener);
+			broker.doRemovePortListener(port, listener);
 		}
 	}
 
-	private void doRemoveConnectionListener(Port port, IConnectionListener listener) {
-		List<IConnectionListener> listeners = listenerMap.get(port);
+	private void doRemovePortListener(Port port, IPortListener listener) {
+		List<IPortListener> listeners = listenerMap.get(port);
 		if (listeners != null) {
 			boolean removed = false;
 			if (listeners.size() == 1 && listeners.get(0) == listener) {
@@ -135,7 +146,7 @@ public class ConnectionEventBroker extends EContentAdapter {
 			}
 			if (removed) {
 				synchronized (instanceMap) {
-					List<WeakReference<ConnectionEventBroker>> brokers = instanceMap.get(listener);
+					List<WeakReference<PortEventBroker>> brokers = instanceMap.get(listener);
 					if (brokers != null) {
 						if (brokers.size() == 1 && brokers.get(0) == instance) {
 							instanceMap.remove(listener);
@@ -148,16 +159,16 @@ public class ConnectionEventBroker extends EContentAdapter {
 		}
 	}
 	
-	public static void removeConnectionListener(IConnectionListener listener) {
-		List<WeakReference<ConnectionEventBroker>> brokers;
+	public static void removePortListener(IPortListener listener) {
+		List<WeakReference<PortEventBroker>> brokers;
 		synchronized (instanceMap) {
 			brokers = instanceMap.remove(listener);
 		}
 		if (brokers != null) {
-			for (WeakReference<ConnectionEventBroker> weakBroker : brokers) {
-				ConnectionEventBroker broker = weakBroker.get();
+			for (WeakReference<PortEventBroker> weakBroker : brokers) {
+				PortEventBroker broker = weakBroker.get();
 				if (broker != null) {
-					broker.doRemoveConnectionListener(listener);
+					broker.doRemovePortListener(listener);
 				}
 			}
 		}
@@ -167,9 +178,9 @@ public class ConnectionEventBroker extends EContentAdapter {
 	 * @param listener
 	 * @param broker
 	 */
-	private void doRemoveConnectionListener(IConnectionListener listener) {
-		for (Iterator<List<IConnectionListener>> it = listenerMap.values().iterator(); it.hasNext();) {
-			List<IConnectionListener> listeners = it.next();
+	private void doRemovePortListener(IPortListener listener) {
+		for (Iterator<List<IPortListener>> it = listenerMap.values().iterator(); it.hasNext();) {
+			List<IPortListener> listeners = it.next();
 			if (listeners.size() == 1 && listeners.get(0) == listener) {
 				it.remove();
 			} else {
@@ -190,16 +201,16 @@ public class ConnectionEventBroker extends EContentAdapter {
 	}
 
 	private void fireConnectionEvent(Connection connection, int eventType) {
-		ConnectionEvent event = new ConnectionEvent(connection, eventType);
+		PortEvent event = new PortEvent(connection, eventType);
 		fireConnectionEvent(connection.getSourcePort(), event);
 		fireConnectionEvent(connection.getTargetPort(), event);
 	}
 
-	private void fireConnectionEvent(Port port, ConnectionEvent event) {
-		List<IConnectionListener> listeners = listenerMap.get(port);
+	private void fireConnectionEvent(Port port, PortEvent event) {
+		List<IPortListener> listeners = listenerMap.get(port);
 		if (listeners != null) {
-			for (IConnectionListener l : listeners) {
-				l.connectionChanged(event);
+			for (IPortListener l : listeners) {
+				l.handlePortEvent(event);
 			}
 		}
 	}
@@ -209,7 +220,7 @@ public class ConnectionEventBroker extends EContentAdapter {
 	 */
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == ConnectionEventBroker.class;
+		return type == PortEventBroker.class;
 	}
 
 }

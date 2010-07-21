@@ -225,13 +225,13 @@ litigation.
    </license>
 
    <url>
-      <update label="Yakindu Update Site" url="http://updates.yakindu.com/galileo/daily"/>
+      <update label="Yakindu Update Site" url="http://updates.yakindu.com/helios/daily"/>
       <discovery label="Galileo" url="http://download.eclipse.org/releases/galileo"/>
       <discovery label="EMF Update Site" url="http://download.eclipse.org/modeling/emf/updates/"/>
    </url>
 
    <requires>
-      <import feature="org.eclipse.xtend.typesystem.emf" version="0.7.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.xtend.typesystem.emf"/>
    </requires>
 
    <plugin

@@ -230,8 +230,8 @@ litigation.
    </url>
 
    <requires>
-      <import feature="org.eclipse.sdk" version="3.4.2" match="greaterOrEqual"/>
-      <import feature="org.eclipse.emf.common.ui" version="2.4.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sdk"/>
+      <import feature="org.eclipse.emf.common.ui"/>
    </requires>
 
    <plugin

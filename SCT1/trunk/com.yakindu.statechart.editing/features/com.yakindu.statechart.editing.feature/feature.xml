@@ -239,9 +239,9 @@ litigation.
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.mda4e.statemachine.model"/>
       <import plugin="org.eclipse.emf.edit"/>
-      <import feature="org.eclipse.sdk" version="3.5.0" match="greaterOrEqual"/>
-      <import feature="com.yakindu.statechart.model.feature" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.emf" version="2.4.2" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sdk"/>
+      <import feature="com.yakindu.statechart.model.feature"/>
+      <import feature="org.eclipse.emf"/>
    </requires>
 
    <plugin

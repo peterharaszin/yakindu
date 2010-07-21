@@ -38,8 +38,8 @@
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipse.sdk" version="3.5.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.xtext.runtime" version="0.7.1" match="greaterOrEqual"/>
+      <import feature="org.eclipse.sdk"/>
+      <import feature="org.eclipse.xtext.runtime"/>
    </requires>
 
 </feature>

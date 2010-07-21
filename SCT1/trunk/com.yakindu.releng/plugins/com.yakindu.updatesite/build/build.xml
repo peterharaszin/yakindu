@@ -73,27 +73,9 @@
 						passphrase="${yakindu.passphrase}"
 						trust="true" verbose="true"
 						sftp="true">
-					<fileset dir="${update.site.home}">
+					<fileset dir="${update.site.home}/${forceContextQualifier}">
 						<include name="*.xml"/>
-					</fileset>
-				</scp>
-				<scp todir="${update.site.scp}"
-						keyfile="${yakindu.keyFile}"
-						failonerror="${scp.fail_on_error}"
-						passphrase="${yakindu.passphrase}"
-						trust="true" verbose="true"
-						sftp="true">
-					<fileset dir="${update.site.home}">
 						<include name="plugins/*.jar"/>
-					</fileset>
-				</scp>
-				<scp todir="${update.site.scp}"
-						keyfile="${yakindu.keyFile}"
-						failonerror="${scp.fail_on_error}"
-						passphrase="${yakindu.passphrase}"
-						trust="true" verbose="true"
-						sftp="true">
-					<fileset dir="${update.site.home}">
 						<include name="features/*.jar"/>
 					</fileset>
 				</scp>

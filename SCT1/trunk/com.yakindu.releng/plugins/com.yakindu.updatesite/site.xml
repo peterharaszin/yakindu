@@ -12,7 +12,7 @@
 
 -->
 <site associateSitesURL="http://updates.yakindu.com/release/associateSites.xml">
-   <description url="http://updates.yakindu.com/galileo/daily">
+   <description url="http://updates.yakindu.com/helios/daily">
       The Yakindu Update-Site.
    </description>
    <feature url="features/org.itemis.yakindu.feature_1.0.0.200902271259.jar" id="org.itemis.yakindu.feature" version="1.0.0.200902271259">

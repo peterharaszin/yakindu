@@ -225,7 +225,7 @@ litigation.
    </license>
 
    <url>
-      <update label="Yakindu Update Site" url="http://updates.yakindu.com/galileo/daily"/>
+      <update label="Yakindu Update Site" url="http://updates.yakindu.com/helios/daily"/>
       <discovery label="Yakindu Release page" url="http://updates.yakindu.com/release"/>
       <discovery label="GMF Update Site" url="http://download.eclipse.org/modeling/gmf/updates/releases/"/>
       <discovery label="Galileo" url="http://download.eclipse.org/releases/galileo"/>
@@ -249,12 +249,10 @@ litigation.
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipse.sdk" version="3.4.2" match="greaterOrEqual"/>
       <import feature="com.yakindu.statechart.model.feature" version="1.0.0" match="greaterOrEqual"/>
       <import feature="com.yakindu.simulation.feature" version="1.0.0" match="greaterOrEqual"/>
       <import feature="com.yakindu.statechart.simulation.feature" version="1.0.0" match="greaterOrEqual"/>
       <import feature="com.yakindu.simulation.ui.feature" version="1.0.0" match="greaterOrEqual"/>
-      <import feature="org.eclipse.jdt" version="3.5.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

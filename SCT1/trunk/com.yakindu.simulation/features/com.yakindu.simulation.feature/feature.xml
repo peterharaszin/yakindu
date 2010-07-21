@@ -224,10 +224,6 @@ Each party waives its rights to a jury trial in any resulting
 litigation.
    </license>
 
-   <requires>
-      <import feature="org.eclipse.sdk" version="3.5.0" match="greaterOrEqual"/>
-   </requires>
-
    <plugin
          id="org.mda4e.simulation.core"
          download-size="0"

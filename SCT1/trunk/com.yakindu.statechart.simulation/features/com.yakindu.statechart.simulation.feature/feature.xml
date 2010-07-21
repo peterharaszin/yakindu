@@ -225,7 +225,7 @@ litigation.
    </license>
 
    <url>
-      <update label="Yakindu Update Site" url="http://updates.yakindu.com/galileo/daily"/>
+      <update label="Yakindu Update Site" url="http://updates.yakindu.com/helios/daily"/>
       <discovery label="Yakindu Release page" url="http://updates.yakindu.com/release"/>
       <discovery label="Galileo" url="http://download.eclipse.org/releases/galileo"/>
       <discovery label="EMF Update Site" url="http://download.eclipse.org/modeling/emf/updates/"/>

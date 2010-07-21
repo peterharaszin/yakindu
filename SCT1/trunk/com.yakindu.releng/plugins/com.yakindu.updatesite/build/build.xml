@@ -73,7 +73,7 @@
 						passphrase="${yakindu.passphrase}"
 						trust="true" verbose="true"
 						sftp="true">
-					<fileset dir="${update.site.home}/${forceContextQualifier}">
+					<fileset dir="${update.site.home}">
 						<include name="*.xml"/>
 						<include name="plugins/*.jar"/>
 						<include name="features/*.jar"/>

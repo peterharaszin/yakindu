@@ -46,12 +46,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	private IPortListener portListener = new IPortListener() {
 
 		public void handlePortEvent(PortEvent event) {
-			switch (event.getEventType()) {
-			case PortEvent.CONNECTION_CONNECTED:
-			case PortEvent.CONNECTION_DISCONNECTED:
-				refreshTerminalFigure();
-				break;
-			}
+			refreshTerminalFigure();
 		}
 		
 	};
@@ -96,7 +91,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		}
 		Port port = (Port) resolveSemanticElement();
 		if (port != null) {
-			PortEventBroker.addPortListener(port, portListener);
+			PortEventBroker.addPortListener(port, portListener, PortEvent.CONNECTION_CHANGED);
 		}
 	}
 	

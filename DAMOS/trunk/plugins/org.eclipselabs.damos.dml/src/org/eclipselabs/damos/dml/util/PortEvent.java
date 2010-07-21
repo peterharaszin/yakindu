@@ -19,9 +19,10 @@ import java.util.EventObject;
  */
 public class PortEvent extends EventObject {
 
-	public static final int CONNECTION_CONNECTED = 0;
-	public static final int CONNECTION_DISCONNECTED = 1;
-	public static final int SIGNAL_CHANGED = 3;
+	public static final int CONNECTION_CONNECTED = 0x1;
+	public static final int CONNECTION_DISCONNECTED = 0x2;
+	public static final int CONNECTION_CHANGED = CONNECTION_CONNECTED | CONNECTION_DISCONNECTED;
+	public static final int SIGNAL_CHANGED = 0x4;
 	
 	/**
 	 * 

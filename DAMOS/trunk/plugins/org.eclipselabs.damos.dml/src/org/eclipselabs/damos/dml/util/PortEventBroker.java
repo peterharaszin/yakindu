@@ -13,7 +13,6 @@ package org.eclipselabs.damos.dml.util;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -37,9 +36,9 @@ public class PortEventBroker extends EContentAdapter {
 
 	private static final Map<IPortListener, List<WeakReference<PortEventBroker>>> instanceMap = new HashMap<IPortListener, List<WeakReference<PortEventBroker>>>();
 	
-	private final WeakReference<PortEventBroker> instance = new WeakReference<PortEventBroker>(this);
+	private final WeakReference<PortEventBroker> instanceReference = new WeakReference<PortEventBroker>(this);
 	
-	private Map<Port, List<IPortListener>> listenerMap = new WeakHashMap<Port, List<IPortListener>>();
+	private Map<Port, ListenerDescriptorList> listenerMap = new WeakHashMap<Port, ListenerDescriptorList>();
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.emf.ecore.util.EContentAdapter#notifyChanged(org.eclipse.emf.common.notify.Notification)
@@ -95,24 +94,28 @@ public class PortEventBroker extends EContentAdapter {
 	}
 	
 	public static void addPortListener(Port port, IPortListener listener) {
+		addPortListener(port, listener, -1);
+	}
+	
+	public static void addPortListener(Port port, IPortListener listener, int eventTypeMask) {
 		PortEventBroker broker = (PortEventBroker) EcoreUtil.getAdapter(port.eAdapters(), PortEventBroker.class);
 		if (broker == null) {
 			broker = new PortEventBroker();
 			DMLUtil.getRootNotifier(port).eAdapters().add(broker);
 		}
-		broker.doAddPortListener(port, listener);
+		broker.doAddPortListener(port, listener, eventTypeMask);
 	}
 	
-	private void doAddPortListener(Port port, IPortListener listener) {
+	private void doAddPortListener(Port port, IPortListener listener, int eventTypeMask) {
 		boolean added = false;
-		List<IPortListener> listeners = listenerMap.get(port);
-		if (listeners == null) {
-			listeners = new ArrayList<IPortListener>();
-			listeners.add(listener);
-			listenerMap.put(port, listeners);
+		ListenerDescriptorList listenerDescriptors = listenerMap.get(port);
+		if (listenerDescriptors == null) {
+			listenerDescriptors = new ListenerDescriptorList();
+			listenerDescriptors.add(listener, eventTypeMask);
+			listenerMap.put(port, listenerDescriptors);
 			added = true;
-		} else if (!listeners.contains(listener)) {
-			listeners.add(listener);
+		} else if (!listenerDescriptors.contains(listener)) {
+			listenerDescriptors.add(listener, eventTypeMask);
 			added = true;
 		}
 		if (added) {
@@ -122,7 +125,7 @@ public class PortEventBroker extends EContentAdapter {
 					brokers = new ArrayList<WeakReference<PortEventBroker>>();
 					instanceMap.put(listener, brokers);
 				}
-				brokers.add(instance);
+				brokers.add(instanceReference);
 			}
 		}
 	}
@@ -135,23 +138,23 @@ public class PortEventBroker extends EContentAdapter {
 	}
 
 	private void doRemovePortListener(Port port, IPortListener listener) {
-		List<IPortListener> listeners = listenerMap.get(port);
-		if (listeners != null) {
+		ListenerDescriptorList listenerDescriptors = listenerMap.get(port);
+		if (listenerDescriptors != null) {
 			boolean removed = false;
-			if (listeners.size() == 1 && listeners.get(0) == listener) {
+			if (listenerDescriptors.getSingletonListener() == listener) {
 				listenerMap.remove(port);
 				removed = true;
 			} else {
-				removed = listeners.remove(listener);
+				removed = listenerDescriptors.remove(listener);
 			}
 			if (removed) {
 				synchronized (instanceMap) {
 					List<WeakReference<PortEventBroker>> brokers = instanceMap.get(listener);
 					if (brokers != null) {
-						if (brokers.size() == 1 && brokers.get(0) == instance) {
+						if (brokers.size() == 1 && brokers.get(0) == instanceReference) {
 							instanceMap.remove(listener);
 						} else {
-							brokers.remove(instance);
+							brokers.remove(instanceReference);
 						}
 					}
 				}
@@ -165,8 +168,8 @@ public class PortEventBroker extends EContentAdapter {
 			brokers = instanceMap.remove(listener);
 		}
 		if (brokers != null) {
-			for (WeakReference<PortEventBroker> weakBroker : brokers) {
-				PortEventBroker broker = weakBroker.get();
+			for (WeakReference<PortEventBroker> brokerReference : brokers) {
+				PortEventBroker broker = brokerReference.get();
 				if (broker != null) {
 					broker.doRemovePortListener(listener);
 				}
@@ -179,19 +182,19 @@ public class PortEventBroker extends EContentAdapter {
 	 * @param broker
 	 */
 	private void doRemovePortListener(IPortListener listener) {
-		for (Iterator<List<IPortListener>> it = listenerMap.values().iterator(); it.hasNext();) {
-			List<IPortListener> listeners = it.next();
-			if (listeners.size() == 1 && listeners.get(0) == listener) {
+		for (Iterator<ListenerDescriptorList> it = listenerMap.values().iterator(); it.hasNext();) {
+			ListenerDescriptorList listenerDescriptors = it.next();
+			if (listenerDescriptors.getSingletonListener() == listener) {
 				it.remove();
 			} else {
-				listeners.removeAll(Collections.singleton(listener));
-				if (listeners.isEmpty()) {
+				listenerDescriptors.removeAny(listener);
+				if (listenerDescriptors.isEmpty()) {
 					it.remove();
 				}
 			}
 		}
 	}
-
+	
 	private void fireConnectionEvent(List<?> sources, int eventType) {
 		for (Object source : sources) {
 			if (source instanceof Connection) {
@@ -207,10 +210,12 @@ public class PortEventBroker extends EContentAdapter {
 	}
 
 	private void fireConnectionEvent(Port port, PortEvent event) {
-		List<IPortListener> listeners = listenerMap.get(port);
-		if (listeners != null) {
-			for (IPortListener l : listeners) {
-				l.handlePortEvent(event);
+		List<ListenerDescriptor> listenerDescriptors = listenerMap.get(port);
+		if (listenerDescriptors != null) {
+			for (ListenerDescriptor l : listenerDescriptors) {
+				if ((event.getEventType() & l.eventTypeMask) != 0) {
+					l.listener.handlePortEvent(event);
+				}
 			}
 		}
 	}
@@ -221,6 +226,65 @@ public class PortEventBroker extends EContentAdapter {
 	@Override
 	public boolean isAdapterForType(Object type) {
 		return type == PortEventBroker.class;
+	}
+	
+	private class ListenerDescriptorList extends ArrayList<ListenerDescriptor> {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public IPortListener getSingletonListener() {
+			return size() == 1 ? get(0).listener : null;
+		}
+		
+		public boolean add(IPortListener listener, int eventTypeMask) {
+			return add(new ListenerDescriptor(listener, eventTypeMask));
+		}
+		
+		public boolean contains(IPortListener listener) {
+			for (ListenerDescriptor listenerDescriptor : this) {
+				if (listenerDescriptor.listener == listener) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public boolean remove(IPortListener listener) {
+			for (Iterator<ListenerDescriptor> it = iterator(); it.hasNext();) {
+				if (it.next().listener == listener) {
+					it.remove();
+					return true;
+				}
+			}
+			return false;
+		}
+		
+		public void removeAny(IPortListener listener) {
+			for (Iterator<ListenerDescriptor> it = iterator(); it.hasNext();) {
+				if (it.next().listener == listener) {
+					it.remove();
+				}
+			}
+		}
+
+	}
+	
+	private class ListenerDescriptor {
+		
+		public IPortListener listener;
+		public int eventTypeMask;
+		
+		/**
+		 * 
+		 */
+		public ListenerDescriptor(IPortListener listener, int eventTypeMask) {
+			this.listener = listener;
+			this.eventTypeMask = eventTypeMask;
+		}
+		
 	}
 
 }

@@ -31,10 +31,10 @@ import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.util.ConnectionEvent;
+import org.eclipselabs.damos.dml.util.ConnectionEventBroker;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.dml.util.IPortListener;
-import org.eclipselabs.damos.dml.util.PortEvent;
-import org.eclipselabs.damos.dml.util.PortEventBroker;
+import org.eclipselabs.damos.dml.util.IConnectionListener;
 
 public abstract class PortEditPart extends ShapeNodeEditPart {
 
@@ -43,14 +43,14 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	
 	private PortEditPartDelegate delegate;
 
-	private IPortListener portListener = new IPortListener() {
-
-		public void handlePortEvent(PortEvent event) {
+	private IConnectionListener connectionListener = new IConnectionListener() {
+		
+		public void connectionChanged(ConnectionEvent event) {
 			refreshTerminalFigure();
 		}
 		
 	};
-
+	
 	IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
 		
 		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
@@ -91,7 +91,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		}
 		Port port = (Port) resolveSemanticElement();
 		if (port != null) {
-			PortEventBroker.addPortListener(port, portListener, PortEvent.CONNECTION_CHANGED);
+			ConnectionEventBroker.addListener(port, connectionListener);
 		}
 	}
 	
@@ -99,7 +99,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
 	 */
 	public void deactivate() {
-		PortEventBroker.removePortListener(portListener);
+		ConnectionEventBroker.removeListener(connectionListener);
 		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getParent().getRoot().getContents().getAdapter(FragmentSelectionManager.class);
 		if (fragmentManager != null) {
 			fragmentManager.removeFragmentSelectionChangeListener(fragmentChangeListener);

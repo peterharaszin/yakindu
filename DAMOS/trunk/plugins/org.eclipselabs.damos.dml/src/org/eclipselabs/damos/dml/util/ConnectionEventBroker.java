@@ -11,10 +11,7 @@
 
 package org.eclipselabs.damos.dml.util;
 
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipselabs.damos.dml.Connection;
@@ -29,18 +26,12 @@ import org.eclipselabs.damos.dml.internal.util.AbstractEventBroker;
  */
 public final class ConnectionEventBroker extends AbstractEventBroker<IConnectionListener> {
 
-	private static Map<IConnectionListener, List<WeakReference<AbstractEventBroker<IConnectionListener>>>> instanceMap = new HashMap<IConnectionListener, List<WeakReference<AbstractEventBroker<IConnectionListener>>>>();
-	
 	public static void addListener(Port port, IConnectionListener listener) {
-		addListener(port, listener, instanceMap, ConnectionEventBroker.class);
+		addListener(port, listener, ConnectionEventBroker.class);
 	}
 	
 	public static void removeListener(Port port, IConnectionListener listener) {
-		removeListener(port, listener, instanceMap, ConnectionEventBroker.class);
-	}
-
-	public static void removeListener(IConnectionListener listener) {
-		removeListener(listener, instanceMap);
+		removeListener(port, listener, ConnectionEventBroker.class);
 	}
 
 	/* (non-Javadoc)

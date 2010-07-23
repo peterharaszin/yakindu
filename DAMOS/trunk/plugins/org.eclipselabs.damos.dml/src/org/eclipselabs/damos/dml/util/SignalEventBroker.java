@@ -11,10 +11,7 @@
 
 package org.eclipselabs.damos.dml.util;
 
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -30,26 +27,20 @@ import org.eclipselabs.damos.dml.internal.util.AbstractEventBroker;
  */
 public final class SignalEventBroker extends AbstractEventBroker<ISignalListener> {
 
-	private static Map<ISignalListener, List<WeakReference<AbstractEventBroker<ISignalListener>>>> instanceMap = new HashMap<ISignalListener, List<WeakReference<AbstractEventBroker<ISignalListener>>>>();
-	
 	public static void addListener(Connection connection, ISignalListener listener) {
-		addListener(connection, listener, instanceMap, SignalEventBroker.class);
+		addListener(connection, listener, SignalEventBroker.class);
 	}
 	
 	public static void addListener(InputPort inputPort, ISignalListener listener) {
-		addListener(inputPort, listener, instanceMap, SignalEventBroker.class);
+		addListener(inputPort, listener, SignalEventBroker.class);
 	}
 
 	public static void removeListener(Connection connection, ISignalListener listener) {
-		removeListener(connection, listener, instanceMap, SignalEventBroker.class);
+		removeListener(connection, listener, SignalEventBroker.class);
 	}
 
 	public static void removeListener(InputPort inputPort, ISignalListener listener) {
-		removeListener(inputPort, listener, instanceMap, SignalEventBroker.class);
-	}
-
-	public static void removeListener(ISignalListener listener) {
-		removeListener(listener, instanceMap);
+		removeListener(inputPort, listener, SignalEventBroker.class);
 	}
 
 	/* (non-Javadoc)

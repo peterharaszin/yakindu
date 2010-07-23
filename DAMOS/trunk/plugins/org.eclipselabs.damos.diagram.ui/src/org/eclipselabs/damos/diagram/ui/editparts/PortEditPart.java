@@ -42,6 +42,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	private static final PortEditPartDelegate PASSIVE_DELEGATE = new PortEditPartDelegate(null);
 	
 	private PortEditPartDelegate delegate;
+	private Port cachedPort;
 
 	private IConnectionListener connectionListener = new IConnectionListener() {
 		
@@ -91,7 +92,8 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		}
 		Port port = (Port) resolveSemanticElement();
 		if (port != null) {
-			ConnectionEventBroker.addListener(port, connectionListener);
+			cachedPort = port;
+			ConnectionEventBroker.addListener(cachedPort, connectionListener);
 		}
 	}
 	
@@ -99,7 +101,9 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#deactivate()
 	 */
 	public void deactivate() {
-		ConnectionEventBroker.removeListener(connectionListener);
+		if (cachedPort != null) {
+			ConnectionEventBroker.removeListener(cachedPort, connectionListener);
+		}
 		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getParent().getRoot().getContents().getAdapter(FragmentSelectionManager.class);
 		if (fragmentManager != null) {
 			fragmentManager.removeFragmentSelectionChangeListener(fragmentChangeListener);

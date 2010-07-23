@@ -49,10 +49,10 @@ public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
 	 */
 	public Command getCommand(Request request) {
 		if (IRequestConstants.REQ_ADD_INPUT.equals(request.getType())) {
-			return createAddInputCommand();
+			return createAddInputCommand(request);
 		}
 		if (IRequestConstants.REQ_REMOVE_INPUT.equals(request.getType())) {
-			return createRemoveInputCommand();
+			return createRemoveInputCommand(request);
 		}
 		return super.getCommand(request);
 	}
@@ -71,8 +71,8 @@ public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
 		return super.getTargetEditPart(request);
 	}
 
-	protected Command createAddInputCommand() {
-		BlockInput input = getInput();
+	protected Command createAddInputCommand(Request request) {
+		BlockInput input = getInput(request);
 		if (input != null) {
 			InputDefinition definition = input.getDefinition();
 			if (definition.getMaximumPortCount() < 0 || input.getPorts().size() < definition.getMaximumPortCount()) {
@@ -84,8 +84,8 @@ public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	protected Command createRemoveInputCommand() {
-		BlockInput input = getInput();
+	protected Command createRemoveInputCommand(Request request) {
+		BlockInput input = getInput(request);
 		if (input != null) {
 			List<InputPort> inputPorts = input.getPorts();
 			if (inputPorts.size() > input.getDefinition().getMinimumPortCount()) {
@@ -97,13 +97,11 @@ public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	protected BlockInput getInput() {
+	protected BlockInput getInput(Request request) {
 		EObject o = ViewUtil.resolveSemanticElement((View) getHost().getModel());
 		if (o instanceof Block) {
-			List<Input> inputs = ((Block) o).getInputs();
-			if (inputs.size() == 1) {
-				Input input = inputs.get(0);
-				if (input instanceof BlockInput) {
+			for (Input input : ((Block) o).getInputs()) {
+				if (input instanceof BlockInput && ((BlockInput) input).getDefinition().isManyPorts()) {
 					return (BlockInput) input;
 				}
 			}

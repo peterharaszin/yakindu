@@ -49,10 +49,10 @@ public class AdjustOutputCountEditPolicy extends AbstractEditPolicy {
 	 */
 	public Command getCommand(Request request) {
 		if (IRequestConstants.REQ_ADD_OUTPUT.equals(request.getType())) {
-			return createAddOutputCommand();
+			return createAddOutputCommand(request);
 		}
 		if (IRequestConstants.REQ_REMOVE_OUTPUT.equals(request.getType())) {
-			return createRemoveOutputCommand();
+			return createRemoveOutputCommand(request);
 		}
 		return super.getCommand(request);
 	}
@@ -71,8 +71,8 @@ public class AdjustOutputCountEditPolicy extends AbstractEditPolicy {
 		return super.getTargetEditPart(request);
 	}
 
-	protected Command createAddOutputCommand() {
-		BlockOutput output = getOutput();
+	protected Command createAddOutputCommand(Request request) {
+		BlockOutput output = getOutput(request);
 		if (output != null) {
 			OutputDefinition definition = output.getDefinition();
 			if (definition.getMaximumPortCount() < 0 || output.getPorts().size() < definition.getMaximumPortCount()) {
@@ -84,8 +84,8 @@ public class AdjustOutputCountEditPolicy extends AbstractEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	protected Command createRemoveOutputCommand() {
-		BlockOutput output = getOutput();
+	protected Command createRemoveOutputCommand(Request request) {
+		BlockOutput output = getOutput(request);
 		if (output != null) {
 			List<OutputPort> outputPorts = output.getPorts();
 			if (outputPorts.size() > output.getDefinition().getMinimumPortCount()) {
@@ -97,13 +97,11 @@ public class AdjustOutputCountEditPolicy extends AbstractEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	protected BlockOutput getOutput() {
+	protected BlockOutput getOutput(Request request) {
 		EObject o = ViewUtil.resolveSemanticElement((View) getHost().getModel());
 		if (o instanceof Block) {
-			List<Output> outputs = ((Block) o).getOutputs();
-			if (outputs.size() == 1) {
-				Output output = outputs.get(0);
-				if (output instanceof BlockOutput) {
+			for (Output output : ((Block) o).getOutputs()) {
+				if (output instanceof BlockOutput && ((BlockOutput) output).getDefinition().isManyPorts()) {
 					return (BlockOutput) output;
 				}
 			}

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/com.yakindu.feature_1.1.0.qualifier.jar" id="com.yakindu.feature" version="1.1.0.qualifier">
+   <feature url="features/com.yakindu.feature_1.2.0.qualifier.jar" id="com.yakindu.feature" version="1.2.0.qualifier">
       <category name="YAKINDU 1.2"/>
    </feature>
-   <feature url="features/com.yakindu.sdk.feature_1.1.0.qualifier.jar" id="com.yakindu.sdk.feature" version="1.1.0.qualifier">
+   <feature url="features/com.yakindu.sdk.feature_1.2.0.qualifier.jar" id="com.yakindu.sdk.feature" version="1.2.0.qualifier">
       <category name="YAKINDU 1.2"/>
    </feature>
    <category-def name="YAKINDU 1.2" label="YAKINDU 1.2">

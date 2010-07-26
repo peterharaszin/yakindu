@@ -14,7 +14,7 @@
 <feature
       id="com.yakindu.test"
       label="YAKINDU Test Feature"
-      version="1.1.0.qualifier"
+      version="1.2.0.qualifier"
       provider-name="YAKINDU.org">
 
    <description url="http://www.example.com/description">
@@ -25,8 +25,28 @@
       [Enter Copyright Description here.]
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license>
+      YAKINDU Open Source Software User Agreement
+April 20, 2010
+YAKINDU Open Source Tools
+The YAKINDU Open Source Tools are licensed under the terms of
+the Eclipse Public License Version 1.0 (&quot;EPL&quot;). A copy of the
+EPL is provided with this Content and is also available at http://www.eclipse.org/legal/epl-v10.html.
+Applicable Licenses
+YAKINDU OPEN SOURCE TOOLS ARE BUILT UPON A NUMBER OF OTHER OPEN
+SOURCE TECHNOLOGIES AND PRODUCTS. THE ABOUTS, FEATURE LICENSES,
+AND FEATURE UPDATE LICENSES OF THESE TECHNOLOGIES AND PRODUCTS
+MAY REFER TO THE EPL OR OTHER LICENSE AGREEMENTS, NOTICES OR
+TERMS AND CONDITIONS. SOME OF THESE OTHER LICENSE AGREEMENTS
+MAY INCLUDE (BUT ARE NOT LIMITED TO):
+- Common Public License Version 1.0 (available at http://www.eclipse.org/legal/cpl-v10.html)
+- Apache Software License 1.1 (available at http://www.apache.org/licenses/LICENSE)
+- Apache Software License 2.0 (available at http://www.apache.org/licenses/LICENSE-2.0)
+- IBM Public License 1.0 (available at http://oss.software.ibm.com/developerworks/opensource/license10.html)
+- Metro Link Public License 1.00 (available at http://www.opengroup.org/openmotif/supporters/metrolink/license.html)
+- Mozilla Public License Version 1.1 (available at http://www.mozilla.org/MPL/MPL-1.1.html)
+IT IS YOUR OBLIGATION TO READ AND ACCEPT ALL SUCH TERMS AND CONDITIONS
+PRIOR TO USE OF THE CONTENT.
    </license>
 
    <plugin

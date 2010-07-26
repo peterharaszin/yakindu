@@ -62,6 +62,10 @@ $key = q/fig:screenshot3/;
 $external_labels{$key} = "$URL/" . q|node6.html|; 
 $noresave{$key} = "$nosave";
 
+$key = q/sec:Damos/;
+$external_labels{$key} = "$URL/" . q|node8.html|; 
+$noresave{$key} = "$nosave";
+
 $key = q/fig:screenshot10/;
 $external_labels{$key} = "$URL/" . q|node6.html|; 
 $noresave{$key} = "$nosave";
@@ -122,16 +126,16 @@ $key = q/fig:screenshot6/;
 $external_labels{$key} = "$URL/" . q|node6.html|; 
 $noresave{$key} = "$nosave";
 
-$key = q/fig:editorApplyStereotype/;
-$external_labels{$key} = "$URL/" . q|node7.html|; 
-$noresave{$key} = "$nosave";
-
 $key = q/sec:UMLTransformation/;
 $external_labels{$key} = "$URL/" . q|node7.html|; 
 $noresave{$key} = "$nosave";
 
 $key = q/fig:screenshot22/;
 $external_labels{$key} = "$URL/" . q|node6.html|; 
+$noresave{$key} = "$nosave";
+
+$key = q/fig:editorApplyStereotype/;
+$external_labels{$key} = "$URL/" . q|node7.html|; 
 $noresave{$key} = "$nosave";
 
 $key = q/fig:screenshot8/;
@@ -254,12 +258,12 @@ $key = q/fig:priorityVisualisation/;
 $external_labels{$key} = "$URL/" . q|node7.html|; 
 $noresave{$key} = "$nosave";
 
-$key = q/fig:updateSite/;
-$external_labels{$key} = "$URL/" . q|node3.html|; 
-$noresave{$key} = "$nosave";
-
 $key = q/fig:screenshot14/;
 $external_labels{$key} = "$URL/" . q|node6.html|; 
+$noresave{$key} = "$nosave";
+
+$key = q/fig:updateSite/;
+$external_labels{$key} = "$URL/" . q|node3.html|; 
 $noresave{$key} = "$nosave";
 
 $key = q/fig:toolArchitecture/;
@@ -331,6 +335,10 @@ $noresave{$key} = "$nosave";
 
 $key = q/fig:screenshot3/;
 $external_latex_labels{$key} = q|5.3|; 
+$noresave{$key} = "$nosave";
+
+$key = q/sec:Damos/;
+$external_latex_labels{$key} = q|7|; 
 $noresave{$key} = "$nosave";
 
 $key = q/fig:screenshot10/;
@@ -525,12 +533,12 @@ $key = q/fig:priorityVisualisation/;
 $external_latex_labels{$key} = q|6.4|; 
 $noresave{$key} = "$nosave";
 
-$key = q/fig:updateSite/;
-$external_latex_labels{$key} = q|2.2|; 
-$noresave{$key} = "$nosave";
-
 $key = q/fig:screenshot14/;
 $external_latex_labels{$key} = q|5.13|; 
+$noresave{$key} = "$nosave";
+
+$key = q/fig:updateSite/;
+$external_latex_labels{$key} = q|2.2|; 
 $noresave{$key} = "$nosave";
 
 $key = q/fig:toolArchitecture/;

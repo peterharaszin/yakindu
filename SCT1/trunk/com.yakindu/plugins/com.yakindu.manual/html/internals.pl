@@ -62,6 +62,10 @@ $key = q/fig:screenshot3/;
 $ref_files{$key} = "$dir".q|node6.html|; 
 $noresave{$key} = "$nosave";
 
+$key = q/sec:Damos/;
+$ref_files{$key} = "$dir".q|node8.html|; 
+$noresave{$key} = "$nosave";
+
 $key = q/fig:screenshot10/;
 $ref_files{$key} = "$dir".q|node6.html|; 
 $noresave{$key} = "$nosave";
@@ -122,16 +126,16 @@ $key = q/fig:screenshot6/;
 $ref_files{$key} = "$dir".q|node6.html|; 
 $noresave{$key} = "$nosave";
 
-$key = q/fig:screenshot22/;
-$ref_files{$key} = "$dir".q|node6.html|; 
-$noresave{$key} = "$nosave";
-
 $key = q/fig:editorApplyStereotype/;
 $ref_files{$key} = "$dir".q|node7.html|; 
 $noresave{$key} = "$nosave";
 
 $key = q/sec:UMLTransformation/;
 $ref_files{$key} = "$dir".q|node7.html|; 
+$noresave{$key} = "$nosave";
+
+$key = q/fig:screenshot22/;
+$ref_files{$key} = "$dir".q|node6.html|; 
 $noresave{$key} = "$nosave";
 
 $key = q/fig:screenshot8/;
@@ -254,12 +258,12 @@ $key = q/fig:priorityVisualisation/;
 $ref_files{$key} = "$dir".q|node7.html|; 
 $noresave{$key} = "$nosave";
 
-$key = q/fig:updateSite/;
-$ref_files{$key} = "$dir".q|node3.html|; 
-$noresave{$key} = "$nosave";
-
 $key = q/fig:screenshot14/;
 $ref_files{$key} = "$dir".q|node6.html|; 
+$noresave{$key} = "$nosave";
+
+$key = q/fig:updateSite/;
+$ref_files{$key} = "$dir".q|node3.html|; 
 $noresave{$key} = "$nosave";
 
 $key = q/fig:toolArchitecture/;

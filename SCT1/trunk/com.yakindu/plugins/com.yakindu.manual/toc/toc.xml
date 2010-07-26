@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <toc label="Yakindu">
-	<topic label="Start" href="html/index.html">
+	<topic label="Overview" href="html/index.html">
   </topic><topic label="Contents" href="html/node1.html">
   </topic><topic label="Overview" href="html/node2.html">
   <topic label="YAKINDU Statechart Tools" href="html/node2.html#SECTION00210000000000000000"/>
@@ -51,6 +51,8 @@
   <topic label="Limitations" href="html/node7.html#SECTION00743000000000000000"/>
   <topic label="Transformation Cartridge" href="html/node7.html#SECTION00744000000000000000"/>
   <topic label="Extending an UML2 state machine" href="html/node7.html#SECTION00750000000000000000"/>
-  </topic><topic label="About this document ..." href="html/node8.html">
-  </topic>
+  </topic><topic label="Dynamical Systems Modeler (DAMOS)" href="html/node8.html">
+  </topic><topic label="About this document ..." href="html/node9.html">
+  </topic><topic label="Contents" href="html/node1.html">
+</topic>
 </toc>

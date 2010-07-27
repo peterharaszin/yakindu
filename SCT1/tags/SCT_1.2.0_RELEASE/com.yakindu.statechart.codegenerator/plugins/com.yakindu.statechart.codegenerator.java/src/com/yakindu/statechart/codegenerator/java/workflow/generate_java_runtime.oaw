@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<workflow>
+
+	<property name="com.yakindu.statechart.codegenerator.java.generateRuntime" value="true"/>
+	<property name="com.yakindu.statechart.codegenerator.java.generateStatechart" value="true"/>
+	
+	<component class="com.yakindu.statechart.model.expressions.StatechartExpressionsStandaloneSetup2"/>
+	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
+		<platformUri value=".." />
+    	<registerGeneratedEPackage value="statemachine.StatemachinePackage"/>
+   	</bean>
+   	
+	<!--  generate code -->
+	<component id="runtime_generator"
+		class="org.eclipse.xpand2.Generator">
+		
+		<metaModel
+			class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel" />
+
+		<expand
+			value="com::yakindu::statechart::codegenerator::java::templates::Main::Runtime FOR ''" />
+
+		<fileEncoding value='utf-8' />
+		<outlet path="${src-gen}" />
+		<beautifier class="org.eclipse.xpand2.output.JavaBeautifier"/>
+	</component>
+</workflow>
+

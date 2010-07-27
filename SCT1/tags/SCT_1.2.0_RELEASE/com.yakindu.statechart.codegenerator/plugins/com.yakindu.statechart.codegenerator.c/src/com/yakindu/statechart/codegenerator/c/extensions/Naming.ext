@@ -1,0 +1,117 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+import emf;
+import statechartexpressions;
+
+extension com::yakindu::statechart::model::Extensions;
+
+String rootName(EObject this)              : ((Statechart)(this.eRootContainer)).name.toFirstLower();
+String RootName(EObject this)              : ((Statechart)(this.eRootContainer)).name.toFirstUpper();
+
+// basenames for functions
+String basename(EObject this)              : rootName(); 
+String baseInterface(EObject this)         : rootName()+"_Iface"; 
+String timerIface(EObject this)            : rootName()+"_timerIface";
+
+// handle names
+String baseHandle(EObject this)            : RootName()+"_Handle"; //"SM_"+rootName()+"_Handle"; 
+String baseIfaceHandle(EObject this)       : RootName()+"_IfaceHandle"; 
+String basestatetype(EObject this)         : RootName()+"_StateType";
+String transitiontype(EObject this)        : RootName()+"_TrnsType";
+
+String triggerEnumType(EObject this)       : RootName()+"_TrgType";
+String triggerEnumMax(EObject this)        : "trigger_"+RootName()+"_MAX";
+//String externtriggerEnumType(EObject this) : RootName()+"_TrgType";
+String intVariableEnumType(EObject this)   : RootName()+"_IntVarType";
+String boolVariableEnumType(EObject this)  : RootName()+"_BoolVarType";
+String floatVariableEnumType(EObject this) : RootName()+"_FloatVarType";
+
+String intVariableEnumMax(EObject this)    : "VarInt_"+RootName()+"_MAX"; 
+String boolVariableEnumMax(EObject this)   : "VarBool_"+RootName()+"_MAX"; 
+String floatVariableEnumMax(EObject this)  : "VarFloat_"+RootName()+"_MAX"; 
+
+String baseInterfaceAccessID(EObject this) : baseInterface().toFirstUpper()+"_AccessID";
+
+//String qualifiedStateName(Node this)       : (getQualifiedStateName(this) == "") ? basename(this) : getQualifiedStateName(this);
+//String qualifiedStateName(Region this)     : (getQualifiedStateName(this) == "") ? basename(this) : getQualifiedStateName(this);
+String qualifiedStateName(Node this)       : getQualifiedStateName(this);
+String qualifiedStateName(Region this)     : getQualifiedStateName(this);
+
+//private String getQualifiedStateName(Node this)    : (getQualifiedStateName(this.eContainer)  == "") ? getStateName() : getQualifiedStateName(this.eContainer) + "_" + getStateName();
+private String getQualifiedStateName(Node this)    : getQualifiedStateName(this.eContainer) + "_" + getStateName();
+private String getQualifiedStateName(Region this)  : getQualifiedStateName(this.eContainer);
+private String getQualifiedStateName(EObject this) : rootName();
+
+String regionHandleName(Node this)         : ((Region)this.eContainer).regionHandleTypeName();
+String regionHandleName(Region this)       : this.qualifiedStateName().toFirstLower()+"_Handle";
+
+String regionHandleTypeName(Node this)     : "SM_"+((Region)this.eContainer).qualifiedStateName().toFirstUpper()+"_Handle";
+String regionHandleTypeName(Region this)   : "SM_"+this.qualifiedStateName().toFirstUpper()+"_Handle";
+
+boolean hasRegions(State this)             : !region.isEmpty;
+
+// unique names for the global namespace
+String cycleFuncName(Region this)          : "sm_"+qualifiedStateName()+"_runCycle";
+String isInFuncName(Region this)           : "sm_"+qualifiedStateName()+"_isIn";
+String enterFuncName(Region this)          : "sm_"+qualifiedStateName()+"_enter";
+String exitFuncName(Region this)           : "sm_"+qualifiedStateName()+"_exit";
+String initHandleFuncName(Region this)     : "sm_"+qualifiedStateName()+"_initHandle";
+
+// unique names for the local namespace
+String exitFuncName(Node this)             : "local_"+getStateName()+"_exit";
+String enterFuncName(Node this)            : "local_"+getStateName()+"_enter";
+String initialFuncName(Node this)          : "local_"+getStateName()+"_init";
+String handleStateFuncName(Node this)      : "local_"+getStateName()+"_handle";
+String analyseTransitionName(Node this)    : "local_"+getStateName()+"_analyseTransitionIn";
+
+// Names for the enumeration 
+String getRegionEnumName(Region this)      : "st_"+qualifiedStateName();
+String getStateEnumName(State this)        : "st_"+qualifiedStateName();
+String getStateEnumName(Pseudostate this)  : "st_"+qualifiedStateName();
+String getStateEnumName(Node this)         : "dummy";
+String getStateEnumMax(EObject this)       : "st_"+RootName()+"_MAX";
+
+// special names
+String initialStateName(Region this)       : getRegionEnumName()+"_Initial";
+
+String getStateName(State this)            : name.toFirstUpper();
+String getStateName(Pseudostate this)      : pseudoType.toString().toFirstUpper();
+String getStateName(Node this)             : "dummy";
+
+String filename(Region this)               : "sm_"+qualifiedStateName().toFirstLower();
+String fileDefine(Region this)             : "SM_"+qualifiedStateName().toUpperCase()+"_H";
+String rootFilename(EObject this)          : rootName();
+String handleFilename(EObject this)        : rootName()+"_Handle"; //"sm_"+rootName()+"_Handle"; 
+String MakefileObjName(EObject this)       : "SM_"+rootName().toUpperCase()+"_OBJ";
+ 
+ 
+String getInitialStateName(Region this)    : getInitialState().getStateEnumName();
+
+String getTriggerName(Trigger this)        : getEventName(this.event);
+
+String getEventName(SignalEvent this)      : this.identifier;
+String getEventName(EObject this)          : "";
+
+String enterInitialStateFuncName(Region this)     : "local_Initial_enter";
+String handleInitialStateFuncName(Region this)    : "local_Initial_handle";
+
+// Unique transition names
+String transitionName(Transition this)     : 
+  qualifiedStateName(this.sourceNode) + "_TO_" + qualifiedStateName(this.targetNode) + "_P" + this.priority.toString();
+
+String transitionNameMAX(EObject this)     : "trans_"+RootName()+"_MAX";
+String transitionNoName(EObject this)      : "trans_"+RootName()+"_noTransition";
+
+String timeTriggerName(Transition this)    : "timer_" + transitionName();
+
+String duration(Trigger this) : 
+  this.isConstantTimeTrigger() ? this.getConstantTimeTriggerDuration().getInMilliseconds() : "var(" + this.getVariableTimeTriggerVariableIdentifier() + ")";

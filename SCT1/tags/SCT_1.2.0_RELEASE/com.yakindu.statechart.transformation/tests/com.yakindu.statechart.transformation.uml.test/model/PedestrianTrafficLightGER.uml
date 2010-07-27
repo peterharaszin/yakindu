@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Yakindu="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0 ../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ">
+  <uml:Model xmi:id="_DKxy8CUWEd60h-47QpOCrg" name="PedestrianTrafficLightGER">
+    <packageImport xmi:id="_DKxy8SUWEd60h-47QpOCrg">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_6ZAqgPijEd2wQaGyE4c0Dw" name="Dummy" isActive="true">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_Rx-VAPikEd2bM8Bd-InHtw" name="PedestrianTrafficLightGER">
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_FOL88PinEd2bM8Bd-InHtw" name="ev_unblock"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_GW6fkPinEd2bM8Bd-InHtw" name="ev_off"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_ufGV4PimEd2bM8Bd-InHtw" name="ev_pedestrianRequest"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_CpaTEPinEd2bM8Bd-InHtw" name="ev_block"/>
+        <nestedClassifier xmi:type="uml:Signal" xmi:id="_F7vmgPinEd2bM8Bd-InHtw" name="ev_on"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_0z9e0PipEd2bM8Bd-InHtw" name="blocked"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_gcidQPiqEd2bM8Bd-InHtw" name="green"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_hYZBgPiqEd2bM8Bd-InHtw" name="off"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_hs5R4PiqEd2bM8Bd-InHtw" name="red"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_iIvgYPiqEd2bM8Bd-InHtw" name="unblocked"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_ieUu0PiqEd2bM8Bd-InHtw" name="wait"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_i5MF4PiqEd2bM8Bd-InHtw" name="warning"/>
+        <region xmi:id="_Rx-VAfikEd2bM8Bd-InHtw" name="Region_0">
+          <subvertex xmi:type="uml:State" xmi:id="_iOhnAPikEd2bM8Bd-InHtw" name="On">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_LxVy0PilEd2bM8Bd-InHtw" name="red=green=warning=0;"/>
+            <region xmi:id="_mCK3wPikEd2bM8Bd-InHtw" name="Region_0">
+              <subvertex xmi:type="uml:Pseudostate" xmi:id="_o9G-4PikEd2bM8Bd-InHtw" name="Initial_0"/>
+              <subvertex xmi:type="uml:State" xmi:id="_pkS6sPikEd2bM8Bd-InHtw" name="Blocked">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_UwNLQPilEd2bM8Bd-InHtw" name="red=blocked=1;unblocked=0;"/>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_q_6kIPikEd2bM8Bd-InHtw" name="Wait">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_ZVWKYPilEd2bM8Bd-InHtw" name="wait=1;"/>
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_eOGpEPilEd2bM8Bd-InHtw" name="red=0; wait=0;"/>
+              </subvertex>
+              <subvertex xmi:type="uml:State" xmi:id="_rbiJIPikEd2bM8Bd-InHtw" name="Unblocked">
+                <entry xmi:type="uml:OpaqueBehavior" xmi:id="_kqalMPilEd2bM8Bd-InHtw" name="green=unblocked=1;blocked=0;"/>
+                <exit xmi:type="uml:OpaqueBehavior" xmi:id="_oiK54PilEd2bM8Bd-InHtw" name="green=0;"/>
+              </subvertex>
+              <transition xmi:id="_3hhqkPikEd2bM8Bd-InHtw" name="From_Initial_0_to_Blocked_Transition_0" target="_pkS6sPikEd2bM8Bd-InHtw" source="_o9G-4PikEd2bM8Bd-InHtw"/>
+              <transition xmi:id="_3-suwPikEd2bM8Bd-InHtw" name="From_Blocked_to_Wait_Transition_0" target="_q_6kIPikEd2bM8Bd-InHtw" source="_pkS6sPikEd2bM8Bd-InHtw">
+                <trigger xmi:id="_4kOy0PimEd2bM8Bd-InHtw" name="Trigger_0" event="_4kHeEPimEd2bM8Bd-InHtw"/>
+              </transition>
+              <transition xmi:id="_4NupQPikEd2bM8Bd-InHtw" name="From_Wait_to_Unblocked_Transition_0" target="_rbiJIPikEd2bM8Bd-InHtw" source="_q_6kIPikEd2bM8Bd-InHtw">
+                <trigger xmi:id="_chhOoPipEd2bM8Bd-InHtw" name="Trigger_0" event="_chWPgPipEd2bM8Bd-InHtw"/>
+              </transition>
+              <transition xmi:id="_4a7XwPikEd2bM8Bd-InHtw" name="From_Unblocked_to_Blocked_Transition_0" target="_pkS6sPikEd2bM8Bd-InHtw" source="_rbiJIPikEd2bM8Bd-InHtw">
+                <trigger xmi:id="_fGtvQPipEd2bM8Bd-InHtw" name="Trigger_0" event="_fGlMYPipEd2bM8Bd-InHtw"/>
+              </transition>
+            </region>
+          </subvertex>
+          <subvertex xmi:type="uml:State" xmi:id="_imlhsPikEd2bM8Bd-InHtw" name="Off">
+            <entry xmi:type="uml:OpaqueBehavior" xmi:id="_sswrAPilEd2bM8Bd-InHtw" name="red=green=warning=0;off=1;"/>
+            <exit xmi:type="uml:OpaqueBehavior" xmi:id="_wVlL0PilEd2bM8Bd-InHtw" name="off=0;"/>
+          </subvertex>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_63jLMPikEd2bM8Bd-InHtw" name="Initial_0"/>
+          <transition xmi:id="_5BwHMPikEd2bM8Bd-InHtw" name="From_On_to_Off_Transition_0" target="_imlhsPikEd2bM8Bd-InHtw" source="_iOhnAPikEd2bM8Bd-InHtw">
+            <trigger xmi:id="_hYF8APipEd2bM8Bd-InHtw" name="Trigger_0" event="_hX8LAPipEd2bM8Bd-InHtw"/>
+          </transition>
+          <transition xmi:id="_5erTwPikEd2bM8Bd-InHtw" name="From_Off_to_On_Transition_0" target="_iOhnAPikEd2bM8Bd-InHtw" source="_imlhsPikEd2bM8Bd-InHtw">
+            <trigger xmi:id="_jY5WIPipEd2bM8Bd-InHtw" name="Trigger_0" event="_jYu-EPipEd2bM8Bd-InHtw"/>
+          </transition>
+          <transition xmi:id="_7dslMPikEd2bM8Bd-InHtw" name="From_Initial_0_to_Off_Transition_0" target="_imlhsPikEd2bM8Bd-InHtw" source="_63jLMPikEd2bM8Bd-InHtw"/>
+        </region>
+      </ownedBehavior>
+      <ownedReception xmi:id="_3vkbsPimEd2bM8Bd-InHtw" name="Reception_0" signal="_ufGV4PimEd2bM8Bd-InHtw"/>
+      <ownedReception xmi:id="_bVQP0PipEd2bM8Bd-InHtw" name="Reception_1" signal="_FOL88PinEd2bM8Bd-InHtw"/>
+      <ownedReception xmi:id="_eB5cQPipEd2bM8Bd-InHtw" name="Reception_2" signal="_CpaTEPinEd2bM8Bd-InHtw"/>
+      <ownedReception xmi:id="_gySgQPipEd2bM8Bd-InHtw" name="Reception_3" signal="_GW6fkPinEd2bM8Bd-InHtw"/>
+      <ownedReception xmi:id="_ionvwPipEd2bM8Bd-InHtw" name="Reception_4" signal="_F7vmgPinEd2bM8Bd-InHtw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_4kHeEPimEd2bM8Bd-InHtw" name="SignalEvent_0" signal="_ufGV4PimEd2bM8Bd-InHtw"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_chWPgPipEd2bM8Bd-InHtw" name="SignalEvent_1" signal="_FOL88PinEd2bM8Bd-InHtw"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_fGlMYPipEd2bM8Bd-InHtw" name="SignalEvent_2" signal="_CpaTEPinEd2bM8Bd-InHtw"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_hX8LAPipEd2bM8Bd-InHtw" name="SignalEvent_3" signal="_GW6fkPinEd2bM8Bd-InHtw"/>
+    <packagedElement xmi:type="uml:SignalEvent" xmi:id="_jYu-EPipEd2bM8Bd-InHtw" name="SignalEvent_4" signal="_F7vmgPinEd2bM8Bd-InHtw"/>
+    <profileApplication xmi:id="_DKxy8iUWEd60h-47QpOCrg">
+      <eAnnotations xmi:id="_DKxy8yUWEd60h-47QpOCrg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_gCdv8CUWEd60h-47QpOCrg">
+      <eAnnotations xmi:id="_gCdv8SUWEd60h-47QpOCrg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ"/>
+      </eAnnotations>
+      <appliedProfile href="../profile/Yakindu.profile.uml#_12_5_1_ed20351_1236852562585_483655_232"/>
+    </profileApplication>
+  </uml:Model>
+  <Yakindu:Priority xmi:id="_poG0gCUWEd60h-47QpOCrg" base_Region="_Rx-VAfikEd2bM8Bd-InHtw" priority="1"/>
+  <Yakindu:Priority xmi:id="_tC0n4CUWEd60h-47QpOCrg" base_Region="_mCK3wPikEd2bM8Bd-InHtw" priority="2"/>
+  <Yakindu:Priority xmi:id="_whlNwCUWEd60h-47QpOCrg" base_Transition="_3hhqkPikEd2bM8Bd-InHtw" priority="20"/>
+  <Yakindu:Priority xmi:id="_x33rQCUWEd60h-47QpOCrg" base_Transition="_3-suwPikEd2bM8Bd-InHtw" priority="21"/>
+  <Yakindu:Priority xmi:id="_zSdZ8CUWEd60h-47QpOCrg" base_Transition="_4NupQPikEd2bM8Bd-InHtw" priority="22"/>
+  <Yakindu:Priority xmi:id="_0USDUCUWEd60h-47QpOCrg" base_Transition="_4a7XwPikEd2bM8Bd-InHtw" priority="22"/>
+  <Yakindu:Priority xmi:id="_9Id1wCUWEd60h-47QpOCrg" base_Transition="_5BwHMPikEd2bM8Bd-InHtw" priority="10"/>
+  <Yakindu:Priority xmi:id="_-xJq0CUWEd60h-47QpOCrg" base_Transition="_5erTwPikEd2bM8Bd-InHtw" priority="11"/>
+  <Yakindu:Priority xmi:id="_AB3EwCUXEd60h-47QpOCrg" base_Transition="_7dslMPikEd2bM8Bd-InHtw" priority="12"/>
+  <Yakindu:Event xmi:id="_G15kYCUXEd60h-47QpOCrg" ioType="input" port="1" base_Signal="_FOL88PinEd2bM8Bd-InHtw"/>
+  <Yakindu:Event xmi:id="_IKDT4CUXEd60h-47QpOCrg" ioType="input" port="4" base_Signal="_GW6fkPinEd2bM8Bd-InHtw"/>
+  <Yakindu:Event xmi:id="_JeMcUCUXEd60h-47QpOCrg" ioType="input" port="5" base_Signal="_ufGV4PimEd2bM8Bd-InHtw"/>
+  <Yakindu:Event xmi:id="_LDgNQCUXEd60h-47QpOCrg" ioType="input" port="6" base_Signal="_CpaTEPinEd2bM8Bd-InHtw"/>
+  <Yakindu:Event xmi:id="_Mcs00CUXEd60h-47QpOCrg" ioType="input" port="3" base_Signal="_F7vmgPinEd2bM8Bd-InHtw"/>
+  <Yakindu:Variable xmi:id="_xmz7ACUXEd6Zk6vhfw_DbA" ioType="output" port="3" dataType="boolean" base_Class="_0z9e0PipEd2bM8Bd-InHtw"/>
+  <Yakindu:Variable xmi:id="_2k4-kCUXEd6Zk6vhfw_DbA" ioType="output" port="2" dataType="boolean" base_Class="_gcidQPiqEd2bM8Bd-InHtw"/>
+  <Yakindu:Variable xmi:id="_6jx2ACUXEd6Zk6vhfw_DbA" ioType="output" port="6" dataType="boolean" base_Class="_hYZBgPiqEd2bM8Bd-InHtw"/>
+  <Yakindu:Variable xmi:id="__bDuACUXEd6Zk6vhfw_DbA" ioType="output" dataType="boolean" base_Class="_hs5R4PiqEd2bM8Bd-InHtw"/>
+  <Yakindu:Variable xmi:id="_Da5AoCUYEd6Zk6vhfw_DbA" ioType="output" port="4" dataType="boolean" base_Class="_iIvgYPiqEd2bM8Bd-InHtw"/>
+  <Yakindu:Variable xmi:id="_Gf5pwCUYEd6Zk6vhfw_DbA" ioType="output" port="7" dataType="boolean" base_Class="_ieUu0PiqEd2bM8Bd-InHtw"/>
+  <Yakindu:Variable xmi:id="_KYbagCUYEd6Zk6vhfw_DbA" ioType="output" port="5" dataType="boolean" base_Class="_i5MF4PiqEd2bM8Bd-InHtw"/>
+</xmi:XMI>

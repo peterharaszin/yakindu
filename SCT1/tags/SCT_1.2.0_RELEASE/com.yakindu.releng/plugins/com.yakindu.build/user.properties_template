@@ -1,0 +1,40 @@
+#scp.fail_on_error=false
+skipScp = true
+
+workspace.home = /Users/schwertfeger/temp/YakinduBuild
+repository = /Users/schwertfeger/Documents/Yakindu/eclipseLab-svn
+
+#downloadMirror = http://sunsite.informatik.rwth-aachen.de
+downloadMirror = http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse
+
+eclipse.test.home.os = $os
+eclipse.test.home.ws = $ws
+eclipse.test.home.arch = $arch
+
+launcheros=macosx
+launcherws=carbon
+launcherarch=x86
+
+baseos=${launcheros}
+basews=${launcherws}
+basearch=${launcherarch}
+
+#baseos=macosx
+#basews=cocoa
+#basearch=x86_64
+
+#baseos=win32
+#basews=win32
+#basearch=x86
+
+#launcheros=win32
+#launcherws=win32
+#launcherarch=x86
+
+#baseos=linux
+#basews=gtk
+#basearch=x86_64
+
+#launcheros=linux
+#launcherws=gtk
+#launcherarch=x86_64

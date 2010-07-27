@@ -1,0 +1,28 @@
+<workflow>
+	<property name='modelFile'/>
+	<property name='targetDir'/>
+
+	<property name='metaModelPackage' value='statemachine.StatemachinePackage'/>
+
+	<!-- set up EMF for standalone execution -->
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" >
+		<platformUri value=".."/>
+	</bean>
+
+	<!-- load model and store it in slot 'model' 
+	<component class="org.eclipse.emf.mwe.utils.Reader">
+		<uri value="platform:/resource/${modelFile}" />
+		<modelSlot value="${model}" />
+	</component-->
+	<component id="xmiParser" 
+	    class="org.openarchitectureware.emf.XmiReader"> 
+	    <modelFile value="${modelFile}"/> 
+<!--	    <metaModelFile value="${metaModelFile}"/--> 
+	    <metaModelPackage value="${metaModelPackage}"/> 
+	    <outputSlot value="theModel"/> 
+	    <firstElementOnly value="true"/> 
+    </component> 
+    
+    <cartridge file='org/itemis/yakindu/statemachine/codegenerator/sps/workflow/cg-backend.oaw' inheritAll='true'/>	
+	
+</workflow>

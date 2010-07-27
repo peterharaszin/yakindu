@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.6"?>
+
+<target name="Yakindu Helios">
+<locations>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+<unit id="org.eclipse.platform.sdk" version="3.6.0.I20100608-0911"/>
+<repository location="http://download.eclipse.org/eclipse/updates/3.6"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+<unit id="de.itemis.xtext.antlr.feature.feature.group" version="1.0.0.v201006151527"/>
+<unit id="de.itemis.xtext.antlr.sdk.feature.group" version="1.0.0.v201006151527"/>
+<unit id="de.itemis.xtext.antlr.feature.source.feature.group" version="1.0.0.v201006151527"/>
+<repository location="http://download.itemis.com/updates/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" type="InstallableUnit">
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.6.0.v20100614-1136"/>
+<unit id="org.eclipse.emf.validation.sdk.feature.group" version="1.4.0.v20100428-2315-67J-96SGR35WNqZRZfmQnghI6uFA"/>
+<unit id="org.eclipse.gef.sdk.feature.group" version="3.6.0.v20100519-2050-7G7R-A5WNc7QL_fXBGjRZPUUiKPJ"/>
+<unit id="org.eclipse.gmf.sdk.feature.group" version="2.3.0.v20100508-1742-7779-95sDcLbJSsdu7Xz-x9w7ogv"/>
+<unit id="org.eclipse.emf.mwe2.language.sdk.feature.group" version="1.0.0.v201006150907"/>
+<unit id="org.eclipse.emf.mwe2.runtime.sdk.feature.group" version="1.0.0.v201006150446"/>
+<unit id="org.eclipse.emf.mwe.sdk.feature.group" version="1.0.0.v201006150535"/>
+<unit id="org.eclipse.uml2.sdk.feature.group" version="3.1.0.v201006071150"/>
+<unit id="org.eclipse.xpand.sdk.feature.group" version="1.0.0.v201006150611"/>
+<unit id="org.eclipse.xtext.sdk.feature.group" version="1.0.0.v201006170321"/>
+<unit id="org.eclipse.cdt.feature.group" version="7.0.0.201006141710"/>
+<repository location="http://download.eclipse.org/releases/helios"/>
+</location>
+</locations>
+<launcherArgs>
+<vmArgs>-Xms40m -Xmx384m -Xdock:icon=../Resources/Eclipse.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgs>
+</launcherArgs>
+</target>

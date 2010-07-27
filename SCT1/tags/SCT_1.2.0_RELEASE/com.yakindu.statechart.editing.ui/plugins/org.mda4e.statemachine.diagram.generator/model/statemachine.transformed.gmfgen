@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="ASCII"?>
+<gmfgen:GenEditorGenerator xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" dynamicTemplates="true" templateDirectory="/org.mda4e.statemachine.diagram.generator/templates">
+  <audits>
+    <categories id="com.yakindu.statechart.checks" name="checks" description="Checks" path="//@audits/@categories.0"/>
+  </audits>
+  <diagram visualID="1000" editPartClassName="StatechartEditPart" itemSemanticEditPolicyClassName="StatechartItemSemanticEditPolicy" canonicalEditPolicyClassName="StatechartCanonicalEditPolicy" iconProviderPriority="Low" validationProviderPriority="Low" validationEnabled="true" validationDecorators="true" liveValidationUIFeedback="true">
+    <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+    <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="StatechartEditHelper"/>
+    <viewmap xsi:type="gmfgen:FigureViewmap" figureQualifiedClassName="org.eclipse.draw2d.FreeformLayer"/>
+    <domainDiagramElement href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Statechart"/>
+    <childNodes visualID="3001" editPartClassName="StateEditPart" itemSemanticEditPolicyClassName="StateItemSemanticEditPolicy" canonicalEditPolicyClassName="StateCanonicalEditPolicy" compartments="//@diagram/@compartments.1" graphicalNodeEditPolicyClassName="StateGraphicalNodeEditPolicy" createCommandClassName="StateCreateCommand" containers="//@diagram/@compartments.2 //@diagram/@compartments.0">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="StateEditHelper"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="StateFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class StateFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateNameFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateEntryFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateDoFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureStateExitFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureStateCompartmentRectangle; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public StateFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = false;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setLineWidth(1);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure stateLabelRectangle0 = new org.eclipse.draw2d.RectangleFigure();&#xA;stateLabelRectangle0.setOutline(false);&#xA;stateLabelRectangle0.setLineWidth(1);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintStateLabelRectangle0 = new org.eclipse.draw2d.GridData();&#xA;constraintStateLabelRectangle0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintStateLabelRectangle0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintStateLabelRectangle0.horizontalIndent = 0;&#xA;constraintStateLabelRectangle0.horizontalSpan = 1;&#xA;constraintStateLabelRectangle0.verticalSpan = 1;&#xA;constraintStateLabelRectangle0.grabExcessHorizontalSpace = true;&#xA;constraintStateLabelRectangle0.grabExcessVerticalSpace = false;&#xA;this.add(stateLabelRectangle0, constraintStateLabelRectangle0);&#xA;&#xA;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutStateLabelRectangle0 = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutStateLabelRectangle0.numColumns = 1;&#xA;&#x9;layoutStateLabelRectangle0.makeColumnsEqualWidth = false;&#xA;&#x9;stateLabelRectangle0.setLayoutManager(layoutStateLabelRectangle0);&#xA;&#xA;&#xA;&#xA;fFigureStateNameFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateNameFigure.setText(&quot;&lt;name>&quot;);&#xA;&#xA;fFigureStateNameFigure.setFont(FFIGURESTATENAMEFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureStateNameFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureStateNameFigure.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateNameFigure.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateNameFigure.horizontalIndent = 0;&#xA;constraintFFigureStateNameFigure.horizontalSpan = 1;&#xA;constraintFFigureStateNameFigure.verticalSpan = 1;&#xA;constraintFFigureStateNameFigure.grabExcessHorizontalSpace = true;&#xA;constraintFFigureStateNameFigure.grabExcessVerticalSpace = false;&#xA;stateLabelRectangle0.add(fFigureStateNameFigure, constraintFFigureStateNameFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureStateEntryFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateEntryFigure.setText(&quot;&lt;entry>&quot;);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureStateEntryFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureStateEntryFigure.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateEntryFigure.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateEntryFigure.horizontalIndent = 0;&#xA;constraintFFigureStateEntryFigure.horizontalSpan = 1;&#xA;constraintFFigureStateEntryFigure.verticalSpan = 1;&#xA;constraintFFigureStateEntryFigure.grabExcessHorizontalSpace = true;&#xA;constraintFFigureStateEntryFigure.grabExcessVerticalSpace = false;&#xA;stateLabelRectangle0.add(fFigureStateEntryFigure, constraintFFigureStateEntryFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureStateDoFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateDoFigure.setText(&quot;&lt;do>&quot;);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureStateDoFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureStateDoFigure.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateDoFigure.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateDoFigure.horizontalIndent = 0;&#xA;constraintFFigureStateDoFigure.horizontalSpan = 1;&#xA;constraintFFigureStateDoFigure.verticalSpan = 1;&#xA;constraintFFigureStateDoFigure.grabExcessHorizontalSpace = true;&#xA;constraintFFigureStateDoFigure.grabExcessVerticalSpace = false;&#xA;stateLabelRectangle0.add(fFigureStateDoFigure, constraintFFigureStateDoFigure);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureStateExitFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureStateExitFigure.setText(&quot;&lt;exit>&quot;);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureStateExitFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureStateExitFigure.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateExitFigure.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureStateExitFigure.horizontalIndent = 0;&#xA;constraintFFigureStateExitFigure.horizontalSpan = 1;&#xA;constraintFFigureStateExitFigure.verticalSpan = 1;&#xA;constraintFFigureStateExitFigure.grabExcessHorizontalSpace = true;&#xA;constraintFFigureStateExitFigure.grabExcessVerticalSpace = false;&#xA;stateLabelRectangle0.add(fFigureStateExitFigure, constraintFFigureStateExitFigure);&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;fFigureStateCompartmentRectangle = new org.eclipse.draw2d.RectangleFigure();&#xA;fFigureStateCompartmentRectangle.setOutline(false);&#xA;fFigureStateCompartmentRectangle.setLineWidth(1);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureStateCompartmentRectangle = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureStateCompartmentRectangle.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFFigureStateCompartmentRectangle.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFFigureStateCompartmentRectangle.horizontalIndent = 0;&#xA;constraintFFigureStateCompartmentRectangle.horizontalSpan = 1;&#xA;constraintFFigureStateCompartmentRectangle.verticalSpan = 1;&#xA;constraintFFigureStateCompartmentRectangle.grabExcessHorizontalSpace = true;&#xA;constraintFFigureStateCompartmentRectangle.grabExcessVerticalSpace = true;&#xA;this.add(fFigureStateCompartmentRectangle, constraintFFigureStateCompartmentRectangle);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateNameFigure() {&#xA;&#x9;&#x9;return fFigureStateNameFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateEntryFigure() {&#xA;&#x9;&#x9;return fFigureStateEntryFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateDoFigure() {&#xA;&#x9;&#x9;return fFigureStateDoFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureStateExitFigure() {&#xA;&#x9;&#x9;return fFigureStateExitFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureStateCompartmentRectangle() {&#xA;&#x9;&#x9;return fFigureStateCompartmentRectangle;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGURESTATENAMEFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Verdana&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/State"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.0">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/id"/>
+          </initializers>
+        </modelElementInitializer>
+      </modelFacet>
+      <labels visualID="5002" editPartClassName="StateNameEditPart" itemSemanticEditPolicyClassName="StateNameItemSemanticEditPolicy">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureStateNameFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes xsi:type="gmfgen:StyleAttributes" fixedFont="true"/>
+        </viewmap>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/name"/>
+        </modelFacet>
+      </labels>
+      <labels visualID="5003" editPartClassName="StateEntryEditPart" itemSemanticEditPolicyClassName="StateEntryItemSemanticEditPolicy">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureStateEntryFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/State/entry"/>
+        </modelFacet>
+      </labels>
+      <labels visualID="5004" editPartClassName="StateDoEditPart" itemSemanticEditPolicyClassName="StateDoItemSemanticEditPolicy">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureStateDoFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/State/do"/>
+        </modelFacet>
+      </labels>
+      <labels visualID="5005" editPartClassName="StateExitEditPart" itemSemanticEditPolicyClassName="StateExitItemSemanticEditPolicy">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureStateExitFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/State/exit"/>
+        </modelFacet>
+      </labels>
+    </childNodes>
+    <childNodes visualID="3002" editPartClassName="Region2EditPart" itemSemanticEditPolicyClassName="Region2ItemSemanticEditPolicy" canonicalEditPolicyClassName="Region2CanonicalEditPolicy" compartments="//@diagram/@compartments.2" graphicalNodeEditPolicyClassName="Region2GraphicalNodeEditPolicy" createCommandClassName="Region2CreateCommand" containers="//@diagram/@compartments.1">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@topLevelNodes.0/@elementType"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="RegionFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class RegionFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureRegionPriorityFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureRegionCompartmentRectangle; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public RegionFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setLineWidth(1);&#xA;&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure regionLabelRectangle0 = new org.eclipse.draw2d.RectangleFigure();&#xA;regionLabelRectangle0.setOutline(false);&#xA;regionLabelRectangle0.setLineWidth(1);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintRegionLabelRectangle0 = new org.eclipse.draw2d.GridData();&#xA;constraintRegionLabelRectangle0.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintRegionLabelRectangle0.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintRegionLabelRectangle0.horizontalIndent = 0;&#xA;constraintRegionLabelRectangle0.horizontalSpan = 1;&#xA;constraintRegionLabelRectangle0.verticalSpan = 1;&#xA;constraintRegionLabelRectangle0.grabExcessHorizontalSpace = true;&#xA;constraintRegionLabelRectangle0.grabExcessVerticalSpace = false;&#xA;this.add(regionLabelRectangle0, constraintRegionLabelRectangle0);&#xA;&#xA;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutRegionLabelRectangle0 = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutRegionLabelRectangle0.numColumns = 1;&#xA;&#x9;layoutRegionLabelRectangle0.makeColumnsEqualWidth = true;&#xA;&#x9;regionLabelRectangle0.setLayoutManager(layoutRegionLabelRectangle0);&#xA;&#xA;&#xA;&#xA;fFigureRegionPriorityFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureRegionPriorityFigure.setText(&quot;&lt;priority>&quot;);&#xA;&#xA;fFigureRegionPriorityFigure.setFont(FFIGUREREGIONPRIORITYFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureRegionPriorityFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureRegionPriorityFigure.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFFigureRegionPriorityFigure.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureRegionPriorityFigure.horizontalIndent = 0;&#xA;constraintFFigureRegionPriorityFigure.horizontalSpan = 1;&#xA;constraintFFigureRegionPriorityFigure.verticalSpan = 1;&#xA;constraintFFigureRegionPriorityFigure.grabExcessHorizontalSpace = true;&#xA;constraintFFigureRegionPriorityFigure.grabExcessVerticalSpace = true;&#xA;regionLabelRectangle0.add(fFigureRegionPriorityFigure, constraintFFigureRegionPriorityFigure);&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;fFigureRegionCompartmentRectangle = new org.eclipse.draw2d.RectangleFigure();&#xA;fFigureRegionCompartmentRectangle.setOutline(false);&#xA;fFigureRegionCompartmentRectangle.setLineWidth(1);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureRegionCompartmentRectangle = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureRegionCompartmentRectangle.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFFigureRegionCompartmentRectangle.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFFigureRegionCompartmentRectangle.horizontalIndent = 0;&#xA;constraintFFigureRegionCompartmentRectangle.horizontalSpan = 1;&#xA;constraintFFigureRegionCompartmentRectangle.verticalSpan = 1;&#xA;constraintFFigureRegionCompartmentRectangle.grabExcessHorizontalSpace = true;&#xA;constraintFFigureRegionCompartmentRectangle.grabExcessVerticalSpace = true;&#xA;this.add(fFigureRegionCompartmentRectangle, constraintFFigureRegionCompartmentRectangle);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureRegionPriorityFigure() {&#xA;&#x9;&#x9;return fFigureRegionPriorityFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureRegionCompartmentRectangle() {&#xA;&#x9;&#x9;return fFigureRegionCompartmentRectangle;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREREGIONPRIORITYFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Verdana&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/State/region"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/State/region"/>
+      </modelFacet>
+      <labels visualID="5001" editPartClassName="RegionPriority2EditPart" itemSemanticEditPolicyClassName="RegionPriority2ItemSemanticEditPolicy">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureRegionPriorityFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes xsi:type="gmfgen:StyleAttributes" fixedFont="true"/>
+        </viewmap>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/priority"/>
+        </modelFacet>
+      </labels>
+    </childNodes>
+    <childNodes visualID="3003" editPartClassName="PseudostateEditPart" itemSemanticEditPolicyClassName="PseudostateItemSemanticEditPolicy" canonicalEditPolicyClassName="PseudostateCanonicalEditPolicy" graphicalNodeEditPolicyClassName="PseudostateGraphicalNodeEditPolicy" createCommandClassName="PseudostateCreateCommand" containers="//@diagram/@compartments.2 //@diagram/@compartments.0">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="PseudostateEditHelper"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="PseudostateInitialFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PseudostateInitialFigure extends statemachine.figures.customfigures.PseudostateInitialFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PseudostateInitialFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(40)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(40)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(40)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes xsi:type="gmfgen:ResizeConstraints"/>
+        <attributes xsi:type="gmfgen:DefaultSizeAttributes" height="40"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.1/@expressions.0">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate/pseudoType"/>
+          </initializers>
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.1">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/id"/>
+          </initializers>
+        </modelElementInitializer>
+      </modelFacet>
+    </childNodes>
+    <childNodes visualID="3004" editPartClassName="FinalStateEditPart" itemSemanticEditPolicyClassName="FinalStateItemSemanticEditPolicy" canonicalEditPolicyClassName="FinalStateCanonicalEditPolicy" graphicalNodeEditPolicyClassName="FinalStateGraphicalNodeEditPolicy" createCommandClassName="FinalStateCreateCommand" containers="//@diagram/@compartments.2 //@diagram/@compartments.0">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="FinalStateEditHelper"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="FinalStateFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FinalStateFigure extends statemachine.figures.customfigures.FinalStateFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FinalStateFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(40)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(40)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(40)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes xsi:type="gmfgen:DefaultSizeAttributes" height="40"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/FinalState"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.1/@expressions.1">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/name"/>
+          </initializers>
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.2">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/id"/>
+          </initializers>
+        </modelElementInitializer>
+      </modelFacet>
+    </childNodes>
+    <childNodes visualID="3005" editPartClassName="Pseudostate2EditPart" itemSemanticEditPolicyClassName="Pseudostate2ItemSemanticEditPolicy" canonicalEditPolicyClassName="Pseudostate2CanonicalEditPolicy" graphicalNodeEditPolicyClassName="Pseudostate2GraphicalNodeEditPolicy" createCommandClassName="Pseudostate2CreateCommand" containers="//@diagram/@compartments.2 //@diagram/@compartments.0">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@childNodes.2/@elementType"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="PseudostateChoiceFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PseudostateChoiceFigure extends statemachine.figures.customfigures.PseudostateChoiceFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PseudostateChoiceFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes xsi:type="gmfgen:ResizeConstraints"/>
+        <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="25" height="25"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.1/@expressions.2">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate/pseudoType"/>
+          </initializers>
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.3">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/id"/>
+          </initializers>
+        </modelElementInitializer>
+      </modelFacet>
+    </childNodes>
+    <childNodes visualID="3006" editPartClassName="Pseudostate3EditPart" itemSemanticEditPolicyClassName="Pseudostate3ItemSemanticEditPolicy" canonicalEditPolicyClassName="Pseudostate3CanonicalEditPolicy" graphicalNodeEditPolicyClassName="Pseudostate3GraphicalNodeEditPolicy" createCommandClassName="Pseudostate3CreateCommand" containers="//@diagram/@compartments.2 //@diagram/@compartments.0">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@childNodes.2/@elementType"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="PseudostateDeepHistoryFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PseudostateDeepHistoryFigure extends statemachine.figures.customfigures.PseudostateDeepHistoryFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PseudostateDeepHistoryFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes xsi:type="gmfgen:ResizeConstraints"/>
+        <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="25" height="25"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.1/@expressions.3">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate/pseudoType"/>
+          </initializers>
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.4">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/id"/>
+          </initializers>
+        </modelElementInitializer>
+      </modelFacet>
+    </childNodes>
+    <childNodes visualID="3007" editPartClassName="Pseudostate4EditPart" itemSemanticEditPolicyClassName="Pseudostate4ItemSemanticEditPolicy" canonicalEditPolicyClassName="Pseudostate4CanonicalEditPolicy" graphicalNodeEditPolicyClassName="Pseudostate4GraphicalNodeEditPolicy" createCommandClassName="Pseudostate4CreateCommand" containers="//@diagram/@compartments.2 //@diagram/@compartments.0">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@childNodes.2/@elementType"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="PseudostateShallowHistoryFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PseudostateShallowHistoryFigure extends statemachine.figures.customfigures.PseudostateShallowHistoryFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PseudostateShallowHistoryFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes xsi:type="gmfgen:ResizeConstraints"/>
+        <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="25" height="25"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.1/@expressions.4">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate/pseudoType"/>
+          </initializers>
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.5">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/id"/>
+          </initializers>
+        </modelElementInitializer>
+      </modelFacet>
+    </childNodes>
+    <childNodes visualID="3008" editPartClassName="Pseudostate5EditPart" itemSemanticEditPolicyClassName="Pseudostate5ItemSemanticEditPolicy" canonicalEditPolicyClassName="Pseudostate5CanonicalEditPolicy" graphicalNodeEditPolicyClassName="Pseudostate5GraphicalNodeEditPolicy" createCommandClassName="Pseudostate5CreateCommand" containers="//@diagram/@compartments.2 //@diagram/@compartments.0">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:SpecializationType" metamodelType="//@diagram/@childNodes.2/@elementType"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="PseudostateJunctionFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class PseudostateJunctionFigure extends statemachine.figures.customfigures.PseudostateJunctionFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public PseudostateJunctionFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMaximumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(25)&#xA;, getMapMode().DPtoLP(25)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes xsi:type="gmfgen:ResizeConstraints"/>
+        <attributes xsi:type="gmfgen:DefaultSizeAttributes" width="25" height="25"/>
+      </viewmap>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/state"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.1/@expressions.5">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Pseudostate/pseudoType"/>
+          </initializers>
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.6">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Node/id"/>
+          </initializers>
+        </modelElementInitializer>
+      </modelFacet>
+    </childNodes>
+    <topLevelNodes visualID="2001" editPartClassName="RegionEditPart" itemSemanticEditPolicyClassName="RegionItemSemanticEditPolicy" canonicalEditPolicyClassName="RegionCanonicalEditPolicy" compartments="//@diagram/@compartments.0" graphicalNodeEditPolicyClassName="RegionGraphicalNodeEditPolicy" createCommandClassName="RegionCreateCommand">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="RegionEditHelper"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="RegionFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class RegionFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureRegionPriorityFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RectangleFigure fFigureRegionCompartmentRectangle; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public RegionFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setLineWidth(1);&#xA;&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(2)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;, getMapMode().DPtoLP(0)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.eclipse.draw2d.RectangleFigure regionLabelRectangle0 = new org.eclipse.draw2d.RectangleFigure();&#xA;regionLabelRectangle0.setOutline(false);&#xA;regionLabelRectangle0.setLineWidth(1);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintRegionLabelRectangle0 = new org.eclipse.draw2d.GridData();&#xA;constraintRegionLabelRectangle0.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintRegionLabelRectangle0.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintRegionLabelRectangle0.horizontalIndent = 0;&#xA;constraintRegionLabelRectangle0.horizontalSpan = 1;&#xA;constraintRegionLabelRectangle0.verticalSpan = 1;&#xA;constraintRegionLabelRectangle0.grabExcessHorizontalSpace = true;&#xA;constraintRegionLabelRectangle0.grabExcessVerticalSpace = false;&#xA;this.add(regionLabelRectangle0, constraintRegionLabelRectangle0);&#xA;&#xA;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutRegionLabelRectangle0 = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutRegionLabelRectangle0.numColumns = 1;&#xA;&#x9;layoutRegionLabelRectangle0.makeColumnsEqualWidth = true;&#xA;&#x9;regionLabelRectangle0.setLayoutManager(layoutRegionLabelRectangle0);&#xA;&#xA;&#xA;&#xA;fFigureRegionPriorityFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureRegionPriorityFigure.setText(&quot;&lt;priority>&quot;);&#xA;&#xA;fFigureRegionPriorityFigure.setFont(FFIGUREREGIONPRIORITYFIGURE_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureRegionPriorityFigure = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureRegionPriorityFigure.verticalAlignment = org.eclipse.draw2d.GridData.BEGINNING;&#xA;constraintFFigureRegionPriorityFigure.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureRegionPriorityFigure.horizontalIndent = 0;&#xA;constraintFFigureRegionPriorityFigure.horizontalSpan = 1;&#xA;constraintFFigureRegionPriorityFigure.verticalSpan = 1;&#xA;constraintFFigureRegionPriorityFigure.grabExcessHorizontalSpace = true;&#xA;constraintFFigureRegionPriorityFigure.grabExcessVerticalSpace = true;&#xA;regionLabelRectangle0.add(fFigureRegionPriorityFigure, constraintFFigureRegionPriorityFigure);&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;fFigureRegionCompartmentRectangle = new org.eclipse.draw2d.RectangleFigure();&#xA;fFigureRegionCompartmentRectangle.setOutline(false);&#xA;fFigureRegionCompartmentRectangle.setLineWidth(1);&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureRegionCompartmentRectangle = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureRegionCompartmentRectangle.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFFigureRegionCompartmentRectangle.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintFFigureRegionCompartmentRectangle.horizontalIndent = 0;&#xA;constraintFFigureRegionCompartmentRectangle.horizontalSpan = 1;&#xA;constraintFFigureRegionCompartmentRectangle.verticalSpan = 1;&#xA;constraintFFigureRegionCompartmentRectangle.grabExcessHorizontalSpace = true;&#xA;constraintFFigureRegionCompartmentRectangle.grabExcessVerticalSpace = true;&#xA;this.add(fFigureRegionCompartmentRectangle, constraintFFigureRegionCompartmentRectangle);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureRegionPriorityFigure() {&#xA;&#x9;&#x9;return fFigureRegionPriorityFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.draw2d.RectangleFigure getFigureRegionCompartmentRectangle() {&#xA;&#x9;&#x9;return fFigureRegionCompartmentRectangle;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREREGIONPRIORITYFIGURE_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Verdana&quot;, 10, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;"/>
+      <modelFacet>
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Statechart/region"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Statechart/region"/>
+      </modelFacet>
+      <labels visualID="5006" editPartClassName="RegionPriorityEditPart" itemSemanticEditPolicyClassName="RegionPriorityItemSemanticEditPolicy">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureRegionPriorityFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes xsi:type="gmfgen:StyleAttributes" fixedFont="true"/>
+        </viewmap>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0" viewPattern="">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Region/priority"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
+    <links visualID="4001" editPartClassName="TransitionEditPart" itemSemanticEditPolicyClassName="TransitionItemSemanticEditPolicy" createCommandClassName="TransitionCreateCommand" reorientCommandClassName="TransitionReorientCommand">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="TransitionEditHelper"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="TransitionFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TransitionFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureTransitionPriorityFigure; &#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureTransitionExpressionFigure; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TransitionFigure() {&#xA;&#x9;&#x9;this.setLineWidth(1);&#xA;&#xA;&#x9;&#x9;createContents();&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureTransitionPriorityFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureTransitionPriorityFigure.setText(&quot;&lt;priority>&quot;);&#xA;&#xA;this.add(fFigureTransitionPriorityFigure);&#xA;&#xA;&#xA;&#xA;fFigureTransitionExpressionFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;fFigureTransitionExpressionFigure.setText(&quot;*&quot;);&#xA;&#xA;this.add(fFigureTransitionExpressionFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;df.setLineWidth(1);&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureTransitionPriorityFigure() {&#xA;&#x9;&#x9;return fFigureTransitionPriorityFigure;&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureTransitionExpressionFigure() {&#xA;&#x9;&#x9;return fFigureTransitionExpressionFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <modelFacet xsi:type="gmfgen:TypeLinkModelFacet">
+        <metaClass href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Transition"/>
+        <containmentMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Statechart/transition"/>
+        <childMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Statechart/transition"/>
+        <modelElementInitializer xsi:type="gmfgen:GenFeatureSeqInitializer">
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.7">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Transition/id"/>
+          </initializers>
+          <initializers xsi:type="gmfgen:GenFeatureValueSpec" value="//@expressionProviders/@providers.0/@expressions.8">
+            <feature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Transition/priority"/>
+          </initializers>
+        </modelElementInitializer>
+        <sourceMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Transition/sourceNode"/>
+        <targetMetaFeature href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Transition/targetNode"/>
+      </modelFacet>
+      <labels visualID="6001" editPartClassName="TransitionExpressionEditPart" itemSemanticEditPolicyClassName="TransitionExpressionItemSemanticEditPolicy">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureTransitionExpressionFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="40"/>
+        </viewmap>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Transition/expression"/>
+        </modelFacet>
+      </labels>
+      <labels visualID="6002" editPartClassName="TransitionPriorityEditPart" itemSemanticEditPolicyClassName="TransitionPriorityItemSemanticEditPolicy" elementIcon="true" alignment="TARGET">
+        <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureTransitionPriorityFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel">
+          <attributes xsi:type="gmfgen:LabelOffsetAttributes" y="60"/>
+        </viewmap>
+        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
+          <metaFeatures href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#//statemachine/Transition/priority"/>
+        </modelFacet>
+      </labels>
+    </links>
+    <compartments visualID="7001" editPartClassName="RegionRegionCompartmentEditPart" itemSemanticEditPolicyClassName="RegionRegionCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="RegionRegionCompartmentCanonicalEditPolicy" childNodes="//@diagram/@childNodes.0 //@diagram/@childNodes.2 //@diagram/@childNodes.3 //@diagram/@childNodes.4 //@diagram/@childNodes.5 //@diagram/@childNodes.6 //@diagram/@childNodes.7" title="RegionCompartment" canCollapse="false" needsTitle="false" node="//@diagram/@topLevelNodes.0" listLayout="false">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureRegionCompartmentRectangle" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    </compartments>
+    <compartments visualID="7002" editPartClassName="StateStateCompartmentEditPart" itemSemanticEditPolicyClassName="StateStateCompartmentItemSemanticEditPolicy" canonicalEditPolicyClassName="StateStateCompartmentCanonicalEditPolicy" childNodes="//@diagram/@childNodes.1" title="StateCompartment" canCollapse="false" needsTitle="false" node="//@diagram/@childNodes.0" listLayout="false">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureStateCompartmentRectangle" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    </compartments>
+    <compartments visualID="7003" editPartClassName="RegionRegionCompartment2EditPart" itemSemanticEditPolicyClassName="RegionRegionCompartment2ItemSemanticEditPolicy" canonicalEditPolicyClassName="RegionRegionCompartment2CanonicalEditPolicy" childNodes="//@diagram/@childNodes.0 //@diagram/@childNodes.2 //@diagram/@childNodes.3 //@diagram/@childNodes.4 //@diagram/@childNodes.5 //@diagram/@childNodes.6 //@diagram/@childNodes.7" title="RegionCompartment" canCollapse="false" needsTitle="false" node="//@diagram/@childNodes.1" listLayout="false">
+      <diagramRunTimeClass href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureRegionCompartmentRectangle" figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
+    </compartments>
+    <palette>
+      <groups title="Base Tools" description="base tools">
+        <entries xsi:type="gmfgen:ToolEntry" title="Region" description="Create Region" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/region_16x16.png" genNodes="//@diagram/@topLevelNodes.0 //@diagram/@childNodes.1"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="State" description="Create State" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/state_16x16.png" genNodes="//@diagram/@childNodes.0"/>
+      </groups>
+      <groups title="Transition Tools" description="transition">
+        <entries xsi:type="gmfgen:ToolEntry" title="Transition" description="Create Transition" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/transition_16x16.png" genLinks="//@diagram/@links.0"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Choice" description="Create Choice" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/choice_16x16.png" genNodes="//@diagram/@childNodes.4"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Junction" description="Create Junction" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/junction_16x16.png" genNodes="//@diagram/@childNodes.7"/>
+      </groups>
+      <groups title="Pseudostates" description="pseudostates">
+        <entries xsi:type="gmfgen:ToolEntry" title="Initial State" description="Create Initial State" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/initial_state_16x16.png" genNodes="//@diagram/@childNodes.2"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Final State" description="Create Final State" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/final_state_16x16.png" genNodes="//@diagram/@childNodes.3"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Shallow History" description="Create Shallow History" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/shallow_history_16x16.png" genNodes="//@diagram/@childNodes.6"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Deep History" description="Create Deep History" smallIconPath="/org.mda4e.statemachine.diagram/icons/obj16/deep_history_16x16.png" genNodes="//@diagram/@childNodes.5"/>
+      </groups>
+    </palette>
+    <preferencePages xsi:type="gmfgen:GenStandardPreferencePage" iD="org.mda4e.statemachine.diagram.general" name="Statemachine Diagram">
+      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.mda4e.statemachine.diagram.appearance" name="Appearance" kind="Appearance"/>
+      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.mda4e.statemachine.diagram.connections" name="Connections" kind="Connections"/>
+      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.mda4e.statemachine.diagram.printing" name="Printing" kind="Printing"/>
+      <children xsi:type="gmfgen:GenStandardPreferencePage" iD="org.mda4e.statemachine.diagram.rulersAndGrid" name="Rulers And Grid" kind="RulersAndGrid"/>
+    </preferencePages>
+  </diagram>
+  <plugin iD="org.mda4e.statemachine.diagram" printingEnabled="true">
+    <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
+    <requiredPlugins>org.eclipse.gmf.runtime.draw2d.ui</requiredPlugins>
+  </plugin>
+  <editor/>
+  <navigator>
+    <childReferences child="//@diagram"/>
+    <childReferences parent="//@diagram/@childNodes.1" child="//@diagram/@childNodes.0"/>
+    <childReferences parent="//@diagram/@childNodes.1" child="//@diagram/@childNodes.2"/>
+    <childReferences parent="//@diagram/@childNodes.1" child="//@diagram/@childNodes.3"/>
+    <childReferences parent="//@diagram/@childNodes.1" child="//@diagram/@childNodes.4"/>
+    <childReferences parent="//@diagram/@childNodes.1" child="//@diagram/@childNodes.5"/>
+    <childReferences parent="//@diagram/@childNodes.1" child="//@diagram/@childNodes.6"/>
+    <childReferences parent="//@diagram/@childNodes.1" child="//@diagram/@childNodes.7"/>
+    <childReferences parent="//@diagram/@childNodes.0" child="//@diagram/@childNodes.1"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.0"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.2"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.3"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.4"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.5"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.6"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.7"/>
+    <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.0"/>
+    <childReferences parent="//@diagram" child="//@diagram/@links.0" groupName="links" groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.0" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.0" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.2" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.2" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.3" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.3" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.4" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.4" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.5" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.5" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.6" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.6" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.7" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.7" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.0" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.0" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.2" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.2" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.3" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.3" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.4" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.4" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.5" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.5" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.6" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.6" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.7" referenceType="in_source" groupName="source" groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences parent="//@diagram/@childNodes.7" child="//@diagram/@links.0" referenceType="out_target" groupName="outgoing links" groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+  </navigator>
+  <diagramUpdater/>
+  <propertySheet>
+    <tabs xsi:type="gmfgen:GenStandardPropertyTab" iD="appearance"/>
+    <tabs xsi:type="gmfgen:GenStandardPropertyTab" iD="diagram"/>
+    <tabs xsi:type="gmfgen:GenCustomPropertyTab" iD="domain" label="Core">
+      <filter xsi:type="gmfgen:TypeTabFilter">
+        <types>org.eclipse.gmf.runtime.notation.View</types>
+        <types>org.eclipse.gef.EditPart</types>
+        <generatedTypes>abstractNavigatorItem</generatedTypes>
+      </filter>
+    </tabs>
+  </propertySheet>
+  <domainGenModel href="../../org.mda4e.statemachine.model/model/statemachine.genmodel#/"/>
+  <expressionProviders>
+    <providers xsi:type="gmfgen:GenJavaExpressionProvider" injectExpressionBody="true">
+      <expressions body="&#x9;&#x9;return getNextNodeID(self);&#xA;&#x9;}&#xA;&#xD;&#x9;/**&#xD;&#x9; * generated as part of state/state initializer&#xD;&#x9;*/&#xA;&#x9;private static java.lang.Integer getNextNodeID(Node self) {&#xA;&#x9;&#x9;int biggestId = 0;&#xA;&#x9;&#x9;EObject parent = self.eContainer();&#xA;&#x9;&#x9;while (parent!= null &amp;&amp; !(parent instanceof Statechart)){&#xA;&#x9;&#x9;    parent = parent.eContainer();&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;if (parent==null){&#xA;&#x9;&#x9;    return new Integer(0);&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;for (Iterator&lt;EObject> iter = parent.eAllContents();iter.hasNext();){&#xA;&#x9;&#x9;    EObject e = iter.next();&#xA;&#x9;&#x9;    if (e instanceof Node){&#xA;&#x9;&#x9;        Node n = (Node) e;&#xA;&#x9;&#x9;        if (n != self &amp;&amp; n.getId() > biggestId) {&#xA;                            biggestId = n.getId();&#xA;&#x9;&#x9;        }&#xA;&#x9;&#x9;    }&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;return new Integer(biggestId + 1);"/>
+      <expressions body="&#x9;&#x9;return getNextNodeID(self);"/>
+      <expressions body="return getNextNodeID(self);"/>
+      <expressions body="return getNextNodeID(self);"/>
+      <expressions body="return getNextNodeID(self);"/>
+      <expressions body="return getNextNodeID(self);"/>
+      <expressions body="return getNextNodeID(self);"/>
+      <expressions body="&#x9;&#x9;int biggestId = 0;&#xA;&#x9;&#x9;for (Transition t : ((statemachine.Statechart)self.eContainer()).getTransition()) {&#xA;&#x9;&#x9;&#x9;if (t.getId() > biggestId) {&#xA;&#x9;&#x9;&#x9;&#x9;biggestId = t.getId();&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;return new Integer(biggestId + 1);"/>
+      <expressions body="int biggestPriority=0;&#xA;&#x9;&#x9;for (Transition t:((statemachine.Statechart)self.eContainer()).getTransition()){&#xA;&#x9;&#x9;&#x9;if (t.getSourceNode()==self.getSourceNode() &amp;&amp; t.getId()>biggestPriority){&#xA;&#x9;&#x9;&#x9;&#x9;biggestPriority = t.getPriority();&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#xA;return new Integer(biggestPriority+1);"/>
+    </providers>
+    <providers xsi:type="gmfgen:GenExpressionInterpreter">
+      <expressions body="PseudoTypes::initial"/>
+      <expressions body="'FinalState'"/>
+      <expressions body="PseudoTypes::choice"/>
+      <expressions body="PseudoTypes::deepHistory"/>
+      <expressions body="PseudoTypes::shallowHistory"/>
+      <expressions body="PseudoTypes::junction"/>
+    </providers>
+  </expressionProviders>
+  <labelParsers extensibleViaService="true">
+    <implementations xsi:type="gmfgen:PredefinedParser" uses="//@diagram/@childNodes.1/@labels.0/@modelFacet //@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.0/@labels.1/@modelFacet //@diagram/@childNodes.0/@labels.2/@modelFacet //@diagram/@childNodes.0/@labels.3/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@links.0/@labels.0/@modelFacet //@diagram/@links.0/@labels.1/@modelFacet"/>
+  </labelParsers>
+  <contextMenus context="//@diagram">
+    <items xsi:type="gmfgen:LoadResourceAction"/>
+  </contextMenus>
+</gmfgen:GenEditorGenerator>

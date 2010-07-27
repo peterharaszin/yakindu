@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" xmi:id="_5dEMwfj9Ed2YdOs1Fs3JNg" type="Statemachine" name="StaircaseLighting.statemachine_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_85AvMPj9Ed2YdOs1Fs3JNg" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_85B9UPj9Ed2YdOs1Fs3JNg" type="5006"/>
+    <children xmi:type="notation:Node" xmi:id="_85DLcPj9Ed2YdOs1Fs3JNg" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_-I1YUPj9Ed2YdOs1Fs3JNg" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_-I1_YPj9Ed2YdOs1Fs3JNg" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_-I1_Yfj9Ed2YdOs1Fs3JNg" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_-I2mcPj9Ed2YdOs1Fs3JNg" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_-I2mcfj9Ed2YdOs1Fs3JNg" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_-I3NgPj9Ed2YdOs1Fs3JNg" type="7002">
+          <styles xmi:type="notation:SortingStyle" xmi:id="_-I3Ngfj9Ed2YdOs1Fs3JNg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_-I3Ngvj9Ed2YdOs1Fs3JNg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_-I1YUfj9Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="StaircaseLighting.statemachine#//@region.0/@state.0"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-I1YUvj9Ed2YdOs1Fs3JNg" x="122" y="224" width="174" height="104"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_aBHt0Pj-Ed2YdOs1Fs3JNg" type="3001">
+        <children xmi:type="notation:Node" xmi:id="_aBIU4Pj-Ed2YdOs1Fs3JNg" type="5002"/>
+        <children xmi:type="notation:Node" xmi:id="_aBIU4fj-Ed2YdOs1Fs3JNg" type="5003"/>
+        <children xmi:type="notation:Node" xmi:id="_aBIU4vj-Ed2YdOs1Fs3JNg" type="5004"/>
+        <children xmi:type="notation:Node" xmi:id="_aBIU4_j-Ed2YdOs1Fs3JNg" type="5005"/>
+        <children xmi:type="notation:Node" xmi:id="_aBIU5Pj-Ed2YdOs1Fs3JNg" type="7002">
+          <children xmi:type="notation:Node" xmi:id="_gAhEcPj-Ed2YdOs1Fs3JNg" type="3002">
+            <children xmi:type="notation:Node" xmi:id="_gAhrgPj-Ed2YdOs1Fs3JNg" type="5001"/>
+            <children xmi:type="notation:Node" xmi:id="_gAhrgfj-Ed2YdOs1Fs3JNg" type="7003">
+              <children xmi:type="notation:Node" xmi:id="_hI_IYPj-Ed2YdOs1Fs3JNg" type="3001">
+                <children xmi:type="notation:Node" xmi:id="_hI_vcPj-Ed2YdOs1Fs3JNg" type="5002"/>
+                <children xmi:type="notation:Node" xmi:id="_hI_vcfj-Ed2YdOs1Fs3JNg" type="5003"/>
+                <children xmi:type="notation:Node" xmi:id="_hI_vcvj-Ed2YdOs1Fs3JNg" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_hI_vc_j-Ed2YdOs1Fs3JNg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_hJAWgPj-Ed2YdOs1Fs3JNg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_hJAWgfj-Ed2YdOs1Fs3JNg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_hJAWgvj-Ed2YdOs1Fs3JNg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_hI_IYfj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:State" href="StaircaseLighting.statemachine#//@region.0/@state.1/@region.0/@state.0"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_hI_IYvj-Ed2YdOs1Fs3JNg" x="115" y="6" width="155" height="158"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_jLSXUPj-Ed2YdOs1Fs3JNg" type="3001">
+                <children xmi:type="notation:Node" xmi:id="_jLS-YPj-Ed2YdOs1Fs3JNg" type="5002"/>
+                <children xmi:type="notation:Node" xmi:id="_jLS-Yfj-Ed2YdOs1Fs3JNg" type="5003"/>
+                <children xmi:type="notation:Node" xmi:id="_jLS-Yvj-Ed2YdOs1Fs3JNg" type="5004"/>
+                <children xmi:type="notation:Node" xmi:id="_jLS-Y_j-Ed2YdOs1Fs3JNg" type="5005"/>
+                <children xmi:type="notation:Node" xmi:id="_jLTlcPj-Ed2YdOs1Fs3JNg" type="7002">
+                  <styles xmi:type="notation:SortingStyle" xmi:id="_jLTlcfj-Ed2YdOs1Fs3JNg"/>
+                  <styles xmi:type="notation:FilteringStyle" xmi:id="_jLTlcvj-Ed2YdOs1Fs3JNg"/>
+                </children>
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_jLSXUfj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:State" href="StaircaseLighting.statemachine#//@region.0/@state.1/@region.0/@state.1"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_jLSXUvj-Ed2YdOs1Fs3JNg" x="116" y="209" width="162" height="149"/>
+              </children>
+              <children xmi:type="notation:Node" xmi:id="_19YkYPj-Ed2YdOs1Fs3JNg" type="3003">
+                <styles xmi:type="notation:ShapeStyle" xmi:id="_19YkYfj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+                <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="StaircaseLighting.statemachine#//@region.0/@state.1/@region.0/@state.2"/>
+                <layoutConstraint xmi:type="notation:Bounds" xmi:id="_19YkYvj-Ed2YdOs1Fs3JNg" x="26" y="54"/>
+              </children>
+              <styles xmi:type="notation:SortingStyle" xmi:id="_gAiSkPj-Ed2YdOs1Fs3JNg"/>
+              <styles xmi:type="notation:FilteringStyle" xmi:id="_gAiSkfj-Ed2YdOs1Fs3JNg"/>
+            </children>
+            <styles xmi:type="notation:ShapeStyle" xmi:id="_gAhEcfj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+            <element xmi:type="org.mda4e.statemachine.model:Region" href="StaircaseLighting.statemachine#//@region.0/@state.1/@region.0"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gAhEcvj-Ed2YdOs1Fs3JNg" x="7" y="8" width="321" height="426"/>
+          </children>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_aBIU5fj-Ed2YdOs1Fs3JNg"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_aBIU5vj-Ed2YdOs1Fs3JNg"/>
+        </children>
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_aBHt0fj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:State" href="StaircaseLighting.statemachine#//@region.0/@state.1"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_aBHt0vj-Ed2YdOs1Fs3JNg" x="373" y="65" width="363" height="553"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_mNx38Pj-Ed2YdOs1Fs3JNg" type="3003">
+        <styles xmi:type="notation:ShapeStyle" xmi:id="_mNx38fj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+        <element xmi:type="org.mda4e.statemachine.model:Pseudostate" href="StaircaseLighting.statemachine#//@region.0/@state.2"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mNx38vj-Ed2YdOs1Fs3JNg" x="91" y="135"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_85DLcfj9Ed2YdOs1Fs3JNg"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_85DLcvj9Ed2YdOs1Fs3JNg"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_85AvMfj9Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11" fillColor="0" lineColor="0"/>
+    <element xmi:type="org.mda4e.statemachine.model:Region" href="StaircaseLighting.statemachine#//@region.0"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_85AvMvj9Ed2YdOs1Fs3JNg" x="65" y="32" width="790" height="685"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_5dEz0Pj9Ed2YdOs1Fs3JNg"/>
+  <element xmi:type="org.mda4e.statemachine.model:Statechart" href="StaircaseLighting.statemachine#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_kwFK4Pj-Ed2YdOs1Fs3JNg" type="4001" source="_-I1YUPj9Ed2YdOs1Fs3JNg" target="_aBHt0Pj-Ed2YdOs1Fs3JNg">
+    <children xmi:type="notation:Node" xmi:id="_kwGZAPj-Ed2YdOs1Fs3JNg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_kwGZAfj-Ed2YdOs1Fs3JNg" x="5" y="-19"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_kwHAEPj-Ed2YdOs1Fs3JNg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_kwHAEfj-Ed2YdOs1Fs3JNg" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_kwFK4fj-Ed2YdOs1Fs3JNg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_kwFK4vj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="StaircaseLighting.statemachine#//@transition.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kwFK4_j-Ed2YdOs1Fs3JNg" points="[87, -39, -121, 53]$[162, -139, -46, -47]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kxe5EPj-Ed2YdOs1Fs3JNg" id="(0.09037328,0.12678571)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_m1xsEPj-Ed2YdOs1Fs3JNg" type="4001" source="_mNx38Pj-Ed2YdOs1Fs3JNg" target="_-I1YUPj9Ed2YdOs1Fs3JNg">
+    <children xmi:type="notation:Node" xmi:id="_m1xsFPj-Ed2YdOs1Fs3JNg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_m1xsFfj-Ed2YdOs1Fs3JNg" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_m1yTIPj-Ed2YdOs1Fs3JNg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_m1yTIfj-Ed2YdOs1Fs3JNg" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_m1xsEfj-Ed2YdOs1Fs3JNg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_m1xsEvj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="StaircaseLighting.statemachine#//@transition.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_m1xsE_j-Ed2YdOs1Fs3JNg" points="[10, 20, -22, -44]$[22, 52, -10, -12]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_m10IUPj-Ed2YdOs1Fs3JNg" id="(0.07471264,0.058536585)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_2qcesPj-Ed2YdOs1Fs3JNg" type="4001" source="_19YkYPj-Ed2YdOs1Fs3JNg" target="_hI_IYPj-Ed2YdOs1Fs3JNg">
+    <children xmi:type="notation:Node" xmi:id="_2qdFwPj-Ed2YdOs1Fs3JNg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_2qdFwfj-Ed2YdOs1Fs3JNg" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_2qdFwvj-Ed2YdOs1Fs3JNg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_2qdFw_j-Ed2YdOs1Fs3JNg" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_2qcesfj-Ed2YdOs1Fs3JNg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_2qcesvj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="StaircaseLighting.statemachine#//@transition.2"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_2qces_j-Ed2YdOs1Fs3JNg" points="[20, -1, -76, 0]$[71, -11, -25, -10]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2qe68Pj-Ed2YdOs1Fs3JNg" id="(0.16129032,0.36708862)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_9Dz0gPj-Ed2YdOs1Fs3JNg" type="4001" source="_hI_IYPj-Ed2YdOs1Fs3JNg" target="_jLSXUPj-Ed2YdOs1Fs3JNg">
+    <children xmi:type="notation:Node" xmi:id="_9D0bkPj-Ed2YdOs1Fs3JNg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9D0bkfj-Ed2YdOs1Fs3JNg" y="40"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_9D0bkvj-Ed2YdOs1Fs3JNg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9D0bk_j-Ed2YdOs1Fs3JNg" y="60"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_9Dz0gfj-Ed2YdOs1Fs3JNg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9Dz0gvj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="StaircaseLighting.statemachine#//@transition.3"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9Dz0g_j-Ed2YdOs1Fs3JNg" points="[1, 6, 0, -51]$[0, 54, -1, -3]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9D2QwPj-Ed2YdOs1Fs3JNg" id="(0.48387095,0.9683544)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9D230Pj-Ed2YdOs1Fs3JNg" id="(0.4691358,0.020134227)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="__f_jEPj-Ed2YdOs1Fs3JNg" type="4001" source="_aBHt0Pj-Ed2YdOs1Fs3JNg" target="_-I1YUPj9Ed2YdOs1Fs3JNg">
+    <children xmi:type="notation:Node" xmi:id="__gAKI_j-Ed2YdOs1Fs3JNg" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__gAKJPj-Ed2YdOs1Fs3JNg" x="8" y="26"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="__gAKJfj-Ed2YdOs1Fs3JNg" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__gAKJvj-Ed2YdOs1Fs3JNg" x="12" y="13"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="__gAKIPj-Ed2YdOs1Fs3JNg" lineColor="0"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="__gAKIfj-Ed2YdOs1Fs3JNg" fontName="Lucida Grande" fontHeight="11"/>
+    <element xmi:type="org.mda4e.statemachine.model:Transition" href="StaircaseLighting.statemachine#//@transition.4"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__gAKIvj-Ed2YdOs1Fs3JNg" points="[-29, -22, 221, 163]$[-246, -182, 4, 3]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__gDNcPj-Ed2YdOs1Fs3JNg" id="(0.011019284,0.5063291)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="__gDNcfj-Ed2YdOs1Fs3JNg" id="(0.9770115,0.83902436)"/>
+  </edges>
+</notation:Diagram>

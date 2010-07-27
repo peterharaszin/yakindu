@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Yakindu="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http:///schemas/Yakindu/_YqH6ICT6Ed6aQfAleGAwyQ/0 ../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ">
+  <uml:Model xmi:id="_Bbu7oASzEd60juzEC_7XdQ" name="sample">
+    <packageImport xmi:id="_Bbu7oQSzEd60juzEC_7XdQ">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_DNUOAASzEd60juzEC_7XdQ" name="Sample">
+      <ownedBehavior xmi:type="uml:StateMachine" xmi:id="_HyrPkASzEd60juzEC_7XdQ" name="Sample Statemachine">
+        <region xmi:id="_HyrPkQSzEd60juzEC_7XdQ" name="Region A">
+          <subvertex xmi:type="uml:State" xmi:id="_OEWpAASzEd60juzEC_7XdQ" name="State A"/>
+          <subvertex xmi:type="uml:State" xmi:id="_OwAOEASzEd60juzEC_7XdQ" name="State B"/>
+          <subvertex xmi:type="uml:Pseudostate" xmi:id="_PHzDAASzEd60juzEC_7XdQ" name="Initial_0"/>
+          <subvertex xmi:type="uml:FinalState" xmi:id="_TaUoIASzEd60juzEC_7XdQ" name="FinalState_0"/>
+          <transition xmi:id="_RdM0IASzEd60juzEC_7XdQ" name="From_Initial_0_to_State_0_Transition_0" target="_OEWpAASzEd60juzEC_7XdQ" source="_PHzDAASzEd60juzEC_7XdQ"/>
+          <transition xmi:id="_R9ZXIASzEd60juzEC_7XdQ" name="From_State_0_to_State_1_Transition_0" target="_OwAOEASzEd60juzEC_7XdQ" source="_OEWpAASzEd60juzEC_7XdQ"/>
+          <transition xmi:id="_WmoMEASzEd60juzEC_7XdQ" name="From_State_1_to_FinalState_0_Transition_0" target="_TaUoIASzEd60juzEC_7XdQ" source="_OwAOEASzEd60juzEC_7XdQ"/>
+        </region>
+      </ownedBehavior>
+    </packagedElement>
+    <profileApplication xmi:id="_Bbu7ogSzEd60juzEC_7XdQ">
+      <eAnnotations xmi:id="_Bbu7owSzEd60juzEC_7XdQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/schemas/Standard/1#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_zHQvACT0Ed60h-47QpOCrg">
+      <eAnnotations xmi:id="_zHYq0CT0Ed60h-47QpOCrg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../profile/Yakindu.profile.uml#_Y_K9EiT6Ed6aQfAleGAwyQ"/>
+      </eAnnotations>
+      <appliedProfile href="../profile/Yakindu.profile.uml#_12_5_1_ed20351_1236852562585_483655_232"/>
+    </profileApplication>
+  </uml:Model>
+  <Yakindu:Priority xmi:id="_D-cy8CUTEd60h-47QpOCrg" base_Region="_HyrPkQSzEd60juzEC_7XdQ" priority="1"/>
+  <Yakindu:Priority xmi:id="_HDnNECUTEd60h-47QpOCrg" base_Transition="_RdM0IASzEd60juzEC_7XdQ" priority="2"/>
+  <Yakindu:Priority xmi:id="_JR8F0CUTEd60h-47QpOCrg" base_Transition="_R9ZXIASzEd60juzEC_7XdQ" priority="3"/>
+  <Yakindu:Priority xmi:id="_LkIK4CUTEd60h-47QpOCrg" base_Transition="_WmoMEASzEd60juzEC_7XdQ" priority="4"/>
+</xmi:XMI>

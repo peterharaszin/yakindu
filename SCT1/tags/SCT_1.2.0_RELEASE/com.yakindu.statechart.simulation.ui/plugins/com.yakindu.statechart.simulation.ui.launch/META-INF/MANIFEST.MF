@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Simulation Launch UI
+Bundle-SymbolicName: com.yakindu.statechart.simulation.ui.launch;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.debug.core,
+ org.mda4e.simulation.core,
+ com.yakindu.simulation.ui.launch;bundle-version="1.1.0"
+Bundle-Vendor: YAKINDU.org

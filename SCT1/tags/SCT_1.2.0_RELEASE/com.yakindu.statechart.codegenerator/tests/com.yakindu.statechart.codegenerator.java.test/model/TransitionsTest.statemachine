@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<org.mda4e.statemachine.model:Statechart xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:org.mda4e.statemachine.model="org.mda4e.statemachine.model" name="TransitionsTest" UUID="3bd6571a-e6bb-4d55-bc40-28739ae56379">
+  <dataElement xsi:type="org.mda4e.statemachine.model:Event" name="event1"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="composite1Entered" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="composite1Exited" port="1" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="simple1Entered" port="2" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="simple1Exited" port="3" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="composite2Entered" port="4" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="composite2Exited" port="5" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="simple2Entered" port="6" dataType="boolean"/>
+  <dataElement xsi:type="org.mda4e.statemachine.model:Variable" name="simple2Exited" port="7" dataType="boolean"/>
+  <region>
+    <state xsi:type="org.mda4e.statemachine.model:Pseudostate"/>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="CompositeState1" id="1" entry="composite1Entered = true;" exit="composite1Exited = true;">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState1" id="2" entry="simple1Entered = true;" exit="simple1Exited = true;"/>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="3"/>
+      </region>
+    </state>
+    <state xsi:type="org.mda4e.statemachine.model:State" name="CompositeState2" id="4" entry="composite2Entered = true;" exit="composite2Exited = true;">
+      <region>
+        <state xsi:type="org.mda4e.statemachine.model:Pseudostate" id="5"/>
+        <state xsi:type="org.mda4e.statemachine.model:State" name="SimpleState2" id="6" entry="simple2Entered = true;" exit="simple2Exited = true;"/>
+      </region>
+    </state>
+  </region>
+  <transition targetNode="//@region.0/@state.1" priority="1" expression="/composite1Entered = false; composite1Exited = false; composite2Entered = false; composite2Exited = false; simple1Entered = false; simple1Exited = false; simple2Entered = false; simple2Exited = false;" id="7" sourceNode="//@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.1/@region.0/@state.0" priority="1" id="8" sourceNode="//@region.0/@state.1/@region.0/@state.1"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.1" priority="1" id="9" sourceNode="//@region.0/@state.2/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2/@region.0/@state.1" priority="1" expression="event1" id="10" sourceNode="//@region.0/@state.1/@region.0/@state.0"/>
+  <transition targetNode="//@region.0/@state.2" priority="1" expression="after(20s)" id="11" sourceNode="//@region.0/@state.1"/>
+</org.mda4e.statemachine.model:Statechart>

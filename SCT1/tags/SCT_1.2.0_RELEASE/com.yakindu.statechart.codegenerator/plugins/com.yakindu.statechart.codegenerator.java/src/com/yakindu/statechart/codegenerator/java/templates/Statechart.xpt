@@ -1,0 +1,323 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«IMPORT com::yakindu::statechart::codegenerator::java::templates::generic»
+
+«DEFINE Root FOR Statechart»
+«FILE getImplPackagePath(this) + getStatechartImplClassName(this) + ".java"»
+package «getImplPackage(this)»;
+
+«EXPAND Imports»
+«EXPAND BasicImports»
+
+
+/** 
+ * Implementation generated for Statechart «name»
+ */
+public class «getStatechartImplClassName(this)» extends AbstractStatechart {
+  
+  	// ------------------------------------------------------------------------
+  	// EVENT INTERFACE
+  	// ------------------------------------------------------------------------
+	
+  	// declare event constants for signal events
+  	«FOREACH getSignalEvents(this) AS event »
+  	public static final SignalEvent «event.name.toUpperCase()» = new SignalEvent("«event.name»");
+  	«ENDFOREACH»
+  	
+  	public void setEvent(Event event) {
+  		«FOREACH getSignalEvents(this) AS event »
+  			«IF event.ioType.toString().matches("output")»
+  			if(event.equals(«event.name.toUpperCase()»)) {
+  				throw new IllegalArgumentException("«event.name.toUpperCase()» is a output-event.");
+  			}
+  			«ENDIF»
+  		«ENDFOREACH»
+  		
+  		super.setEvent(event);
+  	}
+  	
+  	// declare time events (as fields, as variable time events have to be dynamically initialized to 
+  	// access the statechart's variables)
+  	«FOREACH getTimeEvents(this) AS event»
+  		protected TimeEvent TIMER«event.name.toUpperCase()» = null;  
+  	«ENDFOREACH»   
+  
+   
+  	// ------------------------------------------------------------------------
+  	// VARIABLES INTERFACE
+  	// ------------------------------------------------------------------------
+  
+  	// declare variable fields    
+  	«FOREACH getVariables(this) AS variable »
+  	private «getJavaTypeName(variable.dataType)» «variable.name.toFirstLower()»;
+ 	«ENDFOREACH»
+     
+  	// declare getter/setter for variables
+  	«FOREACH getVariables(this) AS variable »
+  		«IF variable.ioType.toString().matches("local") || variable.ioType.toString().matches("output")»
+		  	public
+		«ELSE»
+			protected 
+  		«ENDIF»
+  		«getJavaTypeName(variable.dataType)» get«variable.name.toFirstUpper()»(){
+		   		return «variable.name.toFirstLower()»;
+		  	}
+  
+  		«IF variable.ioType.toString().matches("local") || variable.ioType.toString().matches("input")»
+		  	public
+		«ELSE»
+			protected 
+  		«ENDIF»
+  		void set«variable.name.toFirstUpper()»(«getJavaTypeName(variable.dataType)» value){
+		    	this.«variable.name.toFirstLower()» = value;
+		  	}
+  	«ENDFOREACH»
+  
+  	// ------------------------------------------------------------------------
+  	// INITIALIZATION
+  	// ------------------------------------------------------------------------
+  
+  	/**
+   	* Protected constructor. Use the createInstance() method to instantiate this class.
+   	*/
+  	protected «getStatechartImplClassName(this)»(String id){
+   		super(id);
+ 	}
+ 	
+ 	/**
+   	* Protected constructor. Use the createInstance(TimingService) method to instantiate this class.
+   	*/
+  	protected «getStatechartImplClassName(this)»(String id, TimingService timingService){
+   		super(id, timingService);
+ 	}
+  
+  	«EXPAND createInstanceMethod»
+  	«EXPAND initializeInstanceMethod»
+}
+«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE Imports FOR Object»
+import java.util.HashSet;
+«ENDDEFINE»
+
+
+«DEFINE BasicImports FOR Statechart»
+import «getLibraryPackage()».AbstractStatechart;
+«IF hasAnyStateActions() || transition.exists(e|getActionExpression(e) != null) -»
+import «getLibraryPackage()».Action;
+«ENDIF -»
+«IF region.size != getAllRegions().size -»
+import «getLibraryPackage()».CompoundState;
+«ENDIF -»
+«IF transition.getTriggers().exists(e|getConstantTimeTriggerDuration(e) != null) -»
+import «getLibraryPackage()».ConstantTimeEvent;
+«ENDIF -»
+import «getLibraryPackage()».Event;
+«IF getAllRegions().state.typeSelect(FinalState).size > 0 -»
+import «getLibraryPackage()».FinalState;
+«ENDIF -»
+«IF transition.exists(e|getGuardExpression(e) != null) -»
+import «getLibraryPackage()».Guard;
+«ENDIF -»
+«IF getAllRegions().state.typeSelect(Pseudostate).size > 0 -»
+import «getLibraryPackage()».Pseudostate;
+import «getLibraryPackage()».PseudostateKind;
+«ENDIF -»
+«IF region.size > 0 -»
+import «getLibraryPackage()».Region;
+«ENDIF -»
+«IF getSignalEvents().size > 0 -»
+import «getLibraryPackage()».SignalEvent;
+«ENDIF -»
+«IF region.state.size > 0 -»
+import «getLibraryPackage()».SimpleState;
+«ENDIF -»
+«IF getTimeEvents().size > 0 -»
+import «getLibraryPackage()».TimeEvent;
+«ENDIF -»
+import «getLibraryPackage()».TimingService;
+«IF transition.size > 0 -»
+import «getLibraryPackage()».Transition;
+«ENDIF -»
+
+«ENDDEFINE»
+
+
+«DEFINE createInstanceMethod FOR Statechart»
+	/**
+  	 * Factory method to create an initialized instance of this class
+  	 */
+  	public static final «name.toFirstUpper()»Statechart createInstance(){
+  		final «getStatechartImplClassName(this)» instance = new «getStatechartImplClassName(this)»("«getId()»");
+   
+    	initializeInstance(instance);
+    
+  		return instance;
+	}
+  	
+  	/**
+  	  * Same as createInstance(), additionally passing timing service to state chart instance.
+  	  */
+	public static final «name.toFirstUpper()»Statechart createInstance(TimingService timingService){
+  		final «getStatechartImplClassName(this)» instance = new «getStatechartImplClassName(this)»("«getId()»", timingService);
+    	
+    	initializeInstance(instance);
+    
+  		return instance;
+	}
+«ENDDEFINE»
+
+«DEFINE initializeInstanceMethod FOR Statechart»
+	private static void initializeInstance(final «getStatechartImplClassName(this)» «getId()») {
+	  	«EXPAND initializeInstanceMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE initializeInstanceMethodBody FOR Statechart»
+	// initialize time events
+    «FOREACH getTimeEvents(this) AS event»
+    	«IF getTransitionById(event.name).getTimeTrigger().isConstantTimeTrigger()-»
+  		«getId()».TIMER«event.name.toUpperCase()» = new ConstantTimeEvent("«event.name»",«""-» 
+   			«getTransitionById(event.name).getTimeTrigger().getConstantTimeTriggerDuration().getInMilliseconds()-»
+   		);
+  		«ELSE-»
+  		«getId()».TIMER«event.name.toUpperCase()» = new TimeEvent("«event.name»") {
+  			public long getDuration(){
+  				return «this.eRootContainer.getId()».get«getTransitionById(event.name).getTimeTrigger().getVariableTimeTriggerVariableIdentifier().toFirstUpper()-»();
+  			}
+  		};
+  		«ENDIF-»
+  	«ENDFOREACH»
+        
+  	«FOREACH region.sortBy(e|e.priority) AS region»
+   		«EXPAND RegionInitialization FOR region»
+  	«ENDFOREACH»  
+  
+  	«FOREACH transition.sortBy(e|e.priority) AS transition»
+    	«EXPAND TransitionInitialization FOR transition»
+    «ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE RegionInitialization FOR Region»
+  Region «getId()» = new Region("«getId()»", «priority», «Statechart.isInstance(eContainer) ? ((Statechart)eContainer).getId() : ((State)eContainer).getId()»);
+
+  «FOREACH state.typeSelect(Pseudostate) AS pseudostate»
+    «EXPAND PseudostateInitialization FOR pseudostate»
+  «ENDFOREACH»
+  
+  «FOREACH state.typeSelect(State).reject(e|FinalState.isInstance(e)).select(e|e.isSimpleState()) AS state»
+    «EXPAND SimpleStateInitialization FOR state»
+  «ENDFOREACH»
+  
+  «FOREACH state.typeSelect(State).reject(e|FinalState.isInstance(e)).select(e|e.isCompoundState()) AS state»
+    «EXPAND CompoundStateInitialization FOR state»
+  «ENDFOREACH»
+  
+  «IF !state.typeSelect(FinalState).isEmpty»
+    «EXPAND FinalStateInitialization FOR state.typeSelect(FinalState).first()»
+  «ENDIF»
+«ENDDEFINE»
+
+
+«DEFINE PseudostateInitialization FOR Pseudostate»
+  Pseudostate «getId()» = new Pseudostate("«getId()»", «eContainer.getId()», PseudostateKind.«pseudoType.toString().toUpperCase()»);
+«ENDDEFINE»
+
+«DEFINE SimpleStateInitialization FOR State»
+	SimpleState «getId()» = new SimpleState("«getId()»", "«name»", «((Region)eContainer).getId()-»
+	, «""-»
+  	«EXPAND ActionConstructorCall(this.getEntryActionExpression()) FOR (Statechart)eRootContainer-»
+  	,«""-»
+  	«EXPAND ActionConstructorCall(this.getDoActionExpression()) FOR (Statechart)eRootContainer-»
+  	,«""-»
+  	«EXPAND ActionConstructorCall(this.getExitActionExpression()) FOR (Statechart)eRootContainer-»
+  );
+«ENDDEFINE»
+
+«DEFINE CompoundStateInitialization FOR State»
+	CompoundState «getId()» = new CompoundState("«getId()»", "«name»", «((Region)eContainer).getId()-»
+	, «""-»
+  	«EXPAND ActionConstructorCall(this.getEntryActionExpression()) FOR (Statechart)eRootContainer-»
+  	,«""-»
+  	«EXPAND ActionConstructorCall(this.getExitActionExpression()) FOR (Statechart)eRootContainer-»
+  );
+  «EXPAND RegionInitialization FOREACH region-»
+«ENDDEFINE»
+
+«DEFINE FinalStateInitialization FOR FinalState»
+  FinalState «getId()» = new FinalState("«getId()»", «eContainer.getId()»);
+«ENDDEFINE»
+
+«REM»Generate code to initialize transitions, i.e. call the constructor of the Transition class with respective parameters «ENDREM»
+«DEFINE TransitionInitialization FOR Transition»
+  Transition «getId()» = new Transition("«getId()»",«priority», «""-»
+  «REM» pass over id of time event, in case the transition is time triggered «ENDREM»
+  «IF isTimeTriggered()-»
+  	«this.eContainer.getId()».TIMER«id.toString().toUpperCase()-»
+  «ELSE-»
+    null«""-»
+  «ENDIF-»
+  ,«""-»
+  «REM» additionally pass ids of signal events, in case the transition is also signal triggered «ENDREM»
+  «IF isSignalTriggered()-»
+  new HashSet<SignalEvent>() {{«""-»
+   «FOREACH getSignalTriggers() AS trigger-»
+        add(«((SignalEvent)trigger.event).identifier.toUpperCase()»);«""-»
+   «ENDFOREACH-» 
+  }}«""-»
+  «ELSE-»
+  null«""-»
+  «ENDIF-»
+  ,«""-»
+  «EXPAND GuardConstructorCall(getGuardExpression()) FOR (Statechart)eRootContainer-»
+  ,«""-»  
+  «EXPAND ActionConstructorCall(getActionExpression()) FOR (Statechart)eRootContainer-»
+  ,«""-»
+  «this.sourceNode.getId()-»
+  ,«""-»
+  «this.targetNode.getId()-»
+  );«""-»
+  
+«ENDDEFINE»
+
+«REM» generate anonymous Guard subclass to encapsulate the evaluation of the guard statement «ENDREM»
+«DEFINE GuardConstructorCall(GuardExpression guard) FOR Statechart»
+	«IF guard != null -»
+	new Guard(){«""-»
+    	public boolean evaluate(){«""-»
+      		return «guard.expression.toJava(this.eRootContainer.getId())»;«""-»
+		}«""-»
+	}«""-»
+	«ELSE»
+ 	null
+	«ENDIF»	
+«ENDDEFINE»
+
+«REM» generate anonymous Actor subclass to encapsulate the action statements «ENDREM»
+«DEFINE ActionConstructorCall(ActionExpression action) FOR Statechart»
+	«IF action != null -»
+    new Action(){ public void execute() {«""-»
+    	«FOREACH action.statement AS statement-»
+    		«statement.toJava(getId())»
+    	«ENDFOREACH-»
+   		}«""-» 
+  	}«""-»
+  	«ELSE-»
+  	null«""-»
+  	«ENDIF-»
+«ENDDEFINE»

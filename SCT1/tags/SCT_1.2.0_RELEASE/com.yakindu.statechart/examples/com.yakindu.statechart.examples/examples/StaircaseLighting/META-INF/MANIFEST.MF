@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: StaircaseLighting
+Bundle-SymbolicName: StaircaseLighting
+Bundle-Version: 1.0.0
+Export-Package: checks
+Require-Bundle: org.mda4e.statemachine.model;bundle-version="0.1.0"

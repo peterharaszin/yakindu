@@ -1,0 +1,14 @@
+# Definition file read by GMF Tools Engine
+gmfmap: /org.mda4e.statemachine.diagram.generator/model/statemachine.gmfmap
+genmodel: /org.mda4e.statemachine.model/model/statemachine.genmodel
+ext: /org.mda4e.statemachine.diagram.generator/model/statemachine.ext
+gmfgen: /org.mda4e.statemachine.diagram.generator/model/statemachine.gmfgen
+transformedgmfgen: /org.mda4e.statemachine.diagram.generator/model/statemachine.transformed.gmfgen
+
+# Properties for GMF Tools Engine
+deleteGmfGenModel = true
+transformMapping2GmfGenModel = true
+transformGmfGenModels = true
+fixRegisteredTypes = true
+deletegeGeneratedDiagramPlugin = false
+generateDiagramPlugin = true

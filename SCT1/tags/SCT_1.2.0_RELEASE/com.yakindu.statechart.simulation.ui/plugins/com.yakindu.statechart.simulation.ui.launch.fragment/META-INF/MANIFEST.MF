@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Simulation Launch UI Fragment
+Bundle-SymbolicName: com.yakindu.statechart.simulation.ui.launch.fragment
+Bundle-Version: 1.1.0.qualifier
+Fragment-Host: com.yakindu.statechart.simulation.ui.launch
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: YAKINDU.org

@@ -1,0 +1,64 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«EXTENSION com::yakindu::statechart::codegenerator::c::extensions::Extensions»
+
+«DEFINE timerInterface FOR Statechart»
+«FILE timerIface().toFirstLower()+".h"»
+#include "«baseInterface().toFirstLower()».h"
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
+/** @brief callback function to be filled with platform specific code by the implementer
+ *  
+ Prototyp only, function must be filled systemdependent by implementer 
+   These two (virtual) functions are called inside the state machine and implement the timer service */
+extern void «timerIface()»_installTimer(void* ihandle, uint32 trigger, uint64 time_ms);
+extern void «timerIface()»_resetTimer(void* ihandle, uint32 trigger);
+
+/* Interface funktion is called by the timer service to inform the state machine of a time-trigger event */
+extern void «timerIface()»_raiseTimer(void* ihandle, uint32 trigger);
+
+#ifdef __cplusplus
+ }
+#endif
+
+«ENDFILE»
+«FILE timerIface().toFirstLower()+".c"»
+#include "«timerIface().toFirstLower()».h"
+
+void «timerIface()»_raiseTimer(void* ihandle, uint32 trigger)
+{ 
+  «baseInterface()»_raiseTrigger((«baseIfaceHandle()»*)ihandle, («triggerEnumType()»)trigger); 
+}
+
+void «timerIface()»_installTimer(void* handle, uint32 trigger, uint64 time_ms)
+{
+«REM»
+«PROTECT CSTART "/*" CEND "*/" ID "installTimerCode"»
+ /* Your code here */
+«ENDPROTECT»
+«ENDREM»
+}
+
+void «timerIface()»_resetTimer(void* handle, uint32 trigger)
+{
+«REM»
+«PROTECT CSTART "/*" CEND "*/" ID "installTimerCode"»
+ /* Your code here */
+«ENDPROTECT»
+«ENDREM»
+}
+
+«ENDFILE»
+«ENDDEFINE»

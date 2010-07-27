@@ -1,0 +1,60 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+extension com::yakindu::statechart::model::Extensions reexport;
+
+extension com::yakindu::statechart::codegenerator::c::extensions::Naming reexport;
+
+extension com::yakindu::statechart::codegenerator::c::extensions::Statechart2CCodeNamespace reexport;
+extension com::yakindu::statechart::codegenerator::c::extensions::StatechartExpressions2CCode reexport;
+
+boolean hasShallowHistoryState(State this): hasShallowHistoryState((Region)this.eContainer);
+
+boolean hasDeepHistoryState(State this): hasDeepHistoryState((Region)this.eContainer);
+
+boolean hasShallowHistoryState(Region this):	
+	this.state.select(s|((Pseudostate.isInstance(s)) && (s.getStateName() == "ShallowHistory"))).size > 0;
+//	state.select(s|(Pseudostate.isInstance(s) && ((Pseudostate)s).isShallowHistoryState())).size>0;
+
+boolean hasDeepHistoryState(Region this):
+	this.state.select(s|((Pseudostate.isInstance(s)) && (s.getStateName() == "DeepHistory"))).size > 0;
+//	state.select(s|Pseudostate.isInstance(s) && ((Pseudostate)s).isShallowHistoryState()).size>0;
+
+boolean isInitialState(Pseudostate this):
+	((Pseudostate)this).pseudoType==PseudoTypes::initial;
+	
+//boolean isShallowHistoryState(Pseudostate this):
+//	((Pseudostate)this).pseudoType.toString() == "ShallowHistory";
+	//	PseudoTypes::shallowHistory==((Pseudostate)this).pseudoType.toString() == "ShallowHistory";
+	
+boolean isChoiceNode(Pseudostate this):
+	PseudoTypes::choice==((Pseudostate)this).pseudoType;
+
+boolean isJoinNode(Pseudostate this):
+	PseudoTypes::join==((Pseudostate)this).pseudoType;
+
+List[Variable] getIntVariables(Statechart this):
+	eContents.typeSelect(Variable).select(e|e.dataType.toString() == "int");
+	
+List[Variable] getBoolVariables(Statechart this):
+	eContents.typeSelect(Variable).select(e|e.dataType.toString() == "bool");
+
+List[Variable] getFloatVariables(Statechart this):
+	eContents.typeSelect(Variable).select(e|e.dataType.toString() == "float");
+
+//boolean isShallowHistoryState(Pseudostate this):
+//	((Pseudostate)this).pseudoType.toString() == "DeepHistory";
+
+//	PseudoTypes::shallowHistory==((Pseudostate)this).pseudoType;
+	
+//boolean isDeepHistoryState(Pseudostate this):
+//	PseudoTypes::deepHistory==((Pseudostate)this).pseudoType;

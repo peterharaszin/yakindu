@@ -1,0 +1,165 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+«FILE getLibraryPackagePath() + "State.java"»
+package «getLibraryPackage()»;
+
+«EXPAND Imports»
+
+/**
+ * Representation of a state (i.e. abstract base class for CompoundState, SimpleState,
+ * and FinalState). A state has the unique property, that the system may be "in"
+ * it, i.e. the state will - if being entered - react to incoming events of its
+ * Statechart until it has been left again (although FinalStates will not show any reaction). 
+ * When being entered or left, a state may execute an Action, i.e. its entry or exit action 
+ * respectively.
+ */
+public abstract class State extends Node {
+	«EXPAND StateClassBody»	
+}
+
+  «ENDFILE»
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.Set;
+«ENDDEFINE»
+
+«DEFINE StateClassBody FOR Object»
+	private Action entryAction;
+	private Action exitAction;
+	private String name;
+
+	public State(String id, String name, Region owningRegion, Action entryAction,
+			Action exitAction) {
+		super(id, owningRegion);
+		this.name = name;
+		this.entryAction = entryAction;
+		this.exitAction = exitAction;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	protected AbstractStatechart getStatechart() {
+		return owningRegion.getStatechart();
+	}
+
+	«EXPAND enterMethod»
+
+	«EXPAND reenterMethod»	
+
+	«EXPAND reactOnMethod»
+
+	«EXPAND getEnabledOutgoingTransitionMethod»
+
+	«EXPAND reactLocallyOnMethod»
+
+	«EXPAND leaveMethod»
+	
+«ENDDEFINE»
+
+  
+«DEFINE enterMethod FOR Object»
+ 	protected void enter() {
+		«EXPAND enterMethodBody»
+	}
+«ENDDEFINE»  
+
+«DEFINE enterMethodBody FOR Object»
+	owningRegion.setCurrentState(this);
+	
+	// see if we have transitions that are time-triggered
+	for (Transition transition : outgoingTransitions) {
+		if (transition.isTimeTriggered()) {
+			// register timer with timing service
+			getStatechart().requestTimeEvent(transition.getTimeTrigger());
+		}
+	}
+
+	// execute entry action
+	if (entryAction != null) {
+		entryAction.execute();
+	}
+«ENDDEFINE»
+
+«DEFINE reenterMethod FOR Object»
+	protected void reenter(HistoryMode history) {
+		«EXPAND reenterMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE reenterMethodBody FOR Object»
+	enter();
+«ENDDEFINE»
+
+
+«DEFINE reactOnMethod FOR Object»
+	protected void reactOn(Set<Event> events) {
+		«EXPAND reactOnMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE reactLocallyOnMethod FOR Object»
+	protected abstract void reactLocallyOn(Set<Event> events);
+«ENDDEFINE»
+
+«DEFINE reactOnMethodBody FOR Object»
+	Transition transition = getEnabledOutgoingTransitionOfHighestPriority(events);
+	if (transition != null) {
+		// if there is an enabled transition, take it
+		transition.take();			
+	} else {
+		// otherwise this state might react to it (by executing a do action
+		// or by delegating to nested regions)
+		reactLocallyOn(events);
+	}
+«ENDDEFINE»
+
+«DEFINE getEnabledOutgoingTransitionMethod FOR Object»
+	private Transition getEnabledOutgoingTransitionOfHighestPriority(Set<Event> events) {
+		«EXPAND getEnabledOutgoingTransitionMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getEnabledOutgoingTransitionMethodBody FOR Object»
+		for (Transition transition : outgoingTransitions /* sorted by priority */) {
+			if (transition.isTriggeredBy(events) && transition.isEnabled()) {
+				return transition;
+			}
+		}
+		return null;
+«ENDDEFINE»
+
+«DEFINE leaveMethod FOR Object»
+	protected void leave() {
+		«EXPAND leaveMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE leaveMethodBody FOR Object»
+	// see if we have transitions that are time-triggered
+	for (Transition transition : outgoingTransitions) {
+		if (transition.isTimeTriggered()) {
+			// cancel all time events that could have been requested
+			getStatechart().cancelTimeEvent(transition.getTimeTrigger());
+		}
+	}
+	
+	if (exitAction != null) {
+		exitAction.execute();
+	}
+«ENDDEFINE»

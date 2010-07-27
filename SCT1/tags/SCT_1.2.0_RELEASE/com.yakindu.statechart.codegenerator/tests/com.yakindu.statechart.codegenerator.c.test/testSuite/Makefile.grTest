@@ -1,0 +1,30 @@
+# Name: Makefile
+# Author: Joern Seger
+# Copyright: 2009 Itemis AG, Joern Seger
+# License: GPL
+
+include ../c-src-gen-gr-test/make.include
+
+OBJECTS    = $(patsubst %.o, ../c-src-gen-gr-test/%.o, $(SM_SOURCE)) ../c-src-gen-gr-test/simElement.o timerInterfaceGuardTest.o
+
+COMPILE = gcc -Wall -O0 -g -I../c-src-gen-gr-test -I. -I../environment -ansi -pedantic
+COMPILEPP = g++ -Wall -O0 -g -I../c-src-gen-gr-test -I.
+
+# switches for profiling and code coverage
+# -pg -fprofile-arcs -ftest-coverage
+# symbolic targets:
+
+all:	testSuite-grTest
+
+testSuite-grTest: $(OBJECTS) testSuite-grTest.o
+	$(COMPILE) $^ -o $@
+
+.cpp.o:
+	$(COMPILEPP) -c $< -o $@
+
+.c.o:
+	$(COMPILE) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) testSuite-grTest.o
+

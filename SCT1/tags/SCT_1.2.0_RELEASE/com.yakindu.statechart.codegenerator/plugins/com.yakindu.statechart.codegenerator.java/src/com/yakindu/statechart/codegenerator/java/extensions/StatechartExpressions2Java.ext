@@ -1,0 +1,145 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+import statechartexpressions;
+  
+// Expression Language
+String toJava(Statement statement, String statechartReference) : 
+	null; //polymorphic placeholder (abstract rule)
+
+String toJava(ProcedureCall procedureCall, String statechartReference) : 
+	statechartReference + "." + procedureCall.procedure.identifier + "();";
+
+String toJava(VariableAssignment variableAssignment, String statechartReference) : 
+	statechartReference + ".set" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "(" + getAssignmentValue(variableAssignment, statechartReference) + ");";
+	
+private String getAssignmentValue(VariableAssignment variableAssignment, String statechartReference) : 
+	switch(variableAssignment.operator) {
+		case(AssignmentOperator::assign) : variableAssignment.value.toJava(statechartReference)
+		case(AssignmentOperator::multAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " * " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::divAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " / " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::modAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " % " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::addAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " + " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::subAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " - " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::leftShiftAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " << " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::rightShiftAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " >> " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::andAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " & " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::xorAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " ^ " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		case(AssignmentOperator::orAssign) : statechartReference + ".get" + variableAssignment.variableReference.variable.identifier.toFirstUpper() + "()" + " | " + "(" + variableAssignment.value.toJava(statechartReference) + ")"
+		default : ""
+	};
+
+String toJava(EventRaising eventRaising, String statechartReference) : 
+  	statechartReference + ".setEvent(" + eventRaising.event.identifier.toUpperCase() + ");";
+
+String toJava(ConditionalExpression expression, String statechartReference) : 
+    expression.operand1.toJava(statechartReference) + ((expression.operand2 != null) ? "?" + expression.operand2.toJava(statechartReference) + ":" + expression.operand3.toJava(statechartReference) : "");
+
+String toJava(BooleanAndExpression expression, String statechartReference) :
+  	expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? "&&" + expression.operand2.toJava(statechartReference) : "");
+  	
+String toJava(BooleanOrExpression expression, String statechartReference) :
+  	expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? "||" + expression.operand2.toJava(statechartReference) : "");
+	
+String toJava(BitwiseXorExpression expression, String statechartReference) :
+ 	expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? "^" + expression.operand2.toJava(statechartReference) : "");
+
+String toJava(BitwiseOrExpression expression, String statechartReference) :
+ 	expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? "|" + expression.operand2.toJava(statechartReference) : "");
+  
+String toJava(BitwiseAndExpression expression, String statechartReference) :
+ 	expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? "&" + expression.operand2.toJava(statechartReference) : "");
+  
+String toJava(EqualityExpression expression, String statechartReference) : 
+    expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? expression.operator.toJava() + expression.operand2.toJava(statechartReference) : "");
+    
+String toJava(EqualityOperator operator) : 
+    switch(operator) {
+    	case(EqualityOperator::equals) : "=="
+    	case(EqualityOperator::notEquals) : "!="
+    	default : ""
+    };
+    
+String toJava(RelationalExpression expression, String statechartReference) : 
+   expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? expression.operator.toJava() + expression.operand2.toJava(statechartReference) : "");
+   
+String toJava(RelationalOperator operator) : 
+   	switch(operator) {
+   		case(RelationalOperator::smaller) : "<"
+   		case(RelationalOperator::greater) : ">"
+   		case(RelationalOperator::smallerEqual) : "<="
+   		case(RelationalOperator::greaterEqual) : ">="
+   		default : ""
+   	};
+  
+String toJava(ShiftExpression expression, String statechartReference) : 
+	expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? expression.operator.toJava() + expression.operand2.toJava(statechartReference) : "");
+  	
+	
+String toJava(ShiftOperator operator) : 
+    switch(operator) {
+    	case(ShiftOperator::left) : "<<"
+    	case(ShiftOperator::right) : ">>"
+    	default : ""
+    };
+	
+String toJava(AdditiveExpression expression, String statechartReference) : 
+    expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? expression.operator.toJava() + expression.operand2.toJava(statechartReference) : "");
+  	
+    
+String toJava(AdditiveOperator operator) : 
+    switch(operator) {
+    	case(AdditiveOperator::plus) : "+"
+    	case(AdditiveOperator::minus) : "-"
+    	default : ""
+    };
+    
+String toJava(MultiplicativeExpression expression, String statechartReference ) : 
+  expression.operand1.toJava(statechartReference) + (expression.operand2 != null ? expression.operator.toJava() + expression.operand2.toJava(statechartReference) : "");
+  	
+  
+ String toJava(MultiplicativeOperator operator) :
+  	switch(operator) {
+  		case(MultiplicativeOperator::mul) : "*"
+  		case(MultiplicativeOperator::div) : "/"
+  		case(MultiplicativeOperator::mod) : "%"
+  		default : ""
+  	};
+  
+String toJava(UnaryExpression expression, String statechartReference) : 
+  	(expression.operator != UnaryOperator::positive ? expression.operator.toJava() : "") + expression.operand.toJava(statechartReference);
+  	
+String toJava(UnaryOperator operator) : 
+	switch(operator) {
+		case(UnaryOperator::positive) : "+"
+		case(UnaryOperator::negative) : "-"
+		case(UnaryOperator::complement) : "~"
+		case(UnaryOperator::not) : "!"
+		default : ""
+	};
+	
+String toJava(PrimaryExpression primaryExpression, String statechartReference) : 
+   	null; // polymorphic placeholder (abstract rule)
+	
+String toJava(LiteralValue literalValue, String statechartReference) :
+	literalValue.value.toString();
+	
+String toJava(NestedExpression expression, String statechartReference) : 
+    "(" + expression.toJava(statechartReference) + ")";
+    
+String toJava(VariableReference variableReference, String statechartReference) : 
+   statechartReference + ".get" + variableReference.variable.identifier.toFirstUpper() + "()";
+
+	
+ 	
+   
+  
+

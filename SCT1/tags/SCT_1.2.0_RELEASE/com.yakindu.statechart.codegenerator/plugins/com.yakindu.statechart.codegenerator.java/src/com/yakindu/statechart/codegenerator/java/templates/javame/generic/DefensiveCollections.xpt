@@ -1,0 +1,107 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+ «FILE getLibraryPackagePath() + "Collections.java"»
+package «getLibraryPackage()»;
+
+«EXPAND Imports»
+
+public class Collections {
+	«EXPAND CollectionsClassBody»	
+}
+  «ENDFILE»
+«ENDDEFINE»
+
+«DEFINE CollectionsClassBody FOR Object»
+	«EXPAND mergeSortMethods»
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.Vector;
+«ENDDEFINE»
+
+«DEFINE mergeSortMethods FOR Object»
+	/** Implementiert den Algorithmus MERGE_SORT. */
+	public static void sort(Vector regions) {
+		Vector b = new Vector(regions.size());
+		for (int i = 0; i < regions.size(); i++) {
+			b.addElement(null);
+		}
+		sort(regions, b, 0, regions.size() - 1);
+	}
+
+	/**
+	 * Eine rekursive Hilfsmethode fuer die Methode mergeSort sortiert den
+	 * Bereich a[left] bis a[right].
+	 */
+	private static void sort(Vector a, Vector b, int left, int right) {
+		if (left < right) {
+			int mid = (left + right) / 2;
+			sort(a, b, left, mid);
+			sort(a, b, mid + 1, right);
+			merge(a, b, left, mid, right);
+		}
+	}
+
+	/**
+	 * Eine Hilfsmethode fuer die Methode mergeSort. Die sortierten Bereiche
+	 * a[left] bis a[mid] und a[mid+1] bis a[right] werden zu einem sortierten
+	 * Bereich a[left] bis a[right] gemischt. Im Array b wird das Ergebnis
+	 * zwischengespeichert.
+	 */
+	private static void merge(Vector a, Vector b, int left, int mid, int right) {
+		int i1 = left; // laeuft hoch bis mid
+		int i2 = mid + 1; // laeuft hoch bis right
+		int bPos = left; // kopiere nach b ab bPos
+		while (i1 <= mid && i2 <= right) {
+			if (compareTo(a.elementAt(i1), b.elementAt(i2)) <= 0)
+				b.setElementAt(a.elementAt(i1++), bPos++);
+			else
+				b.setElementAt(a.elementAt(i2++), bPos++);
+		}
+		while (i1 <= mid)
+			// ersten Bereich vollends kopieren
+			b.setElementAt(a.elementAt(i1++), bPos++);
+		while (i2 <= right)
+			// zweiten Bereich vollends kopieren
+			b.setElementAt(a.elementAt(i2++), bPos++);
+		// Zuletzt von b nach a zurueckkopieren:
+		for (bPos = left; bPos <= right; bPos++)
+			a.setElementAt(b.elementAt(bPos), bPos);
+	}
+
+	private static int compareTo(Object a, Object b) {
+
+		if (a == null)
+			return 1;
+		if (b == null)
+			return -1;
+		if (a.getClass() == Region.class
+				&& a.getClass() == b.getClass()) {
+			Region regionA = (Region) a;
+			Region regionB = (Region) b;
+
+			return regionB.getPriority() - regionA.getPriority();
+
+		} else if (a.getClass() == Transition.class
+				&& a.getClass() == b.getClass()) {
+			Transition transitionA = (Transition) a;
+			Transition transitionB = (Transition) b;
+
+			return transitionB.getPriority() - transitionA.getPriority();
+		}
+		throw new ClassCastException();
+	}
+«ENDDEFINE»

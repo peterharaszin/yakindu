@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2006-2009 committers of mda4e and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of mda4e (http://www.mda4e.org/) - initial API and implementation
+
+
+-->
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="org.mda4e.simulation.engine" name="org.mda4e.simulation.engine" schema="schema/org.mda4e.simulation.control.registerengine.exsd"/>
+   <extension-point id="org.mda4e.simulation.controller" name="org.mda4e.simulation.controller" schema="schema/org.mda4e.simulation.control.registercontroller.exsd"/>
+
+</plugin>

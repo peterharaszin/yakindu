@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Java Code Generator Examples
+Bundle-SymbolicName: com.yakindu.statechart.codegenerator.examples.java
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: YAKINDU.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: com.yakindu.statechart.codegenerator.java;bundle-version="1.1.0",
+ com.yakindu.statechart.model;bundle-version="1.1.0",
+ org.eclipse.swt;bundle-version="3.4.1",
+ org.eclipse.draw2d;bundle-version="3.4.1",
+ org.eclipse.emf.mwe.core;bundle-version="0.7.1",
+ org.eclipse.emf.mwe.utils;bundle-version="0.7.1",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
+ org.eclipse.xpand;bundle-version="0.7.1",
+ org.eclipse.xtend;bundle-version="0.7.1",
+ org.eclipse.xtend.typesystem.emf,
+ org.antlr.runtime;bundle-version="3.0.0",
+ org.eclipse.xtext;bundle-version="0.7.1",
+ com.ibm.icu;bundle-version="4.0.1",
+ org.eclipse.jface.text;bundle-version="3.5.0",
+ org.eclipse.core.runtime;bundle-version="3.5.0",
+ org.eclipse.jdt.core;bundle-version="3.5.0",
+ org.apache.log4j;bundle-version="1.2.15",
+ org.apache.commons.logging;bundle-version="1.0.4"

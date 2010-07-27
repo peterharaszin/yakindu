@@ -1,0 +1,157 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::Imports FOR Object» 
+	import java.util.Vector;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::Declarations FOR Object»
+	private String id;
+	private int priority;
+
+	private Guard guard;
+	private Vector signalTriggers = new Vector();
+	private TimeEvent timeTrigger;
+	private Action action;
+
+	private Node sourceNode;
+	private Node targetNode;
+
+	private Region commonAncestorRegion;
+	private Vector enclosingStatesToEnter;
+	private Vector enclosingStatesToLeave;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::Constructor FOR Object»
+	public Transition(String id, int priority, TimeEvent timeTrigger,
+			Vector signalTriggers, Guard guard, Action action,
+			Node sourceNode, Node targetNode) {
+		this.id = id;
+		this.priority = priority;
+
+		this.timeTrigger = timeTrigger;
+		if (signalTriggers != null) {
+			for(int i = 0; i < signalTriggers.size(); i++) {
+				this.signalTriggers.addElement(signalTriggers.elementAt(i));
+			}
+		}
+		this.guard = guard;
+		this.action = action;
+
+		this.sourceNode = sourceNode;
+		sourceNode.outgoingTransitions.addElement(this);
+		this.targetNode = targetNode;
+		targetNode.incomingTransitions.addElement(this);
+		
+		// compute common ancestor region
+		commonAncestorRegion = getCommonAncestorRegion(sourceNode, targetNode);
+		commonAncestorRegion.getStatechart().getTransitions().addElement(this);
+		// compute which enclosing compound states have to be entered or left, when taking the transition
+		enclosingStatesToEnter = getEnclosingStatesToEnter(targetNode, commonAncestorRegion);
+		enclosingStatesToLeave = getEnclosingStatesToLeave(sourceNode, commonAncestorRegion);
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::isTriggeredByMethod FOR Object»
+	protected boolean isTriggeredBy(Vector events) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::isTriggeredByMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::isTriggeredByMethodBody FOR Object»
+		return !disjoint(this.signalTriggers, events)
+				|| (timeTrigger != null && events.indexOf(timeTrigger) >= 0);
+	}
+	
+	private boolean disjoint(Vector triggers, Vector events) {
+		if(triggers == null || events == null) {
+			throw new NullPointerException();
+		}
+		for(int i = 0; i < triggers.size(); i++) {
+			if(events.indexOf(triggers.elementAt(i)) >= 0) {
+				return false;
+			}
+		}
+		return true;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::getEnclosingStatesToEnterMethod FOR Object»
+	private Vector getEnclosingStatesToEnter(Node targetNode,
+			Region commonAncestorRegion) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::getEnclosingStatesToEnterMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::getEnclosingStatesToEnterMethodBody FOR Object»
+		// compute all enclosing state that have to be entered
+		Vector enclosingStatesToEnter = new Vector();
+		Region targetRegion = targetNode.getOwningRegion();
+		while (targetRegion != commonAncestorRegion) {
+			CompoundState state = targetRegion.getOwningState();
+			enclosingStatesToEnter.addElement(state);
+			targetRegion = state.getOwningRegion();
+
+		}
+
+		Vector enclosingStatesToEnterReverse = new Vector();
+		for(int i = 0, j = enclosingStatesToEnter.size()-1; i < enclosingStatesToEnter.size(); i++, j--) {
+			enclosingStatesToEnterReverse.addElement(enclosingStatesToEnter.elementAt(j));
+		}
+		// ensure entering is done in reverse order
+														
+		return enclosingStatesToEnterReverse;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::getEnclosingStatesToLeaveMethod FOR Object»
+	private Vector getEnclosingStatesToLeave(Node sourceNode,
+			Region commonAncestorRegion) {
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::getEnclosingStatesToLeaveMethodBody»
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::getEnclosingStatesToLeaveMethodBody FOR Object»
+		// compute all enclosing compound states up to the ancestor region
+		Vector enclosingStatesToLeave = new Vector();
+		Region sourceRegion = sourceNode.getOwningRegion();
+		while (sourceRegion != commonAncestorRegion) {
+			CompoundState state = sourceRegion.getOwningState();
+			enclosingStatesToLeave.addElement(state);
+			sourceRegion = state.getOwningRegion();
+		}
+		return enclosingStatesToLeave;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::takeMethodBody FOR Object»
+		// leave all enclosing states from the souceNode's container up to
+		// the common ancestor region
+		for (int i = 0; i < enclosingStatesToLeave.size(); i++) {
+			CompoundState state = (CompoundState) enclosingStatesToLeave.elementAt(i);
+			state.shallowLeave();
+		}
+		sourceNode.leave();
+		«EXPAND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::postLeaveSourceNode FOR this»
+	
+		if (action != null) {
+			action.execute();
+		}
+
+		// enter all enclosing states from the common ancestor region to the
+		// targetNode's container
+		for (int i = 0; i < enclosingStatesToEnter.size(); i++) {
+			CompoundState state = (CompoundState) enclosingStatesToEnter.elementAt(i);
+			state.shallowEnter();
+		}
+		targetNode.enter();
+«ENDAROUND»

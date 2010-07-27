@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<feature
+      id="com.yakindu.sdk.feature"
+      label="YAKINDU Statechart Tools Source"
+      version="1.2.0.qualifier"
+      provider-name="YAKINDU.org">
+
+   <description url="http://www.yakindu.com">
+      Yakindu Feature
+including statemachine editor, simulator and code generator
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license>
+      YAKINDU Open Source Software User Agreement
+April 20, 2010
+YAKINDU Open Source Tools
+The YAKINDU Open Source Tools are licensed under the terms of
+the Eclipse Public License Version 1.0 (&quot;EPL&quot;). A copy of the
+EPL is provided with this Content and is also available at http://www.eclipse.org/legal/epl-v10.html.
+Applicable Licenses
+YAKINDU OPEN SOURCE TOOLS ARE BUILT UPON A NUMBER OF OTHER OPEN
+SOURCE TECHNOLOGIES AND PRODUCTS. THE ABOUTS, FEATURE LICENSES,
+AND FEATURE UPDATE LICENSES OF THESE TECHNOLOGIES AND PRODUCTS
+MAY REFER TO THE EPL OR OTHER LICENSE AGREEMENTS, NOTICES OR
+TERMS AND CONDITIONS. SOME OF THESE OTHER LICENSE AGREEMENTS
+MAY INCLUDE (BUT ARE NOT LIMITED TO):
+- Common Public License Version 1.0 (available at http://www.eclipse.org/legal/cpl-v10.html)
+- Apache Software License 1.1 (available at http://www.apache.org/licenses/LICENSE)
+- Apache Software License 2.0 (available at http://www.apache.org/licenses/LICENSE-2.0)
+- IBM Public License 1.0 (available at http://oss.software.ibm.com/developerworks/opensource/license10.html)
+- Metro Link Public License 1.00 (available at http://www.opengroup.org/openmotif/supporters/metrolink/license.html)
+- Mozilla Public License Version 1.1 (available at http://www.mozilla.org/MPL/MPL-1.1.html)
+IT IS YOUR OBLIGATION TO READ AND ACCEPT ALL SUCH TERMS AND CONDITIONS
+PRIOR TO USE OF THE CONTENT.
+   </license>
+
+   <url>
+      <update label="Yakindu Update Site" url="http://updates.yakindu.com/helios/daily"/>
+      <discovery label="GMF Update Site" url="http://download.eclipse.org/modeling/gmf/updates/releases/"/>
+      <discovery label="Galileo" url="http://download.eclipse.org/releases/galileo"/>
+      <discovery label="EMF Update Site" url="http://download.eclipse.org/modeling/emf/updates/"/>
+      <discovery label="Xtext Antlr Support" url="http://download.itemis.com/updates"/>
+      <discovery label="Eclipse Update Site" url="http://download.eclipse.org/eclipse/updates/3.5"/>
+      <discovery label="M2T Update Site" url="http://download.eclipse.org/modeling/m2t/updates/releases"/>
+   </url>
+
+   <includes
+         id="com.yakindu.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="com.yakindu.feature.source"
+         version="0.0.0"/>
+
+</feature>

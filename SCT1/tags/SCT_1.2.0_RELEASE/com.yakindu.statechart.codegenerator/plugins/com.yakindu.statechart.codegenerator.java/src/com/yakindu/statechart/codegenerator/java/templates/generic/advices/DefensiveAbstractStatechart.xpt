@@ -1,0 +1,130 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::StatechartClassBody FOR Object» 
+   	// marker to indicate that initialization is done
+	private boolean initialized = false;
+	
+	// marker to keep track if statechart was entered or not
+	private boolean entered = false;
+	
+   	«targetDef.proceed()» 
+   	
+   	protected void finalizeInitialization() {
+	 	assertNotInitialized();
+	  	
+	  	// sort regions by priority
+	  	assertRegionsSortedByPriority();
+	  	
+	  	for(Region region: regions){
+	   	 	region.finalizeInitialization();
+	  	}
+	  	
+	  	for(Transition transition: transitions){
+			transition.finalizeInitialization();
+		}
+	  	
+	  	initialized = true;
+	  	assertInitialized();
+	}
+	
+	private void assertRegionsSortedByPriority() {
+		// check regions are sorted by priority
+		List<Region> regionsCopy = new ArrayList<Region>();
+		regionsCopy.addAll(regions);
+		Collections.sort(regionsCopy, new Comparator<Region>() {
+			public int compare(Region o1, Region o2) {
+				return o1.getPriority() - o2.getPriority();
+			}
+		});
+		if(!regionsCopy.equals(regions)){
+			throw new IllegalArgumentException("Regions not sorted by priority");
+		}
+	}
+   	
+   	private void assertInitialized(){
+		if(!initialized){
+			throw new IllegalStateException("Statechart is not yet initialized");
+		}
+	}
+	
+	private void assertNotInitialized(){
+		if(initialized){
+			throw new IllegalStateException("Statechart was already initialized");
+		}
+	}
+	
+	private void assertEntered(){
+		if(!entered){
+			throw new IllegalStateException("Statechart is not yet entered");
+		}
+	}
+	
+	private void assertNotEntered(){
+		if(entered){
+			throw new IllegalStateException("Statechart was already entered");
+		}
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::Imports FOR Object»
+«targetDef.proceed()»
+import java.util.Collections;
+import java.util.Comparator;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::setEventMethodBody FOR Object»
+	assertInitialized();
+	assertEntered();
+	«targetDef.proceed()»
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::enterMethodBody FOR Object»
+	assertInitialized();
+	assertNotEntered();
+	«targetDef.proceed()»	    
+	entered = true;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::runCycleMethodBody FOR Object»
+	assertInitialized();
+	assertEntered();
+	«targetDef.proceed()»
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::leaveMethodBody FOR Object»
+    assertInitialized();
+   	assertEntered();	    
+  	«targetDef.proceed()»
+	entered = false;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::getRegionsMethodBody FOR Object»
+    // after initialization has been finalized, modification 
+    // of the nested regions list is no longer allowed	    
+    if(!initialized){
+	  return regions;
+	}
+	return Collections.unmodifiableList(regions);
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::AbstractStatechart::getTransitionsMethodBody FOR Object»
+    // after initialization has been finalized, modification 
+    // of the transitions list is no longer allowed	    
+    if(!initialized){
+	  return transitions;
+	}
+	return Collections.unmodifiableList(transitions);
+«ENDAROUND»

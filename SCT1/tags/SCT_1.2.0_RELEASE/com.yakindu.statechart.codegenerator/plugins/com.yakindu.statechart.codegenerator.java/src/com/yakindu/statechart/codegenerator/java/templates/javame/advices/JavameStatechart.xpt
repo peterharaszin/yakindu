@@ -1,0 +1,48 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::Statechart::Imports FOR Object» 
+	import java.util.Vector;
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::Statechart::TransitionInitialization FOR Transition»
+	Transition «getId()» = new Transition("«getId()»",«priority», «""-»
+	«REM» pass over id of time event, in case the transition is time triggered «ENDREM»
+	«IF isTimeTriggered()-»
+		«this.eContainer.getId()».TIMER«id.toString().toUpperCase()-»
+	«ELSE-»
+		null«""-»
+	«ENDIF-»
+	,«""-»
+	«REM» additionally pass ids of signal events, in case the transition is also signal triggered «ENDREM»
+	«IF isSignalTriggered()-»
+		new Vector() {{«""-»
+		«FOREACH getSignalTriggers() AS trigger-»
+			addElement(«((SignalEvent)trigger.event).identifier.toUpperCase()»);«""-»
+		«ENDFOREACH-» 
+		}}«""-»
+	«ELSE-»
+		null«""-»
+	«ENDIF-»
+	,«""-»
+	«EXPAND com::yakindu::statechart::codegenerator::java::templates::Statechart::GuardConstructorCall(getGuardExpression()) FOR (Statechart)eRootContainer-»
+	,«""-»  
+	«EXPAND com::yakindu::statechart::codegenerator::java::templates::Statechart::ActionConstructorCall(getActionExpression()) FOR (Statechart)eRootContainer-»
+	,«""-»
+	«this.sourceNode.getId()-»
+	,«""-»
+	«this.targetNode.getId()-»
+	);«""-»
+«ENDAROUND»

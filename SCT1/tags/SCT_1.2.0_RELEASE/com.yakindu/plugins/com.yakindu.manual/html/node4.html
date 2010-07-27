@@ -1,0 +1,959 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Statechart Modelling and Simulation</TITLE>
+<META NAME="description" CONTENT="Statechart Modelling and Simulation">
+<META NAME="keywords" CONTENT="compendium">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="compendium.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="compendium.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<A NAME="tex2html228"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/opt/local/share/lib/latex2html/icons/next.png"></A> 
+<A NAME="tex2html224"
+  HREF="compendium.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/opt/local/share/lib/latex2html/icons/up.png"></A> 
+<A NAME="tex2html218"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/opt/local/share/lib/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html226"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="file:/opt/local/share/lib/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html229"
+  HREF="node5.html">C-Code Generator</A>
+<B> Up:</B> <A NAME="tex2html225"
+  HREF="compendium.html">compendium</A>
+<B> Previous:</B> <A NAME="tex2html219"
+  HREF="node3.html">Installation</A>
+ &nbsp; <B>  <A NAME="tex2html227"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html230"
+  HREF="node4.html#SECTION00410000000000000000">The YAKINDU Perspective</A>
+<LI><A NAME="tex2html231"
+  HREF="node4.html#SECTION00420000000000000000">Example Step by Step</A>
+<UL>
+<LI><A NAME="tex2html232"
+  HREF="node4.html#SECTION00421000000000000000">Example State Machine</A>
+<LI><A NAME="tex2html233"
+  HREF="node4.html#SECTION00422000000000000000">Creating a new Project</A>
+<LI><A NAME="tex2html234"
+  HREF="node4.html#SECTION00423000000000000000">Defining a State Machine</A>
+<LI><A NAME="tex2html235"
+  HREF="node4.html#SECTION00424000000000000000">Checking the State Machine</A>
+<LI><A NAME="tex2html236"
+  HREF="node4.html#SECTION00425000000000000000">Project type and dependencies</A>
+<LI><A NAME="tex2html237"
+  HREF="node4.html#SECTION00426000000000000000">Create check files</A>
+<LI><A NAME="tex2html238"
+  HREF="node4.html#SECTION00427000000000000000">Editing check files</A>
+<LI><A NAME="tex2html239"
+  HREF="node4.html#SECTION00428000000000000000">Simulating a State Machine</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html240"
+  HREF="node4.html#SECTION00430000000000000000">Using Example Projects</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00400000000000000000">
+Statechart Modelling and Simulation</A>
+</H1>
+
+<P>
+Now follows a quick introduction into the YAKINDU tools and the usage. For a
+deeper understanding you can read the later chapters.
+
+<H1><A NAME="SECTION00410000000000000000">
+The YAKINDU Perspective</A>
+</H1>
+
+<DIV ALIGN="CENTER"><A NAME="fig:perspectiveSelection"></A><A NAME="587"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.1:</STRONG>
+Selecting the YAKINDU Perspective</CAPTION>
+<TR><TD>0.3
+  <DIV ALIGN="CENTER">
+
+</DIV><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img11.png"
+ ALT="\includegraphics[width=0.3\textwidth]{./Pictures/yakinduPerspectiveSelection}"></TD></TR>
+</TABLE>
+</DIV>
+The YAKINDU tools comes with an easy perspective for quick starting and using it.
+The perspective can be activate by clicking on <SPAN  CLASS="textbf">Window</SPAN> <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+
+<SPAN  CLASS="textbf">Open Perspective</SPAN> <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ <SPAN  CLASS="textbf">Other</SPAN> and selecting the YAKINDU
+perspective (Figure <A HREF="#fig:perspectiveSelection">3.1</A>). After activation the screen
+looks like figure <A HREF="#fig:perspective">3.2</A>.
+
+<P>
+In the middle the main view on screen is the editor. It is still empty, but you
+will use it most often. On the left is also a default eclipse view, the project
+explorer. You will need it for the next step. The other views will be described
+later, when they are needed.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:perspective"></A><A NAME="588"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.2:</STRONG>
+The YAKINDU Perspective</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img12.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/perspective}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H1><A NAME="SECTION00420000000000000000">
+Example Step by Step</A>
+</H1>
+
+<P>
+When YAKINDU is properly installed, we can start a small example project. This
+example project gives an idea of how powerful the YAKINDU tool-chain is. It
+contains a visual editor, a semantic and logic verification check, a simulator
+unit and a number of code generators.
+
+<P>
+To present the visual editor, the check mechanism and the simulator of the
+YAKINDU tool-chain, an example was chosen, that is simple enough to give an
+impression of the usage but is not to far-fetched.
+
+<P>
+
+<H2><A NAME="SECTION00421000000000000000">
+Example State Machine</A>
+</H2>
+
+<P>
+The idea is to have a state machine, that represents a staircase lighting. This
+staircase lighting is started with a key-press and stops after 30 seconds.
+
+<P>
+The state machine itself consists of two states: &#8222;Lights On'' and &#8222;Lights
+Off''. The standard state within the state machine is &#8222;Lights Off'' and is
+entered from start-up (the so called initial state). When an occupant enters the
+staircase and presses the lighting button, a &#8222;keypress'' event is generated
+which starts the transition to the &#8222;Lights On'' state.
+
+<P>
+On entering the state &#8222;Lights On'', the staircase lighting is turned on. When
+the retention period has expired (after 30 seconds), the &#8222;Lights On'' state is
+left with a transition to the state &#8222;Lights Off'' and the lighting is turned off
+again.
+
+<P>
+
+<H2><A NAME="SECTION00422000000000000000">
+Creating a new Project</A>
+</H2>
+
+<P>
+When everything is set up, your Eclipse editor should look similar to this:
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:NewProject"></A><A NAME="589"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.3:</STRONG>
+Creation of a new project</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+</DIV><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img13.png"
+ ALT="\includegraphics[width=0.8\textwidth]{./Pictures/NewProject}"></TD></TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN="CENTER"><A NAME="fig:wizard"></A><A NAME="590"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.4:</STRONG>
+Wizard to create a new State Machine</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER">
+
+</DIV><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img14.png"
+ ALT="\includegraphics[width=0.5\textwidth]{./Pictures/Wizard}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+To start a new project, open the menu (<SPAN  CLASS="textbf">File<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ New<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+
+Project</SPAN>) and create a new Java Project. In our example, the project is called
+&#8222;<SPAN  CLASS="textit">Example</SPAN>''.  However, this procedure only creates a default Java
+project. For simplicity you should deny the question for changing to Java
+perspective, because we won't use anything from Java. 
+
+<DIV ALIGN="CENTER"><A NAME="fig:wizard2"></A><A NAME="591"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.5:</STRONG>
+Wizard to create a new state machine domain model</CAPTION>
+<TR><TD>0.3
+<DIV ALIGN="CENTER">
+
+</DIV><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img15.png"
+ ALT="\includegraphics[width=0.3\textwidth]{./Pictures/Wizard2}"></TD></TR>
+</TABLE>
+</DIV>
+To create a <SPAN  CLASS="textbf">state machine model</SPAN> to this environment, right-click the
+<SPAN  CLASS="textbf">src</SPAN> directory icon and open the select wizard at
+<SPAN  CLASS="textbf">New<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ Other</SPAN>. Here you have to select <SPAN  CLASS="textbf">state machine
+Diagram</SPAN> from the <SPAN  CLASS="textbf">YAKINDU</SPAN> folder as shown on figure <A HREF="#fig:wizard">3.4</A>.
+
+<P>
+Figure <A HREF="#fig:wizard2">3.5</A> displays the <SPAN  CLASS="textit">New Statemachine Diagram</SPAN> window,
+in which the name of the state machine model is set. In our example, the name is
+changed from <SPAN  CLASS="textbf">default.statemachine</SPAN> to staircase.statemachine.
+
+<P>
+The wizard has then created two sources: the <SPAN  CLASS="textbf">staircase.statemachine</SPAN>
+and the <SPAN  CLASS="textbf">staircase. statemachine_diagram</SPAN>. The state machine itself
+is represented as an XML-file in <SPAN  CLASS="textbf">staircase. statemachine</SPAN> and the
+visual representation of the state machine can be found in the
+<SPAN  CLASS="textbf">staircase.statemachine_diagram</SPAN> file.
+
+<P>
+Now you should have a new visual editors view to create a state machine as shown
+in figure <A HREF="#fig:YEditor">3.6</A>. Here you have all elements to create a state machine
+from bottom up in the elements menu. The elements that are important for our
+small project are <IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img17.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/Region}">,
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img18.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/State}">,
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img19.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/Transition}"> and
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img20.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/InitialState}">.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:YEditor"></A><A NAME="592"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.6:</STRONG>
+YAKINDU State Machine editor</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img16.png"
+ ALT="\includegraphics[width=\textwidth]{./Pictures/YakinduEditor_1}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00423000000000000000">
+Defining a State Machine</A>
+</H2>
+
+<P>
+To start with the visual editor you firstly need a region, in which the states of
+the state machine reside. Therefore you need to click the
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img17.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/Region}"> icon and draw a region on the
+empty plain. When you have placed the last corner of the region and you release
+the mouse button, a new region in light green appears. At the properties area,
+the priority of this region is highlighted and should be set to a value. As we do
+not have any concurrent regions in this example, the priority is not important
+and could be set to any valid integer value (10 in our example). If you use more
+than one region, the priority specifies the processing order in which the states
+actions and the states transitions are processed.
+
+<P>
+To set the priority of the region afterwards, you can open the properties view.
+If you cannot find it in your eclipse perspective, you can open it by clicking
+<SPAN  CLASS="textbf">Window<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ Show View<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ Others</SPAN> and in that menu:
+<SPAN  CLASS="textbf">General<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ Properties</SPAN>.
+
+<P>
+Now as you have created a region, you need a starting point of your state
+machine. This starting point is called <SPAN  CLASS="textbf">initial state</SPAN> and can also be
+found as an icon (<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img20.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/InitialState}">) in the
+elements menu. As explained at the beginning of this chapter, the two states
+<SPAN  CLASS="textbf">LightOn</SPAN> and <SPAN  CLASS="textbf">LightOff</SPAN> should be installed within the state
+machine region.
+
+<P>
+To create a state, you have to select the
+(<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img18.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/State}">) element and then open the area
+within the region plain. When the state outline is created, the first line within
+the properties area is highlighted and needs to be filled by the name of this
+state (e.g. LightOff). The name of a state has to be unique within a region.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:StateCreation"></A><A NAME="593"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.7:</STRONG>
+Creation of the <SPAN  CLASS="textbf">Initial</SPAN>, 
+<SPAN  CLASS="textbf">LightOff</SPAN> and <SPAN  CLASS="textbf">LightOn</SPAN> state</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img21.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/StateCreation_1}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+After the creation and naming of the states, the actions (<SPAN CLASS="MATH"><IMG
+ WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$ &lt;entry&gt;$"></SPAN>
+, <SPAN CLASS="MATH"><IMG
+ WIDTH="64" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$ &lt;do&gt;$"></SPAN>
+,
+<SPAN CLASS="MATH"><IMG
+ WIDTH="77" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ &lt;exit&gt;$"></SPAN>
+) should be created. In our case, the only action that should be
+performed is switching the light on or off. The status of the light is
+represented by a variable that could hold one of the two values 1 or 0. This
+variable needs to be created in the <SPAN  CLASS="textbf">State Chart Interface</SPAN>. Within this
+view, you can right-click on <SPAN  CLASS="textbf">Variables</SPAN>, where you get a new window to
+specify the variable that should be created (refer figure
+<A HREF="#fig:CreateVariable">3.8</A>). Here you add the variable name (<SPAN  CLASS="textit">Light</SPAN>), the
+port, the IO-type and the data type. In our example all other information except
+for the variable name do not have to be changed.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:CreateVariable"></A><A NAME="594"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.8:</STRONG>
+Creating a variable in the <SPAN  CLASS="textit">State Chart Interface</SPAN></CAPTION>
+<TR><TD>0.4
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img25.png"
+ ALT="\includegraphics[width=0.4\textwidth]{./Pictures/CreateVariable}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Then you add the action <TT>Light=0;</TT> into the <SPAN CLASS="MATH"><IMG
+ WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$ &lt;entry&gt;$"></SPAN>
+ line within the
+states properties area (either within the Diagram or within the
+<SPAN  CLASS="textbf">Properties</SPAN> view). This definition creates a new action, that is
+performed whenever the state <SPAN  CLASS="textbf">LightOff</SPAN> is entered. So when the
+unconditioned state transition from the <SPAN  CLASS="textbf">initial state</SPAN> to the
+<SPAN  CLASS="textbf">LightOff</SPAN> state is performed, the internal variable <SPAN  CLASS="textit">Light</SPAN> is set
+to zero. The same takes place, when the state <SPAN  CLASS="textit">LightOff</SPAN> is entered
+through a transition from any other state.
+
+<P>
+The state <SPAN  CLASS="textbf">LightOn</SPAN> is created in the same way, except that the action is
+set to <TT>Light=1;</TT>.
+
+<P>
+To create a transition between the <SPAN  CLASS="textbf">Initial State</SPAN> and the
+<SPAN  CLASS="textbf">LightOff</SPAN> state, you choose the
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img19.png"
+ ALT="\includegraphics[height=12pt]{./Pictures/Transition}"> element and connect the
+<SPAN  CLASS="textbf">Initial State</SPAN> and the <SPAN  CLASS="textbf">LightOff</SPAN> state. Every transition claims
+an <SPAN  CLASS="textbf">expression</SPAN>, when this transition should be executed.
+
+<P>
+An expression can consist of one or more <SPAN  CLASS="textit">triggers</SPAN>, <SPAN  CLASS="textit">guard
+operations</SPAN> and <SPAN  CLASS="textit">actions</SPAN>, which can also be mixed. Additionally a
+transition must have a priority, to define the order, in which the expressions of
+different, concurrent transitions are processed.
+
+<P>
+In our example, the transition between the <SPAN  CLASS="textbf">Initial state</SPAN> and the
+<SPAN  CLASS="textbf">LightOff</SPAN> state do not need any expression, as this transition has no
+condition. When the expression area of a transition is left blank, the expression
+is represented by an asterisk (*).
+
+<P>
+The transition between <SPAN  CLASS="textbf">LightOff</SPAN> and <SPAN  CLASS="textbf">LightOn</SPAN> is performed, if
+the trigger <SPAN  CLASS="textit">keypress</SPAN> was received. Therefore a new event has to be
+implemented in the <SPAN  CLASS="textit">State Chart Interface</SPAN> (refer also to figure
+<A HREF="#fig:CreateVariable">3.8</A>). Here you add an event that can be used as a trigger
+within a transition expression. Implementing a trigger with a transition needs
+only the trigger name as the expression string (<SPAN  CLASS="textit">keypress</SPAN>).
+
+<P>
+To specify the transition from <SPAN  CLASS="textbf">LightOn</SPAN> to <SPAN  CLASS="textbf">LightOff</SPAN> after 30
+seconds, you use the keyword <!-- MATH
+ $after(<duration>s)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="191" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img26.png"
+ ALT="$ after(&lt;duration&gt;s)$"></SPAN>
+ within the transition
+expression string. The <SPAN  CLASS="textit">after()</SPAN> expression switches to the target state
+when the specified time has been expired.
+
+<P>
+So in the end your state machine looks like in figure
+<A HREF="#fig:statemachineFinish">3.9</A>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:statemachineFinish"></A><A NAME="595"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.9:</STRONG>
+Complete State Machine (State Machine Diagram Editor)</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img27.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/statemachineFinish_1}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00424000000000000000">
+Checking the State Machine</A>
+</H2>
+The state chart is very common and it is possible to model things, which doesn't
+make sense for your target platform or you want to have some special naming
+conventions. We will check now, that every name of a state is at least eight
+character long. But first we have to prepare our Project for code completion
+within checks. Later on we can add a new check file and enter the checks.
+
+<P>
+
+<H2><A NAME="SECTION00425000000000000000">
+Project type and dependencies</A>
+</H2>
+For this steps it is neccessary, that the model is inside an Java project. If
+it's not yet, you can create a new project beside the first, copy the model and
+change the target directories (see chapters <A HREF="node5.html#sec:CCodeGenerator">4</A> and
+<A HREF="node6.html#sec:JavaCodeGenerator">5</A>)  for generated files, so they point to the first.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:switchToPdeProject"></A><A NAME="596"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.10:</STRONG>
+Add plugin development nature to your java project</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img28.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/switch_to_pde_project}"></TD></TR>
+</TABLE>
+</DIV>
+We will add the plugin development nature from eclipse to the project by
+selecting the project, click with the right button and select <SPAN  CLASS="textbf">Configure</SPAN>
+<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ <SPAN  CLASS="textbf">Convert Projects to Plugin Projects...</SPAN> (Picture
+<A HREF="#fig:switchToPdeProject">3.10</A>). Your project is already selected in the next
+window and you can press Finish to complete. As a result some new files are
+created in your project. We only need the <SPAN  CLASS="textbf">MANIFEST.MF</SPAN> inside the folder
+<SPAN  CLASS="textbf">META-INF</SPAN>. Open this file by double-click and add some dependencies (See
+picture <A HREF="#fig:manifest">3.11</A>). This is done by clicking on <SPAN  CLASS="textbf">Add</SPAN> and
+selecting some plugins. If you design for codegeneration the plugin
+<SPAN  CLASS="textit">com.yakindu.statechart.codegenerator.java</SPAN> or
+<SPAN  CLASS="textit">com.yakindu...c</SPAN> are the one of your choice. For platform independent
+modeling you can select <SPAN  CLASS="textit">com.yakindu.statechart.model.expressions</SPAN>.
+
+<DIV ALIGN="CENTER"><A NAME="fig:manifest"></A><A NAME="598"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.11:</STRONG>
+Add dependencies to your project</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img29.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/manifest}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Now the file can be saved and closed. It will not be neccessary to edit this file
+later, except you decide to use an additional codegenerator.
+
+<P>
+
+<H2><A NAME="SECTION00426000000000000000">
+Create check files</A>
+</H2>
+All user defined check files reside in a folder names checks. Within this folder
+all <SPAN  CLASS="textbf">.chk</SPAN>-files are evaluated and considered for checking. The format of
+check files is described in the reference of eclipse modeling project and the old
+openArchitectureWare-project<A NAME="tex2html25"
+  HREF="footnode.html#foot482"><SUP><SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">1</SPAN></SUP></A>.
+
+<P>
+Create a new folder in the root of your project by right-click on
+<SPAN  CLASS="textbf">Examples</SPAN>  and selecting <SPAN  CLASS="textbf">New</SPAN><!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+<SPAN  CLASS="textbf">Folder</SPAN>. The
+folder must be named <SPAN  CLASS="textit">checks</SPAN> and the other options can be ignored. Simply
+finish and create your check files inside this folder.
+
+<P>
+Check files are created by selecting the folder ''checks'' and choosing in the
+drop-down-menu the entry <SPAN  CLASS="textbf">New</SPAN><!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+<SPAN  CLASS="textbf">Other</SPAN>. In the next
+window the entry <SPAN  CLASS="textbf">Check file</SPAN> is found inside the category
+<SPAN  CLASS="textbf">Xtend</SPAN>(see Figure <A HREF="#fig:newCheckFile">3.12</A>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:newCheckFile"></A><A NAME="599"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.12:</STRONG>
+Add a new check file to your project</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img30.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/newoAWCheckFile}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00427000000000000000">
+Editing check files</A>
+</H2>
+The syntax of check files is described in the oAW-Reference, but the short
+introduction here is enough for the first experience. If you try the code
+completion (<TT>Strg+space</TT>) the first time in the editor, you are asked to
+add the Xtend nature to your project (See figure <A HREF="#fig:addOAWNature">3.13</A>). Answer
+with yes, to get code completion. 
+<DIV ALIGN="CENTER"><A NAME="fig:addOAWNature"></A><A NAME="600"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.13:</STRONG>
+Add the Xtend nature to your project for code completion</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img31.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/addoAWNature}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Every check file starts with an <TT>import</TT> of the required and used models.
+For the statemachine it is sufficient to add the model <TT>statemachine</TT>.
+After this we want to add a check for a state. This is done by defining a
+<TT>context</TT> for the model element <TT>State</TT> and the severity of
+<TT>WARNING</TT> or <TT>ERROR</TT>. Because short names are not nice and we
+spelling names we define an error with the error message ''State names must have
+at least 8 characters''. After a colon the boolean expression folows. The
+expression defines the default, not the error. In our case names are longer or
+equals to eight characters. In figure <A HREF="#fig:nameLengthCheck">3.14</A> the result of
+''state.chk'' is printed.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:nameLengthCheck"></A><A NAME="601"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.14:</STRONG>
+An example check file for names longer 
+than eigth characters</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img32.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/nameLengthCheck}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+After saving the file and opening the statechart again, the statechart is
+validated after some seconds. As a result you can see a red cross in the upper
+right corner of state LightOn. That's because we added a check, that state names
+must have at least eight characters and LightOn needs only seven characters. If
+you put the mouse above the red cross and wait some seconds, the error message is
+shown in a small box.
+
+<P>
+
+<H2><A NAME="SECTION00428000000000000000"></A>
+<A NAME="sec:simulatingStateMachine"></A>
+<BR>
+Simulating a State Machine
+</H2>
+When the state machine diagram is completed, you can start a simulation session,
+to check, whether your new state machine is working correctly.
+
+<P>
+To start a simulation you have to create a new <SPAN  CLASS="textit">run</SPAN> configuration, as
+shown in figure <A HREF="#fig:SimulationStart">3.15</A>. Choose the entry <SPAN  CLASS="textbf">Run
+Configuration ...</SPAN> to open the configuration dialog.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:SimulationStart"></A><A NAME="602"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.15:</STRONG>
+Starting the Simulation creation dialog</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img33.png"
+ ALT="\includegraphics[width=0.4\textwidth]{./Pictures/startSimulation_1}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+In this dialog you add a new <SPAN  CLASS="textbf">YAKINDU Simulation</SPAN> called <SPAN  CLASS="textit">Example</SPAN>
+by clicking the 'New' button in the upper left corner. Then the configuration
+dialog is presented. After choose your <SPAN  CLASS="textit">Example</SPAN> project and the staircase
+state machine as your model file the dialog looks like figure
+<A HREF="#fig:SimulationCreation">3.16</A>. As your simulation engine, please choose
+<SPAN  CLASS="textit">YAKINDU Statechart Simulator</SPAN>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:SimulationCreation"></A><A NAME="603"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.16:</STRONG>
+Dialog to create a new simulation environment</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img34.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/SimulationCreation}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+When you click the <SPAN  CLASS="textbf">Run</SPAN> button in the lower right corner, you start the
+simulation. To rerun the simulation later, you find an entry <SPAN  CLASS="textit">Example</SPAN> in
+your <SPAN  CLASS="textbf">Run</SPAN> configuration.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:runLater"></A><A NAME="604"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.17:</STRONG>
+Restart a simulation in the menu</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img35.png"
+ ALT="\includegraphics[width=0.4\textwidth]{./Pictures/runLater_1}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+On Simulation start-up make sure, that the debug view is open (refer figure
+<A HREF="#fig:runningSim_1">3.18</A>). In this view, the simulation process can be started,
+stopped and paused. Additionally the simulation can be used in single step modus.
+To activate the single step modus, the simulation must be in the pause position.
+When a single step should be performed, the single step button can be pressed.
+The advantage in this modus is, that you can set the input parameter according to
+your simulation scenario and perform the next step, when you are done with that.
+To be able to change the events and variables, you must have started the
+simulation explicit by a click to the run button in the debug view, or by
+clicking on the single step button.
+
+<P>
+To be able to interact with the simulation by the input values, open the
+<SPAN  CLASS="textbf">YAKINDU Statemachine View</SPAN>. This view can be found in the main menu under
+<SPAN  CLASS="textbf">Window</SPAN><!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ <SPAN  CLASS="textbf">Show View</SPAN><!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ <SPAN  CLASS="textbf">Other...</SPAN>.
+In the appearing menu choose <SPAN  CLASS="textbf">YAKINDU Statemachine</SPAN>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:runningSim_1"></A><A NAME="605"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.18:</STRONG>
+Running a simulation</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img36.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/runningSim_1_1}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+In our example project, the state machine starts with a transition from the
+initial state to the <SPAN  CLASS="textit">LightOff</SPAN> state. This state transition is visualized
+by a red arrow. During a simulation an active state is highlighted in red.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:runningSim_2"></A><A NAME="606"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.19:</STRONG>
+Change trigger value during simulation</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img37.png"
+ ALT="\includegraphics[width=0.4\textwidth]{./Pictures/runningSim_2}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+After the active state has changed into <SPAN  CLASS="textit">LightOff</SPAN>, this state can only be
+left by a transition to <SPAN  CLASS="textit">LightOn</SPAN>. The condition expression is set to the
+trigger <SPAN  CLASS="textit">keypress</SPAN>. This trigger can be created in the YAKINDU
+Statemachine View during simulation time.  To simulate a keypress, just click the
+''fire'' button near the <SPAN  CLASS="textit">keypress</SPAN> event in Statemachine view. In this
+case, the value changes and the transition is followed. After the transition has
+been performed, the trigger for the transition is reset.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:runningSim_3"></A><A NAME="607"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.20:</STRONG>
+Trigger <SPAN  CLASS="textit">keypress</SPAN> was activated and
+the state <SPAN  CLASS="textit">LightOn</SPAN> has been reached</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img38.png"
+ ALT="\includegraphics[width=0.7\textwidth]{./Pictures/runningSim_3}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The same procedure is valid to set a value of a variable. The difference between
+a variable and a trigger is that a trigger value is reset to zero as soon as the
+trigger has taken effect, e.g. a transition was successful. A variable value is
+only changed when it is actively changed by the user or an action e.g. in
+<SPAN CLASS="MATH"><IMG
+ WIDTH="90" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$ &lt;entry&gt;$"></SPAN>
+ <SPAN CLASS="MATH"><IMG
+ WIDTH="64" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$ &lt;do&gt;$"></SPAN>
+ or <SPAN CLASS="MATH"><IMG
+ WIDTH="77" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ &lt;exit&gt;$"></SPAN>
+.
+
+<P>
+
+<H1><A NAME="SECTION00430000000000000000"></A>
+<A NAME="sec:exampleProjects"></A>
+<BR>
+Using Example Projects
+</H1> 
+
+<P>
+Some example projects are included in the YAKINDU release. They can be installed
+by creating the <SPAN  CLASS="textbf">Statemachine example project</SPAN>. This is done by selecting
+<SPAN  CLASS="textbf">File</SPAN> <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ <SPAN  CLASS="textbf">New</SPAN> <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+ <SPAN  CLASS="textbf">Statemachine
+example project</SPAN>. This Wizard (see Figure <A HREF="#fig:exampleWizard">3.21</A>) creates after
+all three new projects in your workspace, called ''Safe'', ''StaircaseLighting''
+and ''TrafficLight''. You can read a short description of them, if you select
+one. After you click finish the new projects are listed in your project explorer.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:exampleWizard"></A><A NAME="608"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.21:</STRONG>
+The state machine examples</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img39.png"
+ ALT="\includegraphics[width=0.6\textwidth]{./Pictures/examplesWizard}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Taking a deeper look at the files inside the examples (Figure
+<A HREF="#fig:easyExamples">3.22</A>), the two projects Safe and StaircaseLighting contain only
+two files. The <SPAN  CLASS="textit">.statemachine</SPAN> file contains the model of your state
+machine, and the <SPAN  CLASS="textit">.statemachine<SPAN ID="txt577"> </SPAN>diagram</SPAN> file is for
+modelling. Both files are necessary to simulate and visualize the simulation. If
+no visualization is needed, the model themself is enough. How to simulate is
+described in section <A HREF="#sec:simulatingStateMachine">3.2.8</A>.
+
+<P>
+The files inside the third project, the TrafficLight model, includes also model
+files inside the model directory, but also an workflow under workflow and an
+complex simulation environment for practical usage with a microcontroller. This
+set up and handling is described in the next section <A HREF="node5.html#sec:CCodeGenerator">4</A>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:easyExamples"></A><A NAME="610"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.22:</STRONG>
+Example projects and files inside</CAPTION>
+<TR><TD><IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img40.png"
+ ALT="\includegraphics[width=0.3\textwidth]{./Pictures/easyExamples}">
+<IMG
+ ALIGN="BOTTOM" BORDER="0" SRC="img41.png"
+ ALT="\includegraphics[width=0.3\textwidth]{./Pictures/complexExample}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Now we will start with a short hands-on example to demonstrate how development is
+done and what especially the elements and views are for. This step is orthogonal
+to-the-ready to use examples in this section.
+
+<P>
+
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html228"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="file:/opt/local/share/lib/latex2html/icons/next.png"></A> 
+<A NAME="tex2html224"
+  HREF="compendium.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/opt/local/share/lib/latex2html/icons/up.png"></A> 
+<A NAME="tex2html218"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/opt/local/share/lib/latex2html/icons/prev.png"></A> 
+<A NAME="tex2html226"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="file:/opt/local/share/lib/latex2html/icons/contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html229"
+  HREF="node5.html">C-Code Generator</A>
+<B> Up:</B> <A NAME="tex2html225"
+  HREF="compendium.html">compendium</A>
+<B> Previous:</B> <A NAME="tex2html219"
+  HREF="node3.html">Installation</A>
+ &nbsp; <B>  <A NAME="tex2html227"
+  HREF="node1.html">Contents</A></B> </DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Benjamin Schwertfeger
+2010-07-26
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<toc label="Yakindu">
+	<topic label="Overview" href="html/index.html">
+  </topic><topic label="Contents" href="html/node1.html">
+  </topic><topic label="Overview" href="html/node2.html">
+  <topic label="YAKINDU Statechart Tools" href="html/node2.html#SECTION00210000000000000000"/>
+  <topic label="YAKINDU and Eclipse" href="html/node2.html#SECTION00211000000000000000"/>
+  <topic label="Status, Warranty and License" href="html/node2.html#SECTION00212000000000000000"/>
+  <topic label="Eclipse Public License" href="html/node2.html#SECTION00213000000000000000"/>
+  <topic label="Tool architecture" href="html/node2.html#SECTION00214000000000000000"/>
+  </topic><topic label="Installation" href="html/node3.html">
+  <topic label="Eclipse Installation" href="html/node3.html#SECTION00310000000000000000"/>
+  <topic label="Installing the YAKINDU-Plugins" href="html/node3.html#SECTION00320000000000000000"/>
+  <topic label="Installing from Zip" href="html/node3.html#SECTION00330000000000000000"/>
+  </topic><topic label="Statechart Modelling and Simulation" href="html/node4.html">
+  <topic label="The YAKINDU Perspective" href="html/node4.html#SECTION00410000000000000000"/>
+  <topic label="Example Step by Step" href="html/node4.html#SECTION00420000000000000000"/>
+  <topic label="Example State Machine" href="html/node4.html#SECTION00421000000000000000"/>
+  <topic label="Creating a new Project" href="html/node4.html#SECTION00422000000000000000"/>
+  <topic label="Defining a State Machine" href="html/node4.html#SECTION00423000000000000000"/>
+  <topic label="Checking the State Machine" href="html/node4.html#SECTION00424000000000000000"/>
+  <topic label="Project type and dependencies" href="html/node4.html#SECTION00425000000000000000"/>
+  <topic label="Create check files" href="html/node4.html#SECTION00426000000000000000"/>
+  <topic label="Editing check files" href="html/node4.html#SECTION00427000000000000000"/>
+  <topic label="Simulating a State Machine" href="html/node4.html#SECTION00428000000000000000"/>
+  <topic label="Using Example Projects" href="html/node4.html#SECTION00430000000000000000"/>
+  </topic><topic label="C-Code Generator" href="html/node5.html">
+  <topic label="Introduction" href="html/node5.html#SECTION00510000000000000000"/>
+  <topic label="Example Scenario" href="html/node5.html#SECTION00520000000000000000"/>
+  <topic label="Starting the workflow" href="html/node5.html#SECTION00530000000000000000"/>
+  <topic label="Code Integration into an Existing Project" href="html/node5.html#SECTION00540000000000000000"/>
+  <topic label="State Machine Access" href="html/node5.html#SECTION00550000000000000000"/>
+  <topic label="Operating System and Drivers for the Example Device" href="html/node5.html#SECTION00560000000000000000"/>
+  </topic><topic label="Java-Code Generator" href="html/node6.html">
+  <topic label="Introduction" href="html/node6.html#SECTION00610000000000000000"/>
+  <topic label="Setting Up The Example Project" href="html/node6.html#SECTION00620000000000000000"/>
+  <topic label="Generating Source Code" href="html/node6.html#SECTION00630000000000000000"/>
+  <topic label="Create Xtend Project" href="html/node6.html#SECTION00631000000000000000"/>
+  <topic label="Manage Dependencies" href="html/node6.html#SECTION00632000000000000000"/>
+  <topic label="Create MWE Workflow File" href="html/node6.html#SECTION00633000000000000000"/>
+  <topic label="Execute MWE Workflow" href="html/node6.html#SECTION00634000000000000000"/>
+  <topic label="The Generated Source Code" href="html/node6.html#SECTION00640000000000000000"/>
+  <topic label="Integrating Generated Java Code" href="html/node6.html#SECTION00650000000000000000"/>
+  </topic><topic label="UML Transformation" href="html/node7.html">
+  <topic label="Introduction" href="html/node7.html#SECTION00710000000000000000"/>
+  <topic label="UML2 model" href="html/node7.html#SECTION00720000000000000000"/>
+  <topic label="The example project" href="html/node7.html#SECTION00730000000000000000"/>
+  <topic label="How does it work" href="html/node7.html#SECTION00740000000000000000"/>
+  <topic label="Name mapping" href="html/node7.html#SECTION00741000000000000000"/>
+  <topic label="New elements" href="html/node7.html#SECTION00742000000000000000"/>
+  <topic label="Limitations" href="html/node7.html#SECTION00743000000000000000"/>
+  <topic label="Transformation Cartridge" href="html/node7.html#SECTION00744000000000000000"/>
+  <topic label="Extending an UML2 state machine" href="html/node7.html#SECTION00750000000000000000"/>
+  </topic><topic label="Dynamical Systems Modeler (DAMOS)" href="html/node8.html">
+  </topic><topic label="About this document ..." href="html/node9.html">
+  </topic><topic label="Contents" href="html/node1.html">
+</topic>
+</toc>

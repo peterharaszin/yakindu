@@ -1,0 +1,34 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT Expression Language
+Bundle-Vendor: YAKINDU.org
+Bundle-SymbolicName: com.yakindu.statechart.model.expressions;singleton:=true
+Bundle-ActivationPolicy: lazy
+Bundle-Version: 1.1.0.qualifier
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ de.itemis.xtext.antlr;bundle-version="1.0.0";resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: com.yakindu.statechart.model.expressions,
+ com.yakindu.statechart.model.expressions.services,
+ com.yakindu.statechart.model.expressions.parseTreeConstruction,
+ com.yakindu.statechart.model.expressions.validation,
+ com.yakindu.statechart.model.expressions.builder,
+ com.yakindu.statechart.model.expressions.runtime,
+ com.yakindu.statechart.model.expressions.statechartexpressions,
+ com.yakindu.statechart.model.expressions.statechartexpressions.impl,
+ com.yakindu.statechart.model.expressions.statechartexpressions.util,
+ com.yakindu.statechart.model.expressions.parser.antlr,
+ com.yakindu.statechart.model.expressions.parser.antlr.internal
+

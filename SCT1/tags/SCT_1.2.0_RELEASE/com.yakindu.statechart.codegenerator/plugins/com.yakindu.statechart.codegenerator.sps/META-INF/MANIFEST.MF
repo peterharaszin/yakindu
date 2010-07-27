@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: YAKINDU SCT PLC Code Generator
+Bundle-SymbolicName: com.yakindu.statechart.codegenerator.sps;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: YAKINDU.org
+Bundle-Localization: plugin
+Export-Package: com.yakindu.statechart.codegenerator.sps.extensions,
+ com.yakindu.statechart.codegenerator.sps.workflow
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.mda4e.statemachine.model;bundle-version="1.1.0";visibility:=reexport,
+ org.antlr.runtime;bundle-version="3.0.0",
+ org.eclipse.emf.mwe.core;bundle-version="0.7.1",
+ org.apache.commons.logging;bundle-version="1.1.1"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

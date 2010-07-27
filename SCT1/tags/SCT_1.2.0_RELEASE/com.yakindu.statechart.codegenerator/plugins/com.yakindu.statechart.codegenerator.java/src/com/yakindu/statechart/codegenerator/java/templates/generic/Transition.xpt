@@ -1,0 +1,239 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«DEFINE Root FOR Object»
+	«FILE getLibraryPackagePath() + "Transition.java"»
+package «getLibraryPackage()»;
+
+
+«EXPAND Imports»
+
+/**
+ * Representation of a transition. A transition always connects a source node to
+ * a target node. It may react on a time trigger and/or multiple signal triggers
+ * and may be additionally guarded. In case a transition is taken, its action
+ * will be executed.
+ */
+public class Transition {
+	«EXPAND TransitionClassBody»
+}
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE Imports FOR Object»
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+«ENDDEFINE»
+
+«DEFINE TransitionClassBody FOR Object»
+	«EXPAND Declarations»
+
+	«EXPAND Constructor»
+
+	«EXPAND isTriggeredByMethod»
+
+	public String getId() {
+		return id;
+	}
+	
+	public int getPriority() {
+		return priority;
+	}
+
+	protected boolean isEnabled() {
+		if (guard == null) {
+			return true;
+		} else {
+			return guard.evaluate();
+		}
+	}
+
+	«EXPAND getTimeTriggerMethod»
+
+	protected boolean isTimeTriggered() {
+		return timeTrigger != null;
+	}
+	
+	«EXPAND takeMethod»
+
+	«EXPAND getEnclosingStatesToEnterMethod»
+	
+	«EXPAND getEnclosingStatesToLeaveMethod»
+
+	private Region getCommonAncestorRegion(Node sourceNode, Node targetNode) {
+		Region candidate = sourceNode.getOwningRegion();
+		while (candidate != null
+				&& !isRegionAncestorOfNode(candidate, targetNode)) {
+			candidate = candidate.getOwningState() != null ? candidate
+					.getOwningState().getOwningRegion() : null;
+		}
+		return candidate;
+	}
+
+	private boolean isRegionAncestorOfNode(Region region, Node node) {
+		if (node.getOwningRegion() == region) {
+			return true;
+		} else {
+			if (node.getOwningRegion().getOwningState() == null) {
+				return false;
+			} else {
+				return isRegionAncestorOfNode(region, node.getOwningRegion()
+						.getOwningState());
+			}
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE Declarations FOR Object»
+	private String id;
+	private int priority;
+
+	private Guard guard;
+	private Set<SignalEvent> signalTriggers = new HashSet<SignalEvent>();
+	private TimeEvent timeTrigger;
+	private Action action;
+
+	private Node sourceNode;
+	private Node targetNode;
+
+	private Region commonAncestorRegion;
+	private List<CompoundState> enclosingStatesToEnter;
+	private List<CompoundState> enclosingStatesToLeave;
+«ENDDEFINE»
+
+«DEFINE Constructor FOR Object»
+	public Transition(String id, int priority, TimeEvent timeTrigger,
+			Set<SignalEvent> signalTriggers, Guard guard, Action action,
+			Node sourceNode, Node targetNode) {
+		this.id = id;
+		this.priority = priority;
+
+		this.timeTrigger = timeTrigger;
+		if (signalTriggers != null) {
+			this.signalTriggers.addAll(signalTriggers);
+		}
+		this.guard = guard;
+		this.action = action;
+
+		this.sourceNode = sourceNode;
+		sourceNode.outgoingTransitions.add(this);
+		this.targetNode = targetNode;
+		targetNode.incomingTransitions.add(this);
+		
+		// compute common ancestor region
+		commonAncestorRegion = getCommonAncestorRegion(sourceNode, targetNode);
+		commonAncestorRegion.getStatechart().getTransitions().add(this);
+		// compute which enclosing compound states have to be entered or left, when taking the transition
+		enclosingStatesToEnter = getEnclosingStatesToEnter(targetNode, commonAncestorRegion);
+		enclosingStatesToLeave = getEnclosingStatesToLeave(sourceNode, commonAncestorRegion);
+	}
+«ENDDEFINE»
+
+«DEFINE getEnclosingStatesToEnterMethod FOR Object»
+	private List<CompoundState> getEnclosingStatesToEnter(Node targetNode,
+			Region commonAncestorRegion) {
+		«EXPAND getEnclosingStatesToEnterMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getEnclosingStatesToEnterMethodBody FOR Object»
+		// compute all enclosing state that have to be entered
+		List<CompoundState> enclosingStatesToEnter = new ArrayList<CompoundState>();
+		Region targetRegion = targetNode.getOwningRegion();
+		while (targetRegion != commonAncestorRegion) {
+			CompoundState state = targetRegion.getOwningState();
+			enclosingStatesToEnter.add(state);
+			targetRegion = state.getOwningRegion();
+
+		}
+		Collections.reverse(enclosingStatesToEnter); // ensure entering is done
+														// in reverse order
+		return enclosingStatesToEnter;
+«ENDDEFINE»
+
+«DEFINE getEnclosingStatesToLeaveMethod FOR Object»
+	private List<CompoundState> getEnclosingStatesToLeave(Node sourceNode,
+			Region commonAncestorRegion) {
+		«EXPAND getEnclosingStatesToLeaveMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE getEnclosingStatesToLeaveMethodBody FOR Object»
+		// compute all enclosing compound states up to the ancestor region
+		List<CompoundState> enclosingStatesToLeave = new ArrayList<CompoundState>();
+		Region sourceRegion = sourceNode.getOwningRegion();
+		while (sourceRegion != commonAncestorRegion) {
+			CompoundState state = sourceRegion.getOwningState();
+			enclosingStatesToLeave.add(state);
+			sourceRegion = state.getOwningRegion();
+		}
+		return enclosingStatesToLeave;
+«ENDDEFINE»
+
+
+«DEFINE getTimeTriggerMethod FOR Object -»
+	protected TimeEvent getTimeTrigger() {
+		«EXPAND getTimeTriggerMethodBody -»
+	}
+«ENDDEFINE»
+
+«DEFINE getTimeTriggerMethodBody FOR Object -»
+		return timeTrigger;
+«ENDDEFINE»
+
+
+«DEFINE isTriggeredByMethod FOR Object»
+	protected boolean isTriggeredBy(Set<Event> events) {
+		«EXPAND isTriggeredByMethodBody»
+	}
+«ENDDEFINE»
+
+«DEFINE isTriggeredByMethodBody FOR Object»
+		return !Collections.disjoint(this.signalTriggers, events)
+				|| (timeTrigger != null && events.contains(timeTrigger));
+«ENDDEFINE»
+
+
+«DEFINE takeMethod FOR Object»
+ 	protected void take() {
+		«EXPAND takeMethodBody»
+	}
+«ENDDEFINE»  
+
+«DEFINE takeMethodBody FOR Object»
+		// leave all enclosing states from the souceNode's container up to
+		// the common ancestor region
+		for (CompoundState state : enclosingStatesToLeave) {
+			state.shallowLeave();
+		}
+		sourceNode.leave();
+		«EXPAND postLeaveSourceNode FOR this»
+	
+		if (action != null) {
+			action.execute();
+		}
+
+		// enter all enclosing states from the common ancestor region to the
+		// targetNode's container
+		for (CompoundState state : enclosingStatesToEnter) {
+			state.shallowEnter();
+		}
+		targetNode.enter();
+«ENDDEFINE»
+
+«DEFINE postLeaveSourceNode FOR Object -»
+«ENDDEFINE»

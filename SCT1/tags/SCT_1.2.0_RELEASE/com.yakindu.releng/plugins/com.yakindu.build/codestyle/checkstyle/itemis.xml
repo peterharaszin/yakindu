@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2010 committers of YAKINDU and others.
+    All rights reserved. This program and the accompanying materials
+    are made available under the terms of the Eclipse Public License v1.0
+    which accompanies this distribution, and is available at
+    http://www.eclipse.org/legal/epl-v10.html
+
+    Contributors:
+        committers of YAKINDU - initial API and implementation
+
+-->
+<!--
+    This configuration file was written by the eclipse-cs plugin configuration editor
+-->
+<!--
+    Checkstyle-Configuration: itemis
+    Description: 
+Checkstyle-Konfiguration der itemis AG
+-->
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <property name="severity" value="warning"/>
+    <module name="TreeWalker">
+        <module name="JavadocMethod">
+            <property name="scope" value="protected"/>
+            <property name="allowMissingPropertyJavadoc" value="true"/>
+            <property name="logLoadErrors" value="true"/>
+
+        </module>
+        <module name="JavadocType">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="JavadocVariable">
+            <property name="scope" value="protected"/>
+        </module>
+        <module name="JavadocStyle">
+            <property name="scope" value="protected"/>
+
+            <property name="checkEmptyJavadoc" value="true"/>
+        </module>
+        <module name="ConstantName">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="LocalFinalVariableName">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="LocalVariableName">
+
+            <property name="severity" value="error"/>
+        </module>
+        <module name="MemberName">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="MethodName">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="PackageName">
+
+            <property name="severity" value="error"/>
+        </module>
+        <module name="ParameterName">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="StaticVariableName">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="TypeName">
+
+            <property name="severity" value="error"/>
+        </module>
+        <module name="AvoidStarImport"/>
+        <module name="IllegalImport">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="UnusedImports"/>
+        <module name="FileLength"/>
+        <module name="MethodLength"/>
+
+        <module name="ParameterNumber"/>
+        <module name="EmptyForIteratorPad">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="MethodParamPad">
+            <property name="allowLineBreaks" value="true"/>
+        </module>
+        <module name="NoWhitespaceAfter">
+            <property name="tokens" value="BNOT,DEC,DOT,INC,LNOT,UNARY_MINUS,UNARY_PLUS"/>
+
+        </module>
+        <module name="NoWhitespaceBefore">
+            <property name="allowLineBreaks" value="true"/>
+            <property name="tokens" value="SEMI,DOT,POST_DEC,POST_INC"/>
+        </module>
+        <module name="OperatorWrap">
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="ParenPad"/>
+
+        <module name="TypecastParenPad">
+            <property name="tokens" value="RPAREN,TYPECAST"/>
+        </module>
+        <module name="TabCharacter">
+            <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="Beim Editieren von Quellcode-Dateien mit unterschiedlichen IDEs oder unterschiedlichen EInstellungen desselben IDEs gibt es mit TAB-Zeichen nur Probleme. Deshalb sind sie verboten."/>
+            <property name="severity" value="error"/>
+        </module>
+        <module name="WhitespaceAfter"/>
+        <module name="WhitespaceAround">
+
+            <property name="tokens" value="ASSIGN,BAND,BAND_ASSIGN,BOR,BOR_ASSIGN,BSR,BSR_ASSIGN,BXOR,BXOR_ASSIGN,COLON,DIV,DIV_ASSIGN,EQUAL,GE,GT,LAND,LCURLY,LE,LITERAL_ASSERT,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,LOR,LT,MINUS,MINUS_ASSIGN,MOD,MOD_ASSIGN,NOT_EQUAL,PLUS,PLUS_ASSIGN,QUESTION,RCURLY,SL,SLIST,SL_ASSIGN,SR,SR_ASSIGN,STAR,STAR_ASSIGN,LITERAL_ASSERT,TYPE_EXTENSION_AND"/>
+        </module>
+        <module name="ModifierOrder"/>
+        <module name="RedundantModifier"/>
+        <module name="AvoidInlineConditionals">
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="DoubleCheckedLocking">
+            <property name="severity" value="error"/>
+
+        </module>
+        <module name="EmptyStatement"/>
+        <module name="EqualsHashCode">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="IllegalInstantiation"/>
+        <module name="InnerAssignment">
+            <property name="severity" value="info"/>
+        </module>
+
+        <module name="MissingSwitchDefault"/>
+        <module name="RedundantThrows">
+            <property name="logLoadErrors" value="true"/>
+            <property name="suppressLoadErrors" value="true"/>
+        </module>
+        <module name="SimplifyBooleanExpression"/>
+        <module name="SimplifyBooleanReturn"/>
+        <module name="FinalClass"/>
+        <module name="HideUtilityClassConstructor"/>
+
+        <module name="InterfaceIsType"/>
+        <module name="VisibilityModifier">
+            <property name="packageAllowed" value="true"/>
+            <property name="protectedAllowed" value="true"/>
+        </module>
+        <module name="ArrayTypeStyle"/>
+        <module name="GenericIllegalRegexp">
+            <property name="severity" value="ignore"/>
+            <property name="format" value="\s+$"/>
+
+            <property name="message" value="Line has trailing spaces."/>
+        </module>
+        <module name="UpperEll"/>
+        <module name="ImportControl">
+            <metadata name="com.atlassw.tools.eclipse.checkstyle.lastEnabledSeverity" value="error"/>
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="RedundantImport">
+            <property name="severity" value="error"/>
+
+        </module>
+        <module name="EmptyForInitializerPad">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="LineLength">
+            <property name="max" value="120"/>
+        </module>
+        <module name="DefaultComesLast"/>
+        <module name="DeclarationOrder"/>
+
+        <module name="ExplicitInitialization"/>
+        <module name="FallThrough"/>
+        <module name="IllegalCatch">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="IllegalThrows">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="MagicNumber">
+
+            <property name="severity" value="info"/>
+            <property name="ignoreNumbers" value="-1, 0, 1, 2, 3, 4"/>
+        </module>
+        <module name="ModifiedControlVariable"/>
+        <module name="MultipleStringLiterals">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="MultipleVariableDeclarations"/>
+        <module name="PackageDeclaration"/>
+
+        <module name="ParameterAssignment"/>
+        <module name="StringLiteralEquality"/>
+        <module name="SuperClone"/>
+        <module name="SuperFinalize"/>
+        <module name="MutableException"/>
+        <module name="TodoComment">
+            <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="Der hier definierte reguläre Ausdruck erlaubt nicht nur Kommentare der Form »TODO: ...«, sondern auch »TODO (Kürzel): ...«. Als Kürzel könnte man beispielsweise den Autor des Kommentars vermerken. So kann a) der Autor gezielt nach »seinen« Kommentaren suchen und b) weiß ein anderer, an wen er seine Fragen stellen kann."/>
+            <property name="format" value="TODO(\s+\(.*\))?:"/>
+        </module>
+
+        <module name="j2ee.EntityBean">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="j2ee.FinalStatic"/>
+        <module name="j2ee.LocalHomeInterface">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="j2ee.LocalInterface">
+            <property name="severity" value="error"/>
+
+        </module>
+        <module name="j2ee.MessageBean">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="j2ee.RemoteHomeInterface">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="j2ee.RemoteInterface">
+            <property name="severity" value="error"/>
+
+        </module>
+        <module name="j2ee.SessionBean">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="j2ee.ThisParameter">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="j2ee.ThisReturn">
+            <property name="severity" value="error"/>
+
+        </module>
+        <module name="FinalParameters"/>
+        <module name="FinalLocalVariable">
+            <property name="tokens" value="PARAMETER_DEF,VARIABLE_DEF"/>
+        </module>
+        <module name="UncommentedMain">
+            <property name="severity" value="ignore"/>
+        </module>
+        <module name="AnonInnerLength"/>
+
+        <module name="LineLength">
+            <property name="max" value="120"/>
+        </module>
+        <module name="AvoidNestedBlocks"/>
+        <module name="EmptyBlock"/>
+        <module name="LeftCurly">
+            <property name="option" value="nl"/>
+            <property name="maxLineLength" value="120"/>
+        </module>
+
+        <module name="RightCurly">
+            <property name="option" value="alone"/>
+        </module>
+        <module name="CovariantEquals">
+            <property name="severity" value="error"/>
+        </module>
+        <module name="HiddenField">
+            <property name="tokens" value="VARIABLE_DEF"/>
+        </module>
+
+        <module name="MissingCtor">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="UnnecessaryParentheses">
+            <property name="severity" value="info"/>
+        </module>
+        <module name="CyclomaticComplexity">
+            <property name="max" value="7"/>
+        </module>
+
+        <module name="NPathComplexity"/>
+        <module name="JavaNCSS"/>
+    </module>
+    <module name="PackageHtml"/>
+    <module name="Translation"/>
+    <module name="StrictDuplicateCode">
+        <property name="min" value="15"/>
+    </module>
+    <module name="NewlineAtEndOfFile">
+
+        <property name="severity" value="error"/>
+    </module>
+    <module name="SeverityMatchFilter"/>
+</module>

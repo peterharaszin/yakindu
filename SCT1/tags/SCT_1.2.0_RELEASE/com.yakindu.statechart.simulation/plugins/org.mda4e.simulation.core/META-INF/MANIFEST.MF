@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MDA4E Core Simulation Interface
+Bundle-SymbolicName: org.mda4e.simulation.core;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
+ org.eclipse.ui;visibility:=reexport,
+ org.eclipse.ui.ide;visibility:=reexport,
+ org.eclipse.debug.core;visibility:=reexport,
+ org.eclipse.debug.ui;visibility:=reexport
+Bundle-Vendor: www.mda4e.org
+Export-Package: org.mda4e.simulation.controller,
+ org.mda4e.simulation.controller.event,
+ org.mda4e.simulation.core,
+ org.mda4e.simulation.core.event
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

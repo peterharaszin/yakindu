@@ -1,0 +1,45 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statemachine;
+
+extension com::yakindu::statechart::codegenerator::sps::extensions::Navigation;
+
+cached String type(String this, State s) :
+	((Variable)s.getStatechart().dataElement.selectFirst(e|e.name==this)).dataType;
+
+cached String type(String this, Statechart s) :
+	((Variable)s.dataElement.selectFirst(e|e.name==this)).dataType;
+
+cached String initialValue(Variable this) :
+	switch (dataType.toString()) {
+							case "boolean" : "FALSE"
+							case "int" : "0"
+							case "double" : "DW#16#00000000"
+							default : "NULL"};
+
+cached String spsType(Variable this) :
+	switch (dataType.toString()) {
+							case "boolean" : "BOOL"
+							case "int" : "BYTE"
+							case "double" : "DWORD"
+							default : "NULL"};
+
+cached String spsVarName(String this):
+	this.trim();
+
+cached List[Variable] getVariables(Statechart this):
+	eContents.typeSelect(Variable);
+
+cached List[Event] getEvents(Statechart this): 
+	this.dataElement.select(e|Event.isInstance(e));
+
+cached Event getEvent(String this, Statechart sc):
+	sc.getEvents().select(e|e.name==this);

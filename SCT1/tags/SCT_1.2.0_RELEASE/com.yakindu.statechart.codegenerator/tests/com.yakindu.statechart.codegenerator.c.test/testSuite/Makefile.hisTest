@@ -1,0 +1,30 @@
+# Name: Makefile
+# Author: Joern Seger
+# Copyright: 2009 Itemis AG, Joern Seger
+# License: GPL
+
+include ../c-src-gen-his-test/make.include
+
+OBJECTS    = $(patsubst %.o, ../c-src-gen-his-test/%.o, $(SM_SOURCE)) ../c-src-gen-his-test/simElement.o timerInterfaceHistoryTest.o
+
+COMPILE = gcc -Wall -O0 -g -I../c-src-gen-his-test -I. -I../environment -ansi -pedantic
+COMPILEPP = g++ -Wall -O0 -g -I../c-src-gen-his-test -I.
+
+# switches for profiling and code coverage
+# -pg -fprofile-arcs -ftest-coverage
+# symbolic targets:
+
+all:	testSuite-hisTest
+
+testSuite-hisTest: $(OBJECTS) testSuite-hisTest.o
+	$(COMPILE) $^ -o $@
+
+.cpp.o:
+	$(COMPILEPP) -c $< -o $@
+
+.c.o:
+	$(COMPILE) -c $< -o $@
+
+clean:
+	rm -f $(OBJECTS) testSuite-hisTest.o
+

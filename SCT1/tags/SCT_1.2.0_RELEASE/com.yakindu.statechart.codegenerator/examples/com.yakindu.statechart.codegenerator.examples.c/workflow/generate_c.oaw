@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<workflow>
+	<!-- src-gen point to output folder for generated code --> 
+	<property name="src-gen" value="c-src-gen" />
+	<!-- model is the statemachine model file, not the diagram file -->
+	<property name="model" value="model/TrafficlightWaiting.statemachine"/>
+	
+	<component class="com.yakindu.statechart.model.expressions.StatechartExpressionsStandaloneSetup2"/>
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup">
+		<platformUri value=".." />
+		<registerGeneratedEPackage value="statemachine.StatemachinePackage"/>
+	</bean>
+	
+	<!-- Generator call with model-file and output-folder -->
+    <cartridge file='com/yakindu/statechart/codegenerator/c/workflow/generate_c.oaw' model="${model}" target="${src-gen}"/>
+    
+</workflow>
+

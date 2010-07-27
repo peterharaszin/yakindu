@@ -1,0 +1,56 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«IMPORT statechartexpressions»
+
+«EXTENSION com::yakindu::statechart::codegenerator::java::extensions::Extensions»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::TransitionClassBody FOR Object» 
+   	// marker to indicate that initialization is done
+	private boolean initialized = false;
+	
+   	«targetDef.proceed()» 
+   	
+   	protected void finalizeInitialization() {
+	 	assertNotInitialized();
+	  	
+	  	// check that there is an enclosing region for this transition
+		assertCommonAncestorRegionExists();
+		  	
+	  	initialized = true;
+	  	assertInitialized();
+	}
+	
+	private void assertCommonAncestorRegionExists() {
+		if(commonAncestorRegion == null) {
+			throw new IllegalStateException("An encosing region does not exist for this transition");
+		}		
+	}
+	
+	private void assertInitialized(){
+		if(!initialized){
+			throw new IllegalStateException("Transition is not yet initialized");
+		}
+	}
+	
+	private void assertNotInitialized(){
+		if(initialized){
+			throw new IllegalStateException("Transition was already initialized");
+		}
+	}
+«ENDAROUND»
+
+«AROUND com::yakindu::statechart::codegenerator::java::templates::generic::Transition::takeMethodBody FOR Object»
+	assertInitialized();
+	«targetDef.proceed()»
+«ENDAROUND»
+
+   	

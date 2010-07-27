@@ -1,0 +1,246 @@
+«REM» Copyright
+> Copyright (c) 2010 committers of YAKINDU and others.
+> All rights reserved. This program and the accompanying materials
+> are made available under the terms of the Eclipse Public License v1.0
+> which accompanies this distribution, and is available at
+> http://www.eclipse.org/legal/epl-v10.html
+>
+> Contributors:
+>     committers of YAKINDU - initial API and implementation
+«ENDREM»
+«IMPORT statemachine»
+«EXTENSION com::yakindu::statechart::codegenerator::c::extensions::Extensions»
+
+«DEFINE simElement FOR Statechart»
+«FILE "simElement.h"»
+#include "definitions.h"
+#include "«baseInterface()».h"
+
+typedef struct SimElement_T {
+
+	struct SimElement_T* nextElement;
+
+	uint8         used;
+
+	uint64        atTime;
+
+	«triggerEnumType()»      setTrigger;
+	«intVariableEnumType()»  setVariable;
+
+	uint32        variableValue;
+
+} SimElement;
+
+typedef struct ResultElement_T {
+
+	struct ResultElement_T* nextElement;
+
+	uint8         used;
+	uint8         matched;
+	uint64        atTime;
+
+	«triggerEnumType()»     triggerSet;
+	«intVariableEnumType()»  variableSet;
+
+	uint32        variableValue;
+
+} ResElement;
+
+extern void addSimElementTrig(SimElement** elemStart, uint64 time, «triggerEnumType()» triggerID);
+extern void addSimElementVar(SimElement** elemStart, uint64 time, «intVariableEnumType()» varID, uint32 variableValue);
+extern void installChange(SimElement* elementList, «baseIfaceHandle()»* ihandle,  uint64 actTime);
+
+extern void addResElementTrig(ResElement** elemStart, uint64 time, «triggerEnumType()» triggerID);
+extern void addResElementVar(ResElement** elemStart, uint64 time, «intVariableEnumType()» varID, uint32 variableValue);
+extern void compareResults(ResElement* elementList, «baseIfaceHandle()»* ihandle,  uint64 actTime);
+
+extern void printStatistics(ResElement* elementList);
+
+«ENDFILE»
+
+«FILE "simElement.c"»
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+
+#include "simElement.h"
+
+static const char* trgName[] = {
+  «FOREACH getSignalEvents() AS ev SEPARATOR ",
+  " -»
+  "«ev.name»"«""-»
+  «ENDFOREACH-»
+};
+
+static const char* varName[] = {
+  «FOREACH getVariables() AS var SEPARATOR ",
+  " -»
+  "«var.name»"«""-»
+  «ENDFOREACH-»
+};
+
+
+
+void addSimElementTrig(SimElement** elemStart, uint64 time, «triggerEnumType()» triggerID)
+{
+	SimElement* actElem = *elemStart;
+	SimElement* newElem = malloc(sizeof(SimElement));
+
+	bzero(newElem, sizeof(SimElement));
+
+    newElem->atTime = time;
+    newElem->setTrigger = triggerID;
+    newElem->setVariable = «intVariableEnumMax()»;
+
+    if (actElem == NULL) {
+    	*elemStart = newElem;
+    	return;
+    }
+
+	while (actElem->nextElement != NULL) {
+		actElem = actElem->nextElement;
+	}
+
+    actElem->nextElement = newElem;
+}
+
+void addSimElementVar(SimElement** elemStart, uint64 time, «intVariableEnumType()» varID, uint32 variableValue)
+{
+	SimElement* actElem = *elemStart;
+	SimElement* newElem = malloc(sizeof(SimElement));
+
+	bzero(newElem, sizeof(SimElement));
+
+	newElem->atTime = time;
+	newElem->setVariable = varID;
+	newElem->variableValue = variableValue;
+	newElem->setTrigger = «triggerEnumMax()»;
+
+    if (actElem == NULL) {
+    	*elemStart = newElem;
+    	return;
+    }
+
+	while (actElem->nextElement != NULL) {
+		actElem = actElem->nextElement;
+	}
+
+    actElem->nextElement = newElem;
+}
+
+void installChange(SimElement* elementList, «baseIfaceHandle()»* ihandle,  uint64 actTime)
+{
+	SimElement* actElem;
+
+	for(actElem = elementList; actElem != 0; actElem = actElem->nextElement) {
+		if ((actElem->used == 0) && (actTime >= actElem->atTime)) {
+
+			if (actElem->setTrigger != «triggerEnumMax()») {
+				«baseInterface()»_raiseTrigger(ihandle, actElem->setTrigger);
+			} else {
+				«baseInterface()»_setVariable(ihandle, actElem->setVariable, actElem->variableValue);
+			}
+
+			actElem->used = 1;
+		}
+	}
+}
+
+void addResElementTrig(ResElement** elemStart, uint64 time, «triggerEnumType()» triggerID)
+{
+	ResElement* actElem = *elemStart;
+	ResElement* newElem = malloc(sizeof(ResElement));
+
+	bzero(newElem, sizeof(ResElement));
+
+    newElem->atTime = time;
+    newElem->triggerSet = triggerID;
+    newElem->variableSet = «intVariableEnumMax()»;
+
+    if (actElem == NULL) {
+    	*elemStart = newElem;
+    	return;
+    }
+
+	while (actElem->nextElement != NULL) {
+		actElem = actElem->nextElement;
+	}
+
+    actElem->nextElement = newElem;
+}
+
+void addResElementVar(ResElement** elemStart, uint64 time, «intVariableEnumType()» varID, uint32 variableValue)
+{
+	ResElement* actElem = *elemStart;
+	ResElement* newElem = malloc(sizeof(ResElement));
+
+	bzero(newElem, sizeof(ResElement));
+
+	newElem->atTime = time;
+	newElem->variableSet = varID;
+	newElem->variableValue = variableValue;
+	newElem->triggerSet = «triggerEnumMax()»;
+
+    if (actElem == NULL) {
+    	*elemStart = newElem;
+    	return;
+    }
+
+	while (actElem->nextElement != NULL) {
+		actElem = actElem->nextElement;
+	}
+
+    actElem->nextElement = newElem;
+}
+
+void compareResults(ResElement* elementList, «baseIfaceHandle()»* ihandle,  uint64 actTime)
+{
+	ResElement* actElem;
+
+	for(actElem = elementList; actElem != 0; actElem = actElem->nextElement) {
+		if ((actElem->used == 0) && (actTime >= actElem->atTime)) {
+
+			if (actElem->triggerSet != «triggerEnumMax()») {
+				if (!«baseInterface()»_isTriggerRaised(ihandle, actElem->triggerSet)) {
+					printf("ERROR  : Trigger with ID <%s> was NOT raised at time %d\n",trgName[actElem->triggerSet], (uint32)actElem->atTime);
+				}
+				else {
+					actElem->matched = 1;
+					printf("CORRECT: Trigger with ID <%s> was raised at time %d\n",trgName[actElem->triggerSet], (uint32)actElem->atTime);
+				}
+			} else {
+				if («baseInterface()»_getVariable(ihandle, actElem->variableSet) != actElem->variableValue) {
+					printf("ERROR  : Variable with ID <%s> -> %d was NOT equal to value <%d> at time %d\n",varName[actElem->variableSet], «baseInterface()»_getVariable(ihandle, actElem->variableSet), actElem->variableValue, (uint32)actElem->atTime);
+				}
+				else {
+					actElem->matched = 1;
+					printf("CORRECT: Variable with ID <%s> -> %d was equal to value <%d> at time %d\n",varName[actElem->variableSet], «baseInterface()»_getVariable(ihandle, actElem->variableSet), actElem->variableValue, (uint32)actElem->atTime);
+				}
+			}
+
+			actElem->used = 1;
+		}
+	}
+}
+
+void printStatistics(ResElement* elementList)
+{
+	ResElement* actElem;
+	uint32 stat_all = 0, stat_used = 0, stat_matched = 0;
+
+	for(actElem = elementList; actElem != 0; actElem = actElem->nextElement) {
+		stat_all++;
+		if (actElem->used)
+			stat_used++;
+		if (actElem->matched)
+			stat_matched++;
+	}
+
+	printf("\nOverall Rules: %d\n",stat_all);
+	printf("Rules used   : %d\n",stat_used);
+	printf("Rules matched: %d\n\n",stat_matched);
+
+}
+«ENDFILE»
+
+«ENDDEFINE»

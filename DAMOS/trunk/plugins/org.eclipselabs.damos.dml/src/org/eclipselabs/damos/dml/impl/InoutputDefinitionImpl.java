@@ -189,8 +189,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 	 * @generated NOT
 	 */
 	public boolean isManyPorts() {
-		 int maximumPortCount = getMaximumPortCount();
-         return maximumPortCount > 1 || maximumPortCount == -1;
+		int maximumPortCount = getMaximumPortCount();
+		return maximumPortCount > 1 || maximumPortCount == -1;
 	}
 
 	/**

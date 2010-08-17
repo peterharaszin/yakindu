@@ -24,5 +24,6 @@ Export-Package: org.eclipselabs.damos.diagram.ui,
  org.eclipselabs.damos.diagram.ui.palette,
  org.eclipselabs.damos.diagram.ui.part,
  org.eclipselabs.damos.diagram.ui.properties,
+ org.eclipselabs.damos.diagram.ui.requests,
  org.eclipselabs.damos.diagram.ui.view.factories,
  org.eclipselabs.damos.diagram.ui.view.util

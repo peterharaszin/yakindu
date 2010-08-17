@@ -366,37 +366,37 @@
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria
-                  policyClass="org.eclipselabs.damos.diagram.ui.actions.AdjustableInputCountPopupMenuContributionPolicy">
+                  policyClass="org.eclipselabs.damos.diagram.ui.actions.InputPortCountPopupMenuContributionPolicy">
             </popupStructuredContributionCriteria>
             <popupMenuGroup
-                  id="adjustInputCountMenuGroup"
+                  id="inputPortCountMenuGroup"
                   separator="true">
             </popupMenuGroup>
             <popupAction
-                  id="addInputAction"
-                  path="/adjustInputCountMenuGroup">
+                  id="addInputPortAction"
+                  path="/inputPortCountMenuGroup">
             </popupAction>
             <popupAction
-                  id="removeInputAction"
-                  path="/adjustInputCountMenuGroup">
+                  id="removeInputPortAction"
+                  path="/inputPortCountMenuGroup">
             </popupAction>
          </popupContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria
-                  policyClass="org.eclipselabs.damos.diagram.ui.actions.AdjustableOutputCountPopupMenuContributionPolicy">
+                  policyClass="org.eclipselabs.damos.diagram.ui.actions.OutputPortCountPopupMenuContributionPolicy">
             </popupStructuredContributionCriteria>
             <popupMenuGroup
-                  id="adjustOutputCountMenuGroup"
+                  id="outputPortCountMenuGroup"
                   separator="true">
             </popupMenuGroup>
             <popupAction
-                  id="addOutputAction"
-                  path="/adjustOutputCountMenuGroup">
+                  id="addOutputPortAction"
+                  path="/outputPortCountMenuGroup">
             </popupAction>
             <popupAction
-                  id="removeOutputAction"
-                  path="/adjustOutputCountMenuGroup">
+                  id="removeOutputPortAction"
+                  path="/outputPortCountMenuGroup">
             </popupAction>
          </popupContribution>
       </contributionItemProvider>

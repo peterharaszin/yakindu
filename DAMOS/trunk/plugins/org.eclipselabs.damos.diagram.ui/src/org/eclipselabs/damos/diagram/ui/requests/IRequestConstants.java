@@ -21,9 +21,9 @@ public interface IRequestConstants extends org.eclipse.gmf.runtime.diagram.ui.re
 	public static final String REQ_ROTATE_COMPONENT = "rotateComponent";
 	public static final String REQ_RESET_FLIP_AND_ROTATE_COMPONENT = "resetFlipAndRotateComponent";
 	
-	public static final String REQ_ADD_INPUT = "addInput";
-	public static final String REQ_REMOVE_INPUT = "removeInput";
-	public static final String REQ_ADD_OUTPUT = "addOutput";
-	public static final String REQ_REMOVE_OUTPUT = "removeOutput";
+	public static final String REQ_ADD_INPUT_PORT = "addInputPort";
+	public static final String REQ_REMOVE_INPUT_PORT = "removeInputPort";
+	public static final String REQ_ADD_OUTPUT_PORT = "addOutputPort";
+	public static final String REQ_REMOVE_OUTPUT_PORT = "removeOutputPort";
 		
 }

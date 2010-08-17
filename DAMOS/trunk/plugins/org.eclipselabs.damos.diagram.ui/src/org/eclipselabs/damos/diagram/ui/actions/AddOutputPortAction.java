@@ -20,12 +20,12 @@ import org.eclipselabs.damos.diagram.ui.requests.IRequestConstants;
  * @author Andreas Unger
  *
  */
-public class RemoveInputAction extends DiagramAction {
+public class AddOutputPortAction extends DiagramAction {
 
 	/**
 	 * @param workbenchPage
 	 */
-	public RemoveInputAction(IWorkbenchPage workbenchPage) {
+	public AddOutputPortAction(IWorkbenchPage workbenchPage) {
 		super(workbenchPage);
 	}
 	
@@ -34,14 +34,14 @@ public class RemoveInputAction extends DiagramAction {
 	 */
 	public void init() {
 		super.init();
-		setText("Remove Input");
+		setText("Add Output Port");
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.DiagramAction#createTargetRequest()
 	 */
 	protected Request createTargetRequest() {
-		return new Request(IRequestConstants.REQ_REMOVE_INPUT);
+		return new Request(IRequestConstants.REQ_ADD_OUTPUT_PORT);
 	}
 
 	/* (non-Javadoc)

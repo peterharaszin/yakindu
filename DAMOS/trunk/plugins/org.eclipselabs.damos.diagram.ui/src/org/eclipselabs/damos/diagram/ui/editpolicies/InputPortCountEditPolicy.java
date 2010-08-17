@@ -38,7 +38,7 @@ import org.eclipselabs.damos.dml.InputPort;
  * @author Andreas Unger
  * 
  */
-public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
+public class InputPortCountEditPolicy extends AbstractEditPolicy {
 
 	/*
 	 * (non-Javadoc)
@@ -48,11 +48,11 @@ public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
 	 * .gef.Request)
 	 */
 	public Command getCommand(Request request) {
-		if (IRequestConstants.REQ_ADD_INPUT.equals(request.getType())) {
-			return createAddInputCommand(request);
+		if (IRequestConstants.REQ_ADD_INPUT_PORT.equals(request.getType())) {
+			return createAddInputPortCommand(request);
 		}
-		if (IRequestConstants.REQ_REMOVE_INPUT.equals(request.getType())) {
-			return createRemoveInputCommand(request);
+		if (IRequestConstants.REQ_REMOVE_INPUT_PORT.equals(request.getType())) {
+			return createRemoveInputPortCommand(request);
 		}
 		return super.getCommand(request);
 	}
@@ -65,13 +65,13 @@ public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
 	 * .eclipse.gef.Request)
 	 */
 	public EditPart getTargetEditPart(Request request) {
-		if (IRequestConstants.REQ_ADD_INPUT.equals(request.getType()) || IRequestConstants.REQ_REMOVE_INPUT.equals(request.getType())) {
+		if (IRequestConstants.REQ_ADD_INPUT_PORT.equals(request.getType()) || IRequestConstants.REQ_REMOVE_INPUT_PORT.equals(request.getType())) {
 			return getHost();
 		}
 		return super.getTargetEditPart(request);
 	}
 
-	protected Command createAddInputCommand(Request request) {
+	protected Command createAddInputPortCommand(Request request) {
 		BlockInput input = getInput(request);
 		if (input != null) {
 			InputDefinition definition = input.getDefinition();
@@ -84,17 +84,25 @@ public class AdjustInputCountEditPolicy extends AbstractEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	protected Command createRemoveInputCommand(Request request) {
+	protected Command createRemoveInputPortCommand(Request request) {
+		InputPort inputPort = getInputPortToBeRemoved(request);
+		if (inputPort != null) {
+			DestroyElementRequest destroyRequest = new DestroyElementRequest(((IGraphicalEditPart) getHost())
+					.getEditingDomain(), inputPort, false);
+			return new ICommandProxy(ElementTypes.BLOCK_INPUT.getEditCommand(destroyRequest));
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+	
+	protected InputPort getInputPortToBeRemoved(Request request) {
 		BlockInput input = getInput(request);
 		if (input != null) {
 			List<InputPort> inputPorts = input.getPorts();
 			if (inputPorts.size() > input.getDefinition().getMinimumPortCount()) {
-				DestroyElementRequest destroyRequest = new DestroyElementRequest(((IGraphicalEditPart) getHost())
-						.getEditingDomain(), inputPorts.get(inputPorts.size() - 1), false);
-				return new ICommandProxy(ElementTypes.BLOCK_INPUT.getEditCommand(destroyRequest));
+				return inputPorts.get(inputPorts.size() - 1);
 			}
 		}
-		return UnexecutableCommand.INSTANCE;
+		return null;
 	}
 
 	protected BlockInput getInput(Request request) {

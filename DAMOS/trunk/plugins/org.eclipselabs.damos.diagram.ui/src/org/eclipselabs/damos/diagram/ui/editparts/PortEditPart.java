@@ -210,7 +210,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		EObject element = resolveSemanticElement();
 		if (element instanceof Port) {
 			Port port = (Port) element;
-			if (port.getComponent().getOwningFragment() != selectedFragment
+			if (port.getComponent() == null || port.getComponent().getOwningFragment() != selectedFragment
 					&& !DMLUtil.isChildFragment(selectedFragment, port.getComponent().getOwningFragment())) {
 				getTerminalFigure().setBlank(true);
 			} else {

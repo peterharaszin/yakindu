@@ -20,8 +20,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 public interface IEditPolicyRoles extends EditPolicyRoles {
 
 	String TRANSFORM_ROLE = "transformRole";
-	String ADJUST_INPUT_COUNT_ROLE = "adjustInputCountRole";
-	String ADJUST_OUTPUT_COUNT_ROLE = "adjustOutputCountRole";
+	String INPUT_PORT_COUNT_ROLE = "inputPortCountRole";
+	String OUTPUT_PORT_COUNT_ROLE = "outputPortCountRole";
 	String SNAP_TO_PORT_FEEDBACK_ROLE = "snapToPortFeedbackRole";
 	
 }

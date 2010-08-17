@@ -22,13 +22,13 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputDefinition;
 
-public class AdjustableOutputCountPopupMenuContributionPolicy extends AbstractPopupMenuContributionPolicy {
+public class OutputPortCountPopupMenuContributionPolicy extends AbstractPopupMenuContributionPolicy {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.diagram.ui.actions.AbstractPopupMenuContributionPolicy#appliesTo(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
 	 */
 	protected boolean appliesTo(IGraphicalEditPart editPart) {
-		EditPolicy editPolicy = editPart.getEditPolicy(IEditPolicyRoles.ADJUST_OUTPUT_COUNT_ROLE);
+		EditPolicy editPolicy = editPart.getEditPolicy(IEditPolicyRoles.OUTPUT_PORT_COUNT_ROLE);
 		if (editPolicy == null) {
 			return false;
 		}

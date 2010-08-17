@@ -44,6 +44,18 @@ import org.eclipselabs.damos.dml.SubsystemRealization;
  */
 public class DMLUtil {
 		
+	@SuppressWarnings("unchecked")
+	public static int indexOf(EObject o) {
+		EStructuralFeature feature = o.eContainingFeature();
+		if (feature != null) {
+			Object l = o.eContainer().eGet(feature);
+			if (l instanceof List) {
+				return ((List) l).indexOf(o);
+			}
+		}
+		return -1;
+	}
+
 	public static ResourceSet getResourceSet(EObject eObject) {
 		Resource resource = eObject.eResource();
 		return resource != null ? resource.getResourceSet() : null;
@@ -113,18 +125,6 @@ public class DMLUtil {
 		return getArgumentValueAsBoolean(element, parameterName, defaultValue.booleanValue());
 	}
 	
-	@SuppressWarnings("unchecked")
-	public static int getIndex(EObject o) {
-		EStructuralFeature feature = o.eContainingFeature();
-		if (feature != null) {
-			Object l = o.eContainer().eGet(feature);
-			if (l instanceof List) {
-				return ((List) l).indexOf(o);
-			}
-		}
-		return -1;
-	}
-
 	public static String findAvailableComponentName(Fragment fragment, String preferredName) {
 		Set<String> names = new HashSet<String>();
 		for (Component component : fragment.getComponents()) {

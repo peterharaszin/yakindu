@@ -49,7 +49,7 @@ public class PortOperations {
 	 * @generated NOT
 	 */
 	public static  int getIndex(Port port) {
-		return DMLUtil.getIndex(port);
+		return DMLUtil.indexOf(port);
 	}
 
 	/**

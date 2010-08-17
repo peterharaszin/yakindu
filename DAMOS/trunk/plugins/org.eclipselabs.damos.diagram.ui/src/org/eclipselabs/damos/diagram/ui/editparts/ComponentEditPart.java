@@ -34,6 +34,10 @@ import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentEditPartDele
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
@@ -180,6 +184,8 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#addChildVisual(org.eclipse.gef.EditPart, int)
 	 */
 	protected void addChildVisual(EditPart childEditPart, int index) {
+		index = getChildVisualIndexOf(childEditPart, index);
+
 		if (childEditPart instanceof IBorderItemEditPart) {
 			super.addChildVisual(childEditPart, index);
 		} else {
@@ -213,6 +219,34 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 				getMainFigure().setConstraint(portEditPart.getFigure(), getPortFigureConstraint(port));
 			}
 		}
+	}
+
+	protected int getChildVisualIndexOf(EditPart childEditPart, int index) {
+		if (childEditPart instanceof PortEditPart) {
+			EObject element = resolveSemanticElement();
+			if (element instanceof Component) {
+				Component component = (Component) element;
+				EObject semanticChild = ((IGraphicalEditPart) childEditPart).resolveSemanticElement();
+				int newIndex = 0;
+				for (Input input : component.getInputs()) {
+					for (InputPort inputPort : input.getPorts()) {
+						if (inputPort == semanticChild) {
+							return newIndex;
+						}
+						++newIndex;
+					}
+				}
+				for (Output output : component.getOutputs()) {
+					for (OutputPort outputPort : output.getPorts()) {
+						if (outputPort == semanticChild) {
+							return newIndex;
+						}
+						++newIndex;
+					}
+				}
+			}
+		}
+		return index;
 	}
 
 	protected Object getPortFigureConstraint(Port port) {

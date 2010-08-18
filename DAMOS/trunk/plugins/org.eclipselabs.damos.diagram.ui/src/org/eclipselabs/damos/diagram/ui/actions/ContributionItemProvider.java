@@ -24,10 +24,6 @@ public class ContributionItemProvider extends AbstractContributionItemProvider {
 	private static final String FLIP_BLOCK_ACTION = "flipBlockAction";
 	private static final String ROTATE_BLOCK_ACTION = "rotateBlockAction";
 	private static final String RESET_FLIP_AND_ROTATE_BLOCK_ACTION = "resetFlipAndRotateBlockAction";
-	private static final String ADD_INPUT_PORT_ACTION = "addInputPortAction";
-	private static final String REMOVE_INPUT_PORT_ACTION = "removeInputPortAction";
-	private static final String ADD_OUTPUT_PORT_ACTION = "addOutputPortAction";
-	private static final String REMOVE_OUTPUT_PORT_ACTION = "removeOutputPortAction";
 	
 
 	/* (non-Javadoc)
@@ -42,18 +38,6 @@ public class ContributionItemProvider extends AbstractContributionItemProvider {
 		}
 		if (actionId.equals(RESET_FLIP_AND_ROTATE_BLOCK_ACTION)) {
 			return new ResetFlipAndRotateComponentAction(partDescriptor.getPartPage());
-		}
-		if (actionId.equals(ADD_INPUT_PORT_ACTION)) {
-			return new AddInputPortAction(partDescriptor.getPartPage());
-		}
-		if (actionId.equals(REMOVE_INPUT_PORT_ACTION)) {
-			return new RemoveInputPortAction(partDescriptor.getPartPage());
-		}
-		if (actionId.equals(ADD_OUTPUT_PORT_ACTION)) {
-			return new AddOutputPortAction(partDescriptor.getPartPage());
-		}
-		if (actionId.equals(REMOVE_OUTPUT_PORT_ACTION)) {
-			return new RemoveOutputPortAction(partDescriptor.getPartPage());
 		}
 		return super.createAction(actionId, partDescriptor);
 	}

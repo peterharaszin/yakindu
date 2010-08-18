@@ -26,11 +26,11 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
+import org.eclipselabs.damos.diagram.ui.internal.requests.IChangePortCountRequestConstants;
 import org.eclipselabs.damos.diagram.ui.requests.IRequestConstants;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 
@@ -108,10 +108,10 @@ public class InputPortCountEditPolicy extends AbstractEditPolicy {
 	protected BlockInput getInput(Request request) {
 		EObject o = ViewUtil.resolveSemanticElement((View) getHost().getModel());
 		if (o instanceof Block) {
-			for (Input input : ((Block) o).getInputs()) {
-				if (input instanceof BlockInput && ((BlockInput) input).getDefinition().isManyPorts()) {
-					return (BlockInput) input;
-				}
+			Block block = (Block) o;
+			String name = (String) request.getExtendedData().get(IChangePortCountRequestConstants.PARAMETER__NAME);
+			if (name != null) {
+				return block.getInput(name);
 			}
 		}
 		return null;

@@ -154,6 +154,25 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
+            id="org.eclipselabs.damos.diagram.ui.commands.changePortCount"
+            name="Change Port Count">
+         <commandParameter
+               id="org.eclipselabs.damos.diagram.ui.commands.changePortCount.name"
+               name="Name"
+               optional="true">
+         </commandParameter>
+         <commandParameter
+               id="org.eclipselabs.damos.diagram.ui.commands.changePortCount.kind"
+               name="Kind"
+               optional="true">
+         </commandParameter>
+         <commandParameter
+               id="org.eclipselabs.damos.diagram.ui.commands.changePortCount.action"
+               name="Action"
+               optional="true">
+         </commandParameter>
+      </command>
+      <command
             id="org.eclipselabs.damos.diagram.ui.commands.newFragment"
             name="New Fragment">
       </command>
@@ -220,6 +239,14 @@
                </and>
             </visibleWhen>
          </command>
+         <dynamic
+               class="org.eclipselabs.damos.diagram.ui.internal.commands.ChangePortCountContributionItem"
+               id="org.eclipselabs.damos.diagram.ui.changePortCountContributionItem">
+         </dynamic>
+         <separator
+               name="org.eclipselabs.damos.diagram.ui.endSeparator"
+               visible="true">
+         </separator>
       </menuContribution>
       <menuContribution
             locationURI="popup:org.eclipselabs.damos.diagram.ui.refactor">
@@ -326,6 +353,10 @@
             class="org.eclipselabs.damos.diagram.ui.internal.handlers.ChangeRealizationHandler"
             commandId="org.eclipselabs.damos.diagram.ui.commands.changeRealization">
       </handler>
+      <handler
+            class="org.eclipselabs.damos.diagram.ui.internal.handlers.ChangePortCountHandler"
+            commandId="org.eclipselabs.damos.diagram.ui.commands.changePortCount">
+      </handler>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
@@ -361,42 +392,6 @@
             <popupAction
                   id="resetFlipAndRotateBlockAction"
                   path="/transformBlockMenuGroup">
-            </popupAction>
-         </popupContribution>
-         <popupContribution
-               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria
-                  policyClass="org.eclipselabs.damos.diagram.ui.actions.InputPortCountPopupMenuContributionPolicy">
-            </popupStructuredContributionCriteria>
-            <popupMenuGroup
-                  id="inputPortCountMenuGroup"
-                  separator="true">
-            </popupMenuGroup>
-            <popupAction
-                  id="addInputPortAction"
-                  path="/inputPortCountMenuGroup">
-            </popupAction>
-            <popupAction
-                  id="removeInputPortAction"
-                  path="/inputPortCountMenuGroup">
-            </popupAction>
-         </popupContribution>
-         <popupContribution
-               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
-            <popupStructuredContributionCriteria
-                  policyClass="org.eclipselabs.damos.diagram.ui.actions.OutputPortCountPopupMenuContributionPolicy">
-            </popupStructuredContributionCriteria>
-            <popupMenuGroup
-                  id="outputPortCountMenuGroup"
-                  separator="true">
-            </popupMenuGroup>
-            <popupAction
-                  id="addOutputPortAction"
-                  path="/outputPortCountMenuGroup">
-            </popupAction>
-            <popupAction
-                  id="removeOutputPortAction"
-                  path="/outputPortCountMenuGroup">
             </popupAction>
          </popupContribution>
       </contributionItemProvider>

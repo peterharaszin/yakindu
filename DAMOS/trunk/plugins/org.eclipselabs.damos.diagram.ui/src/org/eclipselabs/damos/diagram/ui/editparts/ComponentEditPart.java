@@ -11,14 +11,11 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -186,31 +183,7 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		index = getChildVisualIndexOf(childEditPart, index);
 
-		if (childEditPart instanceof IBorderItemEditPart) {
-			super.addChildVisual(childEditPart, index);
-		} else {
-			/*
-			 * Workaround for a bug in the super class.
-			 * TODO: Report addChildVisual() bug.
-			 */
-
-			IFigure childFigure = ((GraphicalEditPart) childEditPart).getFigure();
-			IFigure parent = getContentPaneFor((IGraphicalEditPart) childEditPart);
-			
-			// Map the index within the edit parts to the index within the content pane figures.
-			for (Object child : getChildren()) {
-				if (child == childEditPart) {
-					break;
-				}
-				if (child instanceof IBorderItemEditPart) {
-					--index;
-				}
-			}
-
-			index = Math.min(parent.getChildren().size(), index);
-			
-            parent.add(childFigure, index);
-		}
+		super.addChildVisual(childEditPart, index);
 
 		if (childEditPart instanceof PortEditPart) {
 			PortEditPart portEditPart = (PortEditPart) childEditPart;
@@ -246,7 +219,7 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 				}
 			}
 		}
-		return index;
+		return -1;
 	}
 
 	protected Object getPortFigureConstraint(Port port) {

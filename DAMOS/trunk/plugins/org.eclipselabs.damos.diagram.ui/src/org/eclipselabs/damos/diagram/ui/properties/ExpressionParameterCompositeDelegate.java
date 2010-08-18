@@ -13,7 +13,7 @@ package org.eclipselabs.damos.diagram.ui.properties;
 
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipselabs.damos.diagram.core.internal.commands.SetArgumentValueCommand;
-import org.eclipselabs.damos.diagram.ui.internal.util.PropertySectionUtil;
+import org.eclipselabs.damos.diagram.ui.internal.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
@@ -62,7 +62,7 @@ public class ExpressionParameterCompositeDelegate extends TextPropertyCompositeD
 	 * @see org.eclipselabs.damos.diagram.ui.properties.AbstractLabeledPropertySectionDelegate#getLabelText()
 	 */
 	protected String getLabelText() {
-		return PropertySectionUtil.formatName(argument.getParameter().getName()) + ":";
+		return NameUtil.formatName(argument.getParameter().getName()) + ":";
 	}
 
 }

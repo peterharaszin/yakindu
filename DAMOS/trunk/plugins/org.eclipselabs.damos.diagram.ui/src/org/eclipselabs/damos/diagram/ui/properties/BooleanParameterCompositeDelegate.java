@@ -14,7 +14,7 @@ package org.eclipselabs.damos.diagram.ui.properties;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipselabs.damos.diagram.core.internal.commands.SetArgumentValueCommand;
-import org.eclipselabs.damos.diagram.ui.internal.util.PropertySectionUtil;
+import org.eclipselabs.damos.diagram.ui.internal.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.ExpressionParameter;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
@@ -59,7 +59,7 @@ public class BooleanParameterCompositeDelegate extends CheckboxPropertyComposite
 	 * @see org.eclipselabs.damos.diagram.ui.properties.AbstractPropertySectionDelegate#getLabelText()
 	 */
 	protected String getLabelText() {
-		return PropertySectionUtil.formatName(argument.getParameter().getName());
+		return NameUtil.formatName(argument.getParameter().getName());
 	}
 	
 	/* (non-Javadoc)

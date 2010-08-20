@@ -14,6 +14,7 @@ package org.eclipselabs.damos.common.registry;
 import java.util.Arrays;
 import java.util.Comparator;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -182,16 +183,30 @@ public abstract class AbstractRegistryReader {
 		return value;
 	}
 
+	public <T> T createExecutableExtension(IConfigurationElement element, String attributeName, Class<T> clazz) {
+        try {
+			Object o = element.createExecutableExtension(attributeName);
+			if (clazz.isInstance(o)) {
+				return clazz.cast(o);
+			} else {
+				logError(element, "Specified class in attribute '" + attributeName + "' must be instance of " + clazz.getName());
+			}
+		} catch (CoreException e) {
+			logError(element, "Specified class in attribute '" + attributeName + "' could not be created", e);
+		}
+		return null;
+	}
+
 	/**
 	 * Utility for extracting the description child of an element.
 	 * 
-	 * @param configElement
+	 * @param element
 	 *            the element
 	 * @return the description
 	 * @since 3.1
 	 */
-	public static String getDescription(IConfigurationElement configElement) {
-		IConfigurationElement[] children = configElement.getChildren(IRegistryConstants.TAG_DESCRIPTION);
+	public static String getDescription(IConfigurationElement element) {
+		IConfigurationElement[] children = element.getChildren(IRegistryConstants.TAG_DESCRIPTION);
 		if (children.length >= 1) {
 			return children[0].getValue();
 		}
@@ -203,23 +218,24 @@ public abstract class AbstractRegistryReader {
 	 * element that follows the pattern set forth by
 	 * {@link org.eclipse.core.runtime.IExecutableExtension}.
 	 * 
-	 * @param configElement
+	 * @param element
 	 *            the element
 	 * @param classAttributeName
 	 *            the name of the class attribute to check
 	 * @return the value of the attribute or nested class element
 	 * @since 3.1
 	 */
-	public static String getClassValue(IConfigurationElement configElement, String classAttributeName) {
-		String className = configElement.getAttribute(classAttributeName);
+	public static String getClassValue(IConfigurationElement element, String classAttributeName) {
+		String className = element.getAttribute(classAttributeName);
 		if (className != null) {
 			return className;
 		}
-		IConfigurationElement[] candidateChildren = configElement.getChildren(classAttributeName);
+		IConfigurationElement[] candidateChildren = element.getChildren(classAttributeName);
 		if (candidateChildren.length == 0) {
 			return null;
 		}
 
 		return candidateChildren[0].getAttribute(IRegistryConstants.ATT_CLASS);
 	}
+		
 }

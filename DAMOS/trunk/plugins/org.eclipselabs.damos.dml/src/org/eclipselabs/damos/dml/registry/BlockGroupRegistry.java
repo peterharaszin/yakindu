@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dml.internal.registry.BlockGroupRegistryReader;
  */
 public class BlockGroupRegistry {
 
-	public static final BlockGroupRegistry INSTANCE = new BlockGroupRegistry();
+	private static final BlockGroupRegistry INSTANCE = new BlockGroupRegistry();
 
 	private Map<String, IBlockGroupDescriptor> descriptors = new HashMap<String, IBlockGroupDescriptor>();
 	

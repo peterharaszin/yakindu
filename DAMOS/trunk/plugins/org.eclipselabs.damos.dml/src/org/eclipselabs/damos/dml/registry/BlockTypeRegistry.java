@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dml.internal.registry.BlockTypeRegistryReader;
  */
 public class BlockTypeRegistry {
 
-	public static final BlockTypeRegistry INSTANCE = new BlockTypeRegistry();
+	private static final BlockTypeRegistry INSTANCE = new BlockTypeRegistry();
 
 	private Map<String, IBlockTypeDescriptor> descriptors = new HashMap<String, IBlockTypeDescriptor>();
 	

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Common UI
-Bundle-SymbolicName: org.eclipselabs.damos.common.ui
+Bundle-SymbolicName: org.eclipselabs.damos.common.ui;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipselabs.damos.common.ui.CommonUIPlugin
 Bundle-Vendor: Damos Project

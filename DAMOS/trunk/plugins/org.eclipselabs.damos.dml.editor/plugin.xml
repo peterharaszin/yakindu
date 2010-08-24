@@ -15,13 +15,13 @@
             id="org.eclipselabs.damos.dml.presentation.blockTypeWizard"
             name="%_UI_BlockTypeModelWizard_label"
             class="org.eclipselabs.damos.dml.editor.presentation.BlockTypeWizard"
-            category="org.eclipselabs.damos.category"
+            category="org.eclipselabs.damos.common.damosCategory"
             icon="icons/full/obj16/BlockTypeFile.gif">
          <description>%_UI_BlockTypeModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
       <wizard
-            category="org.eclipselabs.damos.category"
+            category="org.eclipselabs.damos.common.damosCategory"
             class="org.eclipselabs.damos.dml.editor.presentation.CategoryWizard"
             icon="icons/full/obj16/CategoryFile.gif"
             id="org.eclipselabs.damos.dml.presentation.categoryWizard"

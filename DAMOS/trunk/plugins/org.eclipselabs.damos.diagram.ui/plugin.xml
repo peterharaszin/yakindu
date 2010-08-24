@@ -33,12 +33,8 @@
    </extension>
    <extension
          point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipselabs.damos.category"
-            name="Damos">
-      </category>
       <wizard
-            category="org.eclipselabs.damos.category"
+            category="org.eclipselabs.damos.common.damosCategory"
             class="org.eclipselabs.damos.diagram.ui.wizards.BlockDiagramEditorCreationWizard"
             icon="icons/blockdiagram.gif"
             id="org.eclipselabs.damos.diagram.ui.blockDiagramWizard"
@@ -425,6 +421,15 @@
                name="Lowest">
          </Priority>
       </paletteProvider>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider
+            class="org.eclipselabs.damos.diagram.ui.internal.providers.ProblemMarkerDecoratorProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+      </decoratorProvider>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">

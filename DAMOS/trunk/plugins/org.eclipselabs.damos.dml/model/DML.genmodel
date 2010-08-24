@@ -116,6 +116,7 @@
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//InoutputDefinition">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/minimumPortCount"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/maximumPortCount"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/defaultPortCount"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
           ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/manyPorts"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/name"/>

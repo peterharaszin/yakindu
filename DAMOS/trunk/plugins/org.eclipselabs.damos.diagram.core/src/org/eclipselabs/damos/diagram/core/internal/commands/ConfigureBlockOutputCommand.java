@@ -49,7 +49,8 @@ public class ConfigureBlockOutputCommand extends ConfigureElementCommand {
     	OutputDefinition definition = (OutputDefinition) request.getParameter(IRequestParameterConstants.OUTPUT_DEFINITION);
     	output.setDefinition(definition);
     	
-		for (int i = 0; i < definition.getMinimumPortCount(); ++i) {
+    	int portCount = Math.max(definition.getDefaultPortCount(), definition.getMinimumPortCount());
+		for (int i = 0; i < portCount; ++i) {
 			CreateElementRequest createRequest = new CreateElementRequest(
                     getEditingDomain(),
                     output,

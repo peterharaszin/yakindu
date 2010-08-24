@@ -19,6 +19,7 @@ package org.eclipselabs.damos.dml;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getMinimumPortCount <em>Minimum Port Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getMaximumPortCount <em>Maximum Port Count</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getDefaultPortCount <em>Default Port Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#isManyPorts <em>Many Ports</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}</li>
@@ -83,6 +84,33 @@ public interface InoutputDefinition extends ParameterableElement {
 	 * @generated
 	 */
 	void setMaximumPortCount(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Default Port Count</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Default Port Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Default Port Count</em>' attribute.
+	 * @see #setDefaultPortCount(int)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getInoutputDefinition_DefaultPortCount()
+	 * @model default="-1" required="true" ordered="false"
+	 * @generated
+	 */
+	int getDefaultPortCount();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.InoutputDefinition#getDefaultPortCount <em>Default Port Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Default Port Count</em>' attribute.
+	 * @see #getDefaultPortCount()
+	 * @generated
+	 */
+	void setDefaultPortCount(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Many Ports</b></em>' attribute.

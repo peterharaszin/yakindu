@@ -24,6 +24,7 @@ import org.eclipselabs.damos.dml.InoutputDefinition;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getMinimumPortCount <em>Minimum Port Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getMaximumPortCount <em>Maximum Port Count</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getDefaultPortCount <em>Default Port Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#isManyPorts <em>Many Ports</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getDataType <em>Data Type</em>}</li>
@@ -72,6 +73,26 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 	 * @ordered
 	 */
 	protected int maximumPortCount = MAXIMUM_PORT_COUNT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDefaultPortCount() <em>Default Port Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultPortCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int DEFAULT_PORT_COUNT_EDEFAULT = -1;
+
+	/**
+	 * The cached value of the '{@link #getDefaultPortCount() <em>Default Port Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultPortCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected int defaultPortCount = DEFAULT_PORT_COUNT_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isManyPorts() <em>Many Ports</em>}' attribute.
@@ -181,6 +202,27 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 		maximumPortCount = newMaximumPortCount;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT, oldMaximumPortCount, maximumPortCount));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getDefaultPortCount() {
+		return defaultPortCount;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultPortCount(int newDefaultPortCount) {
+		int oldDefaultPortCount = defaultPortCount;
+		defaultPortCount = newDefaultPortCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT, oldDefaultPortCount, defaultPortCount));
 	}
 
 	/**
@@ -335,6 +377,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return getMinimumPortCount();
 			case DMLPackage.INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT:
 				return getMaximumPortCount();
+			case DMLPackage.INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT:
+				return getDefaultPortCount();
 			case DMLPackage.INOUTPUT_DEFINITION__MANY_PORTS:
 				return isManyPorts();
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
@@ -358,6 +402,9 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return;
 			case DMLPackage.INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT:
 				setMaximumPortCount((Integer)newValue);
+				return;
+			case DMLPackage.INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT:
+				setDefaultPortCount((Integer)newValue);
 				return;
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
 				setName((String)newValue);
@@ -383,6 +430,9 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 			case DMLPackage.INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT:
 				setMaximumPortCount(MAXIMUM_PORT_COUNT_EDEFAULT);
 				return;
+			case DMLPackage.INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT:
+				setDefaultPortCount(DEFAULT_PORT_COUNT_EDEFAULT);
+				return;
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -405,6 +455,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return minimumPortCount != MINIMUM_PORT_COUNT_EDEFAULT;
 			case DMLPackage.INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT:
 				return maximumPortCount != MAXIMUM_PORT_COUNT_EDEFAULT;
+			case DMLPackage.INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT:
+				return defaultPortCount != DEFAULT_PORT_COUNT_EDEFAULT;
 			case DMLPackage.INOUTPUT_DEFINITION__MANY_PORTS:
 				return isManyPorts() != MANY_PORTS_EDEFAULT;
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
@@ -429,6 +481,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 		result.append(minimumPortCount);
 		result.append(", maximumPortCount: ");
 		result.append(maximumPortCount);
+		result.append(", defaultPortCount: ");
+		result.append(defaultPortCount);
 		result.append(", name: ");
 		result.append(name);
 		result.append(')');

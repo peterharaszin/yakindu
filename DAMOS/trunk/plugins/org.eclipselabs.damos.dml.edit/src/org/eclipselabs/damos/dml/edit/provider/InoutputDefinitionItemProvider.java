@@ -65,6 +65,7 @@ public class InoutputDefinitionItemProvider
 
 			addMinimumPortCountPropertyDescriptor(object);
 			addMaximumPortCountPropertyDescriptor(object);
+			addDefaultPortCountPropertyDescriptor(object);
 			addManyPortsPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 		}
@@ -107,6 +108,28 @@ public class InoutputDefinitionItemProvider
 				 getString("_UI_InoutputDefinition_maximumPortCount_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_InoutputDefinition_maximumPortCount_feature", "_UI_InoutputDefinition_type"),
 				 DMLPackage.Literals.INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Default Port Count feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefaultPortCountPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_InoutputDefinition_defaultPortCount_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_InoutputDefinition_defaultPortCount_feature", "_UI_InoutputDefinition_type"),
+				 DMLPackage.Literals.INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT,
 				 true,
 				 false,
 				 false,
@@ -217,6 +240,7 @@ public class InoutputDefinitionItemProvider
 		switch (notification.getFeatureID(InoutputDefinition.class)) {
 			case DMLPackage.INOUTPUT_DEFINITION__MINIMUM_PORT_COUNT:
 			case DMLPackage.INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT:
+			case DMLPackage.INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT:
 			case DMLPackage.INOUTPUT_DEFINITION__MANY_PORTS:
 			case DMLPackage.INOUTPUT_DEFINITION__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

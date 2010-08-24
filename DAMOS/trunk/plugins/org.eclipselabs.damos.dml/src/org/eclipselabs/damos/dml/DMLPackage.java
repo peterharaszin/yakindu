@@ -629,13 +629,22 @@ public interface DMLPackage extends EPackage {
 	int INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Default Port Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Many Ports</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_DEFINITION__MANY_PORTS = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 2;
+	int INOUTPUT_DEFINITION__MANY_PORTS = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -644,7 +653,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_DEFINITION__NAME = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 3;
+	int INOUTPUT_DEFINITION__NAME = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -653,7 +662,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_DEFINITION__DATA_TYPE = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 4;
+	int INOUTPUT_DEFINITION__DATA_TYPE = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Inoutput Definition</em>' class.
@@ -662,7 +671,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_DEFINITION_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 5;
+	int INOUTPUT_DEFINITION_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -690,6 +699,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_DEFINITION__MAXIMUM_PORT_COUNT = INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT;
+
+	/**
+	 * The feature id for the '<em><b>Default Port Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DEFINITION__DEFAULT_PORT_COUNT = INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Many Ports</b></em>' attribute.
@@ -922,6 +940,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OUTPUT_DEFINITION__MAXIMUM_PORT_COUNT = INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT;
+
+	/**
+	 * The feature id for the '<em><b>Default Port Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT_DEFINITION__DEFAULT_PORT_COUNT = INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT;
 
 	/**
 	 * The feature id for the '<em><b>Many Ports</b></em>' attribute.
@@ -2663,6 +2690,17 @@ public interface DMLPackage extends EPackage {
 	EAttribute getInoutputDefinition_MaximumPortCount();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.InoutputDefinition#getDefaultPortCount <em>Default Port Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Port Count</em>'.
+	 * @see org.eclipselabs.damos.dml.InoutputDefinition#getDefaultPortCount()
+	 * @see #getInoutputDefinition()
+	 * @generated
+	 */
+	EAttribute getInoutputDefinition_DefaultPortCount();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.InoutputDefinition#isManyPorts <em>Many Ports</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3776,6 +3814,14 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT = eINSTANCE.getInoutputDefinition_MaximumPortCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Port Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT = eINSTANCE.getInoutputDefinition_DefaultPortCount();
 
 		/**
 		 * The meta object literal for the '<em><b>Many Ports</b></em>' attribute feature.

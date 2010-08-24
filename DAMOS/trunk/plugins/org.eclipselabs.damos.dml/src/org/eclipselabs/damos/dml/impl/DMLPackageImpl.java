@@ -829,7 +829,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInoutputDefinition_ManyPorts() {
+	public EAttribute getInoutputDefinition_DefaultPortCount() {
 		return (EAttribute)inoutputDefinitionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -838,7 +838,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getInoutputDefinition_Name() {
+	public EAttribute getInoutputDefinition_ManyPorts() {
 		return (EAttribute)inoutputDefinitionEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -847,8 +847,17 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInoutputDefinition_Name() {
+		return (EAttribute)inoutputDefinitionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getInoutputDefinition_DataType() {
-		return (EReference)inoutputDefinitionEClass.getEStructuralFeatures().get(4);
+		return (EReference)inoutputDefinitionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1560,6 +1569,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		inoutputDefinitionEClass = createEClass(INOUTPUT_DEFINITION);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MINIMUM_PORT_COUNT);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MAXIMUM_PORT_COUNT);
+		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MANY_PORTS);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__NAME);
 		createEReference(inoutputDefinitionEClass, INOUTPUT_DEFINITION__DATA_TYPE);
@@ -1836,6 +1846,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(inoutputDefinitionEClass, InoutputDefinition.class, "InoutputDefinition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInoutputDefinition_MinimumPortCount(), ecorePackage.getEInt(), "minimumPortCount", "1", 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_MaximumPortCount(), ecorePackage.getEInt(), "maximumPortCount", "1", 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getInoutputDefinition_DefaultPortCount(), ecorePackage.getEInt(), "defaultPortCount", "-1", 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_ManyPorts(), ecorePackage.getEBoolean(), "manyPorts", null, 1, 1, InoutputDefinition.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_Name(), ecorePackage.getEString(), "name", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getInoutputDefinition_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

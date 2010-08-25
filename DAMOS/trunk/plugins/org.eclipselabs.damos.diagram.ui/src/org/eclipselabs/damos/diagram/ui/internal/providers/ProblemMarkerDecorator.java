@@ -22,6 +22,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.AbstractDecorator;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -30,6 +31,10 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.common.markers.IMarkerConstants;
+import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
+import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
+import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 
 class ProblemMarkerDecorator extends AbstractDecorator {
@@ -58,6 +63,14 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 
 	};
 	
+	private IFragmentSelectionChangeListener fragmentSelectionChangeListener = new IFragmentSelectionChangeListener() {
+		
+		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
+			refresh();
+		}
+		
+	};
+	
 	public ProblemMarkerDecorator(IDecoratorTarget decoratorTarget) {
 		super(decoratorTarget);
 		element = (FragmentElement) getDecoratorTarget().getAdapter(FragmentElement.class);
@@ -68,16 +81,29 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 	}
 
 	public void activate() {
+		FragmentSelectionManager fragmentSelectionManager = getFragmentSelectionManager();
+		if (fragmentSelectionManager != null) {
+			fragmentSelectionManager.addFragmentSelectionChangeListener(fragmentSelectionChangeListener);
+		}
 		ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_BUILD);
 	}
 	
 	public void deactivate() {
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+		FragmentSelectionManager fragmentSelectionManager = getFragmentSelectionManager();
+		if (fragmentSelectionManager != null) {
+			fragmentSelectionManager.removeFragmentSelectionChangeListener(fragmentSelectionChangeListener);
+		}
 		super.deactivate();
 	}
 	
 	public void refresh() {
-		refreshDecorations(getMarkerProblems(getFile()));
+		Fragment selectedFragment = null;
+		FragmentSelectionManager fragmentSelectionManager = getFragmentSelectionManager();
+		if (fragmentSelectionManager != null) {
+			selectedFragment = fragmentSelectionManager.getSelectedFragment();
+		}
+		refreshDecorations(getMarkerProblems(getFile(), selectedFragment));
 	}
 	
 	private void refreshDecorations(List<Problem> problems) {
@@ -111,20 +137,23 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 		return cachedFile;
 	}
 	
-	private List<Problem> getMarkerProblems(IFile file) {
+	private List<Problem> getMarkerProblems(IFile file, Fragment selectedFragment) {
 		List<Problem> problems = Collections.emptyList();
 		try {
 			IMarker[] allMarkers = file.findMarkers(IMarkerConstants.PROBLEM_MARKER_ID, false, IResource.DEPTH_INFINITE);
 			if (allMarkers.length > 0) {
 				problems = new ArrayList<Problem>();
 				for (IMarker marker : allMarkers) {
-					String elementURIString = marker.getAttribute(IMarkerConstants.ATTRIBUTE__ELEMENT_URI, null);
-					if (elementURIString != null) {
-						String uriFragment = URI.createURI(elementURIString).fragment();
-						if (uriFragment != null && EcoreUtil.isAncestor(element, element.eResource().getEObject(uriFragment))) {
-							int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-							String message = marker.getAttribute(IMarker.MESSAGE, "");
-							problems.add(new Problem(convertMarkerSeverityToStatusSeverity(severity), message));
+					String fragmentURIString = marker.getAttribute(IMarkerConstants.ATTRIBUTE__FRAGMENT_URI, null);
+					if (fragmentURIString != null && EcoreUtil.getURI(selectedFragment).equals(URI.createURI(fragmentURIString))) {
+						String elementURIString = marker.getAttribute(IMarkerConstants.ATTRIBUTE__ELEMENT_URI, null);
+						if (elementURIString != null) {
+							String uriFragment = URI.createURI(elementURIString).fragment();
+							if (uriFragment != null && EcoreUtil.isAncestor(element, element.eResource().getEObject(uriFragment))) {
+								int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
+								String message = marker.getAttribute(IMarker.MESSAGE, "");
+								problems.add(new Problem(convertMarkerSeverityToStatusSeverity(severity), message));
+							}
 						}
 					}
 				}
@@ -133,6 +162,14 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 			e.printStackTrace();
 		}
 		return problems;
+	}
+	
+	private FragmentSelectionManager getFragmentSelectionManager() {
+		EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
+		if (editPart != null) {
+			return (FragmentSelectionManager) editPart.getRoot().getContents().getAdapter(FragmentSelectionManager.class);
+		}
+		return null;
 	}
 	
 	private int getSeverity(List<Problem> problems) {

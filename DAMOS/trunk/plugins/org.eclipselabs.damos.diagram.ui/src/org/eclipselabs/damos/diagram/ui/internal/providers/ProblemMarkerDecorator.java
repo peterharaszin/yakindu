@@ -79,10 +79,6 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 		initializeFile();
 	}
 	
-	public FragmentElement getElement() {
-		return element;
-	}
-
 	public void activate() {
 		FragmentSelectionManager fragmentSelectionManager = getFragmentSelectionManager();
 		if (fragmentSelectionManager != null) {

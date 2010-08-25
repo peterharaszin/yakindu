@@ -16,11 +16,13 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.AbstractDecorator;
@@ -31,6 +33,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.common.markers.IMarkerConstants;
+import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
@@ -40,8 +43,7 @@ import org.eclipselabs.damos.dml.FragmentElement;
 class ProblemMarkerDecorator extends AbstractDecorator {
 
 	private FragmentElement element;
-	private URI cachedElementURI;
-	private IFile cachedFile;
+	private IFile file;
 	
 	private IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
 		
@@ -74,6 +76,7 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 	public ProblemMarkerDecorator(IDecoratorTarget decoratorTarget) {
 		super(decoratorTarget);
 		element = (FragmentElement) getDecoratorTarget().getAdapter(FragmentElement.class);
+		initializeFile();
 	}
 	
 	public FragmentElement getElement() {
@@ -98,12 +101,14 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 	}
 	
 	public void refresh() {
-		Fragment selectedFragment = null;
-		FragmentSelectionManager fragmentSelectionManager = getFragmentSelectionManager();
-		if (fragmentSelectionManager != null) {
-			selectedFragment = fragmentSelectionManager.getSelectedFragment();
+		if (file != null && file.exists()) {
+			Fragment selectedFragment = null;
+			FragmentSelectionManager fragmentSelectionManager = getFragmentSelectionManager();
+			if (fragmentSelectionManager != null) {
+				selectedFragment = fragmentSelectionManager.getSelectedFragment();
+			}
+			refreshDecorations(getMarkerProblems(file, selectedFragment));
 		}
-		refreshDecorations(getMarkerProblems(getFile(), selectedFragment));
 	}
 	
 	private void refreshDecorations(List<Problem> problems) {
@@ -121,20 +126,22 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 		}
 	}
 	
-	private URI getElementURI() {
-		if (cachedElementURI == null) {
-			cachedElementURI = EcoreUtil.getURI(element);
+	private void initializeFile() {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		Resource resource = element.eResource();
+		if (resource != null) {
+			URI uri = resource.getURI();
+			if (uri != null) {
+				String uriString;
+				if (uri.isPlatform()) {
+					uriString = uri.toPlatformString(false);
+				} else {
+					uriString = uri.toString();
+				}
+				IPath path = new Path(uriString);
+				file = root.getFile(path);
+			}
 		}
-		return cachedElementURI;
-	}
-	
-	private IFile getFile() {
-		if (cachedFile == null) {
-			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-			IPath path = new Path(getElementURI().path()).removeFirstSegments(1);
-			cachedFile = root.getFile(path);
-		}
-		return cachedFile;
 	}
 	
 	private List<Problem> getMarkerProblems(IFile file, Fragment selectedFragment) {
@@ -159,7 +166,9 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 				}
 			}
 		} catch (CoreException e) {
-			e.printStackTrace();
+			DiagramUIPlugin.getDefault().getLog().log(new Status(
+					IStatus.ERROR, DiagramUIPlugin.PLUGIN_ID,
+					"Retrieving problem markers from " + file.getFullPath().toString() + " failed", e));
 		}
 		return problems;
 	}

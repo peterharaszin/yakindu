@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="componentSignaturePolicyProviders" name="Component Signature Policy Providers" schema="schema/componentSignaturePolicyProviders.exsd"/>
+   <extension-point id="blockSignaturePolicies" name="Block Signature Policies" schema="schema/blockSignaturePolicies.exsd"/>
+   <extension
+         point="org.eclipselabs.damos.evaluation.componentSignaturePolicyProviders">
+      <provider
+            class="org.eclipselabs.damos.evaluation.internal.registry.BlockSignaturePolicyProvider">
+      </provider>
+   </extension>
+
+</plugin>

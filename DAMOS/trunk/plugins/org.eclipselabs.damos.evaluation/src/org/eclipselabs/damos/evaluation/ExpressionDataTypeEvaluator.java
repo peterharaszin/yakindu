@@ -1,0 +1,126 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipselabs.damos.evaluation;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.evaluation.internal.InvalidUnitExpressionOperandException;
+import org.eclipselabs.damos.evaluation.internal.UnitExpressionHelper;
+import org.eclipselabs.damos.scripting.mscript.BooleanLiteral;
+import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
+import org.eclipselabs.damos.scripting.mscript.RealLiteral;
+import org.eclipselabs.damos.scripting.mscript.StringLiteral;
+import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.damos.typesystem.IntegerType;
+import org.eclipselabs.damos.typesystem.OperatorKind;
+import org.eclipselabs.damos.typesystem.RealType;
+import org.eclipselabs.damos.typesystem.TypeSystemFactory;
+import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public class ExpressionDataTypeEvaluator extends AbstractExpressionEvaluator<DataType> {
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.evaluation.AbstractExpressionEvaluator#add(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	protected DataType add(DataType addend1, DataType addend2) {
+		return addend1.evaluate(OperatorKind.ADD, addend2);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.evaluation.AbstractExpressionEvaluator#subtract(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	protected DataType subtract(DataType minuend, DataType subtrahend) {
+		return minuend.evaluate(OperatorKind.SUBTRACT, subtrahend);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.evaluation.AbstractExpressionEvaluator#multiply(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	protected DataType multiply(DataType factor1, DataType factor2) {
+		return factor1.evaluate(OperatorKind.MULTIPLY, factor2);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.evaluation.AbstractExpressionEvaluator#divide(java.lang.Object, java.lang.Object)
+	 */
+	@Override
+	protected DataType divide(DataType dividend, DataType divisor) {
+		return dividend.evaluate(OperatorKind.DIVIDE, divisor);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseRealLiteral(org.eclipselabs.damos.scripting.mscript.RealLiteral)
+	 */
+	@Override
+	public DataType caseRealLiteral(RealLiteral object) {
+		RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
+		try {
+			if (object.getUnit() != null) {
+				realType.setUnit(new UnitExpressionHelper().evaluate(object.getUnit()));
+			} else {
+				realType.setUnit(TypeSystemUtil.createUnit());
+			}
+		} catch (InvalidUnitExpressionOperandException e) {
+			return TypeSystemFactory.eINSTANCE.createInvalidDataType();
+		}
+		return realType;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseIntegerLiteral(org.eclipselabs.damos.scripting.mscript.IntegerLiteral)
+	 */
+	@Override
+	public DataType caseIntegerLiteral(IntegerLiteral object) {
+		IntegerType integerType = TypeSystemFactory.eINSTANCE.createIntegerType();
+		try {
+			if (object.getUnit() != null) {
+				integerType.setUnit(new UnitExpressionHelper().evaluate(object.getUnit()));
+			} else {
+				integerType.setUnit(TypeSystemUtil.createUnit());
+			}
+		} catch (InvalidUnitExpressionOperandException e) {
+			return TypeSystemFactory.eINSTANCE.createInvalidDataType();
+		}
+		return integerType;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseBooleanLiteral(org.eclipselabs.damos.scripting.mscript.BooleanLiteral)
+	 */
+	@Override
+	public DataType caseBooleanLiteral(BooleanLiteral object) {
+		return TypeSystemFactory.eINSTANCE.createBooleanType();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseStringLiteral(org.eclipselabs.damos.scripting.mscript.StringLiteral)
+	 */
+	@Override
+	public DataType caseStringLiteral(StringLiteral object) {
+		return TypeSystemFactory.eINSTANCE.createStringType();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+	 */
+	@Override
+	public DataType defaultCase(EObject object) {
+		return TypeSystemFactory.eINSTANCE.createInvalidDataType();
+	}
+
+}

@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.evaluation;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.evaluation.internal.InvalidUnitExpressionOperandException;
 import org.eclipselabs.damos.evaluation.internal.UnitExpressionHelper;
@@ -18,6 +19,7 @@ import org.eclipselabs.damos.scripting.mscript.BooleanLiteral;
 import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
 import org.eclipselabs.damos.scripting.mscript.RealLiteral;
 import org.eclipselabs.damos.scripting.mscript.StringLiteral;
+import org.eclipselabs.damos.scripting.mscript.SymbolReference;
 import org.eclipselabs.damos.typesystem.DataType;
 import org.eclipselabs.damos.typesystem.IntegerType;
 import org.eclipselabs.damos.typesystem.OperatorKind;
@@ -30,6 +32,13 @@ import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
  *
  */
 public class ExpressionDataTypeEvaluator extends AbstractExpressionEvaluator<DataType> {
+
+	/**
+	 * @param context
+	 */
+	public ExpressionDataTypeEvaluator(IEvaluationContext context) {
+		super(context);
+	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.AbstractExpressionEvaluator#add(java.lang.Object, java.lang.Object)
@@ -113,6 +122,19 @@ public class ExpressionDataTypeEvaluator extends AbstractExpressionEvaluator<Dat
 	@Override
 	public DataType caseStringLiteral(StringLiteral object) {
 		return TypeSystemFactory.eINSTANCE.createStringType();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseSymbolReference(org.eclipselabs.damos.scripting.mscript.SymbolReference)
+	 */
+	@Override
+	public DataType caseSymbolReference(SymbolReference object) {
+		try {
+			return getContext().getSymbolDataType(object);
+		} catch (CoreException e) {
+			// Return invalid data type
+		}
+		return TypeSystemFactory.eINSTANCE.createInvalidDataType(); 
 	}
 	
 	/* (non-Javadoc)

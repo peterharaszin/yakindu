@@ -13,17 +13,21 @@ package org.eclipselabs.damos.evaluation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignature;
+import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
+import org.eclipselabs.damos.evaluation.internal.ComponentEvaluationContext;
+import org.eclipselabs.damos.evaluation.internal.EvaluationMultiStatus;
+import org.eclipselabs.damos.evaluation.internal.EvaluationStatus;
 import org.eclipselabs.damos.evaluation.internal.registry.ComponentSignaturePolicyProviderRegistry;
 import org.eclipselabs.damos.typesystem.DataType;
 
@@ -33,9 +37,9 @@ import org.eclipselabs.damos.typesystem.DataType;
  */
 public class DataTypeResolver {
 	
-	public DataTypeResolverResult resolve(Fragment fragment, DiagnosticChain diagnostics) {
+	public DataTypeResolverResult resolve(Fragment fragment) {
 		DataTypeResolverResult resolverResult = new DataTypeResolverResult();
-		Map<Component, Diagnostic> componentDiagnostics = new HashMap<Component, Diagnostic>();
+		Map<Component, IStatus> statusMap = new HashMap<Component, IStatus>();
 		
 		boolean changed;
 		do {
@@ -43,37 +47,41 @@ public class DataTypeResolver {
 			for (Component component : fragment.getAllComponents()) {
 				IComponentSignaturePolicy policy = ComponentSignaturePolicyProviderRegistry.getInstance().createPolicy(component);
 				if (policy != null) {
-					IEvaluationContext context = new IEvaluationContext() {
-						// TODO
-					};
+					IEvaluationContext context = new ComponentEvaluationContext(component);
 					
-					BasicDiagnostic componentDiagnostic = new BasicDiagnostic(component.getName(), 0, "Evaluation failed", new Object[] { component });
-					IComponentSignature newSignature = policy.evaluateSignature(
+					IComponentSignatureEvaluationResult result = policy.evaluateSignature(
 							context,
 							component,
-							getIncomingDataTypes(fragment, component, resolverResult),
-							componentDiagnostic);
-					componentDiagnostic.recomputeSeverity();
+							getIncomingDataTypes(fragment, component, resolverResult));
 					
-					if (newSignature != null) {
+					if (result.getSignature() != null) {
 						IComponentSignature oldSignature = resolverResult.getSignatures().get(component);
+						IComponentSignature newSignature = result.getSignature();
 						if (newSignature != null && (oldSignature == null || !oldSignature.equals(newSignature))) {
 							resolverResult.getSignatures().put(component, newSignature);
 							changed = true;
 						}
 					}
 					
-					if (componentDiagnostic.getSeverity() != Diagnostic.OK) {
-						componentDiagnostics.put(component, componentDiagnostic);
+					if (!result.getStatus().isOK()) {
+						statusMap.put(component, result.getStatus());
 					}
 				} else {
-					componentDiagnostics.put(component, new BasicDiagnostic(Diagnostic.ERROR, component.getName(), 0, "No component signature policy found", new Object[] { component }));
+					statusMap.put(component, new EvaluationStatus(IStatus.ERROR, component, "No component signature policy found"));
 				}
 			}
 		} while (changed);
 		
-		for (Diagnostic componentDiagnostic : componentDiagnostics.values()) {
-			diagnostics.add(componentDiagnostic);
+		if (!statusMap.isEmpty()) {
+			MultiStatus resolverStatus = new MultiStatus(EvaluationPlugin.PLUGIN_ID, 0, "Evaluation failed", null);
+			for (Entry<Component, IStatus> entry : statusMap.entrySet()) {
+				if (entry.getValue().isMultiStatus()) {
+					resolverStatus.add(new EvaluationMultiStatus(entry.getKey(), entry.getValue().getChildren()));
+				} else {
+					resolverStatus.add(new EvaluationMultiStatus(entry.getKey(), new IStatus[] { entry.getValue() }));
+				}
+			}
+			resolverResult.setStatus(resolverStatus);
 		}
 		
 		return resolverResult;

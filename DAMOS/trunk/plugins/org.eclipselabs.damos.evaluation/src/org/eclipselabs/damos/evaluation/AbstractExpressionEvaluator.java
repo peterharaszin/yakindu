@@ -27,6 +27,22 @@ import org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch;
  */
 public abstract class AbstractExpressionEvaluator<T> extends MscriptSwitch<T> {
 	
+	private IEvaluationContext context;
+	
+	/**
+	 * 
+	 */
+	public AbstractExpressionEvaluator(IEvaluationContext context) {
+		this.context = context;
+	}
+	
+	/**
+	 * @return the context
+	 */
+	protected IEvaluationContext getContext() {
+		return context;
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseAddSubtractExpression(org.eclipselabs.damos.scripting.mscript.AddSubtractExpression)
 	 */

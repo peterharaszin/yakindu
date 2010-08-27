@@ -11,39 +11,15 @@
 
 package org.eclipselabs.damos.evaluation;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignature;
 
 /**
  * @author Andreas Unger
  *
  */
-public class DataTypeResolverResult {
+public interface IEvaluationStatus extends IStatus {
 
-	private Map<Component, IComponentSignature> signatures = new HashMap<Component, IComponentSignature>();
-	private IStatus status = Status.OK_STATUS;
-
-	public Map<Component, IComponentSignature> getSignatures() {
-		return signatures;
-	}
-	
-	/**
-	 * @return the status
-	 */
-	public IStatus getStatus() {
-		return status;
-	}
-	
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(IStatus status) {
-		this.status = status;
-	}
+	Component getComponent();
 	
 }

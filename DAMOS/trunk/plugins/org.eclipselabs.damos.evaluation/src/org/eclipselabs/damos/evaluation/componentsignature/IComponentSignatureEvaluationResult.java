@@ -9,17 +9,17 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.evaluation;
+package org.eclipselabs.damos.evaluation.componentsignature;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.damos.scripting.mscript.SymbolReference;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipse.core.runtime.IStatus;
 
 /**
  * @author Andreas Unger
+ *
  */
-public interface IEvaluationContext {
+public interface IComponentSignatureEvaluationResult {
 
-	DataType getSymbolDataType(SymbolReference symbolReference) throws CoreException;
+	IComponentSignature getSignature();
+	IStatus getStatus();
 	
 }

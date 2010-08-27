@@ -9,41 +9,34 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.evaluation;
+package org.eclipselabs.damos.evaluation.internal;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignature;
+import org.eclipselabs.damos.evaluation.EvaluationPlugin;
+import org.eclipselabs.damos.evaluation.IEvaluationStatus;
 
 /**
  * @author Andreas Unger
  *
  */
-public class DataTypeResolverResult {
+public class EvaluationStatus extends Status implements IEvaluationStatus {
 
-	private Map<Component, IComponentSignature> signatures = new HashMap<Component, IComponentSignature>();
-	private IStatus status = Status.OK_STATUS;
-
-	public Map<Component, IComponentSignature> getSignatures() {
-		return signatures;
-	}
+	private Component component;
 	
 	/**
-	 * @return the status
+	 * 
 	 */
-	public IStatus getStatus() {
-		return status;
+	public EvaluationStatus(int severity, Component component, String message) {
+		super(severity, EvaluationPlugin.PLUGIN_ID, message);
+		this.component = component;
 	}
-	
-	/**
-	 * @param status the status to set
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.evaluation.IEvaluationStatus#getComponent()
 	 */
-	public void setStatus(IStatus status) {
-		this.status = status;
+	public Component getComponent() {
+		return component;
 	}
-	
+
 }

@@ -9,21 +9,40 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.evaluation.componentsignature;
-
-import java.util.Map;
+package org.eclipselabs.damos.evaluation.internal;
 
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
+import org.eclipselabs.damos.scripting.mscript.SymbolReference;
 import org.eclipselabs.damos.typesystem.DataType;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IComponentSignaturePolicy {
+public class ComponentEvaluationContext implements IEvaluationContext {
 
-	IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Component component, Map<InputPort, DataType> incomingDataTypes);
+	private Component component;
 	
+	/**
+	 * 
+	 */
+	public ComponentEvaluationContext(Component component) {
+		this.component = component;
+	}
+	
+	/**
+	 * @return the component
+	 */
+	public Component getComponent() {
+		return component;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.evaluation.IEvaluationContext#getSymbolDataType(org.eclipselabs.damos.scripting.mscript.SymbolReference)
+	 */
+	public DataType getSymbolDataType(SymbolReference symbolReference) {
+		return null;
+	}
+
 }

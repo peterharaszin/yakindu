@@ -30,7 +30,7 @@ public class PortViewFactory extends AbstractShapeViewFactory {
         
         FontStyle fontStyle = (FontStyle) view.getStyle(NotationPackage.eINSTANCE.getFontStyle());
         if (fontStyle != null) {
-        	shapeStyle.setFontHeight(8);
+        	fontStyle.setFontHeight(8);
         }
 	}
 	

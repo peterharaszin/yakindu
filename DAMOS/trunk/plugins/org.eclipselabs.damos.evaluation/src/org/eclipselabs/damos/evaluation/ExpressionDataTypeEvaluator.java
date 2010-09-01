@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.evaluation.internal.InvalidUnitExpressionOperandException;
 import org.eclipselabs.damos.evaluation.internal.UnitExpressionHelper;
-import org.eclipselabs.damos.scripting.mscript.ArrayConcatenationOperator;
 import org.eclipselabs.damos.scripting.mscript.BooleanLiteral;
 import org.eclipselabs.damos.scripting.mscript.Expression;
 import org.eclipselabs.damos.scripting.mscript.ExpressionList;
 import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
+import org.eclipselabs.damos.scripting.mscript.MatrixConstructionOperator;
 import org.eclipselabs.damos.scripting.mscript.RealLiteral;
 import org.eclipselabs.damos.scripting.mscript.StringLiteral;
 import org.eclipselabs.damos.scripting.mscript.SymbolReference;
@@ -28,12 +28,9 @@ import org.eclipselabs.damos.typesystem.ArrayType;
 import org.eclipselabs.damos.typesystem.DataType;
 import org.eclipselabs.damos.typesystem.IntegerType;
 import org.eclipselabs.damos.typesystem.InvalidDataType;
-import org.eclipselabs.damos.typesystem.NumericalType;
 import org.eclipselabs.damos.typesystem.OperatorKind;
 import org.eclipselabs.damos.typesystem.RealType;
-import org.eclipselabs.damos.typesystem.TensorType;
 import org.eclipselabs.damos.typesystem.TypeSystemFactory;
-import org.eclipselabs.damos.typesystem.Unit;
 import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
 
 /**
@@ -137,7 +134,7 @@ public class ExpressionDataTypeEvaluator extends AbstractExpressionEvaluator<Dat
 	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseArrayConcatenationOperator(org.eclipselabs.damos.scripting.mscript.ArrayConcatenationOperator)
 	 */
 	@Override
-	public DataType caseArrayConcatenationOperator(ArrayConcatenationOperator object) {
+	public DataType caseMatrixConstructionOperator(MatrixConstructionOperator object) {
 		ArrayType arrayType = null;
 		
 		int rowSize = object.getExpressionLists().size();
@@ -153,33 +150,16 @@ public class ExpressionDataTypeEvaluator extends AbstractExpressionEvaluator<Dat
 			
 			int column = 0;
 			for (Expression expression : expressionList.getExpressions()) {
-				DataType elementDataType = doSwitch(expression);
+				DataType elementType = doSwitch(expression);
 				
-				if (elementDataType instanceof InvalidDataType) {
+				if (elementType instanceof InvalidDataType) {
 					return TypeSystemFactory.eINSTANCE.createInvalidDataType();
 				}
 				
 				if (arrayType == null) {
-					if (elementDataType instanceof NumericalType) {
-						NumericalType numericalType = (NumericalType) EcoreUtil.copy(elementDataType);
-						Unit unit = numericalType.getUnit();
-						numericalType.unsetUnit();
-						TensorType tensorType = TypeSystemUtil.createTensorType(numericalType, rowSize, columnSize);
-						tensorType.setUnit(0, 0, unit);
-						arrayType = tensorType;
-					} else {
-						arrayType = TypeSystemUtil.createArrayType(elementDataType, rowSize, columnSize);
-					}
-				} else if (arrayType.getElementType() instanceof NumericalType) {
-					if (!(elementDataType instanceof NumericalType)) {
-						return TypeSystemFactory.eINSTANCE.createInvalidDataType();
-					}
-					if (arrayType.getElementType() instanceof IntegerType && elementDataType instanceof RealType) {
-						arrayType.setElementType(TypeSystemFactory.eINSTANCE.createRealType());
-					}
-					((TensorType) arrayType).setUnit(row, column, (Unit) EcoreUtil.copy(((NumericalType) elementDataType).getUnit()));
-				} else if (!EcoreUtil.equals(arrayType.getElementType(), elementDataType)) {
-					DataType commonDataType = TypeSystemUtil.getCommonDataType(arrayType.getElementType(), elementDataType);
+					arrayType = TypeSystemUtil.createArrayType(elementType, rowSize, columnSize);
+				} else if (!EcoreUtil.equals(arrayType.getElementType(), elementType)) {
+					DataType commonDataType = TypeSystemUtil.getLeftHandDataType(arrayType.getElementType(), elementType);
 					if (commonDataType == null) {
 						return TypeSystemFactory.eINSTANCE.createInvalidDataType();
 					}

@@ -24,6 +24,7 @@ import org.eclipselabs.damos.scripting.mscript.MatrixConstructionOperator;
 import org.eclipselabs.damos.scripting.mscript.RealLiteral;
 import org.eclipselabs.damos.scripting.mscript.StringLiteral;
 import org.eclipselabs.damos.scripting.mscript.SymbolReference;
+import org.eclipselabs.damos.scripting.mscript.UnaryMinusExpression;
 import org.eclipselabs.damos.typesystem.ArrayType;
 import org.eclipselabs.damos.typesystem.DataType;
 import org.eclipselabs.damos.typesystem.IntegerType;
@@ -76,6 +77,14 @@ public class ExpressionDataTypeEvaluator extends AbstractExpressionEvaluator<Dat
 	@Override
 	protected DataType divide(DataType dividend, DataType divisor) {
 		return dividend.evaluate(OperatorKind.DIVIDE, divisor);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseUnaryMinusExpression(org.eclipselabs.damos.scripting.mscript.UnaryMinusExpression)
+	 */
+	@Override
+	public DataType caseUnaryMinusExpression(UnaryMinusExpression object) {
+		return doSwitch(object.getOperand()).evaluate(OperatorKind.UNARY_MINUS, null);
 	}
 	
 	/* (non-Javadoc)

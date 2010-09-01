@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.internal.util;
+package org.eclipselabs.damos.common.util;
 
 import java.util.ArrayList;
 import java.util.Iterator;

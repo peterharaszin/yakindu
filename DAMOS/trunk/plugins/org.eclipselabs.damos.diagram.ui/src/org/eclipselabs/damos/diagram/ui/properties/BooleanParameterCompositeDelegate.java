@@ -13,8 +13,8 @@ package org.eclipselabs.damos.diagram.ui.properties;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
+import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.diagram.core.internal.commands.SetArgumentValueCommand;
-import org.eclipselabs.damos.diagram.ui.internal.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.ExpressionParameter;
 import org.eclipselabs.damos.dml.ExpressionSpecification;

@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.ExpressionDataTypeEvaluator;
@@ -28,6 +29,7 @@ import org.eclipselabs.damos.scripting.mscript.ExpressionList;
 import org.eclipselabs.damos.scripting.parser.antlr.MscriptParser;
 import org.eclipselabs.damos.typesystem.BooleanType;
 import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.damos.typesystem.IntegerType;
 import org.eclipselabs.damos.typesystem.NumericalType;
 
 /**
@@ -57,7 +59,15 @@ public class EvaluationUtil {
 		if (dataType instanceof NumericalType) {
 			return (NumericalType) dataType;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parameter '" + parameterName + "' must evaluate to numerical type"));
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numerical"));
+	}
+
+	public static IntegerType evaluateArgumentIntegerType(IEvaluationContext context, Block block, String parameterName) throws CoreException {
+		DataType dataType = evaluateArgumentDataType(context, block, parameterName);
+		if (dataType instanceof IntegerType) {
+			return (IntegerType) dataType;
+		}
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be integer"));
 	}
 
 	public static BooleanType evaluateArgumentBooleanType(IEvaluationContext context, Block block, String parameterName) throws CoreException {
@@ -65,7 +75,7 @@ public class EvaluationUtil {
 		if (dataType instanceof BooleanType) {
 			return (BooleanType) dataType;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parameter '" + parameterName + "' must evaluate to boolean type"));
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be boolean"));
 	}
 
 	public static DataType evaluateExpressionDataType(IEvaluationContext context, String expression) throws CoreException {

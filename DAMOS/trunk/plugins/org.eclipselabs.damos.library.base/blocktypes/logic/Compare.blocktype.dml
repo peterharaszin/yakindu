@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_cW9AkIkREd-UBLGPWvR3ew" qualifiedName="org::eclipselabs::damos::library::base::logic::Compare">
+  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_cW9noIkREd-UBLGPWvR3ew" name="operator">
+    <defaultExpression xmi:id="_cW9noYkREd-UBLGPWvR3ew" expression="org::eclipselabs::damos::library::logic::CompareOperatorKind::LessThanOrEqualTo"/>
+    <predefinedExpressions xmi:id="_cW9nookREd-UBLGPWvR3ew" alias="==">
+      <expression xmi:id="_cW9no4kREd-UBLGPWvR3ew" expression="org::eclipselabs::damos::library::logic::CompareOperatorKind::EqualTo"/>
+    </predefinedExpressions>
+    <predefinedExpressions xmi:id="_cW9npIkREd-UBLGPWvR3ew" alias="&lt;>">
+      <expression xmi:id="_cW9npYkREd-UBLGPWvR3ew" expression="org::eclipselabs::damos::library::logic::CompareOperatorKind::NotEqualTo"/>
+    </predefinedExpressions>
+    <predefinedExpressions xmi:id="_cW9npokREd-UBLGPWvR3ew" alias="&lt;">
+      <expression xmi:id="_cW9np4kREd-UBLGPWvR3ew" expression="org::eclipselabs::damos::library::logic::CompareOperatorKind::LessThan"/>
+    </predefinedExpressions>
+    <predefinedExpressions xmi:id="_cW9nqIkREd-UBLGPWvR3ew" alias="&lt;=">
+      <expression xmi:id="_cW9nqYkREd-UBLGPWvR3ew" expression="org::eclipselabs::damos::library::logic::CompareOperatorKind::LessThanOrEqualTo"/>
+    </predefinedExpressions>
+    <predefinedExpressions xmi:id="_cW9nqokREd-UBLGPWvR3ew" alias=">=">
+      <expression xmi:id="_cW9nq4kREd-UBLGPWvR3ew" expression="org::eclipselabs::damos::library::logic::CompareOperatorKind::GreaterThanOrEqualTo"/>
+    </predefinedExpressions>
+    <predefinedExpressions xmi:id="_cW9nrIkREd-UBLGPWvR3ew" alias=">">
+      <expression xmi:id="_cW9nrYkREd-UBLGPWvR3ew" expression="org::eclipselabs::damos::library::logic::CompareOperatorKind::GreaterThan"/>
+    </predefinedExpressions>
+  </parameters>
+  <inputDefinitions xmi:id="_cW9nrokREd-UBLGPWvR3ew" name="inputA"/>
+  <inputDefinitions xmi:id="_cW9nr4kREd-UBLGPWvR3ew" name="inputB"/>
+  <outputDefinitions xmi:id="_cW9nsIkREd-UBLGPWvR3ew" name="output"/>
+</dml:BlockType>

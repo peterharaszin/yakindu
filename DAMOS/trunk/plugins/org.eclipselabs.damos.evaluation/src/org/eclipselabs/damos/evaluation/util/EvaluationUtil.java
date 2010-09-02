@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.evaluation.DataTypeSpecifierEvaluator;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.ExpressionDataTypeEvaluator;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
@@ -103,6 +104,17 @@ public class EvaluationUtil {
 			dataTypes.add(new ExpressionDataTypeEvaluator(context).doSwitch(expression));
 		}
 		return dataTypes;
+	}
+
+	public static DataType evaluateDataTypeSpecifierDataType(IEvaluationContext context, String dataTypeSpecifier) throws CoreException {
+		MscriptParser parser = EvaluationPlugin.getDefault().getMscriptParser();
+		IParseResult result = parser.parse(
+				parser.getGrammarAccess().getDataTypeSpecifierRule().getName(),
+				new StringReader(dataTypeSpecifier));
+		if (!result.getParseErrors().isEmpty()) {
+			throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parse error"));
+		}
+		return new DataTypeSpecifierEvaluator(context).doSwitch(result.getRootASTElement());
 	}
 
 }

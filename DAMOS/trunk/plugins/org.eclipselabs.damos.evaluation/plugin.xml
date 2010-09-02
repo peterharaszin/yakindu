@@ -6,6 +6,9 @@
    <extension
          point="org.eclipselabs.damos.evaluation.componentSignaturePolicyProviders">
       <provider
+            class="org.eclipselabs.damos.evaluation.internal.policies.BuiltinComponentSignaturePolicyProvider">
+      </provider>
+      <provider
             class="org.eclipselabs.damos.evaluation.internal.registry.BlockSignaturePolicyProvider">
       </provider>
    </extension>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_hV_tcIkREd-UBLGPWvR3ew" qualifiedName="org::eclipselabs::damos::library::base::logic::SchmittTrigger">
+  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_hV_tcYkREd-UBLGPWvR3ew" name="upperThreshold">
+    <defaultExpression xmi:id="_hWAUgIkREd-UBLGPWvR3ew" expression="1"/>
+  </parameters>
+  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_hWAUgYkREd-UBLGPWvR3ew" name="lowerThreshold">
+    <defaultExpression xmi:id="_hWAUgokREd-UBLGPWvR3ew" expression="-1"/>
+  </parameters>
+  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_hWAUg4kREd-UBLGPWvR3ew" name="initialOutput">
+    <defaultExpression xmi:id="_hWAUhIkREd-UBLGPWvR3ew" expression="false"/>
+    <predefinedExpressions xmi:id="_hWAUhYkREd-UBLGPWvR3ew">
+      <expression xmi:id="_hWAUhokREd-UBLGPWvR3ew" expression="true"/>
+    </predefinedExpressions>
+    <predefinedExpressions xmi:id="_hWAUh4kREd-UBLGPWvR3ew">
+      <expression xmi:id="_hWAUiIkREd-UBLGPWvR3ew" expression="false"/>
+    </predefinedExpressions>
+  </parameters>
+  <inputDefinitions xmi:id="_hWAUiYkREd-UBLGPWvR3ew" name="input"/>
+  <outputDefinitions xmi:id="_hWAUiokREd-UBLGPWvR3ew" name="output"/>
+</dml:BlockType>

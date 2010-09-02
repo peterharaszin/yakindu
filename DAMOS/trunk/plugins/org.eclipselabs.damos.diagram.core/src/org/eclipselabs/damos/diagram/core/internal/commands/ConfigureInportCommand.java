@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
@@ -37,6 +38,9 @@ public class ConfigureInportCommand extends ConfigureElementCommand {
 		ConfigureRequest request = (ConfigureRequest) getRequest();
     	Inport inport = (Inport) request.getElementToConfigure();
     	inport.setName(DMLUtil.findAvailableComponentName(inport.getOwningFragment(), "In"));
+    	OpaqueDataTypeSpecification dataTypeSpecification = DMLFactory.eINSTANCE.createOpaqueDataTypeSpecification();
+    	dataTypeSpecification.setDataType("");
+    	inport.setDataType(dataTypeSpecification);
     	
     	Output output = DMLFactory.eINSTANCE.createOutput();
     	OutputPort outputPort = DMLFactory.eINSTANCE.createOutputPort();

@@ -94,7 +94,10 @@ public class InoutportDataTypePropertySection extends AbstractComboPropertySecti
 	private String getDataType() {
 		DataTypeSpecification dataType = getInoutport().getDataType();
 		if (dataType instanceof OpaqueDataTypeSpecification) {
-			return ((OpaqueDataTypeSpecification) dataType).getDataType();
+			OpaqueDataTypeSpecification dataTypeSpecification = (OpaqueDataTypeSpecification) dataType;
+			if (dataTypeSpecification.getDataType() != null) {
+				return dataTypeSpecification.getDataType();
+			}
 		}
 		return "";
 	}

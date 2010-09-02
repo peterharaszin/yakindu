@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -22,6 +23,7 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLFactory;
+import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Inport;
@@ -82,13 +84,21 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 		systemInterface.setName(fragment.getName());
 		for (Component component : fragment.getAllComponents()) {
 			if (component instanceof Inport) {
+				Inport inport = (Inport) component;
 				Inlet inlet = DMLFactory.eINSTANCE.createInlet();
-				inlet.setName(component.getName());
+				inlet.setName(inport.getName());
+				if (inport.getDataType() != null) {
+					inlet.setDataType((DataTypeSpecification) EcoreUtil.copy(inport.getDataType()));
+				}
 				systemInterface.getInlets().add(inlet);
 			} else if (component instanceof Outport) {
+				Outport outport = (Outport) component;
 				Outlet outlet = DMLFactory.eINSTANCE.createOutlet();
 				outlet.setName(component.getName());
 				systemInterface.getOutlets().add(outlet);
+				if (outport.getDataType() != null) {
+					outlet.setDataType((DataTypeSpecification) EcoreUtil.copy(outport.getDataType()));
+				}
 			}
 		}
 		ResourceSet resourceSet = new ResourceSetImpl();

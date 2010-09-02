@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_HIuvUIkREd-UBLGPWvR3ew" qualifiedName="org::eclipselabs::damos::library::base::discontinuities::Saturation">
+  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_HIuvU4kREd-UBLGPWvR3ew" name="upperLimit">
+    <defaultExpression xmi:id="_HIuvVIkREd-UBLGPWvR3ew" expression="1"/>
+  </parameters>
+  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_HIuvVYkREd-UBLGPWvR3ew" name="lowerLimit">
+    <defaultExpression xmi:id="_HIuvVokREd-UBLGPWvR3ew" expression="-1"/>
+  </parameters>
+  <inputDefinitions xmi:id="_HIuvUYkREd-UBLGPWvR3ew" name="input"/>
+  <outputDefinitions xmi:id="_HIuvUokREd-UBLGPWvR3ew" name="output"/>
+</dml:BlockType>

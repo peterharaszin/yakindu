@@ -54,17 +54,21 @@ public class DataTypeResolver {
 							component,
 							getIncomingDataTypes(fragment, component, resolverResult));
 					
-					if (result.getSignature() != null) {
-						IComponentSignature oldSignature = resolverResult.getSignatures().get(component);
-						IComponentSignature newSignature = result.getSignature();
-						if (newSignature != null && (oldSignature == null || !oldSignature.equals(newSignature))) {
-							resolverResult.getSignatures().put(component, newSignature);
-							changed = true;
+					if (result != null) {
+						if (result.getSignature() != null) {
+							IComponentSignature oldSignature = resolverResult.getSignatures().get(component);
+							IComponentSignature newSignature = result.getSignature();
+							if (newSignature != null && (oldSignature == null || !oldSignature.equals(newSignature))) {
+								resolverResult.getSignatures().put(component, newSignature);
+								changed = true;
+							}
 						}
-					}
-					
-					if (!result.getStatus().isOK()) {
-						statusMap.put(component, result.getStatus());
+						
+						if (!result.getStatus().isOK()) {
+							statusMap.put(component, result.getStatus());
+						}
+					} else {
+						statusMap.put(component, new EvaluationStatus(IStatus.ERROR, component, "No signature returned by signature policy"));
 					}
 				} else {
 					statusMap.put(component, new EvaluationStatus(IStatus.ERROR, component, "No component signature policy found"));

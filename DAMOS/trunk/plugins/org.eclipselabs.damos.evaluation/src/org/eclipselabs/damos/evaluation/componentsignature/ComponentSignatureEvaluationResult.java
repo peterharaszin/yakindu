@@ -38,6 +38,11 @@ public class ComponentSignatureEvaluationResult implements IComponentSignatureEv
 		this.status = status;
 	}
 
+	public ComponentSignatureEvaluationResult(IComponentSignature signature, IStatus status) {
+		this.signature = signature;
+		this.status = status;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult#getSignature()
 	 */

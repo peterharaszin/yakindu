@@ -12,28 +12,27 @@
 package org.eclipselabs.damos.evaluation;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ExpressionDataTypeEvaluator extends ExpressionEvaluator<DataType> {
+public class ExpressionValueEvaluator extends ExpressionEvaluator<IValue> {
 
 	/**
 	 * @param context
+	 * @param strategy
 	 */
-	public ExpressionDataTypeEvaluator(IEvaluationContext context) {
-		super(context, new ExpressionDataTypeEvaluatorStrategy());
+	public ExpressionValueEvaluator(IEvaluationContext context) {
+		super(context, new ExpressionValueEvaluatorStrategy());
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
-	public DataType defaultCase(EObject object) {
-		return TypeSystemFactory.eINSTANCE.createInvalidDataType();
+	public IValue defaultCase(EObject object) {
+		return InvalidValue.SINGLETON;
 	}
 
 }

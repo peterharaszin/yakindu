@@ -62,7 +62,10 @@ public class ExpressionParameterCompositeDelegate extends TextPropertyCompositeD
 	 * @see org.eclipselabs.damos.diagram.ui.properties.AbstractLabeledPropertySectionDelegate#getLabelText()
 	 */
 	protected String getLabelText() {
-		return NameUtil.formatName(argument.getParameter().getName()) + ":";
+		if (argument.getParameter().getName() != null) {
+			return NameUtil.formatName(argument.getParameter().getName()) + ":";
+		}
+		return "";
 	}
 
 }

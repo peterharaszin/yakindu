@@ -25,14 +25,14 @@ import org.eclipselabs.damos.typesystem.DataType;
  * @author Andreas Unger
  *
  */
-public class BlockEvaluationContextDelegate implements IEvaluationContext {
+public class BlockEvaluationContext implements IEvaluationContext {
 
 	private ComponentEvaluationContext delegate;
 	
 	/**
 	 * 
 	 */
-	public BlockEvaluationContextDelegate(ComponentEvaluationContext delegate) {
+	public BlockEvaluationContext(ComponentEvaluationContext delegate) {
 		if (!(delegate.getComponent() instanceof Block)) {
 			throw new IllegalArgumentException();
 		}

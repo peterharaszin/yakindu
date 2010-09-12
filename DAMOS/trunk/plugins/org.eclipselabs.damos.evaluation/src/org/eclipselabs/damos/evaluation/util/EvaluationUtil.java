@@ -24,7 +24,9 @@ import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.evaluation.DataTypeSpecifierEvaluator;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.ExpressionDataTypeEvaluator;
+import org.eclipselabs.damos.evaluation.ExpressionValueEvaluator;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
+import org.eclipselabs.damos.evaluation.IValue;
 import org.eclipselabs.damos.scripting.mscript.Expression;
 import org.eclipselabs.damos.scripting.mscript.ExpressionList;
 import org.eclipselabs.damos.scripting.parser.antlr.MscriptParser;
@@ -115,6 +117,25 @@ public class EvaluationUtil {
 			throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parse error"));
 		}
 		return new DataTypeSpecifierEvaluator(context).doSwitch(result.getRootASTElement());
+	}
+	
+	public static IValue evaluateArgumentValue(IEvaluationContext context, Block block, String parameterName) throws CoreException {
+		String parameterExpression = block.getArgumentStringValue(parameterName);
+		if (parameterExpression != null) {
+			return evaluateExpressionValue(context, parameterExpression);
+		}
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
+	}
+
+	public static IValue evaluateExpressionValue(IEvaluationContext context, String expression) throws CoreException {
+		MscriptParser parser = EvaluationPlugin.getDefault().getMscriptParser();
+		IParseResult result = parser.parse(
+				parser.getGrammarAccess().getExpressionRule().getName(),
+				new StringReader(expression));
+		if (!result.getParseErrors().isEmpty()) {
+			throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parse error"));
+		}
+		return new ExpressionValueEvaluator(context).doSwitch(result.getRootASTElement());
 	}
 
 }

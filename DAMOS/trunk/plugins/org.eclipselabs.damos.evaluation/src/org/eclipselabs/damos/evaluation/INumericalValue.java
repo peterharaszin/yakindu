@@ -17,9 +17,6 @@ package org.eclipselabs.damos.evaluation;
  */
 public interface INumericalValue extends IValue {
 
-	boolean isInteger();
-
-	long longValue();
 	double doubleValue();
 	
 }

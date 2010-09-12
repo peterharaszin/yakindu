@@ -32,20 +32,6 @@ public class IntegerValue extends AbstractValue implements INumericalValue {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.INumericalValue#isInteger()
-	 */
-	public boolean isInteger() {
-		return true;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.INumericalValue#longValue()
-	 */
-	public long longValue() {
-		return value;
-	}
-	
-	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.INumericalValue#doubleValue()
 	 */
 	public double doubleValue() {

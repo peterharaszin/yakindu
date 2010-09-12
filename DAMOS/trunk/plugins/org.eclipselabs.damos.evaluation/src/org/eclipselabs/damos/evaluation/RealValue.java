@@ -32,20 +32,6 @@ public class RealValue extends AbstractValue implements INumericalValue {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.INumericalValue#isInteger()
-	 */
-	public boolean isInteger() {
-		return false;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.INumericalValue#longValue()
-	 */
-	public long longValue() {
-		return (long) value;
-	}
-	
-	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.INumericalValue#doubleValue()
 	 */
 	public double doubleValue() {

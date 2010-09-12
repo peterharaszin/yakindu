@@ -81,7 +81,7 @@ public class OpaqueBehaviorSpecificationItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_OpaqueBehaviorSpecification_behavior_feature", "_UI_OpaqueBehaviorSpecification_type"),
 				 DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -107,7 +107,7 @@ public class OpaqueBehaviorSpecificationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OpaqueBehaviorSpecification)object).getBehavior();
+		String label = crop(((OpaqueBehaviorSpecification)object).getBehavior());
 		return label == null || label.length() == 0 ?
 			getString("_UI_OpaqueBehaviorSpecification_type") :
 			getString("_UI_OpaqueBehaviorSpecification_type") + " " + label;

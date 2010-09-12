@@ -276,7 +276,8 @@
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueDataTypeSpecification/dataType"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//OpaqueBehaviorSpecification">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueBehaviorSpecification/behavior"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" propertyMultiLine="true"
+          ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueBehaviorSpecification/behavior"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

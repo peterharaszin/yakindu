@@ -26,6 +26,7 @@ import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.ExpressionDataTypeEvaluator;
 import org.eclipselabs.damos.evaluation.ExpressionValueEvaluator;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
+import org.eclipselabs.damos.evaluation.INumericalValue;
 import org.eclipselabs.damos.evaluation.IValue;
 import org.eclipselabs.damos.scripting.mscript.Expression;
 import org.eclipselabs.damos.scripting.mscript.ExpressionList;
@@ -125,6 +126,14 @@ public class EvaluationUtil {
 			return evaluateExpressionValue(context, parameterExpression);
 		}
 		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
+	}
+
+	public static INumericalValue evaluateArgumentNumericalValue(IEvaluationContext context, Block block, String parameterName) throws CoreException {
+		IValue value = evaluateArgumentValue(context, block, parameterName);
+		if (value instanceof INumericalValue) {
+			return (INumericalValue) value;
+		}
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numerical"));
 	}
 
 	public static IValue evaluateExpressionValue(IEvaluationContext context, String expression) throws CoreException {

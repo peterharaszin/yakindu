@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -41,6 +42,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Model;
+import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
@@ -243,6 +245,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createCategoryAdapter();
 			}
 			@Override
+			public Adapter caseBehaviorSpecification(BehaviorSpecification object) {
+				return createBehaviorSpecificationAdapter();
+			}
+			@Override
 			public Adapter caseBlock(Block object) {
 				return createBlockAdapter();
 			}
@@ -321,6 +327,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOpaqueDataTypeSpecification(OpaqueDataTypeSpecification object) {
 				return createOpaqueDataTypeSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseOpaqueBehaviorSpecification(OpaqueBehaviorSpecification object) {
+				return createOpaqueBehaviorSpecificationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -777,6 +787,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.BehaviorSpecification <em>Behavior Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.BehaviorSpecification
+	 * @generated
+	 */
+	public Adapter createBehaviorSpecificationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Model <em>Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1053,6 +1077,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOpaqueDataTypeSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification <em>Opaque Behavior Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.OpaqueBehaviorSpecification
+	 * @generated
+	 */
+	public Adapter createOpaqueBehaviorSpecificationAdapter() {
 		return null;
 	}
 

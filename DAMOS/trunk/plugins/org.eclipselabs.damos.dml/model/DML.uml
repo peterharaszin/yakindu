@@ -206,6 +206,10 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_w7ZR8IAyEd-el5xaAFAoOA" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_w7agEIAyEd-el5xaAFAoOA"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_KJacQL5-Ed-mtvI5z8stmw" name="behavior" type="_Lnu0YL5-Ed-mtvI5z8stmw" aggregation="composite" association="_e2iyoL5-Ed-mtvI5z8stmw">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VRztAL5-Ed-mtvI5z8stmw" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VRztAb5-Ed-mtvI5z8stmw"/>
+      </ownedAttribute>
       <ownedOperation xmi:id="_nvyTcIAxEd-el5xaAFAoOA" name="newInstance">
         <ownedParameter xmi:id="_Y8bYsIOmEd-Jwv-I5tZZDg" type="_uFU0IDfuEd-nKdQ4DX9pPA" direction="return"/>
         <ownedParameter xmi:id="_Y8b_wIOmEd-Jwv-I5tZZDg" name="name">
@@ -626,6 +630,16 @@
     <packagedElement xmi:type="uml:Association" xmi:id="_kh1IAI2KEd-FdeLWbsCQCQ" memberEnd="_kiHb4I2KEd-FdeLWbsCQCQ _eJ3gYI2KEd-FdeLWbsCQCQ">
       <ownedEnd xmi:id="_kiHb4I2KEd-FdeLWbsCQCQ" type="_2FaSgMCBEd6Vk-PE2115fA" association="_kh1IAI2KEd-FdeLWbsCQCQ"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_Lnu0YL5-Ed-mtvI5z8stmw" name="BehaviorSpecification" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_XcL54L5-Ed-mtvI5z8stmw" name="OpaqueBehaviorSpecification">
+      <generalization xmi:id="_i6yEIL5-Ed-mtvI5z8stmw" general="_Lnu0YL5-Ed-mtvI5z8stmw"/>
+      <ownedAttribute xmi:id="_avNJ0L5-Ed-mtvI5z8stmw" name="behavior" aggregation="composite">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_e2iyoL5-Ed-mtvI5z8stmw" memberEnd="_e2iyob5-Ed-mtvI5z8stmw _KJacQL5-Ed-mtvI5z8stmw">
+      <ownedEnd xmi:id="_e2iyob5-Ed-mtvI5z8stmw" type="_uOeygMCBEd6Vk-PE2115fA" association="_e2iyoL5-Ed-mtvI5z8stmw"/>
+    </packagedElement>
     <profileApplication xmi:id="_e73TIMB4Ed6Vk-PE2115fA">
       <eAnnotations xmi:id="_e76WcMB4Ed6Vk-PE2115fA" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
@@ -645,4 +659,5 @@
   <Ecore:EReference xmi:id="_gqWgII2KEd-FdeLWbsCQCQ" isUnsettable="true" base_Property="_eJ3gYI2KEd-FdeLWbsCQCQ"/>
   <Ecore:EAttribute xmi:id="_vhKjYI2KEd-FdeLWbsCQCQ" isTransient="true" base_Property="_sbhBEI2KEd-FdeLWbsCQCQ"/>
   <Ecore:EReference xmi:id="_NVm4AI2VEd-FdeLWbsCQCQ" isUnsettable="true" base_Property="_cIVgYMxREd6zerZhbgvLIA"/>
+  <Ecore:EReference xmi:id="_dNGvoL5-Ed-mtvI5z8stmw" isUnsettable="true" base_Property="_KJacQL5-Ed-mtvI5z8stmw"/>
 </xmi:XMI>

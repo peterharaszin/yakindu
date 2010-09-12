@@ -204,6 +204,8 @@
         eType="#//InputDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputDefinitions" upperBound="-1"
         eType="#//OutputDefinition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" ordered="false"
+        eType="#//BehaviorSpecification" unsettable="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" ordered="false"
@@ -224,6 +226,7 @@
         upperBound="-1" eType="#//Category"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Category" eSuperTypes="#//QualifiedElement #//CategorizedElement #//ParameterableElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BehaviorSpecification" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Component #//ParameterizedElement">
     <eOperations name="getInput" ordered="false" lowerBound="1" eType="#//BlockInput">
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -299,6 +302,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueDataTypeSpecification" eSuperTypes="#//DataTypeSpecification">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorSpecification" eSuperTypes="#//BehaviorSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="behavior" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

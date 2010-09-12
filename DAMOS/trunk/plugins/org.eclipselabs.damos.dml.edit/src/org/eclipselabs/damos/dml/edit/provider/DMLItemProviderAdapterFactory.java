@@ -835,6 +835,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OpaqueBehaviorSpecificationItemProvider opaqueBehaviorSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOpaqueBehaviorSpecificationAdapter() {
+		if (opaqueBehaviorSpecificationItemProvider == null) {
+			opaqueBehaviorSpecificationItemProvider = new OpaqueBehaviorSpecificationItemProvider(this);
+		}
+
+		return opaqueBehaviorSpecificationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -966,6 +989,7 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (subsystemOutputItemProvider != null) subsystemOutputItemProvider.dispose();
 		if (booleanDirectFeedthroughPolicyItemProvider != null) booleanDirectFeedthroughPolicyItemProvider.dispose();
 		if (opaqueDataTypeSpecificationItemProvider != null) opaqueDataTypeSpecificationItemProvider.dispose();
+		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
 	}
 
 }

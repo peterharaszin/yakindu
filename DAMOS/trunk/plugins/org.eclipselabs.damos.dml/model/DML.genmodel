@@ -187,6 +187,8 @@
           createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+          createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/behavior"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DML.ecore#//BlockType/newInstance">
         <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DML.ecore#//BlockType/newInstance/name"/>
       </genOperations>
@@ -206,6 +208,7 @@
       </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//Category"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//BehaviorSpecification"/>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//Block">
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Block/type"/>
@@ -271,6 +274,9 @@
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//OpaqueDataTypeSpecification">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueDataTypeSpecification/dataType"/>
+    </genClasses>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//OpaqueBehaviorSpecification">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueBehaviorSpecification/behavior"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

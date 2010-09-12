@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -45,6 +46,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Model;
+import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
@@ -295,6 +297,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass behaviorSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass modelEClass = null;
 
 	/**
@@ -429,6 +438,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass opaqueDataTypeSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass opaqueBehaviorSpecificationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1117,6 +1133,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBlockType_Behavior() {
+		return (EReference)blockTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getQualifiedElement() {
 		return qualifiedElementEClass;
 	}
@@ -1173,6 +1198,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EClass getCategory() {
 		return categoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getBehaviorSpecification() {
+		return behaviorSpecificationEClass;
 	}
 
 	/**
@@ -1495,6 +1529,24 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOpaqueBehaviorSpecification() {
+		return opaqueBehaviorSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOpaqueBehaviorSpecification_Behavior() {
+		return (EAttribute)opaqueBehaviorSpecificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DMLFactory getDMLFactory() {
 		return (DMLFactory)getEFactoryInstance();
 	}
@@ -1614,6 +1666,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockTypeEClass = createEClass(BLOCK_TYPE);
 		createEReference(blockTypeEClass, BLOCK_TYPE__INPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__OUTPUT_DEFINITIONS);
+		createEReference(blockTypeEClass, BLOCK_TYPE__BEHAVIOR);
 
 		qualifiedElementEClass = createEClass(QUALIFIED_ELEMENT);
 		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__QUALIFIED_NAME);
@@ -1624,6 +1677,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(categorizedElementEClass, CATEGORIZED_ELEMENT__BELONGING_CATEGORIES);
 
 		categoryEClass = createEClass(CATEGORY);
+
+		behaviorSpecificationEClass = createEClass(BEHAVIOR_SPECIFICATION);
 
 		blockEClass = createEClass(BLOCK);
 		createEReference(blockEClass, BLOCK__TYPE);
@@ -1679,6 +1734,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		opaqueDataTypeSpecificationEClass = createEClass(OPAQUE_DATA_TYPE_SPECIFICATION);
 		createEAttribute(opaqueDataTypeSpecificationEClass, OPAQUE_DATA_TYPE_SPECIFICATION__DATA_TYPE);
+
+		opaqueBehaviorSpecificationEClass = createEClass(OPAQUE_BEHAVIOR_SPECIFICATION);
+		createEAttribute(opaqueBehaviorSpecificationEClass, OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR);
 	}
 
 	/**
@@ -1755,6 +1813,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		subsystemOutputEClass.getESuperTypes().add(this.getSubsystemInoutput());
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
 		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
+		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getBehaviorSpecification());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1909,6 +1968,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(blockTypeEClass, BlockType.class, "BlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockType_InputDefinitions(), this.getInputDefinition(), null, "inputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_OutputDefinitions(), this.getOutputDefinition(), null, "outputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBlockType_Behavior(), this.getBehaviorSpecification(), null, "behavior", null, 0, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		op = addEOperation(blockTypeEClass, this.getBlock(), "newInstance", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -1925,6 +1985,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEParameter(op, ecorePackage.getEString(), "categoryName", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(behaviorSpecificationEClass, BehaviorSpecification.class, "BehaviorSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlock_Type(), this.getBlockType(), null, "type", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1991,6 +2053,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(opaqueDataTypeSpecificationEClass, OpaqueDataTypeSpecification.class, "OpaqueDataTypeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOpaqueDataTypeSpecification_DataType(), ecorePackage.getEString(), "dataType", null, 1, 1, OpaqueDataTypeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(opaqueBehaviorSpecificationEClass, OpaqueBehaviorSpecification.class, "OpaqueBehaviorSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOpaqueBehaviorSpecification_Behavior(), ecorePackage.getEString(), "behavior", null, 1, 1, OpaqueBehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

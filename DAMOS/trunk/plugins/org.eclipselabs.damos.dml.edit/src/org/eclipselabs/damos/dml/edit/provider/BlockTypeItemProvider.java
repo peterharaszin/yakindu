@@ -105,6 +105,7 @@ public class BlockTypeItemProvider
 			childrenFeatures.add(DMLPackage.Literals.PARAMETERABLE_ELEMENT__PARAMETERS);
 			childrenFeatures.add(DMLPackage.Literals.BLOCK_TYPE__INPUT_DEFINITIONS);
 			childrenFeatures.add(DMLPackage.Literals.BLOCK_TYPE__OUTPUT_DEFINITIONS);
+			childrenFeatures.add(DMLPackage.Literals.BLOCK_TYPE__BEHAVIOR);
 		}
 		return childrenFeatures;
 	}
@@ -162,6 +163,7 @@ public class BlockTypeItemProvider
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
+			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -193,6 +195,11 @@ public class BlockTypeItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.BLOCK_TYPE__OUTPUT_DEFINITIONS,
 				 DMLFactory.eINSTANCE.createOutputDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.BLOCK_TYPE__BEHAVIOR,
+				 DMLFactory.eINSTANCE.createOpaqueBehaviorSpecification()));
 	}
 
 }

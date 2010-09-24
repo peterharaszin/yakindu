@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.dml.impl;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -2059,68 +2058,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Create resource
 		createResource(eNS_URI);
-
-		// Create annotations
-		// subsets
-		createSubsetsAnnotations();
-		// duplicates
-		createDuplicatesAnnotations();
-	}
-
-	/**
-	 * Initializes the annotations for <b>subsets</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createSubsetsAnnotations() {
-		String source = "subsets";		
-		addAnnotation
-		  (getFragment_Components(), 
-		   source, 
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Fragment/fragmentElements")
-		   });		
-		addAnnotation
-		  (getFragment_Connections(), 
-		   source, 
-		   new String[] {
-		   },
-		   new URI[] {
-			 URI.createURI(eNS_URI).appendFragment("//Fragment/fragmentElements")
-		   });				
-	}
-
-	/**
-	 * Initializes the annotations for <b>duplicates</b>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void createDuplicatesAnnotations() {
-		String source = "duplicates";				
-		addAnnotation
-		  (blockInputEClass, 
-		   source, 
-		   new String[] {
-		   });		
-		addAnnotation
-		  (expressionParameterEClass, 
-		   source, 
-		   new String[] {
-		   });		
-		addAnnotation
-		  (expressionSpecificationEClass, 
-		   source, 
-		   new String[] {
-		   });		
-		addAnnotation
-		  (booleanDirectFeedthroughPolicyEClass, 
-		   source, 
-		   new String[] {
-		   });
 	}
 
 } //DMLPackageImpl

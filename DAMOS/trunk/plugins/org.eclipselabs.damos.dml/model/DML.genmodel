@@ -8,7 +8,7 @@
     providerRootExtendsClass="">
   <foreignModel>DML.ecore</foreignModel>
   <genPackages prefix="DML" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
-      loadInitialization="true" providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation"
+      providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation"
       ecorePackage="DML.ecore#/">
     <genClasses ecoreClass="DML.ecore#//Fragment">
       <genFeatures createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/components"/>

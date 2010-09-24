@@ -147,7 +147,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<InputPort> getInputPorts() {
 		return ComponentOperations.getInputPorts(this);
@@ -156,7 +156,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<OutputPort> getOutputPorts() {
 		return ComponentOperations.getOutputPorts(this);
@@ -165,7 +165,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public InputPort getFirstInputPort() {
 		return ComponentOperations.getFirstInputPort(this);
@@ -174,7 +174,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public OutputPort getFirstOutputPort() {
 		return ComponentOperations.getFirstOutputPort(this);
@@ -183,7 +183,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<InputPort> getPrimaryInputPorts() {
 		return ComponentOperations.getPrimaryInputPorts(this);
@@ -192,7 +192,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<OutputPort> getPrimaryOutputPorts() {
 		return ComponentOperations.getPrimaryOutputPorts(this);
@@ -201,7 +201,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSource() {
 		return ComponentOperations.isSource(this);
@@ -210,7 +210,7 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSink() {
 		return ComponentOperations.isSink(this);

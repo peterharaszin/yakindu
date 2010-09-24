@@ -122,7 +122,7 @@ public class InputImpl extends InoutputImpl implements Input {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isDirectFeedthrough() {
 		return InputOperations.isDirectFeedthrough(this);

@@ -272,7 +272,7 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean belongsTo(String categoryName) {
 		return CategorizedElementOperations.belongsTo(this, categoryName);
@@ -281,7 +281,7 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Block newInstance(String name) {
 		return BlockTypeOperations.newInstance(this, name);

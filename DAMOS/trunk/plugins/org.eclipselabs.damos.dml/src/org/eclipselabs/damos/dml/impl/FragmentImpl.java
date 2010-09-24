@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.internal.operations.FragmentOperations;
+import org.eclipselabs.damos.dml.internal.util.DerivedSubsetEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,15 +128,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 		return components;
 	}
 
-	/**
-	 * The array of superset feature identifiers for the '{@link #getComponents() <em>Components</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComponents()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] COMPONENTS_ESUPERSETS = new int[] {DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS};
+	protected static final int[] COMPONENTS_ESUPERSETS = new int[] { DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS };
 
 	private EList<Connection> connections;
 
@@ -152,15 +144,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 		return connections;
 	}
 
-	/**
-	 * The array of superset feature identifiers for the '{@link #getConnections() <em>Connections</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnections()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] CONNECTIONS_ESUPERSETS = new int[] {DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS};
+	protected static final int[] CONNECTIONS_ESUPERSETS = new int[] { DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS };
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -224,7 +208,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Fragment> getChildren() {
 		return FragmentOperations.getChildren(this);
@@ -233,7 +217,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Component> getAllComponents() {
 		return FragmentOperations.getAllComponents(this);
@@ -242,7 +226,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Connection> getAllConnections() {
 		return FragmentOperations.getAllConnections(this);

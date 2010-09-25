@@ -17,13 +17,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.uml2.common.util.DerivedSubsetEObjectEList;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.internal.operations.FragmentOperations;
-import org.eclipselabs.damos.dml.internal.util.DerivedSubsetEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,8 +32,8 @@ import org.eclipselabs.damos.dml.internal.util.DerivedSubsetEObjectEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.impl.FragmentImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.FragmentImpl#getFragmentElements <em>Fragment Elements</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.FragmentImpl#getComponents <em>Components</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.FragmentImpl#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.FragmentImpl#getParent <em>Parent</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.FragmentImpl#getName <em>Name</em>}</li>
@@ -128,7 +128,15 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 		return components;
 	}
 
-	protected static final int[] COMPONENTS_ESUPERSETS = new int[] { DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS };
+	/**
+	 * The array of superset feature identifiers for the '{@link #getComponents() <em>Components</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComponents()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] COMPONENTS_ESUPERSETS = new int[] {DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS};
 
 	private EList<Connection> connections;
 
@@ -144,7 +152,15 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 		return connections;
 	}
 
-	protected static final int[] CONNECTIONS_ESUPERSETS = new int[] { DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS };
+	/**
+	 * The array of superset feature identifiers for the '{@link #getConnections() <em>Connections</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConnections()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] CONNECTIONS_ESUPERSETS = new int[] {DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS};
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -208,7 +224,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EList<Fragment> getChildren() {
 		return FragmentOperations.getChildren(this);
@@ -217,7 +233,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EList<Component> getAllComponents() {
 		return FragmentOperations.getAllComponents(this);
@@ -226,7 +242,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EList<Connection> getAllConnections() {
 		return FragmentOperations.getAllConnections(this);
@@ -269,10 +285,10 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DMLPackage.FRAGMENT__COMPONENTS:
-				return getComponents();
 			case DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS:
 				return getFragmentElements();
+			case DMLPackage.FRAGMENT__COMPONENTS:
+				return getComponents();
 			case DMLPackage.FRAGMENT__CONNECTIONS:
 				return getConnections();
 			case DMLPackage.FRAGMENT__PARENT:
@@ -293,13 +309,13 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DMLPackage.FRAGMENT__COMPONENTS:
-				getComponents().clear();
-				getComponents().addAll((Collection<? extends Component>)newValue);
-				return;
 			case DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS:
 				getFragmentElements().clear();
 				getFragmentElements().addAll((Collection<? extends FragmentElement>)newValue);
+				return;
+			case DMLPackage.FRAGMENT__COMPONENTS:
+				getComponents().clear();
+				getComponents().addAll((Collection<? extends Component>)newValue);
 				return;
 			case DMLPackage.FRAGMENT__CONNECTIONS:
 				getConnections().clear();
@@ -323,11 +339,11 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DMLPackage.FRAGMENT__COMPONENTS:
-				getComponents().clear();
-				return;
 			case DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS:
 				getFragmentElements().clear();
+				return;
+			case DMLPackage.FRAGMENT__COMPONENTS:
+				getComponents().clear();
 				return;
 			case DMLPackage.FRAGMENT__CONNECTIONS:
 				getConnections().clear();
@@ -350,10 +366,10 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DMLPackage.FRAGMENT__COMPONENTS:
-				return !getComponents().isEmpty();
 			case DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS:
 				return fragmentElements != null && !fragmentElements.isEmpty();
+			case DMLPackage.FRAGMENT__COMPONENTS:
+				return !getComponents().isEmpty();
 			case DMLPackage.FRAGMENT__CONNECTIONS:
 				return !getConnections().isEmpty();
 			case DMLPackage.FRAGMENT__PARENT:

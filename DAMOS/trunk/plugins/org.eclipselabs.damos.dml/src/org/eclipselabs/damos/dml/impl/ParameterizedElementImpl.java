@@ -78,7 +78,7 @@ public abstract class ParameterizedElementImpl extends EObjectImpl implements Pa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Argument getArgument(String parameterName) {
 		return ParameterizedElementOperations.getArgument(this, parameterName);
@@ -87,7 +87,7 @@ public abstract class ParameterizedElementImpl extends EObjectImpl implements Pa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String getArgumentStringValue(String parameterName) {
 		return ParameterizedElementOperations.getArgumentStringValue(this, parameterName);

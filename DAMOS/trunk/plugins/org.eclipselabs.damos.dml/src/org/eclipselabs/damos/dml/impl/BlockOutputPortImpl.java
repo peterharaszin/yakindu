@@ -79,7 +79,7 @@ public class BlockOutputPortImpl extends OutputPortImpl implements BlockOutputPo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Argument getArgument(String parameterName) {
 		return ParameterizedElementOperations.getArgument(this, parameterName);
@@ -88,7 +88,7 @@ public class BlockOutputPortImpl extends OutputPortImpl implements BlockOutputPo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String getArgumentStringValue(String parameterName) {
 		return ParameterizedElementOperations.getArgumentStringValue(this, parameterName);

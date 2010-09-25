@@ -95,7 +95,7 @@ public abstract class DirectFeedthroughPolicyImpl extends EObjectImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean computeDirectFeedthrough() {
 		return DirectFeedthroughPolicyOperations.computeDirectFeedthrough(this);

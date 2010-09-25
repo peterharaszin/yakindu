@@ -98,7 +98,7 @@ public class BlockInputPortImpl extends BlockPortImpl implements BlockInputPort 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EList<Connection> getIncomingConnections() {
 		return InputPortOperations.getIncomingConnections(this);
@@ -107,7 +107,7 @@ public class BlockInputPortImpl extends BlockPortImpl implements BlockInputPort 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Connection getIncomingConnection(Fragment context) {
 		return InputPortOperations.getIncomingConnection(this, context);

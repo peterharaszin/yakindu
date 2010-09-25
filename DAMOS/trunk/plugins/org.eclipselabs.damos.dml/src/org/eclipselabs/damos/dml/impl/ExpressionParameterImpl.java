@@ -189,7 +189,7 @@ public class ExpressionParameterImpl extends ParameterImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PredefinedExpressionEntry getPredefinedExpression(String expression) {
 		return ExpressionParameterOperations.getPredefinedExpression(this, expression);
@@ -198,7 +198,7 @@ public class ExpressionParameterImpl extends ParameterImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public PredefinedExpressionEntry getPredefinedExpressionByAlias(String alias) {
 		return ExpressionParameterOperations.getPredefinedExpressionByAlias(this, alias);
@@ -207,7 +207,7 @@ public class ExpressionParameterImpl extends ParameterImpl implements Expression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public ValueSpecification getDefaultValue() {

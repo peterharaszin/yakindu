@@ -103,7 +103,7 @@ public class CategoryImpl extends QualifiedElementImpl implements Category {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean belongsTo(String categoryName) {
 		return CategorizedElementOperations.belongsTo(this, categoryName);

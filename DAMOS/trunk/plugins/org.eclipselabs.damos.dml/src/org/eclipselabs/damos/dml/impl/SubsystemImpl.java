@@ -76,7 +76,7 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public EList<SubsystemRealization> getRealizations() {
 		return SubsystemOperations.getRealizations(this);
@@ -85,7 +85,7 @@ public class SubsystemImpl extends ComponentImpl implements Subsystem {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public SubsystemRealization getRealization(Fragment context) {
 		return SubsystemOperations.getRealization(this, context);

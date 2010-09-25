@@ -44,7 +44,7 @@ public abstract class ValueSpecificationImpl extends EObjectImpl implements Valu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public String stringValue() {
 		return ValueSpecificationOperations.stringValue(this);

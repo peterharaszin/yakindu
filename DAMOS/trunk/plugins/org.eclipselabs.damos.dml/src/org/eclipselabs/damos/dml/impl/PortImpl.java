@@ -45,7 +45,7 @@ public abstract class PortImpl extends EObjectImpl implements Port {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public int getIndex() {
 		return PortOperations.getIndex(this);
@@ -54,7 +54,7 @@ public abstract class PortImpl extends EObjectImpl implements Port {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Component getComponent() {
 		return PortOperations.getComponent(this);

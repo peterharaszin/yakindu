@@ -91,7 +91,7 @@ public abstract class ParameterImpl extends EObjectImpl implements Parameter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public ValueSpecification getDefaultValue() {
 		return ParameterOperations.getDefaultValue(this);

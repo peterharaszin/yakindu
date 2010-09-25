@@ -44,7 +44,7 @@ public abstract class BlockPortImpl extends ParameterizedElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public int getIndex() {
 		return PortOperations.getIndex(this);
@@ -53,7 +53,7 @@ public abstract class BlockPortImpl extends ParameterizedElementImpl implements 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public Component getComponent() {
 		return PortOperations.getComponent(this);

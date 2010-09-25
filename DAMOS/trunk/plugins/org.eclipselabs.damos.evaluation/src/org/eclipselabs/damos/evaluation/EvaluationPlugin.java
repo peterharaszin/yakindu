@@ -1,8 +1,8 @@
 package org.eclipselabs.damos.evaluation;
 
 import org.eclipse.core.runtime.Plugin;
-import org.eclipselabs.damos.scripting.MscriptRuntimeModule;
-import org.eclipselabs.damos.scripting.parser.antlr.MscriptParser;
+import org.eclipselabs.mscript.language.MscriptRuntimeModule;
+import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.osgi.framework.BundleContext;
 
 import com.google.inject.Guice;

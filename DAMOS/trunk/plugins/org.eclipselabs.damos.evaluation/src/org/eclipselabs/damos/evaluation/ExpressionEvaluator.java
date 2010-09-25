@@ -13,27 +13,27 @@ package org.eclipselabs.damos.evaluation;
 
 import java.util.Iterator;
 
-import org.eclipselabs.damos.scripting.mscript.AddSubtractExpression;
-import org.eclipselabs.damos.scripting.mscript.AddSubtractOperator;
-import org.eclipselabs.damos.scripting.mscript.BooleanLiteral;
-import org.eclipselabs.damos.scripting.mscript.Expression;
-import org.eclipselabs.damos.scripting.mscript.ExpressionList;
-import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
-import org.eclipselabs.damos.scripting.mscript.MatrixConstructionOperator;
-import org.eclipselabs.damos.scripting.mscript.MultiplyDivideExpression;
-import org.eclipselabs.damos.scripting.mscript.MultiplyDivideOperator;
-import org.eclipselabs.damos.scripting.mscript.ParenthesizedExpression;
-import org.eclipselabs.damos.scripting.mscript.RealLiteral;
-import org.eclipselabs.damos.scripting.mscript.StringLiteral;
-import org.eclipselabs.damos.scripting.mscript.SymbolReference;
-import org.eclipselabs.damos.scripting.mscript.UnaryMinusExpression;
-import org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch;
+import org.eclipselabs.mscript.language.ast.AddSubtractExpression;
+import org.eclipselabs.mscript.language.ast.AddSubtractOperator;
+import org.eclipselabs.mscript.language.ast.BooleanLiteral;
+import org.eclipselabs.mscript.language.ast.Expression;
+import org.eclipselabs.mscript.language.ast.ExpressionList;
+import org.eclipselabs.mscript.language.ast.IntegerLiteral;
+import org.eclipselabs.mscript.language.ast.MatrixConstructionOperator;
+import org.eclipselabs.mscript.language.ast.MultiplyDivideExpression;
+import org.eclipselabs.mscript.language.ast.MultiplyDivideOperator;
+import org.eclipselabs.mscript.language.ast.ParenthesizedExpression;
+import org.eclipselabs.mscript.language.ast.RealLiteral;
+import org.eclipselabs.mscript.language.ast.StringLiteral;
+import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.language.ast.UnaryMinusExpression;
+import org.eclipselabs.mscript.language.ast.util.AstSwitch;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
+public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	
 	private IEvaluationContext context;
 	private IExpressionEvaluatorStrategy<T> strategy;
@@ -54,7 +54,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseAddSubtractExpression(org.eclipselabs.damos.scripting.mscript.AddSubtractExpression)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseAddSubtractExpression(org.eclipselabs.mscript.language.ast.AddSubtractExpression)
 	 */
 	@Override
 	public T caseAddSubtractExpression(AddSubtractExpression object) {
@@ -89,7 +89,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseMultiplyDivideExpression(org.eclipselabs.damos.scripting.mscript.MultiplyDivideExpression)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseMultiplyDivideExpression(org.eclipselabs.mscript.language.ast.MultiplyDivideExpression)
 	 */
 	@Override
 	public T caseMultiplyDivideExpression(MultiplyDivideExpression object) {
@@ -168,7 +168,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseUnaryMinusExpression(org.eclipselabs.damos.scripting.mscript.UnaryMinusExpression)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseUnaryMinusExpression(org.eclipselabs.mscript.language.ast.UnaryMinusExpression)
 	 */
 	@Override
 	public T caseUnaryMinusExpression(UnaryMinusExpression object) {
@@ -176,7 +176,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseRealLiteral(org.eclipselabs.damos.scripting.mscript.RealLiteral)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
 	 */
 	@Override
 	public T caseRealLiteral(RealLiteral object) {
@@ -184,7 +184,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseIntegerLiteral(org.eclipselabs.damos.scripting.mscript.IntegerLiteral)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
 	 */
 	@Override
 	public T caseIntegerLiteral(IntegerLiteral object) {
@@ -192,7 +192,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseBooleanLiteral(org.eclipselabs.damos.scripting.mscript.BooleanLiteral)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
 	 */
 	@Override
 	public T caseBooleanLiteral(BooleanLiteral object) {
@@ -200,7 +200,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseStringLiteral(org.eclipselabs.damos.scripting.mscript.StringLiteral)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
 	 */
 	@Override
 	public T caseStringLiteral(StringLiteral object) {
@@ -208,7 +208,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseSymbolReference(org.eclipselabs.damos.scripting.mscript.SymbolReference)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseSymbolReference(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
 	@Override
 	public T caseSymbolReference(SymbolReference object) {
@@ -216,7 +216,7 @@ public class ExpressionEvaluator<T> extends MscriptSwitch<T> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseParenthesizedExpression(org.eclipselabs.damos.scripting.mscript.ParenthesizedExpression)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseParenthesizedExpression(org.eclipselabs.mscript.language.ast.ParenthesizedExpression)
 	 */
 	@Override
 	public T caseParenthesizedExpression(ParenthesizedExpression object) {

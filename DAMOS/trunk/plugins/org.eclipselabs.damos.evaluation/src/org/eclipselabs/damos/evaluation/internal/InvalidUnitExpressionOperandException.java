@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.evaluation.internal;
 
-import org.eclipselabs.damos.scripting.mscript.UnitExpressionFactor;
+import org.eclipselabs.mscript.language.ast.UnitExpressionFactor;
 
 /**
  * @author Andreas Unger

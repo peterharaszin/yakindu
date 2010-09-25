@@ -28,13 +28,13 @@ import org.eclipselabs.damos.evaluation.ExpressionValueEvaluator;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.INumericalValue;
 import org.eclipselabs.damos.evaluation.IValue;
-import org.eclipselabs.damos.scripting.mscript.Expression;
-import org.eclipselabs.damos.scripting.mscript.ExpressionList;
-import org.eclipselabs.damos.scripting.parser.antlr.MscriptParser;
-import org.eclipselabs.damos.typesystem.BooleanType;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.IntegerType;
-import org.eclipselabs.damos.typesystem.NumericalType;
+import org.eclipselabs.mscript.language.ast.Expression;
+import org.eclipselabs.mscript.language.ast.ExpressionList;
+import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
+import org.eclipselabs.mscript.typesystem.BooleanType;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
 
 /**
  * @author Andreas Unger

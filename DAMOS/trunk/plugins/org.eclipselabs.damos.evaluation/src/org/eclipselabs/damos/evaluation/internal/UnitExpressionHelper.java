@@ -17,13 +17,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipselabs.damos.scripting.mscript.UnitExpression;
-import org.eclipselabs.damos.scripting.mscript.UnitExpressionFactor;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
-import org.eclipselabs.damos.typesystem.Unit;
-import org.eclipselabs.damos.typesystem.UnitFactor;
-import org.eclipselabs.damos.typesystem.UnitSymbol;
-import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.mscript.language.ast.UnitExpression;
+import org.eclipselabs.mscript.language.ast.UnitExpressionFactor;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.Unit;
+import org.eclipselabs.mscript.typesystem.UnitFactor;
+import org.eclipselabs.mscript.typesystem.UnitSymbol;
+import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger

@@ -16,10 +16,10 @@ import java.util.Map;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.internal.BlockEvaluationContext;
-import org.eclipselabs.damos.evaluation.internal.ComponentEvaluationContext;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger

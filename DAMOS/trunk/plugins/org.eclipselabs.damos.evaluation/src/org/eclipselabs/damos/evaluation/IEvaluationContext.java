@@ -12,8 +12,8 @@
 package org.eclipselabs.damos.evaluation;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.damos.scripting.mscript.SymbolReference;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger

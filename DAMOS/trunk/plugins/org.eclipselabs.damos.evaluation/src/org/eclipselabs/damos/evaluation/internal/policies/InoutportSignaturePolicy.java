@@ -29,8 +29,8 @@ import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEva
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.InvalidDataType;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.InvalidDataType;
 
 /**
  * @author Andreas Unger
@@ -51,9 +51,6 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 				if (!dataType.isAssignableFrom(incomingDataType)) {
 					status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Incompatible input value"));
 				}
-			}
-			if (component.getFirstInputPort() != null) {
-				signature.getInputDataTypes().put(component.getFirstInputPort(), (DataType) EcoreUtil.copy(dataType));
 			}
 			signature.getOutputDataTypes().put(component.getFirstOutputPort(), (DataType) EcoreUtil.copy(dataType));
 		}

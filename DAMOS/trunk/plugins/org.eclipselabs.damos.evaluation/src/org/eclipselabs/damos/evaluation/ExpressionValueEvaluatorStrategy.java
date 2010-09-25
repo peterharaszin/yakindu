@@ -11,13 +11,13 @@
 
 package org.eclipselabs.damos.evaluation;
 
-import org.eclipselabs.damos.scripting.mscript.BooleanKind;
-import org.eclipselabs.damos.scripting.mscript.BooleanLiteral;
-import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
-import org.eclipselabs.damos.scripting.mscript.RealLiteral;
-import org.eclipselabs.damos.scripting.mscript.StringLiteral;
-import org.eclipselabs.damos.scripting.mscript.SymbolReference;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.mscript.language.ast.BooleanKind;
+import org.eclipselabs.mscript.language.ast.BooleanLiteral;
+import org.eclipselabs.mscript.language.ast.IntegerLiteral;
+import org.eclipselabs.mscript.language.ast.RealLiteral;
+import org.eclipselabs.mscript.language.ast.StringLiteral;
+import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger
@@ -84,7 +84,7 @@ public class ExpressionValueEvaluatorStrategy implements IExpressionEvaluatorStr
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processRealLiteral(org.eclipselabs.damos.scripting.mscript.RealLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
 	 */
 	public IValue processRealLiteral(IEvaluationContext context, RealLiteral realLiteral) {
 		DataType dataType = dataTypeEvaluatorStrategy.processRealLiteral(context, realLiteral);
@@ -92,7 +92,7 @@ public class ExpressionValueEvaluatorStrategy implements IExpressionEvaluatorStr
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processIntegerLiteral(org.eclipselabs.damos.scripting.mscript.IntegerLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
 	 */
 	public IValue processIntegerLiteral(IEvaluationContext context, IntegerLiteral integerLiteral) {
 		DataType dataType = dataTypeEvaluatorStrategy.processIntegerLiteral(context, integerLiteral);
@@ -100,7 +100,7 @@ public class ExpressionValueEvaluatorStrategy implements IExpressionEvaluatorStr
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processBooleanLiteral(org.eclipselabs.damos.scripting.mscript.BooleanLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
 	 */
 	public IValue processBooleanLiteral(IEvaluationContext context, BooleanLiteral booleanLiteral) {
 		DataType dataType = dataTypeEvaluatorStrategy.processBooleanLiteral(context, booleanLiteral);
@@ -108,7 +108,7 @@ public class ExpressionValueEvaluatorStrategy implements IExpressionEvaluatorStr
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processStringLiteral(org.eclipselabs.damos.scripting.mscript.StringLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
 	 */
 	public IValue processStringLiteral(IEvaluationContext context, StringLiteral stringLiteral) {
 		DataType dataType = dataTypeEvaluatorStrategy.processStringLiteral(context, stringLiteral);
@@ -116,7 +116,7 @@ public class ExpressionValueEvaluatorStrategy implements IExpressionEvaluatorStr
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processSymbolReference(org.eclipselabs.damos.scripting.mscript.SymbolReference)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processSymbolReference(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
 	public IValue processSymbolReference(IEvaluationContext context, SymbolReference symbolReference) {
 		return InvalidValue.SINGLETON;

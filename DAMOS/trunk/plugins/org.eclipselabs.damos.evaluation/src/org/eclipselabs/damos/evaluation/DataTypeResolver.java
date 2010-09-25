@@ -25,11 +25,10 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
-import org.eclipselabs.damos.evaluation.internal.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.internal.EvaluationMultiStatus;
 import org.eclipselabs.damos.evaluation.internal.EvaluationStatus;
 import org.eclipselabs.damos.evaluation.internal.registry.ComponentSignaturePolicyProviderRegistry;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger

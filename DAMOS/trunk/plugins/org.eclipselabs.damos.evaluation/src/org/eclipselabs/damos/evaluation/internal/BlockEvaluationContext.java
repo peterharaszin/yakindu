@@ -15,11 +15,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
-import org.eclipselabs.damos.scripting.mscript.SymbolReference;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger
@@ -40,7 +41,7 @@ public class BlockEvaluationContext implements IEvaluationContext {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IEvaluationContext#getSymbolDataType(org.eclipselabs.damos.scripting.mscript.SymbolReference)
+	 * @see org.eclipselabs.damos.evaluation.IEvaluationContext#getSymbolDataType(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
 	public DataType getSymbolDataType(SymbolReference symbolReference) throws CoreException {
 		if (!symbolReference.isGlobal()

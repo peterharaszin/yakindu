@@ -11,9 +11,9 @@
 
 package org.eclipselabs.damos.evaluation;
 
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.InvalidDataType;
-import org.eclipselabs.damos.typesystem.OperatorKind;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.InvalidDataType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
 
 /**
  * @author Andreas Unger

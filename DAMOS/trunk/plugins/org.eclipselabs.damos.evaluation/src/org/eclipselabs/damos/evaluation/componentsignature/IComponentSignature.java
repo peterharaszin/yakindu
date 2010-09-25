@@ -11,9 +11,8 @@
 
 package org.eclipselabs.damos.evaluation.componentsignature;
 
-import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger
@@ -21,7 +20,6 @@ import org.eclipselabs.damos.typesystem.DataType;
  */
 public interface IComponentSignature {
 
-	DataType getInputDataType(InputPort inputPort);
 	DataType getOutputDataType(OutputPort outputPort);
 	
 }

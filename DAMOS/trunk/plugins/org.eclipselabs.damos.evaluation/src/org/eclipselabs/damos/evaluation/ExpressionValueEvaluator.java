@@ -28,7 +28,7 @@ public class ExpressionValueEvaluator extends ExpressionEvaluator<IValue> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	public IValue defaultCase(EObject object) {

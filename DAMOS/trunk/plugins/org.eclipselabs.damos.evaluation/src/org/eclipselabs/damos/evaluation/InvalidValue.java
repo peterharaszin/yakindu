@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.evaluation;
 
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger

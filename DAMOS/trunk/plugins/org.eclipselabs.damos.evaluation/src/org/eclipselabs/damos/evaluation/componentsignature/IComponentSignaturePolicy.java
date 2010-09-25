@@ -16,7 +16,7 @@ import java.util.Map;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
-import org.eclipselabs.damos.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger

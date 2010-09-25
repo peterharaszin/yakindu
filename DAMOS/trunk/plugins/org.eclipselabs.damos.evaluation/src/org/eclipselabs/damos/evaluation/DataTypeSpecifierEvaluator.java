@@ -13,21 +13,21 @@ package org.eclipselabs.damos.evaluation;
 
 import org.eclipselabs.damos.evaluation.internal.InvalidUnitExpressionOperandException;
 import org.eclipselabs.damos.evaluation.internal.UnitExpressionHelper;
-import org.eclipselabs.damos.scripting.mscript.BooleanTypeSpecifier;
-import org.eclipselabs.damos.scripting.mscript.IntegerTypeSpecifier;
-import org.eclipselabs.damos.scripting.mscript.RealTypeSpecifier;
-import org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.IntegerType;
-import org.eclipselabs.damos.typesystem.RealType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
-import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.mscript.language.ast.BooleanTypeSpecifier;
+import org.eclipselabs.mscript.language.ast.IntegerTypeSpecifier;
+import org.eclipselabs.mscript.language.ast.RealTypeSpecifier;
+import org.eclipselabs.mscript.language.ast.util.AstSwitch;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.mscript.typesystem.RealType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger
  *
  */
-public class DataTypeSpecifierEvaluator extends MscriptSwitch<DataType> {
+public class DataTypeSpecifierEvaluator extends AstSwitch<DataType> {
 	
 //	private IEvaluationContext context;
 	
@@ -39,7 +39,7 @@ public class DataTypeSpecifierEvaluator extends MscriptSwitch<DataType> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseRealTypeSpecifier(org.eclipselabs.damos.scripting.mscript.RealTypeSpecifier)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealTypeSpecifier(org.eclipselabs.mscript.language.ast.RealTypeSpecifier)
 	 */
 	@Override
 	public DataType caseRealTypeSpecifier(RealTypeSpecifier object) {
@@ -57,7 +57,7 @@ public class DataTypeSpecifierEvaluator extends MscriptSwitch<DataType> {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseIntegerTypeSpecifier(org.eclipselabs.damos.scripting.mscript.IntegerTypeSpecifier)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerTypeSpecifier(org.eclipselabs.mscript.language.ast.IntegerTypeSpecifier)
 	 */
 	@Override
 	public DataType caseIntegerTypeSpecifier(IntegerTypeSpecifier object) {
@@ -75,7 +75,7 @@ public class DataTypeSpecifierEvaluator extends MscriptSwitch<DataType> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.scripting.mscript.util.MscriptSwitch#caseBooleanTypeSpecifier(org.eclipselabs.damos.scripting.mscript.BooleanTypeSpecifier)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanTypeSpecifier(org.eclipselabs.mscript.language.ast.BooleanTypeSpecifier)
 	 */
 	@Override
 	public DataType caseBooleanTypeSpecifier(BooleanTypeSpecifier object) {

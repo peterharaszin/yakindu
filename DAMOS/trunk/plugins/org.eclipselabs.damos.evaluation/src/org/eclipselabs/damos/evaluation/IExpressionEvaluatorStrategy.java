@@ -11,11 +11,11 @@
 
 package org.eclipselabs.damos.evaluation;
 
-import org.eclipselabs.damos.scripting.mscript.BooleanLiteral;
-import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
-import org.eclipselabs.damos.scripting.mscript.RealLiteral;
-import org.eclipselabs.damos.scripting.mscript.StringLiteral;
-import org.eclipselabs.damos.scripting.mscript.SymbolReference;
+import org.eclipselabs.mscript.language.ast.BooleanLiteral;
+import org.eclipselabs.mscript.language.ast.IntegerLiteral;
+import org.eclipselabs.mscript.language.ast.RealLiteral;
+import org.eclipselabs.mscript.language.ast.StringLiteral;
+import org.eclipselabs.mscript.language.ast.SymbolReference;
 
 /**
  * @author Andreas Unger

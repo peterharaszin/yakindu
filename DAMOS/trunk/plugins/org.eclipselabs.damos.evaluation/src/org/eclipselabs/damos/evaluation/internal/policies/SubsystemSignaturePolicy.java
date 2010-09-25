@@ -36,8 +36,8 @@ import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEva
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.InvalidDataType;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.InvalidDataType;
 
 /**
  * @author Andreas Unger
@@ -64,7 +64,6 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 						if (incomingDataType != null && !dataType.isAssignableFrom(incomingDataType)) {
 							status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Incompatible input value")));
 						}
-						signature.getInputDataTypes().put(input.getPorts().get(0), (DataType) EcoreUtil.copy(dataType));
 					} else {
 						status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Missing input port")));
 					}

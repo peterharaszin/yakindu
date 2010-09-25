@@ -15,18 +15,18 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.evaluation.internal.InvalidUnitExpressionOperandException;
 import org.eclipselabs.damos.evaluation.internal.UnitExpressionHelper;
-import org.eclipselabs.damos.scripting.mscript.BooleanLiteral;
-import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
-import org.eclipselabs.damos.scripting.mscript.RealLiteral;
-import org.eclipselabs.damos.scripting.mscript.StringLiteral;
-import org.eclipselabs.damos.scripting.mscript.SymbolReference;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.IntegerType;
-import org.eclipselabs.damos.typesystem.InvalidDataType;
-import org.eclipselabs.damos.typesystem.OperatorKind;
-import org.eclipselabs.damos.typesystem.RealType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
-import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.mscript.language.ast.BooleanLiteral;
+import org.eclipselabs.mscript.language.ast.IntegerLiteral;
+import org.eclipselabs.mscript.language.ast.RealLiteral;
+import org.eclipselabs.mscript.language.ast.StringLiteral;
+import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.mscript.typesystem.InvalidDataType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
+import org.eclipselabs.mscript.typesystem.RealType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger
@@ -113,7 +113,7 @@ public class ExpressionDataTypeEvaluatorStrategy implements IExpressionEvaluator
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processRealLiteral(org.eclipselabs.damos.scripting.mscript.RealLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
 	 */
 	public DataType processRealLiteral(IEvaluationContext context, RealLiteral realLiteral) {
 		RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
@@ -130,7 +130,7 @@ public class ExpressionDataTypeEvaluatorStrategy implements IExpressionEvaluator
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processIntegerLiteral(org.eclipselabs.damos.scripting.mscript.IntegerLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
 	 */
 	public DataType processIntegerLiteral(IEvaluationContext context, IntegerLiteral integerLiteral) {
 		IntegerType integerType = TypeSystemFactory.eINSTANCE.createIntegerType();
@@ -147,21 +147,21 @@ public class ExpressionDataTypeEvaluatorStrategy implements IExpressionEvaluator
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processBooleanLiteral(org.eclipselabs.damos.scripting.mscript.BooleanLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
 	 */
 	public DataType processBooleanLiteral(IEvaluationContext context, BooleanLiteral booleanLiteral) {
 		return TypeSystemUtil.BOOLEAN_TYPE;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processStringLiteral(org.eclipselabs.damos.scripting.mscript.StringLiteral)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
 	 */
 	public DataType processStringLiteral(IEvaluationContext context, StringLiteral stringLiteral) {
 		return TypeSystemUtil.STRING_TYPE;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processSymbolReference(org.eclipselabs.damos.scripting.mscript.SymbolReference)
+	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processSymbolReference(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
 	public DataType processSymbolReference(IEvaluationContext context, SymbolReference symbolReference) {
 		try {

@@ -16,6 +16,8 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IFigureConstants {
 

@@ -14,6 +14,8 @@ package org.eclipselabs.damos.diagram.ui.palette;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IPaletteConstants {
 

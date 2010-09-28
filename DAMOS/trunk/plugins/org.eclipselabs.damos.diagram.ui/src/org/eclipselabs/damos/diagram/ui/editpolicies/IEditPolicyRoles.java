@@ -16,6 +16,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IEditPolicyRoles extends EditPolicyRoles {
 

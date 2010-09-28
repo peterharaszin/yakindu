@@ -16,6 +16,8 @@ import org.eclipselabs.damos.common.CommonPlugin;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IMarkerConstants {
 

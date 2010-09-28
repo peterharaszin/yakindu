@@ -14,6 +14,8 @@ package org.eclipselabs.damos.diagram.ui.view;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface ISemanticHints {
 

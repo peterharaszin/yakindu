@@ -14,6 +14,8 @@ package org.eclipselabs.damos.diagram.core.internal.requests;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IRequestParameterConstants {
 

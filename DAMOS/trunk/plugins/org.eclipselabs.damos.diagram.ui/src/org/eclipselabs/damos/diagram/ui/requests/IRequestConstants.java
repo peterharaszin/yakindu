@@ -14,6 +14,8 @@ package org.eclipselabs.damos.diagram.ui.requests;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IRequestConstants extends org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants {
 

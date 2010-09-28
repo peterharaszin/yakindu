@@ -16,6 +16,8 @@ import org.eclipse.emf.common.util.URI;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IBlockTypeDescriptor {
 

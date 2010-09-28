@@ -14,6 +14,8 @@ package org.eclipselabs.damos.dml.registry;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IBlockGroupDescriptor {
 

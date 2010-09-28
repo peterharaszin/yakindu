@@ -14,6 +14,8 @@ package org.eclipselabs.damos.common.registry;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IRegistryConstants {
 

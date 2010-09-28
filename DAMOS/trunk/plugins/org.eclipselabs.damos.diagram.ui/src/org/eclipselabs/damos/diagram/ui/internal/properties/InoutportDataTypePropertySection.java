@@ -28,9 +28,9 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 public class InoutportDataTypePropertySection extends AbstractComboPropertySection {
 	
 	private static final List<String> PROPERTY_VALUE_STRINGS = Arrays.asList(new String[] {
-		"Real",
-		"Integer",
-		"Boolean"});
+		"real",
+		"integer",
+		"boolean" });
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.diagram.ui.properties.AbstractComboPropertySection#getPropertyChangeCommandName()

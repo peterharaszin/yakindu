@@ -16,6 +16,8 @@ import org.eclipselabs.mscript.typesystem.DataType;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IValue {
 	

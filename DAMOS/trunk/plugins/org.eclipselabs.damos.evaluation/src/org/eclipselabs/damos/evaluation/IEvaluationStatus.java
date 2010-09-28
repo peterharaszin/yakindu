@@ -17,6 +17,8 @@ import org.eclipselabs.damos.dml.Component;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IEvaluationStatus extends IStatus {
 

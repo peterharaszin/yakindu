@@ -20,6 +20,8 @@ import org.eclipselabs.mscript.language.ast.SymbolReference;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IExpressionEvaluatorStrategy<T> {
 

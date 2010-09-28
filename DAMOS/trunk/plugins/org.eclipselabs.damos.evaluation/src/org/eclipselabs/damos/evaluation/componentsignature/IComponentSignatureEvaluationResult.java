@@ -16,6 +16,8 @@ import org.eclipse.core.runtime.IStatus;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface IComponentSignatureEvaluationResult {
 

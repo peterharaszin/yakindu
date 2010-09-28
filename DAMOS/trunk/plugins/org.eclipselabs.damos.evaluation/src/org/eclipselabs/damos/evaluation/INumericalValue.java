@@ -14,6 +14,8 @@ package org.eclipselabs.damos.evaluation;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface INumericalValue extends IValue {
 

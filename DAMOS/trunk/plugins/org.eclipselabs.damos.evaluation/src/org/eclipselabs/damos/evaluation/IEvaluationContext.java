@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.evaluation;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -23,6 +23,6 @@ import org.eclipselabs.mscript.typesystem.DataType;
  */
 public interface IEvaluationContext {
 
-	DataType getSymbolDataType(SymbolReference symbolReference) throws CoreException;
+	DataType getSymbolDataType(FeatureCall featureCall) throws CoreException;
 	
 }

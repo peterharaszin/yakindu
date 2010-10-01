@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.evaluation.internal.InvalidUnitExpressionOperandException;
 import org.eclipselabs.damos.evaluation.internal.UnitExpressionHelper;
 import org.eclipselabs.mscript.language.ast.BooleanLiteral;
+import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.StringLiteral;
-import org.eclipselabs.mscript.language.ast.SymbolReference;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.IntegerType;
 import org.eclipselabs.mscript.typesystem.InvalidDataType;
@@ -163,9 +163,9 @@ public class ExpressionDataTypeEvaluatorStrategy implements IExpressionEvaluator
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processSymbolReference(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
-	public DataType processSymbolReference(IEvaluationContext context, SymbolReference symbolReference) {
+	public DataType processSymbolReference(IEvaluationContext context, FeatureCall featureCall) {
 		try {
-			return context.getSymbolDataType(symbolReference);
+			return context.getSymbolDataType(featureCall);
 		} catch (CoreException e) {
 			// Return invalid data type
 		}

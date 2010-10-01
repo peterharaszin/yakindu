@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.evaluation;
 
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -40,7 +40,7 @@ public class ComponentEvaluationContext implements IEvaluationContext {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IEvaluationContext#getSymbolDataType(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
-	public DataType getSymbolDataType(SymbolReference symbolReference) {
+	public DataType getSymbolDataType(FeatureCall featureCall) {
 		return null;
 	}
 

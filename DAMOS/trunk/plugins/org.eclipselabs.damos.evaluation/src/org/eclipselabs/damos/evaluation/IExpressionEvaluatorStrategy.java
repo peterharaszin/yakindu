@@ -12,10 +12,10 @@
 package org.eclipselabs.damos.evaluation;
 
 import org.eclipselabs.mscript.language.ast.BooleanLiteral;
+import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.StringLiteral;
-import org.eclipselabs.mscript.language.ast.SymbolReference;
 
 /**
  * @author Andreas Unger
@@ -40,6 +40,6 @@ public interface IExpressionEvaluatorStrategy<T> {
 	T processBooleanLiteral(IEvaluationContext context, BooleanLiteral booleanLiteral);
 	T processStringLiteral(IEvaluationContext context, StringLiteral stringLiteral);
 	
-	T processSymbolReference(IEvaluationContext context, SymbolReference symbolReference);
+	T processSymbolReference(IEvaluationContext context, FeatureCall featureCall);
 	
 }

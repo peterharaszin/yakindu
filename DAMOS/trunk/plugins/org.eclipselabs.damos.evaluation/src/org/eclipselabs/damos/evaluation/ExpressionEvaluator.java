@@ -18,6 +18,7 @@ import org.eclipselabs.mscript.language.ast.AddSubtractOperator;
 import org.eclipselabs.mscript.language.ast.BooleanLiteral;
 import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.ExpressionList;
+import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.MatrixConstructionOperator;
 import org.eclipselabs.mscript.language.ast.MultiplyDivideExpression;
@@ -25,7 +26,6 @@ import org.eclipselabs.mscript.language.ast.MultiplyDivideOperator;
 import org.eclipselabs.mscript.language.ast.ParenthesizedExpression;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.StringLiteral;
-import org.eclipselabs.mscript.language.ast.SymbolReference;
 import org.eclipselabs.mscript.language.ast.UnaryMinusExpression;
 import org.eclipselabs.mscript.language.ast.util.AstSwitch;
 
@@ -211,7 +211,7 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseSymbolReference(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
 	@Override
-	public T caseSymbolReference(SymbolReference object) {
+	public T caseFeatureCall(FeatureCall object) {
 		return strategy.processSymbolReference(context, object);
 	}
 

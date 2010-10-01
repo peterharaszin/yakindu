@@ -13,10 +13,10 @@ package org.eclipselabs.damos.evaluation;
 
 import org.eclipselabs.mscript.language.ast.BooleanKind;
 import org.eclipselabs.mscript.language.ast.BooleanLiteral;
+import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.StringLiteral;
-import org.eclipselabs.mscript.language.ast.SymbolReference;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -118,7 +118,7 @@ public class ExpressionValueEvaluatorStrategy implements IExpressionEvaluatorStr
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#processSymbolReference(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
-	public IValue processSymbolReference(IEvaluationContext context, SymbolReference symbolReference) {
+	public IValue processSymbolReference(IEvaluationContext context, FeatureCall featureCall) {
 		return InvalidValue.SINGLETON;
 	}
 	

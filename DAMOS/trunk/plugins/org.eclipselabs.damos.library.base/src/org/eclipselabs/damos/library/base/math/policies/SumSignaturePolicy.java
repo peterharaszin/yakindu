@@ -9,19 +9,18 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.componentsignature.AbstractBlockSignaturePolicy;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.IntegerType;
-import org.eclipselabs.damos.typesystem.NumericalType;
-import org.eclipselabs.damos.typesystem.RealType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
-import org.eclipselabs.damos.typesystem.Unit;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.RealType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.Unit;
 
 /**
  * @author Andreas Unger
@@ -60,21 +59,11 @@ public class SumSignaturePolicy extends AbstractBlockSignaturePolicy {
 		if (real) {
 			RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 			realType.setUnit((Unit) EcoreUtil.copy(unit));
-			signature.getInputDataTypes().put(block.getFirstInputPort(), realType);
-			for (OutputPort outputPort : block.getOutputPorts()) {
-				realType = TypeSystemFactory.eINSTANCE.createRealType();
-				realType.setUnit((Unit) EcoreUtil.copy(unit));
-				signature.getOutputDataTypes().put(outputPort, realType);
-			}
+			signature.getOutputDataTypes().put(block.getFirstOutputPort(), realType);
 		} else {
 			IntegerType integerType = TypeSystemFactory.eINSTANCE.createIntegerType();
 			integerType.setUnit((Unit) EcoreUtil.copy(unit));
-			signature.getInputDataTypes().put(block.getFirstInputPort(), integerType);
-			for (OutputPort outputPort : block.getOutputPorts()) {
-				integerType = TypeSystemFactory.eINSTANCE.createIntegerType();
-				integerType.setUnit((Unit) EcoreUtil.copy(unit));
-				signature.getOutputDataTypes().put(outputPort, integerType);
-			}
+			signature.getOutputDataTypes().put(block.getFirstOutputPort(), integerType);
 		}
 		
 		return new ComponentSignatureEvaluationResult(signature);

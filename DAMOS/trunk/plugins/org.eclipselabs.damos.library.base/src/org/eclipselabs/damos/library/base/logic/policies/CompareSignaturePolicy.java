@@ -5,7 +5,6 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
@@ -14,9 +13,9 @@ import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.NumericalType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 
 /**
  * @author Andreas Unger
@@ -51,14 +50,7 @@ public class CompareSignaturePolicy extends AbstractBlockSignaturePolicy {
 		}
 
 		ComponentSignature signature = new ComponentSignature();
-		if (incomingDataType1 != null) {
-			signature.getInputDataTypes().put(inputPort1, (DataType) EcoreUtil.copy(incomingDataType1));
-		}
-		if (incomingDataType2 != null) {
-			signature.getInputDataTypes().put(inputPort2, (DataType) EcoreUtil.copy(incomingDataType2));
-		}
 		signature.getOutputDataTypes().put(block.getFirstOutputPort(), TypeSystemFactory.eINSTANCE.createBooleanType());
-		
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

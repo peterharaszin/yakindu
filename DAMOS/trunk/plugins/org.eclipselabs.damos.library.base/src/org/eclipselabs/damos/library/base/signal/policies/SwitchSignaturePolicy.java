@@ -14,11 +14,10 @@ import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
-import org.eclipselabs.damos.typesystem.BooleanType;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.NumericalType;
-import org.eclipselabs.damos.typesystem.RealType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.BooleanType;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.RealType;
 
 /**
  * @author Andreas Unger
@@ -57,13 +56,6 @@ public class SwitchSignaturePolicy extends AbstractBlockSignaturePolicy {
 		}
 
 		ComponentSignature signature = new ComponentSignature();
-		signature.getInputDataTypes().put(controlInputPort, TypeSystemFactory.eINSTANCE.createBooleanType());
-		if (onTrueIncomingDataType != null) {
-			signature.getInputDataTypes().put(onTrueInputPort, (DataType) EcoreUtil.copy(onTrueIncomingDataType));
-		}
-		if (onFalseIncomingDataType != null) {
-			signature.getInputDataTypes().put(onFalseInputPort, (DataType) EcoreUtil.copy(onFalseIncomingDataType));
-		}
 		
 		DataType outputDataType = onTrueIncomingDataType;
 		if (onFalseIncomingDataType instanceof RealType) {

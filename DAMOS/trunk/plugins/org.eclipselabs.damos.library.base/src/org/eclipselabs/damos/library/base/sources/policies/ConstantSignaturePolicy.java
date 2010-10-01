@@ -28,9 +28,9 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEv
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.ConstantConstants;
-import org.eclipselabs.damos.typesystem.BooleanType;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.BooleanType;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
 
 /**
  * @author Andreas Unger

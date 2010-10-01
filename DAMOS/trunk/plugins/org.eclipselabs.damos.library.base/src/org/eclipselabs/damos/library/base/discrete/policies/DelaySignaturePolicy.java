@@ -17,11 +17,11 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEv
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.discrete.util.DelayConstants;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.IntegerType;
-import org.eclipselabs.damos.typesystem.NumericalType;
-import org.eclipselabs.damos.typesystem.RealType;
-import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.RealType;
+import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger
@@ -84,9 +84,7 @@ public class DelaySignaturePolicy extends AbstractBlockSignaturePolicy {
 		}
 
 		ComponentSignature signature = new ComponentSignature();
-		signature.getInputDataTypes().put(block.getFirstInputPort(), (DataType) EcoreUtil.copy(incomingDataType));
 		signature.getOutputDataTypes().put(block.getFirstOutputPort(), (DataType) EcoreUtil.copy(incomingDataType));
-		
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

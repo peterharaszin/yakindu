@@ -23,12 +23,12 @@ import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.FractionBlockEditPart;
 import org.eclipselabs.damos.library.common.util.PolynomialExpressionUtil;
-import org.eclipselabs.damos.scripting.mscript.Expression;
-import org.eclipselabs.damos.scripting.mscript.ExpressionList;
-import org.eclipselabs.damos.scripting.mscript.IntegerLiteral;
-import org.eclipselabs.damos.scripting.mscript.RealLiteral;
-import org.eclipselabs.damos.scripting.mscript.UnaryMinusExpression;
-import org.eclipselabs.damos.scripting.parser.antlr.MscriptParser;
+import org.eclipselabs.mscript.language.ast.Expression;
+import org.eclipselabs.mscript.language.ast.ExpressionList;
+import org.eclipselabs.mscript.language.ast.IntegerLiteral;
+import org.eclipselabs.mscript.language.ast.RealLiteral;
+import org.eclipselabs.mscript.language.ast.UnaryMinusExpression;
+import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 
 /**
  * @author Andreas Unger

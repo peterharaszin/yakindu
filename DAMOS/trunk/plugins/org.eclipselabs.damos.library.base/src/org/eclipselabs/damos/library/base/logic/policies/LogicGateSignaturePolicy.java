@@ -26,9 +26,9 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
-import org.eclipselabs.damos.typesystem.BooleanType;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.BooleanType;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 
 /**
  * @author Andreas Unger
@@ -39,10 +39,6 @@ public class LogicGateSignaturePolicy implements IComponentSignaturePolicy {
 	private static final IComponentSignature SIGNATURE = new IComponentSignature() {
 		
 		public DataType getOutputDataType(OutputPort outputPort) {
-			return TypeSystemFactory.eINSTANCE.createBooleanType();
-		}
-		
-		public DataType getInputDataType(InputPort inputPort) {
 			return TypeSystemFactory.eINSTANCE.createBooleanType();
 		}
 		

@@ -17,10 +17,10 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEv
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.logic.util.SchmittTriggerConstants;
-import org.eclipselabs.damos.typesystem.BooleanType;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.NumericalType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.BooleanType;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 
 /**
  * @author Andreas Unger
@@ -82,11 +82,7 @@ public class SchmittTriggerSignaturePolicy extends AbstractBlockSignaturePolicy 
 		}
 
 		ComponentSignature signature = new ComponentSignature();
-		if (incomingDataType != null) {
-			signature.getInputDataTypes().put(block.getFirstInputPort(), (DataType) EcoreUtil.copy(incomingDataType));
-		}
 		signature.getOutputDataTypes().put(block.getFirstOutputPort(), TypeSystemFactory.eINSTANCE.createBooleanType());
-		
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

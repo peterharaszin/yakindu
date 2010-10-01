@@ -17,14 +17,14 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEv
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.discrete.util.DiscreteDerivativeConstants;
-import org.eclipselabs.damos.typesystem.DataType;
-import org.eclipselabs.damos.typesystem.IntegerType;
-import org.eclipselabs.damos.typesystem.NumericalType;
-import org.eclipselabs.damos.typesystem.OperatorKind;
-import org.eclipselabs.damos.typesystem.RealType;
-import org.eclipselabs.damos.typesystem.TypeSystemFactory;
-import org.eclipselabs.damos.typesystem.UnitSymbol;
-import org.eclipselabs.damos.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
+import org.eclipselabs.mscript.typesystem.RealType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.UnitSymbol;
+import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger
@@ -83,9 +83,7 @@ public class DiscreteDerivativeSignaturePolicy extends AbstractBlockSignaturePol
 		DataType outputDataType = incomingDataType.evaluate(OperatorKind.MULTIPLY, gainDataType).evaluate(OperatorKind.DIVIDE, second);
 
 		ComponentSignature signature = new ComponentSignature();
-		signature.getInputDataTypes().put(block.getFirstInputPort(), (DataType) EcoreUtil.copy(incomingDataType));
 		signature.getOutputDataTypes().put(block.getFirstOutputPort(), outputDataType);
-		
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

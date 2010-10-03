@@ -19,6 +19,7 @@ import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
+import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.SymbolReference;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -45,14 +46,18 @@ public class BlockEvaluationContext implements IEvaluationContext {
 	 * @see org.eclipselabs.damos.evaluation.IEvaluationContext#getSymbolDataType(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
 	public DataType getSymbolDataType(FeatureCall featureCall) throws CoreException {
-		if (!featureCall.isOperationCall() && featureCall.getComponentReferences().isEmpty()) {
-			SymbolReference featureReference = featureCall.getFeatureReference();
-			if (!featureReference.isGlobal() && featureReference.getName().getIdentifiers().size() == 1) {
-				String name = featureReference.getName().getIdentifiers().get(0);
-				return EvaluationUtil.evaluateArgumentDataType(this, getBlock(), name);
+		if (featureCall.getParts().isEmpty()) {
+			Expression expression = featureCall.getTarget();
+			if (expression instanceof SymbolReference) {
+				SymbolReference symbolReference = (SymbolReference) expression;
+				if (!symbolReference.isGlobal() && symbolReference.getName().getIdentifiers().size() == 1) {
+					String name = symbolReference.getName().getIdentifiers().get(0);
+					return EvaluationUtil.evaluateArgumentDataType(this, getBlock(), name);
+				}
 			}
 		}
-		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Symbol '" + featureCall.getFeatureReference().getName().getIdentifiers().get(0) + "' not found"));
+		// TODO: Create better error message
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Symbol '" + featureCall + "' not found"));
 	}
 	
 	private Block getBlock() {

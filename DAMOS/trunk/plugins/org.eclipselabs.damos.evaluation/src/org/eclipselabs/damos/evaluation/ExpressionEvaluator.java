@@ -11,9 +11,8 @@
 
 package org.eclipselabs.damos.evaluation;
 
-import java.util.Iterator;
-
 import org.eclipselabs.mscript.language.ast.AddSubtractExpression;
+import org.eclipselabs.mscript.language.ast.AddSubtractExpressionPart;
 import org.eclipselabs.mscript.language.ast.AddSubtractOperator;
 import org.eclipselabs.mscript.language.ast.BooleanLiteral;
 import org.eclipselabs.mscript.language.ast.Expression;
@@ -22,6 +21,7 @@ import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.MatrixConstructionOperator;
 import org.eclipselabs.mscript.language.ast.MultiplyDivideExpression;
+import org.eclipselabs.mscript.language.ast.MultiplyDivideExpressionPart;
 import org.eclipselabs.mscript.language.ast.MultiplyDivideOperator;
 import org.eclipselabs.mscript.language.ast.ParenthesizedExpression;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
@@ -58,14 +58,9 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	 */
 	@Override
 	public T caseAddSubtractExpression(AddSubtractExpression object) {
-		T result = null;
-		Iterator<AddSubtractOperator> operatorIterator = object.getOperators().iterator();
-		for (Expression expression : object.getOperands()) {
-			if (result == null) {
-				result = doSwitch(expression);
-			} else {
-				result = addSubtract(result, doSwitch(expression), operatorIterator.next());
-			}
+		T result = doSwitch(object.getLeftOperand());
+		for (AddSubtractExpressionPart part : object.getRightParts()) {
+			result = addSubtract(result, doSwitch(part.getOperand()), part.getOperator());
 		}
 		return result;
 	}
@@ -93,14 +88,9 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	 */
 	@Override
 	public T caseMultiplyDivideExpression(MultiplyDivideExpression object) {
-		T result = null;
-		Iterator<MultiplyDivideOperator> operatorIterator = object.getOperators().iterator();
-		for (Expression expression : object.getOperands()) {
-			if (result == null) {
-				result = doSwitch(expression);
-			} else {
-				result = multiplyDivide(result, doSwitch(expression), operatorIterator.next());
-			}
+		T result = doSwitch(object.getLeftOperand());
+		for (MultiplyDivideExpressionPart part : object.getRightParts()) {
+			result = multiplyDivide(result, doSwitch(part.getOperand()), part.getOperator());
 		}
 		return result;
 	}

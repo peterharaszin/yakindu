@@ -29,6 +29,7 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
+import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
@@ -48,7 +49,8 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy#evaluateSignature(org.eclipselabs.damos.evaluation.IEvaluationContext, org.eclipselabs.damos.dml.Component, java.util.Map)
 	 */
-	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+		IEvaluationContext context = new ComponentEvaluationContext(component);
 		Subsystem subsystem = (Subsystem) component;
 		
 		MultiStatus status = new MultiStatus(EvaluationPlugin.PLUGIN_ID, 0, "", null);

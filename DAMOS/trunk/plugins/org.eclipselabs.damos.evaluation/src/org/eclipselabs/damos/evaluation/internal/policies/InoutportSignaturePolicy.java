@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
@@ -38,7 +39,8 @@ import org.eclipselabs.mscript.typesystem.InvalidDataType;
  */
 public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 
-	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+		IEvaluationContext context = new ComponentEvaluationContext(component);
 		Inoutport inport = (Inoutport) component;
 		
 		MultiStatus status = new MultiStatus(EvaluationPlugin.PLUGIN_ID, 0, "", null);

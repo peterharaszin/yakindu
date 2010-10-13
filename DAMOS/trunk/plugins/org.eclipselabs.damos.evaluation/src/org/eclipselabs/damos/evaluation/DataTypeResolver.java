@@ -46,10 +46,7 @@ public class DataTypeResolver {
 			for (Component component : fragment.getAllComponents()) {
 				IComponentSignaturePolicy policy = ComponentSignaturePolicyProviderRegistry.getInstance().createPolicy(component);
 				if (policy != null) {
-					IEvaluationContext context = new ComponentEvaluationContext(component);
-					
 					IComponentSignatureEvaluationResult result = policy.evaluateSignature(
-							context,
 							component,
 							getIncomingDataTypes(fragment, component, resolverResult));
 					

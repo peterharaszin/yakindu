@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
@@ -44,7 +43,7 @@ public class LogicGateSignaturePolicy implements IComponentSignaturePolicy {
 		
 	};
 	
-	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Component component, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
 		for (Entry<InputPort, DataType> incomingDataType : incomingDataTypes.entrySet()) {

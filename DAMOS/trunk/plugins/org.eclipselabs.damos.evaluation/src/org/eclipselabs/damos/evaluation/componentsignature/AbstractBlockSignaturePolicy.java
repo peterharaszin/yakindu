@@ -16,7 +16,6 @@ import java.util.Map;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.internal.BlockEvaluationContext;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -30,11 +29,11 @@ public abstract class AbstractBlockSignaturePolicy implements IComponentSignatur
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IComponentSignaturePolicy#evaluateSignature(org.eclipselabs.damos.evaluation.IEvaluationContext, org.eclipselabs.damos.dml.Component, java.util.Map)
 	 */
-	public final IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Component component, Map<InputPort, DataType> incomingDataTypes) {
-		if (!(context instanceof ComponentEvaluationContext) || !(component instanceof Block)) {
+	public final IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+		if (!(component instanceof Block)) {
 			throw new IllegalArgumentException();
 		}
-		return evaluateSignature(new BlockEvaluationContext((ComponentEvaluationContext) context), (Block) component, incomingDataTypes);
+		return evaluateSignature(new BlockEvaluationContext((Block) component), (Block) component, incomingDataTypes);
 	}
 
 	public abstract IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes);

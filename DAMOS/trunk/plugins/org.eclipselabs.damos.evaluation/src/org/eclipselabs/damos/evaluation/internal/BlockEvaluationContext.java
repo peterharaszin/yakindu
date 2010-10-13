@@ -17,7 +17,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
-import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.FeatureCall;
@@ -28,18 +27,13 @@ import org.eclipselabs.mscript.typesystem.DataType;
  * @author Andreas Unger
  *
  */
-public class BlockEvaluationContext implements IEvaluationContext {
+public class BlockEvaluationContext extends ComponentEvaluationContext {
 
-	private ComponentEvaluationContext delegate;
-	
 	/**
 	 * 
 	 */
-	public BlockEvaluationContext(ComponentEvaluationContext delegate) {
-		if (!(delegate.getComponent() instanceof Block)) {
-			throw new IllegalArgumentException();
-		}
-		this.delegate = delegate;
+	public BlockEvaluationContext(Block block) {
+		super(block);
 	}
 
 	/* (non-Javadoc)
@@ -61,7 +55,7 @@ public class BlockEvaluationContext implements IEvaluationContext {
 	}
 	
 	private Block getBlock() {
-		return (Block) delegate.getComponent();
+		return (Block) getComponent();
 	}
 
 }

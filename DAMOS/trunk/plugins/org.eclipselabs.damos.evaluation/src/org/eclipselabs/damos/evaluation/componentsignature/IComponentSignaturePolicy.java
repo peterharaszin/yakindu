@@ -15,7 +15,6 @@ import java.util.Map;
 
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -24,6 +23,6 @@ import org.eclipselabs.mscript.typesystem.DataType;
  */
 public interface IComponentSignaturePolicy {
 
-	IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Component component, Map<InputPort, DataType> incomingDataTypes);
+	IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes);
 	
 }

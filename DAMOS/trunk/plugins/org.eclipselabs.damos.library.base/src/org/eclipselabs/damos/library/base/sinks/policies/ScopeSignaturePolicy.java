@@ -15,7 +15,7 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEv
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.mscript.typesystem.BooleanType;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger
@@ -30,7 +30,7 @@ public class ScopeSignaturePolicy extends AbstractBlockSignaturePolicy {
 
 		for (InputPort inputPort : block.getInputs().get(0).getPorts()) {
 			DataType incomingDataType = incomingDataTypes.get(inputPort);
-			if (incomingDataType != null && !(incomingDataType instanceof BooleanType || incomingDataType instanceof NumericalType)) {
+			if (incomingDataType != null && !(incomingDataType instanceof BooleanType || incomingDataType instanceof NumericType)) {
 				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be boolean or integer"));
 			}
 		}

@@ -17,7 +17,7 @@ import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.math.util.GainConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.OperatorKind;
 
 /**
@@ -29,9 +29,9 @@ public class GainSignaturePolicy extends AbstractBlockSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericalType gainDataType = null;
+		NumericType gainDataType = null;
 		try {
-			gainDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, GainConstants.PARAMETER__GAIN);
+			gainDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, GainConstants.PARAMETER__GAIN);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -45,8 +45,8 @@ public class GainSignaturePolicy extends AbstractBlockSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!(incomingDataType instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numerical"));
+		if (!(incomingDataType instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
 		if (!status.isOK()) {

@@ -29,7 +29,7 @@ import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
@@ -45,23 +45,23 @@ public class StepSignaturePolicy extends AbstractBlockSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericalType initialValueDataType = null;
+		NumericType initialValueDataType = null;
 		try {
-			initialValueDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, StepConstants.PARAMETER__INITIAL_VALUE);
+			initialValueDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, StepConstants.PARAMETER__INITIAL_VALUE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType finalValueDataType = null;
+		NumericType finalValueDataType = null;
 		try {
-			finalValueDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, StepConstants.PARAMETER__FINAL_VALUE);
+			finalValueDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, StepConstants.PARAMETER__FINAL_VALUE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType stepTimeDataType = null;
+		NumericType stepTimeDataType = null;
 		try {
-			stepTimeDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, StepConstants.PARAMETER__STEP_TIME);
+			stepTimeDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, StepConstants.PARAMETER__STEP_TIME);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -86,7 +86,7 @@ public class StepSignaturePolicy extends AbstractBlockSignaturePolicy {
 		Unit unit = initialValueDataType.getUnit();
 		ComponentSignature signature = new ComponentSignature();
 
-		NumericalType outputDataType;
+		NumericType outputDataType;
 		if (initialValueDataType instanceof RealType || finalValueDataType instanceof RealType) {
 			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		} else {

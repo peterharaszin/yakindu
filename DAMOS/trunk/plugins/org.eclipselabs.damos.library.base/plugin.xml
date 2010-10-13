@@ -207,11 +207,6 @@
             name="Schmitt Trigger">
       </policy>
       <policy
-            blockType="org::eclipselabs::damos::library::base::math::Sum"
-            class="org.eclipselabs.damos.library.base.math.policies.SumSignaturePolicy"
-            name="Sum">
-      </policy>
-      <policy
             blockType="org::eclipselabs::damos::library::base::math::Gain"
             class="org.eclipselabs.damos.library.base.math.policies.GainSignaturePolicy"
             name="Gain">

@@ -18,7 +18,7 @@ import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.discontinuities.util.SaturationConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger
@@ -29,16 +29,16 @@ public class SaturationSignaturePolicy extends AbstractBlockSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericalType upperLimitDataType = null;
+		NumericType upperLimitDataType = null;
 		try {
-			upperLimitDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SaturationConstants.PARAMETER__UPPER_LIMIT);
+			upperLimitDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SaturationConstants.PARAMETER__UPPER_LIMIT);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType lowerLimitDataType = null;
+		NumericType lowerLimitDataType = null;
 		try {
-			lowerLimitDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SaturationConstants.PARAMETER__LOWER_LIMIT);
+			lowerLimitDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SaturationConstants.PARAMETER__LOWER_LIMIT);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -60,15 +60,15 @@ public class SaturationSignaturePolicy extends AbstractBlockSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!(incomingDataType instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numerical"));
+		if (!(incomingDataType instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
 		if (!status.isOK()) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!EcoreUtil.equals(((NumericalType) incomingDataType).getUnit(), upperLimitDataType.getUnit())) {
+		if (!EcoreUtil.equals(((NumericType) incomingDataType).getUnit(), upperLimitDataType.getUnit())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Upper Limit and Lower Limit must have same unit as input value"));
 		}
 

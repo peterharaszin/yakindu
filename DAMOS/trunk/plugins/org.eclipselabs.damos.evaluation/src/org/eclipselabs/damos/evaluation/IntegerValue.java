@@ -19,7 +19,7 @@ import org.eclipselabs.mscript.typesystem.OperatorKind;
  * @author Andreas Unger
  *
  */
-public class IntegerValue extends AbstractValue implements INumericalValue {
+public class IntegerValue extends AbstractValue implements INumericValue {
 
 	private long value;
 	
@@ -87,10 +87,10 @@ public class IntegerValue extends AbstractValue implements INumericalValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#divide(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue divide(IValue other) {
-		if (other instanceof INumericalValue) {
+		if (other instanceof INumericValue) {
 			DataType dataType = getDataType().evaluate(OperatorKind.DIVIDE, other.getDataType());
 			if (!(dataType instanceof InvalidDataType)) {
-				return new RealValue(dataType, value / ((INumericalValue) other).doubleValue());
+				return new RealValue(dataType, value / ((INumericValue) other).doubleValue());
 			}
 		}
 		return InvalidValue.SINGLETON;

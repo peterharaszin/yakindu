@@ -19,7 +19,7 @@ import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
@@ -53,22 +53,22 @@ public class TransferFunctionSignaturePolicy extends AbstractBlockSignaturePolic
 		Unit dimensionlessUnit = TypeSystemUtil.createUnit();
 		
 		for (DataType numeratorType : numeratorTypes) {
-			if (numeratorType instanceof NumericalType) {
-				if (!dimensionlessUnit.isSameAs(((NumericalType) numeratorType).getUnit(), false)) {
+			if (numeratorType instanceof NumericType) {
+				if (!dimensionlessUnit.isSameAs(((NumericType) numeratorType).getUnit(), false)) {
 					status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator Coefficients must be dimensionless"));
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator Coefficients must be numerical"));
+				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator Coefficients must be numeric"));
 			}
 		}
 
 		for (DataType denominatorType : denominatorTypes) {
-			if (denominatorType instanceof NumericalType) {
-				if (!dimensionlessUnit.isSameAs(((NumericalType) denominatorType).getUnit(), false)) {
+			if (denominatorType instanceof NumericType) {
+				if (!dimensionlessUnit.isSameAs(((NumericType) denominatorType).getUnit(), false)) {
 					status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator Coefficients must be dimensionless"));
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator Coefficients must be numerical"));
+				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator Coefficients must be numeric"));
 			}
 		}
 		
@@ -77,12 +77,12 @@ public class TransferFunctionSignaturePolicy extends AbstractBlockSignaturePolic
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		if (incomingDataType instanceof NumericalType) {
-			if (!dimensionlessUnit.isSameAs(((NumericalType) incomingDataType).getUnit(), false)) {
+		if (incomingDataType instanceof NumericType) {
+			if (!dimensionlessUnit.isSameAs(((NumericType) incomingDataType).getUnit(), false)) {
 				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be dimensionless"));
 			}
 		} else {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numerical"));
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
 		if (!status.isOK()) {

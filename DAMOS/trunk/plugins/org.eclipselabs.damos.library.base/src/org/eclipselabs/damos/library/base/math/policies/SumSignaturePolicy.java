@@ -17,7 +17,7 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEv
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
@@ -34,11 +34,11 @@ public class SumSignaturePolicy extends AbstractBlockSignaturePolicy {
 		Unit unit = null;
 		boolean real = false;
 		for (Entry<InputPort, DataType> entry : incomingDataTypes.entrySet()) {
-			if (!(entry.getValue() instanceof NumericalType)) {
-				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be numerical"));
+			if (!(entry.getValue() instanceof NumericType)) {
+				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be numeric"));
 				return new ComponentSignatureEvaluationResult(status);
 			}
-			NumericalType dataType = (NumericalType) entry.getValue();
+			NumericType dataType = (NumericType) entry.getValue();
 			if (unit == null) {
 				unit = dataType.getUnit();
 			} else if (!unit.isSameAs(dataType.getUnit(), false)) {

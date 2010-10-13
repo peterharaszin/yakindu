@@ -16,7 +16,7 @@ import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEv
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.mscript.typesystem.BooleanType;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.RealType;
 
 /**
@@ -39,15 +39,15 @@ public class SwitchSignaturePolicy extends AbstractBlockSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Control input value must be boolean"));
 		}
 
-		if (onTrueIncomingDataType != null && !(onTrueIncomingDataType instanceof NumericalType) || onFalseIncomingDataType != null && !(onFalseIncomingDataType instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Data input values must be numerical"));
+		if (onTrueIncomingDataType != null && !(onTrueIncomingDataType instanceof NumericType) || onFalseIncomingDataType != null && !(onFalseIncomingDataType instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Data input values must be numeric"));
 		}
 		
 		if (!status.isOK()) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (onTrueIncomingDataType != null && onFalseIncomingDataType != null && !((NumericalType) onTrueIncomingDataType).getUnit().isSameAs(((NumericalType) onFalseIncomingDataType).getUnit(), false)) {
+		if (onTrueIncomingDataType != null && onFalseIncomingDataType != null && !((NumericType) onTrueIncomingDataType).getUnit().isSameAs(((NumericType) onFalseIncomingDataType).getUnit(), false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Data input values must have same unit"));
 		}
 

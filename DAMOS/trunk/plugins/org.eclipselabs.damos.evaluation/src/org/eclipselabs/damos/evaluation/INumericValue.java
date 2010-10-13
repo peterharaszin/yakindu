@@ -17,7 +17,7 @@ package org.eclipselabs.damos.evaluation;
  * @noextend
  * @noimplement
  */
-public interface INumericalValue extends IValue {
+public interface INumericValue extends IValue {
 
 	double doubleValue();
 	

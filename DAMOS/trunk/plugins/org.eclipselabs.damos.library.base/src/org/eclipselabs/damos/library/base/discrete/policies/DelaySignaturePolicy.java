@@ -19,7 +19,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.discrete.util.DelayConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
@@ -32,9 +32,9 @@ public class DelaySignaturePolicy extends AbstractBlockSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericalType initialConditionDataType = null;
+		NumericType initialConditionDataType = null;
 		try {
-			initialConditionDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, DelayConstants.PARAMETER__INITIAL_CONDITION);
+			initialConditionDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, DelayConstants.PARAMETER__INITIAL_CONDITION);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -63,8 +63,8 @@ public class DelaySignaturePolicy extends AbstractBlockSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!(incomingDataType instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numerical"));
+		if (!(incomingDataType instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
 		if (!status.isOK()) {
@@ -75,7 +75,7 @@ public class DelaySignaturePolicy extends AbstractBlockSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value is integer, thus Initial Condition must be integer"));
 		}
 		
-		if (!EcoreUtil.equals(((NumericalType) incomingDataType).getUnit(), initialConditionDataType.getUnit())) {
+		if (!EcoreUtil.equals(((NumericType) incomingDataType).getUnit(), initialConditionDataType.getUnit())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Condition must have same unit as input value"));
 		}
 

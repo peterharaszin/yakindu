@@ -14,7 +14,7 @@ import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEva
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 
 /**
@@ -33,15 +33,15 @@ public class CompareSignaturePolicy extends AbstractBlockSignaturePolicy {
 		DataType incomingDataType1 = incomingDataTypes.get(inputPort1);
 		DataType incomingDataType2 = incomingDataTypes.get(inputPort2);
 
-		if (incomingDataType1 != null && !(incomingDataType1 instanceof NumericalType) || incomingDataType2 != null && !(incomingDataType2 instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be numerical"));
+		if (incomingDataType1 != null && !(incomingDataType1 instanceof NumericType) || incomingDataType2 != null && !(incomingDataType2 instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be numeric"));
 		}
 		
 		if (!status.isOK()) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (incomingDataType1 != null && incomingDataType2 != null && !((NumericalType) incomingDataType1).getUnit().isSameAs(((NumericalType) incomingDataType2).getUnit(), false)) {
+		if (incomingDataType1 != null && incomingDataType2 != null && !((NumericType) incomingDataType1).getUnit().isSameAs(((NumericType) incomingDataType2).getUnit(), false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must have same unit"));
 		}
 

@@ -30,7 +30,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.ConstantConstants;
 import org.eclipselabs.mscript.typesystem.BooleanType;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger
@@ -52,8 +52,8 @@ public class ConstantSignaturePolicy extends AbstractBlockSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		if (!(valueDataType instanceof BooleanType || valueDataType instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Value must be boolean or numerical"));
+		if (!(valueDataType instanceof BooleanType || valueDataType instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Value must be boolean or numeric"));
 		}
 
 		if (!status.isOK()) {

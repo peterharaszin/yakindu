@@ -29,7 +29,7 @@ import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
@@ -45,30 +45,30 @@ public class SineWaveSignaturePolicy extends AbstractBlockSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericalType amplitudeDataType = null;
+		NumericType amplitudeDataType = null;
 		try {
-			amplitudeDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SineWaveConstants.PARAMETER__AMPLITUDE);
+			amplitudeDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SineWaveConstants.PARAMETER__AMPLITUDE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType biasDataType = null;
+		NumericType biasDataType = null;
 		try {
-			biasDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SineWaveConstants.PARAMETER__BIAS);
+			biasDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SineWaveConstants.PARAMETER__BIAS);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType frequencyDataType = null;
+		NumericType frequencyDataType = null;
 		try {
-			frequencyDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SineWaveConstants.PARAMETER__FREQUENCY);
+			frequencyDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SineWaveConstants.PARAMETER__FREQUENCY);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType phaseDataType = null;
+		NumericType phaseDataType = null;
 		try {
-			phaseDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SineWaveConstants.PARAMETER__PHASE);
+			phaseDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SineWaveConstants.PARAMETER__PHASE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -98,7 +98,7 @@ public class SineWaveSignaturePolicy extends AbstractBlockSignaturePolicy {
 		Unit unit = amplitudeDataType.getUnit();
 		ComponentSignature signature = new ComponentSignature();
 
-		NumericalType outputDataType;
+		NumericType outputDataType;
 		if (amplitudeDataType instanceof RealType || biasDataType instanceof RealType) {
 			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		} else {

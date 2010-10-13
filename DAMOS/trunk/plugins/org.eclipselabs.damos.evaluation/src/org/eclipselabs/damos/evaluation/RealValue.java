@@ -19,7 +19,7 @@ import org.eclipselabs.mscript.typesystem.OperatorKind;
  * @author Andreas Unger
  *
  */
-public class RealValue extends AbstractValue implements INumericalValue {
+public class RealValue extends AbstractValue implements INumericValue {
 
 	private double value;
 	
@@ -42,10 +42,10 @@ public class RealValue extends AbstractValue implements INumericalValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#add(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue add(IValue other) {
-		if (other instanceof INumericalValue) {
+		if (other instanceof INumericValue) {
 			return createValue(
 					getDataType().evaluate(OperatorKind.ADD, other.getDataType()),
-					value + ((INumericalValue) other).doubleValue());
+					value + ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;
 	}
@@ -54,10 +54,10 @@ public class RealValue extends AbstractValue implements INumericalValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#subtract(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue subtract(IValue other) {
-		if (other instanceof INumericalValue) {
+		if (other instanceof INumericValue) {
 			return createValue(
 					getDataType().evaluate(OperatorKind.SUBTRACT, other.getDataType()),
-					value - ((INumericalValue) other).doubleValue());
+					value - ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;
 	}
@@ -66,10 +66,10 @@ public class RealValue extends AbstractValue implements INumericalValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#multiply(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue multiply(IValue other) {
-		if (other instanceof INumericalValue) {
+		if (other instanceof INumericValue) {
 			return createValue(
 					getDataType().evaluate(OperatorKind.MULTIPLY, other.getDataType()),
-					value * ((INumericalValue) other).doubleValue());
+					value * ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;
 	}
@@ -78,10 +78,10 @@ public class RealValue extends AbstractValue implements INumericalValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#divide(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue divide(IValue other) {
-		if (other instanceof INumericalValue) {
+		if (other instanceof INumericValue) {
 			return createValue(
 					getDataType().evaluate(OperatorKind.DIVIDE, other.getDataType()),
-					value / ((INumericalValue) other).doubleValue());
+					value / ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;
 	}

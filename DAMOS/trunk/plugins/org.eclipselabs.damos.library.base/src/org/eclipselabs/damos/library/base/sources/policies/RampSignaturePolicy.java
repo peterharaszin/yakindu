@@ -29,7 +29,7 @@ import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
@@ -45,23 +45,23 @@ public class RampSignaturePolicy extends AbstractBlockSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericalType initialValueDataType = null;
+		NumericType initialValueDataType = null;
 		try {
-			initialValueDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, RampConstants.PARAMETER__INITIAL_VALUE);
+			initialValueDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, RampConstants.PARAMETER__INITIAL_VALUE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType startTimeDataType = null;
+		NumericType startTimeDataType = null;
 		try {
-			startTimeDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, RampConstants.PARAMETER__START_TIME);
+			startTimeDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, RampConstants.PARAMETER__START_TIME);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 
-		NumericalType slopeDataType = null;
+		NumericType slopeDataType = null;
 		try {
-			slopeDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, RampConstants.PARAMETER__SLOPE);
+			slopeDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, RampConstants.PARAMETER__SLOPE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -87,7 +87,7 @@ public class RampSignaturePolicy extends AbstractBlockSignaturePolicy {
 		Unit unit = initialValueDataType.getUnit();
 		ComponentSignature signature = new ComponentSignature();
 
-		NumericalType outputDataType;
+		NumericType outputDataType;
 		if (initialValueDataType instanceof RealType) {
 			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		} else {

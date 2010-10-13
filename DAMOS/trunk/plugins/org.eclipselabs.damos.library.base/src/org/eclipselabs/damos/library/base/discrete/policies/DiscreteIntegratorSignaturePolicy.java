@@ -19,7 +19,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.discrete.util.DiscreteIntegratorConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.OperatorKind;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
@@ -35,16 +35,16 @@ public class DiscreteIntegratorSignaturePolicy extends AbstractBlockSignaturePol
 	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericalType initialValueDataType = null;
+		NumericType initialValueDataType = null;
 		try {
-			initialValueDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, DiscreteIntegratorConstants.PARAMETER__INITIAL_VALUE);
+			initialValueDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, DiscreteIntegratorConstants.PARAMETER__INITIAL_VALUE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType gainDataType = null;
+		NumericType gainDataType = null;
 		try {
-			gainDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, DiscreteIntegratorConstants.PARAMETER__GAIN);
+			gainDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, DiscreteIntegratorConstants.PARAMETER__GAIN);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -58,8 +58,8 @@ public class DiscreteIntegratorSignaturePolicy extends AbstractBlockSignaturePol
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!(incomingDataType instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numerical"));
+		if (!(incomingDataType instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
 		if (!status.isOK()) {
@@ -70,7 +70,7 @@ public class DiscreteIntegratorSignaturePolicy extends AbstractBlockSignaturePol
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value is integer, thus Initial Value must be integer"));
 		}
 		
-		if (!EcoreUtil.equals(((NumericalType) incomingDataType).getUnit(), initialValueDataType.getUnit())) {
+		if (!EcoreUtil.equals(((NumericType) incomingDataType).getUnit(), initialValueDataType.getUnit())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Value must have same unit as input value"));
 		}
 

@@ -19,7 +19,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.logic.util.SchmittTriggerConstants;
 import org.eclipselabs.mscript.typesystem.BooleanType;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 
 /**
@@ -38,16 +38,16 @@ public class SchmittTriggerSignaturePolicy extends AbstractBlockSignaturePolicy 
 			status.add(e.getStatus());
 		}
 
-		NumericalType upperThresholdDataType = null;
+		NumericType upperThresholdDataType = null;
 		try {
-			upperThresholdDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SchmittTriggerConstants.PARAMETER__UPPER_THRESHOLD);
+			upperThresholdDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SchmittTriggerConstants.PARAMETER__UPPER_THRESHOLD);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericalType lowerThresholdDataType = null;
+		NumericType lowerThresholdDataType = null;
 		try {
-			lowerThresholdDataType = EvaluationUtil.evaluateArgumentNumericalType(context, block, SchmittTriggerConstants.PARAMETER__LOWER_THRESHOLD);
+			lowerThresholdDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, SchmittTriggerConstants.PARAMETER__LOWER_THRESHOLD);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -65,15 +65,15 @@ public class SchmittTriggerSignaturePolicy extends AbstractBlockSignaturePolicy 
 		}
 		
 		DataType incomingDataType = incomingDataTypes.get(block.getFirstInputPort());
-		if (incomingDataType != null && !(incomingDataType instanceof NumericalType)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numerical"));
+		if (incomingDataType != null && !(incomingDataType instanceof NumericType)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
 		if (!status.isOK()) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (incomingDataType != null && !EcoreUtil.equals(((NumericalType) incomingDataType).getUnit(), upperThresholdDataType.getUnit())) {
+		if (incomingDataType != null && !EcoreUtil.equals(((NumericType) incomingDataType).getUnit(), upperThresholdDataType.getUnit())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Upper Threshold and Lower Threshold must have same unit as input value"));
 		}
 

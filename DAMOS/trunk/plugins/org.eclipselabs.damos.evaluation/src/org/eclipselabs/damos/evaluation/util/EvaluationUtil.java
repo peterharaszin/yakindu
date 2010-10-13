@@ -26,7 +26,7 @@ import org.eclipselabs.damos.evaluation.EvaluationPlugin;
 import org.eclipselabs.damos.evaluation.ExpressionDataTypeEvaluator;
 import org.eclipselabs.damos.evaluation.ExpressionValueEvaluator;
 import org.eclipselabs.damos.evaluation.IEvaluationContext;
-import org.eclipselabs.damos.evaluation.INumericalValue;
+import org.eclipselabs.damos.evaluation.INumericValue;
 import org.eclipselabs.damos.evaluation.IValue;
 import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.ExpressionList;
@@ -34,7 +34,7 @@ import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.typesystem.BooleanType;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.NumericalType;
+import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger
@@ -58,12 +58,12 @@ public class EvaluationUtil {
 		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
-	public static NumericalType evaluateArgumentNumericalType(IEvaluationContext context, Block block, String parameterName) throws CoreException {
+	public static NumericType evaluateArgumentNumericType(IEvaluationContext context, Block block, String parameterName) throws CoreException {
 		DataType dataType = evaluateArgumentDataType(context, block, parameterName);
-		if (dataType instanceof NumericalType) {
-			return (NumericalType) dataType;
+		if (dataType instanceof NumericType) {
+			return (NumericType) dataType;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numerical"));
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
 	}
 
 	public static IntegerType evaluateArgumentIntegerType(IEvaluationContext context, Block block, String parameterName) throws CoreException {
@@ -128,12 +128,12 @@ public class EvaluationUtil {
 		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
-	public static INumericalValue evaluateArgumentNumericalValue(IEvaluationContext context, Block block, String parameterName) throws CoreException {
+	public static INumericValue evaluateArgumentNumericalValue(IEvaluationContext context, Block block, String parameterName) throws CoreException {
 		IValue value = evaluateArgumentValue(context, block, parameterName);
-		if (value instanceof INumericalValue) {
-			return (INumericalValue) value;
+		if (value instanceof INumericValue) {
+			return (INumericValue) value;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numerical"));
+		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
 	}
 
 	public static IValue evaluateExpressionValue(IEvaluationContext context, String expression) throws CoreException {

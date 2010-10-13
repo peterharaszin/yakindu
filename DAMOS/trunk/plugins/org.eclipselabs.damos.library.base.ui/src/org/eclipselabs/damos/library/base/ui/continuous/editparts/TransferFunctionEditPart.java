@@ -27,7 +27,8 @@ import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.ExpressionList;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
-import org.eclipselabs.mscript.language.ast.UnaryMinusExpression;
+import org.eclipselabs.mscript.language.ast.UnaryExpression;
+import org.eclipselabs.mscript.language.ast.UnaryOperator;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 
 /**
@@ -74,9 +75,12 @@ public class TransferFunctionEditPart extends FractionBlockEditPart {
 					int i = 0;
 					for (Expression expression : expressions) {
 						double factor = 1;
-						if (expression instanceof UnaryMinusExpression) {
-							expression = ((UnaryMinusExpression) expression).getOperand();
-							factor = -1;
+						if (expression instanceof UnaryExpression) {
+							UnaryExpression unaryExpression = (UnaryExpression) expression;
+							if (unaryExpression.getOperator() == UnaryOperator.MINUS) {
+								expression = unaryExpression.getOperand();
+								factor = -1;
+							}
 						}
 						if (expression instanceof RealLiteral) {
 							coefficients[i] = factor * ((RealLiteral) expression).getValue();

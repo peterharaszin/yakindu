@@ -26,7 +26,8 @@ import org.eclipselabs.mscript.language.ast.MultiplyDivideOperator;
 import org.eclipselabs.mscript.language.ast.ParenthesizedExpression;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.StringLiteral;
-import org.eclipselabs.mscript.language.ast.UnaryMinusExpression;
+import org.eclipselabs.mscript.language.ast.UnaryExpression;
+import org.eclipselabs.mscript.language.ast.UnaryOperator;
 import org.eclipselabs.mscript.language.ast.util.AstSwitch;
 
 /**
@@ -158,11 +159,14 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseUnaryMinusExpression(org.eclipselabs.mscript.language.ast.UnaryMinusExpression)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseUnaryExpression(org.eclipselabs.mscript.language.ast.UnaryExpression)
 	 */
 	@Override
-	public T caseUnaryMinusExpression(UnaryMinusExpression object) {
-		return strategy.unaryMinus(context, doSwitch(object.getOperand()));
+	public T caseUnaryExpression(UnaryExpression object) {
+		if (object.getOperator() == UnaryOperator.MINUS) {
+			return strategy.unaryMinus(context, doSwitch(object.getOperand()));
+		}
+		throw new IllegalArgumentException();
 	}
 	
 	/* (non-Javadoc)

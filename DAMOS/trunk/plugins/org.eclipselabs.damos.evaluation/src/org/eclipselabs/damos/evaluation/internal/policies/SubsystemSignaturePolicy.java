@@ -81,7 +81,7 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 				DataType dataType = getDataType(context, status, outlet);
 				if (dataType != null) {
 					if (!output.getPorts().isEmpty()) {
-						signature.getOutputDataTypes().put(output.getPorts().get(0), (DataType) EcoreUtil.copy(dataType));
+						signature.getOutputDataTypes().put(output.getPorts().get(0), EcoreUtil.copy(dataType));
 					} else {
 						status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, getInoutletErrorMessage(outlet, "Missing output port")));
 					}

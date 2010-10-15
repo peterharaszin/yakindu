@@ -28,7 +28,7 @@ import org.eclipselabs.damos.library.common.ui.view.styles.MultiShapeBlockStyles
  */
 public class SumViewFactory extends ComponentViewFactory {
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected List createStyles(View view) {
 		List styles = super.createStyles(view);
 

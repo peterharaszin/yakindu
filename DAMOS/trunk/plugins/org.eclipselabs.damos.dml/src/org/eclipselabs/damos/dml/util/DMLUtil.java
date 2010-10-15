@@ -44,7 +44,7 @@ import org.eclipselabs.damos.dml.SubsystemRealization;
  */
 public class DMLUtil {
 		
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public static int indexOf(EObject o) {
 		EStructuralFeature feature = o.eContainingFeature();
 		if (feature != null) {

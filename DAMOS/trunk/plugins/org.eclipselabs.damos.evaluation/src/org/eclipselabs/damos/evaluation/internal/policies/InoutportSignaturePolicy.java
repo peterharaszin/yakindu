@@ -54,7 +54,7 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 					status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Incompatible input value"));
 				}
 			}
-			signature.getOutputDataTypes().put(component.getFirstOutputPort(), (DataType) EcoreUtil.copy(dataType));
+			signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(dataType));
 		}
 
 		return new ComponentSignatureEvaluationResult(signature, status);

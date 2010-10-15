@@ -70,7 +70,7 @@ public class ConfigureUtil {
 		a.setParameter(parameter);
 		ValueSpecification defaultValue = parameter.getDefaultValue();
 		if (defaultValue != null) {
-			a.setValue((ValueSpecification) EcoreUtil.copy(defaultValue));
+			a.setValue(EcoreUtil.copy(defaultValue));
 		}
 		parameterizedElement.getArguments().add(a);
 	}

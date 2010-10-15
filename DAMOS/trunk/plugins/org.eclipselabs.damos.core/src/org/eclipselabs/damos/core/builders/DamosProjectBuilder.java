@@ -31,8 +31,7 @@ import org.eclipselabs.damos.evaluation.IEvaluationStatus;
 
 public class DamosProjectBuilder extends IncrementalProjectBuilder {
 
-	@SuppressWarnings("unchecked")
-	protected IProject[] build(int kind, Map args, IProgressMonitor monitor) throws CoreException {
+	protected IProject[] build(int kind, @SuppressWarnings("rawtypes") Map args, IProgressMonitor monitor) throws CoreException {
 		if (kind == IncrementalProjectBuilder.FULL_BUILD) {
 			fullBuild(monitor);
 		} else {

@@ -52,8 +52,7 @@ public class BlockDiagramEditPart extends DiagramEditPart {
 		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new BlockDiagramCreationEditPolicy());
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class key) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
 		if (key == FragmentSelectionManager.class) {
 			if (fragmentManager == null) {
 				fragmentManager = new FragmentSelectionManager((System) resolveSemanticElement());

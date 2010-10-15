@@ -23,7 +23,6 @@ import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLFactory;
-import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Inport;
@@ -88,7 +87,7 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 				Inlet inlet = DMLFactory.eINSTANCE.createInlet();
 				inlet.setName(inport.getName());
 				if (inport.getDataType() != null) {
-					inlet.setDataType((DataTypeSpecification) EcoreUtil.copy(inport.getDataType()));
+					inlet.setDataType(EcoreUtil.copy(inport.getDataType()));
 				}
 				systemInterface.getInlets().add(inlet);
 			} else if (component instanceof Outport) {
@@ -97,7 +96,7 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 				outlet.setName(component.getName());
 				systemInterface.getOutlets().add(outlet);
 				if (outport.getDataType() != null) {
-					outlet.setDataType((DataTypeSpecification) EcoreUtil.copy(outport.getDataType()));
+					outlet.setDataType(EcoreUtil.copy(outport.getDataType()));
 				}
 			}
 		}

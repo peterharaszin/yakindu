@@ -42,8 +42,7 @@ public class ComponentEditPartDelegate {
 		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class key) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
 		return null;
 	}
 

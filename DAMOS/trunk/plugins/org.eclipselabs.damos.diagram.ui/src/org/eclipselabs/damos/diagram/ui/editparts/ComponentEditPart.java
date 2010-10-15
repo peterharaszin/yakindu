@@ -239,8 +239,7 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getAdapter(java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class key) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
 		Object adapter = getDelegate().getAdapter(key);
 		if (adapter != null) {
 			return adapter;

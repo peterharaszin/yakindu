@@ -66,7 +66,7 @@ public class BooleanParameterCompositeDelegate extends CheckboxPropertyComposite
 	 * @see org.eclipselabs.damos.diagram.ui.properties.CheckboxPropertySectionDelegate#updatePropertyValue()
 	 */
 	protected void updatePropertyValue() {
-		ExpressionSpecification expression = (ExpressionSpecification) EcoreUtil.copy(getCheckboxWidget().getSelection() ? yesExpression : noExpression);
+		ExpressionSpecification expression = EcoreUtil.copy(getCheckboxWidget().getSelection() ? yesExpression : noExpression);
 		executeOperation(new SetArgumentValueCommand(argument, expression));
 	}
 	

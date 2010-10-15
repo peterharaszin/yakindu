@@ -49,8 +49,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider#contributeToPalette(org.eclipse.ui.IEditorPart, java.lang.Object, org.eclipse.gef.palette.PaletteRoot, java.util.Map)
 	 */
-	@SuppressWarnings("unchecked")
-	public void contributeToPalette(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
+	public void contributeToPalette(IEditorPart editor, Object content, PaletteRoot root, @SuppressWarnings("rawtypes") Map predefinedEntries) {
 		PaletteToolbar toolbar = getToolbar(root);
 		if (toolbar != null) {
 			contributeToolbar(editor, content, toolbar, predefinedEntries);
@@ -59,13 +58,11 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		contributeBlocks(editor, content, root, predefinedEntries);
 	}
 		
-	@SuppressWarnings("unchecked")
-	protected void contributeToolbar(IEditorPart editor, Object content, PaletteToolbar toolbar, Map predefinedEntries) {
+	protected void contributeToolbar(IEditorPart editor, Object content, PaletteToolbar toolbar, @SuppressWarnings("rawtypes") Map predefinedEntries) {
 		toolbar.add(new ConnectionElementCreationToolEntry(ElementTypes.CONNECTION, CONNECTION_16_IMAGE_DESCRIPTOR, CONNECTION_24_IMAGE_DESCRIPTOR));
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected void contributeBuiltinComponents(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
+	protected void contributeBuiltinComponents(IEditorPart editor, Object content, PaletteRoot root, @SuppressWarnings("rawtypes") Map predefinedEntries) {
 		List<PaletteEntry> entries = createBuiltinComponentEntries(editor);
 		if (entries != null && !entries.isEmpty()) {
 			PaletteContainer builtinComponentContainer = createBuiltinComponentContainer();
@@ -100,8 +97,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		return entries;
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected void contributeBlocks(IEditorPart editor, Object content, PaletteRoot root, Map predefinedEntries) {
+	protected void contributeBlocks(IEditorPart editor, Object content, PaletteRoot root, @SuppressWarnings("rawtypes") Map predefinedEntries) {
 		for (IBlockGroupDescriptor group : getTopLevelBlockGroupDescriptors()) {
 			Collection<IBlockTypeDescriptor> blockTypeDescriptors = getBlockTypeDescriptors(group);
 			if (!blockTypeDescriptors.isEmpty()) {

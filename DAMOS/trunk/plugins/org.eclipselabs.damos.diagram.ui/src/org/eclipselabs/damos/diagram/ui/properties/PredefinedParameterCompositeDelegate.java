@@ -73,7 +73,7 @@ public class PredefinedParameterCompositeDelegate extends ComboPropertyComposite
 		if (index >= 0 && index < getParameter().getPredefinedExpressions().size()) {
 			PredefinedExpressionEntry entry = getParameter().getPredefinedExpressions().get(index);
 			if (entry.getExpression() != null) {
-				expression = (ExpressionSpecification) EcoreUtil.copy(entry.getExpression());
+				expression = EcoreUtil.copy(entry.getExpression());
 			}
 		}
 		if (expression == null) {

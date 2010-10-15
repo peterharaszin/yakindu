@@ -32,9 +32,8 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor#getAdapter(java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public Object getAdapter(Class type) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
 		if (type == FragmentSelectionManager.class) {
 			return getDiagramEditPart().getAdapter(type);
 		}

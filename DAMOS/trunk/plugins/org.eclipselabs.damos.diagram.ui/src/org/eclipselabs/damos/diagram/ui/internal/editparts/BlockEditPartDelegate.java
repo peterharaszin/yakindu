@@ -66,8 +66,7 @@ public class BlockEditPartDelegate extends ComponentEditPartDelegate {
 		return super.getPrimaryChildEditPart();
 	}
 	
-	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class key) {
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
 		if (key == ParametersPropertySectionDelegate.class) {
 			return new ParametersPropertySectionDelegate();
 		}

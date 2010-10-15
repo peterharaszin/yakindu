@@ -93,7 +93,7 @@ public class RampSignaturePolicy extends AbstractBlockSignaturePolicy {
 		} else {
 			outputDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
 		}
-		outputDataType.setUnit((Unit) EcoreUtil.copy(unit));
+		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(block.getFirstOutputPort(), outputDataType);
 		
 		return new ComponentSignatureEvaluationResult(signature);

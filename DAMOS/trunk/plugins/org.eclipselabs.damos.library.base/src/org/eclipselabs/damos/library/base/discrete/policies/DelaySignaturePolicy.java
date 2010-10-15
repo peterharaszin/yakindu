@@ -84,7 +84,7 @@ public class DelaySignaturePolicy extends AbstractBlockSignaturePolicy {
 		}
 
 		ComponentSignature signature = new ComponentSignature();
-		signature.getOutputDataTypes().put(block.getFirstOutputPort(), (DataType) EcoreUtil.copy(incomingDataType));
+		signature.getOutputDataTypes().put(block.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

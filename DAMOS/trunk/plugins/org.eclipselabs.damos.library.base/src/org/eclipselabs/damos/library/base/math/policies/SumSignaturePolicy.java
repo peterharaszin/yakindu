@@ -58,11 +58,11 @@ public class SumSignaturePolicy extends AbstractBlockSignaturePolicy {
 		
 		if (real) {
 			RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-			realType.setUnit((Unit) EcoreUtil.copy(unit));
+			realType.setUnit(EcoreUtil.copy(unit));
 			signature.getOutputDataTypes().put(block.getFirstOutputPort(), realType);
 		} else {
 			IntegerType integerType = TypeSystemFactory.eINSTANCE.createIntegerType();
-			integerType.setUnit((Unit) EcoreUtil.copy(unit));
+			integerType.setUnit(EcoreUtil.copy(unit));
 			signature.getOutputDataTypes().put(block.getFirstOutputPort(), integerType);
 		}
 		

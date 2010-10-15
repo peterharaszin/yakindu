@@ -61,7 +61,7 @@ public class ConstantSignaturePolicy extends AbstractBlockSignaturePolicy {
 		}
 
 		ComponentSignature signature = new ComponentSignature();
-		signature.getOutputDataTypes().put(block.getFirstOutputPort(), (DataType) EcoreUtil.copy(valueDataType));
+		signature.getOutputDataTypes().put(block.getFirstOutputPort(), EcoreUtil.copy(valueDataType));
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

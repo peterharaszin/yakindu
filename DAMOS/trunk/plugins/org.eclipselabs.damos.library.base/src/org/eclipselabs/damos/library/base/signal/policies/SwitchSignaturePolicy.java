@@ -63,7 +63,7 @@ public class SwitchSignaturePolicy extends AbstractBlockSignaturePolicy {
 		}
 
 		if (outputDataType != null) {
-			signature.getOutputDataTypes().put(block.getFirstOutputPort(), (DataType) EcoreUtil.copy(outputDataType));
+			signature.getOutputDataTypes().put(block.getFirstOutputPort(), EcoreUtil.copy(outputDataType));
 		}
 		
 		return new ComponentSignatureEvaluationResult(signature);

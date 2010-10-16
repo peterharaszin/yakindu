@@ -42,7 +42,7 @@ public class IntegerValue extends AbstractValue implements INumericValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#add(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue add(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.ADD, other.getDataType());
+		DataType dataType = getDataType().evaluate(OperatorKind.ADDITION, other.getDataType());
 		if (!(dataType instanceof InvalidDataType)) {
 			if (other instanceof IntegerValue) {
 				return new IntegerValue(dataType, value + ((IntegerValue) other).value);
@@ -57,7 +57,7 @@ public class IntegerValue extends AbstractValue implements INumericValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#subtract(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue subtract(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.SUBTRACT, other.getDataType());
+		DataType dataType = getDataType().evaluate(OperatorKind.SUBTRACTION, other.getDataType());
 		if (!(dataType instanceof InvalidDataType)) {
 			if (other instanceof IntegerValue) {
 				return new IntegerValue(dataType, value - ((IntegerValue) other).value);
@@ -72,7 +72,7 @@ public class IntegerValue extends AbstractValue implements INumericValue {
 	 * @see org.eclipselabs.damos.evaluation.IValue#multiply(org.eclipselabs.damos.evaluation.IValue)
 	 */
 	public IValue multiply(IValue other) {
-		DataType dataType = getDataType().evaluate(OperatorKind.MULTIPLY, other.getDataType());
+		DataType dataType = getDataType().evaluate(OperatorKind.MULTIPLICATION, other.getDataType());
 		if (!(dataType instanceof InvalidDataType)) {
 			if (other instanceof IntegerValue) {
 				return new IntegerValue(dataType, value * ((IntegerValue) other).value);
@@ -88,7 +88,7 @@ public class IntegerValue extends AbstractValue implements INumericValue {
 	 */
 	public IValue divide(IValue other) {
 		if (other instanceof INumericValue) {
-			DataType dataType = getDataType().evaluate(OperatorKind.DIVIDE, other.getDataType());
+			DataType dataType = getDataType().evaluate(OperatorKind.DIVISION, other.getDataType());
 			if (!(dataType instanceof InvalidDataType)) {
 				return new RealValue(dataType, value / ((INumericValue) other).doubleValue());
 			}

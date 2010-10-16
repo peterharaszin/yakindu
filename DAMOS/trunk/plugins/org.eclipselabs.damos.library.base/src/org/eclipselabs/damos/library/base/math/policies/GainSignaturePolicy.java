@@ -53,7 +53,7 @@ public class GainSignaturePolicy extends AbstractBlockSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		DataType outputDataType = incomingDataType.evaluate(OperatorKind.MULTIPLY, gainDataType);
+		DataType outputDataType = incomingDataType.evaluate(OperatorKind.MULTIPLICATION, gainDataType);
 
 		ComponentSignature signature = new ComponentSignature();
 		signature.getOutputDataTypes().put(block.getFirstOutputPort(), outputDataType);

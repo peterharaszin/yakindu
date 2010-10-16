@@ -80,7 +80,7 @@ public class DiscreteIntegratorSignaturePolicy extends AbstractBlockSignaturePol
 
 		IntegerType second = TypeSystemFactory.eINSTANCE.createIntegerType();
 		second.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
-		DataType outputDataType = incomingDataType.evaluate(OperatorKind.MULTIPLY, gainDataType).evaluate(OperatorKind.MULTIPLY, second);
+		DataType outputDataType = incomingDataType.evaluate(OperatorKind.MULTIPLICATION, gainDataType).evaluate(OperatorKind.MULTIPLICATION, second);
 
 		ComponentSignature signature = new ComponentSignature();
 		signature.getOutputDataTypes().put(block.getFirstOutputPort(), outputDataType);

@@ -11,18 +11,18 @@
 
 package org.eclipselabs.damos.evaluation;
 
-import org.eclipselabs.mscript.language.ast.AddSubtractExpression;
-import org.eclipselabs.mscript.language.ast.AddSubtractExpressionPart;
-import org.eclipselabs.mscript.language.ast.AddSubtractOperator;
+import org.eclipselabs.mscript.language.ast.AdditiveExpression;
+import org.eclipselabs.mscript.language.ast.AdditiveExpressionPart;
+import org.eclipselabs.mscript.language.ast.AdditiveOperator;
 import org.eclipselabs.mscript.language.ast.BooleanLiteral;
 import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.ExpressionList;
 import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.MatrixConstructionOperator;
-import org.eclipselabs.mscript.language.ast.MultiplyDivideExpression;
-import org.eclipselabs.mscript.language.ast.MultiplyDivideExpressionPart;
-import org.eclipselabs.mscript.language.ast.MultiplyDivideOperator;
+import org.eclipselabs.mscript.language.ast.MultiplicativeExpression;
+import org.eclipselabs.mscript.language.ast.MultiplicativeExpressionPart;
+import org.eclipselabs.mscript.language.ast.MultiplicativeOperator;
 import org.eclipselabs.mscript.language.ast.ParenthesizedExpression;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.StringLiteral;
@@ -55,22 +55,22 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseAddSubtractExpression(org.eclipselabs.mscript.language.ast.AddSubtractExpression)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseAdditiveExpression(org.eclipselabs.mscript.language.ast.AdditiveExpression)
 	 */
 	@Override
-	public T caseAddSubtractExpression(AddSubtractExpression object) {
+	public T caseAdditiveExpression(AdditiveExpression object) {
 		T result = doSwitch(object.getLeftOperand());
-		for (AddSubtractExpressionPart part : object.getRightParts()) {
+		for (AdditiveExpressionPart part : object.getRightParts()) {
 			result = addSubtract(result, doSwitch(part.getOperand()), part.getOperator());
 		}
 		return result;
 	}
 	
-	protected T addSubtract(T operand1, T operand2, AddSubtractOperator operator) {
+	protected T addSubtract(T operand1, T operand2, AdditiveOperator operator) {
 		switch (operator) {
-		case ADD:
+		case ADDITION:
 			return add(operand1, operand2);
-		case SUBTRACT:
+		case SUBTRACTION:
 			return subtract(operand1, operand2);
 		}
 		throw new IllegalArgumentException();
@@ -85,26 +85,26 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseMultiplyDivideExpression(org.eclipselabs.mscript.language.ast.MultiplyDivideExpression)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseMultiplicativeExpression(org.eclipselabs.mscript.language.ast.MultiplicativeExpression)
 	 */
 	@Override
-	public T caseMultiplyDivideExpression(MultiplyDivideExpression object) {
+	public T caseMultiplicativeExpression(MultiplicativeExpression object) {
 		T result = doSwitch(object.getLeftOperand());
-		for (MultiplyDivideExpressionPart part : object.getRightParts()) {
+		for (MultiplicativeExpressionPart part : object.getRightParts()) {
 			result = multiplyDivide(result, doSwitch(part.getOperand()), part.getOperator());
 		}
 		return result;
 	}
 	
-	protected T multiplyDivide(T operand1, T operand2, MultiplyDivideOperator operator) {
+	protected T multiplyDivide(T operand1, T operand2, MultiplicativeOperator operator) {
 		switch (operator) {
-		case MULTIPLY:
+		case MULTIPLICATION:
 			return multiply(operand1, operand2);
-		case DIVIDE:
+		case DIVISION:
 			return divide(operand1, operand2);
-		case ELEMENT_WISE_MULTIPLY:
+		case ELEMENT_WISE_MULTIPLICATION:
 			return elementWiseMultiply(operand1, operand2);
-		case ELEMENT_WISE_DIVIDE:
+		case ELEMENT_WISE_DIVISION:
 			return elementWiseDivide(operand1, operand2);
 		}
 		throw new IllegalArgumentException();

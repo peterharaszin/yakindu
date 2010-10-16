@@ -38,42 +38,42 @@ public class ExpressionDataTypeEvaluatorStrategy implements IExpressionEvaluator
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#add(java.lang.Object, java.lang.Object)
 	 */
 	public DataType add(IEvaluationContext context, DataType addend1, DataType addend2) {
-		return addend1.evaluate(OperatorKind.ADD, addend2);
+		return addend1.evaluate(OperatorKind.ADDITION, addend2);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#subtract(java.lang.Object, java.lang.Object)
 	 */
 	public DataType subtract(IEvaluationContext context, DataType minuend, DataType subtrahend) {
-		return minuend.evaluate(OperatorKind.SUBTRACT, subtrahend);
+		return minuend.evaluate(OperatorKind.SUBTRACTION, subtrahend);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#multiply(java.lang.Object, java.lang.Object)
 	 */
 	public DataType multiply(IEvaluationContext context, DataType factor1, DataType factor2) {
-		return factor1.evaluate(OperatorKind.MULTIPLY, factor2);
+		return factor1.evaluate(OperatorKind.MULTIPLICATION, factor2);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#divide(java.lang.Object, java.lang.Object)
 	 */
 	public DataType divide(IEvaluationContext context, DataType dividend, DataType divisor) {
-		return dividend.evaluate(OperatorKind.DIVIDE, divisor);
+		return dividend.evaluate(OperatorKind.DIVISION, divisor);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#elementWiseMultiply(java.lang.Object, java.lang.Object)
 	 */
 	public DataType elementWiseMultiply(IEvaluationContext context, DataType factor1, DataType factor2) {
-		return factor1.evaluate(OperatorKind.ELEMENT_WISE_MULTIPLY, factor2);
+		return factor1.evaluate(OperatorKind.ELEMENT_WISE_MULTIPLICATION, factor2);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.evaluation.IExpressionEvaluatorStrategy#elementWiseDivide(java.lang.Object, java.lang.Object)
 	 */
 	public DataType elementWiseDivide(IEvaluationContext context, DataType dividend, DataType divisor) {
-		return dividend.evaluate(OperatorKind.ELEMENT_WISE_DIVIDE, divisor);
+		return dividend.evaluate(OperatorKind.ELEMENT_WISE_DIVISION, divisor);
 	}
 
 	/* (non-Javadoc)

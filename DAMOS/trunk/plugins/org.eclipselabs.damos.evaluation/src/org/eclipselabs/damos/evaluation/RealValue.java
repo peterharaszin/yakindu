@@ -44,7 +44,7 @@ public class RealValue extends AbstractValue implements INumericValue {
 	public IValue add(IValue other) {
 		if (other instanceof INumericValue) {
 			return createValue(
-					getDataType().evaluate(OperatorKind.ADD, other.getDataType()),
+					getDataType().evaluate(OperatorKind.ADDITION, other.getDataType()),
 					value + ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;
@@ -56,7 +56,7 @@ public class RealValue extends AbstractValue implements INumericValue {
 	public IValue subtract(IValue other) {
 		if (other instanceof INumericValue) {
 			return createValue(
-					getDataType().evaluate(OperatorKind.SUBTRACT, other.getDataType()),
+					getDataType().evaluate(OperatorKind.SUBTRACTION, other.getDataType()),
 					value - ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;
@@ -68,7 +68,7 @@ public class RealValue extends AbstractValue implements INumericValue {
 	public IValue multiply(IValue other) {
 		if (other instanceof INumericValue) {
 			return createValue(
-					getDataType().evaluate(OperatorKind.MULTIPLY, other.getDataType()),
+					getDataType().evaluate(OperatorKind.MULTIPLICATION, other.getDataType()),
 					value * ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;
@@ -80,7 +80,7 @@ public class RealValue extends AbstractValue implements INumericValue {
 	public IValue divide(IValue other) {
 		if (other instanceof INumericValue) {
 			return createValue(
-					getDataType().evaluate(OperatorKind.DIVIDE, other.getDataType()),
+					getDataType().evaluate(OperatorKind.DIVISION, other.getDataType()),
 					value / ((INumericValue) other).doubleValue());
 		}
 		return InvalidValue.SINGLETON;

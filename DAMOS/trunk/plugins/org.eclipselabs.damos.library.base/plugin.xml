@@ -177,11 +177,6 @@
             name="Discrete Derivative">
       </policy>
       <policy
-            blockType="org::eclipselabs::damos::library::base::discrete::DiscreteIntegrator"
-            class="org.eclipselabs.damos.library.base.discrete.policies.DiscreteIntegratorSignaturePolicy"
-            name="Discrete Integrator">
-      </policy>
-      <policy
             blockType="org::eclipselabs::damos::library::base::logic::And"
             class="org.eclipselabs.damos.library.base.logic.policies.LogicGateSignaturePolicy"
             name="And">
@@ -205,11 +200,6 @@
             blockType="org::eclipselabs::damos::library::base::logic::SchmittTrigger"
             class="org.eclipselabs.damos.library.base.logic.policies.SchmittTriggerSignaturePolicy"
             name="Schmitt Trigger">
-      </policy>
-      <policy
-            blockType="org::eclipselabs::damos::library::base::math::Gain"
-            class="org.eclipselabs.damos.library.base.math.policies.GainSignaturePolicy"
-            name="Gain">
       </policy>
       <policy
             blockType="org::eclipselabs::damos::library::base::signal::Switch"
@@ -240,6 +230,16 @@
             blockType="org::eclipselabs::damos::library::base::sources::SineWave"
             class="org.eclipselabs.damos.library.base.sources.policies.SineWaveSignaturePolicy"
             name="Sine Wave">
+      </policy>
+      <policy
+            blockType="org::eclipselabs::damos::library::base::math::Gain"
+            class="org.eclipselabs.damos.library.base.math.policies.GainSignaturePolicy"
+            name="Gain">
+      </policy>
+      <policy
+            blockType="org::eclipselabs::damos::library::base::math::Sum"
+            class="org.eclipselabs.damos.library.base.math.policies.SumSignaturePolicy"
+            name="Sum">
       </policy>
    </extension>
 

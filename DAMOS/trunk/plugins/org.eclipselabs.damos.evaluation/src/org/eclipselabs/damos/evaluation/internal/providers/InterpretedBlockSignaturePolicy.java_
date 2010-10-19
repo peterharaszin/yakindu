@@ -1,0 +1,296 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipselabs.damos.evaluation.internal.providers;
+
+import java.io.StringReader;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.parser.IParseResult;
+import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.BlockInput;
+import org.eclipselabs.damos.dml.BlockInputPort;
+import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.BlockOutputPort;
+import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
+import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
+import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
+import org.eclipselabs.damos.scripting.blockscript.BehaviorDefinition;
+import org.eclipselabs.damos.scripting.blockscript.BehaviorPrecondition;
+import org.eclipselabs.damos.scripting.blockscript.ComputeRoutine;
+import org.eclipselabs.damos.scripting.blockscript.InitializeRoutine;
+import org.eclipselabs.damos.scripting.interpreter.BlockInterpreterContextHelper;
+import org.eclipselabs.damos.scripting.parser.antlr.BlockscriptParser;
+import org.eclipselabs.damos.scripting.util.BlockscriptUtil;
+import org.eclipselabs.mscript.language.ast.CheckDefinition;
+import org.eclipselabs.mscript.language.ast.Expression;
+import org.eclipselabs.mscript.language.ast.FeatureCall;
+import org.eclipselabs.mscript.language.ast.SymbolReference;
+import org.eclipselabs.mscript.language.ast.VariableDeclaration;
+import org.eclipselabs.mscript.language.interpreter.ExpressionValueEvaluator;
+import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
+import org.eclipselabs.mscript.language.interpreter.IVariable;
+import org.eclipselabs.mscript.language.interpreter.Interpreter;
+import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
+import org.eclipselabs.mscript.language.interpreter.Variable;
+import org.eclipselabs.mscript.language.interpreter.VariableDeclarationHelper;
+import org.eclipselabs.mscript.language.interpreter.value.AnyValue;
+import org.eclipselabs.mscript.language.interpreter.value.IValue;
+import org.eclipselabs.mscript.language.interpreter.value.InvalidValue;
+import org.eclipselabs.mscript.language.interpreter.value.RecordValue;
+import org.eclipselabs.mscript.language.interpreter.value.RecordValue.Slot;
+import org.eclipselabs.mscript.language.interpreter.value.UninitializedValue;
+import org.eclipselabs.mscript.language.interpreter.value.ValueFactory;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.Record;
+import org.eclipselabs.mscript.typesystem.RecordField;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
+
+class InterpretedBlockSignaturePolicy implements IComponentSignaturePolicy {
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy#evaluateSignature(org.eclipselabs.damos.evaluation.IEvaluationContext, org.eclipselabs.damos.dml.Component, java.util.Map)
+	 */
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+		Block block = (Block) component;
+
+		MultiStatus status = new MultiStatus(ScriptingInterpreterPlugin.PLUGIN_ID, 0, "", null);
+		
+		IInterpreterContext context = new InterpreterContext(new ValueFactory(), true);
+		if (!declareInputVariables(context, block, incomingDataTypes)) {
+			return new ComponentSignatureEvaluationResult();
+		}
+		declareOutputVariables(context, block);
+		
+		new BlockInterpreterContextHelper().declareArgumentVariables(
+				context,
+				block,
+				ScriptingInterpreterPlugin.getDefault().getBlockscriptParser());
+		
+				
+		BehaviorDefinition behaviorDefinition = parseBehaviorSpecification(block, status);
+		if (!status.isOK()) {
+			return new ComponentSignatureEvaluationResult(status);
+		}
+
+		declareStateVariables(context, behaviorDefinition); 
+		
+		context.enterScope();
+
+		Interpreter interpreter = new Interpreter();
+
+		checkPreconditions(context, behaviorDefinition, interpreter, status);
+		if (!status.isOK()) {
+			return new ComponentSignatureEvaluationResult(status);
+		}
+		
+		InitializeRoutine initializeRoutine = BlockscriptUtil.getInitializeRoutine(behaviorDefinition);
+		if (initializeRoutine != null) {
+			interpreter.execute(initializeRoutine.getBody(), context);
+		}
+		
+		ComputeRoutine computeRoutine = BlockscriptUtil.getComputeRoutine(behaviorDefinition);
+		if (computeRoutine == null) {
+			status.add(new Status(IStatus.ERROR, ScriptingInterpreterPlugin.PLUGIN_ID, "No compute routine found"));
+			return new ComponentSignatureEvaluationResult(status);
+		}
+		
+		interpreter.execute(computeRoutine.getBody(), context);
+
+		context.leaveScope();
+		
+		ComponentSignature signature = new ComponentSignature();
+		for (Output output : block.getOutputs()) {
+			BlockOutput blockOutput = (BlockOutput) output;
+			String variableName = blockOutput.getDefinition().getName();
+			IVariable variable = context.getLocalVariable(variableName);
+			IValue value = variable.getValue();
+			if (value instanceof InvalidValue) {
+				status.add(new Status(IStatus.ERROR, ScriptingInterpreterPlugin.PLUGIN_ID, variableName + ": Invalid value"));
+				continue;
+			}
+			if (value instanceof UninitializedValue) {
+				status.add(new Status(IStatus.ERROR, ScriptingInterpreterPlugin.PLUGIN_ID, variableName + ": Uninitialized output value"));
+				continue;
+			}
+			if (variable != null) {
+				signature.getOutputDataTypes().put(blockOutput.getPorts().get(0), variable.getValue().getDataType());
+			}
+		}
+
+		if (!status.isOK()) {
+			return new ComponentSignatureEvaluationResult(status);
+		}
+
+		return new ComponentSignatureEvaluationResult(signature);
+	}
+			
+	/**
+	 * @param context
+	 * @param behaviorDefinition
+	 */
+	private void declareStateVariables(IInterpreterContext context, BehaviorDefinition behaviorDefinition) {
+		for (VariableDeclaration variableDeclaration : behaviorDefinition.getVariables()) {
+			IVariable variable = new VariableDeclarationHelper().createVariable(context, variableDeclaration);
+			context.addLocalVariable(variable);
+		}
+	}
+
+	private boolean declareInputVariables(IInterpreterContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {
+		for (Input input : block.getInputs()) {
+			BlockInput blockInput = (BlockInput) input;
+			
+			if (blockInput.getDefinition().isManyPorts()) {
+				DataType foundDataType = null;
+				
+				Record record = TypeSystemFactory.eINSTANCE.createRecord();
+				for (InputPort inputPort : input.getPorts()) {
+					RecordField field = TypeSystemFactory.eINSTANCE.createRecordField();
+					DataType dataType = incomingDataTypes.get(inputPort);
+					if (dataType != null) {
+						field.setType(EcoreUtil.copy(dataType));
+						foundDataType = dataType;
+					}
+					record.getFields().add(field);
+				}
+				
+				if (foundDataType == null) {
+					return false;
+				}
+	
+				RecordValue recordValue = new RecordValue(record);
+				for (int i = 0; i < record.getFields().size(); ++i) {
+					DataType dataType = record.getFields().get(i).getType();
+					if (dataType == null) {
+						dataType = foundDataType;
+					}
+					Slot slot = new Slot();
+					IValue value = new AnyValue(EcoreUtil.copy(dataType));
+					BlockInputPort blockInputPort = (BlockInputPort) input.getPorts().get(i);
+					value = decorateInoutputValue(value, context, blockInputPort.getArguments());
+					slot.setValue(value);
+					recordValue.addSlot(slot);
+				}
+				
+				IVariable variable = new Variable();
+				variable.setName(blockInput.getDefinition().getName());
+				variable.setDataType(record);
+				variable.setValue(recordValue);
+				context.addLocalVariable(variable);
+			} else {
+				if (!blockInput.getPorts().isEmpty()) {
+					BlockInputPort firstPort = (BlockInputPort) blockInput.getPorts().get(0);
+					DataType dataType = incomingDataTypes.get(firstPort);
+					if (dataType == null) {
+						return false;
+					}
+					IValue value = new AnyValue(dataType);
+					IVariable variable = new Variable();
+					variable.setName(blockInput.getDefinition().getName());
+					variable.setDataType(dataType);
+					value = decorateInoutputValue(value, context, firstPort.getArguments());
+					variable.setValue(value);
+					context.addLocalVariable(variable);
+				}
+			}
+		}
+		return true;
+	}
+	
+	private boolean declareOutputVariables(IInterpreterContext context, Block block) {
+		for (Output output : block.getOutputs()) {
+			BlockOutput blockOutput = (BlockOutput) output;
+			if (blockOutput.getDefinition().isManyPorts()) {
+				// not supported
+			} else if (!blockOutput.getPorts().isEmpty()) {
+				BlockOutputPort outputPort = (BlockOutputPort) blockOutput.getPorts().get(0);
+				IVariable variable = new Variable();
+				variable.setName(blockOutput.getDefinition().getName());
+				variable.setValue(decorateInoutputValue(variable.getValue(), context, outputPort.getArguments()));
+				context.addLocalVariable(variable);
+			}
+		}
+		return true;
+	}
+
+	private BehaviorDefinition parseBehaviorSpecification(Block block, MultiStatus status) {
+		IParseResult result = null;
+		if (block.getType().getBehavior() instanceof OpaqueBehaviorSpecification) {
+			OpaqueBehaviorSpecification behaviorSpecification = (OpaqueBehaviorSpecification) block.getType().getBehavior();
+			if (behaviorSpecification.getBehavior() != null && behaviorSpecification.getBehavior().length() > 0) {
+				BlockscriptParser parser = ScriptingInterpreterPlugin.getDefault().getBlockscriptParser();
+				result = parser.parse(
+						parser.getGrammarAccess().getBehaviorDefinitionRule().getName(),
+						new StringReader(behaviorSpecification.getBehavior()));
+				if (!result.getParseErrors().isEmpty()) {
+					status.add(new Status(IStatus.ERROR, ScriptingInterpreterPlugin.PLUGIN_ID, "Parsing block behavior definition failed"));
+				}
+			} else {
+				status.add(new Status(IStatus.ERROR, ScriptingInterpreterPlugin.PLUGIN_ID, "Block behavior definition is empty"));
+			}
+		} else {
+			status.add(new Status(IStatus.ERROR, ScriptingInterpreterPlugin.PLUGIN_ID, "No valid block behavior definition found"));
+		}
+		return status.isOK() ? (BehaviorDefinition) result.getRootASTElement() : null;
+	}
+	
+	private void checkPreconditions(IInterpreterContext context, BehaviorDefinition behaviorDefinition, Interpreter interpreter, MultiStatus status) {
+		BehaviorPrecondition behaviorPrecondition = BlockscriptUtil.getBehaviorPrecondition(behaviorDefinition);
+		if (behaviorPrecondition != null) {
+			Expression expression = behaviorPrecondition.getPreconditionChain().getPreconditions().get(0);
+			if (expression instanceof FeatureCall) {
+				FeatureCall featureCall = (FeatureCall) expression;
+				Expression target = featureCall.getTarget();
+				if (target instanceof SymbolReference) {
+					String checkName = ((SymbolReference) target).getName().getIdentifiers().get(0);
+					CheckDefinition checkDefinition = BlockscriptUtil.getCheckDefinition(behaviorDefinition, checkName);
+					if (checkDefinition != null) {
+						interpreter.execute(checkDefinition.getBody(), context);
+						IStatus checkStatus = context.getStatus();
+						if (!checkStatus.isOK()) {
+							status.merge(checkStatus);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	private IValue decorateInoutputValue(IValue value, IInterpreterContext context, List<Argument> arguments) {
+		BlockscriptParser parser = ScriptingInterpreterPlugin.getDefault().getBlockscriptParser();
+		InoutputValueDecorator decorator = new InoutputValueDecorator(value);
+		for (Argument argument : arguments) {
+			IParseResult result = parser.parse(
+					parser.getGrammarAccess().getExpressionRule().getName(),
+					new StringReader(argument.getValue().stringValue()));
+			if (result.getParseErrors().isEmpty()) {
+				IValue argumentValue = new ExpressionValueEvaluator(context).doSwitch(result.getRootASTElement());
+				if (!(argumentValue instanceof InvalidValue)) {
+					decorator.addProperty(argument.getParameter().getName(), argumentValue);
+				}
+			}
+		}
+		return decorator;
+	}
+
+}

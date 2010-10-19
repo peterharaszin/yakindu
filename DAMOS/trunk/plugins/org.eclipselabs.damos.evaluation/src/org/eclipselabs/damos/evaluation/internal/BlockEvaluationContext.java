@@ -17,10 +17,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
-import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
-import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.FeatureCall;
-import org.eclipselabs.mscript.language.ast.SymbolReference;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -40,22 +37,22 @@ public class BlockEvaluationContext extends ComponentEvaluationContext {
 	 * @see org.eclipselabs.damos.evaluation.IEvaluationContext#getSymbolDataType(org.eclipselabs.mscript.language.ast.SymbolReference)
 	 */
 	public DataType getSymbolDataType(FeatureCall featureCall) throws CoreException {
-		if (featureCall.getParts().isEmpty()) {
-			Expression expression = featureCall.getTarget();
-			if (expression instanceof SymbolReference) {
-				SymbolReference symbolReference = (SymbolReference) expression;
-				if (!symbolReference.isGlobal() && symbolReference.getName().getIdentifiers().size() == 1) {
-					String name = symbolReference.getName().getIdentifiers().get(0);
-					return EvaluationUtil.evaluateArgumentDataType(this, getBlock(), name);
-				}
-			}
-		}
+//		if (featureCall.getParts().isEmpty()) {
+//			Expression expression = featureCall.getTarget();
+//			if (expression instanceof SymbolReference) {
+//				SymbolReference symbolReference = (SymbolReference) expression;
+//				if (!symbolReference.isGlobal() && symbolReference.getName().getIdentifiers().size() == 1) {
+//					String name = symbolReference.getName().getIdentifiers().get(0);
+//					return EvaluationUtil.evaluateArgumentDataType(this, getBlock(), name);
+//				}
+//			}
+//		}
 		// TODO: Create better error message
 		throw new CoreException(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Symbol '" + featureCall + "' not found"));
 	}
 	
-	private Block getBlock() {
-		return (Block) getComponent();
-	}
+//	private Block getBlock() {
+//		return (Block) getComponent();
+//	}
 
 }

@@ -214,7 +214,7 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 	 */
 	@Override
 	public T caseParenthesizedExpression(ParenthesizedExpression object) {
-		return doSwitch(object.getExpression());
+		return doSwitch(object.getExpressions().get(0));
 	}
 	
 }

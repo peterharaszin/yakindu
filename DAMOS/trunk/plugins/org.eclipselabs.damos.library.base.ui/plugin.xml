@@ -48,22 +48,22 @@
    <extension
          point="org.eclipselabs.damos.diagram.ui.blockViewFactories">
       <viewFactory
-            blockType="org::eclipselabs::damos::library::base::logic::And"
+            blockType="org.eclipselabs.damos.library.base.logic.And"
             class="org.eclipselabs.damos.library.base.ui.logic.view.factories.LogicGateViewFactory"
             name="And">
       </viewFactory>
       <viewFactory
-            blockType="org::eclipselabs::damos::library::base::logic::Or"
+            blockType="org.eclipselabs.damos.library.base.logic.Or"
             class="org.eclipselabs.damos.library.base.ui.logic.view.factories.LogicGateViewFactory"
             name="Or">
       </viewFactory>
       <viewFactory
-            blockType="org::eclipselabs::damos::library::base::logic::Inverter"
+            blockType="org.eclipselabs.damos.library.base.logic.Inverter"
             class="org.eclipselabs.damos.library.base.ui.logic.view.factories.LogicGateViewFactory"
             name="Inverter">
       </viewFactory>
       <viewFactory
-            blockType="org::eclipselabs::damos::library::base::math::Sum"
+            blockType="org.eclipselabs.damos.library.base.math.Sum"
             class="org.eclipselabs.damos.library.base.ui.math.view.factories.SumViewFactory"
             name="Sum">
          <input
@@ -75,62 +75,62 @@
    <extension
          point="org.eclipselabs.damos.diagram.ui.blockEditParts">
       <editPart
-            blockType="org::eclipselabs::damos::library::base::continuous::TransferFunction"
+            blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.ui.continuous.editparts.TransferFunctionEditPart"
             name="Transfer Function">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::discontinuities::Saturation"
+            blockType="org.eclipselabs.damos.library.base.discontinuities.Saturation"
             class="org.eclipselabs.damos.library.base.ui.discontinuities.editparts.SaturationEditPart"
             name="Saturation">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::discrete::Delay"
+            blockType="org.eclipselabs.damos.library.base.discrete.Delay"
             class="org.eclipselabs.damos.library.base.ui.discrete.editparts.DelayEditPart"
             name="Delay">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::discrete::DiscreteIntegrator"
+            blockType="org.eclipselabs.damos.library.base.discrete.DiscreteIntegrator"
             class="org.eclipselabs.damos.library.base.ui.discrete.editparts.DiscreteIntegratorEditPart"
             name="Discrete Integrator">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::discrete::DiscreteDerivative"
+            blockType="org.eclipselabs.damos.library.base.discrete.DiscreteDerivative"
             class="org.eclipselabs.damos.library.base.ui.discrete.editparts.DiscreteDerivativeEditPart"
             name="Discrete Derivative">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::logic::And"
+            blockType="org.eclipselabs.damos.library.base.logic.And"
             class="org.eclipselabs.damos.library.base.ui.logic.editparts.AndEditPart"
             name="And">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::logic::Or"
+            blockType="org.eclipselabs.damos.library.base.logic.Or"
             class="org.eclipselabs.damos.library.base.ui.logic.editparts.OrEditPart"
             name="Or">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::logic::Inverter"
+            blockType="org.eclipselabs.damos.library.base.logic.Inverter"
             class="org.eclipselabs.damos.library.base.ui.logic.editparts.InverterEditPart"
             name="Inverter">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::logic::Compare"
+            blockType="org.eclipselabs.damos.library.base.logic.Compare"
             class="org.eclipselabs.damos.library.base.ui.logic.editparts.CompareEditPart"
             name="Compare">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::logic::SchmittTrigger"
+            blockType="org.eclipselabs.damos.library.base.logic.SchmittTrigger"
             class="org.eclipselabs.damos.library.base.ui.logic.editparts.SchmittTriggerEditPart"
             name="SchmittTrigger">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::math::Gain"
+            blockType="org.eclipselabs.damos.library.base.math.Gain"
             class="org.eclipselabs.damos.library.base.ui.math.editparts.GainEditPart"
             name="Gain">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::math::Sum"
+            blockType="org.eclipselabs.damos.library.base.math.Sum"
             class="org.eclipselabs.damos.library.base.ui.math.editparts.SumEditPart"
             name="Sum">
          <input
@@ -139,32 +139,32 @@
          </input>
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::signal::Switch"
+            blockType="org.eclipselabs.damos.library.base.signal.Switch"
             class="org.eclipselabs.damos.library.base.ui.signal.editparts.SwitchEditPart"
             name="Switch">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::sinks::Scope"
+            blockType="org.eclipselabs.damos.library.base.sinks.Scope"
             class="org.eclipselabs.damos.library.base.ui.sinks.editparts.ScopeEditPart"
             name="Scope">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::sources::Constant"
+            blockType="org.eclipselabs.damos.library.base.sources.Constant"
             class="org.eclipselabs.damos.library.base.ui.sources.editparts.ConstantEditPart"
             name="Constant">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::sources::SineWave"
+            blockType="org.eclipselabs.damos.library.base.sources.SineWave"
             class="org.eclipselabs.damos.library.base.ui.sources.editparts.SineWaveEditPart"
             name="SineWave">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::sources::Step"
+            blockType="org.eclipselabs.damos.library.base.sources.Step"
             class="org.eclipselabs.damos.library.base.ui.sources.editparts.StepEditPart"
             name="Step">
       </editPart>
       <editPart
-            blockType="org::eclipselabs::damos::library::base::sources::Ramp"
+            blockType="org.eclipselabs.damos.library.base.sources.Ramp"
             class="org.eclipselabs.damos.library.base.ui.sources.editparts.RampEditPart"
             name="Ramp">
       </editPart>

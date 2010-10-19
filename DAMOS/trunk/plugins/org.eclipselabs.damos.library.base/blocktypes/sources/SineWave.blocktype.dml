@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_X1WoMIkSEd-UBLGPWvR3ew" qualifiedName="org::eclipselabs::damos::library::base::sources::SineWave">
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_X1WoMIkSEd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.sources.SineWave">
   <parameters xsi:type="dml:ExpressionParameter" xmi:id="_X1WoMYkSEd-UBLGPWvR3ew" name="amplitude">
     <defaultExpression xmi:id="_X1WoMokSEd-UBLGPWvR3ew" expression="1.0"/>
   </parameters>

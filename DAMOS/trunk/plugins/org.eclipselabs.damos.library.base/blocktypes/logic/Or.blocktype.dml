@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_f05HEIkREd-UBLGPWvR3ew" qualifiedName="org::eclipselabs::damos::library::base::logic::Or">
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_f05HEIkREd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.logic.Or">
   <inputDefinitions xmi:id="_f05HEYkREd-UBLGPWvR3ew" minimumPortCount="2" maximumPortCount="-1" name="input"/>
   <outputDefinitions xmi:id="_f05HEokREd-UBLGPWvR3ew" name="output"/>
 </dml:BlockType>

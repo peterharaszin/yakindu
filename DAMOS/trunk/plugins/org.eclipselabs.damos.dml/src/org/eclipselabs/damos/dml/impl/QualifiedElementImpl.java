@@ -151,7 +151,7 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	public String getName() {
 		String qualifiedName = getQualifiedName();
 		if (qualifiedName != null) {
-			String[] segments = qualifiedName.split("::");
+			String[] segments = qualifiedName.split("\\.");
 			return segments[segments.length - 1];
 		}
 		return null;
@@ -165,7 +165,7 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	public String getQualifier() {
 		String qualifiedName = getQualifiedName();
 		if (qualifiedName != null) {
-			int index = qualifiedName.lastIndexOf("::");
+			int index = qualifiedName.lastIndexOf(".");
 			if (index >= 0) {
 				return qualifiedName.substring(0, index);
 			}

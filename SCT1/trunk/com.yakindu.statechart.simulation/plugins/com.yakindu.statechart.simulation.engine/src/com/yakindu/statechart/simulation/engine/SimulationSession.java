@@ -320,6 +320,8 @@ public class SimulationSession implements Runnable, StatechartListener, TimingSe
 				newValue = 0.0;
 			} else if (value instanceof Double) {
 				newValue = (Double)value;
+			} else if (value instanceof Float) {
+				newValue = new Double((Float)value);
 			} else if (value instanceof Integer) {
 				newValue = new Double((Integer)value);
 			} else if (value instanceof Boolean) {

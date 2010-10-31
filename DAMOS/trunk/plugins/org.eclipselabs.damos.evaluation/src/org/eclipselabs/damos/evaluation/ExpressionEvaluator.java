@@ -14,12 +14,12 @@ package org.eclipselabs.damos.evaluation;
 import org.eclipselabs.mscript.language.ast.AdditiveExpression;
 import org.eclipselabs.mscript.language.ast.AdditiveExpressionPart;
 import org.eclipselabs.mscript.language.ast.AdditiveOperator;
+import org.eclipselabs.mscript.language.ast.ArrayConcatenationOperator;
 import org.eclipselabs.mscript.language.ast.BooleanLiteral;
 import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.ExpressionList;
 import org.eclipselabs.mscript.language.ast.FeatureCall;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
-import org.eclipselabs.mscript.language.ast.MatrixConstructionOperator;
 import org.eclipselabs.mscript.language.ast.MultiplicativeExpression;
 import org.eclipselabs.mscript.language.ast.MultiplicativeExpressionPart;
 import org.eclipselabs.mscript.language.ast.MultiplicativeOperator;
@@ -126,11 +126,11 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 		return strategy.elementWiseDivide(context, dividend, divisor);
 	}
 	
-	public T caseMatrixConstructionOperator(MatrixConstructionOperator object) {
-		int rowSize = object.getExpressionLists().size();
+	public T caseArrayConcatenationOperator(ArrayConcatenationOperator object) {
+		int rowSize = object.getRows().size();
 		int columnSize = -1;
 		
-		for (ExpressionList expressionList : object.getExpressionLists()) {
+		for (ExpressionList expressionList : object.getRows()) {
 			if (columnSize == -1) {
 				columnSize = expressionList.getExpressions().size();
 			} else if (columnSize < expressionList.getExpressions().size()) {
@@ -142,7 +142,7 @@ public class ExpressionEvaluator<T> extends AstSwitch<T> {
 		T[][] matrix = (T[][]) new Object[rowSize][columnSize];
 
 		int row = 0;
-		for (ExpressionList expressionList : object.getExpressionLists()) {
+		for (ExpressionList expressionList : object.getRows()) {
 			int column = 0;
 			for (Expression expression : expressionList.getExpressions()) {
 				matrix[row][column] = doSwitch(expression);

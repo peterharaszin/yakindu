@@ -177,6 +177,11 @@
             name="Discrete Derivative">
       </policy>
       <policy
+            blockType="org.eclipselabs.damos.library.base.discrete.DiscreteIntegrator"
+            class="org.eclipselabs.damos.library.base.discrete.policies.DiscreteIntegratorSignaturePolicy"
+            name="Discrete Integrator">
+      </policy>
+      <policy
             blockType="org.eclipselabs.damos.library.base.logic.And"
             class="org.eclipselabs.damos.library.base.logic.policies.LogicGateSignaturePolicy"
             name="And">

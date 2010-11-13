@@ -72,11 +72,6 @@ public class StatemachineView extends ATableView implements IEventListener {
 
 	/** Defines the configuration of this class. */
 	private StatemachineViewConfig config = null;
-	/**
-	 * Defines an object to synchronize the processing of incoming events and
-	 * explicit requested objects.
-	 */
-	private final Object initialize = new Object();
 
 	/**
 	 * Defines the instance of the <code>EngineManager</code> which allows the
@@ -298,96 +293,90 @@ public class StatemachineView extends ATableView implements IEventListener {
 	/**
 	 * @see org.mda4e.simulation.core.event.IEventListener#receiveEvent(org.mda4e.simulation.core.event.IEvent)
 	 */
-	public void receiveEvent(final IEvent event) {
+	public synchronized void receiveEvent(final IEvent event) {
 
-		synchronized (initialize) {
+		if (event instanceof StatemachineEvent) {
 
-			if (event instanceof StatemachineEvent) {
+			final StatemachineEvent smEvent = (StatemachineEvent) event;
 
-				final StatemachineEvent smEvent = (StatemachineEvent) event;
+			if (manager
+					.compareEngines(smEvent.getUUID(), smEvent.getInstance())) {
 
-				if (manager.compareEngines(smEvent.getUUID(), smEvent
-					.getInstance())) {
-
-					if (smEvent.getEventType() == StatemachineEventTypes.VariableChanged
+				if (smEvent.getEventType() == StatemachineEventTypes.VariableChanged
 						|| smEvent.getEventType() == StatemachineEventTypes.EventChanged) {
 
-						if (smEvent.getSource() instanceof Entry) {
+					if (smEvent.getSource() instanceof Entry) {
 
-							final Entry<?, ?> entry =
-									(Entry<?, ?>) smEvent.getSource();
+						final Entry<?, ?> entry = (Entry<?, ?>) smEvent
+								.getSource();
 
-							entryChanged(entry);
+						entryChanged(entry);
 
-						} else {
-							log
-								.warn("An unsupported \"VariableChanged\" type was found!"
-										+ " The getSource() provides an unsupported class type: type = "
-										+ smEvent
-											.getSource()
-											.getClass()
-											.getSimpleName()
-										+ " (expected: Entry)!");
-						}
+					} else {
+						log.warn("An unsupported \"VariableChanged\" type was found!"
+								+ " The getSource() provides an unsupported class type: type = "
+								+ smEvent.getSource().getClass()
+										.getSimpleName()
+								+ " (expected: Entry)!");
 					}
 				}
-			} else if (event instanceof DynamicItemEvent) {
+			}
+		} else if (event instanceof DynamicItemEvent) {
 
-				DynamicItemEvent itemEvent = (DynamicItemEvent) event;
+			DynamicItemEvent itemEvent = (DynamicItemEvent) event;
 
-				if (itemEvent.getEventType() == DynamicItemEventTypes.Add) {
+			if (itemEvent.getEventType() == DynamicItemEventTypes.Add) {
 
-					addDynamicEvent(itemEvent);
+				addDynamicEvent(itemEvent);
 
-				} else if (itemEvent.getEventType() == DynamicItemEventTypes.Remove) {
+			} else if (itemEvent.getEventType() == DynamicItemEventTypes.Remove) {
 
-					removeDynamicEvent(itemEvent);
-				}
+				removeDynamicEvent(itemEvent);
+			}
 
-			} else if (event instanceof SimulationEvent
-						&& event.getSource() instanceof IStatemachineEngine) {
+		} else if (event instanceof SimulationEvent
+				&& event.getSource() instanceof IStatemachineEngine) {
 
-				final SimulationEvent simEvent = (SimulationEvent) event;
+			final SimulationEvent simEvent = (SimulationEvent) event;
 
-				final IStatemachineEngine engine =
-						(IStatemachineEngine) simEvent.getSource();
+			final IStatemachineEngine engine = (IStatemachineEngine) simEvent
+					.getSource();
 
-				if (simEvent.getEventType() == SimulationEventTypes.SimStart) {
+			if (simEvent.getEventType() == SimulationEventTypes.SimStart) {
 
-					if (manager.compareEngines(engine.getUUID(), engine
-						.getInstanceNumber())) {
+				if (manager.compareEngines(engine.getUUID(),
+						engine.getInstanceNumber())) {
 
-						startTableActivation();
+					startTableActivation();
 
-					} else if (config.isShowNewEngine()) {
+				} else if (config.isShowNewEngine()) {
 
-						manager.activateEngine(engine);
-						startViewReset();
-					}
-				} else if (simEvent.getEventType() == SimulationEventTypes.SimResume) {
-
-					if (config.isShowNewEngine()) {
-
-						manager.activateEngine(engine);
-						startViewReset();
-					}
-
-				} else if (simEvent.getEventType() == SimulationEventTypes.SimStop
-							&& manager.compareEngines(engine.getUUID(), engine
-								.getInstanceNumber())) {
-
-					startTableDeactivation();
-
-				} else if (simEvent.getEventType() == SimulationEventTypes.EngineInitialized
-							|| simEvent.getEventType() == SimulationEventTypes.SubEngineInitialized) {
-
-					startViewReset();
-
-				} else if (simEvent.getEventType() == SimulationEventTypes.EngineDisposed
-							|| simEvent.getEventType() == SimulationEventTypes.SubEngineDisposed) {
-
+					manager.activateEngine(engine);
 					startViewReset();
 				}
+			} else if (simEvent.getEventType() == SimulationEventTypes.SimResume) {
+
+				if (config.isShowNewEngine()) {
+
+					manager.activateEngine(engine);
+					startViewReset();
+				}
+
+			} else if (simEvent.getEventType() == SimulationEventTypes.SimStop
+					&& manager.compareEngines(engine.getUUID(),
+							engine.getInstanceNumber())) {
+
+				startTableDeactivation();
+
+			} else if (simEvent.getEventType() == SimulationEventTypes.EngineInitialized
+					|| simEvent.getEventType() == SimulationEventTypes.SubEngineInitialized) {
+
+				startViewReset();
+
+			} else if (simEvent.getEventType() == SimulationEventTypes.EngineDisposed
+					|| simEvent.getEventType() == SimulationEventTypes.SubEngineDisposed) {
+
+				startViewReset();
 			}
 		}
 	}
@@ -636,95 +625,75 @@ public class StatemachineView extends ATableView implements IEventListener {
 	/**
 	 * Refreshes the items in the table.
 	 */
-	private void tableResetEntries() {
+	private synchronized void tableResetEntries() {
 
-		synchronized (initialize) {
+		synchronized (items) {
 
-			synchronized (items) {
+			tableDeactivate();
 
-				tableDeactivate();
+			// Clear internal information
+			itemClearAll();
 
-				// Clear internal information
-				itemClearAll();
+			tableRemoveAll();
 
-				tableRemoveAll();
+			if (manager.getActiveEngine() != -1) {
 
-				if (manager.getActiveEngine() != -1) {
+				// Read variables and events of the current statemachine
+				final SortedMap<Variable, Double> variables = new TreeMap<Variable, Double>(
+						new DataElementComparator());
+				final Map<Event, Boolean> events = new TreeMap<Event, Boolean>(
+						new DataElementComparator());
 
-					// Read variables and events of the current statemachine
-					final SortedMap<Variable, Double> variables =
-							new TreeMap<Variable, Double>(
-								new DataElementComparator());
-					final Map<Event, Boolean> events =
-							new TreeMap<Event, Boolean>(
-								new DataElementComparator());
+				variables.putAll(manager.getVariables());
+				events.putAll(manager.getEvents());
 
-					variables.putAll(manager.getVariables());
-					events.putAll(manager.getEvents());
-
-					// Add all inputs of the statemachine
-					for (final Entry<Variable, Double> variable : variables
+				// Add all inputs of the statemachine
+				for (final Entry<Variable, Double> variable : variables
 						.entrySet()) {
 
-						if (variable.getKey().getIoType().equals(IOTypes.INPUT)) {
-							itemAdd(
-								Messages.StatemachineView_input,
-								variable.getKey(),
-								variable.getValue(),
-								true,
+					if (variable.getKey().getIoType().equals(IOTypes.INPUT)) {
+						itemAdd(Messages.StatemachineView_input,
+								variable.getKey(), variable.getValue(), true,
 								ITEM_INPUT_COLOR);
-						}
-					}
-
-					// Add all events of the statemachine
-					for (final Entry<Event, Boolean> event : events.entrySet()) {
-						itemAdd(
-							Messages.StatemachineView_event,
-							event.getKey(),
-							event.getValue() ? 1.0 : 0.0,
-							false,
-							ITEM_EVENT_COLOR);
-					}
-
-					// Add all variables of the statemachine
-					for (final Entry<Variable, Double> variable : variables
-						.entrySet()) {
-
-						if (variable.getKey().getIoType().equals(IOTypes.LOCAL)) {
-							itemAdd(
-								Messages.StatemachineView_local,
-								variable.getKey(),
-								variable.getValue(),
-								true,
-								ITEM_LOCAL_COLOR);
-						}
-					}
-
-					// Add all outputs of the statemachine
-					for (final Entry<Variable, Double> variable : variables
-						.entrySet()) {
-
-						if (variable
-							.getKey()
-							.getIoType()
-							.equals(IOTypes.OUTPUT)) {
-							itemAdd(
-								Messages.StatemachineView_output,
-								variable.getKey(),
-								variable.getValue(),
-								false,
-								ITEM_OUTPUT_COLOR);
-						}
-					}
-
-					if (manager.getActiveEngineState() != null
-						&& manager.getActiveEngineState() != SimulationState.STOPPED) {
-						tableActivate();
 					}
 				}
 
-				manager.resetEngineChanged();
+				// Add all events of the statemachine
+				for (final Entry<Event, Boolean> event : events.entrySet()) {
+					itemAdd(Messages.StatemachineView_event, event.getKey(),
+							event.getValue() ? 1.0 : 0.0, false,
+							ITEM_EVENT_COLOR);
+				}
+
+				// Add all variables of the statemachine
+				for (final Entry<Variable, Double> variable : variables
+						.entrySet()) {
+
+					if (variable.getKey().getIoType().equals(IOTypes.LOCAL)) {
+						itemAdd(Messages.StatemachineView_local,
+								variable.getKey(), variable.getValue(), true,
+								ITEM_LOCAL_COLOR);
+					}
+				}
+
+				// Add all outputs of the statemachine
+				for (final Entry<Variable, Double> variable : variables
+						.entrySet()) {
+
+					if (variable.getKey().getIoType().equals(IOTypes.OUTPUT)) {
+						itemAdd(Messages.StatemachineView_output,
+								variable.getKey(), variable.getValue(), false,
+								ITEM_OUTPUT_COLOR);
+					}
+				}
+
+				if (manager.getActiveEngineState() != null
+						&& manager.getActiveEngineState() != SimulationState.STOPPED) {
+					tableActivate();
+				}
 			}
+
+			manager.resetEngineChanged();
 		}
 	}
 

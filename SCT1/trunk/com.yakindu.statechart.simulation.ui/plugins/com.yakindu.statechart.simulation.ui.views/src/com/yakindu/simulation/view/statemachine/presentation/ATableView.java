@@ -105,12 +105,6 @@ public abstract class ATableView extends ViewPart {
 	private TableEditor editor = null;
 
 	/**
-	 * Defines the text control which is used for the editing of the table
-	 * items.
-	 */
-	private Text textEditor = null;
-
-	/**
 	 * Creates an instance of the <code>ATableView</code>.
 	 */
 	public ATableView() {
@@ -265,6 +259,30 @@ public abstract class ATableView extends ViewPart {
 		tempButton = null;
 	}
 
+	
+	protected void setUpTextControl(TableItem item, int col) {
+		if (editor.getEditor() != null) return;
+
+		Text textEditor = new Text(item.getParent(), SWT.BORDER);
+		textEditor.setBackground(EDITOR_BACK);
+
+		addTextEditorListener(textEditor, item, col);
+		textEditor.setText(item.getText(col));
+
+		editor.setEditor(textEditor, item, col);
+	
+		textEditor.selectAll();
+		textEditor.setFocus();
+	}
+
+	protected void tearDownTextControl() {
+		if (editor.getEditor() != null) {
+			editor.getEditor().dispose();
+			editor.setEditor(null);
+		}
+	}
+
+	
 	/**
 	 * Initializes the table editor.
 	 * 
@@ -272,6 +290,7 @@ public abstract class ATableView extends ViewPart {
 	 */
 	private void initializeTableEditor(final Table table) {
 
+		
 		editor = new TableEditor(table);
 		editor.horizontalAlignment = SWT.RIGHT;
 		editor.grabHorizontal = true;
@@ -310,28 +329,7 @@ public abstract class ATableView extends ViewPart {
 									if (tItems.isEnabled()
 										&& getRowEditable(curItem)) {
 
-										final int curCol = col;
-
-										textEditor =
-												new Text(table, SWT.BORDER);
-										textEditor.setBackground(EDITOR_BACK);
-
-										addTextEditorListener(
-											textEditor,
-											curItem,
-											curCol);
-
-										textEditor.setText(curItem
-											.getText(curCol));
-
-										// Set the text field to the editor.
-										editor.setEditor(
-											textEditor,
-											curItem,
-											curCol);
-
-										textEditor.selectAll();
-										textEditor.setFocus();
+										setUpTextControl(curItem, col);
 										return;
 									}
 								}
@@ -382,11 +380,13 @@ public abstract class ATableView extends ViewPart {
 
 					startItemUpdate(item, curCol, editor.getText());
 
-					textEditor.dispose();
+					tearDownTextControl();
+					// textEditor.dispose();
 
 				} else {
 
-					textEditor.dispose();
+					tearDownTextControl();
+					// textEditor.dispose();
 					event.doit = false;
 
 					showErrorMessageBox(
@@ -412,19 +412,20 @@ public abstract class ATableView extends ViewPart {
 					if (message == null) {
 
 						startItemUpdate(item, curCol, editor.getText());
-
-						textEditor.dispose();
+						tearDownTextControl();
 
 					} else {
 
-						textEditor.setBackground(EDITOR_ERROR);
+						if (ATableView.this.editor.getEditor() != null) {
+							ATableView.this.editor.getEditor().setBackground(EDITOR_ERROR);
+						}
 						event.doit = false;
 					}
 				}
 				// The text edit was aborted.
 				else if (event.detail == SWT.TRAVERSE_ESCAPE) {
 
-					textEditor.dispose();
+					tearDownTextControl();
 					event.doit = false;
 				}
 			}
@@ -711,10 +712,11 @@ public abstract class ATableView extends ViewPart {
 
 		synchronized (tItems) {
 
-			// Dispose the text editor control
-			if (textEditor != null && !textEditor.isDisposed()) {
-				textEditor.dispose();
-			}
+			tearDownTextControl();
+//			// Dispose the text editor control
+//			if (textEditor != null && !textEditor.isDisposed()) {
+//				textEditor.dispose();
+//			}
 
 			if (!tItems.isDisposed()) {
 				tItems.setEnabled(false);
@@ -790,10 +792,7 @@ public abstract class ATableView extends ViewPart {
 
 		if (editor != null) {
 
-			final Control control = editor.getEditor();
-			if (control != null && !control.isDisposed()) {
-				control.dispose();
-			}
+			tearDownTextControl();
 		}
 	}
 
@@ -869,10 +868,10 @@ public abstract class ATableView extends ViewPart {
 		comboRemoveAll();
 		tableRemoveAll();
 
+		tearDownTextControl();
+		
 		editor.dispose();
+		editor = null;
 
-		if (textEditor != null && !textEditor.isDisposed()) {
-			textEditor.dispose();
-		}
 	}
 }

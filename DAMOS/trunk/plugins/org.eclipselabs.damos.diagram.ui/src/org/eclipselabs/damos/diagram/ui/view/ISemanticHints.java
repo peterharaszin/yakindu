@@ -19,6 +19,6 @@ package org.eclipselabs.damos.diagram.ui.view;
  */
 public interface ISemanticHints {
 
-	String COMPONENT_NAME = "_blockName";
+	String COMPONENT_NAME = "_componentName";
 	
 }

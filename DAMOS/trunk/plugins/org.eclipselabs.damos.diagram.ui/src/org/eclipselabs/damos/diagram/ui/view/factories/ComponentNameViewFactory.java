@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * @author Andreas Unger
  *
  */
-public class ComponentNameViewFactory extends BlockParameterViewFactory {
+public class ComponentNameViewFactory extends ComponentAttributeViewFactory {
 
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);

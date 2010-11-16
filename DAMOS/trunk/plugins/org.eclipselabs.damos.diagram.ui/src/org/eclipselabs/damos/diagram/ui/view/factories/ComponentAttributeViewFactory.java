@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
 
-public class BlockParameterViewFactory extends AbstractShapeViewFactory {
+public class ComponentAttributeViewFactory extends AbstractShapeViewFactory {
 
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);

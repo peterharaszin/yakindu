@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.mscript.language.validation;
+package org.eclipselabs.mscript.codegen.c;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.mscript.language.ast.AdditiveExpression;
@@ -49,12 +49,10 @@ import org.eclipselabs.mscript.typesystem.IntegerType;
 import org.eclipselabs.mscript.typesystem.RealType;
 
 /**
- * Note: This class is for testing purposes only.
- * 
  * @author Andreas Unger
  *
  */
-class CompoundCGenerator extends ILSwitch<String> {
+public class CompoundCGenerator extends ILSwitch<String> {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)

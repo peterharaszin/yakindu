@@ -80,6 +80,8 @@ public class CodegenLaunchConfigurationDelegate extends LaunchConfigurationDeleg
 		ILFunctionDefinition ilFunctionDefinition = createILFunctionDefinition(context, file, functionName, templateParameterDataTypesString, inputParameterDataTypesString, monitor);
 		
 		generateFile(monitor, functionName, targetFolder, ilFunctionDefinition);
+		CodegenProcess process = new CodegenProcess(launch, "C Code Generator");
+		process.run();
 	}
 
 	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {

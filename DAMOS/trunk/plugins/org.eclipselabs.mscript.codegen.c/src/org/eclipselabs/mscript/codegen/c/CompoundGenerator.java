@@ -11,6 +11,9 @@
 
 package org.eclipselabs.mscript.codegen.c;
 
+import java.io.PrintWriter;
+import java.io.Writer;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.mscript.language.ast.AdditiveExpression;
 import org.eclipselabs.mscript.language.ast.AdditiveExpressionPart;
@@ -52,96 +55,100 @@ import org.eclipselabs.mscript.typesystem.RealType;
  * @author Andreas Unger
  *
  */
-public class CompoundCGenerator extends ILSwitch<String> {
+public class CompoundGenerator extends ILSwitch<Boolean> {
 
+	private PrintWriter writer;
+	
+	/**
+	 * 
+	 */
+	public CompoundGenerator(Writer writer) {
+		this.writer = new PrintWriter(writer);
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
 	 */
 	@Override
-	public String caseCompound(Compound compound) {
+	public Boolean caseCompound(Compound compound) {
 		boolean block = compound instanceof Statement;
-		StringBuilder sb = new StringBuilder();
 		if (block) {
-			sb.append("{\n");
+			writer.print("{\n");
 		}
 		for (LocalVariableDeclaration localVariableDeclaration : compound.getLocalVariableDeclarations()) {
-			sb.append(dataTypeToString(localVariableDeclaration.getType()));
-			sb.append(" ");
-			sb.append(localVariableDeclaration.getName());
-			sb.append(";\n");
+			writer.print(dataTypeToString(localVariableDeclaration.getType()));
+			writer.print(" ");
+			writer.print(localVariableDeclaration.getName());
+			writer.print(";\n");
 		}
 		for (Statement statement : compound.getStatements()) {
-			sb.append(doSwitch(statement));
+			doSwitch(statement);
 		}
 		if (block) {
-			sb.append("}\n");
+			writer.print("}\n");
 		}
-		return sb.toString();
+		return true;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.imperativemodel.LocalVariableDeclaration)
 	 */
 	@Override
-	public String caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
+	public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
 		if (localVariableDeclaration.getInitializer() != null) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(localVariableDeclaration.getName());
+			writer.print(localVariableDeclaration.getName());
 			if (localVariableDeclaration.getInitializer() != null) {
-				sb.append(" = ");
-				sb.append(doSwitch(localVariableDeclaration.getInitializer()));
+				writer.print(" = ");
+				doSwitch(localVariableDeclaration.getInitializer());
 			}
-			sb.append(";\n");
-			return sb.toString();
+			writer.print(";\n");
+			return true;
 		}
-		return "";
+		return true;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
 	 */
 	@Override
-	public String caseAssignment(Assignment assignment) {
-		StringBuilder sb = new StringBuilder();
+	public Boolean caseAssignment(Assignment assignment) {
 		VariableDeclaration target = assignment.getTarget();
 		if (target instanceof OutputVariableDeclaration) {
-			sb.append("(*");
+			writer.print("(*");
 		}
-		sb.append(target.getName());
+		writer.print(target.getName());
 		if (target instanceof OutputVariableDeclaration) {
-			sb.append(")");
+			writer.print(")");
 		}
 		if (target instanceof StatefulVariableDeclaration) {
 			StatefulVariableDeclaration statefulVariableDeclaration = (StatefulVariableDeclaration) target;
-			appendStateArraySubscript(sb, statefulVariableDeclaration, assignment.getStepIndex());
+			appendStateArraySubscript(statefulVariableDeclaration, assignment.getStepIndex());
 		}
-		sb.append(" = ");
-		sb.append(doSwitch(assignment.getAssignedExpression()));
-		sb.append(";\n");
-		return sb.toString();
+		writer.print(" = ");
+		doSwitch(assignment.getAssignedExpression());
+		writer.print(";\n");
+		return true;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseIfStatement(org.eclipselabs.mscript.language.imperativemodel.IfStatement)
 	 */
 	@Override
-	public String caseIfStatement(IfStatement ifStatement) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("if (");
-		sb.append(doSwitch(ifStatement.getCondition()));
-		sb.append(")\n");
-		sb.append(doSwitch(ifStatement.getThenStatement()));
-		sb.append("else\n");
-		sb.append(doSwitch(ifStatement.getElseStatement()));
-		return sb.toString();
+	public Boolean caseIfStatement(IfStatement ifStatement) {
+		writer.print("if (");
+		doSwitch(ifStatement.getCondition());
+		writer.print(")\n");
+		doSwitch(ifStatement.getThenStatement());
+		writer.print("else\n");
+		doSwitch(ifStatement.getElseStatement());
+		return true;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseForeachStatement(org.eclipselabs.mscript.language.imperativemodel.ForeachStatement)
 	 */
 	@Override
-	public String caseForeachStatement(ForeachStatement foreachStatement) {
-		StringBuilder sb = new StringBuilder();
+	public Boolean caseForeachStatement(ForeachStatement foreachStatement) {
 		VariableDeclaration iterationVariableDeclaration = foreachStatement.getIterationVariableDeclaration();
 		DataType collectionDataType = ILUtil.getDataType(foreachStatement.getCollectionExpression());
 		if (!(collectionDataType instanceof ArrayType)) {
@@ -151,30 +158,31 @@ public class CompoundCGenerator extends ILSwitch<String> {
 		if (collectionArrayType.getDimensionality() != 1) {
 			throw new RuntimeException("Array dimensionality must be 1");
 		}
-		sb.append("{\n");
-		sb.append("int i;\n");
-		sb.append("for (i = 0; i < ");
-		sb.append(collectionArrayType.getDimensions().get(0).getSize());
-		sb.append("; ++i) {\n");
-		sb.append(dataTypeToString(iterationVariableDeclaration.getType()));
-		sb.append(" ");
-		sb.append(iterationVariableDeclaration.getName());
-		sb.append(" = (");
-		sb.append(doSwitch(foreachStatement.getCollectionExpression()));
-		sb.append(")[i];\n");
-		sb.append(doSwitch(foreachStatement.getBody()));
-		sb.append("}\n");
-		sb.append("}\n");
-		return sb.toString();
+		writer.print("{\n");
+		writer.print("int i;\n");
+		writer.print("for (i = 0; i < ");
+		writer.print(collectionArrayType.getDimensions().get(0).getSize());
+		writer.print("; ++i) {\n");
+		writer.print(dataTypeToString(iterationVariableDeclaration.getType()));
+		writer.print(" ");
+		writer.print(iterationVariableDeclaration.getName());
+		writer.print(" = (");
+		doSwitch(foreachStatement.getCollectionExpression());
+		writer.print(")[i];\n");
+		doSwitch(foreachStatement.getBody());
+		writer.print("}\n");
+		writer.print("}\n");
+		return true;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
-	public String defaultCase(EObject object) {
+	public Boolean defaultCase(EObject object) {
 		if (object instanceof Expression) {
-			return new ExpressionCGenerator().doSwitch(object);
+			new ExpressionCGenerator().doSwitch(object);
+			return true;
 		}
 		return super.defaultCase(object);
 	}
@@ -189,199 +197,201 @@ public class CompoundCGenerator extends ILSwitch<String> {
 		return "var";
 	}
 	
-	private void appendStateArraySubscript(StringBuilder sb, StatefulVariableDeclaration statefulVariableDeclaration, int stepIndex) {
+	private void appendStateArraySubscript(StatefulVariableDeclaration statefulVariableDeclaration, int stepIndex) {
 		if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
-			sb.append("[(_");
-			sb.append(statefulVariableDeclaration.getName());
-			sb.append("index + (");
-			sb.append(stepIndex);
-			sb.append(")) % ");
-			sb.append(statefulVariableDeclaration.getCircularBufferSize());
-			sb.append("]");
+			writer.print("[(");
+			writer.print(statefulVariableDeclaration.getName());
+			writer.print("_index + (");
+			writer.print(stepIndex);
+			writer.print(")) % ");
+			writer.print(statefulVariableDeclaration.getCircularBufferSize());
+			writer.print("]");
 		}
 	}
 	
-	private class ExpressionCGenerator extends AstSwitch<String> {
+	private class ExpressionCGenerator extends AstSwitch<Boolean> {
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseImpliesExpression(org.eclipselabs.mscript.language.ast.ImpliesExpression)
 		 */
 		@Override
-		public String caseImpliesExpression(ImpliesExpression impliesExpression) {
-			StringBuilder sb = new StringBuilder();
-			sb.append("(!(");
-			sb.append(doSwitch(impliesExpression.getLeftOperand()));
-			sb.append(") || ");
-			sb.append(doSwitch(impliesExpression.getRightOperand()));
-			sb.append(")");
-			return sb.toString();
+		public Boolean caseImpliesExpression(ImpliesExpression impliesExpression) {
+			writer.print("(!(");
+			doSwitch(impliesExpression.getLeftOperand());
+			writer.print(") || ");
+			doSwitch(impliesExpression.getRightOperand());
+			writer.print(")");
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseLogicalOrExpression(org.eclipselabs.mscript.language.ast.LogicalOrExpression)
 		 */
 		@Override
-		public String caseLogicalOrExpression(LogicalOrExpression logicalOrExpression) {
-			StringBuilder sb = new StringBuilder();
+		public Boolean caseLogicalOrExpression(LogicalOrExpression logicalOrExpression) {
+			boolean first = true;
 			for (Expression operand : logicalOrExpression.getOperands()) {
-				if (sb.length() > 0) {
-					sb.append(" || ");
+				if (first) {
+					first = false;
+				} else {
+					writer.print(" || ");
 				}
-				sb.append(doSwitch(operand));
+				doSwitch(operand);
 			}
-			return sb.toString();
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseLogicalAndExpression(org.eclipselabs.mscript.language.ast.LogicalAndExpression)
 		 */
 		@Override
-		public String caseLogicalAndExpression(LogicalAndExpression logicalAndExpression) {
-			StringBuilder sb = new StringBuilder();
+		public Boolean caseLogicalAndExpression(LogicalAndExpression logicalAndExpression) {
+			boolean first = true;
 			for (Expression operand : logicalAndExpression.getOperands()) {
-				if (sb.length() > 0) {
-					sb.append(" && ");
+				if (first) {
+					first = false;
+				} else {
+					writer.print(" && ");
 				}
-				sb.append(doSwitch(operand));
+				doSwitch(operand);
 			}
-			return sb.toString();
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseEqualityExpression(org.eclipselabs.mscript.language.ast.EqualityExpression)
 		 */
 		@Override
-		public String caseEqualityExpression(EqualityExpression equalityExpression) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(doSwitch(equalityExpression.getLeftOperand()));
-			sb.append(" ");
-			sb.append(equalityExpression.getOperator().getLiteral());
-			sb.append(" ");
-			sb.append(doSwitch(equalityExpression.getRightOperand()));
-			return sb.toString();
+		public Boolean caseEqualityExpression(EqualityExpression equalityExpression) {
+			doSwitch(equalityExpression.getLeftOperand());
+			writer.print(" ");
+			writer.print(equalityExpression.getOperator().getLiteral());
+			writer.print(" ");
+			doSwitch(equalityExpression.getRightOperand());
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRelationalExpression(org.eclipselabs.mscript.language.ast.RelationalExpression)
 		 */
 		@Override
-		public String caseRelationalExpression(RelationalExpression relationalExpression) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(doSwitch(relationalExpression.getLeftOperand()));
-			sb.append(" ");
-			sb.append(relationalExpression.getOperator().getLiteral());
-			sb.append(" ");
-			sb.append(doSwitch(relationalExpression.getRightOperand()));
-			return sb.toString();
+		public Boolean caseRelationalExpression(RelationalExpression relationalExpression) {
+			doSwitch(relationalExpression.getLeftOperand());
+			writer.print(" ");
+			writer.print(relationalExpression.getOperator().getLiteral());
+			writer.print(" ");
+			doSwitch(relationalExpression.getRightOperand());
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseAdditiveExpression(org.eclipselabs.mscript.language.ast.AdditiveExpression)
 		 */
 		@Override
-		public String caseAdditiveExpression(AdditiveExpression additiveExpression) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(doSwitch(additiveExpression.getLeftOperand()));
+		public Boolean caseAdditiveExpression(AdditiveExpression additiveExpression) {
+			doSwitch(additiveExpression.getLeftOperand());
 			for (AdditiveExpressionPart rightPart : additiveExpression.getRightParts()) {
-				sb.append(" ");
-				sb.append(rightPart.getOperator().getLiteral());
-				sb.append(" ");
-				sb.append(doSwitch(rightPart.getOperand()));
+				writer.print(" ");
+				writer.print(rightPart.getOperator().getLiteral());
+				writer.print(" ");
+				doSwitch(rightPart.getOperand());
 			}
-			return sb.toString();
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseMultiplicativeExpression(org.eclipselabs.mscript.language.ast.MultiplicativeExpression)
 		 */
 		@Override
-		public String caseMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(doSwitch(multiplicativeExpression.getLeftOperand()));
+		public Boolean caseMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression) {
+			doSwitch(multiplicativeExpression.getLeftOperand());
 			for (MultiplicativeExpressionPart rightPart : multiplicativeExpression.getRightParts()) {
-				sb.append(" ");
-				sb.append(rightPart.getOperator().getLiteral());
+				writer.print(" ");
+				writer.print(rightPart.getOperator().getLiteral());
 				if (rightPart.getOperator() == MultiplicativeOperator.DIVISION) {
-					sb.append(" (double) (");
+					writer.print(" (double) (");
 				} else {
-					sb.append(" ");
+					writer.print(" ");
 				}
-				sb.append(doSwitch(rightPart.getOperand()));
+				doSwitch(rightPart.getOperand());
 				if (rightPart.getOperator() == MultiplicativeOperator.DIVISION) {
-					sb.append(")");
+					writer.print(")");
 				}
 			}
-			return sb.toString();
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseParenthesizedExpression(org.eclipselabs.mscript.language.ast.ParenthesizedExpression)
 		 */
 		@Override
-		public String caseParenthesizedExpression(ParenthesizedExpression parenthesizedExpression) {
-			StringBuilder sb = new StringBuilder();
-			sb.append("(");
-			sb.append(doSwitch(parenthesizedExpression.getExpressions().get(0)));
-			sb.append(")");
-			return sb.toString();
+		public Boolean caseParenthesizedExpression(ParenthesizedExpression parenthesizedExpression) {
+			writer.print("(");
+			doSwitch(parenthesizedExpression.getExpressions().get(0));
+			writer.print(")");
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseUnaryExpression(org.eclipselabs.mscript.language.ast.UnaryExpression)
 		 */
 		@Override
-		public String caseUnaryExpression(UnaryExpression unaryExpression) {
-			return unaryExpression.getOperator().getLiteral() + doSwitch(unaryExpression.getOperand());
+		public Boolean caseUnaryExpression(UnaryExpression unaryExpression) {
+			writer.print(unaryExpression.getOperator().getLiteral() + doSwitch(unaryExpression.getOperand()));
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
 		 */
 		@Override
-		public String caseIntegerLiteral(IntegerLiteral integerLiteral) {
-			return Long.toString(integerLiteral.getValue());
+		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
+			writer.print(Long.toString(integerLiteral.getValue()));
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
 		 */
 		@Override
-		public String caseRealLiteral(RealLiteral realLiteral) {
-			return Double.toString(realLiteral.getValue());
+		public Boolean caseRealLiteral(RealLiteral realLiteral) {
+			writer.print(Double.toString(realLiteral.getValue()));
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
 		 */
 		@Override
-		public String caseBooleanLiteral(BooleanLiteral booleanLiteral) {
-			return booleanLiteral.getValue() == BooleanKind.TRUE ? "1" : "0";
+		public Boolean caseBooleanLiteral(BooleanLiteral booleanLiteral) {
+			writer.print(booleanLiteral.getValue() == BooleanKind.TRUE ? "1" : "0");
+			return true;
 		}
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
 		 */
 		@Override
-		public String caseStringLiteral(StringLiteral stringLiteral) {
-			return "\"" + stringLiteral.getValue() + "\"";
+		public Boolean caseStringLiteral(StringLiteral stringLiteral) {
+			writer.print("\"" + stringLiteral.getValue() + "\"");
+			return true;
 		}
 		
-		public String caseVariableReference(VariableReference variableReference) {
-			StringBuilder sb = new StringBuilder();
+		public Boolean caseVariableReference(VariableReference variableReference) {
 			VariableDeclaration variableDeclaration = variableReference.getDeclaration();
-			sb.append(variableDeclaration.getName());
+			writer.print(variableDeclaration.getName());
 			if (variableDeclaration instanceof StatefulVariableDeclaration) {
 				StatefulVariableDeclaration statefulVariableDeclaration = (StatefulVariableDeclaration) variableDeclaration;
-				appendStateArraySubscript(sb, statefulVariableDeclaration, variableReference.getStepIndex());
+				appendStateArraySubscript(statefulVariableDeclaration, variableReference.getStepIndex());
 			}
-			return sb.toString();
+			return true;
 		}
 
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseExpression(org.eclipselabs.mscript.language.ast.Expression)
 		 */
 		@Override
-		public String caseExpression(Expression expression) {
+		public Boolean caseExpression(Expression expression) {
 			if (expression instanceof VariableReference) {
 				return caseVariableReference((VariableReference) expression);
 			}

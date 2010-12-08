@@ -17,15 +17,12 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.model.LaunchConfigurationDelegate;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.util.StringInputStream;
-import org.eclipselabs.mscript.codegen.c.CompoundCGenerator;
 import org.eclipselabs.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
 import org.eclipselabs.mscript.language.ast.DataTypeSpecifier;
 import org.eclipselabs.mscript.language.ast.FunctionDefinition;
 import org.eclipselabs.mscript.language.ast.Module;
 import org.eclipselabs.mscript.language.functionmodel.util.FunctionDescriptorConstructor;
 import org.eclipselabs.mscript.language.functionmodel.util.IFunctionDescriptorConstructorResult;
-import org.eclipselabs.mscript.language.il.Compound;
 import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
 import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
@@ -79,8 +76,7 @@ public class CodegenLaunchConfigurationDelegate extends LaunchConfigurationDeleg
 		
 		ILFunctionDefinition ilFunctionDefinition = createILFunctionDefinition(context, file, functionName, templateParameterDataTypesString, inputParameterDataTypesString, monitor);
 		
-		generateFile(monitor, functionName, targetFolder, ilFunctionDefinition);
-		CodegenProcess process = new CodegenProcess(launch, "C Code Generator");
+		CodegenProcess process = new CodegenProcess(launch, "C Code Generator", targetFolder, ilFunctionDefinition);
 		process.run();
 	}
 
@@ -162,26 +158,4 @@ public class CodegenLaunchConfigurationDelegate extends LaunchConfigurationDeleg
 		return dataTypes;
 	}
 
-	/**
-	 * @param monitor
-	 * @param functionName
-	 * @param targetFolder
-	 * @param ilFunctionDefinition
-	 * @throws CoreException
-	 */
-	private void generateFile(IProgressMonitor monitor, String functionName, IFolder targetFolder, ILFunctionDefinition ilFunctionDefinition) throws CoreException {
-		IFile targetFile = targetFolder.getFile(functionName + ".c");
-		if (targetFile.exists()) {
-			targetFile.delete(true, monitor);
-		}
-		
-		StringBuilder sb = new StringBuilder();
-		sb.append(new CompoundCGenerator().doSwitch(ilFunctionDefinition.getInitializationCompound()));
-		for (Compound compound : ilFunctionDefinition.getComputationCompounds()) {
-			sb.append(new CompoundCGenerator().doSwitch(compound));
-		}
-		
-		targetFile.create(new StringInputStream(sb.toString()), true, monitor);
-	}
-	
 }

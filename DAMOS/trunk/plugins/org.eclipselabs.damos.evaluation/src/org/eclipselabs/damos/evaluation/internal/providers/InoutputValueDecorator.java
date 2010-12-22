@@ -15,8 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipselabs.mscript.language.interpreter.value.AbstractValueDecorator;
-import org.eclipselabs.mscript.language.interpreter.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.AbstractValueDecorator;
+import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

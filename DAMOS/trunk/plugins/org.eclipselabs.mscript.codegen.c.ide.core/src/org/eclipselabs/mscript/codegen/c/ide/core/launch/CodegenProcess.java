@@ -33,9 +33,8 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
-import org.eclipselabs.mscript.codegen.c.CompoundGenerator;
+import org.eclipselabs.mscript.codegen.c.Generator;
 import org.eclipselabs.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
-import org.eclipselabs.mscript.language.il.Compound;
 import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
 
 /**
@@ -77,33 +76,12 @@ public class CodegenProcess implements IProcess {
 			
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-				try {
-					IFile targetFile = targetFolder.getFile(functionDefinition.getName() + ".c");
+				GeneratorThread thread = new HeaderGeneratorThread();
+				executeGenerator(thread, functionDefinition.getName() + ".h", monitor);
+				
+				thread = new ImplementationGeneratorThread();
+				executeGenerator(thread, functionDefinition.getName() + ".c", monitor);
 
-					PipedInputStream pipedInputStream = new PipedInputStream();
-					PipedOutputStream pipedOutputStream = new PipedOutputStream(pipedInputStream);
-					Writer writer = new OutputStreamWriter(pipedOutputStream);
-					
-					GeneratorThread thread = new GeneratorThread(functionDefinition, writer);
-					
-					thread.start();
-					
-					if (targetFile.exists()) {
-						targetFile.setContents(pipedInputStream, true, false, monitor);
-					} else {
-						targetFile.create(pipedInputStream, true, monitor);
-					}
-					
-					thread.join();
-					
-					if (!thread.getStatus().isOK()) {
-						throw new CoreException(thread.getStatus());
-					}
-				} catch (IOException e) {
-					new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Code generation failed", e));
-				} catch (InterruptedException e) {
-					new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Code generation thread execution failed", e));
-				}
 				return Status.OK_STATUS;
 			}
 			
@@ -118,6 +96,36 @@ public class CodegenProcess implements IProcess {
 			
 		});
 		job.schedule();
+	}
+	
+	private void executeGenerator(GeneratorThread thread, String fileName, IProgressMonitor monitor) throws CoreException {
+		try {
+			IFile targetFile = targetFolder.getFile(fileName);
+
+			PipedInputStream pipedInputStream = new PipedInputStream();
+			PipedOutputStream pipedOutputStream = new PipedOutputStream(pipedInputStream);
+			Writer writer = new OutputStreamWriter(pipedOutputStream);
+			
+			thread.setWriter(writer);
+			
+			thread.start();
+			
+			if (targetFile.exists()) {
+				targetFile.setContents(pipedInputStream, true, false, monitor);
+			} else {
+				targetFile.create(pipedInputStream, true, monitor);
+			}
+			
+			thread.join();
+			
+			if (!thread.getStatus().isOK()) {
+				throw new CoreException(thread.getStatus());
+			}
+		} catch (IOException e) {
+			new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Code generation failed", e));
+		} catch (InterruptedException e) {
+			new CoreException(new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Code generation thread execution failed", e));
+		}
 	}
 
 	public boolean canTerminate() {
@@ -175,40 +183,52 @@ public class CodegenProcess implements IProcess {
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		return null;
 	}
-
-	private static class GeneratorThread extends Thread {
+	
+	private abstract class GeneratorThread extends Thread {
 		
-		private ILFunctionDefinition functionDefinition;
-		private Writer writer;
-		private IStatus status = Status.OK_STATUS;
+		protected Writer writer;
+		protected IStatus status = Status.OK_STATUS;
 		
-		/**
-		 * 
-		 */
-		public GeneratorThread(ILFunctionDefinition functionDefinition, Writer writer) {
+		public void setWriter(Writer writer) {
 			this.writer = writer;
-			this.functionDefinition = functionDefinition;
-		}
-		
-		/**
-		 * @return the status
-		 */
-		public IStatus getStatus() {
-			return status;
 		}
 		
 		public void run() {
-			new CompoundGenerator(writer).doSwitch(functionDefinition.getInitializationCompound());
-			for (Compound compound : functionDefinition.getComputationCompounds()) {
-				new CompoundGenerator(writer).doSwitch(compound);
-			}
+			generate();
 			try {
 				writer.close();
 			} catch (IOException e) {
 				status = new Status(IStatus.ERROR, CodegenCIDECorePlugin.PLUGIN_ID, "Writing to file failed", e);
 			}
 		}
+		
+		protected abstract void generate();
 
+		/**
+		 * @return the status
+		 */
+		public IStatus getStatus() {
+			return status;
+		}
+
+	}
+
+	private class HeaderGeneratorThread extends GeneratorThread {
+		
+		public void generate() {
+			Generator generator = new Generator(functionDefinition, writer);
+			generator.generateHeaderCode();
+		}
+		
+	}
+
+	private class ImplementationGeneratorThread extends GeneratorThread {
+		
+		public void generate() {
+			Generator generator = new Generator(functionDefinition, writer);
+			generator.generateImplementationCode();
+		}
+		
 	}
 
 }

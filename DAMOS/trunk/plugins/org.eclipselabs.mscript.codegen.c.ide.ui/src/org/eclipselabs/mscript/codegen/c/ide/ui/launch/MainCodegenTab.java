@@ -50,8 +50,9 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 
 	private Text filePathText;
 	private Text functionNameText;
+	private Text targetFunctionNameText;
+	private Text templateArgumentsText;
 	private Text inputParameterDataTypesText;
-	private Text templateParameterDataTypesText;
 	private Text targetFolderPathText;
 	
 	private final ModifyListener modifyListener = new ModifyListener() {
@@ -105,6 +106,22 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 		gridData.horizontalSpan = 2;
 		functionNameText.setLayoutData(gridData);
 
+		new Label(composite, SWT.NONE).setText("Target function:");
+		targetFunctionNameText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		targetFunctionNameText.addModifyListener(modifyListener);
+		targetFunctionNameText.setToolTipText("Qualified target function name");
+		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
+		gridData.horizontalSpan = 2;
+		targetFunctionNameText.setLayoutData(gridData);
+
+		new Label(composite, SWT.NONE).setText("Template arguments:");
+		templateArgumentsText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		templateArgumentsText.addModifyListener(modifyListener);
+		templateArgumentsText.setToolTipText("Comma-separated list of template arguments");
+		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
+		gridData.horizontalSpan = 2;
+		templateArgumentsText.setLayoutData(gridData);
+
 		new Label(composite, SWT.NONE).setText("Input parameter data types:");
 		inputParameterDataTypesText = new Text(composite, SWT.SINGLE | SWT.BORDER);
 		inputParameterDataTypesText.addModifyListener(modifyListener);
@@ -112,14 +129,6 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
 		gridData.horizontalSpan = 2;
 		inputParameterDataTypesText.setLayoutData(gridData);
-
-		new Label(composite, SWT.NONE).setText("Template parameter data types:");
-		templateParameterDataTypesText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		templateParameterDataTypesText.addModifyListener(modifyListener);
-		templateParameterDataTypesText.setToolTipText("Comma-separated list of template parameter data types");
-		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
-		gridData.horizontalSpan = 2;
-		templateParameterDataTypesText.setLayoutData(gridData);
 
 		new Label(composite, SWT.NONE).setText("Target folder:");
 		targetFolderPathText = new Text(composite, SWT.SINGLE | SWT.BORDER);
@@ -151,8 +160,9 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 		try {
 			filePathText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__FILE_PATH, ""));
 			functionNameText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME, "Main"));
+			targetFunctionNameText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FUNCTION_NAME, ""));
 			inputParameterDataTypesText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES, ""));
-			templateParameterDataTypesText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_PARAMETER_DATA_TYPES, ""));
+			templateArgumentsText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS, ""));
 			targetFolderPathText.setText(configuration.getAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FOLDER_PATH, ""));
 		} catch (CoreException e) {
 			CodegenCIDEUIPlugin.getDefault().getLog().log(e.getStatus());
@@ -163,8 +173,9 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 		String errorMessage = null;
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__FILE_PATH, filePathText.getText());
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME, functionNameText.getText());
+		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FUNCTION_NAME, targetFunctionNameText.getText());
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES, inputParameterDataTypesText.getText());
-		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_PARAMETER_DATA_TYPES, templateParameterDataTypesText.getText());
+		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS, templateArgumentsText.getText());
 		configuration.setAttribute(CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FOLDER_PATH, targetFolderPathText.getText());
 		setErrorMessage(errorMessage);
 	}
@@ -189,10 +200,13 @@ public class MainCodegenTab extends AbstractLaunchConfigurationTab {
 				CodegenLaunchConfigurationDelegate.ATTRIBUTE__FUNCTION_NAME,
 				"Main");
 		configuration.setAttribute(
+				CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FUNCTION_NAME,
+				"");
+		configuration.setAttribute(
 				CodegenLaunchConfigurationDelegate.ATTRIBUTE__INPUT_PARAMETER_DATA_TYPES,
 				"");
 		configuration.setAttribute(
-				CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_PARAMETER_DATA_TYPES,
+				CodegenLaunchConfigurationDelegate.ATTRIBUTE__TEMPLATE_ARGUMENTS,
 				"");
 		configuration.setAttribute(
 				CodegenLaunchConfigurationDelegate.ATTRIBUTE__TARGET_FOLDER_PATH,

@@ -15,6 +15,10 @@ import java.io.PrintWriter;
 import java.io.Writer;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.mscript.codegen.c.util.GeneratorUtil;
+import org.eclipselabs.mscript.computation.core.value.IIntegerValue;
+import org.eclipselabs.mscript.computation.core.value.IRealValue;
+import org.eclipselabs.mscript.computation.core.value.IValue;
 import org.eclipselabs.mscript.language.ast.AdditiveExpression;
 import org.eclipselabs.mscript.language.ast.AdditiveExpressionPart;
 import org.eclipselabs.mscript.language.ast.BooleanKind;
@@ -42,14 +46,13 @@ import org.eclipselabs.mscript.language.il.LocalVariableDeclaration;
 import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
 import org.eclipselabs.mscript.language.il.StatefulVariableDeclaration;
 import org.eclipselabs.mscript.language.il.Statement;
+import org.eclipselabs.mscript.language.il.TemplateVariableDeclaration;
 import org.eclipselabs.mscript.language.il.VariableDeclaration;
 import org.eclipselabs.mscript.language.il.VariableReference;
 import org.eclipselabs.mscript.language.il.util.ILSwitch;
 import org.eclipselabs.mscript.language.il.util.ILUtil;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.RealType;
 
 /**
  * @author Andreas Unger
@@ -76,7 +79,7 @@ public class CompoundGenerator extends ILSwitch<Boolean> {
 			writer.print("{\n");
 		}
 		for (LocalVariableDeclaration localVariableDeclaration : compound.getLocalVariableDeclarations()) {
-			writer.print(dataTypeToString(localVariableDeclaration.getType()));
+			writer.print(GeneratorUtil.toString(localVariableDeclaration.getType()));
 			writer.print(" ");
 			writer.print(localVariableDeclaration.getName());
 			writer.print(";\n");
@@ -122,7 +125,7 @@ public class CompoundGenerator extends ILSwitch<Boolean> {
 		}
 		if (target instanceof StatefulVariableDeclaration) {
 			StatefulVariableDeclaration statefulVariableDeclaration = (StatefulVariableDeclaration) target;
-			appendStateArraySubscript(statefulVariableDeclaration, assignment.getStepIndex());
+			writer.print(GeneratorUtil.createStateArraySubscript(statefulVariableDeclaration, assignment.getStepIndex()));
 		}
 		writer.print(" = ");
 		doSwitch(assignment.getAssignedExpression());
@@ -163,7 +166,7 @@ public class CompoundGenerator extends ILSwitch<Boolean> {
 		writer.print("for (i = 0; i < ");
 		writer.print(collectionArrayType.getDimensions().get(0).getSize());
 		writer.print("; ++i) {\n");
-		writer.print(dataTypeToString(iterationVariableDeclaration.getType()));
+		writer.print(GeneratorUtil.toString(iterationVariableDeclaration.getType()));
 		writer.print(" ");
 		writer.print(iterationVariableDeclaration.getName());
 		writer.print(" = (");
@@ -181,35 +184,13 @@ public class CompoundGenerator extends ILSwitch<Boolean> {
 	@Override
 	public Boolean defaultCase(EObject object) {
 		if (object instanceof Expression) {
-			new ExpressionCGenerator().doSwitch(object);
+			new ExpressionGenerator().doSwitch(object);
 			return true;
 		}
 		return super.defaultCase(object);
 	}
-	
-	private String dataTypeToString(DataType dataType) {
-		if (dataType instanceof RealType) {
-			return "double";
-		}
-		if (dataType instanceof IntegerType) {
-			return "int";
-		}
-		return "var";
-	}
-	
-	private void appendStateArraySubscript(StatefulVariableDeclaration statefulVariableDeclaration, int stepIndex) {
-		if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
-			writer.print("[(");
-			writer.print(statefulVariableDeclaration.getName());
-			writer.print("_index + (");
-			writer.print(stepIndex);
-			writer.print(")) % ");
-			writer.print(statefulVariableDeclaration.getCircularBufferSize());
-			writer.print("]");
-		}
-	}
-	
-	private class ExpressionCGenerator extends AstSwitch<Boolean> {
+		
+	private class ExpressionGenerator extends AstSwitch<Boolean> {
 		
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseImpliesExpression(org.eclipselabs.mscript.language.ast.ImpliesExpression)
@@ -378,13 +359,33 @@ public class CompoundGenerator extends ILSwitch<Boolean> {
 		}
 		
 		public Boolean caseVariableReference(VariableReference variableReference) {
+			writer.print(getVariableReferenceString(variableReference));
+			return true;
+		}
+		
+		private String getVariableReferenceString(VariableReference variableReference) {
 			VariableDeclaration variableDeclaration = variableReference.getDeclaration();
-			writer.print(variableDeclaration.getName());
+			String name = variableDeclaration.getName();
+			
+			if (variableDeclaration instanceof TemplateVariableDeclaration) {
+				TemplateVariableDeclaration templateVariableDeclaration = (TemplateVariableDeclaration) variableDeclaration;
+				IValue templateArgument = templateVariableDeclaration.getValue();
+				if (templateArgument instanceof IIntegerValue) {
+					IIntegerValue value = (IIntegerValue) templateArgument;
+					return Long.toString(value.longValue());
+				}
+				if (templateArgument instanceof IRealValue) {
+					IRealValue value = (IRealValue) templateArgument;
+					return Double.toString(value.doubleValue());
+				}
+			}
+			
+			StringBuilder sb = new StringBuilder(name);
 			if (variableDeclaration instanceof StatefulVariableDeclaration) {
 				StatefulVariableDeclaration statefulVariableDeclaration = (StatefulVariableDeclaration) variableDeclaration;
-				appendStateArraySubscript(statefulVariableDeclaration, variableReference.getStepIndex());
+				sb.append(GeneratorUtil.createStateArraySubscript(statefulVariableDeclaration, variableReference.getStepIndex()));
 			}
-			return true;
+			return sb.toString();
 		}
 
 		/* (non-Javadoc)

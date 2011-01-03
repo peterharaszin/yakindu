@@ -4,8 +4,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorProvider;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.IDecoratorTarget;
@@ -27,17 +28,15 @@ public class ProblemMarkerDecoratorProvider extends AbstractProvider implements 
 			return false;
 		}
 		IDecoratorTarget decoratorTarget = ((CreateDecoratorsOperation) operation).getDecoratorTarget();
-		return getTargetElement(decoratorTarget) != null && getTargetElement(decoratorTarget) instanceof FragmentElement;
+		EObject targetElement = getTargetElement(decoratorTarget);
+		return  targetElement != null && targetElement instanceof FragmentElement;
 
 	}
 
 	private EObject getTargetElement(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
-		if (editPart instanceof GraphicalEditPart && ((GraphicalEditPart) editPart).getPrimaryView() == ((GraphicalEditPart) editPart).getNotationView()) {
+		if (editPart instanceof IGraphicalEditPart && !(editPart instanceof IBorderItemEditPart)) {
 			return ((GraphicalEditPart) editPart).resolveSemanticElement();
-		}
-		if (editPart instanceof ConnectionEditPart) {
-			return ((ConnectionEditPart) editPart).resolveSemanticElement();
 		}
 		return null;
 	}

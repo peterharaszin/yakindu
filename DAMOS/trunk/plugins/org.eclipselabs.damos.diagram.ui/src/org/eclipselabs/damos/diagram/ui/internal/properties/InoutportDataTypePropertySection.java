@@ -29,8 +29,8 @@ public class InoutportDataTypePropertySection extends AbstractComboPropertySecti
 	
 	private static final List<String> PROPERTY_VALUE_STRINGS = Arrays.asList(new String[] {
 		"real",
-		"integer",
-		"boolean" });
+		"int",
+		"bool" });
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.diagram.ui.properties.AbstractComboPropertySection#getPropertyChangeCommandName()

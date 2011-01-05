@@ -9,30 +9,20 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.evaluation;
+package org.eclipselabs.mscript.language.interpreter;
 
-import org.eclipselabs.mscript.typesystem.DataType;
+import java.util.List;
+
+import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
-public abstract class AbstractValue implements IValue {
-	
-	private DataType dataType;
-	
-	/**
-	 * 
-	 */
-	public AbstractValue(DataType dataType) {
-		this.dataType = dataType;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.evaluation.IValue#getDataType()
-	 */
-	public DataType getDataType() {
-		return dataType;
-	}
+public interface IFeature {
 
+	IValue call(IInterpreterContext context, IValue target, List<IValue> arguments);
+	
 }

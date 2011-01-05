@@ -19,4 +19,5 @@
     <directFeedthroughPolicy xsi:type="dml:BooleanDirectFeedthroughPolicy" xmi:id="_SfWCRYkREd-UBLGPWvR3ew" directFeedthrough="false"/>
   </inputDefinitions>
   <outputDefinitions xmi:id="_SfWCRokREd-UBLGPWvR3ew" name="output"/>
+  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_v5eV8RgUEeClJ-iH_ulhsg" behavior="stateful func DiscreteIntegrator&lt;initialValue, gain, T>(input) -> output {&#xA;&#x9;static assert input is real() :&#xA;&#x9;&#x9;error &quot;Input value must be numeric&quot;;&#xA;&#xA;&#x9;static assert initialValue is real() :&#xA;&#x9;&#x9;error &quot;Initial value must be numeric&quot;;&#xA;&#x9;&#x9;&#xA;&#x9;static assert initialValue is real() &amp;&amp; input is real() => initialValue.unit == input.unit :&#xA;&#x9;&#x9;error &quot;Initial value and input value must have same unit&quot;;&#xA;&#x9;&#x9;&#xA;&#x9;static assert gain is real() :&#xA;&#x9;&#x9;error &quot;Gain value must be numeric&quot;;&#xA;&#x9;&#x9;&#xA;&#x9;var sum;&#xA;&#xA;&#x9;sum(0) = initialValue;&#xA;&#x9;sum(n+1) = sum(n) + input(n);&#xA;&#x9;output(n) = T * gain * sum(n);&#xA;}&#xA;"/>
 </dml:BlockType>

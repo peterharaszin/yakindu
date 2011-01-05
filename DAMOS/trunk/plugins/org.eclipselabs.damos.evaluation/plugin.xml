@@ -11,6 +11,9 @@
       <provider
             class="org.eclipselabs.damos.evaluation.internal.registry.BlockSignaturePolicyProvider">
       </provider>
+      <provider
+            class="org.eclipselabs.damos.evaluation.internal.providers.DeclarativeBlockSignaturePolicyProvider">
+      </provider>
    </extension>
 
 </plugin>

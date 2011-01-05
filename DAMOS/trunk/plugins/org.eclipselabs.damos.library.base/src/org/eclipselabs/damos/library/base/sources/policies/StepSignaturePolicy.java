@@ -19,12 +19,12 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.evaluation.IEvaluationContext;
-import org.eclipselabs.damos.evaluation.componentsignature.AbstractBlockSignaturePolicy;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
@@ -40,28 +40,30 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  * @author Andreas Unger
  *
  */
-public class StepSignaturePolicy extends AbstractBlockSignaturePolicy {
+public class StepSignaturePolicy implements IComponentSignaturePolicy {
 	
-	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+		Block block = (Block) component;
+		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
 		NumericType initialValueDataType = null;
 		try {
-			initialValueDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, StepConstants.PARAMETER__INITIAL_VALUE);
+			initialValueDataType = EvaluationUtil.evaluateArgumentNumericType(block, StepConstants.PARAMETER__INITIAL_VALUE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType finalValueDataType = null;
 		try {
-			finalValueDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, StepConstants.PARAMETER__FINAL_VALUE);
+			finalValueDataType = EvaluationUtil.evaluateArgumentNumericType(block, StepConstants.PARAMETER__FINAL_VALUE);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType stepTimeDataType = null;
 		try {
-			stepTimeDataType = EvaluationUtil.evaluateArgumentNumericType(context, block, StepConstants.PARAMETER__STEP_TIME);
+			stepTimeDataType = EvaluationUtil.evaluateArgumentNumericType(block, StepConstants.PARAMETER__STEP_TIME);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -93,7 +95,7 @@ public class StepSignaturePolicy extends AbstractBlockSignaturePolicy {
 			outputDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
 		}
 		outputDataType.setUnit(EcoreUtil.copy(unit));
-		signature.getOutputDataTypes().put(block.getFirstOutputPort(), outputDataType);
+		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		
 		return new ComponentSignatureEvaluationResult(signature);
 	}

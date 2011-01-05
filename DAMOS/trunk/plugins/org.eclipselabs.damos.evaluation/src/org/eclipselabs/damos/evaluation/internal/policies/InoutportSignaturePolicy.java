@@ -22,14 +22,15 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
-import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
-import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
+import org.eclipselabs.mscript.computation.core.ComputationContext;
+import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
+import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.InvalidDataType;
 
@@ -40,13 +41,12 @@ import org.eclipselabs.mscript.typesystem.InvalidDataType;
 public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
-		IEvaluationContext context = new ComponentEvaluationContext(component);
 		Inoutport inport = (Inoutport) component;
 		
 		MultiStatus status = new MultiStatus(EvaluationPlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = new ComponentSignature();
 		
-		DataType dataType = getDataType(context, status, inport);
+		DataType dataType = getDataType(status, inport);
 		if (dataType != null) {
 			DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 			if (incomingDataType != null) {
@@ -65,11 +65,12 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 	 * @param status
 	 * @param inoutport
 	 */
-	protected DataType getDataType(IEvaluationContext context, MultiStatus status, Inoutport inoutport) {
+	protected DataType getDataType(MultiStatus status, Inoutport inoutport) {
 		if (inoutport.getDataType() instanceof OpaqueDataTypeSpecification) {
 			OpaqueDataTypeSpecification dataTypeSpecification = (OpaqueDataTypeSpecification) inoutport.getDataType();
 			if (dataTypeSpecification.getDataType() != null && dataTypeSpecification.getDataType().trim().length() > 0) {
 				try {
+					IInterpreterContext context = new InterpreterContext(new ComputationContext());
 					DataType dataType = EvaluationUtil.evaluateDataTypeSpecifierDataType(context, dataTypeSpecification.getDataType());
 					if (!(dataType instanceof InvalidDataType)) {
 						return dataType;

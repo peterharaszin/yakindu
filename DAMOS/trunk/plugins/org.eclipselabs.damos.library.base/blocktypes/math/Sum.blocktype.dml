@@ -6,4 +6,5 @@
     </parameters>
   </inputDefinitions>
   <outputDefinitions xmi:id="_9rzFYokREd-UBLGPWvR3ew" name="output"/>
+  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_OjZDkBgrEeCQe4edB_fKdQ" behavior="func Sum(input) -> output {&#xA;&#x9;static assert input is real()[] :&#xA;&#x9;&#x9;error &quot;Input values must be numeric&quot;;&#xA;&#xA;&#x9;output = input.sum();&#xA;}&#xA;"/>
 </dml:BlockType>

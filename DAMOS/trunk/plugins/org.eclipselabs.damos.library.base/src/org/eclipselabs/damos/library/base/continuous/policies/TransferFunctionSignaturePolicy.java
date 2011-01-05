@@ -9,12 +9,12 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.evaluation.IEvaluationContext;
-import org.eclipselabs.damos.evaluation.componentsignature.AbstractBlockSignaturePolicy;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
+import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
@@ -27,21 +27,23 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  * @author Andreas Unger
  *
  */
-public class TransferFunctionSignaturePolicy extends AbstractBlockSignaturePolicy {
+public class TransferFunctionSignaturePolicy implements IComponentSignaturePolicy {
 	
-	public IComponentSignatureEvaluationResult evaluateSignature(IEvaluationContext context, Block block, Map<InputPort, DataType> incomingDataTypes) {		
+	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
+		Block block = (Block) component;
+		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
 		List<DataType> numeratorTypes = null;
 		try {
-			numeratorTypes = EvaluationUtil.evaluateArgumentExpressionListDataTypes(context, block, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
+			numeratorTypes = EvaluationUtil.evaluateArgumentExpressionListDataTypes(block, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		List<DataType> denominatorTypes = null;
 		try {
-			denominatorTypes = EvaluationUtil.evaluateArgumentExpressionListDataTypes(context, block, TransferFunctionConstants.PARAMETER__DENOMINATOR_COEFFICIENTS);
+			denominatorTypes = EvaluationUtil.evaluateArgumentExpressionListDataTypes(block, TransferFunctionConstants.PARAMETER__DENOMINATOR_COEFFICIENTS);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -72,7 +74,7 @@ public class TransferFunctionSignaturePolicy extends AbstractBlockSignaturePolic
 			}
 		}
 		
-		DataType incomingDataType = incomingDataTypes.get(block.getFirstInputPort());
+		DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 		if (incomingDataType == null) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
@@ -90,7 +92,7 @@ public class TransferFunctionSignaturePolicy extends AbstractBlockSignaturePolic
 		}
 
 		ComponentSignature signature = new ComponentSignature();
-		signature.getOutputDataTypes().put(block.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
+		signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

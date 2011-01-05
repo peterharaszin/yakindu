@@ -29,14 +29,15 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
-import org.eclipselabs.damos.evaluation.ComponentEvaluationContext;
 import org.eclipselabs.damos.evaluation.EvaluationPlugin;
-import org.eclipselabs.damos.evaluation.IEvaluationContext;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignature;
 import org.eclipselabs.damos.evaluation.componentsignature.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy;
 import org.eclipselabs.damos.evaluation.util.EvaluationUtil;
+import org.eclipselabs.mscript.computation.core.ComputationContext;
+import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
+import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.InvalidDataType;
 
@@ -50,7 +51,6 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 	 * @see org.eclipselabs.damos.evaluation.componentsignature.IComponentSignaturePolicy#evaluateSignature(org.eclipselabs.damos.evaluation.IEvaluationContext, org.eclipselabs.damos.dml.Component, java.util.Map)
 	 */
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
-		IEvaluationContext context = new ComponentEvaluationContext(component);
 		Subsystem subsystem = (Subsystem) component;
 		
 		MultiStatus status = new MultiStatus(EvaluationPlugin.PLUGIN_ID, 0, "", null);
@@ -59,7 +59,7 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 		for (Input input : subsystem.getInputs()) {
 			if (input instanceof SubsystemInput) {
 				Inlet inlet = ((SubsystemInput) input).getInlet();
-				DataType dataType = getDataType(context, status, inlet);
+				DataType dataType = getDataType(status, inlet);
 				if (dataType != null) {
 					if (!input.getPorts().isEmpty()) {
 						DataType incomingDataType = incomingDataTypes.get(input.getPorts().get(0));
@@ -78,7 +78,7 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 		for (Output output : subsystem.getOutputs()) {
 			if (output instanceof SubsystemOutput) {
 				Outlet outlet = ((SubsystemOutput) output).getOutlet();
-				DataType dataType = getDataType(context, status, outlet);
+				DataType dataType = getDataType(status, outlet);
 				if (dataType != null) {
 					if (!output.getPorts().isEmpty()) {
 						signature.getOutputDataTypes().put(output.getPorts().get(0), EcoreUtil.copy(dataType));
@@ -94,11 +94,12 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 	
-	private DataType getDataType(IEvaluationContext context, MultiStatus status, Inoutlet inoutlet) {
+	private DataType getDataType(MultiStatus status, Inoutlet inoutlet) {
 		if (inoutlet != null && inoutlet.getDataType() instanceof OpaqueDataTypeSpecification) {
 			OpaqueDataTypeSpecification dataTypeSpecification = (OpaqueDataTypeSpecification) inoutlet.getDataType();
 			if (dataTypeSpecification.getDataType() != null && dataTypeSpecification.getDataType().trim().length() > 0) {
 				try {
+					IInterpreterContext context = new InterpreterContext(new ComputationContext());
 					DataType dataType = EvaluationUtil.evaluateDataTypeSpecifierDataType(context, dataTypeSpecification.getDataType());
 					if (!(dataType instanceof InvalidDataType)) {
 						return dataType;

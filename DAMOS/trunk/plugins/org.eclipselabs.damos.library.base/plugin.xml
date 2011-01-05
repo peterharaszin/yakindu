@@ -162,56 +162,6 @@
             name="Transfer Function">
       </policy>
       <policy
-            blockType="org.eclipselabs.damos.library.base.discontinuities.Saturation"
-            class="org.eclipselabs.damos.library.base.discontinuities.policies.SaturationSignaturePolicy"
-            name="Saturation">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.discrete.Delay"
-            class="org.eclipselabs.damos.library.base.discrete.policies.DelaySignaturePolicy"
-            name="Delay">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.discrete.DiscreteDerivative"
-            class="org.eclipselabs.damos.library.base.discrete.policies.DiscreteDerivativeSignaturePolicy"
-            name="Discrete Derivative">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.discrete.DiscreteIntegrator"
-            class="org.eclipselabs.damos.library.base.discrete.policies.DiscreteIntegratorSignaturePolicy"
-            name="Discrete Integrator">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.logic.And"
-            class="org.eclipselabs.damos.library.base.logic.policies.LogicGateSignaturePolicy"
-            name="And">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.logic.Or"
-            class="org.eclipselabs.damos.library.base.logic.policies.LogicGateSignaturePolicy"
-            name="Or">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.logic.Inverter"
-            class="org.eclipselabs.damos.library.base.logic.policies.LogicGateSignaturePolicy"
-            name="Inverter">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.logic.Compare"
-            class="org.eclipselabs.damos.library.base.logic.policies.CompareSignaturePolicy"
-            name="Compare">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.logic.SchmittTrigger"
-            class="org.eclipselabs.damos.library.base.logic.policies.SchmittTriggerSignaturePolicy"
-            name="Schmitt Trigger">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.signal.Switch"
-            class="org.eclipselabs.damos.library.base.signal.policies.SwitchSignaturePolicy"
-            name="Switch">
-      </policy>
-      <policy
             blockType="org.eclipselabs.damos.library.base.sinks.Scope"
             class="org.eclipselabs.damos.library.base.sinks.policies.ScopeSignaturePolicy"
             name="Scope">
@@ -222,11 +172,6 @@
             name="Step">
       </policy>
       <policy
-            blockType="org.eclipselabs.damos.library.base.sources.Constant"
-            class="org.eclipselabs.damos.library.base.sources.policies.ConstantSignaturePolicy"
-            name="Constant">
-      </policy>
-      <policy
             blockType="org.eclipselabs.damos.library.base.sources.Ramp"
             class="org.eclipselabs.damos.library.base.sources.policies.RampSignaturePolicy"
             name="Ramp">
@@ -235,16 +180,6 @@
             blockType="org.eclipselabs.damos.library.base.sources.SineWave"
             class="org.eclipselabs.damos.library.base.sources.policies.SineWaveSignaturePolicy"
             name="Sine Wave">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.math.Gain"
-            class="org.eclipselabs.damos.library.base.math.policies.GainSignaturePolicy"
-            name="Gain">
-      </policy>
-      <policy
-            blockType="org.eclipselabs.damos.library.base.math.Sum"
-            class="org.eclipselabs.damos.library.base.math.policies.SumSignaturePolicy"
-            name="Sum">
       </policy>
    </extension>
 

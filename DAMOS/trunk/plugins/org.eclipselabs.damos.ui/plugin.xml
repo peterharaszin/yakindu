@@ -5,9 +5,9 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             category="org.eclipselabs.damos.common.damosCategory"
-            class="org.eclipselabs.damos.ui.wizards.NewDamosProjectWizard"
+            class="org.eclipselabs.damos.ide.ui.wizards.NewDamosProjectWizard"
             icon="icons/DamosProject.gif"
-            id="org.eclipselabs.damos.ui.newDamosProjectWizard"
+            id="org.eclipselabs.damos.ide.ui.newDamosProjectWizard"
             name="Damos Project"
             project="true">
       </wizard>
@@ -16,8 +16,8 @@
          point="org.eclipse.ui.ide.projectNatureImages">
       <image
             icon="icons/DamosProjectNature.gif"
-            id="org.eclipselabs.damos.ui.damosNatureImage"
-            natureId="org.eclipselabs.damos.core.damosNature">
+            id="org.eclipselabs.damos.ide.ui.damosNatureImage"
+            natureId="org.eclipselabs.damos.ide.core.damosNature">
       </image>
    </extension>
 

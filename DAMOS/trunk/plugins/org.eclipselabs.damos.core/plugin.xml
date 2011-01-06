@@ -7,7 +7,7 @@
          point="org.eclipse.core.resources.natures">
       <runtime>
          <run
-               class="org.eclipselabs.damos.core.natures.DamosProjectNature">
+               class="org.eclipselabs.damos.ide.core.natures.DamosProjectNature">
          </run>
       </runtime>
    </extension>
@@ -17,7 +17,7 @@
          point="org.eclipse.core.resources.builders">
       <builder>
          <run
-               class="org.eclipselabs.damos.core.builders.DamosProjectBuilder">
+               class="org.eclipselabs.damos.ide.core.builders.DamosProjectBuilder">
             <parameter
                   name="optimize"
                   value="true">

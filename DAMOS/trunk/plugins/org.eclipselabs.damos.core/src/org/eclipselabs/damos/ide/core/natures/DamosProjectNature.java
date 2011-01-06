@@ -1,16 +1,16 @@
-package org.eclipselabs.damos.core.natures;
+package org.eclipselabs.damos.ide.core.natures;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IProjectNature;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.damos.core.CorePlugin;
+import org.eclipselabs.damos.ide.core.IDECorePlugin;
 
 public class DamosProjectNature implements IProjectNature {
 
-	public static final String NATURE_ID = CorePlugin.PLUGIN_ID + ".damosNature";
-	public static final String BUILDER_ID = CorePlugin.PLUGIN_ID + ".damosBuilder";
+	public static final String NATURE_ID = IDECorePlugin.PLUGIN_ID + ".damosNature";
+	public static final String BUILDER_ID = IDECorePlugin.PLUGIN_ID + ".damosBuilder";
 
 	private IProject project;
 

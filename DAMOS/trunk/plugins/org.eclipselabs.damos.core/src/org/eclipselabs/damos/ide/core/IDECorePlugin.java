@@ -1,28 +1,28 @@
-package org.eclipselabs.damos.ui;
+package org.eclipselabs.damos.ide.core;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class UIPlugin extends AbstractUIPlugin {
+public class IDECorePlugin extends Plugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipselabs.damos.ui";
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.ide.core";
 
 	// The shared instance
-	private static UIPlugin plugin;
+	private static IDECorePlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public UIPlugin() {
+	public IDECorePlugin() {
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -31,7 +31,7 @@ public class UIPlugin extends AbstractUIPlugin {
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -43,7 +43,7 @@ public class UIPlugin extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static UIPlugin getDefault() {
+	public static IDECorePlugin getDefault() {
 		return plugin;
 	}
 

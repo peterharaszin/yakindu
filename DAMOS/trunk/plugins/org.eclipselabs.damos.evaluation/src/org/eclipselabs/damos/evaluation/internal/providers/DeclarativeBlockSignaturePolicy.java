@@ -56,14 +56,16 @@ import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.language.util.LanguageUtil;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
+import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.UnitSymbol;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolicy {
 	
 	private static final String SAMPLE_TIME_TEMPLATE_PARAMETER_NAME = "T";
+	private static final String SAMPLE_RATE_TEMPLATE_PARAMETER_NAME = "fs";
 
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component,
 			Map<InputPort, DataType> incomingDataTypes) {
@@ -89,9 +91,9 @@ class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolicy {
 		}
 
 		Module module = (Module) parseResult.getRootASTElement();
-		FunctionDefinition functionDefinition = LanguageUtil.getFunctionDefinition(module, block.getName());
+		FunctionDefinition functionDefinition = LanguageUtil.getFunctionDefinition(module, block.getType().getName());
 		if (functionDefinition == null) {
-			status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Mscript function '" + block.getName() + "' not found"));
+			status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Mscript function '" + block.getType().getName() + "' not found"));
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
@@ -163,13 +165,21 @@ class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolicy {
 	private List<IValue> getTemplateArguments(MultiStatus status, Block block, FunctionDefinition functionDefinition) {
 		List<IValue> templateArguments = new ArrayList<IValue>();
 		for (ParameterDeclaration parameterDeclaration : functionDefinition.getTemplateParameterDeclarations()) {
-			String argument = block.getArgumentStringValue(parameterDeclaration.getName());
+			String parameterName = parameterDeclaration.getName();
+			String argument = block.getArgumentStringValue(parameterName);
 			if (argument == null) {
-				if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(parameterDeclaration.getName())) {
-					IntegerType integerType = TypeSystemFactory.eINSTANCE.createIntegerType();
+				if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(parameterName)) {
+					RealType integerType = TypeSystemFactory.eINSTANCE.createRealType();
 					integerType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
-					IValue secondValue = new ValueConstructor().createIntegerValue(new ComputationContext(), integerType, 1);
+					IValue secondValue = new ValueConstructor().createRealValue(new ComputationContext(), integerType, 1);
 					templateArguments.add(secondValue);
+				} else if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(parameterName)) {
+					RealType integerType = TypeSystemFactory.eINSTANCE.createRealType();
+					Unit herzUnit = TypeSystemUtil.createUnit();
+					herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);
+					integerType.setUnit(herzUnit);
+					IValue herzValue = new ValueConstructor().createRealValue(new ComputationContext(), integerType, 1);
+					templateArguments.add(herzValue);
 				} else {
 					status.add(new Status(IStatus.ERROR, EvaluationPlugin.PLUGIN_ID, "Block parameter '" + parameterDeclaration.getName() + "' not found"));
 				}

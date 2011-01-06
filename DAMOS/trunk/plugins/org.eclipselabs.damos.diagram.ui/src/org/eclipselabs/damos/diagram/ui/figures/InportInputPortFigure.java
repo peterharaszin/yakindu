@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.diagram.ui.figures;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.PointList;
 
@@ -55,6 +56,7 @@ public class InportInputPortFigure extends PortFigure {
 		 */
 		public InputTerminalFigure(PortFigure owner) {
 			super(owner);
+			setForegroundColor(ColorConstants.blue);
 		}
 
 		/* (non-Javadoc)

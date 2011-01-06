@@ -64,7 +64,7 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolicy {
 	
-	private static final String SAMPLE_TIME_TEMPLATE_PARAMETER_NAME = "T";
+	private static final String SAMPLE_TIME_TEMPLATE_PARAMETER_NAME = "Ts";
 	private static final String SAMPLE_RATE_TEMPLATE_PARAMETER_NAME = "fs";
 
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component,

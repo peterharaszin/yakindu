@@ -19,8 +19,6 @@ public interface SchmittTriggerConstants {
 
 	String PARAMETER__UPPER_THRESHOLD = "upperThreshold";
 	String PARAMETER__LOWER_THRESHOLD = "lowerThreshold";
-
 	String PARAMETER__INITIAL_OUTPUT = "initialOutput";
-	String PARAMETER__INITIAL_OUTPUT__TRUE = "InitialOutputKind.True";
-	String PARAMETER__INITIAL_OUTPUT__FALSE = "InitialOutputKind.False";
+
 }

@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.ui.wizards;
+package org.eclipselabs.damos.ide.ui.wizards;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -12,8 +12,8 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
-import org.eclipselabs.damos.core.natures.DamosProjectNature;
-import org.eclipselabs.damos.ui.UIPlugin;
+import org.eclipselabs.damos.ide.core.natures.DamosProjectNature;
+import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 
 public class NewDamosProjectWizard extends Wizard implements INewWizard {
 	
@@ -34,7 +34,7 @@ public class NewDamosProjectWizard extends Wizard implements INewWizard {
 			description.setNatureIds(newNatures);
 			project.setDescription(description, null);
 		} catch (CoreException e) {
-			UIPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, UIPlugin.PLUGIN_ID,
+			IDEUIPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, IDEUIPlugin.PLUGIN_ID,
 					"Creation of project '" + project.getName() + "' failed", e));
 			return false;
 		}

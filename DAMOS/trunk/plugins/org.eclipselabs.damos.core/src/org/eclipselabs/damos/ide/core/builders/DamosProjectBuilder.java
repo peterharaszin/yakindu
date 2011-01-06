@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.core.builders;
+package org.eclipselabs.damos.ide.core.builders;
 
 import java.io.IOException;
 import java.util.Map;
@@ -21,13 +21,13 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.markers.IMarkerConstants;
-import org.eclipselabs.damos.core.CorePlugin;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.evaluation.DataTypeResolver;
 import org.eclipselabs.damos.evaluation.DataTypeResolverResult;
 import org.eclipselabs.damos.evaluation.IEvaluationStatus;
+import org.eclipselabs.damos.ide.core.IDECorePlugin;
 
 public class DamosProjectBuilder extends IncrementalProjectBuilder {
 
@@ -82,7 +82,7 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			try {
 				blockDiagramResource.load(null);
 			} catch (IOException e) {
-				throw new CoreException(new Status(IStatus.ERROR, CorePlugin.PLUGIN_ID,
+				throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID,
 						"Loading block diagram file '" + resource.getFullPath() + "' failed", e));
 			}
 			

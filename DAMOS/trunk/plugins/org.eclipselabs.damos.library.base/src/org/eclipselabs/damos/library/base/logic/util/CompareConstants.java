@@ -18,11 +18,5 @@ package org.eclipselabs.damos.library.base.logic.util;
 public interface CompareConstants {
 
 	String PARAMETER__OPERATOR = "operator";
-	String PARAMETER__OPERATOR__EQUAL_TO = "OperatorKind.EqualTo";
-	String PARAMETER__OPERATOR__NOT_EQUAL_TO = "OperatorKind.NotEqualTo";
-	String PARAMETER__OPERATOR__LESS_THAN = "OperatorKind.LessThan";
-	String PARAMETER__OPERATOR__LESS_THAN_OR_EQUAL_TO = "OperatorKind.LessThanOrEqualTo";
-	String PARAMETER__OPERATOR__GREATER_THAN_OR_EQUAL_TO = "OperatorKind.GreaterThanOrEqualTo";
-	String PARAMETER__OPERATOR__GREATER_THAN = "OperatorKind.GreaterThan";
 	
 }

@@ -4,4 +4,5 @@
     <defaultExpression xmi:id="_VYHJs4kSEd-UBLGPWvR3ew" expression="1"/>
   </parameters>
   <outputDefinitions xmi:id="_VYHJsYkSEd-UBLGPWvR3ew" name="output"/>
+  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_7kzzABmFEeCbYvAKHyD6pg" behavior="func Constant&lt;value>() -> output {&#xA;&#x9;output = value;&#xA;}&#xA;"/>
 </dml:BlockType>

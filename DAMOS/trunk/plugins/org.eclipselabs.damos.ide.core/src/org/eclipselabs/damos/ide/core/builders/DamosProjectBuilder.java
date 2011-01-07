@@ -24,9 +24,9 @@ import org.eclipselabs.damos.common.markers.IMarkerConstants;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.evaluation.DataTypeResolver;
-import org.eclipselabs.damos.evaluation.DataTypeResolverResult;
-import org.eclipselabs.damos.evaluation.IEvaluationStatus;
+import org.eclipselabs.damos.execution.engine.DataTypeResolver;
+import org.eclipselabs.damos.execution.engine.DataTypeResolverResult;
+import org.eclipselabs.damos.execution.engine.IComponentStatus;
 import org.eclipselabs.damos.ide.core.IDECorePlugin;
 
 public class DamosProjectBuilder extends IncrementalProjectBuilder {
@@ -110,8 +110,8 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 		 * @throws CoreException 
 		 */
 		protected void attachMarkers(IResource resource, Fragment fragment, Component component, IStatus status) throws CoreException {
-			if (component == null && status instanceof IEvaluationStatus) {
-				component = ((IEvaluationStatus) status).getComponent();
+			if (component == null && status instanceof IComponentStatus) {
+				component = ((IComponentStatus) status).getComponent();
 			}
 			
 			if (!status.isOK() && status.getChildren().length > 0) {

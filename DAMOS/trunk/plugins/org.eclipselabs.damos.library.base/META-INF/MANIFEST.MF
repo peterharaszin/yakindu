@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.5.0",
  org.eclipselabs.damos.library.common,
  org.eclipselabs.damos.dml;bundle-version="0.1.0",
  org.eclipselabs.mscript.typesystem;bundle-version="0.1.0",
- org.eclipselabs.damos.evaluation;bundle-version="0.2.0"
+ org.eclipselabs.damos.execution.engine;bundle-version="0.2.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipselabs.damos.library.base.continuous.util,

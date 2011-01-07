@@ -155,7 +155,7 @@
       </blockType>
    </extension>
    <extension
-         point="org.eclipselabs.damos.evaluation.blockSignaturePolicies">
+         point="org.eclipselabs.damos.execution.engine.blockSignaturePolicies">
       <policy
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.continuous.policies.TransferFunctionSignaturePolicy"

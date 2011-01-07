@@ -11,5 +11,6 @@ Export-Package: org.eclipselabs.damos.execution.executionmodel,
  org.eclipselabs.damos.execution.executionmodel.impl,
  org.eclipselabs.damos.execution.executionmodel.util
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipselabs.mscript.computation.computationmodel;bundle-version="0.1.0"
 Bundle-ActivationPolicy: lazy

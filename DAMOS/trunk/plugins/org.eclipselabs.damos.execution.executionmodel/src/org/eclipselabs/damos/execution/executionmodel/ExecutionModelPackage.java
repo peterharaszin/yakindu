@@ -9,6 +9,7 @@ package org.eclipselabs.damos.execution.executionmodel;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,13 +79,22 @@ public interface ExecutionModelPackage extends EPackage {
 	int EXECUTION_MODEL__SAMPLE_TIME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Computation Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_MODEL__COMPUTATION_MODEL = 1;
+
+	/**
 	 * The number of structural features of the '<em>Execution Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_MODEL_FEATURE_COUNT = 1;
+	int EXECUTION_MODEL_FEATURE_COUNT = 2;
 
 
 	/**
@@ -107,6 +117,17 @@ public interface ExecutionModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExecutionModel_SampleTime();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModel <em>Computation Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Computation Model</em>'.
+	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModel()
+	 * @see #getExecutionModel()
+	 * @generated
+	 */
+	EReference getExecutionModel_ComputationModel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -147,6 +168,14 @@ public interface ExecutionModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXECUTION_MODEL__SAMPLE_TIME = eINSTANCE.getExecutionModel_SampleTime();
+
+		/**
+		 * The meta object literal for the '<em><b>Computation Model</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTION_MODEL__COMPUTATION_MODEL = eINSTANCE.getExecutionModel_ComputationModel();
 
 	}
 

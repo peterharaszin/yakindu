@@ -5,13 +5,15 @@
     modelPluginID="org.eclipselabs.damos.execution.executionmodel" modelName="ExecutionModel"
     editPluginClass="org.eclipselabs.damos.execution.executionmodel.edit.ExecutionModelEditPlugin"
     editorPluginClass="org.eclipselabs.damos.execution.executionmodel.editor.ExecutionModelEditorPlugin"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false">
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.genmodel#//computationmodel ../../org.eclipselabs.mscript.typesystem/model/TypeSystem.genmodel#//typesystem">
   <foreignModel>ExecutionModel.ecore</foreignModel>
   <genPackages prefix="ExecutionModel" basePackage="org.eclipselabs.damos.execution"
       disposableProviderFactory="true" providerPackageSuffix="edit.provider" presentationPackageSuffix="editor.presentation"
       ecorePackage="ExecutionModel.ecore#/">
     <genClasses image="false" ecoreClass="ExecutionModel.ecore#//ExecutionModel">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionModel.ecore#//ExecutionModel/sampleTime"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionModel.ecore#//ExecutionModel/computationModel"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

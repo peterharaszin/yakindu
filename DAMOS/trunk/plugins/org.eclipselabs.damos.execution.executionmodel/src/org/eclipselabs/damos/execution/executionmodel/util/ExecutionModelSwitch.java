@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipselabs.damos.execution.executionmodel.*;
+import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
+import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -24,7 +24,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.util.EvaluationUtil;
@@ -43,7 +43,7 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Inoutport inport = (Inoutport) component;
 		
-		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = new ComponentSignature();
 		
 		DataType dataType = getDataType(status, inport);
@@ -51,7 +51,7 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 			DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 			if (incomingDataType != null) {
 				if (!dataType.isAssignableFrom(incomingDataType)) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Incompatible input value"));
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Incompatible input value"));
 				}
 			}
 			signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(dataType));
@@ -75,21 +75,21 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 					if (!(dataType instanceof InvalidDataType)) {
 						return dataType;
 					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid data type specified"));
+						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid data type specified"));
 					}
 				} catch (CoreException e) {
 					status.add(new MultiStatus(
-							ExecutionCorePlugin.PLUGIN_ID,
+							ExecutionEnginePlugin.PLUGIN_ID,
 							0,
 							new IStatus[] { e.getStatus() },
 							"Data type evaluation failed",
 							null));
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "No data type specified"));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No data type specified"));
 			}
 		} else {
-			status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid model"));
+			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));
 		}
 		return null;
 	}

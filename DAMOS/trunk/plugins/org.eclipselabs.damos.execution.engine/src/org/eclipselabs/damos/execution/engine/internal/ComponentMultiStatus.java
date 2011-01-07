@@ -14,7 +14,7 @@ package org.eclipselabs.damos.execution.engine.internal;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.engine.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentStatus;
 
 /**
@@ -29,7 +29,7 @@ public class ComponentMultiStatus extends MultiStatus implements IComponentStatu
 	 * 
 	 */
 	public ComponentMultiStatus(Component component, IStatus[] newChildren, String message) {
-		super(ExecutionCorePlugin.PLUGIN_ID, 0, newChildren, message, null);
+		super(ExecutionEnginePlugin.PLUGIN_ID, 0, newChildren, message, null);
 		this.component = component;
 	}
 

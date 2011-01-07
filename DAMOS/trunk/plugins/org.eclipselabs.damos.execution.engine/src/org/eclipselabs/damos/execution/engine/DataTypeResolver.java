@@ -70,7 +70,7 @@ public class DataTypeResolver {
 		} while (changed);
 		
 		if (!statusMap.isEmpty()) {
-			MultiStatus resolverStatus = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "Evaluation failed", null);
+			MultiStatus resolverStatus = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Evaluation failed", null);
 			for (Entry<Component, IStatus> entry : statusMap.entrySet()) {
 				String message = "Resolving data type of component '" + entry.getKey().getName() + "' failed";
 				if (entry.getValue().isMultiStatus()) {

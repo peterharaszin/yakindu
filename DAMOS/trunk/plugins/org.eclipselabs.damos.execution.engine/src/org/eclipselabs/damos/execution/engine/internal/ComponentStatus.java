@@ -13,7 +13,7 @@ package org.eclipselabs.damos.execution.engine.internal;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.engine.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentStatus;
 
 /**
@@ -28,7 +28,7 @@ public class ComponentStatus extends Status implements IComponentStatus {
 	 * 
 	 */
 	public ComponentStatus(int severity, Component component, String message) {
-		super(severity, ExecutionCorePlugin.PLUGIN_ID, message);
+		super(severity, ExecutionEnginePlugin.PLUGIN_ID, message);
 		this.component = component;
 	}
 

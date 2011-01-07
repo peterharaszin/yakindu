@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.execution.engine.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.language.ast.Expression;
@@ -49,7 +49,7 @@ public class EvaluationUtil {
 		if (parameterExpression != null) {
 			return evaluateExpressionDataType(parameterExpression);
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
 	public static List<DataType> evaluateArgumentExpressionListDataTypes(Block block, String parameterName) throws CoreException {
@@ -57,7 +57,7 @@ public class EvaluationUtil {
 		if (parameterExpressionList != null) {
 			return evaluateExpressionListDataTypes(parameterExpressionList);
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
 	public static NumericType evaluateArgumentNumericType(Block block, String parameterName) throws CoreException {
@@ -65,7 +65,7 @@ public class EvaluationUtil {
 		if (dataType instanceof NumericType) {
 			return (NumericType) dataType;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
 	}
 
 	public static IntegerType evaluateArgumentIntegerType(Block block, String parameterName) throws CoreException {
@@ -73,7 +73,7 @@ public class EvaluationUtil {
 		if (dataType instanceof IntegerType) {
 			return (IntegerType) dataType;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be integer"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be integer"));
 	}
 
 	public static BooleanType evaluateArgumentBooleanType(Block block, String parameterName) throws CoreException {
@@ -81,16 +81,16 @@ public class EvaluationUtil {
 		if (dataType instanceof BooleanType) {
 			return (BooleanType) dataType;
 		}
-		throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be boolean"));
+		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be boolean"));
 	}
 
 	public static DataType evaluateExpressionDataType(String expression) throws CoreException {
-		MscriptParser parser = ExecutionCorePlugin.getDefault().getMscriptParser();
+		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
 				parser.getGrammarAccess().getExpressionRule().getName(),
 				new StringReader(expression));
 		if (!result.getParseErrors().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parse error"));
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
 		}
 		
 		ITransformerContext transformerContext = new TransformerContext();
@@ -104,12 +104,12 @@ public class EvaluationUtil {
 	}
 
 	public static List<DataType> evaluateExpressionListDataTypes(String expressionList) throws CoreException {
-		MscriptParser parser = ExecutionCorePlugin.getDefault().getMscriptParser();
+		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
 				parser.getGrammarAccess().getExpressionListRule().getName(),
 				new StringReader(expressionList));
 		if (!result.getParseErrors().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parse error"));
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
 		}
 		List<DataType> dataTypes = new ArrayList<DataType>();
 		ExpressionList expressions = (ExpressionList) result.getRootASTElement();
@@ -128,12 +128,12 @@ public class EvaluationUtil {
 	}
 
 	public static DataType evaluateDataTypeSpecifierDataType(IInterpreterContext context, String dataTypeSpecifier) throws CoreException {
-		MscriptParser parser = ExecutionCorePlugin.getDefault().getMscriptParser();
+		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
 				parser.getGrammarAccess().getDataTypeSpecifierRule().getName(),
 				new StringReader(dataTypeSpecifier));
 		if (!result.getParseErrors().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parse error"));
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
 		}
 		return new DataTypeSpecifierEvaluator(context).doSwitch(result.getRootASTElement());
 	}

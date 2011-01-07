@@ -8,12 +8,10 @@ package org.eclipselabs.damos.execution.executionmodel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipselabs.damos.execution.executionmodel.*;
+import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
+import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
 
 /**
  * <!-- begin-user-doc -->

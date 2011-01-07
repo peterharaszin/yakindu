@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.execution.engine.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.FractionBlockEditPart;
 import org.eclipselabs.damos.library.common.util.PolynomialExpressionUtil;
@@ -65,7 +65,7 @@ public class TransferFunctionEditPart extends FractionBlockEditPart {
 		if (block != null) {
 			String argument = block.getArgumentStringValue(parameterName);
 			if (argument != null) {
-				MscriptParser parser = ExecutionCorePlugin.getDefault().getMscriptParser();
+				MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 				IParseResult result = parser.parse(
 						parser.getGrammarAccess().getExpressionListRule().getName(),
 						new StringReader(argument));

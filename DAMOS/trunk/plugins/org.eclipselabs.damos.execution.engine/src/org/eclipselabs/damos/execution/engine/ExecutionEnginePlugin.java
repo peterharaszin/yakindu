@@ -11,7 +11,7 @@ import com.google.inject.Injector;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class ExecutionCorePlugin extends Plugin {
+public class ExecutionEnginePlugin extends Plugin {
 
 	private MscriptParser mscriptParser;
 	
@@ -19,12 +19,12 @@ public class ExecutionCorePlugin extends Plugin {
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.execution.engine";
 
 	// The shared instance
-	private static ExecutionCorePlugin plugin;
+	private static ExecutionEnginePlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public ExecutionCorePlugin() {
+	public ExecutionEnginePlugin() {
 	}
 
 	/*
@@ -55,7 +55,7 @@ public class ExecutionCorePlugin extends Plugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static ExecutionCorePlugin getDefault() {
+	public static ExecutionEnginePlugin getDefault() {
 		return plugin;
 	}
 	

@@ -31,7 +31,7 @@ import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.util.EvaluationUtil;
@@ -53,7 +53,7 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Subsystem subsystem = (Subsystem) component;
 		
-		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = new ComponentSignature();
 		
 		for (Input input : subsystem.getInputs()) {
@@ -64,14 +64,14 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 					if (!input.getPorts().isEmpty()) {
 						DataType incomingDataType = incomingDataTypes.get(input.getPorts().get(0));
 						if (incomingDataType != null && !dataType.isAssignableFrom(incomingDataType)) {
-							status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Incompatible input value")));
+							status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Incompatible input value")));
 						}
 					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Missing input port")));
+						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, getInoutletErrorMessage(inlet, "Missing input port")));
 					}
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid subsystem input"));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid subsystem input"));
 			}
 		}
 
@@ -83,11 +83,11 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 					if (!output.getPorts().isEmpty()) {
 						signature.getOutputDataTypes().put(output.getPorts().get(0), EcoreUtil.copy(dataType));
 					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(outlet, "Missing output port")));
+						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, getInoutletErrorMessage(outlet, "Missing output port")));
 					}
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid subsystem output"));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid subsystem output"));
 			}
 		}
 
@@ -104,21 +104,21 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 					if (!(dataType instanceof InvalidDataType)) {
 						return dataType;
 					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(inoutlet, "Invalid data type specified")));
+						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, getInoutletErrorMessage(inoutlet, "Invalid data type specified")));
 					}
 				} catch (CoreException e) {
 					status.add(new MultiStatus(
-							ExecutionCorePlugin.PLUGIN_ID,
+							ExecutionEnginePlugin.PLUGIN_ID,
 							0,
 							new IStatus[] { e.getStatus() },
 							"Data type evaluation for inlet '" + inoutlet.getName() + "' failed",
 							null));
 				}
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, getInoutletErrorMessage(inoutlet, "No data type specified")));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, getInoutletErrorMessage(inoutlet, "No data type specified")));
 			}
 		} else {
-			status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid model"));
+			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));
 		}
 		return null;
 	}

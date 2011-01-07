@@ -32,7 +32,7 @@ import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.ExecutionCorePlugin;
+import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
@@ -71,29 +71,29 @@ public class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolic
 			Map<InputPort, DataType> incomingDataTypes) {
 		Block block = (Block) component;
 
-		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
 
 		OpaqueBehaviorSpecification behavior = (OpaqueBehaviorSpecification) block.getType().getBehavior();
 
 		if (StringUtils.isBlank(behavior.getBehavior())) {
-			status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "No block behavior specified"));
+			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No block behavior specified"));
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		MscriptParser parser = ExecutionCorePlugin.getDefault().getMscriptParser();
+		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 
 		IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule().getName(),
 				new StringReader(behavior.getBehavior()));
 
 		if (!parseResult.getParseErrors().isEmpty()) {
-			status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parsing block behavior failed"));
+			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block behavior failed"));
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
 		Module module = (Module) parseResult.getRootASTElement();
 		FunctionDefinition functionDefinition = LanguageUtil.getFunctionDefinition(module, block.getType().getName());
 		if (functionDefinition == null) {
-			status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Mscript function '" + block.getType().getName() + "' not found"));
+			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Mscript function '" + block.getType().getName() + "' not found"));
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
@@ -132,13 +132,13 @@ public class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolic
 			
 			BlockOutput output = (BlockOutput) block.getOutput(outputVariableDeclaration.getName());
 			if (output == null) {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Output '" + outputVariableDeclaration.getName() + "' not found"));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Output '" + outputVariableDeclaration.getName() + "' not found"));
 				continue;
 			}
 
 			if (output.getDefinition().isManyPorts() || output.getDefinition().getMinimumPortCount() == 0) {
 				if (!(dataType instanceof ArrayType)) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Output '" + outputVariableDeclaration.getName() + "' must result to array type"));
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Output '" + outputVariableDeclaration.getName() + "' must result to array type"));
 					continue;
 				}
 				ArrayType arrayType = (ArrayType) dataType;
@@ -148,7 +148,7 @@ public class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolic
 				}
 			} else {
 				if (output.getPorts().isEmpty()) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid output '" + outputVariableDeclaration.getName() + "'"));
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid output '" + outputVariableDeclaration.getName() + "'"));
 					continue;
 				}
 				componentSignature.getOutputDataTypes().put(output.getPorts().get(0), dataType);
@@ -181,18 +181,18 @@ public class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolic
 					IValue herzValue = new ValueConstructor().createRealValue(new ComputationContext(), integerType, 1);
 					templateArguments.add(herzValue);
 				} else {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Block parameter '" + parameterDeclaration.getName() + "' not found"));
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Block parameter '" + parameterDeclaration.getName() + "' not found"));
 				}
 				continue;
 			}
 
-			MscriptParser parser = ExecutionCorePlugin.getDefault().getMscriptParser();
+			MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 
 			IParseResult parseResult = parser.parse(parser.getGrammarAccess().getExpressionRule().getName(),
 					new StringReader(argument));
 			
 			if (!parseResult.getParseErrors().isEmpty()) {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Parsing block parameter '" + parameterDeclaration.getName() + "' failed"));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block parameter '" + parameterDeclaration.getName() + "' failed"));
 				continue;
 			}
 
@@ -217,7 +217,7 @@ public class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolic
 		for (ParameterDeclaration parameterDeclaration : functionDefinition.getInputParameterDeclarations()) {
 			BlockInput input = (BlockInput) block.getInput(parameterDeclaration.getName());
 			if (input == null) {
-				status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' not found"));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' not found"));
 				continue;
 			}
 
@@ -231,7 +231,7 @@ public class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolic
 						} else {
 							elementDataType = TypeSystemUtil.getLeftHandDataType(elementDataType, dataType);
 							if (elementDataType == null) {
-								status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' has incompatible input values"));
+								status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' has incompatible input values"));
 								continue;
 							}
 						}
@@ -244,7 +244,7 @@ public class DeclarativeBlockSignaturePolicy implements IComponentSignaturePolic
 			} else {
 				DataType dataType = null;
 				if (input.getPorts().isEmpty()) {
-					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid input '" + parameterDeclaration.getName() + "'"));
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid input '" + parameterDeclaration.getName() + "'"));
 					continue;
 				}
 				dataType = incomingDataTypes.get(input.getPorts().get(0));

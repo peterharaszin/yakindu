@@ -983,7 +983,7 @@ public class Matrix implements Cloneable, java.io.Serializable {
    @param input the input stream.
    */
 
-   @SuppressWarnings("unchecked")
+@SuppressWarnings("unchecked")
 public static Matrix read (BufferedReader input) throws java.io.IOException {
       StreamTokenizer tokenizer= new StreamTokenizer(input);
 
@@ -997,7 +997,8 @@ public static Matrix read (BufferedReader input) throws java.io.IOException {
       tokenizer.wordChars(0,255);
       tokenizer.whitespaceChars(0, ' ');
       tokenizer.eolIsSignificant(true);
-      java.util.Vector v = new java.util.Vector();
+      @SuppressWarnings("rawtypes")
+	java.util.Vector v = new java.util.Vector();
 
       // Ignore initial empty lines
       while (tokenizer.nextToken() == StreamTokenizer.TT_EOL);

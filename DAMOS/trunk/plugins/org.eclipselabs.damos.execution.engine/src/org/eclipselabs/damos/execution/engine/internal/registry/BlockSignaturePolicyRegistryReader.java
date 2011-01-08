@@ -26,7 +26,7 @@ public class BlockSignaturePolicyRegistryReader extends AbstractRegistryReader {
 
 	private static final String EXTENSION_POINT_NAME = "blockSignaturePolicies";
 	
-	private static final String TAG_POLICY = "policy";
+	private static final String TAG = "policy";
 	private static final String ATT_BLOCK_TYPE = "blockType";
 
 	private BlockSignaturePolicyProvider provider;
@@ -57,7 +57,7 @@ public class BlockSignaturePolicyRegistryReader extends AbstractRegistryReader {
 	 */
 	@Override
 	protected boolean readElement(IConfigurationElement element) {
-        if (!element.getName().equals(TAG_POLICY)) {
+        if (!element.getName().equals(TAG)) {
 			return false;
 		}
 

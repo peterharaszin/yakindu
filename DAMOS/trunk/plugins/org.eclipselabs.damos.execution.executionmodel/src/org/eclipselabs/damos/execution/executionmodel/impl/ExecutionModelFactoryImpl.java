@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
 
@@ -58,9 +59,20 @@ public class ExecutionModelFactoryImpl extends EFactoryImpl implements Execution
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case ExecutionModelPackage.EXECUTION_MODEL: return createExecutionModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExecutionModel createExecutionModel() {
+		ExecutionModelImpl executionModel = new ExecutionModelImpl();
+		return executionModel;
 	}
 
 	/**

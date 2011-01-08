@@ -26,6 +26,15 @@ public interface ExecutionModelFactory extends EFactory {
 	ExecutionModelFactory eINSTANCE = org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Execution Model</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Execution Model</em>'.
+	 * @generated
+	 */
+	ExecutionModel createExecutionModel();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

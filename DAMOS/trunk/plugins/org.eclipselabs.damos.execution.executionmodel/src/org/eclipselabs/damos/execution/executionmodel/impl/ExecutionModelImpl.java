@@ -29,7 +29,7 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  *
  * @generated
  */
-public abstract class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
+public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	/**
 	 * The default value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
 	 * <!-- begin-user-doc -->

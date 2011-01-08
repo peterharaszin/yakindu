@@ -23,7 +23,7 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * </p>
  *
  * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface ExecutionModel extends EObject {

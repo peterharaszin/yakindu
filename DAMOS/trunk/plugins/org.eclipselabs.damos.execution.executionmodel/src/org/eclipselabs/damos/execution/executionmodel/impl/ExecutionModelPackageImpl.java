@@ -187,7 +187,7 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(executionModelEClass, ExecutionModel.class, "ExecutionModel", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(executionModelEClass, ExecutionModel.class, "ExecutionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExecutionModel_SampleTime(), ecorePackage.getEDouble(), "sampleTime", null, 1, 1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExecutionModel_ComputationModel(), theComputationModelPackage.getComputationModel(), null, "computationModel", null, 0, 1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

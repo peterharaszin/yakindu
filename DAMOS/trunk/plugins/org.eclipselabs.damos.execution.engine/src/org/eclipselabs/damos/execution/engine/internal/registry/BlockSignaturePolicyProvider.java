@@ -59,7 +59,7 @@ public class BlockSignaturePolicyProvider implements IComponentSignaturePolicyPr
 
 	private void initializeFromStorage() {
 		BlockSignaturePolicyRegistryReader reader = new BlockSignaturePolicyRegistryReader();
-		reader.registerBlockSignaturePolicies(this);
+		reader.registerDescriptors(this);
 	}
 
 }

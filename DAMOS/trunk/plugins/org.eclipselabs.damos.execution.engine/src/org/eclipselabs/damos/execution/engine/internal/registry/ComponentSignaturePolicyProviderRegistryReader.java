@@ -31,7 +31,7 @@ public class ComponentSignaturePolicyProviderRegistryReader extends AbstractRegi
 
 	private ComponentSignaturePolicyProviderRegistry registry;
 	
-	public void registerComponentSignaturePolicyProviders(ComponentSignaturePolicyProviderRegistry registry) {
+	public void registerProviders(ComponentSignaturePolicyProviderRegistry registry) {
 		this.registry = registry;
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);
 	}

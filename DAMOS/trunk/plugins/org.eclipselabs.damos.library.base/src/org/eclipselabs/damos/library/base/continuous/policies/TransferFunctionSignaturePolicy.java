@@ -15,9 +15,10 @@ import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.engine.util.EvaluationUtil;
+import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
+import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.Unit;
@@ -34,16 +35,16 @@ public class TransferFunctionSignaturePolicy implements IComponentSignaturePolic
 		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		List<DataType> numeratorTypes = null;
+		List<IValue> numeratorTypes = null;
 		try {
-			numeratorTypes = EvaluationUtil.evaluateArgumentExpressionListDataTypes(block, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
+			numeratorTypes = ExpressionUtil.evaluateArgumentExpressionList(block, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		List<DataType> denominatorTypes = null;
+		List<IValue> denominatorTypes = null;
 		try {
-			denominatorTypes = EvaluationUtil.evaluateArgumentExpressionListDataTypes(block, TransferFunctionConstants.PARAMETER__DENOMINATOR_COEFFICIENTS);
+			denominatorTypes = ExpressionUtil.evaluateArgumentExpressionList(block, TransferFunctionConstants.PARAMETER__DENOMINATOR_COEFFICIENTS);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
@@ -54,9 +55,10 @@ public class TransferFunctionSignaturePolicy implements IComponentSignaturePolic
 		
 		Unit dimensionlessUnit = TypeSystemUtil.createUnit();
 		
-		for (DataType numeratorType : numeratorTypes) {
-			if (numeratorType instanceof NumericType) {
-				if (!dimensionlessUnit.isSameAs(((NumericType) numeratorType).getUnit(), false)) {
+		for (IValue numeratorValue : numeratorTypes) {
+			if (numeratorValue.getDataType() instanceof NumericType) {
+				NumericType numericType = (NumericType) numeratorValue.getDataType();
+				if (!dimensionlessUnit.isSameAs(numericType.getUnit(), false)) {
 					status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator Coefficients must be dimensionless"));
 				}
 			} else {
@@ -64,9 +66,10 @@ public class TransferFunctionSignaturePolicy implements IComponentSignaturePolic
 			}
 		}
 
-		for (DataType denominatorType : denominatorTypes) {
-			if (denominatorType instanceof NumericType) {
-				if (!dimensionlessUnit.isSameAs(((NumericType) denominatorType).getUnit(), false)) {
+		for (IValue denominatorValue : denominatorTypes) {
+			if (denominatorValue instanceof NumericType) {
+				NumericType numericType = (NumericType) denominatorValue.getDataType();
+				if (!dimensionlessUnit.isSameAs(numericType.getUnit(), false)) {
 					status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator Coefficients must be dimensionless"));
 				}
 			} else {

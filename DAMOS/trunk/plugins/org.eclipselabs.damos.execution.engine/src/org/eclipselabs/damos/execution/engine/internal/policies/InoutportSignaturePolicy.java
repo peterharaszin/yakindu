@@ -27,7 +27,7 @@ import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.engine.util.EvaluationUtil;
+import org.eclipselabs.damos.execution.engine.util.DataTypeSpecifierUtil;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
@@ -71,7 +71,7 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 			if (dataTypeSpecification.getDataType() != null && dataTypeSpecification.getDataType().trim().length() > 0) {
 				try {
 					IInterpreterContext context = new InterpreterContext(new ComputationContext());
-					DataType dataType = EvaluationUtil.evaluateDataTypeSpecifierDataType(context, dataTypeSpecification.getDataType());
+					DataType dataType = DataTypeSpecifierUtil.evaluateDataTypeSpecifierDataType(context, dataTypeSpecification.getDataType());
 					if (!(dataType instanceof InvalidDataType)) {
 						return dataType;
 					} else {

@@ -23,68 +23,66 @@ import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
+import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
+import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.ExpressionList;
 import org.eclipselabs.mscript.language.il.transform.ITransformerContext;
 import org.eclipselabs.mscript.language.il.transform.TransformerContext;
-import org.eclipselabs.mscript.language.interpreter.DataTypeSpecifierEvaluator;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.util.ExpressionInterpreterHelper;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
-import org.eclipselabs.mscript.typesystem.BooleanType;
-import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger
  *
  */
-public class EvaluationUtil {
+public class ExpressionUtil {
 
-	public static DataType evaluateArgumentDataType(Block block, String parameterName) throws CoreException {
+	public static IValue evaluateArgumentExpression(Block block, String parameterName) throws CoreException {
 		String parameterExpression = block.getArgumentStringValue(parameterName);
 		if (parameterExpression != null) {
-			return evaluateExpressionDataType(parameterExpression);
+			return evaluateExpression(parameterExpression);
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
-	public static List<DataType> evaluateArgumentExpressionListDataTypes(Block block, String parameterName) throws CoreException {
+	public static List<IValue> evaluateArgumentExpressionList(Block block, String parameterName) throws CoreException {
 		String parameterExpressionList = block.getArgumentStringValue(parameterName);
 		if (parameterExpressionList != null) {
-			return evaluateExpressionListDataTypes(parameterExpressionList);
+			return evaluateExpressionList(parameterExpressionList);
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
-	public static NumericType evaluateArgumentNumericType(Block block, String parameterName) throws CoreException {
-		DataType dataType = evaluateArgumentDataType(block, parameterName);
-		if (dataType instanceof NumericType) {
-			return (NumericType) dataType;
+	public static ISimpleNumericValue evaluateSimpleNumericArgument(Block block, String parameterName) throws CoreException {
+		IValue value = evaluateArgumentExpression(block, parameterName);
+		if (value instanceof ISimpleNumericValue) {
+			return (ISimpleNumericValue) value;
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
 	}
 
-	public static IntegerType evaluateArgumentIntegerType(Block block, String parameterName) throws CoreException {
-		DataType dataType = evaluateArgumentDataType(block, parameterName);
-		if (dataType instanceof IntegerType) {
-			return (IntegerType) dataType;
+	public static ISimpleNumericValue evaluateIntegerArgument(Block block, String parameterName) throws CoreException {
+		IValue value = evaluateArgumentExpression(block, parameterName);
+		if (value instanceof ISimpleNumericValue && value.getDataType() instanceof IntegerType) {
+			return (ISimpleNumericValue) value;
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be integer"));
 	}
 
-	public static BooleanType evaluateArgumentBooleanType(Block block, String parameterName) throws CoreException {
-		DataType dataType = evaluateArgumentDataType(block, parameterName);
-		if (dataType instanceof BooleanType) {
-			return (BooleanType) dataType;
+	public static IBooleanValue evaluateBooleanArgument(Block block, String parameterName) throws CoreException {
+		IValue value = evaluateArgumentExpression(block, parameterName);
+		if (value instanceof IBooleanValue) {
+			return (IBooleanValue) value;
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be boolean"));
 	}
 
-	public static DataType evaluateExpressionDataType(String expression) throws CoreException {
+	public static IValue evaluateExpression(String expression) throws CoreException {
 		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
 				parser.getGrammarAccess().getExpressionRule().getName(),
@@ -100,10 +98,10 @@ public class EvaluationUtil {
 				interpreterContext, (Expression) result.getRootASTElement());
 		IValue value = expressionInterpreterHelper.evaluateSingle();
 		
-		return value.getDataType();
+		return value;
 	}
 
-	public static List<DataType> evaluateExpressionListDataTypes(String expressionList) throws CoreException {
+	public static List<IValue> evaluateExpressionList(String expressionList) throws CoreException {
 		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
 				parser.getGrammarAccess().getExpressionListRule().getName(),
@@ -111,7 +109,7 @@ public class EvaluationUtil {
 		if (!result.getParseErrors().isEmpty()) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
 		}
-		List<DataType> dataTypes = new ArrayList<DataType>();
+		List<IValue> values = new ArrayList<IValue>();
 		ExpressionList expressions = (ExpressionList) result.getRootASTElement();
 		
 		ITransformerContext transformerContext = new TransformerContext();
@@ -121,21 +119,10 @@ public class EvaluationUtil {
 			ExpressionInterpreterHelper expressionInterpreterHelper = new ExpressionInterpreterHelper(
 					transformerContext, interpreterContext, expression);
 			IValue value = expressionInterpreterHelper.evaluateSingle();
-			dataTypes.add(value.getDataType());
+			values.add(value);
 		}
 		
-		return dataTypes;
-	}
-
-	public static DataType evaluateDataTypeSpecifierDataType(IInterpreterContext context, String dataTypeSpecifier) throws CoreException {
-		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
-		IParseResult result = parser.parse(
-				parser.getGrammarAccess().getDataTypeSpecifierRule().getName(),
-				new StringReader(dataTypeSpecifier));
-		if (!result.getParseErrors().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
-		}
-		return new DataTypeSpecifierEvaluator(context).doSwitch(result.getRootASTElement());
+		return values;
 	}
 	
 }

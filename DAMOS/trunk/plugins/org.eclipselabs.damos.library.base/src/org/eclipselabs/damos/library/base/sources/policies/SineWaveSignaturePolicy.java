@@ -25,7 +25,7 @@ import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.engine.util.EvaluationUtil;
+import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -49,28 +49,28 @@ public class SineWaveSignaturePolicy implements IComponentSignaturePolicy {
 		
 		NumericType amplitudeDataType = null;
 		try {
-			amplitudeDataType = EvaluationUtil.evaluateArgumentNumericType(block, SineWaveConstants.PARAMETER__AMPLITUDE);
+			amplitudeDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__AMPLITUDE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType biasDataType = null;
 		try {
-			biasDataType = EvaluationUtil.evaluateArgumentNumericType(block, SineWaveConstants.PARAMETER__BIAS);
+			biasDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__BIAS).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType frequencyDataType = null;
 		try {
-			frequencyDataType = EvaluationUtil.evaluateArgumentNumericType(block, SineWaveConstants.PARAMETER__FREQUENCY);
+			frequencyDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__FREQUENCY).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType phaseDataType = null;
 		try {
-			phaseDataType = EvaluationUtil.evaluateArgumentNumericType(block, SineWaveConstants.PARAMETER__PHASE);
+			phaseDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__PHASE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}

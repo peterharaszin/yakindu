@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.library.base.sources.policies;
+package org.eclipselabs.damos.library.base.sources.signaturepolicies;
 
 import java.util.Map;
 
@@ -27,7 +27,7 @@ import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResul
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
-import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
+import org.eclipselabs.damos.library.base.sources.util.StepConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
 import org.eclipselabs.mscript.typesystem.RealType;
@@ -40,68 +40,56 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  * @author Andreas Unger
  *
  */
-public class SineWaveSignaturePolicy implements IComponentSignaturePolicy {
+public class StepSignaturePolicy implements IComponentSignaturePolicy {
 	
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Block block = (Block) component;
 		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		NumericType amplitudeDataType = null;
+		NumericType initialValueDataType = null;
 		try {
-			amplitudeDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__AMPLITUDE).getDataType();
+			initialValueDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, StepConstants.PARAMETER__INITIAL_VALUE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericType biasDataType = null;
+		NumericType finalValueDataType = null;
 		try {
-			biasDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__BIAS).getDataType();
+			finalValueDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, StepConstants.PARAMETER__FINAL_VALUE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericType frequencyDataType = null;
+		NumericType stepTimeDataType = null;
 		try {
-			frequencyDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__FREQUENCY).getDataType();
+			stepTimeDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, StepConstants.PARAMETER__STEP_TIME).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		NumericType phaseDataType = null;
-		try {
-			phaseDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, SineWaveConstants.PARAMETER__PHASE).getDataType();
-		} catch (CoreException e) {
-			status.add(e.getStatus());
-		}
-
-		if (amplitudeDataType == null || biasDataType == null || frequencyDataType == null || phaseDataType == null) {
+		if (initialValueDataType == null || finalValueDataType == null || stepTimeDataType == null) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!EcoreUtil.equals(amplitudeDataType.getUnit(), biasDataType.getUnit())) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Amplitude and Bias must have same unit"));
+		if (!EcoreUtil.equals(initialValueDataType.getUnit(), finalValueDataType.getUnit())) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Value and Final Value must have same unit"));
 		}
 		
-		if (frequencyDataType.isSetUnit() 
-				&& !frequencyDataType.getUnit().isSameAs(TypeSystemUtil.createUnit().divide(TypeSystemUtil.createUnit(UnitSymbol.SECOND)), true)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Frequency unit must be 1/s"));
-		}
-
-		if (phaseDataType.isSetUnit() 
-				&& !phaseDataType.getUnit().isSameAs(TypeSystemUtil.createUnit(), true)) {
-			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Phase unit must be dimensionless"));
+		if (stepTimeDataType.isSetUnit() 
+				&& !stepTimeDataType.getUnit().isSameAs(TypeSystemUtil.createUnit(UnitSymbol.SECOND), true)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Step Time unit must be second"));
 		}
 
 		if (!status.isOK()) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		Unit unit = amplitudeDataType.getUnit();
+		Unit unit = initialValueDataType.getUnit();
 		ComponentSignature signature = new ComponentSignature();
 
 		NumericType outputDataType;
-		if (amplitudeDataType instanceof RealType || biasDataType instanceof RealType) {
+		if (initialValueDataType instanceof RealType || finalValueDataType instanceof RealType) {
 			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		} else {
 			outputDataType = TypeSystemFactory.eINSTANCE.createIntegerType();

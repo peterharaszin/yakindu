@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.library.base.sinks.policies;
+package org.eclipselabs.damos.library.base.sinks.signaturepolicies;
 
 import java.util.Map;
 

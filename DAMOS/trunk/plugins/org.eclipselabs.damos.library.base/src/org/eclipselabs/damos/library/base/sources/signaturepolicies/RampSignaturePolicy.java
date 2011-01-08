@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.library.base.sources.policies;
+package org.eclipselabs.damos.library.base.sources.signaturepolicies;
 
 import java.util.Map;
 

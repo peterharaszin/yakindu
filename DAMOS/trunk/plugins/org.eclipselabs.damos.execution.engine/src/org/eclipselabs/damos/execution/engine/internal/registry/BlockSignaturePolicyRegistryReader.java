@@ -31,7 +31,7 @@ public class BlockSignaturePolicyRegistryReader extends AbstractRegistryReader {
 
 	private BlockSignaturePolicyProvider provider;
 	
-	public void registerBlockSignaturePolicies(BlockSignaturePolicyProvider provider) {
+	public void registerDescriptors(BlockSignaturePolicyProvider provider) {
 		this.provider = provider;
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);
 	}

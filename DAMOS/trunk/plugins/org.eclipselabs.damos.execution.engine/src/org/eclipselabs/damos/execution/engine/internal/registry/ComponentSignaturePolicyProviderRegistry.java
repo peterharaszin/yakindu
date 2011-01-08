@@ -67,7 +67,7 @@ public class ComponentSignaturePolicyProviderRegistry {
 
 	private void initializeFromStorage() {
 		ComponentSignaturePolicyProviderRegistryReader reader = new ComponentSignaturePolicyProviderRegistryReader();
-		reader.registerComponentSignaturePolicyProviders(this);
+		reader.registerProviders(this);
 	}
 	
 }

@@ -25,7 +25,7 @@ import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.engine.util.EvaluationUtil;
+import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -49,21 +49,21 @@ public class StepSignaturePolicy implements IComponentSignaturePolicy {
 		
 		NumericType initialValueDataType = null;
 		try {
-			initialValueDataType = EvaluationUtil.evaluateArgumentNumericType(block, StepConstants.PARAMETER__INITIAL_VALUE);
+			initialValueDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, StepConstants.PARAMETER__INITIAL_VALUE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType finalValueDataType = null;
 		try {
-			finalValueDataType = EvaluationUtil.evaluateArgumentNumericType(block, StepConstants.PARAMETER__FINAL_VALUE);
+			finalValueDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, StepConstants.PARAMETER__FINAL_VALUE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType stepTimeDataType = null;
 		try {
-			stepTimeDataType = EvaluationUtil.evaluateArgumentNumericType(block, StepConstants.PARAMETER__STEP_TIME);
+			stepTimeDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, StepConstants.PARAMETER__STEP_TIME).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}

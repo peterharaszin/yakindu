@@ -25,7 +25,7 @@ import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
-import org.eclipselabs.damos.execution.engine.util.EvaluationUtil;
+import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -49,21 +49,21 @@ public class RampSignaturePolicy implements IComponentSignaturePolicy {
 		
 		NumericType initialValueDataType = null;
 		try {
-			initialValueDataType = EvaluationUtil.evaluateArgumentNumericType(block, RampConstants.PARAMETER__INITIAL_VALUE);
+			initialValueDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, RampConstants.PARAMETER__INITIAL_VALUE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
 		NumericType startTimeDataType = null;
 		try {
-			startTimeDataType = EvaluationUtil.evaluateArgumentNumericType(block, RampConstants.PARAMETER__START_TIME);
+			startTimeDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, RampConstants.PARAMETER__START_TIME).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 
 		NumericType slopeDataType = null;
 		try {
-			slopeDataType = EvaluationUtil.evaluateArgumentNumericType(block, RampConstants.PARAMETER__SLOPE);
+			slopeDataType = ExpressionUtil.evaluateSimpleNumericArgument(block, RampConstants.PARAMETER__SLOPE).getDataType();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}

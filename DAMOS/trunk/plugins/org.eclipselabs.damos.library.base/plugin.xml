@@ -158,27 +158,27 @@
          point="org.eclipselabs.damos.execution.engine.blockSignaturePolicies">
       <policy
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
-            class="org.eclipselabs.damos.library.base.continuous.policies.TransferFunctionSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.TransferFunctionSignaturePolicy"
             name="Transfer Function">
       </policy>
       <policy
             blockType="org.eclipselabs.damos.library.base.sinks.Scope"
-            class="org.eclipselabs.damos.library.base.sinks.policies.ScopeSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.sinks.signaturepolicies.ScopeSignaturePolicy"
             name="Scope">
       </policy>
       <policy
             blockType="org.eclipselabs.damos.library.base.sources.Step"
-            class="org.eclipselabs.damos.library.base.sources.policies.StepSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.sources.signaturepolicies.StepSignaturePolicy"
             name="Step">
       </policy>
       <policy
             blockType="org.eclipselabs.damos.library.base.sources.Ramp"
-            class="org.eclipselabs.damos.library.base.sources.policies.RampSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.sources.signaturepolicies.RampSignaturePolicy"
             name="Ramp">
       </policy>
       <policy
             blockType="org.eclipselabs.damos.library.base.sources.SineWave"
-            class="org.eclipselabs.damos.library.base.sources.policies.SineWaveSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.sources.signaturepolicies.SineWaveSignaturePolicy"
             name="Sine Wave">
       </policy>
    </extension>

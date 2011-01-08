@@ -16,8 +16,8 @@ import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicyProvider;
-import org.eclipselabs.damos.execution.engine.internal.policies.InoutportSignaturePolicy;
-import org.eclipselabs.damos.execution.engine.internal.policies.SubsystemSignaturePolicy;
+import org.eclipselabs.damos.execution.engine.internal.signaturepolicies.InoutportSignaturePolicy;
+import org.eclipselabs.damos.execution.engine.internal.signaturepolicies.SubsystemSignaturePolicy;
 
 /**
  * @author Andreas Unger

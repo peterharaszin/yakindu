@@ -6,7 +6,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicyProvider;
-import org.eclipselabs.damos.execution.engine.internal.policies.DeclarativeBlockSignaturePolicy;
+import org.eclipselabs.damos.execution.engine.internal.signaturepolicies.DeclarativeBlockSignaturePolicy;
 
 public class DeclarativeBlockSignaturePolicyProvider implements IComponentSignaturePolicyProvider {
 

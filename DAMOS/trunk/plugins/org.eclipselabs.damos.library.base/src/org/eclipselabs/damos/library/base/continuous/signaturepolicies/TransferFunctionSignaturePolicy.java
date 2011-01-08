@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.library.base.continuous.policies;
+package org.eclipselabs.damos.library.base.continuous.signaturepolicies;
 
 import java.util.List;
 import java.util.Map;

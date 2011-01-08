@@ -67,7 +67,7 @@ public class BlockSignaturePolicyDescriptor {
 		this.configurationElement = configurationElement;
 	}
 		
-	public IComponentSignaturePolicy createPolicy() {
+	public IComponentSignaturePolicy createObject() {
 		if (clazz == null) {
 			loadClass();
 		}

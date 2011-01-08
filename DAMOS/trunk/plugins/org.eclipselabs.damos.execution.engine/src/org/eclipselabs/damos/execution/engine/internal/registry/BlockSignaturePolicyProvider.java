@@ -43,7 +43,7 @@ public class BlockSignaturePolicyProvider implements IComponentSignaturePolicyPr
 			BlockType blockType = ((Block) component).getType();
 			BlockSignaturePolicyDescriptor descriptor = descriptors.get(blockType.getQualifiedName());
 			if (descriptor != null) {
-				return descriptor.createPolicy();
+				return descriptor.createObject();
 			}
 		}
 		return null;

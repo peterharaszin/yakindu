@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipselabs.damos.simulation.engine.blockSimulationObjects">
+      <simulationObject
+            blockType="org.eclipselabs.damos.library.base.sources.Step"
+            class="org.eclipselabs.damos.library.base.simulation.sources.StepSimulationObject"
+            name="Step">
+      </simulationObject>
+      <simulationObject
+            blockType="org.eclipselabs.damos.library.base.sinks.Scope"
+            class="org.eclipselabs.damos.library.base.simulation.sinks.ScopeSimulationObject"
+            name="Scope">
+      </simulationObject>
+   </extension>
+
+</plugin>

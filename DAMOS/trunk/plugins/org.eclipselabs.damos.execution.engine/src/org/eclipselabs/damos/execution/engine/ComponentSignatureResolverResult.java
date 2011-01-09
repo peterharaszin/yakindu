@@ -22,10 +22,25 @@ import org.eclipselabs.damos.dml.Component;
  * @author Andreas Unger
  *
  */
-public class DataTypeResolverResult {
+public class ComponentSignatureResolverResult {
 
 	private Map<Component, IComponentSignature> signatures = new HashMap<Component, IComponentSignature>();
 	private IStatus status = Status.OK_STATUS;
+	
+	/**
+	 * 
+	 */
+	public ComponentSignatureResolverResult(Map<Component, IComponentSignature> signatures) {
+		this.signatures = signatures;
+	}
+
+	/**
+	 * 
+	 */
+	public ComponentSignatureResolverResult(Map<Component, IComponentSignature> signatures, IStatus status) {
+		this.signatures = signatures;
+		this.status = status;
+	}
 
 	public Map<Component, IComponentSignature> getSignatures() {
 		return signatures;
@@ -36,13 +51,6 @@ public class DataTypeResolverResult {
 	 */
 	public IStatus getStatus() {
 		return status;
-	}
-	
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(IStatus status) {
-		this.status = status;
 	}
 	
 }

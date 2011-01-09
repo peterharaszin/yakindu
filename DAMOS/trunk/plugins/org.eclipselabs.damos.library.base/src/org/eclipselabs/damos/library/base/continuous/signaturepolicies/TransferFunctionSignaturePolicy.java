@@ -94,7 +94,7 @@ public class TransferFunctionSignaturePolicy implements IComponentSignaturePolic
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		ComponentSignature signature = new ComponentSignature();
+		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
 		return new ComponentSignatureEvaluationResult(signature);
 	}

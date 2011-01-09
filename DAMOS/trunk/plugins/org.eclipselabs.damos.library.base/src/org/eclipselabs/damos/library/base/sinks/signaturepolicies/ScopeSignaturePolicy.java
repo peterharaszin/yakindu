@@ -25,7 +25,7 @@ public class ScopeSignaturePolicy implements IComponentSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		ComponentSignature signature = new ComponentSignature();
+		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		for (InputPort inputPort : component.getInputs().get(0).getPorts()) {
 			DataType incomingDataType = incomingDataTypes.get(inputPort);
@@ -37,7 +37,6 @@ public class ScopeSignaturePolicy implements IComponentSignaturePolicy {
 		if (!status.isOK()) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
-
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

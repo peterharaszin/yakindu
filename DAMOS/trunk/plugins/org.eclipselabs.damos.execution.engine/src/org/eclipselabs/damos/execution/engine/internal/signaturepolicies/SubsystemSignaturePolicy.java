@@ -54,7 +54,7 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 		Subsystem subsystem = (Subsystem) component;
 		
 		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
-		ComponentSignature signature = new ComponentSignature();
+		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		
 		for (Input input : subsystem.getInputs()) {
 			if (input instanceof SubsystemInput) {
@@ -91,7 +91,10 @@ public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
 			}
 		}
 
-		return new ComponentSignatureEvaluationResult(signature, status);
+		if (!status.isOK()) {
+			return new ComponentSignatureEvaluationResult(status);
+		}
+		return new ComponentSignatureEvaluationResult(signature);
 	}
 	
 	private DataType getDataType(MultiStatus status, Inoutlet inoutlet) {

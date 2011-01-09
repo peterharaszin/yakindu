@@ -98,7 +98,7 @@ public class SineWaveSignaturePolicy implements IComponentSignaturePolicy {
 		}
 		
 		Unit unit = amplitudeDataType.getUnit();
-		ComponentSignature signature = new ComponentSignature();
+		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		NumericType outputDataType;
 		if (amplitudeDataType instanceof RealType || biasDataType instanceof RealType) {

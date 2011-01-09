@@ -24,8 +24,8 @@ import org.eclipselabs.damos.common.markers.IMarkerConstants;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.execution.engine.DataTypeResolver;
-import org.eclipselabs.damos.execution.engine.DataTypeResolverResult;
+import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
+import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
 import org.eclipselabs.damos.execution.engine.IComponentStatus;
 import org.eclipselabs.damos.ide.core.IDECorePlugin;
 
@@ -89,10 +89,10 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			resource.deleteMarkers(null, false, IResource.DEPTH_INFINITE);
 			resource.deleteMarkers(null, false, IResource.DEPTH_INFINITE);
 			
-			DataTypeResolver dataTypeResolver = new DataTypeResolver();
+			ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
 			for (Object o : EcoreUtil.getObjectsByType(blockDiagramResource.getContents(), DMLPackage.Literals.FRAGMENT)) {
 				Fragment fragment = (Fragment) o;
-				DataTypeResolverResult result = dataTypeResolver.resolve(fragment);
+				ComponentSignatureResolverResult result = signatureResolver.resolve(fragment, false);
 				if (!result.getStatus().isOK()) {
 					for (IStatus status : result.getStatus().getChildren()) {
 						attachMarkers(resource, fragment, null, status);

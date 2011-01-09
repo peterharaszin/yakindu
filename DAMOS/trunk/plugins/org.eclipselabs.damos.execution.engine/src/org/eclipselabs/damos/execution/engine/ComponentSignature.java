@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.mscript.typesystem.DataType;
 
@@ -25,8 +26,20 @@ import org.eclipselabs.mscript.typesystem.DataType;
  */
 public class ComponentSignature implements IComponentSignature {
 
+	private Map<InputPort, DataType> inputDataTypes;
 	private Map<OutputPort, DataType> outputDataTypes = new HashMap<OutputPort,DataType>();
 
+	/**
+	 * 
+	 */
+	public ComponentSignature(Map<InputPort, DataType> inputDataTypes) {
+		this.inputDataTypes = inputDataTypes;
+	}
+	
+	public DataType getInputDataType(InputPort inputPort) {
+		return inputDataTypes.get(inputPort);
+	}
+	
 	public Map<OutputPort, DataType> getOutputDataTypes() {
 		return outputDataTypes;
 	}
@@ -48,10 +61,20 @@ public class ComponentSignature implements IComponentSignature {
 
 		ComponentSignature other = (ComponentSignature) obj;
 		
-		if (outputDataTypes.size() != other.outputDataTypes.size()) {
+		if (inputDataTypes.size() != other.inputDataTypes.size()) {
 			return false;
 		}
 	
+		if (outputDataTypes.size() != other.outputDataTypes.size()) {
+			return false;
+		}
+
+		for (Entry<InputPort, DataType> inputDataType : inputDataTypes.entrySet()) {
+			if (!EcoreUtil.equals(inputDataType.getValue(), other.inputDataTypes.get(inputDataType.getKey()))) {
+				return false;
+			}
+		}
+
 		for (Entry<OutputPort, DataType> outputDataType : outputDataTypes.entrySet()) {
 			if (!EcoreUtil.equals(outputDataType.getValue(), other.outputDataTypes.get(outputDataType.getKey()))) {
 				return false;

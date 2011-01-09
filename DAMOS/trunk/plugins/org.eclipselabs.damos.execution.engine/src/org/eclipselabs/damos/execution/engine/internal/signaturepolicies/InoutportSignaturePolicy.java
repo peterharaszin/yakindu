@@ -44,7 +44,7 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 		Inoutport inport = (Inoutport) component;
 		
 		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
-		ComponentSignature signature = new ComponentSignature();
+		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		
 		DataType dataType = getDataType(status, inport);
 		if (dataType != null) {
@@ -57,7 +57,10 @@ public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
 			signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(dataType));
 		}
 
-		return new ComponentSignatureEvaluationResult(signature, status);
+		if (!status.isOK()) {
+			return new ComponentSignatureEvaluationResult(status);
+		}
+		return new ComponentSignatureEvaluationResult(signature);
 	}
 
 	/**

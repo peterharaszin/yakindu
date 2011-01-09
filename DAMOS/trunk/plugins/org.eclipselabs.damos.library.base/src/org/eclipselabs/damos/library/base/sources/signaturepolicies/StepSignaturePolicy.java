@@ -86,7 +86,7 @@ public class StepSignaturePolicy implements IComponentSignaturePolicy {
 		}
 		
 		Unit unit = initialValueDataType.getUnit();
-		ComponentSignature signature = new ComponentSignature();
+		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		NumericType outputDataType;
 		if (initialValueDataType instanceof RealType || finalValueDataType instanceof RealType) {

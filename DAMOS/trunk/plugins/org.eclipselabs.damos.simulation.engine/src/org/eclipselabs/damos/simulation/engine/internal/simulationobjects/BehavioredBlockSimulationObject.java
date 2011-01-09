@@ -63,6 +63,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 	private IInterpreterContext interpreterContext;
 	private IFunctor functor;
+	
+	private CompoundInterpreter compoundInterpreter;
 
 	private Map<OutputPort, IValue> outputValues = new HashMap<OutputPort, IValue>();
 		
@@ -111,6 +113,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		if (initializationCompound != null) {
 			new CompoundInterpreter(interpreterContext).doSwitch(initializationCompound);
 		}
+		
+		compoundInterpreter = new CompoundInterpreter(interpreterContext);
 	}
 	
 	/* (non-Javadoc)
@@ -149,7 +153,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	public void computeOutputValues() throws CoreException {
 		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				new CompoundInterpreter(interpreterContext).doSwitch(compound);
+				compoundInterpreter.doSwitch(compound);
 			}
 		}
 
@@ -175,7 +179,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	public void update() throws CoreException {
 		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
-				new CompoundInterpreter(interpreterContext).doSwitch(compound);
+				compoundInterpreter.doSwitch(compound);
 			}
 		}
 		functor.incrementStepIndex();

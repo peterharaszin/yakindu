@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.library.base.simulation.sources;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
@@ -35,7 +34,8 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	private double sampleTime;
 	
 	private int n;
-	
+
+	@Override
 	public void initialize() throws CoreException {
 		initialValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__INITIAL_VALUE);
 		finalValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__FINAL_VALUE);
@@ -52,10 +52,12 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 		n = 0;
 	}
 	
-	public IValue getOutputValue(OutputPort outputPort) {
+	@Override
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return n * sampleTime <= stepTime.doubleValue() ? initialValue : finalValue;
 	}
 	
+	@Override
 	public void update() {
 		++n;
 	}

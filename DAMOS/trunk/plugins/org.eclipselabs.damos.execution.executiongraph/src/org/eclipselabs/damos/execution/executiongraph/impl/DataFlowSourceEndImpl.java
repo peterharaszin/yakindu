@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.executiongraph.DataFlow;
 import org.eclipselabs.damos.execution.executiongraph.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executiongraph.ExecutionGraphPackage;
@@ -99,12 +100,18 @@ public class DataFlowSourceEndImpl extends DataFlowEndImpl implements DataFlowSo
 		return port;
 	}
 
+	public void setPort(OutputPort newPort) {
+		setPortGen(newPort);
+		inoutputIndex = DMLUtil.indexOf(newPort.getOutput());
+		portIndex = newPort.getIndex();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPort(OutputPort newPort) {
+	public void setPortGen(OutputPort newPort) {
 		OutputPort oldPort = port;
 		port = newPort;
 		if (eNotificationRequired())

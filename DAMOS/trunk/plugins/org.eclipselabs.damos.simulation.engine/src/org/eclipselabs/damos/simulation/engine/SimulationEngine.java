@@ -43,10 +43,10 @@ public class SimulationEngine {
 				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 				simulationObject.computeOutputValues();
 				for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
-					IValue value = simulationObject.getOutputValue(sourceEnd.getPort());
+					IValue value = simulationObject.getOutputValue(sourceEnd.getInoutputIndex(), sourceEnd.getPortIndex());
 					for (DataFlowTargetEnd targetEnd : sourceEnd.getDataFlow().getTargetEnds()) {
 						IComponentSimulationObject targetSimulationObject = SimulationUtil.getComponentSimulationObject(targetEnd.getNode());
-						targetSimulationObject.consumeInputValue(targetEnd.getPort(), value);
+						targetSimulationObject.setInputValue(targetEnd.getInoutputIndex(), targetEnd.getPortIndex(), value);
 					}
 				}
 			}

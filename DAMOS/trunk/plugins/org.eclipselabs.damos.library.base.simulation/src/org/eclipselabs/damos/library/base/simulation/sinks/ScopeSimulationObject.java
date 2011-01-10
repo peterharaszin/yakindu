@@ -13,8 +13,6 @@ package org.eclipselabs.damos.library.base.simulation.sinks;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
-import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
 import org.eclipselabs.damos.simulation.engine.IChartData;
 import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
@@ -36,6 +34,7 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 	private double[][] xValues;
 	private double[][] yValues;
 
+	@Override
 	public void initialize() {
 		int portCount = getComponent().getPrimaryInputPorts().size();
 
@@ -48,18 +47,19 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 		yValues = new double[portCount][n];
 	}
 	
-	public void consumeInputValue(InputPort inputPort, IValue value) {
-		int inputPortIndex = DMLUtil.indexOf(inputPort);
-		int j = positions[inputPortIndex];
+	@Override
+	public void setInputValue(int inputIndex, int portIndex, IValue value) {
+		int j = positions[portIndex];
 		double y = 0;
 		if (value instanceof ISimpleNumericValue) {
 			y = ((ISimpleNumericValue) value).doubleValue();
 		}
 		xValues[0][j] = j * sampleTime;
-		yValues[inputPortIndex][j] = y;
-		positions[inputPortIndex] += 1;
+		yValues[portIndex][j] = y;
+		positions[portIndex] += 1;
 	}
 	
+	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		if (adapter == IChartData.class) {
 			return new IChartData() {

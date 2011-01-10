@@ -29,11 +29,11 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
+import org.eclipselabs.damos.execution.engine.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.util.DataTypeSpecifierUtil;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
@@ -45,11 +45,9 @@ import org.eclipselabs.mscript.typesystem.InvalidDataType;
  * @author Andreas Unger
  *
  */
-public class SubsystemSignaturePolicy implements IComponentSignaturePolicy {
+public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.engine.componentsignature.IComponentSignaturePolicy#evaluateSignature(org.eclipselabs.damos.execution.engine.IEvaluationContext, org.eclipselabs.damos.dml.Component, java.util.Map)
-	 */
+	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Subsystem subsystem = (Subsystem) component;
 		

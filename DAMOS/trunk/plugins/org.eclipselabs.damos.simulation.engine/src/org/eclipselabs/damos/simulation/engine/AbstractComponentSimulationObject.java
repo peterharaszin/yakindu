@@ -13,8 +13,6 @@ package org.eclipselabs.damos.simulation.engine;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
@@ -27,16 +25,16 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
  */
 public abstract class AbstractComponentSimulationObject implements IComponentSimulationObject {
 
-	private ISimulationContext simulationContext;
+	private ISimulationContext context;
 	private Component component;
 	private IComponentSignature signature;
 		
 	public ISimulationContext getContext() {
-		return simulationContext;
+		return context;
 	}
 	
 	public void setContext(ISimulationContext context) {
-		this.simulationContext = context;
+		this.context = context;
 	}
 
 	public Component getComponent() {
@@ -61,13 +59,13 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	public void reset() throws CoreException {
 	}
 	
-	public void consumeInputValue(InputPort inputPort, IValue value) throws CoreException {
+	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
 	}
 	
 	public void computeOutputValues() throws CoreException {
 	}
 
-	public IValue getOutputValue(OutputPort outputPort) throws CoreException {
+	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
 		return null;
 	}
 	

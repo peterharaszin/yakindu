@@ -13,6 +13,7 @@ package org.eclipselabs.damos.execution.engine.util;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -23,6 +24,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
+import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
@@ -143,14 +145,18 @@ public class BehavioredBlockHelper {
 
 	public List<DataType> getInputParameterDataTypes(FunctionDefinition functionDefinition, IComponentSignature signature, MultiStatus status) {
 		List<DataType> dataTypes = new ArrayList<DataType>();
-		for (ParameterDeclaration parameterDeclaration : functionDefinition.getInputParameterDeclarations()) {
-			BlockInput input = (BlockInput) block.getInput(parameterDeclaration.getName());
-			if (input == null) {
-				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' not found"));
-				continue;
+		Iterator<ParameterDeclaration> parameterDeclarationIterator = functionDefinition.getInputParameterDeclarations().iterator();
+		for (Input input : block.getInputs()) {
+			BlockInput blockInput = (BlockInput) input;
+			
+			if (!parameterDeclarationIterator.hasNext()) {
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No input parameter found for input '" + blockInput.getDefinition().getName() + "'"));
+				return null;
 			}
 
-			if (input.getDefinition().isManyPorts() || input.getDefinition().getMinimumPortCount() == 0) {
+			ParameterDeclaration parameterDeclaration = parameterDeclarationIterator.next();
+			
+			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				DataType elementDataType = null;
 				for (InputPort inputPort : input.getPorts()) {
 					DataType dataType = signature.getInputDataType(inputPort);

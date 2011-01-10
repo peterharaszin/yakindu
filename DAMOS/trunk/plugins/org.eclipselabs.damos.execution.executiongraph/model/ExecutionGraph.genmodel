@@ -72,7 +72,10 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionGraph.ecore#//DataFlowSourceEnd/node"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ExecutionGraph.ecore#//DataFlowEnd"/>
+    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="ExecutionGraph.ecore#//DataFlowEnd">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ExecutionGraph.ecore#//DataFlowEnd/inoutputIndex"/>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute ExecutionGraph.ecore#//DataFlowEnd/portIndex"/>
+    </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="ExecutionGraph.ecore#//DataFlow">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference ExecutionGraph.ecore#//DataFlow/targetEnds"/>

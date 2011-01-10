@@ -6,6 +6,7 @@
  */
 package org.eclipselabs.damos.execution.executiongraph.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -336,6 +337,24 @@ public class ExecutionGraphPackageImpl extends EPackageImpl implements Execution
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getDataFlowEnd_InoutputIndex() {
+		return (EAttribute)dataFlowEndEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDataFlowEnd_PortIndex() {
+		return (EAttribute)dataFlowEndEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getDataFlow() {
 		return dataFlowEClass;
 	}
@@ -447,6 +466,8 @@ public class ExecutionGraphPackageImpl extends EPackageImpl implements Execution
 		createEReference(dataFlowSourceEndEClass, DATA_FLOW_SOURCE_END__NODE);
 
 		dataFlowEndEClass = createEClass(DATA_FLOW_END);
+		createEAttribute(dataFlowEndEClass, DATA_FLOW_END__INOUTPUT_INDEX);
+		createEAttribute(dataFlowEndEClass, DATA_FLOW_END__PORT_INDEX);
 
 		dataFlowEClass = createEClass(DATA_FLOW);
 		createEReference(dataFlowEClass, DATA_FLOW__TARGET_ENDS);
@@ -524,6 +545,8 @@ public class ExecutionGraphPackageImpl extends EPackageImpl implements Execution
 		initEReference(getDataFlowSourceEnd_Node(), this.getNode(), this.getNode_OutgoingDataFlows(), "node", null, 1, 1, DataFlowSourceEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(dataFlowEndEClass, DataFlowEnd.class, "DataFlowEnd", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDataFlowEnd_InoutputIndex(), ecorePackage.getEInt(), "inoutputIndex", null, 1, 1, DataFlowEnd.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getDataFlowEnd_PortIndex(), ecorePackage.getEInt(), "portIndex", null, 1, 1, DataFlowEnd.class, !IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(dataFlowEClass, DataFlow.class, "DataFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataFlow_TargetEnds(), this.getDataFlowTargetEnd(), this.getDataFlowTargetEnd_DataFlow(), "targetEnds", null, 1, -1, DataFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

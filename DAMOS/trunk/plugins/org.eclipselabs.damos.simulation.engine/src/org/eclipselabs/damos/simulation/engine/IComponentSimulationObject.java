@@ -13,8 +13,6 @@ package org.eclipselabs.damos.simulation.engine;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
@@ -22,7 +20,8 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
  * @author Andreas Unger
  *
  * @noextend
- * @noimplement
+ * @noimplement This interface is <em>not</em> intended to be implemented by
+ * clients. Clients should extend {@link AbstractComponentSimulationObject}.
  */
 public interface IComponentSimulationObject {
 	
@@ -42,11 +41,11 @@ public interface IComponentSimulationObject {
 	
 	void reset() throws CoreException;
 
-	void consumeInputValue(InputPort inputPort, IValue value) throws CoreException;
+	void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException;
 	
 	void computeOutputValues() throws CoreException;
 
-	IValue getOutputValue(OutputPort outputPort) throws CoreException;
+	IValue getOutputValue(int outputIndex, int portIndex) throws CoreException;
 	
 	void update() throws CoreException;
 

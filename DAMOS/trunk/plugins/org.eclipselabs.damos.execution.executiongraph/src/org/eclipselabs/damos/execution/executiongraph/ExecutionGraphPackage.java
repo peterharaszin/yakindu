@@ -6,6 +6,7 @@
  */
 package org.eclipselabs.damos.execution.executiongraph;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -243,13 +244,31 @@ public interface ExecutionGraphPackage extends EPackage {
 	int DATA_FLOW_END = 4;
 
 	/**
+	 * The feature id for the '<em><b>Inoutput Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW_END__INOUTPUT_INDEX = 0;
+
+	/**
+	 * The feature id for the '<em><b>Port Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW_END__PORT_INDEX = 1;
+
+	/**
 	 * The number of structural features of the '<em>Data Flow End</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_FLOW_END_FEATURE_COUNT = 0;
+	int DATA_FLOW_END_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executiongraph.impl.DataFlowSourceEndImpl <em>Data Flow Source End</em>}' class.
@@ -260,6 +279,24 @@ public interface ExecutionGraphPackage extends EPackage {
 	 * @generated
 	 */
 	int DATA_FLOW_SOURCE_END = 3;
+
+	/**
+	 * The feature id for the '<em><b>Inoutput Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW_SOURCE_END__INOUTPUT_INDEX = DATA_FLOW_END__INOUTPUT_INDEX;
+
+	/**
+	 * The feature id for the '<em><b>Port Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW_SOURCE_END__PORT_INDEX = DATA_FLOW_END__PORT_INDEX;
 
 	/**
 	 * The feature id for the '<em><b>Port</b></em>' reference.
@@ -343,6 +380,24 @@ public interface ExecutionGraphPackage extends EPackage {
 	 * @ordered
 	 */
 	int DATA_FLOW_FEATURE_COUNT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Inoutput Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW_TARGET_END__INOUTPUT_INDEX = DATA_FLOW_END__INOUTPUT_INDEX;
+
+	/**
+	 * The feature id for the '<em><b>Port Index</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_FLOW_TARGET_END__PORT_INDEX = DATA_FLOW_END__PORT_INDEX;
 
 	/**
 	 * The feature id for the '<em><b>Node</b></em>' reference.
@@ -605,6 +660,28 @@ public interface ExecutionGraphPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getDataFlowEnd();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executiongraph.DataFlowEnd#getInoutputIndex <em>Inoutput Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Inoutput Index</em>'.
+	 * @see org.eclipselabs.damos.execution.executiongraph.DataFlowEnd#getInoutputIndex()
+	 * @see #getDataFlowEnd()
+	 * @generated
+	 */
+	EAttribute getDataFlowEnd_InoutputIndex();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executiongraph.DataFlowEnd#getPortIndex <em>Port Index</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Port Index</em>'.
+	 * @see org.eclipselabs.damos.execution.executiongraph.DataFlowEnd#getPortIndex()
+	 * @see #getDataFlowEnd()
+	 * @generated
+	 */
+	EAttribute getDataFlowEnd_PortIndex();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executiongraph.DataFlow <em>Data Flow</em>}'.
@@ -880,6 +957,22 @@ public interface ExecutionGraphPackage extends EPackage {
 		 * @generated
 		 */
 		EClass DATA_FLOW_END = eINSTANCE.getDataFlowEnd();
+
+		/**
+		 * The meta object literal for the '<em><b>Inoutput Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_FLOW_END__INOUTPUT_INDEX = eINSTANCE.getDataFlowEnd_InoutputIndex();
+
+		/**
+		 * The meta object literal for the '<em><b>Port Index</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DATA_FLOW_END__PORT_INDEX = eINSTANCE.getDataFlowEnd_PortIndex();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executiongraph.impl.DataFlowImpl <em>Data Flow</em>}' class.

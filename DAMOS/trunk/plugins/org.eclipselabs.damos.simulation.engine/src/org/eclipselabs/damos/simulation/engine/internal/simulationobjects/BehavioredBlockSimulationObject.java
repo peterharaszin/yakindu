@@ -11,9 +11,8 @@
 
 package org.eclipselabs.damos.simulation.engine.internal.simulationobjects;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -22,13 +21,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
-import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.engine.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
 import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
+import org.eclipselabs.mscript.computation.engine.value.ArrayValue;
+import org.eclipselabs.mscript.computation.engine.value.IArrayValue;
 import org.eclipselabs.mscript.computation.engine.value.INumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
@@ -39,6 +37,7 @@ import org.eclipselabs.mscript.language.il.ComputationCompound;
 import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
 import org.eclipselabs.mscript.language.il.InputVariableDeclaration;
 import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
+import org.eclipselabs.mscript.language.il.VariableDeclaration;
 import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.mscript.language.interpreter.CompoundInterpreter;
@@ -47,6 +46,7 @@ import org.eclipselabs.mscript.language.interpreter.IFunctor;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.IVariable;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
+import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TensorType;
@@ -66,8 +66,15 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	
 	private CompoundInterpreter compoundInterpreter;
 
-	private Map<OutputPort, IValue> outputValues = new HashMap<OutputPort, IValue>();
+	private IVariable[] inputVariables;
+	private IVariable[] outputVariables;
 		
+	private boolean[] multiPortInput;
+	private boolean[] multiPortOutput;
+	
+	private List<ComputationCompound> computeCompounds = new ArrayList<ComputationCompound>();
+	private List<ComputationCompound> updateCompounds = new ArrayList<ComputationCompound>();
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#initialize()
 	 */
@@ -108,6 +115,9 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		for (IVariable variable : functor.getVariables()) {
 			interpreterContext.addVariable(variable);
 		}
+		
+		initializeInputVariables();
+		initializeOutputVariables();
 
 		Compound initializationCompound = functor.getFunctionDefinition().getInitializationCompound();
 		if (initializationCompound != null) {
@@ -115,32 +125,81 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 		
 		compoundInterpreter = new CompoundInterpreter(interpreterContext);
+		
+		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
+			if (!compound.getOutputs().isEmpty()) {
+				computeCompounds.add(compound);
+			} else {
+				updateCompounds.add(compound);
+			}
+		}
+	}
+	
+	private void initializeInputVariables() throws CoreException {
+		inputVariables = new IVariable[functor.getFunctionDefinition().getInputVariableDeclarations().size()];
+		multiPortInput = new boolean[inputVariables.length];
+		
+		int i = 0;
+		for (InputVariableDeclaration inputVariableDeclaration : functor.getFunctionDefinition().getInputVariableDeclarations()) {
+			IVariable variable = functor.getVariable(inputVariableDeclaration);
+			
+			BlockInput input = (BlockInput) getComponent().getInputs().get(i);
+			
+			if (input.getDefinition().isManyPorts() || input.getDefinition().getMinimumPortCount() == 0) {
+				initializeArrayVariable(inputVariableDeclaration, variable);
+				multiPortInput[i] = true;
+			}
+			
+			inputVariables[i] = variable;
+			++i;
+		}
+	}
+	
+	private void initializeOutputVariables() throws CoreException {
+		outputVariables = new IVariable[functor.getFunctionDefinition().getOutputVariableDeclarations().size()];
+		multiPortOutput = new boolean[outputVariables.length];
+
+		int i = 0;
+		for (OutputVariableDeclaration outputVariableDeclaration : functor.getFunctionDefinition().getOutputVariableDeclarations()) {
+			IVariable variable = functor.getVariable(outputVariableDeclaration);
+			
+			BlockOutput output = (BlockOutput) getComponent().getOutputs().get(i);
+			
+			if (output.getDefinition().isManyPorts() || output.getDefinition().getMinimumPortCount() == 0) {
+				initializeArrayVariable(outputVariableDeclaration, variable);
+				multiPortOutput[i] = true;
+			}
+			
+			outputVariables[i] = variable;
+			++i;
+		}
+	}
+
+	private void initializeArrayVariable(VariableDeclaration variableDeclaration, IVariable variable) throws CoreException {
+		DataType dataType = variableDeclaration.getType();
+		if (dataType instanceof ArrayType) {
+			if (dataType instanceof TensorType) {
+				TensorType tensorType = (TensorType) dataType;
+				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), tensorType, new INumericValue[tensorType.getSize()]));
+			} else {
+				ArrayType arrayType = (ArrayType) dataType;
+				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[arrayType.getSize()]));
+			}
+		} else {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID,
+					"Variable declaration type must be array type"));
+		}
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.engine.value.IValue)
 	 */
 	@Override
-	public void consumeInputValue(InputPort inputPort, IValue value) throws CoreException {
-		InputVariableDeclaration inputVariableDeclaration = null;
-		
-		BlockInput input = (BlockInput) inputPort.getInput();
-		for (InputVariableDeclaration declaration : functor.getFunctionDefinition().getInputVariableDeclarations()) {
-			if (input.getDefinition().getName().equals(declaration.getName())) {
-				inputVariableDeclaration = declaration;
-				break;
-			}
-		}
-		
-		IVariable variable = functor.getVariable(inputVariableDeclaration);
-		if (input.getDefinition().isManyPorts() || input.getDefinition().getMinimumPortCount() == 0) {
-			VectorValue vectorValue = (VectorValue) variable.getValue(0);
-			if (vectorValue == null) {
-				TensorType tensorType = (TensorType) variable.getDeclaration().getType();
-				vectorValue = new VectorValue(interpreterContext.getComputationContext(), tensorType, new INumericValue[tensorType.getSize()]);
-				variable.setValue(0, vectorValue);
-			}
-			vectorValue.set(DMLUtil.indexOf(inputPort), (INumericValue) value);
+	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
+		IVariable variable = inputVariables[inputIndex];
+		if (multiPortInput[inputIndex]) {
+			IArrayValue arrayValue = (IArrayValue) variable.getValue(0);
+			arrayValue.set(portIndex, value);
 		} else {
 			variable.setValue(0, value);
 		}
@@ -151,16 +210,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void computeOutputValues() throws CoreException {
-		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
-			if (!compound.getOutputs().isEmpty()) {
-				compoundInterpreter.doSwitch(compound);
-			}
-		}
-
-		for (OutputVariableDeclaration declaration : functor.getFunctionDefinition().getOutputVariableDeclarations()) {
-			IVariable variable = functor.getVariable(declaration);
-			BlockOutput output = (BlockOutput) getComponent().getOutput(variable.getDeclaration().getName());
-			outputValues.put(output.getPorts().get(0), variable.getValue(0));
+		for (ComputationCompound compound : computeCompounds) {
+			compoundInterpreter.doSwitch(compound);
 		}
 	}
 	
@@ -168,8 +219,13 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getOutputValue(org.eclipselabs.damos.dml.OutputPort)
 	 */
 	@Override
-	public IValue getOutputValue(OutputPort outputPort) throws CoreException {
-		return outputValues.get(outputPort);
+	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+		IVariable variable = outputVariables[outputIndex];
+		if (multiPortOutput[outputIndex]) {
+			IArrayValue arrayValue = (IArrayValue) variable.getValue(0);
+			return arrayValue.get(portIndex);
+		}
+		return variable.getValue(0);
 	}
 	
 	/* (non-Javadoc)
@@ -177,10 +233,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void update() throws CoreException {
-		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
-			if (compound.getOutputs().isEmpty()) {
-				compoundInterpreter.doSwitch(compound);
-			}
+		for (ComputationCompound compound : updateCompounds) {
+			compoundInterpreter.doSwitch(compound);
 		}
 		functor.incrementStepIndex();
 	}

@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * Copyright (c) 2008, 2011 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,12 +20,9 @@ import org.eclipselabs.mscript.typesystem.DataType;
 /**
  * @author Andreas Unger
  *
- * @noextend
- * @noimplement This interface is <em>not</em> intended to be implemented by
- * clients. Clients should extend {@link AbstractComponentSignaturePolicy}.
  */
-public interface IComponentSignaturePolicy {
+public abstract class AbstractComponentSignaturePolicy implements IComponentSignaturePolicy {
 
-	IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes);
+	public abstract IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes);
 	
 }

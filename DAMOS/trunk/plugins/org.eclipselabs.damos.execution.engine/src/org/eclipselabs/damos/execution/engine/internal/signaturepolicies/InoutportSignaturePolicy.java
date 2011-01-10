@@ -22,11 +22,11 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.execution.engine.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.util.DataTypeSpecifierUtil;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
@@ -38,8 +38,9 @@ import org.eclipselabs.mscript.typesystem.InvalidDataType;
  * @author Andreas Unger
  *
  */
-public class InoutportSignaturePolicy implements IComponentSignaturePolicy {
+public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 
+	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Inoutport inport = (Inoutport) component;
 		

@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.execution.engine.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
@@ -40,8 +40,9 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  * @author Andreas Unger
  *
  */
-public class StepSignaturePolicy implements IComponentSignaturePolicy {
+public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
+	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Block block = (Block) component;
 		

@@ -24,11 +24,11 @@ import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.execution.engine.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.util.BehavioredBlockHelper;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
@@ -45,8 +45,9 @@ import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.UnitSymbol;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
-public class BehavioredBlockSignaturePolicy implements IComponentSignaturePolicy {
+public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePolicy {
 
+	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component,
 			Map<InputPort, DataType> incomingDataTypes) {
 		Block block = (Block) component;
@@ -55,7 +56,7 @@ public class BehavioredBlockSignaturePolicy implements IComponentSignaturePolicy
 
 		FunctionDescriptor functionDescriptor;
 
-		BehavioredBlockHelper helper = new Helper(block);
+		Helper helper = new Helper(block);
 
 		try {
 			functionDescriptor = helper.constructFunctionDescriptor();

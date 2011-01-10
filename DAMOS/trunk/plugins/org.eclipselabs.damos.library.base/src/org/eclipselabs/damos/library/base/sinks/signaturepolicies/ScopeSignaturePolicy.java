@@ -7,10 +7,10 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.execution.engine.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.mscript.typesystem.BooleanType;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -20,8 +20,9 @@ import org.eclipselabs.mscript.typesystem.NumericType;
  * @author Andreas Unger
  *
  */
-public class ScopeSignaturePolicy implements IComponentSignaturePolicy {
+public class ScopeSignaturePolicy extends AbstractComponentSignaturePolicy {
 	
+	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		

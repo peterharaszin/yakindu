@@ -23,8 +23,8 @@ import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.FractionBlockEditPart;
 import org.eclipselabs.damos.library.common.util.PolynomialExpressionUtil;
+import org.eclipselabs.mscript.language.ast.ArrayConstructionOperator;
 import org.eclipselabs.mscript.language.ast.Expression;
-import org.eclipselabs.mscript.language.ast.ExpressionList;
 import org.eclipselabs.mscript.language.ast.IntegerLiteral;
 import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.UnaryExpression;
@@ -67,10 +67,10 @@ public class TransferFunctionEditPart extends FractionBlockEditPart {
 			if (argument != null) {
 				MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 				IParseResult result = parser.parse(
-						parser.getGrammarAccess().getExpressionListRule().getName(),
+						parser.getGrammarAccess().getArrayConstructionOperatorRule().getName(),
 						new StringReader(argument));
 				if (result.getParseErrors().isEmpty()) {
-					List<Expression> expressions = ((ExpressionList) result.getRootASTElement()).getExpressions();
+					List<Expression> expressions = ((ArrayConstructionOperator) result.getRootASTElement()).getExpressions();
 					double[] coefficients = new double[expressions.size()];
 					int i = 0;
 					for (Expression expression : expressions) {

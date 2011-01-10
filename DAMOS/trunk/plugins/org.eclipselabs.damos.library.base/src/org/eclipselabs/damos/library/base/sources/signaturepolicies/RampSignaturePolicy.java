@@ -30,7 +30,6 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.UnitSymbol;
@@ -91,11 +90,7 @@ public class RampSignaturePolicy extends AbstractComponentSignaturePolicy {
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		NumericType outputDataType;
-		if (initialValueDataType instanceof RealType) {
-			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
-		} else {
-			outputDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
-		}
+		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		

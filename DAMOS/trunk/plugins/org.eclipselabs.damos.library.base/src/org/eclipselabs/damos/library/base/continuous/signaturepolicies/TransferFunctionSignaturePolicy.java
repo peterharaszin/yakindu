@@ -1,6 +1,5 @@
 package org.eclipselabs.damos.library.base.continuous.signaturepolicies;
 
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
@@ -21,6 +20,7 @@ import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConsta
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
+import org.eclipselabs.mscript.typesystem.TensorType;
 import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
@@ -36,46 +36,51 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 		
 		MultiStatus status = new MultiStatus(LibraryBasePlugin.PLUGIN_ID, 0, "", null);
 		
-		List<IValue> numeratorTypes = null;
+		IValue numerator = null;
 		try {
-			numeratorTypes = ExpressionUtil.evaluateArgumentExpressionList(block, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
+			numerator = ExpressionUtil.evaluateArgumentExpression(block, TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		List<IValue> denominatorTypes = null;
+		IValue denominator = null;
 		try {
-			denominatorTypes = ExpressionUtil.evaluateArgumentExpressionList(block, TransferFunctionConstants.PARAMETER__DENOMINATOR_COEFFICIENTS);
+			denominator = ExpressionUtil.evaluateArgumentExpression(block, TransferFunctionConstants.PARAMETER__DENOMINATOR_COEFFICIENTS);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 		}
 		
-		if (numeratorTypes == null || denominatorTypes == null) {
+		if (numerator == null || denominator == null) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		Unit dimensionlessUnit = TypeSystemUtil.createUnit();
+		if (!TypeSystemUtil.isVector(numerator.getDataType())) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator must be be vector"));
+		}
 		
-		for (IValue numeratorValue : numeratorTypes) {
-			if (numeratorValue.getDataType() instanceof NumericType) {
-				NumericType numericType = (NumericType) numeratorValue.getDataType();
-				if (!dimensionlessUnit.isSameAs(numericType.getUnit(), false)) {
-					status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator Coefficients must be dimensionless"));
-				}
-			} else {
-				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator Coefficients must be numeric"));
-			}
+		if (!TypeSystemUtil.isVector(denominator.getDataType())) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator must be be vector"));
 		}
 
-		for (IValue denominatorValue : denominatorTypes) {
-			if (denominatorValue instanceof NumericType) {
-				NumericType numericType = (NumericType) denominatorValue.getDataType();
-				if (!dimensionlessUnit.isSameAs(numericType.getUnit(), false)) {
-					status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator Coefficients must be dimensionless"));
-				}
-			} else {
-				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator Coefficients must be numeric"));
-			}
+		if (!status.isOK()) {
+			return new ComponentSignatureEvaluationResult(status);
+		}
+
+		Unit dimensionlessUnit = TypeSystemUtil.createUnit();
+		
+		TensorType numeratorType = (TensorType) numerator.getDataType();
+		TensorType denominatorType = (TensorType) denominator.getDataType();
+		
+		if (numeratorType.getElementType().getUnit() == null || !numeratorType.getElementType().getUnit().isSameAs(dimensionlessUnit, false)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator coefficients must be dimensionless"));
+		}
+		
+		if (denominatorType.getElementType().getUnit() == null || !denominatorType.getElementType().getUnit().isSameAs(dimensionlessUnit, false)) {
+			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator coefficients must be dimensionless"));
+		}
+
+		if (!status.isOK()) {
+			return new ComponentSignatureEvaluationResult(status);
 		}
 		
 		DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());

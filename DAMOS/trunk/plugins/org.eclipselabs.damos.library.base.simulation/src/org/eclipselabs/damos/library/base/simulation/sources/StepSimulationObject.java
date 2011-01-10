@@ -41,24 +41,24 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 		finalValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__FINAL_VALUE);
 		stepTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__STEP_TIME);
 
-		IComputationContext computationContext = new ComputationContext(getContext().getSimulationModel().getExecutionModel().getComputationModel());
+		IComputationContext computationContext = new ComputationContext(getComputationModel());
 		ValueTransformer valueTransformer = new ValueTransformer();
 		
 		initialValue = valueTransformer.transform(computationContext, initialValue);
 		finalValue = valueTransformer.transform(computationContext, finalValue);
 		
-		sampleTime = getContext().getSimulationModel().getExecutionModel().getSampleTime();
+		sampleTime = getExecutionModel().getSampleTime();
 		
 		n = 0;
 	}
 	
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) {
+	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
 		return n * sampleTime <= stepTime.doubleValue() ? initialValue : finalValue;
 	}
 	
 	@Override
-	public void update() {
+	public void update() throws CoreException {
 		++n;
 	}
 	

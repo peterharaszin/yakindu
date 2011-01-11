@@ -11,6 +11,9 @@
       <provider
             class="org.eclipselabs.damos.simulation.engine.internal.providers.BehavioredBlockSimulationObjectProvider">
       </provider>
+      <provider
+            class="org.eclipselabs.damos.simulation.engine.internal.providers.InoutportSimulationObjectProvider">
+      </provider>
    </extension>
 
 </plugin>

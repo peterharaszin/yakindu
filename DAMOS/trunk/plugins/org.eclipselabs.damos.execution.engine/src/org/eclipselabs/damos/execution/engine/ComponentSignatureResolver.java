@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
@@ -39,7 +40,7 @@ public class ComponentSignatureResolver {
 	
 	public ComponentSignatureResolverResult resolve(Fragment fragment, boolean descend) {
 		Map<Component, IComponentSignature> signatures = new HashMap<Component, IComponentSignature>();
-		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Resolving data types failed", null);
+		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Resolving component signatures failed", null);
 
 		if (descend) {
 			doResolveAll(fragment, signatures, status, new HashSet<Fragment>());
@@ -79,6 +80,7 @@ public class ComponentSignatureResolver {
 
 	private void doResolve(Fragment fragment, Map<Component, IComponentSignature> signatures, MultiStatus status) {
 		Map<Component, IStatus> statusMap = new HashMap<Component, IStatus>();
+		Set<Component> unresolvedComponents = new HashSet<Component>();
 		
 		boolean changed;
 		do {
@@ -98,8 +100,10 @@ public class ComponentSignatureResolver {
 								signatures.put(component, newSignature);
 								changed = true;
 							}
+							unresolvedComponents.remove(component);
+						} else if (result.getStatus().isOK()){
+							unresolvedComponents.add(component);
 						}
-						
 						if (!result.getStatus().isOK()) {
 							statusMap.put(component, result.getStatus());
 						}
@@ -114,13 +118,16 @@ public class ComponentSignatureResolver {
 		
 		if (!statusMap.isEmpty()) {
 			for (Entry<Component, IStatus> entry : statusMap.entrySet()) {
-				String message = "Resolving data type of component '" + entry.getKey().getName() + "' failed";
+				String message = "Resolving component signature of '" + entry.getKey().getName() + "' failed";
 				if (entry.getValue().isMultiStatus()) {
 					status.add(new ComponentMultiStatus(entry.getKey(), entry.getValue().getChildren(), message));
 				} else {
 					status.add(new ComponentMultiStatus(entry.getKey(), new IStatus[] { entry.getValue() }, message));
 				}
 			}
+		}
+		for (Component unresolvedComponent : unresolvedComponents) {
+			status.add(new ComponentStatus(IStatus.ERROR, unresolvedComponent, "Component signature of '" + unresolvedComponent.getName() + "' could not be resolved"));
 		}
 	}
 

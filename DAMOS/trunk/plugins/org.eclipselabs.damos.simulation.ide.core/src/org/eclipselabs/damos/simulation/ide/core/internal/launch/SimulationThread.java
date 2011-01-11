@@ -12,10 +12,14 @@
 package org.eclipselabs.damos.simulation.ide.core.internal.launch;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.debug.core.DebugPlugin;
+import org.eclipse.debug.core.IStatusHandler;
 import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
 import org.eclipselabs.damos.simulation.engine.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.SimulationEngine;
-import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
@@ -59,10 +63,23 @@ public class SimulationThread extends Thread {
 	 */
 	@Override
 	public void run() {
+		IStatus status = Status.OK_STATUS;
+
 		try {
 			simulationEngine.simulate(simulationModel, executionGraph, simulationMonitor);
 		} catch (CoreException e) {
-			SimulationEnginePlugin.getDefault().getLog().log(e.getStatus());
+			status = e.getStatus();
+		}
+		
+		if (!status.isOK()) {
+			IStatusHandler prompter = DebugPlugin.getDefault().getStatusHandler(IStatuses.GENERIC_STATUS);
+			if (prompter != null) {
+				try {
+					prompter.handleStatus(status, null);
+				} catch (CoreException e) {
+					SimulationIDECorePlugin.getDefault().getLog().log(e.getStatus());
+				}
+			}
 		}
 	}
 	

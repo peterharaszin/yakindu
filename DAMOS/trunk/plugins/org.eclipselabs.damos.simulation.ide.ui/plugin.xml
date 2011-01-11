@@ -43,5 +43,14 @@
          </contextualLaunch>
       </shortcut>
    </extension>
+   <extension
+         point="org.eclipse.debug.core.statusHandlers">
+      <statusHandler
+            class="org.eclipselabs.damos.simulation.ide.ui.internal.statushandlers.GenericStatusHandler"
+            code="200"
+            id="org.eclipselabs.damos.simulation.ide.ui.messageStatusHandler"
+            plugin="org.eclipselabs.damos.simulation.ide.core">
+      </statusHandler>
+   </extension>
 
 </plugin>

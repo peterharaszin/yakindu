@@ -11,7 +11,12 @@
 
 package org.eclipselabs.damos.simulation.engine.internal.simulationobjects;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject;
+import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
+import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
  * @author Andreas Unger
@@ -19,4 +24,19 @@ import org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject
  */
 public class InoutportSimulationObject extends AbstractComponentSimulationObject {
 
+	private IValue value;
+	
+	@Override
+	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
+		this.value = value;
+	}
+	
+	@Override
+	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+		if (value == null) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input value for component '" + getComponent().getName() + "'"));
+		}
+		return value;
+	}
+	
 }

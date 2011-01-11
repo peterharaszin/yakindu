@@ -1,30 +1,47 @@
 package org.eclipselabs.damos.simulation.ide.core;
 
-import org.osgi.framework.BundleActivator;
+import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-public class SimulationIDECorePlugin implements BundleActivator {
+public class SimulationIDECorePlugin extends Plugin {
 
-	private static BundleContext context;
+	// The plug-in ID
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.simulation.ide.core";
 
-	static BundleContext getContext() {
-		return context;
+	// The shared instance
+	private static SimulationIDECorePlugin plugin;
+	
+	/**
+	 * The constructor
+	 */
+	public SimulationIDECorePlugin() {
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
 	 */
-	public void start(BundleContext bundleContext) throws Exception {
-		SimulationIDECorePlugin.context = bundleContext;
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		plugin = this;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
-	public void stop(BundleContext bundleContext) throws Exception {
-		SimulationIDECorePlugin.context = null;
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
+		super.stop(context);
+	}
+
+	/**
+	 * Returns the shared instance
+	 *
+	 * @return the shared instance
+	 */
+	public static SimulationIDECorePlugin getDefault() {
+		return plugin;
 	}
 
 }

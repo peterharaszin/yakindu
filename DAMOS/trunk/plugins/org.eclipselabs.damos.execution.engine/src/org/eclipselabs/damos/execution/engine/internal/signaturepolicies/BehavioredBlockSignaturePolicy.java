@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.execution.engine.internal.signaturepolicies;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.execution.engine.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.ComponentSignature;
@@ -34,6 +36,7 @@ import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
+import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
 import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
 import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
@@ -87,19 +90,22 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			status.add(functionDefinitionTransformerResult.getStatus());
 			return new ComponentSignatureEvaluationResult(status);
 		}
+		
+		ILFunctionDefinition functionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
 
-		for (OutputVariableDeclaration outputVariableDeclaration : functionDefinitionTransformerResult
-				.getILFunctionDefinition().getOutputVariableDeclarations()) {
+		Iterator<OutputVariableDeclaration> outputVariableDeclarationIterator = functionDefinition.getOutputVariableDeclarations().iterator();
+		for (Output output : block.getOutputs()) {
+			BlockOutput blockOutput = (BlockOutput) output;
+			
+			if (!outputVariableDeclarationIterator.hasNext()) {
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No output parameter found for output '" + blockOutput.getDefinition().getName() + "'"));
+				break;
+			}
+			
+			OutputVariableDeclaration outputVariableDeclaration = outputVariableDeclarationIterator.next();
 			DataType dataType = outputVariableDeclaration.getType();
 
-			BlockOutput output = (BlockOutput) block.getOutput(outputVariableDeclaration.getName());
-			if (output == null) {
-				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Output '"
-						+ outputVariableDeclaration.getName() + "' not found"));
-				continue;
-			}
-
-			if (output.getDefinition().isManyPorts() || output.getDefinition().getMinimumPortCount() == 0) {
+			if (blockOutput.getDefinition().isManyPorts() || blockOutput.getDefinition().getMinimumPortCount() == 0) {
 				if (!(dataType instanceof ArrayType)) {
 					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Output '"
 							+ outputVariableDeclaration.getName() + "' must result to array type"));

@@ -100,12 +100,14 @@ public class ComponentSignatureResolver {
 								signatures.put(component, newSignature);
 								changed = true;
 							}
-							unresolvedComponents.remove(component);
-						} else if (result.getStatus().isOK()){
-							unresolvedComponents.add(component);
 						}
 						if (!result.getStatus().isOK()) {
 							statusMap.put(component, result.getStatus());
+						}
+						if (result.getSignature() == null && result.getStatus().isOK()) {
+							unresolvedComponents.add(component);
+						} else {
+							unresolvedComponents.remove(component);
 						}
 					} else {
 						statusMap.put(component, new ComponentStatus(IStatus.ERROR, component, "No signature returned by signature policy"));

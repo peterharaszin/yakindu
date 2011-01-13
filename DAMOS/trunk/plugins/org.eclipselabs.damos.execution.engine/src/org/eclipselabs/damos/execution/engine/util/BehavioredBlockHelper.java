@@ -24,28 +24,28 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
+import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
+import org.eclipselabs.mscript.computation.engine.value.ArrayValue;
+import org.eclipselabs.mscript.computation.engine.value.INumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
-import org.eclipselabs.mscript.language.ast.Expression;
+import org.eclipselabs.mscript.computation.engine.value.VectorValue;
 import org.eclipselabs.mscript.language.ast.FunctionDefinition;
 import org.eclipselabs.mscript.language.ast.Module;
 import org.eclipselabs.mscript.language.ast.ParameterDeclaration;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
 import org.eclipselabs.mscript.language.functionmodel.util.FunctionDescriptorConstructor;
 import org.eclipselabs.mscript.language.functionmodel.util.IFunctionDescriptorConstructorResult;
-import org.eclipselabs.mscript.language.il.transform.ITransformerContext;
-import org.eclipselabs.mscript.language.il.transform.TransformerContext;
-import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
-import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
-import org.eclipselabs.mscript.language.interpreter.util.ExpressionInterpreterHelper;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.language.util.LanguageUtil;
+import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.TensorType;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
@@ -108,33 +108,24 @@ public class BehavioredBlockHelper {
 			String parameterName = parameterDeclaration.getName();
 			String argument = block.getArgumentStringValue(parameterName);
 			if (argument == null) {
-				IValue globalTemplateArgumentValue = getGlobalTemplateArgument(parameterName);
-				if (globalTemplateArgumentValue != null) {
-					templateArguments.add(globalTemplateArgumentValue);
-				} else {
-					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Block parameter '" + parameterDeclaration.getName() + "' not found"));
+				try {
+					IValue templateArgument = getInputTemplateArgumentValue(parameterName);
+					if (templateArgument == null) {
+						templateArgument = getGlobalTemplateArgument(parameterName);
+					}
+					if (templateArgument != null) {
+						templateArguments.add(templateArgument);
+					} else {
+						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Block parameter '" + parameterDeclaration.getName() + "' not found"));
+					}
+				} catch (CoreException e) {
+					status.add(e.getStatus());
 				}
 				continue;
 			}
 
-			MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
-
-			IParseResult parseResult = parser.parse(parser.getGrammarAccess().getExpressionRule().getName(),
-					new StringReader(argument));
-			
-			if (!parseResult.getParseErrors().isEmpty()) {
-				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block parameter '" + parameterDeclaration.getName() + "' failed"));
-				continue;
-			}
-
-			ITransformerContext transformerContext = new TransformerContext();
-			IInterpreterContext interpreterContext = new InterpreterContext(new ComputationContext());
-
-			ExpressionInterpreterHelper expressionInterpreterHelper = new ExpressionInterpreterHelper(transformerContext,
-					interpreterContext, (Expression) parseResult.getRootASTElement());
-			
 			try {
-				IValue value = expressionInterpreterHelper.evaluateSingle();
+				IValue value = ExpressionUtil.evaluateArgumentExpression(block, parameterName);
 				templateArguments.add(value);
 			} catch (CoreException e) {
 				status.add(e.getStatus());
@@ -192,7 +183,36 @@ public class BehavioredBlockHelper {
 		return dataTypes;
 	}
 	
-	protected IValue getGlobalTemplateArgument(String name) {
+	private IValue getInputTemplateArgumentValue(String name) throws CoreException {
+		for (Input input : block.getInputs()) {
+			BlockInput blockInput = (BlockInput) input;
+			if (blockInput.getDefinition().isManyPorts() && blockInput.getDefinition().getParameter(name) != null) {
+				DataType elementType = null;
+				List<IValue> values = new ArrayList<IValue>(blockInput.getPorts().size());
+				for (InputPort inputPort : blockInput.getPorts()) {
+					BlockInputPort blockInputPort = (BlockInputPort) inputPort;
+					IValue value = ExpressionUtil.evaluateArgumentExpression(blockInputPort, name);
+					if (elementType == null) {
+						elementType = value.getDataType();
+					} else {
+						elementType = TypeSystemUtil.getLeftHandDataType(elementType, value.getDataType());
+						if (elementType == null) {
+							throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Argument values of input parameter '" + name + "' have incompatible data types"));
+						}
+					}
+					values.add(value);
+				}
+				ArrayType arrayType = TypeSystemUtil.createArrayType(elementType, values.size());
+				if (arrayType instanceof TensorType) {
+					return new VectorValue(new ComputationContext(), (TensorType) arrayType, values.toArray(new INumericValue[values.size()]));
+				}
+				return new ArrayValue(new ComputationContext(), arrayType, values.toArray(new IValue[values.size()]));
+			}
+		}
+		return null;
+	}
+	
+	protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 		return null;
 	}
 

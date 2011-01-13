@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterableElement;
+import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,6 +73,15 @@ public abstract class ParameterableElementImpl extends EObjectImpl implements Pa
 			parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, DMLPackage.PARAMETERABLE_ELEMENT__PARAMETERS);
 		}
 		return parameters;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter getParameter(String name) {
+		return ParameterableElementOperations.getParameter(this, name);
 	}
 
 	/**

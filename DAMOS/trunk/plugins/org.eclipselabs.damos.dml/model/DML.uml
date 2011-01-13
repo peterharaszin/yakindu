@@ -259,6 +259,14 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_h3_hgMCCEd6Vk-PE2115fA" value="*"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_h4AIkMCCEd6Vk-PE2115fA"/>
       </ownedAttribute>
+      <ownedOperation xmi:id="_aO6WsB9WEeCRY59Bn2WYTw" name="getParameter">
+        <ownedParameter xmi:id="_b2L2gB9WEeCRY59Bn2WYTw" type="_12_t8MB_Ed6Vk-PE2115fA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_dQ79QB9WEeCRY59Bn2WYTw"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_b2L2gR9WEeCRY59Bn2WYTw" name="name">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedParameter>
+      </ownedOperation>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_ec9lEMCCEd6Vk-PE2115fA" memberEnd="_ec9lEcCCEd6Vk-PE2115fA _bWWZcMCCEd6Vk-PE2115fA">
       <ownedEnd xmi:id="_ec9lEcCCEd6Vk-PE2115fA" type="_TOQQ8MCCEd6Vk-PE2115fA" association="_ec9lEMCCEd6Vk-PE2115fA"/>

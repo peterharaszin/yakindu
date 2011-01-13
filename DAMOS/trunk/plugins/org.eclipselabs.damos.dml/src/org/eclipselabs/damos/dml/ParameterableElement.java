@@ -42,4 +42,12 @@ public interface ParameterableElement extends EObject {
 	 */
 	EList<Parameter> getParameters();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" nameRequired="true" nameOrdered="false"
+	 * @generated
+	 */
+	Parameter getParameter(String name);
+
 } // ParameterableElement

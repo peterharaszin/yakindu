@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.common.util.NameUtil;
-import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
@@ -42,40 +42,44 @@ import org.eclipselabs.mscript.typesystem.IntegerType;
  */
 public class ExpressionUtil {
 
-	public static IValue evaluateArgumentExpression(Block block, String parameterName) throws CoreException {
-		String parameterExpression = block.getArgumentStringValue(parameterName);
+	public static IValue evaluateArgumentExpression(ParameterizedElement element, String parameterName) throws CoreException {
+		String parameterExpression = element.getArgumentStringValue(parameterName);
 		if (parameterExpression != null) {
-			return evaluateExpression(parameterExpression);
+			try {
+				return evaluateExpression(parameterExpression);
+			} catch (CoreException e) {
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Evaluating argument '" + parameterName + "' failed: " + e.getStatus().getMessage()));
+			}
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
-	public static List<IValue> evaluateArgumentExpressionList(Block block, String parameterName) throws CoreException {
-		String parameterExpressionList = block.getArgumentStringValue(parameterName);
+	public static List<IValue> evaluateArgumentExpressionList(ParameterizedElement element, String parameterName) throws CoreException {
+		String parameterExpressionList = element.getArgumentStringValue(parameterName);
 		if (parameterExpressionList != null) {
 			return evaluateExpressionList(parameterExpressionList);
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
 	}
 
-	public static ISimpleNumericValue evaluateSimpleNumericArgument(Block block, String parameterName) throws CoreException {
-		IValue value = evaluateArgumentExpression(block, parameterName);
+	public static ISimpleNumericValue evaluateSimpleNumericArgument(ParameterizedElement element, String parameterName) throws CoreException {
+		IValue value = evaluateArgumentExpression(element, parameterName);
 		if (value instanceof ISimpleNumericValue) {
 			return (ISimpleNumericValue) value;
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be numeric"));
 	}
 
-	public static ISimpleNumericValue evaluateIntegerArgument(Block block, String parameterName) throws CoreException {
-		IValue value = evaluateArgumentExpression(block, parameterName);
+	public static ISimpleNumericValue evaluateIntegerArgument(ParameterizedElement element, String parameterName) throws CoreException {
+		IValue value = evaluateArgumentExpression(element, parameterName);
 		if (value instanceof ISimpleNumericValue && value.getDataType() instanceof IntegerType) {
 			return (ISimpleNumericValue) value;
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be integer"));
 	}
 
-	public static IBooleanValue evaluateBooleanArgument(Block block, String parameterName) throws CoreException {
-		IValue value = evaluateArgumentExpression(block, parameterName);
+	public static IBooleanValue evaluateBooleanArgument(ParameterizedElement element, String parameterName) throws CoreException {
+		IValue value = evaluateArgumentExpression(element, parameterName);
 		if (value instanceof IBooleanValue) {
 			return (IBooleanValue) value;
 		}

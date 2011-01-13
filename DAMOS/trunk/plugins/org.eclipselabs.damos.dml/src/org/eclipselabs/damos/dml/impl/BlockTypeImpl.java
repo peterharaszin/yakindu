@@ -29,6 +29,7 @@ import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.internal.operations.BlockTypeOperations;
 import org.eclipselabs.damos.dml.internal.operations.CategorizedElementOperations;
+import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -276,6 +277,15 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	 */
 	public boolean belongsTo(String categoryName) {
 		return CategorizedElementOperations.belongsTo(this, categoryName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter getParameter(String name) {
+		return ParameterableElementOperations.getParameter(this, name);
 	}
 
 	/**

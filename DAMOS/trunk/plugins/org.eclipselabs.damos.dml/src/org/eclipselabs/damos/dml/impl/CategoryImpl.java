@@ -21,6 +21,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.internal.operations.CategorizedElementOperations;
+import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -107,6 +108,15 @@ public class CategoryImpl extends QualifiedElementImpl implements Category {
 	 */
 	public boolean belongsTo(String categoryName) {
 		return CategorizedElementOperations.belongsTo(this, categoryName);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter getParameter(String name) {
+		return ParameterableElementOperations.getParameter(this, name);
 	}
 
 	/**

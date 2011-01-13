@@ -249,7 +249,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 
 		@Override
-		protected IValue getGlobalTemplateArgument(String name) {
+		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleTime = getExecutionModel().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();

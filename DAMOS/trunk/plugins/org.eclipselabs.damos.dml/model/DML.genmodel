@@ -126,6 +126,9 @@
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="DML.ecore#//ParameterableElement">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ParameterableElement/parameters"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="DML.ecore#//ParameterableElement/getParameter">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="DML.ecore#//ParameterableElement/getParameter/name"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="DML.ecore#//Parameter">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/name"/>

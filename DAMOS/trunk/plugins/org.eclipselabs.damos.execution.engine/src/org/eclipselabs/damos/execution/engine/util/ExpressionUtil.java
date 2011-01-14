@@ -48,7 +48,7 @@ public class ExpressionUtil {
 			try {
 				return evaluateExpression(parameterExpression);
 			} catch (CoreException e) {
-				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Evaluating argument '" + parameterName + "' failed: " + e.getStatus().getMessage()));
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Evaluating " + NameUtil.formatName(parameterName) + " failed: " + e.getStatus().getMessage()));
 			}
 		}
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parameter '" + parameterName + "' not found"));
@@ -92,7 +92,7 @@ public class ExpressionUtil {
 				parser.getGrammarAccess().getExpressionRule().getName(),
 				new StringReader(expression));
 		if (!result.getParseErrors().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Syntax error"));
 		}
 		
 		ITransformerContext transformerContext = new TransformerContext();
@@ -111,7 +111,7 @@ public class ExpressionUtil {
 				parser.getGrammarAccess().getExpressionListRule().getName(),
 				new StringReader(expressionList));
 		if (!result.getParseErrors().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Syntax error"));
 		}
 		List<IValue> values = new ArrayList<IValue>();
 		ExpressionList expressions = (ExpressionList) result.getRootASTElement();

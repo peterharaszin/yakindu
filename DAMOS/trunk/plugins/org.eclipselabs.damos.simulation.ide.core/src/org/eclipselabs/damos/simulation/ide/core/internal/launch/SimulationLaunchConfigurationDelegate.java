@@ -37,8 +37,8 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No fragment specified"));
 		}
 		
-		Fragment fragment = loadFragment(fragmentURIString);
-		if (fragment == null) {
+		Fragment topLevelFragment = loadFragment(fragmentURIString);
+		if (topLevelFragment == null) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Could not load fragment '" + fragmentURIString + "'"));
 		}
 		
@@ -46,6 +46,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 		
 		ExecutionModel executionModel = ExecutionModelFactory.eINSTANCE.createExecutionModel();
 		executionModel.setComputationModel(computationModel);
+		executionModel.setTopLevelFragment(topLevelFragment);
 
 		SimulationModel simulationModel = SimulationModelFactory.eINSTANCE.createSimulationModel();
 		simulationModel.setExecutionModel(executionModel);
@@ -64,7 +65,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 		
 		String name = new Path(fragmentURIString).toFile().getName();
 		
-		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(fragment, monitor);
+		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(executionModel.getTopLevelFragment(), monitor);
 		new ComponentSimulationObjectAdaptor().adaptSimulationObjects(simulationModel, executionGraph, monitor);
 		
 		new SimulationProcess(launch, name).simulate(simulationModel, executionGraph);

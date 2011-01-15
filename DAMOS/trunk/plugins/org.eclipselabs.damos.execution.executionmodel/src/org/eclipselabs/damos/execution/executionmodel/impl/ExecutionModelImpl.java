@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
@@ -22,14 +23,35 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getSampleTime <em>Sample Time</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getComputationModel <em>Computation Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getTopLevelFragment <em>Top Level Fragment</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getSampleTime <em>Sample Time</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
+	/**
+	 * The cached value of the '{@link #getComputationModel() <em>Computation Model</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getComputationModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected ComputationModel computationModel;
+
+	/**
+	 * The cached value of the '{@link #getTopLevelFragment() <em>Top Level Fragment</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTopLevelFragment()
+	 * @generated
+	 * @ordered
+	 */
+	protected Fragment topLevelFragment;
+
 	/**
 	 * The default value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,16 +71,6 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	 * @ordered
 	 */
 	protected double sampleTime = SAMPLE_TIME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getComputationModel() <em>Computation Model</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComputationModel()
-	 * @generated
-	 * @ordered
-	 */
-	protected ComputationModel computationModel;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,14 +155,55 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Fragment getTopLevelFragment() {
+		if (topLevelFragment != null && topLevelFragment.eIsProxy()) {
+			InternalEObject oldTopLevelFragment = (InternalEObject)topLevelFragment;
+			topLevelFragment = (Fragment)eResolveProxy(oldTopLevelFragment);
+			if (topLevelFragment != oldTopLevelFragment) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExecutionModelPackage.EXECUTION_MODEL__TOP_LEVEL_FRAGMENT, oldTopLevelFragment, topLevelFragment));
+			}
+		}
+		return topLevelFragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Fragment basicGetTopLevelFragment() {
+		return topLevelFragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTopLevelFragment(Fragment newTopLevelFragment) {
+		Fragment oldTopLevelFragment = topLevelFragment;
+		topLevelFragment = newTopLevelFragment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionModelPackage.EXECUTION_MODEL__TOP_LEVEL_FRAGMENT, oldTopLevelFragment, topLevelFragment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				return getSampleTime();
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
 				if (resolve) return getComputationModel();
 				return basicGetComputationModel();
+			case ExecutionModelPackage.EXECUTION_MODEL__TOP_LEVEL_FRAGMENT:
+				if (resolve) return getTopLevelFragment();
+				return basicGetTopLevelFragment();
+			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
+				return getSampleTime();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -163,11 +216,14 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				setSampleTime((Double)newValue);
-				return;
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
 				setComputationModel((ComputationModel)newValue);
+				return;
+			case ExecutionModelPackage.EXECUTION_MODEL__TOP_LEVEL_FRAGMENT:
+				setTopLevelFragment((Fragment)newValue);
+				return;
+			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
+				setSampleTime((Double)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -181,11 +237,14 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				setSampleTime(SAMPLE_TIME_EDEFAULT);
-				return;
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
 				setComputationModel((ComputationModel)null);
+				return;
+			case ExecutionModelPackage.EXECUTION_MODEL__TOP_LEVEL_FRAGMENT:
+				setTopLevelFragment((Fragment)null);
+				return;
+			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
+				setSampleTime(SAMPLE_TIME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -199,10 +258,12 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				return sampleTime != SAMPLE_TIME_EDEFAULT;
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
 				return computationModel != null;
+			case ExecutionModelPackage.EXECUTION_MODEL__TOP_LEVEL_FRAGMENT:
+				return topLevelFragment != null;
+			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
+				return sampleTime != SAMPLE_TIME_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -70,22 +70,31 @@ public interface ExecutionModelPackage extends EPackage {
 	int EXECUTION_MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXECUTION_MODEL__SAMPLE_TIME = 0;
-
-	/**
 	 * The feature id for the '<em><b>Computation Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_MODEL__COMPUTATION_MODEL = 1;
+	int EXECUTION_MODEL__COMPUTATION_MODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Top Level Fragment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_MODEL__TOP_LEVEL_FRAGMENT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_MODEL__SAMPLE_TIME = 2;
 
 	/**
 	 * The number of structural features of the '<em>Execution Model</em>' class.
@@ -94,7 +103,7 @@ public interface ExecutionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_MODEL_FEATURE_COUNT = 2;
+	int EXECUTION_MODEL_FEATURE_COUNT = 3;
 
 
 	/**
@@ -128,6 +137,17 @@ public interface ExecutionModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExecutionModel_ComputationModel();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getTopLevelFragment <em>Top Level Fragment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Top Level Fragment</em>'.
+	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getTopLevelFragment()
+	 * @see #getExecutionModel()
+	 * @generated
+	 */
+	EReference getExecutionModel_TopLevelFragment();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -176,6 +196,14 @@ public interface ExecutionModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXECUTION_MODEL__COMPUTATION_MODEL = eINSTANCE.getExecutionModel_ComputationModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Top Level Fragment</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTION_MODEL__TOP_LEVEL_FRAGMENT = eINSTANCE.getExecutionModel_TopLevelFragment();
 
 	}
 

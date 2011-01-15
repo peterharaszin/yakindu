@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
@@ -78,6 +79,7 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 
 		// Initialize simple dependencies
 		ComputationModelPackage.eINSTANCE.eClass();
+		DMLPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theExecutionModelPackage.createPackageContents();
@@ -109,7 +111,7 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 	 * @generated
 	 */
 	public EAttribute getExecutionModel_SampleTime() {
-		return (EAttribute)executionModelEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)executionModelEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -118,6 +120,15 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 	 * @generated
 	 */
 	public EReference getExecutionModel_ComputationModel() {
+		return (EReference)executionModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExecutionModel_TopLevelFragment() {
 		return (EReference)executionModelEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -150,8 +161,9 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 
 		// Create classes and their features
 		executionModelEClass = createEClass(EXECUTION_MODEL);
-		createEAttribute(executionModelEClass, EXECUTION_MODEL__SAMPLE_TIME);
 		createEReference(executionModelEClass, EXECUTION_MODEL__COMPUTATION_MODEL);
+		createEReference(executionModelEClass, EXECUTION_MODEL__TOP_LEVEL_FRAGMENT);
+		createEAttribute(executionModelEClass, EXECUTION_MODEL__SAMPLE_TIME);
 	}
 
 	/**
@@ -179,6 +191,7 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 
 		// Obtain other dependent packages
 		ComputationModelPackage theComputationModelPackage = (ComputationModelPackage)EPackage.Registry.INSTANCE.getEPackage(ComputationModelPackage.eNS_URI);
+		DMLPackage theDMLPackage = (DMLPackage)EPackage.Registry.INSTANCE.getEPackage(DMLPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -188,8 +201,9 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(executionModelEClass, ExecutionModel.class, "ExecutionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExecutionModel_SampleTime(), ecorePackage.getEDouble(), "sampleTime", null, 1, 1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExecutionModel_ComputationModel(), theComputationModelPackage.getComputationModel(), null, "computationModel", null, 0, 1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExecutionModel_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 0, 1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExecutionModel_SampleTime(), ecorePackage.getEDouble(), "sampleTime", null, 1, 1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

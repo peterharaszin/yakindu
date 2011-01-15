@@ -4,8 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="executionmodel"
     nsURI="http://www.eclipselabs.org/damos/ExecutionModel/1.0.0" nsPrefix="executionmodel">
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" eType="ecore:EClass ../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.ecore#//ComputationModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFragment" eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleTime" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" eType="ecore:EClass ../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.ecore#//ComputationModel"/>
   </eClassifiers>
 </ecore:EPackage>

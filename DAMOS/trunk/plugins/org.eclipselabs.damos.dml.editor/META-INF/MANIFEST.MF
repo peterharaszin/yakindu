@@ -8,8 +8,6 @@ Bundle-Activator: org.eclipselabs.damos.dml.editor.DMLEditorPlugin$Implementatio
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipselabs.damos.dml.editor,
- org.eclipselabs.damos.dml.editor.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,

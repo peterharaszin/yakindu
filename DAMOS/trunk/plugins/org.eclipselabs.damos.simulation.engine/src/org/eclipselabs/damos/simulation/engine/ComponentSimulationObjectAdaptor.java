@@ -41,6 +41,8 @@ public class ComponentSimulationObjectAdaptor {
 			throw new CoreException(signatureResolverResult.getStatus());
 		}
 		
+		ISimulationContext context = new SimulationContext(simulationModel);
+		
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
 		
 		for (Node node : executionGraph.getNodes()) {
@@ -48,7 +50,7 @@ public class ComponentSimulationObjectAdaptor {
 			IComponentSimulationObject simulationObject;
 			simulationObject = ComponentSimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
 			if (simulationObject != null) {
-				simulationObject.setContext(new SimulationContext(simulationModel));
+				simulationObject.setContext(context);
 				simulationObject.setComponent(component);
 				simulationObject.setSignature(signatureResolverResult.getSignatures().get(component));
 				node.eAdapters().add(new ComponentSimulationObjectAdapter(simulationObject));

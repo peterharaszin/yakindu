@@ -72,7 +72,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	private boolean[] multiPortInput;
 	private boolean[] multiPortOutput;
 	
-	private List<ComputationCompound> computeCompounds = new ArrayList<ComputationCompound>();
+	private List<ComputationCompound> computeOutputsCompounds = new ArrayList<ComputationCompound>();
 	private List<ComputationCompound> updateCompounds = new ArrayList<ComputationCompound>();
 	
 	/* (non-Javadoc)
@@ -128,7 +128,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				computeCompounds.add(compound);
+				computeOutputsCompounds.add(compound);
 			} else {
 				updateCompounds.add(compound);
 			}
@@ -210,7 +210,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void computeOutputValues() throws CoreException {
-		for (ComputationCompound compound : computeCompounds) {
+		for (ComputationCompound compound : computeOutputsCompounds) {
 			compoundInterpreter.doSwitch(compound);
 		}
 	}

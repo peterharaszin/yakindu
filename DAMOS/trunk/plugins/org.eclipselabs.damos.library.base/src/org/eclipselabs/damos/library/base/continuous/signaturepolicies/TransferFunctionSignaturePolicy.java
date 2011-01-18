@@ -20,7 +20,9 @@ import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConsta
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
+import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TensorType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
@@ -99,9 +101,18 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 		if (!status.isOK()) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
+		
+		RealType outputDataType;
+		
+		if (incomingDataType instanceof RealType) {
+			outputDataType = EcoreUtil.copy((RealType) incomingDataType);
+		} else {
+			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
+			outputDataType.setUnit(TypeSystemUtil.createUnit());
+		}
 
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
-		signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
+		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		return new ComponentSignatureEvaluationResult(signature);
 	}
 

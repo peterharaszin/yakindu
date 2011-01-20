@@ -395,30 +395,53 @@ public class SimulationSession implements Runnable, StatechartListener, TimingSe
 	// TimingService implementation - should not be called from outside
 	//
 		
+	private Map<TimeEvent, TimeEventTask> activeTimeEventTasks = new HashMap<TimeEvent,TimeEventTask>();
 
-	private Set<TimeEvent> canceledRequestedEvents = new HashSet<TimeEvent>();
-
+	/**
+	 * We implement a special TimerTask class that knows its corresponding TimeEvent object.
+	 * While TimeEvent objects just specify the specific properties of a after statement on a transition 
+	 * the corresponding tasks are like one shot instantiations of the event specification.
+	 *   
+	 * @author aterfloth
+	 */
+	protected class TimeEventTask extends TimerTask {
+		
+		TimeEvent timeEvent = null;
+		
+		protected TimeEventTask(TimeEvent timeEvent) {
+			this.timeEvent = timeEvent;
+		}
+		
+		protected void schedule(Timer timer) {
+			timer.schedule(this, timeEvent.getDuration());
+		} 
+				
+		@Override
+		public void run() {
+			statechart.setEvent(timeEvent);
+			activeTimeEventTasks.remove(timeEvent);
+		}
+	}
+	
+	/**
+	 * Gets a timer and activates a timer task...
+	 */
 	synchronized public void requestTimeEvent(final TimeEvent timeEvent) {
-		canceledRequestedEvents.remove(timeEvent);
 
-		// run a timer (there is an own thread for this);
-		timer.schedule(new TimerTask() {
-
-			@Override
-			public void run() {
-				if (canceledRequestedEvents.contains(timeEvent)) {
-					canceledRequestedEvents.remove(timeEvent);
-				} else {
-					statechart.setEvent(timeEvent);
-				}
-			}
-
-		}, timeEvent.getDuration());
+		TimeEventTask task = new TimeEventTask(timeEvent);
+		task.schedule(timer);
+		activeTimeEventTasks.put(timeEvent, task);
 	}
 
-	
+	/**
+	 * cancelles the timer task that was created for the given timer event object
+	 */
 	synchronized public void cancelTimeEvent(final TimeEvent timeEvent) {
-		canceledRequestedEvents.add(timeEvent);
+		TimeEventTask task = activeTimeEventTasks.get(timeEvent);
+		if (task != null) {
+			task.cancel();
+			activeTimeEventTasks.remove(timeEvent);
+		}
 	}
 
 	

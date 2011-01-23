@@ -196,9 +196,11 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	}
 	
 	protected final void refreshTerminalFigure() {
-		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-		if (fragmentManager != null) {
-			refreshTerminalFigure(fragmentManager.getSelectedFragment());
+		if (getRoot() != null) {
+			FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
+			if (fragmentManager != null) {
+				refreshTerminalFigure(fragmentManager.getSelectedFragment());
+			}
 		}
 	}
 

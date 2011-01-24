@@ -48,8 +48,9 @@ import org.eclipselabs.mscript.language.il.InputVariableDeclaration;
 import org.eclipselabs.mscript.language.il.InstanceVariableDeclaration;
 import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
 import org.eclipselabs.mscript.language.il.StatefulVariableDeclaration;
-import org.eclipselabs.mscript.language.il.transform.ArrayOperationTransformer;
+import org.eclipselabs.mscript.language.il.transform.ArrayOperationDecomposer;
 import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
+import org.eclipselabs.mscript.language.il.transform.IArrayOperationDecomposer;
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -100,10 +101,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		new NameNormalizer().normalize(functionDefinition);
 
-		ArrayOperationTransformer arrayOperationTransformer = new ArrayOperationTransformer();
-		arrayOperationTransformer.doSwitch(functionDefinition.getInitializationCompound());
+		IArrayOperationDecomposer arrayOperationDecomposer = new ArrayOperationDecomposer();
+		arrayOperationDecomposer.decompose(functionDefinition.getInitializationCompound());
 		for (Compound compound : functionDefinition.getComputationCompounds()) {
-			arrayOperationTransformer.doSwitch(compound);
+			arrayOperationDecomposer.decompose(compound);
 		}
 	}
 	

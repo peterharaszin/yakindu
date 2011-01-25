@@ -19,6 +19,7 @@ import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.IComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
+import org.eclipselabs.mscript.computation.engine.value.IValueConstructor;
 import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
 import org.eclipselabs.mscript.computation.engine.value.ValueTransformer;
 import org.eclipselabs.mscript.typesystem.RealType;
@@ -32,7 +33,7 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  */
 public class RampSimulationObject extends AbstractBlockSimulationObject {
 
-	private ValueConstructor valueConstructor = new ValueConstructor();
+	private IValueConstructor valueConstructor = new ValueConstructor();
 	private ValueTransformer valueTransformer = new ValueTransformer();
 	
 	private IComputationContext defaultComputationContext;
@@ -67,7 +68,7 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
-		ISimpleNumericValue time = valueConstructor.createRealValue(defaultComputationContext, timeDataType, n * sampleTime);
+		ISimpleNumericValue time = valueConstructor.construct(defaultComputationContext, timeDataType, n * sampleTime);
 		IValue value = initialValue;
 		if (time.doubleValue() > startTime.doubleValue()) {
 			value = value.add(slope.multiply(time.subtract(startTime)));

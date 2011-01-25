@@ -42,6 +42,7 @@ import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransform
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.mscript.language.interpreter.CompoundInterpreter;
 import org.eclipselabs.mscript.language.interpreter.Functor;
+import org.eclipselabs.mscript.language.interpreter.ICompoundInterpreter;
 import org.eclipselabs.mscript.language.interpreter.IFunctor;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.IVariable;
@@ -64,7 +65,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	private IInterpreterContext interpreterContext;
 	private IFunctor functor;
 	
-	private CompoundInterpreter compoundInterpreter;
+	private ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
 
 	private IVariable[] inputVariables;
 	private IVariable[] outputVariables;
@@ -121,10 +122,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 		Compound initializationCompound = functor.getFunctionDefinition().getInitializationCompound();
 		if (initializationCompound != null) {
-			new CompoundInterpreter(interpreterContext).doSwitch(initializationCompound);
+			compoundInterpreter.execute(interpreterContext, initializationCompound);
 		}
-		
-		compoundInterpreter = new CompoundInterpreter(interpreterContext);
 		
 		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
@@ -211,7 +210,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	@Override
 	public void computeOutputValues() throws CoreException {
 		for (ComputationCompound compound : computeOutputsCompounds) {
-			compoundInterpreter.doSwitch(compound);
+			compoundInterpreter.execute(interpreterContext, compound);
 		}
 	}
 	
@@ -234,7 +233,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	@Override
 	public void update() throws CoreException {
 		for (ComputationCompound compound : updateCompounds) {
-			compoundInterpreter.doSwitch(compound);
+			compoundInterpreter.execute(interpreterContext, compound);
 		}
 		functor.incrementStepIndex();
 	}

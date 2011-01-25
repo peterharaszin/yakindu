@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
+import org.eclipselabs.mscript.language.ast.DataTypeSpecifier;
 import org.eclipselabs.mscript.language.interpreter.DataTypeSpecifierEvaluator;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
@@ -37,7 +38,7 @@ public class DataTypeSpecifierUtil {
 		if (!result.getParseErrors().isEmpty()) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
 		}
-		return new DataTypeSpecifierEvaluator(context).doSwitch(result.getRootASTElement());
+		return new DataTypeSpecifierEvaluator().evaluate(context, (DataTypeSpecifier) result.getRootASTElement());
 	}
 
 }

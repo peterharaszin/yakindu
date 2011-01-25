@@ -41,7 +41,7 @@ import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
 import org.eclipselabs.damos.execution.executiongraph.Node;
 import org.eclipselabs.damos.execution.executiongraph.construct.ExecutionGraphConstructor;
-import org.eclipselabs.mscript.codegen.c.util.GeneratorUtil;
+import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -104,7 +104,7 @@ public class Generator {
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = node.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", GeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
 		}
 		writer.println("} Input;");
 		
@@ -119,7 +119,7 @@ public class Generator {
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = node.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", GeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
 		}
 		writer.println("} Output;");
 
@@ -182,7 +182,7 @@ public class Generator {
 				int i = blockOutput.getDefinition().isManyPorts() ? 0 : -1;
 				for (OutputPort outputPort : output.getPorts()) {
 					String suffix = i >= 0 ? Integer.toString(i++) : "";
-					String cDataType = GeneratorUtil.getCDataType(genModel.getExecutionModel().getComputationModel(), generator.getSignature().getOutputDataType(outputPort));
+					String cDataType = MscriptGeneratorUtil.getCDataType(genModel.getExecutionModel().getComputationModel(), generator.getSignature().getOutputDataType(outputPort));
 					writer.printf("%s %s_%s%s;\n", cDataType, StringUtils.uncapitalize(block.getName()), blockOutput.getDefinition().getName(), suffix);
 				}
 			}

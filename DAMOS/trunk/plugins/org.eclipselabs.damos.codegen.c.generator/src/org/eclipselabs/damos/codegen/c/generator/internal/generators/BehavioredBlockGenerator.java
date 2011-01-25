@@ -35,7 +35,7 @@ import org.eclipselabs.mscript.codegen.c.CompoundGenerator;
 import org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
-import org.eclipselabs.mscript.codegen.c.util.GeneratorUtil;
+import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
@@ -142,12 +142,12 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private void writeContextStructureMember(PrintWriter writer, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
 		if (variableDeclaration.getCircularBufferSize() > 1) {
 			writer.printf("%s[%d];\n",
-					GeneratorUtil.getCVariableDeclaration(getComputationModel(), variableDeclaration.getType(), variableDeclaration.getName(), false),
+					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), variableDeclaration.getType(), variableDeclaration.getName(), false),
 					variableDeclaration.getCircularBufferSize());
 			writer.printf("int %s_index;\n", variableDeclaration.getName());
 		} else {
 			writer.printf("%s;\n",
-					GeneratorUtil.getCVariableDeclaration(getComputationModel(), variableDeclaration.getType(), variableDeclaration.getName(), false));
+					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), variableDeclaration.getType(), variableDeclaration.getName(), false));
 		}
 	}
 	
@@ -278,7 +278,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getType();
-				writer.printf("%s %s_%s[%d] = { ", GeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), StringUtils.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
+				writer.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), StringUtils.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
 					if (first) {
@@ -286,7 +286,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 					} else {
 						writer.print(", ");
 					}
-					GeneratorUtil.cast(mscriptGeneratorContext, variableAccessor.getInputVariable(inputPort, false), getSignature().getInputDataType(inputPort), arrayType.getElementType());
+					MscriptGeneratorUtil.cast(mscriptGeneratorContext, variableAccessor.getInputVariable(inputPort, false), getSignature().getInputDataType(inputPort), arrayType.getElementType());
 				}
 				writer.println(" };");
 			} else {
@@ -294,8 +294,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				DataType inputDataType = getSignature().getInputDataType(inputPort);
 				DataType targetDataType = inputVariableDeclaration.getType();
 				if (!EcoreUtil.equals(inputDataType, targetDataType)) {
-					writer.printf("%s %s_%s = ", GeneratorUtil.getCDataType(getComputationModel(), targetDataType), StringUtils.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
-					GeneratorUtil.cast(mscriptGeneratorContext, variableAccessor.getInputVariable(inputPort, false), inputDataType, targetDataType);
+					writer.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), StringUtils.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
+					MscriptGeneratorUtil.cast(mscriptGeneratorContext, variableAccessor.getInputVariable(inputPort, false), inputDataType, targetDataType);
 					writer.println(";");
 				}
 			}

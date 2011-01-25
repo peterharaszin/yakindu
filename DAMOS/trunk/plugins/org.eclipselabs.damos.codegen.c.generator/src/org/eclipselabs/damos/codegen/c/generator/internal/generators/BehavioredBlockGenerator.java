@@ -317,7 +317,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				double sampleTime = getExecutionModel().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
-				return new ValueConstructor().createRealValue(new ComputationContext(), realType, sampleTime);
+				return new ValueConstructor().construct(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getExecutionModel().getSampleTime();
@@ -325,7 +325,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				Unit herzUnit = TypeSystemUtil.createUnit();
 				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
-				return new ValueConstructor().createRealValue(new ComputationContext(), realType, sampleRate);
+				return new ValueConstructor().construct(new ComputationContext(), realType, sampleRate);
 			}
 			return super.getGlobalTemplateArgument(name);
 		}

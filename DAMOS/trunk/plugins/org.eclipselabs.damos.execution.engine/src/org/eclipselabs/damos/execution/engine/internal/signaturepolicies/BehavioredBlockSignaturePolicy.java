@@ -147,14 +147,14 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
-				return new ValueConstructor().createRealValue(new ComputationContext(), realType, 1);
+				return new ValueConstructor().construct(new ComputationContext(), realType, 1);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				Unit herzUnit = TypeSystemUtil.createUnit();
 				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
-				return new ValueConstructor().createRealValue(new ComputationContext(), realType, 1);
+				return new ValueConstructor().construct(new ComputationContext(), realType, 1);
 			}
 			return super.getGlobalTemplateArgument(name);
 		}

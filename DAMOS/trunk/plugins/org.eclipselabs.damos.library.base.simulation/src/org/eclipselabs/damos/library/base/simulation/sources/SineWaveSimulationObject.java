@@ -20,6 +20,7 @@ import org.eclipselabs.mscript.computation.engine.IComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.INumericValue;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
+import org.eclipselabs.mscript.computation.engine.value.IValueConstructor;
 import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
 import org.eclipselabs.mscript.computation.engine.value.ValueTransformer;
 import org.eclipselabs.mscript.typesystem.RealType;
@@ -32,7 +33,7 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  */
 public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 
-	private ValueConstructor valueConstructor = new ValueConstructor();
+	private IValueConstructor valueConstructor = new ValueConstructor();
 	private ValueTransformer valueTransformer = new ValueTransformer();
 
 	private IComputationContext defaultComputationContext;
@@ -80,7 +81,7 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	}
 
 	private void updateValue() throws CoreException {
-		INumericValue sineValue = valueConstructor.createRealValue(defaultComputationContext, sineDataType,
+		INumericValue sineValue = valueConstructor.construct(defaultComputationContext, sineDataType,
 				Math.sin(2 * Math.PI * frequency * n * sampleTime + Math.toRadians(phase)));
 		value = valueTransformer.transform(outputComputationContext, amplitude.multiply(sineValue).add(bias));
 	}

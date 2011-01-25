@@ -23,6 +23,7 @@ import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.IArrayValue;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
+import org.eclipselabs.mscript.computation.engine.value.IValueConstructor;
 import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TensorType;
@@ -31,7 +32,7 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 public class TransferFunctionSimulationObject extends AbstractBlockSimulationObject {
 
-	private ValueConstructor valueConstructor = new ValueConstructor();
+	private IValueConstructor valueConstructor = new ValueConstructor();
 	private ComputationContext outputComputationContext;
 	private RealType outputDataType;
 	
@@ -102,7 +103,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
-		return valueConstructor.createRealValue(outputComputationContext, outputDataType, outputMatrix.times(stateVector).get(0, 0));
+		return valueConstructor.construct(outputComputationContext, outputDataType, outputMatrix.times(stateVector).get(0, 0));
 	}
 
 	@Override

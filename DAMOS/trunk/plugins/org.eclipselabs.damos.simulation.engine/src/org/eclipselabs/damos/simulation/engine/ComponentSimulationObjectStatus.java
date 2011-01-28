@@ -11,25 +11,32 @@
 
 package org.eclipselabs.damos.simulation.engine;
 
+import java.util.List;
+
+import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.dml.Component;
+
 /**
  * @author Andreas Unger
  *
  */
-public class SimulationException extends Exception {
+public class ComponentSimulationObjectStatus extends Status {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private List<Component> affectedComponents;
 	
 	/**
 	 * 
 	 */
-	public SimulationException() {
+	public ComponentSimulationObjectStatus(int severity, String pluginId, int code, String message, Throwable exception, List<Component> affectedComponents) {
+		super(severity, pluginId, code, message, exception);
+		this.affectedComponents = affectedComponents;
 	}
 	
-	public SimulationException(String message) {
-		super(message);
+	/**
+	 * @return the affectedComponents
+	 */
+	public List<Component> getAffectedComponents() {
+		return affectedComponents;
 	}
 
 }

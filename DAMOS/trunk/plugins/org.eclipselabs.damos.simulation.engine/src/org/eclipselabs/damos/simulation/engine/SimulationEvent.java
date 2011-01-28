@@ -19,6 +19,15 @@ import java.util.EventObject;
  */
 public class SimulationEvent extends EventObject {
 
+	public static final int START = 0;
+	public static final int STEP = 1;
+	public static final int FINISH = 2;
+	public static final int CANCEL = 3;
+	
+	private ISimulationContext context;
+	
+	private int kind;
+	
 	/**
 	 * 
 	 */
@@ -27,8 +36,28 @@ public class SimulationEvent extends EventObject {
 	/**
 	 * @param source
 	 */
-	public SimulationEvent(Object source) {
+	public SimulationEvent(Object source, ISimulationContext context, int kind) {
 		super(source);
+		this.context = context;
+		this.kind = kind;
+	}
+	
+	/**
+	 * @return the context
+	 */
+	public ISimulationContext getContext() {
+		return context;
+	}
+	
+	/**
+	 * @return the kind
+	 */
+	public int getKind() {
+		return kind;
+	}
+	
+	public boolean isDone() {
+		return kind == FINISH || kind == CANCEL;
 	}
 
 }

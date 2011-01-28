@@ -61,14 +61,16 @@ public class SimulationProcess implements IProcess {
 		return simulationThread;
 	}
 	
-	public void simulate(SimulationModel simulationModel, ExecutionGraph executionGraph) {
+	public void run(SimulationModel simulationModel, ExecutionGraph executionGraph) {
 		ISimulationMonitor monitor = new SimulationMonitor();
 		simulationThread = new SimulationThread(simulationModel, executionGraph, monitor);
 		monitor.addSimulationListener(new ISimulationListener() {
 			
 			public void handleSimulationEvent(SimulationEvent event) {
-				terminated = true;
-				fireTerminateEvent();
+				if (event.isDone()) {
+					terminated = true;
+					fireTerminateEvent();
+				}
 			}
 			
 		});
@@ -122,16 +124,13 @@ public class SimulationProcess implements IProcess {
 	 * @param event debug event to fire
 	 */
 	protected void fireEvent(DebugEvent event) {
-		DebugPlugin manager= DebugPlugin.getDefault();
+		DebugPlugin manager = DebugPlugin.getDefault();
 		if (manager != null) {
 			manager.fireDebugEventSet(new DebugEvent[] { event });
 		}
 	}
 
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-		if (adapter == ExecutionGraph.class) {
-			return getSimulationJob().getExecutionGraph();
-		}
 		return null;
 	}
 

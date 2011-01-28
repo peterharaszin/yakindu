@@ -25,55 +25,48 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
  */
 public abstract class AbstractComponentSimulationObject implements IComponentSimulationObject {
 
-	private ISimulationContext context;
-	private Component component;
-	private IComponentSignature signature;
+	private IComponentSimulationInfo info;
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getInfo()
+	 */
+	public IComponentSimulationInfo getInfo() {
+		return info;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#setInfo(org.eclipselabs.damos.simulation.engine.IComponentSimulationInfo)
+	 */
+	public void setInfo(IComponentSimulationInfo info) {
+		this.info = info;
+	}
 		
-	public ISimulationContext getContext() {
-		return context;
-	}
-	
-	public void setContext(ISimulationContext context) {
-		this.context = context;
-	}
-
-	public Component getComponent() {
-		return component;
-	}
-	
-	public void setComponent(Component component) {
-		this.component = component;
-	}
-	
-	public IComponentSignature getSignature() {
-		return signature;
-	}
-	
-	public void setSignature(IComponentSignature signature) {
-		this.signature = signature;
-	}
-	
-	public void initialize() throws CoreException {
-	}
-	
-	public void reset() throws CoreException {
-	}
-	
 	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
-	}
-	
-	public void computeOutputValues() throws CoreException {
 	}
 
 	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
 		return null;
 	}
+
+	public void initialize() throws CoreException {
+	}
+		
+	public void computeOutputValues() throws CoreException {
+	}
 	
 	public void update() throws CoreException {
 	}
 	
+	protected Component getComponent() {
+		return info.getComponent();
+	}
+	
+	protected IComponentSignature getSignature() {
+		return info.getComponentSignature();
+	}
+
 	protected final SimulationModel getSimulationModel() {
-		return getContext().getSimulationModel();
+		return info.getSimulationModel();
 	}
 	
 	protected final ExecutionModel getExecutionModel() {

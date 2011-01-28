@@ -23,7 +23,7 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
  */
 public class SimulationUtil {
 
-	public static long getSampleCount(SimulationModel simulationModel) {
+	public static long getStepCount(SimulationModel simulationModel) {
 		return (long) Math.ceil(simulationModel.getSimulationTime() / simulationModel.getExecutionModel().getSampleTime()) + 1;
 	}
 	

@@ -12,8 +12,6 @@
 package org.eclipselabs.damos.simulation.engine;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -24,28 +22,18 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
  * clients. Clients should extend {@link AbstractComponentSimulationObject}.
  */
 public interface IComponentSimulationObject {
-	
-	ISimulationContext getContext();
 
-	void setContext(ISimulationContext context);
+	IComponentSimulationInfo getInfo();
+	
+	void setInfo(IComponentSimulationInfo info);
 
-	Component getComponent();
-	
-	void setComponent(Component component);
-	
-	IComponentSignature getSignature();
-	
-	void setSignature(IComponentSignature signature);
+	void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException;
+
+	IValue getOutputValue(int outputIndex, int portIndex) throws CoreException;
 
 	void initialize() throws CoreException;
 	
-	void reset() throws CoreException;
-
-	void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException;
-	
 	void computeOutputValues() throws CoreException;
-
-	IValue getOutputValue(int outputIndex, int portIndex) throws CoreException;
 	
 	void update() throws CoreException;
 

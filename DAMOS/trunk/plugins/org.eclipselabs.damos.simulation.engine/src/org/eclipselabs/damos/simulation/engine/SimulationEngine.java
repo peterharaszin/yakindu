@@ -14,32 +14,41 @@ package org.eclipselabs.damos.simulation.engine;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipselabs.damos.execution.executiongraph.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executiongraph.DataFlowTargetEnd;
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
 import org.eclipselabs.damos.execution.executiongraph.Node;
 import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SimulationEngine {
+public class SimulationEngine implements ISimulationEngine {
 	
-	public void simulate(SimulationModel simulationModel, ExecutionGraph executionGraph, ISimulationMonitor monitor) throws CoreException {
-		long sampleCount = SimulationUtil.getSampleCount(simulationModel);
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.ISimulationEngine#simulate(org.eclipselabs.damos.simulation.engine.ISimulationContext, org.eclipselabs.damos.simulation.engine.ISimulationMonitor)
+	 */
+	public void run(ISimulationContext context, ISimulationMonitor monitor) throws CoreException {
+		long stepCount = SimulationUtil.getStepCount(context.getSimulationModel());
 		
-		for (Node node : executionGraph.getNodes()) {
+		monitor.fireSimulationEvent(new SimulationEvent(this, context, SimulationEvent.START));
+		for (Node node : context.getExecutionGraph().getNodes()) {
+			if (monitor.isCanceled()) {
+				break;
+			}
 			IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 			simulationObject.initialize();
 		}
+		
 		long n;
-		for (n = 0; n < sampleCount && !monitor.isCanceled(); ++n) {
-			for (Node node : executionGraph.getNodes()) {
-				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
-				simulationObject.reset();
+		for (n = 0; n < stepCount; ++n) {
+			monitor.fireSimulationEvent(new SimulationEvent(this, context, SimulationEvent.STEP));
+			if (monitor.isCanceled()) {
+				break;
 			}
-			for (Node node : executionGraph.getNodes()) {
+			for (Node node : context.getExecutionGraph().getNodes()) {
+				if (monitor.isCanceled()) {
+					break;
+				}
 				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 				simulationObject.computeOutputValues();
 				for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
@@ -50,12 +59,17 @@ public class SimulationEngine {
 					}
 				}
 			}
-			for (Node node : executionGraph.getNodes()) {
+			for (Node node : context.getExecutionGraph().getNodes()) {
+				if (monitor.isCanceled()) {
+					break;
+				}
 				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 				simulationObject.update();
 			}
 		}
-		monitor.fireSimulationListener(new SimulationEvent(this));
+		
+		int eventKind = monitor.isCanceled() ? SimulationEvent.CANCEL : SimulationEvent.FINISH;
+		monitor.fireSimulationEvent(new SimulationEvent(this, context, eventKind));
 	}
 
 }

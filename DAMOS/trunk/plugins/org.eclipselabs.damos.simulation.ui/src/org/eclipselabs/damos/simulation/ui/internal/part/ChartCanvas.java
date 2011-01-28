@@ -23,6 +23,7 @@ import org.eclipse.birt.chart.model.attribute.impl.BoundsImpl;
 import org.eclipse.birt.chart.util.PluginSettings;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ControlAdapter;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.PaintEvent;
@@ -35,7 +36,7 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipselabs.damos.simulation.engine.IChartData;
-import org.eclipselabs.damos.simulation.ui.SimulatorUIPlugin;
+import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**
  * @author Andreas Unger
@@ -48,8 +49,13 @@ public class ChartCanvas extends Canvas implements PaintListener {
 	private List<ChartContext> chartContexts = new ArrayList<ChartContext>();
 	private int singleChartIndex = -1;
 	
+	private int progress = -1;
+	
 	public ChartCanvas(Composite parent, int style) {
 		super(parent, style);
+		
+		setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		
 		try {
 			PluginSettings ps = PluginSettings.instance();
 			renderer = ps.getDevice("dv.SWT");
@@ -63,6 +69,21 @@ public class ChartCanvas extends Canvas implements PaintListener {
 			}
 		});
 		addPaintListener(this);
+	}
+	
+	public void clear() {
+		chartContexts.clear();
+		redraw();
+	}
+	
+	/**
+	 * @param progress the progress to set
+	 */
+	public void setProgress(int progress) {
+		if (this.progress != progress) {
+			this.progress = progress;
+			redraw();
+		}
 	}
 		
 	public void setDataset(Collection<IChartData> dataset) {
@@ -100,22 +121,30 @@ public class ChartCanvas extends Canvas implements PaintListener {
 	 * org.eclipse.swt.events.PaintListener#paintControl(org.eclipse.swt.events.PaintEvent)
 	 */
 	public void paintControl(PaintEvent e) {
-		if (chartContexts.isEmpty()) {
-			return;
-		}
-		
 		Composite composite = (Composite) e.getSource();
 		Rectangle size = composite.getClientArea();
 
-		if (cachedImage == null) {
-			buildChart(e.gc);
-			drawToCachedImage(size);
+		String message = null;
+		
+		if (progress >= 0) {
+			message = String.format("Simulating... %d%%", progress);
+		} else if (!chartContexts.isEmpty()) {
+			if (cachedImage == null) {
+				buildChart(e.gc);
+				drawToCachedImage(size);
+			}
+			e.gc.drawImage(
+					cachedImage,
+					0, 0, cachedImage.getBounds().width, cachedImage.getBounds().height,
+					0, 0, size.width, size.height);
+		} else {
+			message = "No simulation data available.";
 		}
-
-		e.gc.drawImage(
-				cachedImage,
-				0, 0, cachedImage.getBounds().width, cachedImage.getBounds().height,
-				0, 0, size.width, size.height);
+		
+		if (message != null) {
+			Point extent = e.gc.stringExtent(message);
+			e.gc.drawText(message, (size.width - extent.x) / 2, (size.height - extent.y) / 2);
+		}
 	}
 
 	private void buildChart(GC gc) {
@@ -175,8 +204,8 @@ public class ChartCanvas extends Canvas implements PaintListener {
 	}
 		
 	private void logChartError(Exception e) {
-		SimulatorUIPlugin.getDefault().getLog().log(
-				new Status(IStatus.ERROR, SimulatorUIPlugin.PLUGIN_ID,
+		SimulationUIPlugin.getDefault().getLog().log(
+				new Status(IStatus.ERROR, SimulationUIPlugin.PLUGIN_ID,
 						"Chart error", e));
 	}
 	

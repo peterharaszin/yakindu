@@ -8,9 +8,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.debug.core.DebugEvent;
-import org.eclipse.debug.core.DebugPlugin;
-import org.eclipse.debug.core.IDebugEventSetListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -21,7 +18,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
@@ -49,30 +45,8 @@ public class SimulationView extends ViewPart {
 		
 	};
 	
-	private IDebugEventSetListener debugEventSetListener = new IDebugEventSetListener() {
-		
-		public void handleDebugEvents(DebugEvent[] events) {
-			for (DebugEvent event : events) {
-				if (event.getKind() == DebugEvent.TERMINATE && event.getSource() instanceof IAdaptable) {
-					final ExecutionGraph executionGraph = (ExecutionGraph) ((IAdaptable) event.getSource()).getAdapter(ExecutionGraph.class);
-					if (executionGraph != null) {
-						PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
-							
-							public void run() {
-								setExecutionGraph(executionGraph);
-							}
-							
-						});
-					}
-				}
-			}
-		}
-		
-	};
-		
 	public void createPartControl(Composite parent) {
 		canvas = new ChartCanvas(parent, SWT.NONE);
-		DebugPlugin.getDefault().addDebugEventListener(debugEventSetListener);
 		ISelectionService selectionService = getSite().getWorkbenchWindow().getSelectionService();
 		selectionService.addSelectionListener(selectionListener);
 		processSelection(selectionService.getSelection());
@@ -122,6 +96,14 @@ public class SimulationView extends ViewPart {
 			canvas.setSingleChartIndex(-1);
 		}
 	}
+	
+	public void clear() {
+		canvas.clear();
+	}
+	
+	public void setProgress(int progress) {
+		canvas.setProgress(progress);
+	}
 
 	public void setFocus() {
 	}
@@ -133,7 +115,6 @@ public class SimulationView extends ViewPart {
 		super.dispose();
 		ISelectionService selectionService = getSite().getWorkbenchWindow().getSelectionService();
 		selectionService.removeSelectionListener(selectionListener);
-		DebugPlugin.getDefault().removeDebugEventListener(debugEventSetListener);
 	}
 	
 }

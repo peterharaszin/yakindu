@@ -17,8 +17,11 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IStatusHandler;
 import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
+import org.eclipselabs.damos.simulation.engine.ISimulationContext;
 import org.eclipselabs.damos.simulation.engine.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.engine.SimulationEngine;
+import org.eclipselabs.damos.simulation.engine.ISimulator;
+import org.eclipselabs.damos.simulation.engine.SimulationContext;
+import org.eclipselabs.damos.simulation.engine.Simulator;
 import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
@@ -32,7 +35,7 @@ public class SimulationThread extends Thread {
 	private ExecutionGraph executionGraph;
 	private ISimulationMonitor simulationMonitor;
 		
-	private SimulationEngine simulationEngine = new SimulationEngine();
+	private ISimulator simulator = new Simulator();
 
 	/**
 	 * 
@@ -66,7 +69,8 @@ public class SimulationThread extends Thread {
 		IStatus status = Status.OK_STATUS;
 
 		try {
-			simulationEngine.simulate(simulationModel, executionGraph, simulationMonitor);
+			ISimulationContext context = new SimulationContext(simulationModel, executionGraph);
+			simulator.simulate(context, simulationMonitor);
 		} catch (CoreException e) {
 			status = e.getStatus();
 		}

@@ -11,5 +11,11 @@
             restorable="true">
       </view>
    </extension>
+   <extension
+         point="org.eclipselabs.damos.simulation.engine.simulationListeners">
+      <listener
+            class="org.eclipselabs.damos.simulation.ui.internal.part.SimulationListener">
+      </listener>
+   </extension>
 
 </plugin>

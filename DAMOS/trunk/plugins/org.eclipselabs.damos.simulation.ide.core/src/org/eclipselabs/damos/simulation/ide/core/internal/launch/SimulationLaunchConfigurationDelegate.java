@@ -68,7 +68,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(executionModel.getTopLevelFragment(), monitor);
 		new ComponentSimulationObjectAdaptor().adaptSimulationObjects(simulationModel, executionGraph, monitor);
 		
-		new SimulationProcess(launch, name).simulate(simulationModel, executionGraph);
+		new SimulationProcess(launch, name).run(simulationModel, executionGraph);
 	}
 	
 	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {

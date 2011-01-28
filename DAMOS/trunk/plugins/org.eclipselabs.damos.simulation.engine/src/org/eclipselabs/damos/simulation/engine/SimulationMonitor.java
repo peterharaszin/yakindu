@@ -61,7 +61,7 @@ public class SimulationMonitor implements ISimulationMonitor {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.ISimulationMonitor#fireSimulationListener(org.eclipselabs.damos.simulation.SimulationEvent)
 	 */
-	public void fireSimulationListener(SimulationEvent event) {
+	public void fireSimulationEvent(SimulationEvent event) {
 		ISimulationListener[] ls;
 		synchronized (listeners) {
 			ls = listeners.toArray(new ISimulationListener[listeners.size()]);

@@ -20,14 +20,14 @@ import org.eclipselabs.damos.dml.Component;
  * @author Andreas Unger
  *
  */
-public class MissingComponentGeneratorStatus extends Status {
+public class ComponentGeneratorStatus extends Status {
 
 	private List<Component> affectedComponents;
 	
 	/**
 	 * 
 	 */
-	public MissingComponentGeneratorStatus(int severity, String pluginId, int code, String message, Throwable exception, List<Component> affectedComponents) {
+	public ComponentGeneratorStatus(int severity, String pluginId, int code, String message, Throwable exception, List<Component> affectedComponents) {
 		super(severity, pluginId, code, message, exception);
 		this.affectedComponents = affectedComponents;
 	}

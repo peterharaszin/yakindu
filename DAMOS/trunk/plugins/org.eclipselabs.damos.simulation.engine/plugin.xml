@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="componentSimulationObjectProviders" name="Component Simulation Object Providers" schema="schema/componentSimulationObjectProviders.exsd"/>
    <extension-point id="blockSimulationObjects" name="Block Simulation Objects" schema="schema/blockSimulationObjects.exsd"/>
+   <extension-point id="simulationListeners" name="Simulation Listeners" schema="schema/simulationListeners.exsd"/>
    <extension
          point="org.eclipselabs.damos.simulation.engine.componentSimulationObjectProviders">
       <provider

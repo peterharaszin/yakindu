@@ -22,7 +22,7 @@ import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
 import org.eclipselabs.damos.codegen.c.generator.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.generator.MissingComponentGeneratorStatus;
+import org.eclipselabs.damos.codegen.c.generator.ComponentGeneratorStatus;
 import org.eclipselabs.damos.codegen.c.generator.internal.registry.ComponentGeneratorProviderRegistry;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
@@ -75,7 +75,7 @@ public class ComponentGeneratorAdaptor {
 				sb.append(component.getName());
 				sb.append("'");
 			}
-			throw new CoreException(new MissingComponentGeneratorStatus(
+			throw new CoreException(new ComponentGeneratorStatus(
 					IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, 0, sb.toString(), null, missingGeneratorComponents));
 		}
 	}

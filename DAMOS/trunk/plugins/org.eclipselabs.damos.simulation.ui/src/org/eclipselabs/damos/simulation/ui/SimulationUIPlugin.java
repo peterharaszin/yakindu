@@ -6,18 +6,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class SimulatorUIPlugin extends AbstractUIPlugin {
+public class SimulationUIPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.simulation.ui";
 
 	// The shared instance
-	private static SimulatorUIPlugin plugin;
+	private static SimulationUIPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public SimulatorUIPlugin() {
+	public SimulationUIPlugin() {
 	}
 
 	/*
@@ -43,7 +43,7 @@ public class SimulatorUIPlugin extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static SimulatorUIPlugin getDefault() {
+	public static SimulationUIPlugin getDefault() {
 		return plugin;
 	}
 

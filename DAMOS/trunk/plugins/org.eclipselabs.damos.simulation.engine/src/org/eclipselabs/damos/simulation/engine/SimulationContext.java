@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2009 Andreas Unger and others.
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,12 +17,32 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 /**
  * @author Andreas Unger
  *
- * @noextend
- * @noimplement
  */
-public interface ISimulationContext {
+public class SimulationContext implements ISimulationContext {
+	
+	private SimulationModel simulationModel;
+	private ExecutionGraph executionGraph;
 
-	SimulationModel getSimulationModel();
-	ExecutionGraph getExecutionGraph();
+	/**
+	 * 
+	 */
+	public SimulationContext(SimulationModel simulationModel, ExecutionGraph executionGraph) {
+		this.simulationModel = simulationModel;
+		this.executionGraph = executionGraph;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.ISimulationContext#getSimulationModel()
+	 */
+	public SimulationModel getSimulationModel() {
+		return simulationModel;
+	}
 
+	/**
+	 * @return the executionGraph
+	 */
+	public ExecutionGraph getExecutionGraph() {
+		return executionGraph;
+	}
+	
 }

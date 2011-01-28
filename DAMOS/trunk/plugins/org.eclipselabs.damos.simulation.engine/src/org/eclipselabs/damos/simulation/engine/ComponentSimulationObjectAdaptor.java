@@ -20,10 +20,10 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
+import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
 import org.eclipselabs.damos.execution.executiongraph.Node;
 import org.eclipselabs.damos.simulation.engine.internal.ComponentSimulationObjectAdapter;
-import org.eclipselabs.damos.simulation.engine.internal.SimulationContext;
 import org.eclipselabs.damos.simulation.engine.internal.registry.ComponentSimulationObjectProviderRegistry;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
@@ -41,8 +41,6 @@ public class ComponentSimulationObjectAdaptor {
 			throw new CoreException(signatureResolverResult.getStatus());
 		}
 		
-		ISimulationContext context = new SimulationContext(simulationModel);
-		
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
 		
 		for (Node node : executionGraph.getNodes()) {
@@ -50,9 +48,8 @@ public class ComponentSimulationObjectAdaptor {
 			IComponentSimulationObject simulationObject;
 			simulationObject = ComponentSimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
 			if (simulationObject != null) {
-				simulationObject.setContext(context);
-				simulationObject.setComponent(component);
-				simulationObject.setSignature(signatureResolverResult.getSignatures().get(component));
+				IComponentSignature componentSignature = signatureResolverResult.getSignatures().get(component);
+				simulationObject.setInfo(new ComponentSimulationInfo(component, componentSignature, simulationModel));
 				node.eAdapters().add(new ComponentSimulationObjectAdapter(simulationObject));
 			} else {
 				missingSimulationObjectComponents.add(component);
@@ -72,7 +69,7 @@ public class ComponentSimulationObjectAdaptor {
 				sb.append(component.getName());
 				sb.append("'");
 			}
-			throw new CoreException(new MissingComponentSimulationObjectStatus(
+			throw new CoreException(new ComponentSimulationObjectStatus(
 					IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, 0, sb.toString(), null, missingSimulationObjectComponents));
 		}
 	}

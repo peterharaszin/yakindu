@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.simulation.engine;
 
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.Component;
 
 /**
  * @author Andreas Unger
@@ -20,23 +19,17 @@ import org.eclipselabs.damos.dml.Component;
  */
 public abstract class AbstractBlockSimulationObject extends AbstractComponentSimulationObject {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractSimulationObject#getComponent()
-	 */
 	@Override
 	public Block getComponent() {
 		return (Block) super.getComponent();
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractSimulationObject#setComponent(org.eclipselabs.damos.dml.Component)
-	 */
 	@Override
-	public void setComponent(Component component) {
-		if (!(component instanceof Block)) {
+	public void setInfo(IComponentSimulationInfo info) {
+		if (!(info.getComponent() instanceof Block)) {
 			throw new IllegalArgumentException("Component must be instance of Block");
 		}
-		super.setComponent(component);
+		super.setInfo(info);
 	}
 		
 }

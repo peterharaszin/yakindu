@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.simulation.ide.ui.internal.launch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -39,6 +42,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
@@ -47,6 +51,7 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog;
+import org.eclipselabs.damos.common.ui.util.UIUtil;
 import org.eclipselabs.damos.common.ui.viewers.FragmentLabelProvider;
 import org.eclipselabs.damos.common.ui.viewers.FragmentListContentProvider;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -60,12 +65,19 @@ import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
  */
 public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 	
-	private static final String FILE_EXTENSION = "blockdiagram";
+	private static final String BLOCK_DIAGRAM_FILE_EXTENSION = "blockdiagram";
+	private static final String SIMULATION_MODEL_FILE_EXTENSION = "simulationmodel";
 
+	private Button createSimulationModelButton;
 	private Text blockDiagramPathText;
 	private ComboViewer fragmentViewer;
-	private Text sampleRateText;
+	private Text sampleTimeText;
 	private Text simulationTimeText;
+	private List<Control> createSimulationModelControls = new ArrayList<Control>();
+	
+	private Button useSimulationModelButton;
+	private Text simulationModelPathText;
+	private List<Control> useSimulationModelControls = new ArrayList<Control>();
 	
 	/**
 	 * 
@@ -80,9 +92,31 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		composite.setLayout(new GridLayout(3, false));
 		setControl(composite);
 		
-		new Label(composite, SWT.NONE).setText("Block diagram model:");
+		int indent = UIUtil.getToggleButtonIndentInPixels(composite);
+		
+		createSimulationModelButton = new Button(composite, SWT.RADIO);
+		createSimulationModelButton.setText("Create simulation model with the following content:");
+		createSimulationModelButton.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
+		createSimulationModelButton.addSelectionListener(new SelectionAdapter() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateControlEnablement();
+				updateLaunchConfigurationDialog();
+			}
+
+		});
+		
+		Label label = new Label(composite, SWT.NONE);
+		GridData gridData = new GridData();
+		gridData.horizontalIndent = indent;
+		label.setText("Block diagram model:");
+		label.setLayoutData(gridData);
+		createSimulationModelControls.add(label);
+		
 		blockDiagramPathText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		blockDiagramPathText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
+		blockDiagramPathText.setLayoutData(gridData);
 		blockDiagramPathText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent event) {
 				try {
@@ -97,6 +131,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				updateLaunchConfigurationDialog();
 			}
 		});
+		createSimulationModelControls.add(blockDiagramPathText);
 		
 		Button browseButton = createPushButton(composite, "Browse...", null);
 		browseButton.addSelectionListener(new SelectionAdapter() {
@@ -106,7 +141,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 						false,
 						ResourcesPlugin.getWorkspace().getRoot(),
 						IResource.FILE);
-				d.setInitialPattern("*." + FILE_EXTENSION);
+				d.setInitialPattern("*." + BLOCK_DIAGRAM_FILE_EXTENSION);
 				d.open();
 				Object firstResult = d.getFirstResult();
 				if (firstResult instanceof IFile) {
@@ -114,8 +149,15 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				}
 			}
 		});
+		createSimulationModelControls.add(browseButton);
 		
-		new Label(composite, SWT.NONE).setText("Fragment:");
+		label = new Label(composite, SWT.NONE);
+		gridData = new GridData();
+		gridData.horizontalIndent = indent;
+		label.setText("Fragment:");
+		label.setLayoutData(gridData);
+		createSimulationModelControls.add(label);
+
 		fragmentViewer = new ComboViewer(composite, SWT.SINGLE | SWT.BORDER | SWT.READ_ONLY);
 		fragmentViewer.getCombo().setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
 		fragmentViewer.setLabelProvider(new FragmentLabelProvider());
@@ -127,19 +169,33 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 			}
 			
 		});
+		createSimulationModelControls.add(fragmentViewer.getControl());
 		
-		new Label(composite, SWT.NONE).setText("Sample rate (Hz):");
-		sampleRateText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		sampleRateText.addModifyListener(new ModifyListener() {
+		label = new Label(composite, SWT.NONE);
+		gridData = new GridData();
+		gridData.horizontalIndent = indent;
+		label.setText("Sample time (seconds):");
+		label.setLayoutData(gridData);
+		createSimulationModelControls.add(label);
+		
+		sampleTimeText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		sampleTimeText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent event) {
 				updateLaunchConfigurationDialog();
 			}
 		});
-		GridData gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
+		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
 		gridData.horizontalSpan = 2;
-		sampleRateText.setLayoutData(gridData);
+		sampleTimeText.setLayoutData(gridData);
+		createSimulationModelControls.add(sampleTimeText);
 
-		new Label(composite, SWT.NONE).setText("Simulation time (seconds):");
+		label = new Label(composite, SWT.NONE);
+		gridData = new GridData();
+		gridData.horizontalIndent = indent;
+		label.setText("Simulation time (seconds):");
+		label.setLayoutData(gridData);
+		createSimulationModelControls.add(label);
+
 		simulationTimeText = new Text(composite, SWT.SINGLE | SWT.BORDER);
 		simulationTimeText.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent event) {
@@ -149,14 +205,71 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
 		gridData.horizontalSpan = 2;
 		simulationTimeText.setLayoutData(gridData);
+		createSimulationModelControls.add(simulationTimeText);
+	
+		useSimulationModelButton = new Button(composite, SWT.RADIO);
+		useSimulationModelButton.setText("Use an existing simulation model:");
+		useSimulationModelButton.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
+		useSimulationModelButton.addSelectionListener(new SelectionAdapter() {
+		
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				updateControlEnablement();
+				updateLaunchConfigurationDialog();
+			}
+
+		});
+
+		simulationModelPathText = new Text(composite, SWT.SINGLE | SWT.BORDER);
+		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1);
+		gridData.horizontalIndent = indent;
+		simulationModelPathText.setLayoutData(gridData);
+		simulationModelPathText.addModifyListener(new ModifyListener() {
+			public void modifyText(ModifyEvent event) {
+				updateLaunchConfigurationDialog();
+			}
+		});
+		useSimulationModelControls.add(simulationModelPathText);
+		
+		Button simulationModelBrowseButton = createPushButton(composite, "Browse...", null);
+		simulationModelBrowseButton.addSelectionListener(new SelectionAdapter() {
+			public void widgetSelected(SelectionEvent e) {
+				FilteredResourcesSelectionDialog d = new FilteredResourcesSelectionDialog(
+						composite.getShell(),
+						false,
+						ResourcesPlugin.getWorkspace().getRoot(),
+						IResource.FILE);
+				d.setInitialPattern("*." + SIMULATION_MODEL_FILE_EXTENSION);
+				d.open();
+				Object firstResult = d.getFirstResult();
+				if (firstResult instanceof IFile) {
+					simulationModelPathText.setText(((IFile) firstResult).getFullPath().toString());
+				}
+			}
+		});
+		useSimulationModelControls.add(simulationModelBrowseButton);
 	}
 
 	public String getName() {
 		return "Main";
 	}
+	
+	private void updateControlEnablement() {
+		for (Control control : createSimulationModelControls) {
+			control.setEnabled(createSimulationModelButton.getSelection());
+		}
+		for (Control control : useSimulationModelControls) {
+			control.setEnabled(useSimulationModelButton.getSelection());
+		}
+	}
 
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
+			boolean createSimulationModel = configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
+			createSimulationModelButton.setSelection(createSimulationModel);
+			useSimulationModelButton.setSelection(!createSimulationModel);
+			updateControlEnablement();
+
 			Fragment fragment = null;
 			String fragmentURIString = configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, "");
 			if (fragmentURIString.length() > 0) {
@@ -169,8 +282,9 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				fragmentViewer.setInput(fragment.eResource().getResourceSet());
 				fragmentViewer.setSelection(new StructuredSelection(fragment));
 			}
-			sampleRateText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_RATE, "8000"));
-			simulationTimeText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, "10"));
+			sampleTimeText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME));
+			simulationTimeText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME));
+			simulationModelPathText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, ""));
 		} catch (CoreException e) {
 			SimulationIDEUIPlugin.getDefault().getLog().log(e.getStatus());
 		}
@@ -178,6 +292,8 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		String errorMessage = null;
+		
+		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, createSimulationModelButton.getSelection());
 		
 		Fragment fragment = null;
 		ISelection selection = fragmentViewer.getSelection();
@@ -191,9 +307,11 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		}
 		
 		try {
-			String sampleRate = sampleRateText.getText();
-			Long.parseLong(sampleRate);
-			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_RATE, sampleRate);
+			String sampleTime = sampleTimeText.getText();
+			if (!SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME.equals(sampleTime)) {
+				Long.parseLong(sampleTime);
+				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, sampleTime);
+			}
 		} catch (NumberFormatException e) {
 			errorMessage = "Invalid sample rate";
 		}
@@ -206,6 +324,8 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 			errorMessage = "Invalid simulation time";
 		}
 		
+		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, simulationModelPathText.getText());
+		
 		setErrorMessage(errorMessage);
 	}
 
@@ -217,7 +337,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 			IEditorInput editorInput = activeEditor.getEditorInput();
 			if (editorInput instanceof IFileEditorInput) {
 				IPath path = ((IFileEditorInput) editorInput).getFile().getFullPath();
-				if (FILE_EXTENSION.equals(path.getFileExtension())) {
+				if (BLOCK_DIAGRAM_FILE_EXTENSION.equals(path.getFileExtension())) {
 					URI uri = URI.createPlatformResourceURI(path.toString(), false);
 					ResourceSet rs = new ResourceSetImpl();
 					Resource r = rs.getResource(uri, true);
@@ -231,9 +351,11 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				}
 			}
 		}
+		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
 		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, defaultBlockDiagramPath);
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_RATE, "8000");
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, "10");
+		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME);
+		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
+		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, "");
 	}
 
 }

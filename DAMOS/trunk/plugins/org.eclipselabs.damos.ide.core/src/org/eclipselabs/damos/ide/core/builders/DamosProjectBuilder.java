@@ -1,6 +1,5 @@
 package org.eclipselabs.damos.ide.core.builders;
 
-import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.core.resources.IMarker;
@@ -78,10 +77,10 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			IPath umlFullPath = resource.getFullPath();
 			
 			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource blockDiagramResource = resourceSet.createResource(URI.createPlatformResourceURI(umlFullPath.toString(), true));
+			Resource blockDiagramResource;
 			try {
-				blockDiagramResource.load(null);
-			} catch (IOException e) {
+				blockDiagramResource = resourceSet.getResource(URI.createPlatformResourceURI(umlFullPath.toString(), true), true);
+			} catch (RuntimeException e) {
 				throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID,
 						"Loading block diagram file '" + resource.getFullPath() + "' failed", e));
 			}

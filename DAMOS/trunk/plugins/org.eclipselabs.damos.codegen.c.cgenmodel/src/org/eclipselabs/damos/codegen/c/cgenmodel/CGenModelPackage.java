@@ -79,13 +79,22 @@ public interface CGenModelPackage extends EPackage {
 	int CGEN_MODEL__EXECUTION_MODEL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Top Level Fragment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CGEN_MODEL__TOP_LEVEL_FRAGMENT = 1;
+
+	/**
 	 * The feature id for the '<em><b>Target Folder</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CGEN_MODEL__TARGET_FOLDER = 1;
+	int CGEN_MODEL__TARGET_FOLDER = 2;
 
 	/**
 	 * The number of structural features of the '<em>CGen Model</em>' class.
@@ -94,7 +103,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CGEN_MODEL_FEATURE_COUNT = 2;
+	int CGEN_MODEL_FEATURE_COUNT = 3;
 
 
 	/**
@@ -117,6 +126,17 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCGenModel_ExecutionModel();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel#getTopLevelFragment <em>Top Level Fragment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Top Level Fragment</em>'.
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel#getTopLevelFragment()
+	 * @see #getCGenModel()
+	 * @generated
+	 */
+	EReference getCGenModel_TopLevelFragment();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel#getTargetFolder <em>Target Folder</em>}'.
@@ -168,6 +188,14 @@ public interface CGenModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CGEN_MODEL__EXECUTION_MODEL = eINSTANCE.getCGenModel_ExecutionModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Top Level Fragment</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CGEN_MODEL__TOP_LEVEL_FRAGMENT = eINSTANCE.getCGenModel_TopLevelFragment();
 
 		/**
 		 * The meta object literal for the '<em><b>Target Folder</b></em>' attribute feature.

@@ -63,10 +63,10 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 			
 			ExecutionModel executionModel = ExecutionModelFactory.eINSTANCE.createExecutionModel();
 			executionModel.setComputationModel(computationModel);
-			executionModel.setTopLevelFragment(topLevelFragment);
 	
 			simulationModel = SimulationModelFactory.eINSTANCE.createSimulationModel();
 			simulationModel.setExecutionModel(executionModel);
+			simulationModel.setTopLevelFragment(topLevelFragment);
 			
 			try {
 				simulationModel.setSimulationTime(Double.parseDouble(configuration.getAttribute(ATTRIBUTE__SIMULATION_TIME, "10")));
@@ -105,10 +105,10 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 			}
 		}
 		
-		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(simulationModel.getExecutionModel().getTopLevelFragment(), monitor);
+		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(simulationModel.getTopLevelFragment(), monitor);
 		new ComponentSimulationObjectAdaptor().adaptSimulationObjects(simulationModel, executionGraph, monitor);
 		
-		new SimulationProcess(launch, simulationModel.getExecutionModel().getTopLevelFragment().getName()).run(simulationModel, executionGraph);
+		new SimulationProcess(launch, simulationModel.getTopLevelFragment().getName()).run(simulationModel, executionGraph);
 	}
 	
 	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {

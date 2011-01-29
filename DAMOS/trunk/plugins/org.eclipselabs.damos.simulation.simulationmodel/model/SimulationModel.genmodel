@@ -13,6 +13,7 @@
       ecorePackage="SimulationModel.ecore#/">
     <genClasses ecoreClass="SimulationModel.ecore#//SimulationModel">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SimulationModel/executionModel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SimulationModel/topLevelFragment"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//SimulationModel/simulationTime"/>
     </genClasses>
   </genPackages>

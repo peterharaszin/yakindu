@@ -10,11 +10,9 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
+import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
-
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
@@ -120,8 +118,17 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getSimulationModel_TopLevelFragment() {
+		return (EReference)simulationModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getSimulationModel_SimulationTime() {
-		return (EAttribute)simulationModelEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)simulationModelEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -154,6 +161,7 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 		// Create classes and their features
 		simulationModelEClass = createEClass(SIMULATION_MODEL);
 		createEReference(simulationModelEClass, SIMULATION_MODEL__EXECUTION_MODEL);
+		createEReference(simulationModelEClass, SIMULATION_MODEL__TOP_LEVEL_FRAGMENT);
 		createEAttribute(simulationModelEClass, SIMULATION_MODEL__SIMULATION_TIME);
 	}
 
@@ -182,6 +190,7 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 
 		// Obtain other dependent packages
 		ExecutionModelPackage theExecutionModelPackage = (ExecutionModelPackage)EPackage.Registry.INSTANCE.getEPackage(ExecutionModelPackage.eNS_URI);
+		DMLPackage theDMLPackage = (DMLPackage)EPackage.Registry.INSTANCE.getEPackage(DMLPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -192,6 +201,7 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 		// Initialize classes and features; add operations and parameters
 		initEClass(simulationModelEClass, SimulationModel.class, "SimulationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSimulationModel_ExecutionModel(), theExecutionModelPackage.getExecutionModel(), null, "executionModel", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimulationModel_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSimulationModel_SimulationTime(), ecorePackage.getEDouble(), "simulationTime", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Create resource

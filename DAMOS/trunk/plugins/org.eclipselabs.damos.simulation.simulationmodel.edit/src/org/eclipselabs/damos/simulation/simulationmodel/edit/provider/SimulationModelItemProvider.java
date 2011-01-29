@@ -67,6 +67,7 @@ public class SimulationModelItemProvider
 			super.getPropertyDescriptors(object);
 
 			addExecutionModelPropertyDescriptor(object);
+			addTopLevelFragmentPropertyDescriptor(object);
 			addSimulationTimePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -86,6 +87,28 @@ public class SimulationModelItemProvider
 				 getString("_UI_SimulationModel_executionModel_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_SimulationModel_executionModel_feature", "_UI_SimulationModel_type"),
 				 SimulationModelPackage.Literals.SIMULATION_MODEL__EXECUTION_MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Top Level Fragment feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTopLevelFragmentPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_SimulationModel_topLevelFragment_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_SimulationModel_topLevelFragment_feature", "_UI_SimulationModel_type"),
+				 SimulationModelPackage.Literals.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT,
 				 true,
 				 false,
 				 true,

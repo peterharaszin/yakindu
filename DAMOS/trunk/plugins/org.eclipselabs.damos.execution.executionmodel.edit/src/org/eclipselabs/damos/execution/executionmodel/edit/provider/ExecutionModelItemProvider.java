@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,10 +23,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
-
 import org.eclipselabs.damos.execution.executionmodel.edit.ExecutionModelEditPlugin;
 
 /**
@@ -67,7 +63,6 @@ public class ExecutionModelItemProvider
 			super.getPropertyDescriptors(object);
 
 			addComputationModelPropertyDescriptor(object);
-			addTopLevelFragmentPropertyDescriptor(object);
 			addSampleTimePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -87,28 +82,6 @@ public class ExecutionModelItemProvider
 				 getString("_UI_ExecutionModel_computationModel_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ExecutionModel_computationModel_feature", "_UI_ExecutionModel_type"),
 				 ExecutionModelPackage.Literals.EXECUTION_MODEL__COMPUTATION_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Top Level Fragment feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTopLevelFragmentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_ExecutionModel_topLevelFragment_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_ExecutionModel_topLevelFragment_feature", "_UI_ExecutionModel_type"),
-				 ExecutionModelPackage.Literals.EXECUTION_MODEL__TOP_LEVEL_FRAGMENT,
 				 true,
 				 false,
 				 true,

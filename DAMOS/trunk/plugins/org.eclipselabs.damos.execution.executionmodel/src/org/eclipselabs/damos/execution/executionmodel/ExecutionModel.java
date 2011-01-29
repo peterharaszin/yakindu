@@ -7,7 +7,6 @@
 package org.eclipselabs.damos.execution.executionmodel;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 
 /**
@@ -19,7 +18,6 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModel <em>Computation Model</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getSampleTime <em>Sample Time</em>}</li>
  * </ul>
  * </p>
@@ -66,7 +64,7 @@ public interface ExecutionModel extends EObject {
 	 * @return the value of the '<em>Computation Model</em>' reference.
 	 * @see #setComputationModel(ComputationModel)
 	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel_ComputationModel()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	ComputationModel getComputationModel();
@@ -80,31 +78,5 @@ public interface ExecutionModel extends EObject {
 	 * @generated
 	 */
 	void setComputationModel(ComputationModel value);
-
-	/**
-	 * Returns the value of the '<em><b>Top Level Fragment</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Top Level Fragment</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Top Level Fragment</em>' reference.
-	 * @see #setTopLevelFragment(Fragment)
-	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel_TopLevelFragment()
-	 * @model
-	 * @generated
-	 */
-	Fragment getTopLevelFragment();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getTopLevelFragment <em>Top Level Fragment</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Top Level Fragment</em>' reference.
-	 * @see #getTopLevelFragment()
-	 * @generated
-	 */
-	void setTopLevelFragment(Fragment value);
 
 } // ExecutionModel

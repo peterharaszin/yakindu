@@ -39,7 +39,7 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 		int portCount = getComponent().getPrimaryInputPorts().size();
 
 		title = getComponent().getName();
-		sampleTime = getSimulationModel().getExecutionModel().getSampleTime();
+		sampleTime = getExecutionModel().getSampleTime();
 		n = (int) SimulationUtil.getStepCount(getSimulationModel());
 		positions = new int[portCount];
 

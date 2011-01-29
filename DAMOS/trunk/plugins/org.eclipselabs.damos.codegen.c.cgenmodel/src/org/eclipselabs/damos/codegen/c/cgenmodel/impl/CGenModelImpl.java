@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
 
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 
 /**
@@ -27,6 +28,7 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.CGenModelImpl#getExecutionModel <em>Execution Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.CGenModelImpl#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.CGenModelImpl#getTargetFolder <em>Target Folder</em>}</li>
  * </ul>
  * </p>
@@ -43,6 +45,16 @@ public class CGenModelImpl extends EObjectImpl implements CGenModel {
 	 * @ordered
 	 */
 	protected ExecutionModel executionModel;
+
+	/**
+	 * The cached value of the '{@link #getTopLevelFragment() <em>Top Level Fragment</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTopLevelFragment()
+	 * @generated
+	 * @ordered
+	 */
+	protected Fragment topLevelFragment;
 
 	/**
 	 * The default value of the '{@link #getTargetFolder() <em>Target Folder</em>}' attribute.
@@ -126,6 +138,44 @@ public class CGenModelImpl extends EObjectImpl implements CGenModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Fragment getTopLevelFragment() {
+		if (topLevelFragment != null && topLevelFragment.eIsProxy()) {
+			InternalEObject oldTopLevelFragment = (InternalEObject)topLevelFragment;
+			topLevelFragment = (Fragment)eResolveProxy(oldTopLevelFragment);
+			if (topLevelFragment != oldTopLevelFragment) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CGenModelPackage.CGEN_MODEL__TOP_LEVEL_FRAGMENT, oldTopLevelFragment, topLevelFragment));
+			}
+		}
+		return topLevelFragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Fragment basicGetTopLevelFragment() {
+		return topLevelFragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTopLevelFragment(Fragment newTopLevelFragment) {
+		Fragment oldTopLevelFragment = topLevelFragment;
+		topLevelFragment = newTopLevelFragment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CGenModelPackage.CGEN_MODEL__TOP_LEVEL_FRAGMENT, oldTopLevelFragment, topLevelFragment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getTargetFolder() {
 		return targetFolder;
 	}
@@ -153,6 +203,9 @@ public class CGenModelImpl extends EObjectImpl implements CGenModel {
 			case CGenModelPackage.CGEN_MODEL__EXECUTION_MODEL:
 				if (resolve) return getExecutionModel();
 				return basicGetExecutionModel();
+			case CGenModelPackage.CGEN_MODEL__TOP_LEVEL_FRAGMENT:
+				if (resolve) return getTopLevelFragment();
+				return basicGetTopLevelFragment();
 			case CGenModelPackage.CGEN_MODEL__TARGET_FOLDER:
 				return getTargetFolder();
 		}
@@ -169,6 +222,9 @@ public class CGenModelImpl extends EObjectImpl implements CGenModel {
 		switch (featureID) {
 			case CGenModelPackage.CGEN_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)newValue);
+				return;
+			case CGenModelPackage.CGEN_MODEL__TOP_LEVEL_FRAGMENT:
+				setTopLevelFragment((Fragment)newValue);
 				return;
 			case CGenModelPackage.CGEN_MODEL__TARGET_FOLDER:
 				setTargetFolder((String)newValue);
@@ -188,6 +244,9 @@ public class CGenModelImpl extends EObjectImpl implements CGenModel {
 			case CGenModelPackage.CGEN_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)null);
 				return;
+			case CGenModelPackage.CGEN_MODEL__TOP_LEVEL_FRAGMENT:
+				setTopLevelFragment((Fragment)null);
+				return;
 			case CGenModelPackage.CGEN_MODEL__TARGET_FOLDER:
 				setTargetFolder(TARGET_FOLDER_EDEFAULT);
 				return;
@@ -205,6 +264,8 @@ public class CGenModelImpl extends EObjectImpl implements CGenModel {
 		switch (featureID) {
 			case CGenModelPackage.CGEN_MODEL__EXECUTION_MODEL:
 				return executionModel != null;
+			case CGenModelPackage.CGEN_MODEL__TOP_LEVEL_FRAGMENT:
+				return topLevelFragment != null;
 			case CGenModelPackage.CGEN_MODEL__TARGET_FOLDER:
 				return TARGET_FOLDER_EDEFAULT == null ? targetFolder != null : !TARGET_FOLDER_EDEFAULT.equals(targetFolder);
 		}

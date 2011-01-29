@@ -9,12 +9,11 @@ package org.eclipselabs.damos.simulation.simulationmodel.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipselabs.damos.simulation.simulationmodel.*;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 
 /**
  * <!-- begin-user-doc -->

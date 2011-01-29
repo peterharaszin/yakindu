@@ -79,13 +79,22 @@ public interface SimulationModelPackage extends EPackage {
 	int SIMULATION_MODEL__EXECUTION_MODEL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Top Level Fragment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMULATION_MODEL__TOP_LEVEL_FRAGMENT = 1;
+
+	/**
 	 * The feature id for the '<em><b>Simulation Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL__SIMULATION_TIME = 1;
+	int SIMULATION_MODEL__SIMULATION_TIME = 2;
 
 	/**
 	 * The number of structural features of the '<em>Simulation Model</em>' class.
@@ -94,7 +103,7 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL_FEATURE_COUNT = 2;
+	int SIMULATION_MODEL_FEATURE_COUNT = 3;
 
 
 	/**
@@ -117,6 +126,17 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSimulationModel_ExecutionModel();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getTopLevelFragment <em>Top Level Fragment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Top Level Fragment</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getTopLevelFragment()
+	 * @see #getSimulationModel()
+	 * @generated
+	 */
+	EReference getSimulationModel_TopLevelFragment();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}'.
@@ -168,6 +188,14 @@ public interface SimulationModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SIMULATION_MODEL__EXECUTION_MODEL = eINSTANCE.getSimulationModel_ExecutionModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Top Level Fragment</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SIMULATION_MODEL__TOP_LEVEL_FRAGMENT = eINSTANCE.getSimulationModel_TopLevelFragment();
 
 		/**
 		 * The meta object literal for the '<em><b>Simulation Time</b></em>' attribute feature.

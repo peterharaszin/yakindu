@@ -83,7 +83,7 @@ public class Generator {
 	}
 	
 	private ExecutionGraph constructExecutionGraph(CGenModel genModel, IProgressMonitor monitor) throws CoreException {
-		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(genModel.getExecutionModel().getTopLevelFragment(), monitor);
+		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(genModel.getTopLevelFragment(), monitor);
 		new ComponentGeneratorAdaptor().adaptGenerators(genModel, executionGraph, monitor);
 		return executionGraph;
 	}

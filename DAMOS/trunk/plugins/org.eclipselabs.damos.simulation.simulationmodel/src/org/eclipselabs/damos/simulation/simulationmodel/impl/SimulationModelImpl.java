@@ -7,15 +7,12 @@
 package org.eclipselabs.damos.simulation.simulationmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
-
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 
@@ -27,6 +24,7 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getExecutionModel <em>Execution Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getSimulationTime <em>Simulation Time</em>}</li>
  * </ul>
  * </p>
@@ -43,6 +41,16 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * @ordered
 	 */
 	protected ExecutionModel executionModel;
+
+	/**
+	 * The cached value of the '{@link #getTopLevelFragment() <em>Top Level Fragment</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTopLevelFragment()
+	 * @generated
+	 * @ordered
+	 */
+	protected Fragment topLevelFragment;
 
 	/**
 	 * The default value of the '{@link #getSimulationTime() <em>Simulation Time</em>}' attribute.
@@ -126,6 +134,44 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Fragment getTopLevelFragment() {
+		if (topLevelFragment != null && topLevelFragment.eIsProxy()) {
+			InternalEObject oldTopLevelFragment = (InternalEObject)topLevelFragment;
+			topLevelFragment = (Fragment)eResolveProxy(oldTopLevelFragment);
+			if (topLevelFragment != oldTopLevelFragment) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SimulationModelPackage.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT, oldTopLevelFragment, topLevelFragment));
+			}
+		}
+		return topLevelFragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Fragment basicGetTopLevelFragment() {
+		return topLevelFragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTopLevelFragment(Fragment newTopLevelFragment) {
+		Fragment oldTopLevelFragment = topLevelFragment;
+		topLevelFragment = newTopLevelFragment;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimulationModelPackage.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT, oldTopLevelFragment, topLevelFragment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getSimulationTime() {
 		return simulationTime;
 	}
@@ -153,6 +199,9 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				if (resolve) return getExecutionModel();
 				return basicGetExecutionModel();
+			case SimulationModelPackage.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT:
+				if (resolve) return getTopLevelFragment();
+				return basicGetTopLevelFragment();
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				return getSimulationTime();
 		}
@@ -169,6 +218,9 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 		switch (featureID) {
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)newValue);
+				return;
+			case SimulationModelPackage.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT:
+				setTopLevelFragment((Fragment)newValue);
 				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				setSimulationTime((Double)newValue);
@@ -188,6 +240,9 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)null);
 				return;
+			case SimulationModelPackage.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT:
+				setTopLevelFragment((Fragment)null);
+				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				setSimulationTime(SIMULATION_TIME_EDEFAULT);
 				return;
@@ -205,6 +260,8 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 		switch (featureID) {
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				return executionModel != null;
+			case SimulationModelPackage.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT:
+				return topLevelFragment != null;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				return simulationTime != SIMULATION_TIME_EDEFAULT;
 		}

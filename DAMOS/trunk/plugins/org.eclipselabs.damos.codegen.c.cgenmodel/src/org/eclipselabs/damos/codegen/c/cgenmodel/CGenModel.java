@@ -8,6 +8,7 @@ package org.eclipselabs.damos.codegen.c.cgenmodel;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 
 /**
@@ -19,6 +20,7 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel#getExecutionModel <em>Execution Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel#getTargetFolder <em>Target Folder</em>}</li>
  * </ul>
  * </p>
@@ -53,6 +55,32 @@ public interface CGenModel extends EObject {
 	 * @generated
 	 */
 	void setExecutionModel(ExecutionModel value);
+
+	/**
+	 * Returns the value of the '<em><b>Top Level Fragment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Top Level Fragment</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Top Level Fragment</em>' reference.
+	 * @see #setTopLevelFragment(Fragment)
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getCGenModel_TopLevelFragment()
+	 * @model required="true"
+	 * @generated
+	 */
+	Fragment getTopLevelFragment();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel#getTopLevelFragment <em>Top Level Fragment</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Top Level Fragment</em>' reference.
+	 * @see #getTopLevelFragment()
+	 * @generated
+	 */
+	void setTopLevelFragment(Fragment value);
 
 	/**
 	 * Returns the value of the '<em><b>Target Folder</b></em>' attribute.

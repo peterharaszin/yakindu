@@ -8,12 +8,10 @@ package org.eclipselabs.damos.simulation.simulationmodel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipselabs.damos.simulation.simulationmodel.*;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -17,6 +17,7 @@ import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelFactory;
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
 
+import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
 
 /**
@@ -120,8 +121,17 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCGenModel_TopLevelFragment() {
+		return (EReference)cGenModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getCGenModel_TargetFolder() {
-		return (EAttribute)cGenModelEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)cGenModelEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -154,6 +164,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 		// Create classes and their features
 		cGenModelEClass = createEClass(CGEN_MODEL);
 		createEReference(cGenModelEClass, CGEN_MODEL__EXECUTION_MODEL);
+		createEReference(cGenModelEClass, CGEN_MODEL__TOP_LEVEL_FRAGMENT);
 		createEAttribute(cGenModelEClass, CGEN_MODEL__TARGET_FOLDER);
 	}
 
@@ -182,6 +193,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 
 		// Obtain other dependent packages
 		ExecutionModelPackage theExecutionModelPackage = (ExecutionModelPackage)EPackage.Registry.INSTANCE.getEPackage(ExecutionModelPackage.eNS_URI);
+		DMLPackage theDMLPackage = (DMLPackage)EPackage.Registry.INSTANCE.getEPackage(DMLPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -192,6 +204,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 		// Initialize classes and features; add operations and parameters
 		initEClass(cGenModelEClass, CGenModel.class, "CGenModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCGenModel_ExecutionModel(), theExecutionModelPackage.getExecutionModel(), null, "executionModel", null, 0, 1, CGenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCGenModel_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 1, 1, CGenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCGenModel_TargetFolder(), ecorePackage.getEString(), "targetFolder", null, 0, 1, CGenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

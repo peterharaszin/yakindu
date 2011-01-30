@@ -156,7 +156,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
-		return !functionDefinition.getInitializationCompound().getStatements().isEmpty();
+		return functionDefinition.isStateful();
 	}
 		
 	/* (non-Javadoc)
@@ -232,12 +232,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesUpdateCode() {
-		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
-			if (compound.getOutputs().isEmpty()) {
-				return true;
-			}
-		}
-		return false;
+		return functionDefinition.isStateful();
 	}
 	
 	/* (non-Javadoc)

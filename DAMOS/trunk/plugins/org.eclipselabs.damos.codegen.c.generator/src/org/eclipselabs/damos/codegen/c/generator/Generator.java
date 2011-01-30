@@ -95,6 +95,8 @@ public class Generator {
 		
 		writer.println("#include <stdint.h>");
 
+		writer.println();
+
 		writer.println("typedef struct {");
 		for (Node node : executionGraph.getNodes()) {
 			if (!(node.getComponent() instanceof Inport)) {
@@ -124,8 +126,8 @@ public class Generator {
 		writer.println("} Output;");
 
 		writer.println();
-		writer.println("void initialize();");
-		writer.println("void execute();");
+		writer.println("void initialize(void);");
+		writer.println("void execute(const Input *input, Output *output);");
 
 		writer.println();
 		writer.println("#endif /* _EXECUTE_H */");
@@ -157,7 +159,7 @@ public class Generator {
 			writer.println("static Context context;\n");
 		}
 		
-		writer.print("void initialize() {\n");
+		writer.print("void initialize(void) {\n");
 		for (Node node : executionGraph.getNodes()) {
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
 			if (generator.contributesInitializationCode()) {

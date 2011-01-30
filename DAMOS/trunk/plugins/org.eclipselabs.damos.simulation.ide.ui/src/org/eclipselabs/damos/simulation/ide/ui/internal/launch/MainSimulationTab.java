@@ -313,7 +313,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, sampleTime);
 			}
 		} catch (NumberFormatException e) {
-			errorMessage = "Invalid sample rate";
+			errorMessage = "Invalid sample time";
 		}
 		
 		try {

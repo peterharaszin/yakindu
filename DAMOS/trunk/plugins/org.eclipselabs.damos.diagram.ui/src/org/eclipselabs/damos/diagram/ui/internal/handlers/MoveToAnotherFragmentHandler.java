@@ -15,12 +15,11 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.command.ChangeCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipselabs.damos.diagram.ui.dialogs.MoveToAnotherFragmentDialog;
+import org.eclipselabs.damos.common.ui.dialogs.SelectFragmentDialog;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
@@ -39,8 +38,8 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 				TransactionalEditingDomain editingDomain = firstEditPart.getEditingDomain();
 				EObject firstElement = firstEditPart.resolveSemanticElement();
 				if (firstElement instanceof FragmentElement) {
-					MoveToAnotherFragmentDialog d = new MoveToAnotherFragmentDialog(HandlerUtil.getActiveShell(event), DMLUtil.getRootFragment(((FragmentElement) firstElement).getOwningFragment()));
-					if (d.open() == Dialog.OK) {
+					Fragment destinationFragment = SelectFragmentDialog.open(HandlerUtil.getActiveShell(event), "Move to another Fragment", "Move to another fragment:", DMLUtil.getRootFragment(((FragmentElement) firstElement).getOwningFragment()));
+					if (destinationFragment != null) {
 						List<FragmentElement> elements = new ArrayList<FragmentElement>();
 						for (Object o : structuredSelection.toList()) {
 							if (o instanceof IGraphicalEditPart) {
@@ -48,7 +47,7 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 								EObject element = editPart.resolveSemanticElement();
 								if (element instanceof FragmentElement) {
 									FragmentElement fragmentElement = (FragmentElement) element;
-									if (fragmentElement.getOwningFragment() != d.getDestinationFragment()) {
+									if (fragmentElement.getOwningFragment() != destinationFragment) {
 										elements.add(fragmentElement);
 									}
 								}
@@ -56,12 +55,12 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 						}
 						if (elements.isEmpty()) {
 							MessageDialog.openInformation(HandlerUtil.getActiveShell(event), "Move", "Nothing to be done.");
-						} else if (!validateFragmentRelation(elements, d.getDestinationFragment())) {
+						} else if (!validateFragmentRelation(elements, destinationFragment)) {
 							MessageDialog.openError(HandlerUtil.getActiveShell(event), "Move", "Moving selected elements would lead to connections between elements of unrelated fragments.");
-						} else if (!validateInputPorts(elements, d.getDestinationFragment())) {
+						} else if (!validateInputPorts(elements, destinationFragment)) {
 							MessageDialog.openError(HandlerUtil.getActiveShell(event), "Move", "Moving selected elements would lead to incoming component connections from the same fragment.");
 						} else {
-							Command command = new MoveToFragmentCommand(editingDomain.getResourceSet(), elements, d.getDestinationFragment());
+							Command command = new MoveToFragmentCommand(editingDomain.getResourceSet(), elements, destinationFragment);
 							editingDomain.getCommandStack().execute(command);
 						}
 					}

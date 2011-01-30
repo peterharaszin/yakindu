@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.simulation.ide.ui.internal.dialogs;
 
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -39,13 +38,13 @@ public class SimulationLaunchConfigurationSelectionDialog extends ListDialog {
 	/**
 	 * @param parentShell
 	 */
-	public SimulationLaunchConfigurationSelectionDialog(Shell parentShell, IPath path, ILaunchConfiguration[] launchConfigurations) {
+	public SimulationLaunchConfigurationSelectionDialog(Shell parentShell, String name, ILaunchConfiguration[] launchConfigurations) {
 		super(parentShell);
 		setLabelProvider(labelProvider);
 		setContentProvider(new ArrayContentProvider());
 		setInput(launchConfigurations);
 		setTitle("Run As");
-		setMessage("Select a launch configuration to simulate '" + path.toFile().getName() + "':");
+		setMessage("Select a launch configuration to simulate '" + name + "':");
 	}
 
 }

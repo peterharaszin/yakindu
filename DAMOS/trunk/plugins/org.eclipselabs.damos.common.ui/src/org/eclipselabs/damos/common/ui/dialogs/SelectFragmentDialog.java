@@ -9,8 +9,9 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.dialogs;
+package org.eclipselabs.damos.common.ui.dialogs;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -30,22 +31,45 @@ import org.eclipselabs.damos.dml.util.DMLUtil;
  * @author Andreas Unger
  * 
  */
-public class MoveToAnotherFragmentDialog extends Dialog {
+public class SelectFragmentDialog extends Dialog {
 
+	private String title;
+	private String message;
 	private Fragment rootFragment;
-	private Fragment destinationFragment;
+	private ResourceSet resourceSet;
+	
+	private Fragment selectedFragment;
 	private ComboViewer fragmentViewer;
 
-	public MoveToAnotherFragmentDialog(Shell parentShell, Fragment rootFragment) {
+	public SelectFragmentDialog(Shell parentShell, String title, String message, Fragment rootFragment) {
 		super(parentShell);
+		this.title = title;
+		this.message = message;
 		this.rootFragment = rootFragment;
+	}
+	
+	public SelectFragmentDialog(Shell parentShell, String title, String message, ResourceSet resourceSet) {
+		this(parentShell, title, message, (Fragment) null);
+		this.resourceSet = resourceSet;
+	}
+
+	public static Fragment open(Shell parentShell, String title, String message, Fragment rootFragment) {
+		SelectFragmentDialog d = new SelectFragmentDialog(parentShell, title, message, rootFragment);
+		d.open();
+		return d.getSelectedFragment();
+	}
+
+	public static Fragment open(Shell parentShell, String title, String message, ResourceSet resourceSet) {
+		SelectFragmentDialog d = new SelectFragmentDialog(parentShell, title, message, resourceSet);
+		d.open();
+		return d.getSelectedFragment();
 	}
 
 	/**
 	 * @return the destinationFragment
 	 */
-	public Fragment getDestinationFragment() {
-		return destinationFragment;
+	public Fragment getSelectedFragment() {
+		return selectedFragment;
 	}
 	
 	/*
@@ -55,7 +79,7 @@ public class MoveToAnotherFragmentDialog extends Dialog {
 	 */
 	@Override
 	protected void okPressed() {
-		destinationFragment = (Fragment) ((IStructuredSelection) fragmentViewer.getSelection()).getFirstElement();
+		selectedFragment = (Fragment) ((IStructuredSelection) fragmentViewer.getSelection()).getFirstElement();
 		super.okPressed();
 	}
 
@@ -66,7 +90,7 @@ public class MoveToAnotherFragmentDialog extends Dialog {
 	 */
 	@Override
 	protected void cancelPressed() {
-		destinationFragment = null;
+		selectedFragment = null;
 		super.cancelPressed();
 	}
 
@@ -79,7 +103,7 @@ public class MoveToAnotherFragmentDialog extends Dialog {
 	 */
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setText("Move to another Fragment");
+		shell.setText(title);
 	}
 
 	/*
@@ -102,7 +126,7 @@ public class MoveToAnotherFragmentDialog extends Dialog {
 		Composite composite = (Composite) super.createDialogArea(parent);
 
 		Label label = new Label(composite, SWT.WRAP);
-		label.setText("Move to another fragment:");
+		label.setText(message);
 		GridData data = new GridData(GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL | GridData.VERTICAL_ALIGN_CENTER);
 		data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
 		label.setLayoutData(data);
@@ -112,7 +136,11 @@ public class MoveToAnotherFragmentDialog extends Dialog {
 		fragmentViewer.getCombo().setLayoutData(new GridData(GridData.GRAB_HORIZONTAL | GridData.HORIZONTAL_ALIGN_FILL));
 		fragmentViewer.setLabelProvider(new FragmentLabelProvider());
 		fragmentViewer.setContentProvider(new FragmentListContentProvider(rootFragment));
-		fragmentViewer.setInput(DMLUtil.getResourceSet(rootFragment));
+		if (resourceSet != null) {
+			fragmentViewer.setInput(resourceSet);
+		} else {
+			fragmentViewer.setInput(DMLUtil.getResourceSet(rootFragment));
+		}
 
 		applyDialogFont(composite);
 		return composite;

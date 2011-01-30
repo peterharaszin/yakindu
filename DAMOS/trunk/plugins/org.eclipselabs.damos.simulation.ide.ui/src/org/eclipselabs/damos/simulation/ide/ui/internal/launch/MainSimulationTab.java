@@ -309,7 +309,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		try {
 			String sampleTime = sampleTimeText.getText();
 			if (!SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME.equals(sampleTime)) {
-				Long.parseLong(sampleTime);
+				Double.parseDouble(sampleTime);
 				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, sampleTime);
 			}
 		} catch (NumberFormatException e) {

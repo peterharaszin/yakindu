@@ -20,9 +20,9 @@
    <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
-            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.SimulationLaunchShortcut"
-            icon="icons/Simulation.svg"
-            id="org.eclipselabs.damos.simulation.ide.ui.launchShortcuts.simulation"
+            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.SimulationModelLaunchShortcut"
+            icon="icons/Simulation.gif"
+            id="org.eclipselabs.damos.simulation.ide.ui.simulationModelLaunchShortcut"
             label="Damos Simulation"
             modes="run, debug">
          <contextualLaunch>
@@ -33,10 +33,43 @@
                         value="1">
                   </count>
                   <iterate>
-                     <test
-                           property="org.eclipse.debug.ui.matchesPattern"
-                           value="*.blockdiagram">
-                     </test>
+                    <or>
+                       <test
+                             property="org.eclipse.debug.ui.matchesPattern"
+                             value="*.simulationmodel">
+                       </test>
+                       <instanceof
+                             value="org.eclipselabs.damos.simulation.simulationmodel.SimulationModel">
+                       </instanceof>
+                    </or>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+      <shortcut
+            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.FragmentLaunchShortcut"
+            icon="icons/Simulation.gif"
+            id="org.eclipselabs.damos.simulation.ide.ui.fragmentLaunchShortcut"
+            label="Damos Simulation"
+            modes="run, debug">
+         <contextualLaunch>
+            <enablement>
+               <with
+                     variable="selection">
+                  <count
+                        value="1">
+                  </count>
+                  <iterate>
+                    <or>
+                       <test
+                             property="org.eclipse.debug.ui.matchesPattern"
+                             value="*.blockdiagram">
+                       </test>
+                       <instanceof
+                             value="org.eclipselabs.damos.dml.Fragment">
+                       </instanceof>
+                    </or>
                   </iterate>
                </with>
             </enablement>

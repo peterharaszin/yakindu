@@ -10,8 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipselabs.damos.codegen.c.cgenmodel.*;
+import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,9 +90,29 @@ public class CGenModelSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case CGenModelPackage.CGEN_MODEL: {
-				CGenModel cGenModel = (CGenModel)theEObject;
-				T result = caseCGenModel(cGenModel);
+			case CGenModelPackage.GEN_MODEL: {
+				GenModel genModel = (GenModel)theEObject;
+				T result = caseGenModel(genModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGenModelPackage.GEN_SYSTEM: {
+				GenSystem genSystem = (GenSystem)theEObject;
+				T result = caseGenSystem(genSystem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGenModelPackage.GEN_TOP_LEVEL_SYSTEM: {
+				GenTopLevelSystem genTopLevelSystem = (GenTopLevelSystem)theEObject;
+				T result = caseGenTopLevelSystem(genTopLevelSystem);
+				if (result == null) result = caseGenSystem(genTopLevelSystem);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CGenModelPackage.GEN_SUBSYSTEM: {
+				GenSubsystem genSubsystem = (GenSubsystem)theEObject;
+				T result = caseGenSubsystem(genSubsystem);
+				if (result == null) result = caseGenSystem(genSubsystem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -98,17 +121,62 @@ public class CGenModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>CGen Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>CGen Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Model</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseCGenModel(CGenModel object) {
+	public T caseGenModel(GenModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen System</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen System</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenSystem(GenSystem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Top Level System</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Top Level System</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenTopLevelSystem(GenTopLevelSystem object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Gen Subsystem</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Gen Subsystem</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenSubsystem(GenSubsystem object) {
 		return null;
 	}
 

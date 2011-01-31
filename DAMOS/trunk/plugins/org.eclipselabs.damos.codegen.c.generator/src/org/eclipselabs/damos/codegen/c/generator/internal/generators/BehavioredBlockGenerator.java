@@ -32,6 +32,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.engine.util.BehavioredBlockHelper;
 import org.eclipselabs.mscript.codegen.c.CompoundGenerator;
+import org.eclipselabs.mscript.codegen.c.ICompoundGenerator;
 import org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
@@ -65,6 +66,8 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  *
  */
 public class BehavioredBlockGenerator extends AbstractBlockGenerator {
+
+	private final ICompoundGenerator compoundGenerator = new CompoundGenerator();
 
 	private ILFunctionDefinition functionDefinition;
 	
@@ -170,8 +173,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		generateInitializeIndexStatements(printWriter, variableAccessor, functionDefinition.getInstanceVariableDeclarations());
 
 		IVariableAccessStrategy variableAccessStrategy = new VariableAccessStrategy(getComponent(), getSignature(), variableAccessor);
-		CompoundGenerator compoundGenerator = new CompoundGenerator(new MscriptGeneratorContext(getComputationModel(), writer), variableAccessStrategy);
-		compoundGenerator.doSwitch(functionDefinition.getInitializationCompound());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
+		compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, functionDefinition.getInitializationCompound());
 	}
 	
 	private void generateInitializeIndexStatements(PrintWriter writer, IVariableAccessor variableAccessor, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
@@ -206,10 +209,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		generateInputVariables(printWriter, variableAccessor);
 		
-		CompoundGenerator compoundGenerator = new CompoundGenerator(new MscriptGeneratorContext(getComputationModel(), writer), variableAccessStrategy);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
 		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				compoundGenerator.doSwitch(compound);
+				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
 			}
 		}
 		String contextVariable = variableAccessor.getContextVariable(false);
@@ -245,10 +248,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		generateInputVariables(printWriter, variableAccessor);
 
-		CompoundGenerator compoundGenerator = new CompoundGenerator(new MscriptGeneratorContext(getComputationModel(), writer), variableAccessStrategy);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
 		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
-				compoundGenerator.doSwitch(compound);
+				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
 			}
 		}
 		generateUpdateIndexStatements(printWriter, variableAccessor, functionDefinition.getInputVariableDeclarations());

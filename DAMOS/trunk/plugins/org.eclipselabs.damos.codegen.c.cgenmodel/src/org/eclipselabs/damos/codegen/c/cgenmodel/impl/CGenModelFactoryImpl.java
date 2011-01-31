@@ -9,12 +9,13 @@ package org.eclipselabs.damos.codegen.c.cgenmodel.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.eclipselabs.damos.codegen.c.cgenmodel.*;
+import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelFactory;
+import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem;
 
 /**
  * <!-- begin-user-doc -->
@@ -60,7 +61,9 @@ public class CGenModelFactoryImpl extends EFactoryImpl implements CGenModelFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case CGenModelPackage.CGEN_MODEL: return createCGenModel();
+			case CGenModelPackage.GEN_MODEL: return createGenModel();
+			case CGenModelPackage.GEN_TOP_LEVEL_SYSTEM: return createGenTopLevelSystem();
+			case CGenModelPackage.GEN_SUBSYSTEM: return createGenSubsystem();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -71,9 +74,29 @@ public class CGenModelFactoryImpl extends EFactoryImpl implements CGenModelFacto
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CGenModel createCGenModel() {
-		CGenModelImpl cGenModel = new CGenModelImpl();
-		return cGenModel;
+	public GenModel createGenModel() {
+		GenModelImpl genModel = new GenModelImpl();
+		return genModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenTopLevelSystem createGenTopLevelSystem() {
+		GenTopLevelSystemImpl genTopLevelSystem = new GenTopLevelSystemImpl();
+		return genTopLevelSystem;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenSubsystem createGenSubsystem() {
+		GenSubsystemImpl genSubsystem = new GenSubsystemImpl();
+		return genSubsystem;
 	}
 
 	/**

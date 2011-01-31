@@ -25,7 +25,7 @@
                   </count>
                   <iterate>
                      <instanceof
-                           value="org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel">
+                           value="org.eclipselabs.damos.codegen.c.cgenmodel.GenModel">
                      </instanceof>
                   </iterate>
                </and>
@@ -45,7 +45,7 @@
                   </count>
                   <iterate>
                      <instanceof
-                           value="org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel">
+                           value="org.eclipselabs.damos.codegen.c.cgenmodel.GenModel">
                      </instanceof>
                   </iterate>
                </and>

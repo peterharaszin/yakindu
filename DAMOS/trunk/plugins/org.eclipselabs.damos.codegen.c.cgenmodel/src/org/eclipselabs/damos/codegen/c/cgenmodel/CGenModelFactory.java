@@ -26,13 +26,31 @@ public interface CGenModelFactory extends EFactory {
 	CGenModelFactory eINSTANCE = org.eclipselabs.damos.codegen.c.cgenmodel.impl.CGenModelFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>CGen Model</em>'.
+	 * Returns a new object of class '<em>Gen Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>CGen Model</em>'.
+	 * @return a new object of class '<em>Gen Model</em>'.
 	 * @generated
 	 */
-	CGenModel createCGenModel();
+	GenModel createGenModel();
+
+	/**
+	 * Returns a new object of class '<em>Gen Top Level System</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gen Top Level System</em>'.
+	 * @generated
+	 */
+	GenTopLevelSystem createGenTopLevelSystem();
+
+	/**
+	 * Returns a new object of class '<em>Gen Subsystem</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Gen Subsystem</em>'.
+	 * @generated
+	 */
+	GenSubsystem createGenSubsystem();
 
 	/**
 	 * Returns the package supported by this factory.

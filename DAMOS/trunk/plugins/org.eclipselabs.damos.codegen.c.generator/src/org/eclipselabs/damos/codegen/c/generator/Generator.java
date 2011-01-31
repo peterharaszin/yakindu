@@ -27,7 +27,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.generator.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
@@ -50,7 +50,7 @@ import org.eclipselabs.mscript.typesystem.DataType;
  */
 public class Generator {
 
-	public void generate(final CGenModel genModel, final IProgressMonitor monitor) throws CoreException {
+	public void generate(final GenModel genModel, final IProgressMonitor monitor) throws CoreException {
 		final ExecutionGraph executionGraph = constructExecutionGraph(genModel, monitor);
 		
 		for (Node node : executionGraph.getNodes()) {
@@ -58,7 +58,7 @@ public class Generator {
 			generator.initialize();
 		}
 		
-		IPath path = new Path(genModel.getTargetFolder());
+		IPath path = new Path(genModel.getSourceDirectory());
 		IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(path);
 		
 		IFile headerFile = folder.getFile("execute.h");
@@ -82,13 +82,13 @@ public class Generator {
 		}.write(implementationFile, monitor);
 	}
 	
-	private ExecutionGraph constructExecutionGraph(CGenModel genModel, IProgressMonitor monitor) throws CoreException {
-		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(genModel.getTopLevelFragment(), monitor);
+	private ExecutionGraph constructExecutionGraph(GenModel genModel, IProgressMonitor monitor) throws CoreException {
+		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(genModel.getGenTopLevelSystem().getFragment(), monitor);
 		new ComponentGeneratorAdaptor().adaptGenerators(genModel, executionGraph, monitor);
 		return executionGraph;
 	}
 	
-	private void generateHeader(CGenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+	private void generateHeader(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
 		writer.println("#ifndef _EXECUTE_H");
 		writer.println("#define _EXECUTE_H");
 		writer.println();
@@ -133,7 +133,7 @@ public class Generator {
 		writer.println("#endif /* _EXECUTE_H */");
 	}
 	
-	private void generateImplementation(CGenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+	private void generateImplementation(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
 		writer.println("#include <math.h>");
 		writer.println("#include <string.h>");
 		writer.println("#include \"execute.h\"");

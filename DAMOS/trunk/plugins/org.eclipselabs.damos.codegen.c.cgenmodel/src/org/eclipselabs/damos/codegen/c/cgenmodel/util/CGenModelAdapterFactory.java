@@ -8,12 +8,13 @@ package org.eclipselabs.damos.codegen.c.cgenmodel.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipselabs.damos.codegen.c.cgenmodel.*;
+import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,8 +73,20 @@ public class CGenModelAdapterFactory extends AdapterFactoryImpl {
 	protected CGenModelSwitch<Adapter> modelSwitch =
 		new CGenModelSwitch<Adapter>() {
 			@Override
-			public Adapter caseCGenModel(CGenModel object) {
-				return createCGenModelAdapter();
+			public Adapter caseGenModel(GenModel object) {
+				return createGenModelAdapter();
+			}
+			@Override
+			public Adapter caseGenSystem(GenSystem object) {
+				return createGenSystemAdapter();
+			}
+			@Override
+			public Adapter caseGenTopLevelSystem(GenTopLevelSystem object) {
+				return createGenTopLevelSystemAdapter();
+			}
+			@Override
+			public Adapter caseGenSubsystem(GenSubsystem object) {
+				return createGenSubsystemAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -96,16 +109,58 @@ public class CGenModelAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel <em>CGen Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel <em>Gen Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenModel
 	 * @generated
 	 */
-	public Adapter createCGenModelAdapter() {
+	public Adapter createGenModelAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem <em>Gen System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem
+	 * @generated
+	 */
+	public Adapter createGenSystemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem <em>Gen Top Level System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem
+	 * @generated
+	 */
+	public Adapter createGenTopLevelSystemAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem <em>Gen Subsystem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem
+	 * @generated
+	 */
+	public Adapter createGenSubsystemAdapter() {
 		return null;
 	}
 

@@ -15,7 +15,7 @@ import java.io.Writer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
@@ -131,7 +131,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	public void generateUpdateCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException {
 	}
 	
-	protected final CGenModel getGenModel() {
+	protected final GenModel getGenModel() {
 		return getContext().getGenModel();
 	}
 	

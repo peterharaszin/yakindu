@@ -86,10 +86,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return false;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateContextCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
-	 */
-	public void generateContextCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void generateContextCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException {
 	}
 	
 	/* (non-Javadoc)

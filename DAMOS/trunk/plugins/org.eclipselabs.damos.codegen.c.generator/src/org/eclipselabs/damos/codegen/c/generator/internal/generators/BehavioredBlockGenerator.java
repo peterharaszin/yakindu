@@ -123,7 +123,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateContextCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void generateContextCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void generateContextCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException {
 		PrintWriter printWriter = new PrintWriter(writer);
 		printWriter.println("typedef struct {");
 		for (InputVariableDeclaration inputVariableDeclaration: functionDefinition.getInputVariableDeclarations()) {
@@ -139,7 +139,11 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		for (InstanceVariableDeclaration instanceVariableDeclaration: functionDefinition.getInstanceVariableDeclarations()) {
 			writeContextStructureMember(printWriter, monitor, instanceVariableDeclaration);
 		}
-		printWriter.printf("} Context_%s;\n\n", getComponent().getName());
+		String prefix = getGenModel().getGenTopLevelSystem().getPrefix();
+		if (prefix == null) {
+			prefix = "";
+		}
+		printWriter.printf("} %s;\n\n", typeName);
 	}
 
 	private void writeContextStructureMember(PrintWriter writer, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {

@@ -11,7 +11,12 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal.util;
 
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdapter;
 import org.eclipselabs.damos.execution.executiongraph.Node;
@@ -27,4 +32,33 @@ public class InternalGeneratorUtil {
 		return adapter != null ? adapter.getGenerator() : null;
 	}
 	
+	public static String getPrefix(GenModel genModel, Node node) {
+		String prefix = "";
+
+		GenSystem genSystem = null;
+
+		if (node.getEnclosingSubsystems().isEmpty()) {
+			genSystem = genModel.getGenTopLevelSystem();
+		} else {
+			for (TreeIterator<EObject> it = genModel.getGenTopLevelSystem().eAllContents(); it.hasNext();) {
+				EObject next = it.next();
+				if (next instanceof GenSubsystem) {
+					GenSubsystem genSubsystem = (GenSubsystem) next;
+					if (genSubsystem.getSubsystem() == node.getEnclosingSubsystems().get(0)) {
+						genSystem = genSubsystem;
+						break;
+					}
+				}
+			}
+		}
+		
+		if (genSystem != null) {
+			if (genSystem.getPrefix() != null) {
+				prefix = genSystem.getPrefix();
+			}
+		}
+		
+		return prefix;
+	}
+
 }

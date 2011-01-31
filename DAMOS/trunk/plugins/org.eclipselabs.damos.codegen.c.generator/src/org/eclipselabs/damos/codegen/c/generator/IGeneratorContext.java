@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.generator;
 
-import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 
 /**
  * @author Andreas Unger
@@ -21,6 +21,6 @@ import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
  */
 public interface IGeneratorContext {
 
-	CGenModel getGenModel();
+	GenModel getGenModel();
 	
 }

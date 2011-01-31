@@ -15,6 +15,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -26,18 +28,19 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelFactory;
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
 
 import org.eclipselabs.damos.codegen.c.cgenmodel.edit.CGenModelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel} object.
+ * This is the item provider adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CGenModelItemProvider
+public class GenSystemItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -51,7 +54,7 @@ public class CGenModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CGenModelItemProvider(AdapterFactory adapterFactory) {
+	public GenSystemItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -66,71 +69,25 @@ public class CGenModelItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addExecutionModelPropertyDescriptor(object);
-			addTopLevelFragmentPropertyDescriptor(object);
-			addTargetFolderPropertyDescriptor(object);
+			addPrefixPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Execution Model feature.
+	 * This adds a property descriptor for the Prefix feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExecutionModelPropertyDescriptor(Object object) {
+	protected void addPrefixPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_CGenModel_executionModel_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CGenModel_executionModel_feature", "_UI_CGenModel_type"),
-				 CGenModelPackage.Literals.CGEN_MODEL__EXECUTION_MODEL,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Top Level Fragment feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTopLevelFragmentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CGenModel_topLevelFragment_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CGenModel_topLevelFragment_feature", "_UI_CGenModel_type"),
-				 CGenModelPackage.Literals.CGEN_MODEL__TOP_LEVEL_FRAGMENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target Folder feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTargetFolderPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_CGenModel_targetFolder_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_CGenModel_targetFolder_feature", "_UI_CGenModel_type"),
-				 CGenModelPackage.Literals.CGEN_MODEL__TARGET_FOLDER,
+				 getString("_UI_GenSystem_prefix_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_GenSystem_prefix_feature", "_UI_GenSystem_type"),
+				 CGenModelPackage.Literals.GEN_SYSTEM__PREFIX,
 				 true,
 				 false,
 				 false,
@@ -140,14 +97,33 @@ public class CGenModelItemProvider
 	}
 
 	/**
-	 * This returns CGenModel.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CGenModel"));
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(CGenModelPackage.Literals.GEN_SYSTEM__GEN_SUBSYSTEMS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -158,10 +134,10 @@ public class CGenModelItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CGenModel)object).getTargetFolder();
+		String label = ((GenSystem)object).getPrefix();
 		return label == null || label.length() == 0 ?
-			getString("_UI_CGenModel_type") :
-			getString("_UI_CGenModel_type") + " " + label;
+			getString("_UI_GenSystem_type") :
+			getString("_UI_GenSystem_type") + " " + label;
 	}
 
 	/**
@@ -175,9 +151,12 @@ public class CGenModelItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CGenModel.class)) {
-			case CGenModelPackage.CGEN_MODEL__TARGET_FOLDER:
+		switch (notification.getFeatureID(GenSystem.class)) {
+			case CGenModelPackage.GEN_SYSTEM__PREFIX:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case CGenModelPackage.GEN_SYSTEM__GEN_SUBSYSTEMS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -193,6 +172,11 @@ public class CGenModelItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(CGenModelPackage.Literals.GEN_SYSTEM__GEN_SUBSYSTEMS,
+				 CGenModelFactory.eINSTANCE.createGenSubsystem()));
 	}
 
 	/**

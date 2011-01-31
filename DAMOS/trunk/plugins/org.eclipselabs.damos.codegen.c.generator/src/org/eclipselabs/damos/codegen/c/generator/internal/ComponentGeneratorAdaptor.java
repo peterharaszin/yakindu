@@ -17,12 +17,12 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
+import org.eclipselabs.damos.codegen.c.generator.ComponentGeneratorStatus;
 import org.eclipselabs.damos.codegen.c.generator.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.IGeneratorContext;
-import org.eclipselabs.damos.codegen.c.generator.ComponentGeneratorStatus;
 import org.eclipselabs.damos.codegen.c.generator.internal.registry.ComponentGeneratorProviderRegistry;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
@@ -38,7 +38,7 @@ public class ComponentGeneratorAdaptor {
 
 	private ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
 	
-	public void adaptGenerators(CGenModel genModel, ExecutionGraph executionGraph, IProgressMonitor monitor) throws CoreException {
+	public void adaptGenerators(GenModel genModel, ExecutionGraph executionGraph, IProgressMonitor monitor) throws CoreException {
 		ComponentSignatureResolverResult signatureResolverResult = signatureResolver.resolve(executionGraph.getTopLevelFragment(), true);
 		if (!signatureResolverResult.getStatus().isOK()) {
 			throw new CoreException(signatureResolverResult.getStatus());

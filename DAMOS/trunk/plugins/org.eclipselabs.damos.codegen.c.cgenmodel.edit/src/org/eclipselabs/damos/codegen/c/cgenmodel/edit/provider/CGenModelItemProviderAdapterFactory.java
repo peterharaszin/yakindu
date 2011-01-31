@@ -76,26 +76,72 @@ public class CGenModelItemProviderAdapterFactory extends CGenModelAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CGenModelItemProvider cGenModelItemProvider;
+	protected GenModelItemProvider genModelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel}.
+	 * This creates an adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createCGenModelAdapter() {
-		if (cGenModelItemProvider == null) {
-			cGenModelItemProvider = new CGenModelItemProvider(this);
+	public Adapter createGenModelAdapter() {
+		if (genModelItemProvider == null) {
+			genModelItemProvider = new GenModelItemProvider(this);
 		}
 
-		return cGenModelItemProvider;
+		return genModelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GenTopLevelSystemItemProvider genTopLevelSystemItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGenTopLevelSystemAdapter() {
+		if (genTopLevelSystemItemProvider == null) {
+			genTopLevelSystemItemProvider = new GenTopLevelSystemItemProvider(this);
+		}
+
+		return genTopLevelSystemItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GenSubsystemItemProvider genSubsystemItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGenSubsystemAdapter() {
+		if (genSubsystemItemProvider == null) {
+			genSubsystemItemProvider = new GenSubsystemItemProvider(this);
+		}
+
+		return genSubsystemItemProvider;
 	}
 
 	/**
@@ -197,7 +243,9 @@ public class CGenModelItemProviderAdapterFactory extends CGenModelAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (cGenModelItemProvider != null) cGenModelItemProvider.dispose();
+		if (genModelItemProvider != null) genModelItemProvider.dispose();
+		if (genTopLevelSystemItemProvider != null) genTopLevelSystemItemProvider.dispose();
+		if (genSubsystemItemProvider != null) genSubsystemItemProvider.dispose();
 	}
 
 }

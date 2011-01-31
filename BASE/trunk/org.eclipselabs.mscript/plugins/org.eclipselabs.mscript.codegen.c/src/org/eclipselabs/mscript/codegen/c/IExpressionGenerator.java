@@ -9,30 +9,17 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c.generator;
+package org.eclipselabs.mscript.codegen.c;
 
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.mscript.language.ast.Expression;
 
 /**
  * @author Andreas Unger
  *
  */
-public class GeneratorContext implements IGeneratorContext {
+public interface IExpressionGenerator {
 
-	private GenModel genModel;
-	
-	/**
-	 * 
-	 */
-	public GeneratorContext(GenModel genModel) {
-		this.genModel = genModel;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.IGeneratorContext#getGenModel()
-	 */
-	public GenModel getGenModel() {
-		return genModel;
-	}
+	void generate(IMscriptGeneratorContext context, IVariableAccessStrategy variableAccessStrategy,
+			Expression expression);
 
 }

@@ -13,13 +13,13 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.statushandlers.StatusManager;
-import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModel;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.Generator;
 
 public class GenerateCCodeHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final CGenModel cGenModel = getCGenModel(event);
+		final GenModel cGenModel = getGenModel(event);
 		
 		if (cGenModel == null) {
 			throw new ExecutionException("Selected object must be C generator model");
@@ -45,12 +45,12 @@ public class GenerateCCodeHandler extends AbstractHandler {
 		return null;
 	}
 	
-	private CGenModel getCGenModel(ExecutionEvent event) {
+	private GenModel getGenModel(ExecutionEvent event) {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.getFirstElement() instanceof CGenModel) {
-				return (CGenModel) structuredSelection.getFirstElement();
+			if (structuredSelection.getFirstElement() instanceof GenModel) {
+				return (GenModel) structuredSelection.getFirstElement();
 			}
 		}
 		return null;

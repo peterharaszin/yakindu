@@ -7,11 +7,14 @@
 package org.eclipselabs.damos.codegen.c.cgenmodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
 import org.eclipselabs.damos.dml.Subsystem;
 
 /**
@@ -21,6 +24,7 @@ import org.eclipselabs.damos.dml.Subsystem;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenSubsystemImpl#getEnclosingGenSystem <em>Enclosing Gen System</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenSubsystemImpl#getSubsystem <em>Subsystem</em>}</li>
  * </ul>
  * </p>
@@ -55,6 +59,47 @@ public class GenSubsystemImpl extends GenSystemImpl implements GenSubsystem {
 	@Override
 	protected EClass eStaticClass() {
 		return CGenModelPackage.Literals.GEN_SUBSYSTEM;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenSystem getEnclosingGenSystem() {
+		if (eContainerFeatureID() != CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM) return null;
+		return (GenSystem)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetEnclosingGenSystem(GenSystem newEnclosingGenSystem, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newEnclosingGenSystem, CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEnclosingGenSystem(GenSystem newEnclosingGenSystem) {
+		if (newEnclosingGenSystem != eInternalContainer() || (eContainerFeatureID() != CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM && newEnclosingGenSystem != null)) {
+			if (EcoreUtil.isAncestor(this, newEnclosingGenSystem))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newEnclosingGenSystem != null)
+				msgs = ((InternalEObject)newEnclosingGenSystem).eInverseAdd(this, CGenModelPackage.GEN_SYSTEM__GEN_SUBSYSTEMS, GenSystem.class, msgs);
+			msgs = basicSetEnclosingGenSystem(newEnclosingGenSystem, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM, newEnclosingGenSystem, newEnclosingGenSystem));
 	}
 
 	/**
@@ -101,8 +146,54 @@ public class GenSubsystemImpl extends GenSystemImpl implements GenSubsystem {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetEnclosingGenSystem((GenSystem)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM:
+				return basicSetEnclosingGenSystem(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM:
+				return eInternalContainer().eInverseRemove(this, CGenModelPackage.GEN_SYSTEM__GEN_SUBSYSTEMS, GenSystem.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM:
+				return getEnclosingGenSystem();
 			case CGenModelPackage.GEN_SUBSYSTEM__SUBSYSTEM:
 				if (resolve) return getSubsystem();
 				return basicGetSubsystem();
@@ -118,6 +209,9 @@ public class GenSubsystemImpl extends GenSystemImpl implements GenSubsystem {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM:
+				setEnclosingGenSystem((GenSystem)newValue);
+				return;
 			case CGenModelPackage.GEN_SUBSYSTEM__SUBSYSTEM:
 				setSubsystem((Subsystem)newValue);
 				return;
@@ -133,6 +227,9 @@ public class GenSubsystemImpl extends GenSystemImpl implements GenSubsystem {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM:
+				setEnclosingGenSystem((GenSystem)null);
+				return;
 			case CGenModelPackage.GEN_SUBSYSTEM__SUBSYSTEM:
 				setSubsystem((Subsystem)null);
 				return;
@@ -148,6 +245,8 @@ public class GenSubsystemImpl extends GenSystemImpl implements GenSubsystem {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM:
+				return getEnclosingGenSystem() != null;
 			case CGenModelPackage.GEN_SUBSYSTEM__SUBSYSTEM:
 				return subsystem != null;
 		}

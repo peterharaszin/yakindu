@@ -43,7 +43,7 @@ public interface IComponentGenerator {
 	
 	boolean contributesContextCode();
 	
-	void generateContextCode(Writer writer, IProgressMonitor monitor) throws CoreException;
+	void generateContextCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException;
 
 	boolean contributesInitializationCode();
 	

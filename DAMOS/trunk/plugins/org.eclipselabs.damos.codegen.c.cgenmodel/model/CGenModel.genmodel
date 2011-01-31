@@ -28,6 +28,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenTopLevelSystem/fragment"/>
     </genClasses>
     <genClasses ecoreClass="CGenModel.ecore#//GenSubsystem">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CGenModel.ecore#//GenSubsystem/enclosingGenSystem"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenSubsystem/subsystem"/>
     </genClasses>
   </genPackages>

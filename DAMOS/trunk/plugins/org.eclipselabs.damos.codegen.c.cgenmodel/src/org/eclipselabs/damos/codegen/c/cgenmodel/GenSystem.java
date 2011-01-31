@@ -30,6 +30,7 @@ public interface GenSystem extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Gen Subsystems</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem}.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem#getEnclosingGenSystem <em>Enclosing Gen System</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gen Subsystems</em>' containment reference list isn't clear,
@@ -38,7 +39,8 @@ public interface GenSystem extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gen Subsystems</em>' containment reference list.
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenSystem_GenSubsystems()
-	 * @model containment="true"
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem#getEnclosingGenSystem
+	 * @model opposite="enclosingGenSystem" containment="true"
 	 * @generated
 	 */
 	EList<GenSubsystem> getGenSubsystems();

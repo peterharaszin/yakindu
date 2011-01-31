@@ -16,7 +16,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenSystem" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="genSubsystems" upperBound="-1"
-        eType="#//GenSubsystem" containment="true"/>
+        eType="#//GenSubsystem" containment="true" eOpposite="#//GenSubsystem/enclosingGenSystem"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenTopLevelSystem" eSuperTypes="#//GenSystem">
@@ -24,6 +24,8 @@
         eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenSubsystem" eSuperTypes="#//GenSystem">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enclosingGenSystem" lowerBound="1"
+        eType="#//GenSystem" eOpposite="#//GenSystem/genSubsystems"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
         eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
   </eClassifiers>

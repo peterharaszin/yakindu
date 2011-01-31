@@ -253,13 +253,22 @@ public interface CGenModelPackage extends EPackage {
 	int GEN_SUBSYSTEM__PREFIX = GEN_SYSTEM__PREFIX;
 
 	/**
+	 * The feature id for the '<em><b>Enclosing Gen System</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM = GEN_SYSTEM_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Subsystem</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_SUBSYSTEM__SUBSYSTEM = GEN_SYSTEM_FEATURE_COUNT + 0;
+	int GEN_SUBSYSTEM__SUBSYSTEM = GEN_SYSTEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Gen Subsystem</em>' class.
@@ -268,7 +277,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_SUBSYSTEM_FEATURE_COUNT = GEN_SYSTEM_FEATURE_COUNT + 1;
+	int GEN_SUBSYSTEM_FEATURE_COUNT = GEN_SYSTEM_FEATURE_COUNT + 2;
 
 
 	/**
@@ -422,6 +431,17 @@ public interface CGenModelPackage extends EPackage {
 	EClass getGenSubsystem();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem#getEnclosingGenSystem <em>Enclosing Gen System</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Enclosing Gen System</em>'.
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem#getEnclosingGenSystem()
+	 * @see #getGenSubsystem()
+	 * @generated
+	 */
+	EReference getGenSubsystem_EnclosingGenSystem();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem#getSubsystem <em>Subsystem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -573,6 +593,14 @@ public interface CGenModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GEN_SUBSYSTEM = eINSTANCE.getGenSubsystem();
+
+		/**
+		 * The meta object literal for the '<em><b>Enclosing Gen System</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM = eINSTANCE.getGenSubsystem_EnclosingGenSystem();
 
 		/**
 		 * The meta object literal for the '<em><b>Subsystem</b></em>' reference feature.

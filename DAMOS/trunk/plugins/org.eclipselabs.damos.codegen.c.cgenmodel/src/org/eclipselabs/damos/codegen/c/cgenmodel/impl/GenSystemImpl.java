@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
@@ -92,7 +92,7 @@ public abstract class GenSystemImpl extends EObjectImpl implements GenSystem {
 	 */
 	public EList<GenSubsystem> getGenSubsystems() {
 		if (genSubsystems == null) {
-			genSubsystems = new EObjectContainmentEList<GenSubsystem>(GenSubsystem.class, this, CGenModelPackage.GEN_SYSTEM__GEN_SUBSYSTEMS);
+			genSubsystems = new EObjectContainmentWithInverseEList<GenSubsystem>(GenSubsystem.class, this, CGenModelPackage.GEN_SYSTEM__GEN_SUBSYSTEMS, CGenModelPackage.GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM);
 		}
 		return genSubsystems;
 	}
@@ -116,6 +116,21 @@ public abstract class GenSystemImpl extends EObjectImpl implements GenSystem {
 		prefix = newPrefix;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CGenModelPackage.GEN_SYSTEM__PREFIX, oldPrefix, prefix));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case CGenModelPackage.GEN_SYSTEM__GEN_SUBSYSTEMS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getGenSubsystems()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

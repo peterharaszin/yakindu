@@ -247,8 +247,17 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getGenSubsystem_Subsystem() {
+	public EReference getGenSubsystem_EnclosingGenSystem() {
 		return (EReference)genSubsystemEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGenSubsystem_Subsystem() {
+		return (EReference)genSubsystemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -296,6 +305,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 		createEReference(genTopLevelSystemEClass, GEN_TOP_LEVEL_SYSTEM__FRAGMENT);
 
 		genSubsystemEClass = createEClass(GEN_SUBSYSTEM);
+		createEReference(genSubsystemEClass, GEN_SUBSYSTEM__ENCLOSING_GEN_SYSTEM);
 		createEReference(genSubsystemEClass, GEN_SUBSYSTEM__SUBSYSTEM);
 	}
 
@@ -345,13 +355,14 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 		initEAttribute(getGenModel_Singleton(), ecorePackage.getEBoolean(), "singleton", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genSystemEClass, GenSystem.class, "GenSystem", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGenSystem_GenSubsystems(), this.getGenSubsystem(), null, "genSubsystems", null, 0, -1, GenSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenSystem_GenSubsystems(), this.getGenSubsystem(), this.getGenSubsystem_EnclosingGenSystem(), "genSubsystems", null, 0, -1, GenSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenSystem_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, GenSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genTopLevelSystemEClass, GenTopLevelSystem.class, "GenTopLevelSystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGenTopLevelSystem_Fragment(), theDMLPackage.getFragment(), null, "fragment", null, 1, 1, GenTopLevelSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genSubsystemEClass, GenSubsystem.class, "GenSubsystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGenSubsystem_EnclosingGenSystem(), this.getGenSystem(), this.getGenSystem_GenSubsystems(), "enclosingGenSystem", null, 1, 1, GenSubsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGenSubsystem_Subsystem(), theDMLPackage.getSubsystem(), null, "subsystem", null, 1, 1, GenSubsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

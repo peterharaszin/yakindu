@@ -12,11 +12,14 @@
 package org.eclipselabs.damos.codegen.c.generator.internal;
 
 import org.apache.commons.lang.StringUtils;
+import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
+import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.execution.executiongraph.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executiongraph.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executiongraph.Node;
 
@@ -26,13 +29,15 @@ import org.eclipselabs.damos.execution.executiongraph.Node;
  */
 public class VariableAccessor implements IVariableAccessor {
 
+	private GenModel genModel;
 	private Node node;
 	
 	/**
 	 * 
 	 */
-	public VariableAccessor(Node node) {
+	public VariableAccessor(GenModel genModel, Node node) {
 		this.node = node;
+		this.genModel = genModel;
 	}
 	
 	/* (non-Javadoc)
@@ -43,8 +48,12 @@ public class VariableAccessor implements IVariableAccessor {
 		if (pointer) {
 			sb.append("(&");
 		}
+		String prefix = genModel.getGenTopLevelSystem().getPrefix();
+		if (prefix != null) {
+			sb.append(prefix);
+		}
 		sb.append("context.");
-		sb.append(StringUtils.uncapitalize(node.getComponent().getName()));
+		sb.append(InternalGeneratorUtil.getPrefix(genModel, node) + node.getComponent().getName());
 		if (pointer) {
 			sb.append(")");
 		}
@@ -56,14 +65,19 @@ public class VariableAccessor implements IVariableAccessor {
 	 */
 	public String getInputVariable(InputPort inputPort, boolean pointer) {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputPort);
-		OutputPort sourcePort = targetEnd.getDataFlow().getSourceEnd().getPort();
-		return getOutputVariable(sourcePort, pointer);
+		DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+		OutputPort sourcePort = sourceEnd.getPort();
+		return getOutputVariable(sourcePort, pointer, sourceEnd.getNode());
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IVariableAccessor#getOutputVariable(boolean)
 	 */
 	public String getOutputVariable(OutputPort outputPort, boolean pointer) {
+		return getOutputVariable(outputPort, pointer, node);
+	}
+	
+	private String getOutputVariable(OutputPort outputPort, boolean pointer, Node node) {
 		StringBuilder sb = new StringBuilder();
 		if (pointer) {
 			sb.append("(&");
@@ -73,7 +87,7 @@ public class VariableAccessor implements IVariableAccessor {
 			sb.append(StringUtils.uncapitalize(outputPort.getComponent().getName()));
 		} else {
 			BlockOutput output = (BlockOutput) outputPort.getOutput();
-			sb.append(StringUtils.uncapitalize(outputPort.getComponent().getName()));
+			sb.append(InternalGeneratorUtil.getPrefix(genModel, node) + outputPort.getComponent().getName());
 			sb.append("_");
 			sb.append(output.getDefinition().getName());
 			if (output.getDefinition().isManyPorts()) {

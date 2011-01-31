@@ -58,28 +58,31 @@ public class Generator {
 			generator.initialize();
 		}
 		
-		IPath path = new Path(genModel.getSourceDirectory());
-		IFolder folder = ResourcesPlugin.getWorkspace().getRoot().getFolder(path);
+		IPath headerPath = new Path(genModel.getHeaderDirectory());
+		IFolder headerFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(headerPath);
 		
-		IFile headerFile = folder.getFile("execute.h");
+		IFile headerFile = headerFolder.getFile(genModel.getMainHeaderFile());
 		new FileWriter() {
 			
 			@Override
 			protected void write(Writer writer) throws CoreException {
-				generateHeader(genModel, executionGraph, new PrintWriter(writer), monitor);
+				generateHeaderFile(genModel, executionGraph, new PrintWriter(writer), monitor);
 			}
 			
 		}.write(headerFile, monitor);
 
-		IFile implementationFile = folder.getFile("execute.c");		
+		
+		IPath sourcePath = new Path(genModel.getSourceDirectory());
+		IFolder sourceFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(sourcePath);
+		IFile sourceFile = sourceFolder.getFile(genModel.getMainSourceFile());		
 		new FileWriter() {
 			
 			@Override
 			protected void write(Writer writer) throws CoreException {
-				generateImplementation(genModel, executionGraph, new PrintWriter(writer), monitor);
+				generateSourceFile(genModel, executionGraph, new PrintWriter(writer), monitor);
 			}
 			
-		}.write(implementationFile, monitor);
+		}.write(sourceFile, monitor);
 	}
 	
 	private ExecutionGraph constructExecutionGraph(GenModel genModel, IProgressMonitor monitor) throws CoreException {
@@ -88,9 +91,17 @@ public class Generator {
 		return executionGraph;
 	}
 	
-	private void generateHeader(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
-		writer.println("#ifndef _EXECUTE_H");
-		writer.println("#define _EXECUTE_H");
+	private void generateHeaderFile(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+		String headerFileName = new Path(genModel.getMainHeaderFile()).lastSegment();
+		String headerMacro = headerFileName.replaceAll("\\W", "_").toUpperCase();
+		
+		String prefix = genModel.getGenTopLevelSystem().getPrefix();
+		if (prefix == null) {
+			prefix = "";
+		}
+		
+		writer.printf("#ifndef _%s\n", headerMacro);
+		writer.printf("#define _%s\n", headerMacro);
 		writer.println();
 		
 		writer.println("#include <stdint.h>");
@@ -108,7 +119,7 @@ public class Generator {
 			DataType dataType = signature.getOutputDataType(outputPort);
 			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
 		}
-		writer.println("} Input;");
+		writer.printf("} %sInput;\n", prefix);
 		
 		writer.println();
 
@@ -123,20 +134,25 @@ public class Generator {
 			DataType dataType = signature.getOutputDataType(outputPort);
 			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
 		}
-		writer.println("} Output;");
+		writer.printf("} %sOutput;\n", prefix);
 
 		writer.println();
-		writer.println("void initialize(void);");
-		writer.println("void execute(const Input *input, Output *output);");
+		writer.printf("void %sinitialize(void);\n", prefix);
+		writer.printf("void %sexecute(const %sInput *input, %sOutput *output);\n", prefix, prefix, prefix);
 
 		writer.println();
-		writer.println("#endif /* _EXECUTE_H */");
+		writer.printf("#endif /* _%s */\n", headerMacro);
 	}
 	
-	private void generateImplementation(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+	private void generateSourceFile(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+		String prefix = genModel.getGenTopLevelSystem().getPrefix();
+		if (prefix == null) {
+			prefix = "";
+		}
+
 		writer.println("#include <math.h>");
-		writer.println("#include <string.h>");
-		writer.println("#include \"execute.h\"");
+		writer.println("#include <string.h>\n");
+		writer.printf("#include \"%s\"\n", genModel.getMainHeaderFile());
 
 		writer.println();
 		
@@ -145,33 +161,34 @@ public class Generator {
 			for (Node node : executionGraph.getNodes()) {
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
 				if (generator.contributesContextCode()) {
-					generator.generateContextCode(writer, monitor);
+					String typeName = InternalGeneratorUtil.getPrefix(genModel, node) + node.getComponent().getName() + "_Context";
+					generator.generateContextCode(writer, typeName, monitor);
 				}
 			}
 			writer.println("typedef struct {");
 			for (Node node : executionGraph.getNodes()) {
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
 				if (generator.contributesContextCode()) {
-					writer.printf("Context_%s %s;\n", node.getComponent().getName(), StringUtils.uncapitalize(node.getComponent().getName()));
+					writer.printf("%s%s_Context %s;\n", InternalGeneratorUtil.getPrefix(genModel, node), node.getComponent().getName(), InternalGeneratorUtil.getPrefix(genModel, node) + node.getComponent().getName());
 				}
 			}
-			writer.println("} Context;\n");
-			writer.println("static Context context;\n");
+			writer.printf("} %sContext;\n\n", prefix);
+			writer.printf("static %sContext %scontext;\n\n", prefix, prefix);
 		}
 		
-		writer.print("void initialize(void) {\n");
+		writer.printf("void %sinitialize(void) {\n", prefix);
 		for (Node node : executionGraph.getNodes()) {
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
 			if (generator.contributesInitializationCode()) {
 				writer.printf("/* %s */\n", node.getComponent().getName());
 				writer.println("{");
-				generator.generateInitializationCode(writer, new VariableAccessor(node), monitor);
+				generator.generateInitializationCode(writer, new VariableAccessor(genModel, node), monitor);
 				writer.println("}\n");
 			}
 		}
 		writer.print("}\n\n");
 
-		writer.print("void execute(const Input *input, Output *output) {\n");
+		writer.printf("void %sexecute(const %sInput *input, %sOutput *output) {\n", prefix, prefix, prefix);
 		
 		for (Node node : executionGraph.getNodes()) {
 			if (!(node.getComponent() instanceof Block)) {
@@ -185,7 +202,7 @@ public class Generator {
 				for (OutputPort outputPort : output.getPorts()) {
 					String suffix = i >= 0 ? Integer.toString(i++) : "";
 					String cDataType = MscriptGeneratorUtil.getCDataType(genModel.getExecutionModel().getComputationModel(), generator.getSignature().getOutputDataType(outputPort));
-					writer.printf("%s %s_%s%s;\n", cDataType, StringUtils.uncapitalize(block.getName()), blockOutput.getDefinition().getName(), suffix);
+					writer.printf("%s %s%s_%s%s;\n", cDataType, InternalGeneratorUtil.getPrefix(genModel, node), block.getName(), blockOutput.getDefinition().getName(), suffix);
 				}
 			}
 		}
@@ -197,7 +214,7 @@ public class Generator {
 			if (generator.contributesComputeOutputsCode()) {
 				writer.printf("/* %s */\n", node.getComponent().getName());
 				writer.println("{");
-				generator.generateComputeOutputsCode(writer, new VariableAccessor(node), monitor);
+				generator.generateComputeOutputsCode(writer, new VariableAccessor(genModel, node), monitor);
 				writer.println("}\n");
 			}
 		}
@@ -207,7 +224,7 @@ public class Generator {
 			if (generator.contributesUpdateCode()) {
 				writer.printf("/* %s */\n", node.getComponent().getName());
 				writer.println("{");
-				generator.generateUpdateCode(writer, new VariableAccessor(node), monitor);
+				generator.generateUpdateCode(writer, new VariableAccessor(genModel, node), monitor);
 				writer.println("}\n");
 			}
 		}
@@ -223,6 +240,11 @@ public class Generator {
 		}
 		return false;
 	}
+		
+//	private String findPrefix(GenModel genModel, Node node) {
+//		String prefix = null;
+//		for ()
+//	}
 	
 	private static abstract class FileWriter {
 

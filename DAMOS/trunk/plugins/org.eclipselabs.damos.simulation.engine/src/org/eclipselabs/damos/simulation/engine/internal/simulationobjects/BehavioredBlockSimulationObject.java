@@ -41,9 +41,9 @@ import org.eclipselabs.mscript.language.il.VariableDeclaration;
 import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.mscript.language.interpreter.CompoundInterpreter;
-import org.eclipselabs.mscript.language.interpreter.Functor;
+import org.eclipselabs.mscript.language.interpreter.FunctionObject;
 import org.eclipselabs.mscript.language.interpreter.ICompoundInterpreter;
-import org.eclipselabs.mscript.language.interpreter.IFunctor;
+import org.eclipselabs.mscript.language.interpreter.IFunctionObject;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.IVariable;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
@@ -63,7 +63,7 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObject {
 
 	private IInterpreterContext interpreterContext;
-	private IFunctor functor;
+	private IFunctionObject functionObject;
 	
 	private ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
 
@@ -111,21 +111,21 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		ILFunctionDefinition functionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
 		
 		interpreterContext = new InterpreterContext(new ComputationContext(getComputationModel()));
-		functor = Functor.create(interpreterContext, functionDefinition);
+		functionObject = FunctionObject.create(interpreterContext, functionDefinition);
 
-		for (IVariable variable : functor.getVariables()) {
+		for (IVariable variable : functionObject.getVariables()) {
 			interpreterContext.addVariable(variable);
 		}
 		
 		initializeInputVariables();
 		initializeOutputVariables();
 
-		Compound initializationCompound = functor.getFunctionDefinition().getInitializationCompound();
+		Compound initializationCompound = functionObject.getFunctionDefinition().getInitializationCompound();
 		if (initializationCompound != null) {
 			compoundInterpreter.execute(interpreterContext, initializationCompound);
 		}
 		
-		for (ComputationCompound compound : functor.getFunctionDefinition().getComputationCompounds()) {
+		for (ComputationCompound compound : functionObject.getFunctionDefinition().getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
 				computeOutputsCompounds.add(compound);
 			} else {
@@ -135,12 +135,12 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeInputVariables() throws CoreException {
-		inputVariables = new IVariable[functor.getFunctionDefinition().getInputVariableDeclarations().size()];
+		inputVariables = new IVariable[functionObject.getFunctionDefinition().getInputVariableDeclarations().size()];
 		multiPortInput = new boolean[inputVariables.length];
 		
 		int i = 0;
-		for (InputVariableDeclaration inputVariableDeclaration : functor.getFunctionDefinition().getInputVariableDeclarations()) {
-			IVariable variable = functor.getVariable(inputVariableDeclaration);
+		for (InputVariableDeclaration inputVariableDeclaration : functionObject.getFunctionDefinition().getInputVariableDeclarations()) {
+			IVariable variable = functionObject.getVariable(inputVariableDeclaration);
 			
 			BlockInput input = (BlockInput) getComponent().getInputs().get(i);
 			
@@ -155,12 +155,12 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeOutputVariables() throws CoreException {
-		outputVariables = new IVariable[functor.getFunctionDefinition().getOutputVariableDeclarations().size()];
+		outputVariables = new IVariable[functionObject.getFunctionDefinition().getOutputVariableDeclarations().size()];
 		multiPortOutput = new boolean[outputVariables.length];
 
 		int i = 0;
-		for (OutputVariableDeclaration outputVariableDeclaration : functor.getFunctionDefinition().getOutputVariableDeclarations()) {
-			IVariable variable = functor.getVariable(outputVariableDeclaration);
+		for (OutputVariableDeclaration outputVariableDeclaration : functionObject.getFunctionDefinition().getOutputVariableDeclarations()) {
+			IVariable variable = functionObject.getVariable(outputVariableDeclaration);
 			
 			BlockOutput output = (BlockOutput) getComponent().getOutputs().get(i);
 			
@@ -235,7 +235,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		for (ComputationCompound compound : updateCompounds) {
 			compoundInterpreter.execute(interpreterContext, compound);
 		}
-		functor.incrementStepIndex();
+		functionObject.incrementStepIndex();
 	}
 	
 	private class Helper extends BehavioredBlockHelper {

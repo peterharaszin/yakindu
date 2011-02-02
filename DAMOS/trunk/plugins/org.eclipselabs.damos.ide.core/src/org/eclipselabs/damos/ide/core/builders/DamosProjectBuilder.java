@@ -1,5 +1,6 @@
 package org.eclipselabs.damos.ide.core.builders;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IMarker;
@@ -14,7 +15,11 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -24,6 +29,7 @@ import org.eclipselabs.damos.common.markers.IMarkerConstants;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.util.DMLValidator;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
 import org.eclipselabs.damos.execution.engine.IComponentStatus;
@@ -92,10 +98,31 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
 			for (Object o : EcoreUtil.getObjectsByType(blockDiagramResource.getContents(), DMLPackage.Literals.FRAGMENT)) {
 				Fragment fragment = (Fragment) o;
-				ComponentSignatureResolverResult result = signatureResolver.resolve(fragment, false);
-				if (!result.getStatus().isOK()) {
-					for (IStatus status : result.getStatus().getChildren()) {
-						attachMarkers(resource, fragment, null, status);
+
+				BasicDiagnostic diagnostics = new BasicDiagnostic();
+				Map<Object, Object> context = new HashMap<Object, Object>();
+				DMLValidator.INSTANCE.validate(fragment, diagnostics, context);
+				for (TreeIterator<EObject> it = fragment.eAllContents(); it.hasNext();) {
+					DMLValidator.INSTANCE.validate(it.next(), diagnostics, context);
+				}
+				
+				if (diagnostics.getSeverity() != Diagnostic.OK) {
+					for (Diagnostic diagnostic : diagnostics.getChildren()) {
+						Component component = null;
+						if (diagnostic.getData() != null && !diagnostic.getData().isEmpty()) {
+							Object source = diagnostic.getData().get(0);
+							if (source instanceof Component) {
+								component = (Component) source;
+							}
+						}
+						attachMarkers(resource, fragment, component, BasicDiagnostic.toIStatus(diagnostic));
+					}
+				} else {
+					ComponentSignatureResolverResult result = signatureResolver.resolve(fragment, false);
+					if (!result.getStatus().isOK()) {
+						for (IStatus status : result.getStatus().getChildren()) {
+							attachMarkers(resource, fragment, null, status);
+						}
 					}
 				}
 			}

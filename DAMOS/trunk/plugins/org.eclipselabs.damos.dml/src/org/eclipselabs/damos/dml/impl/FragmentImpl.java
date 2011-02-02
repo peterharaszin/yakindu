@@ -128,14 +128,6 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 		return components;
 	}
 
-	/**
-	 * The array of superset feature identifiers for the '{@link #getComponents() <em>Components</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getComponents()
-	 * @generated
-	 * @ordered
-	 */
 	protected static final int[] COMPONENTS_ESUPERSETS = new int[] {DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS};
 
 	private EList<Connection> connections;
@@ -152,14 +144,6 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 		return connections;
 	}
 
-	/**
-	 * The array of superset feature identifiers for the '{@link #getConnections() <em>Connections</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConnections()
-	 * @generated
-	 * @ordered
-	 */
 	protected static final int[] CONNECTIONS_ESUPERSETS = new int[] {DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS};
 
 	/**

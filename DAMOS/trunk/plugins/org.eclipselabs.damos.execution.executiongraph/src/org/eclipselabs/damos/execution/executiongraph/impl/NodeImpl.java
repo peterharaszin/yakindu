@@ -228,7 +228,7 @@ public class NodeImpl extends EObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public DataFlowTargetEnd getIncomingDataFlow(InputPort inputPort) {
 		return NodeOperations.getIncomingDataFlow(this, inputPort);
@@ -237,7 +237,7 @@ public class NodeImpl extends EObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public DataFlowSourceEnd getOutgoingDataFlow(OutputPort outputPort) {
 		return NodeOperations.getOutgoingDataFlow(this, outputPort);

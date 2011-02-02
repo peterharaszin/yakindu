@@ -224,7 +224,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Fragment> getChildren() {
 		return FragmentOperations.getChildren(this);
@@ -233,7 +233,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Component> getAllComponents() {
 		return FragmentOperations.getAllComponents(this);
@@ -242,7 +242,7 @@ public class FragmentImpl extends EObjectImpl implements Fragment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Connection> getAllConnections() {
 		return FragmentOperations.getAllConnections(this);

@@ -133,7 +133,7 @@ public class BlockImpl extends ComponentImpl implements Block {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Argument getArgument(String parameterName) {
 		return ParameterizedElementOperations.getArgument(this, parameterName);
@@ -142,7 +142,7 @@ public class BlockImpl extends ComponentImpl implements Block {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getArgumentStringValue(String parameterName) {
 		return ParameterizedElementOperations.getArgumentStringValue(this, parameterName);
@@ -151,7 +151,7 @@ public class BlockImpl extends ComponentImpl implements Block {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public BlockInput getInput(String name) {
 		return BlockOperations.getInput(this, name);
@@ -160,7 +160,7 @@ public class BlockImpl extends ComponentImpl implements Block {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public BlockOutput getOutput(String name) {
 		return BlockOperations.getOutput(this, name);

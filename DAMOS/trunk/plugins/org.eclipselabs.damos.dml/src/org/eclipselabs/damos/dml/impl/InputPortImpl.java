@@ -97,7 +97,7 @@ public class InputPortImpl extends PortImpl implements InputPort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Connection> getIncomingConnections() {
 		return InputPortOperations.getIncomingConnections(this);
@@ -106,7 +106,7 @@ public class InputPortImpl extends PortImpl implements InputPort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Connection getIncomingConnection(Fragment context) {
 		return InputPortOperations.getIncomingConnection(this, context);

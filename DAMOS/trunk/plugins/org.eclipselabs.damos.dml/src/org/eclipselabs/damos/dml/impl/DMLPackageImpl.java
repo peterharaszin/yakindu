@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
@@ -66,6 +67,7 @@ import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dml.util.DMLValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -496,6 +498,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Initialize created meta-data
 		theDMLPackage.initializePackageContents();
+
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theDMLPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return DMLValidator.INSTANCE;
+				 }
+			 });
 
 		// Mark meta-data to indicate it can't be changed
 		theDMLPackage.freeze();
@@ -2061,6 +2072,26 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		addAnnotation
+		  (fragmentEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "UniqueComponentNames"
+		   });
 	}
 
 } //DMLPackageImpl

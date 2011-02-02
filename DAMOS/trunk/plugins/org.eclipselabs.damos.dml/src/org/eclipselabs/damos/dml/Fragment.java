@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getFragment()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueComponentNames'"
  * @generated
  */
 public interface Fragment extends EObject {

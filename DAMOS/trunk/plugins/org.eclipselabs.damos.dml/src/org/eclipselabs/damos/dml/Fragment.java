@@ -33,12 +33,6 @@ public interface Fragment extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.Component}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * <ul>
-	 *   <li>'{@link org.eclipselabs.damos.dml.Fragment#getFragmentElements() <em>Fragment Elements</em>}'</li>
-	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Components</em>' reference list isn't clear,
@@ -73,12 +67,6 @@ public interface Fragment extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Connections</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.Connection}.
-	 * <p>
-	 * This feature subsets the following features:
-	 * <ul>
-	 *   <li>'{@link org.eclipselabs.damos.dml.Fragment#getFragmentElements() <em>Fragment Elements</em>}'</li>
-	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connections</em>' containment reference list isn't clear,

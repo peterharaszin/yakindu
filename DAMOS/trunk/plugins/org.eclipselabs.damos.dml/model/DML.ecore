@@ -8,13 +8,11 @@
     <eOperations name="getAllComponents" ordered="false" upperBound="-1" eType="#//Component"/>
     <eOperations name="getAllConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" ordered="false"
-        upperBound="-1" eType="#//Component" volatile="true" transient="true" derived="true">
-    </eStructuralFeatures>
+        upperBound="-1" eType="#//Component" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentElements" ordered="false"
         upperBound="-1" eType="#//FragmentElement" containment="true" eOpposite="#//FragmentElement/owningFragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connections" ordered="false"
-        upperBound="-1" eType="#//Connection" volatile="true" transient="true" derived="true">
-    </eStructuralFeatures>
+        upperBound="-1" eType="#//Connection" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
         eType="#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"

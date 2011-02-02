@@ -22,6 +22,7 @@ import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gef.EditPart;
@@ -51,7 +52,7 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 			if (event.getType() == IResourceChangeEvent.POST_BUILD) {
 				IMarkerDelta[] markerDeltas = event.findMarkerDeltas(IMarkerConstants.PROBLEM_MARKER_ID, false);
 				for (IMarkerDelta markerDelta : markerDeltas) {
-					String elementURIString = markerDelta.getAttribute(IMarkerConstants.ATTRIBUTE__ELEMENT_URI, null);
+					String elementURIString = markerDelta.getAttribute(EValidator.URI_ATTRIBUTE, null);
 					if (elementURIString != null) {
 						String uriFragment = URI.createURI(elementURIString).fragment();
 						if (uriFragment != null && EcoreUtil.isAncestor(element, element.eResource().getEObject(uriFragment))) {
@@ -149,7 +150,7 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 				for (IMarker marker : allMarkers) {
 					String fragmentURIString = marker.getAttribute(IMarkerConstants.ATTRIBUTE__FRAGMENT_URI, null);
 					if (fragmentURIString != null && EcoreUtil.getURI(selectedFragment).equals(URI.createURI(fragmentURIString))) {
-						String elementURIString = marker.getAttribute(IMarkerConstants.ATTRIBUTE__ELEMENT_URI, null);
+						String elementURIString = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
 						if (elementURIString != null) {
 							String uriFragment = URI.createURI(elementURIString).fragment();
 							if (uriFragment != null && EcoreUtil.isAncestor(element, element.eResource().getEObject(uriFragment))) {

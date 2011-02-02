@@ -22,7 +22,6 @@ import org.eclipselabs.damos.common.CommonPlugin;
 public interface IMarkerConstants {
 
 	String PROBLEM_MARKER_ID = CommonPlugin.PLUGIN_ID + ".damosProblem";
-	String ATTRIBUTE__ELEMENT_URI = CommonPlugin.PLUGIN_ID + ".elementURI";
 	String ATTRIBUTE__FRAGMENT_URI = CommonPlugin.PLUGIN_ID + ".fragmentURI";
 	
 }

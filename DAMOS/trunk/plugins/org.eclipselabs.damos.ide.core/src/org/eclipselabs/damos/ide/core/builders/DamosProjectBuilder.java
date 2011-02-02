@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -137,7 +138,7 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 				marker.setAttribute(IMarker.SEVERITY, severity);
 				if (component != null) {
 					marker.setAttribute(IMarker.LOCATION, component.getName());
-					marker.setAttribute(IMarkerConstants.ATTRIBUTE__ELEMENT_URI, EcoreUtil.getURI(component).toString());
+					marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(component).toString());
 				}
 			}
 		}

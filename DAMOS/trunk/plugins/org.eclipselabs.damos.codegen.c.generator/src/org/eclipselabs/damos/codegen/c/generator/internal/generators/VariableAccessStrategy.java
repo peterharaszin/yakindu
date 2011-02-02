@@ -131,12 +131,11 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			String targetName = target.getName();
 			int circularBufferSize = ((StatefulVariableDeclaration) target).getCircularBufferSize();
 			if (circularBufferSize > 1) {
+				if (stepIndex < 0) {
+					stepIndex = (stepIndex + circularBufferSize) % circularBufferSize;
+				}
 				if (stepIndex == 0) {
 					return String.format("%s.%s[%s.%s_index]", contextVariable, targetName, contextVariable, targetName, stepIndex, circularBufferSize);
-				}
-				if (stepIndex < 0) {
-					return String.format("%s.%s[(%s.%s_index - %d) %% %d]", contextVariable, targetName, contextVariable, targetName, -stepIndex,
-							circularBufferSize);
 				}
 				return String.format("%s.%s[(%s.%s_index + %d) %% %d]", contextVariable, targetName, contextVariable, targetName, stepIndex,
 						circularBufferSize);

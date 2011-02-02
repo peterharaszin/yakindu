@@ -9,13 +9,11 @@
     <eOperations name="getAllConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" ordered="false"
         upperBound="-1" eType="#//Component" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Fragment/fragmentElements"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fragmentElements" ordered="false"
         upperBound="-1" eType="#//FragmentElement" containment="true" eOpposite="#//FragmentElement/owningFragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connections" ordered="false"
         upperBound="-1" eType="#//Connection" volatile="true" transient="true" derived="true">
-      <eAnnotations source="subsets" references="#//Fragment/fragmentElements"/>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
         eType="#//Fragment"/>
@@ -86,12 +84,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SignalSpecification" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="BlockInput" eSuperTypes="#//Input #//BlockInoutput">
-    <eAnnotations source="duplicates">
-      <contents xsi:type="ecore:EOperation" name="isDirectFeedthrough" ordered="false"
-          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="redefines" references="#//Input/isDirectFeedthrough"/>
-      </contents>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
         lowerBound="1" eType="#//InputDefinition"/>
   </eClassifiers>
@@ -163,12 +155,6 @@
         lowerBound="1" eType="#//Parameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionParameter" eSuperTypes="#//Parameter">
-    <eAnnotations source="duplicates">
-      <contents xsi:type="ecore:EOperation" name="getDefaultValue" ordered="false"
-          eType="#//ValueSpecification">
-        <eAnnotations source="redefines" references="#//Parameter/getDefaultValue"/>
-      </contents>
-    </eAnnotations>
     <eOperations name="getPredefinedExpression" ordered="false" lowerBound="1" eType="#//PredefinedExpressionEntry">
       <eParameters name="expression" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -184,12 +170,6 @@
         eType="#//DataTypeSpecification" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionSpecification" eSuperTypes="#//ValueSpecification">
-    <eAnnotations source="duplicates">
-      <contents xsi:type="ecore:EOperation" name="stringValue" ordered="false" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-        <eAnnotations source="redefines" references="#//ValueSpecification/stringValue"/>
-      </contents>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -293,12 +273,6 @@
         lowerBound="1" eType="#//Outlet"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanDirectFeedthroughPolicy" eSuperTypes="#//DirectFeedthroughPolicy">
-    <eAnnotations source="duplicates">
-      <contents xsi:type="ecore:EOperation" name="computeDirectFeedthrough" ordered="false"
-          lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-        <eAnnotations source="redefines" references="#//DirectFeedthroughPolicy/computeDirectFeedthrough"/>
-      </contents>
-    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="directFeedthrough" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>

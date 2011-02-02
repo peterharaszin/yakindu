@@ -104,7 +104,7 @@ public class CategoryImpl extends QualifiedElementImpl implements Category {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean belongsTo(String categoryName) {
 		return CategorizedElementOperations.belongsTo(this, categoryName);
@@ -113,7 +113,7 @@ public class CategoryImpl extends QualifiedElementImpl implements Category {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Parameter getParameter(String name) {
 		return ParameterableElementOperations.getParameter(this, name);

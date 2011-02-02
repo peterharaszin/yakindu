@@ -78,7 +78,7 @@ public abstract class ParameterableElementImpl extends EObjectImpl implements Pa
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Parameter getParameter(String name) {
 		return ParameterableElementOperations.getParameter(this, name);

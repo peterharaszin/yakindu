@@ -213,7 +213,7 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Connection> getOutgoingConnections() {
 		return OutputPortOperations.getOutgoingConnections(this);
@@ -222,7 +222,7 @@ public class OutputPortImpl extends PortImpl implements OutputPort {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Connection> getOutgoingConnections(Fragment context) {
 		return OutputPortOperations.getOutgoingConnections(this, context);

@@ -75,7 +75,7 @@ public abstract class CategorizedElementImpl extends EObjectImpl implements Cate
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean belongsTo(String categoryName) {
 		return CategorizedElementOperations.belongsTo(this, categoryName);

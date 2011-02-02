@@ -90,7 +90,7 @@ public class ExpressionSpecificationImpl extends ValueSpecificationImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String stringValue() {

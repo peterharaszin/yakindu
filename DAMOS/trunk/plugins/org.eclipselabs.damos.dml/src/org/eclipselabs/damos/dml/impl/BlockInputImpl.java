@@ -99,7 +99,7 @@ public class BlockInputImpl extends InputImpl implements BlockInput {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean isDirectFeedthrough() {

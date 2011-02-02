@@ -90,7 +90,7 @@ public class BooleanDirectFeedthroughPolicyImpl extends DirectFeedthroughPolicyI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public boolean computeDirectFeedthrough() {

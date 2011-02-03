@@ -11,14 +11,20 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ComputationModelModelWizardID"
+            name="Computation Model"
+            class="org.eclipselabs.mscript.computation.computationmodel.ui.editor.presentation.ComputationModelModelWizard"
+            category="org.eclipselabs.damos.common.damosCategory"
+            icon="icons/full/obj16/ComputationModelModelFile.gif">
+         <description>Create a new computation model</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
       <wizard
             id="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelModelWizardID"
             name="%_UI_ExecutionModelModelWizard_label"
             class="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipselabs.damos.common.damosCategory"
             icon="icons/full/obj16/ExecutionModelModelFile.gif">
          <description>%_UI_ExecutionModelModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

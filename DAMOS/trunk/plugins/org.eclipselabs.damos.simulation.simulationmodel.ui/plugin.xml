@@ -11,14 +11,11 @@
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
       <wizard
             id="org.eclipselabs.damos.simulation.simulationmodel.ui.editor.presentation.SimulationModelModelWizardID"
             name="%_UI_SimulationModelModelWizard_label"
             class="org.eclipselabs.damos.simulation.simulationmodel.ui.editor.presentation.SimulationModelModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            category="org.eclipselabs.damos.common.damosCategory"
             icon="icons/full/obj16/SimulationModelModelFile.gif">
          <description>%_UI_SimulationModelModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

@@ -11,9 +11,9 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal.generators;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
+import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.InputPort;
@@ -63,13 +63,13 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		int index = DMLUtil.indexOf(inputVariableDeclaration);
 		BlockInput blockInput = (BlockInput) block.getInputs().get(index);
 		if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
-			return String.format("%s_%s", StringUtils.uncapitalize(block.getName()), blockInput.getDefinition().getName());
+			return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
 		} else {
 			InputPort inputPort = blockInput.getPorts().get(0);
 			DataType inputDataType = signature.getInputDataType(inputPort);
 			DataType targetDataType = inputVariableDeclaration.getType();
 			if (!EcoreUtil.equals(inputDataType, targetDataType)) {
-				return String.format("%s_%s", StringUtils.uncapitalize(block.getName()), blockInput.getDefinition().getName());
+				return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
 			}
 		}
 		return variableAccessor.getInputVariable(blockInput.getPorts().get(0), false);

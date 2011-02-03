@@ -14,11 +14,11 @@ package org.eclipselabs.damos.codegen.c.generator.internal.generators;
 import java.io.PrintWriter;
 import java.io.Writer;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
+import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
@@ -50,7 +50,7 @@ public class OutportGenerator extends AbstractComponentGenerator {
 
 		MscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
 
-		printWriter.printf("output->%s = ", StringUtils.uncapitalize(getComponent().getName()));
+		printWriter.printf("output->%s = ", InternalGeneratorUtil.uncapitalize(getComponent().getName()));
 		String inputVariableString = variableAccessor.getInputVariable(inputPort, false);
 		MscriptGeneratorUtil.cast(mscriptGeneratorContext, inputVariableString, getSignature().getInputDataType(inputPort), getSignature().getOutputDataType(outputPort));
 		printWriter.println(";");

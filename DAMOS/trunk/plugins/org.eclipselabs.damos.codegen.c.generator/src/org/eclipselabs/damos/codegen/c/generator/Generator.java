@@ -17,7 +17,6 @@ import java.io.PipedOutputStream;
 import java.io.PrintWriter;
 import java.io.Writer;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -117,7 +116,7 @@ public class Generator {
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = node.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
 		}
 		writer.printf("} %sInput;\n", prefix);
 		
@@ -132,7 +131,7 @@ public class Generator {
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = node.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, StringUtils.uncapitalize(node.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
 		}
 		writer.printf("} %sOutput;\n", prefix);
 

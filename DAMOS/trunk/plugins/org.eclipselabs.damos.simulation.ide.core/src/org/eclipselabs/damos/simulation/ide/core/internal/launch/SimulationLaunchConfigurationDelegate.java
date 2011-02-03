@@ -1,6 +1,5 @@
 package org.eclipselabs.damos.simulation.ide.core.internal.launch;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -86,7 +85,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 			}
 		} else {
 			String simulationModelPath = configuration.getAttribute(ATTRIBUTE__SIMULATION_MODEL_PATH, "");
-			if (StringUtils.isBlank(simulationModelPath)) {
+			if (simulationModelPath.trim().length() == 0) {
 				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No simulation model path set"));
 			}
 			

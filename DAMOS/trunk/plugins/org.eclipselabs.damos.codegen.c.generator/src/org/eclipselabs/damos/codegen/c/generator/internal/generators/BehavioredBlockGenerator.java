@@ -16,7 +16,6 @@ import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -26,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.codegen.c.generator.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
+import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.Input;
@@ -280,7 +280,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getType();
-				writer.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), StringUtils.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
+				writer.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
 					if (first) {
@@ -296,7 +296,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				DataType inputDataType = getSignature().getInputDataType(inputPort);
 				DataType targetDataType = inputVariableDeclaration.getType();
 				if (!EcoreUtil.equals(inputDataType, targetDataType)) {
-					writer.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), StringUtils.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
+					writer.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
 					MscriptGeneratorUtil.cast(mscriptGeneratorContext, variableAccessor.getInputVariable(inputPort, false), inputDataType, targetDataType);
 					writer.println(";");
 				}

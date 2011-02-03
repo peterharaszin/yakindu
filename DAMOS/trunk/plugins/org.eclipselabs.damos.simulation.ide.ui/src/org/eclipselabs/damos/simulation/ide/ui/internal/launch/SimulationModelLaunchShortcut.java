@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -138,7 +137,7 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 				for (ILaunchConfiguration launchConfiguration : launchManager.getLaunchConfigurations(launchConfigurationType)) {
 					if (launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true)) {
 						String pathString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, "");
-						if (!StringUtils.isBlank(pathString) && path.equals(new Path(pathString))) {
+						if (pathString.trim().length() > 0 && path.equals(new Path(pathString))) {
 							launchConfigurations.add(launchConfiguration);
 						}
 					}

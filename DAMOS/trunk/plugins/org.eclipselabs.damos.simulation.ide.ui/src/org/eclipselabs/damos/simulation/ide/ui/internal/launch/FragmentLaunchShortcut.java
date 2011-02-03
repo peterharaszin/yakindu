@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
@@ -153,7 +152,7 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 				for (ILaunchConfiguration launchConfiguration : launchManager.getLaunchConfigurations(launchConfigurationType)) {
 					if (launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true)) {
 						String fragmentURIString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, "");
-						if (!StringUtils.isBlank(fragmentURIString)) {
+						if (fragmentURIString.trim().length() > 0) {
 							try {
 								if (uri.equals(URI.createURI(fragmentURIString))) {
 									launchConfigurations.add(launchConfiguration);

@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getComponent()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
 public interface Component extends FragmentElement {

@@ -2091,6 +2091,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "UniqueComponentNames"
+		   });		
+		addAnnotation
+		  (componentEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "WellFormedName"
 		   });
 	}
 

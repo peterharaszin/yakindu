@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -114,6 +115,8 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
+	private static final Pattern IDENTIFIER_PATTERN = Pattern.compile("[a-zA-Z]\\w*");
+	
 	/**
 	 * Creates an instance of the switch.
 	 * <!-- begin-user-doc -->
@@ -285,8 +288,8 @@ public class DMLValidator extends EObjectValidator {
 		Set<Component> invalidComponents = new HashSet<Component>();
 		
 		for (Component component : fragment.getAllComponents()) {
-			String name = component.getName();
-			if (name != null) {
+			if (validateComponent_WellFormedName(component, null, context)) {
+				String name = component.getName();
 				Component existingComponent = names.put(name, component);
 				if (existingComponent != null) {
 					invalidComponents.add(component);
@@ -314,7 +317,48 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateComponent(Component component, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(component, diagnostics, context);
+		if (!validate_NoCircularContainment(component, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(component, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(component, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the WellFormedName constraint of '<em>Component</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateComponent_WellFormedName(Component component, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		String name = component.getName();
+		if (name == null || name.trim().length() == 0) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Missing component name",
+						new Object[] { component }));
+			}
+			return false;
+		}
+		if (!IDENTIFIER_PATTERN.matcher(name).matches()) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Invalid component name '" + name + "'",
+						new Object[] { component }));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -593,7 +637,17 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateBlock(Block block, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(block, diagnostics, context);
+		if (!validate_NoCircularContainment(block, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(block, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(block, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -667,7 +721,17 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateSubsystem(Subsystem subsystem, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(subsystem, diagnostics, context);
+		if (!validate_NoCircularContainment(subsystem, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(subsystem, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(subsystem, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -721,7 +785,17 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInport(Inport inport, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(inport, diagnostics, context);
+		if (!validate_NoCircularContainment(inport, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(inport, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -730,7 +804,17 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateInoutport(Inoutport inoutport, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(inoutport, diagnostics, context);
+		if (!validate_NoCircularContainment(inoutport, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(inoutport, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -739,7 +823,17 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateOutport(Outport outport, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(outport, diagnostics, context);
+		if (!validate_NoCircularContainment(outport, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(outport, diagnostics, context);
+		return result;
 	}
 
 	/**

@@ -7,15 +7,11 @@
 package org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation;
 
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.StringTokenizer;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -25,10 +21,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -40,15 +33,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -61,7 +45,6 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
-import org.eclipselabs.damos.execution.executionmodel.edit.ExecutionModelEditPlugin;
 import org.eclipselabs.damos.execution.executionmodel.ui.ExecutionModelUIPlugin;
 
 
@@ -69,7 +52,7 @@ import org.eclipselabs.damos.execution.executionmodel.ui.ExecutionModelUIPlugin;
  * This is a simple wizard for creating a new model file.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * @generated
+ * @generated NOT
  */
 public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	/**
@@ -115,14 +98,6 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	protected ExecutionModelModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
-	 * This is the initial object creation page.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExecutionModelModelWizardInitialObjectCreationPage initialObjectCreationPage;
-
-	/**
 	 * Remember the selection during initialization for populating the default container.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -139,14 +114,6 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	protected IWorkbench workbench;
 
 	/**
-	 * Caches the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected List<String> initialObjectNames;
-
-	/**
 	 * This just records the information.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -160,37 +127,13 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * Returns the names of the types that can be created as the root object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected Collection<String> getInitialObjectNames() {
-		if (initialObjectNames == null) {
-			initialObjectNames = new ArrayList<String>();
-			for (EClassifier eClassifier : executionModelPackage.getEClassifiers()) {
-				if (eClassifier instanceof EClass) {
-					EClass eClass = (EClass)eClassifier;
-					if (!eClass.isAbstract()) {
-						initialObjectNames.add(eClass.getName());
-					}
-				}
-			}
-			Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
-		}
-		return initialObjectNames;
-	}
-
-	/**
 	 * Create a new model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass)executionModelPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-		EObject rootObject = executionModelFactory.create(eClass);
-		return rootObject;
+		return executionModelFactory.createExecutionModel();
 	}
 
 	/**
@@ -235,7 +178,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 							// Save the contents of the resource to the file system.
 							//
 							Map<Object, Object> options = new HashMap<Object, Object>();
-							options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+							options.put(XMLResource.OPTION_ENCODING, "UTF-8");
 							resource.save(options);
 						}
 						catch (Exception exception) {
@@ -332,214 +275,6 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	}
 
 	/**
-	 * This is the page where the type of object to create is selected.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public class ExecutionModelModelWizardInitialObjectCreationPage extends WizardPage {
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Combo initialObjectField;
-
-		/**
-		 * @generated
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 */
-		protected List<String> encodings;
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Combo encodingField;
-
-		/**
-		 * Pass in the selection.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public ExecutionModelModelWizardInitialObjectCreationPage(String pageId) {
-			super(pageId);
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public void createControl(Composite parent) {
-			Composite composite = new Composite(parent, SWT.NONE); {
-				GridLayout layout = new GridLayout();
-				layout.numColumns = 1;
-				layout.verticalSpacing = 12;
-				composite.setLayout(layout);
-
-				GridData data = new GridData();
-				data.verticalAlignment = GridData.FILL;
-				data.grabExcessVerticalSpace = true;
-				data.horizontalAlignment = GridData.FILL;
-				composite.setLayoutData(data);
-			}
-
-			Label containerLabel = new Label(composite, SWT.LEFT);
-			{
-				containerLabel.setText(ExecutionModelUIPlugin.INSTANCE.getString("_UI_ModelObject"));
-
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				containerLabel.setLayoutData(data);
-			}
-
-			initialObjectField = new Combo(composite, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				initialObjectField.setLayoutData(data);
-			}
-
-			for (String objectName : getInitialObjectNames()) {
-				initialObjectField.add(getLabel(objectName));
-			}
-
-			if (initialObjectField.getItemCount() == 1) {
-				initialObjectField.select(0);
-			}
-			initialObjectField.addModifyListener(validator);
-
-			Label encodingLabel = new Label(composite, SWT.LEFT);
-			{
-				encodingLabel.setText(ExecutionModelUIPlugin.INSTANCE.getString("_UI_XMLEncoding"));
-
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				encodingLabel.setLayoutData(data);
-			}
-			encodingField = new Combo(composite, SWT.BORDER);
-			{
-				GridData data = new GridData();
-				data.horizontalAlignment = GridData.FILL;
-				data.grabExcessHorizontalSpace = true;
-				encodingField.setLayoutData(data);
-			}
-
-			for (String encoding : getEncodings()) {
-				encodingField.add(encoding);
-			}
-
-			encodingField.select(0);
-			encodingField.addModifyListener(validator);
-
-			setPageComplete(validatePage());
-			setControl(composite);
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected ModifyListener validator =
-			new ModifyListener() {
-				public void modifyText(ModifyEvent e) {
-					setPageComplete(validatePage());
-				}
-			};
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected boolean validatePage() {
-			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public void setVisible(boolean visible) {
-			super.setVisible(visible);
-			if (visible) {
-				if (initialObjectField.getItemCount() == 1) {
-					initialObjectField.clearSelection();
-					encodingField.setFocus();
-				}
-				else {
-					encodingField.clearSelection();
-					initialObjectField.setFocus();
-				}
-			}
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public String getInitialObjectName() {
-			String label = initialObjectField.getText();
-
-			for (String name : getInitialObjectNames()) {
-				if (getLabel(name).equals(label)) {
-					return name;
-				}
-			}
-			return null;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public String getEncoding() {
-			return encodingField.getText();
-		}
-
-		/**
-		 * Returns the label for the specified type name.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected String getLabel(String typeName) {
-			try {
-				return ExecutionModelEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
-			}
-			catch(MissingResourceException mre) {
-				ExecutionModelUIPlugin.INSTANCE.log(mre);
-			}
-			return typeName;
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		protected Collection<String> getEncodings() {
-			if (encodings == null) {
-				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(ExecutionModelUIPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
-					encodings.add(stringTokenizer.nextToken());
-				}
-			}
-			return encodings;
-		}
-	}
-
-	/**
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -588,10 +323,6 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		initialObjectCreationPage = new ExecutionModelModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(ExecutionModelUIPlugin.INSTANCE.getString("_UI_ExecutionModelModelWizard_label"));
-		initialObjectCreationPage.setDescription(ExecutionModelUIPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
-		addPage(initialObjectCreationPage);
 	}
 
 	/**

@@ -4,7 +4,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.services.decorator.CreateDecoratorsOperation;
@@ -36,7 +35,7 @@ public class ProblemMarkerDecoratorProvider extends AbstractProvider implements 
 	private EObject getTargetElement(IDecoratorTarget decoratorTarget) {
 		EditPart editPart = (EditPart) decoratorTarget.getAdapter(EditPart.class);
 		if (editPart instanceof IGraphicalEditPart && !(editPart instanceof IBorderItemEditPart)) {
-			return ((GraphicalEditPart) editPart).resolveSemanticElement();
+			return ((IGraphicalEditPart) editPart).resolveSemanticElement();
 		}
 		return null;
 	}

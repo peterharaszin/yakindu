@@ -1,5 +1,6 @@
 package org.eclipselabs.damos.ide.core.builders;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,11 +96,13 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			resource.deleteMarkers(null, false, IResource.DEPTH_INFINITE);
 			resource.deleteMarkers(null, false, IResource.DEPTH_INFINITE);
 			
-			ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
-			for (Object o : EcoreUtil.getObjectsByType(blockDiagramResource.getContents(), DMLPackage.Literals.FRAGMENT)) {
-				Fragment fragment = (Fragment) o;
-
+			boolean validationResult = true;
+			
+			Collection<Fragment> fragments = EcoreUtil.getObjectsByType(blockDiagramResource.getContents(), DMLPackage.Literals.FRAGMENT);
+			
+			for (Fragment fragment : fragments) {
 				BasicDiagnostic diagnostics = new BasicDiagnostic();
+				
 				Map<Object, Object> context = new HashMap<Object, Object>();
 				DMLValidator.INSTANCE.validate(fragment, diagnostics, context);
 				for (TreeIterator<EObject> it = fragment.eAllContents(); it.hasNext();) {
@@ -117,7 +120,13 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 						}
 						attachMarkers(resource, fragment, component, BasicDiagnostic.toIStatus(diagnostic));
 					}
-				} else {
+					validationResult = false;
+				}
+			}
+			
+			if (validationResult) {
+				ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
+				for (Fragment fragment : fragments) {
 					ComponentSignatureResolverResult result = signatureResolver.resolve(fragment, false);
 					if (!result.getStatus().isOK()) {
 						for (IStatus status : result.getStatus().getChildren()) {
@@ -126,7 +135,7 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 					}
 				}
 			}
-			
+
 			return true;
 		}
 

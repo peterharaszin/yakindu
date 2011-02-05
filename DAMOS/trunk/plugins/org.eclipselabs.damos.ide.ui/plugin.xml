@@ -20,5 +20,14 @@
             natureId="org.eclipselabs.damos.ide.core.damosNature">
       </image>
    </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider
+            class="org.eclipselabs.damos.ide.ui.internal.providers.NatureCheckingDecoratorProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+      </decoratorProvider>
+   </extension>
 
 </plugin>

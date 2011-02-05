@@ -20,7 +20,9 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -35,6 +37,7 @@ import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
 import org.eclipselabs.damos.execution.engine.IComponentStatus;
 import org.eclipselabs.damos.ide.core.IDECorePlugin;
+import org.eclipselabs.damos.ide.core.internal.util.TextUtils;
 
 public class DamosProjectBuilder extends IncrementalProjectBuilder {
 
@@ -100,10 +103,12 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			
 			Collection<Fragment> fragments = EcoreUtil.getObjectsByType(blockDiagramResource.getContents(), DMLPackage.Literals.FRAGMENT);
 			
+			Map<Object, Object> context = new HashMap<Object, Object>();
+			context.put(EValidator.SubstitutionLabelProvider.class, SubstitutionProvider.INSTANCE);
+			
 			for (Fragment fragment : fragments) {
 				BasicDiagnostic diagnostics = new BasicDiagnostic();
 				
-				Map<Object, Object> context = new HashMap<Object, Object>();
 				DMLValidator.INSTANCE.validate(fragment, diagnostics, context);
 				for (TreeIterator<EObject> it = fragment.eAllContents(); it.hasNext();) {
 					DMLValidator.INSTANCE.validate(it.next(), diagnostics, context);
@@ -176,6 +181,27 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 					marker.setAttribute(IMarker.LOCATION, component.getName());
 					marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(component).toString());
 				}
+			}
+		}
+		
+		private static class SubstitutionProvider implements EValidator.SubstitutionLabelProvider {
+
+			private static final SubstitutionProvider INSTANCE = new SubstitutionProvider();
+			
+			private SubstitutionProvider() {
+				super();
+			}
+			
+			public String getObjectLabel(EObject eObject) {
+				return TextUtils.getText(eObject);
+			}
+
+			public String getFeatureLabel(EStructuralFeature eStructuralFeature) {
+				return eStructuralFeature.getName();
+			}
+
+			public String getValueLabel(EDataType eDataType, Object value) {
+				return EcoreUtil.convertToString(eDataType, value);
 			}
 		}
 

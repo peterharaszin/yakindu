@@ -41,6 +41,8 @@ import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
 import org.eclipselabs.damos.execution.executiongraph.Node;
 import org.eclipselabs.damos.execution.executiongraph.construct.ExecutionGraphConstructor;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
+import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -116,7 +118,7 @@ public class Generator {
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = node.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(genModel, node), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
 		}
 		writer.printf("} %sInput;\n", prefix);
 		
@@ -131,7 +133,7 @@ public class Generator {
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = node.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
-			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(genModel.getExecutionModel().getComputationModel(), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
+			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(genModel, node), dataType, InternalGeneratorUtil.uncapitalize(node.getComponent().getName()), false));
 		}
 		writer.printf("} %sOutput;\n", prefix);
 
@@ -200,7 +202,7 @@ public class Generator {
 				int i = blockOutput.getDefinition().isManyPorts() ? 0 : -1;
 				for (OutputPort outputPort : output.getPorts()) {
 					String suffix = i >= 0 ? Integer.toString(i++) : "";
-					String cDataType = MscriptGeneratorUtil.getCDataType(genModel.getExecutionModel().getComputationModel(), generator.getSignature().getOutputDataType(outputPort));
+					String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, node), generator.getSignature().getOutputDataType(outputPort));
 					writer.printf("%s %s%s_%s%s;\n", cDataType, InternalGeneratorUtil.getPrefix(genModel, node), block.getName(), blockOutput.getDefinition().getName(), suffix);
 				}
 			}
@@ -239,12 +241,15 @@ public class Generator {
 		}
 		return false;
 	}
-		
-//	private String findPrefix(GenModel genModel, Node node) {
-//		String prefix = null;
-//		for ()
-//	}
 	
+	private ComputationModel getComputationModel(GenModel genModel, Node node) {
+		ComputationModel computationModel = genModel.getExecutionModel().getComputationModel(node.getComponent().getOwningFragment());
+		if (computationModel == null) {
+			computationModel = ComputationModelUtil.constructDefaultComputationModel();
+		}
+		return computationModel;
+	}
+		
 	private static abstract class FileWriter {
 
 		/* (non-Javadoc)

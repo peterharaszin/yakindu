@@ -111,6 +111,7 @@ import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipselabs.damos.dml.edit.provider.DMLItemProviderAdapterFactory;
 import org.eclipse.ui.dialogs.SaveAsDialog;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.ui.part.FileEditorInput;
@@ -661,6 +662,7 @@ public class ExecutionModelEditor
 		adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ExecutionModelItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ComputationModelItemProviderAdapterFactory());
+		adapterFactory.addAdapterFactory(new DMLItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new TypeSystemItemProviderAdapterFactory());
 		adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 

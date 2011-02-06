@@ -4,9 +4,18 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="executionmodel"
     nsURI="http://www.eclipselabs.org/damos/ExecutionModel/1.0.0" nsPrefix="executionmodel">
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.ecore#//ComputationModel"/>
+    <eOperations name="getComputationModel" eType="ecore:EClass ../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.ecore#//ComputationModel">
+      <eParameters name="fragment" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModelMappings"
+        upperBound="-1" eType="#//ComputationModelMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleTime" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputationModelMapping">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragment" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.ecore#//ComputationModel"/>
   </eClassifiers>
 </ecore:EPackage>

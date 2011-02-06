@@ -22,8 +22,6 @@ import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
-import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
 
 public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDelegate {
 
@@ -58,11 +56,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Could not load fragment '" + fragmentURIString + "'"));
 			}
 			
-			ComputationModel computationModel = ComputationModelUtil.constructDefaultComputationModel();
-			
 			ExecutionModel executionModel = ExecutionModelFactory.eINSTANCE.createExecutionModel();
-			executionModel.setComputationModel(computationModel);
-	
 			simulationModel = SimulationModelFactory.eINSTANCE.createSimulationModel();
 			simulationModel.setExecutionModel(executionModel);
 			simulationModel.setTopLevelFragment(topLevelFragment);

@@ -35,6 +35,15 @@ public interface ExecutionModelFactory extends EFactory {
 	ExecutionModel createExecutionModel();
 
 	/**
+	 * Returns a new object of class '<em>Computation Model Mapping</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Computation Model Mapping</em>'.
+	 * @generated
+	 */
+	ComputationModelMapping createComputationModelMapping();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

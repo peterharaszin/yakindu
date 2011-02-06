@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
@@ -60,6 +61,7 @@ public class ExecutionModelFactoryImpl extends EFactoryImpl implements Execution
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ExecutionModelPackage.EXECUTION_MODEL: return createExecutionModel();
+			case ExecutionModelPackage.COMPUTATION_MODEL_MAPPING: return createComputationModelMapping();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -73,6 +75,16 @@ public class ExecutionModelFactoryImpl extends EFactoryImpl implements Execution
 	public ExecutionModel createExecutionModel() {
 		ExecutionModelImpl executionModel = new ExecutionModelImpl();
 		return executionModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComputationModelMapping createComputationModelMapping() {
+		ComputationModelMappingImpl computationModelMapping = new ComputationModelMappingImpl();
+		return computationModelMapping;
 	}
 
 	/**

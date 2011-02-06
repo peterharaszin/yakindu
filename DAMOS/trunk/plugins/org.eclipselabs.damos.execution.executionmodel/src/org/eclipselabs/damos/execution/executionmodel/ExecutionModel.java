@@ -6,7 +6,9 @@
  */
 package org.eclipselabs.damos.execution.executionmodel;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 
 /**
@@ -17,7 +19,7 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModel <em>Computation Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModelMappings <em>Computation Model Mappings</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getSampleTime <em>Sample Time</em>}</li>
  * </ul>
  * </p>
@@ -27,6 +29,22 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * @generated
  */
 public interface ExecutionModel extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Computation Model Mappings</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Computation Model Mappings</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Computation Model Mappings</em>' containment reference list.
+	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel_ComputationModelMappings()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ComputationModelMapping> getComputationModelMappings();
+
 	/**
 	 * Returns the value of the '<em><b>Sample Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,29 +72,11 @@ public interface ExecutionModel extends EObject {
 	void setSampleTime(double value);
 
 	/**
-	 * Returns the value of the '<em><b>Computation Model</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Computation Model</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Computation Model</em>' reference.
-	 * @see #setComputationModel(ComputationModel)
-	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel_ComputationModel()
-	 * @model required="true"
-	 * @generated
-	 */
-	ComputationModel getComputationModel();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModel <em>Computation Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Computation Model</em>' reference.
-	 * @see #getComputationModel()
+	 * @model fragmentRequired="true"
 	 * @generated
 	 */
-	void setComputationModel(ComputationModel value);
+	ComputationModel getComputationModel(Fragment fragment);
 
 } // ExecutionModel

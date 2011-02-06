@@ -97,6 +97,29 @@ public class ExecutionModelItemProviderAdapterFactory extends ExecutionModelAdap
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComputationModelMappingItemProvider computationModelMappingItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComputationModelMappingAdapter() {
+		if (computationModelMappingItemProvider == null) {
+			computationModelMappingItemProvider = new ComputationModelMappingItemProvider(this);
+		}
+
+		return computationModelMappingItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,6 +219,7 @@ public class ExecutionModelItemProviderAdapterFactory extends ExecutionModelAdap
 	 */
 	public void dispose() {
 		if (executionModelItemProvider != null) executionModelItemProvider.dispose();
+		if (computationModelMappingItemProvider != null) computationModelMappingItemProvider.dispose();
 	}
 
 }

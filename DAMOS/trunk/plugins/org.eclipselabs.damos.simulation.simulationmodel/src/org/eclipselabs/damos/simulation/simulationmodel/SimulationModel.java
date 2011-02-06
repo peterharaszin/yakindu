@@ -40,7 +40,7 @@ public interface SimulationModel extends EObject {
 	 * @return the value of the '<em>Execution Model</em>' reference.
 	 * @see #setExecutionModel(ExecutionModel)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSimulationModel_ExecutionModel()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	ExecutionModel getExecutionModel();

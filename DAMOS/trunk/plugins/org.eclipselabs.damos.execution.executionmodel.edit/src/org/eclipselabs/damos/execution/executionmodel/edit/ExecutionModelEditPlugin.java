@@ -8,6 +8,7 @@ package org.eclipselabs.damos.execution.executionmodel.edit;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
 import org.eclipselabs.mscript.computation.computationmodel.edit.ComputationModelEditPlugin;
 import org.eclipselabs.mscript.typesystem.edit.TypeSystemEditPlugin;
 
@@ -44,6 +45,7 @@ public final class ExecutionModelEditPlugin extends EMFPlugin {
 		super
 		  (new ResourceLocator [] {
 		     ComputationModelEditPlugin.INSTANCE,
+		     DMLEditPlugin.INSTANCE,
 		     TypeSystemEditPlugin.INSTANCE,
 		   });
 	}

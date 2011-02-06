@@ -17,6 +17,7 @@ import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
+import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -26,6 +27,8 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
 public abstract class AbstractComponentSimulationObject implements IComponentSimulationObject {
 
 	private IComponentSimulationInfo info;
+	
+	private ComputationModel cachedComputationModel;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getInfo()
@@ -74,7 +77,13 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	}
 	
 	protected final ComputationModel getComputationModel() {
-		return getExecutionModel().getComputationModel();
+		if (cachedComputationModel == null) {
+			cachedComputationModel = getExecutionModel().getComputationModel(getComponent().getOwningFragment());
+			if (cachedComputationModel == null) {
+				cachedComputationModel = ComputationModelUtil.constructDefaultComputationModel();
+			}
+		}
+		return cachedComputationModel;
 	}
 	
 }

@@ -6,13 +6,22 @@
  */
 package org.eclipselabs.damos.execution.executionmodel.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
+import org.eclipselabs.damos.execution.executionmodel.internal.operations.ExecutionModelOperations;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 
 /**
@@ -22,7 +31,7 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getComputationModel <em>Computation Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getComputationModelMappings <em>Computation Model Mappings</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getSampleTime <em>Sample Time</em>}</li>
  * </ul>
  * </p>
@@ -31,14 +40,14 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  */
 public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	/**
-	 * The cached value of the '{@link #getComputationModel() <em>Computation Model</em>}' reference.
+	 * The cached value of the '{@link #getComputationModelMappings() <em>Computation Model Mappings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getComputationModel()
+	 * @see #getComputationModelMappings()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComputationModel computationModel;
+	protected EList<ComputationModelMapping> computationModelMappings;
 
 	/**
 	 * The default value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
@@ -84,6 +93,18 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ComputationModelMapping> getComputationModelMappings() {
+		if (computationModelMappings == null) {
+			computationModelMappings = new EObjectContainmentEList<ComputationModelMapping>(ComputationModelMapping.class, this, ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS);
+		}
+		return computationModelMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public double getSampleTime() {
 		return sampleTime;
 	}
@@ -103,39 +124,24 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public ComputationModel getComputationModel(Fragment fragment) {
+		return ExecutionModelOperations.getComputationModel(this, fragment);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComputationModel getComputationModel() {
-		if (computationModel != null && computationModel.eIsProxy()) {
-			InternalEObject oldComputationModel = (InternalEObject)computationModel;
-			computationModel = (ComputationModel)eResolveProxy(oldComputationModel);
-			if (computationModel != oldComputationModel) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL, oldComputationModel, computationModel));
-			}
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
+				return ((InternalEList<?>)getComputationModelMappings()).basicRemove(otherEnd, msgs);
 		}
-		return computationModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ComputationModel basicGetComputationModel() {
-		return computationModel;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setComputationModel(ComputationModel newComputationModel) {
-		ComputationModel oldComputationModel = computationModel;
-		computationModel = newComputationModel;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL, oldComputationModel, computationModel));
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -146,9 +152,8 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
-				if (resolve) return getComputationModel();
-				return basicGetComputationModel();
+			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
+				return getComputationModelMappings();
 			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
 				return getSampleTime();
 		}
@@ -160,11 +165,13 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
-				setComputationModel((ComputationModel)newValue);
+			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
+				getComputationModelMappings().clear();
+				getComputationModelMappings().addAll((Collection<? extends ComputationModelMapping>)newValue);
 				return;
 			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
 				setSampleTime((Double)newValue);
@@ -181,8 +188,8 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
-				setComputationModel((ComputationModel)null);
+			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
+				getComputationModelMappings().clear();
 				return;
 			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
 				setSampleTime(SAMPLE_TIME_EDEFAULT);
@@ -199,8 +206,8 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL:
-				return computationModel != null;
+			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
+				return computationModelMappings != null && !computationModelMappings.isEmpty();
 			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
 				return sampleTime != SAMPLE_TIME_EDEFAULT;
 		}

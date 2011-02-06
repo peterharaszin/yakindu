@@ -6,14 +6,21 @@
     modelName="ExecutionModel" editPluginClass="org.eclipselabs.damos.execution.executionmodel.edit.ExecutionModelEditPlugin"
     editorPluginClass="org.eclipselabs.damos.execution.executionmodel.ui.ExecutionModelUIPlugin"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    editorPluginID="org.eclipselabs.damos.execution.executionmodel.ui" usedGenPackages="../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.genmodel#//computationmodel ../../org.eclipselabs.mscript.typesystem/model/TypeSystem.genmodel#//typesystem">
+    editorPluginID="org.eclipselabs.damos.execution.executionmodel.ui" usedGenPackages="../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.genmodel#//computationmodel platform:/plugin/org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.mscript.typesystem/model/TypeSystem.genmodel#//typesystem">
   <foreignModel>ExecutionModel.ecore</foreignModel>
   <genPackages prefix="ExecutionModel" basePackage="org.eclipselabs.damos.execution"
       disposableProviderFactory="true" providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
       ecorePackage="ExecutionModel.ecore#/">
     <genClasses ecoreClass="ExecutionModel.ecore#//ExecutionModel">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionModel.ecore#//ExecutionModel/computationModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionModel.ecore#//ExecutionModel/computationModelMappings"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionModel.ecore#//ExecutionModel/sampleTime"/>
+      <genOperations ecoreOperation="ExecutionModel.ecore#//ExecutionModel/getComputationModel">
+        <genParameters ecoreParameter="ExecutionModel.ecore#//ExecutionModel/getComputationModel/fragment"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="ExecutionModel.ecore#//ComputationModelMapping">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionModel.ecore#//ComputationModelMapping/fragment"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionModel.ecore#//ComputationModelMapping/computationModel"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

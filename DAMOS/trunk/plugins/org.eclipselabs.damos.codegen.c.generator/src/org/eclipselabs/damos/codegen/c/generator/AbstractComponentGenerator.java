@@ -20,6 +20,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
+import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -31,6 +32,8 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	private Component component;
 	private IComponentSignature signature;
 	
+	private ComputationModel cachedComputationModel;
+
 	/**
 	 * @return the context
 	 */
@@ -137,7 +140,13 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	}
 	
 	protected final ComputationModel getComputationModel() {
-		return getExecutionModel().getComputationModel();
+		if (cachedComputationModel == null) {
+			cachedComputationModel = getExecutionModel().getComputationModel(getComponent().getOwningFragment());
+			if (cachedComputationModel == null) {
+				cachedComputationModel = ComputationModelUtil.constructDefaultComputationModel();
+			}
+		}
+		return cachedComputationModel;
 	}
 
 }

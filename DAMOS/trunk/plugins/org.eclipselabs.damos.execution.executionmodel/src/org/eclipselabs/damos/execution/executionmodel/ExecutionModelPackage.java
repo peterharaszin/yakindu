@@ -70,13 +70,13 @@ public interface ExecutionModelPackage extends EPackage {
 	int EXECUTION_MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Computation Model</b></em>' reference.
+	 * The feature id for the '<em><b>Computation Model Mappings</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_MODEL__COMPUTATION_MODEL = 0;
+	int EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
@@ -98,6 +98,44 @@ public interface ExecutionModelPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionmodel.impl.ComputationModelMappingImpl <em>Computation Model Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.execution.executionmodel.impl.ComputationModelMappingImpl
+	 * @see org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelPackageImpl#getComputationModelMapping()
+	 * @generated
+	 */
+	int COMPUTATION_MODEL_MAPPING = 1;
+
+	/**
+	 * The feature id for the '<em><b>Fragment</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_MODEL_MAPPING__FRAGMENT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Computation Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_MODEL_MAPPING__COMPUTATION_MODEL = 1;
+
+	/**
+	 * The number of structural features of the '<em>Computation Model Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_MODEL_MAPPING_FEATURE_COUNT = 2;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel <em>Execution Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -106,6 +144,17 @@ public interface ExecutionModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExecutionModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModelMappings <em>Computation Model Mappings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Computation Model Mappings</em>'.
+	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModelMappings()
+	 * @see #getExecutionModel()
+	 * @generated
+	 */
+	EReference getExecutionModel_ComputationModelMappings();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getSampleTime <em>Sample Time</em>}'.
@@ -119,15 +168,36 @@ public interface ExecutionModelPackage extends EPackage {
 	EAttribute getExecutionModel_SampleTime();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModel <em>Computation Model</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping <em>Computation Model Mapping</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Computation Model Mapping</em>'.
+	 * @see org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping
+	 * @generated
+	 */
+	EClass getComputationModelMapping();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping#getFragment <em>Fragment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Fragment</em>'.
+	 * @see org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping#getFragment()
+	 * @see #getComputationModelMapping()
+	 * @generated
+	 */
+	EReference getComputationModelMapping_Fragment();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping#getComputationModel <em>Computation Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Computation Model</em>'.
-	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModel()
-	 * @see #getExecutionModel()
+	 * @see org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping#getComputationModel()
+	 * @see #getComputationModelMapping()
 	 * @generated
 	 */
-	EReference getExecutionModel_ComputationModel();
+	EReference getComputationModelMapping_ComputationModel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -162,6 +232,14 @@ public interface ExecutionModelPackage extends EPackage {
 		EClass EXECUTION_MODEL = eINSTANCE.getExecutionModel();
 
 		/**
+		 * The meta object literal for the '<em><b>Computation Model Mappings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS = eINSTANCE.getExecutionModel_ComputationModelMappings();
+
+		/**
 		 * The meta object literal for the '<em><b>Sample Time</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -170,12 +248,30 @@ public interface ExecutionModelPackage extends EPackage {
 		EAttribute EXECUTION_MODEL__SAMPLE_TIME = eINSTANCE.getExecutionModel_SampleTime();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionmodel.impl.ComputationModelMappingImpl <em>Computation Model Mapping</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.execution.executionmodel.impl.ComputationModelMappingImpl
+		 * @see org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelPackageImpl#getComputationModelMapping()
+		 * @generated
+		 */
+		EClass COMPUTATION_MODEL_MAPPING = eINSTANCE.getComputationModelMapping();
+
+		/**
+		 * The meta object literal for the '<em><b>Fragment</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTATION_MODEL_MAPPING__FRAGMENT = eINSTANCE.getComputationModelMapping_Fragment();
+
+		/**
 		 * The meta object literal for the '<em><b>Computation Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXECUTION_MODEL__COMPUTATION_MODEL = eINSTANCE.getExecutionModel_ComputationModel();
+		EReference COMPUTATION_MODEL_MAPPING__COMPUTATION_MODEL = eINSTANCE.getComputationModelMapping_ComputationModel();
 
 	}
 

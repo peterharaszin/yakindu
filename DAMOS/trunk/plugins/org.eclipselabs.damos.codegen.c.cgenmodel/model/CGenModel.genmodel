@@ -12,8 +12,8 @@
       providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
       ecorePackage="CGenModel.ecore#/">
     <genClasses ecoreClass="CGenModel.ecore#//GenModel">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenModel/genTopLevelSystem"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenModel/executionModel"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenModel/genTopLevelSystem"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CGenModel.ecore#//GenModel/sourceDirectory"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CGenModel.ecore#//GenModel/headerDirectory"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CGenModel.ecore#//GenModel/mainSourceFile"/>

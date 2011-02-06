@@ -17,8 +17,8 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getGenTopLevelSystem <em>Gen Top Level System</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getExecutionModel <em>Execution Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getGenTopLevelSystem <em>Gen Top Level System</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getSourceDirectory <em>Source Directory</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getHeaderDirectory <em>Header Directory</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getMainSourceFile <em>Main Source File</em>}</li>
@@ -69,7 +69,7 @@ public interface GenModel extends EObject {
 	 * @return the value of the '<em>Execution Model</em>' reference.
 	 * @see #setExecutionModel(ExecutionModel)
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenModel_ExecutionModel()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	ExecutionModel getExecutionModel();

@@ -24,8 +24,8 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getGenTopLevelSystem <em>Gen Top Level System</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getExecutionModel <em>Execution Model</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getGenTopLevelSystem <em>Gen Top Level System</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getSourceDirectory <em>Source Directory</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getHeaderDirectory <em>Header Directory</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getMainSourceFile <em>Main Source File</em>}</li>
@@ -38,16 +38,6 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  */
 public class GenModelImpl extends EObjectImpl implements GenModel {
 	/**
-	 * The cached value of the '{@link #getGenTopLevelSystem() <em>Gen Top Level System</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getGenTopLevelSystem()
-	 * @generated
-	 * @ordered
-	 */
-	protected GenTopLevelSystem genTopLevelSystem;
-
-	/**
 	 * The cached value of the '{@link #getExecutionModel() <em>Execution Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,6 +46,16 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	 * @ordered
 	 */
 	protected ExecutionModel executionModel;
+
+	/**
+	 * The cached value of the '{@link #getGenTopLevelSystem() <em>Gen Top Level System</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGenTopLevelSystem()
+	 * @generated
+	 * @ordered
+	 */
+	protected GenTopLevelSystem genTopLevelSystem;
 
 	/**
 	 * The default value of the '{@link #getSourceDirectory() <em>Source Directory</em>}' attribute.
@@ -384,11 +384,11 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
-				return getGenTopLevelSystem();
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				if (resolve) return getExecutionModel();
 				return basicGetExecutionModel();
+			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
+				return getGenTopLevelSystem();
 			case CGenModelPackage.GEN_MODEL__SOURCE_DIRECTORY:
 				return getSourceDirectory();
 			case CGenModelPackage.GEN_MODEL__HEADER_DIRECTORY:
@@ -411,11 +411,11 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
-				setGenTopLevelSystem((GenTopLevelSystem)newValue);
-				return;
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)newValue);
+				return;
+			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
+				setGenTopLevelSystem((GenTopLevelSystem)newValue);
 				return;
 			case CGenModelPackage.GEN_MODEL__SOURCE_DIRECTORY:
 				setSourceDirectory((String)newValue);
@@ -444,11 +444,11 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
-				setGenTopLevelSystem((GenTopLevelSystem)null);
-				return;
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)null);
+				return;
+			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
+				setGenTopLevelSystem((GenTopLevelSystem)null);
 				return;
 			case CGenModelPackage.GEN_MODEL__SOURCE_DIRECTORY:
 				setSourceDirectory(SOURCE_DIRECTORY_EDEFAULT);
@@ -477,10 +477,10 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
-				return genTopLevelSystem != null;
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				return executionModel != null;
+			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
+				return genTopLevelSystem != null;
 			case CGenModelPackage.GEN_MODEL__SOURCE_DIRECTORY:
 				return SOURCE_DIRECTORY_EDEFAULT == null ? sourceDirectory != null : !SOURCE_DIRECTORY_EDEFAULT.equals(sourceDirectory);
 			case CGenModelPackage.GEN_MODEL__HEADER_DIRECTORY:

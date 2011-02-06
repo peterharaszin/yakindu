@@ -70,22 +70,22 @@ public interface CGenModelPackage extends EPackage {
 	int GEN_MODEL = 0;
 
 	/**
-	 * The feature id for the '<em><b>Gen Top Level System</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GEN_MODEL__GEN_TOP_LEVEL_SYSTEM = 0;
-
-	/**
 	 * The feature id for the '<em><b>Execution Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__EXECUTION_MODEL = 1;
+	int GEN_MODEL__EXECUTION_MODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Gen Top Level System</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_MODEL__GEN_TOP_LEVEL_SYSTEM = 1;
 
 	/**
 	 * The feature id for the '<em><b>Source Directory</b></em>' attribute.

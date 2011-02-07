@@ -273,8 +273,40 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(fragment, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(fragment, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(fragment, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFragment_WellFormedName(fragment, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFragment_UniqueComponentNames(fragment, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the WellFormedName constraint of '<em>Fragment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateFragment_WellFormedName(Fragment fragment, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		String name = fragment.getName();
+		if (name == null || name.trim().length() == 0) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Missing fragment name",
+						new Object[] { fragment }));
+			}
+			return false;
+		}
+		if (!IDENTIFIER_PATTERN.matcher(name).matches()) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Invalid fragment name '" + name + "'",
+						new Object[] { fragment }));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -665,6 +697,7 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(model, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(model, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(model, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFragment_WellFormedName(model, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFragment_UniqueComponentNames(model, diagnostics, context);
 		return result;
 	}
@@ -684,6 +717,7 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(system, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(system, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(system, diagnostics, context);
+		if (result || diagnostics != null) result &= validateFragment_WellFormedName(system, diagnostics, context);
 		if (result || diagnostics != null) result &= validateFragment_UniqueComponentNames(system, diagnostics, context);
 		return result;
 	}

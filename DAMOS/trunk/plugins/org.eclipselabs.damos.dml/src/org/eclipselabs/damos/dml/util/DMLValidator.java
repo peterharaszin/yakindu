@@ -831,15 +831,27 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateSubsystemRealization_MatchingFragment(SubsystemRealization subsystemRealization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		boolean result = true;
+		if (!validate_EveryMultiplicityConforms(subsystemRealization, null, context)) {
+			return false;
+		}
 		
 		SystemInterface providedInterface = subsystemRealization.getRealizedSubsystem().getProvidedInterface();
+		Fragment realizingFragment = subsystemRealization.getRealizingFragment();
 		
-		Map<String, Inport> inports = DMLUtil.getComponentMap(subsystemRealization.getRealizingFragment(), Inport.class);
+		boolean result = true;
+
+		Map<String, Inport> inports = DMLUtil.getComponentMap(realizingFragment, Inport.class);
 		
 		for (Inlet inlet : providedInterface.getInlets()) {
+			if (!validate(inlet, null, context)) {
+				return false;
+			}
+
 			Inport inport = inports.remove(inlet.getName());
 			if (inport != null) {
+				if (!validate(inport, null, context)) {
+					return false;
+				}
 				if (!EcoreUtil.equals(inport.getDataType(), inlet.getDataType())) {
 					if (diagnostics != null) {
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
@@ -871,6 +883,9 @@ public class DMLValidator extends EObjectValidator {
 		}
 		
 		for (Inport inport : inports.values()) {
+			if (!validate(inport, null, context)) {
+				return false;
+			}
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
@@ -889,6 +904,9 @@ public class DMLValidator extends EObjectValidator {
 		for (Outlet outlet : providedInterface.getOutlets()) {
 			Outport outport = outports.remove(outlet.getName());
 			if (outport != null) {
+				if (!validate(outport, null, context)) {
+					return false;
+				}
 				if (!EcoreUtil.equals(outport.getDataType(), outlet.getDataType())) {
 					if (diagnostics != null) {
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
@@ -920,6 +938,9 @@ public class DMLValidator extends EObjectValidator {
 		}
 
 		for (Outport outport : outports.values()) {
+			if (!validate(outport, null, context)) {
+				return false;
+			}
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,

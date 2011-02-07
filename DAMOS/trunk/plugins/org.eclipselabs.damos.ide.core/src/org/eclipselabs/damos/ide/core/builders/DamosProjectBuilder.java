@@ -183,7 +183,9 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			} else {
 				IMarker marker = resource.createMarker(IMarkerConstants.PROBLEM_MARKER_ID);
 				marker.setAttribute(IMarker.MESSAGE, status.getMessage());
-				marker.setAttribute(IMarkerConstants.ATTRIBUTE__FRAGMENT_URI, EcoreUtil.getURI(fragment).toString());
+				if (fragment != null) {
+					marker.setAttribute(IMarkerConstants.ATTRIBUTE__FRAGMENT_URI, EcoreUtil.getURI(fragment).toString());
+				}
 				
 				int severity;
 				switch (status.getSeverity()) {

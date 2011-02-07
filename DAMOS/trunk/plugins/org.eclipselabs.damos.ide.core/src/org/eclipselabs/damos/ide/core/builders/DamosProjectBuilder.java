@@ -2,7 +2,9 @@ package org.eclipselabs.damos.ide.core.builders;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -40,6 +42,13 @@ import org.eclipselabs.damos.ide.core.IDECorePlugin;
 import org.eclipselabs.damos.ide.core.internal.util.TextUtils;
 
 public class DamosProjectBuilder extends IncrementalProjectBuilder {
+	
+	private static final Set<String> FILE_EXTENSIONS = new HashSet<String>();
+	
+	{
+		FILE_EXTENSIONS.add("dml");
+		FILE_EXTENSIONS.add("blockdiagram");
+	}
 
 	protected IProject[] build(int kind, @SuppressWarnings("rawtypes") Map args, IProgressMonitor monitor) throws CoreException {
 		if (kind == IncrementalProjectBuilder.FULL_BUILD) {
@@ -81,7 +90,12 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 		}
 		
 		protected boolean validate(IResource resource) throws CoreException {
-			if (resource.getType() != IResource.FILE || !"blockdiagram".equals(resource.getFileExtension())) {
+			if (resource.getType() != IResource.FILE) {
+				return true;
+			}
+			
+			String fileExtension = resource.getFileExtension();
+			if (fileExtension == null || !FILE_EXTENSIONS.contains(fileExtension)) {
 				return true;
 			}
 			
@@ -100,21 +114,27 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			resource.deleteMarkers(null, false, IResource.DEPTH_INFINITE);
 			
 			boolean validationResult = true;
-			
-			Collection<Fragment> fragments = EcoreUtil.getObjectsByType(blockDiagramResource.getContents(), DMLPackage.Literals.FRAGMENT);
-			
+						
 			Map<Object, Object> context = new HashMap<Object, Object>();
 			context.put(EValidator.SubstitutionLabelProvider.class, SubstitutionProvider.INSTANCE);
 			
-			for (Fragment fragment : fragments) {
+			for (EObject eObject : blockDiagramResource.getContents()) {
+				if (eObject.eClass().getEPackage() != DMLPackage.eINSTANCE) {
+					continue;
+				}
+				
 				BasicDiagnostic diagnostics = new BasicDiagnostic();
 				
-				DMLValidator.INSTANCE.validate(fragment, diagnostics, context);
-				for (TreeIterator<EObject> it = fragment.eAllContents(); it.hasNext();) {
+				DMLValidator.INSTANCE.validate(eObject, diagnostics, context);
+				for (TreeIterator<EObject> it = eObject.eAllContents(); it.hasNext();) {
 					DMLValidator.INSTANCE.validate(it.next(), diagnostics, context);
 				}
 				
 				if (diagnostics.getSeverity() != Diagnostic.OK) {
+					Fragment fragment = null;
+					if (eObject instanceof Fragment) {
+						fragment = (Fragment) eObject;
+					}
 					for (Diagnostic diagnostic : diagnostics.getChildren()) {
 						Component component = null;
 						if (diagnostic.getData() != null && !diagnostic.getData().isEmpty()) {
@@ -131,6 +151,7 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			
 			if (validationResult) {
 				ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
+				Collection<Fragment> fragments = EcoreUtil.getObjectsByType(blockDiagramResource.getContents(), DMLPackage.Literals.FRAGMENT);
 				for (Fragment fragment : fragments) {
 					ComponentSignatureResolverResult result = signatureResolver.resolve(fragment, false);
 					if (!result.getStatus().isOK()) {

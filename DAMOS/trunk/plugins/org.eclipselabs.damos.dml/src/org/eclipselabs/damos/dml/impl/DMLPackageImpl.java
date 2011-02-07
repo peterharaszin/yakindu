@@ -2086,6 +2086,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "WellFormedName"
+		   });		
+		addAnnotation
+		  (subsystemRealizationEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "MatchingFragment"
 		   });
 	}
 

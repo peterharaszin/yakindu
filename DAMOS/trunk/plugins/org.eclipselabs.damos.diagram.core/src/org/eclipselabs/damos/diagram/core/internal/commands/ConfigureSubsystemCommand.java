@@ -40,18 +40,18 @@ public class ConfigureSubsystemCommand extends ConfigureElementCommand {
 		ConfigureRequest request = (ConfigureRequest) getRequest();
 		Subsystem subsystem = (Subsystem) request.getElementToConfigure();
     	    	
-    	SystemInterface systemInterface = (SystemInterface) request.getParameters().get(SystemInterface.class);
-    	if (systemInterface != null) {
-        	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getOwningFragment(), systemInterface.getName()));
-    		subsystem.getUsedInterfaces().add(systemInterface);
-    		for (Inlet inlet : systemInterface.getInlets()) {
+    	SystemInterface providedInterface = (SystemInterface) request.getParameters().get(SystemInterface.class);
+    	if (providedInterface != null) {
+        	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getOwningFragment(), providedInterface.getName()));
+    		subsystem.setProvidedInterface(providedInterface);
+    		for (Inlet inlet : providedInterface.getInlets()) {
 				SubsystemInput input = DMLFactory.eINSTANCE.createSubsystemInput();
 				input.setInlet(inlet);
 				InputPort inputPort = DMLFactory.eINSTANCE.createInputPort();
 				input.getPorts().add(inputPort);
 				subsystem.getInputs().add(input);
     		}
-    		for (Outlet outlet : systemInterface.getOutlets()) {
+    		for (Outlet outlet : providedInterface.getOutlets()) {
 				SubsystemOutput output = DMLFactory.eINSTANCE.createSubsystemOutput();
 				output.setOutlet(outlet);
 				OutputPort outputPort = DMLFactory.eINSTANCE.createOutputPort();

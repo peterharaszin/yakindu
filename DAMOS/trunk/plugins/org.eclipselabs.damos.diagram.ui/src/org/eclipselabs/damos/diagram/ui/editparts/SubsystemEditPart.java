@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -180,9 +178,9 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		EObject element = resolveSemanticElement();
 		if (element instanceof Subsystem) {
 			SubsystemFigure figure = (SubsystemFigure) getMainFigure();
-			List<SystemInterface> systemInterfaces = ((Subsystem) element).getUsedInterfaces();
-			if (!systemInterfaces.isEmpty()) {
-				figure.setText(systemInterfaces.get(0).getName());
+			SystemInterface providedInterface = ((Subsystem) element).getProvidedInterface();
+			if (providedInterface != null) {
+				figure.setText(providedInterface.getName());
 			} else {
 				figure.setText("");
 			}

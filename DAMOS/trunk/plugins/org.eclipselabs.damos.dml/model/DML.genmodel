@@ -174,7 +174,7 @@
     <genClasses ecoreClass="DML.ecore#//BlockInputPort"/>
     <genClasses ecoreClass="DML.ecore#//BlockOutputPort"/>
     <genClasses ecoreClass="DML.ecore#//Subsystem">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Subsystem/usedInterfaces"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Subsystem/providedInterface"/>
       <genOperations ecoreOperation="DML.ecore#//Subsystem/getRealizations"/>
       <genOperations ecoreOperation="DML.ecore#//Subsystem/getRealization">
         <genParameters ecoreParameter="DML.ecore#//Subsystem/getRealization/context"/>
@@ -183,7 +183,6 @@
     <genClasses ecoreClass="DML.ecore#//SystemInterface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SystemInterface/inlets"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SystemInterface/outlets"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SystemInterface/extendedInterfaces"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//SystemInterface/name"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Inlet"/>

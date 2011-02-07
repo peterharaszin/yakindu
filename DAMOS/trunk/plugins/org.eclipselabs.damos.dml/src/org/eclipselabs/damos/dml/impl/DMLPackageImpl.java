@@ -2079,7 +2079,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		  (fragmentEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "UniqueComponentNames"
+			 "constraints", "WellFormedName UniqueComponentNames"
 		   });		
 		addAnnotation
 		  (componentEClass, 

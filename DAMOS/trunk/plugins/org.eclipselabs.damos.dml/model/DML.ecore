@@ -5,7 +5,7 @@
     nsURI="http://www.eclipselabs.org/damos/DML/1.0.0" nsPrefix="dml">
   <eClassifiers xsi:type="ecore:EClass" name="Fragment">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueComponentNames"/>
+      <details key="constraints" value="WellFormedName UniqueComponentNames"/>
     </eAnnotations>
     <eOperations name="getChildren" ordered="false" upperBound="-1" eType="#//Fragment"/>
     <eOperations name="getAllComponents" ordered="false" upperBound="-1" eType="#//Component"/>

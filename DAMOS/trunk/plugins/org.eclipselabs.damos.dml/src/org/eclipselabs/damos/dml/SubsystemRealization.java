@@ -21,7 +21,7 @@ package org.eclipselabs.damos.dml;
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getSubsystemRealization()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MatchingFragment'"
  * @generated
  */
 public interface SubsystemRealization extends FragmentElement {

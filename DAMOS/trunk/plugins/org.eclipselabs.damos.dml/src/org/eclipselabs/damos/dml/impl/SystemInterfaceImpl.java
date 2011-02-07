@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Inlet;
@@ -32,7 +31,6 @@ import org.eclipselabs.damos.dml.SystemInterface;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl#getInlets <em>Inlets</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl#getOutlets <em>Outlets</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl#getExtendedInterfaces <em>Extended Interfaces</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
@@ -59,16 +57,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 	 * @ordered
 	 */
 	protected EList<Outlet> outlets;
-
-	/**
-	 * The cached value of the '{@link #getExtendedInterfaces() <em>Extended Interfaces</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getExtendedInterfaces()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SystemInterface> extendedInterfaces;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -138,18 +126,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<SystemInterface> getExtendedInterfaces() {
-		if (extendedInterfaces == null) {
-			extendedInterfaces = new EObjectResolvingEList<SystemInterface>(SystemInterface.class, this, DMLPackage.SYSTEM_INTERFACE__EXTENDED_INTERFACES);
-		}
-		return extendedInterfaces;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public String getName() {
 		return name;
 	}
@@ -194,8 +170,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 				return getInlets();
 			case DMLPackage.SYSTEM_INTERFACE__OUTLETS:
 				return getOutlets();
-			case DMLPackage.SYSTEM_INTERFACE__EXTENDED_INTERFACES:
-				return getExtendedInterfaces();
 			case DMLPackage.SYSTEM_INTERFACE__NAME:
 				return getName();
 		}
@@ -219,10 +193,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 				getOutlets().clear();
 				getOutlets().addAll((Collection<? extends Outlet>)newValue);
 				return;
-			case DMLPackage.SYSTEM_INTERFACE__EXTENDED_INTERFACES:
-				getExtendedInterfaces().clear();
-				getExtendedInterfaces().addAll((Collection<? extends SystemInterface>)newValue);
-				return;
 			case DMLPackage.SYSTEM_INTERFACE__NAME:
 				setName((String)newValue);
 				return;
@@ -244,9 +214,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 			case DMLPackage.SYSTEM_INTERFACE__OUTLETS:
 				getOutlets().clear();
 				return;
-			case DMLPackage.SYSTEM_INTERFACE__EXTENDED_INTERFACES:
-				getExtendedInterfaces().clear();
-				return;
 			case DMLPackage.SYSTEM_INTERFACE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -266,8 +233,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 				return inlets != null && !inlets.isEmpty();
 			case DMLPackage.SYSTEM_INTERFACE__OUTLETS:
 				return outlets != null && !outlets.isEmpty();
-			case DMLPackage.SYSTEM_INTERFACE__EXTENDED_INTERFACES:
-				return extendedInterfaces != null && !extendedInterfaces.isEmpty();
 			case DMLPackage.SYSTEM_INTERFACE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}

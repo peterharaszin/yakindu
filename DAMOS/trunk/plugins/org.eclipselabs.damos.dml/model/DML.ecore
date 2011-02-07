@@ -234,16 +234,14 @@
     <eOperations name="getRealization" ordered="false" eType="#//SubsystemRealization">
       <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="usedInterfaces" lowerBound="1"
-        upperBound="-1" eType="#//SystemInterface"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterface" lowerBound="1"
+        eType="#//SystemInterface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SystemInterface">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlets" upperBound="-1"
         eType="#//Inlet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outlets" upperBound="-1"
         eType="#//Outlet" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="extendedInterfaces" upperBound="-1"
-        eType="#//SystemInterface"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

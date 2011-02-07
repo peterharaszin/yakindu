@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.Subsystem#getUsedInterfaces <em>Used Interfaces</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.Subsystem#getProvidedInterface <em>Provided Interface</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,20 +28,30 @@ import org.eclipse.emf.common.util.EList;
 public interface Subsystem extends Component {
 
 	/**
-	 * Returns the value of the '<em><b>Used Interfaces</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.dml.SystemInterface}.
+	 * Returns the value of the '<em><b>Provided Interface</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Used Interfaces</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Used Interfaces</em>' reference list.
-	 * @see org.eclipselabs.damos.dml.DMLPackage#getSubsystem_UsedInterfaces()
+	 * @return the value of the '<em>Provided Interface</em>' reference.
+	 * @see #setProvidedInterface(SystemInterface)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getSubsystem_ProvidedInterface()
 	 * @model required="true"
 	 * @generated
 	 */
-	EList<SystemInterface> getUsedInterfaces();
+	SystemInterface getProvidedInterface();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Subsystem#getProvidedInterface <em>Provided Interface</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Provided Interface</em>' reference.
+	 * @see #getProvidedInterface()
+	 * @generated
+	 */
+	void setProvidedInterface(SystemInterface value);
 
 	/**
 	 * <!-- begin-user-doc -->

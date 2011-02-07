@@ -69,32 +69,9 @@ public class SystemInterfaceItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addExtendedInterfacesPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Extended Interfaces feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addExtendedInterfacesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_SystemInterface_extendedInterfaces_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_SystemInterface_extendedInterfaces_feature", "_UI_SystemInterface_type"),
-				 DMLPackage.Literals.SYSTEM_INTERFACE__EXTENDED_INTERFACES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**

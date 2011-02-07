@@ -40,9 +40,9 @@ public class SubsystemCreationToolEntry extends ComponentCreationToolEntry {
 
 	public Tool createTool() {
 		try {
-			SystemInterface systemInterface = getInterface();
-			if (systemInterface != null) {
-				Tool tool = new SubsystemCreationTool(systemInterface);
+			SystemInterface providedInterface = getProvidedInterface();
+			if (providedInterface != null) {
+				Tool tool = new SubsystemCreationTool(providedInterface);
 				tool.setProperties(getToolProperties());
 				return tool;
 			}
@@ -52,7 +52,7 @@ public class SubsystemCreationToolEntry extends ComponentCreationToolEntry {
 		return null;
 	}
 
-	protected SystemInterface getInterface() {
+	protected SystemInterface getProvidedInterface() {
 		FilteredResourcesSelectionDialog d = new FilteredResourcesSelectionDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 				false,
@@ -66,9 +66,9 @@ public class SubsystemCreationToolEntry extends ComponentCreationToolEntry {
 				IFile file = (IFile) firstResult;
 				ResourceSet resourceSet = getEditingDomain().getResourceSet();
 				Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(file.getFullPath().toString(), false), true);
-				SystemInterface interface_ = (SystemInterface) EcoreUtil.getObjectByType(resource.getContents(), DMLPackage.Literals.SYSTEM_INTERFACE);
-				if (interface_ != null) {
-					return interface_;
+				SystemInterface providedInterface = (SystemInterface) EcoreUtil.getObjectByType(resource.getContents(), DMLPackage.Literals.SYSTEM_INTERFACE);
+				if (providedInterface != null) {
+					return providedInterface;
 				} else {
 					throw new IllegalArgumentException("'" + file.getFullPath().toString() + "' does not contain a valid interface");
 				}

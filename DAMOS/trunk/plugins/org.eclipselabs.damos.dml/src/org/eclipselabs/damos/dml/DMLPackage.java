@@ -1798,13 +1798,13 @@ public interface DMLPackage extends EPackage {
 	int SUBSYSTEM__NAME = COMPONENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Used Interfaces</b></em>' reference list.
+	 * The feature id for the '<em><b>Provided Interface</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SUBSYSTEM__USED_INTERFACES = COMPONENT_FEATURE_COUNT + 0;
+	int SUBSYSTEM__PROVIDED_INTERFACE = COMPONENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Subsystem</em>' class.
@@ -1844,22 +1844,13 @@ public interface DMLPackage extends EPackage {
 	int SYSTEM_INTERFACE__OUTLETS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Extended Interfaces</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM_INTERFACE__EXTENDED_INTERFACES = 2;
-
-	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE__NAME = 3;
+	int SYSTEM_INTERFACE__NAME = 2;
 
 	/**
 	 * The number of structural features of the '<em>System Interface</em>' class.
@@ -1868,7 +1859,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE_FEATURE_COUNT = 4;
+	int SYSTEM_INTERFACE_FEATURE_COUNT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -3261,15 +3252,15 @@ public interface DMLPackage extends EPackage {
 	EClass getSubsystem();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.dml.Subsystem#getUsedInterfaces <em>Used Interfaces</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Subsystem#getProvidedInterface <em>Provided Interface</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Used Interfaces</em>'.
-	 * @see org.eclipselabs.damos.dml.Subsystem#getUsedInterfaces()
+	 * @return the meta object for the reference '<em>Provided Interface</em>'.
+	 * @see org.eclipselabs.damos.dml.Subsystem#getProvidedInterface()
 	 * @see #getSubsystem()
 	 * @generated
 	 */
-	EReference getSubsystem_UsedInterfaces();
+	EReference getSubsystem_ProvidedInterface();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.SystemInterface <em>System Interface</em>}'.
@@ -3302,17 +3293,6 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSystemInterface_Outlets();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.dml.SystemInterface#getExtendedInterfaces <em>Extended Interfaces</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Extended Interfaces</em>'.
-	 * @see org.eclipselabs.damos.dml.SystemInterface#getExtendedInterfaces()
-	 * @see #getSystemInterface()
-	 * @generated
-	 */
-	EReference getSystemInterface_ExtendedInterfaces();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.SystemInterface#getName <em>Name</em>}'.
@@ -4354,12 +4334,12 @@ public interface DMLPackage extends EPackage {
 		EClass SUBSYSTEM = eINSTANCE.getSubsystem();
 
 		/**
-		 * The meta object literal for the '<em><b>Used Interfaces</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Provided Interface</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SUBSYSTEM__USED_INTERFACES = eINSTANCE.getSubsystem_UsedInterfaces();
+		EReference SUBSYSTEM__PROVIDED_INTERFACE = eINSTANCE.getSubsystem_ProvidedInterface();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl <em>System Interface</em>}' class.
@@ -4386,14 +4366,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SYSTEM_INTERFACE__OUTLETS = eINSTANCE.getSystemInterface_Outlets();
-
-		/**
-		 * The meta object literal for the '<em><b>Extended Interfaces</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference SYSTEM_INTERFACE__EXTENDED_INTERFACES = eINSTANCE.getSystemInterface_ExtendedInterfaces();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

@@ -22,20 +22,20 @@ import org.eclipselabs.damos.dml.SystemInterface;
  */
 public class SubsystemCreationTool extends CreationTool {
 
-	private SystemInterface systemInterface;
+	private SystemInterface providedInterface;
 	
 	/**
 	 * 
 	 */
-	public SubsystemCreationTool(SystemInterface systemInterface) {
+	public SubsystemCreationTool(SystemInterface providedInterface) {
 		super(ElementTypes.SUBSYSTEM);
-		this.systemInterface = systemInterface;
+		this.providedInterface = providedInterface;
 	}
 	
 	@SuppressWarnings("unchecked")
 	protected Request createTargetRequest() {
 		Request request = super.createTargetRequest();
-		request.getExtendedData().put(SystemInterface.class, systemInterface);
+		request.getExtendedData().put(SystemInterface.class, providedInterface);
 		return request;
 	}
 

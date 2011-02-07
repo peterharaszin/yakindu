@@ -1296,7 +1296,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSubsystem_UsedInterfaces() {
+	public EReference getSubsystem_ProvidedInterface() {
 		return (EReference)subsystemEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1332,17 +1332,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSystemInterface_ExtendedInterfaces() {
-		return (EReference)systemInterfaceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getSystemInterface_Name() {
-		return (EAttribute)systemInterfaceEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)systemInterfaceEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1704,12 +1695,11 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockOutputPortEClass = createEClass(BLOCK_OUTPUT_PORT);
 
 		subsystemEClass = createEClass(SUBSYSTEM);
-		createEReference(subsystemEClass, SUBSYSTEM__USED_INTERFACES);
+		createEReference(subsystemEClass, SUBSYSTEM__PROVIDED_INTERFACE);
 
 		systemInterfaceEClass = createEClass(SYSTEM_INTERFACE);
 		createEReference(systemInterfaceEClass, SYSTEM_INTERFACE__INLETS);
 		createEReference(systemInterfaceEClass, SYSTEM_INTERFACE__OUTLETS);
-		createEReference(systemInterfaceEClass, SYSTEM_INTERFACE__EXTENDED_INTERFACES);
 		createEAttribute(systemInterfaceEClass, SYSTEM_INTERFACE__NAME);
 
 		inletEClass = createEClass(INLET);
@@ -2021,7 +2011,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(blockOutputPortEClass, BlockOutputPort.class, "BlockOutputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(subsystemEClass, Subsystem.class, "Subsystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSubsystem_UsedInterfaces(), this.getSystemInterface(), null, "usedInterfaces", null, 1, -1, Subsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSubsystem_ProvidedInterface(), this.getSystemInterface(), null, "providedInterface", null, 1, 1, Subsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(subsystemEClass, this.getSubsystemRealization(), "getRealizations", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
@@ -2031,7 +2021,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(systemInterfaceEClass, SystemInterface.class, "SystemInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSystemInterface_Inlets(), this.getInlet(), null, "inlets", null, 0, -1, SystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystemInterface_Outlets(), this.getOutlet(), null, "outlets", null, 0, -1, SystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSystemInterface_ExtendedInterfaces(), this.getSystemInterface(), null, "extendedInterfaces", null, 0, -1, SystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSystemInterface_Name(), ecorePackage.getEString(), "name", null, 1, 1, SystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(inletEClass, Inlet.class, "Inlet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

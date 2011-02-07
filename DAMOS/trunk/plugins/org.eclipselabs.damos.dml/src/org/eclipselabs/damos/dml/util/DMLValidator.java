@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -831,70 +832,78 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateSubsystemRealization_MatchingFragment(SubsystemRealization subsystemRealization, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_EveryMultiplicityConforms(subsystemRealization, null, context)) {
-			return false;
+		boolean result = true;
+		
+		Fragment owningFragment = subsystemRealization.getOwningFragment();
+		if (owningFragment == null || owningFragment.getName() == null) {
+			return result;
+		}
+
+		Subsystem realizedSubsystem = subsystemRealization.getRealizedSubsystem();
+		if (!isResolved(realizedSubsystem) || realizedSubsystem.getName() == null) {
+			return result;
 		}
 		
-		SystemInterface providedInterface = subsystemRealization.getRealizedSubsystem().getProvidedInterface();
-		Fragment realizingFragment = subsystemRealization.getRealizingFragment();
+		SystemInterface providedInterface = realizedSubsystem.getProvidedInterface();
+		if (!isResolved(providedInterface)) {
+			return result;
+		}
 		
-		boolean result = true;
-
+		Fragment realizingFragment = subsystemRealization.getRealizingFragment();
+		if (!isResolved(realizingFragment)) {
+			return result;
+		}
+		
 		Map<String, Inport> inports = DMLUtil.getComponentMap(realizingFragment, Inport.class);
 		
 		for (Inlet inlet : providedInterface.getInlets()) {
-			if (!validate(inlet, null, context)) {
-				return false;
+			if (inlet.getName() == null || inlet.getDataType() == null) {
+				return result;
 			}
 
 			Inport inport = inports.remove(inlet.getName());
 			if (inport != null) {
-				if (!validate(inport, null, context)) {
-					return false;
+				if (inport.getDataType() == null) {
+					return result;
 				}
 				if (!EcoreUtil.equals(inport.getDataType(), inlet.getDataType())) {
 					if (diagnostics != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-								DIAGNOSTIC_SOURCE,
-								0,
+						diagnostics
+								.add(new BasicDiagnostic(
+										Diagnostic.ERROR,
+										DIAGNOSTIC_SOURCE,
+										0,
 										"Subsystem realization on fragment '"
-												+ subsystemRealization.getOwningFragment().getName()
+												+ owningFragment.getName()
 												+ "' for subsystem '"
-												+ subsystemRealization.getRealizedSubsystem().getName()
+												+ realizedSubsystem.getName()
 												+ "' specifies realizing fragment with an incompatible inport data type for inlet '"
-												+ inlet.getName() + "'",
-										new Object[] { subsystemRealization }));
+												+ inlet.getName() + "'", new Object[] { subsystemRealization }));
 					}
 					result = false;
 				}
 			} else {
 				if (diagnostics != null) {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-							DIAGNOSTIC_SOURCE,
-							0,
-							"Subsystem realization on fragment '" + subsystemRealization.getOwningFragment().getName()
-									+ "' for subsystem '" + subsystemRealization.getRealizedSubsystem().getName()
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+							"Subsystem realization on fragment '" + owningFragment.getName() + "' for subsystem '"
+									+ realizedSubsystem.getName()
 									+ "' specifies realizing fragment that does not have an inport for inlet '"
-									+ inlet.getName() + "'",
-							new Object[] { subsystemRealization }));
+									+ inlet.getName() + "'", new Object[] { subsystemRealization }));
 				}
 				result = false;
 			}
 		}
 		
 		for (Inport inport : inports.values()) {
-			if (!validate(inport, null, context)) {
-				return false;
+			if (inport.getName() == null) {
+				return result;
 			}
 			if (diagnostics != null) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0,
-						"Subsystem realization on fragment '" + subsystemRealization.getOwningFragment().getName()
-								+ "' for subsystem '" + subsystemRealization.getRealizedSubsystem().getName()
-								+ "' specifies realizing fragment that contains an inport '"
-								+ inport.getName() + "', which has no corresponding inlet",
-						new Object[] { subsystemRealization }));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+						"Subsystem realization on fragment '" + owningFragment.getName() + "' for subsystem '"
+								+ realizedSubsystem.getName()
+								+ "' specifies realizing fragment that contains an inport '" + inport.getName()
+								+ "', which has no corresponding inlet", new Object[] { subsystemRealization }));
 			}
 			result = false;
 		}
@@ -902,54 +911,53 @@ public class DMLValidator extends EObjectValidator {
 		Map<String, Outport> outports = DMLUtil.getComponentMap(subsystemRealization.getRealizingFragment(), Outport.class);
 		
 		for (Outlet outlet : providedInterface.getOutlets()) {
+			if (outlet.getName() == null || outlet.getDataType() == null) {
+				return result;
+			}
+
 			Outport outport = outports.remove(outlet.getName());
 			if (outport != null) {
-				if (!validate(outport, null, context)) {
-					return false;
+				if (outport.getDataType() == null) {
+					return result;
 				}
 				if (!EcoreUtil.equals(outport.getDataType(), outlet.getDataType())) {
 					if (diagnostics != null) {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-								DIAGNOSTIC_SOURCE,
-								0,
+						diagnostics
+								.add(new BasicDiagnostic(
+										Diagnostic.ERROR,
+										DIAGNOSTIC_SOURCE,
+										0,
 										"Subsystem realization on fragment '"
-												+ subsystemRealization.getOwningFragment().getName()
+												+ owningFragment.getName()
 												+ "' for subsystem '"
-												+ subsystemRealization.getRealizedSubsystem().getName()
+												+ realizedSubsystem.getName()
 												+ "' specifies realizing fragment with an incompatible outport data type for outlet '"
-												+ outlet.getName() + "'",
-										new Object[] { subsystemRealization }));
+												+ outlet.getName() + "'", new Object[] { subsystemRealization }));
 					}
 					result = false;
 				}
 			} else {
 				if (diagnostics != null) {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-							DIAGNOSTIC_SOURCE,
-							0,
-							"Subsystem realization on fragment '" + subsystemRealization.getOwningFragment().getName()
-									+ "' for subsystem '" + subsystemRealization.getRealizedSubsystem().getName()
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+							"Subsystem realization on fragment '" + owningFragment.getName() + "' for subsystem '"
+									+ realizedSubsystem.getName()
 									+ "' specifies realizing fragment that does not have an outport for outlet '"
-									+ outlet.getName() + "'",
-							new Object[] { subsystemRealization }));
+									+ outlet.getName() + "'", new Object[] { subsystemRealization }));
 				}
 				result = false;
 			}
 		}
 
 		for (Outport outport : outports.values()) {
-			if (!validate(outport, null, context)) {
-				return false;
+			if (outport.getName() == null) {
+				return result;
 			}
 			if (diagnostics != null) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0,
-						"Subsystem realization on fragment '" + subsystemRealization.getOwningFragment().getName()
-								+ "' for subsystem '" + subsystemRealization.getRealizedSubsystem().getName()
-								+ "' specifies realizing fragment that contains an outport '"
-								+ outport.getName() + "', which has no corresponding outlet",
-						new Object[] { subsystemRealization }));
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
+						"Subsystem realization on fragment '" + owningFragment.getName() + "' for subsystem '"
+								+ realizedSubsystem.getName()
+								+ "' specifies realizing fragment that contains an outport '" + outport.getName()
+								+ "', which has no corresponding outlet", new Object[] { subsystemRealization }));
 			}
 			result = false;
 		}
@@ -1077,6 +1085,10 @@ public class DMLValidator extends EObjectValidator {
 	@Override
 	public ResourceLocator getResourceLocator() {
 		return DMLPlugin.INSTANCE;
+	}
+	
+	private boolean isResolved(EObject eObject) {
+		return eObject != null && !eObject.eIsProxy();
 	}
 
 } //DMLValidator

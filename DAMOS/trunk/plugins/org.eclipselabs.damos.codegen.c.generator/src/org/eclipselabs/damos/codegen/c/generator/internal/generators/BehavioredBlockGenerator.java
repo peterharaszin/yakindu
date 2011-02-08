@@ -147,14 +147,17 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	}
 
 	private void writeContextStructureMember(PrintWriter writer, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
+		String name = variableDeclaration.getName();
+		DataType dataType = variableDeclaration.getType();
 		if (variableDeclaration.getCircularBufferSize() > 1) {
+			int bufferSize = variableDeclaration.getCircularBufferSize();
 			writer.printf("%s[%d];\n",
-					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), variableDeclaration.getType(), variableDeclaration.getName(), false),
-					variableDeclaration.getCircularBufferSize());
-			writer.printf("int %s_index;\n", variableDeclaration.getName());
+					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), dataType, name, false),
+					bufferSize);
+			writer.printf("%s %s_index;\n", MscriptGeneratorUtil.getIndexCDataType(getComputationModel(), 2 * bufferSize), name);
 		} else {
 			writer.printf("%s;\n",
-					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), variableDeclaration.getType(), variableDeclaration.getName(), false));
+					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), dataType, name, false));
 		}
 	}
 	

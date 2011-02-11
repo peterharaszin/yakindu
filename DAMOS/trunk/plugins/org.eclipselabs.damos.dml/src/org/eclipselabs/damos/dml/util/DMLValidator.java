@@ -298,7 +298,7 @@ public class DMLValidator extends EObjectValidator {
 			}
 			return false;
 		}
-		if (!IDENTIFIER_PATTERN.matcher(name).matches()) {
+		if (!isValidIdentifier(name)) {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
@@ -382,7 +382,7 @@ public class DMLValidator extends EObjectValidator {
 			}
 			return false;
 		}
-		if (!IDENTIFIER_PATTERN.matcher(name).matches()) {
+		if (!isValidIdentifier(name)) {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
@@ -1089,6 +1089,10 @@ public class DMLValidator extends EObjectValidator {
 	
 	private boolean isResolved(EObject eObject) {
 		return eObject != null && !eObject.eIsProxy();
+	}
+	
+	private boolean isValidIdentifier(String identifier) {
+		return IDENTIFIER_PATTERN.matcher(identifier).matches() && !identifier.contains("__");
 	}
 
 } //DMLValidator

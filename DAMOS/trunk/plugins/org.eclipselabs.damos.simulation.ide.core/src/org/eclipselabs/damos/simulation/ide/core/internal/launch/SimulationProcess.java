@@ -17,12 +17,10 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
+import org.eclipselabs.damos.simulation.engine.ISimulationContext;
 import org.eclipselabs.damos.simulation.engine.ISimulationListener;
 import org.eclipselabs.damos.simulation.engine.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.SimulationEvent;
-import org.eclipselabs.damos.simulation.engine.SimulationMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
@@ -61,10 +59,9 @@ public class SimulationProcess implements IProcess {
 		return simulationThread;
 	}
 	
-	public void run(SimulationModel simulationModel, ExecutionGraph executionGraph) {
-		ISimulationMonitor monitor = new SimulationMonitor();
-		simulationThread = new SimulationThread(simulationModel, executionGraph, monitor);
-		monitor.addSimulationListener(new ISimulationListener() {
+	public void run(ISimulationContext context, ISimulationMonitor simulationMonitor) {
+		simulationThread = new SimulationThread(context, simulationMonitor);
+		simulationMonitor.addSimulationListener(new ISimulationListener() {
 			
 			public void handleSimulationEvent(SimulationEvent event) {
 				if (event.isDone()) {

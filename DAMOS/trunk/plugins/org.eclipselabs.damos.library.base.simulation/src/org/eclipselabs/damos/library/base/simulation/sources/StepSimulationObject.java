@@ -41,7 +41,7 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 		finalValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__FINAL_VALUE);
 		stepTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__STEP_TIME);
 
-		IComputationContext computationContext = new ComputationContext(getComputationModel());
+		IComputationContext computationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 		ValueTransformer valueTransformer = new ValueTransformer();
 		
 		initialValue = valueTransformer.transform(computationContext, initialValue);

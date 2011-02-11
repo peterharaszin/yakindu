@@ -110,7 +110,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		ILFunctionDefinition functionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
 		
-		interpreterContext = new InterpreterContext(new ComputationContext(getComputationModel()));
+		interpreterContext = new InterpreterContext(new ComputationContext(getComputationModel(), getOverflowMonitor()));
 		functionObject = FunctionObject.create(interpreterContext, functionDefinition);
 
 		for (IVariable variable : functionObject.getVariables()) {

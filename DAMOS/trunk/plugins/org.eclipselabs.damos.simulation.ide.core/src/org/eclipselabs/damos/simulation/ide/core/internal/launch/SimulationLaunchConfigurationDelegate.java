@@ -18,7 +18,10 @@ import org.eclipselabs.damos.execution.executiongraph.construct.ExecutionGraphCo
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.simulation.engine.ComponentSimulationObjectAdaptor;
+import org.eclipselabs.damos.simulation.engine.ISimulationContext;
+import org.eclipselabs.damos.simulation.engine.SimulationContext;
 import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.engine.SimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
@@ -40,7 +43,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 	
 	private static final int DEFAULT_STEP_COUNT = 1000;
 
-	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
+	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor progressMonitor) throws CoreException {
 		boolean createSimulationModel = configuration.getAttribute(ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
 		
 		SimulationModel simulationModel;
@@ -98,10 +101,11 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 			}
 		}
 		
-		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(simulationModel.getTopLevelFragment(), monitor);
-		new ComponentSimulationObjectAdaptor().adaptSimulationObjects(simulationModel, executionGraph, monitor);
-		
-		new SimulationProcess(launch, simulationModel.getTopLevelFragment().getName()).run(simulationModel, executionGraph);
+		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(simulationModel.getTopLevelFragment(), progressMonitor);
+		ISimulationContext context = new SimulationContext(simulationModel, executionGraph);
+		SimulationMonitor simulationMonitor = new SimulationMonitor();
+		new ComponentSimulationObjectAdaptor().adaptSimulationObjects(context, simulationMonitor, progressMonitor);
+		new SimulationProcess(launch, simulationModel.getTopLevelFragment().getName()).run(context, simulationMonitor);
 	}
 	
 	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {

@@ -18,6 +18,7 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.mscript.computation.engine.IOverflowMonitor;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -84,6 +85,10 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 			}
 		}
 		return cachedComputationModel;
+	}
+	
+	protected IOverflowMonitor getOverflowMonitor() {
+		return info.getOverflowMonitor();
 	}
 	
 }

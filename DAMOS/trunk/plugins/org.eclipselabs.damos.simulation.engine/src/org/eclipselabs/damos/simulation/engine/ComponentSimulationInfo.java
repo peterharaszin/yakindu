@@ -15,6 +15,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.ComponentExecutionInfo;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
+import org.eclipselabs.mscript.computation.engine.IOverflowMonitor;
 
 /**
  * @author Andreas Unger
@@ -23,14 +24,16 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 public class ComponentSimulationInfo extends ComponentExecutionInfo implements IComponentSimulationInfo {
 
 	private SimulationModel simulationModel;
+	private IOverflowMonitor overflowMonitor;
 	
 	/**
 	 * @param component
 	 * @param componentSignature
 	 */
-	public ComponentSimulationInfo(Component component, IComponentSignature componentSignature, SimulationModel simulationModel) {
+	public ComponentSimulationInfo(Component component, IComponentSignature componentSignature, SimulationModel simulationModel, IOverflowMonitor overflowMonitor) {
 		super(component, componentSignature);
 		this.simulationModel = simulationModel;
+		this.overflowMonitor = overflowMonitor;
 	}
 	
 	/**
@@ -38,6 +41,13 @@ public class ComponentSimulationInfo extends ComponentExecutionInfo implements I
 	 */
 	public SimulationModel getSimulationModel() {
 		return simulationModel;
+	}
+	
+	/**
+	 * @return the overflowMonitor
+	 */
+	public IOverflowMonitor getOverflowMonitor() {
+		return overflowMonitor;
 	}
 
 }

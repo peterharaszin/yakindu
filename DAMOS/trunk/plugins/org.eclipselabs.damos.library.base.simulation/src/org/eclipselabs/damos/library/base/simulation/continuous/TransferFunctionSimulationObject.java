@@ -45,7 +45,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		
 	@Override
 	public void initialize() throws CoreException {
-		outputComputationContext = new ComputationContext(getComputationModel());
+		outputComputationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		outputDataType.setUnit(TypeSystemUtil.createUnit());
 		sampleTime = getExecutionModel().getSampleTime();

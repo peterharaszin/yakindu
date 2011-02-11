@@ -94,15 +94,15 @@ public class Generator {
 	
 	private void generateHeaderFile(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
 		String headerFileName = new Path(genModel.getMainHeaderFile()).lastSegment();
-		String headerMacro = headerFileName.replaceAll("\\W", "_").toUpperCase();
+		String headerMacro = headerFileName.replaceAll("\\W", "_").toUpperCase() + "_";
 		
 		String prefix = genModel.getGenTopLevelSystem().getPrefix();
 		if (prefix == null) {
 			prefix = "";
 		}
 		
-		writer.printf("#ifndef _%s\n", headerMacro);
-		writer.printf("#define _%s\n", headerMacro);
+		writer.printf("#ifndef %s\n", headerMacro);
+		writer.printf("#define %s\n", headerMacro);
 		writer.println();
 		
 		writer.println("#include <stdint.h>");
@@ -142,7 +142,7 @@ public class Generator {
 		writer.printf("void %sexecute(const %sInput *input, %sOutput *output);\n", prefix, prefix, prefix);
 
 		writer.println();
-		writer.printf("#endif /* _%s */\n", headerMacro);
+		writer.printf("#endif /* %s */\n", headerMacro);
 	}
 	
 	private void generateSourceFile(GenModel genModel, ExecutionGraph executionGraph, PrintWriter writer, IProgressMonitor monitor) throws CoreException {

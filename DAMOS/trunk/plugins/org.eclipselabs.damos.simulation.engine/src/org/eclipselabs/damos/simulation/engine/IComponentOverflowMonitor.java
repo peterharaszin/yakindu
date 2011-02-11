@@ -11,17 +11,15 @@
 
 package org.eclipselabs.damos.simulation.engine;
 
-import org.eclipselabs.damos.execution.engine.IComponentExecutionInfo;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.mscript.computation.engine.IOverflowMonitor;
+import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.mscript.computation.engine.OverflowInfo;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IComponentSimulationInfo extends IComponentExecutionInfo {
-	
-	SimulationModel getSimulationModel();
-	IOverflowMonitor getOverflowMonitor();
+public interface IComponentOverflowMonitor {
+
+	void handleOverflow(ISimulationContext context, Component component, OverflowInfo info);
 	
 }

@@ -16,14 +16,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IStatusHandler;
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
 import org.eclipselabs.damos.simulation.engine.ISimulationContext;
 import org.eclipselabs.damos.simulation.engine.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.ISimulator;
-import org.eclipselabs.damos.simulation.engine.SimulationContext;
 import org.eclipselabs.damos.simulation.engine.Simulator;
 import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
@@ -31,8 +28,7 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
  */
 public class SimulationThread extends Thread {
 	
-	private SimulationModel simulationModel;
-	private ExecutionGraph executionGraph;
+	private ISimulationContext context;
 	private ISimulationMonitor simulationMonitor;
 		
 	private ISimulator simulator = new Simulator();
@@ -40,18 +36,10 @@ public class SimulationThread extends Thread {
 	/**
 	 * 
 	 */
-	public SimulationThread(SimulationModel simulationModel, ExecutionGraph executionGraph, ISimulationMonitor monitor) {
+	public SimulationThread(ISimulationContext context, ISimulationMonitor simulationMonitor) {
 		super("Simulating block diagram");
-		this.simulationModel = simulationModel;
-		this.executionGraph = executionGraph;
-		this.simulationMonitor = monitor;
-	}
-	
-	/**
-	 * @return the executionGraph
-	 */
-	public ExecutionGraph getExecutionGraph() {
-		return executionGraph;
+		this.context = context;
+		this.simulationMonitor = simulationMonitor;
 	}
 	
 	/**
@@ -69,7 +57,6 @@ public class SimulationThread extends Thread {
 		IStatus status = Status.OK_STATUS;
 
 		try {
-			ISimulationContext context = new SimulationContext(simulationModel, executionGraph);
 			simulator.simulate(context, simulationMonitor);
 		} catch (CoreException e) {
 			status = e.getStatus();

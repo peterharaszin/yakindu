@@ -23,6 +23,7 @@ public class SimulationEvent extends EventObject {
 	public static final int STEP = 1;
 	public static final int FINISH = 2;
 	public static final int CANCEL = 3;
+	public static final int OVERFLOW = 4;
 	
 	private ISimulationContext context;
 	

@@ -14,11 +14,14 @@ package org.eclipselabs.damos.simulation.engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.mscript.computation.engine.OverflowInfo;
+
 /**
  * @author Andreas Unger
  *
  */
-public class SimulationMonitor implements ISimulationMonitor {
+public class SimulationMonitor implements ISimulationMonitor, IComponentOverflowMonitor {
 
 	private volatile boolean canceled;
 	
@@ -69,6 +72,13 @@ public class SimulationMonitor implements ISimulationMonitor {
 		for (ISimulationListener l : ls) {
 			l.handleSimulationEvent(event);
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentOverflowMonitor#handleOverflow(org.eclipselabs.damos.dml.Component, org.eclipselabs.mscript.computation.engine.OverflowInfo)
+	 */
+	public void handleOverflow(ISimulationContext context, Component component, OverflowInfo info) {
+		fireSimulationEvent(new SimulationEvent(component, context, SimulationEvent.OVERFLOW));
 	}
 	
 }

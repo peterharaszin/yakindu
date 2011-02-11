@@ -52,7 +52,7 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	@Override
 	public void initialize() throws CoreException {
 		defaultComputationContext = new ComputationContext();
-		outputComputationContext = new ComputationContext(getComputationModel());
+		outputComputationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 		
 		timeDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		timeDataType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));

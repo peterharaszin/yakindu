@@ -55,7 +55,7 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	@Override
 	public void initialize() throws CoreException {
 		defaultComputationContext = new ComputationContext();
-		outputComputationContext = new ComputationContext(getComputationModel());
+		outputComputationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 
 		sineDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		sineDataType.setUnit(TypeSystemUtil.createUnit());

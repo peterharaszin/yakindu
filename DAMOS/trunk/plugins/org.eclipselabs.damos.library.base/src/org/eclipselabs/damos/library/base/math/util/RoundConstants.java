@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,18 +9,14 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.mscript.codegen.c;
-
-import java.util.List;
-
-import org.eclipselabs.mscript.language.ast.Expression;
+package org.eclipselabs.damos.library.base.math.util;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IFunctionGenerator {
+public interface RoundConstants {
 
-	void generate(IMscriptGeneratorContext context, IVariableAccessStrategy variableAccessStrategy, List<? extends Expression> arguments);
+	String PARAMETER__KIND = "kind";
 	
 }

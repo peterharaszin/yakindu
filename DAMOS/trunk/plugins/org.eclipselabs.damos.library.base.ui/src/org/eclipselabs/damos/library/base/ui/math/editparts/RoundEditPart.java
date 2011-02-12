@@ -9,22 +9,22 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.library.base.ui.logic.editparts;
+package org.eclipselabs.damos.library.base.ui.math.editparts;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.library.base.logic.util.CompareConstants;
+import org.eclipselabs.damos.library.base.math.util.RoundConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.ArgumentValueBlockEditPart;
 
 /**
  * @author Andreas Unger
  *
  */
-public class CompareEditPart extends ArgumentValueBlockEditPart {
+public class RoundEditPart extends ArgumentValueBlockEditPart {
 
 	/**
 	 * @param view
 	 */
-	public CompareEditPart(View view) {
+	public RoundEditPart(View view) {
 		super(view);
 	}
 
@@ -33,7 +33,7 @@ public class CompareEditPart extends ArgumentValueBlockEditPart {
 	 */
 	@Override
 	protected String getParameterName() {
-		return CompareConstants.PARAMETER__OPERATOR;
+		return RoundConstants.PARAMETER__KIND;
 	}
 
 }

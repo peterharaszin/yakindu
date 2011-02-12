@@ -118,6 +118,12 @@
             uri="http://www.eclipselabs.org/damos/library/1.0.0/math/Sum.blocktype.dml#/">
       </blockType>
       <blockType
+            group="org.eclipselabs.damos.library.base.mathGroup"
+            qualifiedName="org.eclipselabs.damos.library.base.math.Round"
+            name="Round"
+            uri="http://www.eclipselabs.org/damos/library/1.0.0/math/Round.blocktype.dml#/">
+      </blockType>
+      <blockType
             group="org.eclipselabs.damos.library.base.signalGroup"
             qualifiedName="org.eclipselabs.damos.library.base.signal.Switch"
             name="Switch"

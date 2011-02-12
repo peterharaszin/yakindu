@@ -139,6 +139,11 @@
          </input>
       </editPart>
       <editPart
+            blockType="org.eclipselabs.damos.library.base.math.Round"
+            class="org.eclipselabs.damos.library.base.ui.math.editparts.RoundEditPart"
+            name="Round">
+      </editPart>
+      <editPart
             blockType="org.eclipselabs.damos.library.base.signal.Switch"
             class="org.eclipselabs.damos.library.base.ui.signal.editparts.SwitchEditPart"
             name="Switch">

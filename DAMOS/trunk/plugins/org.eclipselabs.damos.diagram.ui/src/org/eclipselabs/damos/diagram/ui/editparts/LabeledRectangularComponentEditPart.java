@@ -17,6 +17,8 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.BlockType;
 
 /**
  * @author Andreas Unger
@@ -53,12 +55,18 @@ public class LabeledRectangularComponentEditPart extends RectangularComponentEdi
 	}
 	
 	protected String getLabel() {
-		String label = "";
+		String label = null;
 		EObject o = ViewUtil.resolveSemanticElement((View) getModel());
-		if (o != null) {
+		if (o instanceof Block) {
+			BlockType blockType = ((Block) o).getType();
+			if (blockType != null) {
+				label = blockType.getName();
+			}
+		}
+		if (label == null && o != null) {
 			label = o.eClass().getName();
 		}
-		return label.length() == 0 ? "Block" : label;
+		return label != null ? label : "Block";
 	}
 	
 }

@@ -275,7 +275,11 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 			if (fragmentURIString.length() > 0) {
 				URI uri = URI.createURI(fragmentURIString);
 				ResourceSet rs = new ResourceSetImpl();
-				fragment = (Fragment) rs.getEObject(uri, true);
+				try {
+					fragment = (Fragment) rs.getEObject(uri, true);
+				} catch (Exception e) {
+					// If resource doesn't exist anymore, ignore fragment attribute
+				}
 			}
 			if (fragment != null) {
 				blockDiagramPathText.setText(fragment.eResource().getURI().toPlatformString(false));

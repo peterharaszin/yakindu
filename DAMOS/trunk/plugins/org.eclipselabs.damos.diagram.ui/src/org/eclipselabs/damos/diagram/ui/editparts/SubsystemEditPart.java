@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -18,16 +21,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.RequestConstants;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.ide.IDE;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.figures.SubsystemFigure;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dml.util.DMLUtil.SubsystemRealizationType;
@@ -160,16 +169,9 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 	}
 	
 	private SubsystemRealizationType getSubsystemRealizationType() {
-		EObject element = resolveSemanticElement();
-		if (element instanceof Subsystem) {
-			Subsystem subsystem = (Subsystem) element;
-			FragmentSelectionManager fragmentSelectionManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-			if (fragmentSelectionManager != null) {
-				Fragment selectedFragment = fragmentSelectionManager.getSelectedFragment();
-				if (selectedFragment != null) {
-					return DMLUtil.getSubsystemRealizationType(subsystem, selectedFragment);
-				}
-			}
+		Fragment contextualFragment = getContextualFragment();
+		if (contextualFragment != null) {
+			return DMLUtil.getSubsystemRealizationType((Subsystem) resolveSemanticElement(), contextualFragment);
 		}
 		return SubsystemRealizationType.NONE;
 	}
@@ -184,6 +186,39 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 			} else {
 				figure.setText("");
 			}
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#performRequest(org.eclipse.gef.Request)
+	 */
+	@Override
+	public void performRequest(Request request) {
+		if (RequestConstants.REQ_OPEN.equals(request.getType())) {
+			Subsystem subsystem = (Subsystem) resolveSemanticElement();
+			if (subsystem != null) {
+				Fragment contextualFragment = getContextualFragment();
+				if (contextualFragment != null) {
+					SubsystemRealization subsystemRealization = subsystem.getRealization(contextualFragment);
+					if (subsystemRealization != null) {
+						Fragment realizingFragment = subsystemRealization.getRealizingFragment();
+						if (realizingFragment != null) {
+							Resource resource = realizingFragment.eResource();
+							if (resource != null) {
+								Path path = new Path(resource.getURI().toPlatformString(true));
+								IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+								try {
+									IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file, true);
+								} catch (PartInitException e) {
+									DiagramUIPlugin.getDefault().getLog().log(e.getStatus());
+								}
+							}
+						}
+					}
+				}
+			}
+		} else {
+			super.performRequest(request);
 		}
 	}
 	
@@ -223,6 +258,17 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 			overrideImage = overrideImageDescriptor.createImage();
 		}
 		return overrideImage;
+	}
+	
+	private Fragment getContextualFragment() {
+		EObject element = resolveSemanticElement();
+		if (element instanceof Subsystem) {
+			FragmentSelectionManager fragmentSelectionManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
+			if (fragmentSelectionManager != null) {
+				return fragmentSelectionManager.getSelectedFragment();
+			}
+		}
+		return null;
 	}
 
 }

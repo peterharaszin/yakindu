@@ -148,7 +148,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 	private void writeContextStructureMember(PrintWriter writer, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
 		String name = variableDeclaration.getName();
-		DataType dataType = variableDeclaration.getType();
+		DataType dataType = variableDeclaration.getDataType();
 		if (variableDeclaration.getCircularBufferSize() > 1) {
 			int bufferSize = variableDeclaration.getCircularBufferSize();
 			writer.printf("%s[%d];\n",
@@ -282,7 +282,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
-				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getType();
+				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getDataType();
 				writer.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
@@ -297,7 +297,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
 				DataType inputDataType = getSignature().getInputDataType(inputPort);
-				DataType targetDataType = inputVariableDeclaration.getType();
+				DataType targetDataType = inputVariableDeclaration.getDataType();
 				if (!EcoreUtil.equals(inputDataType, targetDataType)) {
 					writer.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
 					MscriptGeneratorUtil.cast(mscriptGeneratorContext, variableAccessor.getInputVariable(inputPort, false), inputDataType, targetDataType);

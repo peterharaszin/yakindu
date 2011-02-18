@@ -67,7 +67,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		} else {
 			InputPort inputPort = blockInput.getPorts().get(0);
 			DataType inputDataType = signature.getInputDataType(inputPort);
-			DataType targetDataType = inputVariableDeclaration.getType();
+			DataType targetDataType = inputVariableDeclaration.getDataType();
 			if (!EcoreUtil.equals(inputDataType, targetDataType)) {
 				return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
 			}

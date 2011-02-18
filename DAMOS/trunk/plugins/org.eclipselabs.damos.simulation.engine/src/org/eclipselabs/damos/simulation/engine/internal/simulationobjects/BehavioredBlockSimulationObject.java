@@ -175,7 +175,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 
 	private void initializeArrayVariable(VariableDeclaration variableDeclaration, IVariable variable) throws CoreException {
-		DataType dataType = variableDeclaration.getType();
+		DataType dataType = variableDeclaration.getDataType();
 		if (dataType instanceof ArrayType) {
 			if (dataType instanceof TensorType) {
 				TensorType tensorType = (TensorType) dataType;

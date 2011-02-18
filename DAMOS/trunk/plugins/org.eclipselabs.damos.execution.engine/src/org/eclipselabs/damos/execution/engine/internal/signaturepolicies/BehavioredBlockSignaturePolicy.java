@@ -103,7 +103,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			}
 			
 			OutputVariableDeclaration outputVariableDeclaration = outputVariableDeclarationIterator.next();
-			DataType dataType = outputVariableDeclaration.getType();
+			DataType dataType = outputVariableDeclaration.getDataType();
 
 			if (blockOutput.getDefinition().isManyPorts() || blockOutput.getDefinition().getMinimumPortCount() == 0) {
 				if (!(dataType instanceof ArrayType)) {

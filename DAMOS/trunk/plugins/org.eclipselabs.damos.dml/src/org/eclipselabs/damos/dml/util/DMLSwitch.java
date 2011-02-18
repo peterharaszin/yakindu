@@ -25,6 +25,7 @@ import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
@@ -39,6 +40,7 @@ import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Model;
@@ -47,6 +49,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
@@ -157,10 +160,30 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.INPUT: {
-				Input input = (Input)theEObject;
-				T result = caseInput(input);
-				if (result == null) result = caseInoutput(input);
+			case DMLPackage.CONNECTION: {
+				Connection connection = (Connection)theEObject;
+				T result = caseConnection(connection);
+				if (result == null) result = caseFragmentElement(connection);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.CONNECTOR: {
+				Connector connector = (Connector)theEObject;
+				T result = caseConnector(connector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.INPUT_CONNECTOR: {
+				InputConnector inputConnector = (InputConnector)theEObject;
+				T result = caseInputConnector(inputConnector);
+				if (result == null) result = caseConnector(inputConnector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.OUTPUT_CONNECTOR: {
+				OutputConnector outputConnector = (OutputConnector)theEObject;
+				T result = caseOutputConnector(outputConnector);
+				if (result == null) result = caseConnector(outputConnector);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -170,30 +193,10 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.INPUT_PORT: {
-				InputPort inputPort = (InputPort)theEObject;
-				T result = caseInputPort(inputPort);
-				if (result == null) result = casePort(inputPort);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.PORT: {
-				Port port = (Port)theEObject;
-				T result = casePort(port);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.CONNECTION: {
-				Connection connection = (Connection)theEObject;
-				T result = caseConnection(connection);
-				if (result == null) result = caseFragmentElement(connection);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.OUTPUT_PORT: {
-				OutputPort outputPort = (OutputPort)theEObject;
-				T result = caseOutputPort(outputPort);
-				if (result == null) result = casePort(outputPort);
+			case DMLPackage.INPUT: {
+				Input input = (Input)theEObject;
+				T result = caseInput(input);
+				if (result == null) result = caseInoutput(input);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -204,9 +207,41 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLPackage.PORT: {
+				Port port = (Port)theEObject;
+				T result = casePort(port);
+				if (result == null) result = caseConnector(port);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.INPUT_PORT: {
+				InputPort inputPort = (InputPort)theEObject;
+				T result = caseInputPort(inputPort);
+				if (result == null) result = casePort(inputPort);
+				if (result == null) result = caseInputConnector(inputPort);
+				if (result == null) result = caseConnector(inputPort);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.OUTPUT_PORT: {
+				OutputPort outputPort = (OutputPort)theEObject;
+				T result = caseOutputPort(outputPort);
+				if (result == null) result = casePort(outputPort);
+				if (result == null) result = caseOutputConnector(outputPort);
+				if (result == null) result = caseConnector(outputPort);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLPackage.SIGNAL_SPECIFICATION: {
 				SignalSpecification signalSpecification = (SignalSpecification)theEObject;
 				T result = caseSignalSpecification(signalSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.BLOCK_INOUTPUT: {
+				BlockInoutput blockInoutput = (BlockInoutput)theEObject;
+				T result = caseBlockInoutput(blockInoutput);
+				if (result == null) result = caseInoutput(blockInoutput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -219,10 +254,19 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.BLOCK_INOUTPUT: {
-				BlockInoutput blockInoutput = (BlockInoutput)theEObject;
-				T result = caseBlockInoutput(blockInoutput);
-				if (result == null) result = caseInoutput(blockInoutput);
+			case DMLPackage.BLOCK_OUTPUT: {
+				BlockOutput blockOutput = (BlockOutput)theEObject;
+				T result = caseBlockOutput(blockOutput);
+				if (result == null) result = caseOutput(blockOutput);
+				if (result == null) result = caseBlockInoutput(blockOutput);
+				if (result == null) result = caseInoutput(blockOutput);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.INOUTPUT_DEFINITION: {
+				InoutputDefinition inoutputDefinition = (InoutputDefinition)theEObject;
+				T result = caseInoutputDefinition(inoutputDefinition);
+				if (result == null) result = caseParameterableElement(inoutputDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -234,10 +278,11 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.INOUTPUT_DEFINITION: {
-				InoutputDefinition inoutputDefinition = (InoutputDefinition)theEObject;
-				T result = caseInoutputDefinition(inoutputDefinition);
-				if (result == null) result = caseParameterableElement(inoutputDefinition);
+			case DMLPackage.OUTPUT_DEFINITION: {
+				OutputDefinition outputDefinition = (OutputDefinition)theEObject;
+				T result = caseOutputDefinition(outputDefinition);
+				if (result == null) result = caseInoutputDefinition(outputDefinition);
+				if (result == null) result = caseParameterableElement(outputDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -268,23 +313,6 @@ public class DMLSwitch<T> {
 			case DMLPackage.DIRECT_FEEDTHROUGH_POLICY: {
 				DirectFeedthroughPolicy directFeedthroughPolicy = (DirectFeedthroughPolicy)theEObject;
 				T result = caseDirectFeedthroughPolicy(directFeedthroughPolicy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.BLOCK_OUTPUT: {
-				BlockOutput blockOutput = (BlockOutput)theEObject;
-				T result = caseBlockOutput(blockOutput);
-				if (result == null) result = caseOutput(blockOutput);
-				if (result == null) result = caseBlockInoutput(blockOutput);
-				if (result == null) result = caseInoutput(blockOutput);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.OUTPUT_DEFINITION: {
-				OutputDefinition outputDefinition = (OutputDefinition)theEObject;
-				T result = caseOutputDefinition(outputDefinition);
-				if (result == null) result = caseInoutputDefinition(outputDefinition);
-				if (result == null) result = caseParameterableElement(outputDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -385,6 +413,7 @@ public class DMLSwitch<T> {
 				T result = caseBlockPort(blockPort);
 				if (result == null) result = caseParameterizedElement(blockPort);
 				if (result == null) result = casePort(blockPort);
+				if (result == null) result = caseConnector(blockPort);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -395,6 +424,8 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseInputPort(blockInputPort);
 				if (result == null) result = caseParameterizedElement(blockInputPort);
 				if (result == null) result = casePort(blockInputPort);
+				if (result == null) result = caseInputConnector(blockInputPort);
+				if (result == null) result = caseConnector(blockInputPort);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -404,7 +435,9 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseOutputPort(blockOutputPort);
 				if (result == null) result = caseBlockPort(blockOutputPort);
 				if (result == null) result = casePort(blockOutputPort);
+				if (result == null) result = caseOutputConnector(blockOutputPort);
 				if (result == null) result = caseParameterizedElement(blockOutputPort);
+				if (result == null) result = caseConnector(blockOutputPort);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -612,6 +645,51 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseConnection(Connection object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConnector(Connector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Input Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Input Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInputConnector(InputConnector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Output Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Output Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOutputConnector(OutputConnector object) {
 		return null;
 	}
 

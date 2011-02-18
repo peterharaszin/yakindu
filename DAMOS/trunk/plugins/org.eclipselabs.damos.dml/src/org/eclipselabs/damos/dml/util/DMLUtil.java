@@ -27,14 +27,16 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.ParameterizedElement;
-import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 
@@ -137,15 +139,15 @@ public class DMLUtil {
 		return availableName;
 	}
 	
-	public static boolean canConnectOutgoingConnection(Port port) {
-		return port instanceof OutputPort;
+	public static boolean canConnectOutgoingConnection(Connector connector) {
+		return connector instanceof OutputConnector;
 	}
 
-	public static boolean canConnectIncomingConnection(Port port, Fragment connectionContainerFragment) {
-		if (!(port instanceof InputPort)) {
+	public static boolean canConnectIncomingConnection(Connector connector, Fragment connectionContainerFragment) {
+		if (!(connector instanceof InputConnector)) {
 			return false;
 		}
-		for (Connection connection : ((InputPort) port).getIncomingConnections()) {
+		for (Connection connection : connector.getConnections()) {
 			if (areFragmentsRelated(connection.getOwningFragment(), connectionContainerFragment)) {
 				return false;
 			}
@@ -223,15 +225,25 @@ public class DMLUtil {
 		Collection<Connection> connections = new ArrayList<Connection>();
 		for (Input input : component.getInputs()) {
 			for (InputPort inputPort : input.getPorts()) {
-				connections.addAll(inputPort.getIncomingConnections());
+				connections.addAll(inputPort.getConnections());
 			}
 		}
 		for (Output output : component.getOutputs()) {
 			for (OutputPort outputPort : output.getPorts()) {
-				connections.addAll(outputPort.getOutgoingConnections());
+				connections.addAll(outputPort.getConnections());
 			}
 		}
 		return connections;
+	}
+	
+	public static Fragment findOwningFragment(EObject eObject) {
+		while (eObject != null) {
+			if (eObject instanceof Fragment) {
+				return (Fragment) eObject;
+			}
+			eObject = eObject.eContainer();
+		}
+		return null;
 	}
 
 }

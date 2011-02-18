@@ -19,10 +19,10 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.InputConnector;
+import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class ReorientConnectionCommand extends EditElementCommand {
@@ -43,19 +43,19 @@ public class ReorientConnectionCommand extends EditElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Connection connection = (Connection) getElementToEdit();
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
-			OutputPort outputPort = (OutputPort) newEnd;
+			OutputConnector outputPort = (OutputConnector) newEnd;
 			reparentConnection(connection, outputPort);
-			connection.setSourcePort(outputPort);
+			connection.setSource(outputPort);
 		} else if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
-			InputPort inputPort = (InputPort) newEnd;
+			InputConnector inputPort = (InputConnector) newEnd;
 			reparentConnection(connection, inputPort);
-			connection.setTargetPort(inputPort);
+			connection.setTarget(inputPort);
 		}
 		return CommandResult.newOKCommandResult(connection);
 	}
 	
-	private void reparentConnection(Connection connection, Port port) {
-		Fragment portFragment = port.getComponent().getOwningFragment();
+	private void reparentConnection(Connection connection, Connector port) {
+		Fragment portFragment = DMLUtil.findOwningFragment(port);
 		if (connection.getOwningFragment() != portFragment && DMLUtil.isChildFragment(portFragment, connection.getOwningFragment())) {
 			connection.getOwningFragment().getConnections().remove(connection);
 			portFragment.getConnections().add(connection);
@@ -63,32 +63,32 @@ public class ReorientConnectionCommand extends EditElementCommand {
 	}
 	
 	public boolean canExecute() {
-		if (!(newEnd instanceof Port)) {
+		if (!(newEnd instanceof Connector)) {
 			return false;
 		}
-		Port newPort = (Port) newEnd;
+		Connector newConnector = (Connector) newEnd;
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE
-				&& !canReconnectSourcePort(newPort)) {
+				&& !canReconnectSource(newConnector)) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET
-				&& !canReconnectTargetPort(newPort)) {
+				&& !canReconnectTarget(newConnector)) {
 			return false;
 		}
 		return super.canExecute();
 	}
 	
-	private boolean canReconnectSourcePort(Port newSourcePort) {
-		return DMLUtil.canConnectOutgoingConnection(newSourcePort);
+	private boolean canReconnectSource(Connector newSource) {
+		return DMLUtil.canConnectOutgoingConnection(newSource);
 	}
 
-	private boolean canReconnectTargetPort(Port newTargetPort) {
+	private boolean canReconnectTarget(Connector newTarget) {
 		Fragment connectionFragment = ((Connection) getElementToEdit()).getOwningFragment();
-		Fragment portFragment = newTargetPort.getComponent().getOwningFragment();
-		if (DMLUtil.isChildFragment(portFragment, connectionFragment)) {
-			connectionFragment = portFragment;
+		Fragment owningFragment = DMLUtil.findOwningFragment(newTarget);
+		if (DMLUtil.isChildFragment(owningFragment, connectionFragment)) {
+			connectionFragment = owningFragment;
 		}
-		return DMLUtil.canConnectIncomingConnection(newTargetPort, connectionFragment);
+		return DMLUtil.canConnectIncomingConnection(newTarget, connectionFragment);
 	}
 
 }

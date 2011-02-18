@@ -28,6 +28,7 @@ import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
@@ -43,6 +44,7 @@ import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Model;
@@ -51,6 +53,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
@@ -117,6 +120,27 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass connectionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass connectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass inputConnectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass outputConnectorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -666,7 +690,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnection_SourcePort() {
+	public EReference getConnection_Source() {
 		return (EReference)connectionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -675,8 +699,53 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnection_TargetPort() {
+	public EReference getConnection_Target() {
 		return (EReference)connectionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConnection_SourcePort() {
+		return (EReference)connectionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConnection_TargetPort() {
+		return (EReference)connectionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConnector() {
+		return connectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getInputConnector() {
+		return inputConnectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOutputConnector() {
+		return outputConnectorEClass;
 	}
 
 	/**
@@ -1566,6 +1635,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("deprecation")
 	public void createPackageContents() {
 		if (isCreated) return;
 		isCreated = true;
@@ -1586,38 +1656,46 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		fragmentElementEClass = createEClass(FRAGMENT_ELEMENT);
 		createEReference(fragmentElementEClass, FRAGMENT_ELEMENT__OWNING_FRAGMENT);
 
-		inputEClass = createEClass(INPUT);
-		createEReference(inputEClass, INPUT__PORTS);
-		createEReference(inputEClass, INPUT__COMPONENT);
-
-		inoutputEClass = createEClass(INOUTPUT);
-
-		inputPortEClass = createEClass(INPUT_PORT);
-		createEReference(inputPortEClass, INPUT_PORT__INPUT);
-
-		portEClass = createEClass(PORT);
-
 		connectionEClass = createEClass(CONNECTION);
+		createEReference(connectionEClass, CONNECTION__SOURCE);
+		createEReference(connectionEClass, CONNECTION__TARGET);
 		createEReference(connectionEClass, CONNECTION__SOURCE_PORT);
 		createEReference(connectionEClass, CONNECTION__TARGET_PORT);
 
-		outputPortEClass = createEClass(OUTPUT_PORT);
-		createEReference(outputPortEClass, OUTPUT_PORT__OUTPUT);
-		createEReference(outputPortEClass, OUTPUT_PORT__SIGNAL);
+		connectorEClass = createEClass(CONNECTOR);
+
+		inputConnectorEClass = createEClass(INPUT_CONNECTOR);
+
+		outputConnectorEClass = createEClass(OUTPUT_CONNECTOR);
+
+		inoutputEClass = createEClass(INOUTPUT);
+
+		inputEClass = createEClass(INPUT);
+		createEReference(inputEClass, INPUT__PORTS);
+		createEReference(inputEClass, INPUT__COMPONENT);
 
 		outputEClass = createEClass(OUTPUT);
 		createEReference(outputEClass, OUTPUT__COMPONENT);
 		createEReference(outputEClass, OUTPUT__PORTS);
 
+		portEClass = createEClass(PORT);
+
+		inputPortEClass = createEClass(INPUT_PORT);
+		createEReference(inputPortEClass, INPUT_PORT__INPUT);
+
+		outputPortEClass = createEClass(OUTPUT_PORT);
+		createEReference(outputPortEClass, OUTPUT_PORT__OUTPUT);
+		createEReference(outputPortEClass, OUTPUT_PORT__SIGNAL);
+
 		signalSpecificationEClass = createEClass(SIGNAL_SPECIFICATION);
+
+		blockInoutputEClass = createEClass(BLOCK_INOUTPUT);
 
 		blockInputEClass = createEClass(BLOCK_INPUT);
 		createEReference(blockInputEClass, BLOCK_INPUT__DEFINITION);
 
-		blockInoutputEClass = createEClass(BLOCK_INOUTPUT);
-
-		inputDefinitionEClass = createEClass(INPUT_DEFINITION);
-		createEReference(inputDefinitionEClass, INPUT_DEFINITION__DIRECT_FEEDTHROUGH_POLICY);
+		blockOutputEClass = createEClass(BLOCK_OUTPUT);
+		createEReference(blockOutputEClass, BLOCK_OUTPUT__DEFINITION);
 
 		inoutputDefinitionEClass = createEClass(INOUTPUT_DEFINITION);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MINIMUM_PORT_COUNT);
@@ -1626,6 +1704,11 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MANY_PORTS);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__NAME);
 		createEReference(inoutputDefinitionEClass, INOUTPUT_DEFINITION__DATA_TYPE);
+
+		inputDefinitionEClass = createEClass(INPUT_DEFINITION);
+		createEReference(inputDefinitionEClass, INPUT_DEFINITION__DIRECT_FEEDTHROUGH_POLICY);
+
+		outputDefinitionEClass = createEClass(OUTPUT_DEFINITION);
 
 		parameterableElementEClass = createEClass(PARAMETERABLE_ELEMENT);
 		createEReference(parameterableElementEClass, PARAMETERABLE_ELEMENT__PARAMETERS);
@@ -1639,11 +1722,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		directFeedthroughPolicyEClass = createEClass(DIRECT_FEEDTHROUGH_POLICY);
 		createEReference(directFeedthroughPolicyEClass, DIRECT_FEEDTHROUGH_POLICY__INPUT_DEFINITION);
-
-		blockOutputEClass = createEClass(BLOCK_OUTPUT);
-		createEReference(blockOutputEClass, BLOCK_OUTPUT__DEFINITION);
-
-		outputDefinitionEClass = createEClass(OUTPUT_DEFINITION);
 
 		parameterizedElementEClass = createEClass(PARAMETERIZED_ELEMENT);
 		createEReference(parameterizedElementEClass, PARAMETERIZED_ELEMENT__ARGUMENTS);
@@ -1768,18 +1846,23 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Add supertypes to classes
 		componentEClass.getESuperTypes().add(this.getFragmentElement());
-		inputEClass.getESuperTypes().add(this.getInoutput());
-		inputPortEClass.getESuperTypes().add(this.getPort());
 		connectionEClass.getESuperTypes().add(this.getFragmentElement());
-		outputPortEClass.getESuperTypes().add(this.getPort());
+		inputConnectorEClass.getESuperTypes().add(this.getConnector());
+		outputConnectorEClass.getESuperTypes().add(this.getConnector());
+		inputEClass.getESuperTypes().add(this.getInoutput());
 		outputEClass.getESuperTypes().add(this.getInoutput());
+		portEClass.getESuperTypes().add(this.getConnector());
+		inputPortEClass.getESuperTypes().add(this.getPort());
+		inputPortEClass.getESuperTypes().add(this.getInputConnector());
+		outputPortEClass.getESuperTypes().add(this.getPort());
+		outputPortEClass.getESuperTypes().add(this.getOutputConnector());
+		blockInoutputEClass.getESuperTypes().add(this.getInoutput());
 		blockInputEClass.getESuperTypes().add(this.getInput());
 		blockInputEClass.getESuperTypes().add(this.getBlockInoutput());
-		blockInoutputEClass.getESuperTypes().add(this.getInoutput());
-		inputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
-		inoutputDefinitionEClass.getESuperTypes().add(this.getParameterableElement());
 		blockOutputEClass.getESuperTypes().add(this.getOutput());
 		blockOutputEClass.getESuperTypes().add(this.getBlockInoutput());
+		inoutputDefinitionEClass.getESuperTypes().add(this.getParameterableElement());
+		inputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		outputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		expressionParameterEClass.getESuperTypes().add(this.getParameter());
 		expressionSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
@@ -1853,21 +1936,37 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(fragmentElementEClass, FragmentElement.class, "FragmentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFragmentElement_OwningFragment(), this.getFragment(), this.getFragment_FragmentElements(), "owningFragment", null, 1, 1, FragmentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConnection_Source(), this.getOutputConnector(), null, "source", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnection_Target(), this.getInputConnector(), null, "target", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnection_SourcePort(), this.getOutputPort(), null, "sourcePort", null, 0, 1, Connection.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEReference(getConnection_TargetPort(), this.getInputPort(), null, "targetPort", null, 0, 1, Connection.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+
+		initEClass(connectorEClass, Connector.class, "Connector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(connectorEClass, this.getConnection(), "getConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		EOperation op = addEOperation(connectorEClass, this.getConnection(), "getConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFragment(), "context", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(connectorEClass, this.getConnection(), "getFirstConnection", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFragment(), "context", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(inputConnectorEClass, InputConnector.class, "InputConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(outputConnectorEClass, OutputConnector.class, "OutputConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(inoutputEClass, Inoutput.class, "Inoutput", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInput_Ports(), this.getInputPort(), this.getInputPort_Input(), "ports", null, 0, -1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInput_Component(), this.getComponent(), this.getComponent_Inputs(), "component", null, 1, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		addEOperation(inputEClass, ecorePackage.getEBoolean(), "isDirectFeedthrough", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(inoutputEClass, Inoutput.class, "Inoutput", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(inputPortEClass, InputPort.class, "InputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInputPort_Input(), this.getInput(), this.getInput_Ports(), "input", null, 1, 1, InputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		addEOperation(inputPortEClass, this.getConnection(), "getIncomingConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
-
-		EOperation op = addEOperation(inputPortEClass, this.getConnection(), "getIncomingConnection", 0, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getFragment(), "context", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		initEClass(outputEClass, Output.class, "Output", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOutput_Component(), this.getComponent(), this.getComponent_Outputs(), "component", null, 1, 1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getOutput_Ports(), this.getOutputPort(), this.getOutputPort_Output(), "ports", null, 0, -1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(portEClass, Port.class, "Port", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1875,9 +1974,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		addEOperation(portEClass, this.getComponent(), "getComponent", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConnection_SourcePort(), this.getOutputPort(), null, "sourcePort", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConnection_TargetPort(), this.getInputPort(), null, "targetPort", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(inputPortEClass, InputPort.class, "InputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInputPort_Input(), this.getInput(), this.getInput_Ports(), "input", null, 1, 1, InputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		addEOperation(inputPortEClass, this.getConnection(), "getIncomingConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(inputPortEClass, this.getConnection(), "getIncomingConnection", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, this.getFragment(), "context", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(outputPortEClass, OutputPort.class, "OutputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOutputPort_Output(), this.getOutput(), this.getOutput_Ports(), "output", null, 1, 1, OutputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1888,19 +1991,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		op = addEOperation(outputPortEClass, this.getConnection(), "getOutgoingConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getFragment(), "context", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(outputEClass, Output.class, "Output", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOutput_Component(), this.getComponent(), this.getComponent_Outputs(), "component", null, 1, 1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getOutput_Ports(), this.getOutputPort(), this.getOutputPort_Output(), "ports", null, 0, -1, Output.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(signalSpecificationEClass, SignalSpecification.class, "SignalSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(blockInoutputEClass, BlockInoutput.class, "BlockInoutput", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(blockInputEClass, BlockInput.class, "BlockInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockInput_Definition(), this.getInputDefinition(), null, "definition", null, 1, 1, BlockInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(blockInoutputEClass, BlockInoutput.class, "BlockInoutput", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(inputDefinitionEClass, InputDefinition.class, "InputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInputDefinition_DirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy_InputDefinition(), "directFeedthroughPolicy", null, 1, 1, InputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEClass(blockOutputEClass, BlockOutput.class, "BlockOutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getBlockOutput_Definition(), this.getOutputDefinition(), null, "definition", null, 1, 1, BlockOutput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(inoutputDefinitionEClass, InoutputDefinition.class, "InoutputDefinition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInoutputDefinition_MinimumPortCount(), ecorePackage.getEInt(), "minimumPortCount", "1", 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -1909,6 +2008,11 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEAttribute(getInoutputDefinition_ManyPorts(), ecorePackage.getEBoolean(), "manyPorts", null, 1, 1, InoutputDefinition.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_Name(), ecorePackage.getEString(), "name", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getInoutputDefinition_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(inputDefinitionEClass, InputDefinition.class, "InputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getInputDefinition_DirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy_InputDefinition(), "directFeedthroughPolicy", null, 1, 1, InputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(outputDefinitionEClass, OutputDefinition.class, "OutputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(parameterableElementEClass, ParameterableElement.class, "ParameterableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParameterableElement_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, ParameterableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1931,11 +2035,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getDirectFeedthroughPolicy_InputDefinition(), this.getInputDefinition(), this.getInputDefinition_DirectFeedthroughPolicy(), "inputDefinition", null, 1, 1, DirectFeedthroughPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		addEOperation(directFeedthroughPolicyEClass, ecorePackage.getEBoolean(), "computeDirectFeedthrough", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEClass(blockOutputEClass, BlockOutput.class, "BlockOutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getBlockOutput_Definition(), this.getOutputDefinition(), null, "definition", null, 1, 1, BlockOutput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(outputDefinitionEClass, OutputDefinition.class, "OutputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(parameterizedElementEClass, ParameterizedElement.class, "ParameterizedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getParameterizedElement_Arguments(), this.getArgument(), null, "arguments", null, 0, -1, ParameterizedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

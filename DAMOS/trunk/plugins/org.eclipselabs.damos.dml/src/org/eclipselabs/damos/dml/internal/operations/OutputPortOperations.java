@@ -44,7 +44,7 @@ public class OutputPortOperations extends PortOperations {
 	 * @generated NOT
 	 */
 	public static  EList<Connection> getOutgoingConnections(OutputPort outputPort) {
-		return getConnections(outputPort, DMLPackage.Literals.CONNECTION__SOURCE_PORT);
+		return getConnections(outputPort, DMLPackage.eINSTANCE.getConnection_Source());
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class OutputPortOperations extends PortOperations {
 
 		do {
 			for (Connection connection : context.getConnections()) {
-				if (connection.getSourcePort() == outputPort) {
+				if (connection.getSource() == outputPort) {
 					connections.add(connection);
 				}
 			}

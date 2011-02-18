@@ -43,7 +43,7 @@ public class InputPortOperations extends PortOperations {
 	 * @generated NOT
 	 */
 	public static  EList<Connection> getIncomingConnections(InputPort inputPort) {
-		return getConnections(inputPort, DMLPackage.Literals.CONNECTION__TARGET_PORT);
+		return getConnections(inputPort, DMLPackage.eINSTANCE.getConnection_Target());
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class InputPortOperations extends PortOperations {
 	public static  Connection getIncomingConnection(InputPort inputPort, Fragment context) {
 		do {
 			for (Connection connection : context.getConnections()) {
-				if (connection.getTargetPort() == inputPort) {
+				if (connection.getTarget() == inputPort) {
 					return connection;
 				}
 			}

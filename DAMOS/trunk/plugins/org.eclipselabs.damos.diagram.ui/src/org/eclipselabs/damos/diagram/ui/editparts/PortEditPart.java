@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
@@ -228,7 +229,13 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 		}
 	}
 	
-	protected abstract List<Connection> getConnections();
+	protected List<Connection> getConnections() {
+		Port port = (Port) resolveSemanticElement();
+		if (port != null) {
+			return port.getConnections();
+		}
+		return Collections.emptyList();
+	}
 	
 	@SuppressWarnings("unchecked")
 	protected void addTerminalFigure() {

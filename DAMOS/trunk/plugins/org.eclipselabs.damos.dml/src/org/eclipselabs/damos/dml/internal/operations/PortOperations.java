@@ -69,8 +69,8 @@ public class PortOperations {
 		EList<Connection> connections = new UniqueEList.FastCompare<Connection>();
 		for (EStructuralFeature.Setting nonNavigableInverseReference : CrossReferencerUtil.getNonNavigableInverseReferences(eObject)) {
 			if ((reference == null && (
-					nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.Literals.CONNECTION__SOURCE_PORT ||
-					nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.Literals.CONNECTION__TARGET_PORT))
+					nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.eINSTANCE.getConnection_Source() ||
+					nonNavigableInverseReference.getEStructuralFeature() == DMLPackage.eINSTANCE.getConnection_Target()))
 					|| nonNavigableInverseReference.getEStructuralFeature() == reference) {
 				EObject referenceEObject = nonNavigableInverseReference.getEObject();
 				if (referenceEObject instanceof Connection && referenceEObject.eContainer() != null) {

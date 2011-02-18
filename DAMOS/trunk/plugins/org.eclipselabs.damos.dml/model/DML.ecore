@@ -44,6 +44,28 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFragment" ordered="false"
         lowerBound="1" eType="#//Fragment" eOpposite="#//Fragment/fragmentElements"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connection" eSuperTypes="#//FragmentElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
+        lowerBound="1" eType="#//OutputConnector"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
+        lowerBound="1" eType="#//InputConnector"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePort" ordered="false"
+        eType="#//OutputPort" volatile="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPort" ordered="false"
+        eType="#//InputPort" volatile="true" derived="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true">
+    <eOperations name="getConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
+    <eOperations name="getConnections" ordered="false" upperBound="-1" eType="#//Connection">
+      <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
+    </eOperations>
+    <eOperations name="getFirstConnection" ordered="false" eType="#//Connection">
+      <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputConnector" abstract="true" eSuperTypes="#//Connector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputConnector" abstract="true" eSuperTypes="#//Connector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inoutput" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Input" eSuperTypes="#//Inoutput">
     <eOperations name="isDirectFeedthrough" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
@@ -51,8 +73,17 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
         lowerBound="1" eType="#//Component" eOpposite="#//Component/inputs"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Inoutput" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InputPort" eSuperTypes="#//Port">
+  <eClassifiers xsi:type="ecore:EClass" name="Output" eSuperTypes="#//Inoutput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
+        lowerBound="1" eType="#//Component" eOpposite="#//Component/outputs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
+        eType="#//OutputPort" containment="true" eOpposite="#//OutputPort/output"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Port" abstract="true" eSuperTypes="#//Connector">
+    <eOperations name="getIndex" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eOperations name="getComponent" ordered="false" lowerBound="1" eType="#//Component"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputPort" eSuperTypes="#//Port #//InputConnector">
     <eOperations name="getIncomingConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
     <eOperations name="getIncomingConnection" ordered="false" eType="#//Connection">
       <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
@@ -60,17 +91,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="input" ordered="false"
         lowerBound="1" eType="#//Input" eOpposite="#//Input/ports"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Port" abstract="true">
-    <eOperations name="getIndex" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eOperations name="getComponent" ordered="false" lowerBound="1" eType="#//Component"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Connection" eSuperTypes="#//FragmentElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePort" ordered="false"
-        lowerBound="1" eType="#//OutputPort"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPort" ordered="false"
-        lowerBound="1" eType="#//InputPort"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OutputPort" eSuperTypes="#//Port">
+  <eClassifiers xsi:type="ecore:EClass" name="OutputPort" eSuperTypes="#//Port #//OutputConnector">
     <eOperations name="getOutgoingConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
     <eOperations name="getOutgoingConnections" ordered="false" upperBound="-1" eType="#//Connection">
       <eParameters name="context" ordered="false" lowerBound="1" eType="#//Fragment"/>
@@ -80,22 +101,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="signal" ordered="false"
         eType="#//SignalSpecification" unsettable="true" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Output" eSuperTypes="#//Inoutput">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="component" ordered="false"
-        lowerBound="1" eType="#//Component" eOpposite="#//Component/outputs"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
-        eType="#//OutputPort" containment="true" eOpposite="#//OutputPort/output"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SignalSpecification" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockInoutput" abstract="true" eSuperTypes="#//Inoutput"/>
   <eClassifiers xsi:type="ecore:EClass" name="BlockInput" eSuperTypes="#//Input #//BlockInoutput">
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
         lowerBound="1" eType="#//InputDefinition"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BlockInoutput" abstract="true" eSuperTypes="#//Inoutput"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InputDefinition" eSuperTypes="#//InoutputDefinition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="directFeedthroughPolicy"
-        ordered="false" lowerBound="1" eType="#//DirectFeedthroughPolicy" containment="true"
-        eOpposite="#//DirectFeedthroughPolicy/inputDefinition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockOutput" eSuperTypes="#//Output #//BlockInoutput">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
+        lowerBound="1" eType="#//OutputDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InoutputDefinition" abstract="true"
       eSuperTypes="#//ParameterableElement">
@@ -116,6 +130,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
         eType="#//DataTypeSpecification" unsettable="true" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputDefinition" eSuperTypes="#//InoutputDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="directFeedthroughPolicy"
+        ordered="false" lowerBound="1" eType="#//DirectFeedthroughPolicy" containment="true"
+        eOpposite="#//DirectFeedthroughPolicy/inputDefinition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputDefinition" eSuperTypes="#//InoutputDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterableElement" abstract="true">
     <eOperations name="getParameter" ordered="false" eType="#//Parameter">
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -137,11 +157,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputDefinition" ordered="false"
         lowerBound="1" eType="#//InputDefinition" eOpposite="#//InputDefinition/directFeedthroughPolicy"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BlockOutput" eSuperTypes="#//Output #//BlockInoutput">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
-        lowerBound="1" eType="#//OutputDefinition"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OutputDefinition" eSuperTypes="#//InoutputDefinition"/>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterizedElement" abstract="true">
     <eOperations name="getArgument" ordered="false" eType="#//Argument">
       <eParameters name="parameterName" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

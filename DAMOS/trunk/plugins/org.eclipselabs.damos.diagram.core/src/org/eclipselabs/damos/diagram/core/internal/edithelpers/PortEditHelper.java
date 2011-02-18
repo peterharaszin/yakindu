@@ -23,8 +23,8 @@ import org.eclipselabs.damos.dml.DMLPackage;
 public class PortEditHelper extends AbstractEditHelper {
 
 	private static final EReference[] CONNECTION_PORT_REFERENCES = new EReference[] {
-		DMLPackage.eINSTANCE.getConnection_SourcePort(),
-		DMLPackage.eINSTANCE.getConnection_TargetPort(),
+		DMLPackage.eINSTANCE.getConnection_Source(),
+		DMLPackage.eINSTANCE.getConnection_Target(),
 	};
 	
 	/* (non-Javadoc)

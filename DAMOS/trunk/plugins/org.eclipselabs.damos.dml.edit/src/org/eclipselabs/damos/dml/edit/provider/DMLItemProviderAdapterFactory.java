@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipselabs.damos.dml.util.DMLAdapterFactory;
 
 /**
@@ -957,14 +955,14 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	 */
 	public void dispose() {
 		if (fragmentItemProvider != null) fragmentItemProvider.dispose();
-		if (inputItemProvider != null) inputItemProvider.dispose();
-		if (inputPortItemProvider != null) inputPortItemProvider.dispose();
 		if (connectionItemProvider != null) connectionItemProvider.dispose();
-		if (outputPortItemProvider != null) outputPortItemProvider.dispose();
+		if (inputItemProvider != null) inputItemProvider.dispose();
 		if (outputItemProvider != null) outputItemProvider.dispose();
+		if (inputPortItemProvider != null) inputPortItemProvider.dispose();
+		if (outputPortItemProvider != null) outputPortItemProvider.dispose();
 		if (blockInputItemProvider != null) blockInputItemProvider.dispose();
-		if (inputDefinitionItemProvider != null) inputDefinitionItemProvider.dispose();
 		if (blockOutputItemProvider != null) blockOutputItemProvider.dispose();
+		if (inputDefinitionItemProvider != null) inputDefinitionItemProvider.dispose();
 		if (outputDefinitionItemProvider != null) outputDefinitionItemProvider.dispose();
 		if (argumentItemProvider != null) argumentItemProvider.dispose();
 		if (expressionParameterItemProvider != null) expressionParameterItemProvider.dispose();

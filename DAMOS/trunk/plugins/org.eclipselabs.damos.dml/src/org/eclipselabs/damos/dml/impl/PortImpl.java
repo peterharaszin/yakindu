@@ -7,7 +7,6 @@
 package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Port;
@@ -22,7 +21,7 @@ import org.eclipselabs.damos.dml.internal.operations.PortOperations;
  *
  * @generated
  */
-public abstract class PortImpl extends EObjectImpl implements Port {
+public abstract class PortImpl extends ConnectorImpl implements Port {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

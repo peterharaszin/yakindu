@@ -18,6 +18,7 @@ import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.internal.operations.InputPortOperations;
 
@@ -222,6 +223,11 @@ public class BlockInputPortImpl extends BlockPortImpl implements BlockInputPort 
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == InputConnector.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == InputPort.class) {
 			switch (derivedFeatureID) {
 				case DMLPackage.BLOCK_INPUT_PORT__INPUT: return DMLPackage.INPUT_PORT__INPUT;
@@ -238,6 +244,11 @@ public class BlockInputPortImpl extends BlockPortImpl implements BlockInputPort 
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == InputConnector.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == InputPort.class) {
 			switch (baseFeatureID) {
 				case DMLPackage.INPUT_PORT__INPUT: return DMLPackage.BLOCK_INPUT_PORT__INPUT;

@@ -35,6 +35,7 @@ import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DMLPlugin;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
@@ -50,6 +51,7 @@ import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Model;
@@ -58,6 +60,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
@@ -155,30 +158,40 @@ public class DMLValidator extends EObjectValidator {
 				return validateComponent((Component)value, diagnostics, context);
 			case DMLPackage.FRAGMENT_ELEMENT:
 				return validateFragmentElement((FragmentElement)value, diagnostics, context);
-			case DMLPackage.INPUT:
-				return validateInput((Input)value, diagnostics, context);
-			case DMLPackage.INOUTPUT:
-				return validateInoutput((Inoutput)value, diagnostics, context);
-			case DMLPackage.INPUT_PORT:
-				return validateInputPort((InputPort)value, diagnostics, context);
-			case DMLPackage.PORT:
-				return validatePort((Port)value, diagnostics, context);
 			case DMLPackage.CONNECTION:
 				return validateConnection((Connection)value, diagnostics, context);
-			case DMLPackage.OUTPUT_PORT:
-				return validateOutputPort((OutputPort)value, diagnostics, context);
+			case DMLPackage.CONNECTOR:
+				return validateConnector((Connector)value, diagnostics, context);
+			case DMLPackage.INPUT_CONNECTOR:
+				return validateInputConnector((InputConnector)value, diagnostics, context);
+			case DMLPackage.OUTPUT_CONNECTOR:
+				return validateOutputConnector((OutputConnector)value, diagnostics, context);
+			case DMLPackage.INOUTPUT:
+				return validateInoutput((Inoutput)value, diagnostics, context);
+			case DMLPackage.INPUT:
+				return validateInput((Input)value, diagnostics, context);
 			case DMLPackage.OUTPUT:
 				return validateOutput((Output)value, diagnostics, context);
+			case DMLPackage.PORT:
+				return validatePort((Port)value, diagnostics, context);
+			case DMLPackage.INPUT_PORT:
+				return validateInputPort((InputPort)value, diagnostics, context);
+			case DMLPackage.OUTPUT_PORT:
+				return validateOutputPort((OutputPort)value, diagnostics, context);
 			case DMLPackage.SIGNAL_SPECIFICATION:
 				return validateSignalSpecification((SignalSpecification)value, diagnostics, context);
-			case DMLPackage.BLOCK_INPUT:
-				return validateBlockInput((BlockInput)value, diagnostics, context);
 			case DMLPackage.BLOCK_INOUTPUT:
 				return validateBlockInoutput((BlockInoutput)value, diagnostics, context);
-			case DMLPackage.INPUT_DEFINITION:
-				return validateInputDefinition((InputDefinition)value, diagnostics, context);
+			case DMLPackage.BLOCK_INPUT:
+				return validateBlockInput((BlockInput)value, diagnostics, context);
+			case DMLPackage.BLOCK_OUTPUT:
+				return validateBlockOutput((BlockOutput)value, diagnostics, context);
 			case DMLPackage.INOUTPUT_DEFINITION:
 				return validateInoutputDefinition((InoutputDefinition)value, diagnostics, context);
+			case DMLPackage.INPUT_DEFINITION:
+				return validateInputDefinition((InputDefinition)value, diagnostics, context);
+			case DMLPackage.OUTPUT_DEFINITION:
+				return validateOutputDefinition((OutputDefinition)value, diagnostics, context);
 			case DMLPackage.PARAMETERABLE_ELEMENT:
 				return validateParameterableElement((ParameterableElement)value, diagnostics, context);
 			case DMLPackage.PARAMETER:
@@ -189,10 +202,6 @@ public class DMLValidator extends EObjectValidator {
 				return validateDataTypeSpecification((DataTypeSpecification)value, diagnostics, context);
 			case DMLPackage.DIRECT_FEEDTHROUGH_POLICY:
 				return validateDirectFeedthroughPolicy((DirectFeedthroughPolicy)value, diagnostics, context);
-			case DMLPackage.BLOCK_OUTPUT:
-				return validateBlockOutput((BlockOutput)value, diagnostics, context);
-			case DMLPackage.OUTPUT_DEFINITION:
-				return validateOutputDefinition((OutputDefinition)value, diagnostics, context);
 			case DMLPackage.PARAMETERIZED_ELEMENT:
 				return validateParameterizedElement((ParameterizedElement)value, diagnostics, context);
 			case DMLPackage.ARGUMENT:
@@ -447,6 +456,33 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateConnection(Connection connection, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(connection, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConnector(Connector connector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(connector, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateInputConnector(InputConnector inputConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(inputConnector, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOutputConnector(OutputConnector outputConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(outputConnector, diagnostics, context);
 	}
 
 	/**

@@ -131,7 +131,7 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 	
 	private boolean validateInputPorts(Component component, Collection<FragmentElement> elements, Fragment destinationFragment) {
 		for (InputPort port : component.getInputPorts()) {
-			List<Connection> allIncomingConnections = port.getIncomingConnections();
+			List<Connection> allIncomingConnections = port.getConnections();
 			if (allIncomingConnections.size() > 1) {
 				Set<Fragment> fragments = new HashSet<Fragment>();
 				for (Connection connection : allIncomingConnections) {

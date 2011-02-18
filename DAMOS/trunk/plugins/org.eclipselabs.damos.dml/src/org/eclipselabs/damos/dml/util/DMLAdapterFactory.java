@@ -25,6 +25,7 @@ import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
@@ -39,6 +40,7 @@ import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Model;
@@ -47,6 +49,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
@@ -133,52 +136,72 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createFragmentElementAdapter();
 			}
 			@Override
-			public Adapter caseInput(Input object) {
-				return createInputAdapter();
+			public Adapter caseConnection(Connection object) {
+				return createConnectionAdapter();
+			}
+			@Override
+			public Adapter caseConnector(Connector object) {
+				return createConnectorAdapter();
+			}
+			@Override
+			public Adapter caseInputConnector(InputConnector object) {
+				return createInputConnectorAdapter();
+			}
+			@Override
+			public Adapter caseOutputConnector(OutputConnector object) {
+				return createOutputConnectorAdapter();
 			}
 			@Override
 			public Adapter caseInoutput(Inoutput object) {
 				return createInoutputAdapter();
 			}
 			@Override
-			public Adapter caseInputPort(InputPort object) {
-				return createInputPortAdapter();
-			}
-			@Override
-			public Adapter casePort(Port object) {
-				return createPortAdapter();
-			}
-			@Override
-			public Adapter caseConnection(Connection object) {
-				return createConnectionAdapter();
-			}
-			@Override
-			public Adapter caseOutputPort(OutputPort object) {
-				return createOutputPortAdapter();
+			public Adapter caseInput(Input object) {
+				return createInputAdapter();
 			}
 			@Override
 			public Adapter caseOutput(Output object) {
 				return createOutputAdapter();
 			}
 			@Override
-			public Adapter caseSignalSpecification(SignalSpecification object) {
-				return createSignalSpecificationAdapter();
+			public Adapter casePort(Port object) {
+				return createPortAdapter();
 			}
 			@Override
-			public Adapter caseBlockInput(BlockInput object) {
-				return createBlockInputAdapter();
+			public Adapter caseInputPort(InputPort object) {
+				return createInputPortAdapter();
+			}
+			@Override
+			public Adapter caseOutputPort(OutputPort object) {
+				return createOutputPortAdapter();
+			}
+			@Override
+			public Adapter caseSignalSpecification(SignalSpecification object) {
+				return createSignalSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseBlockInoutput(BlockInoutput object) {
 				return createBlockInoutputAdapter();
 			}
 			@Override
-			public Adapter caseInputDefinition(InputDefinition object) {
-				return createInputDefinitionAdapter();
+			public Adapter caseBlockInput(BlockInput object) {
+				return createBlockInputAdapter();
+			}
+			@Override
+			public Adapter caseBlockOutput(BlockOutput object) {
+				return createBlockOutputAdapter();
 			}
 			@Override
 			public Adapter caseInoutputDefinition(InoutputDefinition object) {
 				return createInoutputDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseInputDefinition(InputDefinition object) {
+				return createInputDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseOutputDefinition(OutputDefinition object) {
+				return createOutputDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseParameterableElement(ParameterableElement object) {
@@ -199,14 +222,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDirectFeedthroughPolicy(DirectFeedthroughPolicy object) {
 				return createDirectFeedthroughPolicyAdapter();
-			}
-			@Override
-			public Adapter caseBlockOutput(BlockOutput object) {
-				return createBlockOutputAdapter();
-			}
-			@Override
-			public Adapter caseOutputDefinition(OutputDefinition object) {
-				return createOutputDefinitionAdapter();
 			}
 			@Override
 			public Adapter caseParameterizedElement(ParameterizedElement object) {
@@ -433,6 +448,48 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConnectionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Connector <em>Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.Connector
+	 * @generated
+	 */
+	public Adapter createConnectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.InputConnector <em>Input Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.InputConnector
+	 * @generated
+	 */
+	public Adapter createInputConnectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.OutputConnector <em>Output Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.OutputConnector
+	 * @generated
+	 */
+	public Adapter createOutputConnectorAdapter() {
 		return null;
 	}
 

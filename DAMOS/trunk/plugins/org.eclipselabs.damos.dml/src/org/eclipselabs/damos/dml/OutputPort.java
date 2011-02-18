@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface OutputPort extends Port {
+public interface OutputPort extends Port, OutputConnector {
 	/**
 	 * Returns the value of the '<em><b>Output</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.dml.Output#getPorts <em>Ports</em>}'.
@@ -113,6 +113,7 @@ public interface OutputPort extends Port {
 	 * @model kind="operation" ordered="false"
 	 * @generated
 	 */
+	@Deprecated
 	EList<Connection> getOutgoingConnections();
 
 	/**
@@ -121,6 +122,7 @@ public interface OutputPort extends Port {
 	 * @model ordered="false" contextRequired="true" contextOrdered="false"
 	 * @generated
 	 */
+	@Deprecated
 	EList<Connection> getOutgoingConnections(Fragment context);
 
 } // OutputPort

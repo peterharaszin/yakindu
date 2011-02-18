@@ -140,7 +140,7 @@ public class ComponentSignatureResolver {
 	private Map<InputPort, DataType> getIncomingDataTypes(Fragment fragment, Component component, Map<Component, IComponentSignature> signatures) {
 		Map<InputPort, DataType> incomingDataTypes = new HashMap<InputPort, DataType>();
 		for (InputPort inputPort : component.getInputPorts()) {
-			Connection connection = inputPort.getIncomingConnection(fragment);
+			Connection connection = inputPort.getFirstConnection(fragment);
 			if (connection != null) {
 				OutputPort sourcePort = connection.getSourcePort();
 				IComponentSignature signature = signatures.get(sourcePort.getComponent());

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class FlattenerHelper {
 
 	private ExecutionGraph graph;
 	
-	private Map<Component, Node> nodes = new HashMap<Component, Node>();
+	private Map<Component, Node> nodes = new LinkedHashMap<Component, Node>();
 	private Map<Subsystem, SubsystemMapping> subsystemMappings = new HashMap<Subsystem, SubsystemMapping>();
 
 	/**
@@ -122,7 +123,7 @@ public class FlattenerHelper {
 						Inport inport = inports.get(subsystemInput.getInlet().getName());
 						if (inport != null) {
 							List<InputPort> inputPorts = new ArrayList<InputPort>();
-							for (Connection connection : inport.getFirstOutputPort().getOutgoingConnections(realizingFragment)) {
+							for (Connection connection : inport.getFirstOutputPort().getConnections(realizingFragment)) {
 								inputPorts.add(connection.getTargetPort());
 							}
 							subsystemMapping.getInputs().put(subsystemInput, inputPorts);
@@ -136,7 +137,7 @@ public class FlattenerHelper {
 						SubsystemOutput subsystemOutput = (SubsystemOutput) output;
 						Outport outport = outports.get(subsystemOutput.getOutlet().getName());
 						if (outport != null) {
-							subsystemMapping.getOutputs().put(subsystemOutput, outport.getFirstInputPort().getIncomingConnection(realizingFragment).getSourcePort());
+							subsystemMapping.getOutputs().put(subsystemOutput, outport.getFirstInputPort().getFirstConnection(realizingFragment).getSourcePort());
 						}
 					}
 				}

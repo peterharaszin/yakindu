@@ -214,7 +214,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPort()
 	 * @generated
 	 */
-	int PORT = 6;
+	int PORT = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InputPortImpl <em>Input Port</em>}' class.
@@ -224,7 +224,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInputPort()
 	 * @generated
 	 */
-	int INPUT_PORT = 5;
+	int INPUT_PORT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConnectionImpl <em>Connection</em>}' class.
@@ -234,7 +234,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConnection()
 	 * @generated
 	 */
-	int CONNECTION = 7;
+	int CONNECTION = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutputPortImpl <em>Output Port</em>}' class.
@@ -244,7 +244,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputPort()
 	 * @generated
 	 */
-	int OUTPUT_PORT = 8;
+	int OUTPUT_PORT = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InoutputImpl <em>Inoutput</em>}' class.
@@ -254,16 +254,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutput()
 	 * @generated
 	 */
-	int INOUTPUT = 4;
-
-	/**
-	 * The number of structural features of the '<em>Inoutput</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INOUTPUT_FEATURE_COUNT = 0;
+	int INOUTPUT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutputImpl <em>Output</em>}' class.
@@ -283,7 +274,129 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInput()
 	 * @generated
 	 */
-	int INPUT = 3;
+	int INPUT = 8;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTION__OWNING_FRAGMENT = FRAGMENT_ELEMENT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTION__SOURCE = FRAGMENT_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTION__TARGET = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Source Port</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	@Deprecated
+	int CONNECTION__SOURCE_PORT = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Target Port</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	@Deprecated
+	int CONNECTION__TARGET_PORT = FRAGMENT_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Connection</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTION_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConnectorImpl <em>Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ConnectorImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConnector()
+	 * @generated
+	 */
+	int CONNECTOR = 4;
+
+	/**
+	 * The number of structural features of the '<em>Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTOR_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InputConnectorImpl <em>Input Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.InputConnectorImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInputConnector()
+	 * @generated
+	 */
+	int INPUT_CONNECTOR = 5;
+
+	/**
+	 * The number of structural features of the '<em>Input Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutputConnectorImpl <em>Output Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.OutputConnectorImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputConnector()
+	 * @generated
+	 */
+	int OUTPUT_CONNECTOR = 6;
+
+	/**
+	 * The number of structural features of the '<em>Output Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Inoutput</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INOUTPUT_FEATURE_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -313,13 +426,40 @@ public interface DMLPackage extends EPackage {
 	int INPUT_FEATURE_COUNT = INOUTPUT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Component</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT__COMPONENT = INOUTPUT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT__PORTS = INOUTPUT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Output</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT_FEATURE_COUNT = INOUTPUT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Port</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PORT_FEATURE_COUNT = 0;
+	int PORT_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' container reference.
@@ -338,42 +478,6 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_PORT_FEATURE_COUNT = PORT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION__OWNING_FRAGMENT = FRAGMENT_ELEMENT__OWNING_FRAGMENT;
-
-	/**
-	 * The feature id for the '<em><b>Source Port</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION__SOURCE_PORT = FRAGMENT_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Target Port</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION__TARGET_PORT = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Connection</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONNECTION_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' container reference.
@@ -403,33 +507,6 @@ public interface DMLPackage extends EPackage {
 	int OUTPUT_PORT_FEATURE_COUNT = PORT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Component</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OUTPUT__COMPONENT = INOUTPUT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OUTPUT__PORTS = INOUTPUT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Output</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OUTPUT_FEATURE_COUNT = INOUTPUT_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SignalSpecificationImpl <em>Signal Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -437,7 +514,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSignalSpecification()
 	 * @generated
 	 */
-	int SIGNAL_SPECIFICATION = 10;
+	int SIGNAL_SPECIFICATION = 13;
 
 	/**
 	 * The number of structural features of the '<em>Signal Specification</em>' class.
@@ -456,7 +533,26 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockInput()
 	 * @generated
 	 */
-	int BLOCK_INPUT = 11;
+	int BLOCK_INPUT = 15;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockInoutputImpl <em>Block Inoutput</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.BlockInoutputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockInoutput()
+	 * @generated
+	 */
+	int BLOCK_INOUTPUT = 14;
+
+	/**
+	 * The number of structural features of the '<em>Block Inoutput</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_INOUTPUT_FEATURE_COUNT = INOUTPUT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -495,25 +591,6 @@ public interface DMLPackage extends EPackage {
 	int BLOCK_INPUT_FEATURE_COUNT = INPUT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockInoutputImpl <em>Block Inoutput</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.BlockInoutputImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockInoutput()
-	 * @generated
-	 */
-	int BLOCK_INOUTPUT = 12;
-
-	/**
-	 * The number of structural features of the '<em>Block Inoutput</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_INOUTPUT_FEATURE_COUNT = INOUTPUT_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl <em>Inoutput Definition</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -521,7 +598,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutputDefinition()
 	 * @generated
 	 */
-	int INOUTPUT_DEFINITION = 14;
+	int INOUTPUT_DEFINITION = 17;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InputDefinitionImpl <em>Input Definition</em>}' class.
@@ -531,7 +608,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInputDefinition()
 	 * @generated
 	 */
-	int INPUT_DEFINITION = 13;
+	int INPUT_DEFINITION = 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutputDefinitionImpl <em>Output Definition</em>}' class.
@@ -541,7 +618,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputDefinition()
 	 * @generated
 	 */
-	int OUTPUT_DEFINITION = 21;
+	int OUTPUT_DEFINITION = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterizedElementImpl <em>Parameterized Element</em>}' class.
@@ -551,7 +628,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterizedElement()
 	 * @generated
 	 */
-	int PARAMETERIZED_ELEMENT = 22;
+	int PARAMETERIZED_ELEMENT = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ArgumentImpl <em>Argument</em>}' class.
@@ -561,7 +638,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getArgument()
 	 * @generated
 	 */
-	int ARGUMENT = 23;
+	int ARGUMENT = 26;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionParameterImpl <em>Expression Parameter</em>}' class.
@@ -571,7 +648,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionParameter()
 	 * @generated
 	 */
-	int EXPRESSION_PARAMETER = 24;
+	int EXPRESSION_PARAMETER = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
@@ -581,7 +658,113 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterableElement()
 	 * @generated
 	 */
-	int PARAMETERABLE_ELEMENT = 15;
+	int PARAMETERABLE_ELEMENT = 20;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterImpl <em>Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ParameterImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameter()
+	 * @generated
+	 */
+	int PARAMETER = 21;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ValueSpecificationImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getValueSpecification()
+	 * @generated
+	 */
+	int VALUE_SPECIFICATION = 22;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DirectFeedthroughPolicyImpl <em>Direct Feedthrough Policy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.DirectFeedthroughPolicyImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDirectFeedthroughPolicy()
+	 * @generated
+	 */
+	int DIRECT_FEEDTHROUGH_POLICY = 24;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockOutputImpl <em>Block Output</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.BlockOutputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockOutput()
+	 * @generated
+	 */
+	int BLOCK_OUTPUT = 16;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl <em>Expression Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionSpecification()
+	 * @generated
+	 */
+	int EXPRESSION_SPECIFICATION = 28;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl <em>Predefined Expression Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPredefinedExpressionEntry()
+	 * @generated
+	 */
+	int PREDEFINED_EXPRESSION_ENTRY = 29;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl <em>Data Type Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDataTypeSpecification()
+	 * @generated
+	 */
+	int DATA_TYPE_SPECIFICATION = 23;
+
+	/**
+	 * The feature id for the '<em><b>Component</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_OUTPUT__COMPONENT = OUTPUT__COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_OUTPUT__PORTS = OUTPUT__PORTS;
+
+	/**
+	 * The feature id for the '<em><b>Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_OUTPUT__DEFINITION = OUTPUT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Block Output</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -755,166 +938,6 @@ public interface DMLPackage extends EPackage {
 	int INPUT_DEFINITION_FEATURE_COUNT = INOUTPUT_DEFINITION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterImpl <em>Parameter</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.ParameterImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameter()
-	 * @generated
-	 */
-	int PARAMETER = 16;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.ValueSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getValueSpecification()
-	 * @generated
-	 */
-	int VALUE_SPECIFICATION = 17;
-
-	/**
-	 * The number of structural features of the '<em>Value Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_SPECIFICATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DirectFeedthroughPolicyImpl <em>Direct Feedthrough Policy</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.DirectFeedthroughPolicyImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDirectFeedthroughPolicy()
-	 * @generated
-	 */
-	int DIRECT_FEEDTHROUGH_POLICY = 19;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockOutputImpl <em>Block Output</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.BlockOutputImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockOutput()
-	 * @generated
-	 */
-	int BLOCK_OUTPUT = 20;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl <em>Expression Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionSpecification()
-	 * @generated
-	 */
-	int EXPRESSION_SPECIFICATION = 25;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl <em>Predefined Expression Entry</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPredefinedExpressionEntry()
-	 * @generated
-	 */
-	int PREDEFINED_EXPRESSION_ENTRY = 26;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl <em>Data Type Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDataTypeSpecification()
-	 * @generated
-	 */
-	int DATA_TYPE_SPECIFICATION = 18;
-
-	/**
-	 * The number of structural features of the '<em>Data Type Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_TYPE_SPECIFICATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Input Definition</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIRECT_FEEDTHROUGH_POLICY__INPUT_DEFINITION = 0;
-
-	/**
-	 * The number of structural features of the '<em>Direct Feedthrough Policy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DIRECT_FEEDTHROUGH_POLICY_FEATURE_COUNT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Component</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_OUTPUT__COMPONENT = OUTPUT__COMPONENT;
-
-	/**
-	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_OUTPUT__PORTS = OUTPUT__PORTS;
-
-	/**
-	 * The feature id for the '<em><b>Definition</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_OUTPUT__DEFINITION = OUTPUT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Block Output</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -985,6 +1008,60 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OUTPUT_DEFINITION_FEATURE_COUNT = INOUTPUT_DEFINITION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__NAME = 0;
+
+	/**
+	 * The number of structural features of the '<em>Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Value Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VALUE_SPECIFICATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of structural features of the '<em>Data Type Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_TYPE_SPECIFICATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Input Definition</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FEEDTHROUGH_POLICY__INPUT_DEFINITION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Direct Feedthrough Policy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIRECT_FEEDTHROUGH_POLICY_FEATURE_COUNT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1129,7 +1206,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getQualifiedElement()
 	 * @generated
 	 */
-	int QUALIFIED_ELEMENT = 28;
+	int QUALIFIED_ELEMENT = 31;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -1175,7 +1252,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCategorizedElement()
 	 * @generated
 	 */
-	int CATEGORIZED_ELEMENT = 29;
+	int CATEGORIZED_ELEMENT = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl <em>Block Type</em>}' class.
@@ -1185,7 +1262,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockType()
 	 * @generated
 	 */
-	int BLOCK_TYPE = 27;
+	int BLOCK_TYPE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -1204,7 +1281,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCategory()
 	 * @generated
 	 */
-	int CATEGORY = 30;
+	int CATEGORY = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ModelImpl <em>Model</em>}' class.
@@ -1214,7 +1291,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getModel()
 	 * @generated
 	 */
-	int MODEL = 33;
+	int MODEL = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemImpl <em>Subsystem</em>}' class.
@@ -1224,7 +1301,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystem()
 	 * @generated
 	 */
-	int SUBSYSTEM = 38;
+	int SUBSYSTEM = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InoutletImpl <em>Inoutlet</em>}' class.
@@ -1234,7 +1311,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutlet()
 	 * @generated
 	 */
-	int INOUTLET = 41;
+	int INOUTLET = 44;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InletImpl <em>Inlet</em>}' class.
@@ -1244,7 +1321,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInlet()
 	 * @generated
 	 */
-	int INLET = 40;
+	int INLET = 43;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutletImpl <em>Outlet</em>}' class.
@@ -1254,7 +1331,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutlet()
 	 * @generated
 	 */
-	int OUTLET = 42;
+	int OUTLET = 45;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InoutportImpl <em>Inoutport</em>}' class.
@@ -1264,7 +1341,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutport()
 	 * @generated
 	 */
-	int INOUTPORT = 45;
+	int INOUTPORT = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InportImpl <em>Inport</em>}' class.
@@ -1274,7 +1351,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInport()
 	 * @generated
 	 */
-	int INPORT = 44;
+	int INPORT = 47;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutportImpl <em>Outport</em>}' class.
@@ -1284,7 +1361,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutport()
 	 * @generated
 	 */
-	int OUTPORT = 46;
+	int OUTPORT = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemRealizationImpl <em>Subsystem Realization</em>}' class.
@@ -1294,7 +1371,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemRealization()
 	 * @generated
 	 */
-	int SUBSYSTEM_REALIZATION = 43;
+	int SUBSYSTEM_REALIZATION = 46;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1448,7 +1525,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBehaviorSpecification()
 	 * @generated
 	 */
-	int BEHAVIOR_SPECIFICATION = 31;
+	int BEHAVIOR_SPECIFICATION = 34;
 
 	/**
 	 * The number of structural features of the '<em>Behavior Specification</em>' class.
@@ -1467,7 +1544,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSystem()
 	 * @generated
 	 */
-	int SYSTEM = 34;
+	int SYSTEM = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockImpl <em>Block</em>}' class.
@@ -1477,7 +1554,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlock()
 	 * @generated
 	 */
-	int BLOCK = 32;
+	int BLOCK = 35;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -1658,7 +1735,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockPort()
 	 * @generated
 	 */
-	int BLOCK_PORT = 35;
+	int BLOCK_PORT = 38;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1686,7 +1763,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockInputPort()
 	 * @generated
 	 */
-	int BLOCK_INPUT_PORT = 36;
+	int BLOCK_INPUT_PORT = 39;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -1723,7 +1800,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockOutputPort()
 	 * @generated
 	 */
-	int BLOCK_OUTPUT_PORT = 37;
+	int BLOCK_OUTPUT_PORT = 40;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' container reference.
@@ -1823,7 +1900,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSystemInterface()
 	 * @generated
 	 */
-	int SYSTEM_INTERFACE = 39;
+	int SYSTEM_INTERFACE = 42;
 
 	/**
 	 * The feature id for the '<em><b>Inlets</b></em>' containment reference list.
@@ -2148,7 +2225,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInoutput()
 	 * @generated
 	 */
-	int SUBSYSTEM_INOUTPUT = 47;
+	int SUBSYSTEM_INOUTPUT = 50;
 
 	/**
 	 * The number of structural features of the '<em>Subsystem Inoutput</em>' class.
@@ -2167,7 +2244,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInput()
 	 * @generated
 	 */
-	int SUBSYSTEM_INPUT = 48;
+	int SUBSYSTEM_INPUT = 51;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -2213,7 +2290,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemOutput()
 	 * @generated
 	 */
-	int SUBSYSTEM_OUTPUT = 49;
+	int SUBSYSTEM_OUTPUT = 52;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -2259,7 +2336,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBooleanDirectFeedthroughPolicy()
 	 * @generated
 	 */
-	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 50;
+	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 53;
 
 	/**
 	 * The feature id for the '<em><b>Input Definition</b></em>' container reference.
@@ -2296,7 +2373,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueDataTypeSpecification()
 	 * @generated
 	 */
-	int OPAQUE_DATA_TYPE_SPECIFICATION = 51;
+	int OPAQUE_DATA_TYPE_SPECIFICATION = 54;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
@@ -2324,7 +2401,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueBehaviorSpecification()
 	 * @generated
 	 */
-	int OPAQUE_BEHAVIOR_SPECIFICATION = 52;
+	int OPAQUE_BEHAVIOR_SPECIFICATION = 55;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' attribute.
@@ -2515,6 +2592,28 @@ public interface DMLPackage extends EPackage {
 	EClass getConnection();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Connection#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Source</em>'.
+	 * @see org.eclipselabs.damos.dml.Connection#getSource()
+	 * @see #getConnection()
+	 * @generated
+	 */
+	EReference getConnection_Source();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Connection#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see org.eclipselabs.damos.dml.Connection#getTarget()
+	 * @see #getConnection()
+	 * @generated
+	 */
+	EReference getConnection_Target();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Connection#getSourcePort <em>Source Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2523,6 +2622,7 @@ public interface DMLPackage extends EPackage {
 	 * @see #getConnection()
 	 * @generated
 	 */
+	@Deprecated
 	EReference getConnection_SourcePort();
 
 	/**
@@ -2534,7 +2634,38 @@ public interface DMLPackage extends EPackage {
 	 * @see #getConnection()
 	 * @generated
 	 */
+	@Deprecated
 	EReference getConnection_TargetPort();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Connector <em>Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Connector</em>'.
+	 * @see org.eclipselabs.damos.dml.Connector
+	 * @generated
+	 */
+	EClass getConnector();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.InputConnector <em>Input Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Input Connector</em>'.
+	 * @see org.eclipselabs.damos.dml.InputConnector
+	 * @generated
+	 */
+	EClass getInputConnector();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OutputConnector <em>Output Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Output Connector</em>'.
+	 * @see org.eclipselabs.damos.dml.OutputConnector
+	 * @generated
+	 */
+	EClass getOutputConnector();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OutputPort <em>Output Port</em>}'.
@@ -3708,11 +3839,28 @@ public interface DMLPackage extends EPackage {
 		EClass CONNECTION = eINSTANCE.getConnection();
 
 		/**
+		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTION__SOURCE = eINSTANCE.getConnection_Source();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONNECTION__TARGET = eINSTANCE.getConnection_Target();
+
+		/**
 		 * The meta object literal for the '<em><b>Source Port</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Deprecated
 		EReference CONNECTION__SOURCE_PORT = eINSTANCE.getConnection_SourcePort();
 
 		/**
@@ -3721,7 +3869,38 @@ public interface DMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
+		@Deprecated
 		EReference CONNECTION__TARGET_PORT = eINSTANCE.getConnection_TargetPort();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConnectorImpl <em>Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ConnectorImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConnector()
+		 * @generated
+		 */
+		EClass CONNECTOR = eINSTANCE.getConnector();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.InputConnectorImpl <em>Input Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.InputConnectorImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInputConnector()
+		 * @generated
+		 */
+		EClass INPUT_CONNECTOR = eINSTANCE.getInputConnector();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OutputConnectorImpl <em>Output Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.OutputConnectorImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputConnector()
+		 * @generated
+		 */
+		EClass OUTPUT_CONNECTOR = eINSTANCE.getOutputConnector();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OutputPortImpl <em>Output Port</em>}' class.

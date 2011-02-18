@@ -17,7 +17,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.internal.util.AbstractEventBroker;
 
@@ -31,16 +31,16 @@ public final class SignalEventBroker extends AbstractEventBroker<ISignalListener
 		addListener(connection, listener, SignalEventBroker.class);
 	}
 	
-	public static void addListener(InputPort inputPort, ISignalListener listener) {
-		addListener(inputPort, listener, SignalEventBroker.class);
+	public static void addListener(InputConnector inputConnector, ISignalListener listener) {
+		addListener(inputConnector, listener, SignalEventBroker.class);
 	}
 
 	public static void removeListener(Connection connection, ISignalListener listener) {
 		removeListener(connection, listener, SignalEventBroker.class);
 	}
 
-	public static void removeListener(InputPort inputPort, ISignalListener listener) {
-		removeListener(inputPort, listener, SignalEventBroker.class);
+	public static void removeListener(InputConnector inputConnector, ISignalListener listener) {
+		removeListener(inputConnector, listener, SignalEventBroker.class);
 	}
 
 	/* (non-Javadoc)
@@ -50,12 +50,12 @@ public final class SignalEventBroker extends AbstractEventBroker<ISignalListener
 	protected void handleNotification(Notification notification) {
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof OutputPort && notification.getFeature() == DMLPackage.Literals.OUTPUT_PORT__SIGNAL) {
-			List<Connection> outgoingConnections = ((OutputPort) notifier).getOutgoingConnections();
+			List<Connection> outgoingConnections = ((OutputPort) notifier).getConnections();
 			if (!outgoingConnections.isEmpty()) {
 				SignalEvent event = new SignalEvent(notifier);
 				for (Connection connection : outgoingConnections) {
 					fireEvent(connection, event);
-					fireEvent(connection.getTargetPort(), event);
+					fireEvent(connection.getTarget(), event);
 				}
 			}
 		}

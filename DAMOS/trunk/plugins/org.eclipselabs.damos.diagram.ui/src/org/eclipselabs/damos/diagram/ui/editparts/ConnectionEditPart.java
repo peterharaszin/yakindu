@@ -21,11 +21,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipselabs.damos.diagram.ui.figures.ConnectionFigure;
+import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class ConnectionEditPart extends ConnectionNodeEditPart {
@@ -66,7 +69,11 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 	protected void refreshConnectionType() {
 		Connection connection = (Connection) resolveSemanticElement();
 		if (connection != null) {
-			setLineType(connection.getSourcePort().getComponent() instanceof Outport || connection.getTargetPort().getComponent() instanceof Inport ? SWT.LINE_DASH : SWT.LINE_SOLID);
+			Connector source = connection.getSource();
+			Connector target = connection.getTarget();
+			Component sourceComponent = source instanceof Port ? ((Port) source).getComponent() : null;
+			Component targetComponent = target instanceof Port ? ((Port) target).getComponent() : null;
+			setLineType(sourceComponent instanceof Outport || targetComponent instanceof Inport ? SWT.LINE_DASH : SWT.LINE_SOLID);
 		}
 	}
 	
@@ -123,7 +130,7 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 		Object feature = notification.getFeature();
 		if (DMLPackage.Literals.FRAGMENT_ELEMENT__OWNING_FRAGMENT == feature) {
 			refreshVisibility();
-		} else if (DMLPackage.Literals.CONNECTION__SOURCE_PORT == feature || DMLPackage.Literals.CONNECTION__TARGET_PORT == feature) {
+		} else if (DMLPackage.eINSTANCE.getConnection_Source() == feature || DMLPackage.eINSTANCE.getConnection_Target() == feature) {
 			refreshConnectionType();
 		} else {
 			super.handleNotificationEvent(notification);

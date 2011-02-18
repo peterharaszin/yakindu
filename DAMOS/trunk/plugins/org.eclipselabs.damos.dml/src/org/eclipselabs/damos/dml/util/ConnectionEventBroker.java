@@ -15,9 +15,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.internal.util.AbstractEventBroker;
 
 /**
@@ -26,12 +26,12 @@ import org.eclipselabs.damos.dml.internal.util.AbstractEventBroker;
  */
 public final class ConnectionEventBroker extends AbstractEventBroker<IConnectionListener> {
 
-	public static void addListener(Port port, IConnectionListener listener) {
-		addListener(port, listener, ConnectionEventBroker.class);
+	public static void addListener(Connector connector, IConnectionListener listener) {
+		addListener(connector, listener, ConnectionEventBroker.class);
 	}
 	
-	public static void removeListener(Port port, IConnectionListener listener) {
-		removeListener(port, listener, ConnectionEventBroker.class);
+	public static void removeListener(Connector connector, IConnectionListener listener) {
+		removeListener(connector, listener, ConnectionEventBroker.class);
 	}
 
 	/* (non-Javadoc)
@@ -42,14 +42,14 @@ public final class ConnectionEventBroker extends AbstractEventBroker<IConnection
 		Object notifier = notification.getNotifier();
 		if (notifier instanceof Connection) {
 			Object feature = notification.getFeature();
-			if (feature == DMLPackage.Literals.CONNECTION__SOURCE_PORT || feature == DMLPackage.Literals.CONNECTION__TARGET_PORT) {
-				Port oldPort = (Port) notification.getOldValue();
-				if (oldPort != null) {
-					fireEvent(oldPort, new ConnectionEvent(notifier, ConnectionEvent.DISCONNECTED));
+			if (feature == DMLPackage.eINSTANCE.getConnection_Source() || feature == DMLPackage.eINSTANCE.getConnection_Target()) {
+				Connector oldConnector = (Connector) notification.getOldValue();
+				if (oldConnector != null) {
+					fireEvent(oldConnector, new ConnectionEvent(notifier, ConnectionEvent.DISCONNECTED));
 				}
-				Port newPort = (Port) notification.getNewValue();
-				if (newPort != null) {
-					fireEvent(newPort, new ConnectionEvent(notifier, ConnectionEvent.CONNECTED));
+				Connector newConnector = (Connector) notification.getNewValue();
+				if (newConnector != null) {
+					fireEvent(newConnector, new ConnectionEvent(notifier, ConnectionEvent.CONNECTED));
 				}
 			}
 		} else if (notifier instanceof Fragment) {
@@ -86,12 +86,12 @@ public final class ConnectionEventBroker extends AbstractEventBroker<IConnection
 
 	private void fireEvent(Connection connection, int eventType) {
 		ConnectionEvent event = new ConnectionEvent(connection, eventType);
-		fireEvent(connection.getSourcePort(), event);
-		fireEvent(connection.getTargetPort(), event);
+		fireEvent(connection.getSource(), event);
+		fireEvent(connection.getTarget(), event);
 	}
 
-	private void fireEvent(Port port, ConnectionEvent event) {
-		List<IConnectionListener> listenerDescriptors = listenerMap.get(port);
+	private void fireEvent(Connector connector, ConnectionEvent event) {
+		List<IConnectionListener> listenerDescriptors = listenerMap.get(connector);
 		if (listenerDescriptors != null) {
 			for (IConnectionListener l : listenerDescriptors) {
 				l.connectionChanged(event);

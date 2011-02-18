@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.dml;
 
-import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -19,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Port extends EObject {
+public interface Port extends Connector {
 
 	/**
 	 * <!-- begin-user-doc -->

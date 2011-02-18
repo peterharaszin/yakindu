@@ -92,14 +92,14 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DMLPackage.FRAGMENT: return createFragment();
-			case DMLPackage.INPUT: return createInput();
-			case DMLPackage.INPUT_PORT: return createInputPort();
 			case DMLPackage.CONNECTION: return createConnection();
-			case DMLPackage.OUTPUT_PORT: return createOutputPort();
+			case DMLPackage.INPUT: return createInput();
 			case DMLPackage.OUTPUT: return createOutput();
+			case DMLPackage.INPUT_PORT: return createInputPort();
+			case DMLPackage.OUTPUT_PORT: return createOutputPort();
 			case DMLPackage.BLOCK_INPUT: return createBlockInput();
-			case DMLPackage.INPUT_DEFINITION: return createInputDefinition();
 			case DMLPackage.BLOCK_OUTPUT: return createBlockOutput();
+			case DMLPackage.INPUT_DEFINITION: return createInputDefinition();
 			case DMLPackage.OUTPUT_DEFINITION: return createOutputDefinition();
 			case DMLPackage.ARGUMENT: return createArgument();
 			case DMLPackage.EXPRESSION_PARAMETER: return createExpressionParameter();

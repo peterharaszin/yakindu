@@ -16,10 +16,10 @@ import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.InputConnector;
+import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class CreateConnectionCommand extends CreateRelationshipCommand {
@@ -33,26 +33,26 @@ public class CreateConnectionCommand extends CreateRelationshipCommand {
 		Connection connection = (Connection) EMFCoreUtil.create(
 				getElementToEdit(), getContainmentFeature(), getElementType().getEClass());
 
-		connection.setSourcePort((OutputPort) getSource());
-		connection.setTargetPort((InputPort) getTarget());
+		connection.setSource((OutputConnector) getSource());
+		connection.setTarget((InputConnector) getTarget());
 
 		return connection;
 	}
 	
 	public boolean canExecute() {
-		if (!(getSource() instanceof Port && getTarget() instanceof Port)) {
+		if (!(getSource() instanceof Connector && getTarget() instanceof Connector)) {
 			return false;
 		}
-		if (canConnectPorts((Port) getSource(), (Port) getTarget())) {
+		if (canConnectPorts((Connector) getSource(), (Connector) getTarget())) {
 			return super.canExecute();
 		}
 		return false;
 	}
 	
-	private boolean canConnectPorts(Port sourcePort, Port targetPort) {
-		return DMLUtil.canConnectOutgoingConnection(sourcePort)
+	private boolean canConnectPorts(Connector source, Connector target) {
+		return DMLUtil.canConnectOutgoingConnection(source)
 				&& getElementToEdit() instanceof Fragment
-				&& DMLUtil.canConnectIncomingConnection(targetPort, ((Fragment) getElementToEdit()));
+				&& DMLUtil.canConnectIncomingConnection(target, ((Fragment) getElementToEdit()));
 	}
 
 }

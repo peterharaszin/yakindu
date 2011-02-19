@@ -11,28 +11,7 @@
 
 package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 
-import java.util.Collection;
 
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
-import org.eclipselabs.damos.dml.DMLPackage;
-
-public class PortEditHelper extends AbstractEditHelper {
-
-	private static final EReference[] CONNECTION_PORT_REFERENCES = new EReference[] {
-		DMLPackage.eINSTANCE.getConnection_Source(),
-		DMLPackage.eINSTANCE.getConnection_Target(),
-	};
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper#getDestroyDependentsCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest)
-	 */
-	protected ICommand getDestroyDependentsCommand(DestroyDependentsRequest request) {
-		Collection<?> connections = EMFCoreUtil.getReferencers(request.getElementToDestroy(), CONNECTION_PORT_REFERENCES);
-		return request.getDestroyDependentsCommand(connections);
-	}
+public class PortEditHelper extends ConnectorEditHelper {
 
 }

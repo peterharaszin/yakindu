@@ -49,6 +49,12 @@
                name="Outport">
          </metamodelType>
          <metamodelType
+               eclass="ConditionalCompound"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ConditionalCompoundEditHelper"
+               id="org.eclipselabs.damos.diagram.conditionalCompound"
+               name="Conditional Compound">
+         </metamodelType>
+         <metamodelType
                eclass="Subsystem"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.SubsystemEditHelper"
                id="org.eclipselabs.damos.diagram.subsystem"

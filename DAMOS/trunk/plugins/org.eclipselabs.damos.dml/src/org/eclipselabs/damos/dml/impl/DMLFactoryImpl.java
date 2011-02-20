@@ -20,6 +20,8 @@ import org.eclipselabs.damos.dml.BlockOutputPort;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.Category;
+import org.eclipselabs.damos.dml.ConditionalCompound;
+import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -125,6 +127,8 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.BOOLEAN_DIRECT_FEEDTHROUGH_POLICY: return createBooleanDirectFeedthroughPolicy();
 			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION: return createOpaqueDataTypeSpecification();
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
+			case DMLPackage.CONDITIONAL_COMPOUND: return createConditionalCompound();
+			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION: return createConditionalCompoundCondition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -468,6 +472,26 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public OpaqueBehaviorSpecification createOpaqueBehaviorSpecification() {
 		OpaqueBehaviorSpecificationImpl opaqueBehaviorSpecification = new OpaqueBehaviorSpecificationImpl();
 		return opaqueBehaviorSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionalCompound createConditionalCompound() {
+		ConditionalCompoundImpl conditionalCompound = new ConditionalCompoundImpl();
+		return conditionalCompound;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConditionalCompoundCondition createConditionalCompoundCondition() {
+		ConditionalCompoundConditionImpl conditionalCompoundCondition = new ConditionalCompoundConditionImpl();
+		return conditionalCompoundCondition;
 	}
 
 	/**

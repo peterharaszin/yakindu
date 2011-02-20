@@ -16,9 +16,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.ComponentAttributeEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.PortEditPart;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.InputPortCountEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.OutputPortCountEditPolicy;
-import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.properties.ParametersPropertySectionDelegate;
 import org.eclipselabs.damos.dml.Block;
 

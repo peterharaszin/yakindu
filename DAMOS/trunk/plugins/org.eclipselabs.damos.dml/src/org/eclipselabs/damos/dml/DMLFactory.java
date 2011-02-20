@@ -332,6 +332,24 @@ public interface DMLFactory extends EFactory {
 	OpaqueBehaviorSpecification createOpaqueBehaviorSpecification();
 
 	/**
+	 * Returns a new object of class '<em>Conditional Compound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Compound</em>'.
+	 * @generated
+	 */
+	ConditionalCompound createConditionalCompound();
+
+	/**
+	 * Returns a new object of class '<em>Conditional Compound Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Conditional Compound Condition</em>'.
+	 * @generated
+	 */
+	ConditionalCompoundCondition createConditionalCompoundCondition();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

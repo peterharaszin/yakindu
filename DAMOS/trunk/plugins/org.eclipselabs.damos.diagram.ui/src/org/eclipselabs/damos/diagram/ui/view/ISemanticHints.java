@@ -20,5 +20,6 @@ package org.eclipselabs.damos.diagram.ui.view;
 public interface ISemanticHints {
 
 	String COMPONENT_NAME = "_componentName";
+	String COMPOUND_COMPARTMENT = "_compoundCompartment";
 	
 }

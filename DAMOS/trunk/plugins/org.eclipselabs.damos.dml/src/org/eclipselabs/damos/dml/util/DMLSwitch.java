@@ -24,6 +24,13 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Compound;
+import org.eclipselabs.damos.dml.CompoundConnector;
+import org.eclipselabs.damos.dml.CompoundInputConnector;
+import org.eclipselabs.damos.dml.CompoundMember;
+import org.eclipselabs.damos.dml.CompoundOutputConnector;
+import org.eclipselabs.damos.dml.ConditionalCompound;
+import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -151,6 +158,7 @@ public class DMLSwitch<T> {
 				Component component = (Component)theEObject;
 				T result = caseComponent(component);
 				if (result == null) result = caseFragmentElement(component);
+				if (result == null) result = caseCompoundMember(component);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -390,6 +398,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(block);
 				if (result == null) result = caseParameterizedElement(block);
 				if (result == null) result = caseFragmentElement(block);
+				if (result == null) result = caseCompoundMember(block);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -446,6 +455,7 @@ public class DMLSwitch<T> {
 				T result = caseSubsystem(subsystem);
 				if (result == null) result = caseComponent(subsystem);
 				if (result == null) result = caseFragmentElement(subsystem);
+				if (result == null) result = caseCompoundMember(subsystem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -488,6 +498,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseInoutport(inport);
 				if (result == null) result = caseComponent(inport);
 				if (result == null) result = caseFragmentElement(inport);
+				if (result == null) result = caseCompoundMember(inport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -496,6 +507,7 @@ public class DMLSwitch<T> {
 				T result = caseInoutport(inoutport);
 				if (result == null) result = caseComponent(inoutport);
 				if (result == null) result = caseFragmentElement(inoutport);
+				if (result == null) result = caseCompoundMember(inoutport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -505,6 +517,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseInoutport(outport);
 				if (result == null) result = caseComponent(outport);
 				if (result == null) result = caseFragmentElement(outport);
+				if (result == null) result = caseCompoundMember(outport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -551,6 +564,64 @@ public class DMLSwitch<T> {
 				OpaqueBehaviorSpecification opaqueBehaviorSpecification = (OpaqueBehaviorSpecification)theEObject;
 				T result = caseOpaqueBehaviorSpecification(opaqueBehaviorSpecification);
 				if (result == null) result = caseBehaviorSpecification(opaqueBehaviorSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.COMPOUND: {
+				Compound compound = (Compound)theEObject;
+				T result = caseCompound(compound);
+				if (result == null) result = caseFragmentElement(compound);
+				if (result == null) result = caseCompoundMember(compound);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.COMPOUND_MEMBER: {
+				CompoundMember compoundMember = (CompoundMember)theEObject;
+				T result = caseCompoundMember(compoundMember);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.COMPOUND_CONNECTOR: {
+				CompoundConnector compoundConnector = (CompoundConnector)theEObject;
+				T result = caseCompoundConnector(compoundConnector);
+				if (result == null) result = caseConnector(compoundConnector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.COMPOUND_INPUT_CONNECTOR: {
+				CompoundInputConnector compoundInputConnector = (CompoundInputConnector)theEObject;
+				T result = caseCompoundInputConnector(compoundInputConnector);
+				if (result == null) result = caseCompoundConnector(compoundInputConnector);
+				if (result == null) result = caseInputConnector(compoundInputConnector);
+				if (result == null) result = caseConnector(compoundInputConnector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.COMPOUND_OUTPUT_CONNECTOR: {
+				CompoundOutputConnector compoundOutputConnector = (CompoundOutputConnector)theEObject;
+				T result = caseCompoundOutputConnector(compoundOutputConnector);
+				if (result == null) result = caseCompoundConnector(compoundOutputConnector);
+				if (result == null) result = caseOutputConnector(compoundOutputConnector);
+				if (result == null) result = caseConnector(compoundOutputConnector);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.CONDITIONAL_COMPOUND: {
+				ConditionalCompound conditionalCompound = (ConditionalCompound)theEObject;
+				T result = caseConditionalCompound(conditionalCompound);
+				if (result == null) result = caseCompound(conditionalCompound);
+				if (result == null) result = caseFragmentElement(conditionalCompound);
+				if (result == null) result = caseCompoundMember(conditionalCompound);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION: {
+				ConditionalCompoundCondition conditionalCompoundCondition = (ConditionalCompoundCondition)theEObject;
+				T result = caseConditionalCompoundCondition(conditionalCompoundCondition);
+				if (result == null) result = caseCompoundInputConnector(conditionalCompoundCondition);
+				if (result == null) result = caseCompoundConnector(conditionalCompoundCondition);
+				if (result == null) result = caseInputConnector(conditionalCompoundCondition);
+				if (result == null) result = caseConnector(conditionalCompoundCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1395,6 +1466,111 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseOpaqueBehaviorSpecification(OpaqueBehaviorSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompound(Compound object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompoundMember(CompoundMember object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompoundConnector(CompoundConnector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Input Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Input Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompoundInputConnector(CompoundInputConnector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound Output Connector</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound Output Connector</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompoundOutputConnector(CompoundOutputConnector object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Compound</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Compound</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalCompound(ConditionalCompound object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Conditional Compound Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Conditional Compound Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionalCompoundCondition(ConditionalCompoundCondition object) {
 		return null;
 	}
 

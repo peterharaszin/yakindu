@@ -23,5 +23,6 @@ public interface IPaletteConstants {
 	String SUBSYSTEM_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.subsystem";
 	String INPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.inport";
 	String OUTPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.outport";
+	String CONDITIONAL_COMPOUND_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.conditionalCompound";
 	
 }

@@ -72,7 +72,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 	}
 	
 	protected PaletteContainer createBuiltinComponentContainer() {
-		PaletteDrawer drawer = new PaletteDrawer("Built-in Components");
+		PaletteDrawer drawer = new PaletteDrawer("Built-in Elements");
 		drawer.setId(IPaletteConstants.BUILTIN_COMPONENT_CONTAINER_ID);
 		drawer.setInitialState(PaletteDrawer.INITIAL_STATE_CLOSED);
 		return drawer;
@@ -94,6 +94,10 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		entry.setId(IPaletteConstants.OUTPORT_ENTRY_ID);
 		entries.add(entry);
 		
+		entry = new ElementCreationToolEntry(ElementTypes.CONDITIONAL_COMPOUND, null, null);
+		entry.setId(IPaletteConstants.CONDITIONAL_COMPOUND_ENTRY_ID);
+//		entries.add(entry);
+
 		return entries;
 	}
 	

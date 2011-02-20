@@ -302,6 +302,11 @@ public class FragmentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
+				 DMLFactory.eINSTANCE.createConditionalCompound()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DMLPackage.Literals.FRAGMENT__CONNECTIONS,
 				 DMLFactory.eINSTANCE.createConnection()));
 	}

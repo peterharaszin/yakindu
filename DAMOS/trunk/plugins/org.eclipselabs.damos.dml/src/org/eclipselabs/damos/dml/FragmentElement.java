@@ -39,7 +39,7 @@ public interface FragmentElement extends EObject {
 	 * @see #setOwningFragment(Fragment)
 	 * @see org.eclipselabs.damos.dml.DMLPackage#getFragmentElement_OwningFragment()
 	 * @see org.eclipselabs.damos.dml.Fragment#getFragmentElements
-	 * @model opposite="fragmentElements" required="true" transient="false" ordered="false"
+	 * @model opposite="fragmentElements" transient="false" ordered="false"
 	 * @generated
 	 */
 	Fragment getOwningFragment();
@@ -53,5 +53,17 @@ public interface FragmentElement extends EObject {
 	 * @generated
 	 */
 	void setOwningFragment(Fragment value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Enclosing Fragment</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	Fragment getEnclosingFragment();
 
 } // FragmentElement

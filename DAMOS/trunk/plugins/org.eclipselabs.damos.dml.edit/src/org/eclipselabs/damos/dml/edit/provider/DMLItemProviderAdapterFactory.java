@@ -856,6 +856,52 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ConditionalCompound} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConditionalCompoundItemProvider conditionalCompoundItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ConditionalCompound}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConditionalCompoundAdapter() {
+		if (conditionalCompoundItemProvider == null) {
+			conditionalCompoundItemProvider = new ConditionalCompoundItemProvider(this);
+		}
+
+		return conditionalCompoundItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ConditionalCompoundCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConditionalCompoundConditionItemProvider conditionalCompoundConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ConditionalCompoundCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConditionalCompoundConditionAdapter() {
+		if (conditionalCompoundConditionItemProvider == null) {
+			conditionalCompoundConditionItemProvider = new ConditionalCompoundConditionItemProvider(this);
+		}
+
+		return conditionalCompoundConditionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -988,6 +1034,8 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (booleanDirectFeedthroughPolicyItemProvider != null) booleanDirectFeedthroughPolicyItemProvider.dispose();
 		if (opaqueDataTypeSpecificationItemProvider != null) opaqueDataTypeSpecificationItemProvider.dispose();
 		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
+		if (conditionalCompoundItemProvider != null) conditionalCompoundItemProvider.dispose();
+		if (conditionalCompoundConditionItemProvider != null) conditionalCompoundConditionItemProvider.dispose();
 	}
 
 }

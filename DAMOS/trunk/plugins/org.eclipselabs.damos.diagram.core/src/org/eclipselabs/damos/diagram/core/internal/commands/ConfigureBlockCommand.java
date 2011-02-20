@@ -52,7 +52,7 @@ public class ConfigureBlockCommand extends ConfigureElementCommand {
     	if (name.length() == 0) {
     		name = "Block";
     	}
-    	block.setName(DMLUtil.findAvailableComponentName(block.getOwningFragment(), name));
+    	block.setName(DMLUtil.findAvailableComponentName(block.getEnclosingFragment(), name));
 
 		return CommandResult.newOKCommandResult(block);
 	}

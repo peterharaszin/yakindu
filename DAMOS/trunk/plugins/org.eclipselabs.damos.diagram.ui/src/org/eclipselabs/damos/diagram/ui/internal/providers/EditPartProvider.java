@@ -32,6 +32,9 @@ import org.eclipselabs.damos.diagram.ui.editparts.SubsystemInputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.SubsystemOutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.BlockDiagramRootEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentNameEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.CompoundCompartmentEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.ConditionalCompoundConditionEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.ConditionalCompoundEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackComponentEditPart;
 import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
@@ -41,6 +44,8 @@ import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.BlockOutputPort;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Compound;
+import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inport;
@@ -74,6 +79,7 @@ public class EditPartProvider extends AbstractEditPartProvider {
 	
 	protected Class<?> getNodeEditPartClass(View view) {
 		EObject element = view.getElement();
+		String semanticHint = view.getType();
 		
 		if (element instanceof InputPort) {
 			InputPort inputPort = (InputPort) element;
@@ -128,8 +134,7 @@ public class EditPartProvider extends AbstractEditPartProvider {
 		}
 		
 		if (element instanceof Component) {
-			String semanticHint = view.getType();
-			if (ISemanticHints.COMPONENT_NAME.equals(semanticHint)) {
+			if (ISemanticHints.COMPONENT_NAME.equals(view.getType())) {
 				return ComponentNameEditPart.class;
 			}
 			if (element instanceof Inoutport) {
@@ -154,6 +159,17 @@ public class EditPartProvider extends AbstractEditPartProvider {
 				return FallbackBlockEditPart.class;
 			}
 			return FallbackComponentEditPart.class;
+		}
+		
+		if (element instanceof Compound) {
+			if (ISemanticHints.COMPOUND_COMPARTMENT.equals(semanticHint)) {
+				return CompoundCompartmentEditPart.class;
+			}
+			return ConditionalCompoundEditPart.class;
+		}
+		
+		if (element instanceof ConditionalCompoundCondition) {
+			return ConditionalCompoundConditionEditPart.class;
 		}
 		
 		return super.getNodeEditPartClass(view);

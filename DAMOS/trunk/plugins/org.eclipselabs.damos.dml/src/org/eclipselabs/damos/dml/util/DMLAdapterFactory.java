@@ -24,6 +24,13 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Compound;
+import org.eclipselabs.damos.dml.CompoundConnector;
+import org.eclipselabs.damos.dml.CompoundInputConnector;
+import org.eclipselabs.damos.dml.CompoundMember;
+import org.eclipselabs.damos.dml.CompoundOutputConnector;
+import org.eclipselabs.damos.dml.ConditionalCompound;
+import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -346,6 +353,34 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOpaqueBehaviorSpecification(OpaqueBehaviorSpecification object) {
 				return createOpaqueBehaviorSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseCompound(Compound object) {
+				return createCompoundAdapter();
+			}
+			@Override
+			public Adapter caseCompoundMember(CompoundMember object) {
+				return createCompoundMemberAdapter();
+			}
+			@Override
+			public Adapter caseCompoundConnector(CompoundConnector object) {
+				return createCompoundConnectorAdapter();
+			}
+			@Override
+			public Adapter caseCompoundInputConnector(CompoundInputConnector object) {
+				return createCompoundInputConnectorAdapter();
+			}
+			@Override
+			public Adapter caseCompoundOutputConnector(CompoundOutputConnector object) {
+				return createCompoundOutputConnectorAdapter();
+			}
+			@Override
+			public Adapter caseConditionalCompound(ConditionalCompound object) {
+				return createConditionalCompoundAdapter();
+			}
+			@Override
+			public Adapter caseConditionalCompoundCondition(ConditionalCompoundCondition object) {
+				return createConditionalCompoundConditionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1148,6 +1183,104 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOpaqueBehaviorSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Compound <em>Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.Compound
+	 * @generated
+	 */
+	public Adapter createCompoundAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.CompoundMember <em>Compound Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.CompoundMember
+	 * @generated
+	 */
+	public Adapter createCompoundMemberAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.CompoundConnector <em>Compound Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.CompoundConnector
+	 * @generated
+	 */
+	public Adapter createCompoundConnectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.CompoundInputConnector <em>Compound Input Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.CompoundInputConnector
+	 * @generated
+	 */
+	public Adapter createCompoundInputConnectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.CompoundOutputConnector <em>Compound Output Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.CompoundOutputConnector
+	 * @generated
+	 */
+	public Adapter createCompoundOutputConnectorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ConditionalCompound <em>Conditional Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ConditionalCompound
+	 * @generated
+	 */
+	public Adapter createConditionalCompoundAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ConditionalCompoundCondition <em>Conditional Compound Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ConditionalCompoundCondition
+	 * @generated
+	 */
+	public Adapter createConditionalCompoundConditionAdapter() {
 		return null;
 	}
 

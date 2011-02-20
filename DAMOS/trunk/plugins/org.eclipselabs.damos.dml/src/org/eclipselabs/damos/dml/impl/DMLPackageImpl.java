@@ -27,6 +27,13 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Compound;
+import org.eclipselabs.damos.dml.CompoundConnector;
+import org.eclipselabs.damos.dml.CompoundInputConnector;
+import org.eclipselabs.damos.dml.CompoundMember;
+import org.eclipselabs.damos.dml.CompoundOutputConnector;
+import org.eclipselabs.damos.dml.ConditionalCompound;
+import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLFactory;
@@ -470,6 +477,55 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass opaqueBehaviorSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compoundEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compoundMemberEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compoundConnectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compoundInputConnectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass compoundOutputConnectorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionalCompoundEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionalCompoundConditionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1617,6 +1673,96 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getCompound() {
+		return compoundEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompound_Members() {
+		return (EReference)compoundEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompoundMember() {
+		return compoundMemberEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompoundConnector() {
+		return compoundConnectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getCompoundConnector_Compound() {
+		return (EReference)compoundConnectorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompoundInputConnector() {
+		return compoundInputConnectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCompoundOutputConnector() {
+		return compoundOutputConnectorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConditionalCompound() {
+		return conditionalCompoundEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConditionalCompound_Condition() {
+		return (EReference)conditionalCompoundEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConditionalCompoundCondition() {
+		return conditionalCompoundConditionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DMLFactory getDMLFactory() {
 		return (DMLFactory)getEFactoryInstance();
 	}
@@ -1815,6 +1961,23 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		opaqueBehaviorSpecificationEClass = createEClass(OPAQUE_BEHAVIOR_SPECIFICATION);
 		createEAttribute(opaqueBehaviorSpecificationEClass, OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR);
+
+		compoundEClass = createEClass(COMPOUND);
+		createEReference(compoundEClass, COMPOUND__MEMBERS);
+
+		compoundMemberEClass = createEClass(COMPOUND_MEMBER);
+
+		compoundConnectorEClass = createEClass(COMPOUND_CONNECTOR);
+		createEReference(compoundConnectorEClass, COMPOUND_CONNECTOR__COMPOUND);
+
+		compoundInputConnectorEClass = createEClass(COMPOUND_INPUT_CONNECTOR);
+
+		compoundOutputConnectorEClass = createEClass(COMPOUND_OUTPUT_CONNECTOR);
+
+		conditionalCompoundEClass = createEClass(CONDITIONAL_COMPOUND);
+		createEReference(conditionalCompoundEClass, CONDITIONAL_COMPOUND__CONDITION);
+
+		conditionalCompoundConditionEClass = createEClass(CONDITIONAL_COMPOUND_CONDITION);
 	}
 
 	/**
@@ -1846,6 +2009,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Add supertypes to classes
 		componentEClass.getESuperTypes().add(this.getFragmentElement());
+		componentEClass.getESuperTypes().add(this.getCompoundMember());
 		connectionEClass.getESuperTypes().add(this.getFragmentElement());
 		inputConnectorEClass.getESuperTypes().add(this.getConnector());
 		outputConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -1897,6 +2061,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
 		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
 		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getBehaviorSpecification());
+		compoundEClass.getESuperTypes().add(this.getFragmentElement());
+		compoundEClass.getESuperTypes().add(this.getCompoundMember());
+		compoundConnectorEClass.getESuperTypes().add(this.getConnector());
+		compoundInputConnectorEClass.getESuperTypes().add(this.getCompoundConnector());
+		compoundInputConnectorEClass.getESuperTypes().add(this.getInputConnector());
+		compoundOutputConnectorEClass.getESuperTypes().add(this.getCompoundConnector());
+		compoundOutputConnectorEClass.getESuperTypes().add(this.getOutputConnector());
+		conditionalCompoundEClass.getESuperTypes().add(this.getCompound());
+		conditionalCompoundConditionEClass.getESuperTypes().add(this.getCompoundInputConnector());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1934,7 +2107,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEOperation(componentEClass, ecorePackage.getEBoolean(), "isSink", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(fragmentElementEClass, FragmentElement.class, "FragmentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFragmentElement_OwningFragment(), this.getFragment(), this.getFragment_FragmentElements(), "owningFragment", null, 1, 1, FragmentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getFragmentElement_OwningFragment(), this.getFragment(), this.getFragment_FragmentElements(), "owningFragment", null, 0, 1, FragmentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		addEOperation(fragmentElementEClass, this.getFragment(), "getEnclosingFragment", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConnection_Source(), this.getOutputConnector(), null, "source", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2157,6 +2332,23 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(opaqueBehaviorSpecificationEClass, OpaqueBehaviorSpecification.class, "OpaqueBehaviorSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOpaqueBehaviorSpecification_Behavior(), ecorePackage.getEString(), "behavior", null, 1, 1, OpaqueBehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(compoundEClass, Compound.class, "Compound", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompound_Members(), this.getCompoundMember(), null, "members", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compoundMemberEClass, CompoundMember.class, "CompoundMember", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(compoundConnectorEClass, CompoundConnector.class, "CompoundConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompoundConnector_Compound(), this.getCompound(), null, "compound", null, 1, 1, CompoundConnector.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(compoundInputConnectorEClass, CompoundInputConnector.class, "CompoundInputConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(compoundOutputConnectorEClass, CompoundOutputConnector.class, "CompoundOutputConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(conditionalCompoundEClass, ConditionalCompound.class, "ConditionalCompound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConditionalCompound_Condition(), this.getConditionalCompoundCondition(), null, "condition", null, 0, 1, ConditionalCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(conditionalCompoundConditionEClass, ConditionalCompoundCondition.class, "ConditionalCompoundCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

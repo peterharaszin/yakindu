@@ -15,8 +15,11 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
+import org.eclipse.gmf.runtime.diagram.ui.view.factories.ResizableCompartmentViewFactory;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.ui.internal.view.factories.CompoundConnectorViewFactory;
+import org.eclipselabs.damos.diagram.ui.internal.view.factories.CompoundViewFactory;
 import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 import org.eclipselabs.damos.diagram.ui.view.factories.BlockDiagramViewFactory;
 import org.eclipselabs.damos.diagram.ui.view.factories.ComponentNameViewFactory;
@@ -116,6 +119,17 @@ public class ViewProvider extends AbstractViewProvider {
 				}
 			}
 			return ComponentViewFactory.class;
+		}
+		
+		if (DMLPackage.eINSTANCE.getCompound().isSuperTypeOf(eClass)) {
+			if (ISemanticHints.COMPOUND_COMPARTMENT.equals(semanticHint)) {
+				return ResizableCompartmentViewFactory.class;
+			}
+			return CompoundViewFactory.class;
+		}
+		
+		if (DMLPackage.eINSTANCE.getCompoundConnector().isSuperTypeOf(eClass)) {
+			return CompoundConnectorViewFactory.class;
 		}
 		
 		return super.getNodeViewClass(semanticAdapter, containerView, semanticHint);

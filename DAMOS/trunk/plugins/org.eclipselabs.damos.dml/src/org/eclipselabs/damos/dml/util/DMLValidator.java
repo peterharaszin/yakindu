@@ -34,6 +34,13 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Compound;
+import org.eclipselabs.damos.dml.CompoundConnector;
+import org.eclipselabs.damos.dml.CompoundInputConnector;
+import org.eclipselabs.damos.dml.CompoundMember;
+import org.eclipselabs.damos.dml.CompoundOutputConnector;
+import org.eclipselabs.damos.dml.ConditionalCompound;
+import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -264,6 +271,20 @@ public class DMLValidator extends EObjectValidator {
 				return validateOpaqueDataTypeSpecification((OpaqueDataTypeSpecification)value, diagnostics, context);
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION:
 				return validateOpaqueBehaviorSpecification((OpaqueBehaviorSpecification)value, diagnostics, context);
+			case DMLPackage.COMPOUND:
+				return validateCompound((Compound)value, diagnostics, context);
+			case DMLPackage.COMPOUND_MEMBER:
+				return validateCompoundMember((CompoundMember)value, diagnostics, context);
+			case DMLPackage.COMPOUND_CONNECTOR:
+				return validateCompoundConnector((CompoundConnector)value, diagnostics, context);
+			case DMLPackage.COMPOUND_INPUT_CONNECTOR:
+				return validateCompoundInputConnector((CompoundInputConnector)value, diagnostics, context);
+			case DMLPackage.COMPOUND_OUTPUT_CONNECTOR:
+				return validateCompoundOutputConnector((CompoundOutputConnector)value, diagnostics, context);
+			case DMLPackage.CONDITIONAL_COMPOUND:
+				return validateConditionalCompound((ConditionalCompound)value, diagnostics, context);
+			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION:
+				return validateConditionalCompoundCondition((ConditionalCompoundCondition)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1110,6 +1131,69 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateOpaqueBehaviorSpecification(OpaqueBehaviorSpecification opaqueBehaviorSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(opaqueBehaviorSpecification, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompound(Compound compound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(compound, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompoundMember(CompoundMember compoundMember, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(compoundMember, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompoundConnector(CompoundConnector compoundConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(compoundConnector, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompoundInputConnector(CompoundInputConnector compoundInputConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(compoundInputConnector, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateCompoundOutputConnector(CompoundOutputConnector compoundOutputConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(compoundOutputConnector, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConditionalCompound(ConditionalCompound conditionalCompound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(conditionalCompound, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConditionalCompoundCondition(ConditionalCompoundCondition conditionalCompoundCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(conditionalCompoundCondition, diagnostics, context);
 	}
 
 	/**

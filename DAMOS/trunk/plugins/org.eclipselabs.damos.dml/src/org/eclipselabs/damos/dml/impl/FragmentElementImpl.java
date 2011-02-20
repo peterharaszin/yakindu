@@ -9,6 +9,7 @@ package org.eclipselabs.damos.dml.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -89,6 +90,22 @@ public abstract class FragmentElementImpl extends EObjectImpl implements Fragmen
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.FRAGMENT_ELEMENT__OWNING_FRAGMENT, newOwningFragment, newOwningFragment));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Fragment getEnclosingFragment() {
+		EObject container = eContainer();
+		while (container != null) {
+			if (container instanceof Fragment) {
+				return (Fragment) container;
+			}
+			container = container.eContainer();
+		}
+		return null; 
 	}
 
 	/**

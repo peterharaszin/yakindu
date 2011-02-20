@@ -129,7 +129,7 @@ public class DMLUtil {
 	
 	public static String findAvailableComponentName(Fragment fragment, String preferredName) {
 		Set<String> names = new HashSet<String>();
-		for (Component component : fragment.getComponents()) {
+		for (Component component : fragment.getAllComponents()) {
 			names.add(component.getName());
 		}
 		String availableName = preferredName;

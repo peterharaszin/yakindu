@@ -21,7 +21,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" eSuperTypes="#//FragmentElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName"/>
     </eAnnotations>
@@ -41,8 +41,9 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FragmentElement" abstract="true">
+    <eOperations name="getEnclosingFragment" lowerBound="1" eType="#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFragment" ordered="false"
-        lowerBound="1" eType="#//Fragment" eOpposite="#//Fragment/fragmentElements"/>
+        eType="#//Fragment" eOpposite="#//Fragment/fragmentElements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connection" eSuperTypes="#//FragmentElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
@@ -305,4 +306,22 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="behavior" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Compound" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
+        eType="#//CompoundMember" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundMember" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundConnector" abstract="true" eSuperTypes="#//Connector">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" lowerBound="1"
+        eType="#//Compound" changeable="false" volatile="true" transient="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundInputConnector" abstract="true"
+      eSuperTypes="#//CompoundConnector #//InputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompoundOutputConnector" abstract="true"
+      eSuperTypes="#//CompoundConnector #//OutputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalCompound" eSuperTypes="#//Compound">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ConditionalCompoundCondition"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionalCompoundCondition" eSuperTypes="#//CompoundInputConnector"/>
 </ecore:EPackage>

@@ -2422,6 +2422,220 @@ public interface DMLPackage extends EPackage {
 	int OPAQUE_BEHAVIOR_SPECIFICATION_FEATURE_COUNT = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundImpl <em>Compound</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.CompoundImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompound()
+	 * @generated
+	 */
+	int COMPOUND = 56;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__OWNING_FRAGMENT = FRAGMENT_ELEMENT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__MEMBERS = FRAGMENT_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Compound</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundMemberImpl <em>Compound Member</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.CompoundMemberImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundMember()
+	 * @generated
+	 */
+	int COMPOUND_MEMBER = 57;
+
+	/**
+	 * The number of structural features of the '<em>Compound Member</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_MEMBER_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundConnectorImpl <em>Compound Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.CompoundConnectorImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundConnector()
+	 * @generated
+	 */
+	int COMPOUND_CONNECTOR = 58;
+
+	/**
+	 * The feature id for the '<em><b>Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_CONNECTOR__COMPOUND = CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Compound Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundInputConnectorImpl <em>Compound Input Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.CompoundInputConnectorImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundInputConnector()
+	 * @generated
+	 */
+	int COMPOUND_INPUT_CONNECTOR = 59;
+
+	/**
+	 * The feature id for the '<em><b>Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_INPUT_CONNECTOR__COMPOUND = COMPOUND_CONNECTOR__COMPOUND;
+
+	/**
+	 * The number of structural features of the '<em>Compound Input Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_INPUT_CONNECTOR_FEATURE_COUNT = COMPOUND_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundOutputConnectorImpl <em>Compound Output Connector</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.CompoundOutputConnectorImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundOutputConnector()
+	 * @generated
+	 */
+	int COMPOUND_OUTPUT_CONNECTOR = 60;
+
+	/**
+	 * The feature id for the '<em><b>Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_OUTPUT_CONNECTOR__COMPOUND = COMPOUND_CONNECTOR__COMPOUND;
+
+	/**
+	 * The number of structural features of the '<em>Compound Output Connector</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_OUTPUT_CONNECTOR_FEATURE_COUNT = COMPOUND_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl <em>Conditional Compound</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompound()
+	 * @generated
+	 */
+	int CONDITIONAL_COMPOUND = 61;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_COMPOUND__OWNING_FRAGMENT = COMPOUND__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_COMPOUND__MEMBERS = COMPOUND__MEMBERS;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_COMPOUND__CONDITION = COMPOUND_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Conditional Compound</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_COMPOUND_FEATURE_COUNT = COMPOUND_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl <em>Conditional Compound Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompoundCondition()
+	 * @generated
+	 */
+	int CONDITIONAL_COMPOUND_CONDITION = 62;
+
+	/**
+	 * The feature id for the '<em><b>Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_COMPOUND_CONDITION__COMPOUND = COMPOUND_INPUT_CONNECTOR__COMPOUND;
+
+	/**
+	 * The number of structural features of the '<em>Conditional Compound Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_COMPOUND_CONDITION_FEATURE_COUNT = COMPOUND_INPUT_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3677,6 +3891,109 @@ public interface DMLPackage extends EPackage {
 	EAttribute getOpaqueBehaviorSpecification_Behavior();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Compound <em>Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compound</em>'.
+	 * @see org.eclipselabs.damos.dml.Compound
+	 * @generated
+	 */
+	EClass getCompound();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dml.Compound#getMembers <em>Members</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Members</em>'.
+	 * @see org.eclipselabs.damos.dml.Compound#getMembers()
+	 * @see #getCompound()
+	 * @generated
+	 */
+	EReference getCompound_Members();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.CompoundMember <em>Compound Member</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compound Member</em>'.
+	 * @see org.eclipselabs.damos.dml.CompoundMember
+	 * @generated
+	 */
+	EClass getCompoundMember();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.CompoundConnector <em>Compound Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compound Connector</em>'.
+	 * @see org.eclipselabs.damos.dml.CompoundConnector
+	 * @generated
+	 */
+	EClass getCompoundConnector();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.CompoundConnector#getCompound <em>Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Compound</em>'.
+	 * @see org.eclipselabs.damos.dml.CompoundConnector#getCompound()
+	 * @see #getCompoundConnector()
+	 * @generated
+	 */
+	EReference getCompoundConnector_Compound();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.CompoundInputConnector <em>Compound Input Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compound Input Connector</em>'.
+	 * @see org.eclipselabs.damos.dml.CompoundInputConnector
+	 * @generated
+	 */
+	EClass getCompoundInputConnector();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.CompoundOutputConnector <em>Compound Output Connector</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Compound Output Connector</em>'.
+	 * @see org.eclipselabs.damos.dml.CompoundOutputConnector
+	 * @generated
+	 */
+	EClass getCompoundOutputConnector();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ConditionalCompound <em>Conditional Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Conditional Compound</em>'.
+	 * @see org.eclipselabs.damos.dml.ConditionalCompound
+	 * @generated
+	 */
+	EClass getConditionalCompound();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.ConditionalCompound#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
+	 * @see org.eclipselabs.damos.dml.ConditionalCompound#getCondition()
+	 * @see #getConditionalCompound()
+	 * @generated
+	 */
+	EReference getConditionalCompound_Condition();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ConditionalCompoundCondition <em>Conditional Compound Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Conditional Compound Condition</em>'.
+	 * @see org.eclipselabs.damos.dml.ConditionalCompoundCondition
+	 * @generated
+	 */
+	EClass getConditionalCompoundCondition();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4763,6 +5080,100 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR = eINSTANCE.getOpaqueBehaviorSpecification_Behavior();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CompoundImpl <em>Compound</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.CompoundImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompound()
+		 * @generated
+		 */
+		EClass COMPOUND = eINSTANCE.getCompound();
+
+		/**
+		 * The meta object literal for the '<em><b>Members</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOUND__MEMBERS = eINSTANCE.getCompound_Members();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CompoundMemberImpl <em>Compound Member</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.CompoundMemberImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundMember()
+		 * @generated
+		 */
+		EClass COMPOUND_MEMBER = eINSTANCE.getCompoundMember();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CompoundConnectorImpl <em>Compound Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.CompoundConnectorImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundConnector()
+		 * @generated
+		 */
+		EClass COMPOUND_CONNECTOR = eINSTANCE.getCompoundConnector();
+
+		/**
+		 * The meta object literal for the '<em><b>Compound</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOUND_CONNECTOR__COMPOUND = eINSTANCE.getCompoundConnector_Compound();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CompoundInputConnectorImpl <em>Compound Input Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.CompoundInputConnectorImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundInputConnector()
+		 * @generated
+		 */
+		EClass COMPOUND_INPUT_CONNECTOR = eINSTANCE.getCompoundInputConnector();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CompoundOutputConnectorImpl <em>Compound Output Connector</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.CompoundOutputConnectorImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundOutputConnector()
+		 * @generated
+		 */
+		EClass COMPOUND_OUTPUT_CONNECTOR = eINSTANCE.getCompoundOutputConnector();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl <em>Conditional Compound</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompound()
+		 * @generated
+		 */
+		EClass CONDITIONAL_COMPOUND = eINSTANCE.getConditionalCompound();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONDITIONAL_COMPOUND__CONDITION = eINSTANCE.getConditionalCompound_Condition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl <em>Conditional Compound Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompoundCondition()
+		 * @generated
+		 */
+		EClass CONDITIONAL_COMPOUND_CONDITION = eINSTANCE.getConditionalCompoundCondition();
 
 	}
 

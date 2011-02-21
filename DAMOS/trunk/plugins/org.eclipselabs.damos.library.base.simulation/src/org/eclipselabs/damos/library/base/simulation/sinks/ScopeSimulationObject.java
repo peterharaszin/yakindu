@@ -59,7 +59,6 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 		positions[portIndex] += 1;
 	}
 	
-	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
 		if (adapter == IChartData.class) {
 			return new IChartData() {

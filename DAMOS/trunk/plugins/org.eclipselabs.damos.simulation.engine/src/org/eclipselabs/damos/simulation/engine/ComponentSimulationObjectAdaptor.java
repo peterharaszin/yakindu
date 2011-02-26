@@ -21,7 +21,8 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
-import org.eclipselabs.damos.execution.executiongraph.Node;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.engine.internal.ComponentSimulationObjectAdapter;
 import org.eclipselabs.damos.simulation.engine.internal.DelegatingOverflowMonitor;
 import org.eclipselabs.damos.simulation.engine.internal.registry.ComponentSimulationObjectProviderRegistry;
@@ -35,23 +36,28 @@ public class ComponentSimulationObjectAdaptor {
 	private ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
 	
 	public void adaptSimulationObjects(ISimulationContext context, IComponentOverflowMonitor overflowMonitor, IProgressMonitor progressMonitor) throws CoreException {
-		ComponentSignatureResolverResult signatureResolverResult = signatureResolver.resolve(context.getExecutionGraph().getTopLevelFragment(), true);
+		ComponentSignatureResolverResult signatureResolverResult = signatureResolver.resolve(context.getExecutionFlow().getTopLevelFragment(), true);
 		if (!signatureResolverResult.getStatus().isOK()) {
 			throw new CoreException(signatureResolverResult.getStatus());
 		}
 		
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
 		
-		for (Node node : context.getExecutionGraph().getNodes()) {
-			Component component = node.getComponent();
-			IComponentSimulationObject simulationObject;
-			simulationObject = ComponentSimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
-			if (simulationObject != null) {
-				IComponentSignature componentSignature = signatureResolverResult.getSignatures().get(component);
-				simulationObject.setInfo(new ComponentSimulationInfo(component, componentSignature, context.getSimulationModel(), new DelegatingOverflowMonitor(context, component, overflowMonitor)));
-				node.eAdapters().add(new ComponentSimulationObjectAdapter(simulationObject));
+		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				Component component = componentNode.getComponent();
+				IComponentSimulationObject simulationObject;
+				simulationObject = ComponentSimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
+				if (simulationObject != null) {
+					IComponentSignature componentSignature = signatureResolverResult.getSignatures().get(component);
+					simulationObject.setInfo(new ComponentSimulationInfo(component, componentSignature, context.getSimulationModel(), new DelegatingOverflowMonitor(context, component, overflowMonitor)));
+					node.eAdapters().add(new ComponentSimulationObjectAdapter(simulationObject));
+				} else {
+					missingSimulationObjectComponents.add(component);
+				}
 			} else {
-				missingSimulationObjectComponents.add(component);
+				// TODO
 			}
 		}
 		

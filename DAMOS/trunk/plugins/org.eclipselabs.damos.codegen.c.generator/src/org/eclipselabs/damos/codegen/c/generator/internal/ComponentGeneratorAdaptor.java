@@ -27,8 +27,9 @@ import org.eclipselabs.damos.codegen.c.generator.internal.registry.ComponentGene
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
-import org.eclipselabs.damos.execution.executiongraph.Node;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
+import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
  * @author Andreas Unger
@@ -38,8 +39,8 @@ public class ComponentGeneratorAdaptor {
 
 	private ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
 	
-	public void adaptGenerators(GenModel genModel, ExecutionGraph executionGraph, IProgressMonitor monitor) throws CoreException {
-		ComponentSignatureResolverResult signatureResolverResult = signatureResolver.resolve(executionGraph.getTopLevelFragment(), true);
+	public void adaptGenerators(GenModel genModel, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
+		ComponentSignatureResolverResult signatureResolverResult = signatureResolver.resolve(executionFlow.getTopLevelFragment(), true);
 		if (!signatureResolverResult.getStatus().isOK()) {
 			throw new CoreException(signatureResolverResult.getStatus());
 		}
@@ -48,17 +49,22 @@ public class ComponentGeneratorAdaptor {
 		
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
-		for (Node node : executionGraph.getNodes()) {
-			Component component = node.getComponent();
-			IComponentGenerator generator;
-			generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
-			if (generator != null) {
-				generator.setContext(context);
-				generator.setComponent(component);
-				generator.setSignature(signatureResolverResult.getSignatures().get(component));
-				node.eAdapters().add(new ComponentGeneratorAdapter(generator));
+		for (Node node : executionFlow.getGraph().getNodes()) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				Component component = componentNode.getComponent();
+				IComponentGenerator generator;
+				generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
+				if (generator != null) {
+					generator.setContext(context);
+					generator.setComponent(component);
+					generator.setSignature(signatureResolverResult.getSignatures().get(component));
+					node.eAdapters().add(new ComponentGeneratorAdapter(generator));
+				} else {
+					missingGeneratorComponents.add(component);
+				}
 			} else {
-				missingGeneratorComponents.add(component);
+				// TODO
 			}
 		}
 		

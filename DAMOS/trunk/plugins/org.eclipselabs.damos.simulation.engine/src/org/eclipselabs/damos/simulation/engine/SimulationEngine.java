@@ -12,9 +12,10 @@
 package org.eclipselabs.damos.simulation.engine;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipselabs.damos.execution.executiongraph.DataFlowSourceEnd;
-import org.eclipselabs.damos.execution.executiongraph.DataFlowTargetEnd;
-import org.eclipselabs.damos.execution.executiongraph.Node;
+import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
+import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
@@ -31,7 +32,7 @@ public class SimulationEngine implements ISimulationEngine {
 		long stepCount = SimulationUtil.getStepCount(context.getSimulationModel());
 		
 		monitor.fireSimulationEvent(new SimulationEvent(this, context, SimulationEvent.START));
-		for (Node node : context.getExecutionGraph().getNodes()) {
+		for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
 			if (monitor.isCanceled()) {
 				break;
 			}
@@ -45,21 +46,23 @@ public class SimulationEngine implements ISimulationEngine {
 			if (monitor.isCanceled()) {
 				break;
 			}
-			for (Node node : context.getExecutionGraph().getNodes()) {
+			for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
 				if (monitor.isCanceled()) {
 					break;
 				}
 				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 				simulationObject.computeOutputValues();
 				for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
-					IValue value = simulationObject.getOutputValue(sourceEnd.getInoutputIndex(), sourceEnd.getPortIndex());
+					PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
+					IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
 					for (DataFlowTargetEnd targetEnd : sourceEnd.getDataFlow().getTargetEnds()) {
 						IComponentSimulationObject targetSimulationObject = SimulationUtil.getComponentSimulationObject(targetEnd.getNode());
-						targetSimulationObject.setInputValue(targetEnd.getInoutputIndex(), targetEnd.getPortIndex(), value);
+						PortInfo targetPortInfo = (PortInfo) targetEnd.getConnectorInfo();
+						targetSimulationObject.setInputValue(targetPortInfo.getInoutputIndex(), targetPortInfo.getPortIndex(), value);
 					}
 				}
 			}
-			for (Node node : context.getExecutionGraph().getNodes()) {
+			for (Node node : context.getExecutionFlow().getGraph().getNodes()) {
 				if (monitor.isCanceled()) {
 					break;
 				}

@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
-import org.eclipselabs.damos.execution.executiongraph.construct.ExecutionGraphConstructor;
+import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
+import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowConstructor;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.simulation.engine.ComponentSimulationObjectAdaptor;
@@ -101,8 +101,8 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 			}
 		}
 		
-		ExecutionGraph executionGraph = new ExecutionGraphConstructor().construct(simulationModel.getTopLevelFragment(), progressMonitor);
-		ISimulationContext context = new SimulationContext(simulationModel, executionGraph);
+		ExecutionFlow executionFlow = new ExecutionFlowConstructor().construct(simulationModel.getTopLevelFragment(), progressMonitor);
+		ISimulationContext context = new SimulationContext(simulationModel, executionFlow);
 		SimulationMonitor simulationMonitor = new SimulationMonitor();
 		new ComponentSimulationObjectAdaptor().adaptSimulationObjects(context, simulationMonitor, progressMonitor);
 		new SimulationProcess(launch, simulationModel.getTopLevelFragment().getName()).run(context, simulationMonitor);

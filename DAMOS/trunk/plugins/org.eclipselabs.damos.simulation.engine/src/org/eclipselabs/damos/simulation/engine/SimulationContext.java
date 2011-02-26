@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation.engine;
 
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
+import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
@@ -21,14 +21,14 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 public class SimulationContext implements ISimulationContext {
 	
 	private SimulationModel simulationModel;
-	private ExecutionGraph executionGraph;
+	private ExecutionFlow executionFlow;
 
 	/**
 	 * 
 	 */
-	public SimulationContext(SimulationModel simulationModel, ExecutionGraph executionGraph) {
+	public SimulationContext(SimulationModel simulationModel, ExecutionFlow executionFlow) {
 		this.simulationModel = simulationModel;
-		this.executionGraph = executionGraph;
+		this.executionFlow = executionFlow;
 	}
 	
 	/* (non-Javadoc)
@@ -39,10 +39,10 @@ public class SimulationContext implements ISimulationContext {
 	}
 
 	/**
-	 * @return the executionGraph
+	 * @return the executionFlow
 	 */
-	public ExecutionGraph getExecutionGraph() {
-		return executionGraph;
+	public ExecutionFlow getExecutionFlow() {
+		return executionFlow;
 	}
 	
 }

@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.simulation.engine.util;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.execution.executiongraph.Node;
+import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.engine.IComponentSimulationObject;
 import org.eclipselabs.damos.simulation.engine.internal.ComponentSimulationObjectAdapter;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;

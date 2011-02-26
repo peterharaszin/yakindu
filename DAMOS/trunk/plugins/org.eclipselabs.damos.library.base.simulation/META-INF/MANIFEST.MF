@@ -9,7 +9,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipselabs.mscript.computation.engine;bundle-version="0.1.0",
  org.eclipselabs.damos.common.math;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.engine;bundle-version="0.2.0",
- org.eclipselabs.damos.execution.executiongraph;bundle-version="0.2.0",
  org.eclipselabs.damos.simulation.simulationmodel;bundle-version="0.2.0",
  org.eclipselabs.damos.simulation.engine;bundle-version="0.2.0",
  org.eclipselabs.damos.library.base;bundle-version="0.2.0"

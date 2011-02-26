@@ -82,7 +82,7 @@ public class SimulationListener implements ISimulationListener {
 						if (viewPart != null) {
 							viewPart.setProgress(-1);
 							if (event.getKind() == SimulationEvent.FINISH) {
-								viewPart.setExecutionGraph(event.getContext().getExecutionGraph());
+								viewPart.setExecutionFlow(event.getContext().getExecutionFlow());
 							}
 						}
 						if (!overflowedComponents.isEmpty()) {

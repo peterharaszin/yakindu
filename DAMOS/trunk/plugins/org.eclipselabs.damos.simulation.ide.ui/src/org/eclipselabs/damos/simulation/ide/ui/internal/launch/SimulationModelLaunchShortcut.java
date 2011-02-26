@@ -135,7 +135,7 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 			if (launchConfigurationType != null) {
 				List<ILaunchConfiguration> launchConfigurations = new ArrayList<ILaunchConfiguration>();
 				for (ILaunchConfiguration launchConfiguration : launchManager.getLaunchConfigurations(launchConfigurationType)) {
-					if (launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true)) {
+					if (!launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true)) {
 						String pathString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, "");
 						if (pathString.trim().length() > 0 && path.equals(new Path(pathString))) {
 							launchConfigurations.add(launchConfiguration);

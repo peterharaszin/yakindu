@@ -32,6 +32,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorPart;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageDescriptor;
+import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageRegistry;
 import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
@@ -84,14 +86,20 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		
 		entry = new SubsystemCreationToolEntry(editor);
 		entry.setId(IPaletteConstants.SUBSYSTEM_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Subsystem16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Subsystem24.png"));
 		entries.add(entry);
 		
 		entry = new ElementCreationToolEntry(ElementTypes.INPORT, null, null);
 		entry.setId(IPaletteConstants.INPORT_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Inport16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Inport24.png"));
 		entries.add(entry);
 		
 		entry = new ElementCreationToolEntry(ElementTypes.OUTPORT, null, null);
 		entry.setId(IPaletteConstants.OUTPORT_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Outport16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Outport24.png"));
 		entries.add(entry);
 		
 		entry = new ElementCreationToolEntry(ElementTypes.CONDITIONAL_COMPOUND, null, null);
@@ -108,8 +116,13 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 				PaletteDrawer drawer = new PaletteDrawer(group.getName());
 				drawer.setInitialState(PaletteDrawer.INITIAL_STATE_CLOSED);
 				root.add(drawer);
-				for (final IBlockTypeDescriptor blockTypeDescriptor : blockTypeDescriptors) {
+				for (IBlockTypeDescriptor blockTypeDescriptor : blockTypeDescriptors) {
 					ToolEntry entry = new BlockCreationToolEntry(editor, blockTypeDescriptor);
+					BlockImageDescriptor blockImageDescriptor = BlockImageRegistry.getInstance().getDescriptor(blockTypeDescriptor.getQualifiedName());
+					if (blockImageDescriptor != null) {
+						entry.setSmallIcon(blockImageDescriptor.getIcon16ImageDescriptor());
+						entry.setLargeIcon(blockImageDescriptor.getIcon24ImageDescriptor());
+					}
 					drawer.add(entry);
 				}
 			}

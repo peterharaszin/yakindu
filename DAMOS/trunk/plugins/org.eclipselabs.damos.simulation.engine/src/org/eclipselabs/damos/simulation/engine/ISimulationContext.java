@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation.engine;
 
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
+import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
@@ -23,6 +23,6 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 public interface ISimulationContext {
 
 	SimulationModel getSimulationModel();
-	ExecutionGraph getExecutionGraph();
+	ExecutionFlow getExecutionFlow();
 
 }

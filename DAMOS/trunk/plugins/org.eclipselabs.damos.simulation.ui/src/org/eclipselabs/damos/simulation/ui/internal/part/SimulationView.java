@@ -21,8 +21,9 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.execution.executiongraph.ExecutionGraph;
-import org.eclipselabs.damos.execution.executiongraph.Node;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
+import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.engine.IChartData;
 import org.eclipselabs.damos.simulation.engine.IComponentSimulationObject;
 import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
@@ -73,18 +74,19 @@ public class SimulationView extends ViewPart {
 		}
 	}
 
-	public void setExecutionGraph(ExecutionGraph executionGraph) {
+	public void setExecutionFlow(ExecutionFlow executionFlow) {
 		Map<IChartData, URI> dataset = new TreeMap<IChartData, URI>(new Comparator<IChartData>() {
 			public int compare(IChartData data1, IChartData data2) {
 				return data1.getChartTitle().compareTo(data2.getChartTitle());
 			}
 		});
-		for (Node node : executionGraph.getNodes()) {
+		for (Node node : executionFlow.getGraph().getNodes()) {
 			IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 			if (simulationObject instanceof IAdaptable) {
 				IChartData simulationData = (IChartData) ((IAdaptable) simulationObject).getAdapter(IChartData.class);
-				if (simulationData != null) {
-					dataset.put(simulationData, EcoreUtil.getURI(node.getComponent()));
+				if (simulationData != null && node instanceof ComponentNode) {
+					ComponentNode componentNode = (ComponentNode) node;
+					dataset.put(simulationData, EcoreUtil.getURI(componentNode.getComponent()));
 				}
 			}
 		}

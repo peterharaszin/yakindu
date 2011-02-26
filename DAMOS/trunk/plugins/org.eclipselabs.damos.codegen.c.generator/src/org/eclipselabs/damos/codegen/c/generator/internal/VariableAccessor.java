@@ -18,9 +18,10 @@ import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.execution.executiongraph.DataFlowSourceEnd;
-import org.eclipselabs.damos.execution.executiongraph.DataFlowTargetEnd;
-import org.eclipselabs.damos.execution.executiongraph.Node;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
+import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
  * @author Andreas Unger
@@ -29,12 +30,12 @@ import org.eclipselabs.damos.execution.executiongraph.Node;
 public class VariableAccessor implements IVariableAccessor {
 
 	private GenModel genModel;
-	private Node node;
+	private ComponentNode node;
 	
 	/**
 	 * 
 	 */
-	public VariableAccessor(GenModel genModel, Node node) {
+	public VariableAccessor(GenModel genModel, ComponentNode node) {
 		this.node = node;
 		this.genModel = genModel;
 	}
@@ -65,7 +66,7 @@ public class VariableAccessor implements IVariableAccessor {
 	public String getInputVariable(InputPort inputPort, boolean pointer) {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputPort);
 		DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-		OutputPort sourcePort = sourceEnd.getPort();
+		OutputPort sourcePort = (OutputPort) sourceEnd.getConnector();
 		return getOutputVariable(sourcePort, pointer, sourceEnd.getNode());
 	}
 

@@ -19,7 +19,7 @@ import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdapter;
-import org.eclipselabs.damos.execution.executiongraph.Node;
+import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
  * @author Andreas Unger

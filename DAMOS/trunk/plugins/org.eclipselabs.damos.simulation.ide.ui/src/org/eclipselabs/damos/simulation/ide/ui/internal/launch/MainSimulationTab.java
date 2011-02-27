@@ -297,38 +297,46 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 		String errorMessage = null;
 		
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, createSimulationModelButton.getSelection());
+		boolean createSimulationModelSelection = createSimulationModelButton.getSelection();
+		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, createSimulationModelSelection);
 		
-		Fragment fragment = null;
-		ISelection selection = fragmentViewer.getSelection();
-		if (selection instanceof IStructuredSelection) {
-			fragment = (Fragment) ((IStructuredSelection) selection).getFirstElement();
-		}
-		if (fragment != null) {
-			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, EcoreUtil.getURI(fragment).toString());
-		} else {
-			errorMessage = "No fragment selected";
-		}
-		
-		try {
-			String sampleTime = sampleTimeText.getText();
-			if (!SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME.equals(sampleTime)) {
-				Double.parseDouble(sampleTime);
-				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, sampleTime);
+		if (createSimulationModelSelection) {
+			Fragment fragment = null;
+			ISelection selection = fragmentViewer.getSelection();
+			if (selection instanceof IStructuredSelection) {
+				fragment = (Fragment) ((IStructuredSelection) selection).getFirstElement();
 			}
-		} catch (NumberFormatException e) {
-			errorMessage = "Invalid sample time";
+			if (fragment != null) {
+				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, EcoreUtil.getURI(fragment).toString());
+			} else {
+				errorMessage = "No fragment selected";
+			}
+			
+			try {
+				String sampleTime = sampleTimeText.getText();
+				if (!SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME.equals(sampleTime)) {
+					Double.parseDouble(sampleTime);
+					configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, sampleTime);
+				}
+			} catch (NumberFormatException e) {
+				errorMessage = "Invalid sample time";
+			}
+			
+			try {
+				String simulationTime = simulationTimeText.getText();
+				Double.parseDouble(simulationTime);
+				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, simulationTime);
+			} catch (NumberFormatException e) {
+				errorMessage = "Invalid simulation time";
+			}
+			
+			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, (String) null);
+		} else {
+			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, (String) null);
+			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, (String) null);
+			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, (String) null);
+			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, simulationModelPathText.getText());
 		}
-		
-		try {
-			String simulationTime = simulationTimeText.getText();
-			Double.parseDouble(simulationTime);
-			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, simulationTime);
-		} catch (NumberFormatException e) {
-			errorMessage = "Invalid simulation time";
-		}
-		
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, simulationModelPathText.getText());
 		
 		setErrorMessage(errorMessage);
 	}

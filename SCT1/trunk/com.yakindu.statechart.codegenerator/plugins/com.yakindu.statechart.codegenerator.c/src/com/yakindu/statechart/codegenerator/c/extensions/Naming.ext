@@ -84,7 +84,7 @@ String getStateEnumMax(EObject this)       : "st_"+RootName()+"_MAX";
 String initialStateName(Region this)       : getRegionEnumName()+"_Initial";
 
 String getStateName(State this)            : name.toFirstUpper();
-String getStateName(Pseudostate this)      : pseudoType.toString().toFirstUpper();
+String getStateName(Pseudostate this)      : pseudoType.toString().toFirstUpper(); // + "_R" + ((Region) eContainer).priority;
 String getStateName(Node this)             : "dummy";
 
 String filename(Region this)               : "sm_"+qualifiedStateName().toFirstLower();

@@ -99,7 +99,7 @@ extern void «basename()»_callTransitionAction(«baseHandle()»* SMGlobal);
 #include "«handleFilename()».h"
 
 #define var(x) (global->ihandle.x)
-#define send(x) («baseInterface()»_raiseTrigger(&SMGlobal->ihandle,x))
+#define send(x) («baseInterface()»_raiseTrigger(&global->ihandle,x))
  
 «FOREACH getAllRegions(this) AS reg» 
 void «reg.initHandleFuncName()»(«reg.regionHandleTypeName()»* rhandle, «baseIfaceHandle()»* ihandle, «baseHandle()»* global)

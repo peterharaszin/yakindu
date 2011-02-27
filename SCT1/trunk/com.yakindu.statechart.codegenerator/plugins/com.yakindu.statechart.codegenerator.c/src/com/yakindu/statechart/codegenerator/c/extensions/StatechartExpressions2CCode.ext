@@ -135,7 +135,7 @@ String toCCode(LiteralValue literalValue) :
 	literalValue.value.toString();
 	
 String toCCode(NestedExpression expression) : 
-    "(" + expression.toCCode() + ")";
+    "(" + expression.expression.toCCode() + ")";
     
 String toCCode(VariableReference variableReference) : 
     "var(" + variableReference.variable.identifier + ")";

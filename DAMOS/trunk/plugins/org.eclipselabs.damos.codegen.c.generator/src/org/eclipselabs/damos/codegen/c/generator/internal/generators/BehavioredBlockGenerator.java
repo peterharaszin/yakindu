@@ -53,6 +53,7 @@ import org.eclipselabs.mscript.language.il.transform.ArrayOperationDecomposer;
 import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.mscript.language.il.transform.IArrayOperationDecomposer;
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
+import org.eclipselabs.mscript.language.il.util.ILUtil;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.RealType;
@@ -217,18 +218,20 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		generateInputVariables(printWriter, variableAccessor);
 		
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
+		
 		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
 			}
 		}
-		String contextVariable = variableAccessor.getContextVariable(false);
-		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
+		
+		for (InputVariableDeclaration inputVariableDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
 			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
-				String name = inputVariableDeclaration.getName();
-				printWriter.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(getComponent(), getSignature(), variableAccessor, inputVariableDeclaration));
+				generateUpdateInputContextStatement(printWriter, variableAccessor, inputVariableDeclaration);
 			}
 		}
+
+		String contextVariable = variableAccessor.getContextVariable(false);
 		for (OutputVariableDeclaration outputVariableDeclaration : functionDefinition.getOutputVariableDeclarations()) {
 			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
 				String name = outputVariableDeclaration.getName();
@@ -261,6 +264,14 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
 			}
 		}
+		
+		List<InputVariableDeclaration> computeOutputsCodeInputs = ILUtil.getDirectFeedthroughInputs(functionDefinition);
+		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
+			if (inputVariableDeclaration.getCircularBufferSize() > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration)) {
+				generateUpdateInputContextStatement(printWriter, variableAccessor, inputVariableDeclaration);
+			}
+		}
+		
 		generateUpdateIndexStatements(printWriter, variableAccessor, functionDefinition.getInputVariableDeclarations());
 		generateUpdateIndexStatements(printWriter, variableAccessor, functionDefinition.getOutputVariableDeclarations());
 		generateUpdateIndexStatements(printWriter, variableAccessor, functionDefinition.getInstanceVariableDeclarations());
@@ -305,6 +316,12 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				}
 			}
 		}
+	}
+
+	private void generateUpdateInputContextStatement(PrintWriter writer, IVariableAccessor variableAccessor, InputVariableDeclaration inputVariableDeclaration) {
+		String contextVariable = variableAccessor.getContextVariable(false);
+		String name = inputVariableDeclaration.getName();
+		writer.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(getComponent(), getSignature(), variableAccessor, inputVariableDeclaration));
 	}
 	
 	private class Helper extends BehavioredBlockHelper {

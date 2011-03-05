@@ -2081,6 +2081,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		addEOperation(fragmentEClass, this.getFragment(), "getChildren", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
+		addEOperation(fragmentEClass, this.getFragmentElement(), "getAllFragmentElements", 0, -1, IS_UNIQUE, !IS_ORDERED);
+
 		addEOperation(fragmentEClass, this.getComponent(), "getAllComponents", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
 		addEOperation(fragmentEClass, this.getConnection(), "getAllConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);

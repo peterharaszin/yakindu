@@ -8,6 +8,7 @@
       <details key="constraints" value="WellFormedName UniqueComponentNames"/>
     </eAnnotations>
     <eOperations name="getChildren" ordered="false" upperBound="-1" eType="#//Fragment"/>
+    <eOperations name="getAllFragmentElements" ordered="false" upperBound="-1" eType="#//FragmentElement"/>
     <eOperations name="getAllComponents" ordered="false" upperBound="-1" eType="#//Component"/>
     <eOperations name="getAllConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="components" ordered="false"

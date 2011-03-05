@@ -58,8 +58,8 @@ public class FlattenerHelper {
 	/**
 	 * 
 	 */
-	public FlattenerHelper(ExecutionFlow graph) {
-		this.flow = graph;
+	public FlattenerHelper(ExecutionFlow flow) {
+		this.flow = flow;
 	}
 	
 	public void flatten() {

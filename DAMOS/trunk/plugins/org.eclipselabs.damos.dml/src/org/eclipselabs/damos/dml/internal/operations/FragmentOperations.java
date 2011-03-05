@@ -1,9 +1,14 @@
-/**
- * <copyright>
- * </copyright>
+/****************************************************************************
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- * $Id$
- */
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
 package org.eclipselabs.damos.dml.internal.operations;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -15,39 +20,11 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.internal.util.CrossReferencerUtil;
 
-/**
- * <!-- begin-user-doc -->
- * A static utility class that provides operations related to '<em><b>Fragment</b></em>' model objects.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following operations are supported:
- * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.Fragment#getChildren() <em>Get Children</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Fragment#getAllComponents() <em>Get All Components</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Fragment#getAllConnections() <em>Get All Connections</em>}</li>
- * </ul>
- * </p>
- *
- * @generated
- */
 public class FragmentOperations {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FragmentOperations() {
-		super();
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public static  EList<Fragment> getChildren(Fragment fragment) {
 		EList<Fragment> fragments = new UniqueEList.FastCompare<Fragment>();
 		for (EStructuralFeature.Setting nonNavigableInverseReference : CrossReferencerUtil.getNonNavigableInverseReferences(fragment)) {
@@ -61,11 +38,15 @@ public class FragmentOperations {
 		return fragments;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
+	public static  EList<FragmentElement> getAllFragmentElements(Fragment fragment) {
+		EList<FragmentElement> fragmentElements = new BasicEList<FragmentElement>(fragment.getFragmentElements());
+		while (fragment.getParent() != null) {
+			fragment = fragment.getParent();
+			fragmentElements.addAll(fragment.getFragmentElements());
+		}
+		return fragmentElements;
+	}
+
 	public static  EList<Component> getAllComponents(Fragment fragment) {
 		EList<Component> components = new BasicEList<Component>(fragment.getComponents());
 		while (fragment.getParent() != null) {
@@ -75,11 +56,6 @@ public class FragmentOperations {
 		return components;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public static  EList<Connection> getAllConnections(Fragment fragment) {
 		EList<Connection> connections = new BasicEList<Connection>(fragment.getConnections());
 		while (fragment.getParent() != null) {
@@ -89,4 +65,4 @@ public class FragmentOperations {
 		return connections;
 	}
 
-} // FragmentOperations
+}

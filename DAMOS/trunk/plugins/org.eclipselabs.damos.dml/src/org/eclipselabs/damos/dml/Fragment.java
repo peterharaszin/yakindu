@@ -146,6 +146,14 @@ public interface Fragment extends EObject {
 	 * @model kind="operation" ordered="false"
 	 * @generated
 	 */
+	EList<FragmentElement> getAllFragmentElements();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" ordered="false"
+	 * @generated
+	 */
 	EList<Component> getAllComponents();
 
 	/**

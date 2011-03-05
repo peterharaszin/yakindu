@@ -20,6 +20,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
@@ -44,6 +47,7 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
+import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowPlugin;
 
 /**
  * @author Andreas Unger
@@ -67,11 +71,11 @@ public class FlattenerHelper {
 		return nodes.values();
 	}
 
-	public void flatten() {
+	public void flatten() throws CoreException {
 		flatten(flow.getTopLevelFragment(), new LinkedList<Subsystem>());
 	}
 	
-	private void flatten(Fragment fragment, LinkedList<Subsystem> enclosingSubsystems) {
+	private void flatten(Fragment fragment, LinkedList<Subsystem> enclosingSubsystems) throws CoreException {
 		Subsystem enclosingSubsystem = enclosingSubsystems.isEmpty() ? null : enclosingSubsystems.get(0);
 
 		for (FragmentElement element : fragment.getAllFragmentElements()) {
@@ -126,46 +130,47 @@ public class FlattenerHelper {
 		}
 	}
 	
-	private void flattenSubsystem(Subsystem subsystem, Fragment context, LinkedList<Subsystem> enclosingSubsystems) {
+	private void flattenSubsystem(Subsystem subsystem, Fragment context, LinkedList<Subsystem> enclosingSubsystems) throws CoreException {
 		SubsystemRealization realization = subsystem.getRealization(context);
-		if (realization != null) {
-			// TODO: Throw exception if no realization provided
-			Fragment realizingFragment = realization.getRealizingFragment();
-			if (realizingFragment != null) {
-				SubsystemDescriptor subsystemDescriptor = new SubsystemDescriptor(subsystem);
+		if (realization == null) {
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, "No realization specified for subsystem '" + subsystem.getName() + "'"));
+		}
+			
+		Fragment realizingFragment = realization.getRealizingFragment();
+		if (realizingFragment != null) {
+			SubsystemDescriptor subsystemDescriptor = new SubsystemDescriptor(subsystem);
 
-				Map<String, Inport> inports = DMLUtil.getComponentMap(realizingFragment, Inport.class);
-				for (Input input : subsystem.getInputs()) {
-					if (input instanceof SubsystemInput) {
-						SubsystemInput subsystemInput = (SubsystemInput) input;
-						Inport inport = inports.get(subsystemInput.getInlet().getName());
-						if (inport != null) {
-							List<InputPort> inputPorts = new ArrayList<InputPort>();
-							for (Connection connection : inport.getFirstOutputPort().getConnections(realizingFragment)) {
-								inputPorts.add(connection.getTargetPort());
-							}
-							subsystemDescriptor.getInputs().put(subsystemInput, inputPorts);
+			Map<String, Inport> inports = DMLUtil.getComponentMap(realizingFragment, Inport.class);
+			for (Input input : subsystem.getInputs()) {
+				if (input instanceof SubsystemInput) {
+					SubsystemInput subsystemInput = (SubsystemInput) input;
+					Inport inport = inports.get(subsystemInput.getInlet().getName());
+					if (inport != null) {
+						List<InputPort> inputPorts = new ArrayList<InputPort>();
+						for (Connection connection : inport.getFirstOutputPort().getConnections(realizingFragment)) {
+							inputPorts.add(connection.getTargetPort());
 						}
+						subsystemDescriptor.getInputs().put(subsystemInput, inputPorts);
 					}
 				}
-				
-				Map<String, Outport> outports = DMLUtil.getComponentMap(realizingFragment, Outport.class);
-				for (Output output : subsystem.getOutputs()) {
-					if (output instanceof SubsystemOutput) {
-						SubsystemOutput subsystemOutput = (SubsystemOutput) output;
-						Outport outport = outports.get(subsystemOutput.getOutlet().getName());
-						if (outport != null) {
-							subsystemDescriptor.getOutputs().put(subsystemOutput, outport.getFirstInputPort().getFirstConnection(realizingFragment).getSourcePort());
-						}
-					}
-				}
-
-				subsystemDescriptors.put(subsystem, subsystemDescriptor);
-				
-				enclosingSubsystems.addFirst(subsystem);
-				flatten(realizingFragment, enclosingSubsystems);
-				enclosingSubsystems.removeFirst();
 			}
+			
+			Map<String, Outport> outports = DMLUtil.getComponentMap(realizingFragment, Outport.class);
+			for (Output output : subsystem.getOutputs()) {
+				if (output instanceof SubsystemOutput) {
+					SubsystemOutput subsystemOutput = (SubsystemOutput) output;
+					Outport outport = outports.get(subsystemOutput.getOutlet().getName());
+					if (outport != null) {
+						subsystemDescriptor.getOutputs().put(subsystemOutput, outport.getFirstInputPort().getFirstConnection(realizingFragment).getSourcePort());
+					}
+				}
+			}
+
+			subsystemDescriptors.put(subsystem, subsystemDescriptor);
+			
+			enclosingSubsystems.addFirst(subsystem);
+			flatten(realizingFragment, enclosingSubsystems);
+			enclosingSubsystems.removeFirst();
 		}
 	}
 	

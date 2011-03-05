@@ -23,6 +23,7 @@ import java.util.Map;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
@@ -52,8 +53,8 @@ public class FlattenerHelper {
 
 	private ExecutionFlow flow;
 	
-	private Map<Component, Node> nodes = new LinkedHashMap<Component, Node>();
-	private Map<Subsystem, SubsystemMapping> subsystemMappings = new HashMap<Subsystem, SubsystemMapping>();
+	private Map<SubsystemBinding<FragmentElement>, Node> nodes = new LinkedHashMap<SubsystemBinding<FragmentElement>, Node>();
+	private Map<Subsystem, SubsystemDescriptor> subsystemDescriptors = new HashMap<Subsystem, SubsystemDescriptor>();
 
 	/**
 	 * 
@@ -62,23 +63,27 @@ public class FlattenerHelper {
 		this.flow = flow;
 	}
 	
-	public void flatten() {
-		flatten(flow.getTopLevelFragment(), new LinkedList<Subsystem>());
-	}
-	
 	public Collection<Node> getNodes() {
 		return nodes.values();
 	}
 
+	public void flatten() {
+		flatten(flow.getTopLevelFragment(), new LinkedList<Subsystem>());
+	}
+	
 	private void flatten(Fragment fragment, LinkedList<Subsystem> enclosingSubsystems) {
-		for (Component component : fragment.getAllComponents()) {
-			if (component instanceof Subsystem) {
-				flattenSubsystem((Subsystem) component, fragment, enclosingSubsystems);
-			} else if (!(component instanceof Inoutport) || enclosingSubsystems.isEmpty()) {
+		Subsystem enclosingSubsystem = enclosingSubsystems.isEmpty() ? null : enclosingSubsystems.get(0);
+
+		for (FragmentElement element : fragment.getAllFragmentElements()) {
+			if (element instanceof Subsystem) {
+				Subsystem subsystem = (Subsystem) element;
+				flattenSubsystem(subsystem, fragment, enclosingSubsystems);
+			} else if (element instanceof Component && (!(element instanceof Inoutport) || enclosingSubsystems.isEmpty())) {
+				Component component = (Component) element;
 				ComponentNode node = ExecutionFlowFactory.eINSTANCE.createComponentNode();
 				node.setComponent(component);
 				node.getEnclosingSubsystems().addAll(enclosingSubsystems);
-				nodes.put(component, node);
+				nodes.put(new SubsystemBinding<FragmentElement>(enclosingSubsystem, component), node);
 			}
 		}
 		
@@ -87,35 +92,35 @@ public class FlattenerHelper {
 			if ((connection.getSourcePort().getComponent() instanceof Inoutport || connection.getTargetPort().getComponent() instanceof Inoutport) && !enclosingSubsystems.isEmpty()) {
 				continue;
 			}
-			
-			OutputPort sourcePort = getActualSourcePort(connection.getSourcePort());
-			List<InputPort> targetPorts = getActualTargetPorts(connection.getTargetPort());
-			
+						
+			SubsystemBinding<OutputPort> sourcePort = getActualSourcePort(enclosingSubsystem, connection.getSourcePort());
 			DataFlow dataFlow = dataFlows.get(sourcePort);
 			if (dataFlow == null) {
 				dataFlow = ExecutionFlowFactory.eINSTANCE.createDataFlow();
 				DataFlowSourceEnd sourceEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowSourceEnd();
 				sourceEnd.setDataFlow(dataFlow);
-				sourceEnd.setNode(nodes.get(sourcePort.getComponent()));
-				sourceEnd.setConnector(sourcePort);
+				sourceEnd.setNode(nodes.get(new SubsystemBinding<FragmentElement>(sourcePort.getSubsystem(), sourcePort.getElement().getComponent())));
+				sourceEnd.setConnector(sourcePort.getElement());
 
 				PortInfo portInfo = ExecutionFlowFactory.eINSTANCE.createPortInfo();
-				portInfo.setInoutputIndex(DMLUtil.indexOf(sourcePort.getOutput()));
-				portInfo.setPortIndex(sourcePort.getIndex());
+				portInfo.setInoutputIndex(DMLUtil.indexOf(sourcePort.getElement().getOutput()));
+				portInfo.setPortIndex(sourcePort.getElement().getIndex());
 				sourceEnd.setConnectorInfo(portInfo);
 				
 				flow.getDataFlows().add(dataFlow);
-				dataFlows.put(sourcePort, dataFlow);
+				dataFlows.put(sourcePort.getElement(), dataFlow);
 			}
-			for (InputPort targetPort : targetPorts) {
+
+			List<SubsystemBinding<InputPort>> targetPorts = getActualTargetPorts(enclosingSubsystem, connection.getTargetPort());
+			for (SubsystemBinding<InputPort> targetPort : targetPorts) {
 				DataFlowTargetEnd targetEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowTargetEnd();
 				targetEnd.setDataFlow(dataFlow);
-				targetEnd.setNode(nodes.get(targetPort.getComponent()));
-				targetEnd.setConnector(targetPort);
+				targetEnd.setNode(nodes.get(new SubsystemBinding<FragmentElement>(targetPort.getSubsystem(), targetPort.getElement().getComponent())));
+				targetEnd.setConnector(targetPort.getElement());
 
 				PortInfo portInfo = ExecutionFlowFactory.eINSTANCE.createPortInfo();
-				portInfo.setInoutputIndex(DMLUtil.indexOf(targetPort.getInput()));
-				portInfo.setPortIndex(targetPort.getIndex());
+				portInfo.setInoutputIndex(DMLUtil.indexOf(targetPort.getElement().getInput()));
+				portInfo.setPortIndex(targetPort.getElement().getIndex());
 				targetEnd.setConnectorInfo(portInfo);
 			}
 		}
@@ -127,7 +132,7 @@ public class FlattenerHelper {
 			// TODO: Throw exception if no realization provided
 			Fragment realizingFragment = realization.getRealizingFragment();
 			if (realizingFragment != null) {
-				SubsystemMapping subsystemMapping = new SubsystemMapping();
+				SubsystemDescriptor subsystemDescriptor = new SubsystemDescriptor(subsystem);
 
 				Map<String, Inport> inports = DMLUtil.getComponentMap(realizingFragment, Inport.class);
 				for (Input input : subsystem.getInputs()) {
@@ -139,7 +144,7 @@ public class FlattenerHelper {
 							for (Connection connection : inport.getFirstOutputPort().getConnections(realizingFragment)) {
 								inputPorts.add(connection.getTargetPort());
 							}
-							subsystemMapping.getInputs().put(subsystemInput, inputPorts);
+							subsystemDescriptor.getInputs().put(subsystemInput, inputPorts);
 						}
 					}
 				}
@@ -150,12 +155,12 @@ public class FlattenerHelper {
 						SubsystemOutput subsystemOutput = (SubsystemOutput) output;
 						Outport outport = outports.get(subsystemOutput.getOutlet().getName());
 						if (outport != null) {
-							subsystemMapping.getOutputs().put(subsystemOutput, outport.getFirstInputPort().getFirstConnection(realizingFragment).getSourcePort());
+							subsystemDescriptor.getOutputs().put(subsystemOutput, outport.getFirstInputPort().getFirstConnection(realizingFragment).getSourcePort());
 						}
 					}
 				}
 
-				subsystemMappings.put(subsystem, subsystemMapping);
+				subsystemDescriptors.put(subsystem, subsystemDescriptor);
 				
 				enclosingSubsystems.addFirst(subsystem);
 				flatten(realizingFragment, enclosingSubsystems);
@@ -164,45 +169,107 @@ public class FlattenerHelper {
 		}
 	}
 	
-	private OutputPort getActualSourcePort(OutputPort sourcePort) {
+	private SubsystemBinding<OutputPort> getActualSourcePort(Subsystem subsystem, OutputPort sourcePort) {
 		while (sourcePort.getOutput() instanceof SubsystemOutput) {
-			SubsystemMapping subsystemMapping = subsystemMappings.get(sourcePort.getComponent());
-			if (subsystemMapping != null) {
-				sourcePort = subsystemMapping.getOutputs().get(sourcePort.getOutput());
+			SubsystemDescriptor subsystemDescriptor = subsystemDescriptors.get(sourcePort.getComponent());
+			if (subsystemDescriptor != null) {
+				subsystem = subsystemDescriptor.getSubsystem();
+				sourcePort = subsystemDescriptor.getOutputs().get(sourcePort.getOutput());
 			} else {
 				return null;
 			}
 		}
-		return sourcePort;
+		return new SubsystemBinding<OutputPort>(subsystem, sourcePort);
 	}
 	
-	private List<InputPort> getActualTargetPorts(InputPort targetPort) {
+	private List<SubsystemBinding<InputPort>> getActualTargetPorts(Subsystem subsystem, InputPort targetPort) {
 		if (targetPort.getInput() instanceof SubsystemInput) {
-			List<InputPort> actualTargetPorts = new ArrayList<InputPort>();
+			List<SubsystemBinding<InputPort>> actualTargetPorts = new ArrayList<SubsystemBinding<InputPort>>();
 			getActualTargetPorts((SubsystemInput) targetPort.getInput(), actualTargetPorts);
 			return actualTargetPorts;
 		}
-		return Collections.singletonList(targetPort);
+		return Collections.singletonList(new SubsystemBinding<InputPort>(subsystem, targetPort));
 	}
 	
-	private void getActualTargetPorts(SubsystemInput subsystemInput, List<InputPort> actualTargetPorts) {
-		SubsystemMapping subsystemMapping = subsystemMappings.get(subsystemInput.getComponent());
-		if (subsystemMapping != null) {
-			List<InputPort> targetPorts = subsystemMapping.getInputs().get(subsystemInput);
+	private void getActualTargetPorts(SubsystemInput subsystemInput, List<SubsystemBinding<InputPort>> actualTargetPorts) {
+		SubsystemDescriptor subsystemDescriptor = subsystemDescriptors.get(subsystemInput.getComponent());
+		if (subsystemDescriptor != null) {
+			List<InputPort> targetPorts = subsystemDescriptor.getInputs().get(subsystemInput);
 			for (InputPort targetPort : targetPorts) {
 				if (targetPort.getInput() instanceof SubsystemInput) {
 					getActualTargetPorts((SubsystemInput) targetPort.getInput(), actualTargetPorts);
 				} else {
-					actualTargetPorts.add(targetPort);
+					actualTargetPorts.add(new SubsystemBinding<InputPort>(subsystemDescriptor.getSubsystem(), targetPort));
 				}
 			}
 		}
 	}
-
-	private static class SubsystemMapping {
+	
+	private static class SubsystemBinding<T> {
 		
+		private Subsystem subsystem;
+		private T element;
+
+		/**
+		 * 
+		 */
+		public SubsystemBinding(Subsystem subsystem, T element) {
+			this.subsystem = subsystem;
+			this.element = element;
+		}
+		
+		/**
+		 * @return the subsystem
+		 */
+		public Subsystem getSubsystem() {
+			return subsystem;
+		}
+		
+		/**
+		 * @return the element
+		 */
+		public T getElement() {
+			return element;
+		}
+		
+		@Override
+		public int hashCode() {
+			return (subsystem != null ? subsystem.hashCode() : 0) ^ element.hashCode();
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj) {
+				return true;
+			}
+			if (obj instanceof SubsystemBinding) {
+				SubsystemBinding<?> other = (SubsystemBinding<?>) obj;
+				return other.subsystem == subsystem && other.element == element;
+			}
+			return false;
+		}
+
+	}
+
+	private static class SubsystemDescriptor {
+		
+		private Subsystem subsystem;
 		private Map<SubsystemInput, List<InputPort>> inputs = new HashMap<SubsystemInput, List<InputPort>>();
 		private Map<SubsystemOutput, OutputPort> outputs = new HashMap<SubsystemOutput, OutputPort>();
+		
+		/**
+		 * 
+		 */
+		public SubsystemDescriptor(Subsystem subsystem) {
+			this.subsystem = subsystem;
+		}
+		
+		/**
+		 * @return the subsystem
+		 */
+		public Subsystem getSubsystem() {
+			return subsystem;
+		}
 		
 		/**
 		 * @return the inputs

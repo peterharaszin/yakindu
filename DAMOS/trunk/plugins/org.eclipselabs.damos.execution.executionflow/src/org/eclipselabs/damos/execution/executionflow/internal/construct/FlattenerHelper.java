@@ -55,7 +55,7 @@ import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowPlug
  */
 public class FlattenerHelper {
 
-	private ExecutionFlow flow;
+	private ExecutionFlow executionFlow;
 	
 	private Map<SubsystemBinding<FragmentElement>, Node> nodes = new LinkedHashMap<SubsystemBinding<FragmentElement>, Node>();
 	private Map<Subsystem, SubsystemDescriptor> subsystemDescriptors = new HashMap<Subsystem, SubsystemDescriptor>();
@@ -64,7 +64,7 @@ public class FlattenerHelper {
 	 * 
 	 */
 	public FlattenerHelper(ExecutionFlow flow) {
-		this.flow = flow;
+		this.executionFlow = flow;
 	}
 	
 	public Collection<Node> getNodes() {
@@ -72,7 +72,7 @@ public class FlattenerHelper {
 	}
 
 	public void flatten() throws CoreException {
-		flatten(flow.getTopLevelFragment(), new LinkedList<Subsystem>());
+		flatten(executionFlow.getTopLevelFragment(), new LinkedList<Subsystem>());
 	}
 	
 	private void flatten(Fragment fragment, LinkedList<Subsystem> enclosingSubsystems) throws CoreException {
@@ -91,7 +91,7 @@ public class FlattenerHelper {
 			}
 		}
 		
-		Map<OutputPort, DataFlow> dataFlows = new HashMap<OutputPort, DataFlow>();
+		Map<SubsystemBinding<OutputPort>, DataFlow> dataFlows = new HashMap<SubsystemBinding<OutputPort>, DataFlow>();
 		for (Connection connection : fragment.getAllConnections()) {
 			if ((connection.getSourcePort().getComponent() instanceof Inoutport || connection.getTargetPort().getComponent() instanceof Inoutport) && !enclosingSubsystems.isEmpty()) {
 				continue;
@@ -111,8 +111,8 @@ public class FlattenerHelper {
 				portInfo.setPortIndex(sourcePort.getElement().getIndex());
 				sourceEnd.setConnectorInfo(portInfo);
 				
-				flow.getDataFlows().add(dataFlow);
-				dataFlows.put(sourcePort.getElement(), dataFlow);
+				executionFlow.getDataFlows().add(dataFlow);
+				dataFlows.put(sourcePort, dataFlow);
 			}
 
 			List<SubsystemBinding<InputPort>> targetPorts = getActualTargetPorts(enclosingSubsystem, connection.getTargetPort());

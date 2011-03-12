@@ -55,7 +55,7 @@ public class ReorientConnectionCommand extends EditElementCommand {
 	}
 	
 	private void reparentConnection(Connection connection, Connector port) {
-		Fragment portFragment = DMLUtil.findOwningFragment(port);
+		Fragment portFragment = DMLUtil.getOwner(port, Fragment.class);
 		if (connection.getOwningFragment() != portFragment && DMLUtil.isChildFragment(portFragment, connection.getOwningFragment())) {
 			connection.getOwningFragment().getConnections().remove(connection);
 			portFragment.getConnections().add(connection);
@@ -84,7 +84,7 @@ public class ReorientConnectionCommand extends EditElementCommand {
 
 	private boolean canReconnectTarget(Connector newTarget) {
 		Fragment connectionFragment = ((Connection) getElementToEdit()).getOwningFragment();
-		Fragment owningFragment = DMLUtil.findOwningFragment(newTarget);
+		Fragment owningFragment = DMLUtil.getOwner(newTarget, Fragment.class);
 		if (DMLUtil.isChildFragment(owningFragment, connectionFragment)) {
 			connectionFragment = owningFragment;
 		}

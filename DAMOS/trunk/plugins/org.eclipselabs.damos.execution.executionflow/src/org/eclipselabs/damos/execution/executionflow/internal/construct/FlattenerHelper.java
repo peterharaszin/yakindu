@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
@@ -40,6 +41,7 @@ import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlow;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
@@ -80,6 +82,12 @@ public class FlattenerHelper {
 			if (element instanceof Subsystem) {
 				Subsystem subsystem = (Subsystem) element;
 				flattenSubsystem(subsystem, fragment, enclosingSubsystems);
+			} else if (element instanceof Compound) {
+				Compound compound = (Compound) element;
+				CompoundNode node = ExecutionFlowFactory.eINSTANCE.createCompoundNode();
+				node.setCompound(compound);
+				node.getEnclosingSubsystems().addAll(enclosingSubsystems);
+				nodes.put(new SubsystemBinding<FragmentElement>(enclosingSubsystems, compound), node);
 			} else if (element instanceof Component && (!(element instanceof Inoutport) || enclosingSubsystems.isEmpty())) {
 				Component component = (Component) element;
 				ComponentNode node = ExecutionFlowFactory.eINSTANCE.createComponentNode();

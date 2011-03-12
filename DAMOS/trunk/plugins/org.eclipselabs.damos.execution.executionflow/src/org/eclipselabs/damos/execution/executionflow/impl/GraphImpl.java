@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.execution.executionflow.Edge;
@@ -93,7 +94,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 */
 	public EList<Node> getNodes() {
 		if (nodes == null) {
-			nodes = new EObjectContainmentEList<Node>(Node.class, this, ExecutionFlowPackage.GRAPH__NODES);
+			nodes = new EObjectContainmentWithInverseEList<Node>(Node.class, this, ExecutionFlowPackage.GRAPH__NODES, ExecutionFlowPackage.NODE__GRAPH);
 		}
 		return nodes;
 	}
@@ -120,6 +121,21 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			edges = new EObjectContainmentEList<Edge>(Edge.class, this, ExecutionFlowPackage.GRAPH__EDGES);
 		}
 		return edges;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExecutionFlowPackage.GRAPH__NODES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**

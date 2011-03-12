@@ -20,6 +20,7 @@ import org.eclipselabs.damos.dml.Subsystem;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getIncomingEdges <em>Incoming Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getOutgoingEdges <em>Outgoing Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getEnclosingSubsystems <em>Enclosing Subsystems</em>}</li>
@@ -33,6 +34,34 @@ import org.eclipselabs.damos.dml.Subsystem;
  * @generated
  */
 public interface Node extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.Graph#getNodes <em>Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Graph</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Graph</em>' container reference.
+	 * @see #setGraph(Graph)
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getNode_Graph()
+	 * @see org.eclipselabs.damos.execution.executionflow.Graph#getNodes
+	 * @model opposite="nodes" required="true" transient="false"
+	 * @generated
+	 */
+	Graph getGraph();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.Node#getGraph <em>Graph</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Graph</em>' container reference.
+	 * @see #getGraph()
+	 * @generated
+	 */
+	void setGraph(Graph value);
+
 	/**
 	 * Returns the value of the '<em><b>Incoming Edges</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionflow.Edge}.

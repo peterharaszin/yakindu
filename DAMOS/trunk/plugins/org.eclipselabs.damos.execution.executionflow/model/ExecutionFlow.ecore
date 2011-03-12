@@ -13,7 +13,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Graph">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
-        eType="#//Node" containment="true"/>
+        eType="#//Node" containment="true" eOpposite="#//Node/graph"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialNodes" upperBound="-1"
         eType="#//Node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
@@ -26,6 +26,8 @@
     <eOperations name="getOutgoingDataFlow" ordered="false" lowerBound="1" eType="#//DataFlowSourceEnd">
       <eParameters name="source" ordered="false" lowerBound="1" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//OutputConnector"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="#//Graph"
+        eOpposite="#//Graph/nodes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingEdges" upperBound="-1"
         eType="#//Edge" eOpposite="#//Edge/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingEdges" upperBound="-1"

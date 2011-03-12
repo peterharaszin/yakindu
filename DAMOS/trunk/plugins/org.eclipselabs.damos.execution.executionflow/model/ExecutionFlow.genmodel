@@ -19,6 +19,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Graph/edges"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//Node">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Node/graph"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Node/incomingEdges"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Node/outgoingEdges"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Node/enclosingSubsystems"/>

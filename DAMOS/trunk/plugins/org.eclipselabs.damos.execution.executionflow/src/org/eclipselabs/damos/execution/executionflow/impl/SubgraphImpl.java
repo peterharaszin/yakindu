@@ -8,12 +8,15 @@ package org.eclipselabs.damos.execution.executionflow.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputConnector;
@@ -22,6 +25,7 @@ import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Edge;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
+import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 
@@ -32,6 +36,7 @@ import org.eclipselabs.damos.execution.executionflow.Subgraph;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getIncomingEdges <em>Incoming Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getOutgoingEdges <em>Outgoing Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getEnclosingSubsystems <em>Enclosing Subsystems</em>}</li>
@@ -110,6 +115,47 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	@Override
 	protected EClass eStaticClass() {
 		return ExecutionFlowPackage.Literals.SUBGRAPH;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Graph getGraph() {
+		if (eContainerFeatureID() != ExecutionFlowPackage.SUBGRAPH__GRAPH) return null;
+		return (Graph)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newGraph, ExecutionFlowPackage.SUBGRAPH__GRAPH, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGraph(Graph newGraph) {
+		if (newGraph != eInternalContainer() || (eContainerFeatureID() != ExecutionFlowPackage.SUBGRAPH__GRAPH && newGraph != null)) {
+			if (EcoreUtil.isAncestor(this, newGraph))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGraph != null)
+				msgs = ((InternalEObject)newGraph).eInverseAdd(this, ExecutionFlowPackage.GRAPH__NODES, Graph.class, msgs);
+			msgs = basicSetGraph(newGraph, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.SUBGRAPH__GRAPH, newGraph, newGraph));
 	}
 
 	/**
@@ -203,6 +249,10 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ExecutionFlowPackage.SUBGRAPH__GRAPH:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGraph((Graph)otherEnd, msgs);
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingEdges()).basicAdd(otherEnd, msgs);
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES:
@@ -223,6 +273,8 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ExecutionFlowPackage.SUBGRAPH__GRAPH:
+				return basicSetGraph(null, msgs);
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES:
 				return ((InternalEList<?>)getIncomingEdges()).basicRemove(otherEnd, msgs);
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES:
@@ -241,8 +293,24 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ExecutionFlowPackage.SUBGRAPH__GRAPH:
+				return eInternalContainer().eInverseRemove(this, ExecutionFlowPackage.GRAPH__NODES, Graph.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ExecutionFlowPackage.SUBGRAPH__GRAPH:
+				return getGraph();
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES:
 				return getIncomingEdges();
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES:
@@ -266,6 +334,9 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ExecutionFlowPackage.SUBGRAPH__GRAPH:
+				setGraph((Graph)newValue);
+				return;
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES:
 				getIncomingEdges().clear();
 				getIncomingEdges().addAll((Collection<? extends Edge>)newValue);
@@ -298,6 +369,9 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ExecutionFlowPackage.SUBGRAPH__GRAPH:
+				setGraph((Graph)null);
+				return;
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES:
 				getIncomingEdges().clear();
 				return;
@@ -325,6 +399,8 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ExecutionFlowPackage.SUBGRAPH__GRAPH:
+				return getGraph() != null;
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES:
 				return incomingEdges != null && !incomingEdges.isEmpty();
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES:
@@ -348,6 +424,7 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (derivedFeatureID) {
+				case ExecutionFlowPackage.SUBGRAPH__GRAPH: return ExecutionFlowPackage.NODE__GRAPH;
 				case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES: return ExecutionFlowPackage.NODE__INCOMING_EDGES;
 				case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES: return ExecutionFlowPackage.NODE__OUTGOING_EDGES;
 				case ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS: return ExecutionFlowPackage.NODE__ENCLOSING_SUBSYSTEMS;
@@ -368,6 +445,7 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (baseFeatureID) {
+				case ExecutionFlowPackage.NODE__GRAPH: return ExecutionFlowPackage.SUBGRAPH__GRAPH;
 				case ExecutionFlowPackage.NODE__INCOMING_EDGES: return ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES;
 				case ExecutionFlowPackage.NODE__OUTGOING_EDGES: return ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES;
 				case ExecutionFlowPackage.NODE__ENCLOSING_SUBSYSTEMS: return ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS;

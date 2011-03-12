@@ -8,13 +8,16 @@ package org.eclipselabs.damos.execution.executionflow.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputConnector;
@@ -23,6 +26,7 @@ import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Edge;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
+import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.internal.operations.NodeOperations;
 
@@ -33,6 +37,7 @@ import org.eclipselabs.damos.execution.executionflow.internal.operations.NodeOpe
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.NodeImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.NodeImpl#getIncomingEdges <em>Incoming Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.NodeImpl#getOutgoingEdges <em>Outgoing Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.NodeImpl#getEnclosingSubsystems <em>Enclosing Subsystems</em>}</li>
@@ -111,6 +116,47 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	@Override
 	protected EClass eStaticClass() {
 		return ExecutionFlowPackage.Literals.NODE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Graph getGraph() {
+		if (eContainerFeatureID() != ExecutionFlowPackage.NODE__GRAPH) return null;
+		return (Graph)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetGraph(Graph newGraph, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newGraph, ExecutionFlowPackage.NODE__GRAPH, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGraph(Graph newGraph) {
+		if (newGraph != eInternalContainer() || (eContainerFeatureID() != ExecutionFlowPackage.NODE__GRAPH && newGraph != null)) {
+			if (EcoreUtil.isAncestor(this, newGraph))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newGraph != null)
+				msgs = ((InternalEObject)newGraph).eInverseAdd(this, ExecutionFlowPackage.GRAPH__NODES, Graph.class, msgs);
+			msgs = basicSetGraph(newGraph, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.NODE__GRAPH, newGraph, newGraph));
 	}
 
 	/**
@@ -200,6 +246,10 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ExecutionFlowPackage.NODE__GRAPH:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetGraph((Graph)otherEnd, msgs);
 			case ExecutionFlowPackage.NODE__INCOMING_EDGES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getIncomingEdges()).basicAdd(otherEnd, msgs);
 			case ExecutionFlowPackage.NODE__OUTGOING_EDGES:
@@ -220,6 +270,8 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case ExecutionFlowPackage.NODE__GRAPH:
+				return basicSetGraph(null, msgs);
 			case ExecutionFlowPackage.NODE__INCOMING_EDGES:
 				return ((InternalEList<?>)getIncomingEdges()).basicRemove(otherEnd, msgs);
 			case ExecutionFlowPackage.NODE__OUTGOING_EDGES:
@@ -238,8 +290,24 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ExecutionFlowPackage.NODE__GRAPH:
+				return eInternalContainer().eInverseRemove(this, ExecutionFlowPackage.GRAPH__NODES, Graph.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ExecutionFlowPackage.NODE__GRAPH:
+				return getGraph();
 			case ExecutionFlowPackage.NODE__INCOMING_EDGES:
 				return getIncomingEdges();
 			case ExecutionFlowPackage.NODE__OUTGOING_EDGES:
@@ -263,6 +331,9 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ExecutionFlowPackage.NODE__GRAPH:
+				setGraph((Graph)newValue);
+				return;
 			case ExecutionFlowPackage.NODE__INCOMING_EDGES:
 				getIncomingEdges().clear();
 				getIncomingEdges().addAll((Collection<? extends Edge>)newValue);
@@ -295,6 +366,9 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ExecutionFlowPackage.NODE__GRAPH:
+				setGraph((Graph)null);
+				return;
 			case ExecutionFlowPackage.NODE__INCOMING_EDGES:
 				getIncomingEdges().clear();
 				return;
@@ -322,6 +396,8 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ExecutionFlowPackage.NODE__GRAPH:
+				return getGraph() != null;
 			case ExecutionFlowPackage.NODE__INCOMING_EDGES:
 				return incomingEdges != null && !incomingEdges.isEmpty();
 			case ExecutionFlowPackage.NODE__OUTGOING_EDGES:

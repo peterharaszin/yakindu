@@ -21,15 +21,19 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.CompoundNode;
+import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Edge;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
+import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.internal.construct.FlattenerHelper;
 
 /**
@@ -103,21 +107,50 @@ public class ExecutionFlowConstructor {
 		
 		return context.flow;
 	}
-
+	
 	private List<Node> getDrivingNodes(Node node) {
 		List<Node> drivingNodes = new ArrayList<Node>();
+		getDrivingNodes(node.getGraph(), node, drivingNodes);
+		return drivingNodes;
+	}
+	
+	private void getDrivingNodes(Graph sourceGraph, Node node, List<Node> drivingNodes) {
 		for (DataFlowTargetEnd targetEnd : node.getIncomingDataFlows()) {
-			Connector source = targetEnd.getConnector();
-			if (source instanceof InputPort) {
-				InputPort sourcePort = (InputPort) source;
-				if (sourcePort.getInput().isDirectFeedthrough()) {
-					drivingNodes.add(targetEnd.getDataFlow().getSourceEnd().getNode());
-				}
-			} else {
-				// TODO
+			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+			if (sourceEnd.getNode().getGraph() != sourceGraph) {
+				continue;
+			}
+			
+			boolean driving = true;
+			InputConnector target = targetEnd.getConnector();
+			if (target instanceof InputPort) {
+				InputPort targetPort = (InputPort) target;
+				driving = targetPort.getInput().isDirectFeedthrough();
+			}
+			
+			if (driving) {
+				drivingNodes.add(getActualDrivingNode(node, sourceEnd.getNode()));
 			}
 		}
-		return drivingNodes;
+		
+		if (node instanceof CompoundNode) {
+			CompoundNode compoundNode = (CompoundNode) node;
+			for (Node memberNode : compoundNode.getNodes()) {
+				getDrivingNodes(sourceGraph, memberNode, drivingNodes);
+			}
+		}
+	}
+	
+	private Node getActualDrivingNode(Node drivenNode, Node drivingNode) {
+		while (drivingNode.getGraph() != drivenNode.getGraph()) {
+			Graph graph = drivingNode.getGraph();
+			if (graph instanceof Subgraph) {
+				drivingNode = (Subgraph) graph;
+			} else {
+				break;
+			}
+		}
+		return drivingNode;
 	}
 	
 	private boolean drivingNodesInExecutionFlow(Context context, List<Node> drivingNodes) {

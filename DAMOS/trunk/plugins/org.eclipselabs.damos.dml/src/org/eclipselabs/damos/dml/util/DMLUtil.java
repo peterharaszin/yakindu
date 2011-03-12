@@ -236,10 +236,10 @@ public class DMLUtil {
 		return connections;
 	}
 	
-	public static Fragment findOwningFragment(EObject eObject) {
+	public static <T extends EObject> T getOwner(EObject eObject, Class<T> clazz) {
 		while (eObject != null) {
-			if (eObject instanceof Fragment) {
-				return (Fragment) eObject;
+			if (clazz.isInstance(eObject)) {
+				return clazz.cast(eObject);
 			}
 			eObject = eObject.eContainer();
 		}

@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
+import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
@@ -48,6 +49,7 @@ import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
+import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowPlugin;
@@ -60,7 +62,9 @@ public class FlattenerHelper {
 
 	private ExecutionFlow executionFlow;
 	
-	private Map<SubsystemBinding<FragmentElement>, Node> nodes = new LinkedHashMap<SubsystemBinding<FragmentElement>, Node>();
+	private Map<Node, Graph> nodeGraphs = new HashMap<Node, Graph>();
+	private Map<Graph, Collection<Node>> graphNodes = new LinkedHashMap<Graph, Collection<Node>>();
+	private Map<SubsystemBinding<FragmentElement>, Node> allNodes = new HashMap<SubsystemBinding<FragmentElement>, Node>();
 	private Map<SubsystemPath, SubsystemDescriptor> subsystemDescriptors = new HashMap<SubsystemPath, SubsystemDescriptor>();
 
 	/**
@@ -70,32 +74,21 @@ public class FlattenerHelper {
 		this.executionFlow = flow;
 	}
 	
-	public Collection<Node> getNodes() {
-		return nodes.values();
+	public Graph getGraph(Node node) {
+		return nodeGraphs.get(node);
+	}
+	
+	public Collection<Node> getNodes(Graph graph) {
+		return graphNodes.get(graph);
 	}
 
 	public void flatten() throws CoreException {
-		flatten(executionFlow.getTopLevelFragment(), new SubsystemPath());
+		flatten(executionFlow.getTopLevelFragment(), new SubsystemPath(), executionFlow.getGraph());
 	}
 	
-	private void flatten(Fragment fragment, SubsystemPath subsystemPath) throws CoreException {
+	private void flatten(Fragment fragment, SubsystemPath subsystemPath, Graph graph) throws CoreException {
 		for (FragmentElement element : fragment.getAllFragmentElements()) {
-			if (element instanceof Subsystem) {
-				Subsystem subsystem = (Subsystem) element;
-				flattenSubsystem(subsystem, fragment, subsystemPath);
-			} else if (element instanceof Compound) {
-				Compound compound = (Compound) element;
-				CompoundNode node = ExecutionFlowFactory.eINSTANCE.createCompoundNode();
-				node.setCompound(compound);
-				node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
-				nodes.put(new SubsystemBinding<FragmentElement>(subsystemPath, compound), node);
-			} else if (element instanceof Component && (!(element instanceof Inoutport) || subsystemPath.isRoot())) {
-				Component component = (Component) element;
-				ComponentNode node = ExecutionFlowFactory.eINSTANCE.createComponentNode();
-				node.setComponent(component);
-				node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
-				nodes.put(new SubsystemBinding<FragmentElement>(subsystemPath, component), node);
-			}
+			flattenFragmentElement(fragment, subsystemPath, graph, element);
 		}
 		
 		Map<SubsystemBinding<OutputConnector>, DataFlow> dataFlows = new HashMap<SubsystemBinding<OutputConnector>, DataFlow>();
@@ -121,7 +114,7 @@ public class FlattenerHelper {
 				dataFlow = ExecutionFlowFactory.eINSTANCE.createDataFlow();
 				DataFlowSourceEnd sourceEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowSourceEnd();
 				sourceEnd.setDataFlow(dataFlow);
-				sourceEnd.setNode(nodes.get(new SubsystemBinding<FragmentElement>(source.getSubsystemPath(), DMLUtil.getOwner(source.getElement(), FragmentElement.class))));
+				sourceEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(source.getSubsystemPath(), DMLUtil.getOwner(source.getElement(), FragmentElement.class))));
 				sourceEnd.setConnector(source.getElement());
 
 				if (source.getElement() instanceof OutputPort) {
@@ -140,7 +133,7 @@ public class FlattenerHelper {
 			for (SubsystemBinding<InputConnector> target : targets) {
 				DataFlowTargetEnd targetEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowTargetEnd();
 				targetEnd.setDataFlow(dataFlow);
-				targetEnd.setNode(nodes.get(new SubsystemBinding<FragmentElement>(target.getSubsystemPath(), DMLUtil.getOwner(target.getElement(), FragmentElement.class))));
+				targetEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(target.getSubsystemPath(), DMLUtil.getOwner(target.getElement(), FragmentElement.class))));
 				targetEnd.setConnector(target.getElement());
 
 				if (target.getElement() instanceof InputPort) {
@@ -153,8 +146,42 @@ public class FlattenerHelper {
 			}
 		}
 	}
+
+	/**
+	 * @param fragment
+	 * @param subsystemPath
+	 * @param element
+	 * @throws CoreException
+	 */
+	private void flattenFragmentElement(Fragment fragment, SubsystemPath subsystemPath, Graph graph, FragmentElement element) throws CoreException {
+		if (element instanceof Subsystem) {
+			Subsystem subsystem = (Subsystem) element;
+			flattenSubsystem(subsystem, fragment, graph, subsystemPath);
+		} else if (element instanceof Compound) {
+			Compound compound = (Compound) element;
+			CompoundNode node = ExecutionFlowFactory.eINSTANCE.createCompoundNode();
+			node.setCompound(compound);
+			node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
+			addGraphNode(graph, node);
+			allNodes.put(new SubsystemBinding<FragmentElement>(subsystemPath, compound), node);
+			flattenCompound(fragment, subsystemPath, node, compound);
+		} else if (element instanceof Component && (!(element instanceof Inoutport) || subsystemPath.isRoot())) {
+			Component component = (Component) element;
+			ComponentNode node = ExecutionFlowFactory.eINSTANCE.createComponentNode();
+			node.setComponent(component);
+			node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
+			addGraphNode(graph, node);
+			allNodes.put(new SubsystemBinding<FragmentElement>(subsystemPath, component), node);
+		}
+	}
 	
-	private void flattenSubsystem(Subsystem subsystem, Fragment context, SubsystemPath subsystemPath) throws CoreException {
+	private void flattenCompound(Fragment fragment, SubsystemPath subsystemPath, Graph graph, Compound compound) throws CoreException {
+		for (CompoundMember member : compound.getMembers()) {
+			flattenFragmentElement(fragment, subsystemPath, graph, (FragmentElement) member);
+		}
+	}
+	
+	private void flattenSubsystem(Subsystem subsystem, Fragment context, Graph graph, SubsystemPath subsystemPath) throws CoreException {
 		SubsystemRealization realization = subsystem.getRealization(context);
 		if (realization == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, "No realization specified for subsystem '" + subsystem.getName() + "'"));
@@ -197,7 +224,7 @@ public class FlattenerHelper {
 
 		subsystemDescriptors.put(subsystemPath, subsystemDescriptor);
 		
-		flatten(realizingFragment, subsystemPath);
+		flatten(realizingFragment, subsystemPath, graph);
 	}
 	
 	private SubsystemBinding<OutputConnector> getActualSource(SubsystemPath subsystemPath, OutputConnector source) {
@@ -238,6 +265,16 @@ public class FlattenerHelper {
 				}
 			}
 		}
+	}
+	
+	private void addGraphNode(Graph graph, Node node) {
+		Collection<Node> nodes = graphNodes.get(graph);
+		if (nodes == null) {
+			nodes = new ArrayList<Node>();
+			graphNodes.put(graph, nodes);
+		}
+		nodes.add(node);
+		nodeGraphs.put(node, graph);
 	}
 	
 	private static class SubsystemBinding<T> {

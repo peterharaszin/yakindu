@@ -47,28 +47,10 @@ public class ExecutionFlowConstructor {
 		context.flow = ExecutionFlowFactory.eINSTANCE.createExecutionFlow();
 		context.flow.setTopLevelFragment(topLevelFragment);
 		context.flow.setGraph(ExecutionFlowFactory.eINSTANCE.createGraph());
-
-		FlattenerHelper flattenerHelper = new FlattenerHelper(context.flow);
-		flattenerHelper.flatten();
-		List<Node> backlog = new LinkedList<Node>(flattenerHelper.getNodes());
-
-		boolean changed;
-		do {
-			changed = false;
-			for (Iterator<Node> it = backlog.iterator(); it.hasNext();) {
-				Node node = it.next();
-				List<Node> drivingNodes = getDrivingNodes(node);
-				if (drivingNodes.isEmpty()) {
-					addDrivingNodeToExecutionFlow(context, node);
-					it.remove();
-					changed = true;
-				} else if (drivingNodesInExecutionFlow(context, drivingNodes)) {
-					addDrivenNodeToExecutionFlow(context, node, drivingNodes);
-					it.remove();
-					changed = true;
-				}
-			}
-		} while (changed);
+		context.flattenerHelper = new FlattenerHelper(context.flow);
+		context.flattenerHelper.flatten();
+		
+		List<Node> backlog = doConstruct(context, context.flow.getGraph());
 
 		if (!backlog.isEmpty()) {
 			String message = "Deadlock occurred between component";
@@ -104,20 +86,56 @@ public class ExecutionFlowConstructor {
 			throw new CoreException(new ExecutionFlowDeadlockStatus(
 					IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, message, null, backlog));
 		}
-		
+				
 		return context.flow;
 	}
+
+	/**
+	 * @param context
+	 * @param flattenerHelper
+	 * @return
+	 */
+	private List<Node> doConstruct(Context context, Graph graph) {
+		List<Node> backlog = new LinkedList<Node>(context.flattenerHelper.getNodes(graph));
+
+		boolean changed;
+		do {
+			changed = false;
+			for (Iterator<Node> it = backlog.iterator(); it.hasNext();) {
+				Node node = it.next();
+				List<Node> drivingNodes = getDrivingNodes(context, node);
+				if (drivingNodes.isEmpty()) {
+					addDrivingNodeToExecutionFlow(context, graph, node);
+					it.remove();
+					changed = true;
+				} else if (drivingNodesInExecutionFlow(context, drivingNodes)) {
+					addDrivenNodeToExecutionFlow(context, graph, node, drivingNodes);
+					it.remove();
+					changed = true;
+				}
+			}
+		} while (changed);
+		
+		for (Node node : graph.getNodes()) {
+			if (node instanceof Graph) {
+				backlog.addAll(doConstruct(context, (Graph) node));
+			}
+		}
+		
+		return backlog;
+	}
 	
-	private List<Node> getDrivingNodes(Node node) {
+	private List<Node> getDrivingNodes(Context context, Node drivenNode) {
 		List<Node> drivingNodes = new ArrayList<Node>();
-		getDrivingNodes(node.getGraph(), node, drivingNodes);
+		getDrivingNodes(context, drivenNode, drivenNode, drivingNodes);
 		return drivingNodes;
 	}
 	
-	private void getDrivingNodes(Graph sourceGraph, Node node, List<Node> drivingNodes) {
+	private void getDrivingNodes(Context context, Node node, Node drivenNode, List<Node> drivingNodes) {
 		for (DataFlowTargetEnd targetEnd : node.getIncomingDataFlows()) {
 			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-			if (sourceEnd.getNode().getGraph() != sourceGraph) {
+			
+			if (isChild(context, drivenNode, sourceEnd.getNode())) {
 				continue;
 			}
 			
@@ -129,30 +147,54 @@ public class ExecutionFlowConstructor {
 			}
 			
 			if (driving) {
-				drivingNodes.add(getActualDrivingNode(node, sourceEnd.getNode()));
+				Node drivingNode = getActualDrivingNode(context, drivenNode, sourceEnd.getNode());
+				if (drivingNode != null) {
+					drivingNodes.add(drivingNode);
+				}
 			}
 		}
 		
 		if (node instanceof CompoundNode) {
 			CompoundNode compoundNode = (CompoundNode) node;
-			for (Node memberNode : compoundNode.getNodes()) {
-				getDrivingNodes(sourceGraph, memberNode, drivingNodes);
+			for (Node memberNode : context.flattenerHelper.getNodes(compoundNode)) {
+				getDrivingNodes(context, memberNode, drivenNode, drivingNodes);
 			}
 		}
 	}
 	
-	private Node getActualDrivingNode(Node drivenNode, Node drivingNode) {
-		while (drivingNode.getGraph() != drivenNode.getGraph()) {
-			Graph graph = drivingNode.getGraph();
-			if (graph instanceof Subgraph) {
-				drivingNode = (Subgraph) graph;
+	private Node getActualDrivingNode(Context context, Node drivenNode, Node drivingNode) {
+		Graph drivenNodeGraph = context.flattenerHelper.getGraph(drivenNode);
+		for (;;) {
+			Graph drivingNodeGraph = context.flattenerHelper.getGraph(drivingNode);
+			if (drivingNodeGraph == drivenNodeGraph) {
+				return drivingNode;
+			}
+			if (drivingNodeGraph instanceof Subgraph) {
+				drivingNode = (Subgraph) drivingNodeGraph;
 			} else {
 				break;
 			}
 		}
-		return drivingNode;
+		return null;
 	}
 	
+	/**
+	 * @param parentNode
+	 * @param node
+	 * @return
+	 */
+	private boolean isChild(Context context, Node parentNode, Node node) {
+		if (parentNode instanceof CompoundNode) {
+			CompoundNode compoundNode = (CompoundNode) parentNode;
+			for (Node child : context.flattenerHelper.getNodes(compoundNode)) {
+				if (child == node || isChild(context, child, node)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	private boolean drivingNodesInExecutionFlow(Context context, List<Node> drivingNodes) {
 		for (Node drivingNode : drivingNodes) {
 			if (!context.nodes.contains(drivingNode)) {
@@ -162,18 +204,18 @@ public class ExecutionFlowConstructor {
 		return true;
 	}
 
-	private void addDrivingNodeToExecutionFlow(Context context, Node node) {
-		context.flow.getGraph().getNodes().add(node);
-		context.flow.getGraph().getInitialNodes().add(node);
+	private void addDrivingNodeToExecutionFlow(Context context, Graph graph, Node node) {
+		graph.getNodes().add(node);
+		graph.getInitialNodes().add(node);
 		context.nodes.add(node);
 	}
 	
-	private void addDrivenNodeToExecutionFlow(Context context, Node node, List<Node> drivingNodes) {
-		context.flow.getGraph().getNodes().add(node);
+	private void addDrivenNodeToExecutionFlow(Context context, Graph graph, Node node, List<Node> drivingNodes) {
+		graph.getNodes().add(node);
 
 		for (Node drivingNode : drivingNodes) {
 			Edge edge = ExecutionFlowFactory.eINSTANCE.createEdge();
-			context.flow.getGraph().getEdges().add(edge);
+			graph.getEdges().add(edge);
 			edge.setSource(drivingNode);
 			edge.setTarget(node);
 		}
@@ -186,6 +228,8 @@ public class ExecutionFlowConstructor {
 		private ExecutionFlow flow;
 
 		private Set<Node> nodes = new HashSet<Node>();
+		
+		private FlattenerHelper flattenerHelper;
 
 	}
 

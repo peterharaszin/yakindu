@@ -25,7 +25,7 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
  * @author Andreas Unger
  *
  */
-public class CanvasContextImpl implements ICanvasContext {
+public class CanvasContext implements ICanvasContext {
 
 	private Graphics graphics;
 	private Dimension canvasSize;
@@ -39,7 +39,7 @@ public class CanvasContextImpl implements ICanvasContext {
 	/**
 	 * 
 	 */
-	public CanvasContextImpl(Graphics graphics, Dimension canvasSize, boolean flipped, int rotation) {
+	public CanvasContext(Graphics graphics, Dimension canvasSize, boolean flipped, int rotation) {
 		this.graphics = graphics;
 		this.canvasSize = canvasSize;
 		this.flipped = flipped;
@@ -161,6 +161,13 @@ public class CanvasContextImpl implements ICanvasContext {
 		graphics.fillOval(transformRectangle(x, y, w, h));
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.ICanvasContext#fillPolygon(int[])
+	 */
+	public void fillPolygon(int[] points) {
+		fillPolygon(new PointList(points));
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.diagram.figures.ICanvas#fillPolygon(org.eclipse.draw2d.geometry.PointList)
 	 */

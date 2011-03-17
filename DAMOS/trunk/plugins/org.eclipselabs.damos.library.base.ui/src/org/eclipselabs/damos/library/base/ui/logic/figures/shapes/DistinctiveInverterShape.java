@@ -45,9 +45,16 @@ public class DistinctiveInverterShape extends LogicGateShape {
 		points[4] = DEFAULT_LINE_WIDTH_HALF;
 		points[5] = size.height - DEFAULT_LINE_WIDTH;
 		
+		int ovalX = points[0] + DEFAULT_LINE_WIDTH_HALF;
+		int ovalY = points[1] - CIRCLE_RADIUS;
+		int ovalWidth = 2 * CIRCLE_RADIUS;
+		int ovalHeight = 2 * CIRCLE_RADIUS;
+		
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
+		cc.fillPolygon(points);
+		cc.fillOval(ovalX, ovalY, ovalWidth, ovalHeight);
 		cc.drawPolygon(points);
-		cc.drawOval(points[0] + DEFAULT_LINE_WIDTH_HALF, points[1] - CIRCLE_RADIUS, 2 * CIRCLE_RADIUS, 2 * CIRCLE_RADIUS);
+		cc.drawOval(ovalX, ovalY, ovalWidth, ovalHeight);
 	}
 
 }

@@ -35,8 +35,14 @@ public class InoutportFigure extends StandardComponentFigure implements IFigureC
 		Dimension size = getCanvasSize();
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
 
-		cc.drawArc(DEFAULT_LINE_WIDTH_HALF, DEFAULT_LINE_WIDTH_HALF, size.height / 2 - DEFAULT_LINE_WIDTH, size.height - DEFAULT_LINE_WIDTH, 90, 180);
-		points[0] = size.height / 4 - DEFAULT_LINE_WIDTH_HALF;
+		int arcX = DEFAULT_LINE_WIDTH_HALF;
+		int arcY = DEFAULT_LINE_WIDTH_HALF;
+		int arcWidth = size.height / 2 - DEFAULT_LINE_WIDTH;
+		int arcHeight = size.height - DEFAULT_LINE_WIDTH;
+		int arcOffset = 90;
+		int arcLength = 180;
+		
+		points[0] = size.height / 4 - DEFAULT_LINE_WIDTH;
 		points[1] = DEFAULT_LINE_WIDTH_HALF;
 		points[2] = size.width - size.height / 2 - DEFAULT_LINE_WIDTH_HALF;
 		points[3] = DEFAULT_LINE_WIDTH_HALF;
@@ -46,6 +52,14 @@ public class InoutportFigure extends StandardComponentFigure implements IFigureC
 		points[7] = size.height - DEFAULT_LINE_WIDTH_HALF;
 		points[8] = points[0];
 		points[9] = points[7];
+		
+		cc.fillArc(arcX, arcY, arcWidth, arcHeight, arcOffset, arcLength);
+		cc.fillPolygon(points);
+		
+		points[0] += DEFAULT_LINE_WIDTH_HALF;
+		points[8] += DEFAULT_LINE_WIDTH_HALF;
+
+		cc.drawArc(arcX, arcY, arcWidth, arcHeight, arcOffset, arcLength);
 		cc.drawPolyline(points);
 	}
 	

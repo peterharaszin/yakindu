@@ -32,7 +32,7 @@ public class DistinctiveAndShape extends LogicGateShape {
 	public void paintCanvas(ICanvasContext cc) {
 		Dimension size = blockFigure.getCanvasSize();
 		
-		points[0] = size.width - size.height / 2;
+		points[0] = size.width - size.height / 2 + DEFAULT_LINE_WIDTH_HALF;
 		points[1] = DEFAULT_LINE_WIDTH_HALF;
 		points[2] = DEFAULT_LINE_WIDTH_HALF;
 		points[3] = DEFAULT_LINE_WIDTH_HALF;
@@ -41,14 +41,23 @@ public class DistinctiveAndShape extends LogicGateShape {
 		points[6] = points[0];
 		points[7] = points[5];
 		
+		int arcX = size.width - size.height;
+		int arcY = DEFAULT_LINE_WIDTH_HALF;
+		int arcWidth = size.height - DEFAULT_LINE_WIDTH_HALF;
+		int arcHeight = size.height - DEFAULT_LINE_WIDTH;
+		int arcOffset = 270;
+		int arcLength = 180;
+		
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
+		
+		cc.fillPolygon(points);
+		cc.fillArc(arcX, arcY, arcWidth, arcHeight, arcOffset, arcLength);
+		
+		points[0] -= DEFAULT_LINE_WIDTH_HALF;
+		points[6] -= DEFAULT_LINE_WIDTH_HALF;
+		
 		cc.drawPolyline(points);
-		cc.drawArc(
-				size.width - size.height,
-				DEFAULT_LINE_WIDTH_HALF,
-				size.height - DEFAULT_LINE_WIDTH_HALF,
-				size.height - DEFAULT_LINE_WIDTH,
-				270, 180);
+		cc.drawArc(arcX, arcY, arcWidth, arcHeight, arcOffset, arcLength);
 	}
 	
 }

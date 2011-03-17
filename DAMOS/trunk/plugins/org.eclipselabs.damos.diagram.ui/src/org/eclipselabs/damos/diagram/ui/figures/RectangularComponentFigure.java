@@ -20,12 +20,15 @@ public class RectangularComponentFigure extends StandardComponentFigure implemen
 	 */
 	protected void paintCanvas(ICanvasContext cc) {
 		Dimension size = getCanvasSize();
+		
+		int x = DEFAULT_LINE_WIDTH_HALF;
+		int y = DEFAULT_LINE_WIDTH_HALF;
+		int width = size.width - DEFAULT_LINE_WIDTH;
+		int height = size.height - DEFAULT_LINE_WIDTH;
+		
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
-		cc.drawRectangle(
-				DEFAULT_LINE_WIDTH_HALF,
-				DEFAULT_LINE_WIDTH_HALF,
-				size.width - DEFAULT_LINE_WIDTH,
-				size.height - DEFAULT_LINE_WIDTH);
+		cc.fillRectangle(x, y, width, height);
+		cc.drawRectangle(x, y, width, height);
 	}
 	
 }

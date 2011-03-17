@@ -51,6 +51,7 @@ public class GainFigure extends StandardComponentFigure implements IFigureConsta
 		points[5] = size.height - DEFAULT_LINE_WIDTH;
 		
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
+		cc.fillPolygon(points);
 		cc.drawPolygon(points);
 	}
 	

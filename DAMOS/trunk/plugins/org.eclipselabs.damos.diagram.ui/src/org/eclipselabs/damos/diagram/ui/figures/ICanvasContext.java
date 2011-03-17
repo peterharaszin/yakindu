@@ -49,6 +49,7 @@ public interface ICanvasContext {
 
 	void fillOval(int x, int y, int w, int h);
 
+	void fillPolygon(int[] points);
 	void fillPolygon(PointList points);
 
 	void fillRectangle(int x, int y, int width, int height);

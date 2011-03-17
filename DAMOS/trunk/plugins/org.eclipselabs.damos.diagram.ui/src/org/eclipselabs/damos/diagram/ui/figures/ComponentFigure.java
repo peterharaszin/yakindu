@@ -20,7 +20,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipselabs.damos.diagram.core.internal.util.MathUtil;
-import org.eclipselabs.damos.diagram.ui.internal.figures.CanvasContextImpl;
+import org.eclipselabs.damos.diagram.ui.internal.figures.CanvasContext;
 import org.eclipselabs.damos.diagram.ui.internal.figures.TerminalBorderFigure;
 
 public abstract class ComponentFigure extends NodeFigure {
@@ -155,7 +155,7 @@ public abstract class ComponentFigure extends NodeFigure {
 	protected void paintFigure(Graphics graphics) {
 		Rectangle bounds = getBounds();
 		graphics.translate(bounds.x, bounds.y);
-		paintCanvas(new CanvasContextImpl(graphics, getCanvasSize(), flipped, rotation));
+		paintCanvas(new CanvasContext(graphics, getCanvasSize(), flipped, rotation));
 	}
 
 	protected void paintCanvas(ICanvasContext cc) {

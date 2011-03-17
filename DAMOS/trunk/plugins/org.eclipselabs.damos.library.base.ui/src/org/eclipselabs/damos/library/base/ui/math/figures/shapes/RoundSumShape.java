@@ -53,12 +53,15 @@ public class RoundSumShape extends AbstractBlockShape implements IFigureConstant
 	 */
 	public void paintCanvas(ICanvasContext cc) {
 		Dimension size = blockFigure.getCanvasSize();
+		
+		int x = DEFAULT_LINE_WIDTH_HALF;
+		int y = DEFAULT_LINE_WIDTH_HALF;
+		int width = size.width - DEFAULT_LINE_WIDTH;
+		int height = size.height - DEFAULT_LINE_WIDTH;
+
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
-		cc.drawOval(
-				DEFAULT_LINE_WIDTH_HALF,
-				DEFAULT_LINE_WIDTH_HALF,
-				size.width - DEFAULT_LINE_WIDTH,
-				size.height - DEFAULT_LINE_WIDTH);
+		cc.fillOval(x, y, width, height);
+		cc.drawOval(x, y, width, height);
 	}
 
 }

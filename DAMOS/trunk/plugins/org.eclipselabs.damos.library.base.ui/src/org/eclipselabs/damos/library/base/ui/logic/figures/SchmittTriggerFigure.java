@@ -38,6 +38,7 @@ public class SchmittTriggerFigure extends StandardComponentFigure implements IFi
 		points[3] = DEFAULT_LINE_WIDTH;
 		points[4] = DEFAULT_LINE_WIDTH_HALF;
 		points[5] = size.height - DEFAULT_LINE_WIDTH;
+		cc.fillPolygon(points);
 		cc.drawPolygon(points);
 		
 		points[0] = size.width * 5 / 40;

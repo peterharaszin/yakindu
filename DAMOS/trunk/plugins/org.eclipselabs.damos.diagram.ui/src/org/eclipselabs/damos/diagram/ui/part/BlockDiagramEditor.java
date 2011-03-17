@@ -39,5 +39,22 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 		}
 		return super.getAdapter(type);
 	}
+	
+//	@Override
+//	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
+//		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+//			return BlockDiagramDocumentProvider.getInstance();
+//		}
+//		return super.getDocumentProvider(input);
+//	}
+//
+//	@Override
+//	protected void setDocumentProvider(IEditorInput input) {
+//		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
+//			setDocumentProvider(BlockDiagramDocumentProvider.getInstance());
+//		} else {
+//			super.setDocumentProvider(input);
+//		}
+//	}
 
 }

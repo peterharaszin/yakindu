@@ -12,9 +12,9 @@
 
    <extension point="org.eclipse.ui.newWizards">
       <wizard
-            id="org.eclipselabs.damos.dml.presentation.blockTypeWizard"
+            id="org.eclipselabs.damos.dml.ui.blockTypeWizard"
             name="%_UI_BlockTypeModelWizard_label"
-            class="org.eclipselabs.damos.dml.editor.presentation.BlockTypeWizard"
+            class="org.eclipselabs.damos.dml.ui.editor.presentation.BlockTypeWizard"
             category="org.eclipselabs.damos.common.damosCategory"
             icon="icons/full/obj16/BlockTypeFile.gif">
          <description>%_UI_BlockTypeModelWizard_description</description>
@@ -22,9 +22,9 @@
       </wizard>
       <wizard
             category="org.eclipselabs.damos.common.damosCategory"
-            class="org.eclipselabs.damos.dml.editor.presentation.CategoryWizard"
+            class="org.eclipselabs.damos.dml.ui.editor.presentation.CategoryWizard"
             icon="icons/full/obj16/CategoryFile.gif"
-            id="org.eclipselabs.damos.dml.presentation.categoryWizard"
+            id="org.eclipselabs.damos.dml.ui.categoryWizard"
             name="%_UI_CategoryModelWizard_label">
          <description>
             %_UI_CategoryModelWizard_description
@@ -37,11 +37,11 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipselabs.damos.dml.editor.presentation.DMLEditor"
-            contributorClass="org.eclipselabs.damos.dml.editor.presentation.DMLActionBarContributor"
+            class="org.eclipselabs.damos.dml.ui.editor.presentation.DMLEditor"
+            contributorClass="org.eclipselabs.damos.dml.ui.editor.presentation.DMLActionBarContributor"
             extensions="dml"
             icon="icons/full/obj16/DMLModelFile.gif"
-            id="org.eclipselabs.damos.presentation.dmlModelEditor"
+            id="org.eclipselabs.damos.dml.ui.dmlModelEditor"
             name="%_UI_DMLEditor_label">
       </editor>
    </extension>

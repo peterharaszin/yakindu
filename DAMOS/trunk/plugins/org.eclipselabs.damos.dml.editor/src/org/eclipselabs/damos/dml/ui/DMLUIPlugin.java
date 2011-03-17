@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.dml.editor;
+package org.eclipselabs.damos.dml.ui;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
@@ -16,14 +16,14 @@ import org.eclipse.emf.common.util.ResourceLocator;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class DMLEditorPlugin extends EMFPlugin {
+public final class DMLUIPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final DMLEditorPlugin INSTANCE = new DMLEditorPlugin();
+	public static final DMLUIPlugin INSTANCE = new DMLUIPlugin();
 	
 	/**
 	 * Keep track of the singleton.
@@ -39,7 +39,7 @@ public final class DMLEditorPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DMLEditorPlugin() {
+	public DMLUIPlugin() {
 		super
 			(new ResourceLocator [] {
 			});

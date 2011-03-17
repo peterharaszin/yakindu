@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.dml.editor.presentation;
+package org.eclipselabs.damos.dml.ui.editor.presentation;
 
 
 import java.util.Arrays;
@@ -44,7 +44,7 @@ import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipselabs.damos.dml.DMLFactory;
-import org.eclipselabs.damos.dml.editor.DMLEditorPlugin;
+import org.eclipselabs.damos.dml.ui.DMLUIPlugin;
 
 
 /**
@@ -53,7 +53,7 @@ import org.eclipselabs.damos.dml.editor.DMLEditorPlugin;
  * <!-- end-user-doc -->
  * @generated NOT
  */
-public class BlockTypeWizard extends Wizard implements INewWizard {
+public class CategoryWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -61,7 +61,7 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(DMLEditorPlugin.INSTANCE.getString("_UI_BlockTypeEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(DMLUIPlugin.INSTANCE.getString("_UI_CategoryEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -70,7 +70,7 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		DMLEditorPlugin.INSTANCE.getString("_UI_BlockTypeEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		DMLUIPlugin.INSTANCE.getString("_UI_CategoryEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This is the file creation page.
@@ -78,7 +78,7 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BlockTypeModelWizardNewFileCreationPage newFileCreationPage;
+	protected CategoryModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -105,8 +105,8 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(DMLEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(DMLEditorPlugin.INSTANCE.getImage("full/wizban/NewBlockType")));
+		setWindowTitle(DMLUIPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(DMLUIPlugin.INSTANCE.getImage("full/wizban/NewCategory")));
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		return DMLFactory.eINSTANCE.createBlockType();
+		return DMLFactory.eINSTANCE.createCategory();
 	}
 
 	/**
@@ -165,7 +165,7 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							DMLEditorPlugin.INSTANCE.log(exception);
+							DMLUIPlugin.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -198,14 +198,14 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), DMLEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), DMLUIPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			DMLEditorPlugin.INSTANCE.log(exception);
+			DMLUIPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -216,14 +216,14 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class BlockTypeModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class CategoryModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public BlockTypeModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public CategoryModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -239,7 +239,7 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(DMLEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(DMLUIPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -267,10 +267,10 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new BlockTypeModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(DMLEditorPlugin.INSTANCE.getString("_UI_BlockTypeModelWizard_label"));
-		newFileCreationPage.setDescription(DMLEditorPlugin.INSTANCE.getString("_UI_BlockTypeModelWizard_description"));
-		newFileCreationPage.setFileName(DMLEditorPlugin.INSTANCE.getString("_UI_BlockTypeEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new CategoryModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(DMLUIPlugin.INSTANCE.getString("_UI_CategoryModelWizard_label"));
+		newFileCreationPage.setDescription(DMLUIPlugin.INSTANCE.getString("_UI_CategoryModelWizard_description"));
+		newFileCreationPage.setFileName(DMLUIPlugin.INSTANCE.getString("_UI_CategoryEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -296,7 +296,7 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = DMLEditorPlugin.INSTANCE.getString("_UI_BlockTypeEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = DMLUIPlugin.INSTANCE.getString("_UI_CategoryEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {

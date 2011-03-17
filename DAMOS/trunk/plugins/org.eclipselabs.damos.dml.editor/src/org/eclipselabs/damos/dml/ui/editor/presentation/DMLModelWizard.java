@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.dml.editor.presentation;
+package org.eclipselabs.damos.dml.ui.editor.presentation;
 
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
-import org.eclipselabs.damos.dml.editor.DMLEditorPlugin;
+import org.eclipselabs.damos.dml.ui.DMLUIPlugin;
 
 
 /**
@@ -79,7 +79,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(DMLEditorPlugin.INSTANCE.getString("_UI_DMLEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(DMLUIPlugin.INSTANCE.getString("_UI_DMLEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -88,7 +88,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		DMLEditorPlugin.INSTANCE.getString("_UI_DMLEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		DMLUIPlugin.INSTANCE.getString("_UI_DMLEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -155,8 +155,8 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(DMLEditorPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(DMLEditorPlugin.INSTANCE.getImage("full/wizban/NewDML")));
+		setWindowTitle(DMLUIPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(DMLUIPlugin.INSTANCE.getImage("full/wizban/NewDML")));
 	}
 
 	/**
@@ -239,7 +239,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							DMLEditorPlugin.INSTANCE.log(exception);
+							DMLUIPlugin.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -272,14 +272,14 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), DMLEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), DMLUIPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			DMLEditorPlugin.INSTANCE.log(exception);
+			DMLUIPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -313,7 +313,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(DMLEditorPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(DMLUIPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -390,7 +390,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(DMLEditorPlugin.INSTANCE.getString("_UI_ModelObject"));
+				containerLabel.setText(DMLUIPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -416,7 +416,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(DMLEditorPlugin.INSTANCE.getString("_UI_XMLEncoding"));
+				encodingLabel.setText(DMLUIPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -518,7 +518,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 				return DMLEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			}
 			catch(MissingResourceException mre) {
-				DMLEditorPlugin.INSTANCE.log(mre);
+				DMLUIPlugin.INSTANCE.log(mre);
 			}
 			return typeName;
 		}
@@ -531,7 +531,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(DMLEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(DMLUIPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens(); ) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -550,9 +550,9 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 		// Create a page, set the title, and the initial model file name.
 		//
 		newFileCreationPage = new DMLModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(DMLEditorPlugin.INSTANCE.getString("_UI_DMLModelWizard_label"));
-		newFileCreationPage.setDescription(DMLEditorPlugin.INSTANCE.getString("_UI_DMLModelWizard_description"));
-		newFileCreationPage.setFileName(DMLEditorPlugin.INSTANCE.getString("_UI_DMLEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage.setTitle(DMLUIPlugin.INSTANCE.getString("_UI_DMLModelWizard_label"));
+		newFileCreationPage.setDescription(DMLUIPlugin.INSTANCE.getString("_UI_DMLModelWizard_description"));
+		newFileCreationPage.setFileName(DMLUIPlugin.INSTANCE.getString("_UI_DMLEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -578,7 +578,7 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = DMLEditorPlugin.INSTANCE.getString("_UI_DMLEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = DMLUIPlugin.INSTANCE.getString("_UI_DMLEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
@@ -589,8 +589,8 @@ public class DMLModelWizard extends Wizard implements INewWizard {
 			}
 		}
 		initialObjectCreationPage = new DMLModelWizardInitialObjectCreationPage("Whatever2");
-		initialObjectCreationPage.setTitle(DMLEditorPlugin.INSTANCE.getString("_UI_DMLModelWizard_label"));
-		initialObjectCreationPage.setDescription(DMLEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage.setTitle(DMLUIPlugin.INSTANCE.getString("_UI_DMLModelWizard_label"));
+		initialObjectCreationPage.setDescription(DMLUIPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 

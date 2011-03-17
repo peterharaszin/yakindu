@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.dml.editor.presentation;
+package org.eclipselabs.damos.dml.ui.editor.presentation;
 
 
 import java.io.IOException;
@@ -122,7 +122,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipselabs.damos.dml.edit.provider.DMLItemProviderAdapterFactory;
-import org.eclipselabs.damos.dml.editor.DMLEditorPlugin;
+import org.eclipselabs.damos.dml.ui.DMLUIPlugin;
 
 /**
  * This is an example of a DML model editor.
@@ -485,7 +485,7 @@ public class DMLEditor
 					}
 				}
 				catch (CoreException exception) {
-					DMLEditorPlugin.INSTANCE.log(exception);
+					DMLUIPlugin.INSTANCE.log(exception);
 				}
 			}
 		};
@@ -573,7 +573,7 @@ public class DMLEditor
 			BasicDiagnostic diagnostic =
 				new BasicDiagnostic
 					(Diagnostic.OK,
-					 "org.eclipselabs.damos.dml.editor",
+					 "org.eclipselabs.damos.dml.ui",
 					 0,
 					 null,
 					 new Object [] { editingDomain.getResourceSet() });
@@ -601,7 +601,7 @@ public class DMLEditor
 					showTabs();
 				}
 				catch (PartInitException exception) {
-					DMLEditorPlugin.INSTANCE.log(exception);
+					DMLUIPlugin.INSTANCE.log(exception);
 				}
 			}
 
@@ -612,7 +612,7 @@ public class DMLEditor
 						markerHelper.createMarkers(diagnostic);
 					}
 					catch (CoreException exception) {
-						DMLEditorPlugin.INSTANCE.log(exception);
+						DMLUIPlugin.INSTANCE.log(exception);
 					}
 				}
 			}
@@ -930,7 +930,7 @@ public class DMLEditor
 			BasicDiagnostic basicDiagnostic =
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "org.eclipselabs.damos.dml.editor",
+					 "org.eclipselabs.damos.dml.ui",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),
 					 new Object [] { exception == null ? (Object)resource : exception });
@@ -941,7 +941,7 @@ public class DMLEditor
 			return
 				new BasicDiagnostic
 					(Diagnostic.ERROR,
-					 "org.eclipselabs.damos.dml.editor",
+					 "org.eclipselabs.damos.dml.ui",
 					 0,
 					 getString("_UI_CreateModelError_message", resource.getURI()),
 					 new Object[] { exception });
@@ -1471,7 +1471,7 @@ public class DMLEditor
 		catch (Exception exception) {
 			// Something went wrong that shouldn't.
 			//
-			DMLEditorPlugin.INSTANCE.log(exception);
+			DMLUIPlugin.INSTANCE.log(exception);
 		}
 		updateProblemIndication = true;
 		updateProblemIndication();
@@ -1564,7 +1564,7 @@ public class DMLEditor
 			}
 		}
 		catch (CoreException exception) {
-			DMLEditorPlugin.INSTANCE.log(exception);
+			DMLUIPlugin.INSTANCE.log(exception);
 		}
 	}
 
@@ -1686,7 +1686,7 @@ public class DMLEditor
 	 * @generated
 	 */
 	private static String getString(String key) {
-		return DMLEditorPlugin.INSTANCE.getString(key);
+		return DMLUIPlugin.INSTANCE.getString(key);
 	}
 
 	/**
@@ -1696,7 +1696,7 @@ public class DMLEditor
 	 * @generated
 	 */
 	private static String getString(String key, Object s1) {
-		return DMLEditorPlugin.INSTANCE.getString(key, new Object [] { s1 });
+		return DMLUIPlugin.INSTANCE.getString(key, new Object [] { s1 });
 	}
 
 	/**

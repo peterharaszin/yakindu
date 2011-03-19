@@ -2636,6 +2636,61 @@ public interface DMLPackage extends EPackage {
 	int CONDITIONAL_COMPOUND_CONDITION_FEATURE_COUNT = COMPOUND_INPUT_CONNECTOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.JoinImpl <em>Join</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.JoinImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
+	 * @generated
+	 */
+	int JOIN = 63;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN__INPUTS = COMPONENT__INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN__OUTPUTS = COMPONENT__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN__NAME = COMPONENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Join</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3994,6 +4049,16 @@ public interface DMLPackage extends EPackage {
 	EClass getConditionalCompoundCondition();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Join <em>Join</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Join</em>'.
+	 * @see org.eclipselabs.damos.dml.Join
+	 * @generated
+	 */
+	EClass getJoin();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5174,6 +5239,16 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONDITIONAL_COMPOUND_CONDITION = eINSTANCE.getConditionalCompoundCondition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.JoinImpl <em>Join</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.JoinImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
+		 * @generated
+		 */
+		EClass JOIN = eINSTANCE.getJoin();
 
 	}
 

@@ -34,6 +34,9 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	public static final String CONDITIONAL_COMPOUND_ID = "org.eclipselabs.damos.diagram.conditionalCompound"; //$NON-NLS-1$
 	public static final IElementType CONDITIONAL_COMPOUND = getElementType(CONDITIONAL_COMPOUND_ID);
 
+	public static final String JOIN_ID = "org.eclipselabs.damos.diagram.join"; //$NON-NLS-1$
+	public static final IElementType JOIN = getElementType(JOIN_ID);
+
 	public static final String BLOCK_ID = "org.eclipselabs.damos.diagram.block"; //$NON-NLS-1$
 	public static final IElementType BLOCK = getElementType(BLOCK_ID);
 

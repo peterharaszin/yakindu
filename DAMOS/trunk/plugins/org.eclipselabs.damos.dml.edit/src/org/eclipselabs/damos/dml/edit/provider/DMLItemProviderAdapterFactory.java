@@ -902,6 +902,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Join} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JoinItemProvider joinItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.Join}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJoinAdapter() {
+		if (joinItemProvider == null) {
+			joinItemProvider = new JoinItemProvider(this);
+		}
+
+		return joinItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1036,6 +1059,7 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
 		if (conditionalCompoundItemProvider != null) conditionalCompoundItemProvider.dispose();
 		if (conditionalCompoundConditionItemProvider != null) conditionalCompoundConditionItemProvider.dispose();
+		if (joinItemProvider != null) joinItemProvider.dispose();
 	}
 
 }

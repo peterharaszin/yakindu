@@ -61,6 +61,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
@@ -285,6 +286,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateConditionalCompound((ConditionalCompound)value, diagnostics, context);
 			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION:
 				return validateConditionalCompoundCondition((ConditionalCompoundCondition)value, diagnostics, context);
+			case DMLPackage.JOIN:
+				return validateJoin((Join)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1194,6 +1197,25 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateConditionalCompoundCondition(ConditionalCompoundCondition conditionalCompoundCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(conditionalCompoundCondition, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateJoin(Join join, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(join, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(join, diagnostics, context);
+		return result;
 	}
 
 	/**

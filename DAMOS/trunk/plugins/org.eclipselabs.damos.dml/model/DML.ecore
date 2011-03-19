@@ -325,4 +325,5 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConditionalCompoundCondition" eSuperTypes="#//CompoundInputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Component"/>
 </ecore:EPackage>

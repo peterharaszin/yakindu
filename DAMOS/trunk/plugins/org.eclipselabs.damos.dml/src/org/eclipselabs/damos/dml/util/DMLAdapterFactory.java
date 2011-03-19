@@ -50,6 +50,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
@@ -381,6 +382,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseConditionalCompoundCondition(ConditionalCompoundCondition object) {
 				return createConditionalCompoundConditionAdapter();
+			}
+			@Override
+			public Adapter caseJoin(Join object) {
+				return createJoinAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1281,6 +1286,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConditionalCompoundConditionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Join <em>Join</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.Join
+	 * @generated
+	 */
+	public Adapter createJoinAdapter() {
 		return null;
 	}
 

@@ -106,6 +106,10 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		entry.setId(IPaletteConstants.CONDITIONAL_COMPOUND_ENTRY_ID);
 //		entries.add(entry);
 
+		entry = new ElementCreationToolEntry(ElementTypes.JOIN, null, null);
+		entry.setId(IPaletteConstants.JOIN_ENTRY_ID);
+//		entries.add(entry);
+
 		return entries;
 	}
 	

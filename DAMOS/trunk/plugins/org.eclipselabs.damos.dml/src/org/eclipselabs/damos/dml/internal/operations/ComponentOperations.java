@@ -54,11 +54,17 @@ public class ComponentOperations {
 	 * @generated NOT
 	 */
 	public static  EList<InputPort> getInputPorts(Component component) {
+		if (component.getInputs().isEmpty()) {
+			return ECollections.emptyEList();
+		}
+		if (component.getInputs().size() == 1) {
+			return getPrimaryInputPorts(component);
+		}
 		EList<InputPort> inputPorts = new BasicInternalEList<InputPort>(InputPort.class);
 		for (Input input : component.getInputs()) {
 			inputPorts.addAll(input.getPorts());
 		}
-		return inputPorts;
+		return ECollections.unmodifiableEList(inputPorts);
 	}
 
 	/**
@@ -67,11 +73,17 @@ public class ComponentOperations {
 	 * @generated NOT
 	 */
 	public static  EList<OutputPort> getOutputPorts(Component component) {
+		if (component.getOutputs().isEmpty()) {
+			return ECollections.emptyEList();
+		}
+		if (component.getOutputs().size() == 1) {
+			return getPrimaryOutputPorts(component);
+		}
 		EList<OutputPort> outputPorts = new BasicInternalEList<OutputPort>(OutputPort.class);
 		for (Output output : component.getOutputs()) {
 			outputPorts.addAll(output.getPorts());
 		}
-		return outputPorts;
+		return ECollections.unmodifiableEList(outputPorts);
 	}
 
 	/**

@@ -33,6 +33,7 @@ import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
@@ -129,6 +130,7 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
 			case DMLPackage.CONDITIONAL_COMPOUND: return createConditionalCompound();
 			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION: return createConditionalCompoundCondition();
+			case DMLPackage.JOIN: return createJoin();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -492,6 +494,16 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public ConditionalCompoundCondition createConditionalCompoundCondition() {
 		ConditionalCompoundConditionImpl conditionalCompoundCondition = new ConditionalCompoundConditionImpl();
 		return conditionalCompoundCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Join createJoin() {
+		JoinImpl join = new JoinImpl();
+		return join;
 	}
 
 	/**

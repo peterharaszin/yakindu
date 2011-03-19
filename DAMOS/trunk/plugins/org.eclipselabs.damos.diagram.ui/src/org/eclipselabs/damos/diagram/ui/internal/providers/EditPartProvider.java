@@ -37,6 +37,7 @@ import org.eclipselabs.damos.diagram.ui.internal.editparts.ConditionalCompoundCo
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ConditionalCompoundEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackComponentEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.JoinEditPart;
 import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -51,6 +52,7 @@ import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -142,6 +144,9 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			}
 			if (element instanceof Subsystem) {
 				return SubsystemEditPart.class;
+			}
+			if (element instanceof Join) {
+				return JoinEditPart.class;
 			}
 			if (element instanceof Block) {
 				Block block = (Block) element;

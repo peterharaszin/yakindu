@@ -50,6 +50,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
@@ -622,6 +623,15 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseCompoundConnector(conditionalCompoundCondition);
 				if (result == null) result = caseInputConnector(conditionalCompoundCondition);
 				if (result == null) result = caseConnector(conditionalCompoundCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.JOIN: {
+				Join join = (Join)theEObject;
+				T result = caseJoin(join);
+				if (result == null) result = caseComponent(join);
+				if (result == null) result = caseFragmentElement(join);
+				if (result == null) result = caseCompoundMember(join);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1571,6 +1581,21 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseConditionalCompoundCondition(ConditionalCompoundCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Join</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Join</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJoin(Join object) {
 		return null;
 	}
 

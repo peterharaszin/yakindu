@@ -12,27 +12,38 @@
 package org.eclipselabs.damos.diagram.ui.internal.figures;
 
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
+import org.eclipselabs.damos.diagram.ui.figures.StandardComponentFigure;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ConditionalCompoundFigure extends CompoundFigure {
+public class JoinFigure extends StandardComponentFigure {
 
-	private static final int CORNER_RADIUS = 500;
+	private static final int MINIMUM_WIDTH = 4 * IFigureConstants.DEFAULT_LINE_WIDTH;
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)
+	 */
+	public Dimension calculateMinimumCanvasSize(int wHint, int hHint) {
+		if (minSize == null) {
+			minSize = getPreferredCanvasSize().getCopy();
+			if (minSize.width < MINIMUM_WIDTH) {
+				minSize.width = MINIMUM_WIDTH;
+			}
+		}
+		return minSize;
+	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#paintFigure(org.eclipse.draw2d.Graphics)
 	 */
 	@Override
 	protected void paintFigure(Graphics graphics) {
-		Rectangle bounds = getBounds().getCopy();
-		bounds.shrink(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH);
-		graphics.setLineWidth(2 * IFigureConstants.DEFAULT_LINE_WIDTH);
-		graphics.fillRoundRectangle(bounds, CORNER_RADIUS, CORNER_RADIUS);
-		graphics.drawRoundRectangle(bounds, CORNER_RADIUS, CORNER_RADIUS);
+		graphics.setBackgroundColor(getForegroundColor());
+		graphics.fillRectangle(getBounds());
 	}
 	
 }

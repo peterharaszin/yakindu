@@ -55,6 +55,12 @@
                name="Conditional Compound">
          </metamodelType>
          <metamodelType
+               eclass="Join"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.JoinEditHelper"
+               id="org.eclipselabs.damos.diagram.join"
+               name="Join">
+         </metamodelType>
+         <metamodelType
                eclass="Subsystem"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.SubsystemEditHelper"
                id="org.eclipselabs.damos.diagram.subsystem"

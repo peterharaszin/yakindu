@@ -54,6 +54,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
@@ -526,6 +527,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass conditionalCompoundConditionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass joinEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1763,6 +1771,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getJoin() {
+		return joinEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DMLFactory getDMLFactory() {
 		return (DMLFactory)getEFactoryInstance();
 	}
@@ -1978,6 +1995,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(conditionalCompoundEClass, CONDITIONAL_COMPOUND__CONDITION);
 
 		conditionalCompoundConditionEClass = createEClass(CONDITIONAL_COMPOUND_CONDITION);
+
+		joinEClass = createEClass(JOIN);
 	}
 
 	/**
@@ -2070,6 +2089,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		compoundOutputConnectorEClass.getESuperTypes().add(this.getOutputConnector());
 		conditionalCompoundEClass.getESuperTypes().add(this.getCompound());
 		conditionalCompoundConditionEClass.getESuperTypes().add(this.getCompoundInputConnector());
+		joinEClass.getESuperTypes().add(this.getComponent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2351,6 +2371,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getConditionalCompound_Condition(), this.getConditionalCompoundCondition(), null, "condition", null, 0, 1, ConditionalCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(conditionalCompoundConditionEClass, ConditionalCompoundCondition.class, "ConditionalCompoundCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

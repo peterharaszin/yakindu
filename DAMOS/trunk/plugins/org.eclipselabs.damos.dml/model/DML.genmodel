@@ -244,5 +244,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ConditionalCompound/condition"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//ConditionalCompoundCondition"/>
+    <genClasses ecoreClass="DML.ecore#//Join"/>
   </genPackages>
 </genmodel:GenModel>

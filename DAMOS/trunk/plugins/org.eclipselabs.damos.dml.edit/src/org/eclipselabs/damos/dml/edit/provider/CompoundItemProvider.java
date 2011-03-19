@@ -158,6 +158,11 @@ public class CompoundItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.COMPOUND__MEMBERS,
 				 DMLFactory.eINSTANCE.createConditionalCompound()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPOUND__MEMBERS,
+				 DMLFactory.eINSTANCE.createJoin()));
 	}
 
 }

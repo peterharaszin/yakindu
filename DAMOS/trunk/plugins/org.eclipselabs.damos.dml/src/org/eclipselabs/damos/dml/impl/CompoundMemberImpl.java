@@ -7,9 +7,7 @@
 package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.DMLPackage;
 

@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
 import org.eclipselabs.damos.diagram.ui.editpolicies.ComponentCanonicalEditPolicy;
-import org.eclipselabs.damos.diagram.ui.editpolicies.ComponentComponentEditPolicy;
+import org.eclipselabs.damos.diagram.ui.editpolicies.DeleteSemanticComponentEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.TransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
@@ -90,7 +90,7 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		installEditPolicy(IEditPolicyRoles.CANONICAL_ROLE, new ComponentCanonicalEditPolicy());
 		installEditPolicy(IEditPolicyRoles.TRANSFORM_ROLE, new TransformEditPolicy());
-		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ComponentComponentEditPolicy());
+		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteSemanticComponentEditPolicy());
 		getDelegate().createDefaultEditPolicies();
 	}
 	

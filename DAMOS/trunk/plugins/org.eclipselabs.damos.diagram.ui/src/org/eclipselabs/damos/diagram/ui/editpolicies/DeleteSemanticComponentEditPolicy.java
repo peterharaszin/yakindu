@@ -20,7 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.GroupRequestViaKeyboard;
  * @author Andreas Unger
  *
  */
-public class ComponentComponentEditPolicy extends ComponentEditPolicy {
+public class DeleteSemanticComponentEditPolicy extends ComponentEditPolicy {
 
 	protected Command createDeleteSemanticCommand(GroupRequest deleteRequest) {
 		if (deleteRequest instanceof GroupRequestViaKeyboard) {

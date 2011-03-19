@@ -165,7 +165,8 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 	 * @generated NOT
 	 */
 	public OutputPort basicGetSourcePort() {
-		return (OutputPort) getSource();
+		OutputConnector source = getSource();
+		return source instanceof OutputPort ? (OutputPort) source : null;
 	}
 
 	/**
@@ -193,7 +194,8 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 	 * @generated NOT
 	 */
 	public InputPort basicGetTargetPort() {
-		return (InputPort) getTarget();
+		InputConnector target = getTarget();
+		return target instanceof InputPort ? (InputPort) target : null;
 	}
 
 	/**

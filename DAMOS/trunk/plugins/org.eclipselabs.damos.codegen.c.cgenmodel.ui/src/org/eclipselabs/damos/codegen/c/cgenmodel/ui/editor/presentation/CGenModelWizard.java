@@ -370,7 +370,7 @@ public class CGenModelWizard extends Wizard implements INewWizard {
 		
 		private ExecutionModel executionModel;
 		
-		private LoadModelComposite loadModelComposite = new LoadModelComposite() {
+		private LoadResourceCompositeHelper loadResourceCompositeHelper = new LoadResourceCompositeHelper() {
 
 			protected void resetResource() {
 				executionModel = null;
@@ -441,7 +441,7 @@ public class CGenModelWizard extends Wizard implements INewWizard {
 			topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL | GridData.HORIZONTAL_ALIGN_FILL));
 			topLevel.setFont(parent.getFont());
 			
-			loadModelComposite.createControl(topLevel);
+			loadResourceCompositeHelper.createControl(topLevel);
 
 			setErrorMessage(null);
 			setMessage(null);
@@ -466,7 +466,7 @@ public class CGenModelWizard extends Wizard implements INewWizard {
 		
 		private ComboViewer fragmentViewer;
 		
-		private LoadModelComposite loadModelComposite = new LoadModelComposite() {
+		private LoadResourceCompositeHelper loadResourceCompositeHelper = new LoadResourceCompositeHelper() {
 
 			protected void resetResource() {
 				fragmentViewer.setInput(null);
@@ -540,7 +540,7 @@ public class CGenModelWizard extends Wizard implements INewWizard {
 			topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL | GridData.HORIZONTAL_ALIGN_FILL));
 			topLevel.setFont(parent.getFont());
 			
-			loadModelComposite.createControl(topLevel);
+			loadResourceCompositeHelper.createControl(topLevel);
 			
 			Label label = new Label(topLevel, SWT.NONE);
 			label.setText("Select top-level fragment:");
@@ -670,7 +670,7 @@ public class CGenModelWizard extends Wizard implements INewWizard {
 		
 	}
 
-	private static abstract class LoadModelComposite {
+	private static abstract class LoadResourceCompositeHelper {
 		
 		private Text modelURIText;
 		

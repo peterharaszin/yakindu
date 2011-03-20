@@ -10,7 +10,7 @@
   <foreignModel>ExecutionModel.ecore</foreignModel>
   <genPackages prefix="ExecutionModel" basePackage="org.eclipselabs.damos.execution"
       disposableProviderFactory="true" providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
-      ecorePackage="ExecutionModel.ecore#/">
+      multipleEditorPages="false" generateModelWizard="false" ecorePackage="ExecutionModel.ecore#/">
     <genClasses ecoreClass="ExecutionModel.ecore#//ExecutionModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionModel.ecore#//ExecutionModel/computationModelMappings"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionModel.ecore#//ExecutionModel/sampleTime"/>

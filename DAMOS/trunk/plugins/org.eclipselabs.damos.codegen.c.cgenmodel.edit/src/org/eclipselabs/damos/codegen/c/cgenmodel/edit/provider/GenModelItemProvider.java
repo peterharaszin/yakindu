@@ -256,14 +256,11 @@ public class GenModelItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GenModel)object).getSourceDirectory();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GenModel_type") :
-			getString("_UI_GenModel_type") + " " + label;
+		return getString("_UI_GenModel_type");
 	}
 
 	/**

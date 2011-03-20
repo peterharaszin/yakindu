@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,9 +19,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem;
+import org.eclipselabs.damos.dml.Fragment;
 
 /**
  * This is the item provider adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenTopLevelSystem} object.
@@ -101,14 +100,16 @@ public class GenTopLevelSystemItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GenTopLevelSystem)object).getPrefix();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GenTopLevelSystem_type") :
-			getString("_UI_GenTopLevelSystem_type") + " " + label;
+		String text = getString("_UI_GenTopLevelSystem_type");
+		Fragment fragment = ((GenTopLevelSystem)object).getFragment();
+		if (fragment != null && fragment.getName() != null) {
+			text += " [" + fragment.getName() + "]";
+		}
+		return text;
 	}
 
 	/**

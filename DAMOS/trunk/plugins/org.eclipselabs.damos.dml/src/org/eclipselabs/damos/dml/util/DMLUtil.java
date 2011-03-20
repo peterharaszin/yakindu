@@ -245,5 +245,26 @@ public class DMLUtil {
 		}
 		return null;
 	}
+	
+	public static boolean isCyclic(Fragment fragment) {
+		return isCyclic(fragment, new HashSet<Fragment>());
+	}
+
+	private static boolean isCyclic(Fragment fragment, Set<Fragment> visitedFragments) {
+		visitedFragments.add(fragment);
+		for (FragmentElement fragmentElement : fragment.getAllFragmentElements()) {
+			if (fragmentElement instanceof Subsystem) {
+				Subsystem subsystem = (Subsystem) fragmentElement;
+				SubsystemRealization realization = subsystem.getRealization(fragment);
+				if (realization != null) {
+					Fragment realizingFragment = realization.getRealizingFragment();
+					if (visitedFragments.contains(realizingFragment) || isCyclic(realizingFragment, visitedFragments)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 
 }

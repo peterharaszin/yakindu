@@ -12,12 +12,12 @@
 
    <extension point="org.eclipse.ui.newWizards">
       <wizard
-            id="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelModelWizardID"
-            name="%_UI_CGenModelModelWizard_label"
-            class="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelModelWizard"
+            id="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelWizardID"
+            name="%_UI_CGenModelWizard_label"
+            class="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelWizard"
             category="org.eclipselabs.damos.common.damosCategory"
-            icon="icons/full/obj16/CGenModelModelFile.gif">
-         <description>%_UI_CGenModelModelWizard_description</description>
+            icon="icons/full/obj16/CGenModelFile.gif">
+         <description>%_UI_CGenModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
@@ -26,7 +26,7 @@
       <editor
             id="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelEditorID"
             name="%_UI_CGenModelEditor_label"
-            icon="icons/full/obj16/CGenModelModelFile.gif"
+            icon="icons/full/obj16/CGenModelFile.gif"
             extensions="cgenmodel"
             class="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelEditor"
             contributorClass="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelActionBarContributor">

@@ -10,7 +10,7 @@
   <foreignModel>CGenModel.ecore</foreignModel>
   <genPackages prefix="CGenModel" basePackage="org.eclipselabs.damos.codegen.c" disposableProviderFactory="true"
       providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
-      ecorePackage="CGenModel.ecore#/">
+      multipleEditorPages="false" generateModelWizard="false" ecorePackage="CGenModel.ecore#/">
     <genClasses ecoreClass="CGenModel.ecore#//GenModel">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenModel/executionModel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenModel/genTopLevelSystem"/>

@@ -7,17 +7,11 @@
 package org.eclipselabs.damos.codegen.c.cgenmodel.ui;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
-
 import org.eclipselabs.damos.execution.executionmodel.edit.ExecutionModelEditPlugin;
-
 import org.eclipselabs.mscript.computation.computationmodel.edit.ComputationModelEditPlugin;
-
 import org.eclipselabs.mscript.typesystem.edit.TypeSystemEditPlugin;
 
 /**

@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,9 +19,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
+import org.eclipselabs.damos.dml.Subsystem;
 
 /**
  * This is the item provider adapter for a {@link org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem} object.
@@ -101,14 +100,16 @@ public class GenSubsystemItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((GenSubsystem)object).getPrefix();
-		return label == null || label.length() == 0 ?
-			getString("_UI_GenSubsystem_type") :
-			getString("_UI_GenSubsystem_type") + " " + label;
+		String text = getString("_UI_GenSubsystem_type");
+		Subsystem subsystem = ((GenSubsystem)object).getSubsystem();
+		if (subsystem != null && subsystem.getName() != null) {
+			text += " [" + subsystem.getName() + "]";
+		}
+		return text;
 	}
 
 	/**

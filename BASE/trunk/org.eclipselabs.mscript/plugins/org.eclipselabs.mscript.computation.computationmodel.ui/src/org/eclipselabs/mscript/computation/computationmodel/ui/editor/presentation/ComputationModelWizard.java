@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation;
+package org.eclipselabs.mscript.computation.computationmodel.ui.editor.presentation;
 
 
 import java.util.Arrays;
@@ -43,9 +43,15 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
-import org.eclipselabs.damos.execution.executionmodel.ui.ExecutionModelUIPlugin;
+import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
+import org.eclipselabs.mscript.computation.computationmodel.ComputationModelFactory;
+import org.eclipselabs.mscript.computation.computationmodel.ComputationModelPackage;
+import org.eclipselabs.mscript.computation.computationmodel.FixedPointFormat;
+import org.eclipselabs.mscript.computation.computationmodel.FloatingPointFormat;
+import org.eclipselabs.mscript.computation.computationmodel.FloatingPointFormatKind;
+import org.eclipselabs.mscript.computation.computationmodel.NumberFormatMapping;
+import org.eclipselabs.mscript.computation.computationmodel.ui.ComputationModelUIPlugin;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 
 
 /**
@@ -54,7 +60,7 @@ import org.eclipselabs.damos.execution.executionmodel.ui.ExecutionModelUIPlugin;
  * <!-- end-user-doc -->
  * @generated NOT
  */
-public class ExecutionModelModelWizard extends Wizard implements INewWizard {
+public class ComputationModelWizard extends Wizard implements INewWizard {
 	/**
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
@@ -62,7 +68,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
-		Collections.unmodifiableList(Arrays.asList(ExecutionModelUIPlugin.INSTANCE.getString("_UI_ExecutionModelEditorFilenameExtensions").split("\\s*,\\s*")));
+		Collections.unmodifiableList(Arrays.asList(ComputationModelUIPlugin.INSTANCE.getString("_UI_ComputationModelEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display.
@@ -71,7 +77,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
-		ExecutionModelUIPlugin.INSTANCE.getString("_UI_ExecutionModelEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
+		ComputationModelUIPlugin.INSTANCE.getString("_UI_ComputationModelEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -79,7 +85,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExecutionModelPackage executionModelPackage = ExecutionModelPackage.eINSTANCE;
+	protected ComputationModelPackage computationModelPackage = ComputationModelPackage.eINSTANCE;
 
 	/**
 	 * This caches an instance of the model factory.
@@ -87,7 +93,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExecutionModelFactory executionModelFactory = executionModelPackage.getExecutionModelFactory();
+	protected ComputationModelFactory computationModelFactory = computationModelPackage.getComputationModelFactory();
 
 	/**
 	 * This is the file creation page.
@@ -95,7 +101,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExecutionModelModelWizardNewFileCreationPage newFileCreationPage;
+	protected ComputationModelWizardNewFileCreationPage newFileCreationPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -122,8 +128,8 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		setWindowTitle(ExecutionModelUIPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ExecutionModelUIPlugin.INSTANCE.getImage("full/wizban/NewExecutionModel")));
+		setWindowTitle(ComputationModelUIPlugin.INSTANCE.getString("_UI_Wizard_label"));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(ComputationModelUIPlugin.INSTANCE.getImage("full/wizban/NewComputationModel")));
 	}
 
 	/**
@@ -133,7 +139,27 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	 * @generated NOT
 	 */
 	protected EObject createInitialModel() {
-		return executionModelFactory.createExecutionModel();
+		ComputationModel computationModel = ComputationModelFactory.eINSTANCE.createComputationModel();
+		
+		FloatingPointFormat floatingPointFormat = ComputationModelFactory.eINSTANCE.createFloatingPointFormat();
+		floatingPointFormat.setKind(FloatingPointFormatKind.BINARY64);
+		computationModel.getNumberFormats().add(floatingPointFormat);
+		
+		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
+		fixedPointFormat.setIntegerLength(31);
+		computationModel.getNumberFormats().add(fixedPointFormat);
+		
+		NumberFormatMapping mapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
+		mapping.setOwnedDataType(TypeSystemFactory.eINSTANCE.createRealType());
+		mapping.setNumberFormat(floatingPointFormat);
+		computationModel.getNumberFormatMappings().add(mapping);
+
+		mapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
+		mapping.setOwnedDataType(TypeSystemFactory.eINSTANCE.createIntegerType());
+		mapping.setNumberFormat(fixedPointFormat);
+		computationModel.getNumberFormatMappings().add(mapping);
+
+		return computationModel;
 	}
 
 	/**
@@ -182,7 +208,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 							resource.save(options);
 						}
 						catch (Exception exception) {
-							ExecutionModelUIPlugin.INSTANCE.log(exception);
+							ComputationModelUIPlugin.INSTANCE.log(exception);
 						}
 						finally {
 							progressMonitor.done();
@@ -215,14 +241,14 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 					 workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
 			}
 			catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(), ExecutionModelUIPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), ComputationModelUIPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
 			return true;
 		}
 		catch (Exception exception) {
-			ExecutionModelUIPlugin.INSTANCE.log(exception);
+			ComputationModelUIPlugin.INSTANCE.log(exception);
 			return false;
 		}
 	}
@@ -231,16 +257,16 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	 * This is the one page of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public class ExecutionModelModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+	public class ComputationModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public ExecutionModelModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+		public ComputationModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -256,7 +282,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(ExecutionModelUIPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(ComputationModelUIPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -284,10 +310,10 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new ExecutionModelModelWizardNewFileCreationPage("Whatever", selection);
-		newFileCreationPage.setTitle(ExecutionModelUIPlugin.INSTANCE.getString("_UI_ExecutionModelModelWizard_label"));
-		newFileCreationPage.setDescription(ExecutionModelUIPlugin.INSTANCE.getString("_UI_ExecutionModelModelWizard_description"));
-		newFileCreationPage.setFileName(ExecutionModelUIPlugin.INSTANCE.getString("_UI_ExecutionModelEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new ComputationModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(ComputationModelUIPlugin.INSTANCE.getString("_UI_ComputationModelWizard_label"));
+		newFileCreationPage.setDescription(ComputationModelUIPlugin.INSTANCE.getString("_UI_ComputationModelWizard_description"));
+		newFileCreationPage.setFileName(ComputationModelUIPlugin.INSTANCE.getString("_UI_ComputationModelEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -313,7 +339,7 @@ public class ExecutionModelModelWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = ExecutionModelUIPlugin.INSTANCE.getString("_UI_ExecutionModelEditorFilenameDefaultBase");
+					String defaultModelBaseFilename = ComputationModelUIPlugin.INSTANCE.getString("_UI_ComputationModelEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
 					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {

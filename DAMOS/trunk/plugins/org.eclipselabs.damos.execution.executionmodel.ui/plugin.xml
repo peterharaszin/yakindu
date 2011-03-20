@@ -12,21 +12,21 @@
 
    <extension point="org.eclipse.ui.newWizards">
       <wizard
-            id="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ComputationModelModelWizardID"
+            id="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ComputationModelWizardID"
             name="Computation Model"
-            class="org.eclipselabs.mscript.computation.computationmodel.ui.editor.presentation.ComputationModelModelWizard"
+            class="org.eclipselabs.mscript.computation.computationmodel.ui.editor.presentation.ComputationModelWizard"
             category="org.eclipselabs.damos.common.damosCategory"
-            icon="icons/full/obj16/ComputationModelModelFile.gif">
+            icon="icons/full/obj16/ComputationModelFile.gif">
          <description>Create a new computation model</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
       <wizard
-            id="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelModelWizardID"
-            name="%_UI_ExecutionModelModelWizard_label"
-            class="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelModelWizard"
+            id="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelWizardID"
+            name="%_UI_ExecutionModelWizard_label"
+            class="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelWizard"
             category="org.eclipselabs.damos.common.damosCategory"
-            icon="icons/full/obj16/ExecutionModelModelFile.gif">
-         <description>%_UI_ExecutionModelModelWizard_description</description>
+            icon="icons/full/obj16/ExecutionModelFile.gif">
+         <description>%_UI_ExecutionModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
@@ -35,7 +35,7 @@
       <editor
             id="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelEditorID"
             name="%_UI_ExecutionModelEditor_label"
-            icon="icons/full/obj16/ExecutionModelModelFile.gif"
+            icon="icons/full/obj16/ExecutionModelFile.gif"
             extensions="executionmodel"
             class="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelEditor"
             contributorClass="org.eclipselabs.damos.execution.executionmodel.ui.editor.presentation.ExecutionModelActionBarContributor">

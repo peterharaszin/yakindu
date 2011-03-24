@@ -88,6 +88,7 @@ public class ComponentSignatureResolverHelper {
 			changed = resolveComponent(component, changed);
 		} else if (element instanceof Compound) {
 			Compound compound = (Compound) element;
+			// TODO: Check compound connector data types
 			for (CompoundMember member : compound.getMembers()) {
 				resolveElement(member, changed);
 			}

@@ -28,6 +28,7 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
+import org.eclipselabs.damos.execution.executionflow.internal.operations.NodeOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -221,23 +222,19 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public DataFlowTargetEnd getIncomingDataFlow(InputConnector target) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return NodeOperations.getIncomingDataFlow(this, target);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public DataFlowSourceEnd getOutgoingDataFlow(OutputConnector source) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return NodeOperations.getOutgoingDataFlow(this, source);
 	}
 
 	/**

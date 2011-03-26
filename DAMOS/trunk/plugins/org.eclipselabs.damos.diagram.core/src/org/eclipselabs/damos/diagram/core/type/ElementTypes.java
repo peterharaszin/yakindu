@@ -34,14 +34,17 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	public static final String OUTPORT_ID = "org.eclipselabs.damos.diagram.outport"; //$NON-NLS-1$
 	public static final IElementType OUTPORT = getElementType(OUTPORT_ID);
 
-	public static final String ACTION_ID = "org.eclipselabs.damos.diagram.action"; //$NON-NLS-1$
-	public static final IElementType ACTION = getElementType(ACTION_ID);
+	public static final String CHOICE_ID = "org.eclipselabs.damos.diagram.choice"; //$NON-NLS-1$
+	public static final IElementType CHOICE = getElementType(CHOICE_ID);
 
 	public static final String JOIN_ID = "org.eclipselabs.damos.diagram.join"; //$NON-NLS-1$
 	public static final IElementType JOIN = getElementType(JOIN_ID);
 
-	public static final String CHOICE_ID = "org.eclipselabs.damos.diagram.choice"; //$NON-NLS-1$
-	public static final IElementType CHOICE = getElementType(CHOICE_ID);
+	public static final String ACTION_ID = "org.eclipselabs.damos.diagram.action"; //$NON-NLS-1$
+	public static final IElementType ACTION = getElementType(ACTION_ID);
+
+	public static final String WHILE_LOOP_ID = "org.eclipselabs.damos.diagram.whileLoop"; //$NON-NLS-1$
+	public static final IElementType WHILE_LOOP = getElementType(WHILE_LOOP_ID);
 
 	public static final String BLOCK_ID = "org.eclipselabs.damos.diagram.block"; //$NON-NLS-1$
 	public static final IElementType BLOCK = getElementType(BLOCK_ID);

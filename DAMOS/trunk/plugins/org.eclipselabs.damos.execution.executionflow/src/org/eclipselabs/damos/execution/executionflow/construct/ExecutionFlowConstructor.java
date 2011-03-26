@@ -11,9 +11,7 @@
 
 package org.eclipselabs.damos.execution.executionflow.construct;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,10 +21,6 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
@@ -58,16 +52,6 @@ public class ExecutionFlowConstructor {
 		
 		List<Node> backlog = doConstruct(context, context.flow.getGraph());
 		
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createPlatformResourceURI("Tests/model/flow.xmi", true));
-		resource.getContents().add(context.flow);
-		try {
-			resource.save(Collections.emptyMap());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 		if (!backlog.isEmpty()) {
 			String message = "Deadlock occurred between component";
 			if (backlog.size() == 1) {

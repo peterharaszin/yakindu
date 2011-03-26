@@ -22,6 +22,9 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	public static final String CONNECTION_ID = "org.eclipselabs.damos.diagram.connection"; //$NON-NLS-1$
 	public static final IElementType CONNECTION = getElementType(CONNECTION_ID);
 	
+	public static final String ACTION_LINK_ID = "org.eclipselabs.damos.diagram.actionLink"; //$NON-NLS-1$
+	public static final IElementType ACTION_LINK = getElementType(ACTION_LINK_ID);
+
 	public static final String SUBSYSTEM_ID = "org.eclipselabs.damos.diagram.subsystem"; //$NON-NLS-1$
 	public static final IElementType SUBSYSTEM = getElementType(SUBSYSTEM_ID);
 
@@ -31,11 +34,14 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	public static final String OUTPORT_ID = "org.eclipselabs.damos.diagram.outport"; //$NON-NLS-1$
 	public static final IElementType OUTPORT = getElementType(OUTPORT_ID);
 
-	public static final String CONDITIONAL_COMPOUND_ID = "org.eclipselabs.damos.diagram.conditionalCompound"; //$NON-NLS-1$
-	public static final IElementType CONDITIONAL_COMPOUND = getElementType(CONDITIONAL_COMPOUND_ID);
+	public static final String ACTION_ID = "org.eclipselabs.damos.diagram.action"; //$NON-NLS-1$
+	public static final IElementType ACTION = getElementType(ACTION_ID);
 
 	public static final String JOIN_ID = "org.eclipselabs.damos.diagram.join"; //$NON-NLS-1$
 	public static final IElementType JOIN = getElementType(JOIN_ID);
+
+	public static final String CHOICE_ID = "org.eclipselabs.damos.diagram.choice"; //$NON-NLS-1$
+	public static final IElementType CHOICE = getElementType(CHOICE_ID);
 
 	public static final String BLOCK_ID = "org.eclipselabs.damos.diagram.block"; //$NON-NLS-1$
 	public static final IElementType BLOCK = getElementType(BLOCK_ID);

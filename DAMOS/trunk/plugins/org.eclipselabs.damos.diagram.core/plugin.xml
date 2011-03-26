@@ -25,6 +25,12 @@
                name="Connection">
          </metamodelType>
          <metamodelType
+               eclass="ActionLink"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ActionLinkEditHelper"
+               id="org.eclipselabs.damos.diagram.actionLink"
+               name="Action Link">
+         </metamodelType>
+         <metamodelType
                eclass="Connector"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ConnectorEditHelper"
                id="org.eclipselabs.damos.diagram.connector"
@@ -49,16 +55,22 @@
                name="Outport">
          </metamodelType>
          <metamodelType
-               eclass="ConditionalCompound"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ConditionalCompoundEditHelper"
-               id="org.eclipselabs.damos.diagram.conditionalCompound"
-               name="Conditional Compound">
+               eclass="Action"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ActionEditHelper"
+               id="org.eclipselabs.damos.diagram.action"
+               name="Action">
          </metamodelType>
          <metamodelType
                eclass="Join"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.JoinEditHelper"
                id="org.eclipselabs.damos.diagram.join"
                name="Join">
+         </metamodelType>
+         <metamodelType
+               eclass="Choice"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ChoiceEditHelper"
+               id="org.eclipselabs.damos.diagram.choice"
+               name="Choice">
          </metamodelType>
          <metamodelType
                eclass="Subsystem"

@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipselabs.damos.dml.ConditionalCompound;
+import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.util.DMLSwitch;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
@@ -27,7 +27,6 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
-import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -240,20 +239,20 @@ public class SimulationEngine implements ISimulationEngine {
 	}
 	
 	private boolean isCompoundRun(CompoundNode node) throws CoreException {
-		if (node.getCompound() instanceof ConditionalCompound) {
-			ConditionalCompound conditionalCompound = (ConditionalCompound) node.getCompound();
-			DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(conditionalCompound.getCondition());
-			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-			PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
-
-			IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
-			IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
-			
-			if (value instanceof IBooleanValue) {
-				return ((IBooleanValue) value).booleanValue();
-			} else {
-				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Input value of condition connector must be boolean value"));
-			}
+		if (node.getCompound() instanceof Action) {
+//			Action action = (Action) node.getCompound();
+//			DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(null /*conditionalCompound.getCondition()*/);
+//			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+//			PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
+//
+//			IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
+//			IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
+//			
+//			if (value instanceof IBooleanValue) {
+//				return ((IBooleanValue) value).booleanValue();
+//			} else {
+//				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Input value of condition connector must be boolean value"));
+//			}
 		}
 		return false;
 	}
@@ -273,7 +272,7 @@ public class SimulationEngine implements ISimulationEngine {
 	private class CompoundComputeOutputValuesSwitch extends CompoundSwitch {
 
 		@Override
-		protected void runConditionalCompound() throws CoreException {
+		protected void runAction() throws CoreException {
 			computeOutputValues(getNode(), getMonitor());
 		}
 		
@@ -282,7 +281,7 @@ public class SimulationEngine implements ISimulationEngine {
 	private class CompoundUpdateSwitch extends CompoundSwitch {
 
 		@Override
-		protected void runConditionalCompound() throws CoreException {
+		protected void runAction() throws CoreException {
 			update(getNode(), getMonitor());
 		}
 		
@@ -318,10 +317,10 @@ public class SimulationEngine implements ISimulationEngine {
 		}
 		
 		@Override
-		public Boolean caseConditionalCompound(ConditionalCompound conditionalCompound) {
+		public Boolean caseAction(Action action) {
 			try {
 				if (isCompoundRun(node)) {
-					runConditionalCompound();
+					runAction();
 				}
 			} catch (CoreException e) {
 				throw new WrappedException(e);
@@ -329,7 +328,7 @@ public class SimulationEngine implements ISimulationEngine {
 			return true;
 		}
 		
-		protected abstract void runConditionalCompound() throws CoreException;
+		protected abstract void runAction() throws CoreException;
 
 	}
 	

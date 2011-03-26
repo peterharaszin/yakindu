@@ -10,6 +10,8 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -23,14 +25,15 @@ import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
+import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionalCompound;
-import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
+import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -53,6 +56,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
+import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
@@ -74,6 +78,8 @@ import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dml.WhileLoop;
+import org.eclipselabs.damos.dml.WhileLoopCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -376,16 +382,40 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createCompoundOutputConnectorAdapter();
 			}
 			@Override
-			public Adapter caseConditionalCompound(ConditionalCompound object) {
-				return createConditionalCompoundAdapter();
+			public Adapter caseChoice(Choice object) {
+				return createChoiceAdapter();
 			}
 			@Override
-			public Adapter caseConditionalCompoundCondition(ConditionalCompoundCondition object) {
-				return createConditionalCompoundConditionAdapter();
+			public Adapter caseChoiceInputPort(ChoiceInputPort object) {
+				return createChoiceInputPortAdapter();
+			}
+			@Override
+			public Adapter caseAction(Action object) {
+				return createActionAdapter();
+			}
+			@Override
+			public Adapter caseActionLink(ActionLink object) {
+				return createActionLinkAdapter();
+			}
+			@Override
+			public Adapter caseConditionSpecification(ConditionSpecification object) {
+				return createConditionSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseOpaqueConditionSpecification(OpaqueConditionSpecification object) {
+				return createOpaqueConditionSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseJoin(Join object) {
 				return createJoinAdapter();
+			}
+			@Override
+			public Adapter caseWhileLoop(WhileLoop object) {
+				return createWhileLoopAdapter();
+			}
+			@Override
+			public Adapter caseWhileLoopCondition(WhileLoopCondition object) {
+				return createWhileLoopConditionAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1262,30 +1292,86 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ConditionalCompound <em>Conditional Compound</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Choice <em>Choice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.ConditionalCompound
+	 * @see org.eclipselabs.damos.dml.Choice
 	 * @generated
 	 */
-	public Adapter createConditionalCompoundAdapter() {
+	public Adapter createChoiceAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ConditionalCompoundCondition <em>Conditional Compound Condition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ChoiceInputPort <em>Choice Input Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.ConditionalCompoundCondition
+	 * @see org.eclipselabs.damos.dml.ChoiceInputPort
 	 * @generated
 	 */
-	public Adapter createConditionalCompoundConditionAdapter() {
+	public Adapter createChoiceInputPortAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Action <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.Action
+	 * @generated
+	 */
+	public Adapter createActionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ActionLink <em>Action Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ActionLink
+	 * @generated
+	 */
+	public Adapter createActionLinkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ConditionSpecification <em>Condition Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ConditionSpecification
+	 * @generated
+	 */
+	public Adapter createConditionSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.OpaqueConditionSpecification <em>Opaque Condition Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.OpaqueConditionSpecification
+	 * @generated
+	 */
+	public Adapter createOpaqueConditionSpecificationAdapter() {
 		return null;
 	}
 
@@ -1300,6 +1386,34 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createJoinAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.WhileLoop <em>While Loop</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.WhileLoop
+	 * @generated
+	 */
+	public Adapter createWhileLoopAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.WhileLoopCondition <em>While Loop Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.WhileLoopCondition
+	 * @generated
+	 */
+	public Adapter createWhileLoopConditionAdapter() {
 		return null;
 	}
 

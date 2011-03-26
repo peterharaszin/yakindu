@@ -143,6 +143,11 @@ public class InputItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.INPUT__PORTS,
 				 DMLFactory.eINSTANCE.createBlockInputPort()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.INPUT__PORTS,
+				 DMLFactory.eINSTANCE.createChoiceInputPort()));
 	}
 
 }

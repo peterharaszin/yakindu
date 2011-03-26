@@ -2562,14 +2562,14 @@ public interface DMLPackage extends EPackage {
 	int COMPOUND_OUTPUT_CONNECTOR_FEATURE_COUNT = COMPOUND_CONNECTOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl <em>Conditional Compound</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ChoiceImpl <em>Choice</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompound()
+	 * @see org.eclipselabs.damos.dml.impl.ChoiceImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoice()
 	 * @generated
 	 */
-	int CONDITIONAL_COMPOUND = 61;
+	int CHOICE = 61;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2578,7 +2578,108 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_COMPOUND__OWNING_FRAGMENT = COMPOUND__OWNING_FRAGMENT;
+	int CHOICE__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__INPUTS = COMPONENT__INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__OUTPUTS = COMPONENT__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__NAME = COMPONENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Action Links</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__ACTION_LINKS = COMPONENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Choice</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ChoiceInputPortImpl <em>Choice Input Port</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ChoiceInputPortImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
+	 * @generated
+	 */
+	int CHOICE_INPUT_PORT = 62;
+
+	/**
+	 * The feature id for the '<em><b>Input</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_INPUT_PORT__INPUT = INPUT_PORT__INPUT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_INPUT_PORT__NAME = INPUT_PORT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Choice Input Port</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_INPUT_PORT_FEATURE_COUNT = INPUT_PORT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ActionImpl <em>Action</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ActionImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
+	 * @generated
+	 */
+	int ACTION = 63;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__OWNING_FRAGMENT = COMPOUND__OWNING_FRAGMENT;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -2587,7 +2688,53 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_COMPOUND__MEMBERS = COMPOUND__MEMBERS;
+	int ACTION__MEMBERS = COMPOUND__MEMBERS;
+
+	/**
+	 * The feature id for the '<em><b>Link</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__LINK = COMPOUND_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Action</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_FEATURE_COUNT = COMPOUND_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ActionLinkImpl <em>Action Link</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ActionLinkImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
+	 * @generated
+	 */
+	int ACTION_LINK = 64;
+
+	/**
+	 * The feature id for the '<em><b>Choice</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_LINK__CHOICE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Action</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_LINK__ACTION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2596,44 +2743,63 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_COMPOUND__CONDITION = COMPOUND_FEATURE_COUNT + 0;
+	int ACTION_LINK__CONDITION = 2;
 
 	/**
-	 * The number of structural features of the '<em>Conditional Compound</em>' class.
+	 * The number of structural features of the '<em>Action Link</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_COMPOUND_FEATURE_COUNT = COMPOUND_FEATURE_COUNT + 1;
+	int ACTION_LINK_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl <em>Conditional Compound Condition</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl <em>Condition Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompoundCondition()
+	 * @see org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionSpecification()
 	 * @generated
 	 */
-	int CONDITIONAL_COMPOUND_CONDITION = 62;
+	int CONDITION_SPECIFICATION = 65;
 
 	/**
-	 * The feature id for the '<em><b>Compound</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITIONAL_COMPOUND_CONDITION__COMPOUND = COMPOUND_INPUT_CONNECTOR__COMPOUND;
-
-	/**
-	 * The number of structural features of the '<em>Conditional Compound Condition</em>' class.
+	 * The number of structural features of the '<em>Condition Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONDITIONAL_COMPOUND_CONDITION_FEATURE_COUNT = COMPOUND_INPUT_CONNECTOR_FEATURE_COUNT + 0;
+	int CONDITION_SPECIFICATION_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl <em>Opaque Condition Specification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueConditionSpecification()
+	 * @generated
+	 */
+	int OPAQUE_CONDITION_SPECIFICATION = 66;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_CONDITION_SPECIFICATION__CONDITION = CONDITION_SPECIFICATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Opaque Condition Specification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_CONDITION_SPECIFICATION_FEATURE_COUNT = CONDITION_SPECIFICATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.JoinImpl <em>Join</em>}' class.
@@ -2643,7 +2809,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 63;
+	int JOIN = 67;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2689,6 +2855,89 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int JOIN_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.WhileLoopImpl <em>While Loop</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.WhileLoopImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
+	 * @generated
+	 */
+	int WHILE_LOOP = 68;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP__OWNING_FRAGMENT = ACTION__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP__MEMBERS = ACTION__MEMBERS;
+
+	/**
+	 * The feature id for the '<em><b>Link</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP__LINK = ACTION__LINK;
+
+	/**
+	 * The feature id for the '<em><b>Condition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP__CONDITION = ACTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>While Loop</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP_FEATURE_COUNT = ACTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.WhileLoopConditionImpl <em>While Loop Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.WhileLoopConditionImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
+	 * @generated
+	 */
+	int WHILE_LOOP_CONDITION = 69;
+
+	/**
+	 * The feature id for the '<em><b>Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP_CONDITION__COMPOUND = COMPOUND_INPUT_CONNECTOR__COMPOUND;
+
+	/**
+	 * The number of structural features of the '<em>While Loop Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP_CONDITION_FEATURE_COUNT = COMPOUND_INPUT_CONNECTOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -4018,35 +4267,141 @@ public interface DMLPackage extends EPackage {
 	EClass getCompoundOutputConnector();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ConditionalCompound <em>Conditional Compound</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Choice <em>Choice</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Conditional Compound</em>'.
-	 * @see org.eclipselabs.damos.dml.ConditionalCompound
+	 * @return the meta object for class '<em>Choice</em>'.
+	 * @see org.eclipselabs.damos.dml.Choice
 	 * @generated
 	 */
-	EClass getConditionalCompound();
+	EClass getChoice();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.ConditionalCompound#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dml.Choice#getActionLinks <em>Action Links</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Action Links</em>'.
+	 * @see org.eclipselabs.damos.dml.Choice#getActionLinks()
+	 * @see #getChoice()
+	 * @generated
+	 */
+	EReference getChoice_ActionLinks();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ChoiceInputPort <em>Choice Input Port</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Choice Input Port</em>'.
+	 * @see org.eclipselabs.damos.dml.ChoiceInputPort
+	 * @generated
+	 */
+	EClass getChoiceInputPort();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.ChoiceInputPort#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipselabs.damos.dml.ChoiceInputPort#getName()
+	 * @see #getChoiceInputPort()
+	 * @generated
+	 */
+	EAttribute getChoiceInputPort_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Action <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action</em>'.
+	 * @see org.eclipselabs.damos.dml.Action
+	 * @generated
+	 */
+	EClass getAction();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Action#getLink <em>Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Link</em>'.
+	 * @see org.eclipselabs.damos.dml.Action#getLink()
+	 * @see #getAction()
+	 * @generated
+	 */
+	EReference getAction_Link();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ActionLink <em>Action Link</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action Link</em>'.
+	 * @see org.eclipselabs.damos.dml.ActionLink
+	 * @generated
+	 */
+	EClass getActionLink();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.dml.ActionLink#getChoice <em>Choice</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Choice</em>'.
+	 * @see org.eclipselabs.damos.dml.ActionLink#getChoice()
+	 * @see #getActionLink()
+	 * @generated
+	 */
+	EReference getActionLink_Choice();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.ActionLink#getAction <em>Action</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Action</em>'.
+	 * @see org.eclipselabs.damos.dml.ActionLink#getAction()
+	 * @see #getActionLink()
+	 * @generated
+	 */
+	EReference getActionLink_Action();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.ActionLink#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see org.eclipselabs.damos.dml.ConditionalCompound#getCondition()
-	 * @see #getConditionalCompound()
+	 * @see org.eclipselabs.damos.dml.ActionLink#getCondition()
+	 * @see #getActionLink()
 	 * @generated
 	 */
-	EReference getConditionalCompound_Condition();
+	EReference getActionLink_Condition();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ConditionalCompoundCondition <em>Conditional Compound Condition</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ConditionSpecification <em>Condition Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Conditional Compound Condition</em>'.
-	 * @see org.eclipselabs.damos.dml.ConditionalCompoundCondition
+	 * @return the meta object for class '<em>Condition Specification</em>'.
+	 * @see org.eclipselabs.damos.dml.ConditionSpecification
 	 * @generated
 	 */
-	EClass getConditionalCompoundCondition();
+	EClass getConditionSpecification();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OpaqueConditionSpecification <em>Opaque Condition Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Opaque Condition Specification</em>'.
+	 * @see org.eclipselabs.damos.dml.OpaqueConditionSpecification
+	 * @generated
+	 */
+	EClass getOpaqueConditionSpecification();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.OpaqueConditionSpecification#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Condition</em>'.
+	 * @see org.eclipselabs.damos.dml.OpaqueConditionSpecification#getCondition()
+	 * @see #getOpaqueConditionSpecification()
+	 * @generated
+	 */
+	EAttribute getOpaqueConditionSpecification_Condition();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Join <em>Join</em>}'.
@@ -4057,6 +4412,37 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getJoin();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.WhileLoop <em>While Loop</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>While Loop</em>'.
+	 * @see org.eclipselabs.damos.dml.WhileLoop
+	 * @generated
+	 */
+	EClass getWhileLoop();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.WhileLoop#getCondition <em>Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Condition</em>'.
+	 * @see org.eclipselabs.damos.dml.WhileLoop#getCondition()
+	 * @see #getWhileLoop()
+	 * @generated
+	 */
+	EReference getWhileLoop_Condition();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.WhileLoopCondition <em>While Loop Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>While Loop Condition</em>'.
+	 * @see org.eclipselabs.damos.dml.WhileLoopCondition
+	 * @generated
+	 */
+	EClass getWhileLoopCondition();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -5213,14 +5599,84 @@ public interface DMLPackage extends EPackage {
 		EClass COMPOUND_OUTPUT_CONNECTOR = eINSTANCE.getCompoundOutputConnector();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl <em>Conditional Compound</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ChoiceImpl <em>Choice</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompound()
+		 * @see org.eclipselabs.damos.dml.impl.ChoiceImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoice()
 		 * @generated
 		 */
-		EClass CONDITIONAL_COMPOUND = eINSTANCE.getConditionalCompound();
+		EClass CHOICE = eINSTANCE.getChoice();
+
+		/**
+		 * The meta object literal for the '<em><b>Action Links</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CHOICE__ACTION_LINKS = eINSTANCE.getChoice_ActionLinks();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ChoiceInputPortImpl <em>Choice Input Port</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ChoiceInputPortImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
+		 * @generated
+		 */
+		EClass CHOICE_INPUT_PORT = eINSTANCE.getChoiceInputPort();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CHOICE_INPUT_PORT__NAME = eINSTANCE.getChoiceInputPort_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ActionImpl <em>Action</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ActionImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
+		 * @generated
+		 */
+		EClass ACTION = eINSTANCE.getAction();
+
+		/**
+		 * The meta object literal for the '<em><b>Link</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION__LINK = eINSTANCE.getAction_Link();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ActionLinkImpl <em>Action Link</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ActionLinkImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
+		 * @generated
+		 */
+		EClass ACTION_LINK = eINSTANCE.getActionLink();
+
+		/**
+		 * The meta object literal for the '<em><b>Choice</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION_LINK__CHOICE = eINSTANCE.getActionLink_Choice();
+
+		/**
+		 * The meta object literal for the '<em><b>Action</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION_LINK__ACTION = eINSTANCE.getActionLink_Action();
 
 		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
@@ -5228,17 +5684,35 @@ public interface DMLPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference CONDITIONAL_COMPOUND__CONDITION = eINSTANCE.getConditionalCompound_Condition();
+		EReference ACTION_LINK__CONDITION = eINSTANCE.getActionLink_Condition();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl <em>Conditional Compound Condition</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl <em>Condition Specification</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.ConditionalCompoundConditionImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionalCompoundCondition()
+		 * @see org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionSpecification()
 		 * @generated
 		 */
-		EClass CONDITIONAL_COMPOUND_CONDITION = eINSTANCE.getConditionalCompoundCondition();
+		EClass CONDITION_SPECIFICATION = eINSTANCE.getConditionSpecification();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl <em>Opaque Condition Specification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueConditionSpecification()
+		 * @generated
+		 */
+		EClass OPAQUE_CONDITION_SPECIFICATION = eINSTANCE.getOpaqueConditionSpecification();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPAQUE_CONDITION_SPECIFICATION__CONDITION = eINSTANCE.getOpaqueConditionSpecification_Condition();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.JoinImpl <em>Join</em>}' class.
@@ -5249,6 +5723,34 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass JOIN = eINSTANCE.getJoin();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.WhileLoopImpl <em>While Loop</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.WhileLoopImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
+		 * @generated
+		 */
+		EClass WHILE_LOOP = eINSTANCE.getWhileLoop();
+
+		/**
+		 * The meta object literal for the '<em><b>Condition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WHILE_LOOP__CONDITION = eINSTANCE.getWhileLoop_Condition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.WhileLoopConditionImpl <em>While Loop Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.WhileLoopConditionImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
+		 * @generated
+		 */
+		EClass WHILE_LOOP_CONDITION = eINSTANCE.getWhileLoopCondition();
 
 	}
 

@@ -273,6 +273,11 @@ public class FragmentItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.FRAGMENT__COMPONENTS,
+				 DMLFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.FRAGMENT__COMPONENTS,
 				 DMLFactory.eINSTANCE.createJoin()));
 
 		newChildDescriptors.add
@@ -308,12 +313,22 @@ public class FragmentItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
-				 DMLFactory.eINSTANCE.createConditionalCompound()));
+				 DMLFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
+				 DMLFactory.eINSTANCE.createAction()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
 				 DMLFactory.eINSTANCE.createJoin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
+				 DMLFactory.eINSTANCE.createWhileLoop()));
 
 		newChildDescriptors.add
 			(createChildParameter

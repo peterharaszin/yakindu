@@ -11,12 +11,14 @@
 
 package org.eclipselabs.damos.execution.engine.internal.providers;
 
+import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicyProvider;
+import org.eclipselabs.damos.execution.engine.internal.signaturepolicies.ChoiceSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.internal.signaturepolicies.InoutportSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.internal.signaturepolicies.JoinSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.internal.signaturepolicies.SubsystemSignaturePolicy;
@@ -36,6 +38,9 @@ public class BuiltinComponentSignaturePolicyProvider implements IComponentSignat
 		}
 		if (component instanceof Inoutport) {
 			return new InoutportSignaturePolicy();
+		}
+		if (component instanceof Choice) {
+			return new ChoiceSignaturePolicy();
 		}
 		if (component instanceof Join) {
 			return new JoinSignaturePolicy();

@@ -157,12 +157,22 @@ public class CompoundItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.COMPOUND__MEMBERS,
-				 DMLFactory.eINSTANCE.createConditionalCompound()));
+				 DMLFactory.eINSTANCE.createChoice()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPOUND__MEMBERS,
+				 DMLFactory.eINSTANCE.createAction()));
 
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.COMPOUND__MEMBERS,
 				 DMLFactory.eINSTANCE.createJoin()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPOUND__MEMBERS,
+				 DMLFactory.eINSTANCE.createWhileLoop()));
 	}
 
 }

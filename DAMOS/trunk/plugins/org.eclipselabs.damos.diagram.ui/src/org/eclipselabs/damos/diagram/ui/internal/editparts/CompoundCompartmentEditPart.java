@@ -12,8 +12,11 @@
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.CompoundCompartmentCanonicalEditPolicy;
@@ -55,6 +58,20 @@ public class CompoundCompartmentEditPart extends ShapeCompartmentEditPart {
 	@Override
 	public boolean isSelectable() {
 		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gef.editparts.AbstractEditPart#getTargetEditPart(org.eclipse.gef.Request)
+	 */
+	@Override
+	public EditPart getTargetEditPart(Request request) {
+		Object type = request.getType();
+		if (RequestConstants.REQ_RECONNECT_SOURCE.equals(type) || RequestConstants.REQ_RECONNECT_TARGET.equals(type)
+				|| RequestConstants.REQ_CONNECTION_START.equals(type)
+				|| RequestConstants.REQ_CONNECTION_END.equals(type)) {
+			return getParent();
+		}
+		return super.getTargetEditPart(request);
 	}
 
 }

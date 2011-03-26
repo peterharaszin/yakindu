@@ -19,7 +19,7 @@ import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
  * @author Andreas Unger
  *
  */
-public class ConditionalCompoundFigure extends CompoundFigure {
+public class ActionFigure extends CompoundFigure {
 
 	private static final int CORNER_RADIUS = 500;
 	

@@ -332,22 +332,49 @@ public interface DMLFactory extends EFactory {
 	OpaqueBehaviorSpecification createOpaqueBehaviorSpecification();
 
 	/**
-	 * Returns a new object of class '<em>Conditional Compound</em>'.
+	 * Returns a new object of class '<em>Choice</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Compound</em>'.
+	 * @return a new object of class '<em>Choice</em>'.
 	 * @generated
 	 */
-	ConditionalCompound createConditionalCompound();
+	Choice createChoice();
 
 	/**
-	 * Returns a new object of class '<em>Conditional Compound Condition</em>'.
+	 * Returns a new object of class '<em>Choice Input Port</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Conditional Compound Condition</em>'.
+	 * @return a new object of class '<em>Choice Input Port</em>'.
 	 * @generated
 	 */
-	ConditionalCompoundCondition createConditionalCompoundCondition();
+	ChoiceInputPort createChoiceInputPort();
+
+	/**
+	 * Returns a new object of class '<em>Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action</em>'.
+	 * @generated
+	 */
+	Action createAction();
+
+	/**
+	 * Returns a new object of class '<em>Action Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action Link</em>'.
+	 * @generated
+	 */
+	ActionLink createActionLink();
+
+	/**
+	 * Returns a new object of class '<em>Opaque Condition Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Opaque Condition Specification</em>'.
+	 * @generated
+	 */
+	OpaqueConditionSpecification createOpaqueConditionSpecification();
 
 	/**
 	 * Returns a new object of class '<em>Join</em>'.
@@ -357,6 +384,24 @@ public interface DMLFactory extends EFactory {
 	 * @generated
 	 */
 	Join createJoin();
+
+	/**
+	 * Returns a new object of class '<em>While Loop</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>While Loop</em>'.
+	 * @generated
+	 */
+	WhileLoop createWhileLoop();
+
+	/**
+	 * Returns a new object of class '<em>While Loop Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>While Loop Condition</em>'.
+	 * @generated
+	 */
+	WhileLoopCondition createWhileLoopCondition();
 
 	/**
 	 * Returns the package supported by this factory.

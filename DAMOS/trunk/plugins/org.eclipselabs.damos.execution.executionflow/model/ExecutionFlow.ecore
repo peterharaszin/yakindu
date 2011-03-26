@@ -48,6 +48,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="compound" lowerBound="1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Compound"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionNode" eSuperTypes="#//CompoundNode">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="choiceNode" eType="#//ComponentNode"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SubsystemNode" eSuperTypes="#//Subgraph">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>

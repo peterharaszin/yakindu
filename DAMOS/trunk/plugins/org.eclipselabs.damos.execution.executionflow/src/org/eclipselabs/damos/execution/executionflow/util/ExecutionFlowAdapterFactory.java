@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.execution.executionflow.*;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.ConnectorInfo;
@@ -105,6 +106,10 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCompoundNode(CompoundNode object) {
 				return createCompoundNodeAdapter();
+			}
+			@Override
+			public Adapter caseActionNode(ActionNode object) {
+				return createActionNodeAdapter();
 			}
 			@Override
 			public Adapter caseSubsystemNode(SubsystemNode object) {
@@ -239,6 +244,20 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCompoundNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.execution.executionflow.ActionNode <em>Action Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.execution.executionflow.ActionNode
+	 * @generated
+	 */
+	public Adapter createActionNodeAdapter() {
 		return null;
 	}
 

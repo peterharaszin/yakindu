@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.execution.executionflow.*;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.ConnectorInfo;
@@ -139,6 +140,16 @@ public class ExecutionFlowSwitch<T> {
 				if (result == null) result = caseSubgraph(compoundNode);
 				if (result == null) result = caseGraph(compoundNode);
 				if (result == null) result = caseNode(compoundNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExecutionFlowPackage.ACTION_NODE: {
+				ActionNode actionNode = (ActionNode)theEObject;
+				T result = caseActionNode(actionNode);
+				if (result == null) result = caseCompoundNode(actionNode);
+				if (result == null) result = caseSubgraph(actionNode);
+				if (result == null) result = caseGraph(actionNode);
+				if (result == null) result = caseNode(actionNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -287,6 +298,21 @@ public class ExecutionFlowSwitch<T> {
 	 * @generated
 	 */
 	public T caseCompoundNode(CompoundNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Action Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Action Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActionNode(ActionNode object) {
 		return null;
 	}
 

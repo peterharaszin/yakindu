@@ -22,6 +22,8 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.CompoundMember;
@@ -42,6 +44,7 @@ import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlow;
@@ -81,6 +84,18 @@ public class FlattenerHelper {
 	public Collection<Node> getNodes(Graph graph) {
 		return graphNodes.get(graph);
 	}
+	
+	public ComponentNode getComponentNode(Graph graph, Component component) {
+		for (Node node : graphNodes.get(graph)) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				if (componentNode.getComponent() == component) {
+					return componentNode;
+				}
+			}
+		}
+		return null;
+	}
 
 	public void flatten() throws CoreException {
 		flatten(executionFlow.getTopLevelFragment(), new SubsystemPath(), executionFlow.getGraph());
@@ -91,60 +106,8 @@ public class FlattenerHelper {
 			flattenFragmentElement(fragment, subsystemPath, graph, element);
 		}
 		
-		Map<SubsystemBinding<OutputConnector>, DataFlow> dataFlows = new HashMap<SubsystemBinding<OutputConnector>, DataFlow>();
-		for (Connection connection : fragment.getAllConnections()) {
-			if (!subsystemPath.isRoot()) {
-				if (connection.getSource() instanceof OutputPort) {
-					OutputPort outputPort = (OutputPort) connection.getSource();
-					if (outputPort.getComponent() instanceof Inoutport) {
-						continue;
-					}
-				}
-				if (connection.getTarget() instanceof InputPort) {
-					InputPort inputPort = (InputPort) connection.getTarget();
-					if (inputPort.getComponent() instanceof Inoutport) {
-						continue;
-					}
-				}
-			}
-						
-			SubsystemBinding<OutputConnector> source = getActualSource(subsystemPath, connection.getSource());
-			DataFlow dataFlow = dataFlows.get(source);
-			if (dataFlow == null) {
-				dataFlow = ExecutionFlowFactory.eINSTANCE.createDataFlow();
-				DataFlowSourceEnd sourceEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowSourceEnd();
-				sourceEnd.setDataFlow(dataFlow);
-				sourceEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(source.getSubsystemPath(), DMLUtil.getOwner(source.getElement(), FragmentElement.class))));
-				sourceEnd.setConnector(source.getElement());
-
-				if (source.getElement() instanceof OutputPort) {
-					OutputPort sourcePort = (OutputPort) source.getElement();
-					PortInfo portInfo = ExecutionFlowFactory.eINSTANCE.createPortInfo();
-					portInfo.setInoutputIndex(DMLUtil.indexOf(sourcePort.getOutput()));
-					portInfo.setPortIndex(sourcePort.getIndex());
-					sourceEnd.setConnectorInfo(portInfo);
-				}
-				
-				executionFlow.getDataFlows().add(dataFlow);
-				dataFlows.put(source, dataFlow);
-			}
-
-			List<SubsystemBinding<InputConnector>> targets = getActualTargets(subsystemPath, connection.getTarget());
-			for (SubsystemBinding<InputConnector> target : targets) {
-				DataFlowTargetEnd targetEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowTargetEnd();
-				targetEnd.setDataFlow(dataFlow);
-				targetEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(target.getSubsystemPath(), DMLUtil.getOwner(target.getElement(), FragmentElement.class))));
-				targetEnd.setConnector(target.getElement());
-
-				if (target.getElement() instanceof InputPort) {
-					InputPort targetPort = (InputPort) target.getElement();
-					PortInfo portInfo = ExecutionFlowFactory.eINSTANCE.createPortInfo();
-					portInfo.setInoutputIndex(DMLUtil.indexOf(targetPort.getInput()));
-					portInfo.setPortIndex(targetPort.getIndex());
-					targetEnd.setConnectorInfo(portInfo);
-				}
-			}
-		}
+		initializeActionNodes(graph);
+		initializeDataFlows(fragment, subsystemPath);
 	}
 
 	/**
@@ -159,7 +122,12 @@ public class FlattenerHelper {
 			flattenSubsystem(subsystem, fragment, graph, subsystemPath);
 		} else if (element instanceof Compound) {
 			Compound compound = (Compound) element;
-			CompoundNode node = ExecutionFlowFactory.eINSTANCE.createCompoundNode();
+			CompoundNode node;
+			if (element instanceof Action) {
+				node = ExecutionFlowFactory.eINSTANCE.createActionNode();
+			} else {
+				node = ExecutionFlowFactory.eINSTANCE.createCompoundNode();
+			}
 			node.setCompound(compound);
 			node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
 			addGraphNode(graph, node);
@@ -277,6 +245,88 @@ public class FlattenerHelper {
 		nodeGraphs.put(node, graph);
 	}
 	
+	/**
+	 * @param graph
+	 * @throws CoreException
+	 */
+	private void initializeActionNodes(Graph graph) throws CoreException {
+		for (Node node : getNodes(graph)) {
+			if (node instanceof ActionNode) {
+				ActionNode actionNode = (ActionNode) node;
+				Action action = (Action) actionNode.getCompound();
+				if (action.getLink() != null) {
+					Choice choice = action.getLink().getChoice();
+					ComponentNode choiceNode = getComponentNode(graph, choice);
+					if (choiceNode == null) {
+						throw new CoreException(new Status(IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, "Choice node for choice '" + choice.getName() + "' not found"));
+					}
+					actionNode.setChoiceNode(choiceNode);
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param fragment
+	 * @param subsystemPath
+	 */
+	private void initializeDataFlows(Fragment fragment, SubsystemPath subsystemPath) {
+		Map<SubsystemBinding<OutputConnector>, DataFlow> dataFlows = new HashMap<SubsystemBinding<OutputConnector>, DataFlow>();
+		for (Connection connection : fragment.getAllConnections()) {
+			if (!subsystemPath.isRoot()) {
+				if (connection.getSource() instanceof OutputPort) {
+					OutputPort outputPort = (OutputPort) connection.getSource();
+					if (outputPort.getComponent() instanceof Inoutport) {
+						continue;
+					}
+				}
+				if (connection.getTarget() instanceof InputPort) {
+					InputPort inputPort = (InputPort) connection.getTarget();
+					if (inputPort.getComponent() instanceof Inoutport) {
+						continue;
+					}
+				}
+			}
+						
+			SubsystemBinding<OutputConnector> source = getActualSource(subsystemPath, connection.getSource());
+			DataFlow dataFlow = dataFlows.get(source);
+			if (dataFlow == null) {
+				dataFlow = ExecutionFlowFactory.eINSTANCE.createDataFlow();
+				DataFlowSourceEnd sourceEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowSourceEnd();
+				sourceEnd.setDataFlow(dataFlow);
+				sourceEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(source.getSubsystemPath(), DMLUtil.getOwner(source.getElement(), FragmentElement.class))));
+				sourceEnd.setConnector(source.getElement());
+	
+				if (source.getElement() instanceof OutputPort) {
+					OutputPort sourcePort = (OutputPort) source.getElement();
+					PortInfo portInfo = ExecutionFlowFactory.eINSTANCE.createPortInfo();
+					portInfo.setInoutputIndex(DMLUtil.indexOf(sourcePort.getOutput()));
+					portInfo.setPortIndex(sourcePort.getIndex());
+					sourceEnd.setConnectorInfo(portInfo);
+				}
+				
+				executionFlow.getDataFlows().add(dataFlow);
+				dataFlows.put(source, dataFlow);
+			}
+	
+			List<SubsystemBinding<InputConnector>> targets = getActualTargets(subsystemPath, connection.getTarget());
+			for (SubsystemBinding<InputConnector> target : targets) {
+				DataFlowTargetEnd targetEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowTargetEnd();
+				targetEnd.setDataFlow(dataFlow);
+				targetEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(target.getSubsystemPath(), DMLUtil.getOwner(target.getElement(), FragmentElement.class))));
+				targetEnd.setConnector(target.getElement());
+	
+				if (target.getElement() instanceof InputPort) {
+					InputPort targetPort = (InputPort) target.getElement();
+					PortInfo portInfo = ExecutionFlowFactory.eINSTANCE.createPortInfo();
+					portInfo.setInoutputIndex(DMLUtil.indexOf(targetPort.getInput()));
+					portInfo.setPortIndex(targetPort.getIndex());
+					targetEnd.setConnectorInfo(portInfo);
+				}
+			}
+		}
+	}
+
 	private static class SubsystemBinding<T> {
 		
 		private SubsystemPath subsystemPath;

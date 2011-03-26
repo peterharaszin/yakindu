@@ -62,6 +62,15 @@ public interface ExecutionFlowFactory extends EFactory {
 	CompoundNode createCompoundNode();
 
 	/**
+	 * Returns a new object of class '<em>Action Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Action Node</em>'.
+	 * @generated
+	 */
+	ActionNode createActionNode();
+
+	/**
 	 * Returns a new object of class '<em>Subsystem Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

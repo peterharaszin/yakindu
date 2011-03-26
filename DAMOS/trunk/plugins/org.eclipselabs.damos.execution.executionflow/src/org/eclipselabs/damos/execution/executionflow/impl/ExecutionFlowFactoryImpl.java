@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.execution.executionflow.*;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlow;
@@ -72,6 +73,7 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 			case ExecutionFlowPackage.GRAPH: return createGraph();
 			case ExecutionFlowPackage.COMPONENT_NODE: return createComponentNode();
 			case ExecutionFlowPackage.COMPOUND_NODE: return createCompoundNode();
+			case ExecutionFlowPackage.ACTION_NODE: return createActionNode();
 			case ExecutionFlowPackage.SUBSYSTEM_NODE: return createSubsystemNode();
 			case ExecutionFlowPackage.EDGE: return createEdge();
 			case ExecutionFlowPackage.DATA_FLOW: return createDataFlow();
@@ -121,6 +123,16 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 	public CompoundNode createCompoundNode() {
 		CompoundNodeImpl compoundNode = new CompoundNodeImpl();
 		return compoundNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionNode createActionNode() {
+		ActionNodeImpl actionNode = new ActionNodeImpl();
+		return actionNode;
 	}
 
 	/**

@@ -15,7 +15,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.WhileLoopCanonicalEditPolicy;
-import org.eclipselabs.damos.diagram.ui.internal.figures.ActionFigure;
+import org.eclipselabs.damos.diagram.ui.internal.figures.WhileLoopFigure;
 
 /**
  * @author Andreas Unger
@@ -44,7 +44,7 @@ public class WhileLoopEditPart extends CompoundEditPart {
 	 */
 	@Override
 	protected NodeFigure createMainFigure() {
-		return new ActionFigure();
+		return new WhileLoopFigure();
 	}
 
 }

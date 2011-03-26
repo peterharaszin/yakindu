@@ -21,7 +21,7 @@ import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
  */
 public class ActionFigure extends CompoundFigure {
 
-	private static final int CORNER_RADIUS = 500;
+	private static final int ARC_SIZE = 500;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#paintFigure(org.eclipse.draw2d.Graphics)
@@ -31,8 +31,8 @@ public class ActionFigure extends CompoundFigure {
 		Rectangle bounds = getBounds().getCopy();
 		bounds.shrink(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH);
 		graphics.setLineWidth(2 * IFigureConstants.DEFAULT_LINE_WIDTH);
-		graphics.fillRoundRectangle(bounds, CORNER_RADIUS, CORNER_RADIUS);
-		graphics.drawRoundRectangle(bounds, CORNER_RADIUS, CORNER_RADIUS);
+		graphics.fillRoundRectangle(bounds, ARC_SIZE, ARC_SIZE);
+		graphics.drawRoundRectangle(bounds, ARC_SIZE, ARC_SIZE);
 	}
 	
 }

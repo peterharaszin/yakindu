@@ -13,27 +13,28 @@ package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.internal.figures.ConditionalCompoundFigure;
+import org.eclipselabs.damos.diagram.ui.editparts.StandardComponentEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.figures.ChoiceFigure;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ConditionalCompoundEditPart extends CompoundEditPart {
+public class ChoiceEditPart extends StandardComponentEditPart {
 
 	/**
 	 * @param view
 	 */
-	public ConditionalCompoundEditPart(View view) {
+	public ChoiceEditPart(View view) {
 		super(view);
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#createMainFigure()
 	 */
 	@Override
 	protected NodeFigure createMainFigure() {
-		return new ConditionalCompoundFigure();
+		return new ChoiceFigure();
 	}
-
+	
 }

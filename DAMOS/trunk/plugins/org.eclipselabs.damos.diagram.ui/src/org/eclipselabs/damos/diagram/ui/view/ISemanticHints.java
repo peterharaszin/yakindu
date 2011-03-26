@@ -21,5 +21,6 @@ public interface ISemanticHints {
 
 	String COMPONENT_NAME = "_componentName";
 	String COMPOUND_COMPARTMENT = "_compoundCompartment";
+	String ACTION_LINK_CONDITION = "_actionLinkCondition";
 	
 }

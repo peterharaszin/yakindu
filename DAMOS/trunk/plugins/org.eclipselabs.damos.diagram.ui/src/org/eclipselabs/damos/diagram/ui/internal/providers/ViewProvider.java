@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ResizableCompartmentViewFactory;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.ui.internal.view.factories.ActionLinkViewFactory;
 import org.eclipselabs.damos.diagram.ui.internal.view.factories.CompoundConnectorViewFactory;
 import org.eclipselabs.damos.diagram.ui.internal.view.factories.CompoundViewFactory;
 import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
@@ -138,6 +139,9 @@ public class ViewProvider extends AbstractViewProvider {
 	protected Class<?> getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		if (DMLPackage.Literals.CONNECTION.isSuperTypeOf(getSemanticEClass(semanticAdapter))) {
 			return ConnectionViewFactory.class;
+		}
+		if (DMLPackage.Literals.ACTION_LINK.isSuperTypeOf(getSemanticEClass(semanticAdapter))) {
+			return ActionLinkViewFactory.class;
 		}
 		return super.getEdgeViewClass(semanticAdapter, containerView, semanticHint);
 	}

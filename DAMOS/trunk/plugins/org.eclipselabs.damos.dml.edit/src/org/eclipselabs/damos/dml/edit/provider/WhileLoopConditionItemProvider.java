@@ -12,26 +12,21 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipselabs.damos.dml.ConditionalCompound;
-import org.eclipselabs.damos.dml.DMLFactory;
-import org.eclipselabs.damos.dml.DMLPackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipselabs.damos.dml.ConditionalCompound} object.
+ * This is the item provider adapter for a {@link org.eclipselabs.damos.dml.WhileLoopCondition} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ConditionalCompoundItemProvider
-	extends CompoundItemProvider
+public class WhileLoopConditionItemProvider
+	extends CompoundInputConnectorItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -44,7 +39,7 @@ public class ConditionalCompoundItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalCompoundItemProvider(AdapterFactory adapterFactory) {
+	public WhileLoopConditionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -64,44 +59,14 @@ public class ConditionalCompoundItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(DMLPackage.Literals.CONDITIONAL_COMPOUND__CONDITION);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns ConditionalCompound.gif.
+	 * This returns WhileLoopCondition.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ConditionalCompound"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WhileLoopCondition"));
 	}
 
 	/**
@@ -112,7 +77,7 @@ public class ConditionalCompoundItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_ConditionalCompound_type");
+		return getString("_UI_WhileLoopCondition_type");
 	}
 
 	/**
@@ -125,12 +90,6 @@ public class ConditionalCompoundItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(ConditionalCompound.class)) {
-			case DMLPackage.CONDITIONAL_COMPOUND__CONDITION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
@@ -144,11 +103,6 @@ public class ConditionalCompoundItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DMLPackage.Literals.CONDITIONAL_COMPOUND__CONDITION,
-				 DMLFactory.eINSTANCE.createConditionalCompoundCondition()));
 	}
 
 }

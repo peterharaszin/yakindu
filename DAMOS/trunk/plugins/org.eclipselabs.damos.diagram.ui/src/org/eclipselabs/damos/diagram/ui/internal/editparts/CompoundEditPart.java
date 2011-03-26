@@ -14,10 +14,8 @@ package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.DeleteSemanticComponentEditPolicy;
-import org.eclipselabs.damos.diagram.ui.internal.editpolicies.CompoundCanonicalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.CompoundConstrainedToolbarLayoutEditPolicy;
 
 /**
@@ -40,7 +38,6 @@ public abstract class CompoundEditPart extends AbstractBorderedShapeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CompoundConstrainedToolbarLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new CompoundCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteSemanticComponentEditPolicy());
 	}
 	

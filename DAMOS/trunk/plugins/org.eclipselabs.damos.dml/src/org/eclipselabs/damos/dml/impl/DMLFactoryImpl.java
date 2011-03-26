@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -20,8 +22,8 @@ import org.eclipselabs.damos.dml.BlockOutputPort;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.Category;
-import org.eclipselabs.damos.dml.ConditionalCompound;
-import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
+import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -36,6 +38,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
+import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
@@ -49,6 +52,8 @@ import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.dml.WhileLoop;
+import org.eclipselabs.damos.dml.WhileLoopCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -128,9 +133,14 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.BOOLEAN_DIRECT_FEEDTHROUGH_POLICY: return createBooleanDirectFeedthroughPolicy();
 			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION: return createOpaqueDataTypeSpecification();
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
-			case DMLPackage.CONDITIONAL_COMPOUND: return createConditionalCompound();
-			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION: return createConditionalCompoundCondition();
+			case DMLPackage.CHOICE: return createChoice();
+			case DMLPackage.CHOICE_INPUT_PORT: return createChoiceInputPort();
+			case DMLPackage.ACTION: return createAction();
+			case DMLPackage.ACTION_LINK: return createActionLink();
+			case DMLPackage.OPAQUE_CONDITION_SPECIFICATION: return createOpaqueConditionSpecification();
 			case DMLPackage.JOIN: return createJoin();
+			case DMLPackage.WHILE_LOOP: return createWhileLoop();
+			case DMLPackage.WHILE_LOOP_CONDITION: return createWhileLoopCondition();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -481,9 +491,9 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalCompound createConditionalCompound() {
-		ConditionalCompoundImpl conditionalCompound = new ConditionalCompoundImpl();
-		return conditionalCompound;
+	public Choice createChoice() {
+		ChoiceImpl choice = new ChoiceImpl();
+		return choice;
 	}
 
 	/**
@@ -491,9 +501,39 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalCompoundCondition createConditionalCompoundCondition() {
-		ConditionalCompoundConditionImpl conditionalCompoundCondition = new ConditionalCompoundConditionImpl();
-		return conditionalCompoundCondition;
+	public ChoiceInputPort createChoiceInputPort() {
+		ChoiceInputPortImpl choiceInputPort = new ChoiceInputPortImpl();
+		return choiceInputPort;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Action createAction() {
+		ActionImpl action = new ActionImpl();
+		return action;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActionLink createActionLink() {
+		ActionLinkImpl actionLink = new ActionLinkImpl();
+		return actionLink;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OpaqueConditionSpecification createOpaqueConditionSpecification() {
+		OpaqueConditionSpecificationImpl opaqueConditionSpecification = new OpaqueConditionSpecificationImpl();
+		return opaqueConditionSpecification;
 	}
 
 	/**
@@ -504,6 +544,26 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public Join createJoin() {
 		JoinImpl join = new JoinImpl();
 		return join;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WhileLoop createWhileLoop() {
+		WhileLoopImpl whileLoop = new WhileLoopImpl();
+		return whileLoop;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WhileLoopCondition createWhileLoopCondition() {
+		WhileLoopConditionImpl whileLoopCondition = new WhileLoopConditionImpl();
+		return whileLoopCondition;
 	}
 
 	/**

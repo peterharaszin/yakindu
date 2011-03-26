@@ -18,25 +18,29 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipselabs.damos.dml.ConditionalCompound;
-import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
+import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.DMLFactory;
+import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 
-public class ConfigureConditionalCompoundCommand extends ConfigureElementCommand {
+public class ConfigureChoiceCommand extends ConfigureElementCommand {
 	
-    public ConfigureConditionalCompoundCommand(ConfigureRequest request, EClass configurableType) {
+    public ConfigureChoiceCommand(ConfigureRequest request, EClass configurableType) {
         super(request);
         setEClass(configurableType);
     }
     
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConfigureRequest request = (ConfigureRequest) getRequest();
-    	ConditionalCompound compound = (ConditionalCompound) request.getElementToConfigure();
+    	Choice choice = (Choice) request.getElementToConfigure();
+    	
+    	choice.setName(DMLUtil.findAvailableComponentName(choice.getOwningFragment(), "Choice"));
 
-    	ConditionalCompoundCondition condition = DMLFactory.eINSTANCE.createConditionalCompoundCondition();
-    	compound.setCondition(condition);
-
-		return CommandResult.newOKCommandResult(compound);
+    	Input input = DMLFactory.eINSTANCE.createInput();
+    	input.getPorts().add(DMLFactory.eINSTANCE.createChoiceInputPort());
+    	choice.getInputs().add(input);
+    	
+		return CommandResult.newOKCommandResult(choice);
 	}
 		
 }

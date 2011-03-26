@@ -13,6 +13,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -26,14 +28,15 @@ import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
+import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionalCompound;
-import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
+import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLFactory;
@@ -57,6 +60,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
+import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
@@ -78,6 +82,8 @@ import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dml.WhileLoop;
+import org.eclipselabs.damos.dml.WhileLoopCondition;
 import org.eclipselabs.damos.dml.util.DMLValidator;
 
 /**
@@ -519,14 +525,42 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass conditionalCompoundEClass = null;
+	private EClass choiceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass conditionalCompoundConditionEClass = null;
+	private EClass choiceInputPortEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actionLinkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass conditionSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass opaqueConditionSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -534,6 +568,20 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass joinEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass whileLoopEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass whileLoopConditionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1744,8 +1792,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionalCompound() {
-		return conditionalCompoundEClass;
+	public EClass getChoice() {
+		return choiceEClass;
 	}
 
 	/**
@@ -1753,8 +1801,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConditionalCompound_Condition() {
-		return (EReference)conditionalCompoundEClass.getEStructuralFeatures().get(0);
+	public EReference getChoice_ActionLinks() {
+		return (EReference)choiceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1762,8 +1810,98 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionalCompoundCondition() {
-		return conditionalCompoundConditionEClass;
+	public EClass getChoiceInputPort() {
+		return choiceInputPortEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getChoiceInputPort_Name() {
+		return (EAttribute)choiceInputPortEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAction() {
+		return actionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAction_Link() {
+		return (EReference)actionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActionLink() {
+		return actionLinkEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActionLink_Choice() {
+		return (EReference)actionLinkEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActionLink_Action() {
+		return (EReference)actionLinkEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActionLink_Condition() {
+		return (EReference)actionLinkEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConditionSpecification() {
+		return conditionSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOpaqueConditionSpecification() {
+		return opaqueConditionSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOpaqueConditionSpecification_Condition() {
+		return (EAttribute)opaqueConditionSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1773,6 +1911,33 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EClass getJoin() {
 		return joinEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWhileLoop() {
+		return whileLoopEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getWhileLoop_Condition() {
+		return (EReference)whileLoopEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getWhileLoopCondition() {
+		return whileLoopConditionEClass;
 	}
 
 	/**
@@ -1991,12 +2156,31 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		compoundOutputConnectorEClass = createEClass(COMPOUND_OUTPUT_CONNECTOR);
 
-		conditionalCompoundEClass = createEClass(CONDITIONAL_COMPOUND);
-		createEReference(conditionalCompoundEClass, CONDITIONAL_COMPOUND__CONDITION);
+		choiceEClass = createEClass(CHOICE);
+		createEReference(choiceEClass, CHOICE__ACTION_LINKS);
 
-		conditionalCompoundConditionEClass = createEClass(CONDITIONAL_COMPOUND_CONDITION);
+		choiceInputPortEClass = createEClass(CHOICE_INPUT_PORT);
+		createEAttribute(choiceInputPortEClass, CHOICE_INPUT_PORT__NAME);
+
+		actionEClass = createEClass(ACTION);
+		createEReference(actionEClass, ACTION__LINK);
+
+		actionLinkEClass = createEClass(ACTION_LINK);
+		createEReference(actionLinkEClass, ACTION_LINK__CHOICE);
+		createEReference(actionLinkEClass, ACTION_LINK__ACTION);
+		createEReference(actionLinkEClass, ACTION_LINK__CONDITION);
+
+		conditionSpecificationEClass = createEClass(CONDITION_SPECIFICATION);
+
+		opaqueConditionSpecificationEClass = createEClass(OPAQUE_CONDITION_SPECIFICATION);
+		createEAttribute(opaqueConditionSpecificationEClass, OPAQUE_CONDITION_SPECIFICATION__CONDITION);
 
 		joinEClass = createEClass(JOIN);
+
+		whileLoopEClass = createEClass(WHILE_LOOP);
+		createEReference(whileLoopEClass, WHILE_LOOP__CONDITION);
+
+		whileLoopConditionEClass = createEClass(WHILE_LOOP_CONDITION);
 	}
 
 	/**
@@ -2087,9 +2271,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		compoundInputConnectorEClass.getESuperTypes().add(this.getInputConnector());
 		compoundOutputConnectorEClass.getESuperTypes().add(this.getCompoundConnector());
 		compoundOutputConnectorEClass.getESuperTypes().add(this.getOutputConnector());
-		conditionalCompoundEClass.getESuperTypes().add(this.getCompound());
-		conditionalCompoundConditionEClass.getESuperTypes().add(this.getCompoundInputConnector());
+		choiceEClass.getESuperTypes().add(this.getComponent());
+		choiceInputPortEClass.getESuperTypes().add(this.getInputPort());
+		actionEClass.getESuperTypes().add(this.getCompound());
+		opaqueConditionSpecificationEClass.getESuperTypes().add(this.getConditionSpecification());
 		joinEClass.getESuperTypes().add(this.getComponent());
+		whileLoopEClass.getESuperTypes().add(this.getAction());
+		whileLoopConditionEClass.getESuperTypes().add(this.getCompoundInputConnector());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2367,12 +2555,33 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(compoundOutputConnectorEClass, CompoundOutputConnector.class, "CompoundOutputConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(conditionalCompoundEClass, ConditionalCompound.class, "ConditionalCompound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConditionalCompound_Condition(), this.getConditionalCompoundCondition(), null, "condition", null, 0, 1, ConditionalCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(choiceEClass, Choice.class, "Choice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getChoice_ActionLinks(), this.getActionLink(), this.getActionLink_Choice(), "actionLinks", null, 2, -1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(conditionalCompoundConditionEClass, ConditionalCompoundCondition.class, "ConditionalCompoundCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(choiceInputPortEClass, ChoiceInputPort.class, "ChoiceInputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getChoiceInputPort_Name(), ecorePackage.getEString(), "name", null, 0, 1, ChoiceInputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAction_Link(), this.getActionLink(), this.getActionLink_Action(), "link", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(actionLinkEClass, ActionLink.class, "ActionLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getActionLink_Choice(), this.getChoice(), this.getChoice_ActionLinks(), "choice", null, 1, 1, ActionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActionLink_Action(), this.getAction(), this.getAction_Link(), "action", null, 1, 1, ActionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActionLink_Condition(), this.getConditionSpecification(), null, "condition", null, 0, 1, ActionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(conditionSpecificationEClass, ConditionSpecification.class, "ConditionSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(conditionSpecificationEClass, ecorePackage.getEString(), "stringCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(opaqueConditionSpecificationEClass, OpaqueConditionSpecification.class, "OpaqueConditionSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOpaqueConditionSpecification_Condition(), ecorePackage.getEString(), "condition", null, 1, 1, OpaqueConditionSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(whileLoopEClass, WhileLoop.class, "WhileLoop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWhileLoop_Condition(), this.getWhileLoopCondition(), null, "condition", null, 0, 1, WhileLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(whileLoopConditionEClass, WhileLoopCondition.class, "WhileLoopCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -320,10 +320,35 @@
       eSuperTypes="#//CompoundConnector #//InputConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="CompoundOutputConnector" abstract="true"
       eSuperTypes="#//CompoundConnector #//OutputConnector"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ConditionalCompound" eSuperTypes="#//Compound">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ConditionalCompoundCondition"
+  <eClassifiers xsi:type="ecore:EClass" name="Choice" eSuperTypes="#//Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actionLinks" lowerBound="2"
+        upperBound="-1" eType="#//ActionLink" containment="true" eOpposite="#//ActionLink/choice"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceInputPort" eSuperTypes="#//InputPort">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//Compound">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="link" eType="#//ActionLink"
+        eOpposite="#//ActionLink/action"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ActionLink">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="choice" lowerBound="1"
+        eType="#//Choice" eOpposite="#//Choice/actionLinks"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
+        eType="#//Action" eOpposite="#//Action/link"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//ConditionSpecification"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConditionalCompoundCondition" eSuperTypes="#//CompoundInputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConditionSpecification" abstract="true">
+    <eOperations name="stringCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueConditionSpecification" eSuperTypes="#//ConditionSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileLoop" eSuperTypes="#//Action">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//WhileLoopCondition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WhileLoopCondition" eSuperTypes="#//CompoundInputConnector"/>
 </ecore:EPackage>

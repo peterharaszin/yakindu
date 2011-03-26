@@ -10,6 +10,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -23,14 +25,15 @@ import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
+import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionalCompound;
-import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
+import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -53,6 +56,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
+import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
@@ -74,6 +78,8 @@ import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dml.WhileLoop;
+import org.eclipselabs.damos.dml.WhileLoopCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -607,22 +613,50 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.CONDITIONAL_COMPOUND: {
-				ConditionalCompound conditionalCompound = (ConditionalCompound)theEObject;
-				T result = caseConditionalCompound(conditionalCompound);
-				if (result == null) result = caseCompound(conditionalCompound);
-				if (result == null) result = caseFragmentElement(conditionalCompound);
-				if (result == null) result = caseCompoundMember(conditionalCompound);
+			case DMLPackage.CHOICE: {
+				Choice choice = (Choice)theEObject;
+				T result = caseChoice(choice);
+				if (result == null) result = caseComponent(choice);
+				if (result == null) result = caseFragmentElement(choice);
+				if (result == null) result = caseCompoundMember(choice);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION: {
-				ConditionalCompoundCondition conditionalCompoundCondition = (ConditionalCompoundCondition)theEObject;
-				T result = caseConditionalCompoundCondition(conditionalCompoundCondition);
-				if (result == null) result = caseCompoundInputConnector(conditionalCompoundCondition);
-				if (result == null) result = caseCompoundConnector(conditionalCompoundCondition);
-				if (result == null) result = caseInputConnector(conditionalCompoundCondition);
-				if (result == null) result = caseConnector(conditionalCompoundCondition);
+			case DMLPackage.CHOICE_INPUT_PORT: {
+				ChoiceInputPort choiceInputPort = (ChoiceInputPort)theEObject;
+				T result = caseChoiceInputPort(choiceInputPort);
+				if (result == null) result = caseInputPort(choiceInputPort);
+				if (result == null) result = casePort(choiceInputPort);
+				if (result == null) result = caseInputConnector(choiceInputPort);
+				if (result == null) result = caseConnector(choiceInputPort);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.ACTION: {
+				Action action = (Action)theEObject;
+				T result = caseAction(action);
+				if (result == null) result = caseCompound(action);
+				if (result == null) result = caseFragmentElement(action);
+				if (result == null) result = caseCompoundMember(action);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.ACTION_LINK: {
+				ActionLink actionLink = (ActionLink)theEObject;
+				T result = caseActionLink(actionLink);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.CONDITION_SPECIFICATION: {
+				ConditionSpecification conditionSpecification = (ConditionSpecification)theEObject;
+				T result = caseConditionSpecification(conditionSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.OPAQUE_CONDITION_SPECIFICATION: {
+				OpaqueConditionSpecification opaqueConditionSpecification = (OpaqueConditionSpecification)theEObject;
+				T result = caseOpaqueConditionSpecification(opaqueConditionSpecification);
+				if (result == null) result = caseConditionSpecification(opaqueConditionSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -632,6 +666,26 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(join);
 				if (result == null) result = caseFragmentElement(join);
 				if (result == null) result = caseCompoundMember(join);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.WHILE_LOOP: {
+				WhileLoop whileLoop = (WhileLoop)theEObject;
+				T result = caseWhileLoop(whileLoop);
+				if (result == null) result = caseAction(whileLoop);
+				if (result == null) result = caseCompound(whileLoop);
+				if (result == null) result = caseFragmentElement(whileLoop);
+				if (result == null) result = caseCompoundMember(whileLoop);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.WHILE_LOOP_CONDITION: {
+				WhileLoopCondition whileLoopCondition = (WhileLoopCondition)theEObject;
+				T result = caseWhileLoopCondition(whileLoopCondition);
+				if (result == null) result = caseCompoundInputConnector(whileLoopCondition);
+				if (result == null) result = caseCompoundConnector(whileLoopCondition);
+				if (result == null) result = caseInputConnector(whileLoopCondition);
+				if (result == null) result = caseConnector(whileLoopCondition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1555,32 +1609,92 @@ public class DMLSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conditional Compound</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Choice</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conditional Compound</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Choice</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionalCompound(ConditionalCompound object) {
+	public T caseChoice(Choice object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Conditional Compound Condition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Choice Input Port</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Conditional Compound Condition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Choice Input Port</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseConditionalCompoundCondition(ConditionalCompoundCondition object) {
+	public T caseChoiceInputPort(ChoiceInputPort object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Action</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAction(Action object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Action Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Action Link</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActionLink(ActionLink object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Condition Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Condition Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConditionSpecification(ConditionSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Opaque Condition Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Opaque Condition Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOpaqueConditionSpecification(OpaqueConditionSpecification object) {
 		return null;
 	}
 
@@ -1596,6 +1710,36 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseJoin(Join object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>While Loop</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>While Loop</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWhileLoop(WhileLoop object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>While Loop Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>While Loop Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWhileLoopCondition(WhileLoopCondition object) {
 		return null;
 	}
 

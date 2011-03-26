@@ -20,10 +20,12 @@ package org.eclipselabs.damos.diagram.ui.palette;
 public interface IPaletteConstants {
 
 	String BUILTIN_COMPONENT_CONTAINER_ID = "org.eclipselabs.damos.diagram.ui.palette.builtinComponentContainer";
+	String ACTION_LINK_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.actionLink";
 	String SUBSYSTEM_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.subsystem";
 	String INPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.inport";
 	String OUTPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.outport";
-	String CONDITIONAL_COMPOUND_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.conditionalCompound";
+	String ACTION_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.action";
+	String CHOICE_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.choice";
 	String JOIN_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.join";
 	
 }

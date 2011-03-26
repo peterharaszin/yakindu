@@ -856,49 +856,118 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ConditionalCompound} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Choice} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionalCompoundItemProvider conditionalCompoundItemProvider;
+	protected ChoiceItemProvider choiceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ConditionalCompound}.
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.Choice}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createConditionalCompoundAdapter() {
-		if (conditionalCompoundItemProvider == null) {
-			conditionalCompoundItemProvider = new ConditionalCompoundItemProvider(this);
+	public Adapter createChoiceAdapter() {
+		if (choiceItemProvider == null) {
+			choiceItemProvider = new ChoiceItemProvider(this);
 		}
 
-		return conditionalCompoundItemProvider;
+		return choiceItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ConditionalCompoundCondition} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ChoiceInputPort} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ConditionalCompoundConditionItemProvider conditionalCompoundConditionItemProvider;
+	protected ChoiceInputPortItemProvider choiceInputPortItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ConditionalCompoundCondition}.
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ChoiceInputPort}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createConditionalCompoundConditionAdapter() {
-		if (conditionalCompoundConditionItemProvider == null) {
-			conditionalCompoundConditionItemProvider = new ConditionalCompoundConditionItemProvider(this);
+	public Adapter createChoiceInputPortAdapter() {
+		if (choiceInputPortItemProvider == null) {
+			choiceInputPortItemProvider = new ChoiceInputPortItemProvider(this);
 		}
 
-		return conditionalCompoundConditionItemProvider;
+		return choiceInputPortItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Action} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActionItemProvider actionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.Action}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActionAdapter() {
+		if (actionItemProvider == null) {
+			actionItemProvider = new ActionItemProvider(this);
+		}
+
+		return actionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ActionLink} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActionLinkItemProvider actionLinkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ActionLink}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActionLinkAdapter() {
+		if (actionLinkItemProvider == null) {
+			actionLinkItemProvider = new ActionLinkItemProvider(this);
+		}
+
+		return actionLinkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OpaqueConditionSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OpaqueConditionSpecificationItemProvider opaqueConditionSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OpaqueConditionSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOpaqueConditionSpecificationAdapter() {
+		if (opaqueConditionSpecificationItemProvider == null) {
+			opaqueConditionSpecificationItemProvider = new OpaqueConditionSpecificationItemProvider(this);
+		}
+
+		return opaqueConditionSpecificationItemProvider;
 	}
 
 	/**
@@ -922,6 +991,52 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		}
 
 		return joinItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.WhileLoop} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WhileLoopItemProvider whileLoopItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.WhileLoop}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWhileLoopAdapter() {
+		if (whileLoopItemProvider == null) {
+			whileLoopItemProvider = new WhileLoopItemProvider(this);
+		}
+
+		return whileLoopItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.WhileLoopCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WhileLoopConditionItemProvider whileLoopConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.WhileLoopCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWhileLoopConditionAdapter() {
+		if (whileLoopConditionItemProvider == null) {
+			whileLoopConditionItemProvider = new WhileLoopConditionItemProvider(this);
+		}
+
+		return whileLoopConditionItemProvider;
 	}
 
 	/**
@@ -1057,9 +1172,14 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (booleanDirectFeedthroughPolicyItemProvider != null) booleanDirectFeedthroughPolicyItemProvider.dispose();
 		if (opaqueDataTypeSpecificationItemProvider != null) opaqueDataTypeSpecificationItemProvider.dispose();
 		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
-		if (conditionalCompoundItemProvider != null) conditionalCompoundItemProvider.dispose();
-		if (conditionalCompoundConditionItemProvider != null) conditionalCompoundConditionItemProvider.dispose();
+		if (choiceItemProvider != null) choiceItemProvider.dispose();
+		if (choiceInputPortItemProvider != null) choiceInputPortItemProvider.dispose();
+		if (actionItemProvider != null) actionItemProvider.dispose();
+		if (actionLinkItemProvider != null) actionLinkItemProvider.dispose();
+		if (opaqueConditionSpecificationItemProvider != null) opaqueConditionSpecificationItemProvider.dispose();
 		if (joinItemProvider != null) joinItemProvider.dispose();
+		if (whileLoopItemProvider != null) whileLoopItemProvider.dispose();
+		if (whileLoopConditionItemProvider != null) whileLoopConditionItemProvider.dispose();
 	}
 
 }

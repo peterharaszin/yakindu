@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -33,14 +35,15 @@ import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
+import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionalCompound;
-import org.eclipselabs.damos.dml.ConditionalCompoundCondition;
+import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -64,6 +67,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
+import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
@@ -85,6 +89,8 @@ import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dml.WhileLoop;
+import org.eclipselabs.damos.dml.WhileLoopCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -282,12 +288,24 @@ public class DMLValidator extends EObjectValidator {
 				return validateCompoundInputConnector((CompoundInputConnector)value, diagnostics, context);
 			case DMLPackage.COMPOUND_OUTPUT_CONNECTOR:
 				return validateCompoundOutputConnector((CompoundOutputConnector)value, diagnostics, context);
-			case DMLPackage.CONDITIONAL_COMPOUND:
-				return validateConditionalCompound((ConditionalCompound)value, diagnostics, context);
-			case DMLPackage.CONDITIONAL_COMPOUND_CONDITION:
-				return validateConditionalCompoundCondition((ConditionalCompoundCondition)value, diagnostics, context);
+			case DMLPackage.CHOICE:
+				return validateChoice((Choice)value, diagnostics, context);
+			case DMLPackage.CHOICE_INPUT_PORT:
+				return validateChoiceInputPort((ChoiceInputPort)value, diagnostics, context);
+			case DMLPackage.ACTION:
+				return validateAction((Action)value, diagnostics, context);
+			case DMLPackage.ACTION_LINK:
+				return validateActionLink((ActionLink)value, diagnostics, context);
+			case DMLPackage.CONDITION_SPECIFICATION:
+				return validateConditionSpecification((ConditionSpecification)value, diagnostics, context);
+			case DMLPackage.OPAQUE_CONDITION_SPECIFICATION:
+				return validateOpaqueConditionSpecification((OpaqueConditionSpecification)value, diagnostics, context);
 			case DMLPackage.JOIN:
 				return validateJoin((Join)value, diagnostics, context);
+			case DMLPackage.WHILE_LOOP:
+				return validateWhileLoop((WhileLoop)value, diagnostics, context);
+			case DMLPackage.WHILE_LOOP_CONDITION:
+				return validateWhileLoopCondition((WhileLoopCondition)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1186,8 +1204,18 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConditionalCompound(ConditionalCompound conditionalCompound, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(conditionalCompound, diagnostics, context);
+	public boolean validateChoice(Choice choice, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(choice, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(choice, diagnostics, context);
+		return result;
 	}
 
 	/**
@@ -1195,8 +1223,44 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateConditionalCompoundCondition(ConditionalCompoundCondition conditionalCompoundCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(conditionalCompoundCondition, diagnostics, context);
+	public boolean validateChoiceInputPort(ChoiceInputPort choiceInputPort, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(choiceInputPort, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAction(Action action, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(action, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateActionLink(ActionLink actionLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(actionLink, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateConditionSpecification(ConditionSpecification conditionSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(conditionSpecification, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOpaqueConditionSpecification(OpaqueConditionSpecification opaqueConditionSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(opaqueConditionSpecification, diagnostics, context);
 	}
 
 	/**
@@ -1216,6 +1280,24 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(join, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(join, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateWhileLoop(WhileLoop whileLoop, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(whileLoop, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateWhileLoopCondition(WhileLoopCondition whileLoopCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(whileLoopCondition, diagnostics, context);
 	}
 
 	/**

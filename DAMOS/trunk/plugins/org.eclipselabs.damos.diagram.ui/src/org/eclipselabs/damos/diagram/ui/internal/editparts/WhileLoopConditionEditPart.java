@@ -24,7 +24,7 @@ import org.eclipselabs.damos.diagram.ui.internal.figures.CompoundConnectorFigure
  * @author Andreas Unger
  *
  */
-public class ConditionalCompoundConditionEditPart extends AbstractBorderItemEditPart {
+public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart {
 
 	private static final Dimension BORDER_ITEM_OFFSET;
 	
@@ -36,10 +36,10 @@ public class ConditionalCompoundConditionEditPart extends AbstractBorderItemEdit
 	/**
 	 * @param view
 	 */
-	public ConditionalCompoundConditionEditPart(View view) {
+	public WhileLoopConditionEditPart(View view) {
 		super(view);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#createNodeFigure()
 	 */

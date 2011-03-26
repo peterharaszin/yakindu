@@ -73,7 +73,7 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 			Connector target = connection.getTarget();
 			Component sourceComponent = source instanceof Port ? ((Port) source).getComponent() : null;
 			Component targetComponent = target instanceof Port ? ((Port) target).getComponent() : null;
-			setLineType(sourceComponent instanceof Outport || targetComponent instanceof Inport ? SWT.LINE_DASH : SWT.LINE_SOLID);
+			setLineType(sourceComponent instanceof Outport || targetComponent instanceof Inport ? SWT.LINE_DASHDOTDOT : SWT.LINE_SOLID);
 		}
 	}
 	

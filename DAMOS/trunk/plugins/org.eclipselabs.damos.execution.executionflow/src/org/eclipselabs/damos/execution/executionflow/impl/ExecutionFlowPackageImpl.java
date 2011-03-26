@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.ConnectorInfo;
@@ -78,6 +79,13 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * @generated
 	 */
 	private EClass compoundNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass actionNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -384,6 +392,24 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getActionNode() {
+		return actionNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActionNode_ChoiceNode() {
+		return (EReference)actionNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSubsystemNode() {
 		return subsystemNodeEClass;
 	}
@@ -631,6 +657,9 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		compoundNodeEClass = createEClass(COMPOUND_NODE);
 		createEReference(compoundNodeEClass, COMPOUND_NODE__COMPOUND);
 
+		actionNodeEClass = createEClass(ACTION_NODE);
+		createEReference(actionNodeEClass, ACTION_NODE__CHOICE_NODE);
+
 		subsystemNodeEClass = createEClass(SUBSYSTEM_NODE);
 		createEReference(subsystemNodeEClass, SUBSYSTEM_NODE__SUBSYSTEM);
 
@@ -697,6 +726,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		subgraphEClass.getESuperTypes().add(this.getNode());
 		componentNodeEClass.getESuperTypes().add(this.getNode());
 		compoundNodeEClass.getESuperTypes().add(this.getSubgraph());
+		actionNodeEClass.getESuperTypes().add(this.getCompoundNode());
 		subsystemNodeEClass.getESuperTypes().add(this.getSubgraph());
 		dataFlowSourceEndEClass.getESuperTypes().add(this.getDataFlowEnd());
 		dataFlowTargetEndEClass.getESuperTypes().add(this.getDataFlowEnd());
@@ -734,6 +764,9 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		initEClass(compoundNodeEClass, CompoundNode.class, "CompoundNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundNode_Compound(), theDMLPackage.getCompound(), null, "compound", null, 1, 1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(actionNodeEClass, ActionNode.class, "ActionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getActionNode_ChoiceNode(), this.getComponentNode(), null, "choiceNode", null, 0, 1, ActionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(subsystemNodeEClass, SubsystemNode.class, "SubsystemNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubsystemNode_Subsystem(), theDMLPackage.getSubsystem(), null, "subsystem", null, 1, 1, SubsystemNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

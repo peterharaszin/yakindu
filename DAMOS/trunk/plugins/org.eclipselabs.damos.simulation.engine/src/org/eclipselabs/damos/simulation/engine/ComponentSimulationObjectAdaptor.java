@@ -18,6 +18,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
@@ -81,7 +82,7 @@ public class ComponentSimulationObjectAdaptor {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				Component component = componentNode.getComponent();
-				if (!(component instanceof Join)) {
+				if (!(component instanceof Choice || component instanceof Join)) {
 					IComponentSimulationObject simulationObject;
 					simulationObject = ComponentSimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
 					if (simulationObject != null) {

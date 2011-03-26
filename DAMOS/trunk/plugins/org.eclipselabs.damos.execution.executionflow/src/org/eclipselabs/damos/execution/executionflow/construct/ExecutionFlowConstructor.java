@@ -21,9 +21,11 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
@@ -141,7 +143,7 @@ public class ExecutionFlowConstructor {
 			
 			boolean driving = true;
 			InputConnector target = targetEnd.getConnector();
-			if (target instanceof InputPort) {
+			if (target instanceof InputPort && !(target instanceof ChoiceInputPort)) {
 				InputPort targetPort = (InputPort) target;
 				driving = targetPort.getInput().isDirectFeedthrough();
 			}
@@ -153,9 +155,17 @@ public class ExecutionFlowConstructor {
 				}
 			}
 		}
-		
+				
 		if (node instanceof CompoundNode) {
 			CompoundNode compoundNode = (CompoundNode) node;
+			
+			if (compoundNode instanceof ActionNode) {
+				ActionNode actionNode = (ActionNode) compoundNode;
+				if (actionNode.getChoiceNode() != null) {
+					drivingNodes.add(actionNode.getChoiceNode());
+				}
+			}
+
 			for (Node memberNode : context.flattenerHelper.getNodes(compoundNode)) {
 				getDrivingNodes(context, memberNode, drivenNode, drivingNodes);
 			}

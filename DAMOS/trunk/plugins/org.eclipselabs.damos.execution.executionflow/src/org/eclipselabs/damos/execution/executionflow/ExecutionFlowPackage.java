@@ -516,6 +516,124 @@ public interface ExecutionFlowPackage extends EPackage {
 	int COMPOUND_NODE_FEATURE_COUNT = SUBGRAPH_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.ActionNodeImpl <em>Action Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.ActionNodeImpl
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getActionNode()
+	 * @generated
+	 */
+	int ACTION_NODE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__NODES = COMPOUND_NODE__NODES;
+
+	/**
+	 * The feature id for the '<em><b>Initial Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__INITIAL_NODES = COMPOUND_NODE__INITIAL_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__EDGES = COMPOUND_NODE__EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__GRAPH = COMPOUND_NODE__GRAPH;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__INCOMING_EDGES = COMPOUND_NODE__INCOMING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__OUTGOING_EDGES = COMPOUND_NODE__OUTGOING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__ENCLOSING_SUBSYSTEMS = COMPOUND_NODE__ENCLOSING_SUBSYSTEMS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__INCOMING_DATA_FLOWS = COMPOUND_NODE__INCOMING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__OUTGOING_DATA_FLOWS = COMPOUND_NODE__OUTGOING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__COMPOUND = COMPOUND_NODE__COMPOUND;
+
+	/**
+	 * The feature id for the '<em><b>Choice Node</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE__CHOICE_NODE = COMPOUND_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Action Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_NODE_FEATURE_COUNT = COMPOUND_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.SubsystemNodeImpl <em>Subsystem Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -523,7 +641,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getSubsystemNode()
 	 * @generated
 	 */
-	int SUBSYSTEM_NODE = 6;
+	int SUBSYSTEM_NODE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -632,7 +750,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getEdge()
 	 * @generated
 	 */
-	int EDGE = 7;
+	int EDGE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -669,7 +787,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlow()
 	 * @generated
 	 */
-	int DATA_FLOW = 8;
+	int DATA_FLOW = 9;
 
 	/**
 	 * The feature id for the '<em><b>Target Ends</b></em>' containment reference list.
@@ -706,7 +824,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_END = 9;
+	int DATA_FLOW_END = 10;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -734,7 +852,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowSourceEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_SOURCE_END = 10;
+	int DATA_FLOW_SOURCE_END = 11;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -789,7 +907,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowTargetEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_TARGET_END = 11;
+	int DATA_FLOW_TARGET_END = 12;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -845,7 +963,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getConnectorInfo()
 	 * @generated
 	 */
-	int CONNECTOR_INFO = 12;
+	int CONNECTOR_INFO = 13;
 
 	/**
 	 * The number of structural features of the '<em>Connector Info</em>' class.
@@ -864,7 +982,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getPortInfo()
 	 * @generated
 	 */
-	int PORT_INFO = 13;
+	int PORT_INFO = 14;
 
 	/**
 	 * The feature id for the '<em><b>Inoutput Index</b></em>' attribute.
@@ -1107,6 +1225,27 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCompoundNode_Compound();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.ActionNode <em>Action Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Action Node</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ActionNode
+	 * @generated
+	 */
+	EClass getActionNode();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.execution.executionflow.ActionNode#getChoiceNode <em>Choice Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Choice Node</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ActionNode#getChoiceNode()
+	 * @see #getActionNode()
+	 * @generated
+	 */
+	EReference getActionNode_ChoiceNode();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.SubsystemNode <em>Subsystem Node</em>}'.
@@ -1535,6 +1674,24 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPOUND_NODE__COMPOUND = eINSTANCE.getCompoundNode_Compound();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.ActionNodeImpl <em>Action Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.ActionNodeImpl
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getActionNode()
+		 * @generated
+		 */
+		EClass ACTION_NODE = eINSTANCE.getActionNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Choice Node</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION_NODE__CHOICE_NODE = eINSTANCE.getActionNode_ChoiceNode();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.SubsystemNodeImpl <em>Subsystem Node</em>}' class.

@@ -16,8 +16,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.ActionLink;
+import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.util.DMLSwitch;
+import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
+import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
@@ -27,6 +31,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
+import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -114,7 +119,7 @@ public class SimulationEngine implements ISimulationEngine {
 				ComponentNode componentNode = (ComponentNode) node;
 				if (componentNode.getComponent() instanceof Join) {
 					computeJoinOutputValues(componentNode);
-				} else {
+				} else if (!(componentNode.getComponent() instanceof Choice)) {
 					computeComponentOutputValues(node);
 				}
 			} else {
@@ -238,27 +243,37 @@ public class SimulationEngine implements ISimulationEngine {
 		}
 	}
 	
-	private boolean isCompoundRun(CompoundNode node) throws CoreException {
-		if (node.getCompound() instanceof Action) {
-//			Action action = (Action) node.getCompound();
-//			DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(null /*conditionalCompound.getCondition()*/);
-//			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-//			PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
-//
-//			IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
-//			IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
-//			
-//			if (value instanceof IBooleanValue) {
-//				return ((IBooleanValue) value).booleanValue();
-//			} else {
-//				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Input value of condition connector must be boolean value"));
-//			}
+	private boolean isCompoundRun(CompoundNode compoundNode) throws CoreException {
+		if (compoundNode instanceof ActionNode) {
+			ActionNode actionNode = (ActionNode) compoundNode;
+			if (actionNode.getChoiceNode() == null) {
+				return true;
+			}
+			
+			Action action = (Action) compoundNode.getCompound();
+			ActionLink actionLink = action.getLink();
+			ComponentNode choiceNode = actionNode.getChoiceNode();
+
+			DataFlowTargetEnd targetEnd = choiceNode.getIncomingDataFlows().get(0);
+			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+			PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
+
+			IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
+			IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
+			
+			if (value instanceof IBooleanValue) {
+				IValue conditionValue = ExpressionUtil.evaluateExpression(actionLink.getCondition().stringCondition());
+				if (conditionValue instanceof IBooleanValue) {
+					return ((IBooleanValue) value).booleanValue() == ((IBooleanValue) conditionValue).booleanValue();
+				}
+			}
+			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid choice '" + choiceNode.getComponent().getName() + "'"));
 		}
 		return false;
 	}
 	
-	private boolean isComponentRun(ComponentNode node) throws CoreException {
-		Graph graph = node.getGraph();
+	private boolean isComponentRun(ComponentNode componentNode) throws CoreException {
+		Graph graph = componentNode.getGraph();
 		while (graph instanceof Subgraph) {
 			Subgraph subgraph = (Subgraph) graph;
 			if (graph instanceof CompoundNode && !isCompoundRun((CompoundNode) graph)) {

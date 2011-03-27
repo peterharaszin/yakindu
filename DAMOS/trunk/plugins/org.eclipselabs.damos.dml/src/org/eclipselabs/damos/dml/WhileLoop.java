@@ -25,26 +25,26 @@ package org.eclipselabs.damos.dml;
  */
 public interface WhileLoop extends Action {
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' reference.
+	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Condition</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' reference.
+	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(WhileLoopCondition)
 	 * @see org.eclipselabs.damos.dml.DMLPackage#getWhileLoop_Condition()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	WhileLoopCondition getCondition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dml.WhileLoop#getCondition <em>Condition</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.WhileLoop#getCondition <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' reference.
+	 * @param value the new value of the '<em>Condition</em>' containment reference.
 	 * @see #getCondition()
 	 * @generated
 	 */

@@ -348,7 +348,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Component"/>
   <eClassifiers xsi:type="ecore:EClass" name="WhileLoop" eSuperTypes="#//Action">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//WhileLoopCondition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//WhileLoopCondition"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WhileLoopCondition" eSuperTypes="#//CompoundInputConnector"/>
 </ecore:EPackage>

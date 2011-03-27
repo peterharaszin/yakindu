@@ -13,14 +13,15 @@ import org.eclipselabs.damos.dml.WhileLoop;
  *
  */
 public class WhileLoopCanonicalEditPolicy extends CompoundCanonicalEditPolicy {
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy#getSemanticChildrenList()
 	 */
 	@Override
 	protected List<EObject> getSemanticChildrenList() {
-		WhileLoop compound = (WhileLoop) resolveSemanticElement();
-		if (compound != null) {
-			return Collections.<EObject>singletonList(compound.getCondition());
+		WhileLoop whileLoop = (WhileLoop) resolveSemanticElement();
+		if (whileLoop != null) {
+			return Collections.<EObject>singletonList(whileLoop.getCondition());
 		}
 		return Collections.<EObject>emptyList();
 	}

@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -29,7 +30,7 @@ import org.eclipselabs.damos.dml.WhileLoopCondition;
  */
 public class WhileLoopImpl extends ActionImpl implements WhileLoop {
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' reference.
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getCondition()
@@ -63,14 +64,6 @@ public class WhileLoopImpl extends ActionImpl implements WhileLoop {
 	 * @generated
 	 */
 	public WhileLoopCondition getCondition() {
-		if (condition != null && condition.eIsProxy()) {
-			InternalEObject oldCondition = (InternalEObject)condition;
-			condition = (WhileLoopCondition)eResolveProxy(oldCondition);
-			if (condition != oldCondition) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DMLPackage.WHILE_LOOP__CONDITION, oldCondition, condition));
-			}
-		}
 		return condition;
 	}
 
@@ -79,8 +72,14 @@ public class WhileLoopImpl extends ActionImpl implements WhileLoop {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WhileLoopCondition basicGetCondition() {
-		return condition;
+	public NotificationChain basicSetCondition(WhileLoopCondition newCondition, NotificationChain msgs) {
+		WhileLoopCondition oldCondition = condition;
+		condition = newCondition;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.WHILE_LOOP__CONDITION, oldCondition, newCondition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -89,10 +88,31 @@ public class WhileLoopImpl extends ActionImpl implements WhileLoop {
 	 * @generated
 	 */
 	public void setCondition(WhileLoopCondition newCondition) {
-		WhileLoopCondition oldCondition = condition;
-		condition = newCondition;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.WHILE_LOOP__CONDITION, oldCondition, condition));
+		if (newCondition != condition) {
+			NotificationChain msgs = null;
+			if (condition != null)
+				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.WHILE_LOOP__CONDITION, null, msgs);
+			if (newCondition != null)
+				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLPackage.WHILE_LOOP__CONDITION, null, msgs);
+			msgs = basicSetCondition(newCondition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.WHILE_LOOP__CONDITION, newCondition, newCondition));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DMLPackage.WHILE_LOOP__CONDITION:
+				return basicSetCondition(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -104,8 +124,7 @@ public class WhileLoopImpl extends ActionImpl implements WhileLoop {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DMLPackage.WHILE_LOOP__CONDITION:
-				if (resolve) return getCondition();
-				return basicGetCondition();
+				return getCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

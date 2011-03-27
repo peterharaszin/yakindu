@@ -2894,7 +2894,7 @@ public interface DMLPackage extends EPackage {
 	int WHILE_LOOP__LINK = ACTION__LINK;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' reference.
+	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -4424,10 +4424,10 @@ public interface DMLPackage extends EPackage {
 	EClass getWhileLoop();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.WhileLoop#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.WhileLoop#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Condition</em>'.
+	 * @return the meta object for the containment reference '<em>Condition</em>'.
 	 * @see org.eclipselabs.damos.dml.WhileLoop#getCondition()
 	 * @see #getWhileLoop()
 	 * @generated
@@ -5735,7 +5735,7 @@ public interface DMLPackage extends EPackage {
 		EClass WHILE_LOOP = eINSTANCE.getWhileLoop();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

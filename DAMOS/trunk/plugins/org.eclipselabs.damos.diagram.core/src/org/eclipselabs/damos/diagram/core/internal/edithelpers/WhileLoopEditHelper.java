@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipselabs.damos.diagram.core.internal.commands.ConfigureWhileLoopCommand;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -21,7 +20,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
  * @author Andreas Unger
  *
  */
-public class WhileLoopEditHelper extends AbstractEditHelper {
+public class WhileLoopEditHelper extends ActionEditHelper {
 
 	protected ICommand getConfigureCommand(ConfigureRequest request) {
 		return new ConfigureWhileLoopCommand(request, DMLPackage.eINSTANCE.getWhileLoop());

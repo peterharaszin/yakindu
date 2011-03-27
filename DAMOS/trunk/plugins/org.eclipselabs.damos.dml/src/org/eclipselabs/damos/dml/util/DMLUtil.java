@@ -155,13 +155,13 @@ public class DMLUtil {
 		return true;
 	}
 	
-	public static boolean isChildFragment(Fragment fragment, Fragment otherFragment) {
+	public static boolean isChildFragment(Fragment childFragment, Fragment parentFragment) {
 		do {
-			if (fragment.getParent() == otherFragment) {
+			if (childFragment.getParent() == parentFragment) {
 				return true;
 			}
-			fragment = fragment.getParent();
-		} while (fragment != null);
+			childFragment = childFragment.getParent();
+		} while (childFragment != null);
 		
 		return false;
 	}

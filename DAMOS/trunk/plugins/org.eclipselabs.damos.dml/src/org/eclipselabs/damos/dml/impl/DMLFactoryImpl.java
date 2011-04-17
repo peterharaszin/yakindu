@@ -36,6 +36,10 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
+import org.eclipselabs.damos.dml.MemoryInitialCondition;
+import org.eclipselabs.damos.dml.MemoryInput;
+import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
@@ -47,7 +51,6 @@ import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.Subsystem;
-import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -127,7 +130,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.SUBSYSTEM_REALIZATION: return createSubsystemRealization();
 			case DMLPackage.INPORT: return createInport();
 			case DMLPackage.OUTPORT: return createOutport();
-			case DMLPackage.SUBSYSTEM_INOUTPUT: return createSubsystemInoutput();
 			case DMLPackage.SUBSYSTEM_INPUT: return createSubsystemInput();
 			case DMLPackage.SUBSYSTEM_OUTPUT: return createSubsystemOutput();
 			case DMLPackage.BOOLEAN_DIRECT_FEEDTHROUGH_POLICY: return createBooleanDirectFeedthroughPolicy();
@@ -141,6 +143,10 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.JOIN: return createJoin();
 			case DMLPackage.WHILE_LOOP: return createWhileLoop();
 			case DMLPackage.WHILE_LOOP_CONDITION: return createWhileLoopCondition();
+			case DMLPackage.MEMORY: return createMemory();
+			case DMLPackage.MEMORY_INITIAL_CONDITION: return createMemoryInitialCondition();
+			case DMLPackage.MEMORY_INPUT: return createMemoryInput();
+			case DMLPackage.MEMORY_OUTPUT: return createMemoryOutput();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -421,16 +427,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubsystemInoutput createSubsystemInoutput() {
-		SubsystemInoutputImpl subsystemInoutput = new SubsystemInoutputImpl();
-		return subsystemInoutput;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SubsystemInput createSubsystemInput() {
 		SubsystemInputImpl subsystemInput = new SubsystemInputImpl();
 		return subsystemInput;
@@ -564,6 +560,46 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public WhileLoopCondition createWhileLoopCondition() {
 		WhileLoopConditionImpl whileLoopCondition = new WhileLoopConditionImpl();
 		return whileLoopCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Memory createMemory() {
+		MemoryImpl memory = new MemoryImpl();
+		return memory;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MemoryInitialCondition createMemoryInitialCondition() {
+		MemoryInitialConditionImpl memoryInitialCondition = new MemoryInitialConditionImpl();
+		return memoryInitialCondition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MemoryInput createMemoryInput() {
+		MemoryInputImpl memoryInput = new MemoryInputImpl();
+		return memoryInput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MemoryOutput createMemoryOutput() {
+		MemoryOutputImpl memoryOutput = new MemoryOutputImpl();
+		return memoryOutput;
 	}
 
 	/**

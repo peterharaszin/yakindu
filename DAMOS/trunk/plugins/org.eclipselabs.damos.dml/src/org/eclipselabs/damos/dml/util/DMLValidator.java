@@ -65,6 +65,10 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
+import org.eclipselabs.damos.dml.MemoryInitialCondition;
+import org.eclipselabs.damos.dml.MemoryInput;
+import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
@@ -83,7 +87,6 @@ import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
-import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -266,8 +269,6 @@ public class DMLValidator extends EObjectValidator {
 				return validateInoutport((Inoutport)value, diagnostics, context);
 			case DMLPackage.OUTPORT:
 				return validateOutport((Outport)value, diagnostics, context);
-			case DMLPackage.SUBSYSTEM_INOUTPUT:
-				return validateSubsystemInoutput((SubsystemInoutput)value, diagnostics, context);
 			case DMLPackage.SUBSYSTEM_INPUT:
 				return validateSubsystemInput((SubsystemInput)value, diagnostics, context);
 			case DMLPackage.SUBSYSTEM_OUTPUT:
@@ -306,6 +307,14 @@ public class DMLValidator extends EObjectValidator {
 				return validateWhileLoop((WhileLoop)value, diagnostics, context);
 			case DMLPackage.WHILE_LOOP_CONDITION:
 				return validateWhileLoopCondition((WhileLoopCondition)value, diagnostics, context);
+			case DMLPackage.MEMORY:
+				return validateMemory((Memory)value, diagnostics, context);
+			case DMLPackage.MEMORY_INITIAL_CONDITION:
+				return validateMemoryInitialCondition((MemoryInitialCondition)value, diagnostics, context);
+			case DMLPackage.MEMORY_INPUT:
+				return validateMemoryInput((MemoryInput)value, diagnostics, context);
+			case DMLPackage.MEMORY_OUTPUT:
+				return validateMemoryOutput((MemoryOutput)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1105,15 +1114,6 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSubsystemInoutput(SubsystemInoutput subsystemInoutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(subsystemInoutput, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateSubsystemInput(SubsystemInput subsystemInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(subsystemInput, diagnostics, context);
 	}
@@ -1298,6 +1298,52 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateWhileLoopCondition(WhileLoopCondition whileLoopCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(whileLoopCondition, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMemory(Memory memory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(memory, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(memory, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMemoryInitialCondition(MemoryInitialCondition memoryInitialCondition, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(memoryInitialCondition, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMemoryInput(MemoryInput memoryInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(memoryInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateMemoryOutput(MemoryOutput memoryOutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(memoryOutput, diagnostics, context);
 	}
 
 	/**

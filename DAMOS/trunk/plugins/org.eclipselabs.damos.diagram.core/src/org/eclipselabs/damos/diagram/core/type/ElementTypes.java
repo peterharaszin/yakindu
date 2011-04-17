@@ -46,6 +46,9 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	public static final String WHILE_LOOP_ID = "org.eclipselabs.damos.diagram.whileLoop"; //$NON-NLS-1$
 	public static final IElementType WHILE_LOOP = getElementType(WHILE_LOOP_ID);
 
+	public static final String MEMORY_ID = "org.eclipselabs.damos.diagram.memory"; //$NON-NLS-1$
+	public static final IElementType MEMORY = getElementType(MEMORY_ID);
+
 	public static final String BLOCK_ID = "org.eclipselabs.damos.diagram.block"; //$NON-NLS-1$
 	public static final IElementType BLOCK = getElementType(BLOCK_ID);
 

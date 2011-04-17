@@ -24,7 +24,8 @@ public interface IPaletteConstants {
 	String JOIN_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.join";
 	String ACTION_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.action";
 	String ACTION_LINK_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.actionLink";
-	String WHILE_LOOP_LINK_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.whileLoop";
+	String WHILE_LOOP_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.whileLoop";
+	String MEMORY_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.memory";
 	String SUBSYSTEM_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.subsystem";
 	String INPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.inport";
 	String OUTPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.outport";

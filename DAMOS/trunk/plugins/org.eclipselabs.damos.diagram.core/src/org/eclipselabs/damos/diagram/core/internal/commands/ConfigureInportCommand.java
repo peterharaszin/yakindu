@@ -37,7 +37,7 @@ public class ConfigureInportCommand extends ConfigureElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConfigureRequest request = (ConfigureRequest) getRequest();
     	Inport inport = (Inport) request.getElementToConfigure();
-    	inport.setName(DMLUtil.findAvailableComponentName(inport.getOwningFragment(), "In"));
+    	inport.setName(DMLUtil.findAvailableComponentName(inport.getEnclosingFragment(), "In"));
     	OpaqueDataTypeSpecification dataTypeSpecification = DMLFactory.eINSTANCE.createOpaqueDataTypeSpecification();
     	dataTypeSpecification.setDataType("");
     	inport.setDataType(dataTypeSpecification);

@@ -37,7 +37,7 @@ public class ConfigureOutportCommand extends ConfigureElementCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConfigureRequest request = (ConfigureRequest) getRequest();
     	Outport outport = (Outport) request.getElementToConfigure();
-    	outport.setName(DMLUtil.findAvailableComponentName(outport.getOwningFragment(), "Out"));
+    	outport.setName(DMLUtil.findAvailableComponentName(outport.getEnclosingFragment(), "Out"));
     	OpaqueDataTypeSpecification dataTypeSpecification = DMLFactory.eINSTANCE.createOpaqueDataTypeSpecification();
     	dataTypeSpecification.setDataType("");
     	outport.setDataType(dataTypeSpecification);

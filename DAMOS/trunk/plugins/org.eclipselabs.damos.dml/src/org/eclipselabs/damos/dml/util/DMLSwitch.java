@@ -54,6 +54,10 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
+import org.eclipselabs.damos.dml.MemoryInitialCondition;
+import org.eclipselabs.damos.dml.MemoryInput;
+import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
@@ -72,7 +76,6 @@ import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
-import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -528,18 +531,10 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.SUBSYSTEM_INOUTPUT: {
-				SubsystemInoutput subsystemInoutput = (SubsystemInoutput)theEObject;
-				T result = caseSubsystemInoutput(subsystemInoutput);
-				if (result == null) result = caseInoutput(subsystemInoutput);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DMLPackage.SUBSYSTEM_INPUT: {
 				SubsystemInput subsystemInput = (SubsystemInput)theEObject;
 				T result = caseSubsystemInput(subsystemInput);
 				if (result == null) result = caseInput(subsystemInput);
-				if (result == null) result = caseSubsystemInoutput(subsystemInput);
 				if (result == null) result = caseInoutput(subsystemInput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -548,7 +543,6 @@ public class DMLSwitch<T> {
 				SubsystemOutput subsystemOutput = (SubsystemOutput)theEObject;
 				T result = caseSubsystemOutput(subsystemOutput);
 				if (result == null) result = caseOutput(subsystemOutput);
-				if (result == null) result = caseSubsystemInoutput(subsystemOutput);
 				if (result == null) result = caseInoutput(subsystemOutput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -686,6 +680,39 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseCompoundConnector(whileLoopCondition);
 				if (result == null) result = caseInputConnector(whileLoopCondition);
 				if (result == null) result = caseConnector(whileLoopCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.MEMORY: {
+				Memory memory = (Memory)theEObject;
+				T result = caseMemory(memory);
+				if (result == null) result = caseComponent(memory);
+				if (result == null) result = caseFragmentElement(memory);
+				if (result == null) result = caseCompoundMember(memory);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.MEMORY_INITIAL_CONDITION: {
+				MemoryInitialCondition memoryInitialCondition = (MemoryInitialCondition)theEObject;
+				T result = caseMemoryInitialCondition(memoryInitialCondition);
+				if (result == null) result = caseInput(memoryInitialCondition);
+				if (result == null) result = caseInoutput(memoryInitialCondition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.MEMORY_INPUT: {
+				MemoryInput memoryInput = (MemoryInput)theEObject;
+				T result = caseMemoryInput(memoryInput);
+				if (result == null) result = caseInput(memoryInput);
+				if (result == null) result = caseInoutput(memoryInput);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.MEMORY_OUTPUT: {
+				MemoryOutput memoryOutput = (MemoryOutput)theEObject;
+				T result = caseMemoryOutput(memoryOutput);
+				if (result == null) result = caseOutput(memoryOutput);
+				if (result == null) result = caseInoutput(memoryOutput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1429,21 +1456,6 @@ public class DMLSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Subsystem Inoutput</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Subsystem Inoutput</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSubsystemInoutput(SubsystemInoutput object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Subsystem Input</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1740,6 +1752,66 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseWhileLoopCondition(WhileLoopCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Memory</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMemory(Memory object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Memory Initial Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Memory Initial Condition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMemoryInitialCondition(MemoryInitialCondition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Memory Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Memory Input</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMemoryInput(MemoryInput object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Memory Output</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Memory Output</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMemoryOutput(MemoryOutput object) {
 		return null;
 	}
 

@@ -8,24 +8,24 @@ package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.SubsystemInoutput;
+import org.eclipselabs.damos.dml.MemoryInput;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Subsystem Inoutput</b></em>'.
+ * An implementation of the model object '<em><b>Memory Input</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class SubsystemInoutputImpl extends InoutputImpl implements SubsystemInoutput {
+public class MemoryInputImpl extends InputImpl implements MemoryInput {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected SubsystemInoutputImpl() {
+	protected MemoryInputImpl() {
 		super();
 	}
 
@@ -36,7 +36,7 @@ public class SubsystemInoutputImpl extends InoutputImpl implements SubsystemInou
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DMLPackage.Literals.SUBSYSTEM_INOUTPUT;
+		return DMLPackage.Literals.MEMORY_INPUT;
 	}
 
-} //SubsystemInoutputImpl
+} //MemoryInputImpl

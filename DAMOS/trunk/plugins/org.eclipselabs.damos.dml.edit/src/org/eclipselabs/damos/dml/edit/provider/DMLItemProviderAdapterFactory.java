@@ -718,29 +718,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.SubsystemInoutput} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SubsystemInoutputItemProvider subsystemInoutputItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.SubsystemInoutput}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createSubsystemInoutputAdapter() {
-		if (subsystemInoutputItemProvider == null) {
-			subsystemInoutputItemProvider = new SubsystemInoutputItemProvider(this);
-		}
-
-		return subsystemInoutputItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.SubsystemInput} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1040,6 +1017,98 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Memory} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MemoryItemProvider memoryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.Memory}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMemoryAdapter() {
+		if (memoryItemProvider == null) {
+			memoryItemProvider = new MemoryItemProvider(this);
+		}
+
+		return memoryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.MemoryInitialCondition} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MemoryInitialConditionItemProvider memoryInitialConditionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.MemoryInitialCondition}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMemoryInitialConditionAdapter() {
+		if (memoryInitialConditionItemProvider == null) {
+			memoryInitialConditionItemProvider = new MemoryInitialConditionItemProvider(this);
+		}
+
+		return memoryInitialConditionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.MemoryInput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MemoryInputItemProvider memoryInputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.MemoryInput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMemoryInputAdapter() {
+		if (memoryInputItemProvider == null) {
+			memoryInputItemProvider = new MemoryInputItemProvider(this);
+		}
+
+		return memoryInputItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.MemoryOutput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected MemoryOutputItemProvider memoryOutputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.MemoryOutput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createMemoryOutputAdapter() {
+		if (memoryOutputItemProvider == null) {
+			memoryOutputItemProvider = new MemoryOutputItemProvider(this);
+		}
+
+		return memoryOutputItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1166,7 +1235,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (subsystemRealizationItemProvider != null) subsystemRealizationItemProvider.dispose();
 		if (inportItemProvider != null) inportItemProvider.dispose();
 		if (outportItemProvider != null) outportItemProvider.dispose();
-		if (subsystemInoutputItemProvider != null) subsystemInoutputItemProvider.dispose();
 		if (subsystemInputItemProvider != null) subsystemInputItemProvider.dispose();
 		if (subsystemOutputItemProvider != null) subsystemOutputItemProvider.dispose();
 		if (booleanDirectFeedthroughPolicyItemProvider != null) booleanDirectFeedthroughPolicyItemProvider.dispose();
@@ -1180,6 +1248,10 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (joinItemProvider != null) joinItemProvider.dispose();
 		if (whileLoopItemProvider != null) whileLoopItemProvider.dispose();
 		if (whileLoopConditionItemProvider != null) whileLoopConditionItemProvider.dispose();
+		if (memoryItemProvider != null) memoryItemProvider.dispose();
+		if (memoryInitialConditionItemProvider != null) memoryInitialConditionItemProvider.dispose();
+		if (memoryInputItemProvider != null) memoryInputItemProvider.dispose();
+		if (memoryOutputItemProvider != null) memoryOutputItemProvider.dispose();
 	}
 
 }

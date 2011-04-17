@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -20,13 +21,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipselabs.damos.dml.SubsystemInoutput} object.
+ * This is the item provider adapter for a {@link org.eclipselabs.damos.dml.MemoryInput} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class SubsystemInoutputItemProvider
-	extends InoutputItemProvider
+public class MemoryInputItemProvider
+	extends InputItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -39,7 +40,7 @@ public class SubsystemInoutputItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SubsystemInoutputItemProvider(AdapterFactory adapterFactory) {
+	public MemoryInputItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -59,14 +60,14 @@ public class SubsystemInoutputItemProvider
 	}
 
 	/**
-	 * This returns SubsystemInoutput.gif.
+	 * This returns MemoryInput.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SubsystemInoutput"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/MemoryInput"));
 	}
 
 	/**
@@ -77,7 +78,7 @@ public class SubsystemInoutputItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_SubsystemInoutput_type");
+		return getString("_UI_MemoryInput_type");
 	}
 
 	/**

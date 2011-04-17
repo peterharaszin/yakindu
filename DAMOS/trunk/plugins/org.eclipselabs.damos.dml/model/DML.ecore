@@ -285,12 +285,11 @@
         lowerBound="1" eType="#//DataTypeSpecification" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Outport" eSuperTypes="#//Inoutport"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInoutput" eSuperTypes="#//Inoutput"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInput" eSuperTypes="#//Input #//SubsystemInoutput">
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInput" eSuperTypes="#//Input">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlet" ordered="false"
         lowerBound="1" eType="#//Inlet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubsystemOutput" eSuperTypes="#//Output #//SubsystemInoutput">
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemOutput" eSuperTypes="#//Output">
     <eStructuralFeatures xsi:type="ecore:EReference" name="outlet" ordered="false"
         lowerBound="1" eType="#//Outlet"/>
   </eClassifiers>
@@ -352,4 +351,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WhileLoopCondition" eSuperTypes="#//CompoundInputConnector"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Memory" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MemoryInitialCondition" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MemoryInput" eSuperTypes="#//Input"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MemoryOutput" eSuperTypes="#//Output"/>
 </ecore:EPackage>

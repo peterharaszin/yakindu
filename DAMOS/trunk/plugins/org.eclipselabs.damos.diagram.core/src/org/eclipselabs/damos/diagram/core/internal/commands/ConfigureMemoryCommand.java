@@ -20,33 +20,36 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.Input;
-import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
-public class ConfigureJoinCommand extends ConfigureElementCommand {
+public class ConfigureMemoryCommand extends ConfigureElementCommand {
 	
-    public ConfigureJoinCommand(ConfigureRequest request, EClass configurableType) {
+    public ConfigureMemoryCommand(ConfigureRequest request, EClass configurableType) {
         super(request);
         setEClass(configurableType);
     }
     
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		ConfigureRequest request = (ConfigureRequest) getRequest();
-    	Join join = (Join) request.getElementToConfigure();
+    	Memory memory = (Memory) request.getElementToConfigure();
     	
-    	join.setName(DMLUtil.findAvailableComponentName(join.getEnclosingFragment(), "Join"));
+    	memory.setName(DMLUtil.findAvailableComponentName(memory.getEnclosingFragment(), "Memory"));
 
-    	Input input = DMLFactory.eINSTANCE.createInput();
+    	Input input = DMLFactory.eINSTANCE.createMemoryInitialCondition();
     	input.getPorts().add(DMLFactory.eINSTANCE.createInputPort());
-    	input.getPorts().add(DMLFactory.eINSTANCE.createInputPort());
-    	join.getInputs().add(input);
+    	memory.getInputs().add(input);
     	
-    	Output output = DMLFactory.eINSTANCE.createOutput();
+    	input = DMLFactory.eINSTANCE.createMemoryInput();
+    	input.getPorts().add(DMLFactory.eINSTANCE.createInputPort());
+    	memory.getInputs().add(input);
+
+    	Output output = DMLFactory.eINSTANCE.createMemoryOutput();
     	output.getPorts().add(DMLFactory.eINSTANCE.createOutputPort());
-    	join.getOutputs().add(output);
+    	memory.getOutputs().add(output);
 
-		return CommandResult.newOKCommandResult(join);
+    	return CommandResult.newOKCommandResult(memory);
 	}
 		
 }

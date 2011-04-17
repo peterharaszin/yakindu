@@ -42,7 +42,7 @@ public class ConfigureSubsystemCommand extends ConfigureElementCommand {
     	    	
     	SystemInterface providedInterface = (SystemInterface) request.getParameters().get(SystemInterface.class);
     	if (providedInterface != null) {
-        	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getOwningFragment(), providedInterface.getName()));
+        	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getEnclosingFragment(), providedInterface.getName()));
     		subsystem.setProvidedInterface(providedInterface);
     		for (Inlet inlet : providedInterface.getInlets()) {
 				SubsystemInput input = DMLFactory.eINSTANCE.createSubsystemInput();

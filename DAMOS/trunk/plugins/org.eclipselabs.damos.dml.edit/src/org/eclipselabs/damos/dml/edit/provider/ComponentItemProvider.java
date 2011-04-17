@@ -184,6 +184,16 @@ public class ComponentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__INPUTS,
+				 DMLFactory.eINSTANCE.createMemoryInitialCondition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__INPUTS,
+				 DMLFactory.eINSTANCE.createMemoryInput()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(DMLPackage.Literals.COMPONENT__OUTPUTS,
 				 DMLFactory.eINSTANCE.createOutput()));
 
@@ -196,6 +206,11 @@ public class ComponentItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.COMPONENT__OUTPUTS,
 				 DMLFactory.eINSTANCE.createSubsystemOutput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__OUTPUTS,
+				 DMLFactory.eINSTANCE.createMemoryOutput()));
 	}
 
 }

@@ -119,7 +119,11 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 //		entries.add(entry);
 //
 //		entry = new ElementCreationToolEntry(ElementTypes.WHILE_LOOP, null, null);
-//		entry.setId(IPaletteConstants.WHILE_LOOP_LINK_ENTRY_ID);
+//		entry.setId(IPaletteConstants.WHILE_LOOP_ENTRY_ID);
+//		entries.add(entry);
+//
+//		entry = new ElementCreationToolEntry(ElementTypes.MEMORY, null, null);
+//		entry.setId(IPaletteConstants.MEMORY_ENTRY_ID);
 //		entries.add(entry);
 
 		return entries;

@@ -58,6 +58,10 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
+import org.eclipselabs.damos.dml.MemoryInitialCondition;
+import org.eclipselabs.damos.dml.MemoryInput;
+import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
@@ -76,7 +80,6 @@ import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
-import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -441,13 +444,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass subsystemInoutputEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass subsystemInputEClass = null;
 
 	/**
@@ -582,6 +578,34 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass whileLoopConditionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass memoryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass memoryInitialConditionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass memoryInputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass memoryOutputEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1603,15 +1627,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSubsystemInoutput() {
-		return subsystemInoutputEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getSubsystemInput() {
 		return subsystemInputEClass;
 	}
@@ -1945,6 +1960,42 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMemory() {
+		return memoryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMemoryInitialCondition() {
+		return memoryInitialConditionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMemoryInput() {
+		return memoryInputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMemoryOutput() {
+		return memoryOutputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DMLFactory getDMLFactory() {
 		return (DMLFactory)getEFactoryInstance();
 	}
@@ -2127,8 +2178,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		outportEClass = createEClass(OUTPORT);
 
-		subsystemInoutputEClass = createEClass(SUBSYSTEM_INOUTPUT);
-
 		subsystemInputEClass = createEClass(SUBSYSTEM_INPUT);
 		createEReference(subsystemInputEClass, SUBSYSTEM_INPUT__INLET);
 
@@ -2181,6 +2230,14 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(whileLoopEClass, WHILE_LOOP__CONDITION);
 
 		whileLoopConditionEClass = createEClass(WHILE_LOOP_CONDITION);
+
+		memoryEClass = createEClass(MEMORY);
+
+		memoryInitialConditionEClass = createEClass(MEMORY_INITIAL_CONDITION);
+
+		memoryInputEClass = createEClass(MEMORY_INPUT);
+
+		memoryOutputEClass = createEClass(MEMORY_OUTPUT);
 	}
 
 	/**
@@ -2256,11 +2313,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		inportEClass.getESuperTypes().add(this.getInoutport());
 		inoutportEClass.getESuperTypes().add(this.getComponent());
 		outportEClass.getESuperTypes().add(this.getInoutport());
-		subsystemInoutputEClass.getESuperTypes().add(this.getInoutput());
 		subsystemInputEClass.getESuperTypes().add(this.getInput());
-		subsystemInputEClass.getESuperTypes().add(this.getSubsystemInoutput());
 		subsystemOutputEClass.getESuperTypes().add(this.getOutput());
-		subsystemOutputEClass.getESuperTypes().add(this.getSubsystemInoutput());
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
 		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
 		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getBehaviorSpecification());
@@ -2278,6 +2332,10 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		joinEClass.getESuperTypes().add(this.getComponent());
 		whileLoopEClass.getESuperTypes().add(this.getAction());
 		whileLoopConditionEClass.getESuperTypes().add(this.getCompoundInputConnector());
+		memoryEClass.getESuperTypes().add(this.getComponent());
+		memoryInitialConditionEClass.getESuperTypes().add(this.getInput());
+		memoryInputEClass.getESuperTypes().add(this.getInput());
+		memoryOutputEClass.getESuperTypes().add(this.getOutput());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(fragmentEClass, Fragment.class, "Fragment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2526,8 +2584,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(outportEClass, Outport.class, "Outport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(subsystemInoutputEClass, SubsystemInoutput.class, "SubsystemInoutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(subsystemInputEClass, SubsystemInput.class, "SubsystemInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubsystemInput_Inlet(), this.getInlet(), null, "inlet", null, 1, 1, SubsystemInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -2582,6 +2638,14 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getWhileLoop_Condition(), this.getWhileLoopCondition(), null, "condition", null, 0, 1, WhileLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(whileLoopConditionEClass, WhileLoopCondition.class, "WhileLoopCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(memoryEClass, Memory.class, "Memory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(memoryInitialConditionEClass, MemoryInitialCondition.class, "MemoryInitialCondition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(memoryInputEClass, MemoryInput.class, "MemoryInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(memoryOutputEClass, MemoryOutput.class, "MemoryOutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

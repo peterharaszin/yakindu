@@ -173,6 +173,11 @@ public class CompoundItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.COMPOUND__MEMBERS,
 				 DMLFactory.eINSTANCE.createWhileLoop()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPOUND__MEMBERS,
+				 DMLFactory.eINSTANCE.createMemory()));
 	}
 
 }

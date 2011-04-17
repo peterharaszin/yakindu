@@ -2218,25 +2218,6 @@ public interface DMLPackage extends EPackage {
 	int OUTPORT_FEATURE_COUNT = INOUTPORT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl <em>Subsystem Inoutput</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInoutput()
-	 * @generated
-	 */
-	int SUBSYSTEM_INOUTPUT = 50;
-
-	/**
-	 * The number of structural features of the '<em>Subsystem Inoutput</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SUBSYSTEM_INOUTPUT_FEATURE_COUNT = INOUTPUT_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInputImpl <em>Subsystem Input</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2244,7 +2225,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInput()
 	 * @generated
 	 */
-	int SUBSYSTEM_INPUT = 51;
+	int SUBSYSTEM_INPUT = 50;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -2290,7 +2271,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemOutput()
 	 * @generated
 	 */
-	int SUBSYSTEM_OUTPUT = 52;
+	int SUBSYSTEM_OUTPUT = 51;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -2336,7 +2317,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBooleanDirectFeedthroughPolicy()
 	 * @generated
 	 */
-	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 53;
+	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 52;
 
 	/**
 	 * The feature id for the '<em><b>Input Definition</b></em>' container reference.
@@ -2373,7 +2354,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueDataTypeSpecification()
 	 * @generated
 	 */
-	int OPAQUE_DATA_TYPE_SPECIFICATION = 54;
+	int OPAQUE_DATA_TYPE_SPECIFICATION = 53;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
@@ -2401,7 +2382,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueBehaviorSpecification()
 	 * @generated
 	 */
-	int OPAQUE_BEHAVIOR_SPECIFICATION = 55;
+	int OPAQUE_BEHAVIOR_SPECIFICATION = 54;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' attribute.
@@ -2429,7 +2410,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompound()
 	 * @generated
 	 */
-	int COMPOUND = 56;
+	int COMPOUND = 55;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2466,7 +2447,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundMember()
 	 * @generated
 	 */
-	int COMPOUND_MEMBER = 57;
+	int COMPOUND_MEMBER = 56;
 
 	/**
 	 * The number of structural features of the '<em>Compound Member</em>' class.
@@ -2485,7 +2466,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundConnector()
 	 * @generated
 	 */
-	int COMPOUND_CONNECTOR = 58;
+	int COMPOUND_CONNECTOR = 57;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -2513,7 +2494,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundInputConnector()
 	 * @generated
 	 */
-	int COMPOUND_INPUT_CONNECTOR = 59;
+	int COMPOUND_INPUT_CONNECTOR = 58;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -2541,7 +2522,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundOutputConnector()
 	 * @generated
 	 */
-	int COMPOUND_OUTPUT_CONNECTOR = 60;
+	int COMPOUND_OUTPUT_CONNECTOR = 59;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -2569,7 +2550,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoice()
 	 * @generated
 	 */
-	int CHOICE = 61;
+	int CHOICE = 60;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2633,7 +2614,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
 	 * @generated
 	 */
-	int CHOICE_INPUT_PORT = 62;
+	int CHOICE_INPUT_PORT = 61;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' container reference.
@@ -2670,7 +2651,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 63;
+	int ACTION = 62;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2716,7 +2697,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
 	 * @generated
 	 */
-	int ACTION_LINK = 64;
+	int ACTION_LINK = 63;
 
 	/**
 	 * The feature id for the '<em><b>Choice</b></em>' container reference.
@@ -2762,7 +2743,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionSpecification()
 	 * @generated
 	 */
-	int CONDITION_SPECIFICATION = 65;
+	int CONDITION_SPECIFICATION = 64;
 
 	/**
 	 * The number of structural features of the '<em>Condition Specification</em>' class.
@@ -2781,7 +2762,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueConditionSpecification()
 	 * @generated
 	 */
-	int OPAQUE_CONDITION_SPECIFICATION = 66;
+	int OPAQUE_CONDITION_SPECIFICATION = 65;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -2809,7 +2790,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 67;
+	int JOIN = 66;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2864,7 +2845,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
 	 * @generated
 	 */
-	int WHILE_LOOP = 68;
+	int WHILE_LOOP = 67;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2919,7 +2900,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
 	 * @generated
 	 */
-	int WHILE_LOOP_CONDITION = 69;
+	int WHILE_LOOP_CONDITION = 68;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -2938,6 +2919,172 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int WHILE_LOOP_CONDITION_FEATURE_COUNT = COMPOUND_INPUT_CONNECTOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.MemoryImpl <em>Memory</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.MemoryImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemory()
+	 * @generated
+	 */
+	int MEMORY = 69;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__INPUTS = COMPONENT__INPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__OUTPUTS = COMPONENT__OUTPUTS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__NAME = COMPONENT__NAME;
+
+	/**
+	 * The number of structural features of the '<em>Memory</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.MemoryInitialConditionImpl <em>Memory Initial Condition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.MemoryInitialConditionImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInitialCondition()
+	 * @generated
+	 */
+	int MEMORY_INITIAL_CONDITION = 70;
+
+	/**
+	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_INITIAL_CONDITION__PORTS = INPUT__PORTS;
+
+	/**
+	 * The feature id for the '<em><b>Component</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_INITIAL_CONDITION__COMPONENT = INPUT__COMPONENT;
+
+	/**
+	 * The number of structural features of the '<em>Memory Initial Condition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_INITIAL_CONDITION_FEATURE_COUNT = INPUT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.MemoryInputImpl <em>Memory Input</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.MemoryInputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInput()
+	 * @generated
+	 */
+	int MEMORY_INPUT = 71;
+
+	/**
+	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_INPUT__PORTS = INPUT__PORTS;
+
+	/**
+	 * The feature id for the '<em><b>Component</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_INPUT__COMPONENT = INPUT__COMPONENT;
+
+	/**
+	 * The number of structural features of the '<em>Memory Input</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_INPUT_FEATURE_COUNT = INPUT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.MemoryOutputImpl <em>Memory Output</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.MemoryOutputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryOutput()
+	 * @generated
+	 */
+	int MEMORY_OUTPUT = 72;
+
+	/**
+	 * The feature id for the '<em><b>Component</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_OUTPUT__COMPONENT = OUTPUT__COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_OUTPUT__PORTS = OUTPUT__PORTS;
+
+	/**
+	 * The number of structural features of the '<em>Memory Output</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -4048,16 +4195,6 @@ public interface DMLPackage extends EPackage {
 	EClass getOutport();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.SubsystemInoutput <em>Subsystem Inoutput</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Subsystem Inoutput</em>'.
-	 * @see org.eclipselabs.damos.dml.SubsystemInoutput
-	 * @generated
-	 */
-	EClass getSubsystemInoutput();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.SubsystemInput <em>Subsystem Input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4443,6 +4580,46 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getWhileLoopCondition();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Memory <em>Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Memory</em>'.
+	 * @see org.eclipselabs.damos.dml.Memory
+	 * @generated
+	 */
+	EClass getMemory();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.MemoryInitialCondition <em>Memory Initial Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Memory Initial Condition</em>'.
+	 * @see org.eclipselabs.damos.dml.MemoryInitialCondition
+	 * @generated
+	 */
+	EClass getMemoryInitialCondition();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.MemoryInput <em>Memory Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Memory Input</em>'.
+	 * @see org.eclipselabs.damos.dml.MemoryInput
+	 * @generated
+	 */
+	EClass getMemoryInput();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.MemoryOutput <em>Memory Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Memory Output</em>'.
+	 * @see org.eclipselabs.damos.dml.MemoryOutput
+	 * @generated
+	 */
+	EClass getMemoryOutput();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -5407,16 +5584,6 @@ public interface DMLPackage extends EPackage {
 		EClass OUTPORT = eINSTANCE.getOutport();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl <em>Subsystem Inoutput</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInoutput()
-		 * @generated
-		 */
-		EClass SUBSYSTEM_INOUTPUT = eINSTANCE.getSubsystemInoutput();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInputImpl <em>Subsystem Input</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5751,6 +5918,46 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass WHILE_LOOP_CONDITION = eINSTANCE.getWhileLoopCondition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.MemoryImpl <em>Memory</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.MemoryImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemory()
+		 * @generated
+		 */
+		EClass MEMORY = eINSTANCE.getMemory();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.MemoryInitialConditionImpl <em>Memory Initial Condition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.MemoryInitialConditionImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInitialCondition()
+		 * @generated
+		 */
+		EClass MEMORY_INITIAL_CONDITION = eINSTANCE.getMemoryInitialCondition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.MemoryInputImpl <em>Memory Input</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.MemoryInputImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInput()
+		 * @generated
+		 */
+		EClass MEMORY_INPUT = eINSTANCE.getMemoryInput();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.MemoryOutputImpl <em>Memory Output</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.MemoryOutputImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryOutput()
+		 * @generated
+		 */
+		EClass MEMORY_OUTPUT = eINSTANCE.getMemoryOutput();
 
 	}
 

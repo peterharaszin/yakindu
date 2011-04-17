@@ -54,6 +54,10 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
+import org.eclipselabs.damos.dml.MemoryInitialCondition;
+import org.eclipselabs.damos.dml.MemoryInput;
+import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
@@ -72,7 +76,6 @@ import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
-import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -338,10 +341,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createOutportAdapter();
 			}
 			@Override
-			public Adapter caseSubsystemInoutput(SubsystemInoutput object) {
-				return createSubsystemInoutputAdapter();
-			}
-			@Override
 			public Adapter caseSubsystemInput(SubsystemInput object) {
 				return createSubsystemInputAdapter();
 			}
@@ -416,6 +415,22 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseWhileLoopCondition(WhileLoopCondition object) {
 				return createWhileLoopConditionAdapter();
+			}
+			@Override
+			public Adapter caseMemory(Memory object) {
+				return createMemoryAdapter();
+			}
+			@Override
+			public Adapter caseMemoryInitialCondition(MemoryInitialCondition object) {
+				return createMemoryInitialConditionAdapter();
+			}
+			@Override
+			public Adapter caseMemoryInput(MemoryInput object) {
+				return createMemoryInputAdapter();
+			}
+			@Override
+			public Adapter caseMemoryOutput(MemoryOutput object) {
+				return createMemoryOutputAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -1124,20 +1139,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.SubsystemInoutput <em>Subsystem Inoutput</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.SubsystemInoutput
-	 * @generated
-	 */
-	public Adapter createSubsystemInoutputAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.SubsystemInput <em>Subsystem Input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1414,6 +1415,62 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createWhileLoopConditionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Memory <em>Memory</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.Memory
+	 * @generated
+	 */
+	public Adapter createMemoryAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.MemoryInitialCondition <em>Memory Initial Condition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.MemoryInitialCondition
+	 * @generated
+	 */
+	public Adapter createMemoryInitialConditionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.MemoryInput <em>Memory Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.MemoryInput
+	 * @generated
+	 */
+	public Adapter createMemoryInputAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.MemoryOutput <em>Memory Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.MemoryOutput
+	 * @generated
+	 */
+	public Adapter createMemoryOutputAdapter() {
 		return null;
 	}
 

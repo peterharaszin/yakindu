@@ -43,6 +43,12 @@
                name="While Loop">
          </metamodelType>
          <metamodelType
+               eclass="Memory"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.MemoryEditHelper"
+               id="org.eclipselabs.damos.diagram.memory"
+               name="Memory">
+         </metamodelType>
+         <metamodelType
                eclass="Connector"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ConnectorEditHelper"
                id="org.eclipselabs.damos.diagram.connector"

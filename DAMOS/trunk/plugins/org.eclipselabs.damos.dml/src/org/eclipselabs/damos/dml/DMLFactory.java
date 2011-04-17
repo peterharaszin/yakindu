@@ -269,15 +269,6 @@ public interface DMLFactory extends EFactory {
 	Outport createOutport();
 
 	/**
-	 * Returns a new object of class '<em>Subsystem Inoutput</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Subsystem Inoutput</em>'.
-	 * @generated
-	 */
-	SubsystemInoutput createSubsystemInoutput();
-
-	/**
 	 * Returns a new object of class '<em>Subsystem Input</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -402,6 +393,42 @@ public interface DMLFactory extends EFactory {
 	 * @generated
 	 */
 	WhileLoopCondition createWhileLoopCondition();
+
+	/**
+	 * Returns a new object of class '<em>Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Memory</em>'.
+	 * @generated
+	 */
+	Memory createMemory();
+
+	/**
+	 * Returns a new object of class '<em>Memory Initial Condition</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Memory Initial Condition</em>'.
+	 * @generated
+	 */
+	MemoryInitialCondition createMemoryInitialCondition();
+
+	/**
+	 * Returns a new object of class '<em>Memory Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Memory Input</em>'.
+	 * @generated
+	 */
+	MemoryInput createMemoryInput();
+
+	/**
+	 * Returns a new object of class '<em>Memory Output</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Memory Output</em>'.
+	 * @generated
+	 */
+	MemoryOutput createMemoryOutput();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -215,7 +215,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Inoutport/dataType"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Outport"/>
-    <genClasses ecoreClass="DML.ecore#//SubsystemInoutput"/>
     <genClasses ecoreClass="DML.ecore#//SubsystemInput">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SubsystemInput/inlet"/>
     </genClasses>
@@ -265,5 +264,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//WhileLoop/condition"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//WhileLoopCondition"/>
+    <genClasses ecoreClass="DML.ecore#//Memory"/>
+    <genClasses ecoreClass="DML.ecore#//MemoryInitialCondition"/>
+    <genClasses ecoreClass="DML.ecore#//MemoryInput"/>
+    <genClasses ecoreClass="DML.ecore#//MemoryOutput"/>
   </genPackages>
 </genmodel:GenModel>

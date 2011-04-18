@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
 import org.eclipselabs.damos.simulation.engine.IChartData;
 import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
+import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
@@ -53,6 +54,8 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 		double y = 0;
 		if (value instanceof ISimpleNumericValue) {
 			y = ((ISimpleNumericValue) value).doubleValue();
+		} else if (value instanceof IBooleanValue) {
+			y = ((IBooleanValue) value).booleanValue() ? 1.0 : 0.0;
 		}
 		xValues[0][j] = j * sampleTime;
 		yValues[portIndex][j] = y;

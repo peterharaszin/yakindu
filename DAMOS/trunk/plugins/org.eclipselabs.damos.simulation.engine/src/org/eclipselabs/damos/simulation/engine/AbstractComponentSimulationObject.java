@@ -31,6 +31,8 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	
 	private ComputationModel cachedComputationModel;
 	
+	private Object integratorData;
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getInfo()
 	 */
@@ -59,6 +61,33 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	}
 	
 	public void update() throws CoreException {
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getStateVector()
+	 */
+	public double[] getStateVector() throws CoreException {
+		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#computeDerivatives(double, double[])
+	 */
+	public void computeDerivatives(double t, double[] yDot) throws CoreException {
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getIntegratorData()
+	 */
+	public Object getIntegratorData() {
+		return integratorData;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#setIntegratorData(java.lang.Object)
+	 */
+	public void setIntegratorData(Object data) {
+		this.integratorData = data;
 	}
 	
 	protected Component getComponent() {

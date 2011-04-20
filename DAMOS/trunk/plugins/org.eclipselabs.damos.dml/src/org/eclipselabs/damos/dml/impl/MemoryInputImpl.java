@@ -38,5 +38,13 @@ public class MemoryInputImpl extends InputImpl implements MemoryInput {
 	protected EClass eStaticClass() {
 		return DMLPackage.Literals.MEMORY_INPUT;
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InputImpl#isDirectFeedthrough()
+	 */
+	@Override
+	public boolean isDirectFeedthrough() {
+		return false;
+	}
 
 } //MemoryInputImpl

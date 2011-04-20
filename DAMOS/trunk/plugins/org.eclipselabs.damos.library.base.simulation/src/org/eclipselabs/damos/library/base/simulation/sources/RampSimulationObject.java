@@ -49,6 +49,8 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	
 	private int n;
 	
+	private IValue outputValue;
+	
 	@Override
 	public void initialize() throws CoreException {
 		defaultComputationContext = new ComputationContext();
@@ -68,12 +70,17 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+		return outputValue;
+	}
+	
+	@Override
+	public void computeOutputValues() throws CoreException {
 		ISimpleNumericValue time = valueConstructor.construct(defaultComputationContext, timeDataType, n * sampleTime);
 		IValue value = initialValue;
 		if (time.doubleValue() > startTime.doubleValue()) {
 			value = value.add(slope.multiply(time.subtract(startTime)));
 		}
-		return valueTransformer.transform(outputComputationContext, value);
+		outputValue = valueTransformer.transform(outputComputationContext, value);
 	}
 	
 	@Override

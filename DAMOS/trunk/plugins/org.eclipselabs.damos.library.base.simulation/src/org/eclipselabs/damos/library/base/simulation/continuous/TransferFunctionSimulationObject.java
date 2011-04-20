@@ -42,6 +42,8 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	private Matrix stateVector;
 	private Matrix inputVector;
 	private Matrix outputMatrix;
+	
+	private IValue outputValue;
 		
 	@Override
 	public void initialize() throws CoreException {
@@ -103,7 +105,12 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
-		return valueConstructor.construct(outputComputationContext, outputDataType, outputMatrix.times(stateVector).get(0, 0));
+		return outputValue;
+	}
+	
+	@Override
+	public void computeOutputValues() throws CoreException {
+		outputValue = valueConstructor.construct(outputComputationContext, outputDataType, outputMatrix.times(stateVector).get(0, 0));
 	}
 
 	@Override

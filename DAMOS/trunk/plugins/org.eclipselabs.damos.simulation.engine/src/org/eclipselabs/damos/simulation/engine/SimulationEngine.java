@@ -14,12 +14,12 @@ package org.eclipselabs.damos.simulation.engine;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Join;
-import org.eclipselabs.damos.dml.util.DMLSwitch;
+import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
@@ -60,17 +60,26 @@ public class SimulationEngine implements ISimulationEngine {
 
 			monitor.fireSimulationEvent(new SimulationEvent(this, context, SimulationEvent.STEP));
 
-			computeOutputValues(graph, monitor);
-			
-			if (monitor.isCanceled()) {
-				break;
-			}
-
-			update(graph, monitor);
+			runStep(graph, monitor);
 		}
 		
 		int eventKind = monitor.isCanceled() ? SimulationEvent.CANCEL : SimulationEvent.FINISH;
 		monitor.fireSimulationEvent(new SimulationEvent(this, context, eventKind));
+	}
+
+	/**
+	 * @param graph
+	 * @param monitor
+	 * @throws CoreException
+	 */
+	private void runStep(Graph graph, ISimulationMonitor monitor) throws CoreException {
+		computeOutputValues(graph, monitor);
+		
+		if (monitor.isCanceled()) {
+			return;
+		}
+
+		update(graph, monitor);
 	}
 
 	/**
@@ -103,7 +112,6 @@ public class SimulationEngine implements ISimulationEngine {
 	 * @throws CoreException
 	 */
 	private void computeOutputValues(Graph graph, ISimulationMonitor monitor) throws CoreException {
-		CompoundComputeOutputValuesSwitch compoundComputeOutputValuesSwitch = null;
 		for (Node node : graph.getNodes()) {
 			if (monitor.isCanceled()) {
 				break;
@@ -111,10 +119,15 @@ public class SimulationEngine implements ISimulationEngine {
 			
 			if (node instanceof CompoundNode) {
 				CompoundNode compoundNode = (CompoundNode) node;
-				if (compoundComputeOutputValuesSwitch == null) {
-					compoundComputeOutputValuesSwitch = new CompoundComputeOutputValuesSwitch();
+				if (isCompoundRunnable(compoundNode)) {
+					if (compoundNode.getCompound() instanceof WhileLoop) {
+						runWhileLoop(compoundNode, monitor);
+					} else if (compoundNode.getCompound() instanceof Action) {
+						runStep(compoundNode, monitor);
+					} else {
+						throw new IllegalArgumentException();
+					}
 				}
-				compoundComputeOutputValuesSwitch.run(compoundNode, monitor);
 			} else if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				if (componentNode.getComponent() instanceof Join) {
@@ -126,6 +139,39 @@ public class SimulationEngine implements ISimulationEngine {
 				throw new IllegalArgumentException();
 			}
 		}
+	}
+
+	/**
+	 * @param node
+	 * @param monitor
+	 * @throws CoreException
+	 */
+	private void runWhileLoop(CompoundNode compoundNode, ISimulationMonitor monitor) throws CoreException {
+		boolean condition;
+		do {
+			if (monitor.isCanceled()) {
+				break;
+			}
+			
+			runStep(compoundNode, monitor);
+			
+			condition = false;
+
+			EList<DataFlowTargetEnd> incomingDataFlows = compoundNode.getIncomingDataFlows();
+			if (!incomingDataFlows.isEmpty()) {
+				DataFlowTargetEnd targetEnd = incomingDataFlows.get(0);
+				DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+				IComponentSimulationObject componentSimulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
+				if (componentSimulationObject != null && sourceEnd.getConnectorInfo() instanceof PortInfo) {
+					PortInfo portInfo = (PortInfo) sourceEnd.getConnectorInfo();
+					IValue value = componentSimulationObject.getOutputValue(portInfo.getInoutputIndex(), portInfo.getPortIndex());
+					if (value instanceof IBooleanValue) {
+						IBooleanValue booleanValue = (IBooleanValue) value;
+						condition = booleanValue.booleanValue();
+					}
+				}
+			}
+		} while (condition);
 	}
 
 	/**
@@ -189,7 +235,7 @@ public class SimulationEngine implements ISimulationEngine {
 				continue;
 			}
 			if (sourceEnd.getNode() instanceof ComponentNode) {
-				if (isComponentRun((ComponentNode) sourceEnd.getNode())) {
+				if (isComponentRunnable((ComponentNode) sourceEnd.getNode())) {
 					return sourceEnd;
 				}
 			} else {
@@ -220,30 +266,21 @@ public class SimulationEngine implements ISimulationEngine {
 	 * @throws CoreException
 	 */
 	private void update(Graph graph, ISimulationMonitor monitor) throws CoreException {
-		CompoundUpdateSwitch compoundUpdateSwitch = null;
 		for (Node node : graph.getNodes()) {
 			if (monitor.isCanceled()) {
 				break;
 			}
 			
-			if (node instanceof CompoundNode) {
-				CompoundNode compoundNode = (CompoundNode) node;
-				if (compoundUpdateSwitch == null) {
-					compoundUpdateSwitch = new CompoundUpdateSwitch();
-				}
-				compoundUpdateSwitch.run(compoundNode, monitor);
-			} else if (node instanceof ComponentNode) {
+			if (node instanceof ComponentNode) {
 				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 				if (simulationObject != null) {
 					simulationObject.update();
 				}
-			} else {
-				throw new IllegalArgumentException();
 			}
 		}
 	}
 	
-	private boolean isCompoundRun(CompoundNode compoundNode) throws CoreException {
+	private boolean isCompoundRunnable(CompoundNode compoundNode) throws CoreException {
 		if (compoundNode instanceof ActionNode) {
 			ActionNode actionNode = (ActionNode) compoundNode;
 			if (actionNode.getChoiceNode() == null) {
@@ -272,11 +309,11 @@ public class SimulationEngine implements ISimulationEngine {
 		return false;
 	}
 	
-	private boolean isComponentRun(ComponentNode componentNode) throws CoreException {
+	private boolean isComponentRunnable(ComponentNode componentNode) throws CoreException {
 		Graph graph = componentNode.getGraph();
 		while (graph instanceof Subgraph) {
 			Subgraph subgraph = (Subgraph) graph;
-			if (graph instanceof CompoundNode && !isCompoundRun((CompoundNode) graph)) {
+			if (graph instanceof CompoundNode && !isCompoundRunnable((CompoundNode) graph)) {
 				return false;
 			}
 			graph = subgraph.getGraph();
@@ -284,67 +321,4 @@ public class SimulationEngine implements ISimulationEngine {
 		return true;
 	}
 
-	private class CompoundComputeOutputValuesSwitch extends CompoundSwitch {
-
-		@Override
-		protected void runAction() throws CoreException {
-			computeOutputValues(getNode(), getMonitor());
-		}
-		
-	}
-	
-	private class CompoundUpdateSwitch extends CompoundSwitch {
-
-		@Override
-		protected void runAction() throws CoreException {
-			update(getNode(), getMonitor());
-		}
-		
-	}
-
-	private abstract class CompoundSwitch extends DMLSwitch<Boolean> {
-		
-		private CompoundNode node;
-		private ISimulationMonitor monitor;
-		
-		public void run(CompoundNode node, ISimulationMonitor monitor) throws CoreException {
-			this.node = node;
-			this.monitor = monitor;
-			try {
-				doSwitch(node.getCompound());
-			} catch (WrappedException e) {
-				if (e.getCause() instanceof CoreException) {
-					throw (CoreException) e.getCause();
-				}
-				throw e;
-			}
-		}
-		
-		protected CompoundNode getNode() {
-			return node;
-		}
-		
-		/**
-		 * @return the monitor
-		 */
-		public ISimulationMonitor getMonitor() {
-			return monitor;
-		}
-		
-		@Override
-		public Boolean caseAction(Action action) {
-			try {
-				if (isCompoundRun(node)) {
-					runAction();
-				}
-			} catch (CoreException e) {
-				throw new WrappedException(e);
-			}
-			return true;
-		}
-		
-		protected abstract void runAction() throws CoreException;
-
-	}
-	
 }

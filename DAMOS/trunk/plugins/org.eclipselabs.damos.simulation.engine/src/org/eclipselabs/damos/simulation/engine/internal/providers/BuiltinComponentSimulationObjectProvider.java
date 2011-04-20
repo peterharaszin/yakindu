@@ -13,15 +13,17 @@ package org.eclipselabs.damos.simulation.engine.internal.providers;
 
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
+import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.simulation.engine.IComponentSimulationObject;
 import org.eclipselabs.damos.simulation.engine.IComponentSimulationObjectProvider;
 import org.eclipselabs.damos.simulation.engine.internal.simulationobjects.InoutportSimulationObject;
+import org.eclipselabs.damos.simulation.engine.internal.simulationobjects.MemorySimulationObject;
 
 /**
  * @author Andreas Unger
  *
  */
-public class InoutportSimulationObjectProvider implements IComponentSimulationObjectProvider {
+public class BuiltinComponentSimulationObjectProvider implements IComponentSimulationObjectProvider {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObjectProvider#createSimulationObject(org.eclipselabs.damos.dml.Component)
@@ -29,6 +31,9 @@ public class InoutportSimulationObjectProvider implements IComponentSimulationOb
 	public IComponentSimulationObject createSimulationObject(Component component) {
 		if (component instanceof Inoutport) {
 			return new InoutportSimulationObject();
+		}
+		if (component instanceof Memory) {
+			return new MemorySimulationObject();
 		}
 		return null;
 	}

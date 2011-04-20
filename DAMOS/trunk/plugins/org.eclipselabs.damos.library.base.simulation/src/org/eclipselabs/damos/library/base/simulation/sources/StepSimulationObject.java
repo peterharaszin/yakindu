@@ -34,6 +34,8 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	private double sampleTime;
 	
 	private int n;
+	
+	private IValue outputValue;
 
 	@Override
 	public void initialize() throws CoreException {
@@ -54,7 +56,15 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
-		return n * sampleTime <= stepTime.doubleValue() ? initialValue : finalValue;
+		return outputValue;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues()
+	 */
+	@Override
+	public void computeOutputValues() throws CoreException {
+		outputValue = n * sampleTime <= stepTime.doubleValue() ? initialValue : finalValue;
 	}
 	
 	@Override

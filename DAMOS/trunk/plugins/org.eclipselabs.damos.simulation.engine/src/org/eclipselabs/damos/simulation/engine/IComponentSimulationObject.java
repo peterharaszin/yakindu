@@ -36,5 +36,13 @@ public interface IComponentSimulationObject {
 	void computeOutputValues() throws CoreException;
 	
 	void update() throws CoreException;
+	
+	double[] getStateVector() throws CoreException;
+	
+	void computeDerivatives(double t, double[] yDot) throws CoreException;
+	
+	Object getIntegratorData();
+
+	void setIntegratorData(Object data);
 
 }

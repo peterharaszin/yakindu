@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.library.base.simulation.sinks;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
@@ -30,7 +31,7 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 
 	private double sampleTime;
 	private int n;
-	private int[] positions;
+	private int j;
 	
 	private double[][] xValues;
 	private double[][] yValues;
@@ -42,7 +43,7 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 		title = getComponent().getName();
 		sampleTime = getExecutionModel().getSampleTime();
 		n = (int) SimulationUtil.getStepCount(getSimulationModel());
-		positions = new int[portCount];
+		j = 0;
 
 		xValues = new double[1][n];
 		yValues = new double[portCount][n];
@@ -50,7 +51,6 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 	
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {
-		int j = positions[portIndex];
 		double y = 0;
 		if (value instanceof ISimpleNumericValue) {
 			y = ((ISimpleNumericValue) value).doubleValue();
@@ -59,7 +59,11 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 		}
 		xValues[0][j] = j * sampleTime;
 		yValues[portIndex][j] = y;
-		positions[portIndex] += 1;
+	}
+	
+	@Override
+	public void update() throws CoreException {
+		++j;
 	}
 	
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {

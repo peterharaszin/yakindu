@@ -15,6 +15,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 
@@ -26,7 +27,14 @@ public class ConnectionFigure extends PolylineConnectionEx implements IFigureCon
 	private static final double DECORATION_SCALE_Y = 78;
 	
 	public ConnectionFigure() {
-		PolygonDecoration decoration = new PolygonDecoration();
+		PolygonDecoration decoration = new PolygonDecoration() {
+			
+			@Override
+			public Rectangle getBounds() {
+				return super.getBounds().getExpanded(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH);
+			}
+			
+		};
 		decoration.setScale(DECORATION_SCALE_X, DECORATION_SCALE_Y);
 		setTargetDecoration(decoration);
 		setLineWidth(DEFAULT_LINE_WIDTH);

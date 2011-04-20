@@ -13,7 +13,7 @@
             class="org.eclipselabs.damos.simulation.engine.internal.providers.BehavioredBlockSimulationObjectProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.simulation.engine.internal.providers.InoutportSimulationObjectProvider">
+            class="org.eclipselabs.damos.simulation.engine.internal.providers.BuiltinComponentSimulationObjectProvider">
       </provider>
    </extension>
 

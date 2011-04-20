@@ -51,6 +51,7 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	private int n;
 	
 	private IValue value;
+	private IValue outputValue;
 	
 	@Override
 	public void initialize() throws CoreException {
@@ -70,11 +71,18 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 		n = 0;
 		updateValue();
 	}
-		
+
+	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
-		return value;
+		return outputValue;
 	}
 	
+	@Override
+	public void computeOutputValues() throws CoreException {
+		outputValue = value;
+	}
+	
+	@Override
 	public void update() throws CoreException {
 		++n;
 		updateValue();

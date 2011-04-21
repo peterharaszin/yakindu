@@ -12,6 +12,8 @@
 package org.eclipselabs.damos.diagram.ui.internal.figures;
 
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 import org.eclipselabs.damos.diagram.ui.figures.StandardComponentFigure;
@@ -62,6 +64,25 @@ public class ChoiceFigure extends StandardComponentFigure {
 		cc.setLineWidth(IFigureConstants.DEFAULT_LINE_WIDTH);
 		cc.fillPolygon(points);
 		cc.drawPolygon(points);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#getPolygonPoints()
+	 */
+	@Override
+	public PointList getPolygonPoints() {
+		Rectangle bounds = getBounds();
+		PointList pointList = new PointList(9);
+		pointList.addPoint(bounds.x + CORNER_SIZE, bounds.y);
+		pointList.addPoint(bounds.right() - CORNER_SIZE, bounds.y);
+		pointList.addPoint(bounds.right(), bounds.y + CORNER_SIZE);
+		pointList.addPoint(bounds.right(), bounds.bottom() - CORNER_SIZE);
+		pointList.addPoint(bounds.right() - CORNER_SIZE, bounds.bottom());
+		pointList.addPoint(bounds.x + CORNER_SIZE, bounds.bottom());
+		pointList.addPoint(bounds.x, bounds.bottom() - CORNER_SIZE);
+		pointList.addPoint(bounds.x, bounds.y + CORNER_SIZE);
+		pointList.addPoint(pointList.getFirstPoint());
+		return pointList;
 	}
 	
 }

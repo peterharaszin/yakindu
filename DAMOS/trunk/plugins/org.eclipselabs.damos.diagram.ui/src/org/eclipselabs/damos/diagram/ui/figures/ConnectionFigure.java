@@ -23,15 +23,15 @@ public class ConnectionFigure extends PolylineConnectionEx implements IFigureCon
 	
 	private static final int JUNCTION_RADIUS = 80;
 	
-	private static final double DECORATION_SCALE_X = 182;
-	private static final double DECORATION_SCALE_Y = 78;
+	private static final double DECORATION_SCALE_X = 7 * DEFAULT_LINE_WIDTH;
+	private static final double DECORATION_SCALE_Y = 3 * DEFAULT_LINE_WIDTH;
 	
 	public ConnectionFigure() {
 		PolygonDecoration decoration = new PolygonDecoration() {
 			
 			@Override
 			public Rectangle getBounds() {
-				return super.getBounds().getExpanded(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH);
+				return super.getBounds().getExpanded(DEFAULT_LINE_WIDTH, DEFAULT_LINE_WIDTH);
 			}
 			
 		};

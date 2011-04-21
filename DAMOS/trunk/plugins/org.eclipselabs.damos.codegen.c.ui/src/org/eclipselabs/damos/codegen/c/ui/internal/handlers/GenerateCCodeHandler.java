@@ -7,16 +7,18 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.Generator;
 
 public class GenerateCCodeHandler extends AbstractHandler {
+
+	private static final String ERROR_MESSAGE = "C Code Generation failed";
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final GenModel cGenModel = getGenModel(event);
@@ -34,13 +36,20 @@ public class GenerateCCodeHandler extends AbstractHandler {
 					try {
 						generator.generate(cGenModel, monitor);
 					} catch (CoreException e) {
-						StatusManager.getManager().handle(e.getStatus(), StatusManager.SHOW);
+						throw new InvocationTargetException(e);
 					}
 				}
 				
 			});
-		} catch (Exception e) {
-			throw new ExecutionException("Generation failed", e);
+		} catch (InvocationTargetException e) {
+			if (e.getTargetException() instanceof CoreException) {
+				CoreException targetException = (CoreException) e.getTargetException();
+				ErrorDialog.openError(HandlerUtil.getActiveShell(event), "C Code Generation", ERROR_MESSAGE, targetException.getStatus());
+			} else {
+				throw new ExecutionException(ERROR_MESSAGE, e);
+			}
+		} catch (InterruptedException e) {
+			throw new ExecutionException(ERROR_MESSAGE, e);
 		}
 		return null;
 	}

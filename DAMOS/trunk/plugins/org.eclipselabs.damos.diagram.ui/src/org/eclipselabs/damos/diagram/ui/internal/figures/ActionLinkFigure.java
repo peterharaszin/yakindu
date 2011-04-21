@@ -12,15 +12,26 @@
 package org.eclipselabs.damos.diagram.ui.internal.figures;
 
 import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.swt.SWT;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 
 public class ActionLinkFigure extends PolylineConnectionEx implements IFigureConstants {
 	
+	private static final double DECORATION_SCALE_X = 10 * DEFAULT_LINE_WIDTH;
+	private static final double DECORATION_SCALE_Y = 5 * DEFAULT_LINE_WIDTH;
+
 	public ActionLinkFigure() {
-		PolylineDecoration decoration = new PolylineDecoration();
-		decoration.setScale(182, 78);
+		PolylineDecoration decoration = new PolylineDecoration() {
+			
+			@Override
+			public Rectangle getBounds() {
+				return super.getBounds().getExpanded(DEFAULT_LINE_WIDTH, DEFAULT_LINE_WIDTH);
+			}
+			
+		};
+		decoration.setScale(DECORATION_SCALE_X, DECORATION_SCALE_Y);
 		setTargetDecoration(decoration);
 		setLineWidth(DEFAULT_LINE_WIDTH);
 		setLineStyle(SWT.LINE_DASH);

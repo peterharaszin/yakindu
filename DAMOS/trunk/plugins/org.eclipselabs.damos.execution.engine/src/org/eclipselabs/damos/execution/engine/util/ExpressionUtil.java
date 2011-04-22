@@ -86,20 +86,14 @@ public class ExpressionUtil {
 		throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, NameUtil.formatName(parameterName) + " must be boolean"));
 	}
 
-	public static IValue evaluateExpression(String expression) throws CoreException {
-		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
-		IParseResult result = parser.parse(
-				parser.getGrammarAccess().getExpressionRule().getName(),
-				new StringReader(expression));
-		if (!result.getParseErrors().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Syntax error"));
-		}
-		
+	public static IValue evaluateExpression(String expressionString) throws CoreException {
+		Expression expression = parseExpression(expressionString);
+
 		ITransformerContext transformerContext = new TransformerContext();
 		IInterpreterContext interpreterContext = new InterpreterContext(new ComputationContext());
 
 		ExpressionInterpreterHelper expressionInterpreterHelper = new ExpressionInterpreterHelper(transformerContext,
-				interpreterContext, (Expression) result.getRootASTElement());
+				interpreterContext, expression);
 		IValue value = expressionInterpreterHelper.evaluateSingle();
 		
 		return value;
@@ -127,6 +121,24 @@ public class ExpressionUtil {
 		}
 		
 		return values;
+	}
+
+	/**
+	 * @param expressionString
+	 * @return
+	 * @throws CoreException
+	 */
+	public static Expression parseExpression(String expressionString) throws CoreException {
+		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
+		IParseResult result = parser.parse(
+				parser.getGrammarAccess().getExpressionRule().getName(),
+				new StringReader(expressionString));
+		if (!result.getParseErrors().isEmpty()) {
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Syntax error"));
+		}
+		
+		Expression expression = (Expression) result.getRootASTElement();
+		return expression;
 	}
 	
 }

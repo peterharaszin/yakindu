@@ -16,6 +16,11 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -26,24 +31,45 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.generator.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
-import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.Action;
+import org.eclipselabs.damos.dml.ActionLink;
+import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.InputConnector;
+import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.WhileLoop;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
+import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
+import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.CompoundNode;
+import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
+import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowConstructor;
+import org.eclipselabs.mscript.codegen.c.ExpressionGenerator;
+import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
+import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.mscript.language.ast.Expression;
+import org.eclipselabs.mscript.language.il.VariableAccess;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -55,9 +81,12 @@ public class Generator {
 	public void generate(final GenModel genModel, final IProgressMonitor monitor) throws CoreException {
 		final ExecutionFlow executionFlow = constructExecutionFlow(genModel, monitor);
 		
-		for (Node node : executionFlow.getGraph().getNodes()) {
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
-			generator.initialize();
+		for (Node node : getAllNodes(executionFlow.getGraph())) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+				generator.initialize();
+			}
 		}
 		
 		IPath headerPath = new Path(genModel.getHeaderDirectory());
@@ -119,7 +148,7 @@ public class Generator {
 			if (!(componentNode.getComponent() instanceof Inport)) {
 				continue;
 			}
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
+			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
@@ -138,7 +167,7 @@ public class Generator {
 			if (!(componentNode.getComponent() instanceof Outport)) {
 				continue;
 			}
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
+			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			IComponentSignature signature = generator.getSignature();
 			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
@@ -167,25 +196,26 @@ public class Generator {
 		writer.println();
 		
 		boolean hasContext = hasContext(executionFlow);
+		Graph graph = executionFlow.getGraph();
 		if (hasContext) {
-			for (Node node : executionFlow.getGraph().getNodes()) {
+			for (Node node : getAllNodes(graph)) {
 				if (!(node instanceof ComponentNode)) {
 					continue;
 				}
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 				if (generator.contributesContextCode()) {
 					String typeName = InternalGeneratorUtil.getPrefix(genModel, node) + componentNode.getComponent().getName() + "_Context";
 					generator.generateContextCode(writer, typeName, monitor);
 				}
 			}
 			writer.println("typedef struct {");
-			for (Node node : executionFlow.getGraph().getNodes()) {
+			for (Node node : getAllNodes(graph)) {
 				if (!(node instanceof ComponentNode)) {
 					continue;
 				}
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 				if (generator.contributesContextCode()) {
 					writer.printf("%s%s_Context %s;\n", InternalGeneratorUtil.getPrefix(genModel, node), componentNode.getComponent().getName(), InternalGeneratorUtil.getPrefix(genModel, node) + componentNode.getComponent().getName());
 				}
@@ -195,12 +225,12 @@ public class Generator {
 		}
 		
 		writer.printf("void %sinitialize(void) {\n", prefix);
-		for (Node node : executionFlow.getGraph().getNodes()) {
+		for (Node node : getAllNodes(graph)) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
 			}
 			ComponentNode componentNode = (ComponentNode) node;
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
+			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			if (generator.contributesInitializationCode()) {
 				writer.printf("/* %s */\n", componentNode.getComponent().getName());
 				writer.println("{");
@@ -212,64 +242,288 @@ public class Generator {
 
 		writer.printf("void %sexecute(const %sInput *input, %sOutput *output) {\n", prefix, prefix, prefix);
 		
-		for (Node node : executionFlow.getGraph().getNodes()) {
+		for (Node node : getAllNodes(graph)) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
 			}
 			ComponentNode componentNode = (ComponentNode) node;
-			if (!(componentNode.getComponent() instanceof Block)) {
+			Component component = componentNode.getComponent();
+			
+			if (component instanceof Inoutport) {
 				continue;
 			}
-			Block block = (Block) componentNode.getComponent();
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
-			for (Output output : block.getOutputs()) {
-				BlockOutput blockOutput = (BlockOutput) output;
-				int i = blockOutput.getDefinition().isManyPorts() ? 0 : -1;
+			
+			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+			for (Output output : component.getOutputs()) {
 				for (OutputPort outputPort : output.getPorts()) {
-					String suffix = i >= 0 ? Integer.toString(i++) : "";
 					String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, componentNode), generator.getSignature().getOutputDataType(outputPort));
-					writer.printf("%s %s%s_%s%s;\n", cDataType, InternalGeneratorUtil.getPrefix(genModel, node), block.getName(), blockOutput.getDefinition().getName(), suffix);
+					writer.printf("%s %s;\n", cDataType, getOutputVariableName(genModel, componentNode, outputPort));
 				}
 			}
 		}
 		writer.println();
 
-		writer.print("/*\n * Compute outputs\n */\n\n");
-		for (Node node : executionFlow.getGraph().getNodes()) {
-			if (!(node instanceof ComponentNode)) {
-				continue;
-			}
-			ComponentNode componentNode = (ComponentNode) node;
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
-			if (generator.contributesComputeOutputsCode()) {
-				writer.printf("/* %s */\n", componentNode.getComponent().getName());
-				writer.println("{");
-				generator.generateComputeOutputsCode(writer, new VariableAccessor(genModel, componentNode), monitor);
-				writer.println("}\n");
-			}
-		}
-		writer.print("\n/*\n * Update states\n */\n\n");
-		for (Node node : executionFlow.getGraph().getNodes()) {
-			if (!(node instanceof ComponentNode)) {
-				continue;
-			}
-			ComponentNode componentNode = (ComponentNode) node;
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
-			if (generator.contributesUpdateCode()) {
-				writer.printf("/* %s */\n", componentNode.getComponent().getName());
-				writer.println("{");
-				generator.generateUpdateCode(writer, new VariableAccessor(genModel, componentNode), monitor);
-				writer.println("}\n");
-			}
-		}
+		generateGraph(genModel, graph, writer, monitor);
+		
 		writer.println("}");
 	}
+
+	/**
+	 * @param genModel
+	 * @param graph
+	 * @param writer
+	 * @param monitor
+	 * @throws CoreException
+	 */
+	private void generateGraph(GenModel genModel, Graph graph, PrintWriter writer, IProgressMonitor monitor)
+			throws CoreException {
+		boolean hasChoices = false;
+		for (Node node : getAllNodes(graph)) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				Component component = componentNode.getComponent();
+				
+				if (component instanceof Choice) {
+					writer.printf("uint_fast8_t %s;\n", getChoiceVariableName(genModel, componentNode));
+					hasChoices = true;
+				}
+			}
+		}
+		
+		if (hasChoices) {
+			writer.println();
+		}
+
+		writer.print("/*\n * Compute outputs\n */\n\n");
+		for (Node node : graph.getNodes()) {
+			if (node instanceof CompoundNode) {
+				generateCompoundCode(genModel, (CompoundNode) node, writer, monitor);
+				writer.println();
+				continue;
+			} else if (!(node instanceof ComponentNode)) {
+				continue;
+			}
+			ComponentNode componentNode = (ComponentNode) node;
+			Component component = componentNode.getComponent();
+			
+			if (component instanceof Choice) {
+				writer.printf("/* %s */\n", componentNode.getComponent().getName());
+
+				Choice choice = (Choice) component;
+				
+				String incomingVariableName = getIncomingVariableName(genModel, componentNode, choice.getFirstInputPort());
+				String choiceResult = getChoiceVariableName(genModel, componentNode);
+				
+				int i = 0;
+				for (ActionLink actionLink : choice.getActionLinks()) {
+					if (actionLink.getCondition() != null) {
+						String condition = actionLink.getCondition().stringCondition();
+						if (i > 0) {
+							writer.print("} else ");
+						}
+						writer.printf("if (%s == (", incomingVariableName);
+						Expression conditionExpression = ExpressionUtil.parseExpression(condition);
+						ComputationModel computationModel = getComputationModel(genModel, componentNode);
+						new ExpressionGenerator().generate(new MscriptGeneratorContext(computationModel, writer), new IVariableAccessStrategy() {
+
+							public String getVariableAccessString(VariableAccess variableAccess) {
+								return "";
+							}
+							
+						}, conditionExpression);
+
+						writer.println(")) {");
+						writer.printf("%s = %d;\n", choiceResult, i);
+						++i;
+					}
+				}
+				i = 0;
+				for (ActionLink actionLink : choice.getActionLinks()) {
+					if (actionLink.getCondition() == null) {
+						writer.println("} else {");
+						writer.printf("%s = %d;\n", choiceResult, i);
+					}
+					++i;
+				}
+				writer.println("}\n");
+			} else if (component instanceof Join) {
+				writer.printf("/* %s */\n", componentNode.getComponent().getName());
+				Map<Integer, String> variableNameMap = new TreeMap<Integer, String>();
+				ComponentNode choiceNode = null;
+				for (InputPort inputPort : component.getInputPorts()) {
+					DataFlowTargetEnd targetEnd = componentNode.getIncomingDataFlow(inputPort);
+					DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+					Graph enclosingGraph = sourceEnd.getNode().getGraph();
+					if (enclosingGraph instanceof ActionNode) {
+						ActionNode actionNode = (ActionNode) enclosingGraph;
+						Action action = (Action) actionNode.getCompound();
+						if (actionNode.getChoiceNode() != null) {
+							variableNameMap.put(DMLUtil.indexOf(action.getLink()), getIncomingVariableName(genModel, componentNode, inputPort));
+							choiceNode = actionNode.getChoiceNode();
+						}
+					}
+				}
+				writer.printf("switch (%s) {\n", getChoiceVariableName(genModel, choiceNode));
+				for (Entry<Integer, String> entry : variableNameMap.entrySet()) {
+					writer.printf("case %d:\n", entry.getKey());
+					writer.printf("%s = %s;\n", getOutputVariableName(genModel, componentNode, component.getFirstOutputPort()), entry.getValue());
+					writer.println("break;");
+				}
+				writer.println("}\n");
+			} else if (component instanceof Memory) {
+				writer.printf("/* %s */\n", componentNode.getComponent().getName());
+				writer.println("{");
+				writer.printf("%s = %s;\n", getOutputVariableName(genModel, componentNode, component.getFirstOutputPort()), getMemoryPreviousValueVariableName(genModel, componentNode));
+				writer.println("}\n");
+			} else {
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+				if (generator.contributesComputeOutputsCode()) {
+					writer.printf("/* %s */\n", componentNode.getComponent().getName());
+					writer.println("{");
+					generator.generateComputeOutputsCode(writer, new VariableAccessor(genModel, componentNode), monitor);
+					writer.println("}\n");
+				}
+			}
+		}
+		
+		writer.print("\n/*\n * Update states\n */\n\n");
+		for (Node node : graph.getNodes()) {
+			if (!(node instanceof ComponentNode)) {
+				continue;
+			}
+			ComponentNode componentNode = (ComponentNode) node;
+			Component component = componentNode.getComponent();
+			
+			if (component instanceof Memory) {
+				writer.printf("/* %s */\n", component.getName());
+				writer.println("{");
+				writer.printf("%s = %s;\n", getMemoryPreviousValueVariableName(genModel, componentNode), getIncomingVariableName(genModel, componentNode, component.getInputPorts().get(1)));
+				writer.println("}");
+			} else {
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+				if (generator.contributesUpdateCode()) {
+					writer.printf("/* %s */\n", componentNode.getComponent().getName());
+					writer.println("{");
+					generator.generateUpdateCode(writer, new VariableAccessor(genModel, componentNode), monitor);
+					writer.println("}\n");
+				}
+			}
+		}
+	}
+
+	private String getChoiceVariableName(GenModel genModel, ComponentNode componentNode) {
+		return String.format("%s%s_result", InternalGeneratorUtil.getPrefix(genModel, componentNode), componentNode.getComponent().getName());
+	}
 	
+	/**
+	 * @param genModel
+	 * @param compoundNode
+	 * @param writer
+	 * @param monitor
+	 * @throws CoreException 
+	 */
+	private void generateCompoundCode(GenModel genModel, CompoundNode compoundNode, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+		if (compoundNode instanceof ActionNode) {
+			ActionNode actionNode = (ActionNode) compoundNode;
+			Action action = (Action) actionNode.getCompound();
+			
+			if (actionNode.getChoiceNode() != null) {
+				Choice choice = (Choice) actionNode.getChoiceNode().getComponent();
+				int index = getActionIndex(choice, action);
+				writer.printf("if (%s%s_result == %d) ", InternalGeneratorUtil.getPrefix(genModel, compoundNode), choice.getName(), index);
+			}
+			
+			writer.print("{\n");
+			
+			for (Node node : compoundNode.getNodes()) {
+				if (node instanceof ComponentNode) {
+					ComponentNode componentNode = (ComponentNode) node;
+					if (componentNode.getComponent() instanceof Memory) {
+						Memory memory = (Memory) componentNode.getComponent();
+						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+						String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, componentNode), generator.getSignature().getOutputDataType(memory.getFirstOutputPort()));
+						
+						String initializer = getIncomingVariableName(genModel, componentNode, memory.getFirstInputPort());
+						
+						writer.printf("%s %s = %s;\n", cDataType, getMemoryPreviousValueVariableName(genModel, componentNode), initializer);
+					}
+				}
+			}
+
+			if (action instanceof WhileLoop) {
+				writer.print("do {\n");
+			}
+			
+			generateGraph(genModel, compoundNode, writer, monitor);
+			
+			if (action instanceof WhileLoop) {
+				WhileLoop whileLoop = (WhileLoop) action;
+
+				InputConnector inputConnector = whileLoop.getCondition();
+				String condition = getIncomingVariableName(genModel, actionNode, inputConnector);
+				if (condition == null) {
+					condition = "0";
+				}
+				
+				writer.printf("} while (%s);\n", condition);
+			}
+
+			writer.print("}\n");
+		}
+	}
+	
+	private String getMemoryPreviousValueVariableName(GenModel genModel, ComponentNode componentNode) {
+		return String.format("%s%s_previousValue", InternalGeneratorUtil.getPrefix(genModel, componentNode), componentNode.getComponent().getName());
+	}
+
+	/**
+	 * @param genModel
+	 * @param node
+	 * @param inputConnector
+	 * @return
+	 */
+	private String getIncomingVariableName(GenModel genModel, Node node, InputConnector inputConnector) {
+		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputConnector);
+		if (targetEnd != null) {
+			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+			Node sourceNode = sourceEnd.getNode();
+			if (sourceNode instanceof ComponentNode && sourceEnd.getConnector() instanceof OutputPort) {
+				OutputPort outputPort = (OutputPort) sourceEnd.getConnector();
+				ComponentNode componentNode = (ComponentNode) sourceNode;
+				return new VariableAccessor(genModel, componentNode).getOutputVariable(outputPort, false);
+			}
+		}
+		return null;
+	}
+	
+	private String getOutputVariableName(GenModel genModel, ComponentNode componentNode, OutputPort outputPort) {
+		return String.format("%s%s_%s", InternalGeneratorUtil.getPrefix(genModel, componentNode), componentNode.getComponent().getName(), InternalGeneratorUtil.getOutputPortName(outputPort));
+	}
+
+	/**
+	 * @param choice
+	 * @param action
+	 * @return
+	 */
+	private int getActionIndex(Choice choice, Action action) {
+		int index = 0;
+		for (ActionLink actionLink : choice.getActionLinks()) {
+			if (actionLink.getAction() == action) {
+				break;
+			}
+			++index;
+		}
+		return index;
+	}
+
 	private boolean hasContext(ExecutionFlow executionFlow) {
-		for (Node node : executionFlow.getGraph().getNodes()) {
-			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(node);
-			if (generator.contributesContextCode()) {
-				return true;
+		for (Node node : getAllNodes(executionFlow.getGraph())) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+				if (generator.contributesContextCode()) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -323,6 +577,41 @@ public class Generator {
 		}
 		
 		protected abstract void write(Writer writer) throws CoreException;
+		
+	}
+	
+	private static Iterable<Node> getAllNodes(final Graph graph) {
+		return new Iterable<Node>() {
+			
+			public Iterator<Node> iterator() {
+				return new GraphIterator(graph);
+			}
+			
+		};
+	}
+	
+	private static class GraphIterator extends AbstractTreeIterator<Node> {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public GraphIterator(Graph graph) {
+			super(graph, false);
+		}
+
+		/* (non-Javadoc)
+		 * @see org.eclipse.emf.common.util.AbstractTreeIterator#getChildren(java.lang.Object)
+		 */
+		@Override
+		protected Iterator<? extends Node> getChildren(Object object) {
+			if (object instanceof Graph) {
+				Graph graph = (Graph) object;
+				return graph.getNodes().iterator();
+			}
+			return Collections.<Node>emptyList().iterator();
+		}
 		
 	}
 	

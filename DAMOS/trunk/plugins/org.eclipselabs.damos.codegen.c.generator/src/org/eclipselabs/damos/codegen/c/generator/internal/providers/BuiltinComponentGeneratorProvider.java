@@ -13,10 +13,16 @@ package org.eclipselabs.damos.codegen.c.generator.internal.providers;
 
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGeneratorProvider;
+import org.eclipselabs.damos.codegen.c.generator.internal.generators.ChoiceGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.generators.InportGenerator;
+import org.eclipselabs.damos.codegen.c.generator.internal.generators.JoinGenerator;
+import org.eclipselabs.damos.codegen.c.generator.internal.generators.MemoryGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.generators.OutportGenerator;
+import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.Outport;
 
 /**
@@ -34,6 +40,15 @@ public class BuiltinComponentGeneratorProvider implements IComponentGeneratorPro
 		}
 		if (component instanceof Outport) {
 			return new OutportGenerator();
+		}
+		if (component instanceof Choice) {
+			return new ChoiceGenerator();
+		}
+		if (component instanceof Join) {
+			return new JoinGenerator();
+		}
+		if (component instanceof Memory) {
+			return new MemoryGenerator();
 		}
 		return null;
 	}

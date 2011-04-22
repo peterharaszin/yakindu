@@ -19,6 +19,11 @@ import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdapter;
+import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
@@ -27,7 +32,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
  */
 public class InternalGeneratorUtil {
 
-	public static IComponentGenerator getComponentGenerator(Node node) {
+	public static IComponentGenerator getComponentGenerator(ComponentNode node) {
 		ComponentGeneratorAdapter adapter = (ComponentGeneratorAdapter) EcoreUtil.getAdapter(node.eAdapters(), ComponentGeneratorAdapter.class);
 		return adapter != null ? adapter.getGenerator() : null;
 	}
@@ -79,6 +84,25 @@ public class InternalGeneratorUtil {
 			return s;
 		}
 		return s.substring(0, 1).toUpperCase() + s.substring(1);
+	}
+	
+	public static String getOutputPortName(OutputPort outputPort) {
+		StringBuilder sb = new StringBuilder();
+		Output output = outputPort.getOutput();
+		if (output instanceof BlockOutput) {
+			BlockOutput blockOutput = (BlockOutput) output;
+			sb.append(blockOutput.getDefinition().getName());
+		} else {
+			sb.append("output");
+			if (output.getComponent().getOutputs().size() > 1) {
+				sb.append(DMLUtil.indexOf(output));
+				sb.append("_");
+			}
+		}
+		if (output.getPorts().size() > 1) {
+			sb.append(outputPort.getIndex());
+		}
+		return sb.toString();
 	}
 
 }

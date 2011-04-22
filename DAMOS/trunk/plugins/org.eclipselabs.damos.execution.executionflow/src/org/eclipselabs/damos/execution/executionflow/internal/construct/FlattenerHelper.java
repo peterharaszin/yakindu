@@ -82,7 +82,11 @@ public class FlattenerHelper {
 	}
 	
 	public Collection<Node> getNodes(Graph graph) {
-		return graphNodes.get(graph);
+		Collection<Node> nodes = graphNodes.get(graph);
+		if (nodes == null) {
+			nodes = Collections.emptyList();
+		}
+		return nodes;
 	}
 	
 	public ComponentNode getComponentNode(Graph graph, Component component) {

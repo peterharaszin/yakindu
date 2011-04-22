@@ -14,7 +14,6 @@ package org.eclipselabs.damos.codegen.c.generator.internal;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
-import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -86,13 +85,10 @@ public class VariableAccessor implements IVariableAccessor {
 			sb.append("input->");
 			sb.append(InternalGeneratorUtil.uncapitalize(outputPort.getComponent().getName()));
 		} else {
-			BlockOutput output = (BlockOutput) outputPort.getOutput();
-			sb.append(InternalGeneratorUtil.getPrefix(genModel, node) + outputPort.getComponent().getName());
+			sb.append(InternalGeneratorUtil.getPrefix(genModel, node));
+			sb.append(outputPort.getComponent().getName());
 			sb.append("_");
-			sb.append(output.getDefinition().getName());
-			if (output.getDefinition().isManyPorts()) {
-				sb.append(outputPort.getIndex());
-			}
+			sb.append(InternalGeneratorUtil.getOutputPortName(outputPort));
 		}
 		if (pointer) {
 			sb.append(")");

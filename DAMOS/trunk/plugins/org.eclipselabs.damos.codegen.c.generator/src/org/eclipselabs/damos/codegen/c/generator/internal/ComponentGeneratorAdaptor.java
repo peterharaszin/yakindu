@@ -13,6 +13,7 @@ package org.eclipselabs.damos.codegen.c.generator.internal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,8 +28,11 @@ import org.eclipselabs.damos.codegen.c.generator.internal.registry.ComponentGene
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
+import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
+import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
@@ -47,26 +51,10 @@ public class ComponentGeneratorAdaptor {
 		
 		IGeneratorContext context = new GeneratorContext(genModel);
 		
+		Map<Component, IComponentSignature> signatures = signatureResolverResult.getSignatures();
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
-		for (Node node : executionFlow.getGraph().getNodes()) {
-			if (node instanceof ComponentNode) {
-				ComponentNode componentNode = (ComponentNode) node;
-				Component component = componentNode.getComponent();
-				IComponentGenerator generator;
-				generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
-				if (generator != null) {
-					generator.setContext(context);
-					generator.setComponent(component);
-					generator.setSignature(signatureResolverResult.getSignatures().get(component));
-					node.eAdapters().add(new ComponentGeneratorAdapter(generator));
-				} else {
-					missingGeneratorComponents.add(component);
-				}
-			} else {
-				// TODO
-			}
-		}
+		adaptGenerators(context, executionFlow.getGraph(), signatures, missingGeneratorComponents);
 		
 		if (!missingGeneratorComponents.isEmpty()) {
 			StringBuilder sb = new StringBuilder("Missing component generator for ");
@@ -86,4 +74,32 @@ public class ComponentGeneratorAdaptor {
 		}
 	}
 
+	/**
+	 * @param context
+	 * @param graph
+	 * @param signatures
+	 * @param missingGeneratorComponents
+	 */
+	private void adaptGenerators(IGeneratorContext context, Graph graph,
+			Map<Component, IComponentSignature> signatures, List<Component> missingGeneratorComponents) {
+		for (Node node : graph.getNodes()) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				Component component = componentNode.getComponent();
+				IComponentGenerator generator;
+				generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
+				if (generator != null) {
+					generator.setContext(context);
+					generator.setComponent(component);
+					generator.setSignature(signatures.get(component));
+					node.eAdapters().add(new ComponentGeneratorAdapter(generator));
+				} else {
+					missingGeneratorComponents.add(component);
+				}
+			} else if (node instanceof CompoundNode) {
+				adaptGenerators(context, (CompoundNode) node, signatures, missingGeneratorComponents);
+			}
+		}
+	}
+	
 }

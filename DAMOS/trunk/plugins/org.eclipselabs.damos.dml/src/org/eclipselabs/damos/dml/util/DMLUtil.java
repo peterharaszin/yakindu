@@ -26,6 +26,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Compound;
+import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.Fragment;
@@ -129,14 +131,32 @@ public class DMLUtil {
 	
 	public static String findAvailableComponentName(Fragment fragment, String preferredName) {
 		Set<String> names = new HashSet<String>();
-		for (Component component : fragment.getAllComponents()) {
-			names.add(component.getName());
+		for (FragmentElement element : fragment.getAllFragmentElements()) {
+			if (element instanceof Component) {
+				Component component = (Component) element;
+				names.add(component.getName());
+			} else if (element instanceof Compound) {
+				Compound compound = (Compound) element;
+				addCompoundComponentNames(compound, names);
+			}
 		}
 		String availableName = preferredName;
 		for (int i = 2; names.contains(availableName); ++i) {
 			availableName = preferredName + i;
 		}
 		return availableName;
+	}
+	
+	private static void addCompoundComponentNames(Compound compound, Set<String> names) {
+		for (CompoundMember member : compound.getMembers()) {
+			if (member instanceof Component) {
+				Component component = (Component) member;
+				names.add(component.getName());
+			} else if (member instanceof Compound) {
+				Compound childCompound = (Compound) member;
+				addCompoundComponentNames(childCompound, names);
+			}
+		}
 	}
 	
 	public static boolean canConnectOutgoingConnection(Connector connector) {

@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.diagram.ui.figures;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.PointList;
+import org.eclipselabs.damos.diagram.ui.internal.figures.OutputTerminalFigure;
 
 /**
  * @author Andreas Unger
@@ -36,34 +36,6 @@ public class OutputPortFigure extends PortFigure {
 	 */
 	protected TerminalFigure createTerminalFigure() {
 		return new OutputTerminalFigure(this);
-	}
-	
-	private static class OutputTerminalFigure extends PolylineTerminalFigure {
-		
-		private static final int SIZE = IFigureConstants.DEFAULT_TERMINAL_SIZE;
-
-		private static final PointList POLYLINE = new PointList();
-
-		static {
-			POLYLINE.addPoint(0, -SIZE);
-			POLYLINE.addPoint(SIZE, 0);
-			POLYLINE.addPoint(0, SIZE);
-		}
-
-		/**
-		 * @param owner
-		 */
-		public OutputTerminalFigure(PortFigure owner) {
-			super(owner);
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.diagram.figures.TerminalFigure#getPolyline()
-		 */
-		protected PointList getPointList() {
-			return POLYLINE;
-		}
-		
 	}
 
 }

@@ -11,25 +11,108 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.figures;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipselabs.damos.diagram.ui.figures.ConnectorAnchor;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
+import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
 
 /**
  * @author Andreas Unger
  *
  */
-public class CompoundConnectorFigure extends DefaultSizeNodeFigure {
+public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure implements IConnectorFigure {
 
-	public  static final Dimension DEFAULT_SIZE = new Dimension(400, 400);
+	public static final Dimension DEFAULT_SIZE = new Dimension(400, 400);
 	
+	private TerminalFigure terminalFigure;
+
 	/**
 	 * 
 	 */
 	public CompoundConnectorFigure() {
 		super(DEFAULT_SIZE);
+	}
+	
+	public TerminalFigure getTerminalFigure() {
+		if (terminalFigure == null) {
+			terminalFigure = createTerminalFigure();
+		}
+		return terminalFigure;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure#getTerminalLocation()
+	 */
+	public Point getTerminalLocation() {
+		int side = getCurrentSideOfParent();
+		Rectangle bounds = getBounds();
+		Point center = getBounds().getCenter();
+		
+		if (isInternal()) {
+			switch (side) {
+			case PositionConstants.NORTH:
+				return new Point(center.x, bounds.bottom());
+			case PositionConstants.SOUTH:
+				return new Point(center.x, bounds.y);
+			case PositionConstants.EAST:
+				return new Point(bounds.x, center.y);
+			case PositionConstants.WEST:
+				return new Point(bounds.right(), center.y);
+			}
+		} else {
+			switch (side) {
+			case PositionConstants.NORTH:
+				return new Point(center.x, bounds.y);
+			case PositionConstants.SOUTH:
+				return new Point(center.x, bounds.bottom());
+			case PositionConstants.EAST:
+				return new Point(bounds.right(), center.y);
+			case PositionConstants.WEST:
+				return new Point(bounds.x, center.y);
+			}
+		}
+
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure#getRotation()
+	 */
+	public double getRotation() {
+		int side = getCurrentSideOfParent();
+
+		if (isInternal()) {
+			switch (side) {
+			case PositionConstants.NORTH:
+				return Math.toRadians(270);
+			case PositionConstants.SOUTH:
+				return Math.toRadians(90);
+			case PositionConstants.EAST:
+				return Math.toRadians(180);
+			case PositionConstants.WEST:
+				return Math.toRadians(0);
+			}
+		} else {
+			switch (side) {
+			case PositionConstants.NORTH:
+				return Math.toRadians(90);
+			case PositionConstants.SOUTH:
+				return Math.toRadians(270);
+			case PositionConstants.EAST:
+				return Math.toRadians(0);
+			case PositionConstants.WEST:
+				return Math.toRadians(180);
+			}
+		}
+
+		return 0;
 	}
 	
 	/* (non-Javadoc)
@@ -45,5 +128,36 @@ public class CompoundConnectorFigure extends DefaultSizeNodeFigure {
 		graphics.setBackgroundColor(getForegroundColor());
 		graphics.drawRectangle(bounds);
 	}
+
+	private int getCurrentSideOfParent() {
+		Object constraint = getParent().getLayoutManager().getConstraint(this);
+		if (constraint instanceof IBorderItemLocator) {
+			IBorderItemLocator locator = (IBorderItemLocator) constraint;
+			return locator.getCurrentSideOfParent();
+		}
+		return 0;
+	}
+
+	protected abstract TerminalFigure createTerminalFigure();
 	
+	protected boolean isInternal() {
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#createConnectionAnchor(org.eclipse.draw2d.geometry.Point)
+	 */
+	@Override
+	protected ConnectionAnchor createConnectionAnchor(Point p) {
+		return createDefaultAnchor();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#createDefaultAnchor()
+	 */
+	@Override
+	protected ConnectionAnchor createDefaultAnchor() {
+		return new ConnectorAnchor(this);
+	}
+
 }

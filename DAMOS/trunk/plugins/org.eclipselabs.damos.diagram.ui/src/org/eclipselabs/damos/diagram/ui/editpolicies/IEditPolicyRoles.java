@@ -25,5 +25,6 @@ public interface IEditPolicyRoles extends EditPolicyRoles {
 	String INPUT_PORT_COUNT_ROLE = "inputPortCountRole";
 	String OUTPUT_PORT_COUNT_ROLE = "outputPortCountRole";
 	String SNAP_TO_PORT_FEEDBACK_ROLE = "snapToPortFeedbackRole";
+	String TERMINAL_ROLE = "terminalRole";
 	
 }

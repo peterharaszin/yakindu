@@ -15,6 +15,7 @@ import org.eclipse.draw2d.AncestorListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
 
 /**
@@ -23,7 +24,7 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
  */
 public abstract class TerminalFigure extends NodeFigure {
 
-	private PortFigure owner;
+	private IConnectorFigure owner;
 	private boolean blank;
 	
 	private AncestorListener ancestorListener = new AncestorListener() {
@@ -43,7 +44,7 @@ public abstract class TerminalFigure extends NodeFigure {
 	/**
 	 * 
 	 */
-	public TerminalFigure(PortFigure owner) {
+	public TerminalFigure(IConnectorFigure owner) {
 		this.owner = owner;
 		setForegroundColor(IFigureConstants.DEFAULT_TERMINAL_COLOR);
 	}
@@ -51,7 +52,7 @@ public abstract class TerminalFigure extends NodeFigure {
 	/**
 	 * @return the owner
 	 */
-	public PortFigure getOwner() {
+	public IConnectorFigure getOwner() {
 		return owner;
 	}
 	

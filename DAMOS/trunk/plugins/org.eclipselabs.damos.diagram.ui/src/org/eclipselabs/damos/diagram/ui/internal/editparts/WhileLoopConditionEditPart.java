@@ -17,8 +17,11 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.CompoundConnectorFigure;
+import org.eclipselabs.damos.diagram.ui.internal.figures.WhileLoopConditionFigure;
 
 /**
  * @author Andreas Unger
@@ -41,11 +44,20 @@ public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart {
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#createDefaultEditPolicies()
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(IEditPolicyRoles.TERMINAL_ROLE, new TerminalEditPolicy());
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#createNodeFigure()
 	 */
 	@Override
 	protected NodeFigure createNodeFigure() {
-		return new CompoundConnectorFigure();
+		return new WhileLoopConditionFigure();
 	}
 
 	/* (non-Javadoc)

@@ -61,4 +61,13 @@ public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart {
 		return locator;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart#refreshBounds()
+	 */
+	@Override
+	protected void refreshBounds() {
+		super.refreshBounds();
+		getFigure().revalidate();
+	}
+	
 }

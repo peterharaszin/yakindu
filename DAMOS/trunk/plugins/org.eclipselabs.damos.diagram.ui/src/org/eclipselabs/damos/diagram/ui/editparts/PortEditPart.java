@@ -17,12 +17,15 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.PortEditPartDelegate;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortConnectionHandleEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortCreationEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
+import org.eclipselabs.damos.dml.Connector;
 
-public abstract class PortEditPart extends ShapeNodeEditPart {
+public abstract class PortEditPart extends ShapeNodeEditPart implements IConnectorEditPart {
 
 	private static final PortEditPartDelegate PASSIVE_DELEGATE = new PortEditPartDelegate(null);
 	
@@ -101,6 +104,20 @@ public abstract class PortEditPart extends ShapeNodeEditPart {
 	 */
 	protected void refreshBounds() {
 		// Do nothing
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart#getConnector()
+	 */
+	public Connector getConnector() {
+		return (Connector) resolveSemanticElement();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart#getConnectorFigure()
+	 */
+	public IConnectorFigure getConnectorFigure() {
+		return (IConnectorFigure) getFigure();
 	}
 	
 	protected void addTerminalBorderFigure() {

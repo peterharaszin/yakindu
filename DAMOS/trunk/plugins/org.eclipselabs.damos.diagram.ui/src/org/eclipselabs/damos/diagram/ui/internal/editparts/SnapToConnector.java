@@ -18,28 +18,31 @@ import java.util.Map;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.handles.HandleBounds;
 import org.eclipse.gef.requests.GroupRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart;
-import org.eclipselabs.damos.diagram.ui.editparts.InputPortEditPart;
-import org.eclipselabs.damos.diagram.ui.editparts.OutputPortEditPart;
-import org.eclipselabs.damos.diagram.ui.editparts.PortEditPart;
-import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
+import org.eclipselabs.damos.diagram.ui.internal.figures.FigureUtil;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.PointListEx;
+import org.eclipselabs.damos.dml.InputConnector;
+import org.eclipselabs.damos.dml.OutputConnector;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SnapToPort extends SnapToHelper {
+public class SnapToConnector extends SnapToHelper {
 	
-	public static final String KEY_GUIDE_LOCATIONS = "SnapToPort.GuideLocations";
+	public static final String KEY_GUIDE_LOCATIONS = "SnapToConnector.GuideLocations";
 
 	private static final int THRESHOLD = 100;
 	
@@ -57,24 +60,32 @@ public class SnapToPort extends SnapToHelper {
 	/**
 	 * 
 	 */
-	public SnapToPort(GraphicalEditPart container) {
+	public SnapToConnector(GraphicalEditPart container) {
 		this.container = container;
 	}
 	
-	protected List<ComponentEditPart> generateSnapPartsList(ComponentEditPart exclusion) {
-		List<ComponentEditPart> children = new ArrayList<ComponentEditPart>();
-
-		for (Object o : container.getChildren()) {
-			GraphicalEditPart child = (GraphicalEditPart) o;
-			if (child != exclusion && child instanceof ComponentEditPart && child.getFigure().isVisible()) {
-				children.add((ComponentEditPart) child);
-			}
-		}
-
+	protected List<IConnectorEditPart> generateSnapPartsList(IGraphicalEditPart exclusion) {
+		List<IConnectorEditPart> children = new ArrayList<IConnectorEditPart>();
+		addChildrenToSnapPartsList(exclusion, container.getRoot().getContents(), children);
 		return children;
 	}
+	
+	private void addChildrenToSnapPartsList(IGraphicalEditPart exclusion, EditPart container, List<IConnectorEditPart> parts) {
+		for (Object child : container.getChildren()) {
+			if (child != exclusion) {
+				if (child instanceof IConnectorEditPart) {
+					IConnectorEditPart connectorEditPart = (IConnectorEditPart) child;
+					if (connectorEditPart.getConnectorFigure().isShowing()) {
+						parts.add(connectorEditPart);
+					}
+				} else {
+					addChildrenToSnapPartsList(exclusion, (EditPart) child, parts);
+				}
+			}
+		}
+	}
 
-	protected void populateCache(List<ComponentEditPart> parts) {
+	protected void populateCache(List<IConnectorEditPart> parts) {
 		inputWestLocations = new ArrayList<Point>();
 		inputEastLocations = new ArrayList<Point>();
 		inputNorthLocations = new ArrayList<Point>();
@@ -84,46 +95,56 @@ public class SnapToPort extends SnapToHelper {
 		outputNorthLocations = new ArrayList<Point>();
 		outputSouthLocations = new ArrayList<Point>();
 
-		for (ComponentEditPart part : parts) {
-			for (Object o : part.getChildren()) {
-				if (o instanceof PortEditPart) {
-					PortFigure portFigure = (PortFigure) ((PortEditPart) o).getFigure();
-					Point terminalLocation = portFigure.getTerminalLocation();
-					if (terminalLocation != null) {
-						terminalLocation = terminalLocation.getCopy();
-						if (o instanceof InputPortEditPart) {
-							switch (portFigure.getOrientation()) {
-							case NORTH:
-								inputNorthLocations.add(terminalLocation);
-								break;
-							case SOUTH:
-								inputSouthLocations.add(terminalLocation);
-								break;
-							case WEST:
-								inputWestLocations.add(terminalLocation);
-								break;
-							case EAST:
-								inputEastLocations.add(terminalLocation);
-								break;
-							}
-						} else if (o instanceof OutputPortEditPart) {
-							switch (portFigure.getOrientation()) {
-							case NORTH:
-								outputNorthLocations.add(terminalLocation);
-								break;
-							case SOUTH:
-								outputSouthLocations.add(terminalLocation);
-								break;
-							case WEST:
-								outputWestLocations.add(terminalLocation);
-								break;
-							case EAST:
-								outputEastLocations.add(terminalLocation);
-								break;
-							}
-						}
-					}
-				}
+		for (IConnectorEditPart part : parts) {
+			IConnectorFigure connectorFigure = part.getConnectorFigure();
+			Point terminalLocation = connectorFigure.getTerminalLocation();
+			if (terminalLocation != null) {
+				terminalLocation = new PrecisionPoint(terminalLocation);
+
+				makeAbsolute(connectorFigure, terminalLocation);
+				makeRelative(container.getContentPane(), terminalLocation);
+				
+				populateTerminalLocation(part, terminalLocation);
+			}
+		}
+	}
+
+	/**
+	 * @param part
+	 * @param connectorFigure
+	 * @param terminalLocation
+	 */
+	private void populateTerminalLocation(IConnectorEditPart part, Point terminalLocation) {
+		IConnectorFigure connectorFigure = part.getConnectorFigure();
+		if (part.getConnector() instanceof InputConnector) {
+			switch (FigureUtil.rotationToOrientation(connectorFigure.getRotation())) {
+			case NORTH:
+				inputNorthLocations.add(terminalLocation);
+				break;
+			case SOUTH:
+				inputSouthLocations.add(terminalLocation);
+				break;
+			case WEST:
+				inputWestLocations.add(terminalLocation);
+				break;
+			case EAST:
+				inputEastLocations.add(terminalLocation);
+				break;
+			}
+		} else if (part.getConnector() instanceof OutputConnector) {
+			switch (FigureUtil.rotationToOrientation(connectorFigure.getRotation())) {
+			case NORTH:
+				outputNorthLocations.add(terminalLocation);
+				break;
+			case SOUTH:
+				outputSouthLocations.add(terminalLocation);
+				break;
+			case WEST:
+				outputWestLocations.add(terminalLocation);
+				break;
+			case EAST:
+				outputEastLocations.add(terminalLocation);
+				break;
 			}
 		}
 	}
@@ -152,16 +173,17 @@ public class SnapToPort extends SnapToHelper {
 		Point delta = new Point(baseRect.x - getFigureBounds(target).x, baseRect.y - getFigureBounds(target).y);
 		
 		for (Object o : target.getChildren()) {
-			if (o instanceof PortEditPart) {
-				PortFigure portFigure = (PortFigure) ((PortEditPart) o).getFigure();
+			if (o instanceof IConnectorEditPart) {
+				IConnectorEditPart connectorEditPart = (IConnectorEditPart) o;
+				IConnectorFigure connectorFigure = (IConnectorFigure) connectorEditPart.getFigure();
 				
-				Point terminalLocation = portFigure.getTerminalLocation();
+				Point terminalLocation = connectorFigure.getTerminalLocation();
 				if (terminalLocation == null) {
 					continue;
 				}
 				
-				if (o instanceof InputPortEditPart) {
-					switch (portFigure.getOrientation()) {
+				if (connectorEditPart.getConnector() instanceof InputConnector) {
+					switch (FigureUtil.rotationToOrientation(connectorFigure.getRotation())) {
 					case NORTH:
 						correctX = getNorthCorrect(correctX, terminalLocation, delta, outputSouthLocations, verticalGuides);
 						break;
@@ -175,8 +197,8 @@ public class SnapToPort extends SnapToHelper {
 						correctY = getEastCorrect(correctY, terminalLocation, delta, outputWestLocations, horizontalGuides);
 						break;
 					}
-				} else if (o instanceof OutputPortEditPart) {
-					switch (portFigure.getOrientation()) {
+				} else if (connectorEditPart.getConnector() instanceof OutputConnector) {
+					switch (FigureUtil.rotationToOrientation(connectorFigure.getRotation())) {
 					case NORTH:
 						correctX = getNorthCorrect(correctX, terminalLocation, delta, inputSouthLocations, verticalGuides);
 						break;

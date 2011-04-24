@@ -17,8 +17,8 @@ import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
-import org.eclipselabs.damos.diagram.ui.editpolicies.SnapToPortFeedbackPolicy;
-import org.eclipselabs.damos.diagram.ui.internal.editparts.SnapToPort;
+import org.eclipselabs.damos.diagram.ui.editpolicies.SnapToConnectorFeedbackPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.SnapToConnector;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.BlockDiagramCreationEditPolicy;
 import org.eclipselabs.damos.dml.System;
 
@@ -48,7 +48,7 @@ public class BlockDiagramEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		removeEditPolicy(IEditPolicyRoles.POPUPBAR_ROLE);
-		installEditPolicy(IEditPolicyRoles.SNAP_TO_PORT_FEEDBACK_ROLE, new SnapToPortFeedbackPolicy());
+		installEditPolicy(IEditPolicyRoles.SNAP_TO_CONNECTOR_FEEDBACK_ROLE, new SnapToConnectorFeedbackPolicy());
 		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new BlockDiagramCreationEditPolicy());
 	}
 	
@@ -64,9 +64,9 @@ public class BlockDiagramEditPart extends DiagramEditPart {
 			if (snapEnabled != null && snapEnabled.booleanValue()) {
 				SnapToHelper snapToHelper = (SnapToHelper) super.getAdapter(key);
 				if (snapToHelper != null) {
-					return new CompoundSnapToHelper(new SnapToHelper[] { new SnapToPort(this), snapToHelper });
+					return new CompoundSnapToHelper(new SnapToHelper[] { new SnapToConnector(this), snapToHelper });
 				}
-				return new SnapToPort(this);
+				return new SnapToConnector(this);
 			}
 		}
 		return super.getAdapter(key);

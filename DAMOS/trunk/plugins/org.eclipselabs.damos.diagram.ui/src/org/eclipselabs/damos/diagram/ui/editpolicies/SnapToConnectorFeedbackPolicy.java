@@ -33,13 +33,13 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.ImageData;
 import org.eclipse.swt.graphics.PaletteData;
 import org.eclipse.swt.widgets.Display;
-import org.eclipselabs.damos.diagram.ui.internal.editparts.SnapToPort;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.SnapToConnector;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SnapToPortFeedbackPolicy extends GraphicalEditPolicy {
+public class SnapToConnectorFeedbackPolicy extends GraphicalEditPolicy {
 
 	private static final Color FEEDBACK_COLOR = new Color(null, 0, 192, 0);
 
@@ -143,7 +143,7 @@ public class SnapToPortFeedbackPolicy extends GraphicalEditPolicy {
 			return;
 		}
 		
-		IFigure contentPane = ((GraphicalEditPart)getHost()).getContentPane();
+		IFigure contentPane = ((GraphicalEditPart) getHost()).getContentPane();
 
 		for (PointList location : locations) {
 			if (guides.containsKey(location)) {
@@ -196,7 +196,7 @@ public class SnapToPortFeedbackPolicy extends GraphicalEditPolicy {
 	@SuppressWarnings("unchecked")
 	public void showTargetFeedback(Request req) {
 		if (req.getType().equals(REQ_MOVE)) {
-			highlightGuide((List<PointList>) req.getExtendedData().get(SnapToPort.KEY_GUIDE_LOCATIONS), ((ChangeBoundsRequest) req).getMoveDelta());
+			highlightGuide((List<PointList>) req.getExtendedData().get(SnapToConnector.KEY_GUIDE_LOCATIONS), ((ChangeBoundsRequest) req).getMoveDelta());
 		}
 	}
 

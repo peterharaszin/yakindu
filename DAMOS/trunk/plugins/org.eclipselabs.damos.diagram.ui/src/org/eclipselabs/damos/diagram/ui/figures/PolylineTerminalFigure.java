@@ -13,6 +13,7 @@ package org.eclipselabs.damos.diagram.ui.figures;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 
 /**
  * @author Andreas Unger
@@ -23,7 +24,7 @@ public abstract class PolylineTerminalFigure extends PolypointTerminalFigure {
 	/**
 	 * @param owner
 	 */
-	public PolylineTerminalFigure(PortFigure owner) {
+	public PolylineTerminalFigure(IConnectorFigure owner) {
 		super(owner);
 	}
 

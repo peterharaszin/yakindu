@@ -11,12 +11,24 @@
 
 package org.eclipselabs.damos.diagram.ui.figures;
 
-import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
+import org.eclipse.draw2d.IFigure;
 
-/**
- * @author Andreas Unger
- *
- */
-public interface IPortFigure extends IConnectorFigure {
+public class PortAnchor extends ConnectorAnchor {
 
+	public PortAnchor(PortFigure portFigure) {
+		super(portFigure);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.draw2d.AbstractConnectionAnchor#getOwner()
+	 */
+	public IFigure getOwner() {
+		PortFigure portFigure = (PortFigure) getConnectorFigure();
+		IFigure owner = portFigure.getTerminalBorderFigure();
+		if (owner != null) {
+			return owner;
+		}
+		return portFigure.getParent();
+	}
+	
 }

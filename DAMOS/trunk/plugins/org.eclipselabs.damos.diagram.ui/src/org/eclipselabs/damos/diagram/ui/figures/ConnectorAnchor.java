@@ -17,34 +17,38 @@ import org.eclipse.draw2d.ConnectionAnchorBase;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 
-public class FixedConnectionAnchor extends ConnectionAnchorBase implements AncestorListener {
+public class ConnectorAnchor extends ConnectionAnchorBase implements AncestorListener {
 
-	private PortFigure portFigure;
+	private IConnectorFigure connectorFigure;
 	
-	public FixedConnectionAnchor(PortFigure portFigure) {
-		this.portFigure = portFigure;
+	public ConnectorAnchor(IConnectorFigure connectorFigure) {
+		this.connectorFigure = connectorFigure;
+	}
+	
+	/**
+	 * @return the connectorFigure
+	 */
+	protected final IConnectorFigure getConnectorFigure() {
+		return connectorFigure;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.draw2d.AbstractConnectionAnchor#getOwner()
 	 */
 	public IFigure getOwner() {
-		IFigure owner = portFigure.getTerminalBorderFigure();
-		if (owner != null) {
-			return owner;
-		}
-		return portFigure.getParent();
+		return connectorFigure;
 	}
 	
 	public Point getLocation(Point reference) {
-		Point terminalLocation = portFigure.getTerminalLocation();
+		Point terminalLocation = connectorFigure.getTerminalLocation();
 		if (terminalLocation == null) {
 			return new Point(); // TODO
 		}
 		
 		Point p = new PrecisionPoint(terminalLocation);
-		portFigure.translateToAbsolute(p);
+		connectorFigure.translateToAbsolute(p);
 		return p;
 	}
 
@@ -57,7 +61,7 @@ public class FixedConnectionAnchor extends ConnectionAnchorBase implements Ances
 			return;
 		}
 		if (listeners.size() == 0) {
-			portFigure.addAncestorListener(this);
+			connectorFigure.addAncestorListener(this);
 		}
 		super.addAnchorListener(listener);
 	}

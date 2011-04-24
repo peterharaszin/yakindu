@@ -56,7 +56,7 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 			add(contentFigure);
 		}
 				
-		setConnectionAnchor(new FixedConnectionAnchor(this));
+		setConnectionAnchor(new PortAnchor(this));
 	}
 	
 	public Extents getExtents() {

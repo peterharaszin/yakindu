@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2009 Andreas Unger and others.
+ * Copyright (c) 2008, 2011 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,14 +9,20 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.figures;
-
-import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
+package org.eclipselabs.damos.diagram.ui.internal.figures;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IPortFigure extends IConnectorFigure {
+public class WhileLoopConditionFigure extends CompoundInputConnectorFigure {
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.figures.CompoundConnectorFigure#isInternal()
+	 */
+	@Override
+	protected boolean isInternal() {
+		return true;
+	}
+	
 }

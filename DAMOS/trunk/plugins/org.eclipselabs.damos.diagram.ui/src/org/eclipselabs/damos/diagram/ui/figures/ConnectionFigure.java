@@ -74,7 +74,7 @@ public class ConnectionFigure extends PolylineConnectionEx implements IFigureCon
 			}
 			if (o instanceof ConnectionFigure) {
 				ConnectionFigure connectionFigure = (ConnectionFigure) o;
-				if (connectionFigure.getSourceAnchor().getOwner() == getSourceAnchor().getOwner()
+				if (connectionFigure.isVisible() && connectionFigure.getSourceAnchor().getOwner() == getSourceAnchor().getOwner()
 						&& connectionFigure.getStart().equals(getStart())) {
 					Point junctionPoint = getPoints().getPoint(1);
 					Point otherPoint1 = connectionFigure.getPoints().getPoint(0);

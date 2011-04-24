@@ -16,13 +16,11 @@ import java.util.List;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipselabs.damos.diagram.core.internal.util.MathUtil;
 import org.eclipselabs.damos.diagram.ui.internal.figures.TerminalBorderFigure;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
@@ -109,28 +107,6 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 			}
 		}
 		return prefSize;
-	}
-	
-	public int getOrientation() {
-		switch (MathUtil.normalizeAngle((int) Math.round(Math.toDegrees(rotation)))) {
-		case 0:
-			return PositionConstants.EAST;
-		case 45:
-			return PositionConstants.NORTH_EAST;
-		case 90:
-			return PositionConstants.NORTH;
-		case 135:
-			return PositionConstants.NORTH_WEST;
-		case 180:
-			return PositionConstants.WEST;
-		case 225:
-			return PositionConstants.SOUTH_WEST;
-		case 270:
-			return PositionConstants.SOUTH;
-		case 315:
-			return PositionConstants.SOUTH_EAST;
-		}
-		return PositionConstants.NONE;
 	}
 	
 	public TerminalFigure getTerminalFigure() {

@@ -20,6 +20,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipselabs.damos.diagram.ui.internal.figures.FigureUtil;
 
 /**
  * @author Andreas Unger
@@ -134,7 +135,7 @@ public class OvalComponentLayout extends AbstractLayout {
 
 		IFigure terminalBorderFigure = portFigure.getTerminalBorderFigure();
 		if (terminalBorderFigure != null) {
-			switch (portFigure.getOrientation()) {
+			switch (FigureUtil.rotationToOrientation(portFigure.getRotation())) {
 			case PositionConstants.NORTH:
 			case PositionConstants.SOUTH:
 			case PositionConstants.WEST:

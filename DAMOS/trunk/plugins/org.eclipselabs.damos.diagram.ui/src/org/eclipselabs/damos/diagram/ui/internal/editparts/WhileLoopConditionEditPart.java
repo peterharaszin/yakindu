@@ -21,13 +21,15 @@ import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.CompoundConnectorFigure;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.diagram.ui.internal.figures.WhileLoopConditionFigure;
+import org.eclipselabs.damos.dml.Connector;
 
 /**
  * @author Andreas Unger
  *
  */
-public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart {
+public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart implements IConnectorEditPart {
 
 	private static final Dimension BORDER_ITEM_OFFSET;
 	
@@ -80,6 +82,20 @@ public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart {
 	protected void refreshBounds() {
 		super.refreshBounds();
 		getFigure().revalidate();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart#getConnector()
+	 */
+	public Connector getConnector() {
+		return (Connector) resolveSemanticElement();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart#getConnectorFigure()
+	 */
+	public IConnectorFigure getConnectorFigure() {
+		return (IConnectorFigure) getFigure();
 	}
 	
 }

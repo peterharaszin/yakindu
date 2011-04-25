@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.generator;
 
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
@@ -70,6 +71,7 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.il.VariableAccess;
+import org.eclipselabs.mscript.language.il.util.ExpressionDataTypeAdaptor;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -322,7 +324,13 @@ public class Generator {
 							writer.print("} else ");
 						}
 						writer.printf("if (%s == (", incomingVariableName);
+						
 						Expression conditionExpression = ExpressionUtil.parseExpression(condition);
+						IStatus status = new ExpressionDataTypeAdaptor().adapt(conditionExpression);
+						if (!status.isOK()) {
+							throw new CoreException(status);
+						}
+						
 						ComputationModel computationModel = getComputationModel(genModel, componentNode);
 						new ExpressionGenerator().generate(new MscriptGeneratorContext(computationModel, writer), new IVariableAccessStrategy() {
 
@@ -543,40 +551,101 @@ public class Generator {
 		 * @see java.lang.Runnable#run()
 		 */
 		public void write(final IFile targetFile, final IProgressMonitor monitor) throws CoreException {
+			final PipedInputStream pipedInputStream = new PipedInputStream();
+			PipedOutputStream pipedOutputStream;
 			try {
-				final PipedInputStream pipedInputStream = new PipedInputStream();
-				PipedOutputStream pipedOutputStream = new PipedOutputStream(pipedInputStream);
-				final Writer writer = new OutputStreamWriter(pipedOutputStream);
-				
-				Thread thread = new Thread() {
-					
-					@Override
-					public void run() {
-						try {
-							if (targetFile.exists()) {
-								targetFile.setContents(pipedInputStream, true, false, monitor);
-							} else {
-								targetFile.create(pipedInputStream, true, monitor);
-							}
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-					
-				};
-		
-				thread.start();
-				
-				write(writer);
-				writer.close();
-				
-				thread.join();
-			} catch (Exception e) {
+				pipedOutputStream = new PipedOutputStream(pipedInputStream);
+			} catch (IOException e) {
 				throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Writing file '" + targetFile.getName() + "' failed", e));
+			}
+
+			Writer writer = new OutputStreamWriter(pipedOutputStream);
+			WriterThread thread = new WriterThread(targetFile, pipedInputStream, monitor);
+	
+			thread.start();
+
+			IStatus status = Status.OK_STATUS;
+			try {
+				write(writer);
+			} catch (CoreException e) {
+				status = e.getStatus();
+			} finally {
+				try {
+					writer.close();
+				} catch (IOException e) {
+					if (status.isOK()) {
+						status = new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Closing file '" + targetFile.getName() + "' failed", e);
+					}
+				} finally {
+					try {
+						thread.join();
+						if (status.isOK() && !thread.getStatus().isOK()) {
+							status = thread.getStatus();
+						}
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
+				}
+			}
+			if (!status.isOK()) {
+				throw new CoreException(status);
 			}
 		}
 		
 		protected abstract void write(Writer writer) throws CoreException;
+
+		/**
+		 * @author Andreas Unger
+		 *
+		 */
+		private final class WriterThread extends Thread {
+			/**
+			 * 
+			 */
+			private final IFile targetFile;
+			/**
+			 * 
+			 */
+			private final IProgressMonitor monitor;
+			/**
+			 * 
+			 */
+			private final PipedInputStream pipedInputStream;
+			
+			private IStatus status = Status.OK_STATUS;
+		
+			/**
+			 * @param targetFile
+			 * @param pipedInputStream
+			 * @param monitor
+			 */
+			private WriterThread(IFile targetFile, PipedInputStream pipedInputStream, IProgressMonitor monitor) {
+				this.targetFile = targetFile;
+				this.monitor = monitor;
+				this.pipedInputStream = pipedInputStream;
+			}
+		
+			@Override
+			public void run() {
+				try {
+					if (targetFile.exists()) {
+						targetFile.setContents(pipedInputStream, true, false, monitor);
+					} else {
+						targetFile.create(pipedInputStream, true, monitor);
+					}
+				} catch (CoreException e) {
+					status = e.getStatus();
+				}
+			}
+			
+			/**
+			 * @return the status
+			 */
+			public IStatus getStatus() {
+				return status;
+			}
+			
+		}
 		
 	}
 	

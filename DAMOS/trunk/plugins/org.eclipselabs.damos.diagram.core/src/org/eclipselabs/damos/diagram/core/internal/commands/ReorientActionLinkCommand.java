@@ -54,6 +54,12 @@ public class ReorientActionLinkCommand extends EditElementCommand {
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET && !(newEnd instanceof Action)) {
 			return false;
 		}
+		if (newEnd instanceof Action) {
+			Action action = (Action) newEnd;
+			if (action.getLink() != null) {
+				return false;
+			}
+		}
 		return super.canExecute();
 	}
 	

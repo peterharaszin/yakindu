@@ -14,7 +14,9 @@ package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipselabs.damos.diagram.core.internal.commands.ConfigureChoiceCommand;
+import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.DMLPackage;
 
 public class ChoiceEditHelper extends AbstractEditHelper {
@@ -22,5 +24,15 @@ public class ChoiceEditHelper extends AbstractEditHelper {
 	protected ICommand getConfigureCommand(ConfigureRequest request) {
 		return new ConfigureChoiceCommand(request, DMLPackage.Literals.CHOICE);
 	}
-	
+
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (DMLPackage.eINSTANCE.getActionLink().isSuperTypeOf(req.getElementType().getEClass()) && req.getTarget() instanceof Action) {
+        	Action action = (Action) req.getTarget();
+        	if (action.getLink() != null) {
+        		return null;
+        	}
+		}
+		return super.getCreateRelationshipCommand(req);
+	}
+
 }

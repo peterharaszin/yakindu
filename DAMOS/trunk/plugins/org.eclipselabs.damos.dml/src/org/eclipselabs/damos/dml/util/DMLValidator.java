@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -334,7 +335,7 @@ public class DMLValidator extends EObjectValidator {
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 							DIAGNOSTIC_SOURCE,
 							0,
-							"Choice component must have at least two outgoing action links",
+							"Choice component must have at least two action links",
 							new Object[] { choice }));
 				}
 				return false;
@@ -1239,6 +1240,107 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(choice, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(choice, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(choice, diagnostics, context);
+		if (result || diagnostics != null) result &= validateChoice_ValidActionLinkConditions(choice, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the ValidActionLinkConditions constraint of '<em>Choice</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateChoice_ValidActionLinkConditions(Choice choice, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+		
+		int defaultCount = 0;
+		int trueCount = 0;
+		int falseCount = 0;
+		
+		EList<ActionLink> actionLinks = choice.getActionLinks();
+		
+		Map<String, ActionLink> conditions = new HashMap<String, ActionLink>();
+		Set<ActionLink> duplicateActionLinks = new HashSet<ActionLink>();
+
+		for (ActionLink actionLink : actionLinks) {
+			if (actionLink.getCondition() != null) {
+				String condition = actionLink.getCondition().stringCondition();
+
+				ActionLink existingActionLink = conditions.put(condition, actionLink);
+				if (existingActionLink != null) {
+					duplicateActionLinks.add(actionLink);
+					duplicateActionLinks.add(existingActionLink);
+				}
+				
+				if ("true".equals(condition)) {
+					++trueCount;
+				} else if ("false".equals(condition)) {
+					++falseCount;
+				}
+			} else {
+				++defaultCount;
+			}
+		}
+		
+		if (defaultCount > 1) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Choice component must not have more than one default action link",
+						new Object[] { choice }));
+			}
+			result = false;
+		}
+
+		if (!duplicateActionLinks.isEmpty()) {
+			if (diagnostics != null) {
+				for (ActionLink actionLink : duplicateActionLinks) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+							DIAGNOSTIC_SOURCE,
+							0,
+							"Duplicate action link condition",
+							new Object[] { actionLink }));
+				}
+			}
+			result = false;
+		}
+
+		if (trueCount == 1 && falseCount == 1 && actionLinks.size() > 2) {
+			if (diagnostics != null) {
+				for (ActionLink actionLink : actionLinks) {
+					if (actionLink.getCondition() != null) {
+						String condition = actionLink.getCondition().stringCondition();
+						if (!("true".equals(condition) || "false".equals(condition))) {
+							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+									DIAGNOSTIC_SOURCE,
+									0,
+									"Action link will never be used",
+									new Object[] { actionLink }));
+						}
+					} else {
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+								DIAGNOSTIC_SOURCE,
+								0,
+								"Default action link will never be used",
+								new Object[] { actionLink }));
+					}
+				}
+			}
+			result = false;
+		}
+		
+		if ((trueCount == 0 || falseCount == 0) && defaultCount == 0) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Choice component must have default action link",
+						new Object[] { choice }));
+			}
+			result = false;
+		}
+
 		return result;
 	}
 

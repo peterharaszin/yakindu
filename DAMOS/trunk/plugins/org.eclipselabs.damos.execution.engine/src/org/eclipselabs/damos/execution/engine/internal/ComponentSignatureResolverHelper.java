@@ -90,7 +90,7 @@ public class ComponentSignatureResolverHelper {
 			Compound compound = (Compound) element;
 			// TODO: Check compound connector data types
 			for (CompoundMember member : compound.getMembers()) {
-				resolveElement(member, changed);
+				changed = resolveElement(member, changed);
 			}
 		}
 		return changed;

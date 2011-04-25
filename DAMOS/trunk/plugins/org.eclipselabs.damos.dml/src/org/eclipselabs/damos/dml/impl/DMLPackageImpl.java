@@ -2680,6 +2680,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "MatchingFragment"
+		   });		
+		addAnnotation
+		  (choiceEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ValidActionLinkConditions"
 		   });
 	}
 

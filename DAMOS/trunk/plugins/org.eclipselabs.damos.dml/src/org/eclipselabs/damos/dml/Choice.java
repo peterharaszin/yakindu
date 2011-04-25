@@ -21,7 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getChoice()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidActionLinkConditions'"
  * @generated
  */
 public interface Choice extends Component {

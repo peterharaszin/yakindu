@@ -288,25 +288,41 @@ public class SimulationEngine implements ISimulationEngine {
 			}
 			
 			Action action = (Action) compoundNode.getCompound();
-			ActionLink actionLink = action.getLink();
 			ComponentNode choiceNode = actionNode.getChoiceNode();
 
-			DataFlowTargetEnd targetEnd = choiceNode.getIncomingDataFlows().get(0);
-			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-			PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
-
-			IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
-			IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
-			
-			if (value instanceof IBooleanValue) {
-				IValue conditionValue = ExpressionUtil.evaluateExpression(actionLink.getCondition().stringCondition());
-				if (conditionValue instanceof IBooleanValue) {
-					return ((IBooleanValue) value).booleanValue() == ((IBooleanValue) conditionValue).booleanValue();
-				}
-			}
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid choice '" + choiceNode.getComponent().getName() + "'"));
+			return action == getRunnableAction(choiceNode);
 		}
 		return false;
+	}
+	
+	private Action getRunnableAction(ComponentNode choiceNode) throws CoreException {
+		Choice choice = (Choice) choiceNode.getComponent();
+		Action defaultAction = null;
+
+		DataFlowTargetEnd targetEnd = choiceNode.getIncomingDataFlows().get(0);
+		DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+		PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
+
+		IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
+		IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
+
+		for (ActionLink actionLink : choice.getActionLinks()) {
+			Action action = actionLink.getAction();
+			if (actionLink.getCondition() != null) {
+				IValue conditionValue = ExpressionUtil.evaluateExpression(actionLink.getCondition().stringCondition());
+				IValue result = value.equalTo(conditionValue);
+				if (result instanceof IBooleanValue) {
+					IBooleanValue booleanResult = (IBooleanValue) result;
+					if (booleanResult.booleanValue()) {
+						return action;
+					}
+				}
+			} else {
+				defaultAction = action;
+			}
+		}
+		
+		return defaultAction;
 	}
 	
 	private boolean isComponentRunnable(ComponentNode componentNode) throws CoreException {

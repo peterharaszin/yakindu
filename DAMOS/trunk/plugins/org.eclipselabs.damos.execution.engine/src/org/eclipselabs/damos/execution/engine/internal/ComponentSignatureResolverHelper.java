@@ -113,7 +113,9 @@ public class ComponentSignatureResolverHelper {
 					}
 				}
 				
-				if (!result.getStatus().isOK()) {
+				if (result.getStatus().isOK()) {
+					statusMap.remove(component);
+				} else {
 					statusMap.put(component, result.getStatus());
 				}
 				

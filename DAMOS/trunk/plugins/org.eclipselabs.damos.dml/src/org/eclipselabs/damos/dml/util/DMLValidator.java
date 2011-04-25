@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Action;
@@ -318,6 +319,29 @@ public class DMLValidator extends EObjectValidator {
 			default:
 				return true;
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.util.EObjectValidator#validate_MultiplicityConforms(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 */
+	@Override
+	protected boolean validate_MultiplicityConforms(EObject eObject, EStructuralFeature eStructuralFeature,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (eStructuralFeature == DMLPackage.eINSTANCE.getChoice_ActionLinks() && eObject instanceof Choice) {
+			Choice choice = (Choice) eObject;
+			if (choice.getActionLinks().size() < 2) {
+				if (diagnostics != null) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+							DIAGNOSTIC_SOURCE,
+							0,
+							"Choice component must have at least two outgoing action links",
+							new Object[] { choice }));
+				}
+				return false;
+			}
+			return true;
+		}
+		return super.validate_MultiplicityConforms(eObject, eStructuralFeature, diagnostics, context);
 	}
 
 	/**

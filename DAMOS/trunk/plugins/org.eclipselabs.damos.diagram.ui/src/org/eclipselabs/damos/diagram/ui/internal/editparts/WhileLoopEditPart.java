@@ -11,10 +11,17 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.WhileLoopCanonicalEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.figures.CompoundConnectorFigure;
 import org.eclipselabs.damos.diagram.ui.internal.figures.WhileLoopFigure;
 
 /**
@@ -22,6 +29,13 @@ import org.eclipselabs.damos.diagram.ui.internal.figures.WhileLoopFigure;
  *
  */
 public class WhileLoopEditPart extends CompoundEditPart {
+
+	private static final Dimension BORDER_ITEM_OFFSET;
+	
+	static {
+		BORDER_ITEM_OFFSET = CompoundConnectorFigure.DEFAULT_SIZE.getScaled(0.5);
+		BORDER_ITEM_OFFSET.expand(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH);
+	}
 
 	/**
 	 * @param view
@@ -45,6 +59,12 @@ public class WhileLoopEditPart extends CompoundEditPart {
 	@Override
 	protected NodeFigure createMainFigure() {
 		return new WhileLoopFigure();
+	}
+
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
+		BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.EAST);
+		locator.setBorderItemOffset(BORDER_ITEM_OFFSET);
+		borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 	}
 
 }

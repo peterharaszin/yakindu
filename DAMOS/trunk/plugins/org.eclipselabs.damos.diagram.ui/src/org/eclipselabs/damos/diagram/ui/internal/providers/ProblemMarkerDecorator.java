@@ -22,6 +22,7 @@ import org.eclipse.draw2d.FlowLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -38,6 +39,7 @@ import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
+import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 
@@ -153,10 +155,13 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 						String elementURIString = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
 						if (elementURIString != null) {
 							String uriFragment = URI.createURI(elementURIString).fragment();
-							if (uriFragment != null && EcoreUtil.isAncestor(element, element.eResource().getEObject(uriFragment))) {
-								int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
-								String message = marker.getAttribute(IMarker.MESSAGE, "");
-								problems.add(new Problem(convertMarkerSeverityToStatusSeverity(severity), message));
+							if (uriFragment != null) {
+								EObject eObject = element.eResource().getEObject(uriFragment);
+								if (eObject == element || (element instanceof Component && EcoreUtil.isAncestor(element, eObject))) {
+									int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
+									String message = marker.getAttribute(IMarker.MESSAGE, "");
+									problems.add(new Problem(convertMarkerSeverityToStatusSeverity(severity), message));
+								}
 							}
 						}
 					}

@@ -34,6 +34,7 @@ import org.eclipselabs.damos.common.markers.IMarkerConstants;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.util.DMLValidator;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
@@ -126,8 +127,18 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 				BasicDiagnostic diagnostics = new BasicDiagnostic();
 				
 				DMLValidator.INSTANCE.validate(eObject, diagnostics, context);
-				for (TreeIterator<EObject> it = eObject.eAllContents(); it.hasNext();) {
-					DMLValidator.INSTANCE.validate(it.next(), diagnostics, context);
+				if (eObject instanceof Fragment) {
+					Fragment fragment = (Fragment) eObject;
+					for (FragmentElement fragmentElement : fragment.getAllFragmentElements()) {
+						DMLValidator.INSTANCE.validate(fragmentElement, diagnostics, context);
+						for (TreeIterator<EObject> it = fragmentElement.eAllContents(); it.hasNext();) {
+							DMLValidator.INSTANCE.validate(it.next(), diagnostics, context);
+						}
+					}
+				} else {
+					for (TreeIterator<EObject> it = eObject.eAllContents(); it.hasNext();) {
+						DMLValidator.INSTANCE.validate(it.next(), diagnostics, context);
+					}
 				}
 				
 				if (diagnostics.getSeverity() != Diagnostic.OK) {

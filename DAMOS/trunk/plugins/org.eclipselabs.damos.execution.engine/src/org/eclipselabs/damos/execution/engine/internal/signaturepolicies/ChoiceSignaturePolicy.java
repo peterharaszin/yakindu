@@ -27,9 +27,10 @@ import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
-import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.InvalidDataType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
 
 /**
  * @author Andreas Unger
@@ -43,15 +44,20 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 		Choice choice = (Choice) component;
 		
+		DataType incomingDataType = incomingDataTypes.get(choice.getFirstInputPort());
+		if (incomingDataType == null) {
+			return new ComponentSignatureEvaluationResult();
+		}
+		
 		for (ActionLink actionLink : choice.getActionLinks()) {
 			if (actionLink.getCondition() == null) {
 				continue;
 			}
 			try {
-			String condition = actionLink.getCondition().stringCondition();
-			IValue incomingDataType = ExpressionUtil.evaluateExpression(condition);
-				if (!(incomingDataType instanceof IBooleanValue)) {
-					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Action link condition '" + condition + "' does not evaluate to boolean type"));
+				String condition = actionLink.getCondition().stringCondition();
+				IValue value = ExpressionUtil.evaluateExpression(condition);
+				if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidDataType) {
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Action link condition '" + condition + "' is incompatible to choice input value"));
 				}
 			} catch (CoreException e) {
 				status.add(e.getStatus());

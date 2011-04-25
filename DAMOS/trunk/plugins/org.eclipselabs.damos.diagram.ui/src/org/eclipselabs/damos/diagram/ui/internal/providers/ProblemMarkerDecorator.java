@@ -39,13 +39,13 @@ import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
+import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.dml.FragmentElement;
 
 class ProblemMarkerDecorator extends AbstractDecorator {
 
-	private FragmentElement element;
+	private EObject element;
 	private IFile file;
 	
 	private IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
@@ -57,9 +57,12 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 					String elementURIString = markerDelta.getAttribute(EValidator.URI_ATTRIBUTE, null);
 					if (elementURIString != null) {
 						String uriFragment = URI.createURI(elementURIString).fragment();
-						if (uriFragment != null && EcoreUtil.isAncestor(element, element.eResource().getEObject(uriFragment))) {
-							refresh();
-							break;
+						if (uriFragment != null) {
+							EObject eObject = element.eResource().getEObject(uriFragment);
+							if (eObject == null || isDecoratorFor(eObject)) {
+								refresh();
+								break;
+							}
 						}
 					}
 				}
@@ -78,7 +81,7 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 	
 	public ProblemMarkerDecorator(IDecoratorTarget decoratorTarget) {
 		super(decoratorTarget);
-		element = (FragmentElement) getDecoratorTarget().getAdapter(FragmentElement.class);
+		element = (EObject) getDecoratorTarget().getAdapter(EObject.class);
 		initializeFile();
 	}
 	
@@ -157,7 +160,7 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 							String uriFragment = URI.createURI(elementURIString).fragment();
 							if (uriFragment != null) {
 								EObject eObject = element.eResource().getEObject(uriFragment);
-								if (eObject == element || (element instanceof Component && EcoreUtil.isAncestor(element, eObject))) {
+								if (isDecoratorFor(eObject)) {
 									int severity = marker.getAttribute(IMarker.SEVERITY, IMarker.SEVERITY_INFO);
 									String message = marker.getAttribute(IMarker.MESSAGE, "");
 									problems.add(new Problem(convertMarkerSeverityToStatusSeverity(severity), message));
@@ -240,6 +243,17 @@ class ProblemMarkerDecorator extends AbstractDecorator {
 		return PlatformUI.getWorkbench().getSharedImages().getImage(imageName);
 	}
 	
+	/**
+	 * @param eObject
+	 * @return
+	 */
+	private boolean isDecoratorFor(EObject eObject) {
+		if (element instanceof Component && eObject instanceof ActionLink) {
+			return false;
+		}
+		return eObject != null && (element == eObject || (element instanceof Component && EcoreUtil.isAncestor(element, eObject)));
+	}
+
 	private class Problem {
 		
 		public int severity;

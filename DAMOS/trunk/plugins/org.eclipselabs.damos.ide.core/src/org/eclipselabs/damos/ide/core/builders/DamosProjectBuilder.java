@@ -136,14 +136,14 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 						fragment = (Fragment) eObject;
 					}
 					for (Diagnostic diagnostic : diagnostics.getChildren()) {
-						Component component = null;
+						EObject source = null;
 						if (diagnostic.getData() != null && !diagnostic.getData().isEmpty()) {
-							Object source = diagnostic.getData().get(0);
-							if (source instanceof Component) {
-								component = (Component) source;
+							Object data = diagnostic.getData().get(0);
+							if (data instanceof EObject) {
+								source = (EObject) data;
 							}
 						}
-						attachMarkers(resource, fragment, component, BasicDiagnostic.toIStatus(diagnostic));
+						attachMarkers(resource, fragment, source, BasicDiagnostic.toIStatus(diagnostic));
 					}
 					validationResult = false;
 				}
@@ -171,14 +171,14 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 		 * @param diagnostic
 		 * @throws CoreException 
 		 */
-		protected void attachMarkers(IResource resource, Fragment fragment, Component component, IStatus status) throws CoreException {
-			if (component == null && status instanceof IComponentStatus) {
-				component = ((IComponentStatus) status).getComponent();
+		protected void attachMarkers(IResource resource, Fragment fragment, EObject source, IStatus status) throws CoreException {
+			if (source == null && status instanceof IComponentStatus) {
+				source = ((IComponentStatus) status).getComponent();
 			}
 			
 			if (!status.isOK() && status.getChildren().length > 0) {
 				for (IStatus child : status.getChildren()) {
-					attachMarkers(resource, fragment, component, child);
+					attachMarkers(resource, fragment, source, child);
 				}
 			} else {
 				IMarker marker = resource.createMarker(IMarkerConstants.PROBLEM_MARKER_ID);
@@ -200,9 +200,12 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 					break;
 				}
 				marker.setAttribute(IMarker.SEVERITY, severity);
-				if (component != null) {
-					marker.setAttribute(IMarker.LOCATION, component.getName());
-					marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(component).toString());
+				if (source != null) {
+					if (source instanceof Component) {
+						Component component = (Component) source;
+						marker.setAttribute(IMarker.LOCATION, component.getName());
+					}
+					marker.setAttribute(EValidator.URI_ATTRIBUTE, EcoreUtil.getURI(source).toString());
 				}
 			}
 		}

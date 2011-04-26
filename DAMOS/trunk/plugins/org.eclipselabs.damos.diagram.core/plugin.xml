@@ -97,6 +97,30 @@
                name="Block">
          </metamodelType>
          <metamodelType
+               eclass="Input"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.InoutputEditHelper"
+               id="org.eclipselabs.damos.diagram.input"
+               name="Input">
+         </metamodelType>
+         <metamodelType
+               eclass="Output"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.InoutputEditHelper"
+               id="org.eclipselabs.damos.diagram.output"
+               name="Output">
+         </metamodelType>
+         <metamodelType
+               eclass="InputPort"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.PortEditHelper"
+               id="org.eclipselabs.damos.diagram.inputPort"
+               name="Input Port">
+         </metamodelType>
+         <metamodelType
+               eclass="OutputPort"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.PortEditHelper"
+               id="org.eclipselabs.damos.diagram.outputPort"
+               name="Output Port">
+         </metamodelType>
+         <metamodelType
                eclass="BlockInput"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.BlockInputEditHelper"
                id="org.eclipselabs.damos.diagram.blockInput"

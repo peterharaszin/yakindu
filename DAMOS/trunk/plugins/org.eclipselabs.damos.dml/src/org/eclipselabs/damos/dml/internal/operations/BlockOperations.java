@@ -6,11 +6,6 @@
  */
 package org.eclipselabs.damos.dml.internal.operations;
 
-import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.BlockInput;
-import org.eclipselabs.damos.dml.BlockOutput;
-import org.eclipselabs.damos.dml.Input;
-import org.eclipselabs.damos.dml.Output;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,40 +30,6 @@ public class BlockOperations extends ComponentOperations {
 	 */
 	protected BlockOperations() {
 		super();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  BlockInput getInput(Block block, String name) {
-		for (Input input : block.getInputs()) {
-			if (input instanceof BlockInput) {
-				BlockInput blockInput = (BlockInput) input;
-				if (name.equals(blockInput.getDefinition().getName())) {
-					return (BlockInput) input;
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  BlockOutput getOutput(Block block, String name) {
-		for (Output output : block.getOutputs()) {
-			if (output instanceof BlockOutput) {
-				BlockOutput blockOutput = (BlockOutput) output;
-				if (name.equals(blockOutput.getDefinition().getName())) {
-					return (BlockOutput) output;
-				}
-			}
-		}
-		return null;
 	}
 
 } // BlockOperations

@@ -71,5 +71,10 @@ public interface Output extends Inoutput {
 	 * @generated
 	 */
 	EList<OutputPort> getPorts();
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.Inoutput#createPort()
+	 */
+	public OutputPort createPort();
 
 } // Output

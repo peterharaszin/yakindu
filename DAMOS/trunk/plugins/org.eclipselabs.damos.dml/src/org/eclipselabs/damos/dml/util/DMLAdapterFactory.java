@@ -26,6 +26,7 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInput;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
@@ -54,6 +55,7 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -385,6 +387,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createChoiceAdapter();
 			}
 			@Override
+			public Adapter caseChoiceInput(ChoiceInput object) {
+				return createChoiceInputAdapter();
+			}
+			@Override
 			public Adapter caseChoiceInputPort(ChoiceInputPort object) {
 				return createChoiceInputPortAdapter();
 			}
@@ -407,6 +413,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseJoin(Join object) {
 				return createJoinAdapter();
+			}
+			@Override
+			public Adapter caseJoinInput(JoinInput object) {
+				return createJoinInputAdapter();
 			}
 			@Override
 			public Adapter caseWhileLoop(WhileLoop object) {
@@ -1307,6 +1317,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ChoiceInput <em>Choice Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ChoiceInput
+	 * @generated
+	 */
+	public Adapter createChoiceInputAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ChoiceInputPort <em>Choice Input Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1387,6 +1411,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createJoinAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.JoinInput <em>Join Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.JoinInput
+	 * @generated
+	 */
+	public Adapter createJoinInputAdapter() {
 		return null;
 	}
 

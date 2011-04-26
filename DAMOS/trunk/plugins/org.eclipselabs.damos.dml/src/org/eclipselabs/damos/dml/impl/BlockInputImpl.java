@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.BlockInput;
+import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.internal.operations.BlockInputOperations;
@@ -94,6 +95,39 @@ public class BlockInputImpl extends InputImpl implements BlockInput {
 		definition = newDefinition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_INPUT__DEFINITION, oldDefinition, definition));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InputImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		return getDefinition().getName();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#canAddPort()
+	 */
+	@Override
+	public boolean canAddPort() {
+		int maximumPortCount = getDefinition().getMaximumPortCount();
+		return maximumPortCount == -1 || getPorts().size() < maximumPortCount;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#canRemovePort()
+	 */
+	@Override
+	public boolean canRemovePort() {
+		return getPorts().size() > getDefinition().getMinimumPortCount();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InputImpl#createPort()
+	 */
+	@Override
+	public BlockInputPort createPort() {
+		return BlockInputOperations.createPort(this);
 	}
 
 	/**

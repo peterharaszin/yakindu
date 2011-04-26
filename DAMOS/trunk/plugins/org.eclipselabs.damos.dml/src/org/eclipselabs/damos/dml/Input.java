@@ -83,5 +83,10 @@ public interface Input extends Inoutput {
 	 * @generated
 	 */
 	boolean isDirectFeedthrough();
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.Inoutput#createPort()
+	 */
+	public InputPort createPort();
 
 } // Input

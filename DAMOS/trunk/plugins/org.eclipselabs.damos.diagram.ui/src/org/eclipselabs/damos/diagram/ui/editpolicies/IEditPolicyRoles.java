@@ -26,5 +26,6 @@ public interface IEditPolicyRoles extends EditPolicyRoles {
 	String OUTPUT_PORT_COUNT_ROLE = "outputPortCountRole";
 	String SNAP_TO_CONNECTOR_FEEDBACK_ROLE = "snapToConnectorFeedbackRole";
 	String TERMINAL_ROLE = "terminalRole";
+	String FRAGMENT_SELECTION_ROLE = "fragmentSelectionRole";
 	
 }

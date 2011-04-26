@@ -36,9 +36,9 @@ public class ConfigureChoiceCommand extends ConfigureElementCommand {
     	
     	choice.setName(DMLUtil.findAvailableComponentName(choice.getEnclosingFragment(), "Choice"));
 
-    	Input input = DMLFactory.eINSTANCE.createInput();
-    	input.getPorts().add(DMLFactory.eINSTANCE.createChoiceInputPort());
+    	Input input = DMLFactory.eINSTANCE.createChoiceInput();
     	choice.getInputs().add(input);
+    	input.createPort();
     	
 		return CommandResult.newOKCommandResult(choice);
 	}

@@ -26,6 +26,7 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInput;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
@@ -54,6 +55,7 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -616,6 +618,14 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLPackage.CHOICE_INPUT: {
+				ChoiceInput choiceInput = (ChoiceInput)theEObject;
+				T result = caseChoiceInput(choiceInput);
+				if (result == null) result = caseInput(choiceInput);
+				if (result == null) result = caseInoutput(choiceInput);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLPackage.CHOICE_INPUT_PORT: {
 				ChoiceInputPort choiceInputPort = (ChoiceInputPort)theEObject;
 				T result = caseChoiceInputPort(choiceInputPort);
@@ -660,6 +670,14 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(join);
 				if (result == null) result = caseFragmentElement(join);
 				if (result == null) result = caseCompoundMember(join);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.JOIN_INPUT: {
+				JoinInput joinInput = (JoinInput)theEObject;
+				T result = caseJoinInput(joinInput);
+				if (result == null) result = caseInput(joinInput);
+				if (result == null) result = caseInoutput(joinInput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1636,6 +1654,21 @@ public class DMLSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Choice Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Choice Input</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseChoiceInput(ChoiceInput object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Choice Input Port</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1722,6 +1755,21 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseJoin(Join object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Join Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Join Input</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJoinInput(JoinInput object) {
 		return null;
 	}
 

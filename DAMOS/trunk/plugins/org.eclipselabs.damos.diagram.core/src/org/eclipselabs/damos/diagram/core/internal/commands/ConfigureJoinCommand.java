@@ -37,14 +37,14 @@ public class ConfigureJoinCommand extends ConfigureElementCommand {
     	
     	join.setName(DMLUtil.findAvailableComponentName(join.getEnclosingFragment(), "Join"));
 
-    	Input input = DMLFactory.eINSTANCE.createInput();
-    	input.getPorts().add(DMLFactory.eINSTANCE.createInputPort());
-    	input.getPorts().add(DMLFactory.eINSTANCE.createInputPort());
+    	Input input = DMLFactory.eINSTANCE.createJoinInput();
     	join.getInputs().add(input);
+    	input.createPort();
+    	input.createPort();
     	
     	Output output = DMLFactory.eINSTANCE.createOutput();
-    	output.getPorts().add(DMLFactory.eINSTANCE.createOutputPort());
     	join.getOutputs().add(output);
+    	output.createPort();
 
 		return CommandResult.newOKCommandResult(join);
 	}

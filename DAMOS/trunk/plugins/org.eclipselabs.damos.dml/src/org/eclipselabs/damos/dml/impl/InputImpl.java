@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
@@ -126,6 +127,24 @@ public class InputImpl extends InoutputImpl implements Input {
 	 */
 	public boolean isDirectFeedthrough() {
 		return InputOperations.isDirectFeedthrough(this);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		return "input";
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#createPort()
+	 */
+	@Override
+	public InputPort createPort() {
+		InputPort port = DMLFactory.eINSTANCE.createInputPort();
+		getPorts().add(port);
+		return port;
 	}
 
 	/**

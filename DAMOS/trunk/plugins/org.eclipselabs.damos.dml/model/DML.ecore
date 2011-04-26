@@ -26,6 +26,12 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName"/>
     </eAnnotations>
+    <eOperations name="getInput" ordered="false" lowerBound="1" eType="#//Input">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+    <eOperations name="getOutput" ordered="false" lowerBound="1" eType="#//Output">
+      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eOperations name="getInputPorts" upperBound="-1" eType="#//InputPort"/>
     <eOperations name="getOutputPorts" upperBound="-1" eType="#//OutputPort"/>
     <eOperations name="getFirstInputPort" ordered="false" lowerBound="1" eType="#//InputPort"/>
@@ -67,7 +73,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputConnector" abstract="true" eSuperTypes="#//Connector"/>
   <eClassifiers xsi:type="ecore:EClass" name="OutputConnector" abstract="true" eSuperTypes="#//Connector"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Inoutput" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inoutput" abstract="true">
+    <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="canAddPort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="canRemovePort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="createPort" lowerBound="1" eType="#//Port"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Input" eSuperTypes="#//Inoutput">
     <eOperations name="isDirectFeedthrough" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ports" upperBound="-1"
@@ -232,12 +243,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Category" eSuperTypes="#//QualifiedElement #//CategorizedElement #//ParameterableElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="BehaviorSpecification" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="Block" eSuperTypes="#//Component #//ParameterizedElement">
-    <eOperations name="getInput" ordered="false" lowerBound="1" eType="#//BlockInput">
-      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
-    <eOperations name="getOutput" ordered="false" lowerBound="1" eType="#//BlockOutput">
-      <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" ordered="false" lowerBound="1"
         eType="#//BlockType"/>
   </eClassifiers>
@@ -326,6 +331,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="actionLinks" lowerBound="2"
         upperBound="-1" eType="#//ActionLink" containment="true" eOpposite="#//ActionLink/choice"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceInput" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="ChoiceInputPort" eSuperTypes="#//InputPort">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -334,6 +340,9 @@
         eOpposite="#//ActionLink/action"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionLink">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ChoiceAndActionOnSameFragment"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="choice" lowerBound="1"
         eType="#//Choice" eOpposite="#//Choice/actionLinks"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="action" lowerBound="1"
@@ -349,6 +358,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JoinInput" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="WhileLoop" eSuperTypes="#//Action">
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//WhileLoopCondition"
         containment="true"/>

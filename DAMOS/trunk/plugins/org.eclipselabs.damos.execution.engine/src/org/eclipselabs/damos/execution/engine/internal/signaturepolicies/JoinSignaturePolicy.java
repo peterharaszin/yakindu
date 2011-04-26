@@ -39,7 +39,7 @@ public class JoinSignaturePolicy extends AbstractComponentSignaturePolicy {
 		for (InputPort inputPort : component.getInputPorts()) {
 			DataType incomingDataType = incomingDataTypes.get(inputPort);
 			if (incomingDataType == null) {
-				return new ComponentSignatureEvaluationResult();
+				continue;
 			}
 			if (dataType != null) {
 				dataType = TypeSystemUtil.getLeftHandDataType(dataType, incomingDataType);

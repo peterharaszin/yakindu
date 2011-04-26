@@ -93,6 +93,22 @@ public interface Component extends FragmentElement, CompoundMember {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" nameRequired="true" nameOrdered="false"
+	 * @generated
+	 */
+	Input getInput(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" nameRequired="true" nameOrdered="false"
+	 * @generated
+	 */
+	Output getOutput(String name);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model kind="operation"
 	 * @generated
 	 */

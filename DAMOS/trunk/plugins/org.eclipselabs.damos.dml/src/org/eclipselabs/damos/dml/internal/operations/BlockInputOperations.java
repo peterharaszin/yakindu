@@ -7,7 +7,11 @@
 package org.eclipselabs.damos.dml.internal.operations;
 
 import org.eclipselabs.damos.dml.BlockInput;
+import org.eclipselabs.damos.dml.BlockInputPort;
+import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
+import org.eclipselabs.damos.dml.InputDefinition;
+import org.eclipselabs.damos.dml.internal.util.ConfigureUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +45,14 @@ public class BlockInputOperations extends InputOperations {
 	public static  boolean isDirectFeedthrough(BlockInput blockInput) {
 		DirectFeedthroughPolicy directFeedthroughPolicy = blockInput.getDefinition().getDirectFeedthroughPolicy();
 		return directFeedthroughPolicy != null ? directFeedthroughPolicy.computeDirectFeedthrough() : true;
+	}
+	
+	public static BlockInputPort createPort(BlockInput blockInput) {
+		InputDefinition definition = blockInput.getDefinition();
+		BlockInputPort port = DMLFactory.eINSTANCE.createBlockInputPort();
+    	ConfigureUtil.configureParameters(port, definition);
+    	blockInput.getPorts().add(port);
+		return port;
 	}
 
 } // BlockInputOperations

@@ -14,9 +14,13 @@ package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.DeleteSemanticComponentEditPolicy;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.CompoundConstrainedToolbarLayoutEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.FragmentSelectionEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.figures.BlankableBorderedNodeFigure;
 
 /**
  * @author Andreas Unger
@@ -39,6 +43,15 @@ public abstract class CompoundEditPart extends AbstractBorderedShapeEditPart {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CompoundConstrainedToolbarLayoutEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteSemanticComponentEditPolicy());
+		installEditPolicy(IEditPolicyRoles.FRAGMENT_SELECTION_ROLE, new FragmentSelectionEditPolicy());
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#createNodeFigure()
+	 */
+	@Override
+	protected NodeFigure createNodeFigure() {
+		return new BlankableBorderedNodeFigure(createMainFigure());
 	}
 	
 }

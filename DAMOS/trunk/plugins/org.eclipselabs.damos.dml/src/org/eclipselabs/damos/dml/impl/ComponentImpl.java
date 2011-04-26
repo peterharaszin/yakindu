@@ -123,6 +123,24 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Input getInput(String name) {
+		return ComponentOperations.getInput(this, name);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Output getOutput(String name) {
+		return ComponentOperations.getOutput(this, name);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Input> getInputs() {

@@ -14,9 +14,7 @@ import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
 import org.eclipselabs.damos.common.util.NameUtil;
-import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.BlockInput;
-import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.Output;
 
@@ -33,28 +31,22 @@ public class ChangePortCountContributionItem extends CompoundContributionItem {
 
 	@Override
 	protected IContributionItem[] getContributionItems() {
-		Block block = getSelectedBlock();
-		if (block == null) {
+		Component component = getSelectedComponent();
+		if (component == null) {
 			return new IContributionItem[0];
 		}
 		
 		int itemCount = 0;
 
-		for (Input input : block.getInputs()) {
-			if (input instanceof BlockInput) {
-				BlockInput blockInput = (BlockInput) input;
-				if (blockInput.getDefinition().getMaximumPortCount() == -1 || blockInput.getDefinition().getMinimumPortCount() < blockInput.getDefinition().getMaximumPortCount()) {
-					++itemCount;
-				}
+		for (Input input : component.getInputs()) {
+			if (input.canAddPort() || input.canRemovePort()) {
+				++itemCount;
 			}
 		}
 
-		for (Output output : block.getOutputs()) {
-			if (output instanceof BlockOutput) {
-				BlockOutput blockOutput = (BlockOutput) output;
-				if (blockOutput.getDefinition().getMaximumPortCount() == -1 || blockOutput.getDefinition().getMinimumPortCount() < blockOutput.getDefinition().getMaximumPortCount()) {
-					++itemCount;
-				}
+		for (Output output : component.getOutputs()) {
+			if (output.canAddPort() || output.canRemovePort()) {
+				++itemCount;
 			}
 		}
 		
@@ -67,39 +59,33 @@ public class ChangePortCountContributionItem extends CompoundContributionItem {
 		IContributionItem[] items = new IContributionItem[2 * itemCount + 1];
 		items[i++] = new Separator();
 
-		for (Input input : block.getInputs()) {
-			if (input instanceof BlockInput) {
-				BlockInput blockInput = (BlockInput) input;
-				if (blockInput.getDefinition().getMaximumPortCount() == -1 || blockInput.getDefinition().getMinimumPortCount() < blockInput.getDefinition().getMaximumPortCount()) {
-					items[i++] = createCommandContributionItem(
-							blockInput.getDefinition().getName(),
-							IChangePortCountCommandConstants.PARAMETER__KIND__INPUT,
-							IChangePortCountCommandConstants.PARAMETER__ACTION__ADD,
-							blockInput.getDefinition().getMaximumPortCount() == -1 || blockInput.getPorts().size() < blockInput.getDefinition().getMaximumPortCount());
-					items[i++] = createCommandContributionItem(
-							blockInput.getDefinition().getName(),
-							IChangePortCountCommandConstants.PARAMETER__KIND__INPUT,
-							IChangePortCountCommandConstants.PARAMETER__ACTION__REMOVE,
-							blockInput.getPorts().size() > blockInput.getDefinition().getMinimumPortCount());
-				}
+		for (Input input : component.getInputs()) {
+			if (input.canAddPort() || input.canRemovePort()) {
+				items[i++] = createCommandContributionItem(
+						input.getName(),
+						IChangePortCountCommandConstants.PARAMETER__KIND__INPUT,
+						IChangePortCountCommandConstants.PARAMETER__ACTION__ADD,
+						input.canAddPort());
+				items[i++] = createCommandContributionItem(
+						input.getName(),
+						IChangePortCountCommandConstants.PARAMETER__KIND__INPUT,
+						IChangePortCountCommandConstants.PARAMETER__ACTION__REMOVE,
+						input.canRemovePort());
 			}
 		}
 
-		for (Output output : block.getOutputs()) {
-			if (output instanceof BlockOutput) {
-				BlockOutput blockOutput = (BlockOutput) output;
-				if (blockOutput.getDefinition().getMaximumPortCount() == -1 || blockOutput.getDefinition().getMinimumPortCount() < blockOutput.getDefinition().getMaximumPortCount()) {
-					items[i++] = createCommandContributionItem(
-							blockOutput.getDefinition().getName(),
-							IChangePortCountCommandConstants.PARAMETER__KIND__OUTPUT,
-							IChangePortCountCommandConstants.PARAMETER__ACTION__ADD,
-							blockOutput.getDefinition().getMaximumPortCount() == -1 || blockOutput.getPorts().size() < blockOutput.getDefinition().getMaximumPortCount());
-					items[i++] = createCommandContributionItem(
-							blockOutput.getDefinition().getName(),
-							IChangePortCountCommandConstants.PARAMETER__KIND__OUTPUT,
-							IChangePortCountCommandConstants.PARAMETER__ACTION__REMOVE,
-							blockOutput.getPorts().size() > blockOutput.getDefinition().getMinimumPortCount());
-				}
+		for (Output output : component.getOutputs()) {
+			if (output.canAddPort() || output.canRemovePort()) {
+				items[i++] = createCommandContributionItem(
+						output.getName(),
+						IChangePortCountCommandConstants.PARAMETER__KIND__OUTPUT,
+						IChangePortCountCommandConstants.PARAMETER__ACTION__ADD,
+						output.canAddPort());
+				items[i++] = createCommandContributionItem(
+						output.getName(),
+						IChangePortCountCommandConstants.PARAMETER__KIND__OUTPUT,
+						IChangePortCountCommandConstants.PARAMETER__ACTION__REMOVE,
+						output.canRemovePort());
 			}
 		}
 
@@ -126,14 +112,14 @@ public class ChangePortCountContributionItem extends CompoundContributionItem {
 	            false), enabled);
 	}
 	
-	protected Block getSelectedBlock() {
+	protected Component getSelectedComponent() {
 		IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 		if (workbenchWindow != null) {
 			ISelection selection = workbenchWindow.getSelectionService().getSelection();
 			if (selection instanceof IStructuredSelection) {
 				IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 				if (structuredSelection.getFirstElement() instanceof IAdaptable) {
-					return (Block) ((IAdaptable) structuredSelection.getFirstElement()).getAdapter(Block.class);
+					return (Component) ((IAdaptable) structuredSelection.getFirstElement()).getAdapter(Component.class);
 				}
 			}
 		}

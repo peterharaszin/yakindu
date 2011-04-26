@@ -2607,6 +2607,43 @@ public interface DMLPackage extends EPackage {
 	int CHOICE_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ChoiceInputImpl <em>Choice Input</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ChoiceInputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInput()
+	 * @generated
+	 */
+	int CHOICE_INPUT = 61;
+
+	/**
+	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_INPUT__PORTS = INPUT__PORTS;
+
+	/**
+	 * The feature id for the '<em><b>Component</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_INPUT__COMPONENT = INPUT__COMPONENT;
+
+	/**
+	 * The number of structural features of the '<em>Choice Input</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE_INPUT_FEATURE_COUNT = INPUT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ChoiceInputPortImpl <em>Choice Input Port</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2614,7 +2651,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
 	 * @generated
 	 */
-	int CHOICE_INPUT_PORT = 61;
+	int CHOICE_INPUT_PORT = 62;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' container reference.
@@ -2651,7 +2688,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 62;
+	int ACTION = 63;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2697,7 +2734,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
 	 * @generated
 	 */
-	int ACTION_LINK = 63;
+	int ACTION_LINK = 64;
 
 	/**
 	 * The feature id for the '<em><b>Choice</b></em>' container reference.
@@ -2743,7 +2780,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionSpecification()
 	 * @generated
 	 */
-	int CONDITION_SPECIFICATION = 64;
+	int CONDITION_SPECIFICATION = 65;
 
 	/**
 	 * The number of structural features of the '<em>Condition Specification</em>' class.
@@ -2762,7 +2799,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueConditionSpecification()
 	 * @generated
 	 */
-	int OPAQUE_CONDITION_SPECIFICATION = 65;
+	int OPAQUE_CONDITION_SPECIFICATION = 66;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -2790,7 +2827,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 66;
+	int JOIN = 67;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2838,6 +2875,43 @@ public interface DMLPackage extends EPackage {
 	int JOIN_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.JoinInputImpl <em>Join Input</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.JoinInputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoinInput()
+	 * @generated
+	 */
+	int JOIN_INPUT = 68;
+
+	/**
+	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_INPUT__PORTS = INPUT__PORTS;
+
+	/**
+	 * The feature id for the '<em><b>Component</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_INPUT__COMPONENT = INPUT__COMPONENT;
+
+	/**
+	 * The number of structural features of the '<em>Join Input</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN_INPUT_FEATURE_COUNT = INPUT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.WhileLoopImpl <em>While Loop</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2845,7 +2919,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
 	 * @generated
 	 */
-	int WHILE_LOOP = 67;
+	int WHILE_LOOP = 69;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2900,7 +2974,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
 	 * @generated
 	 */
-	int WHILE_LOOP_CONDITION = 68;
+	int WHILE_LOOP_CONDITION = 70;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -2928,7 +3002,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemory()
 	 * @generated
 	 */
-	int MEMORY = 69;
+	int MEMORY = 71;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2983,7 +3057,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInitialCondition()
 	 * @generated
 	 */
-	int MEMORY_INITIAL_CONDITION = 70;
+	int MEMORY_INITIAL_CONDITION = 72;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3020,7 +3094,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInput()
 	 * @generated
 	 */
-	int MEMORY_INPUT = 71;
+	int MEMORY_INPUT = 73;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3057,7 +3131,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryOutput()
 	 * @generated
 	 */
-	int MEMORY_OUTPUT = 72;
+	int MEMORY_OUTPUT = 74;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -4425,6 +4499,16 @@ public interface DMLPackage extends EPackage {
 	EReference getChoice_ActionLinks();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ChoiceInput <em>Choice Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Choice Input</em>'.
+	 * @see org.eclipselabs.damos.dml.ChoiceInput
+	 * @generated
+	 */
+	EClass getChoiceInput();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ChoiceInputPort <em>Choice Input Port</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4549,6 +4633,16 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getJoin();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.JoinInput <em>Join Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Join Input</em>'.
+	 * @see org.eclipselabs.damos.dml.JoinInput
+	 * @generated
+	 */
+	EClass getJoinInput();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.WhileLoop <em>While Loop</em>}'.
@@ -5784,6 +5878,16 @@ public interface DMLPackage extends EPackage {
 		EReference CHOICE__ACTION_LINKS = eINSTANCE.getChoice_ActionLinks();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ChoiceInputImpl <em>Choice Input</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ChoiceInputImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInput()
+		 * @generated
+		 */
+		EClass CHOICE_INPUT = eINSTANCE.getChoiceInput();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ChoiceInputPortImpl <em>Choice Input Port</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -5890,6 +5994,16 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass JOIN = eINSTANCE.getJoin();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.JoinInputImpl <em>Join Input</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.JoinInputImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoinInput()
+		 * @generated
+		 */
+		EClass JOIN_INPUT = eINSTANCE.getJoinInput();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.WhileLoopImpl <em>While Loop</em>}' class.

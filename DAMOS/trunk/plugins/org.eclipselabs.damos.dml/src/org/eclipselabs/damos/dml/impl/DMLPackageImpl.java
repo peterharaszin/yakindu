@@ -29,6 +29,7 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInput;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
@@ -58,6 +59,7 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -528,6 +530,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass choiceInputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass choiceInputPortEClass = null;
 
 	/**
@@ -564,6 +573,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass joinEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass joinInputEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1825,6 +1841,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getChoiceInput() {
+		return choiceInputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getChoiceInputPort() {
 		return choiceInputPortEClass;
 	}
@@ -1926,6 +1951,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EClass getJoin() {
 		return joinEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getJoinInput() {
+		return joinInputEClass;
 	}
 
 	/**
@@ -2208,6 +2242,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		choiceEClass = createEClass(CHOICE);
 		createEReference(choiceEClass, CHOICE__ACTION_LINKS);
 
+		choiceInputEClass = createEClass(CHOICE_INPUT);
+
 		choiceInputPortEClass = createEClass(CHOICE_INPUT_PORT);
 		createEAttribute(choiceInputPortEClass, CHOICE_INPUT_PORT__NAME);
 
@@ -2225,6 +2261,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEAttribute(opaqueConditionSpecificationEClass, OPAQUE_CONDITION_SPECIFICATION__CONDITION);
 
 		joinEClass = createEClass(JOIN);
+
+		joinInputEClass = createEClass(JOIN_INPUT);
 
 		whileLoopEClass = createEClass(WHILE_LOOP);
 		createEReference(whileLoopEClass, WHILE_LOOP__CONDITION);
@@ -2326,10 +2364,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		compoundOutputConnectorEClass.getESuperTypes().add(this.getCompoundConnector());
 		compoundOutputConnectorEClass.getESuperTypes().add(this.getOutputConnector());
 		choiceEClass.getESuperTypes().add(this.getComponent());
+		choiceInputEClass.getESuperTypes().add(this.getInput());
 		choiceInputPortEClass.getESuperTypes().add(this.getInputPort());
 		actionEClass.getESuperTypes().add(this.getCompound());
 		opaqueConditionSpecificationEClass.getESuperTypes().add(this.getConditionSpecification());
 		joinEClass.getESuperTypes().add(this.getComponent());
+		joinInputEClass.getESuperTypes().add(this.getInput());
 		whileLoopEClass.getESuperTypes().add(this.getAction());
 		whileLoopConditionEClass.getESuperTypes().add(this.getCompoundInputConnector());
 		memoryEClass.getESuperTypes().add(this.getComponent());
@@ -2357,6 +2397,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getComponent_Inputs(), this.getInput(), this.getInput_Component(), "inputs", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponent_Outputs(), this.getOutput(), this.getOutput_Component(), "outputs", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComponent_Name(), ecorePackage.getEString(), "name", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		EOperation op = addEOperation(componentEClass, this.getInput(), "getInput", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(componentEClass, this.getOutput(), "getOutput", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		addEOperation(componentEClass, this.getInputPort(), "getInputPorts", 0, -1, IS_UNIQUE, IS_ORDERED);
 
@@ -2389,7 +2435,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		addEOperation(connectorEClass, this.getConnection(), "getConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
-		EOperation op = addEOperation(connectorEClass, this.getConnection(), "getConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(connectorEClass, this.getConnection(), "getConnections", 0, -1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getFragment(), "context", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(connectorEClass, this.getConnection(), "getFirstConnection", 0, 1, IS_UNIQUE, !IS_ORDERED);
@@ -2400,6 +2446,14 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(outputConnectorEClass, OutputConnector.class, "OutputConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(inoutputEClass, Inoutput.class, "Inoutput", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(inoutputEClass, ecorePackage.getEString(), "getName", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(inoutputEClass, ecorePackage.getEBoolean(), "canAddPort", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(inoutputEClass, ecorePackage.getEBoolean(), "canRemovePort", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(inoutputEClass, this.getPort(), "createPort", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInput_Ports(), this.getInputPort(), this.getInputPort_Input(), "ports", null, 0, -1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2536,12 +2590,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlock_Type(), this.getBlockType(), null, "type", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		op = addEOperation(blockEClass, this.getBlockInput(), "getInput", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		op = addEOperation(blockEClass, this.getBlockOutput(), "getOutput", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
 		initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(systemEClass, org.eclipselabs.damos.dml.System.class, "System", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2614,6 +2662,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(choiceEClass, Choice.class, "Choice", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChoice_ActionLinks(), this.getActionLink(), this.getActionLink_Choice(), "actionLinks", null, 2, -1, Choice.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(choiceInputEClass, ChoiceInput.class, "ChoiceInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(choiceInputPortEClass, ChoiceInputPort.class, "ChoiceInputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getChoiceInputPort_Name(), ecorePackage.getEString(), "name", null, 0, 1, ChoiceInputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2633,6 +2683,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEAttribute(getOpaqueConditionSpecification_Condition(), ecorePackage.getEString(), "condition", null, 1, 1, OpaqueConditionSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(joinInputEClass, JoinInput.class, "JoinInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(whileLoopEClass, WhileLoop.class, "WhileLoop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWhileLoop_Condition(), this.getWhileLoopCondition(), null, "condition", null, 0, 1, WhileLoop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2686,6 +2738,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "ValidActionLinkConditions"
+		   });		
+		addAnnotation
+		  (actionLinkEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ChoiceAndActionOnSameFragment"
 		   });
 	}
 

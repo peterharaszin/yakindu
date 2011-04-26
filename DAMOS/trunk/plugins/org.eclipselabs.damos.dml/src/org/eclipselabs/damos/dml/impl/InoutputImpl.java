@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Inoutput;
+import org.eclipselabs.damos.dml.Port;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +39,42 @@ public abstract class InoutputImpl extends EObjectImpl implements Inoutput {
 	@Override
 	protected EClass eStaticClass() {
 		return DMLPackage.Literals.INOUTPUT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getName() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean canAddPort() {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean canRemovePort() {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Port createPort() {
+		throw new UnsupportedOperationException();
 	}
 
 } //InoutputImpl

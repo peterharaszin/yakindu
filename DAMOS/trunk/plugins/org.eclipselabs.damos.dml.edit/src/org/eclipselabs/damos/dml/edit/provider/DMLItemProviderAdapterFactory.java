@@ -856,6 +856,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ChoiceInput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ChoiceInputItemProvider choiceInputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ChoiceInput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createChoiceInputAdapter() {
+		if (choiceInputItemProvider == null) {
+			choiceInputItemProvider = new ChoiceInputItemProvider(this);
+		}
+
+		return choiceInputItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ChoiceInputPort} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -968,6 +991,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		}
 
 		return joinItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.JoinInput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected JoinInputItemProvider joinInputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.JoinInput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createJoinInputAdapter() {
+		if (joinInputItemProvider == null) {
+			joinInputItemProvider = new JoinInputItemProvider(this);
+		}
+
+		return joinInputItemProvider;
 	}
 
 	/**
@@ -1241,11 +1287,13 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (opaqueDataTypeSpecificationItemProvider != null) opaqueDataTypeSpecificationItemProvider.dispose();
 		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
 		if (choiceItemProvider != null) choiceItemProvider.dispose();
+		if (choiceInputItemProvider != null) choiceInputItemProvider.dispose();
 		if (choiceInputPortItemProvider != null) choiceInputPortItemProvider.dispose();
 		if (actionItemProvider != null) actionItemProvider.dispose();
 		if (actionLinkItemProvider != null) actionLinkItemProvider.dispose();
 		if (opaqueConditionSpecificationItemProvider != null) opaqueConditionSpecificationItemProvider.dispose();
 		if (joinItemProvider != null) joinItemProvider.dispose();
+		if (joinInputItemProvider != null) joinInputItemProvider.dispose();
 		if (whileLoopItemProvider != null) whileLoopItemProvider.dispose();
 		if (whileLoopConditionItemProvider != null) whileLoopConditionItemProvider.dispose();
 		if (memoryItemProvider != null) memoryItemProvider.dispose();

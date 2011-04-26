@@ -23,6 +23,7 @@ import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInput;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLFactory;
@@ -36,6 +37,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -136,11 +138,13 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION: return createOpaqueDataTypeSpecification();
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
 			case DMLPackage.CHOICE: return createChoice();
+			case DMLPackage.CHOICE_INPUT: return createChoiceInput();
 			case DMLPackage.CHOICE_INPUT_PORT: return createChoiceInputPort();
 			case DMLPackage.ACTION: return createAction();
 			case DMLPackage.ACTION_LINK: return createActionLink();
 			case DMLPackage.OPAQUE_CONDITION_SPECIFICATION: return createOpaqueConditionSpecification();
 			case DMLPackage.JOIN: return createJoin();
+			case DMLPackage.JOIN_INPUT: return createJoinInput();
 			case DMLPackage.WHILE_LOOP: return createWhileLoop();
 			case DMLPackage.WHILE_LOOP_CONDITION: return createWhileLoopCondition();
 			case DMLPackage.MEMORY: return createMemory();
@@ -497,6 +501,16 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ChoiceInput createChoiceInput() {
+		ChoiceInputImpl choiceInput = new ChoiceInputImpl();
+		return choiceInput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ChoiceInputPort createChoiceInputPort() {
 		ChoiceInputPortImpl choiceInputPort = new ChoiceInputPortImpl();
 		return choiceInputPort;
@@ -540,6 +554,16 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public Join createJoin() {
 		JoinImpl join = new JoinImpl();
 		return join;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JoinInput createJoinInput() {
+		JoinInputImpl joinInput = new JoinInputImpl();
+		return joinInput;
 	}
 
 	/**

@@ -38,6 +38,7 @@ import org.eclipselabs.damos.dml.BooleanDirectFeedthroughPolicy;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.Choice;
+import org.eclipselabs.damos.dml.ChoiceInput;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
@@ -67,6 +68,7 @@ import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -293,6 +295,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateCompoundOutputConnector((CompoundOutputConnector)value, diagnostics, context);
 			case DMLPackage.CHOICE:
 				return validateChoice((Choice)value, diagnostics, context);
+			case DMLPackage.CHOICE_INPUT:
+				return validateChoiceInput((ChoiceInput)value, diagnostics, context);
 			case DMLPackage.CHOICE_INPUT_PORT:
 				return validateChoiceInputPort((ChoiceInputPort)value, diagnostics, context);
 			case DMLPackage.ACTION:
@@ -305,6 +309,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateOpaqueConditionSpecification((OpaqueConditionSpecification)value, diagnostics, context);
 			case DMLPackage.JOIN:
 				return validateJoin((Join)value, diagnostics, context);
+			case DMLPackage.JOIN_INPUT:
+				return validateJoinInput((JoinInput)value, diagnostics, context);
 			case DMLPackage.WHILE_LOOP:
 				return validateWhileLoop((WhileLoop)value, diagnostics, context);
 			case DMLPackage.WHILE_LOOP_CONDITION:
@@ -1349,6 +1355,15 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateChoiceInput(ChoiceInput choiceInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(choiceInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateChoiceInputPort(ChoiceInputPort choiceInputPort, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(choiceInputPort, diagnostics, context);
 	}
@@ -1368,7 +1383,37 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateActionLink(ActionLink actionLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(actionLink, diagnostics, context);
+		if (!validate_NoCircularContainment(actionLink, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validateActionLink_ChoiceAndActionOnSameFragment(actionLink, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the ChoiceAndActionOnSameFragment constraint of '<em>Action Link</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateActionLink_ChoiceAndActionOnSameFragment(ActionLink actionLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (actionLink.getChoice().getEnclosingFragment() != actionLink.getAction().getEnclosingFragment()) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Choice and action must be located on the same fragment",
+						new Object[] { actionLink }));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -1406,6 +1451,15 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(join, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(join, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateJoinInput(JoinInput joinInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(joinInput, diagnostics, context);
 	}
 
 	/**

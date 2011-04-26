@@ -332,6 +332,15 @@ public interface DMLFactory extends EFactory {
 	Choice createChoice();
 
 	/**
+	 * Returns a new object of class '<em>Choice Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Choice Input</em>'.
+	 * @generated
+	 */
+	ChoiceInput createChoiceInput();
+
+	/**
 	 * Returns a new object of class '<em>Choice Input Port</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -375,6 +384,15 @@ public interface DMLFactory extends EFactory {
 	 * @generated
 	 */
 	Join createJoin();
+
+	/**
+	 * Returns a new object of class '<em>Join Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Join Input</em>'.
+	 * @generated
+	 */
+	JoinInput createJoinInput();
 
 	/**
 	 * Returns a new object of class '<em>While Loop</em>'.

@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -116,6 +117,24 @@ public class OutputImpl extends InoutputImpl implements Output {
 			ports = new EObjectContainmentWithInverseEList<OutputPort>(OutputPort.class, this, DMLPackage.OUTPUT__PORTS, DMLPackage.OUTPUT_PORT__OUTPUT);
 		}
 		return ports;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		return "output";
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#createPort()
+	 */
+	@Override
+	public OutputPort createPort() {
+		OutputPort port = DMLFactory.eINSTANCE.createOutputPort();
+		getPorts().add(port);
+		return port;
 	}
 
 	/**

@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.core.internal.util;
+package org.eclipselabs.damos.dml.internal.util;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -55,9 +55,9 @@ public class ConfigureUtil {
 		}
 	}
 	
-	public static void configureParameters(ParameterizedElement parameterizedElement, ParameterableElement parameterDescriptorContainer) {
+	public static void configureParameters(ParameterizedElement parameterizedElement, ParameterableElement parameterableElement) {
 		Set<String> parameterNames = new HashSet<String>();
-		for (Parameter p : parameterDescriptorContainer.getParameters()) {
+		for (Parameter p : parameterableElement.getParameters()) {
 			if (!parameterNames.contains(p.getName())) {
 				addParameter(parameterizedElement, p);
 				parameterNames.add(p.getName());

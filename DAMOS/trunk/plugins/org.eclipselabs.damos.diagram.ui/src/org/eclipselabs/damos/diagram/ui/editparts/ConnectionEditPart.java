@@ -13,52 +13,36 @@ package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.ConnectionFigure;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.FragmentSelectionEditPolicy;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Port;
-import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class ConnectionEditPart extends ConnectionNodeEditPart {
-
-	private IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
-		
-		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
-			refreshVisibility();
-		}
-
-	};
 
 	public ConnectionEditPart(View view) {
 		super(view);
 	}
 	
-	public void activate() {
-		super.activate();
-		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-		if (fragmentManager != null) {
-			fragmentManager.addFragmentSelectionChangeListener(fragmentChangeListener);
-		}
-	}
-	
-	public void deactivate() {
-		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-		if (fragmentManager != null) {
-			fragmentManager.removeFragmentSelectionChangeListener(fragmentChangeListener);
-		}
-		super.deactivate();
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart#createDefaultEditPolicies()
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(IEditPolicyRoles.FRAGMENT_SELECTION_ROLE, new FragmentSelectionEditPolicy());
 	}
 	
 	protected void refreshVisuals() {
@@ -79,26 +63,6 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 	
 	protected void setLineType(int lineType) {
 		((ConnectionFigure) getFigure()).setLineStyle(lineType);
-	}
-	
-	protected void refreshVisibility() {
-		boolean visible = true;
-		
-		EObject element = resolveSemanticElement();
-		if (element instanceof Connection) {
-			Connection connection = (Connection) element;
-			FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-			if (fragmentManager != null) {
-				Fragment selectedFragment = fragmentManager.getSelectedFragment();
-				visible = selectedFragment == connection.getOwningFragment() || DMLUtil.isChildFragment(selectedFragment, connection.getOwningFragment());
-			}
-		}
-		
-		if (visible) {
-			super.refreshVisibility();
-		} else {
-			setVisibility(false);
-		}
 	}
 	
 	protected PolylineConnection createConnectionFigure() {
@@ -128,9 +92,7 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 	
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (DMLPackage.Literals.FRAGMENT_ELEMENT__OWNING_FRAGMENT == feature) {
-			refreshVisibility();
-		} else if (DMLPackage.eINSTANCE.getConnection_Source() == feature || DMLPackage.eINSTANCE.getConnection_Target() == feature) {
+		if (DMLPackage.eINSTANCE.getConnection_Source() == feature || DMLPackage.eINSTANCE.getConnection_Target() == feature) {
 			refreshConnectionType();
 		} else {
 			super.handleNotificationEvent(notification);

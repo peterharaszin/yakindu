@@ -185,6 +185,16 @@ public class ComponentItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.COMPONENT__INPUTS,
+				 DMLFactory.eINSTANCE.createChoiceInput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__INPUTS,
+				 DMLFactory.eINSTANCE.createJoinInput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__INPUTS,
 				 DMLFactory.eINSTANCE.createMemoryInitialCondition()));
 
 		newChildDescriptors.add

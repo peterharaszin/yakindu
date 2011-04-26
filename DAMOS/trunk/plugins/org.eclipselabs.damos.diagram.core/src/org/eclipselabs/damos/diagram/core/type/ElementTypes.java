@@ -19,6 +19,18 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	public static final String FRAGMENT_ID = "org.eclipselabs.damos.diagram.fragment"; //$NON-NLS-1$
 	public static final IElementType FRAGMENT = getElementType(FRAGMENT_ID);
 
+	public static final String INPUT_ID = "org.eclipselabs.damos.diagram.input"; //$NON-NLS-1$
+	public static final IElementType INPUT = getElementType(INPUT_ID);
+
+	public static final String OUTPUT_ID = "org.eclipselabs.damos.diagram.output"; //$NON-NLS-1$
+	public static final IElementType OUTPUT = getElementType(OUTPUT_ID);
+
+	public static final String INPUT_PORT_ID = "org.eclipselabs.damos.diagram.inputPort"; //$NON-NLS-1$
+	public static final IElementType INPUT_PORT = getElementType(INPUT_PORT_ID);
+
+	public static final String OUTPUT_PORT_ID = "org.eclipselabs.damos.diagram.outputPort"; //$NON-NLS-1$
+	public static final IElementType OUTPUT_PORT = getElementType(OUTPUT_PORT_ID);
+
 	public static final String CONNECTION_ID = "org.eclipselabs.damos.diagram.connection"; //$NON-NLS-1$
 	public static final IElementType CONNECTION = getElementType(CONNECTION_ID);
 	

@@ -49,5 +49,10 @@ public interface BlockInput extends Input, BlockInoutput {
 	 * @generated
 	 */
 	void setDefinition(InputDefinition value);
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.Input#createPort()
+	 */
+	public BlockInputPort createPort();
 
 } // BlockInput

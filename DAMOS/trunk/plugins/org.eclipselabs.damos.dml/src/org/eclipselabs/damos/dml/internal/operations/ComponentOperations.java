@@ -48,6 +48,24 @@ public class ComponentOperations {
 		super();
 	}
 
+	public static Input getInput(Component component, String name) {
+		for (Input input : component.getInputs()) {
+			if (name.equals(input.getName())) {
+				return input;
+			}
+		}
+		return null;
+	}
+
+	public static Output getOutput(Component component, String name) {
+		for (Output output : component.getOutputs()) {
+			if (name.equals(output.getName())) {
+				return output;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

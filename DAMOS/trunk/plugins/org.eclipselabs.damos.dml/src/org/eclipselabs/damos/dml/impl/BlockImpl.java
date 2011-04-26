@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.ParameterizedElement;
-import org.eclipselabs.damos.dml.internal.operations.BlockOperations;
+import org.eclipselabs.damos.dml.internal.operations.ComponentOperations;
 import org.eclipselabs.damos.dml.internal.operations.ParameterizedElementOperations;
 
 /**
@@ -154,7 +154,7 @@ public class BlockImpl extends ComponentImpl implements Block {
 	 * @generated NOT
 	 */
 	public BlockInput getInput(String name) {
-		return BlockOperations.getInput(this, name);
+		return (BlockInput) ComponentOperations.getInput(this, name);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class BlockImpl extends ComponentImpl implements Block {
 	 * @generated NOT
 	 */
 	public BlockOutput getOutput(String name) {
-		return BlockOperations.getOutput(this, name);
+		return (BlockOutput) ComponentOperations.getOutput(this, name);
 	}
 
 	/**

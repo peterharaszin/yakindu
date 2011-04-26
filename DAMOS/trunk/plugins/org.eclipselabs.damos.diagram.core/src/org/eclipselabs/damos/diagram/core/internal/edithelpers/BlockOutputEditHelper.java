@@ -11,20 +11,10 @@
 
 package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipselabs.damos.diagram.core.internal.commands.ConfigureBlockOutputCommand;
-import org.eclipselabs.damos.dml.DMLPackage;
-
 /**
  * @author Andreas Unger
  *
  */
-public class BlockOutputEditHelper extends AbstractEditHelper {
-
-	protected ICommand getConfigureCommand(ConfigureRequest request) {
-		return new ConfigureBlockOutputCommand(request, DMLPackage.Literals.BLOCK_OUTPUT);
-	}
+public class BlockOutputEditHelper extends InoutputEditHelper {
 
 }

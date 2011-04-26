@@ -18,13 +18,16 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IBlankableFigure;
 
-public class ConnectionFigure extends PolylineConnectionEx implements IFigureConstants {
+public class ConnectionFigure extends PolylineConnectionEx implements IBlankableFigure, IFigureConstants {
 	
 	private static final int JUNCTION_RADIUS = 80;
 	
 	private static final double DECORATION_SCALE_X = 7 * DEFAULT_LINE_WIDTH;
 	private static final double DECORATION_SCALE_Y = 3 * DEFAULT_LINE_WIDTH;
+	
+	private boolean blanked;
 	
 	public ConnectionFigure() {
 		PolygonDecoration decoration = new PolygonDecoration() {
@@ -38,6 +41,30 @@ public class ConnectionFigure extends PolylineConnectionEx implements IFigureCon
 		decoration.setScale(DECORATION_SCALE_X, DECORATION_SCALE_Y);
 		setTargetDecoration(decoration);
 		setLineWidth(DEFAULT_LINE_WIDTH);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.draw2d.Figure#isVisible()
+	 */
+	@Override
+	public boolean isVisible() {
+		return !isBlanked() && super.isVisible();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.figures.IBlankableFigure#isBlank()
+	 */
+	public boolean isBlanked() {
+		return blanked;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.internal.figures.IBlankableFigure#setBlank(boolean)
+	 */
+	public void setBlanked(boolean blanked) {
+		this.blanked = blanked;
+		revalidate();
+		repaint();
 	}
 
 	/* (non-Javadoc)

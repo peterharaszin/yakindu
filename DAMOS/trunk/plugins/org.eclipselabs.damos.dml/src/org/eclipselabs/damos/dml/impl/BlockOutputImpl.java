@@ -11,8 +11,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.BlockOutputPort;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.OutputDefinition;
+import org.eclipselabs.damos.dml.internal.operations.BlockOutputOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,6 +95,39 @@ public class BlockOutputImpl extends OutputImpl implements BlockOutput {
 		definition = newDefinition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_OUTPUT__DEFINITION, oldDefinition, definition));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.OutputImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		return getDefinition().getName();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#canAddPort()
+	 */
+	@Override
+	public boolean canAddPort() {
+		int maximumPortCount = getDefinition().getMaximumPortCount();
+		return maximumPortCount == -1 || getPorts().size() < maximumPortCount;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#canRemovePort()
+	 */
+	@Override
+	public boolean canRemovePort() {
+		return getPorts().size() > getDefinition().getMinimumPortCount();
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.OutputImpl#createPort()
+	 */
+	@Override
+	public BlockOutputPort createPort() {
+		return BlockOutputOperations.createPort(this);
 	}
 
 	/**

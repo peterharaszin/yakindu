@@ -17,6 +17,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
@@ -25,31 +26,24 @@ import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
 import org.eclipselabs.damos.diagram.ui.editpolicies.ComponentCanonicalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.DeleteSemanticComponentEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.InputPortCountEditPolicy;
+import org.eclipselabs.damos.diagram.ui.editpolicies.OutputPortCountEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.TransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentEditPartDelegate;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.FragmentSelectionEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.figures.BlankableBorderedNodeFigure;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Port;
-import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	
 	private static final ComponentEditPartDelegate PASSIVE_DELEGATE = new ComponentEditPartDelegate(null);
 	private ComponentEditPartDelegate delegate;
-
-	private IFragmentSelectionChangeListener fragmentChangeListener = new IFragmentSelectionChangeListener() {
-		
-		public void fragmentSelectionChanged(FragmentSelectionChangeEvent event) {
-			refreshVisibility();
-		}
-
-	};
 
 	public ComponentEditPart(View view) {
 		super(view);
@@ -69,31 +63,26 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		return PASSIVE_DELEGATE;
 	}
 	
-	public void activate() {
-		super.activate();
-		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-		if (fragmentManager != null) {
-			fragmentManager.addFragmentSelectionChangeListener(fragmentChangeListener);
-		}
-	}
-	
-	public void deactivate() {
-		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-		if (fragmentManager != null) {
-			fragmentManager.removeFragmentSelectionChangeListener(fragmentChangeListener);
-		}
-		super.deactivate();
-	}
-
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		installEditPolicy(IEditPolicyRoles.CANONICAL_ROLE, new ComponentCanonicalEditPolicy());
 		installEditPolicy(IEditPolicyRoles.TRANSFORM_ROLE, new TransformEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new DeleteSemanticComponentEditPolicy());
+		installEditPolicy(IEditPolicyRoles.INPUT_PORT_COUNT_ROLE, new InputPortCountEditPolicy());
+		installEditPolicy(IEditPolicyRoles.OUTPUT_PORT_COUNT_ROLE, new OutputPortCountEditPolicy());
+		installEditPolicy(IEditPolicyRoles.FRAGMENT_SELECTION_ROLE, new FragmentSelectionEditPolicy());
 		getDelegate().createDefaultEditPolicies();
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#createNodeFigure()
+	 */
+	@Override
+	protected NodeFigure createNodeFigure() {
+		return new BlankableBorderedNodeFigure(createMainFigure());
+	}
+
 	public ComponentFigure getComponentFigure() {
 		return (ComponentFigure) getMainFigure();
 	}
@@ -107,26 +96,6 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		refreshRotation();
 	}
 	
-	protected void refreshVisibility() {
-		boolean visible = true;
-		
-		EObject element = resolveSemanticElement();
-		if (element instanceof Component) {
-			Component component = (Component) element;
-			FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getRoot().getContents().getAdapter(FragmentSelectionManager.class);
-			if (fragmentManager != null) {
-				Fragment selectedFragment = fragmentManager.getSelectedFragment();
-				visible = selectedFragment == component.getOwningFragment() || DMLUtil.isChildFragment(selectedFragment, component.getOwningFragment());
-			}
-		}
-		
-		if (visible) {
-			super.refreshVisibility();
-		} else {
-			setVisibility(false);
-		}
-	}
-
 	protected void refreshFlipped() {
 		Node node = (Node) getNotationView();
 		if (node != null) {
@@ -156,8 +125,6 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 			refreshFlipped();
 		} else if (DMLNotationPackage.eINSTANCE.getComponentLayoutConstraint_Rotation().equals(feature)) {
 			refreshRotation();
-		} else if (DMLPackage.Literals.FRAGMENT_ELEMENT__OWNING_FRAGMENT == feature) {
-			refreshVisuals();
 		} else {
 			super.handleNotificationEvent(notification);
 		}

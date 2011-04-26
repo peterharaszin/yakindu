@@ -24,6 +24,11 @@ package org.eclipselabs.damos.dml;
  * @generated
  */
 public interface Block extends Component, ParameterizedElement {
+	
+	BlockInput getInput(String name);
+	
+	BlockOutput getOutput(String name);
+	
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -49,21 +54,5 @@ public interface Block extends Component, ParameterizedElement {
 	 * @generated
 	 */
 	void setType(BlockType value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" nameRequired="true" nameOrdered="false"
-	 * @generated
-	 */
-	BlockInput getInput(String name);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" nameRequired="true" nameOrdered="false"
-	 * @generated
-	 */
-	BlockOutput getOutput(String name);
 
 } // Block

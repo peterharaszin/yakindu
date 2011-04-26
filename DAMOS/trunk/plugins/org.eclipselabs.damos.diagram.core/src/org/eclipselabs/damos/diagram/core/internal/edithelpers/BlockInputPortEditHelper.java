@@ -11,19 +11,10 @@
 
 package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipselabs.damos.diagram.core.internal.commands.ConfigureBlockInputPortCommand;
-import org.eclipselabs.damos.dml.DMLPackage;
-
 /**
  * @author Andreas Unger
  *
  */
 public class BlockInputPortEditHelper extends PortEditHelper {
-
-	protected ICommand getConfigureCommand(ConfigureRequest request) {
-		return new ConfigureBlockInputPortCommand(request, DMLPackage.Literals.BLOCK_INPUT_PORT);
-	}
 
 }

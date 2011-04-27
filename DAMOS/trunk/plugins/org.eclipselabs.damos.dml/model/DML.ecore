@@ -53,6 +53,9 @@
         eType="#//Fragment" eOpposite="#//Fragment/fragmentElements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connection" eSuperTypes="#//FragmentElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidCompoundConnection"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         lowerBound="1" eType="#//OutputConnector"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"

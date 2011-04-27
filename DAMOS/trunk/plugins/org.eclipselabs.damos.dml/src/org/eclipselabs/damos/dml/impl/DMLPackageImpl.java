@@ -1787,6 +1787,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCompoundMember_OwningCompound() {
+		return (EReference)compoundMemberEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompoundConnector() {
 		return compoundConnectorEClass;
 	}
@@ -2231,6 +2240,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(compoundEClass, COMPOUND__MEMBERS);
 
 		compoundMemberEClass = createEClass(COMPOUND_MEMBER);
+		createEReference(compoundMemberEClass, COMPOUND_MEMBER__OWNING_COMPOUND);
 
 		compoundConnectorEClass = createEClass(COMPOUND_CONNECTOR);
 		createEReference(compoundConnectorEClass, COMPOUND_CONNECTOR__COMPOUND);
@@ -2651,6 +2661,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getCompound_Members(), this.getCompoundMember(), null, "members", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundMemberEClass, CompoundMember.class, "CompoundMember", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCompoundMember_OwningCompound(), this.getCompound(), null, "owningCompound", null, 0, 1, CompoundMember.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundConnectorEClass, CompoundConnector.class, "CompoundConnector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundConnector_Compound(), this.getCompound(), null, "compound", null, 1, 1, CompoundConnector.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

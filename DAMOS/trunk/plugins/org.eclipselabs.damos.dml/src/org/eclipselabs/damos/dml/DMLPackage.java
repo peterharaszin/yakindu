@@ -171,13 +171,22 @@ public interface DMLPackage extends EPackage {
 	int COMPONENT__OWNING_FRAGMENT = FRAGMENT_ELEMENT__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__OWNING_COMPOUND = FRAGMENT_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__INPUTS = FRAGMENT_ELEMENT_FEATURE_COUNT + 0;
+	int COMPONENT__INPUTS = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' containment reference list.
@@ -186,7 +195,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__OUTPUTS = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
+	int COMPONENT__OUTPUTS = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -195,7 +204,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__NAME = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
+	int COMPONENT__NAME = FRAGMENT_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Component</em>' class.
@@ -204,7 +213,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 3;
+	int COMPONENT_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.PortImpl <em>Port</em>}' class.
@@ -1566,6 +1575,15 @@ public interface DMLPackage extends EPackage {
 	int BLOCK__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK__OWNING_COMPOUND = COMPONENT__OWNING_COMPOUND;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1848,6 +1866,15 @@ public interface DMLPackage extends EPackage {
 	int SUBSYSTEM__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSYSTEM__OWNING_COMPOUND = COMPONENT__OWNING_COMPOUND;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2065,6 +2092,15 @@ public interface DMLPackage extends EPackage {
 	int INOUTPORT__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INOUTPORT__OWNING_COMPOUND = COMPONENT__OWNING_COMPOUND;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2119,6 +2155,15 @@ public interface DMLPackage extends EPackage {
 	int INPORT__OWNING_FRAGMENT = INOUTPORT__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPORT__OWNING_COMPOUND = INOUTPORT__OWNING_COMPOUND;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2171,6 +2216,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OUTPORT__OWNING_FRAGMENT = INOUTPORT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPORT__OWNING_COMPOUND = INOUTPORT__OWNING_COMPOUND;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -2422,13 +2476,22 @@ public interface DMLPackage extends EPackage {
 	int COMPOUND__OWNING_FRAGMENT = FRAGMENT_ELEMENT__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__OWNING_COMPOUND = FRAGMENT_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND__MEMBERS = FRAGMENT_ELEMENT_FEATURE_COUNT + 0;
+	int COMPOUND__MEMBERS = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Compound</em>' class.
@@ -2437,7 +2500,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
+	int COMPOUND_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundMemberImpl <em>Compound Member</em>}' class.
@@ -2450,13 +2513,22 @@ public interface DMLPackage extends EPackage {
 	int COMPOUND_MEMBER = 56;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND_MEMBER__OWNING_COMPOUND = 0;
+
+	/**
 	 * The number of structural features of the '<em>Compound Member</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOUND_MEMBER_FEATURE_COUNT = 0;
+	int COMPOUND_MEMBER_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundConnectorImpl <em>Compound Connector</em>}' class.
@@ -2560,6 +2632,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int CHOICE__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__OWNING_COMPOUND = COMPONENT__OWNING_COMPOUND;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -2698,6 +2779,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION__OWNING_FRAGMENT = COMPOUND__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__OWNING_COMPOUND = COMPOUND__OWNING_COMPOUND;
 
 	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
@@ -2839,6 +2929,15 @@ public interface DMLPackage extends EPackage {
 	int JOIN__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN__OWNING_COMPOUND = COMPONENT__OWNING_COMPOUND;
+
+	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2931,6 +3030,15 @@ public interface DMLPackage extends EPackage {
 	int WHILE_LOOP__OWNING_FRAGMENT = ACTION__OWNING_FRAGMENT;
 
 	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP__OWNING_COMPOUND = ACTION__OWNING_COMPOUND;
+
+	/**
 	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3012,6 +3120,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MEMORY__OWNING_FRAGMENT = COMPONENT__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__OWNING_COMPOUND = COMPONENT__OWNING_COMPOUND;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' containment reference list.
@@ -4437,6 +4554,17 @@ public interface DMLPackage extends EPackage {
 	EClass getCompoundMember();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.CompoundMember#getOwningCompound <em>Owning Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Owning Compound</em>'.
+	 * @see org.eclipselabs.damos.dml.CompoundMember#getOwningCompound()
+	 * @see #getCompoundMember()
+	 * @generated
+	 */
+	EReference getCompoundMember_OwningCompound();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.CompoundConnector <em>Compound Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5820,6 +5948,14 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPOUND_MEMBER = eINSTANCE.getCompoundMember();
+
+		/**
+		 * The meta object literal for the '<em><b>Owning Compound</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOUND_MEMBER__OWNING_COMPOUND = eINSTANCE.getCompoundMember_OwningCompound();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CompoundConnectorImpl <em>Compound Connector</em>}' class.

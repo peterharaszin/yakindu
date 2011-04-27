@@ -11,6 +11,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -25,6 +26,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.CompoundImpl#getOwningCompound <em>Owning Compound</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.CompoundImpl#getMembers <em>Members</em>}</li>
  * </ul>
  * </p>
@@ -66,6 +68,29 @@ public abstract class CompoundImpl extends FragmentElementImpl implements Compou
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Compound getOwningCompound() {
+		Compound owningCompound = basicGetOwningCompound();
+		return owningCompound != null && owningCompound.eIsProxy() ? (Compound)eResolveProxy((InternalEObject)owningCompound) : owningCompound;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Compound basicGetOwningCompound() {
+		EObject container = eInternalContainer();
+		if (container instanceof Compound) {
+			return (Compound) container;
+		}
+		return null;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<CompoundMember> getMembers() {
 		if (members == null) {
 			members = new EObjectContainmentEList<CompoundMember>(CompoundMember.class, this, DMLPackage.COMPOUND__MEMBERS);
@@ -95,6 +120,9 @@ public abstract class CompoundImpl extends FragmentElementImpl implements Compou
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DMLPackage.COMPOUND__OWNING_COMPOUND:
+				if (resolve) return getOwningCompound();
+				return basicGetOwningCompound();
 			case DMLPackage.COMPOUND__MEMBERS:
 				return getMembers();
 		}
@@ -141,10 +169,44 @@ public abstract class CompoundImpl extends FragmentElementImpl implements Compou
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DMLPackage.COMPOUND__OWNING_COMPOUND:
+				return basicGetOwningCompound() != null;
 			case DMLPackage.COMPOUND__MEMBERS:
 				return members != null && !members.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == CompoundMember.class) {
+			switch (derivedFeatureID) {
+				case DMLPackage.COMPOUND__OWNING_COMPOUND: return DMLPackage.COMPOUND_MEMBER__OWNING_COMPOUND;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == CompoundMember.class) {
+			switch (baseFeatureID) {
+				case DMLPackage.COMPOUND_MEMBER__OWNING_COMPOUND: return DMLPackage.COMPOUND__OWNING_COMPOUND;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 } //CompoundImpl

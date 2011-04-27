@@ -1325,14 +1325,13 @@ public class DMLValidator extends EObjectValidator {
 		if (!duplicateActionLinks.isEmpty()) {
 			if (diagnostics != null) {
 				for (ActionLink actionLink : duplicateActionLinks) {
-					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+					diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
 							DIAGNOSTIC_SOURCE,
 							0,
 							"Duplicate action link condition",
 							new Object[] { actionLink }));
 				}
 			}
-			result = false;
 		}
 
 		if (trueCount == 1 && falseCount == 1 && actionLinks.size() > 2) {
@@ -1341,14 +1340,14 @@ public class DMLValidator extends EObjectValidator {
 					if (actionLink.getCondition() != null) {
 						String condition = actionLink.getCondition().stringCondition();
 						if (!("true".equals(condition) || "false".equals(condition))) {
-							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+							diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
 									DIAGNOSTIC_SOURCE,
 									0,
-									"Action link will never be used",
+									"Pointless action link",
 									new Object[] { actionLink }));
 						}
 					} else {
-						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
 								DIAGNOSTIC_SOURCE,
 								0,
 								"Default action link will never be used",
@@ -1356,7 +1355,6 @@ public class DMLValidator extends EObjectValidator {
 					}
 				}
 			}
-			result = false;
 		}
 		
 		if ((trueCount == 0 || falseCount == 0) && defaultCount == 0) {

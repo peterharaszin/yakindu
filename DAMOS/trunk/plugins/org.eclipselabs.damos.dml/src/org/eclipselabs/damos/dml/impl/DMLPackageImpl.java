@@ -2755,6 +2755,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		   source, 
 		   new String[] {
 			 "constraints", "ChoiceAndActionHaveSameOwner"
+		   });		
+		addAnnotation
+		  (memoryEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "MustBeOwnedByCompound InitialConditionSourceOnEnclosingElement"
 		   });
 	}
 

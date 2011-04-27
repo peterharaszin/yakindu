@@ -1506,7 +1506,61 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(memory, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(memory, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMemory_MustBeOwnedByCompound(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMemory_InitialConditionSourceOnEnclosingElement(memory, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the MustBeOwnedByCompound constraint of '<em>Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateMemory_MustBeOwnedByCompound(Memory memory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!(memory.getOwningCompound() instanceof WhileLoop)) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Memory components can only be used in while loops",
+						new Object[] { memory }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Validates the InitialConditionSourceOnEnclosingElement constraint of '<em>Memory</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateMemory_InitialConditionSourceOnEnclosingElement(Memory memory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (validateMemory_MustBeOwnedByCompound(memory, null, context)) {
+			Fragment contextFragment = (Fragment) context.get(Fragment.class);
+			if (contextFragment != null) {
+				Connection connection = memory.getFirstInputPort().getFirstConnection(contextFragment);
+				if (connection != null) {
+					FragmentElement sourceOwner = DMLUtil.getOwner(connection.getSource(), FragmentElement.class);
+					if (sourceOwner != null
+							&& sourceOwner.getOwningFragment() == null
+							&& (sourceOwner.eContainer() == memory.getOwningCompound()
+									|| !EcoreUtil.isAncestor(sourceOwner.eContainer(), memory.getOwningCompound()))) {
+						if (diagnostics != null) {
+							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+									DIAGNOSTIC_SOURCE,
+									0,
+									"Initial condition sources of memory components must be either located directly on a fragment or on an enclosing compound",
+									new Object[] { memory }));
+						}
+						return false;
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 	/**

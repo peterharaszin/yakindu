@@ -344,7 +344,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionLink">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ChoiceAndActionOnSameFragment"/>
+      <details key="constraints" value="ChoiceAndActionHaveSameOwner"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="choice" lowerBound="1"
         eType="#//Choice" eOpposite="#//Choice/actionLinks"/>

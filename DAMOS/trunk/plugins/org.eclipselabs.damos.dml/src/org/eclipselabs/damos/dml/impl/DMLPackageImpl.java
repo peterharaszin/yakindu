@@ -2754,7 +2754,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		  (actionLinkEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "ChoiceAndActionOnSameFragment"
+			 "constraints", "ChoiceAndActionHaveSameOwner"
 		   });
 	}
 

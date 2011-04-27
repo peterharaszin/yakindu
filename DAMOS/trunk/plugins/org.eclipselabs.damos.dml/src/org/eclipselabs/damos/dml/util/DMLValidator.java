@@ -1392,23 +1392,33 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_UniqueID(actionLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(actionLink, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(actionLink, diagnostics, context);
-		if (result || diagnostics != null) result &= validateActionLink_ChoiceAndActionOnSameFragment(actionLink, diagnostics, context);
+		if (result || diagnostics != null) result &= validateActionLink_ChoiceAndActionHaveSameOwner(actionLink, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the ChoiceAndActionOnSameFragment constraint of '<em>Action Link</em>'.
+	 * Validates the ChoiceAndActionHaveSameOwner constraint of '<em>Action Link</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateActionLink_ChoiceAndActionOnSameFragment(ActionLink actionLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateActionLink_ChoiceAndActionHaveSameOwner(ActionLink actionLink, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (actionLink.getChoice().getEnclosingFragment() != actionLink.getAction().getEnclosingFragment()) {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
 						0,
 						"Choice and action must be located on the same fragment",
+						new Object[] { actionLink }));
+			}
+			return false;
+		}
+		if (actionLink.getChoice().getOwningCompound() != actionLink.getAction().getOwningCompound()) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Choice and action must be located in the same compound",
 						new Object[] { actionLink }));
 			}
 			return false;

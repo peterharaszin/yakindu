@@ -367,7 +367,11 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WhileLoopCondition" eSuperTypes="#//CompoundInputConnector"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Memory" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Memory" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="MustBeOwnedByCompound InitialConditionSourceOnEnclosingElement"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MemoryInitialCondition" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="MemoryInput" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="MemoryOutput" eSuperTypes="#//Output"/>

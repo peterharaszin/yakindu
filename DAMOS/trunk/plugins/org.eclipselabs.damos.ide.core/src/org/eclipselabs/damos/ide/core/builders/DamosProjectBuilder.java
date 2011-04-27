@@ -116,15 +116,18 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 			
 			boolean validationResult = true;
 						
-			Map<Object, Object> context = new HashMap<Object, Object>();
-			context.put(EValidator.SubstitutionLabelProvider.class, SubstitutionProvider.INSTANCE);
-			
 			for (EObject eObject : blockDiagramResource.getContents()) {
 				if (eObject.eClass().getEPackage() != DMLPackage.eINSTANCE) {
 					continue;
 				}
 				
 				BasicDiagnostic diagnostics = new BasicDiagnostic();
+				
+				Map<Object, Object> context = new HashMap<Object, Object>();
+				context.put(EValidator.SubstitutionLabelProvider.class, SubstitutionProvider.INSTANCE);
+				if (eObject instanceof Fragment) {
+					context.put(Fragment.class, eObject);
+				}
 				
 				DMLValidator.INSTANCE.validate(eObject, diagnostics, context);
 				if (eObject instanceof Fragment) {

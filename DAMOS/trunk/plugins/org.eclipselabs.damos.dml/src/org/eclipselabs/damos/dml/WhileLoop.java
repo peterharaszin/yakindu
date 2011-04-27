@@ -20,7 +20,7 @@ package org.eclipselabs.damos.dml;
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getWhileLoop()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ConditionSourceInWhileLoop'"
  * @generated
  */
 public interface WhileLoop extends Action {

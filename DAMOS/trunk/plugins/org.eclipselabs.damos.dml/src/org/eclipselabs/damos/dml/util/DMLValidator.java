@@ -1501,7 +1501,44 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateWhileLoop(WhileLoop whileLoop, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(whileLoop, diagnostics, context);
+		if (!validate_NoCircularContainment(whileLoop, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(whileLoop, diagnostics, context);
+		if (result || diagnostics != null) result &= validateWhileLoop_ConditionSourceInWhileLoop(whileLoop, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the ConditionSourceInWhileLoop constraint of '<em>While Loop</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateWhileLoop_ConditionSourceInWhileLoop(WhileLoop whileLoop, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		Fragment contextFragment = (Fragment) context.get(Fragment.class);
+		WhileLoopCondition condition = whileLoop.getCondition();
+		if (contextFragment != null && condition != null) {
+			Connection connection = condition.getFirstConnection(contextFragment);
+			if (connection != null) {
+				CompoundMember compoundMember = DMLUtil.getOwner(connection.getSource(), CompoundMember.class);
+				if (!EcoreUtil.isAncestor(whileLoop, compoundMember)) {
+					if (diagnostics != null) {
+						diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
+								DIAGNOSTIC_SOURCE,
+								0,
+								"Condition source is not enclosed by the while loop",
+								new Object[] { whileLoop }));
+					}
+				}
+			}
+		}
+		return true;
 	}
 
 	/**

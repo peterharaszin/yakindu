@@ -2763,6 +2763,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 			 "constraints", "ChoiceAndActionHaveSameOwner"
 		   });		
 		addAnnotation
+		  (whileLoopEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ConditionSourceInWhileLoop"
+		   });		
+		addAnnotation
 		  (memoryEClass, 
 		   source, 
 		   new String[] {

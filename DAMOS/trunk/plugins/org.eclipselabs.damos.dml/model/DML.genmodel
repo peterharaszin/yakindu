@@ -238,7 +238,9 @@
     <genClasses image="false" ecoreClass="DML.ecore#//Compound">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Compound/members"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="DML.ecore#//CompoundMember"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//CompoundMember">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//CompoundMember/owningCompound"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//CompoundConnector">
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//CompoundConnector/compound"/>
     </genClasses>

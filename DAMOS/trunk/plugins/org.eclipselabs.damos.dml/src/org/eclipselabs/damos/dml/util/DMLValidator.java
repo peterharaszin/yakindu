@@ -1099,6 +1099,7 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(inport, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(inport, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(inport, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInoutport_OwnedByFragment(inport, diagnostics, context);
 		return result;
 	}
 
@@ -1118,7 +1119,28 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(inoutport, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(inoutport, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(inoutport, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInoutport_OwnedByFragment(inoutport, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the OwnedByFragment constraint of '<em>Inoutport</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateInoutport_OwnedByFragment(Inoutport inoutport, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (inoutport.getOwningFragment() == null) {
+			if (diagnostics != null) {
+				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+						DIAGNOSTIC_SOURCE,
+						0,
+						"Inports and outports must be located on a fragment directly.",
+						new Object[] { inoutport }));
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -1137,6 +1159,7 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(outport, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(outport, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(outport, diagnostics, context);
+		if (result || diagnostics != null) result &= validateInoutport_OwnedByFragment(outport, diagnostics, context);
 		return result;
 	}
 
@@ -1506,18 +1529,18 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(memory, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(memory, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(memory, diagnostics, context);
-		if (result || diagnostics != null) result &= validateMemory_MustBeOwnedByCompound(memory, diagnostics, context);
+		if (result || diagnostics != null) result &= validateMemory_OwnedByCompound(memory, diagnostics, context);
 		if (result || diagnostics != null) result &= validateMemory_InitialConditionSourceOnEnclosingElement(memory, diagnostics, context);
 		return result;
 	}
 
 	/**
-	 * Validates the MustBeOwnedByCompound constraint of '<em>Memory</em>'.
+	 * Validates the OwnedByCompound constraint of '<em>Memory</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public boolean validateMemory_MustBeOwnedByCompound(Memory memory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+	public boolean validateMemory_OwnedByCompound(Memory memory, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!(memory.getOwningCompound() instanceof WhileLoop)) {
 			if (diagnostics != null) {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
@@ -1538,7 +1561,7 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateMemory_InitialConditionSourceOnEnclosingElement(Memory memory, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (validateMemory_MustBeOwnedByCompound(memory, null, context)) {
+		if (validateMemory_OwnedByCompound(memory, null, context)) {
 			Fragment contextFragment = (Fragment) context.get(Fragment.class);
 			if (contextFragment != null) {
 				Connection connection = memory.getFirstInputPort().getFirstConnection(contextFragment);

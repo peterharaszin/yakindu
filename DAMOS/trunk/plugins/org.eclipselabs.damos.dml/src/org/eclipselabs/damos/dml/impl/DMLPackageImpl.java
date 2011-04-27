@@ -2745,6 +2745,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 			 "constraints", "MatchingFragment"
 		   });		
 		addAnnotation
+		  (inoutportEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "OwnedByFragment"
+		   });		
+		addAnnotation
 		  (choiceEClass, 
 		   source, 
 		   new String[] {
@@ -2760,7 +2766,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		  (memoryEClass, 
 		   source, 
 		   new String[] {
-			 "constraints", "MustBeOwnedByCompound InitialConditionSourceOnEnclosingElement"
+			 "constraints", "OwnedByCompound InitialConditionSourceOnEnclosingElement"
 		   });
 	}
 

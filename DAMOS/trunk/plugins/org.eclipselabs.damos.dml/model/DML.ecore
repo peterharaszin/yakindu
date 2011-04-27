@@ -286,6 +286,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inport" eSuperTypes="#//Inoutport"/>
   <eClassifiers xsi:type="ecore:EClass" name="Inoutport" abstract="true" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="OwnedByFragment"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
         lowerBound="1" eType="#//DataTypeSpecification" containment="true"/>
   </eClassifiers>
@@ -369,7 +372,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="WhileLoopCondition" eSuperTypes="#//CompoundInputConnector"/>
   <eClassifiers xsi:type="ecore:EClass" name="Memory" eSuperTypes="#//Component">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="MustBeOwnedByCompound InitialConditionSourceOnEnclosingElement"/>
+      <details key="constraints" value="OwnedByCompound InitialConditionSourceOnEnclosingElement"/>
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MemoryInitialCondition" eSuperTypes="#//Input"/>

@@ -21,6 +21,7 @@ package org.eclipselabs.damos.dml;
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getInoutport()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OwnedByFragment'"
  * @generated
  */
 public interface Inoutport extends Component {

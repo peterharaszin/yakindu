@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getConnection()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidCompoundConnection'"
  * @generated
  */
 public interface Connection extends FragmentElement {

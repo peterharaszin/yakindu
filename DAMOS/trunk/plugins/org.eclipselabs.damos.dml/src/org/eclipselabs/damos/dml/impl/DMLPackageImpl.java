@@ -2739,6 +2739,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 			 "constraints", "WellFormedName"
 		   });		
 		addAnnotation
+		  (connectionEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ValidCompoundConnection"
+		   });		
+		addAnnotation
 		  (subsystemRealizationEClass, 
 		   source, 
 		   new String[] {

@@ -537,7 +537,44 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateConnection(Connection connection, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(connection, diagnostics, context);
+		if (!validate_NoCircularContainment(connection, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(connection, diagnostics, context);
+		if (result || diagnostics != null) result &= validateConnection_ValidCompoundConnection(connection, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the ValidCompoundConnection constraint of '<em>Connection</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateConnection_ValidCompoundConnection(Connection connection, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		CompoundMember source = DMLUtil.getOwner(connection.getSource(), CompoundMember.class);
+		if (source != null && source.getOwningCompound() instanceof Action && !(connection.getTarget() instanceof CompoundConnector)) {
+			Action action = (Action) source.getOwningCompound();
+			if (action.getLink() != null) {
+				FragmentElement target = DMLUtil.getOwner(connection.getTarget(), FragmentElement.class);
+				if ((target.getOwningFragment() != null || !EcoreUtil.isAncestor(action, target)) && !(target instanceof Join)) {
+					if (diagnostics != null) {
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+								DIAGNOSTIC_SOURCE,
+								0,
+								"Connection target must be join component",
+								new Object[] { connection }));
+					}
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**

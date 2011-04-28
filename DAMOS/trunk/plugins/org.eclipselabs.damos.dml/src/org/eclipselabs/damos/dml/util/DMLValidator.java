@@ -1539,9 +1539,8 @@ public class DMLValidator extends EObjectValidator {
 			for (InputPort inputPort : join.getInputPorts()) {
 				Connection connection = inputPort.getFirstConnection(contextFragment);
 				if (connection != null) {
-					CompoundMember source = DMLUtil.getOwner(connection.getSource(), CompoundMember.class);
-					if (source != null && source.getOwningCompound() instanceof Action) {
-						Action action = (Action) source.getOwningCompound();
+					Action action = findEnclosingActionWithLink(connection.getSource());
+					if (action != null) {
 						if (!actions.add(action)) {
 							duplicateActions = true;
 						}
@@ -1560,7 +1559,7 @@ public class DMLValidator extends EObjectValidator {
 							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 									DIAGNOSTIC_SOURCE,
 									0,
-									"Join source must be located in action",
+									"Join source must be located in an action with a link",
 									new Object[] { join }));
 						}
 						result = false;
@@ -1597,8 +1596,7 @@ public class DMLValidator extends EObjectValidator {
 				for (InputPort inputPort : join.getInputPorts()) {
 					Connection connection = inputPort.getFirstConnection(contextFragment);
 					if (connection != null) {
-						CompoundMember source = DMLUtil.getOwner(connection.getSource(), CompoundMember.class);
-						Action action = (Action) source.getOwningCompound();
+						Action action = findEnclosingActionWithLink(connection.getSource());
 						if (choice == null) {
 							choice = action.getLink().getChoice();
 							for (ActionLink actionLink : choice.getActionLinks()) {
@@ -1634,6 +1632,20 @@ public class DMLValidator extends EObjectValidator {
 			}
 		}
 		return true;
+	}
+	
+	private Action findEnclosingActionWithLink(EObject element) {
+		Action action;
+		do {
+			action = DMLUtil.getOwner(element, Action.class);
+			if (action != null) {
+				if (action.getLink() != null) {
+					return action;
+				}
+				element = action.getOwningCompound();
+			}
+		} while (action != null);
+		return null;
 	}
 
 	/**

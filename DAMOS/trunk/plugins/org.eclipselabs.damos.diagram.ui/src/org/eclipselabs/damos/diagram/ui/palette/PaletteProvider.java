@@ -102,29 +102,41 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Outport24.png"));
 		entries.add(entry);
 		
-//		entry = new ElementCreationToolEntry(ElementTypes.CHOICE, null, null);
-//		entry.setId(IPaletteConstants.CHOICE_ENTRY_ID);
-//		entries.add(entry);
-//
-//		entry = new ElementCreationToolEntry(ElementTypes.JOIN, null, null);
-//		entry.setId(IPaletteConstants.JOIN_ENTRY_ID);
-//		entries.add(entry);
-//
-//		entry = new ElementCreationToolEntry(ElementTypes.ACTION, null, null);
-//		entry.setId(IPaletteConstants.ACTION_ENTRY_ID);
-//		entries.add(entry);
-//
-//		entry = new ConnectionElementCreationToolEntry(ElementTypes.ACTION_LINK, null, null);
-//		entry.setId(IPaletteConstants.ACTION_LINK_ENTRY_ID);
-//		entries.add(entry);
-//
-//		entry = new ElementCreationToolEntry(ElementTypes.WHILE_LOOP, null, null);
-//		entry.setId(IPaletteConstants.WHILE_LOOP_ENTRY_ID);
-//		entries.add(entry);
-//
-//		entry = new ElementCreationToolEntry(ElementTypes.MEMORY, null, null);
-//		entry.setId(IPaletteConstants.MEMORY_ENTRY_ID);
-//		entries.add(entry);
+		entry = new ElementCreationToolEntry(ElementTypes.CHOICE, null, null);
+		entry.setId(IPaletteConstants.CHOICE_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Choice16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Choice24.png"));
+		entries.add(entry);
+
+		entry = new ElementCreationToolEntry(ElementTypes.JOIN, null, null);
+		entry.setId(IPaletteConstants.JOIN_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Join16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Join24.png"));
+		entries.add(entry);
+
+		entry = new ElementCreationToolEntry(ElementTypes.ACTION, null, null);
+		entry.setId(IPaletteConstants.ACTION_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Action16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Action24.png"));
+		entries.add(entry);
+
+		entry = new ConnectionElementCreationToolEntry(ElementTypes.ACTION_LINK, null, null);
+		entry.setId(IPaletteConstants.ACTION_LINK_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/ActionLink16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/ActionLink24.png"));
+		entries.add(entry);
+
+		entry = new ElementCreationToolEntry(ElementTypes.WHILE_LOOP, null, null);
+		entry.setId(IPaletteConstants.WHILE_LOOP_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/WhileLoop16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/WhileLoop24.png"));
+		entries.add(entry);
+
+		entry = new ElementCreationToolEntry(ElementTypes.MEMORY, null, null);
+		entry.setId(IPaletteConstants.MEMORY_ENTRY_ID);
+		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Memory16.png"));
+		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Memory24.png"));
+		entries.add(entry);
 
 		return entries;
 	}

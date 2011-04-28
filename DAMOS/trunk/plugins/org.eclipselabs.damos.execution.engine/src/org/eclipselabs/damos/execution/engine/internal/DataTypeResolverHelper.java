@@ -42,7 +42,7 @@ import org.eclipselabs.mscript.typesystem.DataType;
  * @author Andreas Unger
  *
  */
-public class ComponentSignatureResolverHelper {
+public class DataTypeResolverHelper {
 
 	private Fragment fragment;
 	private Map<Component, IComponentSignature> signatures;
@@ -54,7 +54,7 @@ public class ComponentSignatureResolverHelper {
 	/**
 	 * 
 	 */
-	public ComponentSignatureResolverHelper(Fragment fragment, Map<Component, IComponentSignature> signatures, MultiStatus status) {
+	public DataTypeResolverHelper(Fragment fragment, Map<Component, IComponentSignature> signatures, MultiStatus status) {
 		this.fragment = fragment;
 		this.signatures = signatures;
 		this.status = status;

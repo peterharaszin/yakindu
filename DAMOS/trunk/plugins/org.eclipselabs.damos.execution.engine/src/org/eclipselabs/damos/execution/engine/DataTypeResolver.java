@@ -22,33 +22,33 @@ import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
-import org.eclipselabs.damos.execution.engine.internal.ComponentSignatureResolverHelper;
+import org.eclipselabs.damos.execution.engine.internal.DataTypeResolverHelper;
 import org.eclipselabs.damos.execution.engine.internal.EObjectStatus;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ComponentSignatureResolver {
+public class DataTypeResolver {
 	
-	public ComponentSignatureResolverResult resolve(Fragment fragment, boolean descend) {
+	public DataTypeResolverResult resolve(Fragment fragment, boolean descend) {
 		Map<Component, IComponentSignature> signatures = new HashMap<Component, IComponentSignature>();
 		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Resolving component signatures failed", null);
 
 		if (descend) {
 			doResolveAll(fragment, signatures, status, new HashSet<Fragment>());
 		} else {
-			new ComponentSignatureResolverHelper(fragment, signatures, status).resolve();
+			new DataTypeResolverHelper(fragment, signatures, status).resolve();
 		}
 		
 		if (!status.isOK()) {
-			return new ComponentSignatureResolverResult(signatures, status);
+			return new DataTypeResolverResult(signatures, status);
 		}
-		return new ComponentSignatureResolverResult(signatures);
+		return new DataTypeResolverResult(signatures);
 	}
 	
 	private void doResolveAll(Fragment fragment, Map<Component, IComponentSignature> signatures, MultiStatus status, HashSet<Fragment> visitedFragments) {
-		new ComponentSignatureResolverHelper(fragment, signatures, status).resolve();
+		new DataTypeResolverHelper(fragment, signatures, status).resolve();
 		visitedFragments.add(fragment);
 		
 		for (FragmentElement element : fragment.getFragmentElements()) {

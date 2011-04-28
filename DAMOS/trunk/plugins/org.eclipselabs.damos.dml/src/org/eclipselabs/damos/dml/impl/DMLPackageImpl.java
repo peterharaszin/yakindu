@@ -2769,6 +2769,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 			 "constraints", "ChoiceAndActionHaveSameOwner"
 		   });		
 		addAnnotation
+		  (joinEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ValidActions ValidChoice"
+		   });		
+		addAnnotation
 		  (whileLoopEClass, 
 		   source, 
 		   new String[] {

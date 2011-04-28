@@ -14,7 +14,6 @@ package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 import java.util.Collections;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipselabs.damos.diagram.core.internal.commands.ConfigureActionCommand;
@@ -25,7 +24,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
  * @author Andreas Unger
  *
  */
-public class ActionEditHelper extends AbstractEditHelper {
+public class ActionEditHelper extends CompoundEditHelper {
 
 	protected ICommand getConfigureCommand(ConfigureRequest request) {
 		return new ConfigureActionCommand(request, DMLPackage.eINSTANCE.getAction());

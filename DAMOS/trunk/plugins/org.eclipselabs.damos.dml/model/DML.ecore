@@ -366,7 +366,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Component"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Join" eSuperTypes="#//Component">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidActions ValidChoice"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JoinInput" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="WhileLoop" eSuperTypes="#//Action">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

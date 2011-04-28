@@ -1518,7 +1518,122 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryKeyUnique(join, diagnostics, context);
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(join, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validateJoin_ValidActions(join, diagnostics, context);
+		if (result || diagnostics != null) result &= validateJoin_ValidChoice(join, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the ValidActions constraint of '<em>Join</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateJoin_ValidActions(Join join, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = true;
+
+		Fragment contextFragment = (Fragment) context.get(Fragment.class);
+		if (contextFragment != null) {
+			Set<Action> actions = new HashSet<Action>();
+			boolean duplicateActions = false;
+			for (InputPort inputPort : join.getInputPorts()) {
+				Connection connection = inputPort.getFirstConnection(contextFragment);
+				if (connection != null) {
+					CompoundMember source = DMLUtil.getOwner(connection.getSource(), CompoundMember.class);
+					if (source != null && source.getOwningCompound() instanceof Action) {
+						Action action = (Action) source.getOwningCompound();
+						if (!actions.add(action)) {
+							duplicateActions = true;
+						}
+						if (action.getLink() == null) {
+							if (diagnostics != null) {
+								diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+										DIAGNOSTIC_SOURCE,
+										0,
+										"Enclosing action of join source has no action link",
+										new Object[] { join }));
+							}
+							result = false;
+						}
+					} else {
+						if (diagnostics != null) {
+							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+									DIAGNOSTIC_SOURCE,
+									0,
+									"Join source must be located in action",
+									new Object[] { join }));
+						}
+						result = false;
+					}
+				}
+			}
+			if (duplicateActions) {
+				if (diagnostics != null) {
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+							DIAGNOSTIC_SOURCE,
+							0,
+							"Duplicate source actions",
+							new Object[] { join }));
+				}
+				result = false;
+			}
+		}
+		
+		return result;
+	}
+
+	/**
+	 * Validates the ValidChoice constraint of '<em>Join</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean validateJoin_ValidChoice(Join join, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (validateJoin_ValidActions(join, null, context)) {
+			Fragment contextFragment = (Fragment) context.get(Fragment.class);
+			if (contextFragment != null) {
+				Choice choice = null;
+				Set<Action> actions = new HashSet<Action>();
+				for (InputPort inputPort : join.getInputPorts()) {
+					Connection connection = inputPort.getFirstConnection(contextFragment);
+					if (connection != null) {
+						CompoundMember source = DMLUtil.getOwner(connection.getSource(), CompoundMember.class);
+						Action action = (Action) source.getOwningCompound();
+						if (choice == null) {
+							choice = action.getLink().getChoice();
+							for (ActionLink actionLink : choice.getActionLinks()) {
+								if (actionLink.getAction() != action) {
+									actions.add(actionLink.getAction());
+								}
+							}
+						} else {
+							if (action.getLink().getChoice() != choice) {
+								if (diagnostics != null) {
+									diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+											DIAGNOSTIC_SOURCE,
+											0,
+											"Enclosing action of join sources must be linked to the same choice",
+											new Object[] { join }));
+								}
+								return false;
+							}
+							actions.remove(action);
+						}
+					}
+				}
+				if (!actions.isEmpty()) {
+					if (diagnostics != null) {
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+								DIAGNOSTIC_SOURCE,
+								0,
+								"Missing join inputs from actions of choice '" + choice.getName() + "'",
+								new Object[] { join }));
+					}
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	/**

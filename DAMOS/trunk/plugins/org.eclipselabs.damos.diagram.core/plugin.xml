@@ -25,6 +25,12 @@
                name="Connection">
          </metamodelType>
          <metamodelType
+               eclass="Compound"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.CompoundEditHelper"
+               id="org.eclipselabs.damos.diagram.compound"
+               name="Compound">
+         </metamodelType>
+         <metamodelType
                eclass="Action"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.ActionEditHelper"
                id="org.eclipselabs.damos.diagram.action"

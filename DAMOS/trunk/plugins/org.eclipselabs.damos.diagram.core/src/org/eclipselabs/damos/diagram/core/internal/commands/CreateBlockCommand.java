@@ -1,6 +1,9 @@
 package org.eclipselabs.damos.diagram.core.internal.commands;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipselabs.damos.dml.Block;
@@ -10,12 +13,15 @@ import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class CreateBlockCommand extends CreateElementCommand {
 
+	private EReference reference;
+	
 	/**
 	 * @param editingDomain
 	 */
-	public CreateBlockCommand(CreateElementRequest request) {
+	public CreateBlockCommand(CreateElementRequest request, EReference reference) {
 		super(request);
 		setElementToEdit(request.getContainer());
+		this.reference = reference;
 	}
 	
 	/* (non-Javadoc)
@@ -29,16 +35,15 @@ public class CreateBlockCommand extends CreateElementCommand {
     	if (name.length() == 0) {
     		name = "Block";
     	}
-    	name = DMLUtil.findAvailableComponentName(getFragment(), name);
+    	name = DMLUtil.findAvailableComponentName(DMLUtil.getOwner(getElementToEdit(), Fragment.class), name);
 		
     	Block block = blockType.newInstance(name);
-    	getFragment().getFragmentElements().add(block);
+    	
+    	@SuppressWarnings("unchecked")
+		List<EObject> list = (List<EObject>) (List<?>) getElementToEdit().eGet(reference);
+		list.add(block);
     	
 		return block;
 	}
 
-	private Fragment getFragment() {
-		return (Fragment) getElementToEdit();
-	}
-	
 }

@@ -14,35 +14,17 @@ package org.eclipselabs.damos.diagram.core.internal.edithelpers;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipselabs.damos.diagram.core.internal.commands.CreateBlockCommand;
-import org.eclipselabs.damos.diagram.core.internal.commands.CreateConnectionCommand;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.Port;
-import org.eclipselabs.damos.dml.util.DMLUtil;
 
-public class FragmentEditHelper extends AbstractEditHelper {
+public class CompoundEditHelper extends AbstractEditHelper {
 	
 	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {
 		if (DMLPackage.eINSTANCE.getBlock().isSuperTypeOf(req.getElementType().getEClass())) {
-			return new CreateBlockCommand(req, DMLPackage.eINSTANCE.getFragment_FragmentElements());
+			return new CreateBlockCommand(req, DMLPackage.eINSTANCE.getCompound_Members());
 		}
 		return super.getCreateCommand(req);
 	}
 
-	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (DMLPackage.eINSTANCE.getConnection().isSuperTypeOf(req.getElementType().getEClass())) {
-	        if (req.getTarget() == null) {
-	        	if (req.getSource() instanceof Port && DMLUtil.canConnectOutgoingConnection((Port) req.getSource())) {
-	        		return super.getCreateRelationshipCommand(req);
-	        	}
-	        } else {
-	        	return new CreateConnectionCommand(req);
-	        }
-			return null;
-		}
-		return super.getCreateRelationshipCommand(req);
-	}
-		
 }

@@ -26,8 +26,8 @@ import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.internal.registry.ComponentGeneratorProviderRegistry;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
-import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
+import org.eclipselabs.damos.execution.engine.DataTypeResolver;
+import org.eclipselabs.damos.execution.engine.DataTypeResolverResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -41,17 +41,17 @@ import org.eclipselabs.damos.execution.executionflow.Node;
  */
 public class ComponentGeneratorAdaptor {
 
-	private ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
+	private DataTypeResolver dataTypeResolver = new DataTypeResolver();
 	
 	public void adaptGenerators(GenModel genModel, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
-		ComponentSignatureResolverResult signatureResolverResult = signatureResolver.resolve(executionFlow.getTopLevelFragment(), true);
-		if (!signatureResolverResult.getStatus().isOK()) {
-			throw new CoreException(signatureResolverResult.getStatus());
+		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(executionFlow.getTopLevelFragment(), true);
+		if (!dataTypeResolverResult.getStatus().isOK()) {
+			throw new CoreException(dataTypeResolverResult.getStatus());
 		}
 		
 		IGeneratorContext context = new GeneratorContext(genModel);
 		
-		Map<Component, IComponentSignature> signatures = signatureResolverResult.getSignatures();
+		Map<Component, IComponentSignature> signatures = dataTypeResolverResult.getSignatures();
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
 		adaptGenerators(context, executionFlow.getGraph(), signatures, missingGeneratorComponents);

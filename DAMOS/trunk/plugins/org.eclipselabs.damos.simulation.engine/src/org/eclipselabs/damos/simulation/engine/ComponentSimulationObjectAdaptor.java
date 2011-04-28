@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Join;
-import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
-import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
+import org.eclipselabs.damos.execution.engine.DataTypeResolver;
+import org.eclipselabs.damos.execution.engine.DataTypeResolverResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -38,15 +38,15 @@ import org.eclipselabs.damos.simulation.engine.internal.registry.ComponentSimula
  */
 public class ComponentSimulationObjectAdaptor {
 
-	private ComponentSignatureResolver signatureResolver = new ComponentSignatureResolver();
+	private DataTypeResolver dataTypeResolver = new DataTypeResolver();
 	
 	public void adaptSimulationObjects(ISimulationContext context, IComponentOverflowMonitor overflowMonitor, IProgressMonitor progressMonitor) throws CoreException {
-		ComponentSignatureResolverResult signatureResolverResult = signatureResolver.resolve(context.getExecutionFlow().getTopLevelFragment(), true);
-		if (!signatureResolverResult.getStatus().isOK()) {
-			throw new CoreException(signatureResolverResult.getStatus());
+		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(context.getExecutionFlow().getTopLevelFragment(), true);
+		if (!dataTypeResolverResult.getStatus().isOK()) {
+			throw new CoreException(dataTypeResolverResult.getStatus());
 		}
 		
-		Map<Component, IComponentSignature> signatures = signatureResolverResult.getSignatures();
+		Map<Component, IComponentSignature> signatures = dataTypeResolverResult.getSignatures();
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
 		
 		adaptSimulationObjects(context, context.getExecutionFlow().getGraph(), signatures, overflowMonitor, missingSimulationObjectComponents);

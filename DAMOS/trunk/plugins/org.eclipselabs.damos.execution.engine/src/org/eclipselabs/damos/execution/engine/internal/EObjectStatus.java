@@ -12,31 +12,28 @@
 package org.eclipselabs.damos.execution.engine.internal;
 
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
-import org.eclipselabs.damos.execution.engine.IComponentStatus;
+import org.eclipselabs.damos.execution.engine.IEObjectStatus;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ComponentStatus extends Status implements IComponentStatus {
+public class EObjectStatus extends Status implements IEObjectStatus {
 
-	private Component component;
+	private EObject eObject;
 	
 	/**
 	 * 
 	 */
-	public ComponentStatus(int severity, Component component, String message) {
+	public EObjectStatus(int severity, EObject eObject, String message) {
 		super(severity, ExecutionEnginePlugin.PLUGIN_ID, message);
-		this.component = component;
+		this.eObject = eObject;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.engine.IEvaluationStatus#getComponent()
-	 */
-	public Component getComponent() {
-		return component;
+	public EObject getEObject() {
+		return eObject;
 	}
 
 }

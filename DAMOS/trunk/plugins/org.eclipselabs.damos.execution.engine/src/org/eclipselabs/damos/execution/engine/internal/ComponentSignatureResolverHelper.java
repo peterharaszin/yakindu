@@ -26,13 +26,16 @@ import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
+import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.engine.internal.registry.ComponentSignaturePolicyProviderRegistry;
+import org.eclipselabs.mscript.typesystem.BooleanType;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -45,7 +48,7 @@ public class ComponentSignatureResolverHelper {
 	private Map<Component, IComponentSignature> signatures;
 	private MultiStatus status;
 	
-	private Map<Component, IStatus> statusMap = new HashMap<Component, IStatus>();
+	private Map<EObject, IStatus> statusMap = new HashMap<EObject, IStatus>();
 	private Set<Component> unresolvedComponents = new HashSet<Component>();
 	
 	/**
@@ -67,18 +70,18 @@ public class ComponentSignatureResolverHelper {
 		} while (changed);
 		
 		if (!statusMap.isEmpty()) {
-			for (Entry<Component, IStatus> entry : statusMap.entrySet()) {
-				String message = "Resolving component signature of '" + entry.getKey().getName() + "' failed";
+			for (Entry<EObject, IStatus> entry : statusMap.entrySet()) {
+				String message = "Resolving data types failed";
 				if (entry.getValue().isMultiStatus()) {
-					status.add(new ComponentMultiStatus(entry.getKey(), entry.getValue().getChildren(), message));
+					status.add(new EObjectMultiStatus(entry.getKey(), entry.getValue().getChildren(), message));
 				} else {
-					status.add(new ComponentMultiStatus(entry.getKey(), new IStatus[] { entry.getValue() }, message));
+					status.add(new EObjectMultiStatus(entry.getKey(), new IStatus[] { entry.getValue() }, message));
 				}
 			}
 		}
 		
 		for (Component unresolvedComponent : unresolvedComponents) {
-			status.add(new ComponentStatus(IStatus.ERROR, unresolvedComponent, "Component signature of '" + unresolvedComponent.getName() + "' could not be resolved"));
+			status.add(new EObjectStatus(IStatus.ERROR, unresolvedComponent, "Component signature of '" + unresolvedComponent.getName() + "' could not be resolved"));
 		}
 	}
 
@@ -88,12 +91,34 @@ public class ComponentSignatureResolverHelper {
 			changed = resolveComponent(component, changed);
 		} else if (element instanceof Compound) {
 			Compound compound = (Compound) element;
-			// TODO: Check compound connector data types
+			resolveCompoundOutputConnectors(compound);
 			for (CompoundMember member : compound.getMembers()) {
 				changed = resolveElement(member, changed);
 			}
+			resolveCompoundInputConnectors(compound);
 		}
 		return changed;
+	}
+
+	/**
+	 * @param compound
+	 */
+	private void resolveCompoundInputConnectors(Compound compound) {
+		if (compound instanceof WhileLoop) {
+			WhileLoop whileLoop = (WhileLoop) compound;
+			DataType incomingDataType = getIncomingDataType(whileLoop.getCondition());
+			if (incomingDataType != null && !(incomingDataType instanceof BooleanType)) {
+				statusMap.put(whileLoop, new EObjectStatus(IStatus.ERROR, whileLoop, "While loop condition input value must be boolean"));
+			} else {
+				statusMap.remove(whileLoop);
+			}
+		}
+	}
+
+	/**
+	 * @param compound
+	 */
+	private void resolveCompoundOutputConnectors(Compound compound) {
 	}
 
 	private boolean resolveComponent(Component component, boolean changed) {
@@ -125,10 +150,10 @@ public class ComponentSignatureResolverHelper {
 					unresolvedComponents.remove(component);
 				}
 			} else {
-				statusMap.put(component, new ComponentStatus(IStatus.ERROR, component, "No signature returned by signature policy"));
+				statusMap.put(component, new EObjectStatus(IStatus.ERROR, component, "No signature returned by signature policy"));
 			}
 		} else {
-			statusMap.put(component, new ComponentStatus(IStatus.ERROR, component, "No component signature policy found"));
+			statusMap.put(component, new EObjectStatus(IStatus.ERROR, component, "No component signature policy found"));
 		}
 		return changed;
 	}
@@ -136,26 +161,33 @@ public class ComponentSignatureResolverHelper {
 	private Map<InputPort, DataType> getIncomingDataTypes(Component component) {
 		Map<InputPort, DataType> incomingDataTypes = new HashMap<InputPort, DataType>();
 		for (InputPort inputPort : component.getInputPorts()) {
-			Connection connection = inputPort.getFirstConnection(fragment);
-			if (connection != null) {
-				if (connection.getSource() instanceof OutputPort) {
-					OutputPort sourcePort = (OutputPort) connection.getSource();
-					IComponentSignature signature = signatures.get(sourcePort.getComponent());
-					if (signature != null) {
-						DataType incomingDataType = signature.getOutputDataType(sourcePort);
-						if (incomingDataType != null) {
-							incomingDataTypes.put(inputPort, incomingDataType);
-						}
-					}
-				} else {
-					DataType incomingDataType = getFixedConnectorDataType(connection.getSource());
-					if (incomingDataType != null) {
-						incomingDataTypes.put(inputPort, incomingDataType);
-					}
-				}
+			DataType incomingDataType = getIncomingDataType(inputPort);
+			if (incomingDataType != null) {
+				incomingDataTypes.put(inputPort, incomingDataType);
 			}
 		}
 		return incomingDataTypes;
+	}
+
+	/**
+	 * @param inputPort
+	 * @param incomingDataTypes
+	 */
+	private DataType getIncomingDataType(InputConnector inputPort) {
+		DataType incomingDataType = null;
+		Connection connection = inputPort.getFirstConnection(fragment);
+		if (connection != null) {
+			if (connection.getSource() instanceof OutputPort) {
+				OutputPort sourcePort = (OutputPort) connection.getSource();
+				IComponentSignature signature = signatures.get(sourcePort.getComponent());
+				if (signature != null) {
+					incomingDataType = signature.getOutputDataType(sourcePort);
+				}
+			} else {
+				incomingDataType = getFixedConnectorDataType(connection.getSource());
+			}
+		}
+		return incomingDataType;
 	}
 	
 	private DataType getFixedConnectorDataType(OutputConnector connector) {

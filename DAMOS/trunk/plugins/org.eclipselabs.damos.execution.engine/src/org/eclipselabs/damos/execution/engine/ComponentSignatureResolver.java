@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.execution.engine.internal.ComponentSignatureResolverHelper;
-import org.eclipselabs.damos.execution.engine.internal.ComponentStatus;
+import org.eclipselabs.damos.execution.engine.internal.EObjectStatus;
 
 /**
  * @author Andreas Unger
@@ -62,10 +62,10 @@ public class ComponentSignatureResolver {
 							doResolveAll(realizingFragment, signatures, status, visitedFragments);
 						}
 					} else {
-						status.add(new ComponentStatus(IStatus.ERROR, subsystem, "No realizing fragment in subsystem realization specified"));
+						status.add(new EObjectStatus(IStatus.ERROR, subsystem, "No realizing fragment in subsystem realization specified"));
 					}
 				} else {
-					status.add(new ComponentStatus(IStatus.ERROR, subsystem, "No subsystem realization specified"));
+					status.add(new EObjectStatus(IStatus.ERROR, subsystem, "No subsystem realization specified"));
 				}
 			}
 		}

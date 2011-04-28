@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.execution.engine;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Andreas Unger
@@ -20,8 +20,8 @@ import org.eclipselabs.damos.dml.Component;
  * @noextend
  * @noimplement
  */
-public interface IComponentStatus extends IStatus {
+public interface IEObjectStatus extends IStatus {
 
-	Component getComponent();
+	EObject getEObject();
 	
 }

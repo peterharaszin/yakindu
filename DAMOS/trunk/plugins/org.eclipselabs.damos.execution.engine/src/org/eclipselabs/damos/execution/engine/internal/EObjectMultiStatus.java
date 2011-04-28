@@ -13,31 +13,28 @@ package org.eclipselabs.damos.execution.engine.internal;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
-import org.eclipselabs.damos.execution.engine.IComponentStatus;
+import org.eclipselabs.damos.execution.engine.IEObjectStatus;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ComponentMultiStatus extends MultiStatus implements IComponentStatus {
+public class EObjectMultiStatus extends MultiStatus implements IEObjectStatus {
 
-	private Component component;
+	private EObject eObject;
 	
 	/**
 	 * 
 	 */
-	public ComponentMultiStatus(Component component, IStatus[] newChildren, String message) {
+	public EObjectMultiStatus(EObject eObject, IStatus[] newChildren, String message) {
 		super(ExecutionEnginePlugin.PLUGIN_ID, 0, newChildren, message, null);
-		this.component = component;
+		this.eObject = eObject;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.engine.IEvaluationStatus#getComponent()
-	 */
-	public Component getComponent() {
-		return component;
+	public EObject getEObject() {
+		return eObject;
 	}
 
 }

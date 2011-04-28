@@ -38,7 +38,7 @@ import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.util.DMLValidator;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolver;
 import org.eclipselabs.damos.execution.engine.ComponentSignatureResolverResult;
-import org.eclipselabs.damos.execution.engine.IComponentStatus;
+import org.eclipselabs.damos.execution.engine.IEObjectStatus;
 import org.eclipselabs.damos.ide.core.IDECorePlugin;
 import org.eclipselabs.damos.ide.core.internal.util.TextUtils;
 
@@ -186,8 +186,8 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 		 * @throws CoreException 
 		 */
 		protected void attachMarkers(IResource resource, Fragment fragment, EObject source, IStatus status) throws CoreException {
-			if (source == null && status instanceof IComponentStatus) {
-				source = ((IComponentStatus) status).getComponent();
+			if (source == null && status instanceof IEObjectStatus) {
+				source = ((IEObjectStatus) status).getEObject();
 			}
 			
 			if (!status.isOK() && status.getChildren().length > 0) {

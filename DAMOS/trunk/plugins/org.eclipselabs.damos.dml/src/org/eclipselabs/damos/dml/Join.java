@@ -14,7 +14,7 @@ package org.eclipselabs.damos.dml;
  *
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getJoin()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidActions ValidChoice'"
  * @generated
  */
 public interface Join extends Component {

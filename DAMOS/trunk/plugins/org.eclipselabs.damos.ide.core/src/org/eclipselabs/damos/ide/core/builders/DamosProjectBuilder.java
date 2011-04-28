@@ -159,7 +159,9 @@ public class DamosProjectBuilder extends IncrementalProjectBuilder {
 						}
 						attachMarkers(resource, fragment, source, BasicDiagnostic.toIStatus(diagnostic));
 					}
-					validationResult = false;
+					if (diagnostics.getSeverity() > Diagnostic.WARNING) {
+						validationResult = false;
+					}
 				}
 			}
 			

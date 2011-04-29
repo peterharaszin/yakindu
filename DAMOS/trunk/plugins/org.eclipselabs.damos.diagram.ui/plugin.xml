@@ -371,6 +371,14 @@
             </popupPredefinedItem></popupContribution>
          <popupContribution
                class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+            <popupPredefinedItem
+                  id="deleteFromModelAction"
+                  remove="true">
+            </popupPredefinedItem>
+            <popupStructuredContributionCriteria
+                  objectClass="org.eclipselabs.damos.diagram.ui.internal.editparts.WhileLoopConditionEditPart"></popupStructuredContributionCriteria></popupContribution>
+         <popupContribution
+               class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
             <popupStructuredContributionCriteria
                   policyClass="org.eclipselabs.damos.diagram.ui.actions.TransformablePopupMenuContributionPolicy">
             </popupStructuredContributionCriteria>

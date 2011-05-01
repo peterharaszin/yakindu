@@ -46,11 +46,6 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	private double frequency;
 	private double phase;
 	
-	private double sampleTime;
-
-	private int n;
-	
-	private IValue value;
 	private IValue outputValue;
 	
 	@Override
@@ -65,11 +60,6 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 		bias = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), SineWaveConstants.PARAMETER__BIAS);
 		frequency = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), SineWaveConstants.PARAMETER__FREQUENCY).doubleValue();
 		phase = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), SineWaveConstants.PARAMETER__PHASE).doubleValue();
-		
-		sampleTime = getExecutionModel().getSampleTime();
-		
-		n = 0;
-		updateValue();
 	}
 
 	@Override
@@ -78,20 +68,10 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	@Override
-	public void computeOutputValues() throws CoreException {
-		outputValue = value;
+	public void computeOutputValues(double t) throws CoreException {
+		INumericValue sineValue = valueConstructor.construct(defaultComputationContext, sineDataType,
+				Math.sin(2 * Math.PI * frequency * t + Math.toRadians(phase)));
+		outputValue = valueTransformer.transform(outputComputationContext, amplitude.multiply(sineValue).add(bias));
 	}
 	
-	@Override
-	public void update() throws CoreException {
-		++n;
-		updateValue();
-	}
-
-	private void updateValue() throws CoreException {
-		INumericValue sineValue = valueConstructor.construct(defaultComputationContext, sineDataType,
-				Math.sin(2 * Math.PI * frequency * n * sampleTime + Math.toRadians(phase)));
-		value = valueTransformer.transform(outputComputationContext, amplitude.multiply(sineValue).add(bias));
-	}
-
 }

@@ -52,6 +52,8 @@ public class SimulationEngine implements ISimulationEngine {
 		
 		initialize(graph, monitor);
 		
+		double sampleTime = context.getSimulationModel().getExecutionModel().getSampleTime();
+		
 		long n;
 		for (n = 0; n < stepCount; ++n) {			
 			if (monitor.isCanceled()) {
@@ -60,7 +62,9 @@ public class SimulationEngine implements ISimulationEngine {
 
 			monitor.fireSimulationEvent(new SimulationEvent(this, context, SimulationEvent.STEP));
 
-			runStep(graph, monitor);
+			double t = n * sampleTime;
+			runStep(graph, t, monitor);
+			computeContinuousStates(context, graph, t, monitor);
 		}
 		
 		int eventKind = monitor.isCanceled() ? SimulationEvent.CANCEL : SimulationEvent.FINISH;
@@ -72,8 +76,8 @@ public class SimulationEngine implements ISimulationEngine {
 	 * @param monitor
 	 * @throws CoreException
 	 */
-	private void runStep(Graph graph, ISimulationMonitor monitor) throws CoreException {
-		computeOutputValues(graph, monitor);
+	private void runStep(Graph graph, double t, ISimulationMonitor monitor) throws CoreException {
+		computeOutputValues(graph, t, monitor);
 		
 		if (monitor.isCanceled()) {
 			return;
@@ -111,7 +115,7 @@ public class SimulationEngine implements ISimulationEngine {
 	 * @param monitor
 	 * @throws CoreException
 	 */
-	private void computeOutputValues(Graph graph, ISimulationMonitor monitor) throws CoreException {
+	private void computeOutputValues(Graph graph, double t, ISimulationMonitor monitor) throws CoreException {
 		for (Node node : graph.getNodes()) {
 			if (monitor.isCanceled()) {
 				break;
@@ -121,9 +125,9 @@ public class SimulationEngine implements ISimulationEngine {
 				CompoundNode compoundNode = (CompoundNode) node;
 				if (isCompoundRunnable(compoundNode)) {
 					if (compoundNode.getCompound() instanceof WhileLoop) {
-						runWhileLoop(compoundNode, monitor);
+						runWhileLoop(compoundNode, t, monitor);
 					} else if (compoundNode.getCompound() instanceof Action) {
-						runStep(compoundNode, monitor);
+						runStep(compoundNode, t, monitor);
 					} else {
 						throw new IllegalArgumentException();
 					}
@@ -133,7 +137,7 @@ public class SimulationEngine implements ISimulationEngine {
 				if (componentNode.getComponent() instanceof Join) {
 					computeJoinOutputValues(componentNode);
 				} else if (!(componentNode.getComponent() instanceof Choice)) {
-					computeComponentOutputValues(node);
+					computeComponentOutputValues(node, t);
 				}
 			} else {
 				throw new IllegalArgumentException();
@@ -146,14 +150,14 @@ public class SimulationEngine implements ISimulationEngine {
 	 * @param monitor
 	 * @throws CoreException
 	 */
-	private void runWhileLoop(CompoundNode compoundNode, ISimulationMonitor monitor) throws CoreException {
+	private void runWhileLoop(CompoundNode compoundNode, double t, ISimulationMonitor monitor) throws CoreException {
 		boolean condition;
 		do {
 			if (monitor.isCanceled()) {
 				break;
 			}
 			
-			runStep(compoundNode, monitor);
+			runStep(compoundNode, t, monitor);
 			
 			condition = false;
 
@@ -178,9 +182,9 @@ public class SimulationEngine implements ISimulationEngine {
 	 * @param node
 	 * @throws CoreException
 	 */
-	private void computeComponentOutputValues(Node node) throws CoreException {
+	private void computeComponentOutputValues(Node node, double t) throws CoreException {
 		IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
-		simulationObject.computeOutputValues();
+		simulationObject.computeOutputValues(t);
 		for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
 			PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
 			IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
@@ -275,6 +279,26 @@ public class SimulationEngine implements ISimulationEngine {
 				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
 				if (simulationObject != null) {
 					simulationObject.update();
+				}
+			}
+		}
+	}
+	
+	private void computeContinuousStates(ISimulationContext context, Graph graph, double t, ISimulationMonitor monitor) throws CoreException {
+		double h = context.getSimulationModel().getExecutionModel().getSampleTime();
+		for (Node node : graph.getNodes()) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(componentNode);
+				if (simulationObject != null) {
+					double[] stateVector = simulationObject.getStateVector();
+					if (stateVector != null) {
+						double yDot[] = new double[stateVector.length];
+						simulationObject.computeDerivatives(t, yDot);
+						for (int i = 0; i < stateVector.length; ++i) {
+							stateVector[i] = stateVector[i] + h * yDot[i];
+						}
+					}
 				}
 			}
 		}

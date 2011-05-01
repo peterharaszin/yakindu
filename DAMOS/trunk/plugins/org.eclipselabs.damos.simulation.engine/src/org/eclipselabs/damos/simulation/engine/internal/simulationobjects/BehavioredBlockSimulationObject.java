@@ -208,7 +208,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues()
 	 */
 	@Override
-	public void computeOutputValues() throws CoreException {
+	public void computeOutputValues(double t) throws CoreException {
 		for (ComputationCompound compound : computeOutputsCompounds) {
 			compoundInterpreter.execute(interpreterContext, compound);
 		}

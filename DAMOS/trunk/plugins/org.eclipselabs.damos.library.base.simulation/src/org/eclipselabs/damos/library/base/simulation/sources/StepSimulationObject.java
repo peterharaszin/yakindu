@@ -31,10 +31,6 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	private IValue finalValue;
 	private ISimpleNumericValue stepTime;
 	
-	private double sampleTime;
-	
-	private int n;
-	
 	private IValue outputValue;
 
 	@Override
@@ -48,10 +44,6 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 		
 		initialValue = valueTransformer.transform(computationContext, initialValue);
 		finalValue = valueTransformer.transform(computationContext, finalValue);
-		
-		sampleTime = getExecutionModel().getSampleTime();
-		
-		n = 0;
 	}
 	
 	@Override
@@ -63,13 +55,8 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues()
 	 */
 	@Override
-	public void computeOutputValues() throws CoreException {
-		outputValue = n * sampleTime <= stepTime.doubleValue() ? initialValue : finalValue;
-	}
-	
-	@Override
-	public void update() throws CoreException {
-		++n;
+	public void computeOutputValues(double t) throws CoreException {
+		outputValue = t <= stepTime.doubleValue() ? initialValue : finalValue;
 	}
 	
 }

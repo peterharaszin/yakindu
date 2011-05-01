@@ -36,10 +36,8 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	private ComputationContext outputComputationContext;
 	private RealType outputDataType;
 	
-	private double sampleTime;
-
 	private Matrix stateMatrix;
-	private Matrix stateVector;
+	private double[] stateVector;
 	private Matrix inputVector;
 	private Matrix outputMatrix;
 	
@@ -50,7 +48,6 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		outputComputationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		outputDataType.setUnit(TypeSystemUtil.createUnit());
-		sampleTime = getExecutionModel().getSampleTime();
 		
 		double[] numeratorCoefficients = getCoefficients(TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
 		if (numeratorCoefficients == null) {
@@ -78,7 +75,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		}
 		
 		stateMatrix = new Matrix(stateVariableCount, stateVariableCount);
-		stateVector = new Matrix(stateVariableCount, 1);
+		stateVector = new double[stateVariableCount];
 		inputVector = new Matrix(stateVariableCount, 1);
 		outputMatrix = new Matrix(1, stateVariableCount);
 		
@@ -109,13 +106,31 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	}
 	
 	@Override
-	public void computeOutputValues() throws CoreException {
-		outputValue = valueConstructor.construct(outputComputationContext, outputDataType, outputMatrix.times(stateVector).get(0, 0));
+	public void computeOutputValues(double t) throws CoreException {
+		outputValue = valueConstructor.construct(outputComputationContext, outputDataType, outputMatrix.times(getStateVectorAsMatrix()).get(0, 0));
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getStateVector()
+	 */
 	@Override
-	public void update() {
-		stateVector = stateVector.plus(stateMatrix.times(stateVector).plus(inputVector).times(sampleTime));
+	public double[] getStateVector() throws CoreException {
+		return stateVector;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeDerivatives(double, double[])
+	 */
+	@Override
+	public void computeDerivatives(double t, double[] yDot) throws CoreException {
+		Matrix yDotMatrix = stateMatrix.times(getStateVectorAsMatrix()).plus(inputVector);
+		for (int i = 0; i < yDotMatrix.getRowDimension(); ++i) {
+			yDot[i] = yDotMatrix.get(i, 0);
+		}
+	}
+	
+	private Matrix getStateVectorAsMatrix() {
+		return new Matrix(stateVector, 1).transpose();
 	}
 	
 	private double[] getCoefficients(String parameterName) throws CoreException {

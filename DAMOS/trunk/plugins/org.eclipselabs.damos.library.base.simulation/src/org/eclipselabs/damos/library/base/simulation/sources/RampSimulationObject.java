@@ -45,10 +45,6 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	private ISimpleNumericValue startTime;
 	private ISimpleNumericValue slope;
 
-	private double sampleTime;
-	
-	private int n;
-	
 	private IValue outputValue;
 	
 	@Override
@@ -62,10 +58,6 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 		initialValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), RampConstants.PARAMETER__INITIAL_VALUE);
 		startTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), RampConstants.PARAMETER__START_TIME);
 		slope = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), RampConstants.PARAMETER__SLOPE);
-		
-		sampleTime = getExecutionModel().getSampleTime();
-		
-		n = 0;
 	}
 	
 	@Override
@@ -74,18 +66,13 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	@Override
-	public void computeOutputValues() throws CoreException {
-		ISimpleNumericValue time = valueConstructor.construct(defaultComputationContext, timeDataType, n * sampleTime);
+	public void computeOutputValues(double t) throws CoreException {
+		ISimpleNumericValue time = valueConstructor.construct(defaultComputationContext, timeDataType, t);
 		IValue value = initialValue;
 		if (time.doubleValue() > startTime.doubleValue()) {
 			value = value.add(slope.multiply(time.subtract(startTime)));
 		}
 		outputValue = valueTransformer.transform(outputComputationContext, value);
-	}
-	
-	@Override
-	public void update() throws CoreException {
-		++n;
 	}
 	
 }

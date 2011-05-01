@@ -73,7 +73,7 @@ public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!EcoreUtil.equals(initialValueDataType.getUnit(), finalValueDataType.getUnit())) {
+		if (!initialValueDataType.getUnit().isSameAs(finalValueDataType.getUnit(), false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Value and Final Value must have same unit"));
 		}
 		

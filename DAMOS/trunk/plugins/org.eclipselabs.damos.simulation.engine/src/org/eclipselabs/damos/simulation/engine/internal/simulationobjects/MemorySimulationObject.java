@@ -46,7 +46,7 @@ public class MemorySimulationObject extends AbstractComponentSimulationObject {
 	}
 	
 	@Override
-	public void computeOutputValues() throws CoreException {
+	public void computeOutputValues(double t) throws CoreException {
 		outputValue = value;
 	}
 	

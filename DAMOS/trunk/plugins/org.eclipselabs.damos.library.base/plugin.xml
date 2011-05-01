@@ -47,6 +47,12 @@
          point="org.eclipselabs.damos.dml.blockTypes">
       <blockType
             group="org.eclipselabs.damos.library.base.continuousGroup"
+            name="Integrator"
+            qualifiedName="org.eclipselabs.damos.library.base.continuous.Integrator"
+            uri="http://www.eclipselabs.org/damos/library/1.0.0/continuous/Integrator.blocktype.dml#/">
+      </blockType>
+      <blockType
+            group="org.eclipselabs.damos.library.base.continuousGroup"
             qualifiedName="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             name="Transfer Function"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/continuous/TransferFunction.blocktype.dml#/">
@@ -162,6 +168,11 @@
    </extension>
    <extension
          point="org.eclipselabs.damos.execution.engine.blockSignaturePolicies">
+      <policy
+            blockType="org.eclipselabs.damos.library.base.continuous.Integrator"
+            class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.IntegratorSignaturePolicy"
+            name="Integrator">
+      </policy>
       <policy
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.TransferFunctionSignaturePolicy"

@@ -33,7 +33,7 @@ public interface IComponentSimulationObject {
 
 	void initialize() throws CoreException;
 	
-	void computeOutputValues() throws CoreException;
+	void computeOutputValues(double t) throws CoreException;
 	
 	void update() throws CoreException;
 	

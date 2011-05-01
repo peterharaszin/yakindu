@@ -57,7 +57,7 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	public void initialize() throws CoreException {
 	}
 		
-	public void computeOutputValues() throws CoreException {
+	public void computeOutputValues(double t) throws CoreException {
 	}
 	
 	public void update() throws CoreException {

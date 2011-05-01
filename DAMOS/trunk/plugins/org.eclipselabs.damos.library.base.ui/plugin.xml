@@ -75,6 +75,11 @@
    <extension
          point="org.eclipselabs.damos.diagram.ui.blockEditParts">
       <editPart
+            blockType="org.eclipselabs.damos.library.base.continuous.Integrator"
+            class="org.eclipselabs.damos.library.base.ui.continuous.editparts.IntegratorEditPart"
+            name="Integrator">
+      </editPart>
+      <editPart
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.ui.continuous.editparts.TransferFunctionEditPart"
             name="Transfer Function">
@@ -176,6 +181,11 @@
    </extension>
    <extension
          point="org.eclipselabs.damos.diagram.ui.blockImages">
+      <image
+            blockType="org.eclipselabs.damos.library.base.continuous.Integrator"
+            icon16="icons/continuous/Integrator16.png"
+            icon24="icons/continuous/Integrator24.png">
+      </image>
       <image
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             icon16="icons/continuous/TransferFunction16.png"

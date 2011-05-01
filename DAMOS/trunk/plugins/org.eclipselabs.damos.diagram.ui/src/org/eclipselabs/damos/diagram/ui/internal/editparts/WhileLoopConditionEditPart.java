@@ -11,12 +11,16 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
+import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectorGraphicalNodeEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.NonDestroySemanticEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
@@ -45,6 +49,7 @@ public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart imple
 		removeEditPolicy(EditPolicy.COMPONENT_ROLE);
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		installEditPolicy(IEditPolicyRoles.SEMANTIC_ROLE, new NonDestroySemanticEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ConnectorGraphicalNodeEditPolicy());
 		installEditPolicy(IEditPolicyRoles.TERMINAL_ROLE, new TerminalEditPolicy());
 	}
 	
@@ -79,4 +84,12 @@ public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart imple
 		return (IConnectorFigure) getFigure();
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getDragTracker(org.eclipse.gef.Request)
+	 */
+	@Override
+	public DragTracker getDragTracker(Request request) {
+		return new ConnectionCreationDragTracker(ElementTypes.CONNECTION);
+	}
+
 }

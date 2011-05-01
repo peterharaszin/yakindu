@@ -13,6 +13,7 @@ package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
@@ -23,7 +24,7 @@ import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ConnectionCreationDragTracker;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.PortEditPartDelegate;
-import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortCreationEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectorGraphicalNodeEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.dml.Connector;
@@ -75,7 +76,7 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new PortCreationEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ConnectorGraphicalNodeEditPolicy());
 		installEditPolicy(IEditPolicyRoles.TERMINAL_ROLE, new TerminalEditPolicy());
 	}
 

@@ -19,7 +19,7 @@ import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.PortEditPartDelegate;
-import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortConnectionHandleEditPolicy;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectorConnectionHandleEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortCreationEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
@@ -72,8 +72,8 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new PortCreationEditPolicy());
-		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new PortConnectionHandleEditPolicy());
 		installEditPolicy(IEditPolicyRoles.TERMINAL_ROLE, new TerminalEditPolicy());
+		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new ConnectorConnectionHandleEditPolicy());
 	}
 
 	/* (non-Javadoc)

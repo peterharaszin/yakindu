@@ -13,9 +13,11 @@ package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectorConnectionHandleEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.NonDestroySemanticEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
@@ -42,8 +44,9 @@ public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart imple
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		removeEditPolicy(EditPolicy.COMPONENT_ROLE);
-		installEditPolicy(IEditPolicyRoles.TERMINAL_ROLE, new TerminalEditPolicy());
 		installEditPolicy(IEditPolicyRoles.SEMANTIC_ROLE, new NonDestroySemanticEditPolicy());
+		installEditPolicy(IEditPolicyRoles.TERMINAL_ROLE, new TerminalEditPolicy());
+		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new ConnectorConnectionHandleEditPolicy());
 	}
 	
 	/* (non-Javadoc)

@@ -12,14 +12,17 @@
 package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.ConnectionCreationDragTracker;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.PortEditPartDelegate;
-import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectorConnectionHandleEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.PortCreationEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
@@ -71,9 +74,9 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		installEditPolicy(IEditPolicyRoles.CREATION_ROLE, new PortCreationEditPolicy());
 		installEditPolicy(IEditPolicyRoles.TERMINAL_ROLE, new TerminalEditPolicy());
-		installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new ConnectorConnectionHandleEditPolicy());
 	}
 
 	/* (non-Javadoc)
@@ -90,13 +93,6 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	protected void removeSemanticListeners() {
 		getDelegate().removeSemanticListeners();
 		super.removeSemanticListeners();
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#isSelectable()
-	 */
-	public boolean isSelectable() {
-		return false;
 	}
 	
 	/* (non-Javadoc)
@@ -138,6 +134,14 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 				hostFigure.getParent().remove(terminalBorderFigure);
 			}
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getDragTracker(org.eclipse.gef.Request)
+	 */
+	@Override
+	public DragTracker getDragTracker(Request request) {
+		return new ConnectionCreationDragTracker(ElementTypes.CONNECTION);
 	}
 	
 }

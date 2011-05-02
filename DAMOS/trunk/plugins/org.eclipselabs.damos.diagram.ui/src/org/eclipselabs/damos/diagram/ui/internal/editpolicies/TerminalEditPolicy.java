@@ -143,7 +143,7 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 			Connector connector = (Connector) element;
 			Fragment owningFragment = DMLUtil.getOwner(connector, Fragment.class);
 			if (owningFragment == null || owningFragment != selectedFragment && !DMLUtil.isChildFragment(selectedFragment, owningFragment)) {
-				getTerminalFigure().setBlank(true);
+				getTerminalFigure().setBlanked(true);
 			} else {
 				int connectionCount = 0;
 				for (Connection connection : getConnections()) {
@@ -152,14 +152,14 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 						++connectionCount;
 					}
 				}
-				getTerminalFigure().setBlank(connectionCount != 0);
+				getTerminalFigure().setBlanked(connectionCount != 0);
 			}
 		}
 	}
 	
 	protected void addTerminalFigure() {
 		if (getTerminalFigure() != null) {
-			getTerminalFigure().setBlank(true);
+			getTerminalFigure().setBlanked(true);
 			IFigure parent = getTerminalParentFigure();
 			if (parent != null) {
 				parent.add(getTerminalFigure(), new Rectangle(0, 0, -1, -1));

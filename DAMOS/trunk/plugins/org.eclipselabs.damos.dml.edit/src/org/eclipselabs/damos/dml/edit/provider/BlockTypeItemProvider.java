@@ -12,7 +12,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,10 +22,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.eclipselabs.damos.dml.BlockType} object.
@@ -32,7 +36,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
  * @generated
  */
 public class BlockTypeItemProvider
-	extends QualifiedElementItemProvider
+	extends EModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -60,9 +64,32 @@ public class BlockTypeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addQualifiedNamePropertyDescriptor(object);
 			addBelongingCategoriesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Qualified Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addQualifiedNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_QualifiedElement_qualifiedName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_qualifiedName_feature", "_UI_QualifiedElement_type"),
+				 DMLPackage.Literals.QUALIFIED_ELEMENT__QUALIFIED_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -157,6 +184,11 @@ public class BlockTypeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(BlockType.class)) {
+			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
+			case DMLPackage.BLOCK_TYPE__NAME:
+			case DMLPackage.BLOCK_TYPE__QUALIFIER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
@@ -197,6 +229,17 @@ public class BlockTypeItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.BLOCK_TYPE__BEHAVIOR,
 				 DMLFactory.eINSTANCE.createOpaqueBehaviorSpecification()));
+	}
+
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return DMLEditPlugin.INSTANCE;
 	}
 
 }

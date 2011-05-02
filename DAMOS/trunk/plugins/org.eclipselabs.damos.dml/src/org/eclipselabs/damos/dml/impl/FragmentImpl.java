@@ -13,8 +13,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.common.internal.ecore.util.DerivedSubsetEObjectEList;
@@ -42,7 +42,7 @@ import org.eclipselabs.damos.dml.internal.operations.FragmentOperations;
  *
  * @generated
  */
-public class FragmentImpl extends EObjectImpl implements Fragment {
+public class FragmentImpl extends EModelElementImpl implements Fragment {
 	/**
 	 * The cached value of the '{@link #getFragmentElements() <em>Fragment Elements</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

@@ -11,8 +11,8 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
@@ -31,7 +31,7 @@ import org.eclipselabs.damos.dml.FragmentElement;
  *
  * @generated
  */
-public abstract class FragmentElementImpl extends EObjectImpl implements FragmentElement {
+public abstract class FragmentElementImpl extends EModelElementImpl implements FragmentElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

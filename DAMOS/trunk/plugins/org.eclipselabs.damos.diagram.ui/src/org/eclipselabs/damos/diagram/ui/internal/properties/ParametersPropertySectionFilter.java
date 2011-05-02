@@ -2,8 +2,9 @@ package org.eclipselabs.damos.diagram.ui.internal.properties;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipselabs.damos.diagram.ui.properties.ParametersPropertySectionDelegate;
+import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 
 public class ParametersPropertySectionFilter implements IFilter {
 
@@ -11,7 +12,14 @@ public class ParametersPropertySectionFilter implements IFilter {
 		if (toTest instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable) toTest;
 			Block block = (Block) adaptable.getAdapter(Block.class);
-			return block != null && block.getArguments().size() > 0 && adaptable.getAdapter(ParametersPropertySectionDelegate.class) != null;
+			if (block == null) {
+				return false;
+			}
+			for (Argument argument : block.getArguments()) {
+				if (argument.getParameter() != null && argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}

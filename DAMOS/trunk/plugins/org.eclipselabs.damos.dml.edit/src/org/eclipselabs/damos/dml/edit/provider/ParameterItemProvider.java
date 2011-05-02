@@ -63,6 +63,7 @@ public class ParameterItemProvider
 			super.getPropertyDescriptors(object);
 
 			addNamePropertyDescriptor(object);
+			addVisibilityPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,6 +82,28 @@ public class ParameterItemProvider
 				 getString("_UI_Parameter_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_name_feature", "_UI_Parameter_type"),
 				 DMLPackage.Literals.PARAMETER__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Visibility feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addVisibilityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Parameter_visibility_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_visibility_feature", "_UI_Parameter_type"),
+				 DMLPackage.Literals.PARAMETER__VISIBILITY,
 				 true,
 				 false,
 				 false,
@@ -127,6 +150,7 @@ public class ParameterItemProvider
 
 		switch (notification.getFeatureID(Parameter.class)) {
 			case DMLPackage.PARAMETER__NAME:
+			case DMLPackage.PARAMETER__VISIBILITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

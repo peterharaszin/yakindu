@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dml"
     nsURI="http://www.eclipselabs.org/damos/DML/1.0.0" nsPrefix="dml">
-  <eClassifiers xsi:type="ecore:EClass" name="Fragment">
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName UniqueComponentNames"/>
     </eAnnotations>
@@ -47,7 +47,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FragmentElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentElement" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
     <eOperations name="getEnclosingFragment" lowerBound="1" eType="#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFragment" ordered="false"
         eType="#//Fragment" eOpposite="#//Fragment/fragmentElements"/>
@@ -163,6 +163,11 @@
     <eOperations name="getDefaultValue" ordered="false" eType="#//ValueSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//ParameterVisibilityKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ParameterVisibilityKind">
+    <eLiterals name="Public"/>
+    <eLiterals name="Private" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ValueSpecification" abstract="true">
     <eOperations name="stringValue" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -214,7 +219,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
         lowerBound="1" eType="#//ExpressionSpecification" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BlockType" eSuperTypes="#//QualifiedElement #//CategorizedElement #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="BlockType" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement #//QualifiedElement #//CategorizedElement #//ParameterableElement">
     <eOperations name="newInstance" ordered="false" lowerBound="1" eType="#//Block">
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>

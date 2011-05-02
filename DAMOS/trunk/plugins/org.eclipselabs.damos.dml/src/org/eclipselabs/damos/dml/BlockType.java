@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.dml;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface BlockType extends QualifiedElement, CategorizedElement, ParameterableElement {
+public interface BlockType extends EModelElement, QualifiedElement, CategorizedElement, ParameterableElement {
 	/**
 	 * Returns the value of the '<em><b>Input Definitions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.InputDefinition}.

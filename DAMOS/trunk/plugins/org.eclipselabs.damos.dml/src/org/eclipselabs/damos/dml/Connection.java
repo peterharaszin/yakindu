@@ -17,8 +17,6 @@ package org.eclipselabs.damos.dml;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.Connection#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Connection#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Connection#getSourcePort <em>Source Port</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Connection#getTargetPort <em>Target Port</em>}</li>
  * </ul>
  * </p>
  *
@@ -78,61 +76,5 @@ public interface Connection extends FragmentElement {
 	 * @generated
 	 */
 	void setTarget(InputConnector value);
-
-	/**
-	 * Returns the value of the '<em><b>Source Port</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * @deprecated Use {@link #getSource()} instead.
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Source Port</em>' reference.
-	 * @see #setSourcePort(OutputPort)
-	 * @see org.eclipselabs.damos.dml.DMLPackage#getConnection_SourcePort()
-	 * @model volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	@Deprecated
-	OutputPort getSourcePort();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Connection#getSourcePort <em>Source Port</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * @deprecated Use {@link #setSource(ConnectableElement)} instead.
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Source Port</em>' reference.
-	 * @see #getSourcePort()
-	 * @generated
-	 */
-	@Deprecated
-	void setSourcePort(OutputPort value);
-
-	/**
-	 * Returns the value of the '<em><b>Target Port</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * @deprecated Use {@link #getTarget()} instead.
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Port</em>' reference.
-	 * @see #setTargetPort(InputPort)
-	 * @see org.eclipselabs.damos.dml.DMLPackage#getConnection_TargetPort()
-	 * @model volatile="true" derived="true" ordered="false"
-	 * @generated
-	 */
-	@Deprecated
-	InputPort getTargetPort();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Connection#getTargetPort <em>Target Port</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * @deprecated Use {@link #setTarget(ConnectableElement value)} instead.
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Port</em>' reference.
-	 * @see #getTargetPort()
-	 * @generated
-	 */
-	@Deprecated
-	void setTargetPort(InputPort value);
 
 } // Connection

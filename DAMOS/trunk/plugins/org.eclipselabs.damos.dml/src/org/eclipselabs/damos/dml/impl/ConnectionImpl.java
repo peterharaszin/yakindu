@@ -13,9 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.InputConnector;
-import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputConnector;
-import org.eclipselabs.damos.dml.OutputPort;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,8 +24,6 @@ import org.eclipselabs.damos.dml.OutputPort;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ConnectionImpl#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ConnectionImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.ConnectionImpl#getSourcePort <em>Source Port</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.ConnectionImpl#getTargetPort <em>Target Port</em>}</li>
  * </ul>
  * </p>
  *
@@ -154,65 +150,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OutputPort getSourcePort() {
-		OutputPort sourcePort = basicGetSourcePort();
-		return sourcePort != null && sourcePort.eIsProxy() ? (OutputPort)eResolveProxy((InternalEObject)sourcePort) : sourcePort;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public OutputPort basicGetSourcePort() {
-		OutputConnector source = getSource();
-		return source instanceof OutputPort ? (OutputPort) source : null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setSourcePort(OutputPort newSourcePort) {
-		setSource(newSourcePort);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InputPort getTargetPort() {
-		InputPort targetPort = basicGetTargetPort();
-		return targetPort != null && targetPort.eIsProxy() ? (InputPort)eResolveProxy((InternalEObject)targetPort) : targetPort;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public InputPort basicGetTargetPort() {
-		InputConnector target = getTarget();
-		return target instanceof InputPort ? (InputPort) target : null;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void setTargetPort(InputPort newTargetPort) {
-		setTarget(newTargetPort);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("deprecation")
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -222,12 +159,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 			case DMLPackage.CONNECTION__TARGET:
 				if (resolve) return getTarget();
 				return basicGetTarget();
-			case DMLPackage.CONNECTION__SOURCE_PORT:
-				if (resolve) return getSourcePort();
-				return basicGetSourcePort();
-			case DMLPackage.CONNECTION__TARGET_PORT:
-				if (resolve) return getTargetPort();
-				return basicGetTargetPort();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,7 +168,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("deprecation")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -246,12 +176,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 				return;
 			case DMLPackage.CONNECTION__TARGET:
 				setTarget((InputConnector)newValue);
-				return;
-			case DMLPackage.CONNECTION__SOURCE_PORT:
-				setSourcePort((OutputPort)newValue);
-				return;
-			case DMLPackage.CONNECTION__TARGET_PORT:
-				setTargetPort((InputPort)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -262,7 +186,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("deprecation")
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
@@ -271,12 +194,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 				return;
 			case DMLPackage.CONNECTION__TARGET:
 				setTarget((InputConnector)null);
-				return;
-			case DMLPackage.CONNECTION__SOURCE_PORT:
-				setSourcePort((OutputPort)null);
-				return;
-			case DMLPackage.CONNECTION__TARGET_PORT:
-				setTargetPort((InputPort)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -287,7 +204,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
@@ -295,10 +211,6 @@ public class ConnectionImpl extends FragmentElementImpl implements Connection {
 				return source != null;
 			case DMLPackage.CONNECTION__TARGET:
 				return target != null;
-			case DMLPackage.CONNECTION__SOURCE_PORT:
-				return basicGetSourcePort() != null;
-			case DMLPackage.CONNECTION__TARGET_PORT:
-				return basicGetTargetPort() != null;
 		}
 		return super.eIsSet(featureID);
 	}

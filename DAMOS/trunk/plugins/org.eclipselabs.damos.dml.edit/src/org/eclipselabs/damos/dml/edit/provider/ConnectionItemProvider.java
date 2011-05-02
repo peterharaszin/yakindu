@@ -58,8 +58,6 @@ public class ConnectionItemProvider
 
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
-			addSourcePortPropertyDescriptor(object);
-			addTargetPortPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -100,52 +98,6 @@ public class ConnectionItemProvider
 				 getString("_UI_Connection_target_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Connection_target_feature", "_UI_Connection_type"),
 				 DMLPackage.Literals.CONNECTION__TARGET,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Source Port feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("deprecation")
-	protected void addSourcePortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Connection_sourcePort_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Connection_sourcePort_feature", "_UI_Connection_type"),
-				 DMLPackage.Literals.CONNECTION__SOURCE_PORT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Target Port feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("deprecation")
-	protected void addTargetPortPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Connection_targetPort_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Connection_targetPort_feature", "_UI_Connection_type"),
-				 DMLPackage.Literals.CONNECTION__TARGET_PORT,
 				 true,
 				 false,
 				 true,

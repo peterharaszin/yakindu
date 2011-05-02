@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.internal.operations.QualifiedElementOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -149,12 +150,7 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	 * @generated NOT
 	 */
 	public String getName() {
-		String qualifiedName = getQualifiedName();
-		if (qualifiedName != null) {
-			String[] segments = qualifiedName.split("\\.");
-			return segments[segments.length - 1];
-		}
-		return null;
+		return QualifiedElementOperations.getName(this);
 	}
 
 	/**
@@ -163,15 +159,7 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	 * @generated NOT
 	 */
 	public String getQualifier() {
-		String qualifiedName = getQualifiedName();
-		if (qualifiedName != null) {
-			int index = qualifiedName.lastIndexOf(".");
-			if (index >= 0) {
-				return qualifiedName.substring(0, index);
-			}
-			return qualifiedName;
-		}
-		return null;
+		return QualifiedElementOperations.getQualifier(this);
 	}
 
 	/**

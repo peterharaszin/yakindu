@@ -9,6 +9,7 @@ package org.eclipselabs.damos.dml.util;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
@@ -163,6 +164,7 @@ public class DMLSwitch<T> {
 			case DMLPackage.FRAGMENT: {
 				Fragment fragment = (Fragment)theEObject;
 				T result = caseFragment(fragment);
+				if (result == null) result = caseEModelElement(fragment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -171,12 +173,14 @@ public class DMLSwitch<T> {
 				T result = caseComponent(component);
 				if (result == null) result = caseFragmentElement(component);
 				if (result == null) result = caseCompoundMember(component);
+				if (result == null) result = caseEModelElement(component);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case DMLPackage.FRAGMENT_ELEMENT: {
 				FragmentElement fragmentElement = (FragmentElement)theEObject;
 				T result = caseFragmentElement(fragmentElement);
+				if (result == null) result = caseEModelElement(fragmentElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -184,6 +188,7 @@ public class DMLSwitch<T> {
 				Connection connection = (Connection)theEObject;
 				T result = caseConnection(connection);
 				if (result == null) result = caseFragmentElement(connection);
+				if (result == null) result = caseEModelElement(connection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -371,6 +376,7 @@ public class DMLSwitch<T> {
 			case DMLPackage.BLOCK_TYPE: {
 				BlockType blockType = (BlockType)theEObject;
 				T result = caseBlockType(blockType);
+				if (result == null) result = caseEModelElement(blockType);
 				if (result == null) result = caseQualifiedElement(blockType);
 				if (result == null) result = caseCategorizedElement(blockType);
 				if (result == null) result = caseParameterableElement(blockType);
@@ -411,6 +417,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseParameterizedElement(block);
 				if (result == null) result = caseFragmentElement(block);
 				if (result == null) result = caseCompoundMember(block);
+				if (result == null) result = caseEModelElement(block);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -419,6 +426,7 @@ public class DMLSwitch<T> {
 				T result = caseModel(model);
 				if (result == null) result = caseSystem(model);
 				if (result == null) result = caseFragment(model);
+				if (result == null) result = caseEModelElement(model);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -426,6 +434,7 @@ public class DMLSwitch<T> {
 				org.eclipselabs.damos.dml.System system = (org.eclipselabs.damos.dml.System)theEObject;
 				T result = caseSystem(system);
 				if (result == null) result = caseFragment(system);
+				if (result == null) result = caseEModelElement(system);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -468,6 +477,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(subsystem);
 				if (result == null) result = caseFragmentElement(subsystem);
 				if (result == null) result = caseCompoundMember(subsystem);
+				if (result == null) result = caseEModelElement(subsystem);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -501,6 +511,7 @@ public class DMLSwitch<T> {
 				SubsystemRealization subsystemRealization = (SubsystemRealization)theEObject;
 				T result = caseSubsystemRealization(subsystemRealization);
 				if (result == null) result = caseFragmentElement(subsystemRealization);
+				if (result == null) result = caseEModelElement(subsystemRealization);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -511,6 +522,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(inport);
 				if (result == null) result = caseFragmentElement(inport);
 				if (result == null) result = caseCompoundMember(inport);
+				if (result == null) result = caseEModelElement(inport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -520,6 +532,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(inoutport);
 				if (result == null) result = caseFragmentElement(inoutport);
 				if (result == null) result = caseCompoundMember(inoutport);
+				if (result == null) result = caseEModelElement(inoutport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -530,6 +543,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(outport);
 				if (result == null) result = caseFragmentElement(outport);
 				if (result == null) result = caseCompoundMember(outport);
+				if (result == null) result = caseEModelElement(outport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -575,6 +589,7 @@ public class DMLSwitch<T> {
 				T result = caseCompound(compound);
 				if (result == null) result = caseFragmentElement(compound);
 				if (result == null) result = caseCompoundMember(compound);
+				if (result == null) result = caseEModelElement(compound);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -615,6 +630,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(choice);
 				if (result == null) result = caseFragmentElement(choice);
 				if (result == null) result = caseCompoundMember(choice);
+				if (result == null) result = caseEModelElement(choice);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -642,6 +658,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseCompound(action);
 				if (result == null) result = caseFragmentElement(action);
 				if (result == null) result = caseCompoundMember(action);
+				if (result == null) result = caseEModelElement(action);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -670,6 +687,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(join);
 				if (result == null) result = caseFragmentElement(join);
 				if (result == null) result = caseCompoundMember(join);
+				if (result == null) result = caseEModelElement(join);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -688,6 +706,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseCompound(whileLoop);
 				if (result == null) result = caseFragmentElement(whileLoop);
 				if (result == null) result = caseCompoundMember(whileLoop);
+				if (result == null) result = caseEModelElement(whileLoop);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -707,6 +726,7 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseComponent(memory);
 				if (result == null) result = caseFragmentElement(memory);
 				if (result == null) result = caseCompoundMember(memory);
+				if (result == null) result = caseEModelElement(memory);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1860,6 +1880,21 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseMemoryOutput(MemoryOutput object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEModelElement(EModelElement object) {
 		return null;
 	}
 

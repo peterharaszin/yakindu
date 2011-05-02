@@ -21,6 +21,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.ExpressionParameter;
+import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 
 /**
@@ -47,7 +48,7 @@ public class ParametersPropertySectionDelegate {
 	}
 	
 	protected IParameterCompositeDelegate createCompositeDelegate(Argument argument, TabbedPropertySheetWidgetFactory widgetFactory) {
-		if (argument.getParameter() instanceof ExpressionParameter) {
+		if (argument.getParameter() instanceof ExpressionParameter && argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
 			ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
 			List<PredefinedExpressionEntry> predefinedExpressionEntries = parameter.getPredefinedExpressions();
 			if (!predefinedExpressionEntries.isEmpty()) {

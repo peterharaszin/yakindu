@@ -8,8 +8,10 @@ package org.eclipselabs.damos.dml;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,13 +72,22 @@ public interface DMLPackage extends EPackage {
 	int FRAGMENT = 0;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__COMPONENTS = 0;
+	int FRAGMENT__COMPONENTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Fragment Elements</b></em>' containment reference list.
@@ -85,7 +96,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__FRAGMENT_ELEMENTS = 1;
+	int FRAGMENT__FRAGMENT_ELEMENTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Connections</b></em>' reference list.
@@ -94,7 +105,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__CONNECTIONS = 2;
+	int FRAGMENT__CONNECTIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' reference.
@@ -103,7 +114,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__PARENT = 3;
+	int FRAGMENT__PARENT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -112,7 +123,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__NAME = 4;
+	int FRAGMENT__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Fragment</em>' class.
@@ -121,7 +132,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_FEATURE_COUNT = 5;
+	int FRAGMENT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.FragmentElementImpl <em>Fragment Element</em>}' class.
@@ -134,13 +145,22 @@ public interface DMLPackage extends EPackage {
 	int FRAGMENT_ELEMENT = 2;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT_ELEMENT__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_ELEMENT__OWNING_FRAGMENT = 0;
+	int FRAGMENT_ELEMENT__OWNING_FRAGMENT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Fragment Element</em>' class.
@@ -149,7 +169,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_ELEMENT_FEATURE_COUNT = 1;
+	int FRAGMENT_ELEMENT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ComponentImpl <em>Component</em>}' class.
@@ -160,6 +180,15 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	int COMPONENT = 1;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__EANNOTATIONS = FRAGMENT_ELEMENT__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -244,6 +273,15 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	int CONNECTION = 3;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONNECTION__EANNOTATIONS = FRAGMENT_ELEMENT__EANNOTATIONS;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutputPortImpl <em>Output Port</em>}' class.
@@ -1028,13 +1066,22 @@ public interface DMLPackage extends EPackage {
 	int PARAMETER__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__VISIBILITY = 1;
+
+	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = 1;
+	int PARAMETER_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of structural features of the '<em>Value Specification</em>' class.
@@ -1125,6 +1172,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int EXPRESSION_PARAMETER__NAME = PARAMETER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_PARAMETER__VISIBILITY = PARAMETER__VISIBILITY;
 
 	/**
 	 * The feature id for the '<em><b>Default Expression</b></em>' containment reference.
@@ -1218,42 +1274,6 @@ public interface DMLPackage extends EPackage {
 	int QUALIFIED_ELEMENT = 31;
 
 	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_ELEMENT__QUALIFIED_NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_ELEMENT__NAME = 1;
-
-	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_ELEMENT__QUALIFIER = 2;
-
-	/**
-	 * The number of structural features of the '<em>Qualified Element</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_ELEMENT_FEATURE_COUNT = 3;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CategorizedElementImpl <em>Categorized Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1274,13 +1294,22 @@ public interface DMLPackage extends EPackage {
 	int BLOCK_TYPE = 30;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK_TYPE__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__QUALIFIED_NAME = QUALIFIED_ELEMENT__QUALIFIED_NAME;
+	int BLOCK_TYPE__QUALIFIED_NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CategoryImpl <em>Category</em>}' class.
@@ -1389,7 +1418,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__NAME = QUALIFIED_ELEMENT__NAME;
+	int BLOCK_TYPE__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
@@ -1398,7 +1427,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__QUALIFIER = QUALIFIED_ELEMENT__QUALIFIER;
+	int BLOCK_TYPE__QUALIFIER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
@@ -1407,7 +1436,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__BELONGING_CATEGORIES = QUALIFIED_ELEMENT_FEATURE_COUNT + 0;
+	int BLOCK_TYPE__BELONGING_CATEGORIES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -1416,7 +1445,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__PARAMETERS = QUALIFIED_ELEMENT_FEATURE_COUNT + 1;
+	int BLOCK_TYPE__PARAMETERS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Input Definitions</b></em>' containment reference list.
@@ -1425,7 +1454,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__INPUT_DEFINITIONS = QUALIFIED_ELEMENT_FEATURE_COUNT + 2;
+	int BLOCK_TYPE__INPUT_DEFINITIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Output Definitions</b></em>' containment reference list.
@@ -1434,7 +1463,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__OUTPUT_DEFINITIONS = QUALIFIED_ELEMENT_FEATURE_COUNT + 3;
+	int BLOCK_TYPE__OUTPUT_DEFINITIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' containment reference.
@@ -1443,7 +1472,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__BEHAVIOR = QUALIFIED_ELEMENT_FEATURE_COUNT + 4;
+	int BLOCK_TYPE__BEHAVIOR = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Block Type</em>' class.
@@ -1452,7 +1481,43 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE_FEATURE_COUNT = QUALIFIED_ELEMENT_FEATURE_COUNT + 5;
+	int BLOCK_TYPE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALIFIED_ELEMENT__QUALIFIED_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALIFIED_ELEMENT__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALIFIED_ELEMENT__QUALIFIER = 2;
+
+	/**
+	 * The number of structural features of the '<em>Qualified Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUALIFIED_ELEMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
@@ -1566,6 +1631,15 @@ public interface DMLPackage extends EPackage {
 	int BLOCK = 35;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK__EANNOTATIONS = COMPONENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1638,6 +1712,15 @@ public interface DMLPackage extends EPackage {
 	int BLOCK_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__EANNOTATIONS = FRAGMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1690,6 +1773,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SYSTEM_FEATURE_COUNT = FRAGMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__EANNOTATIONS = SYSTEM__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
@@ -1855,6 +1947,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int BLOCK_OUTPUT_PORT_FEATURE_COUNT = OUTPUT_PORT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSYSTEM__EANNOTATIONS = COMPONENT__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2047,6 +2148,15 @@ public interface DMLPackage extends EPackage {
 	int OUTLET_FEATURE_COUNT = INOUTLET_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSYSTEM_REALIZATION__EANNOTATIONS = FRAGMENT_ELEMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2081,6 +2191,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int SUBSYSTEM_REALIZATION_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INOUTPORT__EANNOTATIONS = COMPONENT__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2146,6 +2265,15 @@ public interface DMLPackage extends EPackage {
 	int INOUTPORT_FEATURE_COUNT = COMPONENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPORT__EANNOTATIONS = INOUTPORT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2207,6 +2335,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPORT_FEATURE_COUNT = INOUTPORT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPORT__EANNOTATIONS = INOUTPORT__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2467,6 +2604,15 @@ public interface DMLPackage extends EPackage {
 	int COMPOUND = 55;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOUND__EANNOTATIONS = FRAGMENT_ELEMENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2625,6 +2771,15 @@ public interface DMLPackage extends EPackage {
 	int CHOICE = 60;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CHOICE__EANNOTATIONS = COMPONENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2770,6 +2925,15 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	int ACTION = 63;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__EANNOTATIONS = COMPOUND__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -2920,6 +3084,15 @@ public interface DMLPackage extends EPackage {
 	int JOIN = 67;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JOIN__EANNOTATIONS = COMPONENT__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3021,6 +3194,15 @@ public interface DMLPackage extends EPackage {
 	int WHILE_LOOP = 69;
 
 	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WHILE_LOOP__EANNOTATIONS = ACTION__EANNOTATIONS;
+
+	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3111,6 +3293,15 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	int MEMORY = 71;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MEMORY__EANNOTATIONS = COMPONENT__EANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -3276,6 +3467,16 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MEMORY_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.ParameterVisibilityKind
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterVisibilityKind()
+	 * @generated
+	 */
+	int PARAMETER_VISIBILITY_KIND = 75;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -3977,6 +4178,17 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getParameter_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.Parameter#getVisibility <em>Visibility</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Visibility</em>'.
+	 * @see org.eclipselabs.damos.dml.Parameter#getVisibility()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EAttribute getParameter_Visibility();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ValueSpecification <em>Value Specification</em>}'.
@@ -4844,6 +5056,16 @@ public interface DMLPackage extends EPackage {
 	EClass getMemoryOutput();
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Parameter Visibility Kind</em>'.
+	 * @see org.eclipselabs.damos.dml.ParameterVisibilityKind
+	 * @generated
+	 */
+	EEnum getParameterVisibilityKind();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5448,6 +5670,14 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Visibility</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER__VISIBILITY = eINSTANCE.getParameter_Visibility();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
@@ -6208,6 +6438,16 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MEMORY_OUTPUT = eINSTANCE.getMemoryOutput();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.ParameterVisibilityKind
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterVisibilityKind()
+		 * @generated
+		 */
+		EEnum PARAMETER_VISIBILITY_KIND = eINSTANCE.getParameterVisibilityKind();
 
 	}
 

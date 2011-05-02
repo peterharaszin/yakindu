@@ -5,11 +5,15 @@
     editorDirectory="/org.eclipselabs.damos.dml.ui/src" modelPluginID="org.eclipselabs.damos.dml"
     modelName="DML" modelPluginClass="DMLPlugin" editPluginClass="org.eclipselabs.damos.dml.edit.DMLEditPlugin"
     editorPluginClass="org.eclipselabs.damos.dml.ui.DMLUIPlugin" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="">
+    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>DML.ecore</foreignModel>
   <genPackages prefix="DML" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
       providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
       ecorePackage="DML.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//ParameterVisibilityKind">
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Public"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Private"/>
+    </genEnums>
     <genClasses ecoreClass="DML.ecore#//Fragment">
       <genFeatures createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/components"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/fragmentElements"/>
@@ -123,6 +127,7 @@
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/visibility"/>
       <genOperations ecoreOperation="DML.ecore#//Parameter/getDefaultValue"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//ValueSpecification">

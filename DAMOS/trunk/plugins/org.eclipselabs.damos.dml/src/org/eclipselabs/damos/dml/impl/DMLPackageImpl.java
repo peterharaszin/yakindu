@@ -8,10 +8,12 @@ package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
@@ -75,6 +77,7 @@ import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
@@ -624,6 +627,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	private EClass memoryOutputEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum parameterVisibilityKindEEnum = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -668,6 +678,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		DMLPackageImpl theDMLPackage = (DMLPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DMLPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DMLPackageImpl());
 
 		isInited = true;
+
+		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDMLPackage.createPackageContents();
@@ -1285,6 +1298,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EAttribute getParameter_Name() {
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParameter_Visibility() {
+		return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -2039,6 +2061,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getParameterVisibilityKind() {
+		return parameterVisibilityKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DMLFactory getDMLFactory() {
 		return (DMLFactory)getEFactoryInstance();
 	}
@@ -2137,6 +2168,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__NAME);
+		createEAttribute(parameterEClass, PARAMETER__VISIBILITY);
 
 		valueSpecificationEClass = createEClass(VALUE_SPECIFICATION);
 
@@ -2286,6 +2318,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		memoryInputEClass = createEClass(MEMORY_INPUT);
 
 		memoryOutputEClass = createEClass(MEMORY_OUTPUT);
+
+		// Create enums
+		parameterVisibilityKindEEnum = createEEnum(PARAMETER_VISIBILITY_KIND);
 	}
 
 	/**
@@ -2311,13 +2346,18 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		fragmentEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		componentEClass.getESuperTypes().add(this.getFragmentElement());
 		componentEClass.getESuperTypes().add(this.getCompoundMember());
+		fragmentElementEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		connectionEClass.getESuperTypes().add(this.getFragmentElement());
 		inputConnectorEClass.getESuperTypes().add(this.getConnector());
 		outputConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -2338,6 +2378,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		outputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		expressionParameterEClass.getESuperTypes().add(this.getParameter());
 		expressionSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
+		blockTypeEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		blockTypeEClass.getESuperTypes().add(this.getQualifiedElement());
 		blockTypeEClass.getESuperTypes().add(this.getCategorizedElement());
 		blockTypeEClass.getESuperTypes().add(this.getParameterableElement());
@@ -2529,6 +2570,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getParameter_Visibility(), this.getParameterVisibilityKind(), "visibility", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(parameterEClass, this.getValueSpecification(), "getDefaultValue", 0, 1, IS_UNIQUE, !IS_ORDERED);
 
@@ -2709,6 +2751,11 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(memoryInputEClass, MemoryInput.class, "MemoryInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(memoryOutputEClass, MemoryOutput.class, "MemoryOutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(parameterVisibilityKindEEnum, ParameterVisibilityKind.class, "ParameterVisibilityKind");
+		addEEnumLiteral(parameterVisibilityKindEEnum, ParameterVisibilityKind.PUBLIC);
+		addEEnumLiteral(parameterVisibilityKindEEnum, ParameterVisibilityKind.PRIVATE);
 
 		// Create resource
 		createResource(eNS_URI);

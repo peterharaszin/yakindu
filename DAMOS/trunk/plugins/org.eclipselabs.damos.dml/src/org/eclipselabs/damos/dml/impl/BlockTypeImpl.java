@@ -13,6 +13,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
@@ -27,9 +28,11 @@ import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterableElement;
+import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.internal.operations.BlockTypeOperations;
 import org.eclipselabs.damos.dml.internal.operations.CategorizedElementOperations;
 import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperations;
+import org.eclipselabs.damos.dml.internal.operations.QualifiedElementOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +41,9 @@ import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperati
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getQualifiedName <em>Qualified Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getBelongingCategories <em>Belonging Categories</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getInputDefinitions <em>Input Definitions</em>}</li>
@@ -48,7 +54,56 @@ import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperati
  *
  * @generated
  */
-public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
+public class BlockTypeImpl extends EModelElementImpl implements BlockType {
+	/**
+	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
+
+	/**
+	 * This is true if the Qualified Name attribute has been set.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean qualifiedNameESet;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The default value of the '{@link #getQualifier() <em>Qualifier</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifier()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUALIFIER_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getBelongingCategories() <em>Belonging Categories</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -125,6 +180,70 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	@Override
 	protected EClass eStaticClass() {
 		return DMLPackage.Literals.BLOCK_TYPE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getQualifiedName() {
+		return qualifiedName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setQualifiedName(String newQualifiedName) {
+		String oldQualifiedName = qualifiedName;
+		qualifiedName = newQualifiedName;
+		boolean oldQualifiedNameESet = qualifiedNameESet;
+		qualifiedNameESet = true;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__QUALIFIED_NAME, oldQualifiedName, qualifiedName, !oldQualifiedNameESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void unsetQualifiedName() {
+		String oldQualifiedName = qualifiedName;
+		boolean oldQualifiedNameESet = qualifiedNameESet;
+		qualifiedName = QUALIFIED_NAME_EDEFAULT;
+		qualifiedNameESet = false;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.UNSET, DMLPackage.BLOCK_TYPE__QUALIFIED_NAME, oldQualifiedName, QUALIFIED_NAME_EDEFAULT, oldQualifiedNameESet));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSetQualifiedName() {
+		return qualifiedNameESet;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getName() {
+		return QualifiedElementOperations.getName(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getQualifier() {
+		return QualifiedElementOperations.getQualifier(this);
 	}
 
 	/**
@@ -325,6 +444,12 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
+				return getQualifiedName();
+			case DMLPackage.BLOCK_TYPE__NAME:
+				return getName();
+			case DMLPackage.BLOCK_TYPE__QUALIFIER:
+				return getQualifier();
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				return getBelongingCategories();
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
@@ -348,6 +473,9 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
+				setQualifiedName((String)newValue);
+				return;
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				getBelongingCategories().clear();
 				getBelongingCategories().addAll((Collection<? extends Category>)newValue);
@@ -379,6 +507,9 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
+				unsetQualifiedName();
+				return;
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				getBelongingCategories().clear();
 				return;
@@ -406,6 +537,12 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
+				return isSetQualifiedName();
+			case DMLPackage.BLOCK_TYPE__NAME:
+				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
+			case DMLPackage.BLOCK_TYPE__QUALIFIER:
+				return QUALIFIER_EDEFAULT == null ? getQualifier() != null : !QUALIFIER_EDEFAULT.equals(getQualifier());
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				return belongingCategories != null && !belongingCategories.isEmpty();
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
@@ -427,6 +564,14 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedElement.class) {
+			switch (derivedFeatureID) {
+				case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME: return DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME;
+				case DMLPackage.BLOCK_TYPE__NAME: return DMLPackage.QUALIFIED_ELEMENT__NAME;
+				case DMLPackage.BLOCK_TYPE__QUALIFIER: return DMLPackage.QUALIFIED_ELEMENT__QUALIFIER;
+				default: return -1;
+			}
+		}
 		if (baseClass == CategorizedElement.class) {
 			switch (derivedFeatureID) {
 				case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES: return DMLPackage.CATEGORIZED_ELEMENT__BELONGING_CATEGORIES;
@@ -449,6 +594,14 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == QualifiedElement.class) {
+			switch (baseFeatureID) {
+				case DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME: return DMLPackage.BLOCK_TYPE__QUALIFIED_NAME;
+				case DMLPackage.QUALIFIED_ELEMENT__NAME: return DMLPackage.BLOCK_TYPE__NAME;
+				case DMLPackage.QUALIFIED_ELEMENT__QUALIFIER: return DMLPackage.BLOCK_TYPE__QUALIFIER;
+				default: return -1;
+			}
+		}
 		if (baseClass == CategorizedElement.class) {
 			switch (baseFeatureID) {
 				case DMLPackage.CATEGORIZED_ELEMENT__BELONGING_CATEGORIES: return DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES;
@@ -462,6 +615,22 @@ public class BlockTypeImpl extends QualifiedElementImpl implements BlockType {
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (qualifiedName: ");
+		if (qualifiedNameESet) result.append(qualifiedName); else result.append("<unset>");
+		result.append(')');
+		return result.toString();
 	}
 
 } //BlockTypeImpl

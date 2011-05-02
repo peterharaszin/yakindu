@@ -84,6 +84,7 @@ import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
@@ -323,6 +324,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateMemoryInput((MemoryInput)value, diagnostics, context);
 			case DMLPackage.MEMORY_OUTPUT:
 				return validateMemoryOutput((MemoryOutput)value, diagnostics, context);
+			case DMLPackage.PARAMETER_VISIBILITY_KIND:
+				return validateParameterVisibilityKind((ParameterVisibilityKind)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -1810,6 +1813,15 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateMemoryOutput(MemoryOutput memoryOutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(memoryOutput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateParameterVisibilityKind(ParameterVisibilityKind parameterVisibilityKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
 	}
 
 	/**

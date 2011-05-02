@@ -12,9 +12,11 @@
 package org.eclipselabs.damos.diagram.ui.figures;
 
 import org.eclipse.draw2d.AncestorListener;
+import org.eclipse.draw2d.Cursors;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.swt.graphics.Cursor;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
 
@@ -25,7 +27,7 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
 public abstract class TerminalFigure extends NodeFigure {
 
 	private IConnectorFigure owner;
-	private boolean blank;
+	private boolean blanked;
 	
 	private AncestorListener ancestorListener = new AncestorListener() {
 		
@@ -57,18 +59,26 @@ public abstract class TerminalFigure extends NodeFigure {
 	}
 	
 	/**
-	 * @return the blank
+	 * @return the blanked
 	 */
-	public boolean isBlank() {
-		return blank;
+	public boolean isBlanked() {
+		return blanked;
 	}
 	
 	/**
-	 * @param blank the blank to set
+	 * @param blanked the blanked to set
 	 */
-	public void setBlank(boolean blank) {
-		this.blank = blank;
+	public void setBlanked(boolean blanked) {
+		this.blanked = blanked;
 		repaint();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.draw2d.Figure#getCursor()
+	 */
+	@Override
+	public Cursor getCursor() {
+		return Cursors.CROSS;
 	}
 	
 	public abstract Extents getExtents(double rotationHint);
@@ -78,7 +88,7 @@ public abstract class TerminalFigure extends NodeFigure {
 	 */
 	@Override
 	public void paint(Graphics graphics) {
-		if (!isBlank()) {
+		if (!isBlanked()) {
 			super.paint(graphics);
 		}
 	}

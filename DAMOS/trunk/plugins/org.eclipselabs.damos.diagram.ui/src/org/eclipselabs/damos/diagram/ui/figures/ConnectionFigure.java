@@ -11,14 +11,19 @@
 
 package org.eclipselabs.damos.diagram.ui.figures;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PolygonDecoration;
+import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IBlankableFigure;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorAnchor;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 
 public class ConnectionFigure extends PolylineConnectionEx implements IBlankableFigure, IFigureConstants {
 	
@@ -90,6 +95,33 @@ public class ConnectionFigure extends PolylineConnectionEx implements IBlankable
 			points.removePoint(0);
 		}
 		return points;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.draw2d.Figure#findFigureAt(int, int, org.eclipse.draw2d.TreeSearch)
+	 */
+	@Override
+	public IFigure findFigureAt(int x, int y, TreeSearch search) {
+		IFigure figure = findTerminalFigure(getSourceAnchor(), x, y);
+		if (figure == null) {
+			figure = findTerminalFigure(getTargetAnchor(), x, y);
+		}
+		if (figure != null) {
+			return figure;
+		}
+		return super.findFigureAt(x, y, search);
+	}
+	
+	private TerminalFigure findTerminalFigure(ConnectionAnchor anchor, int x, int y) {
+		if (anchor instanceof IConnectorAnchor) {
+			IConnectorAnchor connectorAnchor = (IConnectorAnchor) anchor;
+			IConnectorFigure connectorFigure = connectorAnchor.getConnectorFigure();
+			TerminalFigure terminalFigure = connectorFigure.getTerminalFigure();
+			if (terminalFigure != null && (terminalFigure.containsPoint(x, y))) {
+				return terminalFigure;
+			}
+		}
+		return null;
 	}
 	
 	private boolean hasJunction() {

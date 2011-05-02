@@ -17,9 +17,10 @@ import org.eclipse.draw2d.ConnectionAnchorBase;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorAnchor;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 
-public class ConnectorAnchor extends ConnectionAnchorBase implements AncestorListener {
+public class ConnectorAnchor extends ConnectionAnchorBase implements IConnectorAnchor, AncestorListener {
 
 	private IConnectorFigure connectorFigure;
 	
@@ -30,7 +31,7 @@ public class ConnectorAnchor extends ConnectionAnchorBase implements AncestorLis
 	/**
 	 * @return the connectorFigure
 	 */
-	protected final IConnectorFigure getConnectorFigure() {
+	public final IConnectorFigure getConnectorFigure() {
 		return connectorFigure;
 	}
 	

@@ -25,6 +25,7 @@ import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class MoveToAnotherFragmentHandler extends AbstractHandler {
@@ -93,8 +94,8 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 	}
 	
 	private boolean validateFragmentRelation(Connection connection, Collection<FragmentElement> elements, Fragment destinationFragment) {
-		Component sourceComponent = connection.getSourcePort().getComponent();
-		Component targetComponent = connection.getTargetPort().getComponent();
+		Component sourceComponent = getSourcePort(connection).getComponent();
+		Component targetComponent = getTargetPort(connection).getComponent();
 		if (!elements.contains(sourceComponent)
 				&& !DMLUtil.areFragmentsRelated(sourceComponent.getOwningFragment(), destinationFragment)
 				|| !elements.contains(targetComponent)
@@ -122,8 +123,8 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 	}
 	
 	private boolean validateInputPorts(Connection connection, Collection<FragmentElement> elements, Fragment destinationFragment) {
-		if (!(validateInputPorts(connection.getSourcePort().getComponent(), elements, destinationFragment)
-				&& validateInputPorts(connection.getTargetPort().getComponent(), elements, destinationFragment))) {
+		if (!(validateInputPorts(getSourcePort(connection).getComponent(), elements, destinationFragment)
+				&& validateInputPorts(getTargetPort(connection).getComponent(), elements, destinationFragment))) {
 			return false;
 		}
 		return true;
@@ -151,8 +152,8 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 		if (elements.contains(connection)
 				|| (DMLUtil.isChildFragment(destinationFragment, connectionFragment)
 						|| !DMLUtil.areFragmentsRelated(destinationFragment, connectionFragment))
-						&& (elements.contains(connection.getSourcePort().getComponent())
-								|| elements.contains(connection.getTargetPort().getComponent()))) {
+						&& (elements.contains(getSourcePort(connection).getComponent())
+								|| elements.contains(getTargetPort(connection).getComponent()))) {
 			connectionFragment = destinationFragment;
 		}
 		return connectionFragment;
@@ -198,11 +199,11 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 		
 		private void adjustConnectionContainer(Connection connection) {
 			Fragment connectionFragment = connection.getOwningFragment();
-			if (DMLUtil.isChildFragment(connection.getSourcePort().getComponent().getOwningFragment(), connectionFragment)) {
-				connectionFragment = connection.getSourcePort().getComponent().getOwningFragment();
+			if (DMLUtil.isChildFragment(getSourcePort(connection).getComponent().getOwningFragment(), connectionFragment)) {
+				connectionFragment = getSourcePort(connection).getComponent().getOwningFragment();
 			}
-			if (DMLUtil.isChildFragment(connection.getTargetPort().getComponent().getOwningFragment(), connectionFragment)) {
-				connectionFragment = connection.getTargetPort().getComponent().getOwningFragment();
+			if (DMLUtil.isChildFragment(getTargetPort(connection).getComponent().getOwningFragment(), connectionFragment)) {
+				connectionFragment = getTargetPort(connection).getComponent().getOwningFragment();
 			}
 			if (connectionFragment != connection.getOwningFragment()) {
 				connection.setOwningFragment(connectionFragment);
@@ -211,4 +212,18 @@ public class MoveToAnotherFragmentHandler extends AbstractHandler {
 		
 	}
 	
+	private static OutputPort getSourcePort(Connection connection) {
+		if (connection.getSource() instanceof OutputPort) {
+			return (OutputPort) connection.getSource();
+		}
+		return null;
+	}
+	
+	private static InputPort getTargetPort(Connection connection) {
+		if (connection.getTarget() instanceof InputPort) {
+			return (InputPort) connection.getTarget();
+		}
+		return null;
+	}
+
 }

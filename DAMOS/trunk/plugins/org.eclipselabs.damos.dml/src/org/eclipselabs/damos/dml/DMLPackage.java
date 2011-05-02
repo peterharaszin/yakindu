@@ -351,33 +351,13 @@ public interface DMLPackage extends EPackage {
 	int CONNECTION__TARGET = FRAGMENT_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Source Port</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	@Deprecated
-	int CONNECTION__SOURCE_PORT = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Target Port</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	@Deprecated
-	int CONNECTION__TARGET_PORT = FRAGMENT_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>Connection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONNECTION_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 4;
+	int CONNECTION_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConnectorImpl <em>Connector</em>}' class.
@@ -3671,30 +3651,6 @@ public interface DMLPackage extends EPackage {
 	EReference getConnection_Target();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Connection#getSourcePort <em>Source Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Source Port</em>'.
-	 * @see org.eclipselabs.damos.dml.Connection#getSourcePort()
-	 * @see #getConnection()
-	 * @generated
-	 */
-	@Deprecated
-	EReference getConnection_SourcePort();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dml.Connection#getTargetPort <em>Target Port</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Target Port</em>'.
-	 * @see org.eclipselabs.damos.dml.Connection#getTargetPort()
-	 * @see #getConnection()
-	 * @generated
-	 */
-	@Deprecated
-	EReference getConnection_TargetPort();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Connector <em>Connector</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5242,24 +5198,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONNECTION__TARGET = eINSTANCE.getConnection_Target();
-
-		/**
-		 * The meta object literal for the '<em><b>Source Port</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Deprecated
-		EReference CONNECTION__SOURCE_PORT = eINSTANCE.getConnection_SourcePort();
-
-		/**
-		 * The meta object literal for the '<em><b>Target Port</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Deprecated
-		EReference CONNECTION__TARGET_PORT = eINSTANCE.getConnection_TargetPort();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConnectorImpl <em>Connector</em>}' class.

@@ -12,10 +12,10 @@
 package org.eclipselabs.damos.diagram.core.internal.resource;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.xmi.XMLSave;
-import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
+import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipselabs.damos.dml.DMLPackage;
 
@@ -33,25 +33,28 @@ public class BlockDiagramResource extends GMFResource {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.emf.core.resources.GMFResource#createXMLSave()
+	 * @see org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl#createXMLHelper()
 	 */
 	@Override
-	protected XMLSave createXMLSave() {
-		return new XMISaveImpl(createXMLHelper()) {
+	protected XMLHelper createXMLHelper() {
+		return new XMIHelperImpl(this) {
 			
 			/* (non-Javadoc)
-			 * @see org.eclipse.emf.ecore.xmi.impl.XMLSaveImpl#shouldSaveFeature(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature)
+			 * @see org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl#getFeature(org.eclipse.emf.ecore.EClass, java.lang.String, java.lang.String)
 			 */
-			@SuppressWarnings("deprecation")
 			@Override
-			protected boolean shouldSaveFeature(EObject o, EStructuralFeature f) {
-				if (f == DMLPackage.eINSTANCE.getConnection_SourcePort() || f == DMLPackage.eINSTANCE.getConnection_TargetPort()) {
-					return false;
+			public EStructuralFeature getFeature(EClass eClass, String namespaceURI, String name) {
+				if (eClass == DMLPackage.eINSTANCE.getConnection()) {
+					if ("sourcePort".equals(name)) {
+						name = "source";
+					} else if ("targetPort".equals(name)) {
+						name = "target";
+					}
 				}
-				return super.shouldSaveFeature(o, f);
+				return super.getFeature(eClass, namespaceURI, name);
 			}
 			
 		};
 	}
-	
+
 }

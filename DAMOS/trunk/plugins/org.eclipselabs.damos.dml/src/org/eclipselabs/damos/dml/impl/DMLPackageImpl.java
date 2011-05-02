@@ -873,24 +873,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConnection_SourcePort() {
-		return (EReference)connectionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getConnection_TargetPort() {
-		return (EReference)connectionEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getConnector() {
 		return connectorEClass;
 	}
@@ -2088,7 +2070,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("deprecation")
 	public void createPackageContents() {
 		if (isCreated) return;
 		isCreated = true;
@@ -2112,8 +2093,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		connectionEClass = createEClass(CONNECTION);
 		createEReference(connectionEClass, CONNECTION__SOURCE);
 		createEReference(connectionEClass, CONNECTION__TARGET);
-		createEReference(connectionEClass, CONNECTION__SOURCE_PORT);
-		createEReference(connectionEClass, CONNECTION__TARGET_PORT);
 
 		connectorEClass = createEClass(CONNECTOR);
 
@@ -2479,8 +2458,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(connectionEClass, Connection.class, "Connection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getConnection_Source(), this.getOutputConnector(), null, "source", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getConnection_Target(), this.getInputConnector(), null, "target", null, 1, 1, Connection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getConnection_SourcePort(), this.getOutputPort(), null, "sourcePort", null, 0, 1, Connection.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getConnection_TargetPort(), this.getInputPort(), null, "targetPort", null, 0, 1, Connection.class, !IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 
 		initEClass(connectorEClass, Connector.class, "Connector", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

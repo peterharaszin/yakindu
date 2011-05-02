@@ -60,10 +60,6 @@
         lowerBound="1" eType="#//OutputConnector"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"
         lowerBound="1" eType="#//InputConnector"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sourcePort" ordered="false"
-        eType="#//OutputPort" volatile="true" derived="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetPort" ordered="false"
-        eType="#//InputPort" volatile="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connector" abstract="true">
     <eOperations name="getConnections" ordered="false" upperBound="-1" eType="#//Connection"/>

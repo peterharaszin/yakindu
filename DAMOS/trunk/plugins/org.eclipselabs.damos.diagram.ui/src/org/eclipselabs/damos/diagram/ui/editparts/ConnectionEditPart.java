@@ -11,16 +11,18 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.ConnectionFigure;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectionGraphicalNodeEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.FragmentSelectionEditPolicy;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
@@ -43,6 +45,7 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(IEditPolicyRoles.FRAGMENT_SELECTION_ROLE, new FragmentSelectionEditPolicy());
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new ConnectionGraphicalNodeEditPolicy());
 	}
 	
 	protected void refreshVisuals() {
@@ -73,21 +76,14 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart#getTargetEditPart(org.eclipse.gef.Request)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.Request)
 	 */
-	public EditPart getTargetEditPart(Request request) {
-		EditPart editPart = super.getTargetEditPart(request);
-		if (editPart instanceof org.eclipse.gef.ConnectionEditPart) {
-			Object type = request.getType();
-			if (RequestConstants.REQ_CONNECTION_START.equals(type)
-					|| RequestConstants.REQ_RECONNECT_SOURCE.equals(type)) {
-				 return ((org.eclipse.gef.ConnectionEditPart) editPart).getSource();
-			} else if (RequestConstants.REQ_CONNECTION_END.equals(type)
-					|| RequestConstants.REQ_RECONNECT_TARGET.equals(type)) {
-				 return ((org.eclipse.gef.ConnectionEditPart) editPart).getTarget();
-			}
+	@Override
+	public ConnectionAnchor getTargetConnectionAnchor(Request request) {
+		if (request instanceof CreateConnectionViewAndElementRequest) {
+			return getSourceConnectionAnchor();
 		}
-		return editPart;
+		return super.getTargetConnectionAnchor(request);
 	}
 	
 	protected void handleNotificationEvent(Notification notification) {

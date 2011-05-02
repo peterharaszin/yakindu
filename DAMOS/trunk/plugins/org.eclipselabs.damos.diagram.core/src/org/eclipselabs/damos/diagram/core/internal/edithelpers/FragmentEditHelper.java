@@ -19,7 +19,6 @@ import org.eclipselabs.damos.diagram.core.internal.commands.CreateBlockCommand;
 import org.eclipselabs.damos.diagram.core.internal.commands.CreateConnectionCommand;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.util.DMLUtil;
 
 public class FragmentEditHelper extends AbstractEditHelper {
 	
@@ -34,7 +33,7 @@ public class FragmentEditHelper extends AbstractEditHelper {
 	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (DMLPackage.eINSTANCE.getConnection().isSuperTypeOf(req.getElementType().getEClass())) {
 	        if (req.getTarget() == null) {
-	        	if (req.getSource() instanceof Connector && DMLUtil.canConnectOutgoingConnection((Connector) req.getSource())) {
+	        	if (req.getSource() instanceof Connector) {
 	        		return super.getCreateRelationshipCommand(req);
 	        	}
 	        } else {

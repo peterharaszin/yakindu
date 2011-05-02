@@ -570,7 +570,7 @@ public class DMLValidator extends EObjectValidator {
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 								DIAGNOSTIC_SOURCE,
 								0,
-								"Connection target must be join component",
+								"Connection target must be Join",
 								new Object[] { connection }));
 					}
 					return false;
@@ -1035,7 +1035,7 @@ public class DMLValidator extends EObjectValidator {
 												+ owningFragment.getName()
 												+ "' for subsystem '"
 												+ realizedSubsystem.getName()
-												+ "' specifies realizing fragment with an incompatible inport data type for inlet '"
+												+ "' specifies realizing fragment with an incompatible Inport data type for Inlet '"
 												+ inlet.getName() + "'", new Object[] { subsystemRealization }));
 					}
 					result = false;
@@ -1045,7 +1045,7 @@ public class DMLValidator extends EObjectValidator {
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0,
 							"Subsystem realization on fragment '" + owningFragment.getName() + "' for subsystem '"
 									+ realizedSubsystem.getName()
-									+ "' specifies realizing fragment that does not have an inport for inlet '"
+									+ "' specifies realizing fragment that does not have an Inport for Inlet '"
 									+ inlet.getName() + "'", new Object[] { subsystemRealization }));
 				}
 				result = false;
@@ -1175,7 +1175,7 @@ public class DMLValidator extends EObjectValidator {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
 						0,
-						"Inports and outports must be located on a fragment directly.",
+						"Inports and Outports must be located on a fragment directly",
 						new Object[] { inoutport }));
 			}
 			return false;
@@ -1356,7 +1356,7 @@ public class DMLValidator extends EObjectValidator {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
 						0,
-						"Choice component must not have more than one default action link",
+						"Choice must not have more than one default action link",
 						new Object[] { choice }));
 			}
 			result = false;
@@ -1469,7 +1469,7 @@ public class DMLValidator extends EObjectValidator {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
 						0,
-						"Choice and action must be located on the same fragment",
+						"Choice and Action must be located on the same fragment",
 						new Object[] { actionLink }));
 			}
 			return false;
@@ -1479,7 +1479,7 @@ public class DMLValidator extends EObjectValidator {
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						DIAGNOSTIC_SOURCE,
 						0,
-						"Choice and action must be located in the same compound",
+						"Choice and Action must be enclosed by the same compound",
 						new Object[] { actionLink }));
 			}
 			return false;
@@ -1552,7 +1552,7 @@ public class DMLValidator extends EObjectValidator {
 								diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 										DIAGNOSTIC_SOURCE,
 										0,
-										"Enclosing action of join source has no action link",
+										formatStringWithOwnerName("Enclosing Action of Join source%s has no Action link", connection.getSource()),
 										new Object[] { join }));
 							}
 							result = false;
@@ -1562,7 +1562,7 @@ public class DMLValidator extends EObjectValidator {
 							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 									DIAGNOSTIC_SOURCE,
 									0,
-									"Join source must be located in an action with a link",
+									formatStringWithOwnerName("Join source%s must be enclosed by an Action", connection.getSource()),
 									new Object[] { join }));
 						}
 						result = false;
@@ -1574,7 +1574,7 @@ public class DMLValidator extends EObjectValidator {
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 							DIAGNOSTIC_SOURCE,
 							0,
-							"Duplicate source actions",
+							"Duplicate source Actions",
 							new Object[] { join }));
 				}
 				result = false;
@@ -1613,7 +1613,7 @@ public class DMLValidator extends EObjectValidator {
 									diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 											DIAGNOSTIC_SOURCE,
 											0,
-											"Enclosing action of join sources must be linked to the same choice",
+											"Enclosing Action of Join sources must be linked to the same Choice",
 											new Object[] { join }));
 								}
 								return false;
@@ -1627,7 +1627,7 @@ public class DMLValidator extends EObjectValidator {
 						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 								DIAGNOSTIC_SOURCE,
 								0,
-								"Missing join inputs from actions of choice '" + choice.getName() + "'",
+								"Missing Join inputs from Actions of Choice '" + choice.getName() + "'",
 								new Object[] { join }));
 					}
 					return false;
@@ -1650,7 +1650,7 @@ public class DMLValidator extends EObjectValidator {
 		} while (action != null);
 		return null;
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1697,7 +1697,7 @@ public class DMLValidator extends EObjectValidator {
 						diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
 								DIAGNOSTIC_SOURCE,
 								0,
-								"Condition source is not enclosed by the while loop",
+								formatStringWithOwnerName("Condition source%s is not enclosed by the while loop", connection.getSource()),
 								new Object[] { whileLoop }));
 					}
 				}
@@ -1777,7 +1777,7 @@ public class DMLValidator extends EObjectValidator {
 							diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 									DIAGNOSTIC_SOURCE,
 									0,
-									"Initial condition sources of memory components must be either located directly on a fragment or on an enclosing compound",
+									"Initial condition sources of Memory components must be either located directly on a fragment or on the enclosing compound of the Memory component",
 									new Object[] { memory }));
 						}
 						return false;
@@ -1841,6 +1841,24 @@ public class DMLValidator extends EObjectValidator {
 	
 	private boolean isValidIdentifier(String identifier) {
 		return IDENTIFIER_PATTERN.matcher(identifier).matches() && !identifier.contains("__");
+	}
+
+	private String getOwnerName(EObject eObject) {
+		Component component = DMLUtil.getOwner(eObject, Component.class);
+		if (component != null) {
+			return component.getName();
+		}
+		return null;
+	}
+
+	private String formatStringWithOwnerName(String s, EObject eObject) {
+		String ownerName = getOwnerName(eObject);
+		if (ownerName != null) {
+			ownerName = " '" + ownerName + "'";
+		} else {
+			ownerName = "";
+		}
+		return String.format(s, ownerName);
 	}
 
 } //DMLValidator

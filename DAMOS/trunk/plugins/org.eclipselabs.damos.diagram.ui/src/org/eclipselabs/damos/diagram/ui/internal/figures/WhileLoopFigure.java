@@ -37,29 +37,42 @@ public class WhileLoopFigure extends CompoundFigure {
 		graphics.setLineWidth(2 * IFigureConstants.DEFAULT_LINE_WIDTH);
 
 		Path path = new Path(Display.getCurrent());
-		
-		path.moveTo(bounds.x, bounds.bottom() - 1.5f * CORNER_RADIUS);
-		path.lineTo(bounds.x, bounds.y + CORNER_RADIUS);
-		path.cubicTo(bounds.x, bounds.y + CORNER_RADIUS / 2, bounds.x + CORNER_RADIUS / 2, bounds.y, bounds.x + CORNER_RADIUS, bounds.y);
-		path.lineTo(bounds.right() - CORNER_RADIUS, bounds.y);
-		path.cubicTo(bounds.right() - CORNER_RADIUS / 2, bounds.y, bounds.right(), bounds.y + CORNER_RADIUS / 2, bounds.right(), bounds.y + CORNER_RADIUS);
-		path.lineTo(bounds.right(), bounds.bottom() - CORNER_RADIUS);
-		path.cubicTo(bounds.right(), bounds.bottom() - CORNER_RADIUS / 2, bounds.right() - CORNER_RADIUS / 2, bounds.bottom(), bounds.right() - CORNER_RADIUS, bounds.bottom());
-		path.lineTo(bounds.x + CORNER_RADIUS, bounds.bottom());
-		path.lineTo(bounds.x + CORNER_RADIUS / 2, bounds.bottom() - CORNER_RADIUS / 2);
+		try {
+			path.moveTo(bounds.x, bounds.bottom() - 1.5f * CORNER_RADIUS);
+			path.lineTo(bounds.x, bounds.y + CORNER_RADIUS);
+			path.cubicTo(bounds.x, bounds.y + CORNER_RADIUS / 2, bounds.x + CORNER_RADIUS / 2, bounds.y, bounds.x + CORNER_RADIUS, bounds.y);
+			path.lineTo(bounds.right() - CORNER_RADIUS, bounds.y);
+			path.cubicTo(bounds.right() - CORNER_RADIUS / 2, bounds.y, bounds.right(), bounds.y + CORNER_RADIUS / 2, bounds.right(), bounds.y + CORNER_RADIUS);
+			path.lineTo(bounds.right(), bounds.bottom() - CORNER_RADIUS);
+			path.cubicTo(bounds.right(), bounds.bottom() - CORNER_RADIUS / 2, bounds.right() - CORNER_RADIUS / 2, bounds.bottom(), bounds.right() - CORNER_RADIUS, bounds.bottom());
+			path.lineTo(bounds.x + CORNER_RADIUS, bounds.bottom());
+			path.lineTo(bounds.x + CORNER_RADIUS / 2, bounds.bottom() - CORNER_RADIUS / 2);
+	
+			graphics.fillPath(path);
+			graphics.drawPath(path);
+		} finally {
+			if (path != null) {
+				path.dispose();
+				path = null;
+			}
+		}
 
-		graphics.fillPath(path);
-		graphics.drawPath(path);
-
-		path = new Path(Display.getCurrent());
-		path.moveTo(bounds.x, bounds.bottom() - IFigureConstants.DEFAULT_LINE_WIDTH);
-		path.lineTo(bounds.x, bounds.bottom() - CORNER_RADIUS);
-		path.lineTo(bounds.x + CORNER_RADIUS - IFigureConstants.DEFAULT_LINE_WIDTH, bounds.bottom() - CORNER_RADIUS);
-		path.close();
-		
-		graphics.setBackgroundColor(getForegroundColor());
-		graphics.fillPath(path);
-		graphics.drawPath(path);
+		try {
+			path = new Path(Display.getCurrent());
+			path.moveTo(bounds.x, bounds.bottom() - IFigureConstants.DEFAULT_LINE_WIDTH);
+			path.lineTo(bounds.x, bounds.bottom() - CORNER_RADIUS);
+			path.lineTo(bounds.x + CORNER_RADIUS - IFigureConstants.DEFAULT_LINE_WIDTH, bounds.bottom() - CORNER_RADIUS);
+			path.close();
+			
+			graphics.setBackgroundColor(getForegroundColor());
+			graphics.fillPath(path);
+			graphics.drawPath(path);
+		} finally {
+			if (path != null) {
+				path.dispose();
+				path = null;
+			}
+		}
 	}
 	
 }

@@ -50,13 +50,20 @@ public class IntegratorContentFigure extends Figure implements IFigureConstants 
 		float bottom = centerY + HEIGHT / 2;
 
 		Path path = new Path(Display.getCurrent());
-		path.moveTo(centerX + DIAMETER, top + RADIUS);
-		path.cubicTo(centerX + DIAMETER, top + RADIUS_HALF, centerX + 3 * RADIUS_HALF, top, centerX + RADIUS, top);
-		path.cubicTo(centerX + RADIUS_HALF, top, centerX, top + RADIUS_HALF, centerX, top + RADIUS);
-		path.lineTo(centerX, bottom - RADIUS);
-		path.cubicTo(centerX, bottom - RADIUS_HALF, centerX - RADIUS_HALF, bottom, centerX - RADIUS, bottom);
-		path.cubicTo(centerX - 3 * RADIUS_HALF, bottom, centerX - DIAMETER, bottom - RADIUS_HALF, centerX - DIAMETER, bottom - RADIUS);
+		try {
+			path.moveTo(centerX + DIAMETER, top + RADIUS);
+			path.cubicTo(centerX + DIAMETER, top + RADIUS_HALF, centerX + 3 * RADIUS_HALF, top, centerX + RADIUS, top);
+			path.cubicTo(centerX + RADIUS_HALF, top, centerX, top + RADIUS_HALF, centerX, top + RADIUS);
+			path.lineTo(centerX, bottom - RADIUS);
+			path.cubicTo(centerX, bottom - RADIUS_HALF, centerX - RADIUS_HALF, bottom, centerX - RADIUS, bottom);
+			path.cubicTo(centerX - 3 * RADIUS_HALF, bottom, centerX - DIAMETER, bottom - RADIUS_HALF, centerX - DIAMETER, bottom - RADIUS);
 		g.drawPath(path);
+		} finally {
+			if (path != null) {
+				path.dispose();
+				path = null;
+			}
+		}
 	}
 	
 }

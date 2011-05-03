@@ -18,6 +18,7 @@ import org.eclipse.draw2d.PolygonDecoration;
 import org.eclipse.draw2d.TreeSearch;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
@@ -118,7 +119,7 @@ public class ConnectionFigure extends PolylineConnectionEx implements IBlankable
 			IConnectorFigure connectorFigure = connectorAnchor.getConnectorFigure();
 			TerminalFigure terminalFigure = connectorFigure.getTerminalFigure();
 			if (terminalFigure != null) {
-				Point p = new Point(x, y);
+				Point p = new PrecisionPoint(x, y);
 				translateToAbsolute(p);
 				terminalFigure.translateToRelative(p);
 				if (terminalFigure.containsPoint(p)) {

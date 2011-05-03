@@ -361,9 +361,9 @@ public class Generator {
 				for (InputPort inputPort : component.getInputPorts()) {
 					DataFlowTargetEnd targetEnd = componentNode.getIncomingDataFlow(inputPort);
 					DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-					Graph enclosingGraph = sourceEnd.getNode().getGraph();
-					if (enclosingGraph instanceof ActionNode) {
-						ActionNode actionNode = (ActionNode) enclosingGraph;
+					CompoundNode enclosingCompoundNode = findEnclosingActionNodeWithActionLink(sourceEnd.getNode());
+					if (enclosingCompoundNode instanceof ActionNode) {
+						ActionNode actionNode = (ActionNode) enclosingCompoundNode;
 						Action action = (Action) actionNode.getCompound();
 						if (actionNode.getChoiceNode() != null) {
 							variableNameMap.put(DMLUtil.indexOf(action.getLink()), getIncomingVariableName(genModel, componentNode, inputPort));
@@ -544,7 +544,29 @@ public class Generator {
 		}
 		return computationModel;
 	}
-		
+	
+	private CompoundNode findEnclosingActionNodeWithActionLink(Node node) {
+		Graph graph;
+		for (;;) {
+			graph = node.getGraph();
+			if (graph instanceof CompoundNode) {
+				CompoundNode compoundNode = (CompoundNode) graph;
+				if (compoundNode.getCompound() instanceof Action) {
+					Action action = (Action) compoundNode.getCompound();
+					if (action.getLink() != null) {
+						return compoundNode;
+					}
+				}
+			}
+			if (graph instanceof Node) {
+				node = (Node) graph;
+			} else {
+				break;
+			}
+		}
+		return null;
+	}
+
 	private static abstract class FileWriter {
 
 		/* (non-Javadoc)

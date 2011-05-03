@@ -422,7 +422,7 @@
    <extension
          point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
       <paletteProvider
-            class="org.eclipselabs.damos.diagram.ui.internal.palette.DefaultPaletteProvider">
+            class="org.eclipselabs.damos.diagram.ui.palette.PaletteProvider">
          <editor
                id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor">
          </editor>

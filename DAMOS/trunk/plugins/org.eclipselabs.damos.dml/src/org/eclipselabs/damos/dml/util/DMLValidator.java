@@ -415,15 +415,8 @@ public class DMLValidator extends EObjectValidator {
 		Map<String, Component> names = new HashMap<String, Component>();
 		Set<Component> invalidComponents = new HashSet<Component>();
 		
-		for (Component component : fragment.getAllComponents()) {
-			if (validateComponent_WellFormedName(component, null, context)) {
-				String name = component.getName();
-				Component existingComponent = names.put(name, component);
-				if (existingComponent != null) {
-					invalidComponents.add(component);
-					invalidComponents.add(existingComponent);
-				}
-			}
+		for (FragmentElement element : fragment.getAllFragmentElements()) {
+			validateFragment_UniqueComponentNames(element, names, invalidComponents, context);
 		}
 
 		if (diagnostics != null) {
@@ -437,6 +430,29 @@ public class DMLValidator extends EObjectValidator {
 		}
 		
 		return invalidComponents.isEmpty();
+	}
+
+	private void validateFragment_UniqueComponentNames(EObject eObject, Map<String, Component> names, Set<Component> invalidComponents, Map<Object, Object> context) {
+		if (eObject instanceof Component) {
+			Component component = (Component) eObject;
+			if (validateComponent_WellFormedName(component, null, context)) {
+				String name = component.getName();
+				Component existingComponent = names.put(name, component);
+				if (existingComponent != null) {
+					invalidComponents.add(component);
+					invalidComponents.add(existingComponent);
+				}
+			}
+		} else if (eObject instanceof Compound) {
+			Compound compound = (Compound) eObject;
+			validateFragment_UniqueComponentNames(compound, names, invalidComponents, context);
+		}
+	}
+
+	private void validateFragment_UniqueComponentNames(Compound compound, Map<String, Component> names, Set<Component> invalidComponents, Map<Object, Object> context) {
+		for (CompoundMember member : compound.getMembers()) {
+			validateFragment_UniqueComponentNames(member, names, invalidComponents, context);
+		}
 	}
 
 	/**

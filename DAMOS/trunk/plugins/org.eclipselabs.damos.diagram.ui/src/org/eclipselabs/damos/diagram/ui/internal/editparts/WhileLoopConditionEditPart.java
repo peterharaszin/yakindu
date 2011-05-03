@@ -11,15 +11,19 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectorGraphicalNodeEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.NonDestroySemanticEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
@@ -89,7 +93,16 @@ public class WhileLoopConditionEditPart extends AbstractBorderItemEditPart imple
 	 */
 	@Override
 	public DragTracker getDragTracker(Request request) {
-		return new ConnectionCreationDragTracker(ElementTypes.CONNECTION);
+		if (request instanceof LocationRequest) {
+			LocationRequest locationRequest = (LocationRequest) request;
+			Point p = new PrecisionPoint(locationRequest.getLocation());
+			TerminalFigure terminalFigure = getConnectorFigure().getTerminalFigure();
+			terminalFigure.translateToRelative(p);
+			if (terminalFigure.containsPoint(p)) {
+				return new ConnectionCreationDragTracker(ElementTypes.CONNECTION);
+			}
+		}
+		return super.getDragTracker(request);
 	}
 
 }

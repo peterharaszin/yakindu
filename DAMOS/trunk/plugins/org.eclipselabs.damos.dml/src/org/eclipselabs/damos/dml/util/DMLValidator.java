@@ -1646,9 +1646,12 @@ public class DMLValidator extends EObjectValidator {
 					return action;
 				}
 				element = action.getOwningCompound();
+				if (element == null) {
+					return action;
+				}
 			}
 		} while (action != null);
-		return null;
+		return action;
 	}
 	
 	/**

@@ -117,8 +117,13 @@ public class ConnectionFigure extends PolylineConnectionEx implements IBlankable
 			IConnectorAnchor connectorAnchor = (IConnectorAnchor) anchor;
 			IConnectorFigure connectorFigure = connectorAnchor.getConnectorFigure();
 			TerminalFigure terminalFigure = connectorFigure.getTerminalFigure();
-			if (terminalFigure != null && (terminalFigure.containsPoint(x, y))) {
-				return terminalFigure;
+			if (terminalFigure != null) {
+				Point p = new Point(x, y);
+				translateToAbsolute(p);
+				terminalFigure.translateToRelative(p);
+				if (terminalFigure.containsPoint(p)) {
+					return terminalFigure;
+				}
 			}
 		}
 		return null;

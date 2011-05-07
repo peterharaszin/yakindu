@@ -12,15 +12,21 @@
 package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gef.DragTracker;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.requests.LocationRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.tools.DragEditPartsTrackerEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
+import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ConnectionCreationDragTracker;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.PortEditPartDelegate;
@@ -142,7 +148,20 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	 */
 	@Override
 	public DragTracker getDragTracker(Request request) {
-		return new ConnectionCreationDragTracker(ElementTypes.CONNECTION);
+		if (request instanceof LocationRequest) {
+			LocationRequest locationRequest = (LocationRequest) request;
+			Point p = new PrecisionPoint(locationRequest.getLocation());
+			TerminalFigure terminalFigure = getConnectorFigure().getTerminalFigure();
+			terminalFigure.translateToRelative(p);
+			if (terminalFigure.containsPoint(p)) {
+				return new ConnectionCreationDragTracker(ElementTypes.CONNECTION);
+			}
+		}
+		EditPart parent = getParent();
+		if (parent != null) {
+			return new DragEditPartsTrackerEx(parent);
+		}
+		return null;
 	}
 	
 }

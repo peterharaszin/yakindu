@@ -20,7 +20,6 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -236,10 +235,10 @@ public class CategoryWizard extends Wizard implements INewWizard {
 		@Override
 		protected boolean validatePage() {
 			if (super.validatePage()) {
-				String extension = new Path(getFileName()).getFileExtension();
-				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
+				String extension = FILE_EXTENSIONS.get(0) + "." + DMLUIPlugin.INSTANCE.getString("_UI_DMLEditorFilenameExtension");
+				if (!getFileName().endsWith(extension)) {
 					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
-					setErrorMessage(DMLUIPlugin.INSTANCE.getString(key, new Object [] { FORMATTED_FILE_EXTENSIONS }));
+					setErrorMessage(DMLUIPlugin.INSTANCE.getString(key, new Object [] { extension }));
 					return false;
 				}
 				return true;
@@ -261,7 +260,7 @@ public class CategoryWizard extends Wizard implements INewWizard {
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 		@Override
 	public void addPages() {
@@ -296,11 +295,12 @@ public class CategoryWizard extends Wizard implements INewWizard {
 
 					// Make up a unique new name here.
 					//
+					String defaultDMLFilenameExtension = DMLUIPlugin.INSTANCE.getString("_UI_DMLEditorFilenameExtension");
 					String defaultModelBaseFilename = DMLUIPlugin.INSTANCE.getString("_UI_CategoryEditorFilenameDefaultBase");
 					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
-					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
+					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension + "." + defaultDMLFilenameExtension;
 					for (int i = 1; ((IContainer)selectedResource).findMember(modelFilename) != null; ++i) {
-						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
+						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension + "." + defaultDMLFilenameExtension;;
 					}
 					newFileCreationPage.setFileName(modelFilename);
 				}

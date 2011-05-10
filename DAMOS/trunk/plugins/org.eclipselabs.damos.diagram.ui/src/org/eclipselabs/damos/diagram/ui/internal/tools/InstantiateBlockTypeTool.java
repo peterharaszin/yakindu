@@ -9,39 +9,46 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.tools;
+package org.eclipselabs.damos.diagram.ui.internal.tools;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.tools.CreationTool;
 import org.eclipselabs.damos.diagram.core.internal.provider.IBlockTypeProvider;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
-import org.eclipselabs.damos.diagram.ui.internal.providers.BlockTypeProvider;
-import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
+import org.eclipselabs.damos.diagram.ui.internal.providers.SelectFileBlockTypeProvider;
 
 /**
  * @author Andreas Unger
  *
  */
-public class BlockCreationTool extends CreationTool {
+public class InstantiateBlockTypeTool extends CreationTool {
 
 	private EditingDomain editingDomain;
-	private IBlockTypeDescriptor blockType;
-	
+
 	/**
 	 * 
 	 */
-	public BlockCreationTool(EditingDomain editingDomain, IBlockTypeDescriptor blockType) {
+	public InstantiateBlockTypeTool(EditingDomain editingDomain) {
 		super(ElementTypes.BLOCK);
 		this.editingDomain = editingDomain;
-		this.blockType = blockType;
 	}
 	
 	@SuppressWarnings("unchecked")
 	protected Request createTargetRequest() {
 		Request request = super.createTargetRequest();
-		request.getExtendedData().put(IBlockTypeProvider.class, new BlockTypeProvider(editingDomain, blockType));
+		request.getExtendedData().put(IBlockTypeProvider.class, new SelectFileBlockTypeProvider(editingDomain));
 		return request;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gef.tools.AbstractTool#executeCommand(org.eclipse.gef.commands.Command)
+	 */
+	@Override
+	protected void executeCommand(Command command) {
+		refreshCursor();
+		super.executeCommand(command);
+	}
+
 }

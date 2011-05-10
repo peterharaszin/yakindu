@@ -9,28 +9,25 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.palette;
+package org.eclipselabs.damos.diagram.ui.internal.palette;
 
 import org.eclipse.gef.Tool;
 import org.eclipse.ui.IEditorPart;
-import org.eclipselabs.damos.diagram.ui.tools.BlockCreationTool;
-import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
+import org.eclipselabs.damos.diagram.ui.internal.tools.InstantiateBlockTypeTool;
+import org.eclipselabs.damos.diagram.ui.palette.ComponentCreationToolEntry;
 
 /**
  * @author Andreas Unger
- * 
+ *
  */
-public class BlockCreationToolEntry extends ComponentCreationToolEntry {
+public class InstantiateBlockTypeToolEntry extends ComponentCreationToolEntry {
 
-	private IBlockTypeDescriptor blockTypeDescriptor;
-
-	public BlockCreationToolEntry(IEditorPart editor, IBlockTypeDescriptor blockTypeDescriptor) {
-		super(editor, blockTypeDescriptor.getName(), "Create " + blockTypeDescriptor.getName() + " block");
-		this.blockTypeDescriptor = blockTypeDescriptor;
+	public InstantiateBlockTypeToolEntry(IEditorPart editor) {
+		super(editor, "Instantiate Block Type", "Create new block from existing block type");
 	}
 
 	public Tool createTool() {
-		Tool tool = new BlockCreationTool(getEditingDomain(), blockTypeDescriptor);
+		Tool tool = new InstantiateBlockTypeTool(getEditingDomain());
 		tool.setProperties(getToolProperties());
 		return tool;
 	}

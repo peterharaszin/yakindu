@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipselabs.damos.diagram.core.internal.provider.ISystemInterfaceProvider;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.InputPort;
@@ -37,30 +38,35 @@ public class ConfigureSubsystemCommand extends ConfigureElementCommand {
     }
     
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+		ISystemInterfaceProvider provider = (ISystemInterfaceProvider) getRequest().getParameters().get(ISystemInterfaceProvider.class);
+		if (provider == null) {
+			return CommandResult.newErrorCommandResult("No system interface provider supplied");
+		}
+
+		SystemInterface providedInterface = provider.getSystemInterface();
+		if (providedInterface == null) {
+			return CommandResult.newCancelledCommandResult();
+		}
+
 		ConfigureRequest request = (ConfigureRequest) getRequest();
 		Subsystem subsystem = (Subsystem) request.getElementToConfigure();
     	    	
-    	SystemInterface providedInterface = (SystemInterface) request.getParameters().get(SystemInterface.class);
-    	if (providedInterface != null) {
-        	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getEnclosingFragment(), providedInterface.getName()));
-    		subsystem.setProvidedInterface(providedInterface);
-    		for (Inlet inlet : providedInterface.getInlets()) {
-				SubsystemInput input = DMLFactory.eINSTANCE.createSubsystemInput();
-				input.setInlet(inlet);
-				InputPort inputPort = DMLFactory.eINSTANCE.createInputPort();
-				input.getPorts().add(inputPort);
-				subsystem.getInputs().add(input);
-    		}
-    		for (Outlet outlet : providedInterface.getOutlets()) {
-				SubsystemOutput output = DMLFactory.eINSTANCE.createSubsystemOutput();
-				output.setOutlet(outlet);
-				OutputPort outputPort = DMLFactory.eINSTANCE.createOutputPort();
-				output.getPorts().add(outputPort);
-				subsystem.getOutputs().add(output);
-    		}
-    	} else {
-    		subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getOwningFragment(), "Subsystem"));
-    	}
+    	subsystem.setName(DMLUtil.findAvailableComponentName(subsystem.getEnclosingFragment(), providedInterface.getName()));
+		subsystem.setProvidedInterface(providedInterface);
+		for (Inlet inlet : providedInterface.getInlets()) {
+			SubsystemInput input = DMLFactory.eINSTANCE.createSubsystemInput();
+			input.setInlet(inlet);
+			InputPort inputPort = DMLFactory.eINSTANCE.createInputPort();
+			input.getPorts().add(inputPort);
+			subsystem.getInputs().add(input);
+		}
+		for (Outlet outlet : providedInterface.getOutlets()) {
+			SubsystemOutput output = DMLFactory.eINSTANCE.createSubsystemOutput();
+			output.setOutlet(outlet);
+			OutputPort outputPort = DMLFactory.eINSTANCE.createOutputPort();
+			output.getPorts().add(outputPort);
+			subsystem.getOutputs().add(output);
+		}
 
 		return CommandResult.newOKCommandResult(subsystem);
 	}

@@ -18,6 +18,7 @@ import org.eclipse.gmf.runtime.diagram.core.providers.AbstractViewProvider;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ResizableCompartmentViewFactory;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.core.internal.provider.IBlockTypeProvider;
 import org.eclipselabs.damos.diagram.ui.internal.view.factories.ActionLinkViewFactory;
 import org.eclipselabs.damos.diagram.ui.internal.view.factories.CompoundConnectorViewFactory;
 import org.eclipselabs.damos.diagram.ui.internal.view.factories.CompoundViewFactory;
@@ -32,12 +33,12 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.BlockOutputPort;
-import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
 
 public class ViewProvider extends AbstractViewProvider {
 	
@@ -103,17 +104,20 @@ public class ViewProvider extends AbstractViewProvider {
 			if (DMLPackage.Literals.BLOCK.isSuperTypeOf(eClass)) {
 				CreateElementRequest request = (CreateElementRequest) semanticAdapter.getAdapter(CreateElementRequest.class);
 				if (request != null) {
-					BlockType blockType = (BlockType) request.getParameters().get(BlockType.class);
-					if (blockType != null) {
-						if (semanticHint != null && semanticHint.length() != 0) {
-							Class<?> clazz = delegate.getContentClass(blockType.getQualifiedName(), semanticHint);
-							if (clazz != null) {
-								return clazz;
-							}
-						} else {
-							Class<?> clazz = delegate.getClazz(blockType.getQualifiedName());
-							if (clazz != null) {
-								return clazz;
+					IBlockTypeProvider blockTypeProvider = (IBlockTypeProvider) request.getParameters().get(IBlockTypeProvider.class);
+					if (blockTypeProvider != null) {
+						IBlockTypeDescriptor blockType = blockTypeProvider.getBlockTypeDescriptor();
+						if (blockType != null) {
+							if (semanticHint != null && semanticHint.length() != 0) {
+								Class<?> clazz = delegate.getContentClass(blockType.getQualifiedName(), semanticHint);
+								if (clazz != null) {
+									return clazz;
+								}
+							} else {
+								Class<?> clazz = delegate.getClazz(blockType.getQualifiedName());
+								if (clazz != null) {
+									return clazz;
+								}
 							}
 						}
 					}

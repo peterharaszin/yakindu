@@ -22,7 +22,7 @@ public class BlockImageRegistry {
 
 	private static final BlockImageRegistry INSTANCE = new BlockImageRegistry();
 
-	private Map<String, BlockImageDescriptor> descriptors = new HashMap<String, BlockImageDescriptor>();
+	private Map<String, BlockImageDescriptor> blockImages = new HashMap<String, BlockImageDescriptor>();
 	
 	/**
 	 * 
@@ -41,25 +41,25 @@ public class BlockImageRegistry {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.execution.engine.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
 	 */
-	public BlockImageDescriptor getDescriptor(String blockTypeQualifiedName) {
-		BlockImageDescriptor descriptor = descriptors.get(blockTypeQualifiedName);
-		if (descriptor != null) {
-			return descriptor;
+	public BlockImageDescriptor getBlockImage(String blockType) {
+		BlockImageDescriptor blockImage = blockImages.get(blockType);
+		if (blockImage != null) {
+			return blockImage;
 		}
 		return null;
 	}
 	
-	public void register(BlockImageDescriptor descriptor) {
-		descriptors.put(descriptor.getBlockTypeQualifiedName(), descriptor);
+	public void register(BlockImageDescriptor blockImage) {
+		blockImages.put(blockImage.getBlockTypeQualifiedName(), blockImage);
 	}
 	
-	public void unregister(BlockImageDescriptor descriptor) {
-		descriptors.remove(descriptor.getBlockTypeQualifiedName());
+	public void unregister(BlockImageDescriptor blockImage) {
+		blockImages.remove(blockImage.getBlockTypeQualifiedName());
 	}
 
 	private void initializeFromStorage() {
 		BlockImageRegistryReader reader = new BlockImageRegistryReader();
-		reader.registerDescriptors(this);
+		reader.registerBlockImages(this);
 	}
 
 }

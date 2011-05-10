@@ -24,7 +24,7 @@ public class BlockTypeDescriptor implements IBlockTypeDescriptor {
 	private String qualifiedName;
 	private String name;
 	private URI uri;
-	private IBlockGroupDescriptor group;
+	private BlockGroupDescriptor group;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.internal.services.BlockTypeDescriptor#getId()
@@ -57,7 +57,7 @@ public class BlockTypeDescriptor implements IBlockTypeDescriptor {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.internal.services.BlockTypeDescriptor#getUri()
 	 */
-	public URI getUri() {
+	public URI getURI() {
 		return uri;
 	}
 	
@@ -78,8 +78,9 @@ public class BlockTypeDescriptor implements IBlockTypeDescriptor {
 	/**
 	 * @param group the group to set
 	 */
-	public void setGroup(IBlockGroupDescriptor group) {
+	public void setGroup(BlockGroupDescriptor group) {
 		this.group = group;
+		this.group.blockTypes.add(this);
 	}
 	
 }

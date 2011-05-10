@@ -11,156 +11,168 @@
    <extension
          point="org.eclipselabs.damos.dml.blockGroups">
       <group
-            id="org.eclipselabs.damos.library.base.continuousGroup"
-            name="Continuous">
+            id="org.eclipselabs.damos.library.base.continuous"
+            name="Continuous"
+            supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
-            id="org.eclipselabs.damos.library.base.discontinuitiesGroup"
-            name="Discontinuities">
+            id="org.eclipselabs.damos.library.base.discontinuities"
+            name="Discontinuities"
+            supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
-            id="org.eclipselabs.damos.library.base.discreteGroup"
-            name="Discrete">
+            id="org.eclipselabs.damos.library.base.discrete"
+            name="Discrete"
+            supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
-            id="org.eclipselabs.damos.library.base.logicGroup"
-            name="Logic">
+            id="org.eclipselabs.damos.library.base.logic"
+            name="Logic"
+            supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
-            id="org.eclipselabs.damos.library.base.mathGroup"
-            name="Math">
+            id="org.eclipselabs.damos.library.base.math"
+            name="Math"
+            supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
-            id="org.eclipselabs.damos.library.base.signalGroup"
-            name="Signal">
+            id="org.eclipselabs.damos.library.base.signal"
+            name="Signal"
+            supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
-            id="org.eclipselabs.damos.library.base.sinksGroup"
-            name="Sinks">
+            id="org.eclipselabs.damos.library.base.sinks"
+            name="Sinks"
+            supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
-            id="org.eclipselabs.damos.library.base.sourcesGroup"
-            name="Sources">
+            id="org.eclipselabs.damos.library.base.sources"
+            name="Sources"
+            supergroup="org.eclipselabs.damos.library.base">
+      </group>
+      <group
+            id="org.eclipselabs.damos.library.base"
+            name="Damos Base">
       </group>
    </extension>
    <extension
          point="org.eclipselabs.damos.dml.blockTypes">
       <blockType
-            group="org.eclipselabs.damos.library.base.continuousGroup"
+            group="org.eclipselabs.damos.library.base.continuous"
             name="Integrator"
             qualifiedName="org.eclipselabs.damos.library.base.continuous.Integrator"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/continuous/Integrator.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.continuousGroup"
+            group="org.eclipselabs.damos.library.base.continuous"
             qualifiedName="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             name="Transfer Function"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/continuous/TransferFunction.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.discontinuitiesGroup"
+            group="org.eclipselabs.damos.library.base.discontinuities"
             qualifiedName="org.eclipselabs.damos.library.base.discontinuities.Saturation"
             name="Saturation"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/discontinuities/Saturation.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.discreteGroup"
+            group="org.eclipselabs.damos.library.base.discrete"
             qualifiedName="org.eclipselabs.damos.library.base.discrete.Delay"
             name="Delay"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/discrete/Delay.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.discreteGroup"
+            group="org.eclipselabs.damos.library.base.discrete"
             qualifiedName="org.eclipselabs.damos.library.base.discrete.DiscreteDerivative"
             name="Discrete Derivative"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/discrete/DiscreteDerivative.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.discreteGroup"
+            group="org.eclipselabs.damos.library.base.discrete"
             qualifiedName="org.eclipselabs.damos.library.base.discrete.DiscreteIntegrator"
             name="Discrete Integrator"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/discrete/DiscreteIntegrator.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.logicGroup"
+            group="org.eclipselabs.damos.library.base.logic"
             qualifiedName="org.eclipselabs.damos.library.base.logic.And"
             name="And"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/logic/And.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.logicGroup"
+            group="org.eclipselabs.damos.library.base.logic"
             qualifiedName="org.eclipselabs.damos.library.base.logic.Or"
             name="Or"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/logic/Or.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.logicGroup"
+            group="org.eclipselabs.damos.library.base.logic"
             qualifiedName="org.eclipselabs.damos.library.base.logic.Inverter"
             name="Inverter"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/logic/Inverter.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.logicGroup"
+            group="org.eclipselabs.damos.library.base.logic"
             qualifiedName="org.eclipselabs.damos.library.base.logic.Compare"
             name="Compare"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/logic/Compare.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.logicGroup"
+            group="org.eclipselabs.damos.library.base.logic"
             qualifiedName="org.eclipselabs.damos.library.base.logic.SchmittTrigger"
             name="Schmitt Trigger"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/logic/SchmittTrigger.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.mathGroup"
+            group="org.eclipselabs.damos.library.base.math"
             qualifiedName="org.eclipselabs.damos.library.base.math.Gain"
             name="Gain"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/math/Gain.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.mathGroup"
+            group="org.eclipselabs.damos.library.base.math"
             qualifiedName="org.eclipselabs.damos.library.base.math.Sum"
             name="Sum"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/math/Sum.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.mathGroup"
+            group="org.eclipselabs.damos.library.base.math"
             qualifiedName="org.eclipselabs.damos.library.base.math.Round"
             name="Round"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/math/Round.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.signalGroup"
+            group="org.eclipselabs.damos.library.base.signal"
             qualifiedName="org.eclipselabs.damos.library.base.signal.Switch"
             name="Switch"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/signal/Switch.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.sinksGroup"
+            group="org.eclipselabs.damos.library.base.sinks"
             qualifiedName="org.eclipselabs.damos.library.base.sinks.Scope"
             name="Scope"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/sinks/Scope.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.sourcesGroup"
+            group="org.eclipselabs.damos.library.base.sources"
             qualifiedName="org.eclipselabs.damos.library.base.sources.Constant"
             name="Constant"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/sources/Constant.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.sourcesGroup"
+            group="org.eclipselabs.damos.library.base.sources"
             qualifiedName="org.eclipselabs.damos.library.base.sources.Ramp"
             name="Ramp"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/sources/Ramp.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.sourcesGroup"
+            group="org.eclipselabs.damos.library.base.sources"
             qualifiedName="org.eclipselabs.damos.library.base.sources.SineWave"
             name="Sine Wave"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/sources/SineWave.blocktype.dml#/">
       </blockType>
       <blockType
-            group="org.eclipselabs.damos.library.base.sourcesGroup"
+            group="org.eclipselabs.damos.library.base.sources"
             qualifiedName="org.eclipselabs.damos.library.base.sources.Step"
             name="Step"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/sources/Step.blocktype.dml#/">

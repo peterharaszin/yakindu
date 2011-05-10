@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.widgets.Display;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 
@@ -43,12 +44,18 @@ public abstract class AbstractFragmentContentProvider implements IStructuredCont
 	
 	private Adapter adapter = new EContentAdapter() {
 		
-		public void notifyChanged(Notification notification) {
+		public void notifyChanged(final Notification notification) {
 			super.notifyChanged(notification);
-			Object notifier = notification.getNotifier();
-			if (viewer != null && (notifier instanceof ResourceSet || notifier instanceof Resource || notification.getFeature() == DMLPackage.Literals.FRAGMENT__NAME)) {
-				viewer.refresh();
-			}
+			final Object notifier = notification.getNotifier();
+			Display.getDefault().asyncExec(new Runnable() {
+				
+				public void run() {
+					if (viewer != null && (notifier instanceof ResourceSet || notifier instanceof Resource || notification.getFeature() == DMLPackage.Literals.FRAGMENT__NAME)) {
+						viewer.refresh();
+					}
+				}
+			
+			});
 		}
 		
 		public void setTarget(Notifier newTarget) {

@@ -23,7 +23,6 @@ import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
 import org.eclipselabs.damos.dml.DMLPlugin;
 import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
-import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 
 /**
  * @author Andreas Unger
@@ -38,9 +37,22 @@ public class BlockGroupRegistryReader extends AbstractRegistryReader {
 	
 	private BlockGroupRegistry registry;
 	
+	private Map<String, BlockGroupDescriptor> blockGroups = new HashMap<String, BlockGroupDescriptor>();
+
+	private List<SupergroupMapping> supergroupMappings = new ArrayList<SupergroupMapping>();
+	
 	public void registerBlockGroups(BlockGroupRegistry registry) {
 		this.registry = registry;
+		
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);
+
+		for (SupergroupMapping supergroupMapping : supergroupMappings) {
+			BlockGroupDescriptor supergroup = blockGroups.get(supergroupMapping.supergroupId);
+			if (supergroup == null) {
+				logError(supergroupMapping.element, "Supergroup '" + supergroupMapping.supergroupId + "' not found");
+			}
+			supergroupMapping.group.setSupergroup(supergroup);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -72,32 +84,19 @@ public class BlockGroupRegistryReader extends AbstractRegistryReader {
 		String name = getRequiredAttribute(element, IRegistryConstants.ATT_NAME);
 		String supergroupId = element.getAttribute(ATT_SUPERGROUP);
 		
-		Map<String, IBlockGroupDescriptor> groups = new HashMap<String, IBlockGroupDescriptor>();
-		List<SupergroupMapping> supergroupMappings = new ArrayList<SupergroupMapping>();
-
-		BlockGroupDescriptor group = new BlockGroupDescriptor();
-		group.setId(id);
-		group.setName(name);
-		groups.put(id, group);
+		BlockGroupDescriptor blockGroup = new BlockGroupDescriptor();
+		blockGroup.setId(id);
+		blockGroup.setName(name);
 		if (supergroupId != null && supergroupId.length() > 0) {
 			SupergroupMapping supergroupMapping = new SupergroupMapping();
-			supergroupMapping.group = group;
+			supergroupMapping.group = blockGroup;
 			supergroupMapping.supergroupId = supergroupId;
 			supergroupMapping.element = element;
 			supergroupMappings.add(supergroupMapping);
 		}
 		
-		for (SupergroupMapping supergroupMapping : supergroupMappings) {
-			IBlockGroupDescriptor supergroup = groups.get(supergroupMapping.supergroupId);
-			if (supergroup == null) {
-				logError(supergroupMapping.element, "Supergroup '" + supergroupMapping.supergroupId + "' not found");
-			}
-			supergroupMapping.group.setSupergroup(supergroup);
-		}
-		
-		for (IBlockGroupDescriptor descriptor : groups.values()) {
-			registry.register(descriptor);
-		}
+		blockGroups.put(id, blockGroup);
+		registry.register(blockGroup);
 
 		return true;
 	}

@@ -21,16 +21,25 @@ import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
  */
 public class DistinctiveInverterShape extends LogicGateShape {
 
+	private static final int CIRCLE_RADIUS = 80;
+	private static final Dimension MINIMUM_SIZE = new Dimension(700, 600);
+
+	private int[] points = new int[6];
+
 	/**
 	 * @param blockFigure
 	 */
 	public DistinctiveInverterShape(ComponentFigure blockFigure) {
 		super(blockFigure);
 	}
-
-	private static final int CIRCLE_RADIUS = 80;
-
-	private int[] points = new int[6];
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.library.base.ui.logic.figures.shapes.LogicGateShape#calculateMinimumCanvasSize(int, int)
+	 */
+	@Override
+	public Dimension calculateMinimumCanvasSize(int wHint, int hHint) {
+		return MINIMUM_SIZE;
+	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#paintFigure(org.eclipse.draw2d.Graphics)

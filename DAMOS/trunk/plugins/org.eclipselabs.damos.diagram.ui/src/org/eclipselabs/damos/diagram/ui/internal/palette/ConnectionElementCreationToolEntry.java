@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.palette;
+package org.eclipselabs.damos.diagram.ui.internal.palette;
 
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.palette.CombinedTemplateCreationEntry;
@@ -27,7 +27,6 @@ public class ConnectionElementCreationToolEntry extends CombinedTemplateCreation
 	
 	public ConnectionElementCreationToolEntry(IElementType elementType, ImageDescriptor iconSmall, ImageDescriptor iconLarge) {
 		super(elementType.getDisplayName(), "Create " + elementType.getDisplayName(), null, iconSmall, iconLarge);
-		setTemplate(this);
 		this.elementType = elementType;
 	}
 

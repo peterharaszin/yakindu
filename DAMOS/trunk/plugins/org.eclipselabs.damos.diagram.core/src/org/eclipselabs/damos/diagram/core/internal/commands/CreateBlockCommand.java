@@ -2,10 +2,14 @@ package org.eclipselabs.damos.diagram.core.internal.commands;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipselabs.damos.diagram.core.DiagramCorePlugin;
+import org.eclipselabs.damos.diagram.core.internal.provider.IBlockTypeProvider;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.Fragment;
@@ -29,10 +33,20 @@ public class CreateBlockCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject doDefaultElementCreation() {
-		BlockType blockType = (BlockType) getRequest().getParameters().get(BlockType.class);
+		IBlockTypeProvider provider = (IBlockTypeProvider) getRequest().getParameters().get(IBlockTypeProvider.class);
+		if (provider == null) {
+			setDefaultElementCreationStatus(new Status(IStatus.ERROR, DiagramCorePlugin.PLUGIN_ID, "No block type provider supplied"));
+			return null;
+		}
 
+		BlockType blockType = provider.getBlockType();
+		if (blockType == null) {
+			setDefaultElementCreationStatus(new Status(IStatus.ERROR, DiagramCorePlugin.PLUGIN_ID, "No block type returned by block type provider"));
+			return null;
+		}
+		
 		String name = blockType.getName();
-    	if (name.length() == 0) {
+    	if (name == null || name.length() == 0) {
     		name = "Block";
     	}
     	name = DMLUtil.findAvailableComponentName(DMLUtil.getOwner(getElementToEdit(), Fragment.class), name);

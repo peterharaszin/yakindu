@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.dml.registry;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class BlockGroupRegistry {
 
 	private static final BlockGroupRegistry INSTANCE = new BlockGroupRegistry();
 
-	private Map<String, IBlockGroupDescriptor> descriptors = new HashMap<String, IBlockGroupDescriptor>();
+	private Map<String, IBlockGroupDescriptor> blockGroups = new HashMap<String, IBlockGroupDescriptor>();
 	
 	/**
 	 * 
@@ -41,20 +42,20 @@ public class BlockGroupRegistry {
 		return INSTANCE;
 	}
 		
-	public Collection<IBlockGroupDescriptor> getDescriptors() {
-		return descriptors.values();
+	public Collection<IBlockGroupDescriptor> getBlockGroups() {
+		return Collections.unmodifiableCollection(blockGroups.values());
 	}
 
-	public IBlockGroupDescriptor getDescriptor(String id) {
-		return descriptors.get(id);
+	public IBlockGroupDescriptor getBlockGroup(String id) {
+		return blockGroups.get(id);
 	}
 	
-	public void register(IBlockGroupDescriptor descriptor) {
-		descriptors.put(descriptor.getId(), descriptor);
+	public void register(IBlockGroupDescriptor blockGroup) {
+		blockGroups.put(blockGroup.getId(), blockGroup);
 	}
 	
-	public void unregister(IBlockGroupDescriptor descriptor) {
-		descriptors.remove(descriptor.getId());
+	public void unregister(IBlockGroupDescriptor blockGroup) {
+		blockGroups.remove(blockGroup.getId());
 	}
 
 	private void initializeFromStorage() {

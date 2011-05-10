@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.dml.registry;
 
+import java.util.Collection;
+
 /**
  * @author Andreas Unger
  *
@@ -33,5 +35,9 @@ public interface IBlockGroupDescriptor {
 	 * @return the supergroup
 	 */
 	IBlockGroupDescriptor getSupergroup();
+	
+	Collection<IBlockGroupDescriptor> getSubgroups();
+	
+	Collection<IBlockTypeDescriptor> getBlockTypes();
 
 }

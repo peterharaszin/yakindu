@@ -11,10 +11,13 @@
 
 package org.eclipselabs.damos.diagram.ui.tools;
 
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.tools.CreationTool;
+import org.eclipselabs.damos.diagram.core.internal.provider.ISystemInterfaceProvider;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
-import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.diagram.ui.internal.providers.SystemInterfaceProvider;
 
 /**
  * @author Andreas Unger
@@ -22,21 +25,30 @@ import org.eclipselabs.damos.dml.SystemInterface;
  */
 public class SubsystemCreationTool extends CreationTool {
 
-	private SystemInterface providedInterface;
-	
+	private EditingDomain editingDomain;
+
 	/**
 	 * 
 	 */
-	public SubsystemCreationTool(SystemInterface providedInterface) {
+	public SubsystemCreationTool(EditingDomain editingDomain) {
 		super(ElementTypes.SUBSYSTEM);
-		this.providedInterface = providedInterface;
+		this.editingDomain = editingDomain;
 	}
 	
 	@SuppressWarnings("unchecked")
 	protected Request createTargetRequest() {
 		Request request = super.createTargetRequest();
-		request.getExtendedData().put(SystemInterface.class, providedInterface);
+		request.getExtendedData().put(ISystemInterfaceProvider.class, new SystemInterfaceProvider(editingDomain));
 		return request;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gef.tools.AbstractTool#executeCommand(org.eclipse.gef.commands.Command)
+	 */
+	@Override
+	protected void executeCommand(Command command) {
+		refreshCursor();
+		super.executeCommand(command);
 	}
 
 }

@@ -71,7 +71,13 @@ public class DataTypeResolverHelper {
 		
 		if (!statusMap.isEmpty()) {
 			for (Entry<EObject, IStatus> entry : statusMap.entrySet()) {
-				String message = "Resolving data types failed";
+				String message;
+				if (entry.getKey() instanceof Component) {
+					Component component = (Component) entry.getKey();
+					message = "Resolving data types of component '" + component.getName() + "' failed";
+				} else {
+					message = "Resolving data types failed";
+				}
 				if (entry.getValue().isMultiStatus()) {
 					status.add(new EObjectMultiStatus(entry.getKey(), entry.getValue().getChildren(), message));
 				} else {

@@ -19,7 +19,10 @@ package org.eclipselabs.damos.diagram.ui.palette;
  */
 public interface IPaletteConstants {
 
-	String BUILTIN_COMPONENT_CONTAINER_ID = "org.eclipselabs.damos.diagram.ui.palette.builtinComponentContainer";
+	String GENERAL_CONTAINER_ID = "org.eclipselabs.damos.diagram.ui.palette.generalContainer";
+	String COMMON_BLOCKS_CONTAINER_ID = "org.eclipselabs.damos.diagram.ui.palette.commonBlocksContainer";
+
+	String CONNECTION_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.connection";
 	String CHOICE_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.choice";
 	String JOIN_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.join";
 	String ACTION_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.action";
@@ -29,5 +32,5 @@ public interface IPaletteConstants {
 	String SUBSYSTEM_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.subsystem";
 	String INPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.inport";
 	String OUTPORT_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.outport";
-	
+	String INSTANTIATE_BLOCK_TYPE_ENTRY_ID = "org.eclipselabs.damos.diagram.ui.palette.instantiateBlockType";
 }

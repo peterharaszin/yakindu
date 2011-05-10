@@ -4,6 +4,7 @@
    <extension-point id="blockViewFactories" name="Block ViewFactories" schema="schema/blockViewFactories.exsd"/>
    <extension-point id="blockEditParts" name="Block EditParts" schema="schema/blockEditParts.exsd"/>
    <extension-point id="blockImages" name="Block Images" schema="schema/blockImages.exsd"/>
+   <extension-point id="defaultCommonBlocks" name="Default Common Blocks" schema="schema/defaultCommonBlocks.exsd"/>
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
@@ -30,6 +31,11 @@
             id="org.eclipselabs.damos.diagram.ui.part.fragmentView"
             name="Fragment Explorer"
             restorable="true">
+      </view>
+      <view
+            class="org.eclipselabs.damos.diagram.ui.internal.views.BlockLibraryView"
+            id="org.eclipselabs.damos.diagram.ui.internal.views.blockLibraryView"
+            name="Block Library">
       </view>
    </extension>
    <extension

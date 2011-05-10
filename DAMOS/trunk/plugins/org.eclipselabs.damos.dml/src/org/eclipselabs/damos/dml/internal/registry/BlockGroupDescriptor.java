@@ -11,7 +11,11 @@
 
 package org.eclipselabs.damos.dml.internal.registry;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
+import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
 
 /**
  * @author Andreas Unger
@@ -21,7 +25,10 @@ public class BlockGroupDescriptor implements IBlockGroupDescriptor {
 
 	private String id;
 	private String name;
-	private IBlockGroupDescriptor supergroup;
+	private BlockGroupDescriptor supergroup;
+	
+	Collection<IBlockGroupDescriptor> subgroups = new ArrayList<IBlockGroupDescriptor>();
+	Collection<IBlockTypeDescriptor> blockTypes = new ArrayList<IBlockTypeDescriptor>();
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.internal.services.BlockGroupDescriptor#getId()
@@ -61,8 +68,23 @@ public class BlockGroupDescriptor implements IBlockGroupDescriptor {
 	/**
 	 * @param supergroup the supergroup to set
 	 */
-	public void setSupergroup(IBlockGroupDescriptor supergroup) {
+	public void setSupergroup(BlockGroupDescriptor supergroup) {
 		this.supergroup = supergroup;
+		this.supergroup.subgroups.add(this);
+	}
+	
+	/**
+	 * @return the subgroups
+	 */
+	public Collection<IBlockGroupDescriptor> getSubgroups() {
+		return subgroups;
+	}
+	
+	/**
+	 * @return the blockTypes
+	 */
+	public Collection<IBlockTypeDescriptor> getBlockTypes() {
+		return blockTypes;
 	}
 	
 }

@@ -33,7 +33,7 @@ public class DataTypeResolver {
 	
 	public DataTypeResolverResult resolve(Fragment fragment, boolean descend) {
 		Map<Component, IComponentSignature> signatures = new HashMap<Component, IComponentSignature>();
-		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Resolving component signatures failed", null);
+		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Resolving data types failed", null);
 
 		if (descend) {
 			doResolveAll(fragment, signatures, status, new HashSet<Fragment>());

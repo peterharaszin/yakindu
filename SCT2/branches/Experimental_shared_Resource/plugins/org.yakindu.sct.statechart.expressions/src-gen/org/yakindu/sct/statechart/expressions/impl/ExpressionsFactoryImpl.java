@@ -90,11 +90,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
       case ExpressionsPackage.OPERATION: return createOperation();
       case ExpressionsPackage.ENTRYPOINT: return createEntrypoint();
       case ExpressionsPackage.EXITPOINT: return createExitpoint();
-      case ExpressionsPackage.REACTION: return createReaction();
-      case ExpressionsPackage.LOCAL_REACTION: return createLocalReaction();
-      case ExpressionsPackage.TRANSITION_REACTION: return createTransitionReaction();
-      case ExpressionsPackage.REACTION_TRIGGER: return createReactionTrigger();
-      case ExpressionsPackage.EFFECT: return createEffect();
       case ExpressionsPackage.REACTION_PROPERTIES: return createReactionProperties();
       case ExpressionsPackage.REACTION_PROPERTY: return createReactionProperty();
       case ExpressionsPackage.REACTION_PRIORITY: return createReactionPriority();
@@ -112,6 +107,10 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
       case ExpressionsPackage.ASSIGNMENT: return createAssignment();
       case ExpressionsPackage.EVENT_RAISING: return createEventRaising();
       case ExpressionsPackage.EXPRESSION: return createExpression();
+      case ExpressionsPackage.LOCAL_REACTION: return createLocalReaction();
+      case ExpressionsPackage.TRANSITION_REACTION: return createTransitionReaction();
+      case ExpressionsPackage.REACTION_TRIGGER: return createReactionTrigger();
+      case ExpressionsPackage.EFFECT: return createEffect();
       case ExpressionsPackage.ENTER_EVENT: return createEnterEvent();
       case ExpressionsPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
       case ExpressionsPackage.LOGICAL_AND_EXPRESSION: return createLogicalAndExpression();
@@ -422,61 +421,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Reaction createReaction()
-  {
-    ReactionImpl reaction = new ReactionImpl();
-    return reaction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public LocalReaction createLocalReaction()
-  {
-    LocalReactionImpl localReaction = new LocalReactionImpl();
-    return localReaction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TransitionReaction createTransitionReaction()
-  {
-    TransitionReactionImpl transitionReaction = new TransitionReactionImpl();
-    return transitionReaction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ReactionTrigger createReactionTrigger()
-  {
-    ReactionTriggerImpl reactionTrigger = new ReactionTriggerImpl();
-    return reactionTrigger;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Effect createEffect()
-  {
-    EffectImpl effect = new EffectImpl();
-    return effect;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ReactionProperties createReactionProperties()
   {
     ReactionPropertiesImpl reactionProperties = new ReactionPropertiesImpl();
@@ -657,6 +601,50 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LocalReaction createLocalReaction()
+  {
+    LocalReactionImpl localReaction = new LocalReactionImpl();
+    return localReaction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TransitionReaction createTransitionReaction()
+  {
+    TransitionReactionImpl transitionReaction = new TransitionReactionImpl();
+    return transitionReaction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ReactionTrigger createReactionTrigger()
+  {
+    ReactionTriggerImpl reactionTrigger = new ReactionTriggerImpl();
+    return reactionTrigger;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Effect createEffect()
+  {
+    EffectImpl effect = new EffectImpl();
+    return effect;
   }
 
   /**

@@ -11,11 +11,13 @@
 package org.yakindu.sct.statechart.diagram.editor;
 
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.yakindu.sct.statechart.diagram.DiagramActivator;
 import org.yakindu.sct.statechart.diagram.validation.ValidationAction;
@@ -63,4 +65,11 @@ public class StatechartDiagramEditor extends DiagramDocumentEditor implements IG
 	protected PreferencesHint getPreferencesHint() {
 		return DiagramActivator.DIAGRAM_PREFERENCES_HINT;
 	}
+	@Override
+	public void doSetInput(IEditorInput input, boolean releaseEditorContents)
+			throws CoreException {
+		// TODO Auto-generated method stub
+		super.doSetInput(input, releaseEditorContents);
+	}
+	
 }

@@ -216,51 +216,6 @@ public interface ExpressionsFactory extends EFactory
   Exitpoint createExitpoint();
 
   /**
-   * Returns a new object of class '<em>Reaction</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Reaction</em>'.
-   * @generated
-   */
-  Reaction createReaction();
-
-  /**
-   * Returns a new object of class '<em>Local Reaction</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Local Reaction</em>'.
-   * @generated
-   */
-  LocalReaction createLocalReaction();
-
-  /**
-   * Returns a new object of class '<em>Transition Reaction</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Transition Reaction</em>'.
-   * @generated
-   */
-  TransitionReaction createTransitionReaction();
-
-  /**
-   * Returns a new object of class '<em>Reaction Trigger</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Reaction Trigger</em>'.
-   * @generated
-   */
-  ReactionTrigger createReactionTrigger();
-
-  /**
-   * Returns a new object of class '<em>Effect</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Effect</em>'.
-   * @generated
-   */
-  Effect createEffect();
-
-  /**
    * Returns a new object of class '<em>Reaction Properties</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -412,6 +367,42 @@ public interface ExpressionsFactory extends EFactory
    * @generated
    */
   Expression createExpression();
+
+  /**
+   * Returns a new object of class '<em>Local Reaction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Local Reaction</em>'.
+   * @generated
+   */
+  LocalReaction createLocalReaction();
+
+  /**
+   * Returns a new object of class '<em>Transition Reaction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Transition Reaction</em>'.
+   * @generated
+   */
+  TransitionReaction createTransitionReaction();
+
+  /**
+   * Returns a new object of class '<em>Reaction Trigger</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reaction Trigger</em>'.
+   * @generated
+   */
+  ReactionTrigger createReactionTrigger();
+
+  /**
+   * Returns a new object of class '<em>Effect</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Effect</em>'.
+   * @generated
+   */
+  Effect createEffect();
 
   /**
    * Returns a new object of class '<em>Enter Event</em>'.

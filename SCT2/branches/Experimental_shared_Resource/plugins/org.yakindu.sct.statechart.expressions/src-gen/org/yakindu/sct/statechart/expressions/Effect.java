@@ -8,8 +8,6 @@ package org.yakindu.sct.statechart.expressions;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Effect</b></em>'.
@@ -26,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Effect extends EObject
+public interface Effect extends org.yakindu.model.sct.statechart.Effect
 {
   /**
    * Returns the value of the '<em><b>Actions</b></em>' containment reference list.

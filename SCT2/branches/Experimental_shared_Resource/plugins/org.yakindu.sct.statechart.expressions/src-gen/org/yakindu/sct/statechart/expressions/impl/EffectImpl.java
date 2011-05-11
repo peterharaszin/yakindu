@@ -15,8 +15,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -37,7 +35,7 @@ import org.yakindu.sct.statechart.expressions.Statement;
  *
  * @generated
  */
-public class EffectImpl extends MinimalEObjectImpl.Container implements Effect
+public class EffectImpl extends org.yakindu.model.sct.statechart.impl.EffectImpl implements Effect
 {
   /**
    * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference list.

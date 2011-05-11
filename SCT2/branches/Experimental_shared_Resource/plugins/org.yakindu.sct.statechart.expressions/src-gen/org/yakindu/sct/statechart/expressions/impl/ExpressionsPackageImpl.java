@@ -55,7 +55,6 @@ import org.yakindu.sct.statechart.expressions.OnCycleEvent;
 import org.yakindu.sct.statechart.expressions.Operation;
 import org.yakindu.sct.statechart.expressions.OperationCall;
 import org.yakindu.sct.statechart.expressions.PrimitiveValueExpression;
-import org.yakindu.sct.statechart.expressions.Reaction;
 import org.yakindu.sct.statechart.expressions.ReactionPriority;
 import org.yakindu.sct.statechart.expressions.ReactionProperties;
 import org.yakindu.sct.statechart.expressions.ReactionProperty;
@@ -240,41 +239,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass reactionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass localReactionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass transitionReactionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass reactionTriggerEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass effectEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass reactionPropertiesEClass = null;
 
   /**
@@ -388,6 +352,34 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * @generated
    */
   private EClass expressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass localReactionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass transitionReactionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass reactionTriggerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass effectEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -716,6 +708,16 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getTransitionStatement_Reaction()
+  {
+    return (EReference)transitionStatementEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getScope()
   {
     return scopeEClass;
@@ -1016,116 +1018,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getReaction()
-  {
-    return reactionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReaction_Trigger()
-  {
-    return (EReference)reactionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReaction_Effect()
-  {
-    return (EReference)reactionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReaction_Properties()
-  {
-    return (EReference)reactionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getLocalReaction()
-  {
-    return localReactionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTransitionReaction()
-  {
-    return transitionReactionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getReactionTrigger()
-  {
-    return reactionTriggerEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReactionTrigger_Triggers()
-  {
-    return (EReference)reactionTriggerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReactionTrigger_GuardExpression()
-  {
-    return (EReference)reactionTriggerEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getEffect()
-  {
-    return effectEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEffect_Actions()
-  {
-    return (EReference)effectEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getReactionProperties()
   {
     return reactionPropertiesEClass;
@@ -1399,6 +1291,96 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
   public EClass getExpression()
   {
     return expressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLocalReaction()
+  {
+    return localReactionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getLocalReaction_Properties()
+  {
+    return (EReference)localReactionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTransitionReaction()
+  {
+    return transitionReactionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTransitionReaction_Properties()
+  {
+    return (EReference)transitionReactionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getReactionTrigger()
+  {
+    return reactionTriggerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getReactionTrigger_Triggers()
+  {
+    return (EReference)reactionTriggerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getReactionTrigger_GuardExpression()
+  {
+    return (EReference)reactionTriggerEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEffect()
+  {
+    return effectEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEffect_Actions()
+  {
+    return (EReference)effectEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1831,6 +1813,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     stateDefinitionEClass = createEClass(STATE_DEFINITION);
 
     transitionStatementEClass = createEClass(TRANSITION_STATEMENT);
+    createEReference(transitionStatementEClass, TRANSITION_STATEMENT__REACTION);
 
     scopeEClass = createEClass(SCOPE);
     createEReference(scopeEClass, SCOPE__DEFINITIONS);
@@ -1874,22 +1857,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
     exitpointEClass = createEClass(EXITPOINT);
     createEAttribute(exitpointEClass, EXITPOINT__NAME);
-
-    reactionEClass = createEClass(REACTION);
-    createEReference(reactionEClass, REACTION__TRIGGER);
-    createEReference(reactionEClass, REACTION__EFFECT);
-    createEReference(reactionEClass, REACTION__PROPERTIES);
-
-    localReactionEClass = createEClass(LOCAL_REACTION);
-
-    transitionReactionEClass = createEClass(TRANSITION_REACTION);
-
-    reactionTriggerEClass = createEClass(REACTION_TRIGGER);
-    createEReference(reactionTriggerEClass, REACTION_TRIGGER__TRIGGERS);
-    createEReference(reactionTriggerEClass, REACTION_TRIGGER__GUARD_EXPRESSION);
-
-    effectEClass = createEClass(EFFECT);
-    createEReference(effectEClass, EFFECT__ACTIONS);
 
     reactionPropertiesEClass = createEClass(REACTION_PROPERTIES);
     createEReference(reactionPropertiesEClass, REACTION_PROPERTIES__PROPERTIES);
@@ -1935,6 +1902,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     createEReference(eventRaisingEClass, EVENT_RAISING__VALUE);
 
     expressionEClass = createEClass(EXPRESSION);
+
+    localReactionEClass = createEClass(LOCAL_REACTION);
+    createEReference(localReactionEClass, LOCAL_REACTION__PROPERTIES);
+
+    transitionReactionEClass = createEClass(TRANSITION_REACTION);
+    createEReference(transitionReactionEClass, TRANSITION_REACTION__PROPERTIES);
+
+    reactionTriggerEClass = createEClass(REACTION_TRIGGER);
+    createEReference(reactionTriggerEClass, REACTION_TRIGGER__TRIGGERS);
+    createEReference(reactionTriggerEClass, REACTION_TRIGGER__GUARD_EXPRESSION);
+
+    effectEClass = createEClass(EFFECT);
+    createEReference(effectEClass, EFFECT__ACTIONS);
 
     enterEventEClass = createEClass(ENTER_EVENT);
 
@@ -2036,10 +2016,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     operationEClass.getESuperTypes().add(this.getDefinition());
     entrypointEClass.getESuperTypes().add(this.getDefinition());
     exitpointEClass.getESuperTypes().add(this.getDefinition());
-    localReactionEClass.getESuperTypes().add(this.getDefinition());
-    localReactionEClass.getESuperTypes().add(this.getReaction());
-    transitionReactionEClass.getESuperTypes().add(this.getTransitionStatement());
-    transitionReactionEClass.getESuperTypes().add(this.getReaction());
     reactionPriorityEClass.getESuperTypes().add(this.getReactionProperty());
     entryPointSpecEClass.getESuperTypes().add(this.getReactionProperty());
     exitPointSpecEClass.getESuperTypes().add(this.getReactionProperty());
@@ -2052,6 +2028,10 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     alwaysEventEClass.getESuperTypes().add(this.getBuiltinEventSpec());
     assignmentEClass.getESuperTypes().add(this.getStatement());
     eventRaisingEClass.getESuperTypes().add(this.getStatement());
+    localReactionEClass.getESuperTypes().add(theStatechartPackage.getReaction());
+    transitionReactionEClass.getESuperTypes().add(theStatechartPackage.getReaction());
+    reactionTriggerEClass.getESuperTypes().add(theStatechartPackage.getTrigger());
+    effectEClass.getESuperTypes().add(theStatechartPackage.getEffect());
     enterEventEClass.getESuperTypes().add(this.getEntryEvent());
     logicalOrExpressionEClass.getESuperTypes().add(this.getExpression());
     logicalAndExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -2085,6 +2065,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     initEClass(stateDefinitionEClass, StateDefinition.class, "StateDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(transitionStatementEClass, TransitionStatement.class, "TransitionStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTransitionStatement_Reaction(), theStatechartPackage.getReaction(), null, "reaction", null, 0, 1, TransitionStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(scopeEClass, Scope.class, "Scope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getScope_Definitions(), this.getDefinition(), null, "definitions", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2128,22 +2109,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
     initEClass(exitpointEClass, Exitpoint.class, "Exitpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getExitpoint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Exitpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(reactionEClass, Reaction.class, "Reaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getReaction_Trigger(), this.getReactionTrigger(), null, "trigger", null, 0, 1, Reaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getReaction_Effect(), this.getEffect(), null, "effect", null, 0, 1, Reaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getReaction_Properties(), this.getReactionProperties(), null, "properties", null, 0, 1, Reaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(localReactionEClass, LocalReaction.class, "LocalReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(transitionReactionEClass, TransitionReaction.class, "TransitionReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(reactionTriggerEClass, ReactionTrigger.class, "ReactionTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getReactionTrigger_Triggers(), this.getEventSpec(), null, "triggers", null, 0, -1, ReactionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getReactionTrigger_GuardExpression(), this.getExpression(), null, "guardExpression", null, 0, 1, ReactionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(effectEClass, Effect.class, "Effect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEffect_Actions(), this.getStatement(), null, "actions", null, 0, -1, Effect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(reactionPropertiesEClass, ReactionProperties.class, "ReactionProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReactionProperties_Properties(), this.getReactionProperty(), null, "properties", null, 0, -1, ReactionProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2189,6 +2154,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     initEReference(getEventRaising_Value(), this.getExpression(), null, "value", null, 0, 1, EventRaising.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(localReactionEClass, LocalReaction.class, "LocalReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLocalReaction_Properties(), this.getReactionProperties(), null, "properties", null, 0, 1, LocalReaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(transitionReactionEClass, TransitionReaction.class, "TransitionReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTransitionReaction_Properties(), this.getReactionProperties(), null, "properties", null, 0, 1, TransitionReaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(reactionTriggerEClass, ReactionTrigger.class, "ReactionTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getReactionTrigger_Triggers(), this.getEventSpec(), null, "triggers", null, 0, -1, ReactionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getReactionTrigger_GuardExpression(), this.getExpression(), null, "guardExpression", null, 0, 1, ReactionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(effectEClass, Effect.class, "Effect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEffect_Actions(), this.getStatement(), null, "actions", null, 0, -1, Effect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enterEventEClass, EnterEvent.class, "EnterEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

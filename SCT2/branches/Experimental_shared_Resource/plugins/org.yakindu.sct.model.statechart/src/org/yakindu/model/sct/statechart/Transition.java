@@ -21,14 +21,15 @@ package org.yakindu.model.sct.statechart;
  * <ul>
  *   <li>{@link org.yakindu.model.sct.statechart.Transition#getTarget <em>Target</em>}</li>
  *   <li>{@link org.yakindu.model.sct.statechart.Transition#getSource <em>Source</em>}</li>
+ *   <li>{@link org.yakindu.model.sct.statechart.Transition#getReaction <em>Reaction</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.yakindu.model.sct.statechart.StatechartPackage#getTransition()
- * @model
+ * @model annotation="EmbeddedXtext SourceProperty='expression' ParserRule='TransitionReaction' TargetProperty='reaction'"
  * @generated
  */
-public interface Transition extends Reaction, ExpressionElement {
+public interface Transition extends ExpressionElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -91,5 +92,31 @@ public interface Transition extends Reaction, ExpressionElement {
 	 * @generated
 	 */
 	void setSource(Vertex value);
+
+	/**
+	 * Returns the value of the '<em><b>Reaction</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Reaction</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Reaction</em>' containment reference.
+	 * @see #setReaction(Reaction)
+	 * @see org.yakindu.model.sct.statechart.StatechartPackage#getTransition_Reaction()
+	 * @model containment="true" transient="true"
+	 * @generated
+	 */
+	Reaction getReaction();
+
+	/**
+	 * Sets the value of the '{@link org.yakindu.model.sct.statechart.Transition#getReaction <em>Reaction</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Reaction</em>' containment reference.
+	 * @see #getReaction()
+	 * @generated
+	 */
+	void setReaction(Reaction value);
 
 } // Transition

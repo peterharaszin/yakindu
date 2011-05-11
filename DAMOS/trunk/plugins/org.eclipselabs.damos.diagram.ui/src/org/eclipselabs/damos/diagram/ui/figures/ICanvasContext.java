@@ -14,6 +14,7 @@ package org.eclipselabs.damos.diagram.ui.figures;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Path;
 
 /**
  * @author Andreas Unger
@@ -44,6 +45,8 @@ public interface ICanvasContext {
 
 	void drawRoundRectangle(int x, int y, int width, int height, int arcWidth, int arcHeight);
 	void drawRoundRectangle(Rectangle r, int arcWidth, int arcHeight);
+	
+	void drawPath(Path path);
 
 	void fillArc(int x, int y, int w, int h, int offset, int length);
 
@@ -56,6 +59,8 @@ public interface ICanvasContext {
 	void fillRectangle(Rectangle r);
 
 	void fillRoundRectangle(Rectangle r, int arcWidth, int arcHeight);
+	
+	void fillPath(Path path);
 
 	Color getBackgroundColor();
 

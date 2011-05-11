@@ -128,6 +128,32 @@ public class Geometry {
 		return p;
 	}
 	
+	public static void transformPoints(float[] points, boolean flipped, int rotation, float width, float height) {
+		for (int i = 0, j = 1; j < points.length; i += 2, j += 2) {
+			if (flipped) {
+				points[i] = width - points[i];
+			}
+			
+			float x = points[i];
+			float y = points[j];
+			
+			switch (rotation) {
+			case 90:
+				points[i] = y;
+				points[j] = width - x;
+				break;
+			case 180:
+				points[i] = width - x;
+				points[j] = height - y;
+				break;
+			case 270:
+				points[i] = height - y;
+				points[j] = x;
+				break;
+			}
+		}
+	}
+
 	public static Point reverseTransformPoint(Point p, boolean flipped, int rotation, int width, int height) {		
 		int x = p.x;
 		int y = p.y;

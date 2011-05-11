@@ -13,6 +13,9 @@ package org.eclipselabs.damos.library.base.ui.logic.figures.shapes;
 
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Path;
+import org.eclipse.swt.widgets.Display;
 import org.eclipselabs.damos.diagram.ui.figures.AbstractPortLayoutHelper;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
 import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
@@ -23,8 +26,6 @@ import org.eclipselabs.damos.diagram.ui.figures.IPortLayoutHelper;
  *
  */
 public class DistinctiveOrShape extends LogicGateShape {
-
-	private static final double FACTOR = Math.sqrt(2) - 1;
 
 	/**
 	 * @param blockFigure
@@ -38,15 +39,7 @@ public class DistinctiveOrShape extends LogicGateShape {
 	 */
 	public Object getHelper(Class<?> clazz) {
 		if (clazz == IPortLayoutHelper.class) {
-			return new AbstractPortLayoutHelper(blockFigure) {
-				protected int calculateTerminalDisplacement(int xHint, int yHint, int sideHint) {
-					if (sideHint == PositionConstants.WEST) {
-						Dimension size = componentFigure.getCanvasSize();
-						return (int) Math.round(size.width * Math.cos(Math.asin(1 - 2.0 * yHint / size.height)) / 5);
-					}
-					return 0;
-				}
-			};
+			return new PortLayoutHelper(blockFigure);
 		}
 		return null;
 	}
@@ -56,38 +49,86 @@ public class DistinctiveOrShape extends LogicGateShape {
 	 */
 	public void paintCanvas(ICanvasContext cc) {
 		Dimension size = blockFigure.getCanvasSize();
+		Path path = createPath(size);
+		try {
+			cc.setLineWidth(DEFAULT_LINE_WIDTH);
+			cc.fillPath(path);
+			cc.drawPath(path);
+		} finally {
+			path.dispose();
+		}
+	}
+	
+	private static Path createPath(Dimension size) {
+		float x = DEFAULT_LINE_WIDTH;
+		float y = DEFAULT_LINE_WIDTH_HALF;
+		float right = size.width - DEFAULT_LINE_WIDTH_HALF;
+		float bottom = size.height - DEFAULT_LINE_WIDTH_HALF;
+
+		float quarterHeight = size.height / 4f;
+		float halfWidth = size.width / 2f;
+		float halfHeight = size.height / 2f;
+		float thirdHeight = size.height / 3f;
+
+		Path path = new Path(Display.getDefault());
+		try {
+			path.moveTo(x, y);
+			path.cubicTo(halfWidth, y, right - thirdHeight, y, right, halfHeight);
+			path.cubicTo(right - thirdHeight, bottom, halfWidth, bottom, x, bottom);
+			path.cubicTo(quarterHeight, bottom - quarterHeight, quarterHeight, y + quarterHeight, x, y);
+			path.close();
+		} catch (Exception e) {
+			path.dispose();
+			throw new RuntimeException(e);
+		}
+		return path;
+	}
+
+	/**
+	 * @author Andreas Unger
+	 *
+	 */
+	private static final class PortLayoutHelper extends AbstractPortLayoutHelper {
 		
-		int h = size.height / 2 - DEFAULT_LINE_WIDTH_HALF;
-		int x = (int) Math.round(h / FACTOR);
-		int r = x + h;
-		
-		cc.setLineWidth(DEFAULT_LINE_WIDTH);
-		cc.drawLine(
-				DEFAULT_LINE_WIDTH_HALF,
-				DEFAULT_LINE_WIDTH_HALF,
-				size.width - x,
-				DEFAULT_LINE_WIDTH_HALF);
-		cc.drawLine(
-				DEFAULT_LINE_WIDTH_HALF,
-				size.height - DEFAULT_LINE_WIDTH_HALF,
-				size.width - x,
-				size.height - DEFAULT_LINE_WIDTH_HALF);
+		/**
+		 * @param componentFigure
+		 */
+		private PortLayoutHelper(ComponentFigure componentFigure) {
+			super(componentFigure);
+		}
+	
+		protected int calculateTerminalDisplacement(int xHint, int yHint, int sideHint) {
+			if (sideHint == PositionConstants.WEST) {
+				Dimension size = getComponentFigure().getCanvasSize();
+				Path path = createPath(size);
+				GC gc = new GC(Display.getDefault());
+				try {
+					int left = 0;
+					int right = size.width / 2;
+					int prev = Integer.MAX_VALUE;
+					int x;
+					int d;
 					
-		cc.drawArc(
-				size.width - x - r - DEFAULT_LINE_WIDTH_HALF,
-				h + x - r + DEFAULT_LINE_WIDTH_HALF,
-				2 * r,
-				2 * r,
-				45, 45);
-		cc.drawArc(
-				size.width - x - r - DEFAULT_LINE_WIDTH_HALF,
-				h - x - r + DEFAULT_LINE_WIDTH_HALF,
-				2 * r,
-				2 * r,
-				270, 45);
+					do {
+						x = (left + right) / 2;
+						if (path.contains(x, yHint, gc, false)) {
+							right = x;
+						} else {
+							left = x;
+						}
+						d = Math.abs(prev - x);
+						prev = x;
+					} while (d > 0);
+					
+					return x;
+				} finally {
+					path.dispose();
+					gc.dispose();
+				}
+			}
+			return 0;
+		}
 		
-		r = size.width / 5;
-		cc.drawArc(-r, DEFAULT_LINE_WIDTH_HALF, 2 * r, size.height - DEFAULT_LINE_WIDTH, 270, 180);
 	}
 
 }

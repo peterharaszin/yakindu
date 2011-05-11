@@ -22,13 +22,20 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
  */
 public abstract class AbstractPortLayoutHelper implements IPortLayoutHelper {
 
-	protected ComponentFigure componentFigure;
+	private ComponentFigure componentFigure;
 	
 	/**
 	 * 
 	 */
 	public AbstractPortLayoutHelper(ComponentFigure componentFigure) {
 		this.componentFigure = componentFigure;
+	}
+	
+	/**
+	 * @return the componentFigure
+	 */
+	protected ComponentFigure getComponentFigure() {
+		return componentFigure;
 	}
 	
 	/* (non-Javadoc)

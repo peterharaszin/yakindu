@@ -17,6 +17,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Path;
+import org.eclipse.swt.graphics.PathData;
 import org.eclipselabs.damos.diagram.core.internal.util.MathUtil;
 import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
@@ -146,6 +148,20 @@ public class CanvasContext implements ICanvasContext {
 	public void drawRoundRectangle(Rectangle r, int arcWidth, int arcHeight) {
 		drawRoundRectangle(r.x, r.y, r.width, r.height, arcWidth, arcHeight);
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.ICanvasContext#drawPath(org.eclipse.swt.graphics.Path)
+	 */
+	public void drawPath(Path path) {
+		PathData data = path.getPathData();
+		Geometry.transformPoints(data.points, flipped, rotation, canvasSize.width, canvasSize.height);
+		path = new Path(path.getDevice(), data);
+		try {
+			graphics.drawPath(path);
+		} finally {
+			path.dispose();
+		}
+	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.diagram.figures.ICanvas#fillArc(int, int, int, int, int, int)
@@ -194,6 +210,20 @@ public class CanvasContext implements ICanvasContext {
 	 */
 	public void fillRoundRectangle(Rectangle r, int arcWidth, int arcHeight) {
 		graphics.fillRoundRectangle(transformRectangle(r.x, r.y, r.width, r.height), arcWidth, arcHeight);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.ICanvasContext#fillPath(org.eclipse.swt.graphics.Path)
+	 */
+	public void fillPath(Path path) {
+		PathData data = path.getPathData();
+		Geometry.transformPoints(data.points, flipped, rotation, canvasSize.width, canvasSize.height);
+		path = new Path(path.getDevice(), data);
+		try {
+			graphics.fillPath(path);
+		} finally {
+			path.dispose();
+		}
 	}
 
 	/* (non-Javadoc)

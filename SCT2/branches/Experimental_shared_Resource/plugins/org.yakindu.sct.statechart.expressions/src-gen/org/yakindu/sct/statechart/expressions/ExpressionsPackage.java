@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
+import org.yakindu.model.sct.statechart.StatechartPackage;
+
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
@@ -250,13 +252,22 @@ public interface ExpressionsPackage extends EPackage
   int TRANSITION_STATEMENT = 7;
 
   /**
+   * The feature id for the '<em><b>Reaction</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSITION_STATEMENT__REACTION = 0;
+
+  /**
    * The number of structural features of the '<em>Transition Statement</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRANSITION_STATEMENT_FEATURE_COUNT = 0;
+  int TRANSITION_STATEMENT_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.ScopeImpl <em>Scope</em>}' class.
@@ -713,209 +724,6 @@ public interface ExpressionsPackage extends EPackage
   int EXITPOINT_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionImpl <em>Reaction</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.yakindu.sct.statechart.expressions.impl.ReactionImpl
-   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReaction()
-   * @generated
-   */
-  int REACTION = 21;
-
-  /**
-   * The feature id for the '<em><b>Trigger</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REACTION__TRIGGER = 0;
-
-  /**
-   * The feature id for the '<em><b>Effect</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REACTION__EFFECT = 1;
-
-  /**
-   * The feature id for the '<em><b>Properties</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REACTION__PROPERTIES = 2;
-
-  /**
-   * The number of structural features of the '<em>Reaction</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REACTION_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl <em>Local Reaction</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl
-   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLocalReaction()
-   * @generated
-   */
-  int LOCAL_REACTION = 22;
-
-  /**
-   * The feature id for the '<em><b>Trigger</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOCAL_REACTION__TRIGGER = DEFINITION_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Effect</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOCAL_REACTION__EFFECT = DEFINITION_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Properties</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOCAL_REACTION__PROPERTIES = DEFINITION_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Local Reaction</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LOCAL_REACTION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl <em>Transition Reaction</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl
-   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getTransitionReaction()
-   * @generated
-   */
-  int TRANSITION_REACTION = 23;
-
-  /**
-   * The feature id for the '<em><b>Trigger</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSITION_REACTION__TRIGGER = TRANSITION_STATEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Effect</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSITION_REACTION__EFFECT = TRANSITION_STATEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Properties</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSITION_REACTION__PROPERTIES = TRANSITION_STATEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Transition Reaction</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TRANSITION_REACTION_FEATURE_COUNT = TRANSITION_STATEMENT_FEATURE_COUNT + 3;
-
-  /**
-   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl <em>Reaction Trigger</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl
-   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReactionTrigger()
-   * @generated
-   */
-  int REACTION_TRIGGER = 24;
-
-  /**
-   * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REACTION_TRIGGER__TRIGGERS = 0;
-
-  /**
-   * The feature id for the '<em><b>Guard Expression</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REACTION_TRIGGER__GUARD_EXPRESSION = 1;
-
-  /**
-   * The number of structural features of the '<em>Reaction Trigger</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REACTION_TRIGGER_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.EffectImpl <em>Effect</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.yakindu.sct.statechart.expressions.impl.EffectImpl
-   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEffect()
-   * @generated
-   */
-  int EFFECT = 25;
-
-  /**
-   * The feature id for the '<em><b>Actions</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EFFECT__ACTIONS = 0;
-
-  /**
-   * The number of structural features of the '<em>Effect</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EFFECT_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionPropertiesImpl <em>Reaction Properties</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -923,7 +731,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReactionProperties()
    * @generated
    */
-  int REACTION_PROPERTIES = 26;
+  int REACTION_PROPERTIES = 21;
 
   /**
    * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -951,7 +759,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReactionProperty()
    * @generated
    */
-  int REACTION_PROPERTY = 27;
+  int REACTION_PROPERTY = 22;
 
   /**
    * The number of structural features of the '<em>Reaction Property</em>' class.
@@ -970,7 +778,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReactionPriority()
    * @generated
    */
-  int REACTION_PRIORITY = 28;
+  int REACTION_PRIORITY = 23;
 
   /**
    * The feature id for the '<em><b>Priority</b></em>' attribute.
@@ -998,7 +806,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEntryPointSpec()
    * @generated
    */
-  int ENTRY_POINT_SPEC = 29;
+  int ENTRY_POINT_SPEC = 24;
 
   /**
    * The feature id for the '<em><b>Entrypoint</b></em>' reference.
@@ -1026,7 +834,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getExitPointSpec()
    * @generated
    */
-  int EXIT_POINT_SPEC = 30;
+  int EXIT_POINT_SPEC = 25;
 
   /**
    * The feature id for the '<em><b>Exitpoint</b></em>' reference.
@@ -1054,7 +862,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEventSpec()
    * @generated
    */
-  int EVENT_SPEC = 31;
+  int EVENT_SPEC = 26;
 
   /**
    * The number of structural features of the '<em>Event Spec</em>' class.
@@ -1073,7 +881,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getRegularEventSpec()
    * @generated
    */
-  int REGULAR_EVENT_SPEC = 32;
+  int REGULAR_EVENT_SPEC = 27;
 
   /**
    * The feature id for the '<em><b>Event</b></em>' reference.
@@ -1101,7 +909,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getTimeEventSpec()
    * @generated
    */
-  int TIME_EVENT_SPEC = 33;
+  int TIME_EVENT_SPEC = 28;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1138,7 +946,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getBuiltinEventSpec()
    * @generated
    */
-  int BUILTIN_EVENT_SPEC = 34;
+  int BUILTIN_EVENT_SPEC = 29;
 
   /**
    * The number of structural features of the '<em>Builtin Event Spec</em>' class.
@@ -1157,7 +965,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEntryEvent()
    * @generated
    */
-  int ENTRY_EVENT = 35;
+  int ENTRY_EVENT = 30;
 
   /**
    * The number of structural features of the '<em>Entry Event</em>' class.
@@ -1176,7 +984,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getExitEvent()
    * @generated
    */
-  int EXIT_EVENT = 36;
+  int EXIT_EVENT = 31;
 
   /**
    * The number of structural features of the '<em>Exit Event</em>' class.
@@ -1195,7 +1003,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getOnCycleEvent()
    * @generated
    */
-  int ON_CYCLE_EVENT = 37;
+  int ON_CYCLE_EVENT = 32;
 
   /**
    * The number of structural features of the '<em>On Cycle Event</em>' class.
@@ -1214,7 +1022,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getAlwaysEvent()
    * @generated
    */
-  int ALWAYS_EVENT = 38;
+  int ALWAYS_EVENT = 33;
 
   /**
    * The number of structural features of the '<em>Always Event</em>' class.
@@ -1233,7 +1041,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getStatement()
    * @generated
    */
-  int STATEMENT = 39;
+  int STATEMENT = 34;
 
   /**
    * The number of structural features of the '<em>Statement</em>' class.
@@ -1252,7 +1060,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getAssignment()
    * @generated
    */
-  int ASSIGNMENT = 40;
+  int ASSIGNMENT = 35;
 
   /**
    * The feature id for the '<em><b>Var Ref</b></em>' reference.
@@ -1289,7 +1097,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEventRaising()
    * @generated
    */
-  int EVENT_RAISING = 41;
+  int EVENT_RAISING = 36;
 
   /**
    * The feature id for the '<em><b>Event</b></em>' reference.
@@ -1326,7 +1134,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 42;
+  int EXPRESSION = 37;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -1338,6 +1146,163 @@ public interface ExpressionsPackage extends EPackage
   int EXPRESSION_FEATURE_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl <em>Local Reaction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl
+   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLocalReaction()
+   * @generated
+   */
+  int LOCAL_REACTION = 38;
+
+  /**
+   * The feature id for the '<em><b>Trigger</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOCAL_REACTION__TRIGGER = StatechartPackage.REACTION__TRIGGER;
+
+  /**
+   * The feature id for the '<em><b>Effect</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOCAL_REACTION__EFFECT = StatechartPackage.REACTION__EFFECT;
+
+  /**
+   * The feature id for the '<em><b>Properties</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOCAL_REACTION__PROPERTIES = StatechartPackage.REACTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Local Reaction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LOCAL_REACTION_FEATURE_COUNT = StatechartPackage.REACTION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl <em>Transition Reaction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl
+   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getTransitionReaction()
+   * @generated
+   */
+  int TRANSITION_REACTION = 39;
+
+  /**
+   * The feature id for the '<em><b>Trigger</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSITION_REACTION__TRIGGER = StatechartPackage.REACTION__TRIGGER;
+
+  /**
+   * The feature id for the '<em><b>Effect</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSITION_REACTION__EFFECT = StatechartPackage.REACTION__EFFECT;
+
+  /**
+   * The feature id for the '<em><b>Properties</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSITION_REACTION__PROPERTIES = StatechartPackage.REACTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Transition Reaction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRANSITION_REACTION_FEATURE_COUNT = StatechartPackage.REACTION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl <em>Reaction Trigger</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl
+   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReactionTrigger()
+   * @generated
+   */
+  int REACTION_TRIGGER = 40;
+
+  /**
+   * The feature id for the '<em><b>Triggers</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REACTION_TRIGGER__TRIGGERS = StatechartPackage.TRIGGER_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Guard Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REACTION_TRIGGER__GUARD_EXPRESSION = StatechartPackage.TRIGGER_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Reaction Trigger</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REACTION_TRIGGER_FEATURE_COUNT = StatechartPackage.TRIGGER_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.EffectImpl <em>Effect</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.yakindu.sct.statechart.expressions.impl.EffectImpl
+   * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEffect()
+   * @generated
+   */
+  int EFFECT = 41;
+
+  /**
+   * The feature id for the '<em><b>Actions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT__ACTIONS = StatechartPackage.EFFECT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Effect</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EFFECT_FEATURE_COUNT = StatechartPackage.EFFECT_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.impl.EnterEventImpl <em>Enter Event</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1345,7 +1310,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEnterEvent()
    * @generated
    */
-  int ENTER_EVENT = 43;
+  int ENTER_EVENT = 42;
 
   /**
    * The number of structural features of the '<em>Enter Event</em>' class.
@@ -1364,7 +1329,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLogicalOrExpression()
    * @generated
    */
-  int LOGICAL_OR_EXPRESSION = 44;
+  int LOGICAL_OR_EXPRESSION = 43;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1401,7 +1366,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLogicalAndExpression()
    * @generated
    */
-  int LOGICAL_AND_EXPRESSION = 45;
+  int LOGICAL_AND_EXPRESSION = 44;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1438,7 +1403,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLogicalNotExpression()
    * @generated
    */
-  int LOGICAL_NOT_EXPRESSION = 46;
+  int LOGICAL_NOT_EXPRESSION = 45;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1466,7 +1431,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLogicalRelationExpression()
    * @generated
    */
-  int LOGICAL_RELATION_EXPRESSION = 47;
+  int LOGICAL_RELATION_EXPRESSION = 46;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1512,7 +1477,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getNumericalAddSubtractExpression()
    * @generated
    */
-  int NUMERICAL_ADD_SUBTRACT_EXPRESSION = 48;
+  int NUMERICAL_ADD_SUBTRACT_EXPRESSION = 47;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1558,7 +1523,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getNumericalMultiplyDivideExpression()
    * @generated
    */
-  int NUMERICAL_MULTIPLY_DIVIDE_EXPRESSION = 49;
+  int NUMERICAL_MULTIPLY_DIVIDE_EXPRESSION = 48;
 
   /**
    * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -1604,7 +1569,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getNumericalUnaryExpression()
    * @generated
    */
-  int NUMERICAL_UNARY_EXPRESSION = 50;
+  int NUMERICAL_UNARY_EXPRESSION = 49;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -1641,7 +1606,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getPrimitiveValueExpression()
    * @generated
    */
-  int PRIMITIVE_VALUE_EXPRESSION = 51;
+  int PRIMITIVE_VALUE_EXPRESSION = 50;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1669,7 +1634,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getElementReferenceExpression()
    * @generated
    */
-  int ELEMENT_REFERENCE_EXPRESSION = 52;
+  int ELEMENT_REFERENCE_EXPRESSION = 51;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -1697,7 +1662,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getOperationCall()
    * @generated
    */
-  int OPERATION_CALL = 53;
+  int OPERATION_CALL = 52;
 
   /**
    * The feature id for the '<em><b>Operation</b></em>' reference.
@@ -1734,7 +1699,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getDirection()
    * @generated
    */
-  int DIRECTION = 54;
+  int DIRECTION = 53;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.AdditiveOperator <em>Additive Operator</em>}' enum.
@@ -1744,7 +1709,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getAdditiveOperator()
    * @generated
    */
-  int ADDITIVE_OPERATOR = 55;
+  int ADDITIVE_OPERATOR = 54;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.MultiplicativeOperator <em>Multiplicative Operator</em>}' enum.
@@ -1754,7 +1719,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getMultiplicativeOperator()
    * @generated
    */
-  int MULTIPLICATIVE_OPERATOR = 56;
+  int MULTIPLICATIVE_OPERATOR = 55;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.UnaryOperator <em>Unary Operator</em>}' enum.
@@ -1764,7 +1729,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getUnaryOperator()
    * @generated
    */
-  int UNARY_OPERATOR = 57;
+  int UNARY_OPERATOR = 56;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.RelationalOperator <em>Relational Operator</em>}' enum.
@@ -1774,7 +1739,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getRelationalOperator()
    * @generated
    */
-  int RELATIONAL_OPERATOR = 58;
+  int RELATIONAL_OPERATOR = 57;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.TimeUnit <em>Time Unit</em>}' enum.
@@ -1784,7 +1749,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getTimeUnit()
    * @generated
    */
-  int TIME_UNIT = 59;
+  int TIME_UNIT = 58;
 
   /**
    * The meta object id for the '{@link org.yakindu.sct.statechart.expressions.Type <em>Type</em>}' enum.
@@ -1794,7 +1759,7 @@ public interface ExpressionsPackage extends EPackage
    * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getType()
    * @generated
    */
-  int TYPE = 60;
+  int TYPE = 59;
 
 
   /**
@@ -1931,6 +1896,17 @@ public interface ExpressionsPackage extends EPackage
    * @generated
    */
   EClass getTransitionStatement();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.TransitionStatement#getReaction <em>Reaction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Reaction</em>'.
+   * @see org.yakindu.sct.statechart.expressions.TransitionStatement#getReaction()
+   * @see #getTransitionStatement()
+   * @generated
+   */
+  EReference getTransitionStatement_Reaction();
 
   /**
    * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.Scope <em>Scope</em>}'.
@@ -2250,122 +2226,6 @@ public interface ExpressionsPackage extends EPackage
   EAttribute getExitpoint_Name();
 
   /**
-   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.Reaction <em>Reaction</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Reaction</em>'.
-   * @see org.yakindu.sct.statechart.expressions.Reaction
-   * @generated
-   */
-  EClass getReaction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.Reaction#getTrigger <em>Trigger</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Trigger</em>'.
-   * @see org.yakindu.sct.statechart.expressions.Reaction#getTrigger()
-   * @see #getReaction()
-   * @generated
-   */
-  EReference getReaction_Trigger();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.Reaction#getEffect <em>Effect</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Effect</em>'.
-   * @see org.yakindu.sct.statechart.expressions.Reaction#getEffect()
-   * @see #getReaction()
-   * @generated
-   */
-  EReference getReaction_Effect();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.Reaction#getProperties <em>Properties</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Properties</em>'.
-   * @see org.yakindu.sct.statechart.expressions.Reaction#getProperties()
-   * @see #getReaction()
-   * @generated
-   */
-  EReference getReaction_Properties();
-
-  /**
-   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.LocalReaction <em>Local Reaction</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Local Reaction</em>'.
-   * @see org.yakindu.sct.statechart.expressions.LocalReaction
-   * @generated
-   */
-  EClass getLocalReaction();
-
-  /**
-   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.TransitionReaction <em>Transition Reaction</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Transition Reaction</em>'.
-   * @see org.yakindu.sct.statechart.expressions.TransitionReaction
-   * @generated
-   */
-  EClass getTransitionReaction();
-
-  /**
-   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger <em>Reaction Trigger</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Reaction Trigger</em>'.
-   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger
-   * @generated
-   */
-  EClass getReactionTrigger();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger#getTriggers <em>Triggers</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Triggers</em>'.
-   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger#getTriggers()
-   * @see #getReactionTrigger()
-   * @generated
-   */
-  EReference getReactionTrigger_Triggers();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger#getGuardExpression <em>Guard Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Guard Expression</em>'.
-   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger#getGuardExpression()
-   * @see #getReactionTrigger()
-   * @generated
-   */
-  EReference getReactionTrigger_GuardExpression();
-
-  /**
-   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.Effect <em>Effect</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Effect</em>'.
-   * @see org.yakindu.sct.statechart.expressions.Effect
-   * @generated
-   */
-  EClass getEffect();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.yakindu.sct.statechart.expressions.Effect#getActions <em>Actions</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Actions</em>'.
-   * @see org.yakindu.sct.statechart.expressions.Effect#getActions()
-   * @see #getEffect()
-   * @generated
-   */
-  EReference getEffect_Actions();
-
-  /**
    * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.ReactionProperties <em>Reaction Properties</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2655,6 +2515,101 @@ public interface ExpressionsPackage extends EPackage
    * @generated
    */
   EClass getExpression();
+
+  /**
+   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.LocalReaction <em>Local Reaction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Local Reaction</em>'.
+   * @see org.yakindu.sct.statechart.expressions.LocalReaction
+   * @generated
+   */
+  EClass getLocalReaction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.LocalReaction#getProperties <em>Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Properties</em>'.
+   * @see org.yakindu.sct.statechart.expressions.LocalReaction#getProperties()
+   * @see #getLocalReaction()
+   * @generated
+   */
+  EReference getLocalReaction_Properties();
+
+  /**
+   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.TransitionReaction <em>Transition Reaction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Transition Reaction</em>'.
+   * @see org.yakindu.sct.statechart.expressions.TransitionReaction
+   * @generated
+   */
+  EClass getTransitionReaction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.TransitionReaction#getProperties <em>Properties</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Properties</em>'.
+   * @see org.yakindu.sct.statechart.expressions.TransitionReaction#getProperties()
+   * @see #getTransitionReaction()
+   * @generated
+   */
+  EReference getTransitionReaction_Properties();
+
+  /**
+   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger <em>Reaction Trigger</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Reaction Trigger</em>'.
+   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger
+   * @generated
+   */
+  EClass getReactionTrigger();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger#getTriggers <em>Triggers</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Triggers</em>'.
+   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger#getTriggers()
+   * @see #getReactionTrigger()
+   * @generated
+   */
+  EReference getReactionTrigger_Triggers();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger#getGuardExpression <em>Guard Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Guard Expression</em>'.
+   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger#getGuardExpression()
+   * @see #getReactionTrigger()
+   * @generated
+   */
+  EReference getReactionTrigger_GuardExpression();
+
+  /**
+   * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.Effect <em>Effect</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Effect</em>'.
+   * @see org.yakindu.sct.statechart.expressions.Effect
+   * @generated
+   */
+  EClass getEffect();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.yakindu.sct.statechart.expressions.Effect#getActions <em>Actions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Actions</em>'.
+   * @see org.yakindu.sct.statechart.expressions.Effect#getActions()
+   * @see #getEffect()
+   * @generated
+   */
+  EReference getEffect_Actions();
 
   /**
    * Returns the meta object for class '{@link org.yakindu.sct.statechart.expressions.EnterEvent <em>Enter Event</em>}'.
@@ -3200,6 +3155,14 @@ public interface ExpressionsPackage extends EPackage
     EClass TRANSITION_STATEMENT = eINSTANCE.getTransitionStatement();
 
     /**
+     * The meta object literal for the '<em><b>Reaction</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRANSITION_STATEMENT__REACTION = eINSTANCE.getTransitionStatement_Reaction();
+
+    /**
      * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.ScopeImpl <em>Scope</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3466,104 +3429,6 @@ public interface ExpressionsPackage extends EPackage
     EAttribute EXITPOINT__NAME = eINSTANCE.getExitpoint_Name();
 
     /**
-     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionImpl <em>Reaction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.yakindu.sct.statechart.expressions.impl.ReactionImpl
-     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReaction()
-     * @generated
-     */
-    EClass REACTION = eINSTANCE.getReaction();
-
-    /**
-     * The meta object literal for the '<em><b>Trigger</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REACTION__TRIGGER = eINSTANCE.getReaction_Trigger();
-
-    /**
-     * The meta object literal for the '<em><b>Effect</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REACTION__EFFECT = eINSTANCE.getReaction_Effect();
-
-    /**
-     * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REACTION__PROPERTIES = eINSTANCE.getReaction_Properties();
-
-    /**
-     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl <em>Local Reaction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl
-     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLocalReaction()
-     * @generated
-     */
-    EClass LOCAL_REACTION = eINSTANCE.getLocalReaction();
-
-    /**
-     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl <em>Transition Reaction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl
-     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getTransitionReaction()
-     * @generated
-     */
-    EClass TRANSITION_REACTION = eINSTANCE.getTransitionReaction();
-
-    /**
-     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl <em>Reaction Trigger</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl
-     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReactionTrigger()
-     * @generated
-     */
-    EClass REACTION_TRIGGER = eINSTANCE.getReactionTrigger();
-
-    /**
-     * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REACTION_TRIGGER__TRIGGERS = eINSTANCE.getReactionTrigger_Triggers();
-
-    /**
-     * The meta object literal for the '<em><b>Guard Expression</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REACTION_TRIGGER__GUARD_EXPRESSION = eINSTANCE.getReactionTrigger_GuardExpression();
-
-    /**
-     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.EffectImpl <em>Effect</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.yakindu.sct.statechart.expressions.impl.EffectImpl
-     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEffect()
-     * @generated
-     */
-    EClass EFFECT = eINSTANCE.getEffect();
-
-    /**
-     * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EFFECT__ACTIONS = eINSTANCE.getEffect_Actions();
-
-    /**
      * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionPropertiesImpl <em>Reaction Properties</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -3820,6 +3685,86 @@ public interface ExpressionsPackage extends EPackage
      * @generated
      */
     EClass EXPRESSION = eINSTANCE.getExpression();
+
+    /**
+     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl <em>Local Reaction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.yakindu.sct.statechart.expressions.impl.LocalReactionImpl
+     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getLocalReaction()
+     * @generated
+     */
+    EClass LOCAL_REACTION = eINSTANCE.getLocalReaction();
+
+    /**
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LOCAL_REACTION__PROPERTIES = eINSTANCE.getLocalReaction_Properties();
+
+    /**
+     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl <em>Transition Reaction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl
+     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getTransitionReaction()
+     * @generated
+     */
+    EClass TRANSITION_REACTION = eINSTANCE.getTransitionReaction();
+
+    /**
+     * The meta object literal for the '<em><b>Properties</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TRANSITION_REACTION__PROPERTIES = eINSTANCE.getTransitionReaction_Properties();
+
+    /**
+     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl <em>Reaction Trigger</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.yakindu.sct.statechart.expressions.impl.ReactionTriggerImpl
+     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getReactionTrigger()
+     * @generated
+     */
+    EClass REACTION_TRIGGER = eINSTANCE.getReactionTrigger();
+
+    /**
+     * The meta object literal for the '<em><b>Triggers</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REACTION_TRIGGER__TRIGGERS = eINSTANCE.getReactionTrigger_Triggers();
+
+    /**
+     * The meta object literal for the '<em><b>Guard Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference REACTION_TRIGGER__GUARD_EXPRESSION = eINSTANCE.getReactionTrigger_GuardExpression();
+
+    /**
+     * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.EffectImpl <em>Effect</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.yakindu.sct.statechart.expressions.impl.EffectImpl
+     * @see org.yakindu.sct.statechart.expressions.impl.ExpressionsPackageImpl#getEffect()
+     * @generated
+     */
+    EClass EFFECT = eINSTANCE.getEffect();
+
+    /**
+     * The meta object literal for the '<em><b>Actions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EFFECT__ACTIONS = eINSTANCE.getEffect_Actions();
 
     /**
      * The meta object literal for the '{@link org.yakindu.sct.statechart.expressions.impl.EnterEventImpl <em>Enter Event</em>}' class.

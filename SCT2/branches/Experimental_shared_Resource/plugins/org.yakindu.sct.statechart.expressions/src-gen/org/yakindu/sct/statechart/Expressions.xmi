@@ -83,7 +83,9 @@
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//TransitionStatement"/>
       </type>
-      <alternatives xsi:type="xtext:RuleCall" rule="/0/@rules.26"/>
+      <alternatives xsi:type="xtext:Assignment" feature="reaction" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.26"/>
+      </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Scope">
       <type metamodel="/0/@metamodelDeclarations.0">
@@ -164,7 +166,6 @@
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.19"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.21"/>
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.25"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.22"/>
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.23"/>
       </alternatives>
@@ -329,8 +330,8 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Reaction">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//Reaction"/>
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/2.0.0#//Reaction"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/0/@rules.25"/>
@@ -338,10 +339,15 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="LocalReaction">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//LocalReaction"/>
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/2.0.0#//Reaction"/>
       </type>
       <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//LocalReaction"/>
+          </type>
+        </elements>
         <elements xsi:type="xtext:Assignment" feature="trigger" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
         </elements>
@@ -360,8 +366,8 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="TransitionReaction">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//TransitionReaction"/>
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/2.0.0#//Reaction"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Action">
@@ -387,10 +393,15 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ReactionTrigger">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//ReactionTrigger"/>
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/2.0.0#//Trigger"/>
       </type>
       <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//ReactionTrigger"/>
+          </type>
+        </elements>
         <elements xsi:type="xtext:Group">
           <elements xsi:type="xtext:Assignment" feature="triggers" operator="+=">
             <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.34"/>
@@ -412,14 +423,21 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Effect">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//Effect"/>
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/2.0.0#//Effect"/>
       </type>
-      <alternatives xsi:type="xtext:Group" cardinality="+">
-        <elements xsi:type="xtext:Assignment" feature="actions" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.0">
+            <classifier xsi:type="ecore:EClass" href="http://www.yakindu.org/sct/statechart/Expressions#//Effect"/>
+          </type>
         </elements>
-        <elements xsi:type="xtext:Keyword" value=";"/>
+        <elements xsi:type="xtext:Group" cardinality="+">
+          <elements xsi:type="xtext:Assignment" feature="actions" operator="+=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.42"/>
+          </elements>
+          <elements xsi:type="xtext:Keyword" value=";"/>
+        </elements>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ReactionProperties">

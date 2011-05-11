@@ -31,8 +31,8 @@ Define the starting points used by the statechart integration. These rules hook 
 StatechartDefinition: {StatechartDefinition} (definitionScopes+=StatechartScope)*;
 
 StateDefinition: SimpleScope;
-
-TransitionStatement: TransitionReaction;
+//TODO
+TransitionStatement : reaction=TransitionReaction;
 
 
 
@@ -56,7 +56,7 @@ InternalScope:  {InternalScope} 'internal' ':' (definitions+=Definition)*;
 
 /* ---- definitions ----
 a definition is a top level element of a definition scope. */ 
-Definition: EventDefinition | VariableDefinition | Clock | Operation | LocalReaction | Entrypoint | Exitpoint;
+Definition: EventDefinition | VariableDefinition | Clock | Operation  | Entrypoint | Exitpoint;
 
 // DataElement: EventDefinition | VariableDefinition;
 
@@ -100,20 +100,20 @@ Exitpoint: 'exitpoint' name=ID;
 /* ---- reaction rules ----
 Define the structure of reactions that are central for describing the statecharts behavior. 
 */
-Reaction: LocalReaction | TransitionReaction;
+Reaction returns sct::Reaction: LocalReaction | TransitionReaction;
 
-LocalReaction:
-	(trigger=ReactionTrigger) ('/' effect=Effect)? ('#' properties=ReactionProperties)?;
+LocalReaction returns sct::Reaction:
+	{LocalReaction}(trigger=ReactionTrigger) ('/' effect=Effect)? ('#' properties=ReactionProperties)?;
 
-TransitionReaction: 
+TransitionReaction returns sct::Reaction: 
 	{TransitionReaction} (trigger=ReactionTrigger)? ('/' effect=Effect)? ('#' properties=ReactionProperties)?;
 
-ReactionTrigger:	
-	(triggers+=EventSpec ("," triggers+=EventSpec)*)
+ReactionTrigger returns sct::Trigger:	
+ {ReactionTrigger}	(triggers+=EventSpec ("," triggers+=EventSpec)*)
 	('[' guardExpression=Expression ']')?;
 	
-Effect:	
-	(actions+=Statement ';')+ ;
+Effect returns sct::Effect:	
+	{Effect}(actions+=Statement ';')+ ;
 	
 ReactionProperties: 
 	{ReactionProperties} (properties+=ReactionProperty)*;

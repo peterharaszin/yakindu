@@ -24,7 +24,6 @@ import org.yakindu.model.sct.statechart.Event;
 import org.yakindu.model.sct.statechart.Exit;
 import org.yakindu.model.sct.statechart.FinalState;
 import org.yakindu.model.sct.statechart.Junction;
-import org.yakindu.model.sct.statechart.Reaction;
 import org.yakindu.model.sct.statechart.Region;
 import org.yakindu.model.sct.statechart.Scope;
 import org.yakindu.model.sct.statechart.State;
@@ -93,7 +92,6 @@ public class StatechartFactoryImpl extends EFactoryImpl implements StatechartFac
 			case StatechartPackage.CHOICE: return createChoice();
 			case StatechartPackage.STATECHART: return createStatechart();
 			case StatechartPackage.ENTRY: return createEntry();
-			case StatechartPackage.REACTION: return createReaction();
 			case StatechartPackage.EXIT: return createExit();
 			case StatechartPackage.SCOPE: return createScope();
 			default:
@@ -219,16 +217,6 @@ public class StatechartFactoryImpl extends EFactoryImpl implements StatechartFac
 	public Entry createEntry() {
 		EntryImpl entry = new EntryImpl();
 		return entry;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Reaction createReaction() {
-		ReactionImpl reaction = new ReactionImpl();
-		return reaction;
 	}
 
 	/**

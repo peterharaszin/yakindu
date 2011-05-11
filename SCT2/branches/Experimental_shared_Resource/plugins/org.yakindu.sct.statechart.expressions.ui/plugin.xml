@@ -212,5 +212,12 @@
       </menuContribution>
    </extension>
 
+  <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.yakindu.sct.statechart.ui.ExpressionsExecutableExtensionFactory:de.itemis.xtext.utils.gmf.resource.EmbeddedXtextResourceFactory"
+            type="sct">
+      </parser>
+   </extension>
 
 </plugin>

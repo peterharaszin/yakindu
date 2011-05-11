@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.yakindu.model.sct.statechart.Declaration;
 import org.yakindu.model.sct.statechart.Event;
 import org.yakindu.model.sct.statechart.NamedElement;
+import org.yakindu.model.sct.statechart.Reaction;
+import org.yakindu.model.sct.statechart.Trigger;
 import org.yakindu.model.sct.statechart.Variable;
 
 import org.yakindu.sct.statechart.expressions.*;
@@ -189,31 +191,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createExitpointAdapter();
       }
       @Override
-      public Adapter caseReaction(Reaction object)
-      {
-        return createReactionAdapter();
-      }
-      @Override
-      public Adapter caseLocalReaction(LocalReaction object)
-      {
-        return createLocalReactionAdapter();
-      }
-      @Override
-      public Adapter caseTransitionReaction(TransitionReaction object)
-      {
-        return createTransitionReactionAdapter();
-      }
-      @Override
-      public Adapter caseReactionTrigger(ReactionTrigger object)
-      {
-        return createReactionTriggerAdapter();
-      }
-      @Override
-      public Adapter caseEffect(Effect object)
-      {
-        return createEffectAdapter();
-      }
-      @Override
       public Adapter caseReactionProperties(ReactionProperties object)
       {
         return createReactionPropertiesAdapter();
@@ -299,6 +276,26 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
+      public Adapter caseLocalReaction(LocalReaction object)
+      {
+        return createLocalReactionAdapter();
+      }
+      @Override
+      public Adapter caseTransitionReaction(TransitionReaction object)
+      {
+        return createTransitionReactionAdapter();
+      }
+      @Override
+      public Adapter caseReactionTrigger(ReactionTrigger object)
+      {
+        return createReactionTriggerAdapter();
+      }
+      @Override
+      public Adapter caseEffect(Effect object)
+      {
+        return createEffectAdapter();
+      }
+      @Override
       public Adapter caseEnterEvent(EnterEvent object)
       {
         return createEnterEventAdapter();
@@ -372,6 +369,21 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
       public Adapter caseVariable(Variable object)
       {
         return createVariableAdapter();
+      }
+      @Override
+      public Adapter caseReaction(Reaction object)
+      {
+        return createReactionAdapter();
+      }
+      @Override
+      public Adapter caseTrigger(Trigger object)
+      {
+        return createTriggerAdapter();
+      }
+      @Override
+      public Adapter caseStatechart_Effect(org.yakindu.model.sct.statechart.Effect object)
+      {
+        return createStatechart_EffectAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -711,81 +723,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Reaction <em>Reaction</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Reaction
-   * @generated
-   */
-  public Adapter createReactionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.LocalReaction <em>Local Reaction</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.LocalReaction
-   * @generated
-   */
-  public Adapter createLocalReactionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.TransitionReaction <em>Transition Reaction</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.TransitionReaction
-   * @generated
-   */
-  public Adapter createTransitionReactionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger <em>Reaction Trigger</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger
-   * @generated
-   */
-  public Adapter createReactionTriggerAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Effect <em>Effect</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Effect
-   * @generated
-   */
-  public Adapter createEffectAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.ReactionProperties <em>Reaction Properties</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1041,6 +978,66 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.LocalReaction <em>Local Reaction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.LocalReaction
+   * @generated
+   */
+  public Adapter createLocalReactionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.TransitionReaction <em>Transition Reaction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.TransitionReaction
+   * @generated
+   */
+  public Adapter createTransitionReactionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.ReactionTrigger <em>Reaction Trigger</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.ReactionTrigger
+   * @generated
+   */
+  public Adapter createReactionTriggerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Effect <em>Effect</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.Effect
+   * @generated
+   */
+  public Adapter createEffectAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.EnterEvent <em>Enter Event</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1261,6 +1258,51 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createVariableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.model.sct.statechart.Reaction <em>Reaction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.model.sct.statechart.Reaction
+   * @generated
+   */
+  public Adapter createReactionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.model.sct.statechart.Trigger <em>Trigger</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.model.sct.statechart.Trigger
+   * @generated
+   */
+  public Adapter createTriggerAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.model.sct.statechart.Effect <em>Effect</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.model.sct.statechart.Effect
+   * @generated
+   */
+  public Adapter createStatechart_EffectAdapter()
   {
     return null;
   }

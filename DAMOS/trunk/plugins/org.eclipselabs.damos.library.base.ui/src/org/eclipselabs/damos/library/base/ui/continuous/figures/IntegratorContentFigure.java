@@ -11,18 +11,18 @@
 
 package org.eclipselabs.damos.library.base.ui.continuous.figures;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.graphics.Path;
 import org.eclipse.swt.widgets.Display;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 
 /**
  * @author Andreas Unger
  *
  */
-public class IntegratorContentFigure extends Figure implements IFigureConstants {
+public class IntegratorContentFigure extends FontColorAwareFigure implements IFigureConstants {
 	
 	private static final int PREFERRED_SIZE = 400;
 	private static final float HEIGHT = PREFERRED_SIZE - DEFAULT_LINE_WIDTH;
@@ -41,6 +41,7 @@ public class IntegratorContentFigure extends Figure implements IFigureConstants 
 	 * @see org.eclipselabs.damos.diagram.figures.BlockFigure#paintCanvas(org.eclipselabs.damos.diagram.figures.ICanvasContext)
 	 */
 	protected void paintFigure(Graphics g) {
+		g.setForegroundColor(getFontColor());
 		g.setLineWidth(DEFAULT_LINE_WIDTH);
 		Rectangle border = getBounds().getCopy().shrink(DEFAULT_LINE_WIDTH_HALF, DEFAULT_LINE_WIDTH_HALF);
 		

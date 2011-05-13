@@ -11,12 +11,11 @@
 
 package org.eclipselabs.damos.diagram.ui.figures;
 
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.Panel;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 
@@ -25,7 +24,7 @@ public class SubsystemFigure extends StandardComponentFigure implements IFigureC
 	private int borderStyle = SWT.LINE_DASH;
 	private Label leftTextIcon;
 	private Label rightTextIcon;
-	private WrappingLabel textLabel;
+	private Label textLabel;
 	
 	/**
 	 * 
@@ -33,17 +32,17 @@ public class SubsystemFigure extends StandardComponentFigure implements IFigureC
 	public SubsystemFigure() {
 		((StandardComponentLayout) getLayoutManager()).setEqualPortExtents(true);
 		
-		Panel panel = new Panel();
-		panel.setLayoutManager(new GridLayout(3, false));
+		Figure textContainer = new FontColorAwareFigure();
+		textContainer.setLayoutManager(new GridLayout(3, false));
 		
 		leftTextIcon = new LabelEx();
-		panel.add(leftTextIcon);
-		textLabel = new WrappingLabel();
-		panel.add(textLabel);
+		textContainer.add(leftTextIcon);
+		textLabel = new FontColorAwareLabel();
+		textContainer.add(textLabel);
 		rightTextIcon = new LabelEx();
-		panel.add(rightTextIcon);
+		textContainer.add(rightTextIcon);
 		
-		add(panel);
+		add(textContainer);
 	}
 	
 	public Dimension calculateMinimumCanvasSize(int wHint, int hHint) {

@@ -29,8 +29,8 @@ public class ActionFigure extends CompoundFigure {
 	@Override
 	protected void paintFigure(Graphics graphics) {
 		Rectangle bounds = getBounds().getCopy();
-		bounds.shrink(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH);
-		graphics.setLineWidth(2 * IFigureConstants.DEFAULT_LINE_WIDTH);
+		bounds.shrink(3 * IFigureConstants.DEFAULT_LINE_WIDTH_HALF, 3 * IFigureConstants.DEFAULT_LINE_WIDTH_HALF);
+		graphics.setLineWidth(3 * IFigureConstants.DEFAULT_LINE_WIDTH);
 		graphics.fillRoundRectangle(bounds, ARC_SIZE, ARC_SIZE);
 		graphics.drawRoundRectangle(bounds, ARC_SIZE, ARC_SIZE);
 	}

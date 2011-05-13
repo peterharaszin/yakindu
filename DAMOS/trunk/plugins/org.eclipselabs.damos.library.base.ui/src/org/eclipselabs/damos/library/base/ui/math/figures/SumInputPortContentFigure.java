@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.library.base.ui.math.figures;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.TextUtilities;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -19,12 +18,13 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextUtilitiesEx;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SumInputPortContentFigure extends Figure {
+public class SumInputPortContentFigure extends FontColorAwareFigure {
 	
 	private static final String PLUS = "+";
 	private static final String MINUS = "-";
@@ -54,6 +54,7 @@ public class SumInputPortContentFigure extends Figure {
     protected void paintFigure(Graphics graphics) {
 		Point location = getLocation();
 		Dimension preferredSize = getPreferredSize();
+		graphics.setForegroundColor(getFontColor());
 		graphics.drawText(
 				sign,
 				location.x + (preferredSize.width - getTextSize(sign).width) / 2,

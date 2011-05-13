@@ -38,6 +38,7 @@ public class SwitchFigure extends RectangularComponentFigure implements IFigureC
 		
 		Dimension size = getCanvasSize();
 		
+		cc.setForegroundColor(getFontColor());
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
 
 		cc.drawLine(0, size.height / 6, 300, size.height / 6);

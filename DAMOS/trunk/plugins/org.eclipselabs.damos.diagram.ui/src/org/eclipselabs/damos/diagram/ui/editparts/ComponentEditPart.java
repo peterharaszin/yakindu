@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -20,7 +21,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
+import org.eclipse.swt.graphics.Color;
 import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
 import org.eclipselabs.damos.diagram.ui.editpolicies.ComponentCanonicalEditPolicy;
@@ -30,6 +34,7 @@ import org.eclipselabs.damos.diagram.ui.editpolicies.InputPortCountEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.OutputPortCountEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.TransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
+import org.eclipselabs.damos.diagram.ui.figures.IFontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentEditPartDelegate;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.FragmentSelectionEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.BlankableBorderedNodeFigure;
@@ -90,8 +95,10 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart#refreshVisuals()
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
+		refreshFontColor();
 		refreshFlipped();
 		refreshRotation();
 	}
@@ -117,11 +124,25 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#setFontColor(org.eclipse.swt.graphics.Color)
+	 */
+	@Override
+	protected void setFontColor(Color color) {
+		IFigure mainFigure = getMainFigure();
+		if (mainFigure instanceof IFontColorAwareFigure) {
+			IFontColorAwareFigure fontColorAwareFigure = (IFontColorAwareFigure) mainFigure;
+			fontColorAwareFigure.setFontColor(color);
+		}
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#handleNotificationEvent(org.eclipse.emf.common.notify.Notification)
 	 */
 	protected void handleNotificationEvent(Notification notification) {
 		Object feature = notification.getFeature();
-		if (DMLNotationPackage.eINSTANCE.getComponentLayoutConstraint_Flipped().equals(feature)) {
+		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+			refreshFontColor();
+		} else if (DMLNotationPackage.eINSTANCE.getComponentLayoutConstraint_Flipped().equals(feature)) {
 			refreshFlipped();
 		} else if (DMLNotationPackage.eINSTANCE.getComponentLayoutConstraint_Rotation().equals(feature)) {
 			refreshRotation();
@@ -202,6 +223,29 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		getDelegate().removeSemanticListeners();
 		super.removeSemanticListeners();
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#supportsGradient()
+	 */
+	@Override
+	public boolean supportsGradient() {
+		return true;
+	}
+	
+    protected void setGradient(GradientData gradient) {
+    	IFigure mainFigure = getMainFigure();
+    	if (mainFigure instanceof NodeFigure) {
+    		NodeFigure nodeFigure = (NodeFigure) mainFigure;
+	    	if (gradient != null) {    		    		
+	    		nodeFigure.setIsUsingGradient(true);
+	    		nodeFigure.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle()); 		
+	    	} else {
+	    		nodeFigure.setIsUsingGradient(false);
+	    	}
+    	} else {
+    		super.setGradient(gradient);
+    	}
+    }
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getAdapter(java.lang.Class)

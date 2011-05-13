@@ -11,16 +11,16 @@
 
 package org.eclipselabs.damos.library.base.ui.sources.figures;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 
 /**
  * @author Andreas Unger
  *
  */
-public class StepContentFigure extends Figure implements IFigureConstants {
+public class StepContentFigure extends FontColorAwareFigure implements IFigureConstants {
 	
 	private int[] points = new int[8];
 	
@@ -35,6 +35,7 @@ public class StepContentFigure extends Figure implements IFigureConstants {
 	 * @see org.eclipselabs.damos.diagram.figures.BlockFigure#paintCanvas(org.eclipselabs.damos.diagram.figures.ICanvasContext)
 	 */
 	protected void paintFigure(Graphics g) {
+    	g.setForegroundColor(getFontColor());
 		g.setLineWidth(DEFAULT_LINE_WIDTH);
 		Rectangle border = getBounds().getCopy().shrink(DEFAULT_LINE_WIDTH_HALF, DEFAULT_LINE_WIDTH_HALF);
 		points[0] = border.x;

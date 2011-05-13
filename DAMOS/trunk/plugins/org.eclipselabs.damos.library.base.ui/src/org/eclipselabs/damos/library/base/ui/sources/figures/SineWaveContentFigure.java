@@ -11,16 +11,16 @@
 
 package org.eclipselabs.damos.library.base.ui.sources.figures;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SineWaveContentFigure extends Figure implements IFigureConstants {
+public class SineWaveContentFigure extends FontColorAwareFigure implements IFigureConstants {
 	
 	private static final int AMPLITUDE = 1000;
 	private static final int[] SINE_VALUES = new int[41];
@@ -53,6 +53,7 @@ public class SineWaveContentFigure extends Figure implements IFigureConstants {
 		}
 		
 		g.translate(border.x, border.y);
+    	g.setForegroundColor(getFontColor());
 		g.setLineWidth(DEFAULT_LINE_WIDTH);
 		g.drawPolyline(points);
 	}

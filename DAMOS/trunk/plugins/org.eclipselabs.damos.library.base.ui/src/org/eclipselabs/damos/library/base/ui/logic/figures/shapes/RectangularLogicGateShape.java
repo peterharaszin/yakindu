@@ -13,8 +13,8 @@ package org.eclipselabs.damos.library.base.ui.logic.figures.shapes;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareLabel;
 import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
 
 /**
@@ -37,7 +37,7 @@ public class RectangularLogicGateShape extends LogicGateShape {
 	 * @see org.eclipselabs.damos.library.basicblocks.figures.AbstractBlockShape#createContentFigure()
 	 */
 	public IFigure createContentFigure() {
-		return new LabelEx(name);
+		return new FontColorAwareLabel(name);
 	}
 	
 	public void paintCanvas(ICanvasContext cc) {

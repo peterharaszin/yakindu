@@ -12,14 +12,14 @@
 package org.eclipselabs.damos.diagram.ui.figures;
 
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.swt.graphics.Path;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Andreas Unger
  *
  */
 public class InoutportFigure extends StandardComponentFigure implements IFigureConstants {
-
-	private int[] points = new int[10];
 	
 	public Dimension calculateMinimumCanvasSize(int wHint, int hHint) {
 		if (minSize == null) {
@@ -30,37 +30,34 @@ public class InoutportFigure extends StandardComponentFigure implements IFigureC
 		}
 		return minSize;
 	}
-
+	
 	protected void paintCanvas(ICanvasContext cc) {
 		Dimension size = getCanvasSize();
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
+		
+		float x = DEFAULT_LINE_WIDTH_HALF;
+		float y = DEFAULT_LINE_WIDTH_HALF;
+		float right = size.width - DEFAULT_LINE_WIDTH_HALF;
+		float bottom = size.height - DEFAULT_LINE_WIDTH_HALF;
 
-		int arcX = DEFAULT_LINE_WIDTH_HALF;
-		int arcY = DEFAULT_LINE_WIDTH_HALF;
-		int arcWidth = size.height / 2 - DEFAULT_LINE_WIDTH;
-		int arcHeight = size.height - DEFAULT_LINE_WIDTH;
-		int arcOffset = 90;
-		int arcLength = 180;
+		float quarterHeight = size.height / 4f;
+		float halfHeight = size.height / 2f;
 		
-		points[0] = size.height / 4 - DEFAULT_LINE_WIDTH;
-		points[1] = DEFAULT_LINE_WIDTH_HALF;
-		points[2] = size.width - size.height / 2 - DEFAULT_LINE_WIDTH_HALF;
-		points[3] = DEFAULT_LINE_WIDTH_HALF;
-		points[4] = size.width - DEFAULT_LINE_WIDTH_HALF;
-		points[5] = size.height / 2;
-		points[6] = points[2];
-		points[7] = size.height - DEFAULT_LINE_WIDTH_HALF;
-		points[8] = points[0];
-		points[9] = points[7];
-		
-		cc.fillArc(arcX, arcY, arcWidth, arcHeight, arcOffset, arcLength);
-		cc.fillPolygon(points);
-		
-		points[0] += DEFAULT_LINE_WIDTH_HALF;
-		points[8] += DEFAULT_LINE_WIDTH_HALF;
+		Path path = new Path(Display.getDefault());
+		try {
+			path.moveTo(quarterHeight, y);
+			path.lineTo(right - halfHeight, y);
+			path.lineTo(right, halfHeight);
+			path.lineTo(right - halfHeight, bottom);
+			path.lineTo(quarterHeight, bottom);
+			path.cubicTo(x, bottom, x, bottom - quarterHeight, x, halfHeight);
+			path.cubicTo(x, y + quarterHeight, x, y, quarterHeight, y);
 
-		cc.drawArc(arcX, arcY, arcWidth, arcHeight, arcOffset, arcLength);
-		cc.drawPolyline(points);
+			cc.fillPath(path);
+			cc.drawPath(path);
+		} finally {
+			path.dispose();
+		}
 	}
 	
 }

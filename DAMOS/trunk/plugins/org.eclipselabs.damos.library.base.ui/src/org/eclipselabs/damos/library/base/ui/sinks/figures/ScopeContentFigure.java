@@ -11,16 +11,16 @@
 
 package org.eclipselabs.damos.library.base.ui.sinks.figures;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ScopeContentFigure extends Figure implements IFigureConstants {
+public class ScopeContentFigure extends FontColorAwareFigure implements IFigureConstants {
 
 	/**
 	 * 
@@ -38,6 +38,7 @@ public class ScopeContentFigure extends Figure implements IFigureConstants {
 		border.shrink(border.width * 9 / 10, 0);
 		border.y += border.height / 10;
 		border.height /= 2;
+    	g.setForegroundColor(getFontColor());
 		g.setLineWidth(DEFAULT_LINE_WIDTH);
 		g.drawRectangle(border);
 	}

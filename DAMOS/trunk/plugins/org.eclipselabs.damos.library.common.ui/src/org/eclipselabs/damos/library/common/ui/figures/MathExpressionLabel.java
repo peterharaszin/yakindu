@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.library.common.ui.figures;
 
 import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.TextUtilities;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -20,12 +19,13 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextUtilitiesEx;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 
 /**
  * @author Andreas Unger
  * 
  */
-public class MathExpressionLabel extends Figure {
+public class MathExpressionLabel extends FontColorAwareFigure {
 
 	private String text = "";
 	private Dimension textSize;
@@ -100,10 +100,8 @@ public class MathExpressionLabel extends Figure {
 	}
 
 	protected void paintFigure(Graphics graphics) {
-		if (isOpaque()) {
-			super.paintFigure(graphics);
-		}
-
+		graphics.setForegroundColor(getFontColor());
+		
 		Rectangle bounds = getBounds();
 
 		boolean superscript = false;

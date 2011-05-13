@@ -19,18 +19,22 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
+import org.eclipse.swt.graphics.Color;
 import org.eclipselabs.damos.diagram.ui.figures.ConnectorAnchor;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
+import org.eclipselabs.damos.diagram.ui.figures.IFontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
 
 /**
  * @author Andreas Unger
  *
  */
-public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure implements IConnectorFigure {
+public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure implements IConnectorFigure, IFontColorAwareFigure {
 
 	public static final Dimension DEFAULT_SIZE = new Dimension(400, 400);
 	
+	private Color fontColor;
+
 	private TerminalFigure terminalFigure;
 
 	/**
@@ -40,6 +44,24 @@ public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure impl
 		super(DEFAULT_SIZE);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.IFontAwareFigure#getFontColor()
+	 */
+	public Color getFontColor() {
+		if (fontColor == null && getParent() instanceof IFontColorAwareFigure) {
+			return ((IFontColorAwareFigure) getParent()).getFontColor();
+		}
+		return fontColor;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.IFontAwareFigure#setFontColor(org.eclipse.swt.graphics.Color)
+	 */
+	public void setFontColor(Color fontColor) {
+		this.fontColor = fontColor;
+		repaint();
+	}
+
 	public TerminalFigure getTerminalFigure() {
 		if (terminalFigure == null) {
 			terminalFigure = createTerminalFigure();
@@ -124,8 +146,8 @@ public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure impl
 		bounds.shrink(IFigureConstants.DEFAULT_LINE_WIDTH_HALF, IFigureConstants.DEFAULT_LINE_WIDTH_HALF);
 		graphics.setLineWidth(IFigureConstants.DEFAULT_LINE_WIDTH);
 		graphics.setBackgroundColor(getBackgroundColor());
+		graphics.setForegroundColor(getForegroundColor());
 		graphics.fillRectangle(bounds);
-		graphics.setBackgroundColor(getForegroundColor());
 		graphics.drawRectangle(bounds);
 	}
 

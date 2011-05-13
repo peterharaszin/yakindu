@@ -42,7 +42,7 @@ public class JoinFigure extends StandardComponentFigure {
 	 */
 	@Override
 	protected void paintFigure(Graphics graphics) {
-		graphics.setBackgroundColor(getForegroundColor());
+		graphics.setBackgroundColor(getFontColor());
 		graphics.fillRectangle(getBounds());
 	}
 	

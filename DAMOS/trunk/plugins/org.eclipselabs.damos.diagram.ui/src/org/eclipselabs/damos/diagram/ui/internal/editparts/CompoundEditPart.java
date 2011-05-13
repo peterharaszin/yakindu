@@ -12,12 +12,17 @@
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.graphics.Color;
 import org.eclipselabs.damos.diagram.ui.editpolicies.DeleteSemanticComponentEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.figures.IFontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.CompoundConstrainedToolbarLayoutEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.FragmentSelectionEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.BlankableBorderedNodeFigure;
@@ -54,4 +59,28 @@ public abstract class CompoundEditPart extends AbstractBorderedShapeEditPart {
 		return new BlankableBorderedNodeFigure(createMainFigure());
 	}
 	
+	@Override
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshFontColor();
+	}
+
+	@Override
+	protected void setFontColor(Color color) {
+		IFigure mainFigure = getMainFigure();
+		if (mainFigure instanceof IFontColorAwareFigure) {
+			IFontColorAwareFigure fontColorAwareFigure = (IFontColorAwareFigure) mainFigure;
+			fontColorAwareFigure.setFontColor(color);
+		}
+	}
+
+	protected void handleNotificationEvent(Notification notification) {
+		Object feature = notification.getFeature();
+		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
+			refreshFontColor();
+		} else {
+			super.handleNotificationEvent(notification);
+		}
+	}
+
 }

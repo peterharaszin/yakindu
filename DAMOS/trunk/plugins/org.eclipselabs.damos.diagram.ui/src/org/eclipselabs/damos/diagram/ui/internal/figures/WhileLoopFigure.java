@@ -32,11 +32,11 @@ public class WhileLoopFigure extends CompoundFigure {
 	protected void paintFigure(Graphics graphics) {
 		Rectangle bounds = getBounds().getCopy();
 		
-		bounds.shrink(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH);
+		bounds.shrink(3 * IFigureConstants.DEFAULT_LINE_WIDTH_HALF, 3 * IFigureConstants.DEFAULT_LINE_WIDTH_HALF);
 
-		graphics.setLineWidth(2 * IFigureConstants.DEFAULT_LINE_WIDTH);
+		graphics.setLineWidth(3 * IFigureConstants.DEFAULT_LINE_WIDTH);
 
-		Path path = new Path(Display.getCurrent());
+		Path path = new Path(Display.getDefault());
 		try {
 			path.moveTo(bounds.x, bounds.bottom() - 1.5f * CORNER_RADIUS);
 			path.lineTo(bounds.x, bounds.y + CORNER_RADIUS);
@@ -58,10 +58,10 @@ public class WhileLoopFigure extends CompoundFigure {
 		}
 
 		try {
-			path = new Path(Display.getCurrent());
-			path.moveTo(bounds.x, bounds.bottom() - IFigureConstants.DEFAULT_LINE_WIDTH);
+			path = new Path(Display.getDefault());
+			path.moveTo(bounds.x, bounds.bottom() - 2 * IFigureConstants.DEFAULT_LINE_WIDTH);
 			path.lineTo(bounds.x, bounds.bottom() - CORNER_RADIUS);
-			path.lineTo(bounds.x + CORNER_RADIUS - IFigureConstants.DEFAULT_LINE_WIDTH, bounds.bottom() - CORNER_RADIUS);
+			path.lineTo(bounds.x + CORNER_RADIUS - 2 * IFigureConstants.DEFAULT_LINE_WIDTH, bounds.bottom() - CORNER_RADIUS);
 			path.close();
 			
 			graphics.setBackgroundColor(getForegroundColor());

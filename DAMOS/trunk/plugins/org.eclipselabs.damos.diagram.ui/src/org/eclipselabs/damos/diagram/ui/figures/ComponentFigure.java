@@ -18,16 +18,41 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.GradientStyle;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.widgets.Display;
 import org.eclipselabs.damos.diagram.core.internal.util.MathUtil;
 import org.eclipselabs.damos.diagram.ui.internal.figures.CanvasContext;
 import org.eclipselabs.damos.diagram.ui.internal.figures.TerminalBorderFigure;
 
-public abstract class ComponentFigure extends NodeFigure {
+public abstract class ComponentFigure extends NodeFigure implements IFontColorAwareFigure {
 
+	private Color fontColor;
+	
 	private boolean flipped;
 	private int rotation;
 
+	/**
+	 * @return the fontColor
+	 */
+	public Color getFontColor() {
+		if (fontColor == null && getParent() instanceof IFontColorAwareFigure) {
+			return ((IFontColorAwareFigure) getParent()).getFontColor();
+		}
+		return fontColor;
+	}
+	
+	/**
+	 * @param fontColor the fontColor to set
+	 */
+	public void setFontColor(Color fontColor) {
+		this.fontColor = fontColor;
+		repaint();
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.diagram.figures.ITransformableFigure#isFlipped()
 	 */
@@ -155,7 +180,36 @@ public abstract class ComponentFigure extends NodeFigure {
 	protected void paintFigure(Graphics graphics) {
 		Rectangle bounds = getBounds();
 		graphics.translate(bounds.x, bounds.y);
-		paintCanvas(new CanvasContext(graphics, getCanvasSize(), flipped, rotation));
+		
+		if (isUsingGradient()) {
+			Color gradientColor1 = FigureUtilities.integerToColor(getGradientColor1());
+			Color gradientColor2 = FigureUtilities.integerToColor(getGradientColor2());
+			try {
+				int x2 = 0;
+				int y2 = 0;
+				if (getGradientStyle() == GradientStyle.HORIZONTAL) {
+					x2 = (int) (bounds.width * graphics.getAbsoluteScale());
+				} else {
+					y2 = (int) (bounds.height * graphics.getAbsoluteScale());
+				}
+				Pattern pattern = new Pattern(Display.getDefault(), 0, 0, x2, y2, gradientColor1, gradientColor2);
+				try {
+					try {
+						graphics.setBackgroundPattern(pattern);
+					} catch (RuntimeException e) {
+						// Gradients not supported
+					}
+					paintCanvas(new CanvasContext(graphics, getCanvasSize(), flipped, rotation));
+				} finally {
+					pattern.dispose();
+				}
+			} finally {
+				gradientColor1.dispose();
+				gradientColor2.dispose();
+			}
+		} else {
+			paintCanvas(new CanvasContext(graphics, getCanvasSize(), flipped, rotation));
+		}
 	}
 
 	protected void paintCanvas(ICanvasContext cc) {

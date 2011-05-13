@@ -11,16 +11,16 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.figures;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 
 /**
  * @author Andreas Unger
  *
  */
-public class MemoryContentFigure extends Figure {
+public class MemoryContentFigure extends FontColorAwareFigure {
 
 	private static final int RECTANGLE_SIZE = 160;
 	
@@ -35,8 +35,9 @@ public class MemoryContentFigure extends Figure {
 	public MemoryContentFigure() {
 		setPreferredSize(400, 400);
 	}
-
+	
 	protected void paintFigure(Graphics g) {
+		g.setForegroundColor(getFontColor());
 		g.setLineWidth(IFigureConstants.DEFAULT_LINE_WIDTH);
 		Rectangle border = getBounds().getCopy().shrink(IFigureConstants.DEFAULT_LINE_WIDTH_HALF, IFigureConstants.DEFAULT_LINE_WIDTH_HALF);
 

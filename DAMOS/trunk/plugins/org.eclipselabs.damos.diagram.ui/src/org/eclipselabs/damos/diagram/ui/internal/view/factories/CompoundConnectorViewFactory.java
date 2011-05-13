@@ -12,9 +12,7 @@
 package org.eclipselabs.damos.diagram.ui.internal.view.factories;
 
 import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
@@ -24,8 +22,8 @@ public class CompoundConnectorViewFactory extends AbstractShapeViewFactory {
 	protected void decorateView(View containerView, View view, IAdaptable element, String semanticHint, int index, boolean persisted) {
 		super.decorateView(containerView, view, element, semanticHint, index, persisted);
 		ShapeStyle style = (ShapeStyle) view.getStyle(NotationPackage.eINSTANCE.getShapeStyle());
-		style.setLineColor((FigureUtilities.colorToInteger(ColorConstants.black)).intValue());
-		style.setFontColor((FigureUtilities.colorToInteger(ColorConstants.black)).intValue());
+		style.setLineColor(0x555555);
+		style.setFontColor(0);
 	}
 	
 }

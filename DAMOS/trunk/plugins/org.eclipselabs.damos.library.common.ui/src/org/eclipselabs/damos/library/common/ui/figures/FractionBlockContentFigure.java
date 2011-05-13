@@ -11,19 +11,19 @@
 
 package org.eclipselabs.damos.library.common.ui.figures;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.swt.SWT;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareFigure;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 
 /**
  * @author Andreas Unger
  *
  */
-public class FractionBlockContentFigure extends Figure {
+public class FractionBlockContentFigure extends FontColorAwareFigure {
 
 	private MathExpressionLabel numeratorLabel;
 	private MathExpressionLabel denominatorLabel;
@@ -59,7 +59,7 @@ public class FractionBlockContentFigure extends Figure {
 	 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx#paintFigure(org.eclipse.draw2d.Graphics)
 	 */
 	protected void paintFigure(Graphics graphics) {
-		super.paintFigure(graphics);
+		graphics.setForegroundColor(getFontColor());
 		int y = numeratorLabel.getBounds().bottom();
 		Rectangle bounds = getBounds();
 		graphics.setLineWidth(IFigureConstants.DEFAULT_LINE_WIDTH);

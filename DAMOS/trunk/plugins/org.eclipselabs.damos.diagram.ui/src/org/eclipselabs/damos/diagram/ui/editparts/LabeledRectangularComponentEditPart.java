@@ -14,9 +14,9 @@ package org.eclipselabs.damos.diagram.ui.editparts;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareLabel;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
 
@@ -49,7 +49,7 @@ public class LabeledRectangularComponentEditPart extends RectangularComponentEdi
 	 */
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = super.createMainFigure();
-		labelFigure = new LabelEx();
+		labelFigure = new FontColorAwareLabel();
 		figure.add(labelFigure);
 		return figure;
 	}

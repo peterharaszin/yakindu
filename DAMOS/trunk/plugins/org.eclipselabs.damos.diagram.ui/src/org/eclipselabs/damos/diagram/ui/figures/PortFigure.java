@@ -19,8 +19,8 @@ import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.swt.graphics.Color;
 import org.eclipselabs.damos.diagram.ui.internal.figures.TerminalBorderFigure;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
@@ -29,7 +29,9 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
  * @author Andreas Unger
  *
  */
-public abstract class PortFigure extends NodeFigure implements IPortFigure {
+public abstract class PortFigure extends NodeFigure implements IPortFigure, IFontColorAwareFigure {
+
+	private Color fontColor;
 
 	private static final String ANCHOR_KEY = "port";
 	
@@ -46,7 +48,7 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 	}
 
 	public PortFigure(String text) {
-		this(text != null ? new LabelEx(text) : (IFigure) null);
+		this(text != null ? new FontColorAwareLabel(text) : (IFigure) null);
 	}
 
 	public PortFigure(IFigure contentFigure) {
@@ -57,6 +59,24 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 		setConnectionAnchor(new PortAnchor(this));
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.IFontAwareFigure#getFontColor()
+	 */
+	public Color getFontColor() {
+		if (fontColor == null && getParent() instanceof IFontColorAwareFigure) {
+			return ((IFontColorAwareFigure) getParent()).getFontColor();
+		}
+		return fontColor;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.IFontAwareFigure#setFontColor(org.eclipse.swt.graphics.Color)
+	 */
+	public void setFontColor(Color fontColor) {
+		this.fontColor = fontColor;
+		repaint();
+	}
+
 	public Extents getExtents() {
 		return getExtents(Double.NaN);
 	}
@@ -157,10 +177,10 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure {
 				((Label) contentFigure).setText(text);
 			} else {
 				removeAll();
-				add(new LabelEx(text));
+				add(new FontColorAwareLabel(text));
 			}
 		} else {
-			add(new LabelEx(text));
+			add(new FontColorAwareLabel(text));
 		}
 	}
 	

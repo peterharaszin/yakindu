@@ -22,7 +22,7 @@ import org.eclipselabs.damos.diagram.ui.figures.StandardComponentFigure;
  */
 public class JoinFigure extends StandardComponentFigure {
 
-	private static final int MINIMUM_WIDTH = 4 * IFigureConstants.DEFAULT_LINE_WIDTH;
+	private static final int MINIMUM_WIDTH = 5 * IFigureConstants.DEFAULT_LINE_WIDTH;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)

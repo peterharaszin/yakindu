@@ -75,21 +75,12 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
       case ExpressionsPackage.STATE_ROOT: return createStateRoot();
       case ExpressionsPackage.TRANSITION_ROOT: return createTransitionRoot();
       case ExpressionsPackage.STATECHART_DEFINITION: return createStatechartDefinition();
-      case ExpressionsPackage.STATE_DEFINITION: return createStateDefinition();
+      case ExpressionsPackage.STATE_DECLARATION: return createStateDeclaration();
       case ExpressionsPackage.TRANSITION_STATEMENT: return createTransitionStatement();
-      case ExpressionsPackage.SCOPE: return createScope();
-      case ExpressionsPackage.SIMPLE_SCOPE: return createSimpleScope();
-      case ExpressionsPackage.STATECHART_SCOPE: return createStatechartScope();
-      case ExpressionsPackage.INTERFACE_SCOPE: return createInterfaceScope();
-      case ExpressionsPackage.INTERNAL_SCOPE: return createInternalScope();
-      case ExpressionsPackage.DEFINITION: return createDefinition();
-      case ExpressionsPackage.EVENT_DEFINITION: return createEventDefinition();
       case ExpressionsPackage.EVENT_DERIVATION: return createEventDerivation();
-      case ExpressionsPackage.VARIABLE_DEFINITION: return createVariableDefinition();
-      case ExpressionsPackage.CLOCK: return createClock();
-      case ExpressionsPackage.OPERATION: return createOperation();
-      case ExpressionsPackage.ENTRYPOINT: return createEntrypoint();
-      case ExpressionsPackage.EXITPOINT: return createExitpoint();
+      case ExpressionsPackage.REACTION: return createReaction();
+      case ExpressionsPackage.LOCAL_REACTION: return createLocalReaction();
+      case ExpressionsPackage.TRANSITION_REACTION: return createTransitionReaction();
       case ExpressionsPackage.REACTION_PROPERTIES: return createReactionProperties();
       case ExpressionsPackage.REACTION_PROPERTY: return createReactionProperty();
       case ExpressionsPackage.REACTION_PRIORITY: return createReactionPriority();
@@ -107,10 +98,16 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
       case ExpressionsPackage.ASSIGNMENT: return createAssignment();
       case ExpressionsPackage.EVENT_RAISING: return createEventRaising();
       case ExpressionsPackage.EXPRESSION: return createExpression();
-      case ExpressionsPackage.LOCAL_REACTION: return createLocalReaction();
-      case ExpressionsPackage.TRANSITION_REACTION: return createTransitionReaction();
+      case ExpressionsPackage.SIMPLE_SCOPE: return createSimpleScope();
+      case ExpressionsPackage.INTERFACE_SCOPE: return createInterfaceScope();
+      case ExpressionsPackage.INTERNAL_SCOPE: return createInternalScope();
+      case ExpressionsPackage.EVENT_DEFINITION: return createEventDefinition();
+      case ExpressionsPackage.VARIABLE_DEFINITION: return createVariableDefinition();
+      case ExpressionsPackage.OPERATION: return createOperation();
+      case ExpressionsPackage.ENTRYPOINT: return createEntrypoint();
+      case ExpressionsPackage.EXITPOINT: return createExitpoint();
       case ExpressionsPackage.REACTION_TRIGGER: return createReactionTrigger();
-      case ExpressionsPackage.EFFECT: return createEffect();
+      case ExpressionsPackage.REACTION_EFFECT: return createReactionEffect();
       case ExpressionsPackage.ENTER_EVENT: return createEnterEvent();
       case ExpressionsPackage.LOGICAL_OR_EXPRESSION: return createLogicalOrExpression();
       case ExpressionsPackage.LOGICAL_AND_EXPRESSION: return createLogicalAndExpression();
@@ -256,10 +253,10 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public StateDefinition createStateDefinition()
+  public StateDeclaration createStateDeclaration()
   {
-    StateDefinitionImpl stateDefinition = new StateDefinitionImpl();
-    return stateDefinition;
+    StateDeclarationImpl stateDeclaration = new StateDeclarationImpl();
+    return stateDeclaration;
   }
 
   /**
@@ -278,83 +275,6 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Scope createScope()
-  {
-    ScopeImpl scope = new ScopeImpl();
-    return scope;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SimpleScope createSimpleScope()
-  {
-    SimpleScopeImpl simpleScope = new SimpleScopeImpl();
-    return simpleScope;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StatechartScope createStatechartScope()
-  {
-    StatechartScopeImpl statechartScope = new StatechartScopeImpl();
-    return statechartScope;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InterfaceScope createInterfaceScope()
-  {
-    InterfaceScopeImpl interfaceScope = new InterfaceScopeImpl();
-    return interfaceScope;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InternalScope createInternalScope()
-  {
-    InternalScopeImpl internalScope = new InternalScopeImpl();
-    return internalScope;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Definition createDefinition()
-  {
-    DefinitionImpl definition = new DefinitionImpl();
-    return definition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EventDefinition createEventDefinition()
-  {
-    EventDefinitionImpl eventDefinition = new EventDefinitionImpl();
-    return eventDefinition;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EventDerivation createEventDerivation()
   {
     EventDerivationImpl eventDerivation = new EventDerivationImpl();
@@ -366,10 +286,10 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public VariableDefinition createVariableDefinition()
+  public Reaction createReaction()
   {
-    VariableDefinitionImpl variableDefinition = new VariableDefinitionImpl();
-    return variableDefinition;
+    ReactionImpl reaction = new ReactionImpl();
+    return reaction;
   }
 
   /**
@@ -377,10 +297,10 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Clock createClock()
+  public LocalReaction createLocalReaction()
   {
-    ClockImpl clock = new ClockImpl();
-    return clock;
+    LocalReactionImpl localReaction = new LocalReactionImpl();
+    return localReaction;
   }
 
   /**
@@ -388,32 +308,10 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Operation createOperation()
+  public TransitionReaction createTransitionReaction()
   {
-    OperationImpl operation = new OperationImpl();
-    return operation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Entrypoint createEntrypoint()
-  {
-    EntrypointImpl entrypoint = new EntrypointImpl();
-    return entrypoint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Exitpoint createExitpoint()
-  {
-    ExitpointImpl exitpoint = new ExitpointImpl();
-    return exitpoint;
+    TransitionReactionImpl transitionReaction = new TransitionReactionImpl();
+    return transitionReaction;
   }
 
   /**
@@ -608,10 +506,10 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public LocalReaction createLocalReaction()
+  public SimpleScope createSimpleScope()
   {
-    LocalReactionImpl localReaction = new LocalReactionImpl();
-    return localReaction;
+    SimpleScopeImpl simpleScope = new SimpleScopeImpl();
+    return simpleScope;
   }
 
   /**
@@ -619,10 +517,76 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public TransitionReaction createTransitionReaction()
+  public InterfaceScope createInterfaceScope()
   {
-    TransitionReactionImpl transitionReaction = new TransitionReactionImpl();
-    return transitionReaction;
+    InterfaceScopeImpl interfaceScope = new InterfaceScopeImpl();
+    return interfaceScope;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InternalScope createInternalScope()
+  {
+    InternalScopeImpl internalScope = new InternalScopeImpl();
+    return internalScope;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EventDefinition createEventDefinition()
+  {
+    EventDefinitionImpl eventDefinition = new EventDefinitionImpl();
+    return eventDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VariableDefinition createVariableDefinition()
+  {
+    VariableDefinitionImpl variableDefinition = new VariableDefinitionImpl();
+    return variableDefinition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Operation createOperation()
+  {
+    OperationImpl operation = new OperationImpl();
+    return operation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Entrypoint createEntrypoint()
+  {
+    EntrypointImpl entrypoint = new EntrypointImpl();
+    return entrypoint;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Exitpoint createExitpoint()
+  {
+    ExitpointImpl exitpoint = new ExitpointImpl();
+    return exitpoint;
   }
 
   /**
@@ -641,10 +605,10 @@ public class ExpressionsFactoryImpl extends EFactoryImpl implements ExpressionsF
    * <!-- end-user-doc -->
    * @generated
    */
-  public Effect createEffect()
+  public ReactionEffect createReactionEffect()
   {
-    EffectImpl effect = new EffectImpl();
-    return effect;
+    ReactionEffectImpl reactionEffect = new ReactionEffectImpl();
+    return reactionEffect;
   }
 
   /**

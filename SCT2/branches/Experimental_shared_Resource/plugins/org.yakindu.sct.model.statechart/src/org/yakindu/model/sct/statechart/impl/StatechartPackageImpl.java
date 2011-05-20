@@ -396,15 +396,6 @@ public class StatechartPackageImpl extends EPackageImpl implements StatechartPac
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTransition_Reaction() {
-        return (EReference)getTransition().getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getFinalState() {
 		if (finalStateEClass == null) {
 			finalStateEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(StatechartPackage.eNS_URI).getEClassifiers().get(5);

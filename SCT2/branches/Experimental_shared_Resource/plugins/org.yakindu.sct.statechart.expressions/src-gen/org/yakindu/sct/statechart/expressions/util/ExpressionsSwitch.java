@@ -12,9 +12,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 
 import org.yakindu.model.sct.statechart.Declaration;
+import org.yakindu.model.sct.statechart.Effect;
 import org.yakindu.model.sct.statechart.Event;
 import org.yakindu.model.sct.statechart.NamedElement;
-import org.yakindu.model.sct.statechart.Reaction;
+import org.yakindu.model.sct.statechart.Scope;
 import org.yakindu.model.sct.statechart.Trigger;
 import org.yakindu.model.sct.statechart.Variable;
 
@@ -128,10 +129,10 @@ public class ExpressionsSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.STATE_DEFINITION:
+      case ExpressionsPackage.STATE_DECLARATION:
       {
-        StateDefinition stateDefinition = (StateDefinition)theEObject;
-        T result = caseStateDefinition(stateDefinition);
+        StateDeclaration stateDeclaration = (StateDeclaration)theEObject;
+        T result = caseStateDeclaration(stateDeclaration);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -142,66 +143,6 @@ public class ExpressionsSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.SCOPE:
-      {
-        Scope scope = (Scope)theEObject;
-        T result = caseScope(scope);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.SIMPLE_SCOPE:
-      {
-        SimpleScope simpleScope = (SimpleScope)theEObject;
-        T result = caseSimpleScope(simpleScope);
-        if (result == null) result = caseStateDefinition(simpleScope);
-        if (result == null) result = caseScope(simpleScope);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.STATECHART_SCOPE:
-      {
-        StatechartScope statechartScope = (StatechartScope)theEObject;
-        T result = caseStatechartScope(statechartScope);
-        if (result == null) result = caseScope(statechartScope);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.INTERFACE_SCOPE:
-      {
-        InterfaceScope interfaceScope = (InterfaceScope)theEObject;
-        T result = caseInterfaceScope(interfaceScope);
-        if (result == null) result = caseStatechartScope(interfaceScope);
-        if (result == null) result = caseScope(interfaceScope);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.INTERNAL_SCOPE:
-      {
-        InternalScope internalScope = (InternalScope)theEObject;
-        T result = caseInternalScope(internalScope);
-        if (result == null) result = caseStatechartScope(internalScope);
-        if (result == null) result = caseScope(internalScope);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.DEFINITION:
-      {
-        Definition definition = (Definition)theEObject;
-        T result = caseDefinition(definition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.EVENT_DEFINITION:
-      {
-        EventDefinition eventDefinition = (EventDefinition)theEObject;
-        T result = caseEventDefinition(eventDefinition);
-        if (result == null) result = caseDefinition(eventDefinition);
-        if (result == null) result = caseEvent(eventDefinition);
-        if (result == null) result = caseDeclaration(eventDefinition);
-        if (result == null) result = caseNamedElement(eventDefinition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case ExpressionsPackage.EVENT_DERIVATION:
       {
         EventDerivation eventDerivation = (EventDerivation)theEObject;
@@ -209,46 +150,29 @@ public class ExpressionsSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.VARIABLE_DEFINITION:
+      case ExpressionsPackage.REACTION:
       {
-        VariableDefinition variableDefinition = (VariableDefinition)theEObject;
-        T result = caseVariableDefinition(variableDefinition);
-        if (result == null) result = caseDefinition(variableDefinition);
-        if (result == null) result = caseVariable(variableDefinition);
-        if (result == null) result = caseDeclaration(variableDefinition);
-        if (result == null) result = caseNamedElement(variableDefinition);
+        Reaction reaction = (Reaction)theEObject;
+        T result = caseReaction(reaction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.CLOCK:
+      case ExpressionsPackage.LOCAL_REACTION:
       {
-        Clock clock = (Clock)theEObject;
-        T result = caseClock(clock);
-        if (result == null) result = caseDefinition(clock);
+        LocalReaction localReaction = (LocalReaction)theEObject;
+        T result = caseLocalReaction(localReaction);
+        if (result == null) result = caseDeclaration(localReaction);
+        if (result == null) result = caseReaction(localReaction);
+        if (result == null) result = caseNamedElement(localReaction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.OPERATION:
+      case ExpressionsPackage.TRANSITION_REACTION:
       {
-        Operation operation = (Operation)theEObject;
-        T result = caseOperation(operation);
-        if (result == null) result = caseDefinition(operation);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.ENTRYPOINT:
-      {
-        Entrypoint entrypoint = (Entrypoint)theEObject;
-        T result = caseEntrypoint(entrypoint);
-        if (result == null) result = caseDefinition(entrypoint);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case ExpressionsPackage.EXITPOINT:
-      {
-        Exitpoint exitpoint = (Exitpoint)theEObject;
-        T result = caseExitpoint(exitpoint);
-        if (result == null) result = caseDefinition(exitpoint);
+        TransitionReaction transitionReaction = (TransitionReaction)theEObject;
+        T result = caseTransitionReaction(transitionReaction);
+        if (result == null) result = caseTransitionStatement(transitionReaction);
+        if (result == null) result = caseReaction(transitionReaction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -387,19 +311,74 @@ public class ExpressionsSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.LOCAL_REACTION:
+      case ExpressionsPackage.SIMPLE_SCOPE:
       {
-        LocalReaction localReaction = (LocalReaction)theEObject;
-        T result = caseLocalReaction(localReaction);
-        if (result == null) result = caseReaction(localReaction);
+        SimpleScope simpleScope = (SimpleScope)theEObject;
+        T result = caseSimpleScope(simpleScope);
+        if (result == null) result = caseScope(simpleScope);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.TRANSITION_REACTION:
+      case ExpressionsPackage.INTERFACE_SCOPE:
       {
-        TransitionReaction transitionReaction = (TransitionReaction)theEObject;
-        T result = caseTransitionReaction(transitionReaction);
-        if (result == null) result = caseReaction(transitionReaction);
+        InterfaceScope interfaceScope = (InterfaceScope)theEObject;
+        T result = caseInterfaceScope(interfaceScope);
+        if (result == null) result = caseScope(interfaceScope);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ExpressionsPackage.INTERNAL_SCOPE:
+      {
+        InternalScope internalScope = (InternalScope)theEObject;
+        T result = caseInternalScope(internalScope);
+        if (result == null) result = caseScope(internalScope);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ExpressionsPackage.EVENT_DEFINITION:
+      {
+        EventDefinition eventDefinition = (EventDefinition)theEObject;
+        T result = caseEventDefinition(eventDefinition);
+        if (result == null) result = caseEvent(eventDefinition);
+        if (result == null) result = caseDeclaration(eventDefinition);
+        if (result == null) result = caseNamedElement(eventDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ExpressionsPackage.VARIABLE_DEFINITION:
+      {
+        VariableDefinition variableDefinition = (VariableDefinition)theEObject;
+        T result = caseVariableDefinition(variableDefinition);
+        if (result == null) result = caseVariable(variableDefinition);
+        if (result == null) result = caseDeclaration(variableDefinition);
+        if (result == null) result = caseNamedElement(variableDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ExpressionsPackage.OPERATION:
+      {
+        Operation operation = (Operation)theEObject;
+        T result = caseOperation(operation);
+        if (result == null) result = caseDeclaration(operation);
+        if (result == null) result = caseNamedElement(operation);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ExpressionsPackage.ENTRYPOINT:
+      {
+        Entrypoint entrypoint = (Entrypoint)theEObject;
+        T result = caseEntrypoint(entrypoint);
+        if (result == null) result = caseDeclaration(entrypoint);
+        if (result == null) result = caseNamedElement(entrypoint);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case ExpressionsPackage.EXITPOINT:
+      {
+        Exitpoint exitpoint = (Exitpoint)theEObject;
+        T result = caseExitpoint(exitpoint);
+        if (result == null) result = caseDeclaration(exitpoint);
+        if (result == null) result = caseNamedElement(exitpoint);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -411,11 +390,11 @@ public class ExpressionsSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case ExpressionsPackage.EFFECT:
+      case ExpressionsPackage.REACTION_EFFECT:
       {
-        Effect effect = (Effect)theEObject;
-        T result = caseEffect(effect);
-        if (result == null) result = caseStatechart_Effect(effect);
+        ReactionEffect reactionEffect = (ReactionEffect)theEObject;
+        T result = caseReactionEffect(reactionEffect);
+        if (result == null) result = caseEffect(reactionEffect);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -610,17 +589,17 @@ public class ExpressionsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>State Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>State Declaration</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>State Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>State Declaration</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStateDefinition(StateDefinition object)
+  public T caseStateDeclaration(StateDeclaration object)
   {
     return null;
   }
@@ -642,118 +621,6 @@ public class ExpressionsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Scope</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Scope</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseScope(Scope object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Simple Scope</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Simple Scope</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSimpleScope(SimpleScope object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Statechart Scope</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Statechart Scope</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStatechartScope(StatechartScope object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Interface Scope</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Interface Scope</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInterfaceScope(InterfaceScope object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Internal Scope</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Internal Scope</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseInternalScope(InternalScope object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Definition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Definition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDefinition(Definition object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Event Definition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Event Definition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEventDefinition(EventDefinition object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Event Derivation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -770,81 +637,49 @@ public class ExpressionsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Variable Definition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Reaction</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Variable Definition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Reaction</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVariableDefinition(VariableDefinition object)
+  public T caseReaction(Reaction object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Clock</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Local Reaction</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Clock</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Local Reaction</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseClock(Clock object)
+  public T caseLocalReaction(LocalReaction object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Transition Reaction</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Transition Reaction</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseOperation(Operation object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Entrypoint</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Entrypoint</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEntrypoint(Entrypoint object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Exitpoint</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Exitpoint</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExitpoint(Exitpoint object)
+  public T caseTransitionReaction(TransitionReaction object)
   {
     return null;
   }
@@ -1122,33 +957,129 @@ public class ExpressionsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Local Reaction</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Simple Scope</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Local Reaction</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Simple Scope</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLocalReaction(LocalReaction object)
+  public T caseSimpleScope(SimpleScope object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Transition Reaction</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Interface Scope</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Transition Reaction</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Interface Scope</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTransitionReaction(TransitionReaction object)
+  public T caseInterfaceScope(InterfaceScope object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Internal Scope</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Internal Scope</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInternalScope(InternalScope object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Event Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Event Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEventDefinition(EventDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariableDefinition(VariableDefinition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Operation</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Operation</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOperation(Operation object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Entrypoint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Entrypoint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEntrypoint(Entrypoint object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Exitpoint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Exitpoint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExitpoint(Exitpoint object)
   {
     return null;
   }
@@ -1170,17 +1101,17 @@ public class ExpressionsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Effect</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Reaction Effect</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Effect</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Reaction Effect</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseEffect(Effect object)
+  public T caseReactionEffect(ReactionEffect object)
   {
     return null;
   }
@@ -1394,6 +1325,22 @@ public class ExpressionsSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Scope</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Scope</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseScope(Scope object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Event</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1426,22 +1373,6 @@ public class ExpressionsSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Reaction</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Reaction</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseReaction(Reaction object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Trigger</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -1468,7 +1399,7 @@ public class ExpressionsSwitch<T> extends Switch<T>
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStatechart_Effect(org.yakindu.model.sct.statechart.Effect object)
+  public T caseEffect(Effect object)
   {
     return null;
   }

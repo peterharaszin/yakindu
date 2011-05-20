@@ -174,6 +174,11 @@ public class ReactiveElementItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StatechartPackage.Literals.REACTIVE_ELEMENT__LOCAL_REACTIONS,
+				 StatechartFactory.eINSTANCE.createTransition()));
 	}
 
 	/**

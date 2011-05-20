@@ -20,11 +20,8 @@ import org.yakindu.sct.statechart.expressions.AdditiveOperator;
 import org.yakindu.sct.statechart.expressions.AlwaysEvent;
 import org.yakindu.sct.statechart.expressions.Assignment;
 import org.yakindu.sct.statechart.expressions.BuiltinEventSpec;
-import org.yakindu.sct.statechart.expressions.Clock;
 import org.yakindu.sct.statechart.expressions.DefRoot;
-import org.yakindu.sct.statechart.expressions.Definition;
 import org.yakindu.sct.statechart.expressions.Direction;
-import org.yakindu.sct.statechart.expressions.Effect;
 import org.yakindu.sct.statechart.expressions.ElementReferenceExpression;
 import org.yakindu.sct.statechart.expressions.EnterEvent;
 import org.yakindu.sct.statechart.expressions.EntryEvent;
@@ -55,6 +52,8 @@ import org.yakindu.sct.statechart.expressions.OnCycleEvent;
 import org.yakindu.sct.statechart.expressions.Operation;
 import org.yakindu.sct.statechart.expressions.OperationCall;
 import org.yakindu.sct.statechart.expressions.PrimitiveValueExpression;
+import org.yakindu.sct.statechart.expressions.Reaction;
+import org.yakindu.sct.statechart.expressions.ReactionEffect;
 import org.yakindu.sct.statechart.expressions.ReactionPriority;
 import org.yakindu.sct.statechart.expressions.ReactionProperties;
 import org.yakindu.sct.statechart.expressions.ReactionProperty;
@@ -62,13 +61,11 @@ import org.yakindu.sct.statechart.expressions.ReactionTrigger;
 import org.yakindu.sct.statechart.expressions.RegularEventSpec;
 import org.yakindu.sct.statechart.expressions.RelationalOperator;
 import org.yakindu.sct.statechart.expressions.Root;
-import org.yakindu.sct.statechart.expressions.Scope;
 import org.yakindu.sct.statechart.expressions.SimpleScope;
-import org.yakindu.sct.statechart.expressions.StateDefinition;
+import org.yakindu.sct.statechart.expressions.StateDeclaration;
 import org.yakindu.sct.statechart.expressions.StateRoot;
 import org.yakindu.sct.statechart.expressions.StatechartDefinition;
 import org.yakindu.sct.statechart.expressions.StatechartRoot;
-import org.yakindu.sct.statechart.expressions.StatechartScope;
 import org.yakindu.sct.statechart.expressions.Statement;
 import org.yakindu.sct.statechart.expressions.TimeEventSpec;
 import org.yakindu.sct.statechart.expressions.TimeUnit;
@@ -134,7 +131,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass stateDefinitionEClass = null;
+  private EClass stateDeclarationEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -148,55 +145,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass scopeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass simpleScopeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass statechartScopeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass interfaceScopeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass internalScopeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass definitionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass eventDefinitionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass eventDerivationEClass = null;
 
   /**
@@ -204,35 +152,21 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass variableDefinitionEClass = null;
+  private EClass reactionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass clockEClass = null;
+  private EClass localReactionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass operationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass entrypointEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass exitpointEClass = null;
+  private EClass transitionReactionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -358,14 +292,56 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass localReactionEClass = null;
+  private EClass simpleScopeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass transitionReactionEClass = null;
+  private EClass interfaceScopeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass internalScopeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass eventDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass variableDefinitionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass operationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass entrypointEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass exitpointEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -379,7 +355,7 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass effectEClass = null;
+  private EClass reactionEffectEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -688,9 +664,19 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getStateDefinition()
+  public EClass getStateDeclaration()
   {
-    return stateDefinitionEClass;
+    return stateDeclarationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStateDeclaration_Scope()
+  {
+    return (EReference)stateDeclarationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -701,136 +687,6 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
   public EClass getTransitionStatement()
   {
     return transitionStatementEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTransitionStatement_Reaction()
-  {
-    return (EReference)transitionStatementEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getScope()
-  {
-    return scopeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getScope_Definitions()
-  {
-    return (EReference)scopeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getSimpleScope()
-  {
-    return simpleScopeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getStatechartScope()
-  {
-    return statechartScopeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getInterfaceScope()
-  {
-    return interfaceScopeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getInterfaceScope_Name()
-  {
-    return (EAttribute)interfaceScopeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getInternalScope()
-  {
-    return internalScopeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getDefinition()
-  {
-    return definitionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getEventDefinition()
-  {
-    return eventDefinitionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEventDefinition_Direction()
-  {
-    return (EAttribute)eventDefinitionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEventDefinition_Type()
-  {
-    return (EAttribute)eventDefinitionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEventDefinition_Derivation()
-  {
-    return (EReference)eventDefinitionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -868,9 +724,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getVariableDefinition()
+  public EClass getReaction()
   {
-    return variableDefinitionEClass;
+    return reactionEClass;
   }
 
   /**
@@ -878,9 +734,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariableDefinition_Readonly()
+  public EReference getReaction_Trigger()
   {
-    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(0);
+    return (EReference)reactionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -888,9 +744,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariableDefinition_External()
+  public EReference getReaction_Effect()
   {
-    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(1);
+    return (EReference)reactionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -898,9 +754,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariableDefinition_Type()
+  public EReference getReaction_Properties()
   {
-    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(2);
+    return (EReference)reactionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -908,9 +764,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariableDefinition_InitialValue()
+  public EClass getLocalReaction()
   {
-    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(3);
+    return localReactionEClass;
   }
 
   /**
@@ -918,99 +774,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getClock()
+  public EClass getTransitionReaction()
   {
-    return clockEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getClock_Name()
-  {
-    return (EAttribute)clockEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getOperation()
-  {
-    return operationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getOperation_Name()
-  {
-    return (EAttribute)operationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getOperation_ParamTypes()
-  {
-    return (EAttribute)operationEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getOperation_Type()
-  {
-    return (EAttribute)operationEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getEntrypoint()
-  {
-    return entrypointEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEntrypoint_Name()
-  {
-    return (EAttribute)entrypointEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getExitpoint()
-  {
-    return exitpointEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getExitpoint_Name()
-  {
-    return (EAttribute)exitpointEClass.getEStructuralFeatures().get(0);
+    return transitionReactionEClass;
   }
 
   /**
@@ -1298,9 +1064,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getLocalReaction()
+  public EClass getSimpleScope()
   {
-    return localReactionEClass;
+    return simpleScopeEClass;
   }
 
   /**
@@ -1308,9 +1074,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getLocalReaction_Properties()
+  public EClass getInterfaceScope()
   {
-    return (EReference)localReactionEClass.getEStructuralFeatures().get(0);
+    return interfaceScopeEClass;
   }
 
   /**
@@ -1318,9 +1084,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getTransitionReaction()
+  public EAttribute getInterfaceScope_Name()
   {
-    return transitionReactionEClass;
+    return (EAttribute)interfaceScopeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1328,9 +1094,149 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTransitionReaction_Properties()
+  public EClass getInternalScope()
   {
-    return (EReference)transitionReactionEClass.getEStructuralFeatures().get(0);
+    return internalScopeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEventDefinition()
+  {
+    return eventDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEventDefinition_Direction()
+  {
+    return (EAttribute)eventDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getEventDefinition_Type()
+  {
+    return (EAttribute)eventDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getEventDefinition_Derivation()
+  {
+    return (EReference)eventDefinitionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getVariableDefinition()
+  {
+    return variableDefinitionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVariableDefinition_Readonly()
+  {
+    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVariableDefinition_External()
+  {
+    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVariableDefinition_Type()
+  {
+    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVariableDefinition_InitialValue()
+  {
+    return (EAttribute)variableDefinitionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOperation()
+  {
+    return operationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getOperation_ParamTypes()
+  {
+    return (EAttribute)operationEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getOperation_Type()
+  {
+    return (EAttribute)operationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getEntrypoint()
+  {
+    return entrypointEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExitpoint()
+  {
+    return exitpointEClass;
   }
 
   /**
@@ -1368,9 +1274,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEffect()
+  public EClass getReactionEffect()
   {
-    return effectEClass;
+    return reactionEffectEClass;
   }
 
   /**
@@ -1378,9 +1284,9 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getEffect_Actions()
+  public EReference getReactionEffect_Actions()
   {
-    return (EReference)effectEClass.getEStructuralFeatures().get(0);
+    return (EReference)reactionEffectEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1810,53 +1716,23 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     statechartDefinitionEClass = createEClass(STATECHART_DEFINITION);
     createEReference(statechartDefinitionEClass, STATECHART_DEFINITION__DEFINITION_SCOPES);
 
-    stateDefinitionEClass = createEClass(STATE_DEFINITION);
+    stateDeclarationEClass = createEClass(STATE_DECLARATION);
+    createEReference(stateDeclarationEClass, STATE_DECLARATION__SCOPE);
 
     transitionStatementEClass = createEClass(TRANSITION_STATEMENT);
-    createEReference(transitionStatementEClass, TRANSITION_STATEMENT__REACTION);
-
-    scopeEClass = createEClass(SCOPE);
-    createEReference(scopeEClass, SCOPE__DEFINITIONS);
-
-    simpleScopeEClass = createEClass(SIMPLE_SCOPE);
-
-    statechartScopeEClass = createEClass(STATECHART_SCOPE);
-
-    interfaceScopeEClass = createEClass(INTERFACE_SCOPE);
-    createEAttribute(interfaceScopeEClass, INTERFACE_SCOPE__NAME);
-
-    internalScopeEClass = createEClass(INTERNAL_SCOPE);
-
-    definitionEClass = createEClass(DEFINITION);
-
-    eventDefinitionEClass = createEClass(EVENT_DEFINITION);
-    createEAttribute(eventDefinitionEClass, EVENT_DEFINITION__DIRECTION);
-    createEAttribute(eventDefinitionEClass, EVENT_DEFINITION__TYPE);
-    createEReference(eventDefinitionEClass, EVENT_DEFINITION__DERIVATION);
 
     eventDerivationEClass = createEClass(EVENT_DERIVATION);
     createEReference(eventDerivationEClass, EVENT_DERIVATION__CONDITION);
     createEReference(eventDerivationEClass, EVENT_DERIVATION__VALUE);
 
-    variableDefinitionEClass = createEClass(VARIABLE_DEFINITION);
-    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__READONLY);
-    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__EXTERNAL);
-    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__TYPE);
-    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__INITIAL_VALUE);
+    reactionEClass = createEClass(REACTION);
+    createEReference(reactionEClass, REACTION__TRIGGER);
+    createEReference(reactionEClass, REACTION__EFFECT);
+    createEReference(reactionEClass, REACTION__PROPERTIES);
 
-    clockEClass = createEClass(CLOCK);
-    createEAttribute(clockEClass, CLOCK__NAME);
+    localReactionEClass = createEClass(LOCAL_REACTION);
 
-    operationEClass = createEClass(OPERATION);
-    createEAttribute(operationEClass, OPERATION__NAME);
-    createEAttribute(operationEClass, OPERATION__PARAM_TYPES);
-    createEAttribute(operationEClass, OPERATION__TYPE);
-
-    entrypointEClass = createEClass(ENTRYPOINT);
-    createEAttribute(entrypointEClass, ENTRYPOINT__NAME);
-
-    exitpointEClass = createEClass(EXITPOINT);
-    createEAttribute(exitpointEClass, EXITPOINT__NAME);
+    transitionReactionEClass = createEClass(TRANSITION_REACTION);
 
     reactionPropertiesEClass = createEClass(REACTION_PROPERTIES);
     createEReference(reactionPropertiesEClass, REACTION_PROPERTIES__PROPERTIES);
@@ -1903,18 +1779,38 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
     expressionEClass = createEClass(EXPRESSION);
 
-    localReactionEClass = createEClass(LOCAL_REACTION);
-    createEReference(localReactionEClass, LOCAL_REACTION__PROPERTIES);
+    simpleScopeEClass = createEClass(SIMPLE_SCOPE);
 
-    transitionReactionEClass = createEClass(TRANSITION_REACTION);
-    createEReference(transitionReactionEClass, TRANSITION_REACTION__PROPERTIES);
+    interfaceScopeEClass = createEClass(INTERFACE_SCOPE);
+    createEAttribute(interfaceScopeEClass, INTERFACE_SCOPE__NAME);
+
+    internalScopeEClass = createEClass(INTERNAL_SCOPE);
+
+    eventDefinitionEClass = createEClass(EVENT_DEFINITION);
+    createEAttribute(eventDefinitionEClass, EVENT_DEFINITION__DIRECTION);
+    createEAttribute(eventDefinitionEClass, EVENT_DEFINITION__TYPE);
+    createEReference(eventDefinitionEClass, EVENT_DEFINITION__DERIVATION);
+
+    variableDefinitionEClass = createEClass(VARIABLE_DEFINITION);
+    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__READONLY);
+    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__EXTERNAL);
+    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__TYPE);
+    createEAttribute(variableDefinitionEClass, VARIABLE_DEFINITION__INITIAL_VALUE);
+
+    operationEClass = createEClass(OPERATION);
+    createEAttribute(operationEClass, OPERATION__PARAM_TYPES);
+    createEAttribute(operationEClass, OPERATION__TYPE);
+
+    entrypointEClass = createEClass(ENTRYPOINT);
+
+    exitpointEClass = createEClass(EXITPOINT);
 
     reactionTriggerEClass = createEClass(REACTION_TRIGGER);
     createEReference(reactionTriggerEClass, REACTION_TRIGGER__TRIGGERS);
     createEReference(reactionTriggerEClass, REACTION_TRIGGER__GUARD_EXPRESSION);
 
-    effectEClass = createEClass(EFFECT);
-    createEReference(effectEClass, EFFECT__ACTIONS);
+    reactionEffectEClass = createEClass(REACTION_EFFECT);
+    createEReference(reactionEffectEClass, REACTION_EFFECT__ACTIONS);
 
     enterEventEClass = createEClass(ENTER_EVENT);
 
@@ -2003,19 +1899,10 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     statechartRootEClass.getESuperTypes().add(this.getDefRoot());
     stateRootEClass.getESuperTypes().add(this.getDefRoot());
     transitionRootEClass.getESuperTypes().add(this.getDefRoot());
-    simpleScopeEClass.getESuperTypes().add(this.getStateDefinition());
-    simpleScopeEClass.getESuperTypes().add(this.getScope());
-    statechartScopeEClass.getESuperTypes().add(this.getScope());
-    interfaceScopeEClass.getESuperTypes().add(this.getStatechartScope());
-    internalScopeEClass.getESuperTypes().add(this.getStatechartScope());
-    eventDefinitionEClass.getESuperTypes().add(this.getDefinition());
-    eventDefinitionEClass.getESuperTypes().add(theStatechartPackage.getEvent());
-    variableDefinitionEClass.getESuperTypes().add(this.getDefinition());
-    variableDefinitionEClass.getESuperTypes().add(theStatechartPackage.getVariable());
-    clockEClass.getESuperTypes().add(this.getDefinition());
-    operationEClass.getESuperTypes().add(this.getDefinition());
-    entrypointEClass.getESuperTypes().add(this.getDefinition());
-    exitpointEClass.getESuperTypes().add(this.getDefinition());
+    localReactionEClass.getESuperTypes().add(theStatechartPackage.getDeclaration());
+    localReactionEClass.getESuperTypes().add(this.getReaction());
+    transitionReactionEClass.getESuperTypes().add(this.getTransitionStatement());
+    transitionReactionEClass.getESuperTypes().add(this.getReaction());
     reactionPriorityEClass.getESuperTypes().add(this.getReactionProperty());
     entryPointSpecEClass.getESuperTypes().add(this.getReactionProperty());
     exitPointSpecEClass.getESuperTypes().add(this.getReactionProperty());
@@ -2028,10 +1915,16 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     alwaysEventEClass.getESuperTypes().add(this.getBuiltinEventSpec());
     assignmentEClass.getESuperTypes().add(this.getStatement());
     eventRaisingEClass.getESuperTypes().add(this.getStatement());
-    localReactionEClass.getESuperTypes().add(theStatechartPackage.getReaction());
-    transitionReactionEClass.getESuperTypes().add(theStatechartPackage.getReaction());
+    simpleScopeEClass.getESuperTypes().add(theStatechartPackage.getScope());
+    interfaceScopeEClass.getESuperTypes().add(theStatechartPackage.getScope());
+    internalScopeEClass.getESuperTypes().add(theStatechartPackage.getScope());
+    eventDefinitionEClass.getESuperTypes().add(theStatechartPackage.getEvent());
+    variableDefinitionEClass.getESuperTypes().add(theStatechartPackage.getVariable());
+    operationEClass.getESuperTypes().add(theStatechartPackage.getDeclaration());
+    entrypointEClass.getESuperTypes().add(theStatechartPackage.getDeclaration());
+    exitpointEClass.getESuperTypes().add(theStatechartPackage.getDeclaration());
     reactionTriggerEClass.getESuperTypes().add(theStatechartPackage.getTrigger());
-    effectEClass.getESuperTypes().add(theStatechartPackage.getEffect());
+    reactionEffectEClass.getESuperTypes().add(theStatechartPackage.getEffect());
     enterEventEClass.getESuperTypes().add(this.getEntryEvent());
     logicalOrExpressionEClass.getESuperTypes().add(this.getExpression());
     logicalAndExpressionEClass.getESuperTypes().add(this.getExpression());
@@ -2054,61 +1947,31 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
     initEReference(getStatechartRoot_Def(), this.getStatechartDefinition(), null, "def", null, 0, 1, StatechartRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stateRootEClass, StateRoot.class, "StateRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getStateRoot_Def(), this.getStateDefinition(), null, "def", null, 0, 1, StateRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStateRoot_Def(), this.getStateDeclaration(), null, "def", null, 0, 1, StateRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(transitionRootEClass, TransitionRoot.class, "TransitionRoot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTransitionRoot_Def(), this.getTransitionStatement(), null, "def", null, 0, 1, TransitionRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(statechartDefinitionEClass, StatechartDefinition.class, "StatechartDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getStatechartDefinition_DefinitionScopes(), this.getStatechartScope(), null, "definitionScopes", null, 0, -1, StatechartDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStatechartDefinition_DefinitionScopes(), theStatechartPackage.getScope(), null, "definitionScopes", null, 0, -1, StatechartDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(stateDefinitionEClass, StateDefinition.class, "StateDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(stateDeclarationEClass, StateDeclaration.class, "StateDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStateDeclaration_Scope(), theStatechartPackage.getScope(), null, "scope", null, 0, 1, StateDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(transitionStatementEClass, TransitionStatement.class, "TransitionStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTransitionStatement_Reaction(), theStatechartPackage.getReaction(), null, "reaction", null, 0, 1, TransitionStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(scopeEClass, Scope.class, "Scope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getScope_Definitions(), this.getDefinition(), null, "definitions", null, 0, -1, Scope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(simpleScopeEClass, SimpleScope.class, "SimpleScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(statechartScopeEClass, StatechartScope.class, "StatechartScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(interfaceScopeEClass, InterfaceScope.class, "InterfaceScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getInterfaceScope_Name(), ecorePackage.getEString(), "name", null, 0, 1, InterfaceScope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(internalScopeEClass, InternalScope.class, "InternalScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(definitionEClass, Definition.class, "Definition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(eventDefinitionEClass, EventDefinition.class, "EventDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEventDefinition_Direction(), this.getDirection(), "direction", null, 0, 1, EventDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEventDefinition_Type(), this.getType(), "type", null, 0, 1, EventDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEventDefinition_Derivation(), this.getEventDerivation(), null, "derivation", null, 0, 1, EventDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(eventDerivationEClass, EventDerivation.class, "EventDerivation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEventDerivation_Condition(), this.getExpression(), null, "condition", null, 0, 1, EventDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEventDerivation_Value(), this.getExpression(), null, "value", null, 0, 1, EventDerivation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(variableDefinitionEClass, VariableDefinition.class, "VariableDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVariableDefinition_Readonly(), ecorePackage.getEBoolean(), "readonly", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVariableDefinition_External(), ecorePackage.getEBoolean(), "external", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVariableDefinition_Type(), this.getType(), "type", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVariableDefinition_InitialValue(), ecorePackage.getEString(), "initialValue", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(reactionEClass, Reaction.class, "Reaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getReaction_Trigger(), theStatechartPackage.getTrigger(), null, "trigger", null, 0, 1, Reaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getReaction_Effect(), theStatechartPackage.getEffect(), null, "effect", null, 0, 1, Reaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getReaction_Properties(), this.getReactionProperties(), null, "properties", null, 0, 1, Reaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(clockEClass, Clock.class, "Clock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getClock_Name(), ecorePackage.getEString(), "name", null, 0, 1, Clock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(localReactionEClass, LocalReaction.class, "LocalReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getOperation_Name(), ecorePackage.getEString(), "name", null, 0, 1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getOperation_ParamTypes(), this.getType(), "paramTypes", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getOperation_Type(), this.getType(), "type", null, 0, 1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(entrypointEClass, Entrypoint.class, "Entrypoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEntrypoint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Entrypoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(exitpointEClass, Exitpoint.class, "Exitpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExitpoint_Name(), ecorePackage.getEString(), "name", null, 0, 1, Exitpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(transitionReactionEClass, TransitionReaction.class, "TransitionReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(reactionPropertiesEClass, ReactionProperties.class, "ReactionProperties", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReactionProperties_Properties(), this.getReactionProperty(), null, "properties", null, 0, -1, ReactionProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2155,18 +2018,38 @@ public class ExpressionsPackageImpl extends EPackageImpl implements ExpressionsP
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(localReactionEClass, LocalReaction.class, "LocalReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getLocalReaction_Properties(), this.getReactionProperties(), null, "properties", null, 0, 1, LocalReaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(simpleScopeEClass, SimpleScope.class, "SimpleScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(transitionReactionEClass, TransitionReaction.class, "TransitionReaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getTransitionReaction_Properties(), this.getReactionProperties(), null, "properties", null, 0, 1, TransitionReaction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(interfaceScopeEClass, InterfaceScope.class, "InterfaceScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getInterfaceScope_Name(), ecorePackage.getEString(), "name", null, 0, 1, InterfaceScope.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(internalScopeEClass, InternalScope.class, "InternalScope", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(eventDefinitionEClass, EventDefinition.class, "EventDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getEventDefinition_Direction(), this.getDirection(), "direction", null, 0, 1, EventDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEventDefinition_Type(), this.getType(), "type", null, 0, 1, EventDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEventDefinition_Derivation(), this.getEventDerivation(), null, "derivation", null, 0, 1, EventDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(variableDefinitionEClass, VariableDefinition.class, "VariableDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVariableDefinition_Readonly(), ecorePackage.getEBoolean(), "readonly", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVariableDefinition_External(), ecorePackage.getEBoolean(), "external", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVariableDefinition_Type(), this.getType(), "type", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getVariableDefinition_InitialValue(), ecorePackage.getEString(), "initialValue", null, 0, 1, VariableDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOperation_ParamTypes(), this.getType(), "paramTypes", null, 0, -1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getOperation_Type(), this.getType(), "type", null, 0, 1, Operation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(entrypointEClass, Entrypoint.class, "Entrypoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(exitpointEClass, Exitpoint.class, "Exitpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(reactionTriggerEClass, ReactionTrigger.class, "ReactionTrigger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReactionTrigger_Triggers(), this.getEventSpec(), null, "triggers", null, 0, -1, ReactionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getReactionTrigger_GuardExpression(), this.getExpression(), null, "guardExpression", null, 0, 1, ReactionTrigger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(effectEClass, Effect.class, "Effect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEffect_Actions(), this.getStatement(), null, "actions", null, 0, -1, Effect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(reactionEffectEClass, ReactionEffect.class, "ReactionEffect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getReactionEffect_Actions(), this.getStatement(), null, "actions", null, 0, -1, ReactionEffect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(enterEventEClass, EnterEvent.class, "EnterEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

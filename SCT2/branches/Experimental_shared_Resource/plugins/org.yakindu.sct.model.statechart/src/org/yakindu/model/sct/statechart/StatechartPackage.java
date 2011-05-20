@@ -464,13 +464,31 @@ public interface StatechartPackage extends EPackage {
 	int TRANSITION__EXPRESSION = EXPRESSION_ELEMENT__EXPRESSION;
 
 	/**
+	 * The feature id for the '<em><b>Trigger</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__TRIGGER = EXPRESSION_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Effect</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__EFFECT = EXPRESSION_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TARGET = EXPRESSION_ELEMENT_FEATURE_COUNT + 0;
+	int TRANSITION__TARGET = EXPRESSION_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' container reference.
@@ -479,16 +497,7 @@ public interface StatechartPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__SOURCE = EXPRESSION_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Reaction</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__REACTION = EXPRESSION_ELEMENT_FEATURE_COUNT + 2;
+	int TRANSITION__SOURCE = EXPRESSION_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Transition</em>' class.
@@ -497,7 +506,7 @@ public interface StatechartPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = EXPRESSION_ELEMENT_FEATURE_COUNT + 3;
+	int TRANSITION_FEATURE_COUNT = EXPRESSION_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1239,17 +1248,6 @@ public interface StatechartPackage extends EPackage {
 	EReference getTransition_Source();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.yakindu.model.sct.statechart.Transition#getReaction <em>Reaction</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Reaction</em>'.
-	 * @see org.yakindu.model.sct.statechart.Transition#getReaction()
-	 * @see #getTransition()
-	 * @generated
-	 */
-	EReference getTransition_Reaction();
-
-	/**
 	 * Returns the meta object for class '{@link org.yakindu.model.sct.statechart.FinalState <em>Final State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1688,14 +1686,6 @@ public interface StatechartPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TRANSITION__SOURCE = eINSTANCE.getTransition_Source();
-
-		/**
-		 * The meta object literal for the '<em><b>Reaction</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TRANSITION__REACTION = eINSTANCE.getTransition_Reaction();
 
 		/**
 		 * The meta object literal for the '{@link org.yakindu.model.sct.statechart.impl.FinalStateImpl <em>Final State</em>}' class.

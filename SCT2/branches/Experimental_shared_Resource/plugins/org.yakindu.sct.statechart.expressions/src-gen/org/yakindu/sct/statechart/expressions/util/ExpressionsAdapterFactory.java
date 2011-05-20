@@ -14,9 +14,10 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 
 import org.yakindu.model.sct.statechart.Declaration;
+import org.yakindu.model.sct.statechart.Effect;
 import org.yakindu.model.sct.statechart.Event;
 import org.yakindu.model.sct.statechart.NamedElement;
-import org.yakindu.model.sct.statechart.Reaction;
+import org.yakindu.model.sct.statechart.Scope;
 import org.yakindu.model.sct.statechart.Trigger;
 import org.yakindu.model.sct.statechart.Variable;
 
@@ -116,9 +117,9 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createStatechartDefinitionAdapter();
       }
       @Override
-      public Adapter caseStateDefinition(StateDefinition object)
+      public Adapter caseStateDeclaration(StateDeclaration object)
       {
-        return createStateDefinitionAdapter();
+        return createStateDeclarationAdapter();
       }
       @Override
       public Adapter caseTransitionStatement(TransitionStatement object)
@@ -126,69 +127,24 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createTransitionStatementAdapter();
       }
       @Override
-      public Adapter caseScope(Scope object)
-      {
-        return createScopeAdapter();
-      }
-      @Override
-      public Adapter caseSimpleScope(SimpleScope object)
-      {
-        return createSimpleScopeAdapter();
-      }
-      @Override
-      public Adapter caseStatechartScope(StatechartScope object)
-      {
-        return createStatechartScopeAdapter();
-      }
-      @Override
-      public Adapter caseInterfaceScope(InterfaceScope object)
-      {
-        return createInterfaceScopeAdapter();
-      }
-      @Override
-      public Adapter caseInternalScope(InternalScope object)
-      {
-        return createInternalScopeAdapter();
-      }
-      @Override
-      public Adapter caseDefinition(Definition object)
-      {
-        return createDefinitionAdapter();
-      }
-      @Override
-      public Adapter caseEventDefinition(EventDefinition object)
-      {
-        return createEventDefinitionAdapter();
-      }
-      @Override
       public Adapter caseEventDerivation(EventDerivation object)
       {
         return createEventDerivationAdapter();
       }
       @Override
-      public Adapter caseVariableDefinition(VariableDefinition object)
+      public Adapter caseReaction(Reaction object)
       {
-        return createVariableDefinitionAdapter();
+        return createReactionAdapter();
       }
       @Override
-      public Adapter caseClock(Clock object)
+      public Adapter caseLocalReaction(LocalReaction object)
       {
-        return createClockAdapter();
+        return createLocalReactionAdapter();
       }
       @Override
-      public Adapter caseOperation(Operation object)
+      public Adapter caseTransitionReaction(TransitionReaction object)
       {
-        return createOperationAdapter();
-      }
-      @Override
-      public Adapter caseEntrypoint(Entrypoint object)
-      {
-        return createEntrypointAdapter();
-      }
-      @Override
-      public Adapter caseExitpoint(Exitpoint object)
-      {
-        return createExitpointAdapter();
+        return createTransitionReactionAdapter();
       }
       @Override
       public Adapter caseReactionProperties(ReactionProperties object)
@@ -276,14 +232,44 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseLocalReaction(LocalReaction object)
+      public Adapter caseSimpleScope(SimpleScope object)
       {
-        return createLocalReactionAdapter();
+        return createSimpleScopeAdapter();
       }
       @Override
-      public Adapter caseTransitionReaction(TransitionReaction object)
+      public Adapter caseInterfaceScope(InterfaceScope object)
       {
-        return createTransitionReactionAdapter();
+        return createInterfaceScopeAdapter();
+      }
+      @Override
+      public Adapter caseInternalScope(InternalScope object)
+      {
+        return createInternalScopeAdapter();
+      }
+      @Override
+      public Adapter caseEventDefinition(EventDefinition object)
+      {
+        return createEventDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseVariableDefinition(VariableDefinition object)
+      {
+        return createVariableDefinitionAdapter();
+      }
+      @Override
+      public Adapter caseOperation(Operation object)
+      {
+        return createOperationAdapter();
+      }
+      @Override
+      public Adapter caseEntrypoint(Entrypoint object)
+      {
+        return createEntrypointAdapter();
+      }
+      @Override
+      public Adapter caseExitpoint(Exitpoint object)
+      {
+        return createExitpointAdapter();
       }
       @Override
       public Adapter caseReactionTrigger(ReactionTrigger object)
@@ -291,9 +277,9 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createReactionTriggerAdapter();
       }
       @Override
-      public Adapter caseEffect(Effect object)
+      public Adapter caseReactionEffect(ReactionEffect object)
       {
-        return createEffectAdapter();
+        return createReactionEffectAdapter();
       }
       @Override
       public Adapter caseEnterEvent(EnterEvent object)
@@ -361,6 +347,11 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createDeclarationAdapter();
       }
       @Override
+      public Adapter caseScope(Scope object)
+      {
+        return createScopeAdapter();
+      }
+      @Override
       public Adapter caseEvent(Event object)
       {
         return createEventAdapter();
@@ -371,19 +362,14 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
         return createVariableAdapter();
       }
       @Override
-      public Adapter caseReaction(Reaction object)
-      {
-        return createReactionAdapter();
-      }
-      @Override
       public Adapter caseTrigger(Trigger object)
       {
         return createTriggerAdapter();
       }
       @Override
-      public Adapter caseStatechart_Effect(org.yakindu.model.sct.statechart.Effect object)
+      public Adapter caseEffect(Effect object)
       {
-        return createStatechart_EffectAdapter();
+        return createEffectAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -498,16 +484,16 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.StateDefinition <em>State Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.StateDeclaration <em>State Declaration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.StateDefinition
+   * @see org.yakindu.sct.statechart.expressions.StateDeclaration
    * @generated
    */
-  public Adapter createStateDefinitionAdapter()
+  public Adapter createStateDeclarationAdapter()
   {
     return null;
   }
@@ -528,111 +514,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Scope <em>Scope</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Scope
-   * @generated
-   */
-  public Adapter createScopeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.SimpleScope <em>Simple Scope</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.SimpleScope
-   * @generated
-   */
-  public Adapter createSimpleScopeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.StatechartScope <em>Statechart Scope</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.StatechartScope
-   * @generated
-   */
-  public Adapter createStatechartScopeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.InterfaceScope <em>Interface Scope</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.InterfaceScope
-   * @generated
-   */
-  public Adapter createInterfaceScopeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.InternalScope <em>Internal Scope</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.InternalScope
-   * @generated
-   */
-  public Adapter createInternalScopeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Definition <em>Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Definition
-   * @generated
-   */
-  public Adapter createDefinitionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.EventDefinition <em>Event Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.EventDefinition
-   * @generated
-   */
-  public Adapter createEventDefinitionAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.EventDerivation <em>Event Derivation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -648,76 +529,46 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.VariableDefinition <em>Variable Definition</em>}'.
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Reaction <em>Reaction</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.VariableDefinition
+   * @see org.yakindu.sct.statechart.expressions.Reaction
    * @generated
    */
-  public Adapter createVariableDefinitionAdapter()
+  public Adapter createReactionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Clock <em>Clock</em>}'.
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.LocalReaction <em>Local Reaction</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Clock
+   * @see org.yakindu.sct.statechart.expressions.LocalReaction
    * @generated
    */
-  public Adapter createClockAdapter()
+  public Adapter createLocalReactionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Operation <em>Operation</em>}'.
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.TransitionReaction <em>Transition Reaction</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Operation
+   * @see org.yakindu.sct.statechart.expressions.TransitionReaction
    * @generated
    */
-  public Adapter createOperationAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Entrypoint <em>Entrypoint</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Entrypoint
-   * @generated
-   */
-  public Adapter createEntrypointAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Exitpoint <em>Exitpoint</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Exitpoint
-   * @generated
-   */
-  public Adapter createExitpointAdapter()
+  public Adapter createTransitionReactionAdapter()
   {
     return null;
   }
@@ -978,31 +829,121 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.LocalReaction <em>Local Reaction</em>}'.
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.SimpleScope <em>Simple Scope</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.LocalReaction
+   * @see org.yakindu.sct.statechart.expressions.SimpleScope
    * @generated
    */
-  public Adapter createLocalReactionAdapter()
+  public Adapter createSimpleScopeAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.TransitionReaction <em>Transition Reaction</em>}'.
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.InterfaceScope <em>Interface Scope</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.TransitionReaction
+   * @see org.yakindu.sct.statechart.expressions.InterfaceScope
    * @generated
    */
-  public Adapter createTransitionReactionAdapter()
+  public Adapter createInterfaceScopeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.InternalScope <em>Internal Scope</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.InternalScope
+   * @generated
+   */
+  public Adapter createInternalScopeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.EventDefinition <em>Event Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.EventDefinition
+   * @generated
+   */
+  public Adapter createEventDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.VariableDefinition <em>Variable Definition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.VariableDefinition
+   * @generated
+   */
+  public Adapter createVariableDefinitionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Operation <em>Operation</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.Operation
+   * @generated
+   */
+  public Adapter createOperationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Entrypoint <em>Entrypoint</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.Entrypoint
+   * @generated
+   */
+  public Adapter createEntrypointAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Exitpoint <em>Exitpoint</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.sct.statechart.expressions.Exitpoint
+   * @generated
+   */
+  public Adapter createExitpointAdapter()
   {
     return null;
   }
@@ -1023,16 +964,16 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.Effect <em>Effect</em>}'.
+   * Creates a new adapter for an object of class '{@link org.yakindu.sct.statechart.expressions.ReactionEffect <em>Reaction Effect</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.yakindu.sct.statechart.expressions.Effect
+   * @see org.yakindu.sct.statechart.expressions.ReactionEffect
    * @generated
    */
-  public Adapter createEffectAdapter()
+  public Adapter createReactionEffectAdapter()
   {
     return null;
   }
@@ -1233,6 +1174,21 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.yakindu.model.sct.statechart.Scope <em>Scope</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.yakindu.model.sct.statechart.Scope
+   * @generated
+   */
+  public Adapter createScopeAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.model.sct.statechart.Event <em>Event</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1263,21 +1219,6 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.model.sct.statechart.Reaction <em>Reaction</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.model.sct.statechart.Reaction
-   * @generated
-   */
-  public Adapter createReactionAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.yakindu.model.sct.statechart.Trigger <em>Trigger</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -1302,7 +1243,7 @@ public class ExpressionsAdapterFactory extends AdapterFactoryImpl
    * @see org.yakindu.model.sct.statechart.Effect
    * @generated
    */
-  public Adapter createStatechart_EffectAdapter()
+  public Adapter createEffectAdapter()
   {
     return null;
   }

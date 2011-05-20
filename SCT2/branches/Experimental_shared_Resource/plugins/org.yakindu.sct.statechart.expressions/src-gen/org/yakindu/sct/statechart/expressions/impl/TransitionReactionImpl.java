@@ -14,9 +14,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.yakindu.model.sct.statechart.impl.ReactionImpl;
+import org.yakindu.model.sct.statechart.Effect;
+import org.yakindu.model.sct.statechart.Trigger;
 
 import org.yakindu.sct.statechart.expressions.ExpressionsPackage;
+import org.yakindu.sct.statechart.expressions.Reaction;
 import org.yakindu.sct.statechart.expressions.ReactionProperties;
 import org.yakindu.sct.statechart.expressions.TransitionReaction;
 
@@ -27,14 +29,36 @@ import org.yakindu.sct.statechart.expressions.TransitionReaction;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl#getTrigger <em>Trigger</em>}</li>
+ *   <li>{@link org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl#getEffect <em>Effect</em>}</li>
  *   <li>{@link org.yakindu.sct.statechart.expressions.impl.TransitionReactionImpl#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TransitionReactionImpl extends ReactionImpl implements TransitionReaction
+public class TransitionReactionImpl extends TransitionStatementImpl implements TransitionReaction
 {
+  /**
+   * The cached value of the '{@link #getTrigger() <em>Trigger</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTrigger()
+   * @generated
+   * @ordered
+   */
+  protected Trigger trigger;
+
+  /**
+   * The cached value of the '{@link #getEffect() <em>Effect</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getEffect()
+   * @generated
+   * @ordered
+   */
+  protected Effect effect;
+
   /**
    * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -64,6 +88,102 @@ public class TransitionReactionImpl extends ReactionImpl implements TransitionRe
   protected EClass eStaticClass()
   {
     return ExpressionsPackage.Literals.TRANSITION_REACTION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Trigger getTrigger()
+  {
+    return trigger;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTrigger(Trigger newTrigger, NotificationChain msgs)
+  {
+    Trigger oldTrigger = trigger;
+    trigger = newTrigger;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TRANSITION_REACTION__TRIGGER, oldTrigger, newTrigger);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTrigger(Trigger newTrigger)
+  {
+    if (newTrigger != trigger)
+    {
+      NotificationChain msgs = null;
+      if (trigger != null)
+        msgs = ((InternalEObject)trigger).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.TRANSITION_REACTION__TRIGGER, null, msgs);
+      if (newTrigger != null)
+        msgs = ((InternalEObject)newTrigger).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.TRANSITION_REACTION__TRIGGER, null, msgs);
+      msgs = basicSetTrigger(newTrigger, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TRANSITION_REACTION__TRIGGER, newTrigger, newTrigger));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Effect getEffect()
+  {
+    return effect;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetEffect(Effect newEffect, NotificationChain msgs)
+  {
+    Effect oldEffect = effect;
+    effect = newEffect;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TRANSITION_REACTION__EFFECT, oldEffect, newEffect);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setEffect(Effect newEffect)
+  {
+    if (newEffect != effect)
+    {
+      NotificationChain msgs = null;
+      if (effect != null)
+        msgs = ((InternalEObject)effect).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.TRANSITION_REACTION__EFFECT, null, msgs);
+      if (newEffect != null)
+        msgs = ((InternalEObject)newEffect).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ExpressionsPackage.TRANSITION_REACTION__EFFECT, null, msgs);
+      msgs = basicSetEffect(newEffect, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, ExpressionsPackage.TRANSITION_REACTION__EFFECT, newEffect, newEffect));
   }
 
   /**
@@ -124,6 +244,10 @@ public class TransitionReactionImpl extends ReactionImpl implements TransitionRe
   {
     switch (featureID)
     {
+      case ExpressionsPackage.TRANSITION_REACTION__TRIGGER:
+        return basicSetTrigger(null, msgs);
+      case ExpressionsPackage.TRANSITION_REACTION__EFFECT:
+        return basicSetEffect(null, msgs);
       case ExpressionsPackage.TRANSITION_REACTION__PROPERTIES:
         return basicSetProperties(null, msgs);
     }
@@ -140,6 +264,10 @@ public class TransitionReactionImpl extends ReactionImpl implements TransitionRe
   {
     switch (featureID)
     {
+      case ExpressionsPackage.TRANSITION_REACTION__TRIGGER:
+        return getTrigger();
+      case ExpressionsPackage.TRANSITION_REACTION__EFFECT:
+        return getEffect();
       case ExpressionsPackage.TRANSITION_REACTION__PROPERTIES:
         return getProperties();
     }
@@ -156,6 +284,12 @@ public class TransitionReactionImpl extends ReactionImpl implements TransitionRe
   {
     switch (featureID)
     {
+      case ExpressionsPackage.TRANSITION_REACTION__TRIGGER:
+        setTrigger((Trigger)newValue);
+        return;
+      case ExpressionsPackage.TRANSITION_REACTION__EFFECT:
+        setEffect((Effect)newValue);
+        return;
       case ExpressionsPackage.TRANSITION_REACTION__PROPERTIES:
         setProperties((ReactionProperties)newValue);
         return;
@@ -173,6 +307,12 @@ public class TransitionReactionImpl extends ReactionImpl implements TransitionRe
   {
     switch (featureID)
     {
+      case ExpressionsPackage.TRANSITION_REACTION__TRIGGER:
+        setTrigger((Trigger)null);
+        return;
+      case ExpressionsPackage.TRANSITION_REACTION__EFFECT:
+        setEffect((Effect)null);
+        return;
       case ExpressionsPackage.TRANSITION_REACTION__PROPERTIES:
         setProperties((ReactionProperties)null);
         return;
@@ -190,10 +330,56 @@ public class TransitionReactionImpl extends ReactionImpl implements TransitionRe
   {
     switch (featureID)
     {
+      case ExpressionsPackage.TRANSITION_REACTION__TRIGGER:
+        return trigger != null;
+      case ExpressionsPackage.TRANSITION_REACTION__EFFECT:
+        return effect != null;
       case ExpressionsPackage.TRANSITION_REACTION__PROPERTIES:
         return properties != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == Reaction.class)
+    {
+      switch (derivedFeatureID)
+      {
+        case ExpressionsPackage.TRANSITION_REACTION__TRIGGER: return ExpressionsPackage.REACTION__TRIGGER;
+        case ExpressionsPackage.TRANSITION_REACTION__EFFECT: return ExpressionsPackage.REACTION__EFFECT;
+        case ExpressionsPackage.TRANSITION_REACTION__PROPERTIES: return ExpressionsPackage.REACTION__PROPERTIES;
+        default: return -1;
+      }
+    }
+    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == Reaction.class)
+    {
+      switch (baseFeatureID)
+      {
+        case ExpressionsPackage.REACTION__TRIGGER: return ExpressionsPackage.TRANSITION_REACTION__TRIGGER;
+        case ExpressionsPackage.REACTION__EFFECT: return ExpressionsPackage.TRANSITION_REACTION__EFFECT;
+        case ExpressionsPackage.REACTION__PROPERTIES: return ExpressionsPackage.TRANSITION_REACTION__PROPERTIES;
+        default: return -1;
+      }
+    }
+    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
 } //TransitionReactionImpl

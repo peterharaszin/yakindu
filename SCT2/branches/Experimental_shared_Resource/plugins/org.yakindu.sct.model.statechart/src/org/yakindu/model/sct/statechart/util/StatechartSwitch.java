@@ -134,6 +134,7 @@ public class StatechartSwitch<T> extends Switch<T> {
 				Transition transition = (Transition)theEObject;
 				T result = caseTransition(transition);
 				if (result == null) result = caseExpressionElement(transition);
+				if (result == null) result = caseReaction(transition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

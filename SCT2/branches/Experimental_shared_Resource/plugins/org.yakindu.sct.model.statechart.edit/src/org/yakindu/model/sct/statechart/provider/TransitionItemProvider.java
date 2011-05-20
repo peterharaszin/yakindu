@@ -133,7 +133,8 @@ public class TransitionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(StatechartPackage.Literals.TRANSITION__REACTION);
+			childrenFeatures.add(StatechartPackage.Literals.REACTION__TRIGGER);
+			childrenFeatures.add(StatechartPackage.Literals.REACTION__EFFECT);
 		}
 		return childrenFeatures;
 	}
@@ -188,7 +189,8 @@ public class TransitionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Transition.class)) {
-			case StatechartPackage.TRANSITION__REACTION:
+			case StatechartPackage.TRANSITION__TRIGGER:
+			case StatechartPackage.TRANSITION__EFFECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

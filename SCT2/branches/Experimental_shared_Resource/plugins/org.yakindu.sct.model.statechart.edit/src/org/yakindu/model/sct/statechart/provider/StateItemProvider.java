@@ -216,6 +216,11 @@ public class StateItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
+				(StatechartPackage.Literals.REACTIVE_ELEMENT__LOCAL_REACTIONS,
+				 StatechartFactory.eINSTANCE.createTransition()));
+
+		newChildDescriptors.add
+			(createChildParameter
 				(StatechartPackage.Literals.SCOPED_ELEMENT__SCOPES,
 				 StatechartFactory.eINSTANCE.createScope()));
 

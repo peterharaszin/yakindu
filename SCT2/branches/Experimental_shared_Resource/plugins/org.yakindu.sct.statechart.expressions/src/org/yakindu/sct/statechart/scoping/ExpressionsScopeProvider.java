@@ -3,6 +3,9 @@
  */
 package org.yakindu.sct.statechart.scoping;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
 /**
@@ -13,5 +16,12 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  *
  */
 public class ExpressionsScopeProvider extends AbstractDeclarativeScopeProvider {
-
+@Override
+public IScope getScope(EObject context, EReference reference) {
+	System.out.println(context);
+	
+	IScope scope = super.getScope(context, reference);
+	System.out.println(scope.getAllElements());
+	return scope;
+}
 }

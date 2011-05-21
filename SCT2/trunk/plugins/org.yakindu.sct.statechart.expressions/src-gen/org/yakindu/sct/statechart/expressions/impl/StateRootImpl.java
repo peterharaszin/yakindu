@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.yakindu.sct.statechart.expressions.ExpressionsPackage;
-import org.yakindu.sct.statechart.expressions.StateDefinition;
+import org.yakindu.sct.statechart.expressions.StateDeclaration;
 import org.yakindu.sct.statechart.expressions.StateRoot;
 
 /**
@@ -41,7 +41,7 @@ public class StateRootImpl extends DefRootImpl implements StateRoot
    * @generated
    * @ordered
    */
-  protected StateDefinition def;
+  protected StateDeclaration def;
 
   /**
    * <!-- begin-user-doc -->
@@ -69,7 +69,7 @@ public class StateRootImpl extends DefRootImpl implements StateRoot
    * <!-- end-user-doc -->
    * @generated
    */
-  public StateDefinition getDef()
+  public StateDeclaration getDef()
   {
     return def;
   }
@@ -79,9 +79,9 @@ public class StateRootImpl extends DefRootImpl implements StateRoot
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDef(StateDefinition newDef, NotificationChain msgs)
+  public NotificationChain basicSetDef(StateDeclaration newDef, NotificationChain msgs)
   {
-    StateDefinition oldDef = def;
+    StateDeclaration oldDef = def;
     def = newDef;
     if (eNotificationRequired())
     {
@@ -96,7 +96,7 @@ public class StateRootImpl extends DefRootImpl implements StateRoot
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDef(StateDefinition newDef)
+  public void setDef(StateDeclaration newDef)
   {
     if (newDef != def)
     {
@@ -155,7 +155,7 @@ public class StateRootImpl extends DefRootImpl implements StateRoot
     switch (featureID)
     {
       case ExpressionsPackage.STATE_ROOT__DEF:
-        setDef((StateDefinition)newValue);
+        setDef((StateDeclaration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -172,7 +172,7 @@ public class StateRootImpl extends DefRootImpl implements StateRoot
     switch (featureID)
     {
       case ExpressionsPackage.STATE_ROOT__DEF:
-        setDef((StateDefinition)null);
+        setDef((StateDeclaration)null);
         return;
     }
     super.eUnset(featureID);

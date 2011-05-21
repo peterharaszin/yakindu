@@ -20,9 +20,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.yakindu.model.sct.statechart.Scope;
+
 import org.yakindu.sct.statechart.expressions.ExpressionsPackage;
 import org.yakindu.sct.statechart.expressions.StatechartDefinition;
-import org.yakindu.sct.statechart.expressions.StatechartScope;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,7 +48,7 @@ public class StatechartDefinitionImpl extends MinimalEObjectImpl.Container imple
    * @generated
    * @ordered
    */
-  protected EList<StatechartScope> definitionScopes;
+  protected EList<Scope> definitionScopes;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,11 +76,11 @@ public class StatechartDefinitionImpl extends MinimalEObjectImpl.Container imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<StatechartScope> getDefinitionScopes()
+  public EList<Scope> getDefinitionScopes()
   {
     if (definitionScopes == null)
     {
-      definitionScopes = new EObjectContainmentEList<StatechartScope>(StatechartScope.class, this, ExpressionsPackage.STATECHART_DEFINITION__DEFINITION_SCOPES);
+      definitionScopes = new EObjectContainmentEList<Scope>(Scope.class, this, ExpressionsPackage.STATECHART_DEFINITION__DEFINITION_SCOPES);
     }
     return definitionScopes;
   }
@@ -129,7 +130,7 @@ public class StatechartDefinitionImpl extends MinimalEObjectImpl.Container imple
     {
       case ExpressionsPackage.STATECHART_DEFINITION__DEFINITION_SCOPES:
         getDefinitionScopes().clear();
-        getDefinitionScopes().addAll((Collection<? extends StatechartScope>)newValue);
+        getDefinitionScopes().addAll((Collection<? extends Scope>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

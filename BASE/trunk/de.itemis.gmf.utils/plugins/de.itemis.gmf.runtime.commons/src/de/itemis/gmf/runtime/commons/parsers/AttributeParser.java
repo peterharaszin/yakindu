@@ -1,4 +1,4 @@
-package org.yakindu.sct.statechart.diagram.parser;
+package de.itemis.gmf.runtime.commons.parsers;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.notify.Notification;
@@ -14,21 +14,21 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.yakindu.sct.statechart.diagram.DiagramActivator;
 
 /**
- * Direct editing parser that allows editing of a Attributes.
+ * Direct editing parser that allows editing of an EAttribute.
  * 
- * @author Andreas Muelder <a
- *         href="mailto:andreas.muelder@itemis.de">andreas.muelder@itemis.de</a>
+ * @author andreas muelder
  * 
  */
 public class AttributeParser implements IParser {
 
 	private final EAttribute attribute;
+	private final String pluginId;
 
-	public AttributeParser(EAttribute attribute) {
+	public AttributeParser(EAttribute attribute, String pluginId ) {
 		this.attribute = attribute;
+		this.pluginId = pluginId;
 	}
 
 	
@@ -43,7 +43,7 @@ public class AttributeParser implements IParser {
 
 	
 	public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-		return new ParserEditStatus(DiagramActivator.PLUGIN_ID, IParserEditStatus.OK, "");
+		return new ParserEditStatus(pluginId, IParserEditStatus.OK, "");
 	}
 
 	

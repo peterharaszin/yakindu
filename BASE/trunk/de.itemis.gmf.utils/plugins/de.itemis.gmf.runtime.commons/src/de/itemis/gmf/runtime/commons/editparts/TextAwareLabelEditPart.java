@@ -8,7 +8,7 @@
  * 	committers of YAKINDU - initial API and implementation
  * 
  */
-package org.yakindu.sct.statechart.diagram.editparts;
+package de.itemis.gmf.runtime.commons.editparts;
 
 import static org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR;
 
@@ -32,7 +32,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.swt.graphics.Color;
-import org.yakindu.sct.statechart.diagram.parser.AttributeParser;
+
+import de.itemis.gmf.runtime.commons.parsers.AttributeParser;
 
 /**
  * This is a common abstract base class for all Label Edit Parts which are
@@ -49,9 +50,12 @@ public abstract class TextAwareLabelEditPart extends CompartmentEditPart
 
 	private final EAttribute feature;
 
-	public TextAwareLabelEditPart(View view, EAttribute feature) {
+	private final String pluginId;
+
+	public TextAwareLabelEditPart(View view, EAttribute feature, String pluginId) {
 		super(view);
 		this.feature = feature;
+		this.pluginId = pluginId;
 		manager = createDirectEditManager();
 	}
 
@@ -123,7 +127,7 @@ public abstract class TextAwareLabelEditPart extends CompartmentEditPart
 	}
 
 	public IParser getParser() {
-		return new AttributeParser(feature);
+		return new AttributeParser(feature, pluginId);
 	}
 
 	public IContentAssistProcessor getCompletionProcessor() {

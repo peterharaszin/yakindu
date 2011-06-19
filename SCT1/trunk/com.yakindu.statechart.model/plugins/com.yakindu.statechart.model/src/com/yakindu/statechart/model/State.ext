@@ -8,41 +8,54 @@
  * Contributors:
  *     committers of YAKINDU - initial API and implementation
  */
-import statemachine;
-import statechartexpressions;
+import statechart;
+import expressions;
 
-extension com::yakindu::statechart::model::Extensions;
+extension org::yakindu::sct::codegenerator::base::extensions::Extensions;
 
-ActionExpression getEntryActionExpression(State this) : 
-    this.entry != null ? parseActionExpression(this.entry) : null;
+
+// TODO: extensions are somehow redundant...
+Effect getEntryActionExpression(State this) : 
+    this.getEnterReaction() != null ? this.getEnterReaction().effect : null;
+
+Reaction getEnterReaction(State this) :
+	this.localReactions.typeSelect(Reaction).trigger.typeSelect(EnterEvent).first().eContainer;
+ 
+//=== no do action anymore ===  
+// Reaction getDoActionExpression(State this) : 
+//    this.do != null ? parseActionExpression(this.do) : null;
     
-ActionExpression getDoActionExpression(State this) : 
-    this.do != null ? parseActionExpression(this.do) : null;
-    
-ActionExpression getExitActionExpression(State this) : 
-    this.exit != null ? parseActionExpression(this.exit) : null;
+Effect getExitActionExpression(State this) : 
+    this.getExitReaction() != null ? this.getExitReaction().effect : null;
+
+Reaction getExitReaction(State this) :
+	this.localReactions.typeSelect(Reaction).trigger.typeSelect(ExitEvent).first().eContainer;
 
 String getId(State this):
   getId(this.eContainer) + "_STATE_" + this.name; // name is unique within region, so use this within the identifier
 
 boolean isSimpleState(State this) : 
-  	this.region.isEmpty;
+  	this.subRegions.isEmpty;
 
 boolean isCompoundState(State this) : 
-	!this.region.isEmpty;
+	!this.subRegions.isEmpty;
 	
+	
+// rename to hasEnterAction 
 boolean hasEntryAction(State this) : 
-    this.entry != null && !this.entry.matches("");
+    getEnterReaction() != null;
     
-boolean hasDoAction(State this) : 
-    this.do!= null && !this.do.matches("");
+   
+//===== no do actions any more === 
+// boolean hasDoAction(State this) : 
+//     this.do!= null && !this.do.matches("");
     
 boolean hasExitAction(State this) : 
-    this.exit != null && !this.exit.matches("");
+    getExitReaction() != null;
     
 List[Region] getNestedRegions(State this):
-   {}.addAll(region).addAll(region.getNestedRegions()).flatten();
+   {}.addAll(subRegions).addAll(subRegions.getNestedRegions()).flatten();
 
-boolean hasRegions(State this) : !region.isEmpty;
+boolean hasRegions(State this) : !subRegions.isEmpty;
 
 	

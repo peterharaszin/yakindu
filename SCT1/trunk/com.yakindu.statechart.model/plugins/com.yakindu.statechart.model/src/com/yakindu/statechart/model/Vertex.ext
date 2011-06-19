@@ -8,7 +8,16 @@
  * Contributors:
  *     committers of YAKINDU - initial API and implementation
  */
+import statechart;
+import expressions;
+
 extension org::yakindu::sct::codegenerator::base::extensions::Extensions;
 
-String getId(Object this):
-  null;
+List[Transition] getIncomingTransitions(Vertex this) : 
+	this.getIncomingTransitions();
+
+List[Transition] getOutgoingTransitions(Vertex this) : 
+	this.getOutgoingTransitions();
+	
+Statechart getStatechart(Vertex this) :
+	((Region)this.eContainer).getStatechart();

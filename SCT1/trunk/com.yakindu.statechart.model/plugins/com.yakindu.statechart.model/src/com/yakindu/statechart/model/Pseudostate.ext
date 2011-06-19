@@ -8,9 +8,15 @@
  * Contributors:
  *     committers of YAKINDU - initial API and implementation
  */
-import statemachine;
+import statechart;
 
-extension com::yakindu::statechart::model::Extensions;
+extension org::yakindu::sct::codegenerator::base::extensions::Extensions;
 
 String getId(Pseudostate this) : 
-  getId(this.eContainer) + "_" + pseudoType.toString() + "_" + this.id;
+  getId(this.eContainer) + "_" + this.metaType.name + "_" + this.ID();
+
+  
+// TODO: check if this calculated id is appropriate
+cached int ID(Pseudostate this): this.eRootContainer.eAllContents.typeSelect(Pseudostate).indexOf(this);
+
+  

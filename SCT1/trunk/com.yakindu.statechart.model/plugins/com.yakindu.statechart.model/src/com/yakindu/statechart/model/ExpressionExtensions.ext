@@ -1,0 +1,54 @@
+/**
+ * Copyright (c) 2010 committers of YAKINDU and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of YAKINDU - initial API and implementation
+ */
+import statechart;
+import expressions;
+
+/*
+ * This extension file is intended to be used for defining
+ * general extensions for the domain model.
+ * It inherits generated extensions from GenExtensions.
+ * You can overwrite or specialize them here
+ */
+ 
+// TODO: refactor name
+List[EventSpec] getTriggers(ReactionTrigger this) : 
+    this != null ? this.triggers : {};
+
+TimeEventSpec getTimeTrigger(ReactionTrigger this) : 
+	this.triggers.typeSelect(TimeEventSpec).first(); 
+	
+List[RegularEventSpec] getSignalTriggers(ReactionTrigger this) : 
+   this.triggers.typeSelect(RegularEventSpec);
+
+boolean isSignalTriggered(ReactionTrigger this) : this.getSignalTriggers() != null; 
+
+	
+boolean isTimeTrigger(EventSpec this) : 
+    TimeEventSpec.isInstance(this);
+    
+boolean isTimeTriggered(ReactionTrigger this) : this.getTimeTrigger() != null;
+
+  
+// TODO : allow specification of duration values 
+boolean isConstantTimeTrigger(EventSpec this) : 
+    this.isTimeTrigger() && TimeConstant.isInstance(((TimeEventSpec)this).duration);
+   
+boolean isVariableTimeTrigger(EventSpec this) :
+    this.isTimeTrigger() && ! this.isConstantTimeTrigger();
+   
+TimeConstant getConstantTimeTriggerDuration(EventSpec this) :
+    this.isConstantTimeTrigger() ? ((TimeConstant)((TimeEventSpec)this).duration) : null;
+    
+Integer getInMilliseconds(TimeConstant this) : 
+	unit.toString().matches("ms") ? value : (unit.toString().matches("s") ? value * 1000 : (unit.toString().matches("ns") ? value / 1000 : value));
+	
+String getVariableTimeTriggerVariableIdentifier(EventSpec this) : 
+    this.isVariableTimeTrigger() ? ((ElementReferenceExpression)((TimeEventSpec)this).duration).value.name : null;

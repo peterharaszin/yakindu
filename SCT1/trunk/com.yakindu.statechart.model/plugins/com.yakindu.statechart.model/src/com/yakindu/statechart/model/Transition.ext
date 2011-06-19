@@ -8,52 +8,58 @@
  * Contributors:
  *     committers of YAKINDU - initial API and implementation
  */
-import statemachine;
-import statechartexpressions;
+import statechart;
+import expressions;
 
-extension com::yakindu::statechart::model::Extensions;
+extension org::yakindu::sct::codegenerator::base::extensions::Extensions;
 
 String getId(Transition this):
-  getId(this.eContainer) + "_TRANSITION_" + this.id;
+  getId(this.eContainer) + "_TRANSITION_" + this.ID();
 
-private String extractTriggerExpressionString(String expressionString) :
-	JAVA com.yakindu.statechart.model.JavaExtensions.extractTriggerExpressionString(java.lang.String);
+// TODO: check if this calculated id is appropriate
+cached int ID(Transition this): this.eRootContainer.eAllContents.typeSelect(Transition).indexOf(this);
 
-private String extractGuardExpressionString(String expressionString) :
-	JAVA com.yakindu.statechart.model.JavaExtensions.extractGuardExpressionString(java.lang.String);
 
-private String extractActionExpressionString(String expressionString) :
-	JAVA com.yakindu.statechart.model.JavaExtensions.extractActionExpressionString(java.lang.String);
-
-TriggerExpression getTriggerExpression(Transition this) : 
-    this.expression != null && extractTriggerExpressionString(this.expression) != null ? parseTriggerExpression(extractTriggerExpressionString(this.expression)) : null;
+// TODO: refactor : eliminate extension
+Trigger getTriggerExpression(Transition this) : 
+    this.trigger;
   
-GuardExpression getGuardExpression(Transition this) : 
-    this.expression != null && extractGuardExpressionString(this.expression) != null ? parseGuardExpression(extractGuardExpressionString(this.expression)) : null;
+// TODO : we don't use guards on this level anymore
+// GuardExpression getGuardExpression(Transition this) : 
+//   this.expression != null && extractGuardExpressionString(this.expression) != null ? parseGuardExpression(extractGuardExpressionString(this.expression)) : null;
 
-ActionExpression getActionExpression(Transition this) : 
-    this.expression != null && extractActionExpressionString(this.expression) != null ? parseActionExpression(extractActionExpressionString(this.expression)) : null;
+// TODO: refactor : eliminate extension
+Effect getActionExpression(Transition this) : 
+    this.effect;
 
-List[Trigger] getTriggers(Transition this) : 
-    this.getTriggerExpression() != null ? this.getTriggerExpression().getTriggers() : {};
+// List[Trigger] getTriggers(Transition this) : 
+//    this.getTriggerExpression() != null ? this.getTriggerExpression().getTriggers() : {};
     
-Trigger getTimeTrigger(Transition this) : 
-	this.getTriggers().select(e|TimeEvent.isInstance(e.event)).first(); 
+// Trigger getTimeTrigger(Transition this) : 
+//	this.getTriggers().select(e|TimeEvent.isInstance(e.event)).first(); 
 	
-List[Trigger] getSignalTriggers(Transition this) : 
-   this.getTriggers().select(e|SignalEvent.isInstance(e.event));
+// List[Trigger] getSignalTriggers(Transition this) : 
+//   this.getTriggers().select(e|SignalEvent.isInstance(e.event));
  
-boolean hasTriggers(Transition this) :
-    !this.getTriggers().isEmpty;
+//boolean hasTriggers(Transition this) :
+//    !this.getTriggers().isEmpty;
+  
+// TODO eleimitae if not required  
+//boolean hasGuard(Transition this) : 
+//    this.getGuardExpression() != null;
     
-boolean hasGuard(Transition this) : 
-    this.getGuardExpression() != null;
     
 boolean isTimeTriggered(Transition this) : 
-	this.getTriggerExpression() != null && this.getTriggerExpression().getTimeTrigger() != null;
+	this.trigger.isTimeTriggered();
+
+// hook that must be overwritten for concrete subtypes.
+boolean isTimeTriggered(Trigger this) : false;
 	
-boolean isSignalTriggered(Transition this) : 
-    this.getTriggerExpression() != null && this.getTriggerExpression().getSignalTriggers() != null && !this.getTriggerExpression().getSignalTriggers().isEmpty;
+boolean isSignalTriggered(Transition this) :
+	this.trigger.isSignalTriggered();
+
+// hook that must be overwritten for concrete subtypes.
+boolean isSignalTriggered(Trigger this) : false;
     
 boolean hasAction(Transition this) : 
     this.getActionExpression() != null;

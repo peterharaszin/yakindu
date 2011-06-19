@@ -8,23 +8,25 @@
  * Contributors:
  *     committers of YAKINDU - initial API and implementation
  */
-import statemachine;
+import statechart;
 
-extension com::yakindu::statechart::model::Extensions;
+extension org::yakindu::sct::codegenerator::base::extensions::Extensions;
 
 String getId(Region this):
  	getId(this.eContainer) + "_REGION_" + this.eContainer.eContents.typeSelect(Region).indexOf(this);
 
-int priority(Node this) : ((Region)eContainer).priority;
+// TODO: handling of priorities ...
+int priority(Vertex this) : ((Region)eContainer).priority();
+int priority(Region this) : 0;
 
 cached List[Region] getAllRegions(Statechart chart) :
 	chart.eAllContents.typeSelect(Region);
 
 cached List[Region] getNestedRegions(Region this):
-   state.typeSelect(State).collect(e|e.getNestedRegions()).flatten();
+   vertices.typeSelect(State).collect(e|e.getNestedRegions()).flatten();
 
-Pseudostate getInitialState(Region this) : 
-	state.typeSelect(Pseudostate).select(e|e.pseudoType == PseudoTypes::initial).first();
+Entry getInitialState(Region this) : 
+	vertices.typeSelect(Entry).select(e|e.kind == EntryKind::initial).first();
 
 Statechart getStatechart(Region this) :
 	Statechart.isInstance(this.eContainer) ? this.eContainer : getStatechart((State)this.eContainer);

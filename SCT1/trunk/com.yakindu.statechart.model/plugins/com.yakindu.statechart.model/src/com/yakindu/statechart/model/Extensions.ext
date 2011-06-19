@@ -8,17 +8,17 @@
  * Contributors:
  *     committers of YAKINDU - initial API and implementation
  */
-import statemachine;
-import statechartexpressions;
+import statechart;
+import expressions;
 
-extension com::yakindu::statechart::model::expressions::Extensions reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::ExpressionExtensions reexport;
 
-extension com::yakindu::statechart::model::Object reexport;
-extension com::yakindu::statechart::model::EObject reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::Object reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::EObject reexport;
 
-extension com::yakindu::statechart::model::Statechart reexport;
-extension com::yakindu::statechart::model::Region reexport;
-extension com::yakindu::statechart::model::Node reexport;
-extension com::yakindu::statechart::model::State reexport;
-extension com::yakindu::statechart::model::Pseudostate reexport;
-extension com::yakindu::statechart::model::Transition reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::Statechart reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::Region reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::Vertex reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::State reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::Pseudostate reexport;
+extension org::yakindu::sct::codegenerator::base::extensions::Transition reexport;

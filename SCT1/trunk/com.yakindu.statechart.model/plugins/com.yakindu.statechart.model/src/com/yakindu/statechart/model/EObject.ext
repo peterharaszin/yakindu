@@ -10,7 +10,7 @@
  */
 import ecore;
 
-extension com::yakindu::statechart::model::Extensions;
+extension org::yakindu::sct::codegenerator::base::extensions::Extensions;
 
 String getId(EObject this):
  	null;

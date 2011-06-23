@@ -14,20 +14,20 @@ package org.eclipselabs.damos.simulation.simulator.internal.providers;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectProvider;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
 import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.BehavioredBlockSimulationObject;
 
 /**
  * @author Andreas Unger
  *
  */
-public class BehavioredBlockSimulationObjectProvider implements IComponentSimulationObjectProvider {
+public class BehavioredBlockSimulationObjectProvider implements ISimulationObjectProvider {
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectProvider#createSimulationObject(org.eclipselabs.damos.dml.Component)
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider#createSimulationObject(org.eclipselabs.damos.dml.Component)
 	 */
-	public IComponentSimulationObject createSimulationObject(Component component) {
+	public ISimulationObject createSimulationObject(Component component) {
 		if (component instanceof Block) {
 			Block block = (Block) component;
 			if (block.getType().getBehavior() instanceof OpaqueBehaviorSpecification) {

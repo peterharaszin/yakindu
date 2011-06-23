@@ -12,19 +12,19 @@
 package org.eclipselabs.damos.simulation.simulator.solver;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 
 /**
  * @author  Andreas Unger
  */
 public abstract class AbstractIntegrationData extends AdapterImpl implements IIntegrationData {
 
-	public IComponentSimulationObject simulationObject;
+	public ISimulationObject simulationObject;
 	
 	/**
 	 * 
 	 */
-	public AbstractIntegrationData(IComponentSimulationObject simulationObject) {
+	public AbstractIntegrationData(ISimulationObject simulationObject) {
 		this.simulationObject = simulationObject;
 	}
 	

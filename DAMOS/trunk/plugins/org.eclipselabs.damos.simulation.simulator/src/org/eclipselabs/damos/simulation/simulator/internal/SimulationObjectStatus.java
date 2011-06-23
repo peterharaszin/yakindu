@@ -15,26 +15,26 @@ import java.util.List;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectStatus;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObjectStatus;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ComponentSimulationObjectStatus extends Status implements IComponentSimulationObjectStatus {
+public class SimulationObjectStatus extends Status implements ISimulationObjectStatus {
 
 	private List<Component> affectedComponents;
 	
 	/**
 	 * 
 	 */
-	public ComponentSimulationObjectStatus(int severity, String pluginId, int code, String message, Throwable exception, List<Component> affectedComponents) {
+	public SimulationObjectStatus(int severity, String pluginId, int code, String message, Throwable exception, List<Component> affectedComponents) {
 		super(severity, pluginId, code, message, exception);
 		this.affectedComponents = affectedComponents;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectStatus#getAffectedComponents()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObjectStatus#getAffectedComponents()
 	 */
 	public List<Component> getAffectedComponents() {
 		return affectedComponents;

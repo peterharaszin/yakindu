@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation.simulator.solver;
 
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 
 /**
  * @author Andreas Unger
@@ -24,7 +24,7 @@ public class AdaptiveStepSizeIntegrationData extends AbstractIntegrationData {
 	/**
 	 * 
 	 */
-	public AdaptiveStepSizeIntegrationData(IComponentSimulationObject simulationObject) {
+	public AdaptiveStepSizeIntegrationData(ISimulationObject simulationObject) {
 		super(simulationObject);
 	}
 		

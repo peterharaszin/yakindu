@@ -13,8 +13,8 @@ package org.eclipselabs.damos.simulation.simulator.util;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.internal.ComponentSimulationObjectAdapter;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
 
 /**
  * @author Andreas Unger
@@ -22,8 +22,8 @@ import org.eclipselabs.damos.simulation.simulator.internal.ComponentSimulationOb
  */
 public class SimulationUtil {
 
-	public static IComponentSimulationObject getComponentSimulationObject(Node node) {
-		ComponentSimulationObjectAdapter adapter = (ComponentSimulationObjectAdapter) EcoreUtil.getAdapter(node.eAdapters(), ComponentSimulationObjectAdapter.class);
+	public static ISimulationObject getSimulationObject(Node node) {
+		SimulationObjectAdapter adapter = (SimulationObjectAdapter) EcoreUtil.getAdapter(node.eAdapters(), SimulationObjectAdapter.class);
 		return adapter != null ? adapter.getSimulationObject() : null;
 	}
 	

@@ -24,17 +24,17 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.simulation.simulator.internal.ComponentSimulationObjectAdapter;
-import org.eclipselabs.damos.simulation.simulator.internal.ComponentSimulationObjectStatus;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectStatus;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
-import org.eclipselabs.damos.simulation.simulator.internal.registry.ComponentSimulationObjectProviderRegistry;
+import org.eclipselabs.damos.simulation.simulator.internal.registry.SimulationObjectProviderRegistry;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ComponentSimulationObjectAdaptor {
+public class SimulationObjectAdaptor {
 
 	public void adaptSimulationObjects(ISimulationContext context, IProgressMonitor progressMonitor) throws CoreException {
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
@@ -42,7 +42,7 @@ public class ComponentSimulationObjectAdaptor {
 		adaptSimulationObjects(context, context.getExecutionFlow().getGraph(), missingSimulationObjectComponents);
 		
 		if (!missingSimulationObjectComponents.isEmpty()) {
-			StringBuilder sb = new StringBuilder("Missing component simulation object for ");
+			StringBuilder sb = new StringBuilder("Missing simulation object for ");
 			boolean first = true;
 			for (Component component : missingSimulationObjectComponents) {
 				if (first) {
@@ -54,7 +54,7 @@ public class ComponentSimulationObjectAdaptor {
 				sb.append(component.getName());
 				sb.append("'");
 			}
-			throw new CoreException(new ComponentSimulationObjectStatus(
+			throw new CoreException(new SimulationObjectStatus(
 					IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, 0, sb.toString(), null, missingSimulationObjectComponents));
 		}
 	}
@@ -71,10 +71,10 @@ public class ComponentSimulationObjectAdaptor {
 				ComponentNode componentNode = (ComponentNode) node;
 				Component component = componentNode.getComponent();
 				if (!(component instanceof Choice || component instanceof Join)) {
-					IComponentSimulationObject simulationObject;
-					simulationObject = ComponentSimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
+					ISimulationObject simulationObject;
+					simulationObject = SimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
 					if (simulationObject != null) {
-						node.eAdapters().add(new ComponentSimulationObjectAdapter(simulationObject));
+						node.eAdapters().add(new SimulationObjectAdapter(simulationObject));
 					} else {
 						missingSimulationObjectComponents.add(component);
 					}

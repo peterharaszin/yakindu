@@ -79,7 +79,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	private List<ComputationCompound> updateCompounds = new ArrayList<ComputationCompound>();
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#initialize()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#initialize()
 	 */
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
@@ -193,7 +193,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.core.value.IValue)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.core.value.IValue)
 	 */
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {
@@ -207,7 +207,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#computeOutputValues()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#computeOutputValues()
 	 */
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
@@ -217,7 +217,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getOutputValue(org.eclipselabs.damos.dml.OutputPort)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#getOutputValue(org.eclipselabs.damos.dml.OutputPort)
 	 */
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) {
@@ -230,7 +230,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#update()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#update()
 	 */
 	@Override
 	public void update(double t) {

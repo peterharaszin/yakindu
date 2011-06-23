@@ -114,7 +114,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getStateVector()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#getStateVector()
 	 */
 	@Override
 	public double[] getStateVector() {
@@ -122,7 +122,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#computeDerivatives(double, double[])
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#computeDerivatives(double, double[])
 	 */
 	@Override
 	public void computeDerivatives(double t, double[] y, double[] yDot) {

@@ -22,9 +22,9 @@ import org.eclipselabs.mscript.computation.core.value.IValue;
  *
  * @noextend
  * @noimplement This interface is <em>not</em> intended to be implemented by
- * clients. Clients should extend {@link AbstractComponentSimulationObject}.
+ * clients. Clients should extend {@link AbstractSimulationObject}.
  */
-public interface IComponentSimulationObject {
+public interface ISimulationObject {
 
 	void initialize(ISimulationObjectContext context, IProgressMonitor monitor) throws CoreException;
 	

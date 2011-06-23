@@ -19,7 +19,7 @@ import org.eclipselabs.damos.dml.Block;
  * @author Andreas Unger
  *
  */
-public abstract class AbstractBlockSimulationObject extends AbstractComponentSimulationObject {
+public abstract class AbstractBlockSimulationObject extends AbstractSimulationObject {
 
 	@Override
 	public Block getComponent() {
@@ -27,7 +27,7 @@ public abstract class AbstractBlockSimulationObject extends AbstractComponentSim
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationObjectContext, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationObjectContext, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
 	 */
 	@Override
 	public void initialize(ISimulationObjectContext context, IProgressMonitor monitor) throws CoreException {

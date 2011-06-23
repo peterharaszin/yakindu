@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation.simulator.solver;
 
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 
 /**
  * @author Andreas Unger
@@ -30,7 +30,7 @@ public class EmbeddedRungeKuttaIntegrationData extends AdaptiveStepSizeIntegrati
 	/**
 	 * 
 	 */
-	public EmbeddedRungeKuttaIntegrationData(IComponentSimulationObject simulationObject, int stageCount) {
+	public EmbeddedRungeKuttaIntegrationData(ISimulationObject simulationObject, int stageCount) {
 		super(simulationObject);
 		y = simulationObject.getStateVector();
 

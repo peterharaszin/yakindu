@@ -17,14 +17,14 @@ import java.util.Map;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectProvider;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
 
 /**
  * @author Andreas Unger
  *
  */
-public class BlockSimulationObjectProvider implements IComponentSimulationObjectProvider {
+public class BlockSimulationObjectProvider implements ISimulationObjectProvider {
 
 	private Map<String, BlockSimulationObjectDescriptor> descriptors = new HashMap<String, BlockSimulationObjectDescriptor>();
 	
@@ -38,7 +38,7 @@ public class BlockSimulationObjectProvider implements IComponentSimulationObject
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.execution.core.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
 	 */
-	public IComponentSimulationObject createSimulationObject(Component component) {
+	public ISimulationObject createSimulationObject(Component component) {
 		if (component instanceof Block) {
 			BlockType blockType = ((Block) component).getType();
 			BlockSimulationObjectDescriptor descriptor = descriptors.get(blockType.getQualifiedName());

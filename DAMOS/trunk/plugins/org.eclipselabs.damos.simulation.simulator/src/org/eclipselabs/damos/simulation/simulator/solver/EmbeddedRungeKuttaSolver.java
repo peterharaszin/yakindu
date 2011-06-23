@@ -44,7 +44,7 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 
@@ -142,9 +142,9 @@ public abstract class EmbeddedRungeKuttaSolver extends AdaptiveStepSizeSolver im
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#createData(org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject, org.eclipselabs.damos.simulation.simulationmodel.SimulationModel)
+	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#createData(org.eclipselabs.damos.simulation.simulator.ISimulationObject, org.eclipselabs.damos.simulation.simulationmodel.SimulationModel)
 	 */
-	public AdaptiveStepSizeIntegrationData createIntegrationData(IComponentSimulationObject simulationObject) {
+	public AdaptiveStepSizeIntegrationData createIntegrationData(ISimulationObject simulationObject) {
 		return new EmbeddedRungeKuttaIntegrationData(simulationObject, stageCount);
 	}
 

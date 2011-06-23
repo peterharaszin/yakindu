@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.DMLPlugin;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 
 public class BlockSimulationObjectDescriptor {
 	
@@ -67,12 +67,12 @@ public class BlockSimulationObjectDescriptor {
 		this.configurationElement = configurationElement;
 	}
 		
-	public IComponentSimulationObject createObject() {
+	public ISimulationObject createObject() {
 		if (clazz == null) {
 			loadClass();
 		}
 		try {
-			return (IComponentSimulationObject) clazz.newInstance();
+			return (ISimulationObject) clazz.newInstance();
 		} catch (InstantiationException e) {
 			log(e.getMessage());
 		} catch (IllegalAccessException e) {
@@ -88,7 +88,7 @@ public class BlockSimulationObjectDescriptor {
 		try {
 			String nsid = configurationElement.getDeclaringExtension().getNamespaceIdentifier();
 			Class<?> clazz = Platform.getBundle(nsid).loadClass(className);
-			if (!IComponentSimulationObject.class.isAssignableFrom(clazz)) {
+			if (!ISimulationObject.class.isAssignableFrom(clazz)) {
 				log("Class must implement 'ISimulationObject' interface");
 				return;
 			}

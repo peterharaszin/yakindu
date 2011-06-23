@@ -27,7 +27,7 @@ import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.WhileLoop;
-import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
+import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;

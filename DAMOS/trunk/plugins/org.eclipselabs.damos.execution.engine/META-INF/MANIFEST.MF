@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Execution Engine
-Bundle-SymbolicName: org.eclipselabs.damos.execution.engine;singleton:=true
+Bundle-SymbolicName: org.eclipselabs.damos.execution.core;singleton:=true
 Bundle-Version: 0.2.0.qualifier
-Bundle-Activator: org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin
+Bundle-Activator: org.eclipselabs.damos.execution.core.ExecutionEnginePlugin
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -15,5 +15,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipselabs.mscript.computation.computationmodel;bundle-version="0.1.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipselabs.damos.execution.engine,
- org.eclipselabs.damos.execution.engine.util
+Export-Package: org.eclipselabs.damos.execution.core,
+ org.eclipselabs.damos.execution.core.util

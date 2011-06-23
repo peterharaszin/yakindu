@@ -36,9 +36,9 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.util.DMLValidator;
-import org.eclipselabs.damos.execution.engine.DataTypeResolver;
-import org.eclipselabs.damos.execution.engine.DataTypeResolverResult;
-import org.eclipselabs.damos.execution.engine.IEObjectStatus;
+import org.eclipselabs.damos.execution.core.DataTypeResolver;
+import org.eclipselabs.damos.execution.core.DataTypeResolverResult;
+import org.eclipselabs.damos.execution.core.IEObjectStatus;
 import org.eclipselabs.damos.ide.core.IDECorePlugin;
 import org.eclipselabs.damos.ide.core.internal.util.TextUtils;
 

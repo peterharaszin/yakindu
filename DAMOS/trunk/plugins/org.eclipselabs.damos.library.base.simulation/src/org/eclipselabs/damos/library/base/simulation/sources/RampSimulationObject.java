@@ -13,7 +13,7 @@ package org.eclipselabs.damos.library.base.simulation.sources;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
+import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;

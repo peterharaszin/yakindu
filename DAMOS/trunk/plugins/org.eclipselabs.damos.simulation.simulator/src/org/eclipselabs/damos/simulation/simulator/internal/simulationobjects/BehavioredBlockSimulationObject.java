@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
-import org.eclipselabs.damos.execution.engine.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;

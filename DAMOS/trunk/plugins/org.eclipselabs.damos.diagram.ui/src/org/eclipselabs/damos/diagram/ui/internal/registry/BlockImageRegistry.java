@@ -38,9 +38,6 @@ public class BlockImageRegistry {
 		return INSTANCE;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.execution.engine.IComponentSignaturePolicyProvider#createPolicy(org.eclipselabs.damos.dml.Component)
-	 */
 	public BlockImageDescriptor getBlockImage(String blockType) {
 		BlockImageDescriptor blockImage = blockImages.get(blockType);
 		if (blockImage != null) {

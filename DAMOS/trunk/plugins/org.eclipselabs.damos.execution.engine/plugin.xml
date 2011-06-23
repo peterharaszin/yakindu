@@ -4,15 +4,15 @@
    <extension-point id="componentSignaturePolicyProviders" name="Component Signature Policy Providers" schema="schema/componentSignaturePolicyProviders.exsd"/>
    <extension-point id="blockSignaturePolicies" name="Block Signature Policies" schema="schema/blockSignaturePolicies.exsd"/>
    <extension
-         point="org.eclipselabs.damos.execution.engine.componentSignaturePolicyProviders">
+         point="org.eclipselabs.damos.execution.core.componentSignaturePolicyProviders">
       <provider
-            class="org.eclipselabs.damos.execution.engine.internal.providers.BuiltinComponentSignaturePolicyProvider">
+            class="org.eclipselabs.damos.execution.core.internal.providers.BuiltinComponentSignaturePolicyProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.execution.engine.internal.registry.BlockSignaturePolicyProvider">
+            class="org.eclipselabs.damos.execution.core.internal.registry.BlockSignaturePolicyProvider">
       </provider>
       <provider
-            class="org.eclipselabs.damos.execution.engine.internal.providers.BehavioredBlockSignaturePolicyProvider">
+            class="org.eclipselabs.damos.execution.core.internal.providers.BehavioredBlockSignaturePolicyProvider">
       </provider>
    </extension>
 

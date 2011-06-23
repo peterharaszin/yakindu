@@ -65,7 +65,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.simulation.engine.IComponentSimulationObject"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject"/>
                </appinfo>
             </annotation>
          </attribute>

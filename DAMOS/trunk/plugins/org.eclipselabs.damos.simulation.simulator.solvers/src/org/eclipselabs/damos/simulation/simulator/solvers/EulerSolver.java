@@ -35,7 +35,7 @@
 
 package org.eclipselabs.damos.simulation.simulator.solvers;
 
-import org.eclipselabs.damos.simulation.engine.solver.RungeKuttaSolver;
+import org.eclipselabs.damos.simulation.simulator.solver.RungeKuttaSolver;
 
 
 /**

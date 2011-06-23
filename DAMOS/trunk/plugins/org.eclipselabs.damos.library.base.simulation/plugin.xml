@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.simulation.engine.blockSimulationObjects">
+         point="org.eclipselabs.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
             blockType="org.eclipselabs.damos.library.base.continuous.Integrator"
             class="org.eclipselabs.damos.library.base.simulation.continuous.IntegratorSimulationObject"

@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Damos Simulation
-Bundle-SymbolicName: org.eclipselabs.damos.simulation.engine;singleton:=true
+Bundle-SymbolicName: org.eclipselabs.damos.simulation.simulator;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-Vendor: Damos Project
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -16,8 +16,8 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.5.0";visibility:=reexpor
  org.eclipselabs.damos.execution.executionflow;bundle-version="0.2.0",
  org.eclipselabs.damos.simulation.core;bundle-version="0.2.0";visibility:=reexport,
  org.eclipselabs.damos.simulation.simulationmodel;bundle-version="0.2.0"
-Export-Package: org.eclipselabs.damos.simulation.engine,
- org.eclipselabs.damos.simulation.engine.registry,
- org.eclipselabs.damos.simulation.engine.solver
+Export-Package: org.eclipselabs.damos.simulation.simulator,
+ org.eclipselabs.damos.simulation.simulator.registry,
+ org.eclipselabs.damos.simulation.simulator.solver
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.eclipselabs.damos.simulation.engine.internal.SimulationEnginePlugin
+Bundle-Activator: org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin

@@ -35,21 +35,21 @@ public abstract class AbstractSimulationAgent extends PlatformObject implements 
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.ISimulationAgent#getTracePoints()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationAgent#getTracePoints()
 	 */
 	public ISimulationTracePoint[] getTracePoints() {
 		return null;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.ISimulationAgent#getVariationPoints()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationAgent#getVariationPoints()
 	 */
 	public ISimulationVariationPoint[] getVariationPoints() {
 		return null;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.ISimulationAgent#getComputationContext()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationAgent#getComputationContext()
 	 */
 	public IComputationContext getComputationContext() {
 		return null;

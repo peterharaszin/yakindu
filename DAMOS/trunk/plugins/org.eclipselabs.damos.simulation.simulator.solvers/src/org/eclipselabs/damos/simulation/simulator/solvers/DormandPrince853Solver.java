@@ -35,8 +35,8 @@
 
 package org.eclipselabs.damos.simulation.simulator.solvers;
 
-import org.eclipselabs.damos.simulation.engine.solver.EmbeddedRungeKuttaIntegrationData;
-import org.eclipselabs.damos.simulation.engine.solver.EmbeddedRungeKuttaSolver;
+import org.eclipselabs.damos.simulation.simulator.solver.EmbeddedRungeKuttaIntegrationData;
+import org.eclipselabs.damos.simulation.simulator.solver.EmbeddedRungeKuttaSolver;
 
 /**
  * This class implements the 8(5,3) Dormand-Prince solver for Ordinary

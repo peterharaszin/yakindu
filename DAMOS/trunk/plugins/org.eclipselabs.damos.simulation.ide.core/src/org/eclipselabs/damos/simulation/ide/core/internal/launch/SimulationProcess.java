@@ -20,7 +20,7 @@ import org.eclipse.debug.core.model.IStreamsProxy;
 import org.eclipselabs.damos.simulation.core.ISimulationListener;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
-import org.eclipselabs.damos.simulation.engine.ISimulationEngine;
+import org.eclipselabs.damos.simulation.simulator.ISimulationEngine;
 
 /**
  * @author Andreas Unger

@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.dml;
 
 import org.eclipse.emf.ecore.EModelElement;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -25,7 +26,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface FragmentElement extends EModelElement {
+public interface FragmentElement extends EObject, EModelElement {
 	/**
 	 * Returns the value of the '<em><b>Owning Fragment</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.dml.Fragment#getFragmentElements <em>Fragment Elements</em>}'.

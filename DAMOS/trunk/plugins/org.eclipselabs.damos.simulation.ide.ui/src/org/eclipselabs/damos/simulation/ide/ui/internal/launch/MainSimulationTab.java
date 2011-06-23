@@ -12,7 +12,10 @@
 package org.eclipselabs.damos.simulation.ide.ui.internal.launch;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -22,18 +25,29 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.StackLayout;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -43,6 +57,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
@@ -56,8 +71,21 @@ import org.eclipselabs.damos.common.ui.viewers.FragmentLabelProvider;
 import org.eclipselabs.damos.common.ui.viewers.FragmentListContentProvider;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
+import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
+import org.eclipselabs.damos.simulation.engine.registry.ISolverDescriptor;
+import org.eclipselabs.damos.simulation.engine.registry.ISolverRegistry;
 import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate;
+import org.eclipselabs.damos.simulation.ide.core.util.LaunchConfigurationUtil;
 import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationPage;
+import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationPageChangeListener;
+import org.eclipselabs.damos.simulation.simulationmodel.ui.SolverConfigurationPageChangeEvent;
+import org.eclipselabs.damos.simulation.simulationmodel.ui.registry.ISolverConfigurationPageRegistry;
+import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelValidator;
 
 /**
  * @author Andreas Unger
@@ -71,13 +99,24 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 	private Button createSimulationModelButton;
 	private Text blockDiagramPathText;
 	private ComboViewer fragmentViewer;
-	private Text sampleTimeText;
 	private Text simulationTimeText;
+	private ComboViewer solverViewer;
+	private Group solverConfigurationGroup;
 	private List<Control> createSimulationModelControls = new ArrayList<Control>();
 	
 	private Button useSimulationModelButton;
 	private Text simulationModelPathText;
 	private List<Control> useSimulationModelControls = new ArrayList<Control>();
+	
+	private Map<String, ISolverConfigurationPage> solverConfigurationPages = new HashMap<String, ISolverConfigurationPage>();
+	
+	private ISolverConfigurationPageChangeListener solverConfigurationPageChangeListener = new ISolverConfigurationPageChangeListener() {
+		
+		public void solverConfigurationPageChanged(SolverConfigurationPageChangeEvent event) {
+			updateLaunchConfigurationDialog();
+		}
+		
+	};
 	
 	/**
 	 * 
@@ -95,7 +134,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		int indent = UIUtil.getToggleButtonIndentInPixels(composite);
 		
 		createSimulationModelButton = new Button(composite, SWT.RADIO);
-		createSimulationModelButton.setText("Create simulation model with the following content:");
+		createSimulationModelButton.setText("Create an in-memory simulation model for the following configuration:");
 		createSimulationModelButton.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
 		createSimulationModelButton.addSelectionListener(new SelectionAdapter() {
 			
@@ -174,39 +213,67 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		label = new Label(composite, SWT.NONE);
 		gridData = new GridData();
 		gridData.horizontalIndent = indent;
-		label.setText("Sample time (seconds):");
-		label.setLayoutData(gridData);
-		createSimulationModelControls.add(label);
-		
-		sampleTimeText = new Text(composite, SWT.SINGLE | SWT.BORDER);
-		sampleTimeText.addModifyListener(new ModifyListener() {
-			public void modifyText(ModifyEvent event) {
-				updateLaunchConfigurationDialog();
-			}
-		});
-		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
-		gridData.horizontalSpan = 2;
-		sampleTimeText.setLayoutData(gridData);
-		createSimulationModelControls.add(sampleTimeText);
-
-		label = new Label(composite, SWT.NONE);
-		gridData = new GridData();
-		gridData.horizontalIndent = indent;
 		label.setText("Simulation time (seconds):");
 		label.setLayoutData(gridData);
 		createSimulationModelControls.add(label);
 
 		simulationTimeText = new Text(composite, SWT.SINGLE | SWT.BORDER);
 		simulationTimeText.addModifyListener(new ModifyListener() {
+			
 			public void modifyText(ModifyEvent event) {
 				updateLaunchConfigurationDialog();
 			}
+			
 		});
 		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false);
 		gridData.horizontalSpan = 2;
 		simulationTimeText.setLayoutData(gridData);
 		createSimulationModelControls.add(simulationTimeText);
+		
+		label = new Label(composite, SWT.NONE);
+		gridData = new GridData();
+		gridData.horizontalIndent = indent;
+		label.setText("Solver:");
+		label.setLayoutData(gridData);
+		createSimulationModelControls.add(label);
 	
+		solverViewer = new ComboViewer(composite, SWT.SINGLE | SWT.BORDER | SWT.READ_ONLY);
+		solverViewer.getCombo().setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 2, 1));
+		solverViewer.setLabelProvider(new LabelProvider() {
+
+			@Override
+			public String getText(Object element) {
+				if (element instanceof ISolverDescriptor) {
+					return ((ISolverDescriptor) element).getName();
+				}
+				return super.getText(element);
+			}
+			
+		});
+		solverViewer.setContentProvider(new ArrayContentProvider());
+		solverViewer.setComparator(new ViewerComparator());
+		solverViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			
+			public void selectionChanged(SelectionChangedEvent event) {
+				updateSolverConfigurationPage();
+				updateLaunchConfigurationDialog();
+			}
+			
+		});
+		solverViewer.setInput(ISolverRegistry.INSTANCE.getSolvers());
+		createSimulationModelControls.add(solverViewer.getControl());
+		
+		solverConfigurationGroup = new Group(composite, SWT.NONE);
+		solverConfigurationGroup.setText("Solver configuration");
+		gridData = new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1);
+		gridData.horizontalIndent = indent;
+		solverConfigurationGroup.setLayoutData(gridData);
+		StackLayout stackLayout = new StackLayout();
+		stackLayout.marginWidth = 5;
+		stackLayout.marginHeight = 5;
+		solverConfigurationGroup.setLayout(stackLayout);
+		createSimulationModelControls.add(solverConfigurationGroup);
+
 		useSimulationModelButton = new Button(composite, SWT.RADIO);
 		useSimulationModelButton.setText("Use an existing simulation model:");
 		useSimulationModelButton.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false, 3, 1));
@@ -225,14 +292,17 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		gridData.horizontalIndent = indent;
 		simulationModelPathText.setLayoutData(gridData);
 		simulationModelPathText.addModifyListener(new ModifyListener() {
+			
 			public void modifyText(ModifyEvent event) {
 				updateLaunchConfigurationDialog();
 			}
+			
 		});
 		useSimulationModelControls.add(simulationModelPathText);
 		
 		Button simulationModelBrowseButton = createPushButton(composite, "Browse...", null);
 		simulationModelBrowseButton.addSelectionListener(new SelectionAdapter() {
+			
 			public void widgetSelected(SelectionEvent e) {
 				FilteredResourcesSelectionDialog d = new FilteredResourcesSelectionDialog(
 						composite.getShell(),
@@ -246,6 +316,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 					simulationModelPathText.setText(((IFile) firstResult).getFullPath().toString());
 				}
 			}
+			
 		});
 		useSimulationModelControls.add(simulationModelBrowseButton);
 	}
@@ -261,34 +332,88 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		for (Control control : useSimulationModelControls) {
 			control.setEnabled(useSimulationModelButton.getSelection());
 		}
+		ISolverConfigurationPage page = getSelectedSolverConfigurationPage();
+		if (page != null) {
+			page.setEnabled(createSimulationModelButton.getSelection());
+		}
+	}
+	
+	private void updateSolverConfigurationPage() {
+		StackLayout stackLayout = (StackLayout) solverConfigurationGroup.getLayout();
+
+		ISolverConfigurationPage page = getSelectedSolverConfigurationPage();
+			
+		if (page != null) {
+			stackLayout.topControl = page.getControl();
+		} else {
+			stackLayout.topControl = null;
+		}
+		
+		solverConfigurationGroup.layout();
+	}
+	
+	private ISolverConfigurationPage getSelectedSolverConfigurationPage() {
+		ISolverConfigurationPage solverConfigurationPage = null;
+		
+		IStructuredSelection selection = (IStructuredSelection) solverViewer.getSelection();
+		ISolverDescriptor solver = (ISolverDescriptor) selection.getFirstElement();
+		if (solver != null) {
+			String solverConfigurationId = solver.getConfiguration().getId();
+			solverConfigurationPage = solverConfigurationPages.get(solverConfigurationId);
+			if (solverConfigurationPage == null) {
+				solverConfigurationPage = ISolverConfigurationPageRegistry.INSTANCE.createPage(solverConfigurationId);
+				if (solverConfigurationPage != null) {
+					solverConfigurationPage.createControl(solverConfigurationGroup);
+					solverConfigurationPage.addChangeListener(solverConfigurationPageChangeListener);
+					solverConfigurationPages.put(solverConfigurationId, solverConfigurationPage);
+				}
+			}
+		}
+		
+		return solverConfigurationPage;
 	}
 
 	public void initializeFrom(ILaunchConfiguration configuration) {
 		try {
 			boolean createSimulationModel = configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
+
 			createSimulationModelButton.setSelection(createSimulationModel);
 			useSimulationModelButton.setSelection(!createSimulationModel);
-			updateControlEnablement();
+			
+			blockDiagramPathText.setText("");
+			fragmentViewer.setInput(null);
+			simulationTimeText.setText("");
+			solverViewer.setSelection(null);
+			simulationModelPathText.setText("");
 
-			Fragment fragment = null;
-			String fragmentURIString = configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, "");
-			if (fragmentURIString.length() > 0) {
-				URI uri = URI.createURI(fragmentURIString);
-				ResourceSet rs = new ResourceSetImpl();
-				try {
-					fragment = (Fragment) rs.getEObject(uri, true);
-				} catch (Exception e) {
-					// If resource doesn't exist anymore, ignore fragment attribute
+			if (createSimulationModel) {
+				SimulationModel simulationModel = LaunchConfigurationUtil.loadSimulationModel(configuration);
+				if (simulationModel != null) {
+					Fragment topLevelFragment = simulationModel.getTopLevelFragment();
+					if (topLevelFragment != null) {
+						blockDiagramPathText.setText(topLevelFragment.eResource().getURI().toPlatformString(false));
+						fragmentViewer.setInput(topLevelFragment.eResource().getResourceSet());
+						fragmentViewer.setSelection(new StructuredSelection(topLevelFragment));
+					}
+					if (simulationModel.isSetSimulationTime()) {
+						simulationTimeText.setText(Double.toString(simulationModel.getSimulationTime()));
+					}
+					ISolverDescriptor solver = ISolverRegistry.INSTANCE.getSolver(simulationModel.getSolverId());
+					if (solver != null) {
+						solverViewer.setSelection(new StructuredSelection(solver));
+						updateSolverConfigurationPage();
+						ISolverConfigurationPage page = solverConfigurationPages.get(solver.getConfiguration().getId());
+						if (page != null) {
+							page.initializeFrom(simulationModel);
+						}
+					}
 				}
+			} else {
+				simulationModelPathText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, ""));
 			}
-			if (fragment != null) {
-				blockDiagramPathText.setText(fragment.eResource().getURI().toPlatformString(false));
-				fragmentViewer.setInput(fragment.eResource().getResourceSet());
-				fragmentViewer.setSelection(new StructuredSelection(fragment));
-			}
-			sampleTimeText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME));
-			simulationTimeText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME));
-			simulationModelPathText.setText(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, ""));
+
+			updateControlEnablement();
+			updateSolverConfigurationPage();
 		} catch (CoreException e) {
 			SimulationIDEUIPlugin.getDefault().getLog().log(e.getStatus());
 		}
@@ -301,40 +426,72 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, createSimulationModelSelection);
 		
 		if (createSimulationModelSelection) {
+			SimulationModel simulationModel = SimulationModelFactory.eINSTANCE.createSimulationModel();
+			ExecutionModel executionModel = ExecutionModelFactory.eINSTANCE.createExecutionModel();
+			simulationModel.setExecutionModel(executionModel);
+
 			Fragment fragment = null;
 			ISelection selection = fragmentViewer.getSelection();
 			if (selection instanceof IStructuredSelection) {
 				fragment = (Fragment) ((IStructuredSelection) selection).getFirstElement();
 			}
 			if (fragment != null) {
-				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, EcoreUtil.getURI(fragment).toString());
+				simulationModel.setTopLevelFragment(fragment);
 			} else {
 				errorMessage = "No fragment selected";
 			}
 			
 			try {
-				String sampleTime = sampleTimeText.getText();
-				if (!SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME.equals(sampleTime)) {
-					Double.parseDouble(sampleTime);
-					configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, sampleTime);
+				String simulationTimeString = simulationTimeText.getText().trim();
+				if (simulationTimeString.length() > 0) {
+					double simulationTime = Double.parseDouble(simulationTimeString);
+					simulationModel.setSimulationTime(simulationTime);
 				}
-			} catch (NumberFormatException e) {
-				errorMessage = "Invalid sample time";
-			}
-			
-			try {
-				String simulationTime = simulationTimeText.getText();
-				Double.parseDouble(simulationTime);
-				configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, simulationTime);
 			} catch (NumberFormatException e) {
 				errorMessage = "Invalid simulation time";
 			}
 			
 			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, (String) null);
+			
+			IStructuredSelection solverSelection = (IStructuredSelection) solverViewer.getSelection();
+			ISolverDescriptor solver = (ISolverDescriptor) solverSelection.getFirstElement();
+			if (solver != null) {
+				URI uri = solver.getConfiguration().getURI();
+				ResourceSet resourceSet = new ResourceSetImpl();
+				EObject eObject = resourceSet.getEObject(uri, true);
+				if (eObject instanceof EClass) {
+					EClass eClass = (EClass) eObject;
+					EFactory eFactory = EPackage.Registry.INSTANCE.getEFactory(eClass.getEPackage().getNsURI());
+					EObject solverConfiguration = eFactory.create(eClass);
+					if (solverConfiguration instanceof SolverConfiguration) {
+						simulationModel.setSolverConfiguration((SolverConfiguration) solverConfiguration);
+						ISolverConfigurationPage page = solverConfigurationPages.get(solver.getConfiguration().getId());
+						if (page != null) {
+							if (!page.performApply(simulationModel)) {
+								errorMessage = page.getErrorMessage();
+							}
+						}
+					}
+				}
+				simulationModel.setSolverId(solver.getId());
+			}
+			
+			if (errorMessage == null) {
+				EValidator validator = new SimulationModelValidator();
+				Map<Object, Object> context = new HashMap<Object, Object>();
+				BasicDiagnostic diagnostics = new BasicDiagnostic();
+				validator.validate(simulationModel, diagnostics, context);
+				for (Iterator<EObject> it = simulationModel.eAllContents(); it.hasNext();) {
+					validator.validate(it.next(), diagnostics, context);
+				}
+				if (diagnostics.getSeverity() > Diagnostic.WARNING && !diagnostics.getChildren().isEmpty()) {
+					errorMessage = diagnostics.getChildren().get(0).getMessage();
+				}
+			}
+			
+			LaunchConfigurationUtil.storeSimulationModel(configuration, simulationModel);
 		} else {
-			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, (String) null);
-			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, (String) null);
-			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, (String) null);
+			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL, (String) null);
 			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, simulationModelPathText.getText());
 		}
 		
@@ -342,7 +499,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 	}
 
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
-		String defaultBlockDiagramPath = "";
+		Fragment fragment = null;
 		IWorkbenchPage activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart activeEditor = activePage.getActiveEditor();
 		if (activeEditor != null) {
@@ -353,21 +510,16 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 					URI uri = URI.createPlatformResourceURI(path.toString(), false);
 					ResourceSet rs = new ResourceSetImpl();
 					Resource r = rs.getResource(uri, true);
-					Fragment fragment = (Fragment) EcoreUtil.getObjectByType(r.getContents(), DMLPackage.Literals.MODEL);
+					fragment = (Fragment) EcoreUtil.getObjectByType(r.getContents(), DMLPackage.Literals.MODEL);
 					if (fragment == null) {
 						fragment = (Fragment) EcoreUtil.getObjectByType(r.getContents(), DMLPackage.Literals.FRAGMENT);
-					}
-					if (fragment != null) {
-						defaultBlockDiagramPath = EcoreUtil.getURI(fragment).toString();
 					}
 				}
 			}
 		}
+		
 		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, defaultBlockDiagramPath);
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SAMPLE_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SAMPLE_TIME);
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
-		configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, "");
+		LaunchConfigurationUtil.storeSimulationModel(configuration, LaunchConfigurationUtil.createDefaultSimulationModel(fragment));
 	}
-
+	
 }

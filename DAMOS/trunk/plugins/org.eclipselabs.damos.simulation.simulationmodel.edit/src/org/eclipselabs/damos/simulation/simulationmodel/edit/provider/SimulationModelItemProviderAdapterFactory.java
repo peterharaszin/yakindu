@@ -12,7 +12,6 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -24,7 +23,6 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelAdapterFactory;
 
 /**
@@ -96,6 +94,52 @@ public class SimulationModelItemProviderAdapterFactory extends SimulationModelAd
 		}
 
 		return simulationModelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FixedStepSizeSolverConfigurationItemProvider fixedStepSizeSolverConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFixedStepSizeSolverConfigurationAdapter() {
+		if (fixedStepSizeSolverConfigurationItemProvider == null) {
+			fixedStepSizeSolverConfigurationItemProvider = new FixedStepSizeSolverConfigurationItemProvider(this);
+		}
+
+		return fixedStepSizeSolverConfigurationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AdaptiveStepSizeSolverConfigurationItemProvider adaptiveStepSizeSolverConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAdaptiveStepSizeSolverConfigurationAdapter() {
+		if (adaptiveStepSizeSolverConfigurationItemProvider == null) {
+			adaptiveStepSizeSolverConfigurationItemProvider = new AdaptiveStepSizeSolverConfigurationItemProvider(this);
+		}
+
+		return adaptiveStepSizeSolverConfigurationItemProvider;
 	}
 
 	/**
@@ -198,6 +242,8 @@ public class SimulationModelItemProviderAdapterFactory extends SimulationModelAd
 	 */
 	public void dispose() {
 		if (simulationModelItemProvider != null) simulationModelItemProvider.dispose();
+		if (fixedStepSizeSolverConfigurationItemProvider != null) fixedStepSizeSolverConfigurationItemProvider.dispose();
+		if (adaptiveStepSizeSolverConfigurationItemProvider != null) adaptiveStepSizeSolverConfigurationItemProvider.dispose();
 	}
 
 }

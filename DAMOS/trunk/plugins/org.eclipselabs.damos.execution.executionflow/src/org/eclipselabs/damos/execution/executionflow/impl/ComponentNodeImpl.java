@@ -22,6 +22,7 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ComponentNodeImpl#getComponent <em>Component</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ComponentNodeImpl#getSampleTime <em>Sample Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -37,6 +38,25 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 	 * @ordered
 	 */
 	protected Component component;
+
+	/**
+	 * The default value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSampleTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double SAMPLE_TIME_EDEFAULT = 0.0;
+	/**
+	 * The cached value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSampleTime()
+	 * @generated
+	 * @ordered
+	 */
+	protected double sampleTime = SAMPLE_TIME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,12 +120,35 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public double getSampleTime() {
+		return sampleTime;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSampleTime(double newSampleTime) {
+		double oldSampleTime = sampleTime;
+		sampleTime = newSampleTime;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME, oldSampleTime, sampleTime));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExecutionFlowPackage.COMPONENT_NODE__COMPONENT:
 				if (resolve) return getComponent();
 				return basicGetComponent();
+			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
+				return getSampleTime();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,6 +163,9 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 		switch (featureID) {
 			case ExecutionFlowPackage.COMPONENT_NODE__COMPONENT:
 				setComponent((Component)newValue);
+				return;
+			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
+				setSampleTime((Double)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -136,6 +182,9 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 			case ExecutionFlowPackage.COMPONENT_NODE__COMPONENT:
 				setComponent((Component)null);
 				return;
+			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
+				setSampleTime(SAMPLE_TIME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -150,8 +199,26 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 		switch (featureID) {
 			case ExecutionFlowPackage.COMPONENT_NODE__COMPONENT:
 				return component != null;
+			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
+				return sampleTime != SAMPLE_TIME_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (sampleTime: ");
+		result.append(sampleTime);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ComponentNodeImpl

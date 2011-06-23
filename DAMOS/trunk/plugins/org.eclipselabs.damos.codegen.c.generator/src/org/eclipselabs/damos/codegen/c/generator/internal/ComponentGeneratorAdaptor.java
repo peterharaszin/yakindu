@@ -90,7 +90,7 @@ public class ComponentGeneratorAdaptor {
 				generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
 				if (generator != null) {
 					generator.setContext(context);
-					generator.setComponent(component);
+					generator.setNode(componentNode);
 					generator.setSignature(signatures.get(component));
 					node.eAdapters().add(new ComponentGeneratorAdapter(generator));
 				} else {

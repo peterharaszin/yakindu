@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_77KgIYkPEd-ehJmnhTrWQg" qualifiedName="org.eclipselabs.damos.library.base.continuous.Integrator">
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_77KgIYkPEd-ehJmnhTrWQg" qualifiedName="org.eclipselabs.damos.library.base.continuous.Integrator" timing="Continuous">
   <parameters xsi:type="dml:ExpressionParameter" xmi:id="_O6JPEXMiEeCkbYZF84r9zw" name="initialCondition">
     <defaultExpression xmi:id="_T0WfQHMiEeCkbYZF84r9zw" expression="0"/>
   </parameters>

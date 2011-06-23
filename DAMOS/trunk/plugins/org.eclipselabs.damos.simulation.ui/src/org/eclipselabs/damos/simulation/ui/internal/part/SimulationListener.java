@@ -15,14 +15,14 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.simulation.engine.ISimulationListener;
-import org.eclipselabs.damos.simulation.engine.SimulationEvent;
-import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
+import org.eclipselabs.damos.simulation.core.ISimulationListener;
+import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**
@@ -31,46 +31,55 @@ import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
  */
 public class SimulationListener implements ISimulationListener {
 
-	private int step;
-	private int progress;
+	private boolean realtime;
+	private long progress;
 	private Set<Component> overflowedComponents = new LinkedHashSet<Component>();
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.ISimulationListener#handleSimulationEvent(org.eclipselabs.damos.simulation.engine.SimulationEvent)
-	 */
 	public void handleSimulationEvent(final SimulationEvent event) {
 		switch (event.getKind()) {
 		case SimulationEvent.START:
+			realtime = !event.getSimulation().getModel().isSetSimulationTime();
+			progress = 0;
 			overflowedComponents.clear();
 			break;
 		case SimulationEvent.OVERFLOW:
 			overflowedComponents.add((Component) event.getSource());
 			break;
-		case SimulationEvent.STEP:
-			int newProgress = (int) Math.round(100.0 * step++ / SimulationUtil.getStepCount(event.getContext().getSimulationModel()));
-			if (newProgress == progress) {
-				return;
+		case SimulationEvent.AFTER_STEP:
+			if (realtime) {
+				long newTime = (long) event.getTime();
+				if (newTime == progress) {
+					return;
+				}
+				progress = newTime;
+			} else {
+				long newProgress = Math.round(100.0 * event.getTime() / event.getSimulation().getModel().getSimulationTime());
+				if (newProgress == progress) {
+					return;
+				}
+				progress = newProgress;
 			}
-			progress = newProgress;
 			break;
 		}
 		
-		PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+		Display.getDefault().asyncExec(new Runnable() {
 			
 			public void run() {
 				try {
 					IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+					if (workbenchWindow == null) {
+						return;
+					}
 					IWorkbenchPage workbenchPage = workbenchWindow.getActivePage();
 					SimulationView viewPart;
 					switch (event.getKind()) {
 					case SimulationEvent.START:
 						viewPart = (SimulationView) workbenchPage.showView(SimulationView.ID);
-						viewPart.setProgress(0);
+						viewPart.setRealtime(realtime);
+						viewPart.setProgress(progress);
 						viewPart.clear();
-						step = 0;
-						progress = 0;
 						break;
-					case SimulationEvent.STEP:
+					case SimulationEvent.AFTER_STEP:
 						viewPart = (SimulationView) workbenchPage.findView(SimulationView.ID);
 						if (viewPart != null) {
 							viewPart.setProgress(progress);
@@ -82,7 +91,7 @@ public class SimulationListener implements ISimulationListener {
 						if (viewPart != null) {
 							viewPart.setProgress(-1);
 							if (event.getKind() == SimulationEvent.FINISH) {
-								viewPart.setExecutionFlow(event.getContext().getExecutionFlow());
+								viewPart.setSimulation(event.getSimulation());
 							}
 						}
 						if (!overflowedComponents.isEmpty()) {

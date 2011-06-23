@@ -11,14 +11,17 @@
 
 package org.eclipselabs.damos.simulation.engine;
 
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipselabs.damos.simulation.core.ISimulation;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISimulationEngine {
+public interface ISimulationEngine extends Runnable {
 
-	void run(ISimulationContext context, ISimulationMonitor monitor) throws CoreException;
+	ISimulation getSimulation();
+	
+	IStatus getStatus();
 
 }

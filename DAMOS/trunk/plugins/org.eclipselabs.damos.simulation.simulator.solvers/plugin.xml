@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipselabs.damos.simulation.engine.solvers">
+      <solver
+            class="org.eclipselabs.damos.simulation.simulator.solvers.EulerSolver"
+            configuration="org.eclipselabs.damos.simulation.simulationmodel.fixedStepSizeSolverConfiguration"
+            id="org.eclipselabs.damos.simulation.simulator.solvers.eulerRungeKutta"
+            name="Euler">
+      </solver>
+      <solver
+            class="org.eclipselabs.damos.simulation.simulator.solvers.ClassicalRungeKuttaSolver"
+            configuration="org.eclipselabs.damos.simulation.simulationmodel.fixedStepSizeSolverConfiguration"
+            id="org.eclipselabs.damos.simulation.simulator.solvers.classicalRungeKutta"
+            name="Classical Runge-Kutta">
+      </solver>
+      <solver
+            class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince54Solver"
+            configuration="org.eclipselabs.damos.simulation.simulationmodel.adaptiveStepSizeSolverConfiguration"
+            id="org.eclipselabs.damos.simulation.simulator.solvers.dormandPrince54"
+            name="Dormand-Prince 5(4)">
+      </solver>
+      <solver
+            class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince853Solver"
+            configuration="org.eclipselabs.damos.simulation.simulationmodel.adaptiveStepSizeSolverConfiguration"
+            id="org.eclipselabs.damos.simulation.simulator.solvers.dormandPrince853"
+            name="Dormand-Prince 8(5,3)">
+      </solver>
+   </extension>
+</plugin>

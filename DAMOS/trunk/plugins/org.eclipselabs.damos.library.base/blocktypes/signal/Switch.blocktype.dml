@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_OR3fwIkSEd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.signal.Switch">
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_OR3fwIkSEd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.signal.Switch" timing="Any">
   <inputDefinitions xmi:id="_OR3fwYkSEd-UBLGPWvR3ew" name="onTrue"/>
   <inputDefinitions xmi:id="_OR4G0IkSEd-UBLGPWvR3ew" name="control"/>
   <inputDefinitions xmi:id="_OR4G0YkSEd-UBLGPWvR3ew" name="onFalse"/>

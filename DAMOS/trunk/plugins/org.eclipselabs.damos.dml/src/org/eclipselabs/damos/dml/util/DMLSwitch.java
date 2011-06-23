@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
@@ -38,6 +39,7 @@ import org.eclipselabs.damos.dml.CompoundOutputConnector;
 import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
+import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
@@ -57,6 +59,7 @@ import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -65,6 +68,7 @@ import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
@@ -77,12 +81,15 @@ import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
+import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.dml.TimingConstraint;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.WhileLoopCondition;
@@ -174,6 +181,46 @@ public class DMLSwitch<T> {
 				if (result == null) result = caseFragmentElement(component);
 				if (result == null) result = caseCompoundMember(component);
 				if (result == null) result = caseEModelElement(component);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.TIMING_CONSTRAINT: {
+				TimingConstraint timingConstraint = (TimingConstraint)theEObject;
+				T result = caseTimingConstraint(timingConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.CONTINUOUS_TIMING_CONSTRAINT: {
+				ContinuousTimingConstraint continuousTimingConstraint = (ContinuousTimingConstraint)theEObject;
+				T result = caseContinuousTimingConstraint(continuousTimingConstraint);
+				if (result == null) result = caseTimingConstraint(continuousTimingConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT: {
+				SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint)theEObject;
+				T result = caseSynchronousTimingConstraint(synchronousTimingConstraint);
+				if (result == null) result = caseTimingConstraint(synchronousTimingConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.ASYNCHRONOUS_TIMING_CONSTRAINT: {
+				AsynchronousTimingConstraint asynchronousTimingConstraint = (AsynchronousTimingConstraint)theEObject;
+				T result = caseAsynchronousTimingConstraint(asynchronousTimingConstraint);
+				if (result == null) result = caseTimingConstraint(asynchronousTimingConstraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.SAMPLE_TIME_SPECIFICATION: {
+				SampleTimeSpecification sampleTimeSpecification = (SampleTimeSpecification)theEObject;
+				T result = caseSampleTimeSpecification(sampleTimeSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.OPAQUE_SAMPLE_TIME_SPECIFICATION: {
+				OpaqueSampleTimeSpecification opaqueSampleTimeSpecification = (OpaqueSampleTimeSpecification)theEObject;
+				T result = caseOpaqueSampleTimeSpecification(opaqueSampleTimeSpecification);
+				if (result == null) result = caseSampleTimeSpecification(opaqueSampleTimeSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -584,6 +631,16 @@ public class DMLSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLPackage.LATCH: {
+				Latch latch = (Latch)theEObject;
+				T result = caseLatch(latch);
+				if (result == null) result = caseComponent(latch);
+				if (result == null) result = caseFragmentElement(latch);
+				if (result == null) result = caseCompoundMember(latch);
+				if (result == null) result = caseEModelElement(latch);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLPackage.COMPOUND: {
 				Compound compound = (Compound)theEObject;
 				T result = caseCompound(compound);
@@ -785,6 +842,96 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseComponent(Component object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Timing Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Timing Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTimingConstraint(TimingConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Continuous Timing Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Continuous Timing Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseContinuousTimingConstraint(ContinuousTimingConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Synchronous Timing Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Synchronous Timing Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSynchronousTimingConstraint(SynchronousTimingConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Asynchronous Timing Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Asynchronous Timing Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAsynchronousTimingConstraint(AsynchronousTimingConstraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Sample Time Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Sample Time Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSampleTimeSpecification(SampleTimeSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Opaque Sample Time Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Opaque Sample Time Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOpaqueSampleTimeSpecification(OpaqueSampleTimeSpecification object) {
 		return null;
 	}
 
@@ -1580,6 +1727,21 @@ public class DMLSwitch<T> {
 	 * @generated
 	 */
 	public T caseOpaqueBehaviorSpecification(OpaqueBehaviorSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Latch</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Latch</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLatch(Latch object) {
 		return null;
 	}
 

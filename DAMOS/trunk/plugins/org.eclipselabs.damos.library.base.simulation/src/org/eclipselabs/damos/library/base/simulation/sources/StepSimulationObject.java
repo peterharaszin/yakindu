@@ -12,12 +12,11 @@
 package org.eclipselabs.damos.library.base.simulation.sources;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.engine.ComputationContext;
-import org.eclipselabs.mscript.computation.engine.IComputationContext;
-import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.computation.engine.value.ValueTransformer;
 
@@ -29,25 +28,24 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 
 	private IValue initialValue;
 	private IValue finalValue;
-	private ISimpleNumericValue stepTime;
+	private double stepTime;
 	
 	private IValue outputValue;
 
 	@Override
-	public void initialize() throws CoreException {
+	public void initialize(IProgressMonitor monitor) throws CoreException {
 		initialValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__INITIAL_VALUE);
 		finalValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__FINAL_VALUE);
-		stepTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__STEP_TIME);
+		stepTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__STEP_TIME).doubleValue();
 
-		IComputationContext computationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 		ValueTransformer valueTransformer = new ValueTransformer();
 		
-		initialValue = valueTransformer.transform(computationContext, initialValue);
-		finalValue = valueTransformer.transform(computationContext, finalValue);
+		initialValue = valueTransformer.transform(getComputationContext(), initialValue);
+		finalValue = valueTransformer.transform(getComputationContext(), finalValue);
 	}
 	
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return outputValue;
 	}
 	
@@ -55,8 +53,16 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues()
 	 */
 	@Override
-	public void computeOutputValues(double t) throws CoreException {
-		outputValue = t <= stepTime.doubleValue() ? initialValue : finalValue;
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
+		outputValue = t < stepTime ? initialValue : finalValue;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getZeroCrossingTime(double)
+	 */
+	@Override
+	public double computeZeroCrossingTime(double t) {
+		return stepTime;
 	}
 	
 }

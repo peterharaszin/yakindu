@@ -14,8 +14,10 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.5.0";visibility:=reexpor
  org.eclipselabs.damos.execution.engine;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.executionmodel;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.executionflow;bundle-version="0.2.0",
+ org.eclipselabs.damos.simulation.core;bundle-version="0.2.0";visibility:=reexport,
  org.eclipselabs.damos.simulation.simulationmodel;bundle-version="0.2.0"
 Export-Package: org.eclipselabs.damos.simulation.engine,
- org.eclipselabs.damos.simulation.engine.util
+ org.eclipselabs.damos.simulation.engine.registry,
+ org.eclipselabs.damos.simulation.engine.solver
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin
+Bundle-Activator: org.eclipselabs.damos.simulation.engine.internal.SimulationEnginePlugin

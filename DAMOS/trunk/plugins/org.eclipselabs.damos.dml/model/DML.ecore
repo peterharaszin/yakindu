@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dml"
     nsURI="http://www.eclipselabs.org/damos/DML/1.0.0" nsPrefix="dml">
-  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName UniqueComponentNames"/>
     </eAnnotations>
@@ -26,10 +26,10 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName"/>
     </eAnnotations>
-    <eOperations name="getInput" ordered="false" lowerBound="1" eType="#//Input">
+    <eOperations name="getInput" ordered="false" eType="#//Input">
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eOperations name="getOutput" ordered="false" lowerBound="1" eType="#//Output">
+    <eOperations name="getOutput" ordered="false" eType="#//Output">
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
     <eOperations name="getInputPorts" upperBound="-1" eType="#//InputPort"/>
@@ -40,14 +40,33 @@
     <eOperations name="getPrimaryOutputPorts" upperBound="-1" eType="#//OutputPort"/>
     <eOperations name="isSource" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="isSink" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eOperations name="isTimingConstraintApplicable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="eClass" lowerBound="1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
         eType="#//Input" containment="true" eOpposite="#//Input/component"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
         eType="#//Output" containment="true" eOpposite="#//Output/component"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timingConstraint" eType="#//TimingConstraint"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FragmentElement" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="TimingConstraint" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContinuousTimingConstraint" eSuperTypes="#//TimingConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SynchronousTimingConstraint" eSuperTypes="#//TimingConstraint">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sampleTime" lowerBound="1"
+        eType="#//SampleTimeSpecification" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsynchronousTimingConstraint" eSuperTypes="#//TimingConstraint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SampleTimeSpecification" abstract="true">
+    <eOperations name="stringSampleTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueSampleTimeSpecification" eSuperTypes="#//SampleTimeSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleTime" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FragmentElement" abstract="true" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
     <eOperations name="getEnclosingFragment" lowerBound="1" eType="#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningFragment" ordered="false"
         eType="#//Fragment" eOpposite="#//Fragment/fragmentElements"/>
@@ -215,7 +234,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
         lowerBound="1" eType="#//ExpressionSpecification" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BlockType" eSuperTypes="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement #//QualifiedElement #//CategorizedElement #//ParameterableElement">
+  <eClassifiers xsi:type="ecore:EClass" name="BlockType" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement #//QualifiedElement #//CategorizedElement #//ParameterableElement">
     <eOperations name="newInstance" ordered="false" lowerBound="1" eType="#//Block">
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
@@ -225,6 +244,15 @@
         eType="#//OutputDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" ordered="false"
         eType="#//BehaviorSpecification" unsettable="true" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timing" lowerBound="1"
+        eType="#//TimingKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="TimingKind">
+    <eLiterals name="Unspecified"/>
+    <eLiterals name="Any" value="1"/>
+    <eLiterals name="Continuous" value="2"/>
+    <eLiterals name="Synchronous" value="3"/>
+    <eLiterals name="Asynchronous" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" ordered="false"
@@ -317,6 +345,10 @@
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorSpecification" eSuperTypes="#//BehaviorSpecification">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="behavior" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Latch" eSuperTypes="#//Component">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" lowerBound="1"
+        eType="#//ValueSpecification" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Compound" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember">
     <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"

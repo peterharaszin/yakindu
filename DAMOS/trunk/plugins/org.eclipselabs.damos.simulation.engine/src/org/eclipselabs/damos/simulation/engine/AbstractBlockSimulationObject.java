@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.simulation.engine;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dml.Block;
 
 /**
@@ -23,13 +25,16 @@ public abstract class AbstractBlockSimulationObject extends AbstractComponentSim
 	public Block getComponent() {
 		return (Block) super.getComponent();
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#initialize(org.eclipselabs.damos.simulation.engine.ISimulationObjectContext, org.eclipselabs.damos.simulation.engine.ISimulationMonitor)
+	 */
 	@Override
-	public void setInfo(IComponentSimulationInfo info) {
-		if (!(info.getComponent() instanceof Block)) {
+	public void initialize(ISimulationObjectContext context, IProgressMonitor monitor) throws CoreException {
+		if (!(context.getNode().getComponent() instanceof Block)) {
 			throw new IllegalArgumentException("Component must be instance of Block");
 		}
-		super.setInfo(info);
+		super.initialize(context, monitor);
 	}
-		
+
 }

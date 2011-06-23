@@ -336,13 +336,13 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		@Override
 		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
-				double sampleTime = getExecutionModel().getSampleTime();
+				double sampleTime = getNode().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
 				return new ValueConstructor().construct(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
-				double sampleRate = 1 / getExecutionModel().getSampleTime();
+				double sampleRate = 1 / getNode().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				Unit herzUnit = TypeSystemUtil.createUnit();
 				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);

@@ -12,14 +12,15 @@
 package org.eclipselabs.damos.library.base.simulation.continuous;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.common.math.jama.Matrix;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.IArrayValue;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
@@ -33,19 +34,19 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 public class TransferFunctionSimulationObject extends AbstractBlockSimulationObject {
 
 	private IValueConstructor valueConstructor = new ValueConstructor();
-	private ComputationContext outputComputationContext;
 	private RealType outputDataType;
+	
+	private IValue outputValue;
 	
 	private Matrix stateMatrix;
 	private double[] stateVector;
 	private Matrix inputVector;
 	private Matrix outputMatrix;
 	
-	private IValue outputValue;
+	private double[] y;
 		
 	@Override
-	public void initialize() throws CoreException {
-		outputComputationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
+	public void initialize(IProgressMonitor monitor) throws CoreException {
 		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		outputDataType.setUnit(TypeSystemUtil.createUnit());
 		
@@ -93,28 +94,30 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		for (int j = numeratorOffset; j < stateVariableCount; ++j) {
 			outputMatrix.set(0, j, numeratorCoefficients[j - numeratorOffset]);
 		}
+		
+		y = new double[stateVariableCount];
 	}
 	
 	@Override
-	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
+	public void setInputValue(int inputIndex, int portIndex, IValue value) {
 		inputVector.set(0, 0, ((ISimpleNumericValue) value).doubleValue());
 	}
 
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return outputValue;
 	}
 	
 	@Override
-	public void computeOutputValues(double t) throws CoreException {
-		outputValue = valueConstructor.construct(outputComputationContext, outputDataType, outputMatrix.times(getStateVectorAsMatrix()).get(0, 0));
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
+		outputValue = valueConstructor.construct(getComputationContext(), outputDataType, outputMatrix.times(vectorToMatrix(y)).get(0, 0));
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getStateVector()
 	 */
 	@Override
-	public double[] getStateVector() throws CoreException {
+	public double[] getStateVector() {
 		return stateVector;
 	}
 	
@@ -122,15 +125,16 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeDerivatives(double, double[])
 	 */
 	@Override
-	public void computeDerivatives(double t, double[] yDot) throws CoreException {
-		Matrix yDotMatrix = stateMatrix.times(getStateVectorAsMatrix()).plus(inputVector);
+	public void computeDerivatives(double t, double[] y, double[] yDot) {
+		Matrix yDotMatrix = stateMatrix.times(vectorToMatrix(y)).plus(inputVector);
 		for (int i = 0; i < yDotMatrix.getRowDimension(); ++i) {
 			yDot[i] = yDotMatrix.get(i, 0);
 		}
+		System.arraycopy(y, 0, this.y, 0, y.length);
 	}
 	
-	private Matrix getStateVectorAsMatrix() {
-		return new Matrix(stateVector, 1).transpose();
+	private static Matrix vectorToMatrix(double[] vector) {
+		return new Matrix(vector, 1).transpose();
 	}
 	
 	private double[] getCoefficients(String parameterName) throws CoreException {

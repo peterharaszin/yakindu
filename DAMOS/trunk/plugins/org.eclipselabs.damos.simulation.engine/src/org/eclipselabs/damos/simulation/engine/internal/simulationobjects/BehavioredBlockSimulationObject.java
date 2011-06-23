@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
@@ -22,8 +23,9 @@ import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.execution.engine.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
-import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.engine.internal.SimulationEnginePlugin;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.ArrayValue;
 import org.eclipselabs.mscript.computation.engine.value.IArrayValue;
@@ -80,7 +82,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#initialize()
 	 */
 	@Override
-	public void initialize() throws CoreException {
+	public void initialize(IProgressMonitor monitor) throws CoreException {
 		MultiStatus status = new MultiStatus(SimulationEnginePlugin.PLUGIN_ID, 0, "Simulation object initialization failed", null);
 
 		Block block = getComponent();
@@ -110,7 +112,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		ILFunctionDefinition functionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
 		
-		interpreterContext = new InterpreterContext(new ComputationContext(getComputationModel(), getOverflowMonitor()));
+		interpreterContext = new InterpreterContext(getComputationContext());
 		functionObject = FunctionObject.create(interpreterContext, functionDefinition);
 
 		for (IVariable variable : functionObject.getVariables()) {
@@ -194,7 +196,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.engine.value.IValue)
 	 */
 	@Override
-	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
+	public void setInputValue(int inputIndex, int portIndex, IValue value) {
 		IVariable variable = inputVariables[inputIndex];
 		if (multiPortInput[inputIndex]) {
 			IArrayValue arrayValue = (IArrayValue) variable.getValue(0);
@@ -208,7 +210,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues()
 	 */
 	@Override
-	public void computeOutputValues(double t) throws CoreException {
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 		for (ComputationCompound compound : computeOutputsCompounds) {
 			compoundInterpreter.execute(interpreterContext, compound);
 		}
@@ -218,7 +220,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getOutputValue(org.eclipselabs.damos.dml.OutputPort)
 	 */
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		IVariable variable = outputVariables[outputIndex];
 		if (multiPortOutput[outputIndex]) {
 			IArrayValue arrayValue = (IArrayValue) variable.getValue(0);
@@ -231,7 +233,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#update()
 	 */
 	@Override
-	public void update() throws CoreException {
+	public void update(double t) {
 		for (ComputationCompound compound : updateCompounds) {
 			compoundInterpreter.execute(interpreterContext, compound);
 		}
@@ -250,13 +252,13 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		@Override
 		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
-				double sampleTime = getExecutionModel().getSampleTime();
+				double sampleTime = getNode().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
 				return new ValueConstructor().construct(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
-				double sampleRate = 1 / getExecutionModel().getSampleTime();
+				double sampleRate = 1 / getNode().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				Unit herzUnit = TypeSystemUtil.createUnit();
 				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);

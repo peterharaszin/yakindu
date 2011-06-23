@@ -14,7 +14,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -36,7 +37,7 @@ import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
  * @generated
  */
 public class FragmentItemProvider
-	extends EModelElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -172,6 +173,7 @@ public class FragmentItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS);
 			childrenFeatures.add(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS);
 		}
 		return childrenFeatures;
@@ -232,6 +234,7 @@ public class FragmentItemProvider
 			case DMLPackage.FRAGMENT__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case DMLPackage.FRAGMENT__EANNOTATIONS:
 			case DMLPackage.FRAGMENT__FRAGMENT_ELEMENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -269,6 +272,11 @@ public class FragmentItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.FRAGMENT__COMPONENTS,
 				 DMLFactory.eINSTANCE.createOutport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.FRAGMENT__COMPONENTS,
+				 DMLFactory.eINSTANCE.createLatch()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -314,6 +322,11 @@ public class FragmentItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
 				 DMLFactory.eINSTANCE.createOutport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
+				 DMLFactory.eINSTANCE.createLatch()));
 
 		newChildDescriptors.add
 			(createChildParameter

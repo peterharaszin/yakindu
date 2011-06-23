@@ -38,5 +38,14 @@ public class JoinImpl extends ComponentImpl implements Join {
 	protected EClass eStaticClass() {
 		return DMLPackage.Literals.JOIN;
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.ComponentImpl#isTimingConstraintApplicable(org.eclipse.emf.ecore.EClass)
+	 */
+	@Override
+	public boolean isTimingConstraintApplicable(EClass eClass) {
+		return eClass == DMLPackage.eINSTANCE.getSynchronousTimingConstraint()
+				|| eClass == DMLPackage.eINSTANCE.getAsynchronousTimingConstraint();
+	}
 
 } //JoinImpl

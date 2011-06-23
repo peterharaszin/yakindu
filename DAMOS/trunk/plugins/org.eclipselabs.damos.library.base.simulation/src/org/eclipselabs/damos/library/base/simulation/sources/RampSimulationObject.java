@@ -12,8 +12,10 @@
 package org.eclipselabs.damos.library.base.simulation.sources;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.IComputationContext;
@@ -37,7 +39,6 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	private ValueTransformer valueTransformer = new ValueTransformer();
 	
 	private IComputationContext defaultComputationContext;
-	private IComputationContext outputComputationContext;
 	
 	private RealType timeDataType;
 	
@@ -48,9 +49,8 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	private IValue outputValue;
 	
 	@Override
-	public void initialize() throws CoreException {
+	public void initialize(IProgressMonitor monitor) throws CoreException {
 		defaultComputationContext = new ComputationContext();
-		outputComputationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 		
 		timeDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		timeDataType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
@@ -61,18 +61,26 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return outputValue;
 	}
 	
 	@Override
-	public void computeOutputValues(double t) throws CoreException {
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 		ISimpleNumericValue time = valueConstructor.construct(defaultComputationContext, timeDataType, t);
 		IValue value = initialValue;
 		if (time.doubleValue() > startTime.doubleValue()) {
 			value = value.add(slope.multiply(time.subtract(startTime)));
 		}
-		outputValue = valueTransformer.transform(outputComputationContext, value);
+		outputValue = valueTransformer.transform(getComputationContext(), value);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getZeroCrossingTime(double)
+	 */
+	@Override
+	public double computeZeroCrossingTime(double t) {
+		return startTime.doubleValue();
+	}
+
 }

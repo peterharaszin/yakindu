@@ -80,6 +80,11 @@
             name="Integrator">
       </editPart>
       <editPart
+            blockType="org.eclipselabs.damos.library.base.continuous.Derivative"
+            class="org.eclipselabs.damos.library.base.ui.continuous.editparts.DerivativeEditPart"
+            name="Derivative">
+      </editPart>
+      <editPart
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.ui.continuous.editparts.TransferFunctionEditPart"
             name="Transfer Function">
@@ -185,6 +190,11 @@
             blockType="org.eclipselabs.damos.library.base.continuous.Integrator"
             icon16="icons/continuous/Integrator16.png"
             icon24="icons/continuous/Integrator24.png">
+      </image>
+      <image
+            blockType="org.eclipselabs.damos.library.base.continuous.Derivative"
+            icon16="icons/continuous/Derivative16.png"
+            icon24="icons/continuous/Derivative24.png">
       </image>
       <image
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
@@ -298,9 +308,6 @@
       </block>
       <block
             blockType="org.eclipselabs.damos.library.base.discrete.DiscreteIntegrator">
-      </block>
-      <block
-            blockType="org.eclipselabs.damos.library.base.discrete.DiscreteDerivative">
       </block>
       <block
             blockType="org.eclipselabs.damos.library.base.logic.And">

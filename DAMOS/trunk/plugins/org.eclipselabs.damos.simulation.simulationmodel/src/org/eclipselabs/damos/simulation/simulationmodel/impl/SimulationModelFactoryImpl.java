@@ -11,6 +11,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
@@ -60,6 +62,8 @@ public class SimulationModelFactoryImpl extends EFactoryImpl implements Simulati
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case SimulationModelPackage.SIMULATION_MODEL: return createSimulationModel();
+			case SimulationModelPackage.FIXED_STEP_SIZE_SOLVER_CONFIGURATION: return createFixedStepSizeSolverConfiguration();
+			case SimulationModelPackage.ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION: return createAdaptiveStepSizeSolverConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -73,6 +77,26 @@ public class SimulationModelFactoryImpl extends EFactoryImpl implements Simulati
 	public SimulationModel createSimulationModel() {
 		SimulationModelImpl simulationModel = new SimulationModelImpl();
 		return simulationModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FixedStepSizeSolverConfiguration createFixedStepSizeSolverConfiguration() {
+		FixedStepSizeSolverConfigurationImpl fixedStepSizeSolverConfiguration = new FixedStepSizeSolverConfigurationImpl();
+		return fixedStepSizeSolverConfiguration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AdaptiveStepSizeSolverConfiguration createAdaptiveStepSizeSolverConfiguration() {
+		AdaptiveStepSizeSolverConfigurationImpl adaptiveStepSizeSolverConfiguration = new AdaptiveStepSizeSolverConfigurationImpl();
+		return adaptiveStepSizeSolverConfiguration;
 	}
 
 	/**

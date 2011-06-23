@@ -12,14 +12,9 @@
 package org.eclipselabs.damos.simulation.ide.core.internal.launch;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IStatusHandler;
-import org.eclipselabs.damos.simulation.engine.ISimulationContext;
-import org.eclipselabs.damos.simulation.engine.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.engine.ISimulator;
-import org.eclipselabs.damos.simulation.engine.Simulator;
+import org.eclipselabs.damos.simulation.engine.ISimulationEngine;
 import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
 
 /**
@@ -28,25 +23,14 @@ import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
  */
 public class SimulationThread extends Thread {
 	
-	private ISimulationContext context;
-	private ISimulationMonitor simulationMonitor;
-		
-	private ISimulator simulator = new Simulator();
+	private ISimulationEngine simulationEngine;
 
 	/**
 	 * 
 	 */
-	public SimulationThread(ISimulationContext context, ISimulationMonitor simulationMonitor) {
+	public SimulationThread(ISimulationEngine simulationEngine) {
 		super("Simulating block diagram");
-		this.context = context;
-		this.simulationMonitor = simulationMonitor;
-	}
-	
-	/**
-	 * @return the monitor
-	 */
-	public ISimulationMonitor getSimulationMonitor() {
-		return simulationMonitor;
+		this.simulationEngine = simulationEngine;
 	}
 	
 	/* (non-Javadoc)
@@ -54,19 +38,12 @@ public class SimulationThread extends Thread {
 	 */
 	@Override
 	public void run() {
-		IStatus status = Status.OK_STATUS;
-
-		try {
-			simulator.simulate(context, simulationMonitor);
-		} catch (CoreException e) {
-			status = e.getStatus();
-		}
-		
-		if (!status.isOK()) {
+		simulationEngine.run();
+		if (!simulationEngine.getStatus().isOK()) {
 			IStatusHandler prompter = DebugPlugin.getDefault().getStatusHandler(IStatuses.GENERIC_STATUS);
 			if (prompter != null) {
 				try {
-					prompter.handleStatus(status, null);
+					prompter.handleStatus(simulationEngine.getStatus(), null);
 				} catch (CoreException e) {
 					SimulationIDECorePlugin.getDefault().getLog().log(e.getStatus());
 				}

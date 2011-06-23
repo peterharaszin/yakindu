@@ -45,7 +45,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
-import org.eclipselabs.damos.simulation.simulationmodel.ui.SimulationModelUIPlugin;
+import org.eclipselabs.damos.simulation.simulationmodel.ui.internal.SimulationModelUIPlugin;
 
 
 /**

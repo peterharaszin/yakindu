@@ -39,4 +39,14 @@ public class InportImpl extends InoutportImpl implements Inport {
 		return DMLPackage.Literals.INPORT;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.ComponentImpl#isTimingConstraintApplicable(org.eclipse.emf.ecore.EClass)
+	 */
+	@Override
+	public boolean isTimingConstraintApplicable(EClass eClass) {
+		return eClass == DMLPackage.eINSTANCE.getContinuousTimingConstraint()
+				|| eClass == DMLPackage.eINSTANCE.getSynchronousTimingConstraint()
+				|| eClass == DMLPackage.eINSTANCE.getAsynchronousTimingConstraint();
+	}
+	
 } //InportImpl

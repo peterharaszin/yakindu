@@ -4,11 +4,41 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="simulationmodel"
     nsURI="http://www.eclipselabs.org/damos/SimulationModel/1.0.0" nsPrefix="simulationmodel">
   <eClassifiers xsi:type="ecore:EClass" name="SimulationModel">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidSimulationTime"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="executionModel" lowerBound="1"
         eType="ecore:EClass ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.ecore#//ExecutionModel"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFragment" lowerBound="1"
         eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="simulationTime" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="solverId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="solverConfiguration" lowerBound="1"
+        eType="#//SolverConfiguration" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SolverConfiguration" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FixedStepSizeSolverConfiguration" eSuperTypes="#//SolverConfiguration">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidStepSize"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepSize" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdaptiveStepSizeSolverConfiguration"
+      eSuperTypes="#//SolverConfiguration">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidMinimumStepSize ValidMaximumStepSize ValidInitialStepSize ValidAbsoluteTolerance ValidRelativeTolerance"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumStepSize" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximumStepSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="initialStepSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"
+        unsettable="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="absoluteTolerance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="relativeTolerance" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
 </ecore:EPackage>

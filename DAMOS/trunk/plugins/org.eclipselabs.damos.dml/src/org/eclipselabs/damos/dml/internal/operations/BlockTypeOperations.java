@@ -27,6 +27,15 @@ public class BlockTypeOperations {
 		block.setType(blockType);
 		block.setName(name);
 		
+		switch (blockType.getTiming()) {
+		case CONTINUOUS:
+			block.setTimingConstraint(DMLFactory.eINSTANCE.createContinuousTimingConstraint());
+			break;
+		case ASYNCHRONOUS:
+			block.setTimingConstraint(DMLFactory.eINSTANCE.createAsynchronousTimingConstraint());
+			break;
+		}
+		
 		ConfigureUtil.configureParameters(block);
 		
 		for (InputDefinition definition : block.getType().getInputDefinitions()) {

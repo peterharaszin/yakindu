@@ -64,7 +64,7 @@ public class BlockTypeDescriptor implements IBlockTypeDescriptor {
 	/**
 	 * @param uri the uri to set
 	 */
-	public void setUri(URI uri) {
+	public void setURI(URI uri) {
 		this.uri = uri;
 	}
 	

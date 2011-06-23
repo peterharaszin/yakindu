@@ -35,6 +35,42 @@ public interface DMLFactory extends EFactory {
 	Fragment createFragment();
 
 	/**
+	 * Returns a new object of class '<em>Continuous Timing Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Continuous Timing Constraint</em>'.
+	 * @generated
+	 */
+	ContinuousTimingConstraint createContinuousTimingConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Synchronous Timing Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Synchronous Timing Constraint</em>'.
+	 * @generated
+	 */
+	SynchronousTimingConstraint createSynchronousTimingConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Asynchronous Timing Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Asynchronous Timing Constraint</em>'.
+	 * @generated
+	 */
+	AsynchronousTimingConstraint createAsynchronousTimingConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Opaque Sample Time Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Opaque Sample Time Specification</em>'.
+	 * @generated
+	 */
+	OpaqueSampleTimeSpecification createOpaqueSampleTimeSpecification();
+
+	/**
 	 * Returns a new object of class '<em>Input Port</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -321,6 +357,15 @@ public interface DMLFactory extends EFactory {
 	 * @generated
 	 */
 	OpaqueBehaviorSpecification createOpaqueBehaviorSpecification();
+
+	/**
+	 * Returns a new object of class '<em>Latch</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Latch</em>'.
+	 * @generated
+	 */
+	Latch createLatch();
 
 	/**
 	 * Returns a new object of class '<em>Choice</em>'.

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
@@ -27,6 +28,7 @@ import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.ChoiceInput;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Connection;
+import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.ExpressionParameter;
@@ -39,6 +41,7 @@ import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -47,6 +50,7 @@ import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
@@ -58,7 +62,9 @@ import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
+import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.WhileLoopCondition;
 
@@ -107,6 +113,10 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DMLPackage.FRAGMENT: return createFragment();
+			case DMLPackage.CONTINUOUS_TIMING_CONSTRAINT: return createContinuousTimingConstraint();
+			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT: return createSynchronousTimingConstraint();
+			case DMLPackage.ASYNCHRONOUS_TIMING_CONSTRAINT: return createAsynchronousTimingConstraint();
+			case DMLPackage.OPAQUE_SAMPLE_TIME_SPECIFICATION: return createOpaqueSampleTimeSpecification();
 			case DMLPackage.CONNECTION: return createConnection();
 			case DMLPackage.INPUT: return createInput();
 			case DMLPackage.OUTPUT: return createOutput();
@@ -139,6 +149,7 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.BOOLEAN_DIRECT_FEEDTHROUGH_POLICY: return createBooleanDirectFeedthroughPolicy();
 			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION: return createOpaqueDataTypeSpecification();
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
+			case DMLPackage.LATCH: return createLatch();
 			case DMLPackage.CHOICE: return createChoice();
 			case DMLPackage.CHOICE_INPUT: return createChoiceInput();
 			case DMLPackage.CHOICE_INPUT_PORT: return createChoiceInputPort();
@@ -168,6 +179,8 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 		switch (eDataType.getClassifierID()) {
 			case DMLPackage.PARAMETER_VISIBILITY_KIND:
 				return createParameterVisibilityKindFromString(eDataType, initialValue);
+			case DMLPackage.TIMING_KIND:
+				return createTimingKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -183,6 +196,8 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 		switch (eDataType.getClassifierID()) {
 			case DMLPackage.PARAMETER_VISIBILITY_KIND:
 				return convertParameterVisibilityKindToString(eDataType, instanceValue);
+			case DMLPackage.TIMING_KIND:
+				return convertTimingKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -196,6 +211,46 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public Fragment createFragment() {
 		FragmentImpl fragment = new FragmentImpl();
 		return fragment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ContinuousTimingConstraint createContinuousTimingConstraint() {
+		ContinuousTimingConstraintImpl continuousTimingConstraint = new ContinuousTimingConstraintImpl();
+		return continuousTimingConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SynchronousTimingConstraint createSynchronousTimingConstraint() {
+		SynchronousTimingConstraintImpl synchronousTimingConstraint = new SynchronousTimingConstraintImpl();
+		return synchronousTimingConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AsynchronousTimingConstraint createAsynchronousTimingConstraint() {
+		AsynchronousTimingConstraintImpl asynchronousTimingConstraint = new AsynchronousTimingConstraintImpl();
+		return asynchronousTimingConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OpaqueSampleTimeSpecification createOpaqueSampleTimeSpecification() {
+		OpaqueSampleTimeSpecificationImpl opaqueSampleTimeSpecification = new OpaqueSampleTimeSpecificationImpl();
+		return opaqueSampleTimeSpecification;
 	}
 
 	/**
@@ -523,6 +578,16 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Latch createLatch() {
+		LatchImpl latch = new LatchImpl();
+		return latch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Choice createChoice() {
 		ChoiceImpl choice = new ChoiceImpl();
 		return choice;
@@ -656,6 +721,26 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public MemoryOutput createMemoryOutput() {
 		MemoryOutputImpl memoryOutput = new MemoryOutputImpl();
 		return memoryOutput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimingKind createTimingKindFromString(EDataType eDataType, String initialValue) {
+		TimingKind result = TimingKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTimingKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

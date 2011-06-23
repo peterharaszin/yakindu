@@ -67,7 +67,7 @@ public class BlockDiagramPreferenceInitializer extends DiagramPreferenceInitiali
 			}
 			sb.append(blockType);
 		}
-		IEclipsePreferences node = new InstanceScope().getNode(DiagramUIPlugin.PLUGIN_ID);
+		IEclipsePreferences node = InstanceScope.INSTANCE.getNode(DiagramUIPlugin.PLUGIN_ID);
 		node.put(COMMON_BLOCKS, sb.toString());
 	}
 	

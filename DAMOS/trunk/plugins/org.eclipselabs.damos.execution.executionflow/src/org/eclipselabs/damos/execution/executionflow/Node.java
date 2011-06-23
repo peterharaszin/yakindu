@@ -166,4 +166,20 @@ public interface Node extends EObject {
 	 */
 	DataFlowSourceEnd getOutgoingDataFlow(OutputConnector source);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<Node> getDrivingNodes();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<Node> getDrivenNodes();
+
 } // Node

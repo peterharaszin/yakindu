@@ -10,12 +10,17 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
+import org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,6 +35,25 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 	 * @generated
 	 */
 	private EClass simulationModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass solverConfigurationEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass fixedStepSizeSolverConfigurationEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass adaptiveStepSizeSolverConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -86,6 +110,15 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 		// Initialize created meta-data
 		theSimulationModelPackage.initializePackageContents();
 
+		// Register package validator
+		EValidator.Registry.INSTANCE.put
+			(theSimulationModelPackage, 
+			 new EValidator.Descriptor() {
+				 public EValidator getEValidator() {
+					 return SimulationModelValidator.INSTANCE;
+				 }
+			 });
+
 		// Mark meta-data to indicate it can't be changed
 		theSimulationModelPackage.freeze();
 
@@ -136,6 +169,105 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getSimulationModel_SolverId() {
+		return (EAttribute)simulationModelEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSimulationModel_SolverConfiguration() {
+		return (EReference)simulationModelEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSolverConfiguration() {
+		return solverConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFixedStepSizeSolverConfiguration() {
+		return fixedStepSizeSolverConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFixedStepSizeSolverConfiguration_StepSize() {
+		return (EAttribute)fixedStepSizeSolverConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAdaptiveStepSizeSolverConfiguration() {
+		return adaptiveStepSizeSolverConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAdaptiveStepSizeSolverConfiguration_MinimumStepSize() {
+		return (EAttribute)adaptiveStepSizeSolverConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAdaptiveStepSizeSolverConfiguration_MaximumStepSize() {
+		return (EAttribute)adaptiveStepSizeSolverConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAdaptiveStepSizeSolverConfiguration_InitialStepSize() {
+		return (EAttribute)adaptiveStepSizeSolverConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAdaptiveStepSizeSolverConfiguration_AbsoluteTolerance() {
+		return (EAttribute)adaptiveStepSizeSolverConfigurationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAdaptiveStepSizeSolverConfiguration_RelativeTolerance() {
+		return (EAttribute)adaptiveStepSizeSolverConfigurationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public SimulationModelFactory getSimulationModelFactory() {
 		return (SimulationModelFactory)getEFactoryInstance();
 	}
@@ -163,6 +295,20 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 		createEReference(simulationModelEClass, SIMULATION_MODEL__EXECUTION_MODEL);
 		createEReference(simulationModelEClass, SIMULATION_MODEL__TOP_LEVEL_FRAGMENT);
 		createEAttribute(simulationModelEClass, SIMULATION_MODEL__SIMULATION_TIME);
+		createEAttribute(simulationModelEClass, SIMULATION_MODEL__SOLVER_ID);
+		createEReference(simulationModelEClass, SIMULATION_MODEL__SOLVER_CONFIGURATION);
+
+		solverConfigurationEClass = createEClass(SOLVER_CONFIGURATION);
+
+		fixedStepSizeSolverConfigurationEClass = createEClass(FIXED_STEP_SIZE_SOLVER_CONFIGURATION);
+		createEAttribute(fixedStepSizeSolverConfigurationEClass, FIXED_STEP_SIZE_SOLVER_CONFIGURATION__STEP_SIZE);
+
+		adaptiveStepSizeSolverConfigurationEClass = createEClass(ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION);
+		createEAttribute(adaptiveStepSizeSolverConfigurationEClass, ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__MINIMUM_STEP_SIZE);
+		createEAttribute(adaptiveStepSizeSolverConfigurationEClass, ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__MAXIMUM_STEP_SIZE);
+		createEAttribute(adaptiveStepSizeSolverConfigurationEClass, ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__INITIAL_STEP_SIZE);
+		createEAttribute(adaptiveStepSizeSolverConfigurationEClass, ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__ABSOLUTE_TOLERANCE);
+		createEAttribute(adaptiveStepSizeSolverConfigurationEClass, ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__RELATIVE_TOLERANCE);
 	}
 
 	/**
@@ -197,15 +343,63 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		fixedStepSizeSolverConfigurationEClass.getESuperTypes().add(this.getSolverConfiguration());
+		adaptiveStepSizeSolverConfigurationEClass.getESuperTypes().add(this.getSolverConfiguration());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(simulationModelEClass, SimulationModel.class, "SimulationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSimulationModel_ExecutionModel(), theExecutionModelPackage.getExecutionModel(), null, "executionModel", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSimulationModel_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSimulationModel_SimulationTime(), ecorePackage.getEDouble(), "simulationTime", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSimulationModel_SimulationTime(), ecorePackage.getEDouble(), "simulationTime", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getSimulationModel_SolverId(), ecorePackage.getEString(), "solverId", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimulationModel_SolverConfiguration(), this.getSolverConfiguration(), null, "solverConfiguration", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(solverConfigurationEClass, SolverConfiguration.class, "SolverConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(fixedStepSizeSolverConfigurationEClass, FixedStepSizeSolverConfiguration.class, "FixedStepSizeSolverConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFixedStepSizeSolverConfiguration_StepSize(), ecorePackage.getEDouble(), "stepSize", null, 1, 1, FixedStepSizeSolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(adaptiveStepSizeSolverConfigurationEClass, AdaptiveStepSizeSolverConfiguration.class, "AdaptiveStepSizeSolverConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAdaptiveStepSizeSolverConfiguration_MinimumStepSize(), ecorePackage.getEDouble(), "minimumStepSize", null, 1, 1, AdaptiveStepSizeSolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdaptiveStepSizeSolverConfiguration_MaximumStepSize(), ecorePackage.getEDouble(), "maximumStepSize", null, 0, 1, AdaptiveStepSizeSolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdaptiveStepSizeSolverConfiguration_InitialStepSize(), ecorePackage.getEDouble(), "initialStepSize", null, 0, 1, AdaptiveStepSizeSolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdaptiveStepSizeSolverConfiguration_AbsoluteTolerance(), ecorePackage.getEDouble(), "absoluteTolerance", null, 1, 1, AdaptiveStepSizeSolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAdaptiveStepSizeSolverConfiguration_RelativeTolerance(), ecorePackage.getEDouble(), "relativeTolerance", null, 1, 1, AdaptiveStepSizeSolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
+
+		// Create annotations
+		// http://www.eclipse.org/emf/2002/Ecore
+		createEcoreAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createEcoreAnnotations() {
+		String source = "http://www.eclipse.org/emf/2002/Ecore";		
+		addAnnotation
+		  (simulationModelEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ValidSimulationTime"
+		   });		
+		addAnnotation
+		  (fixedStepSizeSolverConfigurationEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ValidStepSize"
+		   });		
+		addAnnotation
+		  (adaptiveStepSizeSolverConfigurationEClass, 
+		   source, 
+		   new String[] {
+			 "constraints", "ValidMinimumStepSize ValidMaximumStepSize ValidInitialStepSize ValidAbsoluteTolerance ValidRelativeTolerance"
+		   });
 	}
 
 } //SimulationModelPackageImpl

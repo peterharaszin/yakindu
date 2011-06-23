@@ -33,9 +33,9 @@ public class DataTypeSpecifierUtil {
 	public static DataType evaluateDataTypeSpecifierDataType(IInterpreterContext context, String dataTypeSpecifier) throws CoreException {
 		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
-				parser.getGrammarAccess().getDataTypeSpecifierRule().getName(),
+				parser.getGrammarAccess().getDataTypeSpecifierRule(),
 				new StringReader(dataTypeSpecifier));
-		if (!result.getParseErrors().isEmpty()) {
+		if (result.hasSyntaxErrors()) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
 		}
 		return new DataTypeSpecifierEvaluator().evaluate(context, (DataTypeSpecifier) result.getRootASTElement());

@@ -37,12 +37,15 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.internal.construct.FlattenerHelper;
+import org.eclipselabs.damos.execution.executionflow.internal.construct.SampleTimePropagationHelper;
 
 /**
  * @author Andreas Unger
  *
  */
 public class ExecutionFlowConstructor {
+	
+	private final SampleTimePropagationHelper sampleTimePropagationHelper = new SampleTimePropagationHelper();
 
 	public ExecutionFlow construct(Fragment topLevelFragment, IProgressMonitor monitor) throws CoreException {
 		Context context = new Context();
@@ -88,7 +91,9 @@ public class ExecutionFlowConstructor {
 			throw new CoreException(new ExecutionFlowDeadlockStatus(
 					IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, message, null, backlog));
 		}
-				
+		
+		sampleTimePropagationHelper.propagateSampleTimes(context.flow.getGraph());
+		
 		return context.flow;
 	}
 

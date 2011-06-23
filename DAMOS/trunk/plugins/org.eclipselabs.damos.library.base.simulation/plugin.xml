@@ -9,6 +9,11 @@
             name="Integrator">
       </simulationObject>
       <simulationObject
+            blockType="org.eclipselabs.damos.library.base.continuous.Derivative"
+            class="org.eclipselabs.damos.library.base.simulation.continuous.DerivativeSimulationObject"
+            name="Derivative">
+      </simulationObject>
+      <simulationObject
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.simulation.continuous.TransferFunctionSimulationObject"
             name="Transfer Function">

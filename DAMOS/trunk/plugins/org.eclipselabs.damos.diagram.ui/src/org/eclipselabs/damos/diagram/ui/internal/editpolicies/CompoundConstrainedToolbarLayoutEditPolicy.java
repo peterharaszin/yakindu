@@ -47,21 +47,24 @@ public class CompoundConstrainedToolbarLayoutEditPolicy extends ConstrainedToolb
 			}
 			if (child instanceof IBorderItemEditPart) {
 				return new BorderItemSelectionEditPolicy() {
-					
+
 					@Override
 					protected List<?> createSelectionHandles() {
 						List<?> list = new ArrayList<Object>();
-						NonResizableHandleKit.addHandles((GraphicalEditPart) getHost(),
-								list, new DragEditPartsTrackerEx(getHost()) {
+						DragEditPartsTrackerEx tracker = new DragEditPartsTrackerEx(getHost()) {
 
 							protected boolean isMove() {
 								return true;
 							}
-							
-						}, SharedCursors.ARROW);
+
+						};
+						NonResizableHandleKit.addMoveHandle((GraphicalEditPart) getHost(), list, tracker,
+								SharedCursors.ARROW);
+						NonResizableHandleKit.addCornerHandles((GraphicalEditPart) getHost(), list, tracker,
+								SharedCursors.ARROW);
 						return list;
 					}
-										
+
 				};
 			}
 		}

@@ -12,8 +12,10 @@
 package org.eclipselabs.damos.library.base.simulation.sources;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.IComputationContext;
@@ -37,7 +39,6 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	private ValueTransformer valueTransformer = new ValueTransformer();
 
 	private IComputationContext defaultComputationContext;
-	private IComputationContext outputComputationContext;
 
 	private RealType sineDataType;
 
@@ -49,9 +50,8 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	private IValue outputValue;
 	
 	@Override
-	public void initialize() throws CoreException {
+	public void initialize(IProgressMonitor monitor) throws CoreException {
 		defaultComputationContext = new ComputationContext();
-		outputComputationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
 
 		sineDataType = TypeSystemFactory.eINSTANCE.createRealType();
 		sineDataType.setUnit(TypeSystemUtil.createUnit());
@@ -63,15 +63,15 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	}
 
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return outputValue;
 	}
 	
 	@Override
-	public void computeOutputValues(double t) throws CoreException {
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 		INumericValue sineValue = valueConstructor.construct(defaultComputationContext, sineDataType,
 				Math.sin(2 * Math.PI * frequency * t + Math.toRadians(phase)));
-		outputValue = valueTransformer.transform(outputComputationContext, amplitude.multiply(sineValue).add(bias));
+		outputValue = valueTransformer.transform(getComputationContext(), amplitude.multiply(sineValue).add(bias));
 	}
 	
 }

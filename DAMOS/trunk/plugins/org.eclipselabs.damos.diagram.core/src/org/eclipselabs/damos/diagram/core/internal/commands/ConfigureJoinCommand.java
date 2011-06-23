@@ -45,7 +45,7 @@ public class ConfigureJoinCommand extends ConfigureElementCommand {
     	Output output = DMLFactory.eINSTANCE.createOutput();
     	join.getOutputs().add(output);
     	output.createPort();
-
+    	
 		return CommandResult.newOKCommandResult(join);
 	}
 		

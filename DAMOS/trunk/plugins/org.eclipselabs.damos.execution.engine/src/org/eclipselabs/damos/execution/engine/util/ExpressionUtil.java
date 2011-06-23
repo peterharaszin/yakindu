@@ -102,9 +102,9 @@ public class ExpressionUtil {
 	public static List<IValue> evaluateExpressionList(String expressionList) throws CoreException {
 		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
-				parser.getGrammarAccess().getExpressionListRule().getName(),
+				parser.getGrammarAccess().getExpressionListRule(),
 				new StringReader(expressionList));
-		if (!result.getParseErrors().isEmpty()) {
+		if (result.hasSyntaxErrors()) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Syntax error"));
 		}
 		List<IValue> values = new ArrayList<IValue>();
@@ -131,9 +131,9 @@ public class ExpressionUtil {
 	public static Expression parseExpression(String expressionString) throws CoreException {
 		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
-				parser.getGrammarAccess().getExpressionRule().getName(),
+				parser.getGrammarAccess().getExpressionRule(),
 				new StringReader(expressionString));
-		if (!result.getParseErrors().isEmpty()) {
+		if (result.hasSyntaxErrors()) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Syntax error"));
 		}
 		

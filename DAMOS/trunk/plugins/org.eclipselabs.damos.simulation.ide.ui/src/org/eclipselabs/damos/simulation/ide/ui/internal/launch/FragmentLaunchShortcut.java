@@ -40,6 +40,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate;
+import org.eclipselabs.damos.simulation.ide.core.util.LaunchConfigurationUtil;
 import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
 import org.eclipselabs.damos.simulation.ide.ui.internal.dialogs.SimulationLaunchConfigurationSelectionDialog;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
@@ -76,7 +77,8 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 				
 				String name = launchManager.generateLaunchConfigurationName(path.removeFileExtension().lastSegment() + " Simulation");
 				ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(null, name);
-				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, uri.toString());
+				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
+				LaunchConfigurationUtil.storeSimulationModel(launchConfiguration, LaunchConfigurationUtil.createDefaultSimulationModel(fragment));
 				launchConfiguration.doSave();
 				
 				DebugUITools.launch(launchConfiguration, mode);
@@ -151,15 +153,17 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 				List<ILaunchConfiguration> launchConfigurations = new ArrayList<ILaunchConfiguration>();
 				for (ILaunchConfiguration launchConfiguration : launchManager.getLaunchConfigurations(launchConfigurationType)) {
 					if (launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true)) {
-						String fragmentURIString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT_URI, "");
-						if (fragmentURIString.trim().length() > 0) {
-							try {
-								if (uri.equals(URI.createURI(fragmentURIString))) {
+						try {
+							SimulationModel simulationModel = LaunchConfigurationUtil.loadSimulationModel(launchConfiguration);
+							if (simulationModel.getTopLevelFragment() != null && !simulationModel.getTopLevelFragment().eIsProxy()) {
+								URI topLevelFragmentURI = EcoreUtil.getURI(simulationModel.getTopLevelFragment());
+								if (topLevelFragmentURI.equals(uri)) {
 									launchConfigurations.add(launchConfiguration);
 								}
-							} catch (IllegalArgumentException e) {
-								// ignore invalid URIs
 							}
+						} catch (CoreException e) {
+							SimulationIDEUIPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, SimulationIDEUIPlugin.PLUGIN_ID, 
+									"Loading simulation model failed", e)); 
 						}
 					} else {
 						String simulationModelPathString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, "");

@@ -19,8 +19,8 @@
 
    <requires>
       <import feature="org.eclipse.birt" version="2.5.0" match="greaterOrEqual"/>
-      <import feature="org.eclipselabs.damos" version="0.2.0.qualifier"/>
-      <import feature="org.eclipselabs.damos.execution" version="0.2.0.qualifier"/>
+      <import feature="org.eclipselabs.damos" version="0.2.0.qualifier" match="greaterOrEqual"/>
+      <import feature="org.eclipselabs.damos.execution" version="0.2.0.qualifier" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -59,7 +59,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.eclipselabs.damos.simulation.simulationmodel.editor"
+         id="org.eclipselabs.damos.simulation.simulationmodel.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"

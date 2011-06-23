@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.dml;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipselabs.damos.dml.Component#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Component#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Component#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.Component#getTimingConstraint <em>Timing Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,9 +93,35 @@ public interface Component extends FragmentElement, CompoundMember {
 	void setName(String value);
 
 	/**
+	 * Returns the value of the '<em><b>Timing Constraint</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Timing Constraint</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Timing Constraint</em>' containment reference.
+	 * @see #setTimingConstraint(TimingConstraint)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getComponent_TimingConstraint()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TimingConstraint getTimingConstraint();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Component#getTimingConstraint <em>Timing Constraint</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" nameRequired="true" nameOrdered="false"
+	 * @param value the new value of the '<em>Timing Constraint</em>' containment reference.
+	 * @see #getTimingConstraint()
+	 * @generated
+	 */
+	void setTimingConstraint(TimingConstraint value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" nameRequired="true" nameOrdered="false"
 	 * @generated
 	 */
 	Input getInput(String name);
@@ -101,7 +129,7 @@ public interface Component extends FragmentElement, CompoundMember {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model required="true" ordered="false" nameRequired="true" nameOrdered="false"
+	 * @model ordered="false" nameRequired="true" nameOrdered="false"
 	 * @generated
 	 */
 	Output getOutput(String name);
@@ -169,5 +197,13 @@ public interface Component extends FragmentElement, CompoundMember {
 	 * @generated
 	 */
 	boolean isSink();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" eClassRequired="true"
+	 * @generated
+	 */
+	boolean isTimingConstraintApplicable(EClass eClass);
 
 } // Component

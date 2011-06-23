@@ -125,6 +125,7 @@ public class ComponentItemProvider
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DMLPackage.Literals.COMPONENT__INPUTS);
 			childrenFeatures.add(DMLPackage.Literals.COMPONENT__OUTPUTS);
+			childrenFeatures.add(DMLPackage.Literals.COMPONENT__TIMING_CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -173,6 +174,7 @@ public class ComponentItemProvider
 				return;
 			case DMLPackage.COMPONENT__INPUTS:
 			case DMLPackage.COMPONENT__OUTPUTS:
+			case DMLPackage.COMPONENT__TIMING_CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -244,6 +246,21 @@ public class ComponentItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.COMPONENT__OUTPUTS,
 				 DMLFactory.eINSTANCE.createMemoryOutput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__TIMING_CONSTRAINT,
+				 DMLFactory.eINSTANCE.createContinuousTimingConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__TIMING_CONSTRAINT,
+				 DMLFactory.eINSTANCE.createSynchronousTimingConstraint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__TIMING_CONSTRAINT,
+				 DMLFactory.eINSTANCE.createAsynchronousTimingConstraint()));
 	}
 
 }

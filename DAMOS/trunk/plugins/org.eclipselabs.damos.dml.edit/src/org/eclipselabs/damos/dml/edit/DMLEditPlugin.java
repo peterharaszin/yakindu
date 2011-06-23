@@ -8,7 +8,6 @@ package org.eclipselabs.damos.dml.edit;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
  * This is the central singleton for the DML edit plugin.
@@ -42,7 +41,6 @@ public final class DMLEditPlugin extends EMFPlugin {
 	public DMLEditPlugin() {
 		super
 		  (new ResourceLocator [] {
-		     EcoreEditPlugin.INSTANCE,
 		   });
 	}
 

@@ -9,12 +9,24 @@
 -->
 
 <plugin>
+   <extension-point id="solverConfigurations" name="Solver Configurations" schema="schema/solverConfigurations.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipselabs.org/damos/SimulationModel/1.0.0"
             class="org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage"
             genModel="model/SimulationModel.genmodel"/>
+   </extension>
+   <extension
+         point="org.eclipselabs.damos.simulation.simulationmodel.solverConfigurations">
+      <solverConfiguration
+            id="org.eclipselabs.damos.simulation.simulationmodel.fixedStepSizeSolverConfiguration"
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulationmodel/model/SimulationModel.ecore#//FixedStepSizeSolverConfiguration">
+      </solverConfiguration>
+      <solverConfiguration
+            id="org.eclipselabs.damos.simulation.simulationmodel.adaptiveStepSizeSolverConfiguration"
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulationmodel/model/SimulationModel.ecore#//AdaptiveStepSizeSolverConfiguration">
+      </solverConfiguration>
    </extension>
 
 </plugin>

@@ -97,6 +97,98 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ContinuousTimingConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContinuousTimingConstraintItemProvider continuousTimingConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ContinuousTimingConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContinuousTimingConstraintAdapter() {
+		if (continuousTimingConstraintItemProvider == null) {
+			continuousTimingConstraintItemProvider = new ContinuousTimingConstraintItemProvider(this);
+		}
+
+		return continuousTimingConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.SynchronousTimingConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SynchronousTimingConstraintItemProvider synchronousTimingConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.SynchronousTimingConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSynchronousTimingConstraintAdapter() {
+		if (synchronousTimingConstraintItemProvider == null) {
+			synchronousTimingConstraintItemProvider = new SynchronousTimingConstraintItemProvider(this);
+		}
+
+		return synchronousTimingConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.AsynchronousTimingConstraint} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AsynchronousTimingConstraintItemProvider asynchronousTimingConstraintItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.AsynchronousTimingConstraint}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAsynchronousTimingConstraintAdapter() {
+		if (asynchronousTimingConstraintItemProvider == null) {
+			asynchronousTimingConstraintItemProvider = new AsynchronousTimingConstraintItemProvider(this);
+		}
+
+		return asynchronousTimingConstraintItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OpaqueSampleTimeSpecificationItemProvider opaqueSampleTimeSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOpaqueSampleTimeSpecificationAdapter() {
+		if (opaqueSampleTimeSpecificationItemProvider == null) {
+			opaqueSampleTimeSpecificationItemProvider = new OpaqueSampleTimeSpecificationItemProvider(this);
+		}
+
+		return opaqueSampleTimeSpecificationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Input} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,6 +925,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Latch} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LatchItemProvider latchItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.Latch}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLatchAdapter() {
+		if (latchItemProvider == null) {
+			latchItemProvider = new LatchItemProvider(this);
+		}
+
+		return latchItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Choice} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1254,6 +1369,10 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	 */
 	public void dispose() {
 		if (fragmentItemProvider != null) fragmentItemProvider.dispose();
+		if (continuousTimingConstraintItemProvider != null) continuousTimingConstraintItemProvider.dispose();
+		if (synchronousTimingConstraintItemProvider != null) synchronousTimingConstraintItemProvider.dispose();
+		if (asynchronousTimingConstraintItemProvider != null) asynchronousTimingConstraintItemProvider.dispose();
+		if (opaqueSampleTimeSpecificationItemProvider != null) opaqueSampleTimeSpecificationItemProvider.dispose();
 		if (connectionItemProvider != null) connectionItemProvider.dispose();
 		if (inputItemProvider != null) inputItemProvider.dispose();
 		if (outputItemProvider != null) outputItemProvider.dispose();
@@ -1286,6 +1405,7 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (booleanDirectFeedthroughPolicyItemProvider != null) booleanDirectFeedthroughPolicyItemProvider.dispose();
 		if (opaqueDataTypeSpecificationItemProvider != null) opaqueDataTypeSpecificationItemProvider.dispose();
 		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
+		if (latchItemProvider != null) latchItemProvider.dispose();
 		if (choiceItemProvider != null) choiceItemProvider.dispose();
 		if (choiceInputItemProvider != null) choiceInputItemProvider.dispose();
 		if (choiceInputPortItemProvider != null) choiceInputPortItemProvider.dispose();

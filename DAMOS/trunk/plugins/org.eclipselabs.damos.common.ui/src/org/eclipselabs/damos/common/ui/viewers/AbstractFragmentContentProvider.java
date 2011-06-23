@@ -50,7 +50,7 @@ public abstract class AbstractFragmentContentProvider implements IStructuredCont
 			Display.getDefault().asyncExec(new Runnable() {
 				
 				public void run() {
-					if (viewer != null && (notifier instanceof ResourceSet || notifier instanceof Resource || notification.getFeature() == DMLPackage.Literals.FRAGMENT__NAME)) {
+					if (viewer != null && !viewer.getControl().isDisposed() && (notifier instanceof ResourceSet || notifier instanceof Resource || notification.getFeature() == DMLPackage.Literals.FRAGMENT__NAME)) {
 						viewer.refresh();
 					}
 				}

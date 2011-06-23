@@ -14,7 +14,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.provider.EModelElementItemProvider;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLFactory;
@@ -36,7 +37,7 @@ import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
  * @generated
  */
 public class BlockTypeItemProvider
-	extends EModelElementItemProvider
+	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -66,6 +67,7 @@ public class BlockTypeItemProvider
 
 			addQualifiedNamePropertyDescriptor(object);
 			addBelongingCategoriesPropertyDescriptor(object);
+			addTimingPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -115,6 +117,28 @@ public class BlockTypeItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Timing feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTimingPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BlockType_timing_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BlockType_timing_feature", "_UI_BlockType_type"),
+				 DMLPackage.Literals.BLOCK_TYPE__TIMING,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -126,6 +150,7 @@ public class BlockTypeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(EcorePackage.Literals.EMODEL_ELEMENT__EANNOTATIONS);
 			childrenFeatures.add(DMLPackage.Literals.PARAMETERABLE_ELEMENT__PARAMETERS);
 			childrenFeatures.add(DMLPackage.Literals.BLOCK_TYPE__INPUT_DEFINITIONS);
 			childrenFeatures.add(DMLPackage.Literals.BLOCK_TYPE__OUTPUT_DEFINITIONS);
@@ -187,8 +212,10 @@ public class BlockTypeItemProvider
 			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
 			case DMLPackage.BLOCK_TYPE__NAME:
 			case DMLPackage.BLOCK_TYPE__QUALIFIER:
+			case DMLPackage.BLOCK_TYPE__TIMING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case DMLPackage.BLOCK_TYPE__EANNOTATIONS:
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:

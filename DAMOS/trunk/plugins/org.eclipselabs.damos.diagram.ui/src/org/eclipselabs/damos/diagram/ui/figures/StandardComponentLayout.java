@@ -363,7 +363,7 @@ public class StandardComponentLayout extends AbstractLayout {
 			contentInsets.right = bm.east.extents.left + horizontalContentPadding;
 			contentInsets.top = bm.north.extents.bottom + verticalContentPadding;
 			contentInsets.bottom = bm.south.extents.top + verticalContentPadding;
-			Rectangle contentBounds = bounds.getCropped(contentInsets);
+			Rectangle contentBounds = bounds.getShrinked(contentInsets);
 			
 			Dimension preferredSize = contentFigure.getPreferredSize();
 			Rectangle childBounds = new Rectangle(

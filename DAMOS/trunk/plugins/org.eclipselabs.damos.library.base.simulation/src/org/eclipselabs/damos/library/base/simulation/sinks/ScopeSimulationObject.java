@@ -11,12 +11,13 @@
 
 package org.eclipselabs.damos.library.base.simulation.sinks;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
+import org.eclipselabs.damos.simulation.core.ISimulationAgent;
+import org.eclipselabs.damos.simulation.core.IXYChartData;
+import org.eclipselabs.damos.simulation.core.IXYChartDataProvider;
 import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
-import org.eclipselabs.damos.simulation.engine.IChartData;
-import org.eclipselabs.damos.simulation.engine.util.SimulationUtil;
 import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
@@ -25,28 +26,31 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
  * @author Andreas Unger
  *
  */
-public class ScopeSimulationObject extends AbstractBlockSimulationObject implements IAdaptable {
+public class ScopeSimulationObject extends AbstractBlockSimulationObject {
+
+	private int portCount;
 
 	private String title;
-
-	private double sampleTime;
-	private int n;
-	private int j;
 	
-	private double[][] xValues;
-	private double[][] yValues;
+	private int j;
 
+	double[] inputValues;
+	
+	private double[] xValues;
+	private double[][] yValues;
+	
+	private int limit = 20000;
+	
 	@Override
-	public void initialize() {
-		int portCount = getComponent().getPrimaryInputPorts().size();
+	public void initialize(IProgressMonitor monitor) {
+		portCount = getComponent().getPrimaryInputPorts().size();
 
 		title = getComponent().getName();
-		sampleTime = getExecutionModel().getSampleTime();
-		n = (int) SimulationUtil.getStepCount(getSimulationModel());
 		j = 0;
 
-		xValues = new double[1][n];
-		yValues = new double[portCount][n];
+		inputValues = new double[portCount];
+		xValues = new double[limit];
+		yValues = new double[portCount][limit];
 	}
 	
 	@Override
@@ -57,42 +61,84 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject impleme
 		} else if (value instanceof IBooleanValue) {
 			y = ((IBooleanValue) value).booleanValue() ? 1.0 : 0.0;
 		}
-		xValues[0][j] = j * sampleTime;
-		yValues[portIndex][j] = y;
+		inputValues[portIndex] = y;
 	}
 	
 	@Override
-	public void update() throws CoreException {
-		++j;
+	public void update(double t) {
+		if (j < limit) {
+			xValues[j] = t;
+			for (int i = 0; i < portCount; ++i) {
+				yValues[i][j] = inputValues[i];
+			}
+			++j;
+		}
 	}
 	
-	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-		if (adapter == IChartData.class) {
-			return new IChartData() {
-				
-				public String getChartTitle() {
-					return title;
-				}
-
-				public double[][] getXValues() {
-					return xValues;
-				}
-								
-				public String getXAxisTitle() {
-					return "Time [s]";
-				}
-
-				public double[][] getYValues() {
-					return yValues;
-				}
-								
-				public String getYAxisTitle() {
-					return "Magnitude";
-				}
-
-			};
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#createAgent()
+	 */
+	@Override
+	protected ISimulationAgent createAgent() {
+		return new Agent(getComponent());
+	}
+	
+	private class Agent extends AbstractSimulationAgent implements IXYChartDataProvider {
+		
+		/**
+		 * @param component
+		 */
+		public Agent(Component component) {
+			super(component);
 		}
-		return Platform.getAdapterManager().getAdapter(this, adapter);
+
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.simulation.engine.IXYChartDataProvider#getXYChartData()
+		 */
+		public IXYChartData getXYChartData() {
+			return new XYChartData();
+		}
+
+		/**
+		 * @author Andreas Unger
+		 *
+		 */
+		private final class XYChartData implements IXYChartData {
+			double[] truncatedXValues;
+			double[][] truncatedYValues;
+		
+			public String getChartTitle() {
+				return title;
+			}
+		
+			public String getXAxisTitle() {
+				return "Time [s]";
+			}
+		
+			public double[] getXValues() {
+				if (truncatedXValues == null) {
+					truncatedXValues = new double[j];
+					System.arraycopy(xValues, 0, truncatedXValues, 0, j);
+				}
+				return truncatedXValues;
+			}
+		
+			public String[] getYAxisTitles() {
+				return new String[] { "Magnitude" };
+			}
+		
+			public double[][] getYValues() {
+				if (truncatedYValues == null) {
+					truncatedYValues = new double[portCount][j];
+					for (int i = 0; i < portCount; ++i) {
+						System.arraycopy(yValues[i], 0, truncatedYValues[i], 0, j);
+					}
+				}
+				return truncatedYValues;
+			}
+			
+		}
+		
 	}
 
 }

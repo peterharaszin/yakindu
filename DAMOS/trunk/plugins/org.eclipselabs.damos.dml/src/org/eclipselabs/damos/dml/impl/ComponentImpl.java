@@ -25,6 +25,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.TimingConstraint;
 import org.eclipselabs.damos.dml.internal.operations.ComponentOperations;
 
 /**
@@ -38,6 +39,7 @@ import org.eclipselabs.damos.dml.internal.operations.ComponentOperations;
  *   <li>{@link org.eclipselabs.damos.dml.impl.ComponentImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ComponentImpl#getOutputs <em>Outputs</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ComponentImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.ComponentImpl#getTimingConstraint <em>Timing Constraint</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +85,16 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTimingConstraint() <em>Timing Constraint</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTimingConstraint()
+	 * @generated
+	 * @ordered
+	 */
+	protected TimingConstraint timingConstraint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -145,6 +157,49 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.COMPONENT__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimingConstraint getTimingConstraint() {
+		return timingConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTimingConstraint(TimingConstraint newTimingConstraint, NotificationChain msgs) {
+		TimingConstraint oldTimingConstraint = timingConstraint;
+		timingConstraint = newTimingConstraint;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.COMPONENT__TIMING_CONSTRAINT, oldTimingConstraint, newTimingConstraint);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTimingConstraint(TimingConstraint newTimingConstraint) {
+		if (newTimingConstraint != timingConstraint) {
+			NotificationChain msgs = null;
+			if (timingConstraint != null)
+				msgs = ((InternalEObject)timingConstraint).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.COMPONENT__TIMING_CONSTRAINT, null, msgs);
+			if (newTimingConstraint != null)
+				msgs = ((InternalEObject)newTimingConstraint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLPackage.COMPONENT__TIMING_CONSTRAINT, null, msgs);
+			msgs = basicSetTimingConstraint(newTimingConstraint, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.COMPONENT__TIMING_CONSTRAINT, newTimingConstraint, newTimingConstraint));
 	}
 
 	/**
@@ -264,6 +319,15 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isTimingConstraintApplicable(EClass eClass) {
+		return false;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -290,6 +354,8 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 				return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
 			case DMLPackage.COMPONENT__OUTPUTS:
 				return ((InternalEList<?>)getOutputs()).basicRemove(otherEnd, msgs);
+			case DMLPackage.COMPONENT__TIMING_CONSTRAINT:
+				return basicSetTimingConstraint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -311,6 +377,8 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 				return getOutputs();
 			case DMLPackage.COMPONENT__NAME:
 				return getName();
+			case DMLPackage.COMPONENT__TIMING_CONSTRAINT:
+				return getTimingConstraint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -335,6 +403,9 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 			case DMLPackage.COMPONENT__NAME:
 				setName((String)newValue);
 				return;
+			case DMLPackage.COMPONENT__TIMING_CONSTRAINT:
+				setTimingConstraint((TimingConstraint)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -356,6 +427,9 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 			case DMLPackage.COMPONENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case DMLPackage.COMPONENT__TIMING_CONSTRAINT:
+				setTimingConstraint((TimingConstraint)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -376,6 +450,8 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 				return outputs != null && !outputs.isEmpty();
 			case DMLPackage.COMPONENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DMLPackage.COMPONENT__TIMING_CONSTRAINT:
+				return timingConstraint != null;
 		}
 		return super.eIsSet(featureID);
 	}

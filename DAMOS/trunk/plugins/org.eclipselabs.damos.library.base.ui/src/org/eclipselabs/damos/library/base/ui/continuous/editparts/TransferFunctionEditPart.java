@@ -67,9 +67,9 @@ public class TransferFunctionEditPart extends FractionBlockEditPart {
 			if (argument != null) {
 				MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 				IParseResult result = parser.parse(
-						parser.getGrammarAccess().getArrayConstructionOperatorRule().getName(),
+						parser.getGrammarAccess().getArrayConstructionOperatorRule(),
 						new StringReader(argument));
-				if (result.getParseErrors().isEmpty()) {
+				if (!result.hasSyntaxErrors()) {
 					List<Expression> expressions = ((ArrayConstructionOperator) result.getRootASTElement()).getExpressions();
 					double[] coefficients = new double[expressions.size()];
 					int i = 0;

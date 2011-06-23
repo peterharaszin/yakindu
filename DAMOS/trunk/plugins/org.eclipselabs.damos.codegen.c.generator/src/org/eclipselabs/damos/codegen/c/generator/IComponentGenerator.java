@@ -15,8 +15,8 @@ import java.io.Writer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -31,9 +31,9 @@ public interface IComponentGenerator {
 
 	void setContext(IGeneratorContext context);
 
-	Component getComponent();
+	ComponentNode getNode();
 	
-	void setComponent(Component component);
+	void setNode(ComponentNode node);
 	
 	IComponentSignature getSignature();
 	

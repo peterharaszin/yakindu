@@ -12,6 +12,9 @@
 package org.eclipselabs.damos.simulation.engine;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.simulation.core.ISimulationAgent;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -23,26 +26,32 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
  */
 public interface IComponentSimulationObject {
 
-	IComponentSimulationInfo getInfo();
+	void initialize(ISimulationObjectContext context, IProgressMonitor monitor) throws CoreException;
 	
-	void setInfo(IComponentSimulationInfo info);
+	void setInputValue(int inputIndex, int portIndex, IValue value);
 
-	void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException;
+	void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException;
 
-	IValue getOutputValue(int outputIndex, int portIndex) throws CoreException;
+	IValue getOutputValue(int outputIndex, int portIndex);
+	
+	void update(double t);
+	
+	boolean stop();
+	
+	ISimulationClock getClock();
+	
+	ISimulationAgent getAgent();
 
-	void initialize() throws CoreException;
+	double[] getStateVector();
 	
-	void computeOutputValues(double t) throws CoreException;
+	void computeDerivatives(double t, double[] y, double[] yDot);
 	
-	void update() throws CoreException;
-	
-	double[] getStateVector() throws CoreException;
-	
-	void computeDerivatives(double t, double[] yDot) throws CoreException;
-	
-	Object getIntegratorData();
+	double computeZeroCrossingTime(double t);
 
-	void setIntegratorData(Object data);
+	double[] getZeroCrossingValues();
+	
+	void updateZeroCrossingValues(double t);
+
+	void dispose();
 
 }

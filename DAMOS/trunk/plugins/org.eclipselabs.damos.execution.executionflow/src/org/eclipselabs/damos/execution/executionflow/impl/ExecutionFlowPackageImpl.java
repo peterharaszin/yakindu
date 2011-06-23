@@ -374,6 +374,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getComponentNode_SampleTime() {
+		return (EAttribute)componentNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompoundNode() {
 		return compoundNodeEClass;
 	}
@@ -653,6 +662,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		componentNodeEClass = createEClass(COMPONENT_NODE);
 		createEReference(componentNodeEClass, COMPONENT_NODE__COMPONENT);
+		createEAttribute(componentNodeEClass, COMPONENT_NODE__SAMPLE_TIME);
 
 		compoundNodeEClass = createEClass(COMPOUND_NODE);
 		createEReference(compoundNodeEClass, COMPOUND_NODE__COMPOUND);
@@ -757,10 +767,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		op = addEOperation(nodeEClass, this.getDataFlowSourceEnd(), "getOutgoingDataFlow", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theDMLPackage.getOutputConnector(), "source", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
+		addEOperation(nodeEClass, this.getNode(), "getDrivingNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(nodeEClass, this.getNode(), "getDrivenNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(subgraphEClass, Subgraph.class, "Subgraph", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(componentNodeEClass, ComponentNode.class, "ComponentNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComponentNode_Component(), theDMLPackage.getComponent(), null, "component", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getComponentNode_SampleTime(), ecorePackage.getEDouble(), "sampleTime", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundNodeEClass, CompoundNode.class, "CompoundNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundNode_Compound(), theDMLPackage.getCompound(), null, "compound", null, 1, 1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

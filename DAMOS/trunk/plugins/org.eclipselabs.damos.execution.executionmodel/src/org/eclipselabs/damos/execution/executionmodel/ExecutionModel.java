@@ -20,7 +20,6 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModelMappings <em>Computation Model Mappings</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getSampleTime <em>Sample Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -44,32 +43,6 @@ public interface ExecutionModel extends EObject {
 	 * @generated
 	 */
 	EList<ComputationModelMapping> getComputationModelMappings();
-
-	/**
-	 * Returns the value of the '<em><b>Sample Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Sample Time</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sample Time</em>' attribute.
-	 * @see #setSampleTime(double)
-	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel_SampleTime()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	double getSampleTime();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getSampleTime <em>Sample Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Sample Time</em>' attribute.
-	 * @see #getSampleTime()
-	 * @generated
-	 */
-	void setSampleTime(double value);
 
 	/**
 	 * <!-- begin-user-doc -->

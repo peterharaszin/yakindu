@@ -10,8 +10,10 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipselabs.damos.diagram.core.DiagramCorePlugin;
 import org.eclipselabs.damos.diagram.core.internal.provider.IBlockTypeProvider;
+import org.eclipselabs.damos.diagram.core.internal.util.ConfigureUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
+import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 
@@ -53,11 +55,22 @@ public class CreateBlockCommand extends CreateElementCommand {
 		
     	Block block = blockType.newInstance(name);
     	
+		switch (block.getType().getTiming()) {
+		case ANY:
+			if (block.isSource()) {
+				block.setTimingConstraint(DMLFactory.eINSTANCE.createContinuousTimingConstraint());
+			}
+			break;
+		case SYNCHRONOUS:
+			ConfigureUtil.setSampleTime(block, "1");
+			break;
+		}
+    	
     	@SuppressWarnings("unchecked")
 		List<EObject> list = (List<EObject>) (List<?>) getElementToEdit().eGet(reference);
 		list.add(block);
     	
 		return block;
 	}
-
+	
 }

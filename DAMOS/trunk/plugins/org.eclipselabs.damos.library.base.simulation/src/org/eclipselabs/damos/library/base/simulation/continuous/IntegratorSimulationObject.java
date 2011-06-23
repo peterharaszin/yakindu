@@ -17,9 +17,9 @@ import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.continuous.util.IntegratorConstants;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.engine.value.IValue;
-import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
+import org.eclipselabs.mscript.computation.core.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
 import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
@@ -57,7 +57,7 @@ public class IntegratorSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#setInputValue(int, int, org.eclipselabs.mscript.computation.engine.value.IValue)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#setInputValue(int, int, org.eclipselabs.mscript.computation.core.value.IValue)
 	 */
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {

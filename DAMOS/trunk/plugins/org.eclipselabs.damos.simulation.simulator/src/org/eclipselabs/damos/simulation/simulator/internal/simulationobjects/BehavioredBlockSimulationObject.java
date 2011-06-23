@@ -26,13 +26,13 @@ import org.eclipselabs.damos.execution.engine.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
-import org.eclipselabs.mscript.computation.engine.ComputationContext;
-import org.eclipselabs.mscript.computation.engine.value.ArrayValue;
-import org.eclipselabs.mscript.computation.engine.value.IArrayValue;
-import org.eclipselabs.mscript.computation.engine.value.INumericValue;
-import org.eclipselabs.mscript.computation.engine.value.IValue;
-import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
-import org.eclipselabs.mscript.computation.engine.value.VectorValue;
+import org.eclipselabs.mscript.computation.core.ComputationContext;
+import org.eclipselabs.mscript.computation.core.value.ArrayValue;
+import org.eclipselabs.mscript.computation.core.value.IArrayValue;
+import org.eclipselabs.mscript.computation.core.value.INumericValue;
+import org.eclipselabs.mscript.computation.core.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.VectorValue;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
 import org.eclipselabs.mscript.language.il.Compound;
 import org.eclipselabs.mscript.language.il.ComputationCompound;
@@ -193,7 +193,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.engine.value.IValue)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#consumeInputValue(org.eclipselabs.damos.dml.InputPort, org.eclipselabs.mscript.computation.core.value.IValue)
 	 */
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {

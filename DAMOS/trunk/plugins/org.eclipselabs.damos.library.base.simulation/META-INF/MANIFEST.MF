@@ -6,7 +6,7 @@ Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin
 Bundle-Vendor: Damos Project
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipselabs.mscript.computation.engine;bundle-version="0.1.0",
+ org.eclipselabs.mscript.computation.core;bundle-version="0.1.0",
  org.eclipselabs.damos.common.math;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.engine;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.executionflow;bundle-version="0.2.0",

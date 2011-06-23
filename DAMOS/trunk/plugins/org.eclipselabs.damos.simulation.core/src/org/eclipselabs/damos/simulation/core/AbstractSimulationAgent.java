@@ -13,7 +13,7 @@ package org.eclipselabs.damos.simulation.core;
 
 import org.eclipse.core.runtime.PlatformObject;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.mscript.computation.engine.IComputationContext;
+import org.eclipselabs.mscript.computation.core.IComputationContext;
 
 /**
  * @author Andreas Unger

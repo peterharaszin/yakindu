@@ -18,9 +18,9 @@ import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.IXYChartData;
 import org.eclipselabs.damos.simulation.core.IXYChartDataProvider;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
-import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.engine.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.IBooleanValue;
+import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
+import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

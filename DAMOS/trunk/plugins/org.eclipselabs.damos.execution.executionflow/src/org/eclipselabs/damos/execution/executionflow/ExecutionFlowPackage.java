@@ -398,13 +398,22 @@ public interface ExecutionFlowPackage extends EPackage {
 	int COMPONENT_NODE__COMPONENT = NODE_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_NODE__SAMPLE_TIME = NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Component Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
+	int COMPONENT_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.CompoundNodeImpl <em>Compound Node</em>}' class.
@@ -1206,6 +1215,17 @@ public interface ExecutionFlowPackage extends EPackage {
 	EReference getComponentNode_Component();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executionflow.ComponentNode#getSampleTime <em>Sample Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sample Time</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ComponentNode#getSampleTime()
+	 * @see #getComponentNode()
+	 * @generated
+	 */
+	EAttribute getComponentNode_SampleTime();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.CompoundNode <em>Compound Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1656,6 +1676,14 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPONENT_NODE__COMPONENT = eINSTANCE.getComponentNode_Component();
+
+		/**
+		 * The meta object literal for the '<em><b>Sample Time</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPONENT_NODE__SAMPLE_TIME = eINSTANCE.getComponentNode_SampleTime();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.CompoundNodeImpl <em>Compound Node</em>}' class.

@@ -12,12 +12,18 @@
 package org.eclipselabs.damos.simulation.engine;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
+import org.eclipselabs.damos.simulation.core.ISimulationAgent;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.mscript.computation.engine.ComputationContext;
+import org.eclipselabs.mscript.computation.engine.IComputationContext;
 import org.eclipselabs.mscript.computation.engine.IOverflowMonitor;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
@@ -27,86 +33,123 @@ import org.eclipselabs.mscript.computation.engine.value.IValue;
  */
 public abstract class AbstractComponentSimulationObject implements IComponentSimulationObject {
 
-	private IComponentSimulationInfo info;
+	private ISimulationObjectContext context;
+	
+	private ISimulationAgent agent;
 	
 	private ComputationModel cachedComputationModel;
 	
-	private Object integratorData;
+	private IComputationContext computationContext;
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getInfo()
+	/**
+	 * @return the agent
 	 */
-	public IComponentSimulationInfo getInfo() {
-		return info;
+	public ISimulationAgent getAgent() {
+		if (agent == null) {
+			agent = createAgent();
+		}
+		return agent;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#setInfo(org.eclipselabs.damos.simulation.engine.IComponentSimulationInfo)
-	 */
-	public void setInfo(IComponentSimulationInfo info) {
-		this.info = info;
-	}
-		
-	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
-	}
-
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+	protected ISimulationAgent createAgent() {
 		return null;
 	}
-
-	public void initialize() throws CoreException {
-	}
-		
-	public void computeOutputValues(double t) throws CoreException {
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getClock()
+	 */
+	public ISimulationClock getClock() {
+		return null;
 	}
 	
-	public void update() throws CoreException {
+	public void setInputValue(int inputIndex, int portIndex, IValue value) {
+	}
+
+	public IValue getOutputValue(int outputIndex, int portIndex) {
+		return null;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#initialize(org.eclipselabs.damos.simulation.engine.ISimulationObjectContext, org.eclipselabs.damos.simulation.engine.ISimulationMonitor)
+	 */
+	public void initialize(ISimulationObjectContext context, IProgressMonitor monitor) throws CoreException {
+		this.context = context;
+		initialize(monitor);
+	}
+
+	public void initialize(IProgressMonitor monitor) throws CoreException {
+	}
+		
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
+	}
+
+	public void update(double t) {
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#stop()
+	 */
+	public boolean stop() {
+		return false;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getStateVector()
 	 */
-	public double[] getStateVector() throws CoreException {
+	public double[] getStateVector() {
 		return null;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#computeDerivatives(double, double[])
 	 */
-	public void computeDerivatives(double t, double[] yDot) throws CoreException {
+	public void computeDerivatives(double t, double[] y, double[] yDot) {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getIntegratorData()
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#getZeroCrossingTime(double)
 	 */
-	public Object getIntegratorData() {
-		return integratorData;
+	public double computeZeroCrossingTime(double t) {
+		return Double.NaN;
+	}
+	
+	public double[] getZeroCrossingValues() {
+		return null;
+	}
+	
+	public void updateZeroCrossingValues(double t) {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#setIntegratorData(java.lang.Object)
+	 * @see org.eclipselabs.damos.simulation.engine.IComponentSimulationObject#dispose()
 	 */
-	public void setIntegratorData(Object data) {
-		this.integratorData = data;
+	public void dispose() {
 	}
 	
 	protected Component getComponent() {
-		return info.getComponent();
+		return context.getNode().getComponent();
 	}
 	
-	protected IComponentSignature getSignature() {
-		return info.getComponentSignature();
+	protected final IComponentSignature getSignature() {
+		return context.getComponentSignature();
 	}
 
 	protected final SimulationModel getSimulationModel() {
-		return info.getSimulationModel();
+		return context.getSimulationModel();
 	}
 	
 	protected final ExecutionModel getExecutionModel() {
 		return getSimulationModel().getExecutionModel();
 	}
 	
-	protected final ComputationModel getComputationModel() {
+	protected final IComputationContext getComputationContext() {
+		if (computationContext == null) {
+			computationContext = new ComputationContext(getComputationModel(), getOverflowMonitor());
+		}
+		return computationContext;
+	}
+
+	private final ComputationModel getComputationModel() {
 		if (cachedComputationModel == null) {
 			cachedComputationModel = getExecutionModel().getComputationModel(getComponent().getOwningFragment());
 			if (cachedComputationModel == null) {
@@ -116,8 +159,16 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 		return cachedComputationModel;
 	}
 	
-	protected IOverflowMonitor getOverflowMonitor() {
-		return info.getOverflowMonitor();
+	private IOverflowMonitor getOverflowMonitor() {
+		return context.getOverflowMonitor();
+	}
+	
+	protected IComponentSignature getComponentSignature() {
+		return context.getComponentSignature();
+	}
+	
+	protected ComponentNode getNode() {
+		return context.getNode();
 	}
 	
 }

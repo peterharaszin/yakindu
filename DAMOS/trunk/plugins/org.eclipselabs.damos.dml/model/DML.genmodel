@@ -5,7 +5,7 @@
     editorDirectory="/org.eclipselabs.damos.dml.ui/src" modelPluginID="org.eclipselabs.damos.dml"
     modelName="DML" modelPluginClass="DMLPlugin" editPluginClass="org.eclipselabs.damos.dml.edit.DMLEditPlugin"
     editorPluginClass="org.eclipselabs.damos.dml.ui.DMLUIPlugin" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="">
   <foreignModel>DML.ecore</foreignModel>
   <genPackages prefix="DML" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
       providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
@@ -13,6 +13,13 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//ParameterVisibilityKind">
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Public"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Private"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//TimingKind">
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Unspecified"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Any"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Continuous"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Synchronous"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Asynchronous"/>
     </genEnums>
     <genClasses ecoreClass="DML.ecore#//Fragment">
       <genFeatures createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/components"/>
@@ -29,6 +36,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Component/inputs"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Component/outputs"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Component/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Component/timingConstraint"/>
       <genOperations ecoreOperation="DML.ecore#//Component/getInput">
         <genParameters ecoreParameter="DML.ecore#//Component/getInput/name"/>
       </genOperations>
@@ -43,6 +51,21 @@
       <genOperations ecoreOperation="DML.ecore#//Component/getPrimaryOutputPorts"/>
       <genOperations ecoreOperation="DML.ecore#//Component/isSource"/>
       <genOperations ecoreOperation="DML.ecore#//Component/isSink"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/isTimingConstraintApplicable">
+        <genParameters ecoreParameter="DML.ecore#//Component/isTimingConstraintApplicable/eClass"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//TimingConstraint"/>
+    <genClasses ecoreClass="DML.ecore#//ContinuousTimingConstraint"/>
+    <genClasses ecoreClass="DML.ecore#//SynchronousTimingConstraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SynchronousTimingConstraint/sampleTime"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//AsynchronousTimingConstraint"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//SampleTimeSpecification">
+      <genOperations ecoreOperation="DML.ecore#//SampleTimeSpecification/stringSampleTime"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//OpaqueSampleTimeSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueSampleTimeSpecification/sampleTime"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//FragmentElement">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//FragmentElement/owningFragment"/>
@@ -171,6 +194,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/behavior"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/timing"/>
       <genOperations ecoreOperation="DML.ecore#//BlockType/newInstance">
         <genParameters ecoreParameter="DML.ecore#//BlockType/newInstance/name"/>
       </genOperations>
@@ -237,6 +261,9 @@
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//OpaqueBehaviorSpecification">
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueBehaviorSpecification/behavior"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//Latch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Latch/initialValue"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//Compound">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Compound/members"/>

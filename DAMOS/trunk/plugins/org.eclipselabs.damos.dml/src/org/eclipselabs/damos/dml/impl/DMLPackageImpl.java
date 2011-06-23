@@ -13,11 +13,11 @@ import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
@@ -42,6 +42,7 @@ import org.eclipselabs.damos.dml.CompoundOutputConnector;
 import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
+import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
@@ -62,6 +63,7 @@ import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -70,6 +72,7 @@ import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
@@ -83,12 +86,16 @@ import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
+import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.dml.TimingConstraint;
+import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.WhileLoopCondition;
@@ -114,6 +121,48 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass componentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass timingConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass continuousTimingConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass synchronousTimingConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass asynchronousTimingConstraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass sampleTimeSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass opaqueSampleTimeSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -491,6 +540,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass latchEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass compoundEClass = null;
 
 	/**
@@ -631,6 +687,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum timingKindEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum parameterVisibilityKindEEnum = null;
 
 	/**
@@ -678,9 +741,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		DMLPackageImpl theDMLPackage = (DMLPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DMLPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new DMLPackageImpl());
 
 		isInited = true;
-
-		// Initialize simple dependencies
-		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theDMLPackage.createPackageContents();
@@ -794,6 +854,87 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EAttribute getComponent_Name() {
 		return (EAttribute)componentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComponent_TimingConstraint() {
+		return (EReference)componentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTimingConstraint() {
+		return timingConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getContinuousTimingConstraint() {
+		return continuousTimingConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSynchronousTimingConstraint() {
+		return synchronousTimingConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSynchronousTimingConstraint_SampleTime() {
+		return (EReference)synchronousTimingConstraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getAsynchronousTimingConstraint() {
+		return asynchronousTimingConstraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSampleTimeSpecification() {
+		return sampleTimeSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOpaqueSampleTimeSpecification() {
+		return opaqueSampleTimeSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOpaqueSampleTimeSpecification_SampleTime() {
+		return (EAttribute)opaqueSampleTimeSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1377,6 +1518,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getBlockType_Timing() {
+		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getQualifiedElement() {
 		return qualifiedElementEClass;
 	}
@@ -1764,6 +1914,24 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLatch() {
+		return latchEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLatch_InitialValue() {
+		return (EReference)latchEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompound() {
 		return compoundEClass;
 	}
@@ -2043,6 +2211,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getTimingKind() {
+		return timingKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getParameterVisibilityKind() {
 		return parameterVisibilityKindEEnum;
 	}
@@ -2086,6 +2263,21 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(componentEClass, COMPONENT__INPUTS);
 		createEReference(componentEClass, COMPONENT__OUTPUTS);
 		createEAttribute(componentEClass, COMPONENT__NAME);
+		createEReference(componentEClass, COMPONENT__TIMING_CONSTRAINT);
+
+		timingConstraintEClass = createEClass(TIMING_CONSTRAINT);
+
+		continuousTimingConstraintEClass = createEClass(CONTINUOUS_TIMING_CONSTRAINT);
+
+		synchronousTimingConstraintEClass = createEClass(SYNCHRONOUS_TIMING_CONSTRAINT);
+		createEReference(synchronousTimingConstraintEClass, SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME);
+
+		asynchronousTimingConstraintEClass = createEClass(ASYNCHRONOUS_TIMING_CONSTRAINT);
+
+		sampleTimeSpecificationEClass = createEClass(SAMPLE_TIME_SPECIFICATION);
+
+		opaqueSampleTimeSpecificationEClass = createEClass(OPAQUE_SAMPLE_TIME_SPECIFICATION);
+		createEAttribute(opaqueSampleTimeSpecificationEClass, OPAQUE_SAMPLE_TIME_SPECIFICATION__SAMPLE_TIME);
 
 		fragmentElementEClass = createEClass(FRAGMENT_ELEMENT);
 		createEReference(fragmentElementEClass, FRAGMENT_ELEMENT__OWNING_FRAGMENT);
@@ -2179,6 +2371,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(blockTypeEClass, BLOCK_TYPE__INPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__OUTPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__BEHAVIOR);
+		createEAttribute(blockTypeEClass, BLOCK_TYPE__TIMING);
 
 		qualifiedElementEClass = createEClass(QUALIFIED_ELEMENT);
 		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__QUALIFIED_NAME);
@@ -2247,6 +2440,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		opaqueBehaviorSpecificationEClass = createEClass(OPAQUE_BEHAVIOR_SPECIFICATION);
 		createEAttribute(opaqueBehaviorSpecificationEClass, OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR);
 
+		latchEClass = createEClass(LATCH);
+		createEReference(latchEClass, LATCH__INITIAL_VALUE);
+
 		compoundEClass = createEClass(COMPOUND);
 		createEReference(compoundEClass, COMPOUND__MEMBERS);
 
@@ -2300,6 +2496,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Create enums
 		parameterVisibilityKindEEnum = createEEnum(PARAMETER_VISIBILITY_KIND);
+		timingKindEEnum = createEEnum(TIMING_KIND);
 	}
 
 	/**
@@ -2325,18 +2522,19 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
-		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		fragmentEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		fragmentEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		componentEClass.getESuperTypes().add(this.getFragmentElement());
 		componentEClass.getESuperTypes().add(this.getCompoundMember());
-		fragmentElementEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		continuousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
+		synchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
+		asynchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
+		opaqueSampleTimeSpecificationEClass.getESuperTypes().add(this.getSampleTimeSpecification());
+		fragmentElementEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		connectionEClass.getESuperTypes().add(this.getFragmentElement());
 		inputConnectorEClass.getESuperTypes().add(this.getConnector());
 		outputConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -2357,7 +2555,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		outputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		expressionParameterEClass.getESuperTypes().add(this.getParameter());
 		expressionSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
-		blockTypeEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
+		blockTypeEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		blockTypeEClass.getESuperTypes().add(this.getQualifiedElement());
 		blockTypeEClass.getESuperTypes().add(this.getCategorizedElement());
 		blockTypeEClass.getESuperTypes().add(this.getParameterableElement());
@@ -2386,6 +2584,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
 		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
 		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getBehaviorSpecification());
+		latchEClass.getESuperTypes().add(this.getComponent());
 		compoundEClass.getESuperTypes().add(this.getFragmentElement());
 		compoundEClass.getESuperTypes().add(this.getCompoundMember());
 		compoundConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -2427,11 +2626,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getComponent_Inputs(), this.getInput(), this.getInput_Component(), "inputs", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComponent_Outputs(), this.getOutput(), this.getOutput_Component(), "outputs", null, 0, -1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComponent_Name(), ecorePackage.getEString(), "name", null, 1, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getComponent_TimingConstraint(), this.getTimingConstraint(), null, "timingConstraint", null, 0, 1, Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(componentEClass, this.getInput(), "getInput", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		EOperation op = addEOperation(componentEClass, this.getInput(), "getInput", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		op = addEOperation(componentEClass, this.getOutput(), "getOutput", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(componentEClass, this.getOutput(), "getOutput", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		addEOperation(componentEClass, this.getInputPort(), "getInputPorts", 0, -1, IS_UNIQUE, IS_ORDERED);
@@ -2449,6 +2649,25 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEOperation(componentEClass, ecorePackage.getEBoolean(), "isSource", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		addEOperation(componentEClass, ecorePackage.getEBoolean(), "isSink", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(componentEClass, ecorePackage.getEBoolean(), "isTimingConstraintApplicable", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEClass(), "eClass", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(timingConstraintEClass, TimingConstraint.class, "TimingConstraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(continuousTimingConstraintEClass, ContinuousTimingConstraint.class, "ContinuousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(synchronousTimingConstraintEClass, SynchronousTimingConstraint.class, "SynchronousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSynchronousTimingConstraint_SampleTime(), this.getSampleTimeSpecification(), null, "sampleTime", null, 1, 1, SynchronousTimingConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(asynchronousTimingConstraintEClass, AsynchronousTimingConstraint.class, "AsynchronousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(sampleTimeSpecificationEClass, SampleTimeSpecification.class, "SampleTimeSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(sampleTimeSpecificationEClass, ecorePackage.getEString(), "stringSampleTime", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(opaqueSampleTimeSpecificationEClass, OpaqueSampleTimeSpecification.class, "OpaqueSampleTimeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getOpaqueSampleTimeSpecification_SampleTime(), ecorePackage.getEString(), "sampleTime", null, 1, 1, OpaqueSampleTimeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fragmentElementEClass, FragmentElement.class, "FragmentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFragmentElement_OwningFragment(), this.getFragment(), this.getFragment_FragmentElements(), "owningFragment", null, 0, 1, FragmentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2597,6 +2816,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getBlockType_InputDefinitions(), this.getInputDefinition(), null, "inputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_OutputDefinitions(), this.getOutputDefinition(), null, "outputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_Behavior(), this.getBehaviorSpecification(), null, "behavior", null, 0, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getBlockType_Timing(), this.getTimingKind(), "timing", null, 1, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(blockTypeEClass, this.getBlock(), "newInstance", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -2676,6 +2896,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(opaqueBehaviorSpecificationEClass, OpaqueBehaviorSpecification.class, "OpaqueBehaviorSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOpaqueBehaviorSpecification_Behavior(), ecorePackage.getEString(), "behavior", null, 1, 1, OpaqueBehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
+		initEClass(latchEClass, Latch.class, "Latch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLatch_InitialValue(), this.getValueSpecification(), null, "initialValue", null, 1, 1, Latch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(compoundEClass, Compound.class, "Compound", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompound_Members(), this.getCompoundMember(), null, "members", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2733,6 +2956,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEEnum(parameterVisibilityKindEEnum, ParameterVisibilityKind.class, "ParameterVisibilityKind");
 		addEEnumLiteral(parameterVisibilityKindEEnum, ParameterVisibilityKind.PUBLIC);
 		addEEnumLiteral(parameterVisibilityKindEEnum, ParameterVisibilityKind.PRIVATE);
+
+		initEEnum(timingKindEEnum, TimingKind.class, "TimingKind");
+		addEEnumLiteral(timingKindEEnum, TimingKind.UNSPECIFIED);
+		addEEnumLiteral(timingKindEEnum, TimingKind.ANY);
+		addEEnumLiteral(timingKindEEnum, TimingKind.CONTINUOUS);
+		addEEnumLiteral(timingKindEEnum, TimingKind.SYNCHRONOUS);
+		addEEnumLiteral(timingKindEEnum, TimingKind.ASYNCHRONOUS);
 
 		// Create resource
 		createResource(eNS_URI);

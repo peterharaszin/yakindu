@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.engine.IComponentSimulationObject;
 import org.eclipselabs.damos.simulation.engine.internal.ComponentSimulationObjectAdapter;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
@@ -23,10 +22,6 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
  */
 public class SimulationUtil {
 
-	public static long getStepCount(SimulationModel simulationModel) {
-		return (long) Math.ceil(simulationModel.getSimulationTime() / simulationModel.getExecutionModel().getSampleTime()) + 1;
-	}
-	
 	public static IComponentSimulationObject getComponentSimulationObject(Node node) {
 		ComponentSimulationObjectAdapter adapter = (ComponentSimulationObjectAdapter) EcoreUtil.getAdapter(node.eAdapters(), ComponentSimulationObjectAdapter.class);
 		return adapter != null ? adapter.getSimulationObject() : null;

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
@@ -38,6 +39,7 @@ import org.eclipselabs.damos.dml.CompoundOutputConnector;
 import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
+import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
@@ -57,6 +59,7 @@ import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -65,6 +68,7 @@ import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
@@ -77,12 +81,15 @@ import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
+import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.dml.TimingConstraint;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.WhileLoopCondition;
@@ -150,6 +157,30 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseComponent(Component object) {
 				return createComponentAdapter();
+			}
+			@Override
+			public Adapter caseTimingConstraint(TimingConstraint object) {
+				return createTimingConstraintAdapter();
+			}
+			@Override
+			public Adapter caseContinuousTimingConstraint(ContinuousTimingConstraint object) {
+				return createContinuousTimingConstraintAdapter();
+			}
+			@Override
+			public Adapter caseSynchronousTimingConstraint(SynchronousTimingConstraint object) {
+				return createSynchronousTimingConstraintAdapter();
+			}
+			@Override
+			public Adapter caseAsynchronousTimingConstraint(AsynchronousTimingConstraint object) {
+				return createAsynchronousTimingConstraintAdapter();
+			}
+			@Override
+			public Adapter caseSampleTimeSpecification(SampleTimeSpecification object) {
+				return createSampleTimeSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseOpaqueSampleTimeSpecification(OpaqueSampleTimeSpecification object) {
+				return createOpaqueSampleTimeSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseFragmentElement(FragmentElement object) {
@@ -364,6 +395,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createOpaqueBehaviorSpecificationAdapter();
 			}
 			@Override
+			public Adapter caseLatch(Latch object) {
+				return createLatchAdapter();
+			}
+			@Override
 			public Adapter caseCompound(Compound object) {
 				return createCompoundAdapter();
 			}
@@ -492,6 +527,90 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComponentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.TimingConstraint <em>Timing Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.TimingConstraint
+	 * @generated
+	 */
+	public Adapter createTimingConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ContinuousTimingConstraint <em>Continuous Timing Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ContinuousTimingConstraint
+	 * @generated
+	 */
+	public Adapter createContinuousTimingConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.SynchronousTimingConstraint <em>Synchronous Timing Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.SynchronousTimingConstraint
+	 * @generated
+	 */
+	public Adapter createSynchronousTimingConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.AsynchronousTimingConstraint <em>Asynchronous Timing Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.AsynchronousTimingConstraint
+	 * @generated
+	 */
+	public Adapter createAsynchronousTimingConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.SampleTimeSpecification <em>Sample Time Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.SampleTimeSpecification
+	 * @generated
+	 */
+	public Adapter createSampleTimeSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification <em>Opaque Sample Time Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification
+	 * @generated
+	 */
+	public Adapter createOpaqueSampleTimeSpecificationAdapter() {
 		return null;
 	}
 
@@ -1234,6 +1353,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOpaqueBehaviorSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Latch <em>Latch</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.Latch
+	 * @generated
+	 */
+	public Adapter createLatchAdapter() {
 		return null;
 	}
 

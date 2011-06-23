@@ -14,8 +14,9 @@ package org.eclipselabs.damos.simulation.engine.internal.simulationobjects;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject;
-import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.engine.internal.SimulationEnginePlugin;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -29,7 +30,7 @@ public class MemorySimulationObject extends AbstractComponentSimulationObject {
 	private IValue outputValue;
 	
 	@Override
-	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
+	public void setInputValue(int inputIndex, int portIndex, IValue value) {
 		if (inputIndex == 0) {
 			this.value = value; 
 		} else {
@@ -38,20 +39,20 @@ public class MemorySimulationObject extends AbstractComponentSimulationObject {
 	}
 	
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
-		if (outputValue == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input value for component '" + getComponent().getName() + "'"));
-		}
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return outputValue;
 	}
 	
 	@Override
-	public void computeOutputValues(double t) throws CoreException {
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
+		if (value == null) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input value for component '" + getComponent().getName() + "'"));
+		}
 		outputValue = value;
 	}
 	
 	@Override
-	public void update() throws CoreException {
+	public void update(double t) {
 		value = nextValue;
 	}
 	

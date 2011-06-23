@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
-import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.engine.internal.SimulationEnginePlugin;
 
 /**
  * @author Andreas Unger

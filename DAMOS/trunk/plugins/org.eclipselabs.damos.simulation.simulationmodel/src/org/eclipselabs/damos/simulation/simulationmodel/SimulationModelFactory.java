@@ -35,6 +35,24 @@ public interface SimulationModelFactory extends EFactory {
 	SimulationModel createSimulationModel();
 
 	/**
+	 * Returns a new object of class '<em>Fixed Step Size Solver Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Fixed Step Size Solver Configuration</em>'.
+	 * @generated
+	 */
+	FixedStepSizeSolverConfiguration createFixedStepSizeSolverConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Adaptive Step Size Solver Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Adaptive Step Size Solver Configuration</em>'.
+	 * @generated
+	 */
+	AdaptiveStepSizeSolverConfiguration createAdaptiveStepSizeSolverConfiguration();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

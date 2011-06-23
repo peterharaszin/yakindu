@@ -65,6 +65,12 @@
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.continuous"
+            name="Derivative"
+            qualifiedName="org.eclipselabs.damos.library.base.continuous.Derivative"
+            uri="http://www.eclipselabs.org/damos/library/1.0.0/continuous/Derivative.blocktype.dml#/">
+      </blockType>
+      <blockType
+            group="org.eclipselabs.damos.library.base.continuous"
             qualifiedName="org.eclipselabs.damos.library.base.continuous.TransferFunction"
             name="Transfer Function"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/continuous/TransferFunction.blocktype.dml#/">
@@ -184,6 +190,11 @@
             blockType="org.eclipselabs.damos.library.base.continuous.Integrator"
             class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.IntegratorSignaturePolicy"
             name="Integrator">
+      </policy>
+      <policy
+            blockType="org.eclipselabs.damos.library.base.continuous.Derivative"
+            class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.DerivativeSignaturePolicy"
+            name="Derivative">
       </policy>
       <policy
             blockType="org.eclipselabs.damos.library.base.continuous.TransferFunction"

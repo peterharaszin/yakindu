@@ -12,18 +12,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
-import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowConstructor;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
-import org.eclipselabs.damos.simulation.engine.ComponentSimulationObjectAdaptor;
-import org.eclipselabs.damos.simulation.engine.ISimulationContext;
-import org.eclipselabs.damos.simulation.engine.SimulationContext;
-import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
-import org.eclipselabs.damos.simulation.engine.SimulationMonitor;
+import org.eclipselabs.damos.simulation.engine.Simulator;
+import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
+import org.eclipselabs.damos.simulation.ide.core.util.LaunchConfigurationUtil;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 
 public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDelegate {
@@ -32,16 +24,11 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 	
 	public static final String ATTRIBUTE__CREATE_SIMULATION_MODEL = "createSimulationModel";
 
-	public static final String ATTRIBUTE__FRAGMENT_URI = "fragmentURI";
-	public static final String ATTRIBUTE__SAMPLE_TIME = "sampleRate";
-	public static final String ATTRIBUTE__SIMULATION_TIME = "simulationTime";
-	
+	public static final String ATTRIBUTE__SIMULATION_MODEL = "simulationModel";
 	public static final String ATTRIBUTE__SIMULATION_MODEL_PATH = "simulationModelPath";
-
-	public static final String DEFAULT_SAMPLE_TIME = "auto";
-	public static final String DEFAULT_SIMULATION_TIME = "10";
 	
-	private static final int DEFAULT_STEP_COUNT = 1000;
+	public static final double DEFAULT_SIMULATION_TIME = 10;
+	public static final String DEFAULT_SOLVER_ID = "org.eclipselabs.damos.simulation.simulator.solvers.dormandPrince54";
 
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor progressMonitor) throws CoreException {
 		boolean createSimulationModel = configuration.getAttribute(ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
@@ -49,78 +36,38 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 		SimulationModel simulationModel;
 		
 		if (createSimulationModel) {
-			String fragmentURIString = configuration.getAttribute(ATTRIBUTE__FRAGMENT_URI, "");
-			if (fragmentURIString.length() == 0) {
-				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No fragment specified"));
-			}
-			
-			Fragment topLevelFragment = loadFragment(fragmentURIString);
-			if (topLevelFragment == null) {
-				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Could not load fragment '" + fragmentURIString + "'"));
-			}
-			
-			ExecutionModel executionModel = ExecutionModelFactory.eINSTANCE.createExecutionModel();
-			simulationModel = SimulationModelFactory.eINSTANCE.createSimulationModel();
-			simulationModel.setExecutionModel(executionModel);
-			simulationModel.setTopLevelFragment(topLevelFragment);
-			
-			try {
-				simulationModel.setSimulationTime(Double.parseDouble(configuration.getAttribute(ATTRIBUTE__SIMULATION_TIME, "10")));
-			} catch (NumberFormatException e) {
-				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid simulation time"));
-			}
-	
-			String sampleTimeString = configuration.getAttribute(ATTRIBUTE__SAMPLE_TIME, DEFAULT_SAMPLE_TIME);
-			if (DEFAULT_SAMPLE_TIME.equals(sampleTimeString)) {
-				executionModel.setSampleTime(simulationModel.getSimulationTime() / DEFAULT_STEP_COUNT);
-			} else {
-				try {
-					executionModel.setSampleTime(Double.parseDouble(sampleTimeString));
-				} catch (NumberFormatException e) {
-					throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid sample time"));
-				}
-			}
+			simulationModel = LaunchConfigurationUtil.loadSimulationModel(configuration);
 		} else {
 			String simulationModelPath = configuration.getAttribute(ATTRIBUTE__SIMULATION_MODEL_PATH, "");
 			if (simulationModelPath.trim().length() == 0) {
-				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No simulation model path set"));
+				throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "No simulation model path set"));
 			}
 			
 			URI uri;
 			try {
 				uri = URI.createPlatformResourceURI(simulationModelPath, true);
 			} catch (IllegalArgumentException e) {
-				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid simulation model path specified"));
+				throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid simulation model path specified"));
 			}
 
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(uri, true);
 			simulationModel = (SimulationModel) EcoreUtil.getObjectByType(resource.getContents(), SimulationModelPackage.eINSTANCE.getSimulationModel());
 			if (simulationModel == null) {
-				throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No simulation model found in '" + simulationModelPath + "'"));
+				throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "No simulation model found in '" + simulationModelPath + "'"));
 			}
 		}
 		
-		ExecutionFlow executionFlow = new ExecutionFlowConstructor().construct(simulationModel.getTopLevelFragment(), progressMonitor);
-		ISimulationContext context = new SimulationContext(simulationModel, executionFlow);
-		SimulationMonitor simulationMonitor = new SimulationMonitor();
-		new ComponentSimulationObjectAdaptor().adaptSimulationObjects(context, simulationMonitor, progressMonitor);
-		new SimulationProcess(launch, simulationModel.getTopLevelFragment().getName()).run(context, simulationMonitor);
+		Simulator simulator = new Simulator();
+		simulator.initialize(simulationModel, progressMonitor);
+		if (progressMonitor != null && progressMonitor.isCanceled()) {
+			return;
+		}
+		new SimulationProcess(launch, simulator.getSimulationEngine()).run();
 	}
-	
+
 	public boolean buildForLaunch(ILaunchConfiguration configuration, String mode, IProgressMonitor monitor) throws CoreException {
 		return false;
 	}
 	
-	private Fragment loadFragment(String fragmentURIString) {
-		try {
-			ResourceSet rs = new ResourceSetImpl();
-			URI uri = URI.createURI(fragmentURIString, false);
-			return (Fragment) rs.getEObject(uri, true);
-		} catch (Exception e) {
-			// Ignore
-		}
-		return null;
-	}
-
 }

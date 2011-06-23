@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.diagram.core.internal.util;
 
+import java.math.BigDecimal;
+
 /**
  * @author Andreas Unger
  *
@@ -23,6 +25,17 @@ public class MathUtil {
 			angle += 360;
 		}
 		return angle;
+	}
+
+	public static double gcd(double a, double b) {
+		return gcd(BigDecimal.valueOf(a), BigDecimal.valueOf(b));
+	}
+
+	private static double gcd(BigDecimal a, BigDecimal b) {
+		if (BigDecimal.ZERO.compareTo(b) == 0) {
+			return a.doubleValue();
+		}
+		return gcd(b, a.remainder(b));
 	}
 
 }

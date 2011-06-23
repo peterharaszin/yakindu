@@ -88,7 +88,7 @@ public class BlockTypeRegistryReader extends AbstractRegistryReader {
 		BlockTypeDescriptor blockType = new BlockTypeDescriptor();
 		blockType.setQualifiedName(qualifiedName);
 		blockType.setName(name);
-		blockType.setUri(uri);
+		blockType.setURI(uri);
 		blockType.setGroup(group);
 		registry.register(blockType);
 

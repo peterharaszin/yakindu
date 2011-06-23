@@ -10,8 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,6 +96,26 @@ public class SimulationModelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case SimulationModelPackage.SOLVER_CONFIGURATION: {
+				SolverConfiguration solverConfiguration = (SolverConfiguration)theEObject;
+				T result = caseSolverConfiguration(solverConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SimulationModelPackage.FIXED_STEP_SIZE_SOLVER_CONFIGURATION: {
+				FixedStepSizeSolverConfiguration fixedStepSizeSolverConfiguration = (FixedStepSizeSolverConfiguration)theEObject;
+				T result = caseFixedStepSizeSolverConfiguration(fixedStepSizeSolverConfiguration);
+				if (result == null) result = caseSolverConfiguration(fixedStepSizeSolverConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SimulationModelPackage.ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION: {
+				AdaptiveStepSizeSolverConfiguration adaptiveStepSizeSolverConfiguration = (AdaptiveStepSizeSolverConfiguration)theEObject;
+				T result = caseAdaptiveStepSizeSolverConfiguration(adaptiveStepSizeSolverConfiguration);
+				if (result == null) result = caseSolverConfiguration(adaptiveStepSizeSolverConfiguration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -109,6 +132,51 @@ public class SimulationModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseSimulationModel(SimulationModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Solver Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Solver Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSolverConfiguration(SolverConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Fixed Step Size Solver Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Fixed Step Size Solver Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFixedStepSizeSolverConfiguration(FixedStepSizeSolverConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Adaptive Step Size Solver Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Adaptive Step Size Solver Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdaptiveStepSizeSolverConfiguration(AdaptiveStepSizeSolverConfiguration object) {
 		return null;
 	}
 

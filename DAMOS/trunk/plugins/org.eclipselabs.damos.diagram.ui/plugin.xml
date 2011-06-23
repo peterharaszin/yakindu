@@ -114,6 +114,14 @@
                tab="org.eclipselabs.damos.diagram.ui.tabs.general">
          </propertySection>
          <propertySection
+               afterSection="org.eclipselabs.damos.diagram.ui.sections.blockName"
+               class="org.eclipselabs.damos.diagram.ui.internal.properties.TimingConstraintPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.diagram.ui.internal.properties.TimingConstraintPropertySectionFilter"
+               id="org.eclipselabs.damos.diagram.ui.sections.timingConstraint"
+               tab="org.eclipselabs.damos.diagram.ui.tabs.general">
+         </propertySection>
+         <propertySection
                class="org.eclipselabs.damos.diagram.ui.internal.properties.ParametersPropertySection"
                enablesFor="1"
                filter="org.eclipselabs.damos.diagram.ui.internal.properties.ParametersPropertySectionFilter"
@@ -360,6 +368,23 @@
             class="org.eclipselabs.damos.diagram.ui.internal.handlers.ChangePortCountHandler"
             commandId="org.eclipselabs.damos.diagram.ui.commands.changePortCount">
       </handler>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+            id="org.eclipselabs.damos.diagram.ui.globalActionHandlerProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <ViewId
+               id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">

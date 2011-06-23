@@ -29,6 +29,7 @@ import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dml.internal.operations.BlockTypeOperations;
 import org.eclipselabs.damos.dml.internal.operations.CategorizedElementOperations;
 import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperations;
@@ -49,6 +50,7 @@ import org.eclipselabs.damos.dml.internal.operations.QualifiedElementOperations;
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getOutputDefinitions <em>Output Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getTiming <em>Timing</em>}</li>
  * </ul>
  * </p>
  *
@@ -162,6 +164,26 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 * @ordered
 	 */
 	protected boolean behaviorESet;
+
+	/**
+	 * The default value of the '{@link #getTiming() <em>Timing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTiming()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TimingKind TIMING_EDEFAULT = TimingKind.UNSPECIFIED;
+
+	/**
+	 * The cached value of the '{@link #getTiming() <em>Timing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTiming()
+	 * @generated
+	 * @ordered
+	 */
+	protected TimingKind timing = TIMING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -392,6 +414,27 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TimingKind getTiming() {
+		return timing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTiming(TimingKind newTiming) {
+		TimingKind oldTiming = timing;
+		timing = newTiming == null ? TIMING_EDEFAULT : newTiming;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__TIMING, oldTiming, timing));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public boolean belongsTo(String categoryName) {
@@ -460,6 +503,8 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return getOutputDefinitions();
 			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
 				return getBehavior();
+			case DMLPackage.BLOCK_TYPE__TIMING:
+				return getTiming();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -495,6 +540,9 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
 				setBehavior((BehaviorSpecification)newValue);
 				return;
+			case DMLPackage.BLOCK_TYPE__TIMING:
+				setTiming((TimingKind)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -525,6 +573,9 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
 				unsetBehavior();
 				return;
+			case DMLPackage.BLOCK_TYPE__TIMING:
+				setTiming(TIMING_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -553,6 +604,8 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return outputDefinitions != null && !outputDefinitions.isEmpty();
 			case DMLPackage.BLOCK_TYPE__BEHAVIOR:
 				return isSetBehavior();
+			case DMLPackage.BLOCK_TYPE__TIMING:
+				return timing != TIMING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -629,6 +682,8 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (qualifiedName: ");
 		if (qualifiedNameESet) result.append(qualifiedName); else result.append("<unset>");
+		result.append(", timing: ");
+		result.append(timing);
 		result.append(')');
 		return result.toString();
 	}

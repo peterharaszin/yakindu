@@ -23,6 +23,7 @@ import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.ParameterizedElement;
+import org.eclipselabs.damos.dml.internal.operations.BlockOperations;
 import org.eclipselabs.damos.dml.internal.operations.ComponentOperations;
 import org.eclipselabs.damos.dml.internal.operations.ParameterizedElementOperations;
 
@@ -165,7 +166,15 @@ public class BlockImpl extends ComponentImpl implements Block {
 	public BlockOutput getOutput(String name) {
 		return (BlockOutput) ComponentOperations.getOutput(this, name);
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.ComponentImpl#isTimingConstraintApplicable(org.eclipse.emf.ecore.EClass)
+	 */
+	@Override
+	public boolean isTimingConstraintApplicable(EClass eClass) {
+		return BlockOperations.isTimingConstraintApplicable(this, eClass);
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

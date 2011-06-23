@@ -18,7 +18,7 @@
    </license>
 
    <requires>
-      <import feature="org.eclipselabs.damos.simulation" version="0.2.0.qualifier"/>
+      <import feature="org.eclipselabs.damos.simulation" version="0.2.0.qualifier" match="greaterOrEqual"/>
    </requires>
 
    <plugin

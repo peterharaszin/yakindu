@@ -333,7 +333,7 @@ public class FBComponentLayout extends AbstractLayout {
 			contentInsets.right = bm.east.extents.left + horizontalBodyPadding;
 			contentInsets.top = topBodyPadding + bm.headerSize.height;
 			contentInsets.bottom = bottomBodyPadding + bm.footerSize.height;
-			Rectangle contentBounds = bounds.getCropped(contentInsets);
+			Rectangle contentBounds = bounds.getShrinked(contentInsets);
 			layoutContentFigure(componentFigure, bodyFigure, contentBounds);
 		}
 

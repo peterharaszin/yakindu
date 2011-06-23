@@ -34,8 +34,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipselabs.damos.simulation.engine.IChartData;
+import org.eclipselabs.damos.simulation.core.IXYChartData;
 import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**
@@ -48,8 +47,9 @@ public class ChartCanvas extends Canvas implements PaintListener {
 	private Image cachedImage;
 	private List<ChartContext> chartContexts = new ArrayList<ChartContext>();
 	private int singleChartIndex = -1;
-	
-	private int progress = -1;
+
+	private boolean realtime;
+	private long progress = -1;
 	
 	public ChartCanvas(Composite parent, int style) {
 		super(parent, style);
@@ -64,9 +64,14 @@ public class ChartCanvas extends Canvas implements PaintListener {
 		}
 		
 		addControlListener(new ControlAdapter() {
+			
 			public void controlResized(ControlEvent e) {
-				cachedImage = null;
+				if (cachedImage != null) {
+					cachedImage.dispose();
+					cachedImage = null;
+				}
 			}
+			
 		});
 		addPaintListener(this);
 	}
@@ -77,21 +82,28 @@ public class ChartCanvas extends Canvas implements PaintListener {
 	}
 	
 	/**
+	 * @param realtime the realtime to set
+	 */
+	public void setRealtime(boolean realtime) {
+		this.realtime = realtime;
+	}
+	
+	/**
 	 * @param progress the progress to set
 	 */
-	public void setProgress(int progress) {
+	public void setProgress(long progress) {
 		if (this.progress != progress) {
 			this.progress = progress;
 			redraw();
 		}
 	}
 		
-	public void setDataset(Collection<IChartData> dataset) {
+	public void setDataset(Collection<IXYChartData> dataset) {
 		chartContexts.clear();
-		for (IChartData data : dataset) {
+		for (IXYChartData data : dataset) {
 			ChartContext context = new ChartContext();
 			context.initializeChart();
-			context.setSimulationData(data);
+			context.setChartData(data);
 			chartContexts.add(context);
 		}
 		if (cachedImage != null) {
@@ -127,7 +139,7 @@ public class ChartCanvas extends Canvas implements PaintListener {
 		String message = null;
 		
 		if (progress >= 0) {
-			message = String.format("Simulating... %d%%", progress);
+			message = String.format("Simulating... %d%s", progress, realtime ? "s" : "%");
 		} else if (!chartContexts.isEmpty()) {
 			if (cachedImage == null) {
 				buildChart(e.gc);
@@ -182,7 +194,7 @@ public class ChartCanvas extends Canvas implements PaintListener {
 			if (cachedImage != null) {
 				cachedImage.dispose();
 			}
-			cachedImage = new Image(Display.getCurrent(), size);
+			cachedImage = new Image(getDisplay(), size);
 
 			gc = new GC(cachedImage);
 			renderer.setProperty(IDeviceRenderer.GRAPHICS_CONTEXT, gc);

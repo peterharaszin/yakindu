@@ -146,7 +146,6 @@ public class ExecutionModelWizard extends Wizard implements INewWizard {
 	 */
 	protected EObject createInitialModel() {
 		ExecutionModel executionModel = executionModelFactory.createExecutionModel();
-		executionModel.setSampleTime(generalPage.getSampleTime());
 		return executionModel;
 	}
 
@@ -297,15 +296,6 @@ public class ExecutionModelWizard extends Wizard implements INewWizard {
 		 */
 		public ExecutionModelWizardGeneralPage() {
 			super("General");
-		}
-		
-		public double getSampleTime() {
-			try {
-				return Double.parseDouble(sampleTimeText.getText());
-			} catch (NumberFormatException e) {
-				// Return zero
-			}
-			return 0;
 		}
 		
 		/* (non-Javadoc)

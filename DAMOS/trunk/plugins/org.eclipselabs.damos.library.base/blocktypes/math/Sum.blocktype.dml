@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_9ryeUIkREd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.math.Sum">
+<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_9ryeUIkREd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.math.Sum" timing="Any">
   <inputDefinitions xmi:id="_9ryeUYkREd-UBLGPWvR3ew" minimumPortCount="2" maximumPortCount="-1" name="input">
     <parameters xsi:type="dml:ExpressionParameter" xmi:id="_9rzFYIkREd-UBLGPWvR3ew" name="sign">
       <defaultExpression xmi:id="_9rzFYYkREd-UBLGPWvR3ew" expression="1"/>

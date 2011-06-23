@@ -28,13 +28,16 @@ import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
 import org.eclipse.birt.chart.model.type.LineSeries;
 import org.eclipse.birt.chart.model.type.impl.LineSeriesImpl;
-import org.eclipselabs.damos.simulation.engine.IChartData;
+import org.eclipselabs.damos.simulation.core.IXYChartData;
 
 /**
  * @author Andreas Unger
  *
  */
 public class ChartContext {
+
+	private static final int MAX_POINT_COUNT = 2000;
+	private static final double MAX_SLOPE = 0.5;
 
 	private ChartWithAxes chart;
 	private GeneratedChartState state;
@@ -84,38 +87,77 @@ public class ChartContext {
 		yAxis.getSeriesDefinitions().add(ySeriesDefinition);
 	}
 	
-	public void setSimulationData(IChartData data) {
+	public void setChartData(IXYChartData data) {
 		chart.getTitle().getLabel().getCaption().setValue(data.getChartTitle());
 
-		double[][] xValuesMatrix = data.getXValues();
-		double[][] yValuesMatrix = data.getYValues();
-		int m = yValuesMatrix.length;
-		int n = yValuesMatrix[0].length;
+		double[] xValues = data.getXValues();
+		double[][] yValues = data.getYValues();
+		int m = yValues.length;
 		
-		int increment = 1;
-		while (n > 2000) {
-			n >>= 1;
-			increment <<= 1;
+		int length = reduceDataSet(xValues, yValues, xValues.length / MAX_POINT_COUNT);
+		double[] reducedXValues = new double[length];
+		double[][] reducedYValues = new double[m][length];
+		System.arraycopy(xValues, 0, reducedXValues, 0, length);
+		for (int i = 0; i < m; ++i) {
+			System.arraycopy(yValues[i], 0, reducedYValues[i], 0, length);
 		}
 		
-		double[] xValues = new double[n];
-		double[][] yValues = new double[m][n];
-		
-		for (int jj = 0, j = 0; jj < n; ++jj, j += increment) {
-			xValues[jj] = xValuesMatrix[0][j];
-			for (int i = 0; i < m; ++i) {
-				yValues[i][jj] = yValuesMatrix[i][j];
-			}
-		}
-		
-		xSeries.setDataSet(NumberDataSetImpl.create(xValues));
+		xSeries.setDataSet(NumberDataSetImpl.create(reducedXValues));
 		ySeriesDefinition.getSeries().clear();
 		for (int i = 0; i < m; ++i) {
 			LineSeries ySeries = (LineSeries) LineSeriesImpl.create();
-			ySeries.setDataSet(NumberDataSetImpl.create(yValues[i]));
+			ySeries.setDataSet(NumberDataSetImpl.create(reducedYValues[i]));
 			ySeries.getMarkers().clear();
 			ySeries.getLineAttributes().setColor(createSeriesLineColorDefinition(i));
 			ySeriesDefinition.getSeries().add(ySeries);
+		}
+	}
+	
+	private int reduceDataSet(double[] xValues, double[][] yValuesMatrix, int maxSkip) {
+		if (maxSkip == 0 || xValues.length < 2) {
+			return xValues.length;
+		}
+		
+		int lastIndex = xValues.length - 1;
+		int counter = maxSkip;
+		int end = 1;
+		
+		double der = Double.POSITIVE_INFINITY;
+		
+		for (int j = 1; j < lastIndex; ++j) {
+			double nextDer = 0;
+			double dx = xValues[j + 1] - xValues[j];
+			for (int i = 0; i < yValuesMatrix.length; ++i) {
+				double dy = yValuesMatrix[i][j + 1] - yValuesMatrix[i][j];
+				double currentDer = Math.abs(dy / dx);
+				if (nextDer < currentDer) {
+					nextDer = currentDer;
+				}
+			}
+			
+			if (counter-- == 0 || Math.abs((nextDer - der) / dx) > MAX_SLOPE) {
+				appendValues(xValues, yValuesMatrix, j, end++);
+				counter = maxSkip;
+			}
+			
+			der = nextDer;
+		}
+		
+		appendValues(xValues, yValuesMatrix, lastIndex, end++);
+		
+		return end;
+	}
+
+	/**
+	 * @param xValues
+	 * @param yValuesMatrix
+	 * @param index
+	 * @param end
+	 */
+	private void appendValues(double[] xValues, double[][] yValuesMatrix, int index, int end) {
+		xValues[end] = xValues[index];
+		for (int i = 0; i < yValuesMatrix.length; ++i) {
+			yValuesMatrix[i][end] = yValuesMatrix[i][index];
 		}
 	}
 
@@ -125,7 +167,7 @@ public class ChartContext {
 				LineStyle.DASHED_LITERAL,
 				1);
 	}
-
+	
 	private ColorDefinition createSeriesLineColorDefinition(int n) {
 		ColorDefinition c = ColorDefinitionImpl.BLACK();
 		switch (n % 4) {

@@ -31,7 +31,7 @@ public class ScopeSignaturePolicy extends AbstractComponentSignaturePolicy {
 		for (InputPort inputPort : component.getInputs().get(0).getPorts()) {
 			DataType incomingDataType = incomingDataTypes.get(inputPort);
 			if (incomingDataType != null && !(incomingDataType instanceof BooleanType || incomingDataType instanceof NumericType)) {
-				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be boolean or integer"));
+				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input values must be boolean or numeric"));
 			}
 		}
 		

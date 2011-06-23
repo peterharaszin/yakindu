@@ -219,11 +219,11 @@ public class SnapToConnector extends SnapToHelper {
 		int snapOrientation = 0;
 
 		if (Math.abs(correctX) < THRESHOLD) {
-			correction.preciseX += correctX;
+			correction.setPreciseX(correction.preciseX() + correctX);
 			snapOrientation |= HORIZONTAL;
 		}
 		if (Math.abs(correctY) < THRESHOLD) {
-			correction.preciseY += correctY;
+			correction.setPreciseY(correction.preciseY() + correctY);
 			snapOrientation |= VERTICAL;
 		}
 		
@@ -397,13 +397,11 @@ public class SnapToConnector extends SnapToHelper {
 		
 		snapOrientation &= ~calculateCorrection(correction, target, baseRect, (Map<String, Object>) request.getExtendedData());
 		
-		correction.updateInts();
 		makeAbsolute(container.getContentPane(), correction);
-		result.preciseX = correction.preciseX;
-		result.preciseY = correction.preciseY;
-		result.preciseWidth = correction.preciseWidth;
-		result.preciseHeight = correction.preciseHeight;
-		result.updateInts();
+		result.setPreciseX(correction.preciseX());
+		result.setPreciseY(correction.preciseY());
+		result.setPreciseWidth(correction.preciseWidth());
+		result.setPreciseHeight(correction.preciseHeight());
 		
 		return snapOrientation;
 	}

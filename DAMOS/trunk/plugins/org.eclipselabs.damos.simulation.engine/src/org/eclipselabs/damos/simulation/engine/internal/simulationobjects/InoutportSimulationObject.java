@@ -14,8 +14,9 @@ package org.eclipselabs.damos.simulation.engine.internal.simulationobjects;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject;
-import org.eclipselabs.damos.simulation.engine.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.engine.internal.SimulationEnginePlugin;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 
 /**
@@ -27,15 +28,22 @@ public class InoutportSimulationObject extends AbstractComponentSimulationObject
 	private IValue value;
 	
 	@Override
-	public void setInputValue(int inputIndex, int portIndex, IValue value) throws CoreException {
+	public void setInputValue(int inputIndex, int portIndex, IValue value) {
 		this.value = value;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues(double, org.eclipselabs.damos.simulation.core.ISimulationMonitor)
+	 */
 	@Override
-	public IValue getOutputValue(int outputIndex, int portIndex) throws CoreException {
+	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 		if (value == null) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input value for component '" + getComponent().getName() + "'"));
 		}
+	}
+	
+	@Override
+	public IValue getOutputValue(int outputIndex, int portIndex) {
 		return value;
 	}
 	

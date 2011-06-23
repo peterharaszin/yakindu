@@ -7,12 +7,12 @@
             class="org.eclipselabs.damos.simulation.ui.internal.part.SimulationView"
             icon="icons/Simulation.gif"
             id="org.eclipselabs.damos.simulation.ui.simulationView"
-            name="Simulation Results"
+            name="Simulation"
             restorable="true">
       </view>
    </extension>
    <extension
-         point="org.eclipselabs.damos.simulation.engine.simulationListeners">
+         point="org.eclipselabs.damos.simulation.core.simulationListeners">
       <listener
             class="org.eclipselabs.damos.simulation.ui.internal.part.SimulationListener">
       </listener>

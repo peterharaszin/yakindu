@@ -12,8 +12,8 @@
 package org.eclipselabs.damos.library.common.ui.figures;
 
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
+import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
 import org.eclipselabs.damos.library.common.ui.figures.shapes.BlockShape;
 
 /**

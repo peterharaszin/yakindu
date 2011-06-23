@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.engine.IComponentSignature;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
@@ -29,7 +30,7 @@ import org.eclipselabs.mscript.computation.computationmodel.util.ComputationMode
 public abstract class AbstractComponentGenerator implements IComponentGenerator {
 
 	private IGeneratorContext context;
-	private Component component;
+	private ComponentNode node;
 	private IComponentSignature signature;
 	
 	private ComputationModel cachedComputationModel;
@@ -49,17 +50,21 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	}
 	
 	/**
-	 * @return the component
+	 * @return the node
 	 */
-	public Component getComponent() {
-		return component;
+	public ComponentNode getNode() {
+		return node;
 	}
 	
 	/**
-	 * @param component the component to set
+	 * @param node the node to set
 	 */
-	public void setComponent(Component component) {
-		this.component = component;
+	public void setNode(ComponentNode node) {
+		this.node = node;
+	}
+	
+	protected Component getComponent() {
+		return node.getComponent();
 	}
 	
 	/**

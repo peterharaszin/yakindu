@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.execution.executionflow.internal.operations;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
@@ -53,6 +55,24 @@ public class NodeOperations {
 			}
 		}
 		return null;
+	}
+	
+	public static EList<Node> getDrivingNodes(Node node) {
+		EList<Node> drivingNodes = new BasicEList<Node>();
+		for (DataFlowTargetEnd targetEnd : node.getIncomingDataFlows()) {
+			drivingNodes.add(targetEnd.getDataFlow().getSourceEnd().getNode());
+		}
+		return drivingNodes;
+	}
+
+	public static EList<Node> getDrivenNodes(Node node) {
+		EList<Node> drivenNodes = new BasicEList<Node>();
+		for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
+			for (DataFlowTargetEnd targetEnd : sourceEnd.getDataFlow().getTargetEnds()) {
+				drivenNodes.add(targetEnd.getNode());
+			}
+		}
+		return drivenNodes;
 	}
 
 } // NodeOperations

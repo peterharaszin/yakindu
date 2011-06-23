@@ -78,10 +78,10 @@ public class BehavioredBlockHelper {
 
 		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 
-		IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule().getName(),
+		IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule(),
 				new StringReader(behavior.getBehavior()));
 
-		if (!parseResult.getParseErrors().isEmpty()) {
+		if (parseResult.hasSyntaxErrors()) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block behavior failed"));
 		}
 

@@ -17,10 +17,10 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
-import org.eclipselabs.damos.simulation.engine.ISimulationContext;
-import org.eclipselabs.damos.simulation.engine.ISimulationListener;
-import org.eclipselabs.damos.simulation.engine.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.engine.SimulationEvent;
+import org.eclipselabs.damos.simulation.core.ISimulationListener;
+import org.eclipselabs.damos.simulation.core.SimulationEvent;
+import org.eclipselabs.damos.simulation.core.SimulationManager;
+import org.eclipselabs.damos.simulation.engine.ISimulationEngine;
 
 /**
  * @author Andreas Unger
@@ -28,18 +28,18 @@ import org.eclipselabs.damos.simulation.engine.SimulationEvent;
  */
 public class SimulationProcess implements IProcess {
 
-	private ILaunch launch;
-	private String name;
+	private final ILaunch launch;
+	private final ISimulationEngine simulationEngine;
 
 	private SimulationThread simulationThread;
-	private boolean terminated;
+	private volatile boolean terminated;
 
 	/**
 	 * 
 	 */
-	public SimulationProcess(ILaunch launch, String name) {
+	public SimulationProcess(ILaunch launch, ISimulationEngine simulationEngine) {
 		this.launch = launch;
-		this.name = name;
+		this.simulationEngine = simulationEngine;
 		launch.addProcess(this);
 		fireCreationEvent();
 	}
@@ -49,7 +49,7 @@ public class SimulationProcess implements IProcess {
 	}
 	
 	public String getLabel() {
-		return name;
+		return simulationEngine.getSimulation().getModel().getTopLevelFragment().getName();
 	}
 
 	/**
@@ -59,12 +59,12 @@ public class SimulationProcess implements IProcess {
 		return simulationThread;
 	}
 	
-	public void run(ISimulationContext context, ISimulationMonitor simulationMonitor) {
-		simulationThread = new SimulationThread(context, simulationMonitor);
-		simulationMonitor.addSimulationListener(new ISimulationListener() {
+	public void run() {
+		simulationThread = new SimulationThread(simulationEngine);
+		SimulationManager.getInstance().addSimulationListener(new ISimulationListener() {
 			
 			public void handleSimulationEvent(SimulationEvent event) {
-				if (event.isDone()) {
+				if (event.getSimulation() == simulationEngine.getSimulation() && event.isDone()) {
 					terminated = true;
 					fireTerminateEvent();
 				}
@@ -83,7 +83,7 @@ public class SimulationProcess implements IProcess {
 	}
 
 	public void terminate() throws DebugException {
-		simulationThread.getSimulationMonitor().setCanceled(true);
+		simulationEngine.getSimulation().getMonitor().setCanceled(true);
 	}
 
 	public String getAttribute(String key) {

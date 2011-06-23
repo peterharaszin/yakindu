@@ -8,12 +8,10 @@ package org.eclipselabs.damos.execution.executionmodel.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -32,7 +30,6 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getComputationModelMappings <em>Computation Model Mappings</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getSampleTime <em>Sample Time</em>}</li>
  * </ul>
  * </p>
  *
@@ -48,26 +45,6 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	 * @ordered
 	 */
 	protected EList<ComputationModelMapping> computationModelMappings;
-
-	/**
-	 * The default value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSampleTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final double SAMPLE_TIME_EDEFAULT = 0.0;
-
-	/**
-	 * The cached value of the '{@link #getSampleTime() <em>Sample Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSampleTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected double sampleTime = SAMPLE_TIME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -103,27 +80,6 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public double getSampleTime() {
-		return sampleTime;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSampleTime(double newSampleTime) {
-		double oldSampleTime = sampleTime;
-		sampleTime = newSampleTime;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME, oldSampleTime, sampleTime));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public ComputationModel getComputationModel(Fragment fragment) {
@@ -154,8 +110,6 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 		switch (featureID) {
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
 				return getComputationModelMappings();
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				return getSampleTime();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,9 +127,6 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 				getComputationModelMappings().clear();
 				getComputationModelMappings().addAll((Collection<? extends ComputationModelMapping>)newValue);
 				return;
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				setSampleTime((Double)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -191,9 +142,6 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
 				getComputationModelMappings().clear();
 				return;
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				setSampleTime(SAMPLE_TIME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -208,26 +156,8 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 		switch (featureID) {
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
 				return computationModelMappings != null && !computationModelMappings.isEmpty();
-			case ExecutionModelPackage.EXECUTION_MODEL__SAMPLE_TIME:
-				return sampleTime != SAMPLE_TIME_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (sampleTime: ");
-		result.append(sampleTime);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ExecutionModelImpl

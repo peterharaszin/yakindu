@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
@@ -49,6 +50,7 @@ import org.eclipselabs.damos.dml.CompoundOutputConnector;
 import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
+import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DMLPlugin;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
@@ -69,6 +71,7 @@ import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -77,6 +80,7 @@ import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
@@ -90,12 +94,16 @@ import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
+import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.dml.TimingConstraint;
+import org.eclipselabs.damos.dml.TimingKind;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.WhileLoopCondition;
@@ -178,6 +186,18 @@ public class DMLValidator extends EObjectValidator {
 				return validateFragment((Fragment)value, diagnostics, context);
 			case DMLPackage.COMPONENT:
 				return validateComponent((Component)value, diagnostics, context);
+			case DMLPackage.TIMING_CONSTRAINT:
+				return validateTimingConstraint((TimingConstraint)value, diagnostics, context);
+			case DMLPackage.CONTINUOUS_TIMING_CONSTRAINT:
+				return validateContinuousTimingConstraint((ContinuousTimingConstraint)value, diagnostics, context);
+			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT:
+				return validateSynchronousTimingConstraint((SynchronousTimingConstraint)value, diagnostics, context);
+			case DMLPackage.ASYNCHRONOUS_TIMING_CONSTRAINT:
+				return validateAsynchronousTimingConstraint((AsynchronousTimingConstraint)value, diagnostics, context);
+			case DMLPackage.SAMPLE_TIME_SPECIFICATION:
+				return validateSampleTimeSpecification((SampleTimeSpecification)value, diagnostics, context);
+			case DMLPackage.OPAQUE_SAMPLE_TIME_SPECIFICATION:
+				return validateOpaqueSampleTimeSpecification((OpaqueSampleTimeSpecification)value, diagnostics, context);
 			case DMLPackage.FRAGMENT_ELEMENT:
 				return validateFragmentElement((FragmentElement)value, diagnostics, context);
 			case DMLPackage.CONNECTION:
@@ -284,6 +304,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateOpaqueDataTypeSpecification((OpaqueDataTypeSpecification)value, diagnostics, context);
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION:
 				return validateOpaqueBehaviorSpecification((OpaqueBehaviorSpecification)value, diagnostics, context);
+			case DMLPackage.LATCH:
+				return validateLatch((Latch)value, diagnostics, context);
 			case DMLPackage.COMPOUND:
 				return validateCompound((Compound)value, diagnostics, context);
 			case DMLPackage.COMPOUND_MEMBER:
@@ -326,6 +348,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateMemoryOutput((MemoryOutput)value, diagnostics, context);
 			case DMLPackage.PARAMETER_VISIBILITY_KIND:
 				return validateParameterVisibilityKind((ParameterVisibilityKind)value, diagnostics, context);
+			case DMLPackage.TIMING_KIND:
+				return validateTimingKind((TimingKind)value, diagnostics, context);
 			default:
 				return true;
 		}
@@ -503,6 +527,60 @@ public class DMLValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTimingConstraint(TimingConstraint timingConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(timingConstraint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateContinuousTimingConstraint(ContinuousTimingConstraint continuousTimingConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(continuousTimingConstraint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSynchronousTimingConstraint(SynchronousTimingConstraint synchronousTimingConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(synchronousTimingConstraint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAsynchronousTimingConstraint(AsynchronousTimingConstraint asynchronousTimingConstraint, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(asynchronousTimingConstraint, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSampleTimeSpecification(SampleTimeSpecification sampleTimeSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(sampleTimeSpecification, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOpaqueSampleTimeSpecification(OpaqueSampleTimeSpecification opaqueSampleTimeSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(opaqueSampleTimeSpecification, diagnostics, context);
 	}
 
 	/**
@@ -1269,6 +1347,25 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLatch(Latch latch, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(latch, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(latch, diagnostics, context);
+		if (result || diagnostics != null) result &= validateComponent_WellFormedName(latch, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateCompound(Compound compound, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(compound, diagnostics, context);
 	}
@@ -1832,6 +1929,15 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateMemoryOutput(MemoryOutput memoryOutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(memoryOutput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTimingKind(TimingKind timingKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
 	}
 
 	/**

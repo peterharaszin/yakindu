@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EModelElement;
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getOutputDefinitions <em>Output Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.BlockType#getTiming <em>Timing</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,6 +113,35 @@ public interface BlockType extends EModelElement, QualifiedElement, CategorizedE
 	 * @generated
 	 */
 	boolean isSetBehavior();
+
+	/**
+	 * Returns the value of the '<em><b>Timing</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipselabs.damos.dml.TimingKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sample Time Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Timing</em>' attribute.
+	 * @see org.eclipselabs.damos.dml.TimingKind
+	 * @see #setTiming(TimingKind)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getBlockType_Timing()
+	 * @model required="true"
+	 * @generated
+	 */
+	TimingKind getTiming();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.BlockType#getTiming <em>Timing</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Timing</em>' attribute.
+	 * @see org.eclipselabs.damos.dml.TimingKind
+	 * @see #getTiming()
+	 * @generated
+	 */
+	void setTiming(TimingKind value);
 
 	/**
 	 * <!-- begin-user-doc -->

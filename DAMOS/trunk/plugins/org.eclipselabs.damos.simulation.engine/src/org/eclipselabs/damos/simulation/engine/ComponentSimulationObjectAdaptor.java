@@ -13,7 +13,6 @@ package org.eclipselabs.damos.simulation.engine;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,15 +20,14 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Join;
-import org.eclipselabs.damos.execution.engine.DataTypeResolver;
-import org.eclipselabs.damos.execution.engine.DataTypeResolverResult;
-import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.engine.internal.ComponentSimulationObjectAdapter;
-import org.eclipselabs.damos.simulation.engine.internal.DelegatingOverflowMonitor;
+import org.eclipselabs.damos.simulation.engine.internal.ComponentSimulationObjectStatus;
+import org.eclipselabs.damos.simulation.engine.internal.ISimulationContext;
+import org.eclipselabs.damos.simulation.engine.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.engine.internal.registry.ComponentSimulationObjectProviderRegistry;
 
 /**
@@ -38,18 +36,10 @@ import org.eclipselabs.damos.simulation.engine.internal.registry.ComponentSimula
  */
 public class ComponentSimulationObjectAdaptor {
 
-	private DataTypeResolver dataTypeResolver = new DataTypeResolver();
-	
-	public void adaptSimulationObjects(ISimulationContext context, IComponentOverflowMonitor overflowMonitor, IProgressMonitor progressMonitor) throws CoreException {
-		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(context.getExecutionFlow().getTopLevelFragment(), true);
-		if (!dataTypeResolverResult.getStatus().isOK()) {
-			throw new CoreException(dataTypeResolverResult.getStatus());
-		}
-		
-		Map<Component, IComponentSignature> signatures = dataTypeResolverResult.getSignatures();
+	public void adaptSimulationObjects(ISimulationContext context, IProgressMonitor progressMonitor) throws CoreException {
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
 		
-		adaptSimulationObjects(context, context.getExecutionFlow().getGraph(), signatures, overflowMonitor, missingSimulationObjectComponents);
+		adaptSimulationObjects(context, context.getExecutionFlow().getGraph(), missingSimulationObjectComponents);
 		
 		if (!missingSimulationObjectComponents.isEmpty()) {
 			StringBuilder sb = new StringBuilder("Missing component simulation object for ");
@@ -75,9 +65,7 @@ public class ComponentSimulationObjectAdaptor {
 	 * @param overflowMonitor
 	 * @param missingSimulationObjectComponents
 	 */
-	private void adaptSimulationObjects(ISimulationContext context, Graph graph,
-			Map<Component, IComponentSignature> signatures, IComponentOverflowMonitor overflowMonitor,
-			List<Component> missingSimulationObjectComponents) {
+	private void adaptSimulationObjects(ISimulationContext context, Graph graph, List<Component> missingSimulationObjectComponents) {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
@@ -86,15 +74,13 @@ public class ComponentSimulationObjectAdaptor {
 					IComponentSimulationObject simulationObject;
 					simulationObject = ComponentSimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
 					if (simulationObject != null) {
-						IComponentSignature componentSignature = signatures.get(component);
-						simulationObject.setInfo(new ComponentSimulationInfo(component, componentSignature, context.getSimulationModel(), new DelegatingOverflowMonitor(context, component, overflowMonitor)));
 						node.eAdapters().add(new ComponentSimulationObjectAdapter(simulationObject));
 					} else {
 						missingSimulationObjectComponents.add(component);
 					}
 				}
 			} else if (node instanceof CompoundNode) {
-				adaptSimulationObjects(context, (CompoundNode) node, signatures, overflowMonitor, missingSimulationObjectComponents);
+				adaptSimulationObjects(context, (CompoundNode) node, missingSimulationObjectComponents);
 			}
 		}
 	}

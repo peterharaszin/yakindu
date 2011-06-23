@@ -59,7 +59,6 @@ public class SnapToConnectorFeedbackPolicy extends GraphicalEditPolicy {
 		private int opacity = 0;
 		private static final int FRAMES = 6;
 		private Image image;
-		private static int count;
 
 		FadeIn(Color bg) {
 			setBackgroundColor(bg);
@@ -80,7 +79,6 @@ public class SnapToConnectorFeedbackPolicy extends GraphicalEditPolicy {
 			if (opacity != FRAMES) {
 				if (image != null) {
 					image.dispose();
-					count--;
 					image = null;
 				}
 				if (opacity != FRAMES - 1) {
@@ -91,7 +89,6 @@ public class SnapToConnectorFeedbackPolicy extends GraphicalEditPolicy {
 					iData.setPixel(0, 0, fillColor);
 					iData.setAlpha(0, 0, 255 * opacity / FRAMES);
 					image = new Image(display, iData);
-					count++;
 				}
 				Display.getCurrent().timerExec(100, new Runnable() {
 					public void run() {
@@ -114,7 +111,6 @@ public class SnapToConnectorFeedbackPolicy extends GraphicalEditPolicy {
 		public void removeNotify() {
 			if (image != null) {
 				image.dispose();
-				count--;
 				image = null;
 			}
 		}
@@ -168,10 +164,10 @@ public class SnapToConnectorFeedbackPolicy extends GraphicalEditPolicy {
 			figure.translateToRelative(p1);
 			figure.translateToRelative(p2);
 			
-			int x1 = (int) Math.round(p1.preciseX);
-			int y1 = (int) Math.round(p1.preciseY);
-			int x2 = (int) Math.round(p2.preciseX);
-			int y2 = (int) Math.round(p2.preciseY);
+			int x1 = (int) Math.round(p1.preciseX());
+			int y1 = (int) Math.round(p1.preciseY());
+			int x2 = (int) Math.round(p2.preciseX());
+			int y2 = (int) Math.round(p2.preciseY());
 			Rectangle bounds = new Rectangle();
 			if (location.getFirstPoint().x == location.getLastPoint().x) {
 				y1 += delta.y;

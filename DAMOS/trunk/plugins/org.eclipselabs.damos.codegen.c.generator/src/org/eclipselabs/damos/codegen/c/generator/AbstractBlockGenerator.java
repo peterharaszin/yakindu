@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.codegen.c.generator;
 
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -28,15 +28,12 @@ public abstract class AbstractBlockGenerator extends AbstractComponentGenerator 
 		return (Block) super.getComponent();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#setComponent(org.eclipselabs.damos.dml.Component)
-	 */
 	@Override
-	public void setComponent(Component component) {
-		if (!(component instanceof Block)) {
+	public void setNode(ComponentNode node) {
+		if (!(node.getComponent() instanceof Block)) {
 			throw new IllegalArgumentException("Component must be instance of Block");
 		}
-		super.setComponent(component);
+		super.setNode(node);
 	}
 	
 }

@@ -36,7 +36,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	private double tm1;
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#initialize()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#initialize()
 	 */
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
@@ -51,7 +51,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#setInputValue(int, int, org.eclipselabs.mscript.computation.core.value.IValue)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#setInputValue(int, int, org.eclipselabs.mscript.computation.core.value.IValue)
 	 */
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {
@@ -63,7 +63,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getOutputValue(int, int)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#getOutputValue(int, int)
 	 */
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) {
@@ -71,7 +71,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#computeOutputValues(double)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#computeOutputValues(double)
 	 */
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
@@ -83,7 +83,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#update()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#update()
 	 */
 	@Override
 	public void update(double t) {

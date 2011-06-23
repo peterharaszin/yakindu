@@ -76,7 +76,7 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#createAgent()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#createAgent()
 	 */
 	@Override
 	protected ISimulationAgent createAgent() {

@@ -26,7 +26,7 @@ import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
 
 /**
@@ -105,7 +105,7 @@ public class Simulation implements ISimulation {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentSimulationObject  simulationObject = SimulationUtil.getComponentSimulationObject(node);
+				ISimulationObject  simulationObject = SimulationUtil.getSimulationObject(node);
 				if (simulationObject != null) {
 					ISimulationAgent agent = simulationObject.getAgent();
 					if (agent != null) {

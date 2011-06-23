@@ -47,7 +47,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
 
@@ -313,7 +313,7 @@ public abstract class AdaptiveStepSizeSolver extends AbstractSolver {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(componentNode);
+				ISimulationObject simulationObject = SimulationUtil.getSimulationObject(componentNode);
 				if (simulationObject != null) {
 					double zeroCrossingTime = simulationObject.computeZeroCrossingTime(t);
 					if (zeroCrossingTime > t) {

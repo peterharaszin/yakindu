@@ -23,7 +23,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
 
@@ -102,9 +102,9 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#createData(org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject, org.eclipselabs.damos.simulation.simulationmodel.SimulationModel)
+	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#createData(org.eclipselabs.damos.simulation.simulator.ISimulationObject, org.eclipselabs.damos.simulation.simulationmodel.SimulationModel)
 	 */
-	public IIntegrationData createIntegrationData(IComponentSimulationObject simulationObject) {
+	public IIntegrationData createIntegrationData(ISimulationObject simulationObject) {
 		return new RungeKuttaIntegrationData(simulationObject, stageCount);
 	}
 	
@@ -179,7 +179,7 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 				if (node instanceof ComponentNode) {
 					ComponentNode componentNode = (ComponentNode) node;
 					if (componentNode.getSampleTime() == 0) {
-						IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(componentNode);
+						ISimulationObject simulationObject = SimulationUtil.getSimulationObject(componentNode);
 						if (simulationObject != null) {
 							simulationObject.computeOutputValues(t + offset, monitor);
 							propagateComponentOutputValues(componentNode, simulationObject);

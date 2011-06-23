@@ -52,7 +52,7 @@ public class Simulator {
 	
 	private final ExecutionFlowConstructor executionFlowConstructor = new ExecutionFlowConstructor();
 	
-	private final ComponentSimulationObjectAdaptor componentSimulationObjectAdaptor = new ComponentSimulationObjectAdaptor();
+	private final SimulationObjectAdaptor simulationObjectAdaptor = new SimulationObjectAdaptor();
 
 	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
 	
@@ -69,7 +69,7 @@ public class Simulator {
 		ISimulationContext context = new SimulationContext(simulationModel, executionFlow);
 		Simulation simulation = new Simulation(context);
 
-		componentSimulationObjectAdaptor.adaptSimulationObjects(context, subMonitor.newChild(1));
+		simulationObjectAdaptor.adaptSimulationObjects(context, subMonitor.newChild(1));
 		if (subMonitor.isCanceled()) {
 			return;
 		}
@@ -135,7 +135,7 @@ public class Simulator {
 				initialize(simulation, (Graph) node, signatures, monitor);
 			} else if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
+				ISimulationObject simulationObject = SimulationUtil.getSimulationObject(node);
 				if (simulationObject != null) {
 					IComponentSignature signature = signatures.get(componentNode.getComponent());
 					simulationObject.initialize(new SimulationObjectContext(componentNode, signature, simulation.getModel(), new ComponentOverflowMonitor(simulation, componentNode.getComponent())), monitor);
@@ -152,7 +152,7 @@ public class Simulator {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(componentNode);
+				ISimulationObject simulationObject = SimulationUtil.getSimulationObject(componentNode);
 				if (simulationObject != null && simulationObject.getClock() != null) {
 					simulationClocks.add(simulationObject.getClock());
 				}

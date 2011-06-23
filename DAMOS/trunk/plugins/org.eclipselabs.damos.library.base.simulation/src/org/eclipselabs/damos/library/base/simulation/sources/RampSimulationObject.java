@@ -76,7 +76,7 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getZeroCrossingTime(double)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#getZeroCrossingTime(double)
 	 */
 	@Override
 	public double computeZeroCrossingTime(double t) {

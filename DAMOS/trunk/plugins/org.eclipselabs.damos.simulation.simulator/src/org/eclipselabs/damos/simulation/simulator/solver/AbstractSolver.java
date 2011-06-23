@@ -39,7 +39,7 @@ import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
@@ -88,7 +88,7 @@ public abstract class AbstractSolver implements ISolver {
 			if (node instanceof Graph) {
 				initializeIntegrationData((Graph) node, monitor);
 			} else if (node instanceof ComponentNode) {
-				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
+				ISimulationObject simulationObject = SimulationUtil.getSimulationObject(node);
 				if (simulationObject != null) {
 					double[] stateVector = simulationObject.getStateVector();
 					if (stateVector != null && stateVector.length > 0) {
@@ -99,7 +99,7 @@ public abstract class AbstractSolver implements ISolver {
 		}
 	}
 	
-	protected abstract IIntegrationData createIntegrationData(IComponentSimulationObject simulationObject);
+	protected abstract IIntegrationData createIntegrationData(ISimulationObject simulationObject);
 
 	/**
 	 * @param graph
@@ -159,10 +159,10 @@ public abstract class AbstractSolver implements ISolver {
 			if (!incomingDataFlows.isEmpty()) {
 				DataFlowTargetEnd targetEnd = incomingDataFlows.get(0);
 				DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-				IComponentSimulationObject componentSimulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
-				if (componentSimulationObject != null && sourceEnd.getConnectorInfo() instanceof PortInfo) {
+				ISimulationObject simulationObject = SimulationUtil.getSimulationObject(sourceEnd.getNode());
+				if (simulationObject != null && sourceEnd.getConnectorInfo() instanceof PortInfo) {
 					PortInfo portInfo = (PortInfo) sourceEnd.getConnectorInfo();
-					IValue value = componentSimulationObject.getOutputValue(portInfo.getInoutputIndex(), portInfo.getPortIndex());
+					IValue value = simulationObject.getOutputValue(portInfo.getInoutputIndex(), portInfo.getPortIndex());
 					if (value instanceof IBooleanValue) {
 						IBooleanValue booleanValue = (IBooleanValue) value;
 						condition = booleanValue.booleanValue();
@@ -177,7 +177,7 @@ public abstract class AbstractSolver implements ISolver {
 	 * @throws CoreException
 	 */
 	private void computeComponentOutputValues(ComponentNode componentNode, double t, ISimulationMonitor monitor) throws CoreException {
-		IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(componentNode);
+		ISimulationObject simulationObject = SimulationUtil.getSimulationObject(componentNode);
 		simulationObject.computeOutputValues(t, monitor);
 		propagateComponentOutputValues(componentNode, simulationObject);
 	}
@@ -187,7 +187,7 @@ public abstract class AbstractSolver implements ISolver {
 	 * @param simulationObject
 	 * @throws CoreException
 	 */
-	protected void propagateComponentOutputValues(ComponentNode node, IComponentSimulationObject simulationObject)
+	protected void propagateComponentOutputValues(ComponentNode node, ISimulationObject simulationObject)
 			throws CoreException {
 		for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
 			PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
@@ -203,7 +203,7 @@ public abstract class AbstractSolver implements ISolver {
 	 */
 	private void setInputValues(DataFlowSourceEnd sourceEnd, IValue value) throws CoreException {
 		for (DataFlowTargetEnd targetEnd : sourceEnd.getDataFlow().getTargetEnds()) {
-			IComponentSimulationObject targetSimulationObject = SimulationUtil.getComponentSimulationObject(targetEnd.getNode());
+			ISimulationObject targetSimulationObject = SimulationUtil.getSimulationObject(targetEnd.getNode());
 			if (targetSimulationObject != null) {
 				PortInfo targetPortInfo = (PortInfo) targetEnd.getConnectorInfo();
 				targetSimulationObject.setInputValue(targetPortInfo.getInoutputIndex(), targetPortInfo.getPortIndex(), value);
@@ -229,7 +229,7 @@ public abstract class AbstractSolver implements ISolver {
 		}
 		DataFlowSourceEnd joinSourceEnd = joinNode.getOutgoingDataFlows().get(0);
 		
-		IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
+		ISimulationObject simulationObject = SimulationUtil.getSimulationObject(sourceEnd.getNode());
 		PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
 		IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
 		
@@ -282,7 +282,7 @@ public abstract class AbstractSolver implements ISolver {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				if (canExecute(componentNode, t)) {
-					IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(node);
+					ISimulationObject simulationObject = SimulationUtil.getSimulationObject(node);
 					if (simulationObject != null) {
 						simulationObject.update(t);
 					}
@@ -318,7 +318,7 @@ public abstract class AbstractSolver implements ISolver {
 		DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
 		PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
 
-		IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(sourceEnd.getNode());
+		ISimulationObject simulationObject = SimulationUtil.getSimulationObject(sourceEnd.getNode());
 		IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
 
 		for (ActionLink actionLink : choice.getActionLinks()) {

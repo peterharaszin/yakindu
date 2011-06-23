@@ -31,7 +31,7 @@ import org.eclipselabs.mscript.computation.core.value.IValue;
  * @author Andreas Unger
  *
  */
-public abstract class AbstractComponentSimulationObject implements IComponentSimulationObject {
+public abstract class AbstractSimulationObject implements ISimulationObject {
 
 	private ISimulationObjectContext context;
 	
@@ -56,7 +56,7 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject#getClock()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObject#getClock()
 	 */
 	public ISimulationClock getClock() {
 		return null;
@@ -70,7 +70,7 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationObjectContext, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObject#initialize(org.eclipselabs.damos.simulation.simulator.ISimulationObjectContext, org.eclipselabs.damos.simulation.simulator.ISimulationMonitor)
 	 */
 	public void initialize(ISimulationObjectContext context, IProgressMonitor monitor) throws CoreException {
 		this.context = context;
@@ -87,27 +87,27 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject#stop()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObject#stop()
 	 */
 	public boolean stop() {
 		return false;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject#getStateVector()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObject#getStateVector()
 	 */
 	public double[] getStateVector() {
 		return null;
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject#computeDerivatives(double, double[])
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObject#computeDerivatives(double, double[])
 	 */
 	public void computeDerivatives(double t, double[] y, double[] yDot) {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject#getZeroCrossingTime(double)
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObject#getZeroCrossingTime(double)
 	 */
 	public double computeZeroCrossingTime(double t) {
 		return Double.NaN;
@@ -121,7 +121,7 @@ public abstract class AbstractComponentSimulationObject implements IComponentSim
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject#dispose()
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObject#dispose()
 	 */
 	public void dispose() {
 	}

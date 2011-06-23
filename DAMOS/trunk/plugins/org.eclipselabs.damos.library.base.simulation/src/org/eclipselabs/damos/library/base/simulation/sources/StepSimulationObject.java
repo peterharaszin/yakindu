@@ -50,7 +50,7 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#computeOutputValues()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#computeOutputValues()
 	 */
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
@@ -58,7 +58,7 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getZeroCrossingTime(double)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#getZeroCrossingTime(double)
 	 */
 	@Override
 	public double computeZeroCrossingTime(double t) {

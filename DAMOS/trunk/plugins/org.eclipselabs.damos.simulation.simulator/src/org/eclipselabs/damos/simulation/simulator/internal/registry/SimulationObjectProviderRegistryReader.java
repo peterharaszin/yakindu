@@ -16,22 +16,22 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectProvider;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ComponentSimulationObjectProviderRegistryReader extends AbstractRegistryReader {
+public class SimulationObjectProviderRegistryReader extends AbstractRegistryReader {
 
-	private static final String EXTENSION_POINT_NAME = "componentSimulationObjectProviders";
+	private static final String EXTENSION_POINT_NAME = "simulationObjectProviders";
 
 	private static final String TAG_PROVIDER = "provider";
 
-	private ComponentSimulationObjectProviderRegistry registry;
+	private SimulationObjectProviderRegistry registry;
 	
-	public void registerProviders(ComponentSimulationObjectProviderRegistry registry) {
+	public void registerProviders(SimulationObjectProviderRegistry registry) {
 		this.registry = registry;
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);
 	}
@@ -61,7 +61,7 @@ public class ComponentSimulationObjectProviderRegistryReader extends AbstractReg
 			return false;
 		}
 
-        IComponentSimulationObjectProvider provider = createExecutableExtension(element, IRegistryConstants.ATT_CLASS, IComponentSimulationObjectProvider.class);
+        ISimulationObjectProvider provider = createExecutableExtension(element, IRegistryConstants.ATT_CLASS, ISimulationObjectProvider.class);
         if (provider != null) {
         	registry.register(provider);
         }

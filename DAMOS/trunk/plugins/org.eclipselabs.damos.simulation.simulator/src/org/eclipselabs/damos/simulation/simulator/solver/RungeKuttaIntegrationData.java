@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.simulation.simulator.solver;
 
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 
 
 /**
@@ -30,7 +30,7 @@ public class RungeKuttaIntegrationData extends AbstractIntegrationData {
 	/**
 	 * 
 	 */
-	public RungeKuttaIntegrationData(IComponentSimulationObject simulationObject, int stageCount) {
+	public RungeKuttaIntegrationData(ISimulationObject simulationObject, int stageCount) {
 		super(simulationObject);
 		y = simulationObject.getStateVector();
 		

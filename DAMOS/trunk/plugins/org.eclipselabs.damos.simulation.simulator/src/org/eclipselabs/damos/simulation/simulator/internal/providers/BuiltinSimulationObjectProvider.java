@@ -14,8 +14,8 @@ package org.eclipselabs.damos.simulation.simulator.internal.providers;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Memory;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectProvider;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
 import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.InoutportSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.MemorySimulationObject;
 
@@ -23,12 +23,12 @@ import org.eclipselabs.damos.simulation.simulator.internal.simulationobjects.Mem
  * @author Andreas Unger
  *
  */
-public class BuiltinComponentSimulationObjectProvider implements IComponentSimulationObjectProvider {
+public class BuiltinSimulationObjectProvider implements ISimulationObjectProvider {
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulator.IComponentSimulationObjectProvider#createSimulationObject(org.eclipselabs.damos.dml.Component)
+	 * @see org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider#createSimulationObject(org.eclipselabs.damos.dml.Component)
 	 */
-	public IComponentSimulationObject createSimulationObject(Component component) {
+	public ISimulationObject createSimulationObject(Component component) {
 		if (component instanceof Inoutport) {
 			return new InoutportSimulationObject();
 		}

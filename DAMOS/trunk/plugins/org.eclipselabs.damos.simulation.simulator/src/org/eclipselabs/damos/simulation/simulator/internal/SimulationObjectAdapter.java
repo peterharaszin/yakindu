@@ -12,20 +12,20 @@
 package org.eclipselabs.damos.simulation.simulator.internal;
 
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ComponentSimulationObjectAdapter extends AdapterImpl {
+public class SimulationObjectAdapter extends AdapterImpl {
 
-	private IComponentSimulationObject simulationObject;
+	private ISimulationObject simulationObject;
 	
 	/**
 	 * 
 	 */
-	public ComponentSimulationObjectAdapter(IComponentSimulationObject simulationObject) {
+	public SimulationObjectAdapter(ISimulationObject simulationObject) {
 		this.simulationObject = simulationObject;
 	}
 	
@@ -34,20 +34,20 @@ public class ComponentSimulationObjectAdapter extends AdapterImpl {
 	 */
 	@Override
 	public boolean isAdapterForType(Object type) {
-		return type == ComponentSimulationObjectAdapter.class;
+		return type == SimulationObjectAdapter.class;
 	}
 	
 	/**
 	 * @return the simulationObject
 	 */
-	public IComponentSimulationObject getSimulationObject() {
+	public ISimulationObject getSimulationObject() {
 		return simulationObject;
 	}
 	
 	/**
 	 * @param simulationObject the simulationObject to set
 	 */
-	public void setSimulationObject(IComponentSimulationObject simulationObject) {
+	public void setSimulationObject(ISimulationObject simulationObject) {
 		this.simulationObject = simulationObject;
 	}
 	

@@ -21,7 +21,7 @@ import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
-import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.ISimulationClock;
 import org.eclipselabs.damos.simulation.simulator.ISimulationEngine;
 import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
@@ -116,7 +116,7 @@ public class SimulationEngine implements ISimulationEngine {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				IComponentSimulationObject simulationObject = SimulationUtil.getComponentSimulationObject(componentNode);
+				ISimulationObject simulationObject = SimulationUtil.getSimulationObject(componentNode);
 				if (simulationObject != null) {
 					simulationObject.dispose();
 				}

@@ -12,11 +12,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.simulation.engine.Simulator;
 import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
 import org.eclipselabs.damos.simulation.ide.core.util.LaunchConfigurationUtil;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
+import org.eclipselabs.damos.simulation.simulator.Simulator;
 
 public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDelegate {
 

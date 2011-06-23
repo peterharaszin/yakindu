@@ -14,8 +14,8 @@ package org.eclipselabs.damos.simulation.ide.core.internal.launch;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IStatusHandler;
-import org.eclipselabs.damos.simulation.engine.ISimulationEngine;
 import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
+import org.eclipselabs.damos.simulation.simulator.ISimulationEngine;
 
 /**
  * @author Andreas Unger

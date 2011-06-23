@@ -73,8 +73,6 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
-import org.eclipselabs.damos.simulation.engine.registry.ISolverDescriptor;
-import org.eclipselabs.damos.simulation.engine.registry.ISolverRegistry;
 import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate;
 import org.eclipselabs.damos.simulation.ide.core.util.LaunchConfigurationUtil;
 import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
@@ -86,6 +84,8 @@ import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationP
 import org.eclipselabs.damos.simulation.simulationmodel.ui.SolverConfigurationPageChangeEvent;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.registry.ISolverConfigurationPageRegistry;
 import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelValidator;
+import org.eclipselabs.damos.simulation.simulator.registry.ISolverDescriptor;
+import org.eclipselabs.damos.simulation.simulator.registry.ISolverRegistry;
 
 /**
  * @author Andreas Unger

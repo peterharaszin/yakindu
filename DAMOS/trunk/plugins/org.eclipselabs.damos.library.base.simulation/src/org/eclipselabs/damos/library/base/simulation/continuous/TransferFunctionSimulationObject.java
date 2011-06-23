@@ -20,7 +20,7 @@ import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.engine.value.IArrayValue;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
@@ -114,7 +114,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getStateVector()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getStateVector()
 	 */
 	@Override
 	public double[] getStateVector() {
@@ -122,7 +122,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeDerivatives(double, double[])
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#computeDerivatives(double, double[])
 	 */
 	@Override
 	public void computeDerivatives(double t, double[] y, double[] yDot) {

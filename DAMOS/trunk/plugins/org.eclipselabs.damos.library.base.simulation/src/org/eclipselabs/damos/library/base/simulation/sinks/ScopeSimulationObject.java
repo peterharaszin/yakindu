@@ -17,7 +17,7 @@ import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.IXYChartData;
 import org.eclipselabs.damos.simulation.core.IXYChartDataProvider;
-import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
@@ -76,7 +76,7 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#createAgent()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#createAgent()
 	 */
 	@Override
 	protected ISimulationAgent createAgent() {
@@ -93,7 +93,7 @@ public class ScopeSimulationObject extends AbstractBlockSimulationObject {
 		}
 
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.simulation.engine.IXYChartDataProvider#getXYChartData()
+		 * @see org.eclipselabs.damos.simulation.simulator.IXYChartDataProvider#getXYChartData()
 		 */
 		public IXYChartData getXYChartData() {
 			return new XYChartData();

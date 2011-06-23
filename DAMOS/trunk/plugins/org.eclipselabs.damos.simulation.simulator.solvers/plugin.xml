@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.simulation.engine.solvers">
+         point="org.eclipselabs.damos.simulation.simulator.solvers">
       <solver
             class="org.eclipselabs.damos.simulation.simulator.solvers.EulerSolver"
             configuration="org.eclipselabs.damos.simulation.simulationmodel.fixedStepSizeSolverConfiguration"

@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.engine.ComputationContext;
 import org.eclipselabs.mscript.computation.engine.IComputationContext;
 import org.eclipselabs.mscript.computation.engine.value.INumericValue;

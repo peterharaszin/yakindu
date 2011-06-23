@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.computation.engine.value.ValueTransformer;
 
@@ -50,7 +50,7 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#computeOutputValues()
 	 */
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
@@ -58,7 +58,7 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getZeroCrossingTime(double)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getZeroCrossingTime(double)
 	 */
 	@Override
 	public double computeZeroCrossingTime(double t) {

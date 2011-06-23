@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.continuous.util.DerivativeConstants;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.engine.AbstractBlockSimulationObject;
+import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.engine.value.IValue;
 import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
@@ -36,7 +36,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	private double tm1;
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#initialize()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#initialize()
 	 */
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
@@ -51,7 +51,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#setInputValue(int, int, org.eclipselabs.mscript.computation.engine.value.IValue)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#setInputValue(int, int, org.eclipselabs.mscript.computation.engine.value.IValue)
 	 */
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {
@@ -63,7 +63,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#getOutputValue(int, int)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#getOutputValue(int, int)
 	 */
 	@Override
 	public IValue getOutputValue(int outputIndex, int portIndex) {
@@ -71,7 +71,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#computeOutputValues(double)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#computeOutputValues(double)
 	 */
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
@@ -83,7 +83,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.engine.AbstractComponentSimulationObject#update()
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractComponentSimulationObject#update()
 	 */
 	@Override
 	public void update(double t) {

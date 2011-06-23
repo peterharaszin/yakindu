@@ -21,11 +21,11 @@ import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConsta
 import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.engine.value.IArrayValue;
-import org.eclipselabs.mscript.computation.engine.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.engine.value.IValue;
-import org.eclipselabs.mscript.computation.engine.value.IValueConstructor;
-import org.eclipselabs.mscript.computation.engine.value.ValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.IArrayValue;
+import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
+import org.eclipselabs.mscript.computation.core.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.IValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TensorType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;

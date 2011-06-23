@@ -35,7 +35,7 @@ import org.eclipselabs.damos.execution.engine.ComponentSignatureEvaluationResult
 import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.engine.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.engine.util.DataTypeSpecifierUtil;
-import org.eclipselabs.mscript.computation.engine.ComputationContext;
+import org.eclipselabs.mscript.computation.core.ComputationContext;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.typesystem.DataType;

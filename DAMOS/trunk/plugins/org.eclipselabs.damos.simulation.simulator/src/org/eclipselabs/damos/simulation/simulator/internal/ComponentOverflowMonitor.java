@@ -15,8 +15,8 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
-import org.eclipselabs.mscript.computation.engine.IOverflowMonitor;
-import org.eclipselabs.mscript.computation.engine.OverflowInfo;
+import org.eclipselabs.mscript.computation.core.IOverflowMonitor;
+import org.eclipselabs.mscript.computation.core.OverflowInfo;
 
 /**
  * @author Andreas Unger
@@ -36,7 +36,7 @@ public class ComponentOverflowMonitor implements IOverflowMonitor {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.computation.engine.IOverflowMonitor#handleOverflow(org.eclipselabs.mscript.computation.engine.OverflowInfo)
+	 * @see org.eclipselabs.mscript.computation.core.IOverflowMonitor#handleOverflow(org.eclipselabs.mscript.computation.core.OverflowInfo)
 	 */
 	public void handleOverflow(OverflowInfo info) {
 		SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(component, simulation, SimulationEvent.OVERFLOW));

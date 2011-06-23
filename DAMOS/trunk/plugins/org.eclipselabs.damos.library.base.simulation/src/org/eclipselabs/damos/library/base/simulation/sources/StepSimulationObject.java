@@ -17,8 +17,8 @@ import org.eclipselabs.damos.execution.engine.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.engine.value.IValue;
-import org.eclipselabs.mscript.computation.engine.value.ValueTransformer;
+import org.eclipselabs.mscript.computation.core.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.ValueTransformer;
 
 /**
  * @author Andreas Unger

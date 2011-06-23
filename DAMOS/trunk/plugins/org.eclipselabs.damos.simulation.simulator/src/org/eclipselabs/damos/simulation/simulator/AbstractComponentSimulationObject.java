@@ -22,10 +22,10 @@ import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
-import org.eclipselabs.mscript.computation.engine.ComputationContext;
-import org.eclipselabs.mscript.computation.engine.IComputationContext;
-import org.eclipselabs.mscript.computation.engine.IOverflowMonitor;
-import org.eclipselabs.mscript.computation.engine.value.IValue;
+import org.eclipselabs.mscript.computation.core.ComputationContext;
+import org.eclipselabs.mscript.computation.core.IComputationContext;
+import org.eclipselabs.mscript.computation.core.IOverflowMonitor;
+import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

@@ -43,8 +43,8 @@ import org.eclipselabs.damos.simulation.simulator.IComponentSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
-import org.eclipselabs.mscript.computation.engine.value.IBooleanValue;
-import org.eclipselabs.mscript.computation.engine.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.IBooleanValue;
+import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * Base class managing common boilerplate for all solvers.

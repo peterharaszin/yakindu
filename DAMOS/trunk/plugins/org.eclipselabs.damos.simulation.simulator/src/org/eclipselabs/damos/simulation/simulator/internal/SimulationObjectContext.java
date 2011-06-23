@@ -15,7 +15,7 @@ import org.eclipselabs.damos.execution.engine.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectContext;
-import org.eclipselabs.mscript.computation.engine.IOverflowMonitor;
+import org.eclipselabs.mscript.computation.core.IOverflowMonitor;
 
 /**
  * @author Andreas Unger

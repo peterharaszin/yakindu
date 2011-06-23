@@ -30,7 +30,7 @@ import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.execution.engine.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.mscript.codegen.c.CompoundGenerator;
 import org.eclipselabs.mscript.codegen.c.ICompoundGenerator;
 import org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext;

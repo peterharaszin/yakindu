@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.engine.IComponentSignature;
+import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;

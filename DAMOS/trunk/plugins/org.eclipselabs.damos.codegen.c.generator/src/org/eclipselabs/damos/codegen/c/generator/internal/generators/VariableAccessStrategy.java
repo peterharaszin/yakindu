@@ -19,7 +19,7 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.execution.engine.IComponentSignature;
+import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.mscript.language.il.InputVariableDeclaration;
 import org.eclipselabs.mscript.language.il.InstanceVariableDeclaration;

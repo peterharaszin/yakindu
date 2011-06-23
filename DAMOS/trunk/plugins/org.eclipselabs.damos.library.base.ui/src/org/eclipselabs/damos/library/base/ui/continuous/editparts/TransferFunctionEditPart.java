@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.execution.engine.ExecutionEnginePlugin;
+import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.FractionBlockEditPart;
 import org.eclipselabs.damos.library.common.util.PolynomialExpressionUtil;

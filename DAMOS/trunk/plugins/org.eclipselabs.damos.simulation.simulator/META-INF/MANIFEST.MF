@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.5.0";visibility:=reexpor
  org.eclipselabs.mscript.computation.computationmodel;bundle-version="0.1.0",
  org.eclipselabs.damos.dml;bundle-version="0.2.0";visibility:=reexport,
  org.eclipselabs.damos.common;bundle-version="0.2.0",
- org.eclipselabs.damos.execution.engine;bundle-version="0.2.0",
+ org.eclipselabs.damos.execution.core;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.executionmodel;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.executionflow;bundle-version="0.2.0",
  org.eclipselabs.damos.simulation.core;bundle-version="0.2.0";visibility:=reexport,

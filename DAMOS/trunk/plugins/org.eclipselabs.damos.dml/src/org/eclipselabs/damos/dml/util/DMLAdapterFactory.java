@@ -47,6 +47,8 @@ import org.eclipselabs.damos.dml.ExpressionParameter;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
+import org.eclipselabs.damos.dml.INamedElement;
+import org.eclipselabs.damos.dml.ITextualElement;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Inoutlet;
 import org.eclipselabs.damos.dml.Inoutport;
@@ -477,6 +479,14 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMemoryOutput(MemoryOutput object) {
 				return createMemoryOutputAdapter();
+			}
+			@Override
+			public Adapter caseINamedElement(INamedElement object) {
+				return createINamedElementAdapter();
+			}
+			@Override
+			public Adapter caseITextualElement(ITextualElement object) {
+				return createITextualElementAdapter();
 			}
 			@Override
 			public Adapter caseEModelElement(EModelElement object) {
@@ -1647,6 +1657,34 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMemoryOutputAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.INamedElement <em>INamed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.INamedElement
+	 * @generated
+	 */
+	public Adapter createINamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ITextualElement <em>ITextual Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ITextualElement
+	 * @generated
+	 */
+	public Adapter createITextualElementAdapter() {
 		return null;
 	}
 

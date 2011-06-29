@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface OpaqueBehaviorSpecification extends BehaviorSpecification {
+public interface OpaqueBehaviorSpecification extends BehaviorSpecification, ITextualElement {
 	/**
 	 * Returns the value of the '<em><b>Behavior</b></em>' attribute.
 	 * <!-- begin-user-doc -->

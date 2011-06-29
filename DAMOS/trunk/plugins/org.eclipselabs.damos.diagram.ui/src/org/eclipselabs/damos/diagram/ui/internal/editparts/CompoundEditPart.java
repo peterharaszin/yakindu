@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.swt.graphics.Color;
 import org.eclipselabs.damos.diagram.ui.editpolicies.DeleteSemanticComponentEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
@@ -81,6 +82,28 @@ public abstract class CompoundEditPart extends AbstractBorderedShapeEditPart {
 		} else {
 			super.handleNotificationEvent(notification);
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#setGradient(org.eclipse.gmf.runtime.notation.datatype.GradientData)
+	 */
+	@Override
+	protected void setGradient(GradientData gradient) {
+    	NodeFigure mainFigure = (NodeFigure) getMainFigure();
+    	if (gradient != null) {    		    		
+    		mainFigure.setIsUsingGradient(true);
+    		mainFigure.setGradientData(gradient.getGradientColor1(), gradient.getGradientColor2(), gradient.getGradientStyle()); 		
+    	} else {
+    		mainFigure.setIsUsingGradient(false);
+    	}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#supportsGradient()
+	 */
+	@Override
+	public boolean supportsGradient() {
+		return true;
 	}
 
 }

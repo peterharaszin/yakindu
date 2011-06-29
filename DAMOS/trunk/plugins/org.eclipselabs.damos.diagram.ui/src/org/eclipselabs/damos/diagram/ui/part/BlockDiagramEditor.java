@@ -39,7 +39,7 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#getContributorId()
 	 */
 	public String getContributorId() {
-		return "org.eclipselabs.damos.diagram.ui";
+		return "org.eclipselabs.damos.dml.ui.properties";
 	}
 	
 	protected PreferencesHint getPreferencesHint() {

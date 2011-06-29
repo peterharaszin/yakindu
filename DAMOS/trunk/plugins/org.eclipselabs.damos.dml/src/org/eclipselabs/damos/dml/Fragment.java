@@ -8,7 +8,6 @@ package org.eclipselabs.damos.dml;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName UniqueComponentNames'"
  * @generated
  */
-public interface Fragment extends EObject, EModelElement {
+public interface Fragment extends EModelElement, INamedElement {
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.Component}.

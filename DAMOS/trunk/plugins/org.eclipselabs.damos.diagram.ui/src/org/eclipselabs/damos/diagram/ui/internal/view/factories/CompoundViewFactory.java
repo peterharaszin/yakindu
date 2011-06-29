@@ -14,9 +14,11 @@ package org.eclipselabs.damos.diagram.ui.internal.view.factories;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory;
+import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 
 public class CompoundViewFactory extends AbstractShapeViewFactory {
@@ -27,7 +29,13 @@ public class CompoundViewFactory extends AbstractShapeViewFactory {
 		style.setLineColor(0x555555);
 		style.setFontColor(0);
 
-		getViewService().createNode(element, view, ISemanticHints.COMPOUND_COMPARTMENT, ViewUtil.APPEND, getPreferencesHint());
+        GradientData gradientData = new GradientData();
+        gradientData.setGradientColor1(0xfdfdfd);
+        gradientData.setGradientColor2(0xf5f5f5);
+        gradientData.setGradientStyle(GradientStyle.VERTICAL);
+        style.setGradient(gradientData);
+
+        getViewService().createNode(element, view, ISemanticHints.COMPOUND_COMPARTMENT, ViewUtil.APPEND, getPreferencesHint());
 	}
 	
 }

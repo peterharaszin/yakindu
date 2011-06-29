@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
-<!--
- <copyright>
- </copyright>
-
- $Id$
--->
-
 <plugin>
 
    <extension point="org.eclipse.ui.newWizards">
@@ -46,5 +38,73 @@
       </editor>
    </extension>
 
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="org.eclipselabs.damos.dml.ui.properties">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="org.eclipselabs.damos.dml.ui.properties">
+         <propertyTab
+               category="default"
+               id="org.eclipselabs.damos.dml.ui.tabs.general"
+               label="General">
+         </propertyTab>
+         <propertyTab
+               afterTab="org.eclipselabs.damos.dml.ui.tabs.general"
+               category="default"
+               id="org.eclipselabs.damos.dml.ui.tabs.parameters"
+               label="Parameters">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="org.eclipselabs.damos.dml.ui.properties">
+         <propertySection
+               class="org.eclipselabs.damos.dml.ui.internal.properties.GeneralPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.GeneralPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.blockName"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipselabs.damos.dml.ui.sections.blockName"
+               class="org.eclipselabs.damos.dml.ui.internal.properties.TimingPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.TimingPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
+               class="org.eclipselabs.damos.dml.ui.internal.properties.InoutportDataTypePropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.InoutportDataTypePropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.inoutportDataType"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
+               class="org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.parameters"
+               tab="org.eclipselabs.damos.dml.ui.tabs.parameters">
+         </propertySection>
+      </propertySections>
+   </extension>
 
 </plugin>

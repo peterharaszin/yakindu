@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface OpaqueDataTypeSpecification extends DataTypeSpecification {
+public interface OpaqueDataTypeSpecification extends DataTypeSpecification, ITextualElement {
 	/**
 	 * Returns the value of the '<em><b>Data Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->

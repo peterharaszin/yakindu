@@ -59,6 +59,8 @@ import org.eclipselabs.damos.dml.ExpressionParameter;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
+import org.eclipselabs.damos.dml.INamedElement;
+import org.eclipselabs.damos.dml.ITextualElement;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Inoutlet;
 import org.eclipselabs.damos.dml.Inoutport;
@@ -346,6 +348,10 @@ public class DMLValidator extends EObjectValidator {
 				return validateMemoryInput((MemoryInput)value, diagnostics, context);
 			case DMLPackage.MEMORY_OUTPUT:
 				return validateMemoryOutput((MemoryOutput)value, diagnostics, context);
+			case DMLPackage.INAMED_ELEMENT:
+				return validateINamedElement((INamedElement)value, diagnostics, context);
+			case DMLPackage.ITEXTUAL_ELEMENT:
+				return validateITextualElement((ITextualElement)value, diagnostics, context);
 			case DMLPackage.PARAMETER_VISIBILITY_KIND:
 				return validateParameterVisibilityKind((ParameterVisibilityKind)value, diagnostics, context);
 			case DMLPackage.TIMING_KIND:
@@ -1929,6 +1935,24 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateMemoryOutput(MemoryOutput memoryOutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(memoryOutput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateINamedElement(INamedElement iNamedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(iNamedElement, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateITextualElement(ITextualElement iTextualElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(iTextualElement, diagnostics, context);
 	}
 
 	/**

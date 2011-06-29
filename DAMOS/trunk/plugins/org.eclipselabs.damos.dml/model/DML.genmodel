@@ -307,5 +307,14 @@
     <genClasses ecoreClass="DML.ecore#//MemoryInitialCondition"/>
     <genClasses ecoreClass="DML.ecore#//MemoryInput"/>
     <genClasses ecoreClass="DML.ecore#//MemoryOutput"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//INamedElement">
+      <genOperations ecoreOperation="DML.ecore#//INamedElement/getName"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//ITextualElement">
+      <genOperations ecoreOperation="DML.ecore#//ITextualElement/getText"/>
+      <genOperations ecoreOperation="DML.ecore#//ITextualElement/setText">
+        <genParameters ecoreParameter="DML.ecore#//ITextualElement/setText/text"/>
+      </genOperations>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

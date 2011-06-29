@@ -85,6 +85,24 @@ public class OpaqueConditionSpecificationImpl extends ConditionSpecificationImpl
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.OPAQUE_CONDITION_SPECIFICATION__CONDITION, oldCondition, condition));
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getText() {
+		return getCondition();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setText(String text) {
+		setCondition(text);
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl#stringCondition()
 	 */

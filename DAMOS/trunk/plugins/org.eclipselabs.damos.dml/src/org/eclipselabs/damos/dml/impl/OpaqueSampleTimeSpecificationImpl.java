@@ -86,6 +86,24 @@ public class OpaqueSampleTimeSpecificationImpl extends SampleTimeSpecificationIm
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.OPAQUE_SAMPLE_TIME_SPECIFICATION__SAMPLE_TIME, oldSampleTime, sampleTime));
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getText() {
+		return getSampleTime();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setText(String text) {
+		setSampleTime(text);
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.impl.SampleTimeSpecificationImpl#stringSampleTime()
 	 */

@@ -11,9 +11,16 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.figures;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.GradientStyle;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Andreas Unger
@@ -31,4 +38,42 @@ public abstract class CompoundFigure extends NodeFigure {
 		setPreferredSize(new Dimension(4000, 3000));
 	}
 	
+	protected abstract void paintCompound(Graphics graphics);
+	
+	protected void paintFigure(Graphics graphics) {
+		Rectangle bounds = getBounds();
+		
+		if (isUsingGradient()) {
+			Color gradientColor1 = FigureUtilities.integerToColor(getGradientColor1());
+			Color gradientColor2 = FigureUtilities.integerToColor(getGradientColor2());
+			try {
+				float x1 = (float) (bounds.x * graphics.getAbsoluteScale());
+				float y1 = (float) (bounds.y * graphics.getAbsoluteScale());
+				float x2 = x1;
+				float y2 = y1;
+				if (getGradientStyle() == GradientStyle.HORIZONTAL) {
+					x2 += (float) (bounds.width * graphics.getAbsoluteScale());
+				} else {
+					y2 += (float) (bounds.height * graphics.getAbsoluteScale());
+				}
+				Pattern pattern = new Pattern(Display.getDefault(), x1, y1, x2, y2, gradientColor1, gradientColor2);
+				try {
+					try {
+						graphics.setBackgroundPattern(pattern);
+					} catch (RuntimeException e) {
+						// Gradients not supported
+					}
+					paintCompound(graphics);
+				} finally {
+					pattern.dispose();
+				}
+			} finally {
+				gradientColor1.dispose();
+				gradientColor2.dispose();
+			}
+		} else {
+			paintCompound(graphics);
+		}
+	}
+
 }

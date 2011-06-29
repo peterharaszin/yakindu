@@ -1,11 +1,11 @@
-package org.eclipselabs.damos.diagram.ui.internal.properties;
+package org.eclipselabs.damos.dml.ui.internal.properties;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.IFilter;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.DMLPackage;
 
 
-public class TimingConstraintPropertySectionFilter implements IFilter {
+public class TimingPropertySectionFilter implements IFilter {
 
 	public boolean select(Object toTest) {
 		if (toTest instanceof IAdaptable) {

@@ -30,7 +30,7 @@ package org.eclipselabs.damos.dml;
  * @model abstract="true"
  * @generated
  */
-public interface InoutputDefinition extends ParameterableElement {
+public interface InoutputDefinition extends ParameterableElement, INamedElement {
 	/**
 	 * Returns the value of the '<em><b>Minimum Port Count</b></em>' attribute.
 	 * The default value is <code>"1"</code>.

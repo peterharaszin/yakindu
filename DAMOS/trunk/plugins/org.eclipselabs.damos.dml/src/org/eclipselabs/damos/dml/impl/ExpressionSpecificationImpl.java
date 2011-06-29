@@ -92,6 +92,24 @@ public class ExpressionSpecificationImpl extends ValueSpecificationImpl implemen
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public String getText() {
+		return getExpression();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setText(String text) {
+		setExpression(text);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public String stringValue() {
 		return ExpressionSpecificationOperations.stringValue(this);

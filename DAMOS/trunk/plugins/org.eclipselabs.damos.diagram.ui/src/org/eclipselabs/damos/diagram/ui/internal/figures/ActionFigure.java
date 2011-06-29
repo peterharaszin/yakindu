@@ -27,7 +27,7 @@ public class ActionFigure extends CompoundFigure {
 	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#paintFigure(org.eclipse.draw2d.Graphics)
 	 */
 	@Override
-	protected void paintFigure(Graphics graphics) {
+	protected void paintCompound(Graphics graphics) {
 		Rectangle bounds = getBounds().getCopy();
 		bounds.shrink(3 * IFigureConstants.DEFAULT_LINE_WIDTH_HALF, 3 * IFigureConstants.DEFAULT_LINE_WIDTH_HALF);
 		graphics.setLineWidth(3 * IFigureConstants.DEFAULT_LINE_WIDTH);

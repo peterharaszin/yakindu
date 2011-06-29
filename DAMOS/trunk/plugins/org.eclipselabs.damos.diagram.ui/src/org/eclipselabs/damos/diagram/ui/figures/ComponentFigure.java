@@ -185,12 +185,12 @@ public abstract class ComponentFigure extends NodeFigure implements IFontColorAw
 			Color gradientColor1 = FigureUtilities.integerToColor(getGradientColor1());
 			Color gradientColor2 = FigureUtilities.integerToColor(getGradientColor2());
 			try {
-				int x2 = 0;
-				int y2 = 0;
+				float x2 = 0;
+				float y2 = 0;
 				if (getGradientStyle() == GradientStyle.HORIZONTAL) {
-					x2 = (int) (bounds.width * graphics.getAbsoluteScale());
+					x2 = (float) (bounds.width * graphics.getAbsoluteScale());
 				} else {
-					y2 = (int) (bounds.height * graphics.getAbsoluteScale());
+					y2 = (float) (bounds.height * graphics.getAbsoluteScale());
 				}
 				Pattern pattern = new Pattern(Display.getDefault(), 0, 0, x2, y2, gradientColor1, gradientColor2);
 				try {

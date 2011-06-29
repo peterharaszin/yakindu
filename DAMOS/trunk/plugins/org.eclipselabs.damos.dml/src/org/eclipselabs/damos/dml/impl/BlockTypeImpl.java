@@ -24,6 +24,7 @@ import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.Category;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.INamedElement;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
@@ -617,6 +618,11 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == INamedElement.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == QualifiedElement.class) {
 			switch (derivedFeatureID) {
 				case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME: return DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME;
@@ -647,6 +653,11 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == INamedElement.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == QualifiedElement.class) {
 			switch (baseFeatureID) {
 				case DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME: return DMLPackage.BLOCK_TYPE__QUALIFIED_NAME;

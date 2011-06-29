@@ -51,6 +51,8 @@ import org.eclipselabs.damos.dml.ExpressionParameter;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
+import org.eclipselabs.damos.dml.INamedElement;
+import org.eclipselabs.damos.dml.ITextualElement;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Inoutlet;
 import org.eclipselabs.damos.dml.Inoutport;
@@ -681,6 +683,20 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass memoryOutputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iNamedElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iTextualElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2211,6 +2227,24 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getINamedElement() {
+		return iNamedElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getITextualElement() {
+		return iTextualElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getTimingKind() {
 		return timingKindEEnum;
 	}
@@ -2494,6 +2528,10 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		memoryOutputEClass = createEClass(MEMORY_OUTPUT);
 
+		iNamedElementEClass = createEClass(INAMED_ELEMENT);
+
+		iTextualElementEClass = createEClass(ITEXTUAL_ELEMENT);
+
 		// Create enums
 		parameterVisibilityKindEEnum = createEEnum(PARAMETER_VISIBILITY_KIND);
 		timingKindEEnum = createEEnum(TIMING_KIND);
@@ -2528,16 +2566,20 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Add supertypes to classes
 		fragmentEClass.getESuperTypes().add(ecorePackage.getEModelElement());
+		fragmentEClass.getESuperTypes().add(this.getINamedElement());
 		componentEClass.getESuperTypes().add(this.getFragmentElement());
 		componentEClass.getESuperTypes().add(this.getCompoundMember());
+		componentEClass.getESuperTypes().add(this.getINamedElement());
 		continuousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
 		synchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
 		asynchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
 		opaqueSampleTimeSpecificationEClass.getESuperTypes().add(this.getSampleTimeSpecification());
+		opaqueSampleTimeSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		fragmentElementEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		connectionEClass.getESuperTypes().add(this.getFragmentElement());
 		inputConnectorEClass.getESuperTypes().add(this.getConnector());
 		outputConnectorEClass.getESuperTypes().add(this.getConnector());
+		inoutputEClass.getESuperTypes().add(this.getINamedElement());
 		inputEClass.getESuperTypes().add(this.getInoutput());
 		outputEClass.getESuperTypes().add(this.getInoutput());
 		portEClass.getESuperTypes().add(this.getConnector());
@@ -2551,14 +2593,18 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockOutputEClass.getESuperTypes().add(this.getOutput());
 		blockOutputEClass.getESuperTypes().add(this.getBlockInoutput());
 		inoutputDefinitionEClass.getESuperTypes().add(this.getParameterableElement());
+		inoutputDefinitionEClass.getESuperTypes().add(this.getINamedElement());
 		inputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		outputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
+		parameterEClass.getESuperTypes().add(this.getINamedElement());
 		expressionParameterEClass.getESuperTypes().add(this.getParameter());
 		expressionSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
+		expressionSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		blockTypeEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		blockTypeEClass.getESuperTypes().add(this.getQualifiedElement());
 		blockTypeEClass.getESuperTypes().add(this.getCategorizedElement());
 		blockTypeEClass.getESuperTypes().add(this.getParameterableElement());
+		qualifiedElementEClass.getESuperTypes().add(this.getINamedElement());
 		categoryEClass.getESuperTypes().add(this.getQualifiedElement());
 		categoryEClass.getESuperTypes().add(this.getCategorizedElement());
 		categoryEClass.getESuperTypes().add(this.getParameterableElement());
@@ -2573,7 +2619,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockOutputPortEClass.getESuperTypes().add(this.getOutputPort());
 		blockOutputPortEClass.getESuperTypes().add(this.getBlockPort());
 		subsystemEClass.getESuperTypes().add(this.getComponent());
+		systemInterfaceEClass.getESuperTypes().add(this.getINamedElement());
 		inletEClass.getESuperTypes().add(this.getInoutlet());
+		inoutletEClass.getESuperTypes().add(this.getINamedElement());
 		outletEClass.getESuperTypes().add(this.getInoutlet());
 		subsystemRealizationEClass.getESuperTypes().add(this.getFragmentElement());
 		inportEClass.getESuperTypes().add(this.getInoutport());
@@ -2583,7 +2631,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		subsystemOutputEClass.getESuperTypes().add(this.getOutput());
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
 		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
+		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getBehaviorSpecification());
+		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		latchEClass.getESuperTypes().add(this.getComponent());
 		compoundEClass.getESuperTypes().add(this.getFragmentElement());
 		compoundEClass.getESuperTypes().add(this.getCompoundMember());
@@ -2595,8 +2645,10 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		choiceEClass.getESuperTypes().add(this.getComponent());
 		choiceInputEClass.getESuperTypes().add(this.getInput());
 		choiceInputPortEClass.getESuperTypes().add(this.getInputPort());
+		choiceInputPortEClass.getESuperTypes().add(this.getINamedElement());
 		actionEClass.getESuperTypes().add(this.getCompound());
 		opaqueConditionSpecificationEClass.getESuperTypes().add(this.getConditionSpecification());
+		opaqueConditionSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		joinEClass.getESuperTypes().add(this.getComponent());
 		joinInputEClass.getESuperTypes().add(this.getInput());
 		whileLoopEClass.getESuperTypes().add(this.getAction());
@@ -2951,6 +3003,17 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(memoryInputEClass, MemoryInput.class, "MemoryInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(memoryOutputEClass, MemoryOutput.class, "MemoryOutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(iNamedElementEClass, INamedElement.class, "INamedElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(iNamedElementEClass, ecorePackage.getEString(), "getName", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(iTextualElementEClass, ITextualElement.class, "ITextualElement", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(iTextualElementEClass, ecorePackage.getEString(), "getText", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(iTextualElementEClass, null, "setText", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "text", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(parameterVisibilityKindEEnum, ParameterVisibilityKind.class, "ParameterVisibilityKind");

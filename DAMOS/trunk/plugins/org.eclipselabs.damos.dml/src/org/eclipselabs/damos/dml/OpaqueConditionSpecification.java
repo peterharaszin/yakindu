@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface OpaqueConditionSpecification extends ConditionSpecification {
+public interface OpaqueConditionSpecification extends ConditionSpecification, ITextualElement {
 
 	/**
 	 * Returns the value of the '<em><b>Condition</b></em>' attribute.

@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.dml;
 
-import org.eclipse.emf.ecore.EObject;
 
 
 
@@ -28,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Inoutlet extends EObject {
+public interface Inoutlet extends INamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Data Type</b></em>' containment reference.

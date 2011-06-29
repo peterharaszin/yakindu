@@ -49,44 +49,18 @@
       </wizard>
    </extension>
    <extension
-         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
-      <propertyContributor
-            contributorId="org.eclipselabs.damos.diagram.ui">
-         <propertyCategory
-               category="domain">
-         </propertyCategory>
-         <propertyCategory
-               category="visual">
-         </propertyCategory>
-         <propertyCategory
-               category="extra">
-         </propertyCategory>
-      </propertyContributor>
-   </extension>
-   <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
       <propertyTabs
-            contributorId="org.eclipselabs.damos.diagram.ui">
-         <propertyTab
-               category="domain"
-               id="org.eclipselabs.damos.diagram.ui.tabs.general"
-               label="General">
-         </propertyTab>
-         <propertyTab
-               afterTab="org.eclipselabs.damos.diagram.ui.tabs.general"
-               category="domain"
-               id="org.eclipselabs.damos.diagram.ui.tabs.parameters"
-               label="Parameters">
-         </propertyTab>
+            contributorId="org.eclipselabs.damos.dml.ui.properties">
          <propertyTab
                afterTab="org.eclipselabs.damos.diagram.ui.tabs.parameters"
-               category="visual"
+               category="extended"
                id="org.eclipselabs.damos.diagram.ui.tabs.appearance"
                label="Appearance">
          </propertyTab>
          <propertyTab
                afterTab="org.eclipselabs.damos.diagram.ui.tabs.appearance"
-               category="visual"
+               category="extended"
                id="org.eclipselabs.damos.diagram.ui.tabs.diagram"
                label="Rulers &amp; Grid">
          </propertyTab>
@@ -95,39 +69,7 @@
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
-            contributorId="org.eclipselabs.damos.diagram.ui">
-         <propertySection
-               class="org.eclipselabs.damos.diagram.ui.internal.properties.ComponentNamePropertySection"
-               enablesFor="1"
-               id="org.eclipselabs.damos.diagram.ui.sections.blockName"
-               tab="org.eclipselabs.damos.diagram.ui.tabs.general">
-            <input
-                  type="org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart">
-            </input>
-         </propertySection>
-         <propertySection
-               afterSection="org.eclipselabs.damos.diagram.ui.sections.blockName"
-               class="org.eclipselabs.damos.diagram.ui.internal.properties.InoutportDataTypePropertySection"
-               enablesFor="1"
-               filter="org.eclipselabs.damos.diagram.ui.internal.properties.InoutportDataTypePropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.ui.sections.inoutportDataType"
-               tab="org.eclipselabs.damos.diagram.ui.tabs.general">
-         </propertySection>
-         <propertySection
-               afterSection="org.eclipselabs.damos.diagram.ui.sections.blockName"
-               class="org.eclipselabs.damos.diagram.ui.internal.properties.TimingConstraintPropertySection"
-               enablesFor="1"
-               filter="org.eclipselabs.damos.diagram.ui.internal.properties.TimingConstraintPropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.ui.sections.timingConstraint"
-               tab="org.eclipselabs.damos.diagram.ui.tabs.general">
-         </propertySection>
-         <propertySection
-               class="org.eclipselabs.damos.diagram.ui.internal.properties.ParametersPropertySection"
-               enablesFor="1"
-               filter="org.eclipselabs.damos.diagram.ui.internal.properties.ParametersPropertySectionFilter"
-               id="org.eclipselabs.damos.diagram.ui.sections.parameters"
-               tab="org.eclipselabs.damos.diagram.ui.tabs.parameters">
-         </propertySection>
+            contributorId="org.eclipselabs.damos.dml.ui.properties">
          <propertySection
                class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection"
                filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter"

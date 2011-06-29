@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface ExpressionSpecification extends ValueSpecification {
+public interface ExpressionSpecification extends ValueSpecification, ITextualElement {
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->

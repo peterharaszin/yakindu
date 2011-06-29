@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.dml;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface QualifiedElement extends EObject {
+public interface QualifiedElement extends INamedElement {
 	/**
 	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

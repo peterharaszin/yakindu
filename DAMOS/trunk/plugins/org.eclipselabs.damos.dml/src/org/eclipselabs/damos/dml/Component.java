@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.EClass;
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName'"
  * @generated
  */
-public interface Component extends FragmentElement, CompoundMember {
+public interface Component extends FragmentElement, CompoundMember, INamedElement {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.Input}.

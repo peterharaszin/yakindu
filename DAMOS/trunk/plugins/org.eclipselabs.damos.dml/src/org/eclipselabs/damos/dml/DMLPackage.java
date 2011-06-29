@@ -558,13 +558,32 @@ public interface DMLPackage extends EPackage {
 	int OUTPUT_CONNECTOR_FEATURE_COUNT = CONNECTOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.INamedElement <em>INamed Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.INamedElement
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getINamedElement()
+	 * @generated
+	 */
+	int INAMED_ELEMENT = 82;
+
+	/**
+	 * The number of structural features of the '<em>INamed Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INAMED_ELEMENT_FEATURE_COUNT = 0;
+
+	/**
 	 * The number of structural features of the '<em>Inoutput</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_FEATURE_COUNT = 0;
+	int INOUTPUT_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -1184,7 +1203,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__NAME = 0;
+	int PARAMETER__NAME = INAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
@@ -1193,7 +1212,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__VISIBILITY = 1;
+	int PARAMETER__VISIBILITY = INAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
@@ -1202,7 +1221,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = 2;
+	int PARAMETER_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Value Specification</em>' class.
@@ -1620,7 +1639,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUALIFIED_ELEMENT__QUALIFIED_NAME = 0;
+	int QUALIFIED_ELEMENT__QUALIFIED_NAME = INAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1629,7 +1648,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUALIFIED_ELEMENT__NAME = 1;
+	int QUALIFIED_ELEMENT__NAME = INAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
@@ -1638,7 +1657,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUALIFIED_ELEMENT__QUALIFIER = 2;
+	int QUALIFIED_ELEMENT__QUALIFIER = INAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Qualified Element</em>' class.
@@ -1647,7 +1666,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUALIFIED_ELEMENT_FEATURE_COUNT = 3;
+	int QUALIFIED_ELEMENT_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
@@ -2185,7 +2204,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE__INLETS = 0;
+	int SYSTEM_INTERFACE__INLETS = INAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outlets</b></em>' containment reference list.
@@ -2194,7 +2213,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE__OUTLETS = 1;
+	int SYSTEM_INTERFACE__OUTLETS = INAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2203,7 +2222,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE__NAME = 2;
+	int SYSTEM_INTERFACE__NAME = INAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>System Interface</em>' class.
@@ -2212,7 +2231,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE_FEATURE_COUNT = 3;
+	int SYSTEM_INTERFACE_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -2221,7 +2240,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTLET__DATA_TYPE = 0;
+	int INOUTLET__DATA_TYPE = INAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2230,7 +2249,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTLET__NAME = 1;
+	int INOUTLET__NAME = INAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Inoutlet</em>' class.
@@ -2239,7 +2258,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTLET_FEATURE_COUNT = 2;
+	int INOUTLET_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -3762,6 +3781,25 @@ public interface DMLPackage extends EPackage {
 	int MEMORY_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.ITextualElement <em>ITextual Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.ITextualElement
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getITextualElement()
+	 * @generated
+	 */
+	int ITEXTUAL_ELEMENT = 83;
+
+	/**
+	 * The number of structural features of the '<em>ITextual Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITEXTUAL_ELEMENT_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.TimingKind <em>Timing Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3769,7 +3807,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getTimingKind()
 	 * @generated
 	 */
-	int TIMING_KIND = 83;
+	int TIMING_KIND = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}' enum.
@@ -3779,7 +3817,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterVisibilityKind()
 	 * @generated
 	 */
-	int PARAMETER_VISIBILITY_KIND = 82;
+	int PARAMETER_VISIBILITY_KIND = 84;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -5460,6 +5498,26 @@ public interface DMLPackage extends EPackage {
 	EClass getMemoryOutput();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.INamedElement <em>INamed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>INamed Element</em>'.
+	 * @see org.eclipselabs.damos.dml.INamedElement
+	 * @generated
+	 */
+	EClass getINamedElement();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ITextualElement <em>ITextual Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>ITextual Element</em>'.
+	 * @see org.eclipselabs.damos.dml.ITextualElement
+	 * @generated
+	 */
+	EClass getITextualElement();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipselabs.damos.dml.TimingKind <em>Timing Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6944,6 +7002,26 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MEMORY_OUTPUT = eINSTANCE.getMemoryOutput();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.INamedElement <em>INamed Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.INamedElement
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getINamedElement()
+		 * @generated
+		 */
+		EClass INAMED_ELEMENT = eINSTANCE.getINamedElement();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.ITextualElement <em>ITextual Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.ITextualElement
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getITextualElement()
+		 * @generated
+		 */
+		EClass ITEXTUAL_ELEMENT = eINSTANCE.getITextualElement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.TimingKind <em>Timing Kind</em>}' enum.

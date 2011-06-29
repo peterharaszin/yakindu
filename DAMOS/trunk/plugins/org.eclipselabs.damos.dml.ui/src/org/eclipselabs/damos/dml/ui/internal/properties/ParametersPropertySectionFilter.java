@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.diagram.ui.internal.properties;
+package org.eclipselabs.damos.dml.ui.internal.properties;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.IFilter;
@@ -9,12 +9,13 @@ import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 public class ParametersPropertySectionFilter implements IFilter {
 
 	public boolean select(Object toTest) {
-		if (toTest instanceof IAdaptable) {
-			IAdaptable adaptable = (IAdaptable) toTest;
-			Block block = (Block) adaptable.getAdapter(Block.class);
-			if (block == null) {
-				return false;
-			}
+		Block block = null;
+		if (toTest instanceof Block) {
+			block = (Block) toTest;
+		} else if (toTest instanceof IAdaptable) {
+			block = (Block) ((IAdaptable) toTest).getAdapter(Block.class);
+		}
+		if (block != null) {
 			for (Argument argument : block.getArguments()) {
 				if (argument.getParameter() != null && argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
 					return true;

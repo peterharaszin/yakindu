@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.dml;
 
-import org.eclipse.emf.ecore.EObject;
 
 
 
@@ -28,7 +27,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Parameter extends EObject {
+public interface Parameter extends INamedElement {
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

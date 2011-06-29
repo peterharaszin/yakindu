@@ -21,6 +21,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.INamedElement;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Output;
@@ -469,6 +470,11 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 				default: return -1;
 			}
 		}
+		if (baseClass == INamedElement.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
 	}
 
@@ -482,6 +488,11 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 		if (baseClass == CompoundMember.class) {
 			switch (baseFeatureID) {
 				case DMLPackage.COMPOUND_MEMBER__OWNING_COMPOUND: return DMLPackage.COMPONENT__OWNING_COMPOUND;
+				default: return -1;
+			}
+		}
+		if (baseClass == INamedElement.class) {
+			switch (baseFeatureID) {
 				default: return -1;
 			}
 		}

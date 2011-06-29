@@ -7,7 +7,6 @@
 package org.eclipselabs.damos.dml;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface SystemInterface extends EObject {
+public interface SystemInterface extends INamedElement {
 	/**
 	 * Returns the value of the '<em><b>Inlets</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.Inlet}.

@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dml"
     nsURI="http://www.eclipselabs.org/damos/DML/1.0.0" nsPrefix="dml">
-  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement #//INamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName UniqueComponentNames"/>
     </eAnnotations>
@@ -22,7 +22,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember">
+  <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember #//INamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName"/>
     </eAnnotations>
@@ -62,7 +62,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="SampleTimeSpecification" abstract="true">
     <eOperations name="stringSampleTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueSampleTimeSpecification" eSuperTypes="#//SampleTimeSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueSampleTimeSpecification" eSuperTypes="#//SampleTimeSpecification #//ITextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sampleTime" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -91,7 +91,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputConnector" abstract="true" eSuperTypes="#//Connector"/>
   <eClassifiers xsi:type="ecore:EClass" name="OutputConnector" abstract="true" eSuperTypes="#//Connector"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Inoutput" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Inoutput" abstract="true" eSuperTypes="#//INamedElement">
     <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="canAddPort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="canRemovePort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -143,7 +143,7 @@
         lowerBound="1" eType="#//OutputDefinition"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InoutputDefinition" abstract="true"
-      eSuperTypes="#//ParameterableElement">
+      eSuperTypes="#//ParameterableElement #//INamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="minimumPortCount" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
@@ -174,7 +174,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parameter" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter" abstract="true" eSuperTypes="#//INamedElement">
     <eOperations name="getDefaultValue" ordered="false" eType="#//ValueSpecification"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -224,7 +224,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
         eType="#//DataTypeSpecification" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionSpecification" eSuperTypes="#//ValueSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionSpecification" eSuperTypes="#//ValueSpecification #//ITextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -254,7 +254,7 @@
     <eLiterals name="Synchronous" value="3"/>
     <eLiterals name="Asynchronous" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="QualifiedElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="QualifiedElement" abstract="true" eSuperTypes="#//INamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         unsettable="true"/>
@@ -291,7 +291,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterface" lowerBound="1"
         eType="#//SystemInterface"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SystemInterface">
+  <eClassifiers xsi:type="ecore:EClass" name="SystemInterface" eSuperTypes="#//INamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlets" upperBound="-1"
         eType="#//Inlet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outlets" upperBound="-1"
@@ -300,7 +300,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inlet" eSuperTypes="#//Inoutlet"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Inoutlet" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Inoutlet" abstract="true" eSuperTypes="#//INamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
         lowerBound="1" eType="#//DataTypeSpecification" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
@@ -338,11 +338,11 @@
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"
         defaultValueLiteral="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueDataTypeSpecification" eSuperTypes="#//DataTypeSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueDataTypeSpecification" eSuperTypes="#//DataTypeSpecification #//ITextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorSpecification" eSuperTypes="#//BehaviorSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorSpecification" eSuperTypes="#//BehaviorSpecification #//ITextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="behavior" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -374,7 +374,7 @@
         upperBound="-1" eType="#//ActionLink" containment="true" eOpposite="#//ActionLink/choice"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ChoiceInput" eSuperTypes="#//Input"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ChoiceInputPort" eSuperTypes="#//InputPort">
+  <eClassifiers xsi:type="ecore:EClass" name="ChoiceInputPort" eSuperTypes="#//InputPort #//INamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action" eSuperTypes="#//Compound">
@@ -395,7 +395,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ConditionSpecification" abstract="true">
     <eOperations name="stringCondition" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueConditionSpecification" eSuperTypes="#//ConditionSpecification">
+  <eClassifiers xsi:type="ecore:EClass" name="OpaqueConditionSpecification" eSuperTypes="#//ConditionSpecification #//ITextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -421,4 +421,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="MemoryInitialCondition" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="MemoryInput" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="MemoryOutput" eSuperTypes="#//Output"/>
+  <eClassifiers xsi:type="ecore:EClass" name="INamedElement" abstract="true" interface="true">
+    <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ITextualElement" abstract="true" interface="true">
+    <eOperations name="getText" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="setText">
+      <eParameters name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
+  </eClassifiers>
 </ecore:EPackage>

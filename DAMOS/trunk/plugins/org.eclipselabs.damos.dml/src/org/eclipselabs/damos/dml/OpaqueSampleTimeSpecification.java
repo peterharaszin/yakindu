@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface OpaqueSampleTimeSpecification extends SampleTimeSpecification {
+public interface OpaqueSampleTimeSpecification extends SampleTimeSpecification, ITextualElement {
 	/**
 	 * Returns the value of the '<em><b>Sample Time</b></em>' attribute.
 	 * <!-- begin-user-doc -->

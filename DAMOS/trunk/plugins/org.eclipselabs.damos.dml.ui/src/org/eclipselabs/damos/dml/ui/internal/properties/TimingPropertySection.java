@@ -26,6 +26,8 @@ import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.layout.GridData;
@@ -61,7 +63,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 	private IObservableValue sampleTimeLabelEnabledObservable;
 	private Label sampleTimeLabel;
 	
-	private enum TimeConstraintKind {
+	private enum TimingConstraintKind {
 		
 		INHERITED("Inherited"),
 		CONTINUOUS("Continuous"),
@@ -70,7 +72,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		
 		private String name;
 		
-		TimeConstraintKind(String name) {
+		TimingConstraintKind(String name) {
 			this.name = name;
 		}
 		
@@ -110,8 +112,8 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 			
 			@Override
 			public String getText(Object element) {
-				if (element instanceof TimeConstraintKind) {
-					return ((TimeConstraintKind) element).getName();
+				if (element instanceof TimingConstraintKind) {
+					return ((TimingConstraintKind) element).getName();
 				}
 				return super.getText(element);
 			}
@@ -119,7 +121,28 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		});
 		
 		timingConstraintViewer.setContentProvider(new ArrayContentProvider());
-		timingConstraintViewer.setInput(TimeConstraintKind.values());
+		timingConstraintViewer.setInput(TimingConstraintKind.values());
+		timingConstraintViewer.addFilter(new ViewerFilter() {
+			
+			@Override
+			public boolean select(Viewer viewer, Object parentElement, Object element) {
+				Component component = getComponent();
+				if (component != null) {
+					switch ((TimingConstraintKind) element) {
+					case INHERITED:
+						return true;
+					case CONTINUOUS:
+						return component.isTimingConstraintApplicable(DMLPackage.eINSTANCE.getContinuousTimingConstraint());
+					case SYNCHRONOUS:
+						return component.isTimingConstraintApplicable(DMLPackage.eINSTANCE.getSynchronousTimingConstraint());
+					case ASYNCHRONOUS:
+						return component.isTimingConstraintApplicable(DMLPackage.eINSTANCE.getAsynchronousTimingConstraint());
+					}
+				}
+				return false;
+			}
+			
+		});
 		
 		initializeDataBinding();
 	}
@@ -148,6 +171,9 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 	public void refresh() {
 		super.refresh();
 		disposeModelObservables();
+		
+		// Refresh viewer to refilter the input
+		timingConstraintViewer.refresh();
 
 		IValueProperty sampleTimeProperty = EMFEditProperties.value(
 				getEditingDomain(),
@@ -160,9 +186,9 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		IValueProperty timingConstraintProperty = EMFEditProperties.value(getEditingDomain(),
 				DMLPackage.eINSTANCE.getComponent_TimingConstraint());
 		timingConstraintObservable = timingConstraintProperty.observe(getComponent());
-		UpdateValueStrategy timeConstraintUpdateStrategy = new TimeConstraintUpdateStrategy();
-		context.bindValue(timingConstraintViewerObservable, timingConstraintObservable, timeConstraintUpdateStrategy,
-				timeConstraintUpdateStrategy);
+		UpdateValueStrategy timingConstraintUpdateStrategy = new TimingConstraintUpdateStrategy();
+		context.bindValue(timingConstraintViewerObservable, timingConstraintObservable, timingConstraintUpdateStrategy,
+				timingConstraintUpdateStrategy);
 		
 		context.bindValue(sampleTimeTextEnabledObservable, timingConstraintObservable, new UpdateValueStrategy(
 				UpdateValueStrategy.POLICY_NEVER), new SynchronousTimingConstraintUpdateValueStrategy());
@@ -193,7 +219,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		super.dispose();
 	}
 	
-	private class TimeConstraintUpdateStrategy extends UpdateValueStrategy {
+	private class TimingConstraintUpdateStrategy extends UpdateValueStrategy {
 		
 		private ContinuousTimingConstraint continuousTimingConstraint;
 		private SynchronousTimingConstraint synchronousTimingConstraint;
@@ -204,8 +230,8 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		 */
 		@Override
 		public Object convert(Object value) {
-			if (value instanceof TimeConstraintKind) {
-				switch ((TimeConstraintKind) value) {
+			if (value instanceof TimingConstraintKind) {
+				switch ((TimingConstraintKind) value) {
 				case INHERITED:
 					return null;
 				case CONTINUOUS:
@@ -217,16 +243,16 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 				}
 			} else {
 				if (value == null) {
-					return TimeConstraintKind.INHERITED;
+					return TimingConstraintKind.INHERITED;
 				}
 				if (value instanceof ContinuousTimingConstraint) {
-					return TimeConstraintKind.CONTINUOUS;
+					return TimingConstraintKind.CONTINUOUS;
 				}
 				if (value instanceof SynchronousTimingConstraint) {
-					return TimeConstraintKind.SYNCHRONOUS;
+					return TimingConstraintKind.SYNCHRONOUS;
 				}
 				if (value instanceof AsynchronousTimingConstraint) {
-					return TimeConstraintKind.ASYNCHRONOUS;
+					return TimingConstraintKind.ASYNCHRONOUS;
 				}
 			}
 			throw new IllegalArgumentException();

@@ -33,12 +33,15 @@ public abstract class AbstractModelPropertySection extends AbstractPropertySecti
 	}
 
 	protected EObject getModel() {
-		Object element = ((IStructuredSelection) getSelection()).getFirstElement();
-		if (element instanceof Component) {
-			return (EObject) element;
-		}
-		if (element instanceof IAdaptable) {
-			return (EObject) ((IAdaptable) element).getAdapter(EObject.class);
+		IStructuredSelection selection = (IStructuredSelection) getSelection();
+		if (selection != null) {
+			Object element = selection.getFirstElement();
+			if (element instanceof Component) {
+				return (EObject) element;
+			}
+			if (element instanceof IAdaptable) {
+				return (EObject) ((IAdaptable) element).getAdapter(EObject.class);
+			}
 		}
 		return null;
 	}

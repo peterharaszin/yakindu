@@ -1,3 +1,16 @@
 
 h1. Getting Started
 
+This tutorial provides a step by step walk-through of the basic features of Damos. It will show you how to create a simple Damos model using the block diagram editor and how to simulate the model. For advanced topics like code generation and customization, see the subsequent user guide sections.
+
+h2. Creating a New Damos Project
+
+# Inside Eclipse select the menu item *File > New > Project...* to open the *New Project* wizard.
+# Select *Damos > Damos Project* then click *Next* to start the *New Damos Project* wizard: !01_GettingStarted_images/NewDamosProject.png(New Damos Project Wizard)!
+# Enter a project name and click *Finish*.
+# In the *Project Explorer*, select the newly created Damos project and select *File > New > Folder*: !01_GettingStarted_images/NewModelFolder.png(New Damos Project Wizard)!
+# Enter a name for the model folder and click *Finish*.
+
+_Note:_ Instead of creating a Damos project, any kind of project (e.g. C/C++) can be used as a container for Damos models. However, if you then open a Damos model the first time, you will be asked if a Damos project nature should be added to your project -- which you should agree to. This ensures that model validation is performed automatically.
+
+h2. Creating a New Damos Model

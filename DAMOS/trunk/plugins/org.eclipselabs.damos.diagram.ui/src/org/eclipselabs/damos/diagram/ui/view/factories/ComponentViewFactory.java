@@ -32,8 +32,8 @@ public class ComponentViewFactory extends AbstractShapeViewFactory {
         style.setFontColor(0);
         
         GradientData gradientData = new GradientData();
-        gradientData.setGradientColor1(0xfffafa);
-        gradientData.setGradientColor2(0xffe1e1);
+        gradientData.setGradientColor1(0xfdfaf8); // #f8fafd
+        gradientData.setGradientColor2(0xf3dccd); // #cddcf3
         gradientData.setGradientStyle(GradientStyle.VERTICAL);
         style.setGradient(gradientData);
         

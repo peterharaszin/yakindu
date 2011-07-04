@@ -3,6 +3,12 @@
 	<topic href="help/02_UserGuide/UserGuide.html" label="Getting Started">
 		<topic href="help/02_UserGuide/UserGuide.html#CreatingaNewDamosProject" label="Creating a New Damos Project"></topic>
 		<topic href="help/02_UserGuide/UserGuide.html#CreatingaNewDamosModel" label="Creating a New Damos Model"></topic>
+		<topic href="help/02_UserGuide/UserGuide.html#DesigningtheModel" label="Designing the Model">
+			<topic href="help/02_UserGuide/UserGuide.html#AddingBlockstotheBlockDiagram" label="Adding Blocks to the Block Diagram"></topic>
+			<topic href="help/02_UserGuide/UserGuide.html#SettingBlockandPortProperties" label="Setting Block and Port Properties"></topic>
+			<topic href="help/02_UserGuide/UserGuide.html#ConnectingBlocks" label="Connecting Blocks"></topic>
+		</topic>
+		<topic href="help/02_UserGuide/UserGuide.html#SimulatingtheModel" label="Simulating the Model"></topic>
 	</topic>
 	<topic href="help/02_UserGuide/Concepts.html" label="Concepts">
 		<topic href="help/02_UserGuide/Concepts.html#SystemInterfacesandSubsystems" label="System Interfaces and Subsystems"></topic>

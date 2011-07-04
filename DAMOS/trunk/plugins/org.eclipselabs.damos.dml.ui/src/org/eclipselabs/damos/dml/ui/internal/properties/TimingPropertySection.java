@@ -136,7 +136,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 					case SYNCHRONOUS:
 						return component.isTimingConstraintApplicable(DMLPackage.eINSTANCE.getSynchronousTimingConstraint());
 					case ASYNCHRONOUS:
-						return component.isTimingConstraintApplicable(DMLPackage.eINSTANCE.getAsynchronousTimingConstraint());
+//						return component.isTimingConstraintApplicable(DMLPackage.eINSTANCE.getAsynchronousTimingConstraint());
 					}
 				}
 				return false;

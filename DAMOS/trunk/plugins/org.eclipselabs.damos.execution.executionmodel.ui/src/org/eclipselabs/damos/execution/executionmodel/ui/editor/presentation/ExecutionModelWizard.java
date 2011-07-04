@@ -33,15 +33,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -107,8 +98,6 @@ public class ExecutionModelWizard extends Wizard implements INewWizard {
 	 */
 	protected ExecutionModelWizardNewFileCreationPage newFileCreationPage;
 
-	private ExecutionModelWizardGeneralPage generalPage;
-	
 	/**
 	 * Remember the selection during initialization for populating the default container.
 	 * <!-- begin-user-doc -->
@@ -287,69 +276,6 @@ public class ExecutionModelWizard extends Wizard implements INewWizard {
 		}
 	}
 	
-	private static class ExecutionModelWizardGeneralPage extends WizardPage {
-
-		private Text sampleTimeText;
-		
-		/**
-		 * 
-		 */
-		public ExecutionModelWizardGeneralPage() {
-			super("General");
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
-		 */
-		public void createControl(Composite parent) {
-			initializeDialogUnits(parent);
-			
-			// top level group
-			Composite topLevel = new Composite(parent, SWT.NONE);
-			topLevel.setLayout(new GridLayout(2, false));
-			topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL | GridData.HORIZONTAL_ALIGN_FILL));
-			topLevel.setFont(parent.getFont());
-			
-			Label label = new Label(topLevel, SWT.NONE);
-			label.setText("Sample time (seconds):");
-			label.setLayoutData(new GridData());
-			sampleTimeText = new Text(topLevel, SWT.SINGLE | SWT.BORDER);
-			sampleTimeText.setText("1");
-			sampleTimeText.setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
-			sampleTimeText.addModifyListener(new ModifyListener() {
-				
-				public void modifyText(ModifyEvent e) {
-					updatePageComplete();
-				}
-				
-			});
-			
-			setErrorMessage(null);
-			setMessage(null);
-
-			setControl(topLevel);
-			
-			updatePageComplete();
-		}
-		
-		private void updatePageComplete() {
-			setPageComplete(true);
-			setErrorMessage(null);
-
-			try {
-				double sampleTime = Double.parseDouble(sampleTimeText.getText());
-				if (sampleTime <= 0) {
-					setPageComplete(false);
-					setErrorMessage("Sample time must be greater than zero");
-				}
-			} catch (NumberFormatException e) {
-				setPageComplete(false);
-				setErrorMessage("Invalid sample time");
-			}
-		}
-		
-	}
-
 	/**
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
@@ -399,11 +325,6 @@ public class ExecutionModelWizard extends Wizard implements INewWizard {
 				}
 			}
 		}
-		
-		generalPage = new ExecutionModelWizardGeneralPage();
-		generalPage.setTitle("General");
-		generalPage.setDescription("General execution model settings");
-		addPage(generalPage);
 	}
 
 	/**

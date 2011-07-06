@@ -19,15 +19,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectStatus;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectStatus;
 import org.eclipselabs.damos.simulation.simulator.internal.registry.SimulationObjectProviderRegistry;
 
 /**
@@ -70,7 +69,7 @@ public class SimulationObjectAdaptor {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				Component component = componentNode.getComponent();
-				if (!(component instanceof Choice || component instanceof Join)) {
+				if (!(component instanceof Choice)) {
 					ISimulationObject simulationObject;
 					simulationObject = SimulationObjectProviderRegistry.getInstance().createSimulationObject(component);
 					if (simulationObject != null) {

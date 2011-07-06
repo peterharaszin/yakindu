@@ -19,13 +19,10 @@ package org.eclipselabs.damos.simulation.simulator.solver;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
-import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
@@ -36,12 +33,10 @@ import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
-import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
 import org.eclipselabs.mscript.computation.core.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
@@ -126,12 +121,8 @@ public abstract class AbstractSolver implements ISolver {
 				}
 			} else if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				if (canExecute(componentNode, t)) {
-					if (componentNode.getComponent() instanceof Join) {
-						computeJoinOutputValues(componentNode);
-					} else if (!(componentNode.getComponent() instanceof Choice)) {
-						computeComponentOutputValues(componentNode, t, monitor);
-					}
+				if (!(componentNode.getComponent() instanceof Choice) && canExecute(componentNode, t)) {
+					computeComponentOutputValues(componentNode, t, monitor);
 				}
 			} else {
 				throw new IllegalArgumentException();
@@ -212,63 +203,6 @@ public abstract class AbstractSolver implements ISolver {
 	}
 
 	/**
-	 * @param joinNode
-	 * @throws CoreException
-	 */
-	private void computeJoinOutputValues(ComponentNode joinNode) throws CoreException {
-		DataFlowSourceEnd sourceEnd = getCompoundSourceEnd(joinNode);
-		if (sourceEnd == null) {
-			sourceEnd = getDefaultSourceEnd(joinNode);
-		}
-		if (sourceEnd == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No Join input available"));
-		}
-
-		if (joinNode.getOutgoingDataFlows().isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Join output not connected"));
-		}
-		DataFlowSourceEnd joinSourceEnd = joinNode.getOutgoingDataFlows().get(0);
-		
-		ISimulationObject simulationObject = SimulationUtil.getSimulationObject(sourceEnd.getNode());
-		PortInfo sourcePortInfo = (PortInfo) sourceEnd.getConnectorInfo();
-		IValue value = simulationObject.getOutputValue(sourcePortInfo.getInoutputIndex(), sourcePortInfo.getPortIndex());
-		
-		setInputValues(joinSourceEnd, value);
-	}
-	
-	private DataFlowSourceEnd getCompoundSourceEnd(ComponentNode joinNode) throws CoreException {
-		for (DataFlowTargetEnd targetEnd : joinNode.getIncomingDataFlows()) {
-			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-			if (sourceEnd.getNode().getGraph() == joinNode.getGraph()) {
-				continue;
-			}
-			if (sourceEnd.getNode() instanceof ComponentNode) {
-				if (isComponentRunnable((ComponentNode) sourceEnd.getNode())) {
-					return sourceEnd;
-				}
-			} else {
-				throw new IllegalArgumentException();
-			}
-		}
-		return null;
-	}
-
-	private DataFlowSourceEnd getDefaultSourceEnd(ComponentNode joinNode) throws CoreException {
-		for (DataFlowTargetEnd targetEnd : joinNode.getIncomingDataFlows()) {
-			DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
-			if (sourceEnd.getNode().getGraph() != joinNode.getGraph()) {
-				continue;
-			}
-			if (sourceEnd.getNode() instanceof ComponentNode) {
-				return sourceEnd;
-			} else {
-				throw new IllegalArgumentException();
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * @param graph
 	 * @param monitor
 	 * @throws CoreException
@@ -340,16 +274,4 @@ public abstract class AbstractSolver implements ISolver {
 		return defaultAction;
 	}
 	
-	private boolean isComponentRunnable(ComponentNode componentNode) throws CoreException {
-		Graph graph = componentNode.getGraph();
-		while (graph instanceof Subgraph) {
-			Subgraph subgraph = (Subgraph) graph;
-			if (graph instanceof CompoundNode && !isCompoundRunnable((CompoundNode) graph)) {
-				return false;
-			}
-			graph = subgraph.getGraph();
-		}
-		return true;
-	}
-
 }

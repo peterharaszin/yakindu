@@ -34,7 +34,7 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.mscript.computation.core.ComputationContext;
 import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.Values;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
 import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
 import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
@@ -147,14 +147,14 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
-				return new ValueConstructor().construct(new ComputationContext(), realType, 1);
+				return Values.valueOf(new ComputationContext(), realType, 1);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				Unit herzUnit = TypeSystemUtil.createUnit();
 				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
-				return new ValueConstructor().construct(new ComputationContext(), realType, 1);
+				return Values.valueOf(new ComputationContext(), realType, 1);
 			}
 			return super.getGlobalTemplateArgument(name);
 		}

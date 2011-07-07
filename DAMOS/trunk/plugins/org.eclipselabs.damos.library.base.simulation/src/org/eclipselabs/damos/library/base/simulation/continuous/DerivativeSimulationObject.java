@@ -19,7 +19,7 @@ import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.Values;
 import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
@@ -47,7 +47,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 		
 		outputDataType = (NumericType) getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		
-		outputValue = new ValueConstructor().construct(getComputationContext(), outputDataType, 0.0);
+		outputValue = Values.valueOf(getComputationContext(), outputDataType, 0.0);
 	}
 	
 	/* (non-Javadoc)
@@ -78,7 +78,7 @@ public class DerivativeSimulationObject extends AbstractBlockSimulationObject {
 		double dx = inputValue - inputValueTm1;
 		double dt = t - tm1;
 		if (dt != 0) {
-			outputValue = new ValueConstructor().construct(getComputationContext(), outputDataType, gain * (dx / dt));
+			outputValue = Values.valueOf(getComputationContext(), outputDataType, gain * (dx / dt));
 		}
 	}
 	

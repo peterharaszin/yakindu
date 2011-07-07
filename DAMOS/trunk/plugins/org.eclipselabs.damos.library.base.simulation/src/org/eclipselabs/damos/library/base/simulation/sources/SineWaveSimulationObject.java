@@ -22,9 +22,7 @@ import org.eclipselabs.mscript.computation.core.IComputationContext;
 import org.eclipselabs.mscript.computation.core.value.INumericValue;
 import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.IValueConstructor;
-import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
-import org.eclipselabs.mscript.computation.core.value.ValueTransformer;
+import org.eclipselabs.mscript.computation.core.value.Values;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
@@ -34,9 +32,6 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  *
  */
 public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
-
-	private IValueConstructor valueConstructor = new ValueConstructor();
-	private ValueTransformer valueTransformer = new ValueTransformer();
 
 	private IComputationContext defaultComputationContext;
 
@@ -69,9 +64,9 @@ public class SineWaveSimulationObject extends AbstractBlockSimulationObject {
 	
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
-		INumericValue sineValue = valueConstructor.construct(defaultComputationContext, sineDataType,
+		INumericValue sineValue = Values.valueOf(defaultComputationContext, sineDataType,
 				Math.sin(2 * Math.PI * frequency * t + Math.toRadians(phase)));
-		outputValue = valueTransformer.transform(getComputationContext(), amplitude.multiply(sineValue).add(bias));
+		outputValue = Values.transform(getComputationContext(), amplitude.multiply(sineValue).add(bias));
 	}
 	
 }

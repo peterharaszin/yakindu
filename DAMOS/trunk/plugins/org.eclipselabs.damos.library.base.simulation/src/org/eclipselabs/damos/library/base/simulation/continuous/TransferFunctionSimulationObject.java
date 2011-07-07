@@ -24,8 +24,7 @@ import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.core.value.IArrayValue;
 import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.IValueConstructor;
-import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.Values;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TensorType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
@@ -33,7 +32,6 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 public class TransferFunctionSimulationObject extends AbstractBlockSimulationObject {
 
-	private IValueConstructor valueConstructor = new ValueConstructor();
 	private RealType outputDataType;
 	
 	private IValue outputValue;
@@ -110,7 +108,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 	
 	@Override
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
-		outputValue = valueConstructor.construct(getComputationContext(), outputDataType, outputMatrix.times(vectorToMatrix(y)).get(0, 0));
+		outputValue = Values.valueOf(getComputationContext(), outputDataType, outputMatrix.times(vectorToMatrix(y)).get(0, 0));
 	}
 
 	/* (non-Javadoc)

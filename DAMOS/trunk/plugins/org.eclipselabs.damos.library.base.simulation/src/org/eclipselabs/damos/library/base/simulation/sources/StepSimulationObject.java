@@ -18,7 +18,7 @@ import org.eclipselabs.damos.library.base.sources.util.StepConstants;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.ValueTransformer;
+import org.eclipselabs.mscript.computation.core.value.Values;
 
 /**
  * @author Andreas Unger
@@ -38,10 +38,8 @@ public class StepSimulationObject extends AbstractBlockSimulationObject {
 		finalValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__FINAL_VALUE);
 		stepTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), StepConstants.PARAMETER__STEP_TIME).doubleValue();
 
-		ValueTransformer valueTransformer = new ValueTransformer();
-		
-		initialValue = valueTransformer.transform(getComputationContext(), initialValue);
-		finalValue = valueTransformer.transform(getComputationContext(), finalValue);
+		initialValue = Values.transform(getComputationContext(), initialValue);
+		finalValue = Values.transform(getComputationContext(), finalValue);
 	}
 	
 	@Override

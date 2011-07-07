@@ -31,7 +31,7 @@ import org.eclipselabs.mscript.computation.core.value.ArrayValue;
 import org.eclipselabs.mscript.computation.core.value.IArrayValue;
 import org.eclipselabs.mscript.computation.core.value.INumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.ValueConstructor;
+import org.eclipselabs.mscript.computation.core.value.Values;
 import org.eclipselabs.mscript.computation.core.value.VectorValue;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
 import org.eclipselabs.mscript.language.il.Compound;
@@ -255,7 +255,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 				double sampleTime = getNode().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
 				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
-				return new ValueConstructor().construct(new ComputationContext(), realType, sampleTime);
+				return Values.valueOf(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
@@ -263,7 +263,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 				Unit herzUnit = TypeSystemUtil.createUnit();
 				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
-				return new ValueConstructor().construct(new ComputationContext(), realType, sampleRate);
+				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}
 			return super.getGlobalTemplateArgument(name);
 		}

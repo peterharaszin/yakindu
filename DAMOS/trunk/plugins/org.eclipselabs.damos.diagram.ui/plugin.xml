@@ -327,6 +327,22 @@
             </ElementType>
          </ViewId>
       </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+            id="org.eclipselabs.damos.diagram.ui.diagramWithPrintGlobalActionHandlerProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <ViewId
+               id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor">
+            <ElementType
+                  class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId
+                     actionId="print">
+               </GlobalActionId>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">

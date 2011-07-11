@@ -77,7 +77,7 @@ public class TransferFunctionEditPart extends FractionBlockEditPart {
 						double factor = 1;
 						if (expression instanceof UnaryExpression) {
 							UnaryExpression unaryExpression = (UnaryExpression) expression;
-							if (unaryExpression.getOperator() == UnaryOperator.MINUS) {
+							if (unaryExpression.getOperator() == UnaryOperator.NEGATE) {
 								expression = unaryExpression.getOperand();
 								factor = -1;
 							}

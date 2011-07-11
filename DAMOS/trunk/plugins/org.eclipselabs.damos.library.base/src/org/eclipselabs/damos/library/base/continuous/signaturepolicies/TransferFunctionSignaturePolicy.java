@@ -73,11 +73,11 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 		TensorType numeratorType = (TensorType) numerator.getDataType();
 		TensorType denominatorType = (TensorType) denominator.getDataType();
 		
-		if (numeratorType.getElementType().getUnit() == null || !numeratorType.getElementType().getUnit().isSameAs(dimensionlessUnit, false)) {
+		if (numeratorType.getElementType().getUnit() == null || !numeratorType.getElementType().getUnit().isEquivalentTo(dimensionlessUnit, false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator coefficients must be dimensionless"));
 		}
 		
-		if (denominatorType.getElementType().getUnit() == null || !denominatorType.getElementType().getUnit().isSameAs(dimensionlessUnit, false)) {
+		if (denominatorType.getElementType().getUnit() == null || !denominatorType.getElementType().getUnit().isEquivalentTo(dimensionlessUnit, false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator coefficients must be dimensionless"));
 		}
 
@@ -91,7 +91,7 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 		}
 		
 		if (incomingDataType instanceof NumericType) {
-			if (!dimensionlessUnit.isSameAs(((NumericType) incomingDataType).getUnit(), false)) {
+			if (!dimensionlessUnit.isEquivalentTo(((NumericType) incomingDataType).getUnit(), false)) {
 				status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be dimensionless"));
 			}
 		} else {

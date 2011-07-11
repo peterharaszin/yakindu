@@ -181,10 +181,10 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		if (dataType instanceof ArrayType) {
 			if (dataType instanceof TensorType) {
 				TensorType tensorType = (TensorType) dataType;
-				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), tensorType, new INumericValue[tensorType.getSize()]));
+				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), tensorType, new INumericValue[TypeSystemUtil.getArraySize(tensorType)]));
 			} else {
 				ArrayType arrayType = (ArrayType) dataType;
-				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[arrayType.getSize()]));
+				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeSystemUtil.getArraySize(arrayType)]));
 			}
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID,
@@ -260,8 +260,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeSystemUtil.createUnit();
-				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);
+				Unit herzUnit = TypeSystemUtil.createUnit(UnitSymbol.SECOND);
+				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}

@@ -30,6 +30,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.UnitSymbol;
@@ -79,17 +80,15 @@ public class SineWaveSignaturePolicy extends AbstractComponentSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!EcoreUtil.equals(amplitudeDataType.getUnit(), biasDataType.getUnit())) {
+		if (!amplitudeDataType.getUnit().isEquivalentTo(biasDataType.getUnit(), false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Amplitude and Bias must have same unit"));
 		}
 		
-		if (frequencyDataType.isSetUnit() 
-				&& !frequencyDataType.getUnit().isSameAs(TypeSystemUtil.createUnit().divide(TypeSystemUtil.createUnit(UnitSymbol.SECOND)), true)) {
+		if (!frequencyDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit().evaluate(OperatorKind.DIVIDE, TypeSystemUtil.createUnit(UnitSymbol.SECOND)), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Frequency unit must be 1/s"));
 		}
 
-		if (phaseDataType.isSetUnit() 
-				&& !phaseDataType.getUnit().isSameAs(TypeSystemUtil.createUnit(), true)) {
+		if (!phaseDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit(), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Phase unit must be dimensionless"));
 		}
 

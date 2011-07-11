@@ -69,10 +69,10 @@ import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
-import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.il.VariableAccess;
 import org.eclipselabs.mscript.language.il.util.ExpressionDataTypeAdaptor;
 import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.Expression;
 
 /**
  * @author Andreas Unger

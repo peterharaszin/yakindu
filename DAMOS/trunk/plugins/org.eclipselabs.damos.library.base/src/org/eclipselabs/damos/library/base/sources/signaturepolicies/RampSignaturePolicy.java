@@ -30,6 +30,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.Unit;
 import org.eclipselabs.mscript.typesystem.UnitSymbol;
@@ -72,13 +73,11 @@ public class RampSignaturePolicy extends AbstractComponentSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (startTimeDataType.isSetUnit() 
-				&& !startTimeDataType.getUnit().isSameAs(TypeSystemUtil.createUnit(UnitSymbol.SECOND), true)) {
+		if (!startTimeDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit(UnitSymbol.SECOND), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Start Time unit must be second"));
 		}
 
-		if (slopeDataType.isSetUnit() 
-				&& !slopeDataType.getUnit().isSameAs(initialValueDataType.getUnit().divide(TypeSystemUtil.createUnit(UnitSymbol.SECOND)), true)) {
+		if (!slopeDataType.getUnit().isEquivalentTo(initialValueDataType.getUnit().evaluate(OperatorKind.DIVIDE, TypeSystemUtil.createUnit(UnitSymbol.SECOND)), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Slope unit must be Initial Value unit divided by seconds"));
 		}
 

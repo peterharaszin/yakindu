@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -70,13 +69,13 @@ public class ComponentSignature implements IComponentSignature {
 		}
 
 		for (Entry<InputPort, DataType> inputDataType : inputDataTypes.entrySet()) {
-			if (!EcoreUtil.equals(inputDataType.getValue(), other.inputDataTypes.get(inputDataType.getKey()))) {
+			if (!inputDataType.getValue().isEquivalentTo(other.inputDataTypes.get(inputDataType.getKey()))) {
 				return false;
 			}
 		}
 
 		for (Entry<OutputPort, DataType> outputDataType : outputDataTypes.entrySet()) {
-			if (!EcoreUtil.equals(outputDataType.getValue(), other.outputDataTypes.get(outputDataType.getKey()))) {
+			if (!outputDataType.getValue().isEquivalentTo(other.outputDataTypes.get(outputDataType.getKey()))) {
 				return false;
 			}
 		}

@@ -26,7 +26,6 @@ import org.eclipselabs.mscript.computation.core.ComputationContext;
 import org.eclipselabs.mscript.computation.core.value.IBooleanValue;
 import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.language.ast.Expression;
 import org.eclipselabs.mscript.language.ast.ExpressionList;
 import org.eclipselabs.mscript.language.il.transform.ITransformerContext;
 import org.eclipselabs.mscript.language.il.transform.TransformerContext;
@@ -34,6 +33,7 @@ import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.util.ExpressionInterpreterHelper;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
+import org.eclipselabs.mscript.typesystem.Expression;
 import org.eclipselabs.mscript.typesystem.IntegerType;
 
 /**

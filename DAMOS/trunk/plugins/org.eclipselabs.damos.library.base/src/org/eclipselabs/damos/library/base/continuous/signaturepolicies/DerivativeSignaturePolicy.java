@@ -18,6 +18,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.DerivativeConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.UnitSymbol;
@@ -66,7 +67,7 @@ public class DerivativeSignaturePolicy extends AbstractComponentSignaturePolicy 
 		}
 
 		RealType outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
-		outputDataType.setUnit(incomingNumericType.getUnit().multiply(gainDataType.getUnit()).divide(TypeSystemUtil.createUnit(UnitSymbol.SECOND)));
+		outputDataType.setUnit(incomingNumericType.getUnit().evaluate(OperatorKind.MULTIPLY, gainDataType.getUnit()).evaluate(OperatorKind.DIVIDE, TypeSystemUtil.createUnit(UnitSymbol.SECOND)));
 		
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);

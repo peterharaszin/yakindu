@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal.generators;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.Block;
@@ -68,7 +67,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			InputPort inputPort = blockInput.getPorts().get(0);
 			DataType inputDataType = signature.getInputDataType(inputPort);
 			DataType targetDataType = inputVariableDeclaration.getDataType();
-			if (!EcoreUtil.equals(inputDataType, targetDataType)) {
+			if (!inputDataType.isEquivalentTo(targetDataType)) {
 				return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
 			}
 		}

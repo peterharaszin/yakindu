@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.codegen.c.generator.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
@@ -309,7 +308,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 				InputPort inputPort = blockInput.getPorts().get(0);
 				DataType inputDataType = getSignature().getInputDataType(inputPort);
 				DataType targetDataType = inputVariableDeclaration.getDataType();
-				if (!EcoreUtil.equals(inputDataType, targetDataType)) {
+				if (!inputDataType.isEquivalentTo(targetDataType)) {
 					writer.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
 					MscriptGeneratorUtil.cast(mscriptGeneratorContext, variableAccessor.getInputVariable(inputPort, false), inputDataType, targetDataType);
 					writer.println(";");
@@ -344,8 +343,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
 				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeSystemUtil.createUnit();
-				herzUnit.getFactor(UnitSymbol.SECOND).setExponent(-1);
+				Unit herzUnit = TypeSystemUtil.createUnit(UnitSymbol.SECOND);
+				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);
 			}

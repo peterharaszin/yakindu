@@ -16,10 +16,10 @@ import java.io.StringReader;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.mscript.language.ast.DataTypeSpecifier;
-import org.eclipselabs.mscript.language.interpreter.DataTypeSpecifierEvaluator;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.typesystem.DataType;
@@ -38,7 +38,7 @@ public class DataTypeSpecifierUtil {
 		if (result.hasSyntaxErrors()) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parse error"));
 		}
-		return new DataTypeSpecifierEvaluator().evaluate(context, (DataTypeSpecifier) result.getRootASTElement());
+		return EcoreUtil.copy(((DataTypeSpecifier) result.getRootASTElement()).getType());
 	}
 
 }

@@ -73,12 +73,11 @@ public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!initialValueDataType.getUnit().isSameAs(finalValueDataType.getUnit(), false)) {
+		if (!initialValueDataType.getUnit().isEquivalentTo(finalValueDataType.getUnit(), false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Value and Final Value must have same unit"));
 		}
 		
-		if (stepTimeDataType.isSetUnit() 
-				&& !stepTimeDataType.getUnit().isSameAs(TypeSystemUtil.createUnit(UnitSymbol.SECOND), true)) {
+		if (!stepTimeDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit(UnitSymbol.SECOND), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Step Time unit must be second"));
 		}
 

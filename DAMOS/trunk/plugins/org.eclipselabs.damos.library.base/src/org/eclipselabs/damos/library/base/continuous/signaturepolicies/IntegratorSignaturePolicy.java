@@ -18,6 +18,7 @@ import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.IntegratorConstants;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.NumericType;
+import org.eclipselabs.mscript.typesystem.OperatorKind;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.UnitSymbol;
@@ -68,7 +69,7 @@ public class IntegratorSignaturePolicy extends AbstractComponentSignaturePolicy 
 		
 		NumericType incomingNumericType = (NumericType) incomingDataType;
 		
-		if (!initialConditionDataType.getUnit().isSameAs(incomingNumericType.getUnit(), false)) {
+		if (!initialConditionDataType.getUnit().isEquivalentTo(incomingNumericType.getUnit(), false)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Condition and input value must have same unit"));
 		}
 		
@@ -77,7 +78,7 @@ public class IntegratorSignaturePolicy extends AbstractComponentSignaturePolicy 
 		}
 
 		RealType outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
-		outputDataType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND).multiply(incomingNumericType.getUnit()).multiply(gainDataType.getUnit()));
+		outputDataType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND).evaluate(OperatorKind.MULTIPLY, incomingNumericType.getUnit()).evaluate(OperatorKind.MULTIPLY, gainDataType.getUnit()));
 		
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);

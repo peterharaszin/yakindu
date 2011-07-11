@@ -152,8 +152,9 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		TensorType tensorType = (TensorType) coefficientVector.getDataType();
 		IArrayValue arrayValue = (IArrayValue) coefficientVector;
 		
-		coefficients = new double[tensorType.getSize()];
-		for (int i = 0; i < tensorType.getSize(); ++i) {
+		int arraySize = TypeSystemUtil.getArraySize(tensorType);
+		coefficients = new double[arraySize];
+		for (int i = 0; i < arraySize; ++i) {
 			IValue element = arrayValue.get(i);
 			if (!(element instanceof ISimpleNumericValue)) {
 				throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Parameter '"

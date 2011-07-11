@@ -24,12 +24,12 @@ import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConsta
 import org.eclipselabs.damos.library.common.ui.editparts.FractionBlockEditPart;
 import org.eclipselabs.damos.library.common.util.PolynomialExpressionUtil;
 import org.eclipselabs.mscript.language.ast.ArrayConstructionOperator;
-import org.eclipselabs.mscript.language.ast.Expression;
-import org.eclipselabs.mscript.language.ast.IntegerLiteral;
-import org.eclipselabs.mscript.language.ast.RealLiteral;
 import org.eclipselabs.mscript.language.ast.UnaryExpression;
 import org.eclipselabs.mscript.language.ast.UnaryOperator;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
+import org.eclipselabs.mscript.typesystem.Expression;
+import org.eclipselabs.mscript.typesystem.IntegerLiteral;
+import org.eclipselabs.mscript.typesystem.RealLiteral;
 
 /**
  * @author Andreas Unger

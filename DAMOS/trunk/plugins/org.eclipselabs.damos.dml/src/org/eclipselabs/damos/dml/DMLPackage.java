@@ -2779,13 +2779,22 @@ public interface DMLPackage extends EPackage {
 	int OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Model</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPAQUE_BEHAVIOR_SPECIFICATION__MODEL = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Opaque Behavior Specification</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPAQUE_BEHAVIOR_SPECIFICATION_FEATURE_COUNT = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 1;
+	int OPAQUE_BEHAVIOR_SPECIFICATION_FEATURE_COUNT = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.LatchImpl <em>Latch</em>}' class.
@@ -5156,6 +5165,17 @@ public interface DMLPackage extends EPackage {
 	EAttribute getOpaqueBehaviorSpecification_Behavior();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Model</em>'.
+	 * @see org.eclipselabs.damos.dml.OpaqueBehaviorSpecification#getModel()
+	 * @see #getOpaqueBehaviorSpecification()
+	 * @generated
+	 */
+	EReference getOpaqueBehaviorSpecification_Model();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Latch <em>Latch</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6696,6 +6716,14 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR = eINSTANCE.getOpaqueBehaviorSpecification_Behavior();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPAQUE_BEHAVIOR_SPECIFICATION__MODEL = eINSTANCE.getOpaqueBehaviorSpecification_Model();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.LatchImpl <em>Latch</em>}' class.

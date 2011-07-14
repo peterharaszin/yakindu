@@ -7,7 +7,10 @@
 package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
@@ -20,6 +23,7 @@ import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.OpaqueBehaviorSpecificationImpl#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.OpaqueBehaviorSpecificationImpl#getModel <em>Model</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,6 +49,16 @@ public class OpaqueBehaviorSpecificationImpl extends BehaviorSpecificationImpl i
 	 * @ordered
 	 */
 	protected String behavior = BEHAVIOR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getModel()
+	 * @generated
+	 * @ordered
+	 */
+	protected EObject model;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -89,6 +103,49 @@ public class OpaqueBehaviorSpecificationImpl extends BehaviorSpecificationImpl i
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject getModel() {
+		return model;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetModel(EObject newModel, NotificationChain msgs) {
+		EObject oldModel = model;
+		model = newModel;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL, oldModel, newModel);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setModel(EObject newModel) {
+		if (newModel != model) {
+			NotificationChain msgs = null;
+			if (model != null)
+				msgs = ((InternalEObject)model).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL, null, msgs);
+			if (newModel != null)
+				msgs = ((InternalEObject)newModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL, null, msgs);
+			msgs = basicSetModel(newModel, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL, newModel, newModel));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public String getText() {
@@ -110,10 +167,26 @@ public class OpaqueBehaviorSpecificationImpl extends BehaviorSpecificationImpl i
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL:
+				return basicSetModel(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR:
 				return getBehavior();
+			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL:
+				return getModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -128,6 +201,9 @@ public class OpaqueBehaviorSpecificationImpl extends BehaviorSpecificationImpl i
 		switch (featureID) {
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR:
 				setBehavior((String)newValue);
+				return;
+			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL:
+				setModel((EObject)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,6 +220,9 @@ public class OpaqueBehaviorSpecificationImpl extends BehaviorSpecificationImpl i
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR:
 				setBehavior(BEHAVIOR_EDEFAULT);
 				return;
+			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL:
+				setModel((EObject)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -158,6 +237,8 @@ public class OpaqueBehaviorSpecificationImpl extends BehaviorSpecificationImpl i
 		switch (featureID) {
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR:
 				return BEHAVIOR_EDEFAULT == null ? behavior != null : !BEHAVIOR_EDEFAULT.equals(behavior);
+			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL:
+				return model != null;
 		}
 		return super.eIsSet(featureID);
 	}

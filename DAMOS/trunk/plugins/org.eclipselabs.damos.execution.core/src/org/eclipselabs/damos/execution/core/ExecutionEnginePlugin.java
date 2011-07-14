@@ -1,6 +1,7 @@
 package org.eclipselabs.damos.execution.core;
 
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.xtext.linking.ILinker;
 import org.eclipselabs.mscript.language.MscriptRuntimeModule;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.osgi.framework.BundleContext;
@@ -14,6 +15,8 @@ import com.google.inject.Injector;
 public class ExecutionEnginePlugin extends Plugin {
 
 	private MscriptParser mscriptParser;
+	
+	private ILinker linker;
 	
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.execution.core";
@@ -37,6 +40,7 @@ public class ExecutionEnginePlugin extends Plugin {
 
 		Injector injector = Guice.createInjector(new MscriptRuntimeModule());
 		mscriptParser = injector.getInstance(MscriptParser.class);
+		linker = injector.getInstance(ILinker.class);
 	}
 
 	/*
@@ -45,6 +49,7 @@ public class ExecutionEnginePlugin extends Plugin {
 	 */
 	public void stop(BundleContext context) throws Exception {
 		mscriptParser = null;
+		linker = null;
 
 		plugin = null;
 		super.stop(context);
@@ -64,6 +69,13 @@ public class ExecutionEnginePlugin extends Plugin {
 	 */
 	public MscriptParser getMscriptParser() {
 		return mscriptParser;
+	}
+	
+	/**
+	 * @return the linker
+	 */
+	public ILinker getLinker() {
+		return linker;
 	}
 
 }

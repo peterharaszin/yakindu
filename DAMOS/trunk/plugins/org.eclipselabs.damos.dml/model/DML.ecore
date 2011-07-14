@@ -345,6 +345,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorSpecification" eSuperTypes="#//BehaviorSpecification #//ITextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="behavior" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        transient="true" derived="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Latch" eSuperTypes="#//Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" lowerBound="1"

@@ -261,6 +261,7 @@
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//OpaqueBehaviorSpecification">
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueBehaviorSpecification/behavior"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//OpaqueBehaviorSpecification/model"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Latch">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Latch/initialValue"/>

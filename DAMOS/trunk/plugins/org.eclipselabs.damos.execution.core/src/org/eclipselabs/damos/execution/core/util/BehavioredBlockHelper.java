@@ -20,7 +20,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
@@ -72,20 +74,33 @@ public class BehavioredBlockHelper {
 
 		OpaqueBehaviorSpecification behavior = (OpaqueBehaviorSpecification) block.getType().getBehavior();
 
-		if (behavior.getBehavior() == null) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No block behavior specified"));
+		if (behavior.getModel() == null) {
+			if (behavior.getBehavior() == null) {
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No block behavior specified"));
+			}
+	
+			MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
+
+			IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule(),
+					new StringReader(behavior.getBehavior()));
+
+			if (parseResult.hasSyntaxErrors()) {
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block behavior failed"));
+			}
+
+			Module module = (Module) parseResult.getRootASTElement();
+			behavior.setModel(module);
+			
+			ILinker linker = ExecutionEnginePlugin.getDefault().getLinker();
+			linker.linkModel(module, new ListBasedDiagnosticConsumer());
 		}
 
-		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
-
-		IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule(),
-				new StringReader(behavior.getBehavior()));
-
-		if (parseResult.hasSyntaxErrors()) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block behavior failed"));
+		if (!(behavior.getModel() instanceof Module)) {
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior model"));
 		}
 
-		Module module = (Module) parseResult.getRootASTElement();
+		Module module = (Module) behavior.getModel();
+
 		FunctionDefinition functionDefinition = LanguageUtil.getFunctionDefinition(module, block.getType().getName());
 		if (functionDefinition == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Mscript function '" + block.getType().getName() + "' not found"));

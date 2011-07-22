@@ -37,6 +37,7 @@ import org.eclipselabs.mscript.computation.core.value.INumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
 import org.eclipselabs.mscript.computation.core.value.VectorValue;
 import org.eclipselabs.mscript.language.ast.FunctionDefinition;
+import org.eclipselabs.mscript.language.ast.InputParameterDeclaration;
 import org.eclipselabs.mscript.language.ast.Module;
 import org.eclipselabs.mscript.language.ast.ParameterDeclaration;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
@@ -150,7 +151,7 @@ public class BehavioredBlockHelper {
 
 	public List<DataType> getInputParameterDataTypes(FunctionDefinition functionDefinition, IComponentSignature signature, MultiStatus status) {
 		List<DataType> dataTypes = new ArrayList<DataType>();
-		Iterator<ParameterDeclaration> parameterDeclarationIterator = functionDefinition.getInputParameterDeclarations().iterator();
+		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDefinition.getInputParameterDeclarations().iterator();
 		for (Input input : block.getInputs()) {
 			BlockInput blockInput = (BlockInput) input;
 			

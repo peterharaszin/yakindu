@@ -12,43 +12,6 @@
       </initializer>
    </extension>
    <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            class="org.eclipselabs.damos.diagram.ui.part.BlockDiagramEditor"
-            contributorClass="org.eclipselabs.damos.diagram.ui.part.BlockDiagramActionBarContributor"
-            default="true"
-            extensions="blockdiagram"
-            icon="icons/blockdiagram.gif"
-            id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor"
-            matchingStrategy="org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditorMatchingStrategy"
-            name="Block Diagram Editor">
-      </editor>
-   </extension>
-   <extension
-         point="org.eclipse.ui.views">
-      <view
-            class="org.eclipselabs.damos.diagram.ui.part.FragmentView"
-            id="org.eclipselabs.damos.diagram.ui.part.fragmentView"
-            name="Fragment Explorer"
-            restorable="true">
-      </view>
-      <view
-            class="org.eclipselabs.damos.diagram.ui.internal.views.BlockLibraryView"
-            id="org.eclipselabs.damos.diagram.ui.internal.views.blockLibraryView"
-            name="Block Library">
-      </view>
-   </extension>
-   <extension
-         point="org.eclipse.ui.newWizards">
-      <wizard
-            category="org.eclipselabs.damos.common.damosCategory"
-            class="org.eclipselabs.damos.diagram.ui.wizards.BlockDiagramEditorCreationWizard"
-            icon="icons/blockdiagram.gif"
-            id="org.eclipselabs.damos.diagram.ui.blockDiagramWizard"
-            name="Block Diagram">
-      </wizard>
-   </extension>
-   <extension
          point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
       <propertyTabs
             contributorId="org.eclipselabs.damos.dml.ui.properties">
@@ -222,7 +185,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="toolbar:org.eclipselabs.damos.diagram.ui.part.fragmentView">
+            locationURI="toolbar:org.eclipselabs.damos.ide.ui.fragmentExplorerView">
          <command
                commandId="org.eclipselabs.damos.diagram.ui.commands.newFragment"
                icon="icons/newfile_wiz.gif"
@@ -231,7 +194,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.eclipselabs.damos.diagram.ui.part.fragmentView?after=file">
+            locationURI="popup:org.eclipselabs.damos.ide.ui.fragmentExplorerView?after=file">
          <command
                commandId="org.eclipselabs.damos.diagram.ui.commands.newFragment"
                icon="icons/newfile_wiz.gif"
@@ -240,7 +203,7 @@
          </command>
       </menuContribution>
       <menuContribution
-            locationURI="popup:org.eclipselabs.damos.diagram.ui.part.fragmentView?after=edit">
+            locationURI="popup:org.eclipselabs.damos.ide.ui.fragmentExplorerView?after=edit">
          <command
                commandId="org.eclipselabs.damos.diagram.ui.commands.deleteFragment"
                icon="icons/delete.gif"
@@ -320,7 +283,7 @@
                name="Lowest">
          </Priority>
          <ViewId
-               id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor">
+               id="org.eclipselabs.damos.ide.ui.blockDiagramEditor">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId actionId="save">
                </GlobalActionId>
@@ -334,7 +297,7 @@
                name="Lowest">
          </Priority>
          <ViewId
-               id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor">
+               id="org.eclipselabs.damos.ide.ui.blockDiagramEditor">
             <ElementType
                   class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
                <GlobalActionId
@@ -407,18 +370,6 @@
                name="Lowest">
          </Priority>
       </editpartProvider>
-   </extension>
-   <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.paletteProviders">
-      <paletteProvider
-            class="org.eclipselabs.damos.diagram.ui.palette.PaletteProvider">
-         <editor
-               id="org.eclipselabs.damos.diagram.ui.blockDiagramEditor">
-         </editor>
-         <Priority
-               name="Lowest">
-         </Priority>
-      </paletteProvider>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">

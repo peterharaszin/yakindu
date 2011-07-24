@@ -28,7 +28,7 @@ public class DiagramUIPlugin extends AbstractUIPlugin {
 	 * The block diagram notation editor ID. This matches the id used in this plugin's
 	 * XML for the editor extension point.
 	 */
-	public static final String EDITOR_ID = "org.eclipselabs.damos.diagram.ui.blockDiagramEditor"; //$NON-NLS-1$
+	public static final String EDITOR_ID = "org.eclipselabs.damos.ide.ui.blockDiagramEditor"; //$NON-NLS-1$
 
 	// The shared instance
 	private static DiagramUIPlugin plugin;

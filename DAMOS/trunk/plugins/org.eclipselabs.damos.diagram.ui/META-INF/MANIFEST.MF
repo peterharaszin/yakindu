@@ -4,7 +4,8 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipselabs.damos.diagram.ui;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipselabs.damos.diagram.ui.DiagramUIPlugin
-Require-Bundle: org.eclipse.ui.ide,
+Require-Bundle: com.google.inject;bundle-version="2.0.0",
+ org.eclipse.ui.ide,
  org.eclipse.core.databinding.property;bundle-version="1.4.0",
  org.eclipse.jface.databinding;bundle-version="1.5.0",
  org.eclipse.emf.databinding;bundle-version="1.2.0",
@@ -33,4 +34,6 @@ Export-Package: org.eclipselabs.damos.diagram.ui,
  org.eclipselabs.damos.diagram.ui.requests,
  org.eclipselabs.damos.diagram.ui.view,
  org.eclipselabs.damos.diagram.ui.view.factories,
- org.eclipselabs.damos.diagram.ui.view.util
+ org.eclipselabs.damos.diagram.ui.view.util,
+ org.eclipselabs.damos.diagram.ui.views,
+ org.eclipselabs.damos.diagram.ui.wizards

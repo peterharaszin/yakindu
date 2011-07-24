@@ -46,12 +46,14 @@ import org.eclipselabs.damos.diagram.ui.internal.palette.PaletteDrawer;
 import org.eclipselabs.damos.diagram.ui.internal.palette.SubsystemCreationToolEntry;
 import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageDescriptor;
 import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageRegistry;
-import org.eclipselabs.damos.diagram.ui.internal.views.BlockLibraryView;
 import org.eclipselabs.damos.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
+
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 /**
  * @author Andreas Unger
@@ -59,6 +61,10 @@ import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
  */
 public class PaletteProvider extends AbstractProvider implements IPaletteProvider {
 	
+	@Inject
+	@Named("blockLibraryViewId")
+	private String blockLibraryViewId;
+
 	private static final BlockGroupComparator BLOCK_GROUP_COMPARATOR = new BlockGroupComparator();
 	
 	private static final BlockTypeComparator BLOCK_TYPE_COMPARATOR = new BlockTypeComparator();
@@ -206,7 +212,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 			
 			public void actionPerformed(ActionEvent event) {
 				try {
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(BlockLibraryView.ID);
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(blockLibraryViewId);
 				} catch (PartInitException e) {
 					ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Show All", "Opening block library view failed", e.getStatus());
 				}

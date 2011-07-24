@@ -27,10 +27,15 @@ import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListen
 import org.eclipselabs.damos.diagram.ui.viewers.FragmentTreeLabelProvider;
 import org.eclipselabs.damos.dml.Fragment;
 
-public class FragmentView extends PageBookView {
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
-	public static final String ID = "org.eclipselabs.damos.diagram.ui.part.fragmentView";
-	
+public class FragmentExplorerView extends PageBookView {
+
+	@Inject
+	@Named("fragmentExplorerViewId")
+	private String fragmentExplorerViewId;
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.part.PageBookView#createDefaultPage(org.eclipse.ui.part.PageBook)
 	 */
@@ -84,7 +89,7 @@ public class FragmentView extends PageBookView {
         pageRecord.dispose();
 	}
 	
-	private static class FragmentPage extends Page {
+	private class FragmentPage extends Page {
 
 		private FragmentSelectionManager fragmentManager;
 		private TreeViewer treeViewer;
@@ -140,7 +145,7 @@ public class FragmentView extends PageBookView {
 			Menu menu = menuManager.createContextMenu(treeViewer.getControl());
 			treeViewer.getControl().setMenu(menu);
 
-			getSite().registerContextMenu(ID, menuManager, treeViewer);
+			getSite().registerContextMenu(fragmentExplorerViewId, menuManager, treeViewer);
 			getSite().setSelectionProvider(treeViewer);
 			fragmentManager.addFragmentSelectionChangeListener(fragmentChangeListener);
 		}

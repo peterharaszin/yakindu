@@ -15,7 +15,7 @@
             id="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelWizardID"
             name="%_UI_CGenModelWizard_label"
             class="org.eclipselabs.damos.codegen.c.cgenmodel.ui.editor.presentation.CGenModelWizard"
-            category="org.eclipselabs.damos.common.damosCategory"
+            category="org.eclipselabs.damos.ide.ui.damosCategory"
             icon="icons/full/obj16/CGenModelFile.gif">
          <description>%_UI_CGenModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>

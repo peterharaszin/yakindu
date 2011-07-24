@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.internal.views;
+package org.eclipselabs.damos.diagram.ui.views;
 
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
@@ -36,8 +36,6 @@ import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
  */
 public class BlockLibraryView extends ViewPart {
 
-	public static final String ID = "org.eclipselabs.damos.diagram.ui.internal.views.blockLibraryView"; //$NON-NLS-1$
-	
 	private TreeViewer viewer;
 
 	public BlockLibraryView() {

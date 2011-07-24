@@ -15,25 +15,29 @@ import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.wizards.EditorCre
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
 
+import com.google.inject.Inject;
+import com.google.inject.name.Named;
+
 public class BlockDiagramEditorCreationWizard extends EditorCreationWizard {
 
+	@Inject
+	@Named("blockDiagramFileExtension")
+	private String fileExtension;
+	
 	/**
 	 * @see org.eclipse.jface.wizard.IWizard#addPages()
 	 */
 	public void addPages() {
 		super.addPages();
-
-		if (page == null)
-			page = new BlockDiagramEditorWizardPage(getWorkbench(), getSelection());
-
+		if (page == null) {
+			page = new BlockDiagramEditorWizardPage(getWorkbench(), getSelection(), fileExtension);
+		}
 		addPage(page);
 	}
 	
 	public void init(IWorkbench workbench, IStructuredSelection sel) {
 		super.init(workbench, sel);
-
 		setWindowTitle("New Block Diagram");
-		//setDefaultPageImageDescriptor(null);
 		setNeedsProgressMonitor(true);
 	}
 

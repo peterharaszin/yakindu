@@ -7,13 +7,13 @@
             id="org.eclipselabs.damos.dml.ui.blockTypeWizard"
             name="%_UI_BlockTypeModelWizard_label"
             class="org.eclipselabs.damos.dml.ui.editor.presentation.BlockTypeWizard"
-            category="org.eclipselabs.damos.common.damosCategory"
+            category="org.eclipselabs.damos.ide.ui.damosCategory"
             icon="icons/full/obj16/BlockTypeFile.gif">
          <description>%_UI_BlockTypeModelWizard_description</description>
          <selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
       <wizard
-            category="org.eclipselabs.damos.common.damosCategory"
+            category="org.eclipselabs.damos.ide.ui.damosCategory"
             class="org.eclipselabs.damos.dml.ui.editor.presentation.CategoryWizard"
             icon="icons/full/obj16/CategoryFile.gif"
             id="org.eclipselabs.damos.dml.ui.categoryWizard"

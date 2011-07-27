@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.contexts"?>
+<contexts>
+   <context id="YAKINDU_SCT_EDITOR">
+      <description>YAKINDU-YAKINDU-YAKINDU</description>
+      <topic label="YAKINDU-YAKINDU-YAKINDU"
+             href="html/concepts/subtopic.html"/>
+   </context>
+</contexts> 

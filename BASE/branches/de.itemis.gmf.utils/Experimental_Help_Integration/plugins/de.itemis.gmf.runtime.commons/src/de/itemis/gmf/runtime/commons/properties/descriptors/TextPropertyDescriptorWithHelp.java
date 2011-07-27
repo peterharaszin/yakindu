@@ -17,6 +17,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
+/* Room for experiments with the Eclise help system. */
 public class TextPropertyDescriptorWithHelp extends AbstractPropertyDescriptor {
 	
 	public TextPropertyDescriptorWithHelp(EAttribute feature, String labelName) {
@@ -50,6 +51,7 @@ public class TextPropertyDescriptorWithHelp extends AbstractPropertyDescriptor {
 	}
 
 	@Override
+	// Parent layout? (number of grid columns, etc.)
 	protected Control createControl(Composite parent) {
 		FormToolkit toolkit = new FormToolkit(parent.getDisplay());
 		

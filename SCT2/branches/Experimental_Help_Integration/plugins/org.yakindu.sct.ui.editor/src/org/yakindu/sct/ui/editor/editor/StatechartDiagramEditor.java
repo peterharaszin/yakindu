@@ -81,6 +81,7 @@ public class StatechartDiagramEditor extends DiagramDocumentEditor implements
 		return DiagramActivator.DIAGRAM_PREFERENCES_HINT;
 	}
 	
+	/*
 	@Override
 	public void createPartControl(Composite parent) {
 		super.createPartControl(parent);
@@ -91,7 +92,7 @@ public class StatechartDiagramEditor extends DiagramDocumentEditor implements
 //	        		HelpUtil.getContextId(IYakinduSCTHelpConstants.YAKINDU_PROPERTY_SHEETS,
 //	        				DiagramActivator.getDefault().getBundle().getSymbolicName()));
 		
-	}
+	} */
 	
 //	public IContext getContext(Object target) {
 //		return contextProviderDelegate.getContext(target);

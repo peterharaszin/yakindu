@@ -16,8 +16,8 @@ import org.eclipse.jface.dialogs.IDialogLabelKeys;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -32,22 +32,22 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * @author andreas muelder
  * 
  */
-public abstract class AbstractPropertyDescriptor implements
-		IFormPropertyDescriptor {
+public abstract class AbstractPropertyDescriptor implements IFormPropertyDescriptor {
 
 	private final EAttribute feature;
 	private final String labelName;
 
 	private Control control;
 
-	// Use interface constant?
-	public final static String HELP_CONTEXT_NONE = "";
+	// Use interface constant? Yes, please!
+	public final static String HELP_CONTEXT_NONE = "HELP_CONTEXT_NONE";
 	private String helpContextId = HELP_CONTEXT_NONE;
-	
+
 	public String getHelpContextId() {
 		return helpContextId;
 	}
 
+	// necessary ?!
 	public void setHelpContextId(String helpContextId) {
 		this.helpContextId = helpContextId;
 	}
@@ -64,11 +64,10 @@ public abstract class AbstractPropertyDescriptor implements
 	}
 
 	public AbstractPropertyDescriptor(EAttribute feature, String labelName, String helpContextId) {
+		this(feature, labelName);
 		this.helpContextId = helpContextId;
-		this.feature = feature;
-		this.labelName = labelName;
 	}
-	
+
 	public EAttribute getEAttribute() {
 		return feature;
 	}
@@ -90,24 +89,31 @@ public abstract class AbstractPropertyDescriptor implements
 	public Control getControl() {
 		return control;
 	}
-	
+
 	public void addHelp(Composite parent) {
 		FormToolkit toolkit = new FormToolkit(parent.getDisplay());
-		Button helpButton = toolkit.createButton(parent,"", SWT.PUSH) ;
-		helpButton.setToolTipText(JFaceResources.getString(IDialogLabelKeys.HELP_LABEL_KEY));
+		final Button helpButton = toolkit.createButton(parent, "", SWT.PUSH);
 		helpButton.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_LCL_LINKTO_HELP));
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).applyTo(helpButton);
-		//applyLayout(helpButton);
-		applyHelpContext(helpButton);
-		helpButton.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
-				PlatformUI.getWorkbench().getHelpSystem().displayDynamicHelp();
-			}
-		});
+		if (hasHelpContext()) {
+			helpButton.setToolTipText(JFaceResources.getString(IDialogLabelKeys.HELP_LABEL_KEY));
+			helpButton.addMouseListener(new MouseAdapter() {
+				public void mouseDown(MouseEvent e) {
+					getControl().setFocus();
+					PlatformUI.getWorkbench().getHelpSystem().displayDynamicHelp();
+				}
+			});
+		} else {
+			helpButton.setEnabled(false);
+			//helpButton.setVisible(false);
+		}
+	}
+
+	public boolean hasHelpContext() {
+		return !(HELP_CONTEXT_NONE.equals(getHelpContextId()));
 	}
 
 	protected void applyHelpContext(Control control) {
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(control, getHelpContextId());
-		
 	}
 }

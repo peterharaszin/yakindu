@@ -74,9 +74,10 @@ public class SimulationEngine implements ISimulationEngine {
 		int simulationEventKind = SimulationEvent.CANCEL;
 		try {
 			double nextTime = 0;
-			clock.start(monitor);
 			
 			SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.START));
+			clock.start(monitor);
+
 			while (!monitor.isCanceled()) {
 				SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.BEFORE_STEP, nextTime));
 				solver.computeStep(monitor);

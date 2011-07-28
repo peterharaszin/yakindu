@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.simulation.simulator;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 
 /**
@@ -19,7 +20,7 @@ import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
  */
 public interface ISimulationClock {
 
-	void start(ISimulationMonitor monitor);
+	void start(ISimulationMonitor monitor) throws CoreException;
 	long getNanoTime();
 	
 }

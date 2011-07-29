@@ -38,7 +38,6 @@ public class TextPropertyDescriptor extends AbstractPropertyDescriptor {
 		FormToolkit toolkit = new FormToolkit(parent.getDisplay());
 		Text control = toolkit.createText(parent, "");
 		applyLayout(control);
-		applyHelpContext(control);
 		return control;
 	}
 

@@ -39,15 +39,15 @@ public abstract class AbstractPropertyDescriptor implements IFormPropertyDescrip
 
 	private Control control;
 
-	// Use interface constant? Yes, please!
-	public final static String HELP_CONTEXT_NONE = "HELP_CONTEXT_NONE";
-	private String helpContextId = HELP_CONTEXT_NONE;
+	public final static String HELP_CONTEXT_NONE = "help_context_none";
+	
+	protected String helpContextId = HELP_CONTEXT_NONE;
 
 	public String getHelpContextId() {
 		return helpContextId;
 	}
 
-	// necessary ?!
+	// necessary?!
 	public void setHelpContextId(String helpContextId) {
 		this.helpContextId = helpContextId;
 	}
@@ -56,6 +56,7 @@ public abstract class AbstractPropertyDescriptor implements IFormPropertyDescrip
 
 	public void initControl(Composite parent) {
 		control = createControl(parent);
+		applyHelpContext(control);
 	}
 
 	public AbstractPropertyDescriptor(EAttribute feature, String labelName) {
@@ -112,8 +113,11 @@ public abstract class AbstractPropertyDescriptor implements IFormPropertyDescrip
 	public boolean hasHelpContext() {
 		return !(HELP_CONTEXT_NONE.equals(getHelpContextId()));
 	}
-
+	
+	// necessary?
 	protected void applyHelpContext(Control control) {
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(control, getHelpContextId());
+		if (hasHelpContext()) {
+			PlatformUI.getWorkbench().getHelpSystem().setHelp(control, getHelpContextId());
+		}
 	}
 }

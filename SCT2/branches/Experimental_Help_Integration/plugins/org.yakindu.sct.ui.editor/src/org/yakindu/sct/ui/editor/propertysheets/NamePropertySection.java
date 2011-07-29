@@ -19,7 +19,7 @@ public abstract class NamePropertySection extends AbstractEditorPropertySection{
 			List<IFormPropertyDescriptor> descriptors) {
 		// used to be TextPropertyDescriptorWithHelp
 		TextPropertyDescriptor nameDescriptor = new TextPropertyDescriptor(
-				SGraphPackage.Literals.NAMED_ELEMENT__NAME, "Name: ", "org.yakindu.sct.ui.editor.YAKINDU_SCT_EDITOR");
+				SGraphPackage.Literals.NAMED_ELEMENT__NAME, "Name: ");
 		descriptors.add(nameDescriptor);
 	}
 	

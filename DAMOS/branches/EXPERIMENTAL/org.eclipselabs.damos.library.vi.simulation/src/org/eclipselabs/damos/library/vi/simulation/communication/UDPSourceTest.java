@@ -23,6 +23,8 @@ import java.net.SocketException;
  */
 class UDPSourceTest {
 
+	private static final int FS = 100;
+	
 	/**
 	 * @param args
 	 */
@@ -38,7 +40,7 @@ class UDPSourceTest {
 				byte[] buffer = s.getBytes();
 				socket.send(new DatagramPacket(buffer, buffer.length, address));
 	
-				long nextTimeNanos = nextTime * 10000000L;
+				long nextTimeNanos = nextTime * 1000000000L / FS;
 				long currentTime = System.nanoTime() - timeOffset;
 				if (nextTimeNanos > currentTime) {
 					try {
@@ -52,10 +54,8 @@ class UDPSourceTest {
 				++nextTime;
 			}
 		} catch (SocketException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

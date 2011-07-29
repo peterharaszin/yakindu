@@ -1,0 +1,88 @@
+/****************************************************************************
+ * Copyright (c) 2008, 2009 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
+
+package org.eclipselabs.damos.library.vi.simulation.controls;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
+import org.eclipselabs.damos.simulation.core.ISimulationAgent;
+import org.eclipselabs.damos.simulation.core.ISimulationVariationPoint;
+import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
+import org.eclipselabs.mscript.computation.core.IComputationContext;
+import org.eclipselabs.mscript.computation.core.value.IValue;
+import org.eclipselabs.mscript.computation.core.value.Values;
+import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.NumericType;
+
+/**
+ * @author Andreas Unger
+ *
+ */
+public class SliderSimulationObject extends AbstractBlockSimulationObject {
+
+	private IValue outputValue;
+
+	private DataType outputDataType;
+
+	private ISimulationVariationPoint[] variationPoints = new ISimulationVariationPoint[] { new ISimulationVariationPoint() {
+
+		public DataType getDataType() {
+			return outputDataType;
+		}
+		
+		public IValue getValue() {
+			return outputValue;
+		}
+		
+		public void setValue(IValue value) {
+			outputValue = value;
+		}
+
+	} };
+
+	@Override
+	public void initialize(IProgressMonitor monitor) throws CoreException {
+		outputDataType = getSignature().getOutputDataType(getComponent().getFirstOutputPort());
+		outputValue = Values.valueOf(getComputationContext(), (NumericType) outputDataType, 0.0);
+	}
+	
+	@Override
+	public IValue getOutputValue(int outputIndex, int portIndex) {
+		return outputValue;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject#createAgent()
+	 */
+	@Override
+	protected ISimulationAgent createAgent() {
+		return new AbstractSimulationAgent(getComponent()) {
+			
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.damos.simulation.simulator.ISimulationAgent#getComputationContext()
+			 */
+			public IComputationContext getComputationContext() {
+				return SliderSimulationObject.this.getComputationContext();
+			}
+			
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.damos.simulation.simulator.AbstractSimulationAgent#getVariationPoints()
+			 */
+			@Override
+			public ISimulationVariationPoint[] getVariationPoints() {
+				return variationPoints;
+			}
+			
+		};
+	}
+	
+}

@@ -2,10 +2,15 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="Reference" link_to="toc.xml#reference"> 
-	<topic label="Main Topic"  href="html/reference/maintopic.html"> 
-		<topic label="Sub Topic" href="html/reference/subtopic.html" /> 
+	<topic label="Statechart Elements"> 
+		<topic label="Statechart" href="html/reference/statechart_elements/statechart.html" />
+  <topic href="html/reference/statechart_elements/region.html" label="Region">
+  </topic>
+  <topic href="html/reference/statechart_elements/state.html" label="State">
+  </topic>
+  <topic href="html/reference/statechart_elements/entry.html" label="Entry">
+  </topic>
+  <topic href="html/reference/statechart_elements/transition.html" label="Transition">
+  </topic> 
 	</topic>
-	<topic label="Main Topic 2">
-		<topic label="Sub Topic 2" href="html/reference/subtopic2.html" /> 
-	</topic> 
 </toc>

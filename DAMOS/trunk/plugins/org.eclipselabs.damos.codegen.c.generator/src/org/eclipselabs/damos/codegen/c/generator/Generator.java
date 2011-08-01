@@ -70,7 +70,7 @@ import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
 import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.mscript.language.il.VariableAccess;
-import org.eclipselabs.mscript.language.il.util.ExpressionDataTypeAdaptor;
+import org.eclipselabs.mscript.language.interpreter.StaticEvaluationContext;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.Expression;
 
@@ -308,6 +308,7 @@ public class Generator {
 			ComponentNode componentNode = (ComponentNode) node;
 			Component component = componentNode.getComponent();
 			
+			// TODO move the following code to ChoiceGenerator class
 			if (component instanceof Choice) {
 				writer.printf("/* %s */\n", componentNode.getComponent().getName());
 
@@ -326,13 +327,9 @@ public class Generator {
 						writer.printf("if (%s == (", incomingVariableName);
 						
 						Expression conditionExpression = ExpressionUtil.parseExpression(condition);
-						IStatus status = new ExpressionDataTypeAdaptor().adapt(conditionExpression);
-						if (!status.isOK()) {
-							throw new CoreException(status);
-						}
 						
 						ComputationModel computationModel = getComputationModel(genModel, componentNode);
-						new ExpressionGenerator().generate(new MscriptGeneratorContext(computationModel, writer), new IVariableAccessStrategy() {
+						new ExpressionGenerator().generate(new MscriptGeneratorContext(new StaticEvaluationContext(), computationModel, writer), new IVariableAccessStrategy() {
 
 							public String getVariableAccessString(VariableAccess variableAccess) {
 								return "";
@@ -609,7 +606,7 @@ public class Generator {
 					}
 				}
 			}
-			if (!status.isOK()) {
+			if (status.getSeverity() > IStatus.WARNING) {
 				throw new CoreException(status);
 			}
 		}

@@ -64,7 +64,7 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 			}
 		}
 		
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		

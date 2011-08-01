@@ -32,10 +32,10 @@ public class GaugeSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryVIPlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
-		return new ComponentSignatureEvaluationResult(signature);
+		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 
 }

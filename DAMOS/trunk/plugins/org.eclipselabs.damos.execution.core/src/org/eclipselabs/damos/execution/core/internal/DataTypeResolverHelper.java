@@ -49,6 +49,7 @@ public class DataTypeResolverHelper {
 	private MultiStatus status;
 	
 	private Map<EObject, IStatus> statusMap = new HashMap<EObject, IStatus>();
+	private Map<EObject, IStatus> errorStatusMap = new HashMap<EObject, IStatus>();
 	private Set<Component> unresolvedComponents = new HashSet<Component>();
 	
 	/**
@@ -71,6 +72,12 @@ public class DataTypeResolverHelper {
 		
 		if (!statusMap.isEmpty()) {
 			for (Entry<EObject, IStatus> entry : statusMap.entrySet()) {
+				addStatus(entry, "");
+			}
+		}
+		
+		if (!errorStatusMap.isEmpty()) {
+			for (Entry<EObject, IStatus> entry : errorStatusMap.entrySet()) {
 				String message;
 				if (entry.getKey() instanceof Component) {
 					Component component = (Component) entry.getKey();
@@ -78,16 +85,24 @@ public class DataTypeResolverHelper {
 				} else {
 					message = "Resolving data types failed";
 				}
-				if (entry.getValue().isMultiStatus()) {
-					status.add(new EObjectMultiStatus(entry.getKey(), entry.getValue().getChildren(), message));
-				} else {
-					status.add(new EObjectMultiStatus(entry.getKey(), new IStatus[] { entry.getValue() }, message));
-				}
+				addStatus(entry, message);
 			}
 		}
 		
 		for (Component unresolvedComponent : unresolvedComponents) {
 			status.add(new EObjectStatus(IStatus.ERROR, unresolvedComponent, "Component signature of '" + unresolvedComponent.getName() + "' could not be resolved"));
+		}
+	}
+
+	/**
+	 * @param entry
+	 * @param message
+	 */
+	private void addStatus(Entry<EObject, IStatus> entry, String message) {
+		if (entry.getValue().isMultiStatus()) {
+			status.add(new EObjectMultiStatus(entry.getKey(), entry.getValue().getChildren(), message));
+		} else {
+			status.add(new EObjectMultiStatus(entry.getKey(), new IStatus[] { entry.getValue() }, message));
 		}
 	}
 
@@ -114,9 +129,9 @@ public class DataTypeResolverHelper {
 			WhileLoop whileLoop = (WhileLoop) compound;
 			DataType incomingDataType = getIncomingDataType(whileLoop.getCondition());
 			if (incomingDataType != null && !(incomingDataType instanceof BooleanType)) {
-				statusMap.put(whileLoop, new EObjectStatus(IStatus.ERROR, whileLoop, "While loop condition input value must be boolean"));
+				errorStatusMap.put(whileLoop, new EObjectStatus(IStatus.ERROR, whileLoop, "While loop condition input value must be boolean"));
 			} else {
-				statusMap.remove(whileLoop);
+				errorStatusMap.remove(whileLoop);
 			}
 		}
 	}
@@ -144,22 +159,28 @@ public class DataTypeResolverHelper {
 					}
 				}
 				
-				if (result.getStatus().isOK()) {
-					statusMap.remove(component);
+				if (result.getStatus().getSeverity() < IStatus.ERROR) {
+					if (result.getStatus().isOK()) {
+						statusMap.remove(component);
+					} else {
+						statusMap.put(component, result.getStatus());
+					}
+					errorStatusMap.remove(component);
 				} else {
-					statusMap.put(component, result.getStatus());
+					statusMap.remove(component);
+					errorStatusMap.put(component, result.getStatus());
 				}
 				
-				if (result.getSignature() == null && result.getStatus().isOK()) {
+				if (result.getSignature() == null && result.getStatus().getSeverity() < IStatus.ERROR) {
 					unresolvedComponents.add(component);
 				} else {
 					unresolvedComponents.remove(component);
 				}
 			} else {
-				statusMap.put(component, new EObjectStatus(IStatus.ERROR, component, "No signature returned by signature policy"));
+				errorStatusMap.put(component, new EObjectStatus(IStatus.ERROR, component, "No signature returned by signature policy"));
 			}
 		} else {
-			statusMap.put(component, new EObjectStatus(IStatus.ERROR, component, "No component signature policy found"));
+			errorStatusMap.put(component, new EObjectStatus(IStatus.ERROR, component, "No component signature policy found"));
 		}
 		return changed;
 	}

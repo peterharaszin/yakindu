@@ -50,7 +50,7 @@ public class IntegratorSignaturePolicy extends AbstractComponentSignaturePolicy 
 			status.add(e.getStatus());
 		}
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
@@ -63,7 +63,7 @@ public class IntegratorSignaturePolicy extends AbstractComponentSignaturePolicy 
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Input value must be numeric"));
 		}
 		
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
@@ -73,7 +73,7 @@ public class IntegratorSignaturePolicy extends AbstractComponentSignaturePolicy 
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Condition and input value must have same unit"));
 		}
 		
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
@@ -82,7 +82,7 @@ public class IntegratorSignaturePolicy extends AbstractComponentSignaturePolicy 
 		
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
-		return new ComponentSignatureEvaluationResult(signature);
+		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 
 }

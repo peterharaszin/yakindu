@@ -32,6 +32,7 @@ import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.mscript.computation.core.ComputationContext;
+import org.eclipselabs.mscript.computation.core.value.AnyValue;
 import org.eclipselabs.mscript.computation.core.value.ArrayValue;
 import org.eclipselabs.mscript.computation.core.value.INumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
@@ -40,9 +41,9 @@ import org.eclipselabs.mscript.language.ast.FunctionDefinition;
 import org.eclipselabs.mscript.language.ast.InputParameterDeclaration;
 import org.eclipselabs.mscript.language.ast.Module;
 import org.eclipselabs.mscript.language.ast.ParameterDeclaration;
-import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
-import org.eclipselabs.mscript.language.functionmodel.construct.FunctionDescriptorConstructor;
-import org.eclipselabs.mscript.language.functionmodel.construct.IFunctionDescriptorConstructorResult;
+import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.mscript.language.interpreter.StaticEvaluationContext;
+import org.eclipselabs.mscript.language.interpreter.StaticFunctionEvaluator;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.language.util.LanguageUtil;
 import org.eclipselabs.mscript.typesystem.ArrayType;
@@ -59,6 +60,8 @@ public class BehavioredBlockHelper {
 	protected static final String SAMPLE_TIME_TEMPLATE_PARAMETER_NAME = "Ts";
 	protected static final String SAMPLE_RATE_TEMPLATE_PARAMETER_NAME = "fs";
 	
+	private MultiStatus multiStatus;
+
 	private Block block;
 	
 	/**
@@ -68,7 +71,11 @@ public class BehavioredBlockHelper {
 		this.block = block;
 	}
 	
-	public FunctionDescriptor constructFunctionDescriptor() throws CoreException {
+	public IStatus getStatus() {
+		return multiStatus;
+	}
+	
+	public FunctionDefinition createFunctionDefinition() throws CoreException {
 		if (!(block.getType().getBehavior() instanceof OpaqueBehaviorSpecification)) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior specified"));
 		}
@@ -106,15 +113,39 @@ public class BehavioredBlockHelper {
 		if (functionDefinition == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Mscript function '" + block.getType().getName() + "' not found"));
 		}
+		
+		return functionDefinition;
+	}
 
-		IFunctionDescriptorConstructorResult functionDescriptorConstructorResult = new FunctionDescriptorConstructor()
-				.construct(functionDefinition);
-
-		if (!functionDescriptorConstructorResult.getStatus().isOK()) {
-			throw new CoreException(functionDescriptorConstructorResult.getStatus());
+	public IStaticEvaluationContext createStaticEvaluationContext(FunctionDefinition functionDefinition, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) throws CoreException {
+		multiStatus = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
+		
+		if (multiStatus.getSeverity() > IStatus.WARNING) {
+			throw new CoreException(multiStatus);
 		}
 		
-		return functionDescriptorConstructorResult.getFunctionDescriptor();
+		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+
+		Iterator<IValue> templateArgumentIt = templateArguments.iterator();
+		for (ParameterDeclaration parameterDeclaration : functionDefinition.getTemplateParameterDeclarations()) {
+			staticEvaluationContext.setValue(parameterDeclaration, templateArgumentIt.next());
+		}
+
+		Iterator<DataType> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
+		for (ParameterDeclaration parameterDeclaration : functionDefinition.getInputParameterDeclarations()) {
+			staticEvaluationContext.setValue(parameterDeclaration, new AnyValue(new ComputationContext(), inputParameterDataTypeIt.next()));
+		}
+
+		IStatus status = new StaticFunctionEvaluator().evaluate(staticEvaluationContext, functionDefinition);
+		if (status.getSeverity() > IStatus.WARNING) {
+			throw new CoreException(status);
+		}
+		
+		if (!status.isOK()) {
+			multiStatus.merge(status);
+		}
+
+		return staticEvaluationContext;
 	}
 
 	public List<IValue> getTemplateArguments(FunctionDefinition functionDefinition, MultiStatus status) {

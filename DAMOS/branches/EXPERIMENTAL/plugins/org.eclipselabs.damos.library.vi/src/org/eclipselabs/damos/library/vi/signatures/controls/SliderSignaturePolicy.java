@@ -67,7 +67,7 @@ public class SliderSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryVIPlugin.PLUGIN_ID, "Minimum Value and Maximum Value must have same unit"));
 		}
 		
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
@@ -79,7 +79,7 @@ public class SliderSignaturePolicy extends AbstractComponentSignaturePolicy {
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		
-		return new ComponentSignatureEvaluationResult(signature);
+		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 
 }

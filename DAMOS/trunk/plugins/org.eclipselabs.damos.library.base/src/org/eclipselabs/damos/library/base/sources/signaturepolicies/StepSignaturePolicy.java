@@ -81,7 +81,7 @@ public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Step Time unit must be second"));
 		}
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
@@ -97,7 +97,7 @@ public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		
-		return new ComponentSignatureEvaluationResult(signature);
+		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 
 }

@@ -21,7 +21,6 @@ import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 
 /**
@@ -48,11 +47,9 @@ public class OutportGenerator extends AbstractComponentGenerator {
 		InputPort inputPort = getComponent().getFirstInputPort();
 		OutputPort outputPort = getComponent().getFirstOutputPort();
 
-		MscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
-
 		printWriter.printf("output->%s = ", InternalGeneratorUtil.uncapitalize(getComponent().getName()));
 		String inputVariableString = variableAccessor.getInputVariable(inputPort, false);
-		MscriptGeneratorUtil.cast(mscriptGeneratorContext, inputVariableString, getSignature().getInputDataType(inputPort), getSignature().getOutputDataType(outputPort));
+		MscriptGeneratorUtil.cast(getComputationModel(), writer, inputVariableString, getSignature().getInputDataType(inputPort), getSignature().getOutputDataType(outputPort));
 		printWriter.println(";");
 	}
 	

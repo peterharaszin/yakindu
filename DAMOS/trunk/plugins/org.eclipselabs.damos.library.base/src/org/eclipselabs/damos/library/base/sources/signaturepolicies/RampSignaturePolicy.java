@@ -81,7 +81,7 @@ public class RampSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Slope unit must be Initial Value unit divided by seconds"));
 		}
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
@@ -93,7 +93,7 @@ public class RampSignaturePolicy extends AbstractComponentSignaturePolicy {
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		
-		return new ComponentSignatureEvaluationResult(signature);
+		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 
 }

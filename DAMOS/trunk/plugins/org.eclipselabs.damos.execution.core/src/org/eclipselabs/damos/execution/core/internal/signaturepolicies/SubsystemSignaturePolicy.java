@@ -89,10 +89,10 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 			}
 		}
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
-		return new ComponentSignatureEvaluationResult(signature);
+		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 	
 	private DataType getDataType(MultiStatus status, Inoutlet inoutlet) {

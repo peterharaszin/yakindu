@@ -33,7 +33,7 @@ public class DataTypeResolver {
 	
 	public DataTypeResolverResult resolve(Fragment fragment, boolean descend) {
 		Map<Component, IComponentSignature> signatures = new HashMap<Component, IComponentSignature>();
-		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Resolving data types failed", null);
+		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "Data type resolution", null);
 
 		if (descend) {
 			doResolveAll(fragment, signatures, status, new HashSet<Fragment>());
@@ -41,10 +41,7 @@ public class DataTypeResolver {
 			new DataTypeResolverHelper(fragment, signatures, status).resolve();
 		}
 		
-		if (!status.isOK()) {
-			return new DataTypeResolverResult(signatures, status);
-		}
-		return new DataTypeResolverResult(signatures);
+		return new DataTypeResolverResult(signatures, status);
 	}
 	
 	private void doResolveAll(Fragment fragment, Map<Component, IComponentSignature> signatures, MultiStatus status, HashSet<Fragment> visitedFragments) {

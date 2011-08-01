@@ -31,6 +31,7 @@ import org.eclipselabs.mscript.language.il.transform.ITransformerContext;
 import org.eclipselabs.mscript.language.il.transform.TransformerContext;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
+import org.eclipselabs.mscript.language.interpreter.StaticEvaluationContext;
 import org.eclipselabs.mscript.language.interpreter.util.ExpressionInterpreterHelper;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.typesystem.Expression;
@@ -89,7 +90,7 @@ public class ExpressionUtil {
 	public static IValue evaluateExpression(String expressionString) throws CoreException {
 		Expression expression = parseExpression(expressionString);
 
-		ITransformerContext transformerContext = new TransformerContext();
+		ITransformerContext transformerContext = new TransformerContext(new StaticEvaluationContext());
 		IInterpreterContext interpreterContext = new InterpreterContext(new ComputationContext());
 
 		ExpressionInterpreterHelper expressionInterpreterHelper = new ExpressionInterpreterHelper(transformerContext,
@@ -110,7 +111,7 @@ public class ExpressionUtil {
 		List<IValue> values = new ArrayList<IValue>();
 		ExpressionList expressions = (ExpressionList) result.getRootASTElement();
 		
-		ITransformerContext transformerContext = new TransformerContext();
+		ITransformerContext transformerContext = new TransformerContext(new StaticEvaluationContext());
 		IInterpreterContext interpreterContext = new InterpreterContext(new ComputationContext());
 		
 		for (Expression expression : expressions.getExpressions()) {

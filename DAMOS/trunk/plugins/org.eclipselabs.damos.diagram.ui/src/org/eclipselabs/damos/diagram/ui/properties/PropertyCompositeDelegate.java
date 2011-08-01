@@ -54,7 +54,7 @@ public abstract class PropertyCompositeDelegate implements IPropertyCompositeDel
         IOperationHistory history = OperationHistoryFactory.getOperationHistory();
         try {
             IStatus status = history.execute(operation, new NullProgressMonitor(), null);
-            if (!status.isOK()) {
+            if (status.getSeverity() > IStatus.WARNING) {
             	DiagramUIPlugin.getDefault().getLog().log(status);
             }
         } catch (ExecutionException e) {

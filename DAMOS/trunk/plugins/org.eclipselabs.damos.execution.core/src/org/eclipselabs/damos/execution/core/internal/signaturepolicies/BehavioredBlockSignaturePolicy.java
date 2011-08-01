@@ -35,11 +35,9 @@ import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.mscript.computation.core.ComputationContext;
 import org.eclipselabs.mscript.computation.core.value.IValue;
 import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
-import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
-import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
-import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
-import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
+import org.eclipselabs.mscript.language.ast.FunctionDefinition;
+import org.eclipselabs.mscript.language.ast.OutputParameterDeclaration;
+import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.RealType;
@@ -57,25 +55,23 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
 
-		FunctionDescriptor functionDescriptor;
-
 		Helper helper = new Helper(block);
 
+		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
+		
+		FunctionDefinition functionDefinition;
 		try {
-			functionDescriptor = helper.constructFunctionDescriptor();
+			functionDefinition = helper.createFunctionDefinition();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		ComponentSignature componentSignature = new ComponentSignature(incomingDataTypes);
-		
-		List<IValue> templateArguments = helper.getTemplateArguments(
-				functionDescriptor.getDefinition(), status);
+		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
 		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(
-				functionDescriptor.getDefinition(), componentSignature, status);
+				functionDefinition, signature, status);
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
@@ -83,54 +79,56 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			return new ComponentSignatureEvaluationResult();
 		}
 
-		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(functionDescriptor, null, templateArguments, inputParameterDataTypes);
-
-		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
-			status.add(functionDefinitionTransformerResult.getStatus());
+		IStaticEvaluationContext staticEvaluationContext;
+		try {
+			staticEvaluationContext = helper.createStaticEvaluationContext(functionDefinition, templateArguments, inputParameterDataTypes);
+		} catch (CoreException e) {
+			status.add(e.getStatus());
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		ILFunctionDefinition functionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
+		if (!helper.getStatus().isOK()) {
+			status.merge(helper.getStatus());
+		}
 
-		Iterator<OutputVariableDeclaration> outputVariableDeclarationIterator = functionDefinition.getOutputVariableDeclarations().iterator();
+		Iterator<OutputParameterDeclaration> outputParameterDeclarationIt = functionDefinition.getOutputParameterDeclarations().iterator();
 		for (Output output : block.getOutputs()) {
 			BlockOutput blockOutput = (BlockOutput) output;
 			
-			if (!outputVariableDeclarationIterator.hasNext()) {
+			if (!outputParameterDeclarationIt.hasNext()) {
 				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No output parameter found for output '" + blockOutput.getDefinition().getName() + "'"));
 				break;
 			}
 			
-			OutputVariableDeclaration outputVariableDeclaration = outputVariableDeclarationIterator.next();
-			DataType dataType = outputVariableDeclaration.getDataType();
+			OutputParameterDeclaration outputParameterDeclaration = outputParameterDeclarationIt.next();
+			DataType dataType = staticEvaluationContext.getValue(outputParameterDeclaration).getDataType();
 
 			if (blockOutput.getDefinition().isManyPorts() || blockOutput.getDefinition().getMinimumPortCount() == 0) {
 				if (!(dataType instanceof ArrayType)) {
 					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Output '"
-							+ outputVariableDeclaration.getName() + "' must result to array type"));
+							+ outputParameterDeclaration.getName() + "' must result to array type"));
 					continue;
 				}
 				ArrayType arrayType = (ArrayType) dataType;
 
 				for (OutputPort outputPort : output.getPorts()) {
-					componentSignature.getOutputDataTypes().put(outputPort, EcoreUtil.copy(arrayType.getElementType()));
+					signature.getOutputDataTypes().put(outputPort, EcoreUtil.copy(arrayType.getElementType()));
 				}
 			} else {
 				if (output.getPorts().isEmpty()) {
 					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid output '"
-							+ outputVariableDeclaration.getName() + "'"));
+							+ outputParameterDeclaration.getName() + "'"));
 					continue;
 				}
-				componentSignature.getOutputDataTypes().put(output.getPorts().get(0), dataType);
+				signature.getOutputDataTypes().put(output.getPorts().get(0), dataType);
 			}
 		}
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		return new ComponentSignatureEvaluationResult(componentSignature);
+		return new ComponentSignatureEvaluationResult(signature, status);
 	}
 
 	private class Helper extends BehavioredBlockHelper {

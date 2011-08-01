@@ -40,6 +40,7 @@ import org.eclipselabs.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.mscript.computation.core.ComputationContext;
 import org.eclipselabs.mscript.computation.core.value.IValue;
 import org.eclipselabs.mscript.computation.core.value.Values;
+import org.eclipselabs.mscript.language.ast.FunctionDefinition;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
 import org.eclipselabs.mscript.language.il.Compound;
 import org.eclipselabs.mscript.language.il.ComputationCompound;
@@ -53,6 +54,7 @@ import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransform
 import org.eclipselabs.mscript.language.il.transform.IArrayOperationDecomposer;
 import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.mscript.language.il.util.ILUtil;
+import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.RealType;
@@ -69,22 +71,24 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 	private final ICompoundGenerator compoundGenerator = new CompoundGenerator();
 
-	private ILFunctionDefinition functionDefinition;
+	private ILFunctionDefinition ilFunctionDefinition;
+	
+	private IStaticEvaluationContext staticEvaluationContext;
 	
 	@Override
 	public void initialize() throws CoreException {
-		MultiStatus status = new MultiStatus(CodegenCGeneratorPlugin.PLUGIN_ID, 0, "Generator initialization failed", null);
+		MultiStatus status = new MultiStatus(CodegenCGeneratorPlugin.PLUGIN_ID, 0, "Generator initialization", null);
 
 		Block block = getComponent();
 
 		Helper helper = new Helper(block);
 		
-		FunctionDescriptor functionDescriptor = helper.constructFunctionDescriptor();
+		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
 		
-		List<IValue> templateArguments = helper.getTemplateArguments(functionDescriptor.getDefinition(), status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDescriptor.getDefinition(), getSignature(), status);
+		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
+		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getSignature(), status);
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
 		}
 		
@@ -92,22 +96,25 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
+		staticEvaluationContext = helper.createStaticEvaluationContext(functionDefinition, templateArguments, inputParameterDataTypes);
+		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
+
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(functionDescriptor, null, templateArguments, inputParameterDataTypes);
+				.transform(staticEvaluationContext, functionDescriptor, null, templateArguments, inputParameterDataTypes);
 
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			status.add(functionDefinitionTransformerResult.getStatus());
 			throw new CoreException(status);
 		}
 		
-		functionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
+		ilFunctionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
 		
-		new NameNormalizer().normalize(functionDefinition);
+		new NameNormalizer().normalize(ilFunctionDefinition);
 
 		IArrayOperationDecomposer arrayOperationDecomposer = new ArrayOperationDecomposer();
-		arrayOperationDecomposer.decompose(functionDefinition.getInitializationCompound());
-		for (Compound compound : functionDefinition.getComputationCompounds()) {
-			arrayOperationDecomposer.decompose(compound);
+		arrayOperationDecomposer.decompose(staticEvaluationContext, ilFunctionDefinition.getInitializationCompound());
+		for (Compound compound : ilFunctionDefinition.getComputationCompounds()) {
+			arrayOperationDecomposer.decompose(staticEvaluationContext, compound);
 		}
 	}
 	
@@ -116,7 +123,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesContextCode() {
-		return functionDefinition.isStateful();
+		return ilFunctionDefinition.isStateful();
 	}
 	
 	/* (non-Javadoc)
@@ -126,17 +133,17 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	public void generateContextCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException {
 		PrintWriter printWriter = new PrintWriter(writer);
 		printWriter.println("typedef struct {");
-		for (InputVariableDeclaration inputVariableDeclaration: functionDefinition.getInputVariableDeclarations()) {
+		for (InputVariableDeclaration inputVariableDeclaration: ilFunctionDefinition.getInputVariableDeclarations()) {
 			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
 				writeContextStructureMember(printWriter, monitor, inputVariableDeclaration);
 			}
 		}
-		for (OutputVariableDeclaration outputVariableDeclaration: functionDefinition.getOutputVariableDeclarations()) {
+		for (OutputVariableDeclaration outputVariableDeclaration: ilFunctionDefinition.getOutputVariableDeclarations()) {
 			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
 				writeContextStructureMember(printWriter, monitor, outputVariableDeclaration);
 			}
 		}
-		for (InstanceVariableDeclaration instanceVariableDeclaration: functionDefinition.getInstanceVariableDeclarations()) {
+		for (InstanceVariableDeclaration instanceVariableDeclaration: ilFunctionDefinition.getInstanceVariableDeclarations()) {
 			writeContextStructureMember(printWriter, monitor, instanceVariableDeclaration);
 		}
 		String prefix = getGenModel().getGenTopLevelSystem().getPrefix();
@@ -166,7 +173,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
-		return functionDefinition.isStateful();
+		return ilFunctionDefinition.isStateful();
 	}
 		
 	/* (non-Javadoc)
@@ -175,13 +182,13 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	@Override
 	public void generateInitializationCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException {
 		PrintWriter printWriter = new PrintWriter(writer);
-		generateInitializeIndexStatements(printWriter, variableAccessor, functionDefinition.getInputVariableDeclarations());
-		generateInitializeIndexStatements(printWriter, variableAccessor, functionDefinition.getOutputVariableDeclarations());
-		generateInitializeIndexStatements(printWriter, variableAccessor, functionDefinition.getInstanceVariableDeclarations());
+		generateInitializeIndexStatements(printWriter, variableAccessor, ilFunctionDefinition.getInputVariableDeclarations());
+		generateInitializeIndexStatements(printWriter, variableAccessor, ilFunctionDefinition.getOutputVariableDeclarations());
+		generateInitializeIndexStatements(printWriter, variableAccessor, ilFunctionDefinition.getInstanceVariableDeclarations());
 
 		IVariableAccessStrategy variableAccessStrategy = new VariableAccessStrategy(getComponent(), getSignature(), variableAccessor);
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
-		compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, functionDefinition.getInitializationCompound());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
+		compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, ilFunctionDefinition.getInitializationCompound());
 	}
 	
 	private void generateInitializeIndexStatements(PrintWriter writer, IVariableAccessor variableAccessor, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
@@ -198,7 +205,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesComputeOutputsCode() {
-		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
+		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
 				return true;
 			}
@@ -216,22 +223,22 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		generateInputVariables(printWriter, variableAccessor);
 		
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
 		
-		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
+		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
 			}
 		}
 		
-		for (InputVariableDeclaration inputVariableDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
+		for (InputVariableDeclaration inputVariableDeclaration : ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition)) {
 			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
 				generateUpdateInputContextStatement(printWriter, variableAccessor, inputVariableDeclaration);
 			}
 		}
 
 		String contextVariable = variableAccessor.getContextVariable(false);
-		for (OutputVariableDeclaration outputVariableDeclaration : functionDefinition.getOutputVariableDeclarations()) {
+		for (OutputVariableDeclaration outputVariableDeclaration : ilFunctionDefinition.getOutputVariableDeclarations()) {
 			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
 				String name = outputVariableDeclaration.getName();
 				printWriter.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputVariableAccessString(getComponent(), getSignature(), variableAccessor, outputVariableDeclaration));
@@ -244,7 +251,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesUpdateCode() {
-		return functionDefinition.isStateful();
+		return ilFunctionDefinition.isStateful();
 	}
 	
 	/* (non-Javadoc)
@@ -257,23 +264,23 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		generateInputVariables(printWriter, variableAccessor);
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
-		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
+		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
 			}
 		}
 		
-		List<InputVariableDeclaration> computeOutputsCodeInputs = ILUtil.getDirectFeedthroughInputs(functionDefinition);
-		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
+		List<InputVariableDeclaration> computeOutputsCodeInputs = ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition);
+		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
 			if (inputVariableDeclaration.getCircularBufferSize() > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration)) {
 				generateUpdateInputContextStatement(printWriter, variableAccessor, inputVariableDeclaration);
 			}
 		}
 		
-		generateUpdateIndexStatements(printWriter, variableAccessor, functionDefinition.getInputVariableDeclarations());
-		generateUpdateIndexStatements(printWriter, variableAccessor, functionDefinition.getOutputVariableDeclarations());
-		generateUpdateIndexStatements(printWriter, variableAccessor, functionDefinition.getInstanceVariableDeclarations());
+		generateUpdateIndexStatements(printWriter, variableAccessor, ilFunctionDefinition.getInputVariableDeclarations());
+		generateUpdateIndexStatements(printWriter, variableAccessor, ilFunctionDefinition.getOutputVariableDeclarations());
+		generateUpdateIndexStatements(printWriter, variableAccessor, ilFunctionDefinition.getInstanceVariableDeclarations());
 	}
 	
 	private void generateUpdateIndexStatements(PrintWriter writer, IVariableAccessor variableAccessor, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
@@ -288,8 +295,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	
 	private void generateInputVariables(PrintWriter writer, IVariableAccessor variableAccessor) {
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(getComputationModel(), writer);
-		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
+		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getDataType();

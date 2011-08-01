@@ -33,6 +33,7 @@ import org.eclipselabs.mscript.computation.core.value.INumericValue;
 import org.eclipselabs.mscript.computation.core.value.IValue;
 import org.eclipselabs.mscript.computation.core.value.Values;
 import org.eclipselabs.mscript.computation.core.value.VectorValue;
+import org.eclipselabs.mscript.language.ast.FunctionDefinition;
 import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
 import org.eclipselabs.mscript.language.il.Compound;
 import org.eclipselabs.mscript.language.il.ComputationCompound;
@@ -47,6 +48,7 @@ import org.eclipselabs.mscript.language.interpreter.FunctionObject;
 import org.eclipselabs.mscript.language.interpreter.ICompoundInterpreter;
 import org.eclipselabs.mscript.language.interpreter.IFunctionObject;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
+import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.mscript.language.interpreter.IVariable;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.typesystem.ArrayType;
@@ -83,18 +85,18 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
-		MultiStatus status = new MultiStatus(SimulationEnginePlugin.PLUGIN_ID, 0, "Simulation object initialization failed", null);
+		MultiStatus status = new MultiStatus(SimulationEnginePlugin.PLUGIN_ID, 0, "Simulation object initialization", null);
 
 		Block block = getComponent();
 
 		Helper helper = new Helper(block);
 		
-		FunctionDescriptor functionDescriptor = helper.constructFunctionDescriptor();
+		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
 		
-		List<IValue> templateArguments = helper.getTemplateArguments(functionDescriptor.getDefinition(), status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDescriptor.getDefinition(), getSignature(), status);
+		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
+		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getSignature(), status);
 
-		if (!status.isOK()) {
+		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
 		}
 		
@@ -102,18 +104,21 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
+		IStaticEvaluationContext staticEvaluationContext = helper.createStaticEvaluationContext(functionDefinition, templateArguments, inputParameterDataTypes);
+		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
+
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(functionDescriptor, null, templateArguments, inputParameterDataTypes);
+				.transform(staticEvaluationContext, functionDescriptor, null, templateArguments, inputParameterDataTypes);
 
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			status.add(functionDefinitionTransformerResult.getStatus());
 			throw new CoreException(status);
 		}
 		
-		ILFunctionDefinition functionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
+		ILFunctionDefinition ilFunctionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
 		
 		interpreterContext = new InterpreterContext(getComputationContext());
-		functionObject = FunctionObject.create(interpreterContext, functionDefinition);
+		functionObject = FunctionObject.create(interpreterContext, ilFunctionDefinition);
 
 		for (IVariable variable : functionObject.getVariables()) {
 			interpreterContext.addVariable(variable);

@@ -62,6 +62,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
+import org.eclipselabs.damos.dml.LatchInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -399,6 +400,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLatch(Latch object) {
 				return createLatchAdapter();
+			}
+			@Override
+			public Adapter caseLatchInput(LatchInput object) {
+				return createLatchInputAdapter();
 			}
 			@Override
 			public Adapter caseCompound(Compound object) {
@@ -1377,6 +1382,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLatchAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.LatchInput <em>Latch Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.LatchInput
+	 * @generated
+	 */
+	public Adapter createLatchInputAdapter() {
 		return null;
 	}
 

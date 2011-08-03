@@ -369,6 +369,11 @@ public class OpaqueBehaviorSpecificationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
+				 DMLFactory.eINSTANCE.createLatchInput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
 				 DMLFactory.eINSTANCE.createChoice()));
 
 		newChildDescriptors.add

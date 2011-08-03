@@ -368,6 +368,15 @@ public interface DMLFactory extends EFactory {
 	Latch createLatch();
 
 	/**
+	 * Returns a new object of class '<em>Latch Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Latch Input</em>'.
+	 * @generated
+	 */
+	LatchInput createLatchInput();
+
+	/**
 	 * Returns a new object of class '<em>Choice</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

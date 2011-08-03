@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.mscript.language.ast.DataTypeSpecifier;
-import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
 import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.typesystem.DataType;
 
@@ -30,7 +29,7 @@ import org.eclipselabs.mscript.typesystem.DataType;
  */
 public class DataTypeSpecifierUtil {
 
-	public static DataType evaluateDataTypeSpecifierDataType(IInterpreterContext context, String dataTypeSpecifier) throws CoreException {
+	public static DataType evaluateDataTypeSpecifierDataType(String dataTypeSpecifier) throws CoreException {
 		MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
 		IParseResult result = parser.parse(
 				parser.getGrammarAccess().getDataTypeSpecifierRule(),

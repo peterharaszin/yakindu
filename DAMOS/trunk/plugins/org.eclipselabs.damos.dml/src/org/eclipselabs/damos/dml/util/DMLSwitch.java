@@ -61,6 +61,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
+import org.eclipselabs.damos.dml.LatchInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -656,6 +657,15 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCompoundMember(latch);
 				if (result == null) result = caseINamedElement(latch);
 				if (result == null) result = caseEModelElement(latch);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.LATCH_INPUT: {
+				LatchInput latchInput = (LatchInput)theEObject;
+				T result = caseLatchInput(latchInput);
+				if (result == null) result = caseInput(latchInput);
+				if (result == null) result = caseInoutput(latchInput);
+				if (result == null) result = caseINamedElement(latchInput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1782,6 +1792,21 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLatch(Latch object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Latch Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Latch Input</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLatchInput(LatchInput object) {
 		return null;
 	}
 

@@ -60,7 +60,7 @@ public class MemorySignaturePolicy extends AbstractComponentSignaturePolicy {
 
 		if (initialConditionDataType != null && !dataType.isAssignableFrom(initialConditionDataType)) {
 			MultiStatus multiStatus = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
-			multiStatus.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Data type of initial condition is incompatible to input data type"));
+			multiStatus.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Data type of initial condition is incompatible with input data type"));
 			status = multiStatus;
 		}
 		

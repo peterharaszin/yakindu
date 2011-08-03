@@ -948,6 +948,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.LatchInput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected LatchInputItemProvider latchInputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.LatchInput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createLatchInputAdapter() {
+		if (latchInputItemProvider == null) {
+			latchInputItemProvider = new LatchInputItemProvider(this);
+		}
+
+		return latchInputItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Choice} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1406,6 +1429,7 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (opaqueDataTypeSpecificationItemProvider != null) opaqueDataTypeSpecificationItemProvider.dispose();
 		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
 		if (latchItemProvider != null) latchItemProvider.dispose();
+		if (latchInputItemProvider != null) latchInputItemProvider.dispose();
 		if (choiceItemProvider != null) choiceItemProvider.dispose();
 		if (choiceInputItemProvider != null) choiceInputItemProvider.dispose();
 		if (choiceInputPortItemProvider != null) choiceInputPortItemProvider.dispose();

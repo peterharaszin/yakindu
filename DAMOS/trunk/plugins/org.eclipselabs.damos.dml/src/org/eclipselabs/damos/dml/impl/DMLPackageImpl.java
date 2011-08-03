@@ -66,6 +66,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
+import org.eclipselabs.damos.dml.LatchInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -543,6 +544,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass latchEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass latchInputEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1507,8 +1515,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBlockType_InputDefinitions() {
-		return (EReference)blockTypeEClass.getEStructuralFeatures().get(0);
+	public EAttribute getBlockType_FamilyId() {
+		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1516,7 +1524,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBlockType_OutputDefinitions() {
+	public EReference getBlockType_InputDefinitions() {
 		return (EReference)blockTypeEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1525,7 +1533,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBlockType_Behavior() {
+	public EReference getBlockType_OutputDefinitions() {
 		return (EReference)blockTypeEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1534,8 +1542,17 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getBlockType_Behavior() {
+		return (EReference)blockTypeEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getBlockType_Timing() {
-		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1950,6 +1967,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EReference getLatch_InitialValue() {
 		return (EReference)latchEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLatchInput() {
+		return latchInputEClass;
 	}
 
 	/**
@@ -2411,6 +2437,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(predefinedExpressionEntryEClass, PREDEFINED_EXPRESSION_ENTRY__EXPRESSION);
 
 		blockTypeEClass = createEClass(BLOCK_TYPE);
+		createEAttribute(blockTypeEClass, BLOCK_TYPE__FAMILY_ID);
 		createEReference(blockTypeEClass, BLOCK_TYPE__INPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__OUTPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__BEHAVIOR);
@@ -2486,6 +2513,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		latchEClass = createEClass(LATCH);
 		createEReference(latchEClass, LATCH__INITIAL_VALUE);
+
+		latchInputEClass = createEClass(LATCH_INPUT);
 
 		compoundEClass = createEClass(COMPOUND);
 		createEReference(compoundEClass, COMPOUND__MEMBERS);
@@ -2645,6 +2674,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getBehaviorSpecification());
 		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		latchEClass.getESuperTypes().add(this.getComponent());
+		latchInputEClass.getESuperTypes().add(this.getInput());
 		compoundEClass.getESuperTypes().add(this.getFragmentElement());
 		compoundEClass.getESuperTypes().add(this.getCompoundMember());
 		compoundConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -2875,6 +2905,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getPredefinedExpressionEntry_Expression(), this.getExpressionSpecification(), null, "expression", null, 1, 1, PredefinedExpressionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(blockTypeEClass, BlockType.class, "BlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getBlockType_FamilyId(), ecorePackage.getEString(), "familyId", null, 0, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_InputDefinitions(), this.getInputDefinition(), null, "inputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_OutputDefinitions(), this.getOutputDefinition(), null, "outputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_Behavior(), this.getBehaviorSpecification(), null, "behavior", null, 0, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2961,6 +2992,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(latchEClass, Latch.class, "Latch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLatch_InitialValue(), this.getValueSpecification(), null, "initialValue", null, 1, 1, Latch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(latchInputEClass, LatchInput.class, "LatchInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compoundEClass, Compound.class, "Compound", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompound_Members(), this.getCompoundMember(), null, "members", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

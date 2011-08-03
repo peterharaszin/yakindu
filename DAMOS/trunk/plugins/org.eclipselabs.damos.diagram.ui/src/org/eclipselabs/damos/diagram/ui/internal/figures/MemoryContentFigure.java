@@ -24,7 +24,7 @@ public class MemoryContentFigure extends FontColorAwareFigure {
 
 	private static final int RECTANGLE_SIZE = 160;
 	
-	private static final int DECORATION_SIZE = 80;
+	private static final int ARROW_SIZE = 80;
 	
 	private int[] loopPoints = new int[10];
 	private int[] decorationPoints = new int[6];
@@ -55,12 +55,12 @@ public class MemoryContentFigure extends FontColorAwareFigure {
 		loopPoints[9] = border.y + RECTANGLE_SIZE;
 		g.drawPolyline(loopPoints);
 		
-		decorationPoints[0] = border.x + RECTANGLE_SIZE / 2 - DECORATION_SIZE;
-		decorationPoints[1] = border.y + RECTANGLE_SIZE + DECORATION_SIZE + IFigureConstants.DEFAULT_LINE_WIDTH;
+		decorationPoints[0] = border.x + RECTANGLE_SIZE / 2 - ARROW_SIZE;
+		decorationPoints[1] = border.y + RECTANGLE_SIZE + ARROW_SIZE + IFigureConstants.DEFAULT_LINE_WIDTH;
 		decorationPoints[2] = border.x + RECTANGLE_SIZE / 2;
 		decorationPoints[3] = border.y + RECTANGLE_SIZE + IFigureConstants.DEFAULT_LINE_WIDTH;
-		decorationPoints[4] = border.x + RECTANGLE_SIZE / 2 + DECORATION_SIZE;
-		decorationPoints[5] = border.y + RECTANGLE_SIZE + DECORATION_SIZE + IFigureConstants.DEFAULT_LINE_WIDTH;
+		decorationPoints[4] = border.x + RECTANGLE_SIZE / 2 + ARROW_SIZE;
+		decorationPoints[5] = border.y + RECTANGLE_SIZE + ARROW_SIZE + IFigureConstants.DEFAULT_LINE_WIDTH;
 		g.drawPolyline(decorationPoints);
 	}
 

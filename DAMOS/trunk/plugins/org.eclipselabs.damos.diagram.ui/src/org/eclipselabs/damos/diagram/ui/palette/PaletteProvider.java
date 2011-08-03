@@ -182,6 +182,14 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		
 		entries.add(new PaletteSeparator());
 		
+//		entry = new ElementCreationToolEntry(ElementTypes.LATCH, null, null);
+//		entry.setId(IPaletteConstants.LATCH_ENTRY_ID);
+//		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Latch16.png"));
+//		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Latch24.png"));
+//		entries.add(entry);
+//
+//		entries.add(new PaletteSeparator());
+		
 		entry = new InstantiateBlockTypeToolEntry(editor);
 		entry.setId(IPaletteConstants.INSTANTIATE_BLOCK_TYPE_ENTRY_ID);
 		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/InstantiateBlockType16.png"));

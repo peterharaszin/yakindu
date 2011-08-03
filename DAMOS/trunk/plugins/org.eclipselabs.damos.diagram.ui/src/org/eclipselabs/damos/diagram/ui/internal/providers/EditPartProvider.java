@@ -40,6 +40,7 @@ import org.eclipselabs.damos.diagram.ui.internal.editparts.CompoundCompartmentEd
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackComponentEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.JoinEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.LatchEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.MemoryEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.WhileLoopConditionEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.WhileLoopEditPart;
@@ -60,6 +61,7 @@ import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
@@ -163,6 +165,9 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			}
 			if (element instanceof Memory) {
 				return MemoryEditPart.class;
+			}
+			if (element instanceof Latch) {
+				return LatchEditPart.class;
 			}
 			if (element instanceof Block) {
 				Block block = (Block) element;

@@ -67,6 +67,7 @@ public class BlockTypeItemProvider
 
 			addQualifiedNamePropertyDescriptor(object);
 			addBelongingCategoriesPropertyDescriptor(object);
+			addFamilyIdPropertyDescriptor(object);
 			addTimingPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -112,6 +113,28 @@ public class BlockTypeItemProvider
 				 false,
 				 true,
 				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Family Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFamilyIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_BlockType_familyId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_BlockType_familyId_feature", "_UI_BlockType_type"),
+				 DMLPackage.Literals.BLOCK_TYPE__FAMILY_ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -212,6 +235,7 @@ public class BlockTypeItemProvider
 			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
 			case DMLPackage.BLOCK_TYPE__NAME:
 			case DMLPackage.BLOCK_TYPE__QUALIFIER:
+			case DMLPackage.BLOCK_TYPE__FAMILY_ID:
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

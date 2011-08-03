@@ -191,6 +191,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//PredefinedExpressionEntry/expression"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//BlockType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/familyId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/behavior"/>
@@ -266,6 +267,7 @@
     <genClasses ecoreClass="DML.ecore#//Latch">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Latch/initialValue"/>
     </genClasses>
+    <genClasses ecoreClass="DML.ecore#//LatchInput"/>
     <genClasses image="false" ecoreClass="DML.ecore#//Compound">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Compound/members"/>
     </genClasses>

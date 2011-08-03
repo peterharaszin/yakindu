@@ -28,7 +28,7 @@ public class ChoiceFigure extends StandardComponentFigure {
 
 	private static final Dimension MINIMUM_SIZE = new Dimension(3 * CORNER_SIZE, 3 * CORNER_SIZE);
 	
-	private final int[] points= new int[16];
+	private final int[] points = new int[16];
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)

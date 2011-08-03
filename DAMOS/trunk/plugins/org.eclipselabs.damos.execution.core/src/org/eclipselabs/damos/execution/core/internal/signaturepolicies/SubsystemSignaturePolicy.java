@@ -35,9 +35,6 @@ import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.DataTypeSpecifierUtil;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
-import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.typesystem.DataType;
 import org.eclipselabs.mscript.typesystem.InvalidDataType;
 
@@ -100,8 +97,7 @@ public class SubsystemSignaturePolicy extends AbstractComponentSignaturePolicy {
 			OpaqueDataTypeSpecification dataTypeSpecification = (OpaqueDataTypeSpecification) inoutlet.getDataType();
 			if (dataTypeSpecification.getDataType() != null && dataTypeSpecification.getDataType().trim().length() > 0) {
 				try {
-					IInterpreterContext context = new InterpreterContext(new ComputationContext());
-					DataType dataType = DataTypeSpecifierUtil.evaluateDataTypeSpecifierDataType(context, dataTypeSpecification.getDataType());
+					DataType dataType = DataTypeSpecifierUtil.evaluateDataTypeSpecifierDataType(dataTypeSpecification.getDataType());
 					if (!(dataType instanceof InvalidDataType)) {
 						return dataType;
 					} else {

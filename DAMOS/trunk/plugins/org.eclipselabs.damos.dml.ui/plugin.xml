@@ -98,6 +98,14 @@
                tab="org.eclipselabs.damos.dml.ui.tabs.general">
          </propertySection>
          <propertySection
+               afterSection="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
+               class="org.eclipselabs.damos.dml.ui.internal.properties.LatchPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.LatchPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.latch"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
                class="org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySection"
                enablesFor="1"
                filter="org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySectionFilter"

@@ -84,6 +84,12 @@
                name="Join">
          </metamodelType>
          <metamodelType
+               eclass="Latch"
+               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.LatchEditHelper"
+               id="org.eclipselabs.damos.diagram.latch"
+               name="Latch">
+         </metamodelType>
+         <metamodelType
                eclass="Subsystem"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.SubsystemEditHelper"
                id="org.eclipselabs.damos.diagram.subsystem"

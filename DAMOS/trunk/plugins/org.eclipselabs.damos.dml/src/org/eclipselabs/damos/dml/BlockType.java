@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.dml.BlockType#getFamilyId <em>Family Id</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getOutputDefinitions <em>Output Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.BlockType#getBehavior <em>Behavior</em>}</li>
@@ -29,6 +30,32 @@ import org.eclipse.emf.ecore.EModelElement;
  * @generated
  */
 public interface BlockType extends EModelElement, QualifiedElement, CategorizedElement, ParameterableElement {
+	/**
+	 * Returns the value of the '<em><b>Family Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Family Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Family Id</em>' attribute.
+	 * @see #setFamilyId(String)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getBlockType_FamilyId()
+	 * @model
+	 * @generated
+	 */
+	String getFamilyId();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.BlockType#getFamilyId <em>Family Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Family Id</em>' attribute.
+	 * @see #getFamilyId()
+	 * @generated
+	 */
+	void setFamilyId(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Input Definitions</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.InputDefinition}.

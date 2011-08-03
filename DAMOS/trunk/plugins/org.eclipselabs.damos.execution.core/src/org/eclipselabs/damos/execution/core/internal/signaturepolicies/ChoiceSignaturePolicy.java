@@ -57,7 +57,7 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 				String condition = actionLink.getCondition().stringCondition();
 				IValue value = ExpressionUtil.evaluateExpression(condition);
 				if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidDataType) {
-					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Action link condition '" + condition + "' is incompatible to choice input value"));
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Action link condition '" + condition + "' is incompatible with choice input value"));
 				}
 			} catch (CoreException e) {
 				status.add(e.getStatus());

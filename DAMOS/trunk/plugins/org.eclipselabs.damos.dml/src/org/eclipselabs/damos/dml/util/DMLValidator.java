@@ -74,6 +74,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
+import org.eclipselabs.damos.dml.LatchInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -308,6 +309,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateOpaqueBehaviorSpecification((OpaqueBehaviorSpecification)value, diagnostics, context);
 			case DMLPackage.LATCH:
 				return validateLatch((Latch)value, diagnostics, context);
+			case DMLPackage.LATCH_INPUT:
+				return validateLatchInput((LatchInput)value, diagnostics, context);
 			case DMLPackage.COMPOUND:
 				return validateCompound((Compound)value, diagnostics, context);
 			case DMLPackage.COMPOUND_MEMBER:
@@ -1365,6 +1368,15 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(latch, diagnostics, context);
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(latch, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateLatchInput(LatchInput latchInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(latchInput, diagnostics, context);
 	}
 
 	/**

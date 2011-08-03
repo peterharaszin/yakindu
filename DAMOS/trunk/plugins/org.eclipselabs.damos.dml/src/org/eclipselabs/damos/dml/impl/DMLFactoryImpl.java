@@ -42,6 +42,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
+import org.eclipselabs.damos.dml.LatchInput;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -150,6 +151,7 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION: return createOpaqueDataTypeSpecification();
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
 			case DMLPackage.LATCH: return createLatch();
+			case DMLPackage.LATCH_INPUT: return createLatchInput();
 			case DMLPackage.CHOICE: return createChoice();
 			case DMLPackage.CHOICE_INPUT: return createChoiceInput();
 			case DMLPackage.CHOICE_INPUT_PORT: return createChoiceInputPort();
@@ -581,6 +583,16 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public Latch createLatch() {
 		LatchImpl latch = new LatchImpl();
 		return latch;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LatchInput createLatchInput() {
+		LatchInputImpl latchInput = new LatchInputImpl();
+		return latchInput;
 	}
 
 	/**

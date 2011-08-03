@@ -210,6 +210,11 @@ public class ComponentItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.COMPONENT__INPUTS,
+				 DMLFactory.eINSTANCE.createLatchInput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__INPUTS,
 				 DMLFactory.eINSTANCE.createChoiceInput()));
 
 		newChildDescriptors.add

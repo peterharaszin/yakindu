@@ -15,6 +15,7 @@ import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.execution.core.IComponentSignaturePolicy;
@@ -22,6 +23,7 @@ import org.eclipselabs.damos.execution.core.IComponentSignaturePolicyProvider;
 import org.eclipselabs.damos.execution.core.internal.signaturepolicies.ChoiceSignaturePolicy;
 import org.eclipselabs.damos.execution.core.internal.signaturepolicies.InoutportSignaturePolicy;
 import org.eclipselabs.damos.execution.core.internal.signaturepolicies.JoinSignaturePolicy;
+import org.eclipselabs.damos.execution.core.internal.signaturepolicies.LatchSignaturePolicy;
 import org.eclipselabs.damos.execution.core.internal.signaturepolicies.MemorySignaturePolicy;
 import org.eclipselabs.damos.execution.core.internal.signaturepolicies.SubsystemSignaturePolicy;
 
@@ -49,6 +51,9 @@ public class BuiltinComponentSignaturePolicyProvider implements IComponentSignat
 		}
 		if (component instanceof Memory) {
 			return new MemorySignaturePolicy();
+		}
+		if (component instanceof Latch) {
+			return new LatchSignaturePolicy();
 		}
 		return null;
 	}

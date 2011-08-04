@@ -40,4 +40,12 @@ public interface Port extends Connector {
 	 */
 	Component getComponent();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	Inoutput getInoutput();
+
 } // Port

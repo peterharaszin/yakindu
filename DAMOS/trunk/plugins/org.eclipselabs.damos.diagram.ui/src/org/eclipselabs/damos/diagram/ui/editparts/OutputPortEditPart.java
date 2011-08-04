@@ -14,6 +14,7 @@ package org.eclipselabs.damos.diagram.ui.editparts;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.figures.OutputPortFigure;
+import org.eclipselabs.damos.diagram.ui.figures.TestPointOutputPortFigure;
 
 /**
  * @author Andreas Unger
@@ -29,7 +30,7 @@ public class OutputPortEditPart extends PortEditPart {
 	}
 
 	protected NodeFigure createNodeFigure() {
-		return new OutputPortFigure();
+		return isTestPoint() ? new TestPointOutputPortFigure() : new OutputPortFigure();
 	}
 
 }

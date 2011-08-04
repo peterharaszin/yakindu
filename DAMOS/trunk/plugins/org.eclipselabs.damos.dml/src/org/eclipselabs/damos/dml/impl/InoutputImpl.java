@@ -77,4 +77,13 @@ public abstract class InoutputImpl extends EObjectImpl implements Inoutput {
 		throw new UnsupportedOperationException();
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isTestPoint() {
+		return false;
+	}
+
 } //InoutputImpl

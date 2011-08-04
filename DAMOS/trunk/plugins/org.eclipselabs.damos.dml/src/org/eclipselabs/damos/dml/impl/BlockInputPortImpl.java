@@ -17,6 +17,7 @@ import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
@@ -112,6 +113,14 @@ public class BlockInputPortImpl extends BlockPortImpl implements BlockInputPort 
 	 */
 	public Connection getIncomingConnection(Fragment context) {
 		return InputPortOperations.getIncomingConnection(this, context);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.BlockPortImpl#getInoutput()
+	 */
+	@Override
+	public Inoutput getInoutput() {
+		return getInput();
 	}
 
 	/**

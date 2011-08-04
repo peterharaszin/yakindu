@@ -14,6 +14,7 @@ package org.eclipselabs.damos.diagram.ui.editparts;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
@@ -34,6 +35,7 @@ import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectorGraphical
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.TerminalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.dml.Connector;
+import org.eclipselabs.damos.dml.Port;
 
 public abstract class PortEditPart extends ShapeNodeEditPart implements IConnectorEditPart {
 
@@ -57,6 +59,15 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 	
 	PortEditPartDelegate createDelegate() {
 		return PASSIVE_DELEGATE;
+	}
+
+	protected boolean isTestPoint() {
+		EObject element = resolveSemanticElement();
+		if (element instanceof Port) {
+			Port port = (Port) element;
+			return port.getInoutput().isTestPoint();
+		}
+		return false;
 	}
 
 	/* (non-Javadoc)

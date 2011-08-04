@@ -80,6 +80,15 @@ public interface ExecutionFlowFactory extends EFactory {
 	SubsystemNode createSubsystemNode();
 
 	/**
+	 * Returns a new object of class '<em>Task Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Task Node</em>'.
+	 * @generated
+	 */
+	TaskNode createTaskNode();
+
+	/**
 	 * Returns a new object of class '<em>Edge</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -22,6 +22,7 @@ package org.eclipselabs.damos.dml;
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getDefaultPortCount <em>Default Port Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#isManyPorts <em>Many Ports</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#isTestPoint <em>Test Point</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}</li>
  * </ul>
  * </p>
@@ -152,6 +153,32 @@ public interface InoutputDefinition extends ParameterableElement, INamedElement 
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Point</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Point</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Point</em>' attribute.
+	 * @see #setTestPoint(boolean)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getInoutputDefinition_TestPoint()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isTestPoint();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.InoutputDefinition#isTestPoint <em>Test Point</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Point</em>' attribute.
+	 * @see #isTestPoint()
+	 * @generated
+	 */
+	void setTestPoint(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Type</b></em>' containment reference.

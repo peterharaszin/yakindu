@@ -52,9 +52,9 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 				if (!incomingDataType.isAssignableFrom(dataType)) {
 					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Initial value data type incompatible with input value data type"));
 				}
+				signature = new ComponentSignature(incomingDataTypes);
+				signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
 			}
-			signature = new ComponentSignature(incomingDataTypes);
-			signature.getOutputDataTypes().put(component.getFirstOutputPort(), EcoreUtil.copy(incomingDataType));
 		}
 
 		if (status.getSeverity() > IStatus.WARNING) {

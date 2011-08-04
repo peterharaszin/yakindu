@@ -11,7 +11,9 @@
 
 package org.eclipselabs.damos.execution.executionflow.construct;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -21,6 +23,10 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.InputConnector;
@@ -38,6 +44,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.internal.construct.FlattenerHelper;
 import org.eclipselabs.damos.execution.executionflow.internal.construct.SampleTimePropagationHelper;
+import org.eclipselabs.damos.execution.executionflow.internal.construct.TaskNodeComputationHelper;
 
 /**
  * @author Andreas Unger
@@ -46,6 +53,7 @@ import org.eclipselabs.damos.execution.executionflow.internal.construct.SampleTi
 public class ExecutionFlowConstructor {
 	
 	private final SampleTimePropagationHelper sampleTimePropagationHelper = new SampleTimePropagationHelper();
+	private final TaskNodeComputationHelper taskNodeComputationHelper = new TaskNodeComputationHelper();
 
 	public ExecutionFlow construct(Fragment topLevelFragment, IProgressMonitor monitor) throws CoreException {
 		Context context = new Context();
@@ -92,7 +100,18 @@ public class ExecutionFlowConstructor {
 					IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, message, null, backlog));
 		}
 		
-		sampleTimePropagationHelper.propagateSampleTimes(context.flow.getGraph());
+		sampleTimePropagationHelper.propagateSampleTimes(context.flow);
+		taskNodeComputationHelper.computeTaskNodes(context.flow);
+		
+		ResourceSet rs = new ResourceSetImpl();
+		Resource r = rs.createResource(URI.createPlatformResourceURI("/Damos/test.xmi", true));
+		r.getContents().add(context.flow);
+		try {
+			r.save(Collections.emptyMap());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return context.flow;
 	}

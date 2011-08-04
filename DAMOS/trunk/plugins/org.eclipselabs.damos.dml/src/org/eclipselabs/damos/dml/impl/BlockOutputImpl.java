@@ -129,6 +129,14 @@ public class BlockOutputImpl extends OutputImpl implements BlockOutput {
 	public BlockOutputPort createPort() {
 		return BlockOutputOperations.createPort(this);
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#isTestPoint()
+	 */
+	@Override
+	public boolean isTestPoint() {
+		return getDefinition().isTestPoint();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

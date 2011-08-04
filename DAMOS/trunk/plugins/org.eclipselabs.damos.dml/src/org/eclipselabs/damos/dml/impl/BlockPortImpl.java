@@ -13,6 +13,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.internal.operations.ConnectorOperations;
 import org.eclipselabs.damos.dml.internal.operations.PortOperations;
 
@@ -61,6 +62,15 @@ public abstract class BlockPortImpl extends ParameterizedElementImpl implements 
 	 */
 	public Component getComponent() {
 		return PortOperations.getComponent(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Inoutput getInoutput() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

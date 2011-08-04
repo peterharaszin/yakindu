@@ -96,6 +96,7 @@
     <eOperations name="canAddPort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="canRemovePort" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="createPort" lowerBound="1" eType="#//Port"/>
+    <eOperations name="isTestPoint" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Input" eSuperTypes="#//Inoutput">
     <eOperations name="isDirectFeedthrough" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -113,6 +114,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Port" abstract="true" eSuperTypes="#//Connector">
     <eOperations name="getIndex" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eOperations name="getComponent" ordered="false" lowerBound="1" eType="#//Component"/>
+    <eOperations name="getInoutput" lowerBound="1" eType="#//Inoutput"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InputPort" eSuperTypes="#//Port #//InputConnector">
     <eOperations name="getIncomingConnections" ordered="false" upperBound="-1" eType="#//Connection"/>
@@ -133,7 +135,9 @@
         eType="#//SignalSpecification" unsettable="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SignalSpecification" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BlockInoutput" abstract="true" eSuperTypes="#//Inoutput"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BlockInoutput" abstract="true" eSuperTypes="#//Inoutput">
+    <eOperations name="getDefinition" lowerBound="1" eType="#//InoutputDefinition"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlockInput" eSuperTypes="#//Input #//BlockInoutput">
     <eStructuralFeatures xsi:type="ecore:EReference" name="definition" ordered="false"
         lowerBound="1" eType="#//InputDefinition"/>
@@ -158,6 +162,8 @@
         changeable="false" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testPoint" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
         eType="#//DataTypeSpecification" unsettable="true" containment="true"/>
   </eClassifiers>
@@ -318,6 +324,7 @@
         lowerBound="1" eType="#//Fragment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inport" eSuperTypes="#//Inoutport"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InportInput" eSuperTypes="#//Input"/>
   <eClassifiers xsi:type="ecore:EClass" name="Inoutport" abstract="true" eSuperTypes="#//Component">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="OwnedByFragment"/>
@@ -326,6 +333,7 @@
         lowerBound="1" eType="#//DataTypeSpecification" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Outport" eSuperTypes="#//Inoutport"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutportOutput" eSuperTypes="#//Output"/>
   <eClassifiers xsi:type="ecore:EClass" name="SubsystemInput" eSuperTypes="#//Input">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlet" ordered="false"
         lowerBound="1" eType="#//Inlet"/>

@@ -47,7 +47,7 @@ public interface Node extends EObject {
 	 * @see #setGraph(Graph)
 	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getNode_Graph()
 	 * @see org.eclipselabs.damos.execution.executionflow.Graph#getNodes
-	 * @model opposite="nodes" required="true" transient="false"
+	 * @model opposite="nodes" transient="false"
 	 * @generated
 	 */
 	Graph getGraph();

@@ -97,13 +97,22 @@ public interface ExecutionFlowPackage extends EPackage {
 	int EXECUTION_FLOW__DATA_FLOWS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Task Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_FLOW__TASK_NODES = 3;
+
+	/**
 	 * The number of structural features of the '<em>Execution Flow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_FLOW_FEATURE_COUNT = 3;
+	int EXECUTION_FLOW_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.GraphImpl <em>Graph</em>}' class.
@@ -752,6 +761,106 @@ public interface ExecutionFlowPackage extends EPackage {
 	int SUBSYSTEM_NODE_FEATURE_COUNT = SUBGRAPH_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl <em>Task Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskNode()
+	 * @generated
+	 */
+	int TASK_NODE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__NODES = SUBGRAPH__NODES;
+
+	/**
+	 * The feature id for the '<em><b>Initial Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__INITIAL_NODES = SUBGRAPH__INITIAL_NODES;
+
+	/**
+	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__EDGES = SUBGRAPH__EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__GRAPH = SUBGRAPH__GRAPH;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__INCOMING_EDGES = SUBGRAPH__INCOMING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__OUTGOING_EDGES = SUBGRAPH__OUTGOING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__ENCLOSING_SUBSYSTEMS = SUBGRAPH__ENCLOSING_SUBSYSTEMS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__INCOMING_DATA_FLOWS = SUBGRAPH__INCOMING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__OUTGOING_DATA_FLOWS = SUBGRAPH__OUTGOING_DATA_FLOWS;
+
+	/**
+	 * The number of structural features of the '<em>Task Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE_FEATURE_COUNT = SUBGRAPH_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.EdgeImpl <em>Edge</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -759,7 +868,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getEdge()
 	 * @generated
 	 */
-	int EDGE = 8;
+	int EDGE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -796,7 +905,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlow()
 	 * @generated
 	 */
-	int DATA_FLOW = 9;
+	int DATA_FLOW = 10;
 
 	/**
 	 * The feature id for the '<em><b>Target Ends</b></em>' containment reference list.
@@ -833,7 +942,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_END = 10;
+	int DATA_FLOW_END = 11;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -861,7 +970,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowSourceEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_SOURCE_END = 11;
+	int DATA_FLOW_SOURCE_END = 12;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -916,7 +1025,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowTargetEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_TARGET_END = 12;
+	int DATA_FLOW_TARGET_END = 13;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -972,7 +1081,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getConnectorInfo()
 	 * @generated
 	 */
-	int CONNECTOR_INFO = 13;
+	int CONNECTOR_INFO = 14;
 
 	/**
 	 * The number of structural features of the '<em>Connector Info</em>' class.
@@ -991,7 +1100,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getPortInfo()
 	 * @generated
 	 */
-	int PORT_INFO = 14;
+	int PORT_INFO = 15;
 
 	/**
 	 * The feature id for the '<em><b>Inoutput Index</b></em>' attribute.
@@ -1063,6 +1172,17 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExecutionFlow_DataFlows();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes <em>Task Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Task Nodes</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes()
+	 * @see #getExecutionFlow()
+	 * @generated
+	 */
+	EReference getExecutionFlow_TaskNodes();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.Graph <em>Graph</em>}'.
@@ -1287,6 +1407,16 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSubsystemNode_Subsystem();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.TaskNode <em>Task Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Task Node</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode
+	 * @generated
+	 */
+	EClass getTaskNode();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.Edge <em>Edge</em>}'.
@@ -1558,6 +1688,14 @@ public interface ExecutionFlowPackage extends EPackage {
 		EReference EXECUTION_FLOW__DATA_FLOWS = eINSTANCE.getExecutionFlow_DataFlows();
 
 		/**
+		 * The meta object literal for the '<em><b>Task Nodes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTION_FLOW__TASK_NODES = eINSTANCE.getExecutionFlow_TaskNodes();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.GraphImpl <em>Graph</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1738,6 +1876,16 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SUBSYSTEM_NODE__SUBSYSTEM = eINSTANCE.getSubsystemNode_Subsystem();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl <em>Task Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskNode()
+		 * @generated
+		 */
+		EClass TASK_NODE = eINSTANCE.getTaskNode();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.EdgeImpl <em>Edge</em>}' class.

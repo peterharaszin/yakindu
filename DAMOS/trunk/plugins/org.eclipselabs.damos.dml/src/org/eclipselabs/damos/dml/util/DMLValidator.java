@@ -67,6 +67,7 @@ import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.InportInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
@@ -86,6 +87,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.OutportOutput;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
@@ -293,10 +295,14 @@ public class DMLValidator extends EObjectValidator {
 				return validateSubsystemRealization((SubsystemRealization)value, diagnostics, context);
 			case DMLPackage.INPORT:
 				return validateInport((Inport)value, diagnostics, context);
+			case DMLPackage.INPORT_INPUT:
+				return validateInportInput((InportInput)value, diagnostics, context);
 			case DMLPackage.INOUTPORT:
 				return validateInoutport((Inoutport)value, diagnostics, context);
 			case DMLPackage.OUTPORT:
 				return validateOutport((Outport)value, diagnostics, context);
+			case DMLPackage.OUTPORT_OUTPUT:
+				return validateOutportOutput((OutportOutput)value, diagnostics, context);
 			case DMLPackage.SUBSYSTEM_INPUT:
 				return validateSubsystemInput((SubsystemInput)value, diagnostics, context);
 			case DMLPackage.SUBSYSTEM_OUTPUT:
@@ -1251,6 +1257,15 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateInportInput(InportInput inportInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(inportInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateInoutport(Inoutport inoutport, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		if (!validate_NoCircularContainment(inoutport, diagnostics, context)) return false;
 		boolean result = validate_EveryMultiplicityConforms(inoutport, diagnostics, context);
@@ -1304,6 +1319,15 @@ public class DMLValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateComponent_WellFormedName(outport, diagnostics, context);
 		if (result || diagnostics != null) result &= validateInoutport_OwnedByFragment(outport, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateOutportOutput(OutportOutput outportOutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(outportOutput, diagnostics, context);
 	}
 
 	/**

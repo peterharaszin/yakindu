@@ -139,6 +139,14 @@ public class BlockInputImpl extends InputImpl implements BlockInput {
 	public boolean isDirectFeedthrough() {
 		return BlockInputOperations.isDirectFeedthrough(this);
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#isTestPoint()
+	 */
+	@Override
+	public boolean isTestPoint() {
+		return getDefinition().isTestPoint();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -59,6 +59,7 @@ import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.InportInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
@@ -78,6 +79,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.OutportOutput;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
@@ -487,6 +489,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass inportInputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass inoutportEClass = null;
 
 	/**
@@ -495,6 +504,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass outportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass outportOutputEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1263,8 +1279,17 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInoutputDefinition_TestPoint() {
+		return (EAttribute)inoutputDefinitionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getInoutputDefinition_DataType() {
-		return (EReference)inoutputDefinitionEClass.getEStructuralFeatures().get(5);
+		return (EReference)inoutputDefinitionEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1803,6 +1828,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getInportInput() {
+		return inportInputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getInoutport() {
 		return inoutportEClass;
 	}
@@ -1823,6 +1857,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EClass getOutport() {
 		return outportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getOutportOutput() {
+		return outportOutputEClass;
 	}
 
 	/**
@@ -2396,6 +2439,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__DEFAULT_PORT_COUNT);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MANY_PORTS);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__NAME);
+		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__TEST_POINT);
 		createEReference(inoutputDefinitionEClass, INOUTPUT_DEFINITION__DATA_TYPE);
 
 		inputDefinitionEClass = createEClass(INPUT_DEFINITION);
@@ -2490,10 +2534,14 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		inportEClass = createEClass(INPORT);
 
+		inportInputEClass = createEClass(INPORT_INPUT);
+
 		inoutportEClass = createEClass(INOUTPORT);
 		createEReference(inoutportEClass, INOUTPORT__DATA_TYPE);
 
 		outportEClass = createEClass(OUTPORT);
+
+		outportOutputEClass = createEClass(OUTPORT_OUTPUT);
 
 		subsystemInputEClass = createEClass(SUBSYSTEM_INPUT);
 		createEReference(subsystemInputEClass, SUBSYSTEM_INPUT__INLET);
@@ -2664,8 +2712,10 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		outletEClass.getESuperTypes().add(this.getInoutlet());
 		subsystemRealizationEClass.getESuperTypes().add(this.getFragmentElement());
 		inportEClass.getESuperTypes().add(this.getInoutport());
+		inportInputEClass.getESuperTypes().add(this.getInput());
 		inoutportEClass.getESuperTypes().add(this.getComponent());
 		outportEClass.getESuperTypes().add(this.getInoutport());
+		outportOutputEClass.getESuperTypes().add(this.getOutput());
 		subsystemInputEClass.getESuperTypes().add(this.getInput());
 		subsystemOutputEClass.getESuperTypes().add(this.getOutput());
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
@@ -2794,6 +2844,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		addEOperation(inoutputEClass, this.getPort(), "createPort", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(inoutputEClass, ecorePackage.getEBoolean(), "isTestPoint", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInput_Ports(), this.getInputPort(), this.getInputPort_Input(), "ports", null, 0, -1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInput_Component(), this.getComponent(), this.getComponent_Inputs(), "component", null, 1, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2809,6 +2861,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEOperation(portEClass, ecorePackage.getEInt(), "getIndex", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		addEOperation(portEClass, this.getComponent(), "getComponent", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		addEOperation(portEClass, this.getInoutput(), "getInoutput", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(inputPortEClass, InputPort.class, "InputPort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInputPort_Input(), this.getInput(), this.getInput_Ports(), "input", null, 1, 1, InputPort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2831,6 +2885,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(blockInoutputEClass, BlockInoutput.class, "BlockInoutput", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		addEOperation(blockInoutputEClass, this.getInoutputDefinition(), "getDefinition", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(blockInputEClass, BlockInput.class, "BlockInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockInput_Definition(), this.getInputDefinition(), null, "definition", null, 1, 1, BlockInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -2843,6 +2899,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEAttribute(getInoutputDefinition_DefaultPortCount(), ecorePackage.getEInt(), "defaultPortCount", "-1", 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_ManyPorts(), ecorePackage.getEBoolean(), "manyPorts", null, 1, 1, InoutputDefinition.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_Name(), ecorePackage.getEString(), "name", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getInoutputDefinition_TestPoint(), ecorePackage.getEBoolean(), "testPoint", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInoutputDefinition_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(inputDefinitionEClass, InputDefinition.class, "InputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -2969,10 +3026,14 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(inportEClass, Inport.class, "Inport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		initEClass(inportInputEClass, InportInput.class, "InportInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(inoutportEClass, Inoutport.class, "Inoutport", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInoutport_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 1, 1, Inoutport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(outportEClass, Outport.class, "Outport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(outportOutputEClass, OutportOutput.class, "OutportOutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(subsystemInputEClass, SubsystemInput.class, "SubsystemInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubsystemInput_Inlet(), this.getInlet(), null, "inlet", null, 1, 1, SubsystemInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

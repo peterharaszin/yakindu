@@ -21,6 +21,7 @@ import org.eclipselabs.damos.dml.Fragment;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getDataFlows <em>Data Flows</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes <em>Task Nodes</em>}</li>
  * </ul>
  * </p>
  *
@@ -96,5 +97,21 @@ public interface ExecutionFlow extends EObject {
 	 * @generated
 	 */
 	EList<DataFlow> getDataFlows();
+
+	/**
+	 * Returns the value of the '<em><b>Task Nodes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionflow.TaskNode}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Task Nodes</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Task Nodes</em>' containment reference list.
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getExecutionFlow_TaskNodes()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<TaskNode> getTaskNodes();
 
 } // ExecutionFlow

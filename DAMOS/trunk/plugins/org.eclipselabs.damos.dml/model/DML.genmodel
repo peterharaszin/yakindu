@@ -91,6 +91,7 @@
       <genOperations ecoreOperation="DML.ecore#//Inoutput/canAddPort"/>
       <genOperations ecoreOperation="DML.ecore#//Inoutput/canRemovePort"/>
       <genOperations ecoreOperation="DML.ecore#//Inoutput/createPort"/>
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/isTestPoint"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//Input">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Input/ports"/>
@@ -104,6 +105,7 @@
     <genClasses image="false" ecoreClass="DML.ecore#//Port">
       <genOperations ecoreOperation="DML.ecore#//Port/getIndex"/>
       <genOperations ecoreOperation="DML.ecore#//Port/getComponent"/>
+      <genOperations ecoreOperation="DML.ecore#//Port/getInoutput"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//InputPort">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//InputPort/input"/>
@@ -121,7 +123,9 @@
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//SignalSpecification"/>
-    <genClasses image="false" ecoreClass="DML.ecore#//BlockInoutput"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//BlockInoutput">
+      <genOperations ecoreOperation="DML.ecore#//BlockInoutput/getDefinition"/>
+    </genClasses>
     <genClasses ecoreClass="DML.ecore#//BlockInput">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//BlockInput/definition"/>
     </genClasses>
@@ -134,6 +138,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/defaultPortCount"/>
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/manyPorts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/testPoint"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//InoutputDefinition/dataType"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//InputDefinition">
@@ -244,10 +249,12 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SubsystemRealization/realizingFragment"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Inport"/>
+    <genClasses ecoreClass="DML.ecore#//InportInput"/>
     <genClasses image="false" ecoreClass="DML.ecore#//Inoutport">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Inoutport/dataType"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Outport"/>
+    <genClasses ecoreClass="DML.ecore#//OutportOutput"/>
     <genClasses ecoreClass="DML.ecore#//SubsystemInput">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//SubsystemInput/inlet"/>
     </genClasses>

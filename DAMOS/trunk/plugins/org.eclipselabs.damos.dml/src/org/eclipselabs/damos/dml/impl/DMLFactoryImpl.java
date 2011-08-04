@@ -36,6 +36,7 @@ import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.InportInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.InputPort;
@@ -54,6 +55,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.OutportOutput;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -144,7 +146,9 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.OUTLET: return createOutlet();
 			case DMLPackage.SUBSYSTEM_REALIZATION: return createSubsystemRealization();
 			case DMLPackage.INPORT: return createInport();
+			case DMLPackage.INPORT_INPUT: return createInportInput();
 			case DMLPackage.OUTPORT: return createOutport();
+			case DMLPackage.OUTPORT_OUTPUT: return createOutportOutput();
 			case DMLPackage.SUBSYSTEM_INPUT: return createSubsystemInput();
 			case DMLPackage.SUBSYSTEM_OUTPUT: return createSubsystemOutput();
 			case DMLPackage.BOOLEAN_DIRECT_FEEDTHROUGH_POLICY: return createBooleanDirectFeedthroughPolicy();
@@ -510,9 +514,29 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public InportInput createInportInput() {
+		InportInputImpl inportInput = new InportInputImpl();
+		return inportInput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Outport createOutport() {
 		OutportImpl outport = new OutportImpl();
 		return outport;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OutportOutput createOutportOutput() {
+		OutportOutputImpl outportOutput = new OutportOutputImpl();
+		return outportOutput;
 	}
 
 	/**

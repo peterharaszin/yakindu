@@ -22,6 +22,7 @@ import org.eclipselabs.damos.execution.executionflow.DataFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +34,7 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getDataFlows <em>Data Flows</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getTaskNodes <em>Task Nodes</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,6 +70,16 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * @ordered
 	 */
 	protected EList<DataFlow> dataFlows;
+
+	/**
+	 * The cached value of the '{@link #getTaskNodes() <em>Task Nodes</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTaskNodes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TaskNode> taskNodes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -186,6 +198,18 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<TaskNode> getTaskNodes() {
+		if (taskNodes == null) {
+			taskNodes = new EObjectContainmentEList<TaskNode>(TaskNode.class, this, ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES);
+		}
+		return taskNodes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -193,6 +217,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return basicSetGraph(null, msgs);
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				return ((InternalEList<?>)getDataFlows()).basicRemove(otherEnd, msgs);
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
+				return ((InternalEList<?>)getTaskNodes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -212,6 +238,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return getGraph();
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				return getDataFlows();
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
+				return getTaskNodes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,6 +263,10 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				getDataFlows().clear();
 				getDataFlows().addAll((Collection<? extends DataFlow>)newValue);
 				return;
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
+				getTaskNodes().clear();
+				getTaskNodes().addAll((Collection<? extends TaskNode>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -256,6 +288,9 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				getDataFlows().clear();
 				return;
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
+				getTaskNodes().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -274,6 +309,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return graph != null;
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				return dataFlows != null && !dataFlows.isEmpty();
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
+				return taskNodes != null && !taskNodes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

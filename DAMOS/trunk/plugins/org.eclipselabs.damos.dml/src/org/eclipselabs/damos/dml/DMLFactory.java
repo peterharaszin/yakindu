@@ -296,6 +296,15 @@ public interface DMLFactory extends EFactory {
 	Inport createInport();
 
 	/**
+	 * Returns a new object of class '<em>Inport Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Inport Input</em>'.
+	 * @generated
+	 */
+	InportInput createInportInput();
+
+	/**
 	 * Returns a new object of class '<em>Outport</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -303,6 +312,15 @@ public interface DMLFactory extends EFactory {
 	 * @generated
 	 */
 	Outport createOutport();
+
+	/**
+	 * Returns a new object of class '<em>Outport Output</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Outport Output</em>'.
+	 * @generated
+	 */
+	OutportOutput createOutportOutput();
 
 	/**
 	 * Returns a new object of class '<em>Subsystem Input</em>'.

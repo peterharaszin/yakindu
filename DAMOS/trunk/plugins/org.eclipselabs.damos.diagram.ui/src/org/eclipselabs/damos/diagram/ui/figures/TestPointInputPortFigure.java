@@ -19,16 +19,16 @@ import org.eclipse.draw2d.geometry.PointList;
  * @author Andreas Unger
  *
  */
-public class OutportOutputPortFigure extends PortFigure {
+public class TestPointInputPortFigure extends PortFigure {
 
-	public OutportOutputPortFigure() {
+	public TestPointInputPortFigure() {
 	}
 
-	public OutportOutputPortFigure(String text) {
+	public TestPointInputPortFigure(String text) {
 		super(text);
 	}
 
-	public OutportOutputPortFigure(IFigure contentFigure) {
+	public TestPointInputPortFigure(IFigure contentFigure) {
 		super(contentFigure);
 	}
 
@@ -36,25 +36,25 @@ public class OutportOutputPortFigure extends PortFigure {
 	 * @see org.eclipselabs.damos.diagram.figures.PortFigure#createTerminalFigure()
 	 */
 	protected TerminalFigure createTerminalFigure() {
-		return new OutputTerminalFigure(this);
+		return new InputTerminalFigure(this);
 	}
 	
-	private static class OutputTerminalFigure extends PolygonTerminalFigure {
+	private static class InputTerminalFigure extends PolygonTerminalFigure {
 		
 		private static final int SIZE = IFigureConstants.DEFAULT_TERMINAL_SIZE;
 
 		private static final PointList POLYGON = new PointList();
 
 		static {
-			POLYGON.addPoint(-SIZE * 2, -SIZE);
-			POLYGON.addPoint(-SIZE, 0);
-			POLYGON.addPoint(-SIZE * 2, SIZE);
+			POLYGON.addPoint(-SIZE, SIZE);
+			POLYGON.addPoint(-SIZE * 2, 0);
+			POLYGON.addPoint(-SIZE, -SIZE);
 		}
 
 		/**
 		 * @param owner
 		 */
-		public OutputTerminalFigure(PortFigure owner) {
+		public InputTerminalFigure(PortFigure owner) {
 			super(owner);
 			setForegroundColor(ColorConstants.blue);
 		}

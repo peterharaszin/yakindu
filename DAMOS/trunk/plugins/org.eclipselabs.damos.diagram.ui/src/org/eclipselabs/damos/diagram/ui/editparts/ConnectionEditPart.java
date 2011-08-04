@@ -24,12 +24,8 @@ import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.figures.ConnectionFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.ConnectionGraphicalNodeEditPolicy;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.FragmentSelectionEditPolicy;
-import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
-import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.Inport;
-import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Port;
 
 public class ConnectionEditPart extends ConnectionNodeEditPart {
@@ -56,11 +52,16 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 	protected void refreshConnectionType() {
 		Connection connection = (Connection) resolveSemanticElement();
 		if (connection != null) {
-			Connector source = connection.getSource();
-			Connector target = connection.getTarget();
-			Component sourceComponent = source instanceof Port ? ((Port) source).getComponent() : null;
-			Component targetComponent = target instanceof Port ? ((Port) target).getComponent() : null;
-			setLineType(sourceComponent instanceof Outport || targetComponent instanceof Inport ? SWT.LINE_DOT : SWT.LINE_SOLID);
+			boolean testPointConnection = false;
+			if (connection.getSource() instanceof Port) {
+				Port source = (Port) connection.getSource();
+				testPointConnection |= source.getInoutput().isTestPoint();
+			}
+			if (connection.getTarget() instanceof Port) {
+				Port target = (Port) connection.getTarget();
+				testPointConnection |= target.getInoutput().isTestPoint();
+			}
+			setLineType(testPointConnection ? SWT.LINE_DOT : SWT.LINE_SOLID);
 		}
 	}
 	

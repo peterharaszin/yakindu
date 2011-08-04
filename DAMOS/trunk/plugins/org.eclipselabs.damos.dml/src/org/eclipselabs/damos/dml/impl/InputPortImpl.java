@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.internal.operations.InputPortOperations;
@@ -110,6 +111,14 @@ public class InputPortImpl extends PortImpl implements InputPort {
 	 */
 	public Connection getIncomingConnection(Fragment context) {
 		return InputPortOperations.getIncomingConnection(this, context);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.PortImpl#getInoutput()
+	 */
+	@Override
+	public Inoutput getInoutput() {
+		return getInput();
 	}
 
 	/**

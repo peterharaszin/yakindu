@@ -10,6 +10,8 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="dataFlows" ordered="false"
         upperBound="-1" eType="#//DataFlow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskNodes" upperBound="-1"
+        eType="#//TaskNode" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Graph">
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
@@ -28,7 +30,7 @@
     </eOperations>
     <eOperations name="getDrivingNodes" upperBound="-1" eType="#//Node"/>
     <eOperations name="getDrivenNodes" upperBound="-1" eType="#//Node"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="#//Graph"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" eType="#//Graph"
         eOpposite="#//Graph/nodes"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingEdges" upperBound="-1"
         eType="#//Edge" eOpposite="#//Edge/target"/>
@@ -59,6 +61,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskNode" eSuperTypes="#//Subgraph"/>
   <eClassifiers xsi:type="ecore:EClass" name="Edge">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         lowerBound="1" eType="#//Node" eOpposite="#//Node/outgoingEdges"/>

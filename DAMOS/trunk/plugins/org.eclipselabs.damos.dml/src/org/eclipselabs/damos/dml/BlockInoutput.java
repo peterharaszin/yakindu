@@ -18,4 +18,12 @@ package org.eclipselabs.damos.dml;
  * @generated
  */
 public interface BlockInoutput extends Inoutput {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	InoutputDefinition getDefinition();
 } // BlockInoutput

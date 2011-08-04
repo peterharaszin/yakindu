@@ -54,6 +54,7 @@ import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.InportInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
@@ -73,6 +74,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.OutportOutput;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
@@ -585,6 +587,15 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLPackage.INPORT_INPUT: {
+				InportInput inportInput = (InportInput)theEObject;
+				T result = caseInportInput(inportInput);
+				if (result == null) result = caseInput(inportInput);
+				if (result == null) result = caseInoutput(inportInput);
+				if (result == null) result = caseINamedElement(inportInput);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLPackage.INOUTPORT: {
 				Inoutport inoutport = (Inoutport)theEObject;
 				T result = caseInoutport(inoutport);
@@ -605,6 +616,15 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseCompoundMember(outport);
 				if (result == null) result = caseINamedElement(outport);
 				if (result == null) result = caseEModelElement(outport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.OUTPORT_OUTPUT: {
+				OutportOutput outportOutput = (OutportOutput)theEObject;
+				T result = caseOutportOutput(outportOutput);
+				if (result == null) result = caseOutput(outportOutput);
+				if (result == null) result = caseInoutput(outportOutput);
+				if (result == null) result = caseINamedElement(outportOutput);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1661,6 +1681,21 @@ public class DMLSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Inport Input</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Inport Input</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInportInput(InportInput object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Inoutport</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1687,6 +1722,21 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOutport(Outport object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Outport Output</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Outport Output</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOutportOutput(OutportOutput object) {
 		return null;
 	}
 

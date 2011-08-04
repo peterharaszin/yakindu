@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipselabs.damos.execution.executionflow.*;
+import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlow;
@@ -24,6 +24,7 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,6 +76,7 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 			case ExecutionFlowPackage.COMPOUND_NODE: return createCompoundNode();
 			case ExecutionFlowPackage.ACTION_NODE: return createActionNode();
 			case ExecutionFlowPackage.SUBSYSTEM_NODE: return createSubsystemNode();
+			case ExecutionFlowPackage.TASK_NODE: return createTaskNode();
 			case ExecutionFlowPackage.EDGE: return createEdge();
 			case ExecutionFlowPackage.DATA_FLOW: return createDataFlow();
 			case ExecutionFlowPackage.DATA_FLOW_SOURCE_END: return createDataFlowSourceEnd();
@@ -143,6 +145,16 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 	public SubsystemNode createSubsystemNode() {
 		SubsystemNodeImpl subsystemNode = new SubsystemNodeImpl();
 		return subsystemNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TaskNode createTaskNode() {
+		TaskNodeImpl taskNode = new TaskNodeImpl();
+		return taskNode;
 	}
 
 	/**

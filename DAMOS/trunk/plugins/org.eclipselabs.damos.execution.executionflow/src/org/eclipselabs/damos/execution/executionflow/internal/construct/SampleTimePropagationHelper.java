@@ -19,10 +19,13 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowPlugin;
@@ -33,7 +36,8 @@ import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowPlug
  */
 public class SampleTimePropagationHelper {
 
-	public void propagateSampleTimes(Graph graph) throws CoreException {
+	public void propagateSampleTimes(ExecutionFlow executionFlow) throws CoreException {
+		Graph graph = executionFlow.getGraph();
 		List<ComponentNode> inheritingNodes = new LinkedList<ComponentNode>();
 		applySampleTimes(graph, inheritingNodes);
 		
@@ -78,11 +82,17 @@ public class SampleTimePropagationHelper {
 	 * @return
 	 */
 	private double getSampleTime(Component component) {
-		if (component.getTimingConstraint() instanceof ContinuousTimingConstraint) {
-			return 0;
+		if (component instanceof Latch) {
+			return Double.NaN;
 		}
 		if (component.getTimingConstraint() == null) {
 			return -1;
+		}
+		if (component.getTimingConstraint() instanceof ContinuousTimingConstraint) {
+			return 0;
+		}
+		if (component.getTimingConstraint() instanceof AsynchronousTimingConstraint) {
+			return Double.POSITIVE_INFINITY;
 		}
 		if (component.getTimingConstraint() instanceof SynchronousTimingConstraint) {
 			SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint) component.getTimingConstraint();
@@ -112,8 +122,16 @@ public class SampleTimePropagationHelper {
 				for (Node node : nodes) {
 					if (node instanceof ComponentNode) {
 						ComponentNode sourceComponentNode = (ComponentNode) node;
+						if (sourceComponentNode.getComponent() instanceof Latch) {
+							continue;
+						}
 						if (sourceComponentNode.getSampleTime() == 0) {
 							sampleTime = 0;
+							it.remove();
+							break;
+						}
+						if (sourceComponentNode.getSampleTime() == Double.POSITIVE_INFINITY) {
+							sampleTime = Double.POSITIVE_INFINITY;
 							it.remove();
 							break;
 						}

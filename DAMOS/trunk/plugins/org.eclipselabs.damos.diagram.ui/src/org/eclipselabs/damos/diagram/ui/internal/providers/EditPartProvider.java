@@ -23,9 +23,7 @@ import org.eclipselabs.damos.diagram.ui.editparts.BlockInputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.BlockOutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.InoutportEditPart;
-import org.eclipselabs.damos.diagram.ui.editparts.InportInputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.InputPortEditPart;
-import org.eclipselabs.damos.diagram.ui.editparts.OutportOutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.OutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.SubsystemEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.SubsystemInputPortEditPart;
@@ -57,13 +55,11 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Inoutport;
-import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
-import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Subsystem;
@@ -100,9 +96,6 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			if (inputPort.getInput() instanceof SubsystemInput) {
 				return SubsystemInputPortEditPart.class;
 			}
-			if (inputPort.getComponent() instanceof Inport) {
-				return InportInputPortEditPart.class;
-			}
 			if (inputPort instanceof BlockInputPort) {
 				Class<?> clazz = null;
 				Input input = inputPort.getInput();
@@ -125,9 +118,6 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			OutputPort outputPort = (OutputPort) element;
 			if (outputPort.getOutput() instanceof SubsystemOutput) {
 				return SubsystemOutputPortEditPart.class;
-			}
-			if (outputPort.getComponent() instanceof Outport) {
-				return OutportOutputPortEditPart.class;
 			}
 			if (outputPort instanceof BlockOutputPort) {
 				Class<?> clazz = null;

@@ -334,7 +334,17 @@ public class OpaqueBehaviorSpecificationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
+				 DMLFactory.eINSTANCE.createInportInput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
 				 DMLFactory.eINSTANCE.createOutport()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
+				 DMLFactory.eINSTANCE.createOutportOutput()));
 
 		newChildDescriptors.add
 			(createChildParameter

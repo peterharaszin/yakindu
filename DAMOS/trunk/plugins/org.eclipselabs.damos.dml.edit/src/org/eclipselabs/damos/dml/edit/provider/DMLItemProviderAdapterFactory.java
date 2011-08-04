@@ -787,6 +787,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.InportInput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InportInputItemProvider inportInputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.InportInput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInportInputAdapter() {
+		if (inportInputItemProvider == null) {
+			inportInputItemProvider = new InportInputItemProvider(this);
+		}
+
+		return inportInputItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Outport} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -807,6 +830,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		}
 
 		return outportItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OutportOutput} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OutportOutputItemProvider outportOutputItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OutportOutput}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOutportOutputAdapter() {
+		if (outportOutputItemProvider == null) {
+			outportOutputItemProvider = new OutportOutputItemProvider(this);
+		}
+
+		return outportOutputItemProvider;
 	}
 
 	/**
@@ -1422,7 +1468,9 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (outletItemProvider != null) outletItemProvider.dispose();
 		if (subsystemRealizationItemProvider != null) subsystemRealizationItemProvider.dispose();
 		if (inportItemProvider != null) inportItemProvider.dispose();
+		if (inportInputItemProvider != null) inportInputItemProvider.dispose();
 		if (outportItemProvider != null) outportItemProvider.dispose();
+		if (outportOutputItemProvider != null) outportOutputItemProvider.dispose();
 		if (subsystemInputItemProvider != null) subsystemInputItemProvider.dispose();
 		if (subsystemOutputItemProvider != null) subsystemOutputItemProvider.dispose();
 		if (booleanDirectFeedthroughPolicyItemProvider != null) booleanDirectFeedthroughPolicyItemProvider.dispose();

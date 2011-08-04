@@ -55,6 +55,7 @@ import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.Inoutput;
 import org.eclipselabs.damos.dml.InoutputDefinition;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.InportInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputDefinition;
@@ -74,6 +75,7 @@ import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
+import org.eclipselabs.damos.dml.OutportOutput;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
@@ -370,12 +372,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createInportAdapter();
 			}
 			@Override
+			public Adapter caseInportInput(InportInput object) {
+				return createInportInputAdapter();
+			}
+			@Override
 			public Adapter caseInoutport(Inoutport object) {
 				return createInoutportAdapter();
 			}
 			@Override
 			public Adapter caseOutport(Outport object) {
 				return createOutportAdapter();
+			}
+			@Override
+			public Adapter caseOutportOutput(OutportOutput object) {
+				return createOutportOutputAdapter();
 			}
 			@Override
 			public Adapter caseSubsystemInput(SubsystemInput object) {
@@ -1260,6 +1270,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.InportInput <em>Inport Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.InportInput
+	 * @generated
+	 */
+	public Adapter createInportInputAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.Inoutport <em>Inoutport</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -1284,6 +1308,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOutportAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.OutportOutput <em>Outport Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.OutportOutput
+	 * @generated
+	 */
+	public Adapter createOutportOutputAdapter() {
 		return null;
 	}
 

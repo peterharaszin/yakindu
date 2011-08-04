@@ -205,6 +205,11 @@ public class ComponentItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.COMPONENT__INPUTS,
+				 DMLFactory.eINSTANCE.createInportInput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__INPUTS,
 				 DMLFactory.eINSTANCE.createSubsystemInput()));
 
 		newChildDescriptors.add
@@ -241,6 +246,11 @@ public class ComponentItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.COMPONENT__OUTPUTS,
 				 DMLFactory.eINSTANCE.createBlockOutput()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPONENT__OUTPUTS,
+				 DMLFactory.eINSTANCE.createOutportOutput()));
 
 		newChildDescriptors.add
 			(createChildParameter

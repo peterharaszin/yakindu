@@ -47,7 +47,7 @@ public class ConfigureOutportCommand extends ConfigureElementCommand {
     	input.getPorts().add(inputPort);
     	outport.getInputs().add(input);
 
-    	Output output = DMLFactory.eINSTANCE.createOutput();
+    	Output output = DMLFactory.eINSTANCE.createOutportOutput();
     	OutputPort outputPort = DMLFactory.eINSTANCE.createOutputPort();
     	output.getPorts().add(outputPort);
     	outport.getOutputs().add(output);

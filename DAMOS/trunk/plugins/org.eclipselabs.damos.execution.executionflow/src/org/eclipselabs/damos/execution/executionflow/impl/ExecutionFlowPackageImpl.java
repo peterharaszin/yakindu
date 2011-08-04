@@ -30,6 +30,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -93,6 +94,13 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * @generated
 	 */
 	private EClass subsystemNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass taskNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -241,6 +249,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 */
 	public EReference getExecutionFlow_DataFlows() {
 		return (EReference)executionFlowEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExecutionFlow_TaskNodes() {
+		return (EReference)executionFlowEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -430,6 +447,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 */
 	public EReference getSubsystemNode_Subsystem() {
 		return (EReference)subsystemNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTaskNode() {
+		return taskNodeEClass;
 	}
 
 	/**
@@ -644,6 +670,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		createEReference(executionFlowEClass, EXECUTION_FLOW__TOP_LEVEL_FRAGMENT);
 		createEReference(executionFlowEClass, EXECUTION_FLOW__GRAPH);
 		createEReference(executionFlowEClass, EXECUTION_FLOW__DATA_FLOWS);
+		createEReference(executionFlowEClass, EXECUTION_FLOW__TASK_NODES);
 
 		graphEClass = createEClass(GRAPH);
 		createEReference(graphEClass, GRAPH__NODES);
@@ -672,6 +699,8 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		subsystemNodeEClass = createEClass(SUBSYSTEM_NODE);
 		createEReference(subsystemNodeEClass, SUBSYSTEM_NODE__SUBSYSTEM);
+
+		taskNodeEClass = createEClass(TASK_NODE);
 
 		edgeEClass = createEClass(EDGE);
 		createEReference(edgeEClass, EDGE__SOURCE);
@@ -738,6 +767,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		compoundNodeEClass.getESuperTypes().add(this.getSubgraph());
 		actionNodeEClass.getESuperTypes().add(this.getCompoundNode());
 		subsystemNodeEClass.getESuperTypes().add(this.getSubgraph());
+		taskNodeEClass.getESuperTypes().add(this.getSubgraph());
 		dataFlowSourceEndEClass.getESuperTypes().add(this.getDataFlowEnd());
 		dataFlowTargetEndEClass.getESuperTypes().add(this.getDataFlowEnd());
 		portInfoEClass.getESuperTypes().add(this.getConnectorInfo());
@@ -747,6 +777,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getExecutionFlow_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExecutionFlow_Graph(), this.getGraph(), null, "graph", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExecutionFlow_DataFlows(), this.getDataFlow(), null, "dataFlows", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getExecutionFlow_TaskNodes(), this.getTaskNode(), null, "taskNodes", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraph_Nodes(), this.getNode(), this.getNode_Graph(), "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -754,7 +785,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getGraph_Edges(), this.getEdge(), null, "edges", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_IncomingEdges(), this.getEdge(), this.getEdge_Target(), "incomingEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_OutgoingEdges(), this.getEdge(), this.getEdge_Source(), "outgoingEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_EnclosingSubsystems(), theDMLPackage.getSubsystem(), null, "enclosingSubsystems", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -785,6 +816,8 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		initEClass(subsystemNodeEClass, SubsystemNode.class, "SubsystemNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubsystemNode_Subsystem(), theDMLPackage.getSubsystem(), null, "subsystem", null, 1, 1, SubsystemNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(taskNodeEClass, TaskNode.class, "TaskNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdge_Source(), this.getNode(), this.getNode_OutgoingEdges(), "source", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

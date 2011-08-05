@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowConstructor;
+import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowBuilder;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.internal.ComponentOverflowMonitor;
@@ -50,7 +50,7 @@ import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
  */
 public class Simulator {
 	
-	private final ExecutionFlowConstructor executionFlowConstructor = new ExecutionFlowConstructor();
+	private final ExecutionFlowBuilder executionFlowBuilder = new ExecutionFlowBuilder();
 	
 	private final SimulationObjectAdaptor simulationObjectAdaptor = new SimulationObjectAdaptor();
 
@@ -61,7 +61,7 @@ public class Simulator {
 	public void initialize(SimulationModel simulationModel, IProgressMonitor monitor) throws CoreException {
 		SubMonitor subMonitor = SubMonitor.convert(monitor, "Initializing simulator", 5);
 		
-		ExecutionFlow executionFlow = executionFlowConstructor.construct(simulationModel.getTopLevelFragment(), subMonitor.newChild(1));
+		ExecutionFlow executionFlow = executionFlowBuilder.build(simulationModel.getTopLevelFragment(), subMonitor.newChild(1));
 		if (subMonitor.isCanceled()) {
 			return;
 		}

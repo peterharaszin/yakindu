@@ -50,12 +50,12 @@ import org.eclipselabs.damos.execution.executionflow.internal.construct.TaskNode
  * @author Andreas Unger
  *
  */
-public class ExecutionFlowConstructor {
+public class ExecutionFlowBuilder {
 	
 	private final SampleTimePropagationHelper sampleTimePropagationHelper = new SampleTimePropagationHelper();
 	private final TaskNodeComputationHelper taskNodeComputationHelper = new TaskNodeComputationHelper();
 
-	public ExecutionFlow construct(Fragment topLevelFragment, IProgressMonitor monitor) throws CoreException {
+	public ExecutionFlow build(Fragment topLevelFragment, IProgressMonitor monitor) throws CoreException {
 		Context context = new Context();
 		context.flow = ExecutionFlowFactory.eINSTANCE.createExecutionFlow();
 		context.flow.setTopLevelFragment(topLevelFragment);

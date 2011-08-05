@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowBuilder;
+import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.internal.ComponentOverflowMonitor;

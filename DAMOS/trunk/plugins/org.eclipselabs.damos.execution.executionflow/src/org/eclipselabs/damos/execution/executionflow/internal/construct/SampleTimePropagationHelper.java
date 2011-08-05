@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowPlugin;
+import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowPlugin;
 
 /**
  * @author Andreas Unger

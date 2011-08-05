@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.execution.executionflow.construct;
+package org.eclipselabs.damos.execution.executionflow.build;
 
 import java.util.ArrayList;
 import java.util.HashSet;

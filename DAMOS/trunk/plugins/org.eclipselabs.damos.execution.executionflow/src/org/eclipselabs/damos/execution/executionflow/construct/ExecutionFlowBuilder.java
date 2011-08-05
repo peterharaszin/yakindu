@@ -11,9 +11,7 @@
 
 package org.eclipselabs.damos.execution.executionflow.construct;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,10 +21,6 @@ import java.util.Set;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipselabs.damos.dml.ChoiceInputPort;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.InputConnector;
@@ -102,16 +96,6 @@ public class ExecutionFlowBuilder {
 		
 		sampleTimePropagationHelper.propagateSampleTimes(context.flow);
 		taskNodeComputationHelper.computeTaskNodes(context.flow);
-		
-		ResourceSet rs = new ResourceSetImpl();
-		Resource r = rs.createResource(URI.createPlatformResourceURI("/Damos/test.xmi", true));
-		r.getContents().add(context.flow);
-		try {
-			r.save(Collections.emptyMap());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		return context.flow;
 	}

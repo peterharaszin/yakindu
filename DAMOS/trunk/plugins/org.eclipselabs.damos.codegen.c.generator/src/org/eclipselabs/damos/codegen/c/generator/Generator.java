@@ -62,7 +62,7 @@ import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowConstructor;
+import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowBuilder;
 import org.eclipselabs.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
@@ -119,7 +119,7 @@ public class Generator {
 	}
 	
 	private ExecutionFlow constructExecutionFlow(GenModel genModel, IProgressMonitor monitor) throws CoreException {
-		ExecutionFlow executionFlow = new ExecutionFlowConstructor().construct(genModel.getGenTopLevelSystem().getFragment(), monitor);
+		ExecutionFlow executionFlow = new ExecutionFlowBuilder().build(genModel.getGenTopLevelSystem().getFragment(), monitor);
 		new ComponentGeneratorAdaptor().adaptGenerators(genModel, executionFlow, monitor);
 		return executionFlow;
 	}

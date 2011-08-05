@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.execution.executionflow.internal.construct;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.Edge;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.Graph;
@@ -93,6 +95,29 @@ public class TaskNodeComputationHelper {
 				taskNode.getNodes().add(node);
 				executionFlow.getTaskNodes().add(taskNode);
 				taskNodes.put(node, taskNode);
+			}
+		}
+		
+		// Reconnect edges
+		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+			for (Node node : taskNode.getNodes()) {
+				if (node.getIncomingEdges().isEmpty()) {
+					taskNode.getInitialNodes().add(node);
+				} else {
+					for (Edge edge : new ArrayList<Edge>(node.getIncomingEdges())) {
+						Node source = edge.getSource();
+						if (source.getGraph() != taskNode) {
+							edge.setTarget(taskNode);
+							taskNode.getInitialNodes().add(node);
+						}
+					}
+				}
+				for (Edge edge : new ArrayList<Edge>(node.getOutgoingEdges())) {
+					Node target = edge.getTarget();
+					if (target.getGraph() != taskNode) {
+						edge.setSource(taskNode);
+					}
+				}
 			}
 		}
 	}

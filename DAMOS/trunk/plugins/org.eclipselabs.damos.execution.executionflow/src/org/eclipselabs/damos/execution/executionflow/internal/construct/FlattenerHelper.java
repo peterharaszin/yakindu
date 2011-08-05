@@ -55,7 +55,7 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
-import org.eclipselabs.damos.execution.executionflow.construct.ExecutionFlowPlugin;
+import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowPlugin;
 
 /**
  * @author Andreas Unger

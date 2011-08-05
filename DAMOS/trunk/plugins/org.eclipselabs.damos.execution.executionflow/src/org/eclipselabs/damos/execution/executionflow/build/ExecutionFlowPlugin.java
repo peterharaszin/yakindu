@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.execution.executionflow.construct;
+package org.eclipselabs.damos.execution.executionflow.build;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

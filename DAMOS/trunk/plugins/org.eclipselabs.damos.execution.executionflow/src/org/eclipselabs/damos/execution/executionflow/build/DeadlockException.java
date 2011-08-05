@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2010 Andreas Unger and others.
+ * Copyright (c) 2008, 2009 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,26 +9,32 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.execution.executionflow.construct;
+package org.eclipselabs.damos.execution.executionflow.build;
 
 import java.util.List;
 
-import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ExecutionFlowDeadlockStatus extends Status {
+public class DeadlockException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+	
 	private List<Node> backlog;
 	
 	/**
 	 * 
 	 */
-	public ExecutionFlowDeadlockStatus(int severity, String pluginId, int code, String message, Throwable exception, List<Node> backlog) {
-		super(severity, pluginId, code, message, exception);
+	public DeadlockException() {
+	}
+	
+	/**
+	 * 
+	 */
+	public DeadlockException(List<Node> backlog) {
 		this.backlog = backlog;
 	}
 	
@@ -38,5 +44,5 @@ public class ExecutionFlowDeadlockStatus extends Status {
 	public List<Node> getBacklog() {
 		return backlog;
 	}
-	
+
 }

@@ -21,8 +21,10 @@ import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
+import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
@@ -38,7 +40,11 @@ public class SimulationObjectAdaptor {
 	public void adaptSimulationObjects(ISimulationContext context, IProgressMonitor progressMonitor) throws CoreException {
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
 		
-		adaptSimulationObjects(context, context.getExecutionFlow().getGraph(), missingSimulationObjectComponents);
+		ExecutionFlow executionFlow = context.getExecutionFlow();
+		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+			adaptSimulationObjects(context, taskNode, missingSimulationObjectComponents);
+		}
+		adaptSimulationObjects(context, executionFlow.getGraph(), missingSimulationObjectComponents);
 		
 		if (!missingSimulationObjectComponents.isEmpty()) {
 			StringBuilder sb = new StringBuilder("Missing simulation object for ");

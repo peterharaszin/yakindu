@@ -45,7 +45,7 @@ public class SimulationListener implements ISimulationListener {
 		case SimulationEvent.OVERFLOW:
 			overflowedComponents.add((Component) event.getSource());
 			break;
-		case SimulationEvent.AFTER_STEP:
+		case SimulationEvent.STEP:
 			if (realtime) {
 				long newTime = (long) event.getTime();
 				if (newTime == progress) {
@@ -79,7 +79,7 @@ public class SimulationListener implements ISimulationListener {
 						viewPart.setProgress(progress);
 						viewPart.clear();
 						break;
-					case SimulationEvent.AFTER_STEP:
+					case SimulationEvent.STEP:
 						viewPart = (SimulationView) workbenchPage.findView(SimulationView.ID);
 						if (viewPart != null) {
 							viewPart.setProgress(progress);

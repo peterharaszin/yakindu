@@ -94,7 +94,7 @@ public interface DataFlowTargetEnd extends DataFlowEnd {
 	 * @return the value of the '<em>Connector</em>' reference.
 	 * @see #setConnector(InputConnector)
 	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getDataFlowTargetEnd_Connector()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	InputConnector getConnector();
@@ -108,5 +108,13 @@ public interface DataFlowTargetEnd extends DataFlowEnd {
 	 * @generated
 	 */
 	void setConnector(InputConnector value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	DataFlowSourceEnd getSourceEnd();
 
 } // DataFlowTargetEnd

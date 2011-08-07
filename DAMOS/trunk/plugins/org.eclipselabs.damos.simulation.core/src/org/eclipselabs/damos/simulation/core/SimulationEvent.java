@@ -20,8 +20,8 @@ import java.util.EventObject;
 public class SimulationEvent extends EventObject {
 
 	public static final int START = 0;
-	public static final int BEFORE_STEP = 1;
-	public static final int AFTER_STEP = 2;
+	public static final int STEP = 1;
+	public static final int ASYNCHRONOUS = 2;
 	public static final int FINISH = 3;
 	public static final int CANCEL = 4;
 	public static final int OVERFLOW = 5;

@@ -35,6 +35,7 @@ import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputConnector;
@@ -139,7 +140,12 @@ public class FlattenerHelper {
 			flattenCompound(fragment, subsystemPath, node, compound);
 		} else if (element instanceof Component && (!(element instanceof Inoutport) || subsystemPath.isRoot())) {
 			Component component = (Component) element;
-			ComponentNode node = ExecutionFlowFactory.eINSTANCE.createComponentNode();
+			ComponentNode node;
+			if (component instanceof Latch) {
+				node = ExecutionFlowFactory.eINSTANCE.createLatchNode();
+			} else {
+				node = ExecutionFlowFactory.eINSTANCE.createComponentNode();
+			}
 			node.setComponent(component);
 			node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
 			addGraphNode(graph, node);

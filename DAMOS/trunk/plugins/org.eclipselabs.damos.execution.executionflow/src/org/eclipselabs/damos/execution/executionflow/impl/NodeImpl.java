@@ -258,6 +258,15 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isEnclosedBy(Graph graph) {
+		return NodeOperations.isEnclosedBy(this, graph);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")

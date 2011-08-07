@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.library.vi.ui.editparts.controls;
 
+import java.util.Collection;
+
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
@@ -19,11 +21,11 @@ import org.eclipselabs.damos.diagram.ui.figures.StandardComponentLayout;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.library.vi.ui.figures.controls.SliderContentFigure;
 import org.eclipselabs.damos.library.vi.ui.figures.controls.SliderContentFigure.ISliderChangeListener;
+import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
-import org.eclipselabs.damos.simulation.core.ISimulationListener;
 import org.eclipselabs.damos.simulation.core.ISimulationVariationPoint;
-import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
+import org.eclipselabs.damos.simulation.core.AbstractSimulationRunnable;
 import org.eclipselabs.mscript.computation.core.value.IValue;
 import org.eclipselabs.mscript.computation.core.value.Values;
 import org.eclipselabs.mscript.typesystem.NumericType;
@@ -34,28 +36,16 @@ import org.eclipselabs.mscript.typesystem.NumericType;
  */
 public class SliderEditPart extends RectangularBlockEditPart {
 	
-	private volatile double position;
-	
-	private ISimulationListener simulationListener = new ISimulationListener() {
-		
-		public void handleSimulationEvent(SimulationEvent event) {
-			if (event.getKind() == SimulationEvent.BEFORE_STEP) {
-				ISimulationAgent agent = event.getSimulation().getAgent((Component) resolveSemanticElement());
-				if (agent != null) {
-					ISimulationVariationPoint variationPoint = agent.getVariationPoints()[0];
-					IValue value = Values.valueOf(agent.getComputationContext(), (NumericType) variationPoint.getDataType(), position);
-					variationPoint.setValue(value);
-				}
-			}
-		}
-		
-	};
-	
 	private ISliderChangeListener sliderChangeListener = new ISliderChangeListener() {
 		
 		public void positionChanged() {
 			if (contentFigure != null) {
-				position = contentFigure.getPosition();
+				double position = contentFigure.getPosition();
+				Collection<ISimulation> simulations = SimulationManager.getInstance().getRunningSimulations();
+				if (!simulations.isEmpty()) {
+					ISimulation simulation = simulations.iterator().next();
+					simulation.execute(new SliderRunnable(simulation, (Component) resolveSemanticElement(), position));
+				}
 			}
 		}
 		
@@ -71,24 +61,6 @@ public class SliderEditPart extends RectangularBlockEditPart {
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#activate()
-	 */
-	@Override
-	public void activate() {
-		super.activate();
-		SimulationManager.getInstance().addSimulationListener(simulationListener);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#deactivate()
-	 */
-	@Override
-	public void deactivate() {
-		SimulationManager.getInstance().removeSimulationListener(simulationListener);
-		super.deactivate();
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#createMainFigure()
 	 */
 	protected NodeFigure createMainFigure() {
@@ -100,6 +72,32 @@ public class SliderEditPart extends RectangularBlockEditPart {
 		contentFigure.addSliderChangeListener(sliderChangeListener);
 		figure.add(contentFigure);
 		return figure;
+	}
+	
+	private static class SliderRunnable extends AbstractSimulationRunnable {
+		
+		private double position;
+		
+		/**
+		 * 
+		 */
+		public SliderRunnable(ISimulation simulation, Component component, double position) {
+			super(simulation, component);
+			this.position = position;
+		}
+		
+		/* (non-Javadoc)
+		 * @see java.lang.Runnable#run()
+		 */
+		public void run() {
+			ISimulationAgent agent = getSimulation().getAgent(getComponent());
+			if (agent != null) {
+				ISimulationVariationPoint variationPoint = agent.getVariationPoints()[0];
+				IValue value = Values.valueOf(agent.getComputationContext(), (NumericType) variationPoint.getDataType(), position);
+				variationPoint.setValue(value);
+			}
+		}
+
 	}
 	
 }

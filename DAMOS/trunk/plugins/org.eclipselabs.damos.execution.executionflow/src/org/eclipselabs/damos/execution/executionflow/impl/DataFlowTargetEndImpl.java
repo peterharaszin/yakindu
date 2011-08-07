@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.execution.executionflow.DataFlow;
+import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Node;
@@ -210,6 +211,15 @@ public class DataFlowTargetEndImpl extends DataFlowEndImpl implements DataFlowTa
 		connector = newConnector;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.DATA_FLOW_TARGET_END__CONNECTOR, oldConnector, connector));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DataFlowSourceEnd getSourceEnd() {
+		return getDataFlow().getSourceEnd();
 	}
 
 	/**

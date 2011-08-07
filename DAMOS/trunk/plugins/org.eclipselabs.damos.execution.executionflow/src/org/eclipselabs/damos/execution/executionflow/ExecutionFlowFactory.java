@@ -53,6 +53,15 @@ public interface ExecutionFlowFactory extends EFactory {
 	ComponentNode createComponentNode();
 
 	/**
+	 * Returns a new object of class '<em>Latch Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Latch Node</em>'.
+	 * @generated
+	 */
+	LatchNode createLatchNode();
+
+	/**
 	 * Returns a new object of class '<em>Compound Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,6 +96,15 @@ public interface ExecutionFlowFactory extends EFactory {
 	 * @generated
 	 */
 	TaskNode createTaskNode();
+
+	/**
+	 * Returns a new object of class '<em>Task Input Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Task Input Node</em>'.
+	 * @generated
+	 */
+	TaskInputNode createTaskInputNode();
 
 	/**
 	 * Returns a new object of class '<em>Edge</em>'.

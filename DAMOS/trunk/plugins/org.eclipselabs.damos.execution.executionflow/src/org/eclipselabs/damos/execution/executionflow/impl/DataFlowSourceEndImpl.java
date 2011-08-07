@@ -8,6 +8,7 @@ package org.eclipselabs.damos.execution.executionflow.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.execution.executionflow.DataFlow;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Node;
 
@@ -155,6 +157,15 @@ public class DataFlowSourceEndImpl extends DataFlowEndImpl implements DataFlowSo
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<DataFlowTargetEnd> getTargetEnds() {
+		return getDataFlow().getTargetEnds();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public Node getNode() {
@@ -211,7 +222,7 @@ public class DataFlowSourceEndImpl extends DataFlowEndImpl implements DataFlowSo
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.DATA_FLOW_SOURCE_END__NODE, newNode, newNode));
 	}
-
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

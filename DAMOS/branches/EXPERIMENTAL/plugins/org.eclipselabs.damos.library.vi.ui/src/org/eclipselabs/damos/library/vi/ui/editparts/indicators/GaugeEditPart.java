@@ -57,7 +57,7 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 		public void handleSimulationEvent(SimulationEvent event) {
 			if (event.getKind() == SimulationEvent.START) {
 				updateScaleParameters();
-			} else if (event.getKind() == SimulationEvent.AFTER_STEP) {
+			} else if (event.getKind() == SimulationEvent.STEP || event.getKind() == SimulationEvent.ASYNCHRONOUS) {
 				ISimulationAgent agent = event.getSimulation().getAgent((Component) resolveSemanticElement());
 				if (agent != null) {
 					ISimulationTracePoint tracePoint = agent.getTracePoints()[0];

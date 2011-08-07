@@ -82,9 +82,6 @@ public class SampleTimePropagationHelper {
 	 * @return
 	 */
 	private double getSampleTime(Component component) {
-		if (component instanceof Latch) {
-			return Double.NaN;
-		}
 		if (component.getTimingConstraint() == null) {
 			return -1;
 		}
@@ -110,6 +107,11 @@ public class SampleTimePropagationHelper {
 			for (Iterator<ComponentNode> it = inheritingNodes.iterator(); it.hasNext();) {
 				ComponentNode next = it.next();
 				
+				// Inherit time constraint only from driven nodes (targets)
+				if (!backwards && next.getComponent() instanceof Latch) {
+					continue;
+				}
+
 				double sampleTime = next.getSampleTime();
 				
 				List<Node> nodes;
@@ -122,9 +124,6 @@ public class SampleTimePropagationHelper {
 				for (Node node : nodes) {
 					if (node instanceof ComponentNode) {
 						ComponentNode sourceComponentNode = (ComponentNode) node;
-						if (sourceComponentNode.getComponent() instanceof Latch) {
-							continue;
-						}
 						if (sourceComponentNode.getSampleTime() == 0) {
 							sampleTime = 0;
 							it.remove();

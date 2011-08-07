@@ -10,6 +10,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.execution.executionflow.*;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -105,6 +106,10 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 				return createComponentNodeAdapter();
 			}
 			@Override
+			public Adapter caseLatchNode(LatchNode object) {
+				return createLatchNodeAdapter();
+			}
+			@Override
 			public Adapter caseCompoundNode(CompoundNode object) {
 				return createCompoundNodeAdapter();
 			}
@@ -119,6 +124,10 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseTaskNode(TaskNode object) {
 				return createTaskNodeAdapter();
+			}
+			@Override
+			public Adapter caseTaskInputNode(TaskInputNode object) {
+				return createTaskInputNodeAdapter();
 			}
 			@Override
 			public Adapter caseEdge(Edge object) {
@@ -239,6 +248,20 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.execution.executionflow.LatchNode <em>Latch Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.execution.executionflow.LatchNode
+	 * @generated
+	 */
+	public Adapter createLatchNodeAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.execution.executionflow.CompoundNode <em>Compound Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -291,6 +314,20 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTaskNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode <em>Task Input Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskInputNode
+	 * @generated
+	 */
+	public Adapter createTaskInputNodeAdapter() {
 		return null;
 	}
 

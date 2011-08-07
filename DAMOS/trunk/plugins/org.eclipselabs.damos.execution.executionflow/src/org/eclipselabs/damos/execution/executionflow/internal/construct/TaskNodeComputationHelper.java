@@ -18,15 +18,22 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.DataFlow;
+import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
+import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Edge;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.Graph;
+import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
@@ -35,7 +42,7 @@ import org.eclipselabs.damos.execution.executionflow.TaskNode;
  */
 public class TaskNodeComputationHelper {
 
-	public void computeTaskNodes(ExecutionFlow executionFlow) {
+	public void computeTaskNodes(ExecutionFlow executionFlow) throws CoreException {
 		Graph graph = executionFlow.getGraph();
 		
 		List<ComponentNode> asynchronousNodes = new LinkedList<ComponentNode>();
@@ -106,7 +113,7 @@ public class TaskNodeComputationHelper {
 				} else {
 					for (Edge edge : new ArrayList<Edge>(node.getIncomingEdges())) {
 						Node source = edge.getSource();
-						if (source.getGraph() != taskNode) {
+						if (!source.isEnclosedBy(taskNode)) {
 							edge.setTarget(taskNode);
 							taskNode.getInitialNodes().add(node);
 						}
@@ -114,9 +121,49 @@ public class TaskNodeComputationHelper {
 				}
 				for (Edge edge : new ArrayList<Edge>(node.getOutgoingEdges())) {
 					Node target = edge.getTarget();
-					if (target.getGraph() != taskNode) {
+					if (!target.isEnclosedBy(taskNode)) {
 						edge.setSource(taskNode);
 					}
+				}
+			}
+		}
+		
+		// Attach latch nodes to task nodes and create task input nodes
+		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+			List<DataFlowTargetEnd> targetEnds = new ArrayList<DataFlowTargetEnd>();
+			for (Node node : taskNode.getNodes()) {
+				for (DataFlowTargetEnd targetEnd : node.getIncomingDataFlows()) {
+					Node sourceNode = targetEnd.getSourceEnd().getNode();
+					if (!sourceNode.isEnclosedBy(taskNode)) {
+						if (sourceNode instanceof LatchNode) {
+							taskNode.getLatchNodes().add((LatchNode) sourceNode);
+						} else {
+							targetEnds.add(targetEnd);
+						}
+					}
+				}
+			}
+			
+			if (!targetEnds.isEmpty()) {
+				Map<DataFlow, TaskInputNode> inputNodes = new HashMap<DataFlow, TaskInputNode>();
+				for (DataFlowTargetEnd targetEnd : targetEnds) {
+					TaskInputNode inputNode = inputNodes.get(targetEnd.getDataFlow());
+					if (inputNode == null) {
+						inputNode = ExecutionFlowFactory.eINSTANCE.createTaskInputNode();
+						DataFlow inputDataFlow = ExecutionFlowFactory.eINSTANCE.createDataFlow();
+						DataFlowSourceEnd sourceEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowSourceEnd();
+	
+						sourceEnd.setNode(inputNode);
+						inputDataFlow.setSourceEnd(sourceEnd);
+						taskNode.getInputNodes().add(inputNode);
+					}
+					
+					DataFlowTargetEnd newTargetEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowTargetEnd();
+					newTargetEnd.setNode(inputNode);
+					EcoreUtil.replace(targetEnd, newTargetEnd);
+
+					DataFlow inputDataFlow = inputNode.getOutgoingDataFlows().get(0).getDataFlow();
+					inputDataFlow.getTargetEnds().add(targetEnd);
 				}
 			}
 		}

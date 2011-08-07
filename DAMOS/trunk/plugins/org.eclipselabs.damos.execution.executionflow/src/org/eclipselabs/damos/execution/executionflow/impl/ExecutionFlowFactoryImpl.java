@@ -22,8 +22,10 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
+import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
@@ -73,10 +75,12 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 			case ExecutionFlowPackage.EXECUTION_FLOW: return createExecutionFlow();
 			case ExecutionFlowPackage.GRAPH: return createGraph();
 			case ExecutionFlowPackage.COMPONENT_NODE: return createComponentNode();
+			case ExecutionFlowPackage.LATCH_NODE: return createLatchNode();
 			case ExecutionFlowPackage.COMPOUND_NODE: return createCompoundNode();
 			case ExecutionFlowPackage.ACTION_NODE: return createActionNode();
 			case ExecutionFlowPackage.SUBSYSTEM_NODE: return createSubsystemNode();
 			case ExecutionFlowPackage.TASK_NODE: return createTaskNode();
+			case ExecutionFlowPackage.TASK_INPUT_NODE: return createTaskInputNode();
 			case ExecutionFlowPackage.EDGE: return createEdge();
 			case ExecutionFlowPackage.DATA_FLOW: return createDataFlow();
 			case ExecutionFlowPackage.DATA_FLOW_SOURCE_END: return createDataFlowSourceEnd();
@@ -122,6 +126,16 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public LatchNode createLatchNode() {
+		LatchNodeImpl latchNode = new LatchNodeImpl();
+		return latchNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public CompoundNode createCompoundNode() {
 		CompoundNodeImpl compoundNode = new CompoundNodeImpl();
 		return compoundNode;
@@ -155,6 +169,16 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 	public TaskNode createTaskNode() {
 		TaskNodeImpl taskNode = new TaskNodeImpl();
 		return taskNode;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TaskInputNode createTaskInputNode() {
+		TaskInputNodeImpl taskInputNode = new TaskInputNodeImpl();
+		return taskInputNode;
 	}
 
 	/**

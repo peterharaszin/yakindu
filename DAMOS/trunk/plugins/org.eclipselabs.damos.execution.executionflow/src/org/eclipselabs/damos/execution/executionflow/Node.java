@@ -182,4 +182,12 @@ public interface Node extends EObject {
 	 */
 	EList<Node> getDrivenNodes();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model graphRequired="true"
+	 * @generated
+	 */
+	boolean isEnclosedBy(Graph graph);
+
 } // Node

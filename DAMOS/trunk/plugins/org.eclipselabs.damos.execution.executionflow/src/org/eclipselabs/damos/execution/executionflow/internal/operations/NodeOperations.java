@@ -13,10 +13,12 @@ package org.eclipselabs.damos.execution.executionflow.internal.operations;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
+import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 
 public class NodeOperations {
@@ -73,6 +75,14 @@ public class NodeOperations {
 			}
 		}
 		return drivenNodes;
+	}
+
+	public static boolean isEnclosedBy(Node node, Graph graph) {
+		EObject container = node.eContainer();
+		while (container != null && container != graph) {
+			container = container.eContainer();
+		}
+		return container != null;
 	}
 
 } // NodeOperations

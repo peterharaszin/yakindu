@@ -11,25 +11,38 @@
 
 package org.eclipselabs.damos.simulation.core;
 
-import java.util.Collection;
-
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISimulation {
+public abstract class AbstractSimulationRunnable implements ISimulationRunnable {
 
-	ISimulationMonitor getMonitor();
+	private ISimulation simulation;
+	
+	private Component component;
 
-	SimulationModel getModel();
+	/**
+	 * 
+	 */
+	public AbstractSimulationRunnable(ISimulation simulation, Component component) {
+		this.simulation = simulation;
+		this.component = component;
+	}
 	
-	ISimulationAgent getAgent(Component component);
+	/**
+	 * @return the simulation
+	 */
+	protected ISimulation getSimulation() {
+		return simulation;
+	}
 	
-	Collection<ISimulationAgent> getAgents();
-	
-	void execute(ISimulationRunnable runnable);
-	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.core.ISimulationRunnable#getComponent()
+	 */
+	public Component getComponent() {
+		return component;
+	}
+
 }

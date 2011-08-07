@@ -11,9 +11,11 @@
 
 package org.eclipselabs.damos.simulation.simulator.internal;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -22,9 +24,11 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
+import org.eclipselabs.damos.simulation.core.ISimulationRunnable;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
@@ -35,11 +39,15 @@ import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
  */
 public class Simulation implements ISimulation {
 
-	private volatile Map<URI, ISimulationAgent> cachedAgents;
+	private volatile Map<URI, ComponentNode> cachedNodes;
 	
+	private volatile Map<URI, ISimulationAgent> cachedAgents;
+
 	private final ISimulationContext context;
 
 	private final ISimulationMonitor monitor;
+	
+	private final List<ISimulationRunnable> runnables = new ArrayList<ISimulationRunnable>();
 	
 	/**
 	 * 
@@ -75,7 +83,7 @@ public class Simulation implements ISimulation {
 	 */
 	public ISimulationAgent getAgent(Component component) {
 		URI componentURI = EcoreUtil.getURI(component);
-		cacheAgents();
+		cache();
 		return cachedAgents.get(componentURI);
 	}
 	
@@ -83,25 +91,71 @@ public class Simulation implements ISimulation {
 	 * @see org.eclipselabs.damos.simulation.simulator.ISimulation#getAgents()
 	 */
 	public Collection<ISimulationAgent> getAgents() {
-		cacheAgents();
+		cache();
 		return Collections.unmodifiableCollection(cachedAgents.values());
+	}
+	
+	/**
+	 * @return the runnables
+	 */
+	public List<ISimulationRunnable> takeRunnables() {
+		synchronized (this) {
+			List<ISimulationRunnable> runnablesCopy = new ArrayList<ISimulationRunnable>(runnables);
+			runnables.clear();
+			return runnablesCopy;
+		}
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.core.ISimulation#execute(java.lang.Runnable)
+	 */
+	public void execute(ISimulationRunnable runnable) {
+		cache();
+		Task task = getTaskFor(runnable);
+		if (task != null) {
+			task.execute(runnable);
+		} else {
+			synchronized (this) {
+				runnables.add(runnable);
+			}
+		}
 	}
 
 	/**
+	 * @param runnable
+	 * @return
+	 */
+	private Task getTaskFor(ISimulationRunnable runnable) {
+		if (runnable.getComponent() != null) {
+			URI componentURI = EcoreUtil.getURI(runnable.getComponent());
+			ComponentNode componentNode = cachedNodes.get(componentURI);
+			if (componentNode != null && componentNode.getGraph() instanceof TaskNode) {
+				TaskNode taskNode = (TaskNode) componentNode.getGraph();
+				return (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * 
 	 */
-	private void cacheAgents() {
-		if (cachedAgents == null) {
+	private void cache() {
+		if (cachedNodes == null) {
 			synchronized (this) {
-				if (cachedAgents == null) {
+				if (cachedNodes == null) {
+					cachedNodes = new HashMap<URI, ComponentNode>();
 					cachedAgents = new HashMap<URI, ISimulationAgent>();
-					cacheAgents(context.getExecutionFlow().getGraph());
+					for (TaskNode taskNode : context.getExecutionFlow().getTaskNodes()) {
+						cache(taskNode);
+					}
+					cache(context.getExecutionFlow().getGraph());
 				}
 			}
 		}
 	}
 	
-	private void cacheAgents(Graph graph) {
+	private void cache(Graph graph) {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
@@ -109,11 +163,17 @@ public class Simulation implements ISimulation {
 				if (simulationObject != null) {
 					ISimulationAgent agent = simulationObject.getAgent();
 					if (agent != null) {
-						cachedAgents.put(EcoreUtil.getURI(componentNode.getComponent()), agent);
+						URI uri = EcoreUtil.getURI(componentNode.getComponent());
+						if (!cachedNodes.containsKey(uri)) {
+							cachedNodes.put(uri, componentNode);
+						}
+						if (!cachedAgents.containsKey(uri)) {
+							cachedAgents.put(uri, agent);
+						}
 					}
 				}
 			} else if (node instanceof Graph) {
-				cacheAgents((Graph) node);
+				cache((Graph) node);
 			}
 		}
 	}

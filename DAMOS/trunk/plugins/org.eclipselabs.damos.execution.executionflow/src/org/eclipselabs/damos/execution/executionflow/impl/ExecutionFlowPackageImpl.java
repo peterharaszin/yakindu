@@ -26,10 +26,12 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
+import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
@@ -79,6 +81,13 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass latchNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass compoundNodeEClass = null;
 
 	/**
@@ -101,6 +110,13 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * @generated
 	 */
 	private EClass taskNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass taskInputNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -400,6 +416,24 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLatchNode() {
+		return latchNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLatchNode_TaskNodes() {
+		return (EReference)latchNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompoundNode() {
 		return compoundNodeEClass;
 	}
@@ -456,6 +490,42 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 */
 	public EClass getTaskNode() {
 		return taskNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTaskNode_InputNodes() {
+		return (EReference)taskNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTaskNode_LatchNodes() {
+		return (EReference)taskNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTaskInputNode() {
+		return taskInputNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTaskInputNode_TaskNode() {
+		return (EReference)taskInputNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -691,6 +761,9 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		createEReference(componentNodeEClass, COMPONENT_NODE__COMPONENT);
 		createEAttribute(componentNodeEClass, COMPONENT_NODE__SAMPLE_TIME);
 
+		latchNodeEClass = createEClass(LATCH_NODE);
+		createEReference(latchNodeEClass, LATCH_NODE__TASK_NODES);
+
 		compoundNodeEClass = createEClass(COMPOUND_NODE);
 		createEReference(compoundNodeEClass, COMPOUND_NODE__COMPOUND);
 
@@ -701,6 +774,11 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		createEReference(subsystemNodeEClass, SUBSYSTEM_NODE__SUBSYSTEM);
 
 		taskNodeEClass = createEClass(TASK_NODE);
+		createEReference(taskNodeEClass, TASK_NODE__INPUT_NODES);
+		createEReference(taskNodeEClass, TASK_NODE__LATCH_NODES);
+
+		taskInputNodeEClass = createEClass(TASK_INPUT_NODE);
+		createEReference(taskInputNodeEClass, TASK_INPUT_NODE__TASK_NODE);
 
 		edgeEClass = createEClass(EDGE);
 		createEReference(edgeEClass, EDGE__SOURCE);
@@ -764,10 +842,12 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		subgraphEClass.getESuperTypes().add(this.getGraph());
 		subgraphEClass.getESuperTypes().add(this.getNode());
 		componentNodeEClass.getESuperTypes().add(this.getNode());
+		latchNodeEClass.getESuperTypes().add(this.getComponentNode());
 		compoundNodeEClass.getESuperTypes().add(this.getSubgraph());
 		actionNodeEClass.getESuperTypes().add(this.getCompoundNode());
 		subsystemNodeEClass.getESuperTypes().add(this.getSubgraph());
 		taskNodeEClass.getESuperTypes().add(this.getSubgraph());
+		taskInputNodeEClass.getESuperTypes().add(this.getNode());
 		dataFlowSourceEndEClass.getESuperTypes().add(this.getDataFlowEnd());
 		dataFlowTargetEndEClass.getESuperTypes().add(this.getDataFlowEnd());
 		portInfoEClass.getESuperTypes().add(this.getConnectorInfo());
@@ -802,11 +882,17 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		addEOperation(nodeEClass, this.getNode(), "getDrivenNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "isEnclosedBy", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getGraph(), "graph", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(subgraphEClass, Subgraph.class, "Subgraph", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(componentNodeEClass, ComponentNode.class, "ComponentNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComponentNode_Component(), theDMLPackage.getComponent(), null, "component", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getComponentNode_SampleTime(), ecorePackage.getEDouble(), "sampleTime", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(latchNodeEClass, LatchNode.class, "LatchNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLatchNode_TaskNodes(), this.getTaskNode(), this.getTaskNode_LatchNodes(), "taskNodes", null, 0, -1, LatchNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundNodeEClass, CompoundNode.class, "CompoundNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundNode_Compound(), theDMLPackage.getCompound(), null, "compound", null, 1, 1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -818,6 +904,11 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getSubsystemNode_Subsystem(), theDMLPackage.getSubsystem(), null, "subsystem", null, 1, 1, SubsystemNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskNodeEClass, TaskNode.class, "TaskNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTaskNode_InputNodes(), this.getTaskInputNode(), this.getTaskInputNode_TaskNode(), "inputNodes", null, 0, -1, TaskNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTaskNode_LatchNodes(), this.getLatchNode(), this.getLatchNode_TaskNodes(), "latchNodes", null, 0, -1, TaskNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(taskInputNodeEClass, TaskInputNode.class, "TaskInputNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTaskInputNode_TaskNode(), this.getTaskNode(), this.getTaskNode_InputNodes(), "taskNode", null, 1, 1, TaskInputNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdge_Source(), this.getNode(), this.getNode_OutgoingEdges(), "source", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -833,12 +924,16 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEClass(dataFlowSourceEndEClass, DataFlowSourceEnd.class, "DataFlowSourceEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataFlowSourceEnd_Node(), this.getNode(), this.getNode_OutgoingDataFlows(), "node", null, 1, 1, DataFlowSourceEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDataFlowSourceEnd_DataFlow(), this.getDataFlow(), this.getDataFlow_SourceEnd(), "dataFlow", null, 1, 1, DataFlowSourceEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDataFlowSourceEnd_Connector(), theDMLPackage.getOutputConnector(), null, "connector", null, 1, 1, DataFlowSourceEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDataFlowSourceEnd_Connector(), theDMLPackage.getOutputConnector(), null, "connector", null, 0, 1, DataFlowSourceEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		addEOperation(dataFlowSourceEndEClass, this.getDataFlowTargetEnd(), "getTargetEnds", 1, -1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(dataFlowTargetEndEClass, DataFlowTargetEnd.class, "DataFlowTargetEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataFlowTargetEnd_Node(), this.getNode(), this.getNode_IncomingDataFlows(), "node", null, 1, 1, DataFlowTargetEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getDataFlowTargetEnd_DataFlow(), this.getDataFlow(), this.getDataFlow_TargetEnds(), "dataFlow", null, 1, 1, DataFlowTargetEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getDataFlowTargetEnd_Connector(), theDMLPackage.getInputConnector(), null, "connector", null, 1, 1, DataFlowTargetEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getDataFlowTargetEnd_Connector(), theDMLPackage.getInputConnector(), null, "connector", null, 0, 1, DataFlowTargetEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		addEOperation(dataFlowTargetEndEClass, this.getDataFlowSourceEnd(), "getSourceEnd", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(connectorInfoEClass, ConnectorInfo.class, "ConnectorInfo", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

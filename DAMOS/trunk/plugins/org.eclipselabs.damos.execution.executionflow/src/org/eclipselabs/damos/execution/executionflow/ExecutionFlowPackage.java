@@ -425,6 +425,106 @@ public interface ExecutionFlowPackage extends EPackage {
 	int COMPONENT_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.LatchNodeImpl <em>Latch Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.LatchNodeImpl
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getLatchNode()
+	 * @generated
+	 */
+	int LATCH_NODE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__GRAPH = COMPONENT_NODE__GRAPH;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__INCOMING_EDGES = COMPONENT_NODE__INCOMING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__OUTGOING_EDGES = COMPONENT_NODE__OUTGOING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__ENCLOSING_SUBSYSTEMS = COMPONENT_NODE__ENCLOSING_SUBSYSTEMS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__INCOMING_DATA_FLOWS = COMPONENT_NODE__INCOMING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__OUTGOING_DATA_FLOWS = COMPONENT_NODE__OUTGOING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Component</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__COMPONENT = COMPONENT_NODE__COMPONENT;
+
+	/**
+	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__SAMPLE_TIME = COMPONENT_NODE__SAMPLE_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Task Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__TASK_NODES = COMPONENT_NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Latch Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE_FEATURE_COUNT = COMPONENT_NODE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.CompoundNodeImpl <em>Compound Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -432,7 +532,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getCompoundNode()
 	 * @generated
 	 */
-	int COMPOUND_NODE = 5;
+	int COMPOUND_NODE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -541,7 +641,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getActionNode()
 	 * @generated
 	 */
-	int ACTION_NODE = 6;
+	int ACTION_NODE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -659,7 +759,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getSubsystemNode()
 	 * @generated
 	 */
-	int SUBSYSTEM_NODE = 7;
+	int SUBSYSTEM_NODE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -768,7 +868,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskNode()
 	 * @generated
 	 */
-	int TASK_NODE = 8;
+	int TASK_NODE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -852,13 +952,113 @@ public interface ExecutionFlowPackage extends EPackage {
 	int TASK_NODE__OUTGOING_DATA_FLOWS = SUBGRAPH__OUTGOING_DATA_FLOWS;
 
 	/**
+	 * The feature id for the '<em><b>Input Nodes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__INPUT_NODES = SUBGRAPH_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Latch Nodes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__LATCH_NODES = SUBGRAPH_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Task Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE_FEATURE_COUNT = SUBGRAPH_FEATURE_COUNT + 0;
+	int TASK_NODE_FEATURE_COUNT = SUBGRAPH_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl <em>Task Input Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskInputNode()
+	 * @generated
+	 */
+	int TASK_INPUT_NODE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE__GRAPH = NODE__GRAPH;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE__INCOMING_EDGES = NODE__INCOMING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Edges</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE__OUTGOING_EDGES = NODE__OUTGOING_EDGES;
+
+	/**
+	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE__ENCLOSING_SUBSYSTEMS = NODE__ENCLOSING_SUBSYSTEMS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE__INCOMING_DATA_FLOWS = NODE__INCOMING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing Data Flows</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE__OUTGOING_DATA_FLOWS = NODE__OUTGOING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Task Node</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE__TASK_NODE = NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Task Input Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_INPUT_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.EdgeImpl <em>Edge</em>}' class.
@@ -868,7 +1068,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getEdge()
 	 * @generated
 	 */
-	int EDGE = 9;
+	int EDGE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -905,7 +1105,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlow()
 	 * @generated
 	 */
-	int DATA_FLOW = 10;
+	int DATA_FLOW = 12;
 
 	/**
 	 * The feature id for the '<em><b>Target Ends</b></em>' containment reference list.
@@ -942,7 +1142,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_END = 11;
+	int DATA_FLOW_END = 13;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -970,7 +1170,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowSourceEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_SOURCE_END = 12;
+	int DATA_FLOW_SOURCE_END = 14;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -1025,7 +1225,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getDataFlowTargetEnd()
 	 * @generated
 	 */
-	int DATA_FLOW_TARGET_END = 13;
+	int DATA_FLOW_TARGET_END = 15;
 
 	/**
 	 * The feature id for the '<em><b>Connector Info</b></em>' containment reference.
@@ -1081,7 +1281,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getConnectorInfo()
 	 * @generated
 	 */
-	int CONNECTOR_INFO = 14;
+	int CONNECTOR_INFO = 16;
 
 	/**
 	 * The number of structural features of the '<em>Connector Info</em>' class.
@@ -1100,7 +1300,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getPortInfo()
 	 * @generated
 	 */
-	int PORT_INFO = 15;
+	int PORT_INFO = 17;
 
 	/**
 	 * The feature id for the '<em><b>Inoutput Index</b></em>' attribute.
@@ -1346,6 +1546,27 @@ public interface ExecutionFlowPackage extends EPackage {
 	EAttribute getComponentNode_SampleTime();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.LatchNode <em>Latch Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Latch Node</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.LatchNode
+	 * @generated
+	 */
+	EClass getLatchNode();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.execution.executionflow.LatchNode#getTaskNodes <em>Task Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Task Nodes</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.LatchNode#getTaskNodes()
+	 * @see #getLatchNode()
+	 * @generated
+	 */
+	EReference getLatchNode_TaskNodes();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.CompoundNode <em>Compound Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1417,6 +1638,49 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getTaskNode();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionflow.TaskNode#getInputNodes <em>Input Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Input Nodes</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode#getInputNodes()
+	 * @see #getTaskNode()
+	 * @generated
+	 */
+	EReference getTaskNode_InputNodes();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.execution.executionflow.TaskNode#getLatchNodes <em>Latch Nodes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Latch Nodes</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode#getLatchNodes()
+	 * @see #getTaskNode()
+	 * @generated
+	 */
+	EReference getTaskNode_LatchNodes();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode <em>Task Input Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Task Input Node</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskInputNode
+	 * @generated
+	 */
+	EClass getTaskInputNode();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskNode <em>Task Node</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Task Node</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskNode()
+	 * @see #getTaskInputNode()
+	 * @generated
+	 */
+	EReference getTaskInputNode_TaskNode();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.Edge <em>Edge</em>}'.
@@ -1824,6 +2088,24 @@ public interface ExecutionFlowPackage extends EPackage {
 		EAttribute COMPONENT_NODE__SAMPLE_TIME = eINSTANCE.getComponentNode_SampleTime();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.LatchNodeImpl <em>Latch Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.LatchNodeImpl
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getLatchNode()
+		 * @generated
+		 */
+		EClass LATCH_NODE = eINSTANCE.getLatchNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Task Nodes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LATCH_NODE__TASK_NODES = eINSTANCE.getLatchNode_TaskNodes();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.CompoundNodeImpl <em>Compound Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1886,6 +2168,40 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TASK_NODE = eINSTANCE.getTaskNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Nodes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TASK_NODE__INPUT_NODES = eINSTANCE.getTaskNode_InputNodes();
+
+		/**
+		 * The meta object literal for the '<em><b>Latch Nodes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TASK_NODE__LATCH_NODES = eINSTANCE.getTaskNode_LatchNodes();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl <em>Task Input Node</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskInputNode()
+		 * @generated
+		 */
+		EClass TASK_INPUT_NODE = eINSTANCE.getTaskInputNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Task Node</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TASK_INPUT_NODE__TASK_NODE = eINSTANCE.getTaskInputNode_TaskNode();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.EdgeImpl <em>Edge</em>}' class.

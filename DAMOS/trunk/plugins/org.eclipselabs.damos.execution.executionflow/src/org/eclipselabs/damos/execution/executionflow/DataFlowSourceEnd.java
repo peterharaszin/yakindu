@@ -6,6 +6,7 @@
  */
 package org.eclipselabs.damos.execution.executionflow;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.OutputConnector;
 
 /**
@@ -66,7 +67,7 @@ public interface DataFlowSourceEnd extends DataFlowEnd {
 	 * @return the value of the '<em>Connector</em>' reference.
 	 * @see #setConnector(OutputConnector)
 	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getDataFlowSourceEnd_Connector()
-	 * @model required="true" ordered="false"
+	 * @model ordered="false"
 	 * @generated
 	 */
 	OutputConnector getConnector();
@@ -80,6 +81,14 @@ public interface DataFlowSourceEnd extends DataFlowEnd {
 	 * @generated
 	 */
 	void setConnector(OutputConnector value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	EList<DataFlowTargetEnd> getTargetEnds();
 
 	/**
 	 * Returns the value of the '<em><b>Node</b></em>' reference.

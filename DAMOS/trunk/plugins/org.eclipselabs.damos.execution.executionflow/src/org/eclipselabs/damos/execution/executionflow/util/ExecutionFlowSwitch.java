@@ -9,6 +9,7 @@ package org.eclipselabs.damos.execution.executionflow.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipselabs.damos.execution.executionflow.*;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -117,6 +118,14 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ExecutionFlowPackage.LATCH_NODE: {
+				LatchNode latchNode = (LatchNode)theEObject;
+				T result = caseLatchNode(latchNode);
+				if (result == null) result = caseComponentNode(latchNode);
+				if (result == null) result = caseNode(latchNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ExecutionFlowPackage.COMPOUND_NODE: {
 				CompoundNode compoundNode = (CompoundNode)theEObject;
 				T result = caseCompoundNode(compoundNode);
@@ -151,6 +160,13 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 				if (result == null) result = caseSubgraph(taskNode);
 				if (result == null) result = caseGraph(taskNode);
 				if (result == null) result = caseNode(taskNode);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ExecutionFlowPackage.TASK_INPUT_NODE: {
+				TaskInputNode taskInputNode = (TaskInputNode)theEObject;
+				T result = caseTaskInputNode(taskInputNode);
+				if (result == null) result = caseNode(taskInputNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -279,6 +295,21 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Latch Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Latch Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLatchNode(LatchNode object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Compound Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -335,6 +366,21 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseTaskNode(TaskNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Task Input Node</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Task Input Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTaskInputNode(TaskInputNode object) {
 		return null;
 	}
 

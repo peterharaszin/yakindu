@@ -14,16 +14,18 @@ package org.eclipselabs.damos.simulation.simulator.internal;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
-import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.ISimulationClock;
 import org.eclipselabs.damos.simulation.simulator.ISimulationEngine;
+import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
 
@@ -76,12 +78,24 @@ public class SimulationEngine implements ISimulationEngine {
 			double nextTime = 0;
 			
 			SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.START));
+			
+			// Start tasks
+			for (TaskNode taskNode : context.getExecutionFlow().getTaskNodes()) {
+				Task task = (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+				if (task != null) {
+					task.start();
+				}
+			}
+			
 			clock.start(monitor);
 
 			while (!monitor.isCanceled()) {
-				SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.BEFORE_STEP, nextTime));
+				for (Runnable runnable : simulation.takeRunnables()) {
+					runnable.run();
+				}
+				
 				solver.computeStep(monitor);
-				SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.AFTER_STEP, nextTime));
+				SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.STEP, nextTime));
 
 				nextTime = solver.getTime();
 				if (simulationTime > 0 && nextTime > simulationTime) {
@@ -90,8 +104,8 @@ public class SimulationEngine implements ISimulationEngine {
 				
 				if (simulationTime == -1) {
 					long nextTimeNanos = (long) (nextTime * 1e9);
-					long currentTime = clock.getNanoTime();
-					if (nextTimeNanos > currentTime) {
+					long currentTime;
+					while (nextTimeNanos > (currentTime = clock.getNanoTime())) {
 						long d = nextTimeNanos - currentTime;
 						try {
 							Thread.sleep(d / 1000000, (int) (d % 1000000));
@@ -108,12 +122,22 @@ public class SimulationEngine implements ISimulationEngine {
 		} catch (CoreException e) {
 			status = new Status(e.getStatus().getSeverity(), SimulationEnginePlugin.PLUGIN_ID, "Simulation failed", e);
 		} finally {
-			SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, simulationEventKind));
+			simulation.takeRunnables();
+			
+			// Stop tasks
+			for (TaskNode taskNode : context.getExecutionFlow().getTaskNodes()) {
+				Task task = (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+				if (task != null) {
+					task.interrupt();
+				}
+			}
 			dispose(graph);
+
+			SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, simulationEventKind));
 		}
 	}
 
-	private void dispose(Graph graph) {
+	static void dispose(Graph graph) {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;

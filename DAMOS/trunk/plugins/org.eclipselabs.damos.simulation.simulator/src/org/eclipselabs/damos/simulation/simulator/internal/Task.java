@@ -82,6 +82,13 @@ public class Task extends Thread implements Adapter {
 		try {
 			for (;;) {
 				Data data = queue.take();
+
+				// Reset all inputs
+				for (TaskInputNode inputNode : taskNode.getInputNodes()) {
+					EList<DataFlowSourceEnd> outgoingDataFlows = inputNode.getOutgoingDataFlows();
+					discreteStateComputationHelper.setInputValues(outgoingDataFlows.get(0), null);
+				}
+				
 				if (data == Data.UNBLOCK) {
 					for (LatchNode latchNode : taskNode.getLatchNodes()) {
 						ISimulationObject simulationObject = SimulationUtil.getSimulationObject(latchNode);
@@ -95,6 +102,7 @@ public class Task extends Thread implements Adapter {
 				} else if (data.runnable != null) {
 					data.runnable.run();
 				}
+				
 				discreteStateComputationHelper.computeDiscreteStates(taskNode, Double.NaN, monitor);
 				SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.ASYNCHRONOUS));
 			}

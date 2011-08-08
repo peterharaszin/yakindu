@@ -1,8 +1,0 @@
-
-h1. Region
-
-Please enter your text here.
-
-h4. Name
-
-Place description here.

@@ -1,0 +1,12 @@
+h1. Entry
+
+Please enter your text here.
+
+h4. Name
+
+Place description here.
+
+h4. Entry Kind
+
+Place description here.
+

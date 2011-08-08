@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project default="generate.help" basedir=".">
+
+	<property name="wikitext.standalone" value="lib" />
+
+	<path id="wikitext.classpath">
+		<fileset dir="${wikitext.standalone}">
+			<include name="org.eclipse.mylyn.wikitext.*core*.jar" />
+		</fileset>
+	</path>
+
+	<taskdef classpathref="wikitext.classpath" resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" />
+
+	<target name="generate.help" description="Generate Eclipse help from textile source">
+		<wikitext-to-eclipse-help markupLanguage="Textile" multipleOutputFiles="true" navigationImages="true" helpprefix="html" >
+			<fileset dir="${basedir}">
+				<include name="**/**/*.textile" />
+			</fileset>
+			<stylesheet url="../content/PLUGINS_ROOT/PRODUCT_PLUGIN/book.css" />
+			<stylesheet url="../style.css" />
+		</wikitext-to-eclipse-help>
+	</target>
+
+</project>

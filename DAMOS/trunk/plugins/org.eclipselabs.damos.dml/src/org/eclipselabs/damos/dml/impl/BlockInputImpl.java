@@ -147,6 +147,14 @@ public class BlockInputImpl extends InputImpl implements BlockInput {
 	public boolean isTestPoint() {
 		return getDefinition().isTestPoint();
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#isSocket()
+	 */
+	@Override
+	public boolean isSocket() {
+		return getDefinition().isSocket();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

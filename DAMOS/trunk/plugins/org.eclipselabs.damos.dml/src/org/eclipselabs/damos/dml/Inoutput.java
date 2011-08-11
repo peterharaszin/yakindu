@@ -60,4 +60,12 @@ public interface Inoutput extends INamedElement {
 	 */
 	boolean isTestPoint();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	boolean isSocket();
+
 } // Inoutput

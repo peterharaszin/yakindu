@@ -86,4 +86,13 @@ public abstract class InoutputImpl extends EObjectImpl implements Inoutput {
 		return false;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isSocket() {
+		return false;
+	}
+
 } //InoutputImpl

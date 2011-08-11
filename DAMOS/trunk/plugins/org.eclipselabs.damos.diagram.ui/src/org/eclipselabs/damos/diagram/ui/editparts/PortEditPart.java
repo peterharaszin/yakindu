@@ -70,6 +70,15 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 		return false;
 	}
 
+	protected boolean isSocket() {
+		EObject element = resolveSemanticElement();
+		if (element instanceof Port) {
+			Port port = (Port) element;
+			return port.getInoutput().isSocket();
+		}
+		return false;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#activate()
 	 */

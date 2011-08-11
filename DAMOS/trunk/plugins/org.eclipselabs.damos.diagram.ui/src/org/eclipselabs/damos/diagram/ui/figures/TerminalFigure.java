@@ -17,6 +17,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.swt.graphics.Cursor;
+import org.eclipselabs.damos.diagram.ui.internal.figures.IBlankableFigure;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
 
@@ -24,10 +25,11 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
  * @author Andreas Unger
  *
  */
-public abstract class TerminalFigure extends NodeFigure {
+public abstract class TerminalFigure extends NodeFigure implements IBlankableFigure {
 
 	private IConnectorFigure owner;
 	private boolean blanked;
+	private boolean connected;
 	
 	private AncestorListener ancestorListener = new AncestorListener() {
 		
@@ -70,6 +72,21 @@ public abstract class TerminalFigure extends NodeFigure {
 	 */
 	public void setBlanked(boolean blanked) {
 		this.blanked = blanked;
+		repaint();
+	}
+	
+	/**
+	 * @return the connected
+	 */
+	public boolean isConnected() {
+		return connected;
+	}
+	
+	/**
+	 * @param connected the connected to set
+	 */
+	public void setConnected(boolean connected) {
+		this.connected = connected;
 		repaint();
 	}
 	

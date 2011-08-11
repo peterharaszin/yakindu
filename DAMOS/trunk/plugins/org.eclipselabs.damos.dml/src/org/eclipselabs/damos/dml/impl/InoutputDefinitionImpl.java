@@ -28,6 +28,7 @@ import org.eclipselabs.damos.dml.InoutputDefinition;
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#isManyPorts <em>Many Ports</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#isTestPoint <em>Test Point</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#isSocket <em>Socket</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.InoutputDefinitionImpl#getDataType <em>Data Type</em>}</li>
  * </ul>
  * </p>
@@ -144,6 +145,26 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 	 * @ordered
 	 */
 	protected boolean testPoint = TEST_POINT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSocket() <em>Socket</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSocket()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SOCKET_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSocket() <em>Socket</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSocket()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean socket = SOCKET_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' containment reference.
@@ -303,6 +324,27 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSocket() {
+		return socket;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSocket(boolean newSocket) {
+		boolean oldSocket = socket;
+		socket = newSocket;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.INOUTPUT_DEFINITION__SOCKET, oldSocket, socket));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DataTypeSpecification getDataType() {
 		return dataType;
 	}
@@ -427,6 +469,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return getName();
 			case DMLPackage.INOUTPUT_DEFINITION__TEST_POINT:
 				return isTestPoint();
+			case DMLPackage.INOUTPUT_DEFINITION__SOCKET:
+				return isSocket();
 			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
 				return getDataType();
 		}
@@ -455,6 +499,9 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return;
 			case DMLPackage.INOUTPUT_DEFINITION__TEST_POINT:
 				setTestPoint((Boolean)newValue);
+				return;
+			case DMLPackage.INOUTPUT_DEFINITION__SOCKET:
+				setSocket((Boolean)newValue);
 				return;
 			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
 				setDataType((DataTypeSpecification)newValue);
@@ -486,6 +533,9 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 			case DMLPackage.INOUTPUT_DEFINITION__TEST_POINT:
 				setTestPoint(TEST_POINT_EDEFAULT);
 				return;
+			case DMLPackage.INOUTPUT_DEFINITION__SOCKET:
+				setSocket(SOCKET_EDEFAULT);
+				return;
 			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
 				unsetDataType();
 				return;
@@ -513,6 +563,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case DMLPackage.INOUTPUT_DEFINITION__TEST_POINT:
 				return testPoint != TEST_POINT_EDEFAULT;
+			case DMLPackage.INOUTPUT_DEFINITION__SOCKET:
+				return socket != SOCKET_EDEFAULT;
 			case DMLPackage.INOUTPUT_DEFINITION__DATA_TYPE:
 				return isSetDataType();
 		}
@@ -539,6 +591,8 @@ public abstract class InoutputDefinitionImpl extends ParameterableElementImpl im
 		result.append(name);
 		result.append(", testPoint: ");
 		result.append(testPoint);
+		result.append(", socket: ");
+		result.append(socket);
 		result.append(')');
 		return result.toString();
 	}

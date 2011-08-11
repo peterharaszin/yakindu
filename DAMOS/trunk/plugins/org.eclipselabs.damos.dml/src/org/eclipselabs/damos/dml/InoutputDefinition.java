@@ -23,6 +23,7 @@ package org.eclipselabs.damos.dml;
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#isManyPorts <em>Many Ports</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#isTestPoint <em>Test Point</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#isSocket <em>Socket</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}</li>
  * </ul>
  * </p>
@@ -179,6 +180,32 @@ public interface InoutputDefinition extends ParameterableElement, INamedElement 
 	 * @generated
 	 */
 	void setTestPoint(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Socket</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Socket</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Socket</em>' attribute.
+	 * @see #setSocket(boolean)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getInoutputDefinition_Socket()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isSocket();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.InoutputDefinition#isSocket <em>Socket</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Socket</em>' attribute.
+	 * @see #isSocket()
+	 * @generated
+	 */
+	void setSocket(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Data Type</b></em>' containment reference.

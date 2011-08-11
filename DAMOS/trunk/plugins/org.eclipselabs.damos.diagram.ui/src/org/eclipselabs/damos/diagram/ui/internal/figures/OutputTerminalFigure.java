@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.figures;
 
+import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
 import org.eclipselabs.damos.diagram.ui.figures.PolylineTerminalFigure;
@@ -42,4 +43,14 @@ public class OutputTerminalFigure extends PolylineTerminalFigure {
 		return POLYLINE;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.figures.PolylineTerminalFigure#paintFigure(org.eclipse.draw2d.Graphics)
+	 */
+	@Override
+	protected void paintFigure(Graphics graphics) {
+		if (!isConnected()) {
+			super.paintFigure(graphics);
+		}
+	}
+
 }

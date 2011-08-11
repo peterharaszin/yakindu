@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.PolylineConnection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -53,6 +52,7 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 		Connection connection = (Connection) resolveSemanticElement();
 		if (connection != null) {
 			boolean testPointConnection = false;
+			boolean hasTargetDecoration = true;
 			if (connection.getSource() instanceof Port) {
 				Port source = (Port) connection.getSource();
 				testPointConnection |= source.getInoutput().isTestPoint();
@@ -60,7 +60,9 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 			if (connection.getTarget() instanceof Port) {
 				Port target = (Port) connection.getTarget();
 				testPointConnection |= target.getInoutput().isTestPoint();
+				hasTargetDecoration = !target.getInoutput().isSocket();
 			}
+			getConnectionFigure().setTargetDecorationVisible(hasTargetDecoration);
 			setLineType(testPointConnection ? SWT.LINE_DOT : SWT.LINE_SOLID);
 		}
 	}
@@ -69,11 +71,19 @@ public class ConnectionEditPart extends ConnectionNodeEditPart {
 		((ConnectionFigure) getFigure()).setLineStyle(lineType);
 	}
 	
-	protected PolylineConnection createConnectionFigure() {
+	protected ConnectionFigure createConnectionFigure() {
 		if (getModel() == null) {
 			return null;
 		}
 		return new ConnectionFigure();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gef.editparts.AbstractConnectionEditPart#getConnectionFigure()
+	 */
+	@Override
+	public ConnectionFigure getConnectionFigure() {
+		return (ConnectionFigure) super.getConnectionFigure();
 	}
 	
 	/* (non-Javadoc)

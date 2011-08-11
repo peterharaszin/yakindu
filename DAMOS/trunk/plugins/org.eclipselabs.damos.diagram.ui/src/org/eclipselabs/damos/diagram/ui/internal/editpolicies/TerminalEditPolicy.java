@@ -152,7 +152,8 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 						++connectionCount;
 					}
 				}
-				getTerminalFigure().setBlanked(connectionCount != 0);
+				getTerminalFigure().setBlanked(false);
+				getTerminalFigure().setConnected(connectionCount != 0);
 			}
 		}
 	}

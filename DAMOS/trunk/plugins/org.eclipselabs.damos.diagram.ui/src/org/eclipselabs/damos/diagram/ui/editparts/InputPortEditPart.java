@@ -14,6 +14,7 @@ package org.eclipselabs.damos.diagram.ui.editparts;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.figures.InputPortFigure;
+import org.eclipselabs.damos.diagram.ui.figures.SocketInputPortFigure;
 import org.eclipselabs.damos.diagram.ui.figures.TestPointInputPortFigure;
 
 /**
@@ -30,7 +31,13 @@ public class InputPortEditPart extends PortEditPart {
 	}
 
 	protected NodeFigure createNodeFigure() {
-		return isTestPoint() ? new TestPointInputPortFigure() : new InputPortFigure();
+		if (isTestPoint()) {
+			return new TestPointInputPortFigure();
+		}
+		if (isSocket()) {
+			return new SocketInputPortFigure();
+		}
+		return new InputPortFigure();
 	}
 	
 }

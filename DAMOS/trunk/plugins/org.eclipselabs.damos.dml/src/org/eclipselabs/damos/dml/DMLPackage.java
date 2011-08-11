@@ -1035,13 +1035,22 @@ public interface DMLPackage extends EPackage {
 	int INOUTPUT_DEFINITION__TEST_POINT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Socket</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INOUTPUT_DEFINITION__SOCKET = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_DEFINITION__DATA_TYPE = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 6;
+	int INOUTPUT_DEFINITION__DATA_TYPE = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Inoutput Definition</em>' class.
@@ -1050,7 +1059,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INOUTPUT_DEFINITION_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 7;
+	int INOUTPUT_DEFINITION_FEATURE_COUNT = PARAMETERABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -1114,6 +1123,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int INPUT_DEFINITION__TEST_POINT = INOUTPUT_DEFINITION__TEST_POINT;
+
+	/**
+	 * The feature id for the '<em><b>Socket</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INPUT_DEFINITION__SOCKET = INOUTPUT_DEFINITION__SOCKET;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -1204,6 +1222,15 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int OUTPUT_DEFINITION__TEST_POINT = INOUTPUT_DEFINITION__TEST_POINT;
+
+	/**
+	 * The feature id for the '<em><b>Socket</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTPUT_DEFINITION__SOCKET = INOUTPUT_DEFINITION__SOCKET;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -4535,6 +4562,17 @@ public interface DMLPackage extends EPackage {
 	EAttribute getInoutputDefinition_TestPoint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.InoutputDefinition#isSocket <em>Socket</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Socket</em>'.
+	 * @see org.eclipselabs.damos.dml.InoutputDefinition#isSocket()
+	 * @see #getInoutputDefinition()
+	 * @generated
+	 */
+	EAttribute getInoutputDefinition_Socket();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.InoutputDefinition#getDataType <em>Data Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -6249,6 +6287,14 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute INOUTPUT_DEFINITION__TEST_POINT = eINSTANCE.getInoutputDefinition_TestPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Socket</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INOUTPUT_DEFINITION__SOCKET = eINSTANCE.getInoutputDefinition_Socket();
 
 		/**
 		 * The meta object literal for the '<em><b>Data Type</b></em>' containment reference feature.

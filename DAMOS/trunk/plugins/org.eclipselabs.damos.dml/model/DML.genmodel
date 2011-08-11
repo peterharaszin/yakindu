@@ -92,6 +92,7 @@
       <genOperations ecoreOperation="DML.ecore#//Inoutput/canRemovePort"/>
       <genOperations ecoreOperation="DML.ecore#//Inoutput/createPort"/>
       <genOperations ecoreOperation="DML.ecore#//Inoutput/isTestPoint"/>
+      <genOperations ecoreOperation="DML.ecore#//Inoutput/isSocket"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//Input">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Input/ports"/>
@@ -139,6 +140,7 @@
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/manyPorts"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/testPoint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//InoutputDefinition/socket"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//InoutputDefinition/dataType"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//InputDefinition">

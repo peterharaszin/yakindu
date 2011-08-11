@@ -138,6 +138,14 @@ public class BlockOutputImpl extends OutputImpl implements BlockOutput {
 		return getDefinition().isTestPoint();
 	}
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InoutputImpl#isSocket()
+	 */
+	@Override
+	public boolean isSocket() {
+		return getDefinition().isSocket();
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

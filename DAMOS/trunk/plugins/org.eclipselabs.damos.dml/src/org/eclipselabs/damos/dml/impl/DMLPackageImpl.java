@@ -1288,8 +1288,17 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInoutputDefinition_Socket() {
+		return (EAttribute)inoutputDefinitionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getInoutputDefinition_DataType() {
-		return (EReference)inoutputDefinitionEClass.getEStructuralFeatures().get(6);
+		return (EReference)inoutputDefinitionEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -2440,6 +2449,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__MANY_PORTS);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__NAME);
 		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__TEST_POINT);
+		createEAttribute(inoutputDefinitionEClass, INOUTPUT_DEFINITION__SOCKET);
 		createEReference(inoutputDefinitionEClass, INOUTPUT_DEFINITION__DATA_TYPE);
 
 		inputDefinitionEClass = createEClass(INPUT_DEFINITION);
@@ -2846,6 +2856,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		addEOperation(inoutputEClass, ecorePackage.getEBoolean(), "isTestPoint", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(inoutputEClass, ecorePackage.getEBoolean(), "isSocket", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(inputEClass, Input.class, "Input", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInput_Ports(), this.getInputPort(), this.getInputPort_Input(), "ports", null, 0, -1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInput_Component(), this.getComponent(), this.getComponent_Inputs(), "component", null, 1, 1, Input.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2900,6 +2912,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEAttribute(getInoutputDefinition_ManyPorts(), ecorePackage.getEBoolean(), "manyPorts", null, 1, 1, InoutputDefinition.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_Name(), ecorePackage.getEString(), "name", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getInoutputDefinition_TestPoint(), ecorePackage.getEBoolean(), "testPoint", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInoutputDefinition_Socket(), ecorePackage.getEBoolean(), "socket", null, 1, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getInoutputDefinition_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(inputDefinitionEClass, InputDefinition.class, "InputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

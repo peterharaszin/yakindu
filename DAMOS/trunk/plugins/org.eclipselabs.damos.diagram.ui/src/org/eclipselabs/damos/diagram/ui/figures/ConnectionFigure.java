@@ -30,22 +30,9 @@ public class ConnectionFigure extends PolylineConnectionEx implements IBlankable
 	
 	private static final int JUNCTION_RADIUS = 80;
 	
-	private static final double DECORATION_SCALE_X = 7 * DEFAULT_LINE_WIDTH;
-	private static final double DECORATION_SCALE_Y = 3 * DEFAULT_LINE_WIDTH;
-	
 	private boolean blanked;
 	
 	public ConnectionFigure() {
-		PolygonDecoration decoration = new PolygonDecoration() {
-			
-			@Override
-			public Rectangle getBounds() {
-				return super.getBounds().getExpanded(DEFAULT_LINE_WIDTH, DEFAULT_LINE_WIDTH);
-			}
-			
-		};
-		decoration.setScale(DECORATION_SCALE_X, DECORATION_SCALE_Y);
-		setTargetDecoration(decoration);
 		setLineWidth(DEFAULT_LINE_WIDTH);
 	}
 	
@@ -71,6 +58,12 @@ public class ConnectionFigure extends PolylineConnectionEx implements IBlankable
 		this.blanked = blanked;
 		revalidate();
 		repaint();
+	}
+	
+	public void setTargetDecorationVisible(boolean visible) {
+		if (visible != (getTargetDecoration() != null)) {
+			setTargetDecoration(visible ? new TargetDecoration() : null);
+		}
 	}
 
 	/* (non-Javadoc)
@@ -165,6 +158,29 @@ public class ConnectionFigure extends PolylineConnectionEx implements IBlankable
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @author Andreas Unger
+	 *
+	 */
+	private static final class TargetDecoration extends PolygonDecoration {
+		
+		private static final double DECORATION_SCALE_X = 7 * DEFAULT_LINE_WIDTH;
+		private static final double DECORATION_SCALE_Y = 3 * DEFAULT_LINE_WIDTH;
+	
+		/**
+		 * 
+		 */
+		public TargetDecoration() {
+			setScale(DECORATION_SCALE_X, DECORATION_SCALE_Y);
+		}
+		
+		@Override
+		public Rectangle getBounds() {
+			return super.getBounds().getExpanded(DEFAULT_LINE_WIDTH, DEFAULT_LINE_WIDTH);
+		}
+		
 	}
 	
 }

@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.execution.executionflow;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -77,5 +78,13 @@ public interface Graph extends EObject {
 	 * @generated
 	 */
 	EList<Edge> getEdges();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	TreeIterator<Node> getAllNodes();
 
 } // Graph

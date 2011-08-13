@@ -186,6 +186,11 @@ public class CompoundItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.COMPOUND__MEMBERS,
+				 DMLFactory.eINSTANCE.createAsynchronousEntity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.COMPOUND__MEMBERS,
 				 DMLFactory.eINSTANCE.createChoice()));
 
 		newChildDescriptors.add

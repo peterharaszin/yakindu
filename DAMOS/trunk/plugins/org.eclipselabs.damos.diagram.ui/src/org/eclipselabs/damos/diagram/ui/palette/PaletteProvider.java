@@ -188,6 +188,12 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 //		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Latch24.png"));
 //		entries.add(entry);
 //
+//		entry = new ElementCreationToolEntry(ElementTypes.ASYNCHRONOUS_ENTITY, null, null);
+//		entry.setId(IPaletteConstants.ASYNCHRONOUS_ENTITY_ENTRY_ID);
+//		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/AsynchronousEntity16.png"));
+//		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/AsynchronousEntity24.png"));
+//		entries.add(entry);
+//
 //		entries.add(new PaletteSeparator());
 		
 		entry = new InstantiateBlockTypeToolEntry(editor);

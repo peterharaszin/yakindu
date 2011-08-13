@@ -38,12 +38,12 @@ import org.eclipselabs.mscript.computation.core.value.IValue;
  */
 public class Task extends Thread implements Adapter {
 	
+	private static final int QUEUE_CAPACITY = 100;
+	
 	private final DiscreteStateComputationHelper discreteStateComputationHelper = new DiscreteStateComputationHelper();
 	
 	private Notifier target = null;
 
-	private static final int QUEUE_CAPACITY = 100;
-	
 	private Simulation simulation;
 	private TaskNode taskNode;
 	private BlockingQueue<Data> queue = new ArrayBlockingQueue<Data>(QUEUE_CAPACITY);
@@ -83,12 +83,6 @@ public class Task extends Thread implements Adapter {
 			for (;;) {
 				Data data = queue.take();
 
-				// Reset all inputs
-				for (TaskInputNode inputNode : taskNode.getInputNodes()) {
-					EList<DataFlowSourceEnd> outgoingDataFlows = inputNode.getOutgoingDataFlows();
-					discreteStateComputationHelper.setInputValues(outgoingDataFlows.get(0), null);
-				}
-				
 				if (data == Data.UNBLOCK) {
 					for (LatchNode latchNode : taskNode.getLatchNodes()) {
 						ISimulationObject simulationObject = SimulationUtil.getSimulationObject(latchNode);

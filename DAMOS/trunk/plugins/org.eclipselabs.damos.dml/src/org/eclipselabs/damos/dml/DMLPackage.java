@@ -565,7 +565,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getINamedElement()
 	 * @generated
 	 */
-	int INAMED_ELEMENT = 85;
+	int INAMED_ELEMENT = 86;
 
 	/**
 	 * The number of structural features of the '<em>INamed Element</em>' class.
@@ -3069,7 +3069,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompound()
 	 * @generated
 	 */
-	int COMPOUND = 65;
+	int COMPOUND = 66;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3117,6 +3117,61 @@ public interface DMLPackage extends EPackage {
 	int COMPOUND_FEATURE_COUNT = FRAGMENT_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.AsynchronousEntityImpl <em>Asynchronous Entity</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.AsynchronousEntityImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAsynchronousEntity()
+	 * @generated
+	 */
+	int ASYNCHRONOUS_ENTITY = 65;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNCHRONOUS_ENTITY__EANNOTATIONS = COMPOUND__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNCHRONOUS_ENTITY__OWNING_FRAGMENT = COMPOUND__OWNING_FRAGMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNCHRONOUS_ENTITY__OWNING_COMPOUND = COMPOUND__OWNING_COMPOUND;
+
+	/**
+	 * The feature id for the '<em><b>Members</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNCHRONOUS_ENTITY__MEMBERS = COMPOUND__MEMBERS;
+
+	/**
+	 * The number of structural features of the '<em>Asynchronous Entity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASYNCHRONOUS_ENTITY_FEATURE_COUNT = COMPOUND_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CompoundMemberImpl <em>Compound Member</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3124,7 +3179,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundMember()
 	 * @generated
 	 */
-	int COMPOUND_MEMBER = 66;
+	int COMPOUND_MEMBER = 67;
 
 	/**
 	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
@@ -3152,7 +3207,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundConnector()
 	 * @generated
 	 */
-	int COMPOUND_CONNECTOR = 67;
+	int COMPOUND_CONNECTOR = 68;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3180,7 +3235,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundInputConnector()
 	 * @generated
 	 */
-	int COMPOUND_INPUT_CONNECTOR = 68;
+	int COMPOUND_INPUT_CONNECTOR = 69;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3208,7 +3263,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundOutputConnector()
 	 * @generated
 	 */
-	int COMPOUND_OUTPUT_CONNECTOR = 69;
+	int COMPOUND_OUTPUT_CONNECTOR = 70;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3236,7 +3291,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoice()
 	 * @generated
 	 */
-	int CHOICE = 70;
+	int CHOICE = 71;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3327,7 +3382,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInput()
 	 * @generated
 	 */
-	int CHOICE_INPUT = 71;
+	int CHOICE_INPUT = 72;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3364,7 +3419,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
 	 * @generated
 	 */
-	int CHOICE_INPUT_PORT = 72;
+	int CHOICE_INPUT_PORT = 73;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' container reference.
@@ -3401,7 +3456,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 73;
+	int ACTION = 74;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3465,7 +3520,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
 	 * @generated
 	 */
-	int ACTION_LINK = 74;
+	int ACTION_LINK = 75;
 
 	/**
 	 * The feature id for the '<em><b>Choice</b></em>' container reference.
@@ -3511,7 +3566,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionSpecification()
 	 * @generated
 	 */
-	int CONDITION_SPECIFICATION = 75;
+	int CONDITION_SPECIFICATION = 76;
 
 	/**
 	 * The number of structural features of the '<em>Condition Specification</em>' class.
@@ -3530,7 +3585,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueConditionSpecification()
 	 * @generated
 	 */
-	int OPAQUE_CONDITION_SPECIFICATION = 76;
+	int OPAQUE_CONDITION_SPECIFICATION = 77;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute.
@@ -3558,7 +3613,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 77;
+	int JOIN = 78;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3640,7 +3695,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoinInput()
 	 * @generated
 	 */
-	int JOIN_INPUT = 78;
+	int JOIN_INPUT = 79;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3677,7 +3732,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
 	 * @generated
 	 */
-	int WHILE_LOOP = 79;
+	int WHILE_LOOP = 80;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3750,7 +3805,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
 	 * @generated
 	 */
-	int WHILE_LOOP_CONDITION = 80;
+	int WHILE_LOOP_CONDITION = 81;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3778,7 +3833,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemory()
 	 * @generated
 	 */
-	int MEMORY = 81;
+	int MEMORY = 82;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3860,7 +3915,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInitialCondition()
 	 * @generated
 	 */
-	int MEMORY_INITIAL_CONDITION = 82;
+	int MEMORY_INITIAL_CONDITION = 83;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3897,7 +3952,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInput()
 	 * @generated
 	 */
-	int MEMORY_INPUT = 83;
+	int MEMORY_INPUT = 84;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3934,7 +3989,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryOutput()
 	 * @generated
 	 */
-	int MEMORY_OUTPUT = 84;
+	int MEMORY_OUTPUT = 85;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -3971,7 +4026,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getITextualElement()
 	 * @generated
 	 */
-	int ITEXTUAL_ELEMENT = 86;
+	int ITEXTUAL_ELEMENT = 87;
 
 	/**
 	 * The number of structural features of the '<em>ITextual Element</em>' class.
@@ -3990,7 +4045,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getTimingKind()
 	 * @generated
 	 */
-	int TIMING_KIND = 88;
+	int TIMING_KIND = 89;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}' enum.
@@ -4000,7 +4055,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterVisibilityKind()
 	 * @generated
 	 */
-	int PARAMETER_VISIBILITY_KIND = 87;
+	int PARAMETER_VISIBILITY_KIND = 88;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -5432,6 +5487,16 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLatchInput();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.AsynchronousEntity <em>Asynchronous Entity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Asynchronous Entity</em>'.
+	 * @see org.eclipselabs.damos.dml.AsynchronousEntity
+	 * @generated
+	 */
+	EClass getAsynchronousEntity();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Compound <em>Compound</em>}'.
@@ -7033,6 +7098,16 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LATCH_INPUT = eINSTANCE.getLatchInput();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.AsynchronousEntityImpl <em>Asynchronous Entity</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.AsynchronousEntityImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAsynchronousEntity()
+		 * @generated
+		 */
+		EClass ASYNCHRONOUS_ENTITY = eINSTANCE.getAsynchronousEntity();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CompoundImpl <em>Compound</em>}' class.

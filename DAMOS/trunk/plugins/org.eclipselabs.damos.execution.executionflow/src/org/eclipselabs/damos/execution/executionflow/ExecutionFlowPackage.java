@@ -877,7 +877,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__NODES = SUBGRAPH__NODES;
+	int TASK_NODE__NODES = COMPOUND_NODE__NODES;
 
 	/**
 	 * The feature id for the '<em><b>Initial Nodes</b></em>' reference list.
@@ -886,7 +886,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INITIAL_NODES = SUBGRAPH__INITIAL_NODES;
+	int TASK_NODE__INITIAL_NODES = COMPOUND_NODE__INITIAL_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
@@ -895,7 +895,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__EDGES = SUBGRAPH__EDGES;
+	int TASK_NODE__EDGES = COMPOUND_NODE__EDGES;
 
 	/**
 	 * The feature id for the '<em><b>Graph</b></em>' container reference.
@@ -904,7 +904,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__GRAPH = SUBGRAPH__GRAPH;
+	int TASK_NODE__GRAPH = COMPOUND_NODE__GRAPH;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Edges</b></em>' reference list.
@@ -913,7 +913,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INCOMING_EDGES = SUBGRAPH__INCOMING_EDGES;
+	int TASK_NODE__INCOMING_EDGES = COMPOUND_NODE__INCOMING_EDGES;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Edges</b></em>' reference list.
@@ -922,7 +922,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__OUTGOING_EDGES = SUBGRAPH__OUTGOING_EDGES;
+	int TASK_NODE__OUTGOING_EDGES = COMPOUND_NODE__OUTGOING_EDGES;
 
 	/**
 	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
@@ -931,7 +931,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__ENCLOSING_SUBSYSTEMS = SUBGRAPH__ENCLOSING_SUBSYSTEMS;
+	int TASK_NODE__ENCLOSING_SUBSYSTEMS = COMPOUND_NODE__ENCLOSING_SUBSYSTEMS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Data Flows</b></em>' reference list.
@@ -940,7 +940,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INCOMING_DATA_FLOWS = SUBGRAPH__INCOMING_DATA_FLOWS;
+	int TASK_NODE__INCOMING_DATA_FLOWS = COMPOUND_NODE__INCOMING_DATA_FLOWS;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Data Flows</b></em>' reference list.
@@ -949,7 +949,16 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__OUTGOING_DATA_FLOWS = SUBGRAPH__OUTGOING_DATA_FLOWS;
+	int TASK_NODE__OUTGOING_DATA_FLOWS = COMPOUND_NODE__OUTGOING_DATA_FLOWS;
+
+	/**
+	 * The feature id for the '<em><b>Compound</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TASK_NODE__COMPOUND = COMPOUND_NODE__COMPOUND;
 
 	/**
 	 * The feature id for the '<em><b>Input Nodes</b></em>' containment reference list.
@@ -958,7 +967,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INPUT_NODES = SUBGRAPH_FEATURE_COUNT + 0;
+	int TASK_NODE__INPUT_NODES = COMPOUND_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Latch Nodes</b></em>' reference list.
@@ -967,7 +976,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__LATCH_NODES = SUBGRAPH_FEATURE_COUNT + 1;
+	int TASK_NODE__LATCH_NODES = COMPOUND_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Task Node</em>' class.
@@ -976,7 +985,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE_FEATURE_COUNT = SUBGRAPH_FEATURE_COUNT + 2;
+	int TASK_NODE_FEATURE_COUNT = COMPOUND_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl <em>Task Input Node</em>}' class.

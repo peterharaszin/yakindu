@@ -14,6 +14,11 @@
         eType="#//TaskNode" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Graph">
+    <eOperations name="getAllNodes" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ETreeIterator">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nodes" upperBound="-1"
         eType="#//Node" containment="true" eOpposite="#//Node/graph"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialNodes" upperBound="-1"
@@ -58,8 +63,7 @@
         eType="#//TaskNode" eOpposite="#//TaskNode/latchNodes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompoundNode" eSuperTypes="#//Subgraph">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Compound"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Compound"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionNode" eSuperTypes="#//CompoundNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="choiceNode" eType="#//ComponentNode"/>
@@ -68,7 +72,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TaskNode" eSuperTypes="#//Subgraph">
+  <eClassifiers xsi:type="ecore:EClass" name="TaskNode" eSuperTypes="#//CompoundNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputNodes" upperBound="-1"
         eType="#//TaskInputNode" containment="true" eOpposite="#//TaskInputNode/taskNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="latchNodes" upperBound="-1"

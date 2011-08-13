@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
+import org.eclipselabs.damos.dml.AsynchronousEntity;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -317,6 +318,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateLatch((Latch)value, diagnostics, context);
 			case DMLPackage.LATCH_INPUT:
 				return validateLatchInput((LatchInput)value, diagnostics, context);
+			case DMLPackage.ASYNCHRONOUS_ENTITY:
+				return validateAsynchronousEntity((AsynchronousEntity)value, diagnostics, context);
 			case DMLPackage.COMPOUND:
 				return validateCompound((Compound)value, diagnostics, context);
 			case DMLPackage.COMPOUND_MEMBER:
@@ -1401,6 +1404,15 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateLatchInput(LatchInput latchInput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(latchInput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAsynchronousEntity(AsynchronousEntity asynchronousEntity, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(asynchronousEntity, diagnostics, context);
 	}
 
 	/**

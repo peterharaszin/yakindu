@@ -331,6 +331,11 @@ public class FragmentItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
+				 DMLFactory.eINSTANCE.createAsynchronousEntity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.FRAGMENT__FRAGMENT_ELEMENTS,
 				 DMLFactory.eINSTANCE.createChoice()));
 
 		newChildDescriptors.add

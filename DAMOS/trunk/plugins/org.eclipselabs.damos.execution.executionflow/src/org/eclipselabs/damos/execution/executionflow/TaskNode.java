@@ -26,7 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface TaskNode extends Subgraph {
+public interface TaskNode extends CompoundNode {
 
 	/**
 	 * Returns the value of the '<em><b>Input Nodes</b></em>' containment reference list.

@@ -62,7 +62,9 @@ public class GaugeEditPart extends RectangularBlockEditPart {
 				if (agent != null) {
 					ISimulationTracePoint tracePoint = agent.getTracePoints()[0];
 					value = tracePoint.getValue();
-					Display.getDefault().asyncExec(setValueRunnable);
+					if (value != null) {
+						Display.getDefault().asyncExec(setValueRunnable);
+					}
 				}
 			}
 		}

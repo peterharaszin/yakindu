@@ -10,6 +10,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -21,6 +22,7 @@ import org.eclipselabs.damos.execution.executionflow.Edge;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.internal.operations.GraphOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -121,6 +123,15 @@ public class GraphImpl extends EObjectImpl implements Graph {
 			edges = new EObjectContainmentEList<Edge>(Edge.class, this, ExecutionFlowPackage.GRAPH__EDGES);
 		}
 		return edges;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public TreeIterator<Node> getAllNodes() {
+		return GraphOperations.getAllNodes(this);
 	}
 
 	/**

@@ -395,6 +395,15 @@ public interface DMLFactory extends EFactory {
 	LatchInput createLatchInput();
 
 	/**
+	 * Returns a new object of class '<em>Asynchronous Entity</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Asynchronous Entity</em>'.
+	 * @generated
+	 */
+	AsynchronousEntity createAsynchronousEntity();
+
+	/**
 	 * Returns a new object of class '<em>Choice</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

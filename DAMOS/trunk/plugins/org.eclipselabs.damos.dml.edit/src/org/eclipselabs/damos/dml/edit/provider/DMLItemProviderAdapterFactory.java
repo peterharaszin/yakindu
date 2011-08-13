@@ -1017,6 +1017,29 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.AsynchronousEntity} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AsynchronousEntityItemProvider asynchronousEntityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.AsynchronousEntity}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAsynchronousEntityAdapter() {
+		if (asynchronousEntityItemProvider == null) {
+			asynchronousEntityItemProvider = new AsynchronousEntityItemProvider(this);
+		}
+
+		return asynchronousEntityItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Choice} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1478,6 +1501,7 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
 		if (latchItemProvider != null) latchItemProvider.dispose();
 		if (latchInputItemProvider != null) latchInputItemProvider.dispose();
+		if (asynchronousEntityItemProvider != null) asynchronousEntityItemProvider.dispose();
 		if (choiceItemProvider != null) choiceItemProvider.dispose();
 		if (choiceInputItemProvider != null) choiceInputItemProvider.dispose();
 		if (choiceInputPortItemProvider != null) choiceInputPortItemProvider.dispose();

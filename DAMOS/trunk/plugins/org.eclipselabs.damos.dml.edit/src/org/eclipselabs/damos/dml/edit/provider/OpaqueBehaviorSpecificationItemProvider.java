@@ -384,6 +384,11 @@ public class OpaqueBehaviorSpecificationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
+				 DMLFactory.eINSTANCE.createAsynchronousEntity()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
 				 DMLFactory.eINSTANCE.createChoice()));
 
 		newChildDescriptors.add

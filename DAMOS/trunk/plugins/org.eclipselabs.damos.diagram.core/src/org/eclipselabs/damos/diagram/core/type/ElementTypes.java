@@ -64,6 +64,9 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	public static final String LATCH_ID = "org.eclipselabs.damos.diagram.latch"; //$NON-NLS-1$
 	public static final IElementType LATCH = getElementType(LATCH_ID);
 
+	public static final String ASYNCHRONOUS_ENTITY_ID = "org.eclipselabs.damos.diagram.asynchronousEntity"; //$NON-NLS-1$
+	public static final IElementType ASYNCHRONOUS_ENTITY = getElementType(ASYNCHRONOUS_ENTITY_ID);
+
 	public static final String BLOCK_ID = "org.eclipselabs.damos.diagram.block"; //$NON-NLS-1$
 	public static final IElementType BLOCK = getElementType(BLOCK_ID);
 

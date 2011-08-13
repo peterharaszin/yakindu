@@ -157,6 +157,7 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 			case ExecutionFlowPackage.TASK_NODE: {
 				TaskNode taskNode = (TaskNode)theEObject;
 				T result = caseTaskNode(taskNode);
+				if (result == null) result = caseCompoundNode(taskNode);
 				if (result == null) result = caseSubgraph(taskNode);
 				if (result == null) result = caseGraph(taskNode);
 				if (result == null) result = caseNode(taskNode);

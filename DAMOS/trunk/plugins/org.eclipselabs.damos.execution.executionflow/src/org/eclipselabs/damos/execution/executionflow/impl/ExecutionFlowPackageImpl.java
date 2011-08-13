@@ -8,6 +8,7 @@ package org.eclipselabs.damos.execution.executionflow.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -846,7 +847,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		compoundNodeEClass.getESuperTypes().add(this.getSubgraph());
 		actionNodeEClass.getESuperTypes().add(this.getCompoundNode());
 		subsystemNodeEClass.getESuperTypes().add(this.getSubgraph());
-		taskNodeEClass.getESuperTypes().add(this.getSubgraph());
+		taskNodeEClass.getESuperTypes().add(this.getCompoundNode());
 		taskInputNodeEClass.getESuperTypes().add(this.getNode());
 		dataFlowSourceEndEClass.getESuperTypes().add(this.getDataFlowEnd());
 		dataFlowTargetEndEClass.getESuperTypes().add(this.getDataFlowEnd());
@@ -864,6 +865,12 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getGraph_InitialNodes(), this.getNode(), null, "initialNodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Edges(), this.getEdge(), null, "edges", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = addEOperation(graphEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getETreeIterator());
+		EGenericType g2 = createEGenericType(this.getNode());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_IncomingEdges(), this.getEdge(), this.getEdge_Target(), "incomingEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -872,7 +879,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getNode_IncomingDataFlows(), this.getDataFlowTargetEnd(), this.getDataFlowTargetEnd_Node(), "incomingDataFlows", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_OutgoingDataFlows(), this.getDataFlowSourceEnd(), this.getDataFlowSourceEnd_Node(), "outgoingDataFlows", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(nodeEClass, this.getDataFlowTargetEnd(), "getIncomingDataFlow", 1, 1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(nodeEClass, this.getDataFlowTargetEnd(), "getIncomingDataFlow", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theDMLPackage.getInputConnector(), "target", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(nodeEClass, this.getDataFlowSourceEnd(), "getOutgoingDataFlow", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -895,7 +902,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getLatchNode_TaskNodes(), this.getTaskNode(), this.getTaskNode_LatchNodes(), "taskNodes", null, 0, -1, LatchNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundNodeEClass, CompoundNode.class, "CompoundNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompoundNode_Compound(), theDMLPackage.getCompound(), null, "compound", null, 1, 1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompoundNode_Compound(), theDMLPackage.getCompound(), null, "compound", null, 0, 1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionNodeEClass, ActionNode.class, "ActionNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActionNode_ChoiceNode(), this.getComponentNode(), null, "choiceNode", null, 0, 1, ActionNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

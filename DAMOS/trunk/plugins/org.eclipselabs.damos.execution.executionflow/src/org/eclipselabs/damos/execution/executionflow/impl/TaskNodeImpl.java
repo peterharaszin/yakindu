@@ -34,7 +34,7 @@ import org.eclipselabs.damos.execution.executionflow.TaskNode;
  *
  * @generated
  */
-public class TaskNodeImpl extends SubgraphImpl implements TaskNode {
+public class TaskNodeImpl extends CompoundNodeImpl implements TaskNode {
 	/**
 	 * The cached value of the '{@link #getInputNodes() <em>Input Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

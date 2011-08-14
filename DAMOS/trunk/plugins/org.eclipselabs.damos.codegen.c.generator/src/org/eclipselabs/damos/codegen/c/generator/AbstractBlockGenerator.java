@@ -11,8 +11,9 @@
 
 package org.eclipselabs.damos.codegen.c.generator;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -21,19 +22,22 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 public abstract class AbstractBlockGenerator extends AbstractComponentGenerator {
 
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#initialize(org.eclipselabs.damos.codegen.c.generator.IComponentGeneratorContext, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void initialize(IComponentGeneratorContext context, IProgressMonitor monitor) throws CoreException {
+		if (!(context.getNode().getComponent() instanceof Block)) {
+			throw new IllegalArgumentException("Component must be instance of Block");
+		}
+		super.initialize(context, monitor);
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#getComponent()
 	 */
 	@Override
 	public Block getComponent() {
 		return (Block) super.getComponent();
-	}
-	
-	@Override
-	public void setNode(ComponentNode node) {
-		if (!(node.getComponent() instanceof Block)) {
-			throw new IllegalArgumentException("Component must be instance of Block");
-		}
-		super.setNode(node);
 	}
 	
 }

@@ -13,7 +13,6 @@ package org.eclipselabs.damos.codegen.c.generator.internal;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,14 +20,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
 import org.eclipselabs.damos.codegen.c.generator.ComponentGeneratorStatus;
-import org.eclipselabs.damos.codegen.c.generator.GeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
-import org.eclipselabs.damos.codegen.c.generator.IGeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.internal.registry.ComponentGeneratorProviderRegistry;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.execution.core.DataTypeResolver;
-import org.eclipselabs.damos.execution.core.DataTypeResolverResult;
-import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
@@ -41,20 +35,10 @@ import org.eclipselabs.damos.execution.executionflow.Node;
  */
 public class ComponentGeneratorAdaptor {
 
-	private DataTypeResolver dataTypeResolver = new DataTypeResolver();
-	
 	public void adaptGenerators(GenModel genModel, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
-		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(executionFlow.getTopLevelFragment(), true);
-		if (!dataTypeResolverResult.getStatus().isOK()) {
-			throw new CoreException(dataTypeResolverResult.getStatus());
-		}
-		
-		IGeneratorContext context = new GeneratorContext(genModel);
-		
-		Map<Component, IComponentSignature> signatures = dataTypeResolverResult.getSignatures();
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
-		adaptGenerators(context, executionFlow.getGraph(), signatures, missingGeneratorComponents);
+		adaptGenerators(executionFlow.getGraph(), missingGeneratorComponents);
 		
 		if (!missingGeneratorComponents.isEmpty()) {
 			StringBuilder sb = new StringBuilder("Missing component generator for ");
@@ -75,13 +59,11 @@ public class ComponentGeneratorAdaptor {
 	}
 
 	/**
-	 * @param context
 	 * @param graph
 	 * @param signatures
 	 * @param missingGeneratorComponents
 	 */
-	private void adaptGenerators(IGeneratorContext context, Graph graph,
-			Map<Component, IComponentSignature> signatures, List<Component> missingGeneratorComponents) {
+	private void adaptGenerators(Graph graph, List<Component> missingGeneratorComponents) {
 		for (Node node : graph.getNodes()) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
@@ -89,15 +71,12 @@ public class ComponentGeneratorAdaptor {
 				IComponentGenerator generator;
 				generator = ComponentGeneratorProviderRegistry.getInstance().createGenerator(component);
 				if (generator != null) {
-					generator.setContext(context);
-					generator.setNode(componentNode);
-					generator.setSignature(signatures.get(component));
 					node.eAdapters().add(new ComponentGeneratorAdapter(generator));
 				} else {
 					missingGeneratorComponents.add(component);
 				}
 			} else if (node instanceof CompoundNode) {
-				adaptGenerators(context, (CompoundNode) node, signatures, missingGeneratorComponents);
+				adaptGenerators((CompoundNode) node, missingGeneratorComponents);
 			}
 		}
 	}

@@ -35,6 +35,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdaptor;
+import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.internal.VariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.Action;
@@ -52,6 +53,8 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.execution.core.DataTypeResolver;
+import org.eclipselabs.damos.execution.core.DataTypeResolverResult;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
@@ -80,14 +83,20 @@ import org.eclipselabs.mscript.typesystem.Expression;
  */
 public class Generator {
 
+	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
+
 	public void generate(final GenModel genModel, final IProgressMonitor monitor) throws CoreException {
 		final ExecutionFlow executionFlow = constructExecutionFlow(genModel, monitor);
+		
+		Map<Component, IComponentSignature> signatures = resolveDataTypes(genModel, executionFlow);
 		
 		for (Node node : getAllNodes(executionFlow.getGraph())) {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				generator.initialize();
+				IVariableAccessor variableAccessor = new VariableAccessor(genModel, componentNode);
+				ComponentGeneratorContext context = new ComponentGeneratorContext(componentNode, signatures.get(componentNode.getComponent()), variableAccessor, genModel);
+				generator.initialize(context, monitor);
 			}
 		}
 		
@@ -116,6 +125,14 @@ public class Generator {
 			}
 			
 		}.write(sourceFile, monitor);
+	}
+	
+	private Map<Component, IComponentSignature> resolveDataTypes(GenModel genModel, ExecutionFlow executionFlow) throws CoreException {
+		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(executionFlow.getTopLevelFragment(), true);
+		if (!dataTypeResolverResult.getStatus().isOK()) {
+			throw new CoreException(dataTypeResolverResult.getStatus());
+		}
+		return dataTypeResolverResult.getSignatures();
 	}
 	
 	private ExecutionFlow constructExecutionFlow(GenModel genModel, IProgressMonitor monitor) throws CoreException {
@@ -151,7 +168,7 @@ public class Generator {
 				continue;
 			}
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-			IComponentSignature signature = generator.getSignature();
+			IComponentSignature signature = generator.getContext().getComponentSignature();
 			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
 			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(genModel, componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
@@ -170,7 +187,7 @@ public class Generator {
 				continue;
 			}
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-			IComponentSignature signature = generator.getSignature();
+			IComponentSignature signature = generator.getContext().getComponentSignature();
 			OutputPort outputPort = componentNode.getComponent().getFirstOutputPort();
 			DataType dataType = signature.getOutputDataType(outputPort);
 			writer.printf("%s;\n", MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(genModel, componentNode), dataType, InternalGeneratorUtil.uncapitalize(componentNode.getComponent().getName()), false));
@@ -206,9 +223,9 @@ public class Generator {
 				}
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				if (generator.contributesContextCode()) {
+				if (generator.contributesContextStructCode()) {
 					String typeName = InternalGeneratorUtil.getPrefix(genModel, node) + componentNode.getComponent().getName() + "_Context";
-					generator.generateContextCode(writer, typeName, monitor);
+					generator.writeContextStructCode(writer, typeName, monitor);
 				}
 			}
 			writer.println("typedef struct {");
@@ -218,7 +235,7 @@ public class Generator {
 				}
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				if (generator.contributesContextCode()) {
+				if (generator.contributesContextStructCode()) {
 					writer.printf("%s%s_Context %s;\n", InternalGeneratorUtil.getPrefix(genModel, node), componentNode.getComponent().getName(), InternalGeneratorUtil.getPrefix(genModel, node) + componentNode.getComponent().getName());
 				}
 			}
@@ -236,7 +253,7 @@ public class Generator {
 			if (generator.contributesInitializationCode()) {
 				writer.printf("/* %s */\n", componentNode.getComponent().getName());
 				writer.println("{");
-				generator.generateInitializationCode(writer, new VariableAccessor(genModel, componentNode), monitor);
+				generator.writeInitializationCode(writer, monitor);
 				writer.println("}\n");
 			}
 		}
@@ -258,7 +275,7 @@ public class Generator {
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			for (Output output : component.getOutputs()) {
 				for (OutputPort outputPort : output.getPorts()) {
-					String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, componentNode), generator.getSignature().getOutputDataType(outputPort));
+					String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, componentNode), generator.getContext().getComponentSignature().getOutputDataType(outputPort));
 					writer.printf("%s %s;\n", cDataType, getOutputVariableName(genModel, componentNode, outputPort));
 				}
 			}
@@ -385,7 +402,7 @@ public class Generator {
 				if (generator.contributesComputeOutputsCode()) {
 					writer.printf("/* %s */\n", componentNode.getComponent().getName());
 					writer.println("{");
-					generator.generateComputeOutputsCode(writer, new VariableAccessor(genModel, componentNode), monitor);
+					generator.writeComputeOutputsCode(writer, monitor);
 					writer.println("}\n");
 				}
 			}
@@ -409,7 +426,7 @@ public class Generator {
 				if (generator.contributesUpdateCode()) {
 					writer.printf("/* %s */\n", componentNode.getComponent().getName());
 					writer.println("{");
-					generator.generateUpdateCode(writer, new VariableAccessor(genModel, componentNode), monitor);
+					generator.writeUpdateCode(writer, monitor);
 					writer.println("}\n");
 				}
 			}
@@ -446,7 +463,7 @@ public class Generator {
 					if (componentNode.getComponent() instanceof Memory) {
 						Memory memory = (Memory) componentNode.getComponent();
 						IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-						String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, componentNode), generator.getSignature().getOutputDataType(memory.getFirstOutputPort()));
+						String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, componentNode), generator.getContext().getComponentSignature().getOutputDataType(memory.getFirstOutputPort()));
 						
 						String initializer = getIncomingVariableName(genModel, componentNode, memory.getFirstInputPort());
 						
@@ -526,7 +543,7 @@ public class Generator {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				if (generator.contributesContextCode()) {
+				if (generator.contributesContextStructCode()) {
 					return true;
 				}
 			}

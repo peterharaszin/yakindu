@@ -12,27 +12,18 @@
 package org.eclipselabs.damos.codegen.c.generator;
 
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.damos.execution.core.IComponentSignature;
+import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
 /**
  * @author Andreas Unger
  *
  */
-public class GeneratorContext implements IGeneratorContext {
+public interface IComponentGeneratorContext {
 
-	private GenModel genModel;
+	ComponentNode getNode();
+	IComponentSignature getComponentSignature();
+	IVariableAccessor getVariableAccessor();
+	GenModel getGenModel();
 	
-	/**
-	 * 
-	 */
-	public GeneratorContext(GenModel genModel) {
-		this.genModel = genModel;
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.IGeneratorContext#getGenModel()
-	 */
-	public GenModel getGenModel() {
-		return genModel;
-	}
-
 }

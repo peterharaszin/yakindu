@@ -17,7 +17,6 @@ import java.io.Writer;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator;
-import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
@@ -41,14 +40,14 @@ public class OutportGenerator extends AbstractComponentGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipselabs.damos.codegen.c.generator.IVariableAccessor, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void generateComputeOutputsCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException {
+	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws CoreException {
 		PrintWriter printWriter = new PrintWriter(writer);
 
 		InputPort inputPort = getComponent().getFirstInputPort();
 		OutputPort outputPort = getComponent().getFirstOutputPort();
 
 		printWriter.printf("output->%s = ", InternalGeneratorUtil.uncapitalize(getComponent().getName()));
-		String inputVariableString = variableAccessor.getInputVariable(inputPort, false);
+		String inputVariableString = getVariableAccessor().getInputVariable(inputPort, false);
 		MscriptGeneratorUtil.cast(getComputationModel(), writer, inputVariableString, getSignature().getInputDataType(inputPort), getSignature().getOutputDataType(outputPort));
 		printWriter.println(";");
 	}

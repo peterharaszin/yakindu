@@ -29,72 +29,36 @@ import org.eclipselabs.mscript.computation.computationmodel.util.ComputationMode
  */
 public abstract class AbstractComponentGenerator implements IComponentGenerator {
 
-	private IGeneratorContext context;
-	private ComponentNode node;
-	private IComponentSignature signature;
+	private IComponentGeneratorContext context;
 	
 	private ComputationModel cachedComputationModel;
 
-	/**
-	 * @return the context
-	 */
-	public IGeneratorContext getContext() {
-		return context;
-	}
-	
-	/**
-	 * @param context the context to set
-	 */
-	public void setContext(IGeneratorContext context) {
-		this.context = context;
-	}
-	
-	/**
-	 * @return the node
-	 */
-	public ComponentNode getNode() {
-		return node;
-	}
-	
-	/**
-	 * @param node the node to set
-	 */
-	public void setNode(ComponentNode node) {
-		this.node = node;
-	}
-	
-	protected Component getComponent() {
-		return node.getComponent();
-	}
-	
-	/**
-	 * @return the signature
-	 */
-	public IComponentSignature getSignature() {
-		return signature;
-	}
-	
-	/**
-	 * @param signature the signature to set
-	 */
-	public void setSignature(IComponentSignature signature) {
-		this.signature = signature;
-	}
-	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#initialize()
 	 */
-	public void initialize() throws CoreException {
+	public void initialize(IComponentGeneratorContext context, IProgressMonitor monitor) throws CoreException {
+		this.context = context;
+		initialize(monitor);
 	}
 	
+	protected void initialize(IProgressMonitor monitor) throws CoreException {
+	}
+	
+	/**
+	 * @return the context
+	 */
+	public IComponentGeneratorContext getContext() {
+		return context;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#contributesContextCode()
 	 */
-	public boolean contributesContextCode() {
+	public boolean contributesContextStructCode() {
 		return false;
 	}
 	
-	public void generateContextCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException {
+	public void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException {
 	}
 	
 	/* (non-Javadoc)
@@ -107,7 +71,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateInitializationCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void generateInitializationCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException {
+	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws CoreException {
 	}
 
 	/* (non-Javadoc)
@@ -120,7 +84,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateComputeOutputsCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void generateComputeOutputsCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException {
+	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws CoreException {
 	}
 	
 	/* (non-Javadoc)
@@ -133,11 +97,27 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateUpdateCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void generateUpdateCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException {
+	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) throws CoreException {
 	}
 	
+	protected ComponentNode getNode() {
+		return context.getNode();
+	}
+
+	protected Component getComponent() {
+		return getNode().getComponent();
+	}
+
+	protected IComponentSignature getSignature() {
+		return context.getComponentSignature();
+	}
+	
+	protected IVariableAccessor getVariableAccessor() {
+		return context.getVariableAccessor();
+	}
+
 	protected final GenModel getGenModel() {
-		return getContext().getGenModel();
+		return context.getGenModel();
 	}
 	
 	protected final ExecutionModel getExecutionModel() {

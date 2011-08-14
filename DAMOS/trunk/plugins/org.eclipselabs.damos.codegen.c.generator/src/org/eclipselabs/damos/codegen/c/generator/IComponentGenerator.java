@@ -15,8 +15,6 @@ import java.io.Writer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.execution.core.IComponentSignature;
-import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
 /**
  * @author Andreas Unger
@@ -27,34 +25,24 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
  */
 public interface IComponentGenerator {
 
-	IGeneratorContext getContext();
-
-	void setContext(IGeneratorContext context);
-
-	ComponentNode getNode();
+	void initialize(IComponentGeneratorContext context, IProgressMonitor monitor) throws CoreException;
 	
-	void setNode(ComponentNode node);
+	IComponentGeneratorContext getContext();
 	
-	IComponentSignature getSignature();
+	boolean contributesContextStructCode();
 	
-	void setSignature(IComponentSignature signature);
-
-	void initialize() throws CoreException;
-	
-	boolean contributesContextCode();
-	
-	void generateContextCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException;
+	void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException;
 
 	boolean contributesInitializationCode();
 	
-	void generateInitializationCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException;
+	void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws CoreException;
 	
 	boolean contributesComputeOutputsCode();
 
-	void generateComputeOutputsCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException;
+	void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws CoreException;
 
 	boolean contributesUpdateCode();
 
-	void generateUpdateCode(Writer writer, IVariableAccessor variableAccessor, IProgressMonitor monitor) throws CoreException;
+	void writeUpdateCode(Writer writer, IProgressMonitor monitor) throws CoreException;
 
 }

@@ -36,9 +36,9 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
-import org.eclipselabs.damos.execution.executionflow.internal.construct.FlattenerHelper;
-import org.eclipselabs.damos.execution.executionflow.internal.construct.SampleTimePropagationHelper;
-import org.eclipselabs.damos.execution.executionflow.internal.construct.TaskNodeComputationHelper;
+import org.eclipselabs.damos.execution.executionflow.internal.build.FlattenerHelper;
+import org.eclipselabs.damos.execution.executionflow.internal.build.SampleTimePropagationHelper;
+import org.eclipselabs.damos.execution.executionflow.internal.build.TaskNodeComputationHelper;
 
 /**
  * @author Andreas Unger

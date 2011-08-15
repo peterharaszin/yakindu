@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
-import org.eclipselabs.damos.dml.AsynchronousEntity;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -415,10 +414,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLatchInput(LatchInput object) {
 				return createLatchInputAdapter();
-			}
-			@Override
-			public Adapter caseAsynchronousEntity(AsynchronousEntity object) {
-				return createAsynchronousEntityAdapter();
 			}
 			@Override
 			public Adapter caseCompound(Compound object) {
@@ -1439,20 +1434,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLatchInputAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.AsynchronousEntity <em>Asynchronous Entity</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.AsynchronousEntity
-	 * @generated
-	 */
-	public Adapter createAsynchronousEntityAdapter() {
 		return null;
 	}
 

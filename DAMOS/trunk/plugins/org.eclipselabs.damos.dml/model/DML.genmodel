@@ -277,7 +277,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Latch/initialValue"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//LatchInput"/>
-    <genClasses ecoreClass="DML.ecore#//AsynchronousEntity"/>
     <genClasses image="false" ecoreClass="DML.ecore#//Compound">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Compound/members"/>
     </genClasses>

@@ -36,7 +36,7 @@ public interface CompoundNode extends Subgraph {
 	 * @return the value of the '<em>Compound</em>' reference.
 	 * @see #setCompound(Compound)
 	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getCompoundNode_Compound()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	Compound getCompound();

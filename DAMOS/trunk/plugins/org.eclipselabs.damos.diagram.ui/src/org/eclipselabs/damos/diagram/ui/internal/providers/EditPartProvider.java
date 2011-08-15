@@ -31,7 +31,6 @@ import org.eclipselabs.damos.diagram.ui.editparts.SubsystemOutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ActionEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ActionLinkConditionEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ActionLinkEditPart;
-import org.eclipselabs.damos.diagram.ui.internal.editparts.AsynchronousEntityEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.BlockDiagramRootEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ChoiceEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentNameEditPart;
@@ -46,7 +45,6 @@ import org.eclipselabs.damos.diagram.ui.internal.editparts.WhileLoopEditPart;
 import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
-import org.eclipselabs.damos.dml.AsynchronousEntity;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
@@ -188,9 +186,6 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			}
 			if (element instanceof Action) {
 				return ActionEditPart.class;
-			}
-			if (element instanceof AsynchronousEntity) {
-				return AsynchronousEntityEditPart.class;
 			}
 		}
 		

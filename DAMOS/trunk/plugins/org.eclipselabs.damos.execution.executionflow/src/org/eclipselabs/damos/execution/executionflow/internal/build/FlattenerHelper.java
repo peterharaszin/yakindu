@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.Action;
-import org.eclipselabs.damos.dml.AsynchronousEntity;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
@@ -131,8 +130,6 @@ public class FlattenerHelper {
 			CompoundNode node;
 			if (element instanceof Action) {
 				node = ExecutionFlowFactory.eINSTANCE.createActionNode();
-			} else if (element instanceof AsynchronousEntity) {
-				node = ExecutionFlowFactory.eINSTANCE.createTaskNode();
 			} else {
 				node = ExecutionFlowFactory.eINSTANCE.createCompoundNode();
 			}

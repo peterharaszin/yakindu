@@ -64,6 +64,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//TaskInputNode/taskNode"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//Edge">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Edge/graph"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Edge/source"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Edge/target"/>
     </genClasses>

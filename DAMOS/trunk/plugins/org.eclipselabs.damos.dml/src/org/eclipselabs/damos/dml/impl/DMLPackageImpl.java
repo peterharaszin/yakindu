@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
-import org.eclipselabs.damos.dml.AsynchronousEntity;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -568,13 +567,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass latchInputEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass asynchronousEntityEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2043,15 +2035,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAsynchronousEntity() {
-		return asynchronousEntityEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getCompound() {
 		return compoundEClass;
 	}
@@ -2591,8 +2574,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		latchInputEClass = createEClass(LATCH_INPUT);
 
-		asynchronousEntityEClass = createEClass(ASYNCHRONOUS_ENTITY);
-
 		compoundEClass = createEClass(COMPOUND);
 		createEReference(compoundEClass, COMPOUND__MEMBERS);
 
@@ -2754,7 +2735,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		latchEClass.getESuperTypes().add(this.getComponent());
 		latchInputEClass.getESuperTypes().add(this.getInput());
-		asynchronousEntityEClass.getESuperTypes().add(this.getCompound());
 		compoundEClass.getESuperTypes().add(this.getFragmentElement());
 		compoundEClass.getESuperTypes().add(this.getCompoundMember());
 		compoundConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -3088,8 +3068,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getLatch_InitialValue(), this.getValueSpecification(), null, "initialValue", null, 1, 1, Latch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(latchInputEClass, LatchInput.class, "LatchInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(asynchronousEntityEClass, AsynchronousEntity.class, "AsynchronousEntity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compoundEClass, Compound.class, "Compound", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompound_Members(), this.getCompoundMember(), null, "members", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

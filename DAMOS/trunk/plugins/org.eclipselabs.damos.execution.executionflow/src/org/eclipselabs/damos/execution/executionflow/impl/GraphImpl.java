@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -120,7 +119,7 @@ public class GraphImpl extends EObjectImpl implements Graph {
 	 */
 	public EList<Edge> getEdges() {
 		if (edges == null) {
-			edges = new EObjectContainmentEList<Edge>(Edge.class, this, ExecutionFlowPackage.GRAPH__EDGES);
+			edges = new EObjectContainmentWithInverseEList<Edge>(Edge.class, this, ExecutionFlowPackage.GRAPH__EDGES, ExecutionFlowPackage.EDGE__GRAPH);
 		}
 		return edges;
 	}
@@ -145,6 +144,8 @@ public class GraphImpl extends EObjectImpl implements Graph {
 		switch (featureID) {
 			case ExecutionFlowPackage.GRAPH__NODES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getNodes()).basicAdd(otherEnd, msgs);
+			case ExecutionFlowPackage.GRAPH__EDGES:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEdges()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}

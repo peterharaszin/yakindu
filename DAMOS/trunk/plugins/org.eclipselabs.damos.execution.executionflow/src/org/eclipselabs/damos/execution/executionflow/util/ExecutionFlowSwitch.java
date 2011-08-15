@@ -9,7 +9,6 @@ package org.eclipselabs.damos.execution.executionflow.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipselabs.damos.execution.executionflow.*;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -22,10 +21,12 @@ import org.eclipselabs.damos.execution.executionflow.Edge;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
+import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
@@ -157,10 +158,7 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 			case ExecutionFlowPackage.TASK_NODE: {
 				TaskNode taskNode = (TaskNode)theEObject;
 				T result = caseTaskNode(taskNode);
-				if (result == null) result = caseCompoundNode(taskNode);
-				if (result == null) result = caseSubgraph(taskNode);
 				if (result == null) result = caseGraph(taskNode);
-				if (result == null) result = caseNode(taskNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

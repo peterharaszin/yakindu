@@ -108,7 +108,11 @@ public class Generator {
 			
 			@Override
 			protected void write(Writer writer) throws CoreException {
-				generateHeaderFile(genModel, executionFlow, new PrintWriter(writer), monitor);
+				try {
+					generateHeaderFile(genModel, executionFlow, new PrintWriter(writer), monitor);
+				} catch (IOException e) {
+					throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "I/O error occurred", e));
+				}
 			}
 			
 		}.write(headerFile, monitor);
@@ -121,7 +125,11 @@ public class Generator {
 			
 			@Override
 			protected void write(Writer writer) throws CoreException {
-				generateSourceFile(genModel, executionFlow, new PrintWriter(writer), monitor);
+				try {
+					generateSourceFile(genModel, executionFlow, new PrintWriter(writer), monitor);
+				} catch (IOException e) {
+					throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "I/O error occurred", e));
+				}
 			}
 			
 		}.write(sourceFile, monitor);
@@ -141,7 +149,7 @@ public class Generator {
 		return executionFlow;
 	}
 	
-	private void generateHeaderFile(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+	private void generateHeaderFile(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
 		String headerFileName = new Path(genModel.getMainHeaderFile()).lastSegment();
 		String headerMacro = headerFileName.replaceAll("\\W", "_").toUpperCase() + "_";
 		
@@ -202,7 +210,7 @@ public class Generator {
 		writer.printf("#endif /* %s */\n", headerMacro);
 	}
 	
-	private void generateSourceFile(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+	private void generateSourceFile(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
 		String prefix = genModel.getGenTopLevelSystem().getPrefix();
 		if (prefix == null) {
 			prefix = "";
@@ -293,9 +301,10 @@ public class Generator {
 	 * @param writer
 	 * @param monitor
 	 * @throws CoreException
+	 * @throws IOException 
 	 */
 	private void generateGraph(GenModel genModel, Graph graph, PrintWriter writer, IProgressMonitor monitor)
-			throws CoreException {
+			throws CoreException, IOException {
 		boolean hasChoices = false;
 		for (Node node : getAllNodes(graph)) {
 			if (node instanceof ComponentNode) {
@@ -443,8 +452,9 @@ public class Generator {
 	 * @param writer
 	 * @param monitor
 	 * @throws CoreException 
+	 * @throws IOException 
 	 */
-	private void generateCompoundCode(GenModel genModel, CompoundNode compoundNode, PrintWriter writer, IProgressMonitor monitor) throws CoreException {
+	private void generateCompoundCode(GenModel genModel, CompoundNode compoundNode, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
 		if (compoundNode instanceof ActionNode) {
 			ActionNode actionNode = (ActionNode) compoundNode;
 			Action action = (Action) actionNode.getCompound();

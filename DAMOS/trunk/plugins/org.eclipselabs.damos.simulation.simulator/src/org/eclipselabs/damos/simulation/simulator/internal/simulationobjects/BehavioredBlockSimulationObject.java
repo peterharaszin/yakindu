@@ -94,7 +94,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
 		
 		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getSignature(), status);
+		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getComponentSignature(), status);
 
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);

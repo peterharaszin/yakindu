@@ -74,6 +74,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	
 	private IStaticEvaluationContext staticEvaluationContext;
 	
+	private IVariableAccessStrategy cachedVariableAccessStrategy;
+	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		MultiStatus status = new MultiStatus(CodegenCGeneratorPlugin.PLUGIN_ID, 0, "Generator initialization", null);
@@ -85,7 +87,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
 		
 		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getSignature(), status);
+		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getComponentSignature(), status);
 
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
@@ -129,7 +131,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateContextCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException {
+	public void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) {
 		PrintWriter printWriter = new PrintWriter(writer);
 		printWriter.println("typedef struct {");
 		for (InputVariableDeclaration inputVariableDeclaration: ilFunctionDefinition.getInputVariableDeclarations()) {
@@ -179,15 +181,14 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateInitializationCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) {
 		PrintWriter printWriter = new PrintWriter(writer);
 		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getInputVariableDeclarations());
 		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getOutputVariableDeclarations());
 		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getInstanceVariableDeclarations());
 
-		IVariableAccessStrategy variableAccessStrategy = new VariableAccessStrategy(getComponent(), getSignature(), getVariableAccessor());
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
-		compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, ilFunctionDefinition.getInitializationCompound());
+		compoundGenerator.generate(mscriptGeneratorContext, getVariableAccessStrategy(), ilFunctionDefinition.getInitializationCompound());
 	}
 	
 	private void writeInitializeIndexStatements(PrintWriter writer, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
@@ -216,9 +217,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) {
 		PrintWriter printWriter = new PrintWriter(writer);
-		IVariableAccessStrategy variableAccessStrategy = new VariableAccessStrategy(getComponent(), getSignature(), getVariableAccessor());
+		IVariableAccessStrategy variableAccessStrategy = getVariableAccessStrategy();
 		
 		writeInputVariables(printWriter);
 		
@@ -240,11 +241,11 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		for (OutputVariableDeclaration outputVariableDeclaration : ilFunctionDefinition.getOutputVariableDeclarations()) {
 			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
 				String name = outputVariableDeclaration.getName();
-				printWriter.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputVariableAccessString(getComponent(), getSignature(), getVariableAccessor(), outputVariableDeclaration));
+				printWriter.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), outputVariableDeclaration));
 			}
 		}
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#contributesUpdateCode()
 	 */
@@ -257,9 +258,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateUpdateCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) {
 		PrintWriter printWriter = new PrintWriter(writer);
-		IVariableAccessStrategy variableAccessStrategy = new VariableAccessStrategy(getComponent(), getSignature(), getVariableAccessor());
+		IVariableAccessStrategy variableAccessStrategy = getVariableAccessStrategy();
 		
 		writeInputVariables(printWriter);
 
@@ -307,12 +308,12 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 					} else {
 						writer.print(", ");
 					}
-					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), getSignature().getInputDataType(inputPort), arrayType.getElementType());
+					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType());
 				}
 				writer.println(" };");
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
-				DataType inputDataType = getSignature().getInputDataType(inputPort);
+				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
 				DataType targetDataType = inputVariableDeclaration.getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
 					writer.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
@@ -326,9 +327,19 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private void writeUpdateInputContextStatement(PrintWriter writer, InputVariableDeclaration inputVariableDeclaration) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		String name = inputVariableDeclaration.getName();
-		writer.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(getComponent(), getSignature(), getVariableAccessor(), inputVariableDeclaration));
+		writer.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), inputVariableDeclaration));
 	}
 	
+	/**
+	 * @return
+	 */
+	private IVariableAccessStrategy getVariableAccessStrategy() {
+		if (cachedVariableAccessStrategy == null) {
+			cachedVariableAccessStrategy = new VariableAccessStrategy(getComponent(), getComponentSignature(), getVariableAccessor());
+		}
+		return cachedVariableAccessStrategy;
+	}
+
 	private class Helper extends BehavioredBlockHelper {
 		
 		/**

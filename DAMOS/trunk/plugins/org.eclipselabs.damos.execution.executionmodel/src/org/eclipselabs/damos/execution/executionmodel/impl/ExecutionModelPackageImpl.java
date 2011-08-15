@@ -6,6 +6,7 @@
  */
 package org.eclipselabs.damos.execution.executionmodel.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -127,6 +128,15 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExecutionModel_RuntimeEnvironmentId() {
+		return (EAttribute)executionModelEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getComputationModelMapping() {
 		return computationModelMappingEClass;
 	}
@@ -179,6 +189,7 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 		// Create classes and their features
 		executionModelEClass = createEClass(EXECUTION_MODEL);
 		createEReference(executionModelEClass, EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS);
+		createEAttribute(executionModelEClass, EXECUTION_MODEL__RUNTIME_ENVIRONMENT_ID);
 
 		computationModelMappingEClass = createEClass(COMPUTATION_MODEL_MAPPING);
 		createEReference(computationModelMappingEClass, COMPUTATION_MODEL_MAPPING__FRAGMENT);
@@ -221,6 +232,7 @@ public class ExecutionModelPackageImpl extends EPackageImpl implements Execution
 		// Initialize classes and features; add operations and parameters
 		initEClass(executionModelEClass, ExecutionModel.class, "ExecutionModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExecutionModel_ComputationModelMappings(), this.getComputationModelMapping(), null, "computationModelMappings", null, 0, -1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExecutionModel_RuntimeEnvironmentId(), ecorePackage.getEString(), "runtimeEnvironmentId", null, 0, 1, ExecutionModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(executionModelEClass, theComputationModelPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theDMLPackage.getFragment(), "fragment", 1, 1, IS_UNIQUE, IS_ORDERED);

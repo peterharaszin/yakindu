@@ -20,6 +20,7 @@ import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModelMappings <em>Computation Model Mappings</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getRuntimeEnvironmentId <em>Runtime Environment Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,6 +44,32 @@ public interface ExecutionModel extends EObject {
 	 * @generated
 	 */
 	EList<ComputationModelMapping> getComputationModelMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Runtime Environment Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Runtime Environment Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Runtime Environment Id</em>' attribute.
+	 * @see #setRuntimeEnvironmentId(String)
+	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel_RuntimeEnvironmentId()
+	 * @model
+	 * @generated
+	 */
+	String getRuntimeEnvironmentId();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getRuntimeEnvironmentId <em>Runtime Environment Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Runtime Environment Id</em>' attribute.
+	 * @see #getRuntimeEnvironmentId()
+	 * @generated
+	 */
+	void setRuntimeEnvironmentId(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

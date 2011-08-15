@@ -78,7 +78,7 @@ public class UDPSourceSimulationObject extends UDPSimulationObject {
 			int i = 0;
 			outputDataTypes = new DataType[portCount];
 			for (OutputPort outputPort: getComponent().getPrimaryOutputPorts()) {
-				outputDataTypes[i++] = getSignature().getOutputDataType(outputPort);
+				outputDataTypes[i++] = getComponentSignature().getOutputDataType(outputPort);
 			}
 		}
 		

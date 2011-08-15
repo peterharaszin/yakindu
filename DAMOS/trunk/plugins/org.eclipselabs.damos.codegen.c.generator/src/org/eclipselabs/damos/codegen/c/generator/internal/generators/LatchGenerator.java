@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal.generators;
 
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.io.Writer;
+import java.util.Formatter;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
@@ -25,6 +25,23 @@ import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGenerator
  */
 public class LatchGenerator extends AbstractComponentGenerator {
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#contributesInitializationCode()
+	 */
+	@Override
+	public boolean contributesInitializationCode() {
+		return true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#writeInitializationCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws IOException {
+		String prefix = InternalGeneratorUtil.getPrefix(getGenModel(), getNode()) + getComponent().getName() + "_";
+		getRuntimeEnvironmentAPI().writeLatchDataInitializeLock(writer, prefix);
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#contributesComputeOutputsCode()
 	 */
@@ -37,11 +54,11 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipselabs.damos.codegen.c.generator.IVariableAccessor, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws CoreException {
-		PrintWriter printWriter = new PrintWriter(writer);
-		printWriter.printf("/* TODO: lock */\n");
-		printWriter.printf("%s = %s_data;\n", getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false), InternalGeneratorUtil.getPrefix(getGenModel(), getNode()) + getComponent().getName());
-		printWriter.printf("/* TODO: unlock */\n");
+	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws IOException {
+		String prefix = InternalGeneratorUtil.getPrefix(getGenModel(), getNode()) + getComponent().getName() + "_";
+		getRuntimeEnvironmentAPI().writeLatchDataLock(writer, prefix);
+		new Formatter(writer).format("%s = %sdata;\n", getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false), prefix);
+		getRuntimeEnvironmentAPI().writeLatchDataUnlock(writer, prefix);
 	}
 	
 }

@@ -11,11 +11,13 @@
 
 package org.eclipselabs.damos.codegen.c.generator;
 
+import java.io.IOException;
 import java.io.Writer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.damos.codegen.c.generator.internal.registry.RuntimeEnvironmentAPIRegistry;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
@@ -32,6 +34,8 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	private IComponentGeneratorContext context;
 	
 	private ComputationModel cachedComputationModel;
+	
+	private IRuntimeEnvironmentAPI cachedRuntimeEnvironmentAPI;
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#initialize()
@@ -58,7 +62,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return false;
 	}
 	
-	public void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) throws CoreException {
+	public void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) throws IOException {
 	}
 	
 	/* (non-Javadoc)
@@ -71,7 +75,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateInitializationCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws IOException {
 	}
 
 	/* (non-Javadoc)
@@ -84,7 +88,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateComputeOutputsCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws IOException {
 	}
 	
 	/* (non-Javadoc)
@@ -97,10 +101,10 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateUpdateCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) throws CoreException {
+	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) throws IOException {
 	}
 	
-	protected ComponentNode getNode() {
+	protected final ComponentNode getNode() {
 		return context.getNode();
 	}
 
@@ -108,11 +112,11 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return getNode().getComponent();
 	}
 
-	protected IComponentSignature getSignature() {
+	protected final IComponentSignature getComponentSignature() {
 		return context.getComponentSignature();
 	}
 	
-	protected IVariableAccessor getVariableAccessor() {
+	protected final IVariableAccessor getVariableAccessor() {
 		return context.getVariableAccessor();
 	}
 
@@ -132,6 +136,16 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 			}
 		}
 		return cachedComputationModel;
+	}
+	
+	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI() {
+		if (cachedRuntimeEnvironmentAPI == null) {
+			String runtimeEnvironmentId = getExecutionModel().getRuntimeEnvironmentId();
+			if (runtimeEnvironmentId != null) {
+				cachedRuntimeEnvironmentAPI = RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeEnvironmentId);
+			}
+		}
+		return cachedRuntimeEnvironmentAPI;
 	}
 
 }

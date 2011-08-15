@@ -130,10 +130,6 @@ public abstract class AbstractSimulationObject implements ISimulationObject {
 		return context.getNode().getComponent();
 	}
 	
-	protected final IComponentSignature getSignature() {
-		return context.getComponentSignature();
-	}
-
 	protected final SimulationModel getSimulationModel() {
 		return context.getSimulationModel();
 	}

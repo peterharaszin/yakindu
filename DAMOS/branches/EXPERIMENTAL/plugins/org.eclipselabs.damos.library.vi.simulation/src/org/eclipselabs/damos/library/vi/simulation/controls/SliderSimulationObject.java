@@ -51,7 +51,7 @@ public class SliderSimulationObject extends AbstractBlockSimulationObject {
 
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
-		outputDataType = getSignature().getOutputDataType(getComponent().getFirstOutputPort());
+		outputDataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
 		outputValue = Values.valueOf(getComputationContext(), (NumericType) outputDataType, 0.0);
 	}
 	

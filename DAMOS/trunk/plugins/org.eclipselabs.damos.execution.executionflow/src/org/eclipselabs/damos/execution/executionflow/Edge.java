@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.Edge#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Edge#getSource <em>Source</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Edge#getTarget <em>Target</em>}</li>
  * </ul>
@@ -26,6 +27,34 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Edge extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Graph</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.Graph#getEdges <em>Edges</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Graph</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Graph</em>' container reference.
+	 * @see #setGraph(Graph)
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getEdge_Graph()
+	 * @see org.eclipselabs.damos.execution.executionflow.Graph#getEdges
+	 * @model opposite="edges" required="true" transient="false"
+	 * @generated
+	 */
+	Graph getGraph();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.Edge#getGraph <em>Graph</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Graph</em>' container reference.
+	 * @see #getGraph()
+	 * @generated
+	 */
+	void setGraph(Graph value);
+
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.Node#getOutgoingEdges <em>Outgoing Edges</em>}'.

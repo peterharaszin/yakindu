@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
-import org.eclipselabs.damos.dml.AsynchronousEntity;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -157,7 +156,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
 			case DMLPackage.LATCH: return createLatch();
 			case DMLPackage.LATCH_INPUT: return createLatchInput();
-			case DMLPackage.ASYNCHRONOUS_ENTITY: return createAsynchronousEntity();
 			case DMLPackage.CHOICE: return createChoice();
 			case DMLPackage.CHOICE_INPUT: return createChoiceInput();
 			case DMLPackage.CHOICE_INPUT_PORT: return createChoiceInputPort();
@@ -619,16 +617,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public LatchInput createLatchInput() {
 		LatchInputImpl latchInput = new LatchInputImpl();
 		return latchInput;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AsynchronousEntity createAsynchronousEntity() {
-		AsynchronousEntityImpl asynchronousEntity = new AsynchronousEntityImpl();
-		return asynchronousEntity;
 	}
 
 	/**

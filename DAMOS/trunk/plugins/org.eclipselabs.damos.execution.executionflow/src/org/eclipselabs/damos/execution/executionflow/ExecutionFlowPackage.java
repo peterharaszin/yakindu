@@ -877,7 +877,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__NODES = COMPOUND_NODE__NODES;
+	int TASK_NODE__NODES = GRAPH__NODES;
 
 	/**
 	 * The feature id for the '<em><b>Initial Nodes</b></em>' reference list.
@@ -886,7 +886,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INITIAL_NODES = COMPOUND_NODE__INITIAL_NODES;
+	int TASK_NODE__INITIAL_NODES = GRAPH__INITIAL_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
@@ -895,70 +895,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__EDGES = COMPOUND_NODE__EDGES;
-
-	/**
-	 * The feature id for the '<em><b>Graph</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_NODE__GRAPH = COMPOUND_NODE__GRAPH;
-
-	/**
-	 * The feature id for the '<em><b>Incoming Edges</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_NODE__INCOMING_EDGES = COMPOUND_NODE__INCOMING_EDGES;
-
-	/**
-	 * The feature id for the '<em><b>Outgoing Edges</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_NODE__OUTGOING_EDGES = COMPOUND_NODE__OUTGOING_EDGES;
-
-	/**
-	 * The feature id for the '<em><b>Enclosing Subsystems</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_NODE__ENCLOSING_SUBSYSTEMS = COMPOUND_NODE__ENCLOSING_SUBSYSTEMS;
-
-	/**
-	 * The feature id for the '<em><b>Incoming Data Flows</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_NODE__INCOMING_DATA_FLOWS = COMPOUND_NODE__INCOMING_DATA_FLOWS;
-
-	/**
-	 * The feature id for the '<em><b>Outgoing Data Flows</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_NODE__OUTGOING_DATA_FLOWS = COMPOUND_NODE__OUTGOING_DATA_FLOWS;
-
-	/**
-	 * The feature id for the '<em><b>Compound</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TASK_NODE__COMPOUND = COMPOUND_NODE__COMPOUND;
+	int TASK_NODE__EDGES = GRAPH__EDGES;
 
 	/**
 	 * The feature id for the '<em><b>Input Nodes</b></em>' containment reference list.
@@ -967,7 +904,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INPUT_NODES = COMPOUND_NODE_FEATURE_COUNT + 0;
+	int TASK_NODE__INPUT_NODES = GRAPH_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Latch Nodes</b></em>' reference list.
@@ -976,7 +913,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__LATCH_NODES = COMPOUND_NODE_FEATURE_COUNT + 1;
+	int TASK_NODE__LATCH_NODES = GRAPH_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Task Node</em>' class.
@@ -985,7 +922,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE_FEATURE_COUNT = COMPOUND_NODE_FEATURE_COUNT + 2;
+	int TASK_NODE_FEATURE_COUNT = GRAPH_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl <em>Task Input Node</em>}' class.
@@ -1080,13 +1017,22 @@ public interface ExecutionFlowPackage extends EPackage {
 	int EDGE = 11;
 
 	/**
+	 * The feature id for the '<em><b>Graph</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EDGE__GRAPH = 0;
+
+	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__SOURCE = 0;
+	int EDGE__SOURCE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -1095,7 +1041,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE__TARGET = 1;
+	int EDGE__TARGET = 2;
 
 	/**
 	 * The number of structural features of the '<em>Edge</em>' class.
@@ -1104,7 +1050,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EDGE_FEATURE_COUNT = 2;
+	int EDGE_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.DataFlowImpl <em>Data Flow</em>}' class.
@@ -1702,6 +1648,17 @@ public interface ExecutionFlowPackage extends EPackage {
 	EClass getEdge();
 
 	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.execution.executionflow.Edge#getGraph <em>Graph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Graph</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.Edge#getGraph()
+	 * @see #getEdge()
+	 * @generated
+	 */
+	EReference getEdge_Graph();
+
+	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.execution.executionflow.Edge#getSource <em>Source</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2221,6 +2178,14 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EDGE = eINSTANCE.getEdge();
+
+		/**
+		 * The meta object literal for the '<em><b>Graph</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EDGE__GRAPH = eINSTANCE.getEdge_Graph();
 
 		/**
 		 * The meta object literal for the '<em><b>Source</b></em>' reference feature.

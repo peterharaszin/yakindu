@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
-import org.eclipselabs.damos.dml.AsynchronousEntity;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
@@ -687,16 +686,6 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseInput(latchInput);
 				if (result == null) result = caseInoutput(latchInput);
 				if (result == null) result = caseINamedElement(latchInput);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.ASYNCHRONOUS_ENTITY: {
-				AsynchronousEntity asynchronousEntity = (AsynchronousEntity)theEObject;
-				T result = caseAsynchronousEntity(asynchronousEntity);
-				if (result == null) result = caseCompound(asynchronousEntity);
-				if (result == null) result = caseFragmentElement(asynchronousEntity);
-				if (result == null) result = caseCompoundMember(asynchronousEntity);
-				if (result == null) result = caseEModelElement(asynchronousEntity);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1868,21 +1857,6 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLatchInput(LatchInput object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Asynchronous Entity</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Asynchronous Entity</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAsynchronousEntity(AsynchronousEntity object) {
 		return null;
 	}
 

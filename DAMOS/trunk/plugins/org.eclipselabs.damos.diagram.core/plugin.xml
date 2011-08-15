@@ -90,12 +90,6 @@
                name="Latch">
          </metamodelType>
          <metamodelType
-               eclass="AsynchronousEntity"
-               edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.AsynchronousEntityEditHelper"
-               id="org.eclipselabs.damos.diagram.asynchronousEntity"
-               name="Asynchronous Entity">
-         </metamodelType>
-         <metamodelType
                eclass="Subsystem"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.SubsystemEditHelper"
                id="org.eclipselabs.damos.diagram.subsystem"

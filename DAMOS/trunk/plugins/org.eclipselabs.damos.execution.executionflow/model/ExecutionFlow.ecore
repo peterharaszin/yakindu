@@ -24,7 +24,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialNodes" upperBound="-1"
         eType="#//Node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="edges" upperBound="-1"
-        eType="#//Edge" containment="true"/>
+        eType="#//Edge" containment="true" eOpposite="#//Edge/graph"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true">
     <eOperations name="getIncomingDataFlow" ordered="false" lowerBound="1" eType="#//DataFlowTargetEnd">
@@ -63,7 +63,8 @@
         eType="#//TaskNode" eOpposite="#//TaskNode/latchNodes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompoundNode" eSuperTypes="#//Subgraph">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Compound"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compound" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Compound"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ActionNode" eSuperTypes="#//CompoundNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="choiceNode" eType="#//ComponentNode"/>
@@ -72,7 +73,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TaskNode" eSuperTypes="#//CompoundNode">
+  <eClassifiers xsi:type="ecore:EClass" name="TaskNode" eSuperTypes="#//Graph">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputNodes" upperBound="-1"
         eType="#//TaskInputNode" containment="true" eOpposite="#//TaskInputNode/taskNode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="latchNodes" upperBound="-1"
@@ -83,6 +84,8 @@
         eType="#//TaskNode" eOpposite="#//TaskNode/inputNodes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Edge">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="#//Graph"
+        eOpposite="#//Graph/edges"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" ordered="false"
         lowerBound="1" eType="#//Node" eOpposite="#//Node/outgoingEdges"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" ordered="false"

@@ -187,8 +187,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getOutputVariableDeclarations());
 		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getInstanceVariableDeclarations());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
-		compoundGenerator.generate(mscriptGeneratorContext, getVariableAccessStrategy(), ilFunctionDefinition.getInitializationCompound());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		compoundGenerator.generate(mscriptGeneratorContext, ilFunctionDefinition.getInitializationCompound());
 	}
 	
 	private void writeInitializeIndexStatements(PrintWriter writer, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
@@ -219,15 +219,13 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	@Override
 	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) {
 		PrintWriter printWriter = new PrintWriter(writer);
-		IVariableAccessStrategy variableAccessStrategy = getVariableAccessStrategy();
-		
 		writeInputVariables(printWriter);
 		
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		
 		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
-				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
+				compoundGenerator.generate(mscriptGeneratorContext, compound);
 			}
 		}
 		
@@ -260,14 +258,12 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	@Override
 	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) {
 		PrintWriter printWriter = new PrintWriter(writer);
-		IVariableAccessStrategy variableAccessStrategy = getVariableAccessStrategy();
-		
 		writeInputVariables(printWriter);
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
-				compoundGenerator.generate(mscriptGeneratorContext, variableAccessStrategy, compound);
+				compoundGenerator.generate(mscriptGeneratorContext, compound);
 			}
 		}
 		
@@ -295,7 +291,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	
 	private void writeInputVariables(PrintWriter writer) {
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(staticEvaluationContext, getComputationModel(), writer);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {

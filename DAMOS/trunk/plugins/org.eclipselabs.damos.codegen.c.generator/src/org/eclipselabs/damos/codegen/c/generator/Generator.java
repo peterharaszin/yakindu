@@ -355,13 +355,8 @@ public class Generator {
 						Expression conditionExpression = ExpressionUtil.parseExpression(condition);
 						
 						ComputationModel computationModel = getComputationModel(genModel, componentNode);
-						new ExpressionGenerator().generate(new MscriptGeneratorContext(new StaticEvaluationContext(), computationModel, writer), new IVariableAccessStrategy() {
-
-							public String getVariableAccessString(VariableAccess variableAccess) {
-								return "";
-							}
-							
-						}, conditionExpression);
+						ActionLinkConditionVariableAccessStrategy variableAccessStrategy = new ActionLinkConditionVariableAccessStrategy();
+						new ExpressionGenerator().generate(new MscriptGeneratorContext(writer, computationModel, new StaticEvaluationContext(), variableAccessStrategy), conditionExpression);
 
 						writer.println(")) {");
 						writer.printf("%s = %d;\n", choiceResult, i);
@@ -589,6 +584,18 @@ public class Generator {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @author Andreas Unger
+	 *
+	 */
+	private static final class ActionLinkConditionVariableAccessStrategy implements IVariableAccessStrategy {
+		
+		public String getVariableAccessString(VariableAccess variableAccess) {
+			return "";
+		}
+		
 	}
 
 	private static abstract class FileWriter {

@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal.generators;
 
-import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,6 +34,7 @@ import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.mscript.codegen.c.util.NameNormalizer;
+import org.eclipselabs.mscript.common.util.PrintAppendable;
 import org.eclipselabs.mscript.computation.core.ComputationContext;
 import org.eclipselabs.mscript.computation.core.value.IValue;
 import org.eclipselabs.mscript.computation.core.value.Values;
@@ -131,40 +130,40 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateContextCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) {
-		PrintWriter printWriter = new PrintWriter(writer);
-		printWriter.println("typedef struct {");
+	public void writeContextStructCode(Appendable appendable, String typeName, IProgressMonitor monitor) {
+		PrintAppendable out = new PrintAppendable(appendable);
+		out.println("typedef struct {");
 		for (InputVariableDeclaration inputVariableDeclaration: ilFunctionDefinition.getInputVariableDeclarations()) {
 			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
-				writeContextStructureMember(printWriter, monitor, inputVariableDeclaration);
+				writeContextStructureMember(out, monitor, inputVariableDeclaration);
 			}
 		}
 		for (OutputVariableDeclaration outputVariableDeclaration: ilFunctionDefinition.getOutputVariableDeclarations()) {
 			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
-				writeContextStructureMember(printWriter, monitor, outputVariableDeclaration);
+				writeContextStructureMember(out, monitor, outputVariableDeclaration);
 			}
 		}
 		for (InstanceVariableDeclaration instanceVariableDeclaration: ilFunctionDefinition.getInstanceVariableDeclarations()) {
-			writeContextStructureMember(printWriter, monitor, instanceVariableDeclaration);
+			writeContextStructureMember(out, monitor, instanceVariableDeclaration);
 		}
 		String prefix = getGenModel().getGenTopLevelSystem().getPrefix();
 		if (prefix == null) {
 			prefix = "";
 		}
-		printWriter.printf("} %s;\n\n", typeName);
+		out.printf("} %s;\n\n", typeName);
 	}
 
-	private void writeContextStructureMember(PrintWriter writer, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
+	private void writeContextStructureMember(PrintAppendable out, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
 		String name = variableDeclaration.getName();
 		DataType dataType = variableDeclaration.getDataType();
 		if (variableDeclaration.getCircularBufferSize() > 1) {
 			int bufferSize = variableDeclaration.getCircularBufferSize();
-			writer.printf("%s[%d];\n",
+			out.printf("%s[%d];\n",
 					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), dataType, name, false),
 					bufferSize);
-			writer.printf("%s %s_index;\n", MscriptGeneratorUtil.getIndexCDataType(getComputationModel(), 2 * bufferSize), name);
+			out.printf("%s %s_index;\n", MscriptGeneratorUtil.getIndexCDataType(getComputationModel(), 2 * bufferSize), name);
 		} else {
-			writer.printf("%s;\n",
+			out.printf("%s;\n",
 					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), dataType, name, false));
 		}
 	}
@@ -181,21 +180,21 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateInitializationCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) {
-		PrintWriter printWriter = new PrintWriter(writer);
-		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getInputVariableDeclarations());
-		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getOutputVariableDeclarations());
-		writeInitializeIndexStatements(printWriter, ilFunctionDefinition.getInstanceVariableDeclarations());
+	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) {
+		PrintAppendable out = new PrintAppendable(appendable);
+		writeInitializeIndexStatements(out, ilFunctionDefinition.getInputVariableDeclarations());
+		writeInitializeIndexStatements(out, ilFunctionDefinition.getOutputVariableDeclarations());
+		writeInitializeIndexStatements(out, ilFunctionDefinition.getInstanceVariableDeclarations());
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		compoundGenerator.generate(mscriptGeneratorContext, ilFunctionDefinition.getInitializationCompound());
 	}
 	
-	private void writeInitializeIndexStatements(PrintWriter writer, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
+	private void writeInitializeIndexStatements(PrintAppendable out, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
 			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
-				writer.printf("%s.%s_index = 0;\n", contextVariable, statefulVariableDeclaration.getName());
+				out.printf("%s.%s_index = 0;\n", contextVariable, statefulVariableDeclaration.getName());
 			}
 		}
 	}
@@ -217,11 +216,11 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) {
-		PrintWriter printWriter = new PrintWriter(writer);
-		writeInputVariables(printWriter);
-		
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) {
+		writeInputVariables(appendable);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+
+		PrintAppendable out = new PrintAppendable(appendable);
 		
 		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
@@ -231,7 +230,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		for (InputVariableDeclaration inputVariableDeclaration : ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition)) {
 			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
-				writeUpdateInputContextStatement(printWriter, inputVariableDeclaration);
+				writeUpdateInputContextStatement(out, inputVariableDeclaration);
 			}
 		}
 
@@ -239,7 +238,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		for (OutputVariableDeclaration outputVariableDeclaration : ilFunctionDefinition.getOutputVariableDeclarations()) {
 			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
 				String name = outputVariableDeclaration.getName();
-				printWriter.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), outputVariableDeclaration));
+				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), outputVariableDeclaration));
 			}
 		}
 	}
@@ -256,11 +255,12 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateUpdateCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) {
-		PrintWriter printWriter = new PrintWriter(writer);
-		writeInputVariables(printWriter);
+	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) {
+		writeInputVariables(appendable);
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		
+		PrintAppendable out = new PrintAppendable(appendable);
 
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(mscriptGeneratorContext, compound);
@@ -270,60 +270,61 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		List<InputVariableDeclaration> computeOutputsCodeInputs = ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition);
 		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
 			if (inputVariableDeclaration.getCircularBufferSize() > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration)) {
-				writeUpdateInputContextStatement(printWriter, inputVariableDeclaration);
+				writeUpdateInputContextStatement(out, inputVariableDeclaration);
 			}
 		}
 		
-		writeUpdateIndexStatements(printWriter, ilFunctionDefinition.getInputVariableDeclarations());
-		writeUpdateIndexStatements(printWriter, ilFunctionDefinition.getOutputVariableDeclarations());
-		writeUpdateIndexStatements(printWriter, ilFunctionDefinition.getInstanceVariableDeclarations());
+		writeUpdateIndexStatements(out, ilFunctionDefinition.getInputVariableDeclarations());
+		writeUpdateIndexStatements(out, ilFunctionDefinition.getOutputVariableDeclarations());
+		writeUpdateIndexStatements(out, ilFunctionDefinition.getInstanceVariableDeclarations());
 	}
 	
-	private void writeUpdateIndexStatements(PrintWriter writer, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
+	private void writeUpdateIndexStatements(PrintAppendable out, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
 			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
 				String name = statefulVariableDeclaration.getName();
-				writer.printf("%s.%s_index = (%s.%s_index + 1) %% %d;\n", contextVariable, name, contextVariable, name, statefulVariableDeclaration.getCircularBufferSize());
+				out.printf("%s.%s_index = (%s.%s_index + 1) %% %d;\n", contextVariable, name, contextVariable, name, statefulVariableDeclaration.getCircularBufferSize());
 			}
 		}
 	}
 	
-	private void writeInputVariables(PrintWriter writer) {
+	private void writeInputVariables(Appendable appendable) {
+		PrintAppendable out = new PrintAppendable(appendable);
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(writer, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getDataType();
-				writer.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
+				out.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
 					if (first) {
 						first = false;
 					} else {
-						writer.print(", ");
+						out.print(", ");
 					}
 					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), getComponentSignature().getInputDataType(inputPort), arrayType.getElementType());
 				}
-				writer.println(" };");
+				out.println(" };");
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
 				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
 				DataType targetDataType = inputVariableDeclaration.getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
-					writer.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
+					out.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
 					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType);
-					writer.println(";");
+					out.println(";");
 				}
 			}
 		}
 	}
 
-	private void writeUpdateInputContextStatement(PrintWriter writer, InputVariableDeclaration inputVariableDeclaration) {
+	private void writeUpdateInputContextStatement(PrintAppendable out, InputVariableDeclaration inputVariableDeclaration) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		String name = inputVariableDeclaration.getName();
-		writer.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), inputVariableDeclaration));
+		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), inputVariableDeclaration));
 	}
 	
 	/**

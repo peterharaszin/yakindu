@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.codegen.c.generator.internal.generators;
 
 import java.io.IOException;
-import java.io.Writer;
 import java.util.Formatter;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -37,9 +36,9 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#writeInitializationCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws IOException {
+	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 		String prefix = InternalGeneratorUtil.getPrefix(getGenModel(), getNode()) + getComponent().getName() + "_";
-		getRuntimeEnvironmentAPI().writeLatchDataInitializeLock(writer, prefix);
+		getRuntimeEnvironmentAPI().writeLatchDataInitializeLock(appendable, prefix);
 	}
 	
 	/* (non-Javadoc)
@@ -54,11 +53,11 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateComputeOutputsCode(java.io.Writer, org.eclipselabs.damos.codegen.c.generator.IVariableAccessor, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws IOException {
+	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 		String prefix = InternalGeneratorUtil.getPrefix(getGenModel(), getNode()) + getComponent().getName() + "_";
-		getRuntimeEnvironmentAPI().writeLatchDataLock(writer, prefix);
-		new Formatter(writer).format("%s = %sdata;\n", getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false), prefix);
-		getRuntimeEnvironmentAPI().writeLatchDataUnlock(writer, prefix);
+		getRuntimeEnvironmentAPI().writeLatchDataLock(appendable, prefix);
+		new Formatter(appendable).format("%s = %sdata;\n", getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false), prefix);
+		getRuntimeEnvironmentAPI().writeLatchDataUnlock(appendable, prefix);
 	}
 	
 }

@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.codegen.c.generator;
 
 import java.io.IOException;
-import java.io.Writer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -32,18 +31,18 @@ public interface IComponentGenerator {
 	
 	boolean contributesContextStructCode();
 	
-	void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) throws IOException;
+	void writeContextStructCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException;
 
 	boolean contributesInitializationCode();
 	
-	void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws IOException;
+	void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException;
 	
 	boolean contributesComputeOutputsCode();
 
-	void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws IOException;
+	void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException;
 
 	boolean contributesUpdateCode();
 
-	void writeUpdateCode(Writer writer, IProgressMonitor monitor) throws IOException;
+	void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) throws IOException;
 
 }

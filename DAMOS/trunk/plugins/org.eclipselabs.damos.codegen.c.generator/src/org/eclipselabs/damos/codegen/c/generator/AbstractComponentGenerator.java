@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.codegen.c.generator;
 
 import java.io.IOException;
-import java.io.Writer;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -62,7 +61,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return false;
 	}
 	
-	public void writeContextStructCode(Writer writer, String typeName, IProgressMonitor monitor) throws IOException {
+	public void writeContextStructCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException {
 	}
 	
 	/* (non-Javadoc)
@@ -75,7 +74,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateInitializationCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void writeInitializationCode(Writer writer, IProgressMonitor monitor) throws IOException {
+	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 	}
 
 	/* (non-Javadoc)
@@ -88,7 +87,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateComputeOutputsCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void writeComputeOutputsCode(Writer writer, IProgressMonitor monitor) throws IOException {
+	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 	}
 	
 	/* (non-Javadoc)
@@ -101,7 +100,7 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#generateUpdateCode(org.eclipse.core.runtime.IProgressMonitor)
 	 */
-	public void writeUpdateCode(Writer writer, IProgressMonitor monitor) throws IOException {
+	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
 	}
 	
 	protected final ComponentNode getNode() {

@@ -217,11 +217,11 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) {
-		writeInputVariables(appendable);
+		PrintAppendable out = new PrintAppendable(appendable);
+		writeInputVariables(out);
+
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 
-		PrintAppendable out = new PrintAppendable(appendable);
-		
 		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(mscriptGeneratorContext, compound);
@@ -256,11 +256,11 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public void writeUpdateCode(Appendable appendable, IProgressMonitor monitor) {
-		writeInputVariables(appendable);
+		PrintAppendable out = new PrintAppendable(appendable);
+		writeInputVariables(out);
+
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		
-		PrintAppendable out = new PrintAppendable(appendable);
-
 		for (ComputationCompound compound : ilFunctionDefinition.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(mscriptGeneratorContext, compound);
@@ -289,10 +289,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 	}
 	
-	private void writeInputVariables(Appendable appendable) {
-		PrintAppendable out = new PrintAppendable(appendable);
+	private void writeInputVariables(PrintAppendable out) {
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
-		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {

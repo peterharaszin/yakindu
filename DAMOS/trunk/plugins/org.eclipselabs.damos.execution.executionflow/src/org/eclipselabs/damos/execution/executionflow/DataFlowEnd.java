@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.execution.executionflow;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.dml.Connector;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,5 +52,29 @@ public interface DataFlowEnd extends EObject {
 	 * @generated
 	 */
 	void setConnectorInfo(ConnectorInfo value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	Node getNode();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	DataFlow getDataFlow();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Connector getConnector();
 
 } // DataFlowEnd

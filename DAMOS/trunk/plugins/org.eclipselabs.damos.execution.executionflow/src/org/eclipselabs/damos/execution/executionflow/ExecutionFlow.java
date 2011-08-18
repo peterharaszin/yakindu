@@ -21,6 +21,7 @@ import org.eclipselabs.damos.dml.Fragment;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getDataFlows <em>Data Flows</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes <em>Task Nodes</em>}</li>
  * </ul>
  * </p>
@@ -97,6 +98,32 @@ public interface ExecutionFlow extends EObject {
 	 * @generated
 	 */
 	EList<DataFlow> getDataFlows();
+
+	/**
+	 * Returns the value of the '<em><b>Asynchronous Zone Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Asynchronous Zone Count</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Asynchronous Zone Count</em>' attribute.
+	 * @see #setAsynchronousZoneCount(int)
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getExecutionFlow_AsynchronousZoneCount()
+	 * @model required="true"
+	 * @generated
+	 */
+	int getAsynchronousZoneCount();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Asynchronous Zone Count</em>' attribute.
+	 * @see #getAsynchronousZoneCount()
+	 * @generated
+	 */
+	void setAsynchronousZoneCount(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Task Nodes</b></em>' containment reference list.

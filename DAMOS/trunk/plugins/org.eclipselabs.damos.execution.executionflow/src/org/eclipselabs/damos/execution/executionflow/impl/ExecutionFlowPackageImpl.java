@@ -273,8 +273,17 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExecutionFlow_AsynchronousZoneCount() {
+		return (EAttribute)executionFlowEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getExecutionFlow_TaskNodes() {
-		return (EReference)executionFlowEClass.getEStructuralFeatures().get(3);
+		return (EReference)executionFlowEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -410,6 +419,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 */
 	public EAttribute getComponentNode_SampleTime() {
 		return (EAttribute)componentNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getComponentNode_AsynchronousZone() {
+		return (EAttribute)componentNodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -750,6 +768,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		createEReference(executionFlowEClass, EXECUTION_FLOW__TOP_LEVEL_FRAGMENT);
 		createEReference(executionFlowEClass, EXECUTION_FLOW__GRAPH);
 		createEReference(executionFlowEClass, EXECUTION_FLOW__DATA_FLOWS);
+		createEAttribute(executionFlowEClass, EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT);
 		createEReference(executionFlowEClass, EXECUTION_FLOW__TASK_NODES);
 
 		graphEClass = createEClass(GRAPH);
@@ -770,6 +789,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		componentNodeEClass = createEClass(COMPONENT_NODE);
 		createEReference(componentNodeEClass, COMPONENT_NODE__COMPONENT);
 		createEAttribute(componentNodeEClass, COMPONENT_NODE__SAMPLE_TIME);
+		createEAttribute(componentNodeEClass, COMPONENT_NODE__ASYNCHRONOUS_ZONE);
 
 		latchNodeEClass = createEClass(LATCH_NODE);
 		createEReference(latchNodeEClass, LATCH_NODE__TASK_NODES);
@@ -868,6 +888,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getExecutionFlow_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getExecutionFlow_Graph(), this.getGraph(), null, "graph", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExecutionFlow_DataFlows(), this.getDataFlow(), null, "dataFlows", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getExecutionFlow_AsynchronousZoneCount(), ecorePackage.getEInt(), "asynchronousZoneCount", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExecutionFlow_TaskNodes(), this.getTaskNode(), null, "taskNodes", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -899,6 +920,10 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		addEOperation(nodeEClass, this.getNode(), "getDrivenNodes", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(nodeEClass, this.getDataFlowSourceEnd(), "getDrivingEnds", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(nodeEClass, this.getDataFlowTargetEnd(), "getDrivenEnds", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		op = addEOperation(nodeEClass, ecorePackage.getEBoolean(), "isEnclosedBy", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getGraph(), "graph", 1, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -907,6 +932,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEClass(componentNodeEClass, ComponentNode.class, "ComponentNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComponentNode_Component(), theDMLPackage.getComponent(), null, "component", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getComponentNode_SampleTime(), ecorePackage.getEDouble(), "sampleTime", null, 1, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComponentNode_AsynchronousZone(), ecorePackage.getEInt(), "asynchronousZone", "-1", 0, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(latchNodeEClass, LatchNode.class, "LatchNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLatchNode_TaskNodes(), this.getTaskNode(), this.getTaskNode_LatchNodes(), "taskNodes", null, 0, -1, LatchNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -938,6 +964,12 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 
 		initEClass(dataFlowEndEClass, DataFlowEnd.class, "DataFlowEnd", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataFlowEnd_ConnectorInfo(), this.getConnectorInfo(), null, "connectorInfo", null, 0, 1, DataFlowEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(dataFlowEndEClass, this.getNode(), "getNode", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(dataFlowEndEClass, this.getDataFlow(), "getDataFlow", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(dataFlowEndEClass, theDMLPackage.getConnector(), "getConnector", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(dataFlowSourceEndEClass, DataFlowSourceEnd.class, "DataFlowSourceEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDataFlowSourceEnd_Node(), this.getNode(), this.getNode_OutgoingDataFlows(), "node", null, 1, 1, DataFlowSourceEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

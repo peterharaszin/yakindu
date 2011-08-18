@@ -260,6 +260,24 @@ public abstract class NodeImpl extends EObjectImpl implements Node {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public EList<DataFlowSourceEnd> getDrivingEnds() {
+		return NodeOperations.getDrivingEnds(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<DataFlowTargetEnd> getDrivenEnds() {
+		return NodeOperations.getDrivenEnds(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public boolean isEnclosedBy(Graph graph) {
 		return NodeOperations.isEnclosedBy(this, graph);
 	}

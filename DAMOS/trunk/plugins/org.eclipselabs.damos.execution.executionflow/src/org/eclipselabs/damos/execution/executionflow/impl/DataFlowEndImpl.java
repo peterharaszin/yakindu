@@ -12,9 +12,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.execution.executionflow.ConnectorInfo;
+import org.eclipselabs.damos.execution.executionflow.DataFlow;
 import org.eclipselabs.damos.execution.executionflow.DataFlowEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
+import org.eclipselabs.damos.execution.executionflow.Node;
 
 /**
  * <!-- begin-user-doc -->
@@ -99,6 +102,33 @@ public abstract class DataFlowEndImpl extends EObjectImpl implements DataFlowEnd
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.DATA_FLOW_END__CONNECTOR_INFO, newConnectorInfo, newConnectorInfo));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Node getNode() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DataFlow getDataFlow() {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Connector getConnector() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

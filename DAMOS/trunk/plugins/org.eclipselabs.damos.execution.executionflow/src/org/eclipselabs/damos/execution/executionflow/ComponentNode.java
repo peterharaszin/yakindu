@@ -18,6 +18,7 @@ import org.eclipselabs.damos.dml.Component;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ComponentNode#getComponent <em>Component</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ComponentNode#getSampleTime <em>Sample Time</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.ComponentNode#getAsynchronousZone <em>Asynchronous Zone</em>}</li>
  * </ul>
  * </p>
  *
@@ -77,5 +78,32 @@ public interface ComponentNode extends Node {
 	 * @generated
 	 */
 	void setSampleTime(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Asynchronous Zone</b></em>' attribute.
+	 * The default value is <code>"-1"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Asynchronous Zone</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Asynchronous Zone</em>' attribute.
+	 * @see #setAsynchronousZone(int)
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getComponentNode_AsynchronousZone()
+	 * @model default="-1"
+	 * @generated
+	 */
+	int getAsynchronousZone();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.ComponentNode#getAsynchronousZone <em>Asynchronous Zone</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Asynchronous Zone</em>' attribute.
+	 * @see #getAsynchronousZone()
+	 * @generated
+	 */
+	void setAsynchronousZone(int value);
 
 } // ComponentNode

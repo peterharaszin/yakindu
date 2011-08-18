@@ -22,6 +22,9 @@ public class BlockOperations extends ComponentOperations {
 			return eClass == DMLPackage.eINSTANCE.getSynchronousTimingConstraint();
 		case ASYNCHRONOUS:
 			return eClass == DMLPackage.eINSTANCE.getAsynchronousTimingConstraint();
+		case DISCRETE:
+			return eClass == DMLPackage.eINSTANCE.getSynchronousTimingConstraint()
+					|| eClass == DMLPackage.eINSTANCE.getAsynchronousTimingConstraint();
 		}
 		return false;
 	}

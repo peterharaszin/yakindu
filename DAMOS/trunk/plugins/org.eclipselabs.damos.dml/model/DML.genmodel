@@ -20,6 +20,7 @@
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Continuous"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Synchronous"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Asynchronous"/>
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Discrete"/>
     </genEnums>
     <genClasses ecoreClass="DML.ecore#//Fragment">
       <genFeatures createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/components"/>

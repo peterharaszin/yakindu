@@ -34,6 +34,7 @@ import org.eclipselabs.damos.execution.executionflow.TaskNode;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getDataFlows <em>Data Flows</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getTaskNodes <em>Task Nodes</em>}</li>
  * </ul>
  * </p>
@@ -70,6 +71,26 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * @ordered
 	 */
 	protected EList<DataFlow> dataFlows;
+
+	/**
+	 * The default value of the '{@link #getAsynchronousZoneCount() <em>Asynchronous Zone Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAsynchronousZoneCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ASYNCHRONOUS_ZONE_COUNT_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getAsynchronousZoneCount() <em>Asynchronous Zone Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAsynchronousZoneCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected int asynchronousZoneCount = ASYNCHRONOUS_ZONE_COUNT_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getTaskNodes() <em>Task Nodes</em>}' containment reference list.
@@ -198,6 +219,27 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getAsynchronousZoneCount() {
+		return asynchronousZoneCount;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAsynchronousZoneCount(int newAsynchronousZoneCount) {
+		int oldAsynchronousZoneCount = asynchronousZoneCount;
+		asynchronousZoneCount = newAsynchronousZoneCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT, oldAsynchronousZoneCount, asynchronousZoneCount));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<TaskNode> getTaskNodes() {
 		if (taskNodes == null) {
 			taskNodes = new EObjectContainmentEList<TaskNode>(TaskNode.class, this, ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES);
@@ -238,6 +280,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return getGraph();
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				return getDataFlows();
+			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
+				return getAsynchronousZoneCount();
 			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
 				return getTaskNodes();
 		}
@@ -262,6 +306,9 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				getDataFlows().clear();
 				getDataFlows().addAll((Collection<? extends DataFlow>)newValue);
+				return;
+			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
+				setAsynchronousZoneCount((Integer)newValue);
 				return;
 			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
 				getTaskNodes().clear();
@@ -288,6 +335,9 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				getDataFlows().clear();
 				return;
+			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
+				setAsynchronousZoneCount(ASYNCHRONOUS_ZONE_COUNT_EDEFAULT);
+				return;
 			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
 				getTaskNodes().clear();
 				return;
@@ -309,10 +359,28 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return graph != null;
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				return dataFlows != null && !dataFlows.isEmpty();
+			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
+				return asynchronousZoneCount != ASYNCHRONOUS_ZONE_COUNT_EDEFAULT;
 			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
 				return taskNodes != null && !taskNodes.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (asynchronousZoneCount: ");
+		result.append(asynchronousZoneCount);
+		result.append(')');
+		return result.toString();
 	}
 
 } //ExecutionFlowImpl

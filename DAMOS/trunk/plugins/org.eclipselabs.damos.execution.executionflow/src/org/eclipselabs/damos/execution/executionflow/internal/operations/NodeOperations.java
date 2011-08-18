@@ -77,6 +77,24 @@ public class NodeOperations {
 		return drivenNodes;
 	}
 
+	public static EList<DataFlowSourceEnd> getDrivingEnds(Node node) {
+		EList<DataFlowSourceEnd> drivingEnds = new BasicEList<DataFlowSourceEnd>();
+		for (DataFlowTargetEnd targetEnd : node.getIncomingDataFlows()) {
+			drivingEnds.add(targetEnd.getDataFlow().getSourceEnd());
+		}
+		return drivingEnds;
+	}
+
+	public static EList<DataFlowTargetEnd> getDrivenEnds(Node node) {
+		EList<DataFlowTargetEnd> drivenEnds = new BasicEList<DataFlowTargetEnd>();
+		for (DataFlowSourceEnd sourceEnd : node.getOutgoingDataFlows()) {
+			for (DataFlowTargetEnd targetEnd : sourceEnd.getDataFlow().getTargetEnds()) {
+				drivenEnds.add(targetEnd);
+			}
+		}
+		return drivenEnds;
+	}
+
 	public static boolean isEnclosedBy(Node node, Graph graph) {
 		EObject container = node.eContainer();
 		while (container != null && container != graph) {

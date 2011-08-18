@@ -23,6 +23,7 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ComponentNodeImpl#getComponent <em>Component</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ComponentNodeImpl#getSampleTime <em>Sample Time</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ComponentNodeImpl#getAsynchronousZone <em>Asynchronous Zone</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,6 +58,26 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 	 * @ordered
 	 */
 	protected double sampleTime = SAMPLE_TIME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAsynchronousZone() <em>Asynchronous Zone</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAsynchronousZone()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ASYNCHRONOUS_ZONE_EDEFAULT = -1;
+
+	/**
+	 * The cached value of the '{@link #getAsynchronousZone() <em>Asynchronous Zone</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAsynchronousZone()
+	 * @generated
+	 * @ordered
+	 */
+	protected int asynchronousZone = ASYNCHRONOUS_ZONE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,6 +162,27 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getAsynchronousZone() {
+		return asynchronousZone;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAsynchronousZone(int newAsynchronousZone) {
+		int oldAsynchronousZone = asynchronousZone;
+		asynchronousZone = newAsynchronousZone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE, oldAsynchronousZone, asynchronousZone));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -149,6 +191,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 				return basicGetComponent();
 			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
 				return getSampleTime();
+			case ExecutionFlowPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
+				return getAsynchronousZone();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,6 +210,9 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 				return;
 			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
 				setSampleTime((Double)newValue);
+				return;
+			case ExecutionFlowPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
+				setAsynchronousZone((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -185,6 +232,9 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
 				setSampleTime(SAMPLE_TIME_EDEFAULT);
 				return;
+			case ExecutionFlowPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
+				setAsynchronousZone(ASYNCHRONOUS_ZONE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,6 +251,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 				return component != null;
 			case ExecutionFlowPackage.COMPONENT_NODE__SAMPLE_TIME:
 				return sampleTime != SAMPLE_TIME_EDEFAULT;
+			case ExecutionFlowPackage.COMPONENT_NODE__ASYNCHRONOUS_ZONE:
+				return asynchronousZone != ASYNCHRONOUS_ZONE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -217,6 +269,8 @@ public class ComponentNodeImpl extends NodeImpl implements ComponentNode {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (sampleTime: ");
 		result.append(sampleTime);
+		result.append(", asynchronousZone: ");
+		result.append(asynchronousZone);
 		result.append(')');
 		return result.toString();
 	}

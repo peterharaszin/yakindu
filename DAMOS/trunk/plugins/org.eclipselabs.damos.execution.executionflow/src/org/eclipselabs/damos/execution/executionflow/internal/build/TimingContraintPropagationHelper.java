@@ -23,8 +23,10 @@ import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.Latch;
+import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
+import org.eclipselabs.damos.execution.executionflow.DataFlowEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
@@ -34,9 +36,15 @@ import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowPlugin;
  * @author Andreas Unger
  *
  */
-public class SampleTimePropagationHelper {
+public class TimingContraintPropagationHelper {
+	
+	private static final double INHERITED = -1;
+	private static final double CONTINUOUS = 0;
+	private static final double ASYNCHRONOUS = Double.POSITIVE_INFINITY;
 
-	public void propagateSampleTimes(ExecutionFlow executionFlow) throws CoreException {
+	private int asynchronousZone;
+
+	public void propagateTimingConstraints(ExecutionFlow executionFlow) throws CoreException {
 		Graph graph = executionFlow.getGraph();
 		List<ComponentNode> inheritingNodes = new LinkedList<ComponentNode>();
 		applySampleTimes(graph, inheritingNodes);
@@ -48,9 +56,11 @@ public class SampleTimePropagationHelper {
 				changed |= inheritSampleTimes(inheritingNodes, true);
 			}
 		} while (changed);
+		
+		executionFlow.setAsynchronousZoneCount(asynchronousZone);
 
 		for (ComponentNode inheritingNode : inheritingNodes) {
-			if (inheritingNode.getSampleTime() == -1) {
+			if (inheritingNode.getSampleTime() == INHERITED) {
 				throw new CoreException(new Status(
 						IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, "Resolving sample times failed", null));
 			}
@@ -64,7 +74,9 @@ public class SampleTimePropagationHelper {
 				try {
 					double sampleTime = getSampleTime(componentNode.getComponent());
 					componentNode.setSampleTime(sampleTime);
-					if (sampleTime == -1) {
+					if (sampleTime == ASYNCHRONOUS) {
+						componentNode.setAsynchronousZone(asynchronousZone++);
+					} else if (sampleTime == INHERITED) {
 						inheritingNodes.add(componentNode);
 					}
 				} catch (NumberFormatException e) {
@@ -83,13 +95,13 @@ public class SampleTimePropagationHelper {
 	 */
 	private double getSampleTime(Component component) {
 		if (component.getTimingConstraint() == null) {
-			return -1;
+			return INHERITED;
 		}
 		if (component.getTimingConstraint() instanceof ContinuousTimingConstraint) {
-			return 0;
+			return CONTINUOUS;
 		}
 		if (component.getTimingConstraint() instanceof AsynchronousTimingConstraint) {
-			return Double.POSITIVE_INFINITY;
+			return ASYNCHRONOUS;
 		}
 		if (component.getTimingConstraint() instanceof SynchronousTimingConstraint) {
 			SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint) component.getTimingConstraint();
@@ -113,29 +125,42 @@ public class SampleTimePropagationHelper {
 				}
 
 				double sampleTime = next.getSampleTime();
+				int asynchronousZone = next.getAsynchronousZone();
 				
-				List<Node> nodes;
+				List<? extends DataFlowEnd> nodes;
 				if (backwards) {
-					nodes = next.getDrivenNodes();
+					nodes = next.getDrivenEnds();
 				} else {
-					nodes = next.getDrivingNodes();
+					nodes = next.getDrivingEnds();
 				}
 				
-				for (Node node : nodes) {
-					if (node instanceof ComponentNode) {
-						ComponentNode sourceComponentNode = (ComponentNode) node;
-						if (sourceComponentNode.getSampleTime() == 0) {
-							sampleTime = 0;
-							it.remove();
-							break;
+				for (DataFlowEnd end : nodes) {
+					if (end.getNode() instanceof ComponentNode) {
+						ComponentNode sourceComponentNode = (ComponentNode) end.getNode();
+						if (sourceComponentNode.getSampleTime() == ASYNCHRONOUS) {
+							if (sampleTime != ASYNCHRONOUS) {
+								sampleTime = ASYNCHRONOUS;
+								if (isSocket(end)) {
+									asynchronousZone = this.asynchronousZone++;
+									break;
+								} else {
+									asynchronousZone = sourceComponentNode.getAsynchronousZone();
+								}
+							} else if (asynchronousZone != sourceComponentNode.getAsynchronousZone()) {
+								asynchronousZone = this.asynchronousZone++;
+								break;
+							}
+							continue;
 						}
-						if (sourceComponentNode.getSampleTime() == Double.POSITIVE_INFINITY) {
-							sampleTime = Double.POSITIVE_INFINITY;
-							it.remove();
-							break;
+						if (sampleTime == CONTINUOUS || sampleTime == ASYNCHRONOUS) {
+							continue;
+						}
+						if (sourceComponentNode.getSampleTime() == CONTINUOUS) {
+							sampleTime = CONTINUOUS;
+							continue;
 						}
 						if (sourceComponentNode.getSampleTime() > 0) {
-							if (sampleTime == -1) {
+							if (sampleTime == INHERITED) {
 								sampleTime = sourceComponentNode.getSampleTime();
 							} else {
 								sampleTime = gcd(sampleTime, sourceComponentNode.getSampleTime());
@@ -144,8 +169,14 @@ public class SampleTimePropagationHelper {
 					}
 				}
 				
-				if (sampleTime != next.getSampleTime()) {
+				if (sampleTime != next.getSampleTime() || asynchronousZone != next.getAsynchronousZone()) {
 					next.setSampleTime(sampleTime);
+					next.setAsynchronousZone(asynchronousZone);
+
+					if (sampleTime == ASYNCHRONOUS) {
+						it.remove();
+					}
+					
 					changed = true;
 					changedOnce = true;
 				}
@@ -154,13 +185,21 @@ public class SampleTimePropagationHelper {
 		
 		if (changedOnce) {
 			for (Iterator<ComponentNode> it = inheritingNodes.iterator(); it.hasNext();) {
-				if (it.next().getSampleTime() != -1) {
+				if (it.next().getSampleTime() != INHERITED) {
 					it.remove();
 				}
 			}
 		}
 		
 		return changedOnce;
+	}
+	
+	private boolean isSocket(DataFlowEnd end) {
+		if (end.getConnector() instanceof Port) {
+			Port port = (Port) end.getConnector();
+			return port.getInoutput().isSocket();
+		}
+		return false;
 	}
 	
 	private static double gcd(double a, double b) {

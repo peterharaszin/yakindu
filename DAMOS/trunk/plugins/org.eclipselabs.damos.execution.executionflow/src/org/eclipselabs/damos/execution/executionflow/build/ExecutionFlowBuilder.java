@@ -37,7 +37,7 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.internal.build.FlattenerHelper;
-import org.eclipselabs.damos.execution.executionflow.internal.build.SampleTimePropagationHelper;
+import org.eclipselabs.damos.execution.executionflow.internal.build.TimingContraintPropagationHelper;
 import org.eclipselabs.damos.execution.executionflow.internal.build.TaskNodeComputationHelper;
 
 /**
@@ -46,7 +46,7 @@ import org.eclipselabs.damos.execution.executionflow.internal.build.TaskNodeComp
  */
 public class ExecutionFlowBuilder {
 	
-	private final SampleTimePropagationHelper sampleTimePropagationHelper = new SampleTimePropagationHelper();
+	private final TimingContraintPropagationHelper timingContraintPropagationHelper = new TimingContraintPropagationHelper();
 	private final TaskNodeComputationHelper taskNodeComputationHelper = new TaskNodeComputationHelper();
 
 	public ExecutionFlow build(Fragment topLevelFragment, IProgressMonitor monitor) throws CoreException {
@@ -94,7 +94,7 @@ public class ExecutionFlowBuilder {
 					IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, 0, message, null, backlog));
 		}
 		
-		sampleTimePropagationHelper.propagateSampleTimes(context.flow);
+		timingContraintPropagationHelper.propagateTimingConstraints(context.flow);
 		taskNodeComputationHelper.computeTaskNodes(context.flow);
 		
 		return context.flow;

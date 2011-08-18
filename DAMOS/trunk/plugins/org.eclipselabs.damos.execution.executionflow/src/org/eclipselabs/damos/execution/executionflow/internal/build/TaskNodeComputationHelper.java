@@ -19,9 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlow;
@@ -43,66 +41,29 @@ import org.eclipselabs.damos.execution.executionflow.TaskNode;
 public class TaskNodeComputationHelper {
 
 	public void computeTaskNodes(ExecutionFlow executionFlow) throws CoreException {
+		if (executionFlow.getAsynchronousZoneCount() == 0) {
+			return;
+		}
+		
 		Graph graph = executionFlow.getGraph();
+
+		for (int i = 0; i < executionFlow.getAsynchronousZoneCount(); ++i) {
+			executionFlow.getTaskNodes().add(ExecutionFlowFactory.eINSTANCE.createTaskNode());
+		}
 		
 		List<ComponentNode> asynchronousNodes = new LinkedList<ComponentNode>();
-		for (Node node : graph.getNodes()) {
+		for (Iterator<Node> it = graph.getAllNodes(); it.hasNext();) {
+			Node node = it.next();
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
-				if (isValidAsynchronousNode(componentNode)) {
+				if (componentNode.getAsynchronousZone() >= 0 && !(componentNode.getComponent() instanceof Latch)) {
 					asynchronousNodes.add(componentNode);
 				}
 			}
 		}
 		
-		if (asynchronousNodes.isEmpty()) {
-			return;
-		}
-		
-		Map<Node, TaskNode> taskNodes = new HashMap<Node, TaskNode>();
-
-		for (Iterator<ComponentNode> it = asynchronousNodes.iterator(); it.hasNext();) {
-			ComponentNode next = it.next();
-			if (next.getComponent().getTimingConstraint() instanceof AsynchronousTimingConstraint) {
-				TaskNode taskNode = ExecutionFlowFactory.eINSTANCE.createTaskNode();
-				taskNode.getNodes().add(next);
-				executionFlow.getTaskNodes().add(taskNode);
-				taskNodes.put(next, taskNode);
-				it.remove();
-			}
-		}
-		
-		while (!asynchronousNodes.isEmpty()) {
-			boolean changed;
-			do {
-				changed = false;
-				for (Iterator<ComponentNode> it = asynchronousNodes.iterator(); it.hasNext();) {
-					Node node = it.next();
-					
-					TaskNode taskNode = computeTaskNode(executionFlow, taskNodes, node.getDrivingNodes());
-					if (taskNode == null) {
-						taskNode = computeTaskNode(executionFlow, taskNodes, node.getDrivenNodes());
-					}
-
-					if (taskNode != null) {
-						taskNode.getNodes().add(node);
-						taskNodes.put(node, taskNode);
-						it.remove();
-						changed = true;
-					}
-				}
-			} while (changed);
-			
-			// If nothing changed, we ran into a loop.
-			// Simply pick any component node and create a task node for it,
-			// and then try again.
-			if (!changed && !asynchronousNodes.isEmpty()) {
-				ComponentNode node = asynchronousNodes.remove(0);
-				TaskNode taskNode = ExecutionFlowFactory.eINSTANCE.createTaskNode();
-				taskNode.getNodes().add(node);
-				executionFlow.getTaskNodes().add(taskNode);
-				taskNodes.put(node, taskNode);
-			}
+		for (ComponentNode node : asynchronousNodes) {
+			executionFlow.getTaskNodes().get(node.getAsynchronousZone()).getNodes().add(node);
 		}
 		
 		// Delete edges
@@ -179,37 +140,4 @@ public class TaskNodeComputationHelper {
 		edge.getGraph().getEdges().remove(edge);
 	}
 
-	private TaskNode computeTaskNode(ExecutionFlow executionFlow, Map<Node, TaskNode> taskNodes, EList<Node> drivingNodes) {
-		TaskNode taskNode = null;
-		for (Node sourceNode : drivingNodes) {
-			if (!(sourceNode instanceof ComponentNode)) {
-				continue;
-			}
-			if (!isValidAsynchronousNode((ComponentNode) sourceNode)) {
-				continue;
-			}
-			TaskNode otherTaskNode = taskNodes.get(sourceNode);
-			if (otherTaskNode == null) {
-				continue;
-			}
-			if (taskNode == null) {
-				taskNode = otherTaskNode;
-			} else if (taskNode != otherTaskNode) {
-				taskNode = ExecutionFlowFactory.eINSTANCE.createTaskNode();
-				executionFlow.getTaskNodes().add(taskNode);
-				break;
-			}
-		}
-		return taskNode;
-	}
-
-	/**
-	 * @param componentNode
-	 * @return
-	 */
-	private boolean isValidAsynchronousNode(ComponentNode componentNode) {
-		return componentNode.getSampleTime() == Double.POSITIVE_INFINITY
-				&& !(componentNode.getComponent() instanceof Latch);
-	}
-	
 }

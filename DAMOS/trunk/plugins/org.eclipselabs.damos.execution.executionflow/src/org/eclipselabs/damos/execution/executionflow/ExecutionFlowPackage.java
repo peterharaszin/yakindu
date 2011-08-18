@@ -97,13 +97,22 @@ public interface ExecutionFlowPackage extends EPackage {
 	int EXECUTION_FLOW__DATA_FLOWS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Asynchronous Zone Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT = 3;
+
+	/**
 	 * The feature id for the '<em><b>Task Nodes</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_FLOW__TASK_NODES = 3;
+	int EXECUTION_FLOW__TASK_NODES = 4;
 
 	/**
 	 * The number of structural features of the '<em>Execution Flow</em>' class.
@@ -112,7 +121,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_FLOW_FEATURE_COUNT = 4;
+	int EXECUTION_FLOW_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.GraphImpl <em>Graph</em>}' class.
@@ -416,13 +425,22 @@ public interface ExecutionFlowPackage extends EPackage {
 	int COMPONENT_NODE__SAMPLE_TIME = NODE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Asynchronous Zone</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_NODE__ASYNCHRONOUS_ZONE = NODE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Component Node</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
+	int COMPONENT_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.LatchNodeImpl <em>Latch Node</em>}' class.
@@ -505,6 +523,15 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @ordered
 	 */
 	int LATCH_NODE__SAMPLE_TIME = COMPONENT_NODE__SAMPLE_TIME;
+
+	/**
+	 * The feature id for the '<em><b>Asynchronous Zone</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LATCH_NODE__ASYNCHRONOUS_ZONE = COMPONENT_NODE__ASYNCHRONOUS_ZONE;
 
 	/**
 	 * The feature id for the '<em><b>Task Nodes</b></em>' reference list.
@@ -1329,6 +1356,17 @@ public interface ExecutionFlowPackage extends EPackage {
 	EReference getExecutionFlow_DataFlows();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Asynchronous Zone Count</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getAsynchronousZoneCount()
+	 * @see #getExecutionFlow()
+	 * @generated
+	 */
+	EAttribute getExecutionFlow_AsynchronousZoneCount();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes <em>Task Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1499,6 +1537,17 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getComponentNode_SampleTime();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executionflow.ComponentNode#getAsynchronousZone <em>Asynchronous Zone</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Asynchronous Zone</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ComponentNode#getAsynchronousZone()
+	 * @see #getComponentNode()
+	 * @generated
+	 */
+	EAttribute getComponentNode_AsynchronousZone();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.LatchNode <em>Latch Node</em>}'.
@@ -1918,6 +1967,14 @@ public interface ExecutionFlowPackage extends EPackage {
 		EReference EXECUTION_FLOW__DATA_FLOWS = eINSTANCE.getExecutionFlow_DataFlows();
 
 		/**
+		 * The meta object literal for the '<em><b>Asynchronous Zone Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT = eINSTANCE.getExecutionFlow_AsynchronousZoneCount();
+
+		/**
 		 * The meta object literal for the '<em><b>Task Nodes</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2052,6 +2109,14 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute COMPONENT_NODE__SAMPLE_TIME = eINSTANCE.getComponentNode_SampleTime();
+
+		/**
+		 * The meta object literal for the '<em><b>Asynchronous Zone</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPONENT_NODE__ASYNCHRONOUS_ZONE = eINSTANCE.getComponentNode_AsynchronousZone();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.LatchNodeImpl <em>Latch Node</em>}' class.

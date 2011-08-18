@@ -68,7 +68,15 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ASYNCHRONOUS(4, "Asynchronous", "Asynchronous");
+	ASYNCHRONOUS(4, "Asynchronous", "Asynchronous"), /**
+	 * The '<em><b>Discrete</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #DISCRETE_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	DISCRETE(5, "Discrete", "Discrete");
 
 	/**
 	 * The '<em><b>Unspecified</b></em>' literal value.
@@ -146,6 +154,21 @@ public enum TimingKind implements Enumerator {
 	public static final int ASYNCHRONOUS_VALUE = 4;
 
 	/**
+	 * The '<em><b>Discrete</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Discrete</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #DISCRETE
+	 * @model name="Discrete"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int DISCRETE_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Timing Kind</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -158,6 +181,7 @@ public enum TimingKind implements Enumerator {
 			CONTINUOUS,
 			SYNCHRONOUS,
 			ASYNCHRONOUS,
+			DISCRETE,
 		};
 
 	/**
@@ -213,6 +237,7 @@ public enum TimingKind implements Enumerator {
 			case CONTINUOUS_VALUE: return CONTINUOUS;
 			case SYNCHRONOUS_VALUE: return SYNCHRONOUS;
 			case ASYNCHRONOUS_VALUE: return ASYNCHRONOUS;
+			case DISCRETE_VALUE: return DISCRETE;
 		}
 		return null;
 	}

@@ -3144,6 +3144,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEEnumLiteral(timingKindEEnum, TimingKind.CONTINUOUS);
 		addEEnumLiteral(timingKindEEnum, TimingKind.SYNCHRONOUS);
 		addEEnumLiteral(timingKindEEnum, TimingKind.ASYNCHRONOUS);
+		addEEnumLiteral(timingKindEEnum, TimingKind.DISCRETE);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.internal.registry.RuntimeEnvironmentAPIRegistry;
+import org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
@@ -57,11 +58,11 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGenerator#contributesContextCode()
 	 */
-	public boolean contributesContextStructCode() {
+	public boolean contributesContextCode() {
 		return false;
 	}
 	
-	public void writeContextStructCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException {
+	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException {
 	}
 	
 	/* (non-Javadoc)

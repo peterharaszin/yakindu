@@ -122,7 +122,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#contributesContextCode()
 	 */
 	@Override
-	public boolean contributesContextStructCode() {
+	public boolean contributesContextCode() {
 		return ilFunctionDefinition.isStateful();
 	}
 	
@@ -130,7 +130,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#generateContextCode(java.io.Writer, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	@Override
-	public void writeContextStructCode(Appendable appendable, String typeName, IProgressMonitor monitor) {
+	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) {
 		PrintAppendable out = new PrintAppendable(appendable);
 		out.println("typedef struct {");
 		for (InputVariableDeclaration inputVariableDeclaration: ilFunctionDefinition.getInputVariableDeclarations()) {
@@ -150,7 +150,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		if (prefix == null) {
 			prefix = "";
 		}
-		out.printf("} %s;\n\n", typeName);
+		out.printf("} %s;\n", typeName);
 	}
 
 	private void writeContextStructureMember(PrintAppendable out, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {

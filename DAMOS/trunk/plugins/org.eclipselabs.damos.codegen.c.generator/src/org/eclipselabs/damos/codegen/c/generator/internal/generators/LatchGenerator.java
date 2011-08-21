@@ -16,7 +16,9 @@ import java.util.Formatter;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator;
-import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.generator.rte.IFastLockGenerator;
+import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger
@@ -24,6 +26,26 @@ import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGenerator
  */
 public class LatchGenerator extends AbstractComponentGenerator {
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#contributesContextStructCode()
+	 */
+	@Override
+	public boolean contributesContextCode() {
+		return true;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#writeContextStructCode(java.lang.Appendable, java.lang.String, org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException {
+		DataType dataType = getComponentSignature().getOutputDataType(getComponent().getFirstOutputPort());
+		String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(), dataType);
+		appendable.append("typedef struct {\n").append(cDataType).append(" ").append("data;\n");
+		getFastLockGenerator().writeContextCode(appendable, "lock");
+		appendable.append("} ").append(typeName).append(";\n");
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator#contributesInitializationCode()
 	 */
@@ -37,8 +59,8 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	 */
 	@Override
 	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		String prefix = InternalGeneratorUtil.getPrefix(getGenModel(), getNode()) + getComponent().getName() + "_";
-		getRuntimeEnvironmentAPI().writeLatchDataInitializeLock(appendable, prefix);
+		String contextVariable = getVariableAccessor().getContextVariable(false);
+		getFastLockGenerator().writeInitializationCode(appendable, contextVariable + "." + "lock");
 	}
 	
 	/* (non-Javadoc)
@@ -54,10 +76,17 @@ public class LatchGenerator extends AbstractComponentGenerator {
 	 */
 	@Override
 	public void writeComputeOutputsCode(Appendable appendable, IProgressMonitor monitor) throws IOException {
-		String prefix = InternalGeneratorUtil.getPrefix(getGenModel(), getNode()) + getComponent().getName() + "_";
-		getRuntimeEnvironmentAPI().writeLatchDataLock(appendable, prefix);
-		new Formatter(appendable).format("%s = %sdata;\n", getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false), prefix);
-		getRuntimeEnvironmentAPI().writeLatchDataUnlock(appendable, prefix);
+		String contextVariable = getVariableAccessor().getContextVariable(false);
+		String variableName = contextVariable + "." + "lock";
+		String outputVariable = getVariableAccessor().getOutputVariable(getComponent().getFirstOutputPort(), false);
+
+		getFastLockGenerator().writeLockCode(appendable, variableName);
+		new Formatter(appendable).format("%s = %s.data;\n", outputVariable, contextVariable);
+		getFastLockGenerator().writeUnlockCode(appendable, variableName);
+	}
+	
+	private IFastLockGenerator getFastLockGenerator() {
+		return getRuntimeEnvironmentAPI().getFastLockGenerator();
 	}
 	
 }

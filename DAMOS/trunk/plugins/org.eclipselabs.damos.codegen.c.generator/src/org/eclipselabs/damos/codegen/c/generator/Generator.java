@@ -17,7 +17,7 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.io.PrintWriter;
 import java.io.Writer;
-import java.util.Collections;
+import java.util.Formatter;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -32,12 +32,15 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.AbstractTreeIterator;
+import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdaptor;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.internal.VariableAccessor;
+import org.eclipselabs.damos.codegen.c.generator.internal.registry.RuntimeEnvironmentAPIRegistry;
+import org.eclipselabs.damos.codegen.c.generator.internal.rte.MessageQueueInfo;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
@@ -47,6 +50,7 @@ import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
+import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.Output;
@@ -60,11 +64,14 @@ import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
+import org.eclipselabs.damos.execution.executionflow.DataFlowEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
 import org.eclipselabs.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
@@ -90,16 +97,11 @@ public class Generator {
 		
 		Map<Component, IComponentSignature> signatures = resolveDataTypes(genModel, executionFlow);
 		
-		for (Node node : getAllNodes(executionFlow.getGraph())) {
-			if (node instanceof ComponentNode) {
-				ComponentNode componentNode = (ComponentNode) node;
-				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				IVariableAccessor variableAccessor = new VariableAccessor(genModel, componentNode);
-				ComponentGeneratorContext context = new ComponentGeneratorContext(componentNode, signatures.get(componentNode.getComponent()), variableAccessor, genModel);
-				generator.initialize(context, monitor);
-			}
+		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+			initializeComponentNodes(taskNode, genModel, signatures, monitor);
 		}
-		
+		initializeComponentNodes(executionFlow.getGraph(), genModel, signatures, monitor);
+
 		IPath headerPath = new Path(genModel.getHeaderDirectory());
 		IFolder headerFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(headerPath);
 		
@@ -134,6 +136,26 @@ public class Generator {
 			
 		}.write(sourceFile, monitor);
 	}
+
+	/**
+	 * @param graph
+	 * @param genModel
+	 * @param signatures
+	 * @param monitor
+	 * @throws CoreException
+	 */
+	private void initializeComponentNodes(Graph graph, final GenModel genModel,
+			Map<Component, IComponentSignature> signatures, final IProgressMonitor monitor) throws CoreException {
+		for (Node node : getAllNodes(graph)) {
+			if (node instanceof ComponentNode) {
+				ComponentNode componentNode = (ComponentNode) node;
+				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
+				IVariableAccessor variableAccessor = new VariableAccessor(genModel, componentNode);
+				ComponentGeneratorContext context = new ComponentGeneratorContext(componentNode, signatures.get(componentNode.getComponent()), variableAccessor, genModel);
+				generator.initialize(context, monitor);
+			}
+		}
+	}
 	
 	private Map<Component, IComponentSignature> resolveDataTypes(GenModel genModel, ExecutionFlow executionFlow) throws CoreException {
 		DataTypeResolverResult dataTypeResolverResult = dataTypeResolver.resolve(executionFlow.getTopLevelFragment(), true);
@@ -153,10 +175,7 @@ public class Generator {
 		String headerFileName = new Path(genModel.getMainHeaderFile()).lastSegment();
 		String headerMacro = headerFileName.replaceAll("\\W", "_").toUpperCase() + "_";
 		
-		String prefix = genModel.getGenTopLevelSystem().getPrefix();
-		if (prefix == null) {
-			prefix = "";
-		}
+		String prefix = getPrefix(genModel);
 		
 		writer.printf("#ifndef %s\n", headerMacro);
 		writer.printf("#define %s\n", headerMacro);
@@ -211,14 +230,9 @@ public class Generator {
 	}
 	
 	private void generateSourceFile(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer, IProgressMonitor monitor) throws CoreException, IOException {
-		String prefix = genModel.getGenTopLevelSystem().getPrefix();
-		if (prefix == null) {
-			prefix = "";
-		}
+		String prefix = getPrefix(genModel);
 
-		writer.println("#include <math.h>");
-		writer.println("#include <string.h>\n");
-		writer.printf("#include \"%s\"\n", genModel.getMainHeaderFile());
+		generateIncludes(genModel, executionFlow, writer);
 
 		writer.println();
 		
@@ -231,19 +245,21 @@ public class Generator {
 				}
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				if (generator.contributesContextStructCode()) {
+				if (generator.contributesContextCode()) {
 					String typeName = InternalGeneratorUtil.getPrefix(genModel, node) + componentNode.getComponent().getName() + "_Context";
-					generator.writeContextStructCode(writer, typeName, monitor);
+					generator.writeContextCode(writer, typeName, monitor);
+					writer.append("\n");
 				}
 			}
 			writer.println("typedef struct {");
+			generateTaskContexts(genModel, executionFlow, writer);
 			for (Node node : getAllNodes(graph)) {
 				if (!(node instanceof ComponentNode)) {
 					continue;
 				}
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				if (generator.contributesContextStructCode()) {
+				if (generator.contributesContextCode()) {
 					writer.printf("%s%s_Context %s;\n", InternalGeneratorUtil.getPrefix(genModel, node), componentNode.getComponent().getName(), InternalGeneratorUtil.getPrefix(genModel, node) + componentNode.getComponent().getName());
 				}
 			}
@@ -251,7 +267,10 @@ public class Generator {
 			writer.printf("static %sContext %scontext;\n\n", prefix, prefix);
 		}
 		
+		generateTasks(genModel, executionFlow, writer, monitor);
+		
 		writer.printf("void %sinitialize(void) {\n", prefix);
+		generateInitializeTasks(genModel, executionFlow, writer);
 		for (Node node : getAllNodes(graph)) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
@@ -269,6 +288,205 @@ public class Generator {
 
 		writer.printf("void %sexecute(const %sInput *input, %sOutput *output) {\n", prefix, prefix, prefix);
 		
+		generateOutputVariableDeclarations(genModel, graph, writer);
+		writer.println();
+		generateGraph(genModel, graph, writer, monitor);
+		
+		writer.println("}");
+	}
+
+	private void generateTaskContexts(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer) throws IOException {
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(genModel);
+		if (runtimeEnvironmentAPI != null) {
+			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+				String taskName = InternalGeneratorUtil.getTaskName(genModel, taskNode);
+				EList<TaskInputNode> inputNodes = taskNode.getInputNodes();
+				writer.append("struct {\n");
+				if (inputNodes.size() == 1) {
+					TaskInputNode inputNode = inputNodes.get(0);
+					MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(genModel, inputNode);
+					runtimeEnvironmentAPI.getMessageQueueGenerator().writeContextCode(writer, "queue", messageQueueInfo);
+				} else if (inputNodes.size() > 1) {
+					// TODO: Handle input sockets
+				}
+				writer.append("} ").append(taskName).append(";\n");
+			}
+		}
+	}
+
+	/**
+	 * @param genModel
+	 * @param inputNode
+	 * @return
+	 */
+	private MessageQueueInfo createMessageQueueInfoFor(GenModel genModel, TaskInputNode inputNode) {
+		return new MessageQueueInfo("10", "sizeof(" + getCDataTypeFor(genModel, inputNode) + ")");
+	}
+	
+	private void generateInitializeTasks(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer) throws IOException {
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(genModel);
+		if (runtimeEnvironmentAPI != null) {
+			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+				String taskName = InternalGeneratorUtil.getTaskName(genModel, taskNode);
+				writer.append(" {\n");
+				EList<TaskInputNode> inputNodes = taskNode.getInputNodes();
+				if (inputNodes.size() == 1) {
+					TaskInputNode inputNode = inputNodes.get(0);
+					String qualifier = getTaskContextVariable(genModel, taskName, false) + "." + "queue";
+					MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(genModel, inputNode);
+					runtimeEnvironmentAPI.getMessageQueueGenerator().writeInitializationCode(writer, qualifier, messageQueueInfo);
+				} else if (inputNodes.size() > 1) {
+					// TODO: Handle input sockets
+				}
+				writer.append("}\n");
+			}
+		}
+	}
+	
+	private String getCDataTypeFor(GenModel genModel, TaskInputNode inputNode) {
+		DataFlowEnd end = inputNode.getDrivingEnds().get(0);
+		IComponentGenerator componentGenerator = InternalGeneratorUtil.getComponentGenerator((ComponentNode) end.getNode());
+		DataType dataType = componentGenerator.getContext().getComponentSignature().getOutputDataType((OutputPort) end.getConnector());
+		return MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, (ComponentNode) end.getNode()), dataType);
+	}
+
+	/**
+	 * @param genModel
+	 * @return
+	 */
+	private String getPrefix(GenModel genModel) {
+		String prefix = genModel.getGenTopLevelSystem().getPrefix();
+		if (prefix == null) {
+			prefix = "";
+		}
+		return prefix;
+	}
+
+	/**
+	 * @param genModel
+	 * @param executionFlow
+	 * @param writer
+	 * @throws IOException
+	 */
+	private void generateIncludes(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer)
+			throws IOException {
+		writer.println("#include <math.h>");
+		writer.println("#include <string.h>");
+		
+		if (executionFlow.getAsynchronousZoneCount() > 0) {
+			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(genModel);
+			if (runtimeEnvironmentAPI != null) {
+				runtimeEnvironmentAPI.writeMultitaskingIncludes(writer);
+			}
+		}
+		
+		writer.println();
+		writer.printf("#include \"%s\"\n", genModel.getMainHeaderFile());
+	}
+
+	/**
+	 * @param genModel
+	 * @param executionFlow
+	 * @param writer
+	 * @param monitor
+	 * @throws IOException
+	 * @throws CoreException
+	 */
+	private void generateTasks(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer,
+			IProgressMonitor monitor) throws IOException, CoreException {
+		IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(genModel);
+		if (runtimeEnvironmentAPI != null) {
+			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+				String taskName = InternalGeneratorUtil.getTaskName(genModel, taskNode);
+				runtimeEnvironmentAPI.writeTaskSignature(writer, taskName);
+				writer.append(" {\n");
+				generateOutputVariableDeclarations(genModel, taskNode, writer);
+				
+				for (TaskInputNode inputNode : taskNode.getInputNodes()) {
+					String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(genModel, inputNode);
+					writer.append(getCDataTypeFor(genModel, inputNode)).append(" ").append(taskInputVariableName).append(";\n");
+				}
+				
+				writer.append("for (;;) {\n");
+				
+				EList<TaskInputNode> inputNodes = taskNode.getInputNodes();
+				if (inputNodes.size() == 1) {
+					TaskInputNode inputNode = inputNodes.get(0);
+					String taskInputVariableName = InternalGeneratorUtil.getTaskInputVariableName(genModel, inputNode);
+					String qualifier = getTaskContextVariable(genModel, taskName, false) + "." + "queue";
+					MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(genModel, inputNode);
+					runtimeEnvironmentAPI.getMessageQueueGenerator().writeReceiveCode(writer, qualifier, "&" + taskInputVariableName, messageQueueInfo);
+				} else if (inputNodes.size() > 1) {
+					// TODO: Handle input sockets
+				}
+
+				generateGraph(genModel, taskNode, writer, monitor);
+				
+				// Find target latches
+				boolean firstLatch = true;
+				for (Iterator<Node> it = taskNode.getAllNodes(); it.hasNext();) {
+					Node node = it.next();
+					if (node instanceof ComponentNode) {
+						ComponentNode componentNode = (ComponentNode) node;
+						for (DataFlowEnd end : node.getDrivenEnds()) {
+							if (end.getNode() instanceof ComponentNode) {
+								ComponentNode otherComponentNode = (ComponentNode) end.getNode();
+								if (otherComponentNode.getComponent() instanceof Latch) {
+									if (firstLatch) {
+										writer.append("/*\n");
+										writer.append(" * Write data to latches\n");
+										writer.append(" */\n");
+										firstLatch = false;
+									}
+									String contextVariable = new VariableAccessor(genModel, otherComponentNode).getContextVariable(false);
+									String variableName = contextVariable + "." + "lock";
+									String outputVariable = new VariableAccessor(genModel, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+	
+									getRuntimeEnvironmentAPI(genModel).getFastLockGenerator().writeLockCode(writer, variableName);
+									new Formatter(writer).format("%s.data = %s;\n", contextVariable, outputVariable);
+									getRuntimeEnvironmentAPI(genModel).getFastLockGenerator().writeUnlockCode(writer, variableName);
+								}
+							} else if (end.getNode() instanceof TaskInputNode) {
+								String outputVariable = new VariableAccessor(genModel, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+								TaskInputNode inputNode = (TaskInputNode) end.getNode();
+								String qualifier = getTaskContextVariable(genModel, taskName, false) + "." + "queue";
+								MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(genModel, inputNode);
+								runtimeEnvironmentAPI.getMessageQueueGenerator().writeSendCode(writer, qualifier, "&" + outputVariable, messageQueueInfo);
+							}
+						}
+					}
+				}
+				
+				writer.append("}\n");
+				runtimeEnvironmentAPI.writeTaskReturnStatement(writer, taskName);
+				writer.append("}\n");
+			}
+		}
+	}
+
+	public String getTaskContextVariable(GenModel genModel, String taskName, boolean pointer) {
+		StringBuilder sb = new StringBuilder();
+		if (pointer) {
+			sb.append("(&");
+		}
+		String prefix = genModel.getGenTopLevelSystem().getPrefix();
+		if (prefix != null) {
+			sb.append(prefix);
+		}
+		sb.append("context.");
+		sb.append(taskName);
+		if (pointer) {
+			sb.append(")");
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * @param genModel
+	 * @param graph
+	 * @param writer
+	 */
+	private void generateOutputVariableDeclarations(GenModel genModel, Graph graph, PrintWriter writer) {
 		for (Node node : getAllNodes(graph)) {
 			if (!(node instanceof ComponentNode)) {
 				continue;
@@ -283,16 +501,13 @@ public class Generator {
 			IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
 			for (Output output : component.getOutputs()) {
 				for (OutputPort outputPort : output.getPorts()) {
-					String cDataType = MscriptGeneratorUtil.getCDataType(getComputationModel(genModel, componentNode), generator.getContext().getComponentSignature().getOutputDataType(outputPort));
+					ComputationModel computationModel = getComputationModel(genModel, componentNode);
+					DataType outputDataType = generator.getContext().getComponentSignature().getOutputDataType(outputPort);
+					String cDataType = MscriptGeneratorUtil.getCDataType(computationModel, outputDataType);
 					writer.printf("%s %s;\n", cDataType, getOutputVariableName(genModel, componentNode, outputPort));
 				}
 			}
 		}
-		writer.println();
-
-		generateGraph(genModel, graph, writer, monitor);
-		
-		writer.println("}");
 	}
 
 	/**
@@ -409,6 +624,7 @@ public class Generator {
 					generator.writeComputeOutputsCode(writer, monitor);
 					writer.println("}\n");
 				}
+				generateMessageQueueSend(genModel, componentNode, writer);
 			}
 		}
 		
@@ -433,6 +649,24 @@ public class Generator {
 					generator.writeUpdateCode(writer, monitor);
 					writer.println("}\n");
 				}
+			}
+		}
+	}
+
+	/**
+	 * @param genModel
+	 * @param componentNode
+	 * @param writer
+	 */
+	private void generateMessageQueueSend(GenModel genModel, ComponentNode componentNode, PrintWriter writer) throws IOException {
+		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
+			if (end.getNode() instanceof TaskInputNode) {
+				TaskInputNode inputNode = (TaskInputNode) end.getNode();
+				String taskName = InternalGeneratorUtil.getTaskName(genModel, inputNode.getTaskNode());
+				String outputVariable = new VariableAccessor(genModel, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+				String qualifier = getTaskContextVariable(genModel, taskName, false) + "." + "queue";
+				MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(genModel, inputNode);
+				getRuntimeEnvironmentAPI(genModel).getMessageQueueGenerator().writeSendCode(writer, qualifier, "&" + outputVariable, messageQueueInfo);
 			}
 		}
 	}
@@ -548,7 +782,7 @@ public class Generator {
 			if (node instanceof ComponentNode) {
 				ComponentNode componentNode = (ComponentNode) node;
 				IComponentGenerator generator = InternalGeneratorUtil.getComponentGenerator(componentNode);
-				if (generator.contributesContextStructCode()) {
+				if (generator.contributesContextCode()) {
 					return true;
 				}
 			}
@@ -582,6 +816,14 @@ public class Generator {
 			} else {
 				break;
 			}
+		}
+		return null;
+	}
+
+	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI(GenModel genModel) {
+		String runtimeEnvironmentId = genModel.getExecutionModel().getRuntimeEnvironmentId();
+		if (runtimeEnvironmentId != null) {
+			return RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeEnvironmentId);
 		}
 		return null;
 	}
@@ -706,35 +948,10 @@ public class Generator {
 		return new Iterable<Node>() {
 			
 			public Iterator<Node> iterator() {
-				return new GraphIterator(graph);
+				return graph.getAllNodes();
 			}
 			
 		};
 	}
-	
-	private static class GraphIterator extends AbstractTreeIterator<Node> {
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
-		public GraphIterator(Graph graph) {
-			super(graph, false);
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipse.emf.common.util.AbstractTreeIterator#getChildren(java.lang.Object)
-		 */
-		@Override
-		protected Iterator<? extends Node> getChildren(Object object) {
-			if (object instanceof Graph) {
-				Graph graph = (Graph) object;
-				return graph.getNodes().iterator();
-			}
-			return Collections.<Node>emptyList().iterator();
-		}
-		
-	}
-	
 }

@@ -29,9 +29,9 @@ public interface IComponentGenerator {
 	
 	IComponentGeneratorContext getContext();
 	
-	boolean contributesContextStructCode();
+	boolean contributesContextCode();
 	
-	void writeContextStructCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException;
+	void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) throws IOException;
 
 	boolean contributesInitializationCode();
 	

@@ -14,7 +14,7 @@ package org.eclipselabs.damos.codegen.c.generator.internal.registry;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipselabs.damos.codegen.c.generator.IRuntimeEnvironmentAPI;
+import org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI;
 
 /**
  * @author Andreas Unger

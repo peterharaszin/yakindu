@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
-import org.eclipselabs.damos.codegen.c.generator.IRuntimeEnvironmentAPI;
+import org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
 

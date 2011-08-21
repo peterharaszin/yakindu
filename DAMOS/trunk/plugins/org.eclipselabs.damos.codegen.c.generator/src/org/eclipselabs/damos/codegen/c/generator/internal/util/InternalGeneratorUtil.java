@@ -25,6 +25,8 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
+import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * @author Andreas Unger
@@ -66,6 +68,19 @@ public class InternalGeneratorUtil {
 		return prefix;
 	}
 	
+	public static String getTaskName(GenModel genModel, TaskNode taskNode) {
+		return InternalGeneratorUtil.getPrefix(genModel, taskNode.getInitialNodes().get(0)) + ((ComponentNode) taskNode.getInitialNodes().get(0)).getComponent().getName() + "_task";
+	}
+	
+	public static String getTaskInputVariableName(GenModel genModel, TaskInputNode inputNode) {
+		TaskNode taskNode = inputNode.getTaskNode();
+		String taskInputVariableName = getTaskName(genModel, taskNode) + "_input";
+		if (taskNode.getInputNodes().size() > 1) {
+			taskInputVariableName += taskNode.getInputNodes().indexOf(inputNode);
+		}
+		return taskInputVariableName;
+	}
+
 	public static String uncapitalize(String s) {
 		if (s == null) {
 			return "";

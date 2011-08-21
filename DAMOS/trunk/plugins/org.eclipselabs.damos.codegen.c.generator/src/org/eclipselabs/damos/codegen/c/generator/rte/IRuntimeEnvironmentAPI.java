@@ -9,17 +9,25 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c.generator;
+package org.eclipselabs.damos.codegen.c.generator.rte;
 
 import java.io.IOException;
+
 
 /**
  * @author Andreas Unger
  *
  */
-public abstract class AbstractRuntimeEnvironmentAPI implements IRuntimeEnvironmentAPI {
+public interface IRuntimeEnvironmentAPI {
 
-	public void writeLatchDataInitializeLock(Appendable appendable, String lockPrefix) throws IOException {
-	}
+	boolean contributesMultitaskingIncludes();
+	void writeMultitaskingIncludes(Appendable appendable) throws IOException;
+	
+	IFastLockGenerator getFastLockGenerator();
+	ISemaphoreGenerator getSemaphoreGenerator();
+	IMessageQueueGenerator getMessageQueueGenerator();
+	
+	void writeTaskSignature(Appendable appendable, String name) throws IOException;
+	void writeTaskReturnStatement(Appendable appendable, String name) throws IOException;
 	
 }

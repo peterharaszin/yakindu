@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipselabs.damos.codegen.c.generator.runtimeEnvironmentAPIs">
+      <runtimeEnvironmentAPI
+            class="org.eclipselabs.damos.rte.posix.codegen.c.PosixRuntimeEnvironmentAPI"
+            runtimeEnvironment="org.eclipselabs.damos.rte.posix">
+      </runtimeEnvironmentAPI>
+   </extension>
+
+</plugin>

@@ -9,18 +9,22 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.codegen.c.generator;
-
-import java.io.IOException;
+package org.eclipselabs.damos.codegen.c.generator.rte;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IRuntimeEnvironmentAPI {
+public interface ISemaphoreInfo {
 
-	void writeLatchDataInitializeLock(Appendable appendable, String lockPrefix) throws IOException;
-	void writeLatchDataLock(Appendable appendable, String lockPrefix) throws IOException;
-	void writeLatchDataUnlock(Appendable appendable, String lockPrefix) throws IOException;
-	
+	/**
+	 * @return the maximumCount
+	 */
+	String getMaximumCount();
+
+	/**
+	 * @return the initialCount
+	 */
+	String getInitialCount();
+
 }

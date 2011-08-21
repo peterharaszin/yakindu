@@ -21,6 +21,7 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 
 /**
  * @author Andreas Unger
@@ -65,6 +66,9 @@ public class VariableAccessor implements IVariableAccessor {
 	public String getInputVariable(InputPort inputPort, boolean pointer) {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputPort);
 		DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
+		if (sourceEnd.getNode() instanceof TaskInputNode) {
+			return InternalGeneratorUtil.getTaskInputVariableName(genModel, (TaskInputNode) sourceEnd.getNode());
+		}
 		OutputPort sourcePort = (OutputPort) sourceEnd.getConnector();
 		return getOutputVariable(sourcePort, pointer, sourceEnd.getNode());
 	}

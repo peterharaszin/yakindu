@@ -184,6 +184,15 @@ public class Generator {
 		writer.println("#include <stdint.h>");
 
 		writer.println();
+		
+		if (!executionFlow.getTaskNodes().isEmpty()) {
+			writer.println("typedef struct {");
+			getRuntimeEnvironmentAPI(genModel).writeTaskFunctionType(writer, "function");
+			writer.println(";");
+			writer.printf("} %sTaskInfo;\n\n", prefix);
+			writer.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), executionFlow.getTaskNodes().size());
+			writer.printf("extern %sTaskInfo %staskInfos[];\n\n", prefix, prefix);
+		}
 
 		writer.println("typedef struct {");
 		for (Node node : executionFlow.getGraph().getNodes()) {
@@ -235,6 +244,27 @@ public class Generator {
 		generateIncludes(genModel, executionFlow, writer);
 
 		writer.println();
+		
+		if (!executionFlow.getTaskNodes().isEmpty()) {
+			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+				writer.append("static ");
+				getRuntimeEnvironmentAPI(genModel).writeTaskSignature(writer, InternalGeneratorUtil.getTaskName(genModel, taskNode));
+				writer.append(";\n");
+			}
+
+			writer.println();
+			writer.printf("%sTaskInfo %staskInfos[] = {\n", prefix, prefix);
+			boolean first = true;
+			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+				if (first) {
+					first = false;
+				} else {
+					writer.append(",\n");
+				}
+				writer.append("{ ").append(InternalGeneratorUtil.getTaskName(genModel, taskNode)).append(" }");
+			}
+			writer.println("\n};\n");
+		}
 		
 		boolean hasContext = hasContext(executionFlow);
 		Graph graph = executionFlow.getGraph();
@@ -398,6 +428,7 @@ public class Generator {
 		if (runtimeEnvironmentAPI != null) {
 			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
 				String taskName = InternalGeneratorUtil.getTaskName(genModel, taskNode);
+				writer.append("static ");
 				runtimeEnvironmentAPI.writeTaskSignature(writer, taskName);
 				writer.append(" {\n");
 				generateOutputVariableDeclarations(genModel, taskNode, writer);
@@ -421,42 +452,7 @@ public class Generator {
 				}
 
 				generateGraph(genModel, taskNode, writer, monitor);
-				
-				// Find target latches
-				boolean firstLatch = true;
-				for (Iterator<Node> it = taskNode.getAllNodes(); it.hasNext();) {
-					Node node = it.next();
-					if (node instanceof ComponentNode) {
-						ComponentNode componentNode = (ComponentNode) node;
-						for (DataFlowEnd end : node.getDrivenEnds()) {
-							if (end.getNode() instanceof ComponentNode) {
-								ComponentNode otherComponentNode = (ComponentNode) end.getNode();
-								if (otherComponentNode.getComponent() instanceof Latch) {
-									if (firstLatch) {
-										writer.append("/*\n");
-										writer.append(" * Write data to latches\n");
-										writer.append(" */\n");
-										firstLatch = false;
-									}
-									String contextVariable = new VariableAccessor(genModel, otherComponentNode).getContextVariable(false);
-									String variableName = contextVariable + "." + "lock";
-									String outputVariable = new VariableAccessor(genModel, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
-	
-									getRuntimeEnvironmentAPI(genModel).getFastLockGenerator().writeLockCode(writer, variableName);
-									new Formatter(writer).format("%s.data = %s;\n", contextVariable, outputVariable);
-									getRuntimeEnvironmentAPI(genModel).getFastLockGenerator().writeUnlockCode(writer, variableName);
-								}
-							} else if (end.getNode() instanceof TaskInputNode) {
-								String outputVariable = new VariableAccessor(genModel, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
-								TaskInputNode inputNode = (TaskInputNode) end.getNode();
-								String qualifier = getTaskContextVariable(genModel, taskName, false) + "." + "queue";
-								MessageQueueInfo messageQueueInfo = createMessageQueueInfoFor(genModel, inputNode);
-								runtimeEnvironmentAPI.getMessageQueueGenerator().writeSendCode(writer, qualifier, "&" + outputVariable, messageQueueInfo);
-							}
-						}
-					}
-				}
-				
+								
 				writer.append("}\n");
 				runtimeEnvironmentAPI.writeTaskReturnStatement(writer, taskName);
 				writer.append("}\n");
@@ -624,6 +620,7 @@ public class Generator {
 					generator.writeComputeOutputsCode(writer, monitor);
 					writer.println("}\n");
 				}
+				generateLatchUpdate(genModel, componentNode, writer);
 				generateMessageQueueSend(genModel, componentNode, writer);
 			}
 		}
@@ -648,6 +645,28 @@ public class Generator {
 					writer.println("{");
 					generator.writeUpdateCode(writer, monitor);
 					writer.println("}\n");
+				}
+			}
+		}
+	}
+
+	/**
+	 * @param genModel
+	 * @param componentNode
+	 * @param writer
+	 */
+	private void generateLatchUpdate(GenModel genModel, ComponentNode componentNode, PrintWriter writer) throws IOException {
+		for (DataFlowEnd end : componentNode.getDrivenEnds()) {
+			if (end.getNode() instanceof ComponentNode) {
+				ComponentNode otherComponentNode = (ComponentNode) end.getNode();
+				if (otherComponentNode.getComponent() instanceof Latch) {
+					String contextVariable = new VariableAccessor(genModel, otherComponentNode).getContextVariable(false);
+					String variableName = contextVariable + "." + "lock";
+					String outputVariable = new VariableAccessor(genModel, componentNode).getOutputVariable((OutputPort) end.getDataFlow().getSourceEnd().getConnector(), false);
+
+					getRuntimeEnvironmentAPI(genModel).getFastLockGenerator().writeLockCode(writer, variableName);
+					new Formatter(writer).format("%s.data = %s;\n", contextVariable, outputVariable);
+					getRuntimeEnvironmentAPI(genModel).getFastLockGenerator().writeUnlockCode(writer, variableName);
 				}
 			}
 		}

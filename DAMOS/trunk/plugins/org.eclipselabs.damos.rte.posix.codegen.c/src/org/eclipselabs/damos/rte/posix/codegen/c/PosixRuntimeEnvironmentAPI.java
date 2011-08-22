@@ -53,10 +53,17 @@ public class PosixRuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	}
 	
 	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#writeTaskFunctionType(java.lang.Appendable, java.lang.String)
+	 */
+	public void writeTaskFunctionType(Appendable appendable, String name) throws IOException {
+		appendable.append("void *(*").append(name).append(")(void *context)");
+	}
+	
+	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#writeTaskFunction(java.lang.Appendable, java.lang.String)
 	 */
 	public void writeTaskSignature(Appendable appendable, String name) throws IOException {
-		appendable.append("void *").append(name).append("(void *arg)");
+		appendable.append("void *").append(name).append("(void *context)");
 	}
 
 	/* (non-Javadoc)

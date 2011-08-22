@@ -27,6 +27,7 @@ public interface IRuntimeEnvironmentAPI {
 	ISemaphoreGenerator getSemaphoreGenerator();
 	IMessageQueueGenerator getMessageQueueGenerator();
 	
+	void writeTaskFunctionType(Appendable appendable, String name) throws IOException;
 	void writeTaskSignature(Appendable appendable, String name) throws IOException;
 	void writeTaskReturnStatement(Appendable appendable, String name) throws IOException;
 	

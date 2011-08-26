@@ -191,7 +191,7 @@ public class Generator {
 			writer.println(";");
 			writer.printf("} %sTaskInfo;\n\n", prefix);
 			writer.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), executionFlow.getTaskNodes().size());
-			writer.printf("extern %sTaskInfo %staskInfos[];\n\n", prefix, prefix);
+			writer.printf("extern const %sTaskInfo %staskInfos[];\n\n", prefix, prefix);
 		}
 
 		writer.println("typedef struct {");
@@ -253,7 +253,7 @@ public class Generator {
 			}
 
 			writer.println();
-			writer.printf("%sTaskInfo %staskInfos[] = {\n", prefix, prefix);
+			writer.printf("const %sTaskInfo %staskInfos[] = {\n", prefix, prefix);
 			boolean first = true;
 			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
 				if (first) {

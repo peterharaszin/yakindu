@@ -183,15 +183,18 @@ public class Generator {
 		
 		writer.println("#include <stdint.h>");
 
+		if (executionFlow.getAsynchronousZoneCount() > 0) {
+			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(genModel);
+			if (runtimeEnvironmentAPI != null) {
+				runtimeEnvironmentAPI.writeTaskInfoInclude(writer);
+			}
+		}
+
 		writer.println();
 		
 		if (!executionFlow.getTaskNodes().isEmpty()) {
-			writer.println("typedef struct {");
-			getRuntimeEnvironmentAPI(genModel).writeTaskFunctionType(writer, "function");
-			writer.println(";");
-			writer.printf("} %sTaskInfo;\n\n", prefix);
 			writer.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), executionFlow.getTaskNodes().size());
-			writer.printf("extern const %sTaskInfo %staskInfos[];\n\n", prefix, prefix);
+			writer.printf("extern const %s %staskInfos[];\n\n", getRuntimeEnvironmentAPI(genModel).getTaskInfoStructName(), prefix);
 		}
 
 		writer.println("typedef struct {");
@@ -253,7 +256,7 @@ public class Generator {
 			}
 
 			writer.println();
-			writer.printf("const %sTaskInfo %staskInfos[] = {\n", prefix, prefix);
+			writer.printf("const %s %staskInfos[] = {\n", getRuntimeEnvironmentAPI(genModel).getTaskInfoStructName(), prefix);
 			boolean first = true;
 			for (TaskNode taskNode : executionFlow.getTaskNodes()) {
 				if (first) {

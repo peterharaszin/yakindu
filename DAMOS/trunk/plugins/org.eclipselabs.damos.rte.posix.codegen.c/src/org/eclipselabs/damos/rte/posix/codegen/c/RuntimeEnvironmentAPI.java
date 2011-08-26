@@ -14,7 +14,6 @@ package org.eclipselabs.damos.rte.posix.codegen.c;
 import java.io.IOException;
 
 import org.eclipselabs.damos.codegen.c.generator.rte.AbstractRuntimeEnvironmentAPI;
-import org.eclipselabs.damos.codegen.c.generator.rte.BoundedBufferMessageQueueGenerator;
 import org.eclipselabs.damos.codegen.c.generator.rte.IFastLockGenerator;
 import org.eclipselabs.damos.codegen.c.generator.rte.IMessageQueueGenerator;
 import org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreGenerator;
@@ -23,7 +22,7 @@ import org.eclipselabs.damos.codegen.c.generator.rte.ISemaphoreGenerator;
  * @author Andreas Unger
  *
  */
-public class PosixRuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
+public class RuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 
 	public boolean contributesMultitaskingIncludes() {
 		return true;
@@ -32,6 +31,21 @@ public class PosixRuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	public void writeMultitaskingIncludes(Appendable appendable) throws IOException {
 		appendable.append("#include <pthread.h>\n");
 		appendable.append("#include <semaphore.h>\n");
+		appendable.append("#include <damos/posix/mq.h>\n");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#writeTaskInfoInclude(java.lang.Appendable)
+	 */
+	public void writeTaskInfoInclude(Appendable appendable) throws IOException {
+		appendable.append("#include <damos/posix/task.h>\n");
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#getTaskInfoStructName()
+	 */
+	public String getTaskInfoStructName() {
+		return "DamosPosixTaskInfo";
 	}
 	
 	public IFastLockGenerator getFastLockGenerator() {
@@ -49,7 +63,7 @@ public class PosixRuntimeEnvironmentAPI extends AbstractRuntimeEnvironmentAPI {
 	 * @see org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI#getMessageQueueGenerator()
 	 */
 	public IMessageQueueGenerator getMessageQueueGenerator() {
-		return new BoundedBufferMessageQueueGenerator(this);
+		return new MessageQueueGenerator();
 	}
 	
 	/* (non-Javadoc)

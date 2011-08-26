@@ -23,6 +23,9 @@ public interface IRuntimeEnvironmentAPI {
 	boolean contributesMultitaskingIncludes();
 	void writeMultitaskingIncludes(Appendable appendable) throws IOException;
 	
+	void writeTaskInfoInclude(Appendable appendable) throws IOException;
+	String getTaskInfoStructName();
+	
 	IFastLockGenerator getFastLockGenerator();
 	ISemaphoreGenerator getSemaphoreGenerator();
 	IMessageQueueGenerator getMessageQueueGenerator();

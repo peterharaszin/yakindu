@@ -19,9 +19,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
+import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
@@ -53,6 +55,7 @@ import org.eclipselabs.mscript.language.interpreter.IVariable;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
 import org.eclipselabs.mscript.typesystem.RealType;
 import org.eclipselabs.mscript.typesystem.TensorType;
 import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
@@ -66,6 +69,9 @@ import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
  */
 public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObject {
 
+	private boolean hasInputSockets;
+	private IValue[] messageKinds;
+	
 	private IInterpreterContext interpreterContext;
 	private IFunctionObject functionObject;
 	
@@ -91,6 +97,23 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 		Helper helper = new Helper(block);
 		
+		hasInputSockets = !block.getInputSockets().isEmpty();
+		if (hasInputSockets) {
+			IntegerType messageKindDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
+			messageKindDataType.setUnit(TypeSystemUtil.createUnit());
+
+			EList<Input> inputs = block.getInputs();
+			EList<Input> socketInputs = block.getInputSockets();
+			
+			messageKinds = new IValue[inputs.size()];
+			for (int i = 0; i < messageKinds.length; ++i) {
+				int socketIndex = socketInputs.indexOf(inputs.get(i));
+				if (socketIndex >= 0) {
+					messageKinds[i] = Values.valueOf(getComputationContext(), messageKindDataType, socketIndex);
+				}
+			}
+		}
+
 		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
 		
 		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
@@ -149,11 +172,14 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		for (InputVariableDeclaration inputVariableDeclaration : functionObject.getFunctionDefinition().getInputVariableDeclarations()) {
 			IVariable variable = functionObject.getVariable(inputVariableDeclaration);
 			
-			BlockInput input = (BlockInput) getComponent().getInputs().get(i);
-			
-			if (input.getDefinition().isManyPorts() || input.getDefinition().getMinimumPortCount() == 0) {
-				initializeArrayVariable(inputVariableDeclaration, variable);
-				multiPortInput[i] = true;
+			int inputIndex = hasInputSockets ? i - 1 : i;
+			if (inputIndex >= 0) {
+				BlockInput input = (BlockInput) getComponent().getInputs().get(inputIndex);
+				
+				if (input.getDefinition().isManyPorts() || input.getDefinition().getMinimumPortCount() == 0) {
+					initializeArrayVariable(inputVariableDeclaration, variable);
+					multiPortInput[i] = true;
+				}
 			}
 			
 			inputVariables[i] = variable;
@@ -202,6 +228,14 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {
+		if (hasInputSockets) {
+			IValue messageKind = messageKinds[inputIndex];
+			if (messageKind != null) {
+				inputVariables[0].setValue(0, messageKind);
+			}
+			++inputIndex;
+		}
+		
 		IVariable variable = inputVariables[inputIndex];
 		if (multiPortInput[inputIndex]) {
 			IArrayValue arrayValue = (IArrayValue) variable.getValue(0);

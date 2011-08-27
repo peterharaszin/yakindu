@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.simulation.core.ISimulationRunnable;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
@@ -45,7 +45,7 @@ public class Task extends Thread implements Adapter {
 	private Notifier target = null;
 
 	private Simulation simulation;
-	private TaskNode taskNode;
+	private TaskGraph taskGraph;
 	private BlockingQueue<Data> queue = new ArrayBlockingQueue<Data>(QUEUE_CAPACITY);
 	
 	private volatile IStatus status = Status.OK_STATUS;
@@ -53,9 +53,9 @@ public class Task extends Thread implements Adapter {
 	/**
 	 * 
 	 */
-	public Task(Simulation simulation, TaskNode taskNode) {
+	public Task(Simulation simulation, TaskGraph taskGraph) {
 		this.simulation = simulation;
-		this.taskNode = taskNode;
+		this.taskGraph = taskGraph;
 	}
 	
 	public void sendValue(TaskInputNode taskInputNode, IValue value) {
@@ -84,7 +84,7 @@ public class Task extends Thread implements Adapter {
 				Data data = queue.take();
 
 				if (data == Data.UNBLOCK) {
-					for (LatchNode latchNode : taskNode.getLatchNodes()) {
+					for (LatchNode latchNode : taskGraph.getLatchNodes()) {
 						ISimulationObject simulationObject = SimulationUtil.getSimulationObject(latchNode);
 						discreteStateComputationHelper.propagateComponentOutputValues(latchNode, simulationObject);
 					}
@@ -97,7 +97,7 @@ public class Task extends Thread implements Adapter {
 					data.runnable.run();
 				}
 				
-				discreteStateComputationHelper.computeDiscreteStates(taskNode, Double.NaN, monitor);
+				discreteStateComputationHelper.computeDiscreteStates(taskGraph, Double.NaN, monitor);
 				SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.ASYNCHRONOUS));
 			}
 		} catch (InterruptedException e) {
@@ -106,7 +106,7 @@ public class Task extends Thread implements Adapter {
 			status = e.getStatus();
 		}
 		
-		SimulationEngine.dispose(taskNode);
+		SimulationEngine.dispose(taskGraph);
 	}
 
 	/* (non-Javadoc)

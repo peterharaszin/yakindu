@@ -99,6 +99,12 @@
             name="Discrete Integrator"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/discrete/DiscreteIntegrator.blocktype.dml#/">
       </blockType>
+<!--      <blockType
+            group="org.eclipselabs.damos.library.base.discrete"
+            name="Counter"
+            qualifiedName="org.eclipselabs.damos.library.base.discrete.Counter"
+            uri="http://www.eclipselabs.org/damos/library/1.0.0/discrete/Counter.blocktype.dml#/">
+      </blockType> -->
       <blockType
             group="org.eclipselabs.damos.library.base.logic"
             qualifiedName="org.eclipselabs.damos.library.base.logic.And"

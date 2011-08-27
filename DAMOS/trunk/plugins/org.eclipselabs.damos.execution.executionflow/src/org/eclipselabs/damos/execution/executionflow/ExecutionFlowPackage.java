@@ -106,13 +106,13 @@ public interface ExecutionFlowPackage extends EPackage {
 	int EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT = 3;
 
 	/**
-	 * The feature id for the '<em><b>Task Nodes</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Task Graphs</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_FLOW__TASK_NODES = 4;
+	int EXECUTION_FLOW__TASK_GRAPHS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Execution Flow</em>' class.
@@ -888,14 +888,14 @@ public interface ExecutionFlowPackage extends EPackage {
 	int SUBSYSTEM_NODE_FEATURE_COUNT = SUBGRAPH_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl <em>Task Node</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskGraphImpl <em>Task Graph</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl
-	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskNode()
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskGraphImpl
+	 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskGraph()
 	 * @generated
 	 */
-	int TASK_NODE = 9;
+	int TASK_GRAPH = 9;
 
 	/**
 	 * The feature id for the '<em><b>Nodes</b></em>' containment reference list.
@@ -904,7 +904,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__NODES = GRAPH__NODES;
+	int TASK_GRAPH__NODES = GRAPH__NODES;
 
 	/**
 	 * The feature id for the '<em><b>Initial Nodes</b></em>' reference list.
@@ -913,7 +913,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INITIAL_NODES = GRAPH__INITIAL_NODES;
+	int TASK_GRAPH__INITIAL_NODES = GRAPH__INITIAL_NODES;
 
 	/**
 	 * The feature id for the '<em><b>Edges</b></em>' containment reference list.
@@ -922,7 +922,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__EDGES = GRAPH__EDGES;
+	int TASK_GRAPH__EDGES = GRAPH__EDGES;
 
 	/**
 	 * The feature id for the '<em><b>Input Nodes</b></em>' containment reference list.
@@ -931,7 +931,7 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__INPUT_NODES = GRAPH_FEATURE_COUNT + 0;
+	int TASK_GRAPH__INPUT_NODES = GRAPH_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Latch Nodes</b></em>' reference list.
@@ -940,16 +940,16 @@ public interface ExecutionFlowPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE__LATCH_NODES = GRAPH_FEATURE_COUNT + 1;
+	int TASK_GRAPH__LATCH_NODES = GRAPH_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Task Node</em>' class.
+	 * The number of structural features of the '<em>Task Graph</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_NODE_FEATURE_COUNT = GRAPH_FEATURE_COUNT + 2;
+	int TASK_GRAPH_FEATURE_COUNT = GRAPH_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl <em>Task Input Node</em>}' class.
@@ -1016,13 +1016,13 @@ public interface ExecutionFlowPackage extends EPackage {
 	int TASK_INPUT_NODE__OUTGOING_DATA_FLOWS = NODE__OUTGOING_DATA_FLOWS;
 
 	/**
-	 * The feature id for the '<em><b>Task Node</b></em>' container reference.
+	 * The feature id for the '<em><b>Task Graph</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK_INPUT_NODE__TASK_NODE = NODE_FEATURE_COUNT + 0;
+	int TASK_INPUT_NODE__TASK_GRAPH = NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Task Input Node</em>' class.
@@ -1367,15 +1367,15 @@ public interface ExecutionFlowPackage extends EPackage {
 	EAttribute getExecutionFlow_AsynchronousZoneCount();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes <em>Task Nodes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskGraphs <em>Task Graphs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Task Nodes</em>'.
-	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes()
+	 * @return the meta object for the containment reference list '<em>Task Graphs</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskGraphs()
 	 * @see #getExecutionFlow()
 	 * @generated
 	 */
-	EReference getExecutionFlow_TaskNodes();
+	EReference getExecutionFlow_TaskGraphs();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.Graph <em>Graph</em>}'.
@@ -1634,36 +1634,36 @@ public interface ExecutionFlowPackage extends EPackage {
 	EReference getSubsystemNode_Subsystem();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.TaskNode <em>Task Node</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.TaskGraph <em>Task Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Task Node</em>'.
-	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode
+	 * @return the meta object for class '<em>Task Graph</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskGraph
 	 * @generated
 	 */
-	EClass getTaskNode();
+	EClass getTaskGraph();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionflow.TaskNode#getInputNodes <em>Input Nodes</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionflow.TaskGraph#getInputNodes <em>Input Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Input Nodes</em>'.
-	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode#getInputNodes()
-	 * @see #getTaskNode()
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskGraph#getInputNodes()
+	 * @see #getTaskGraph()
 	 * @generated
 	 */
-	EReference getTaskNode_InputNodes();
+	EReference getTaskGraph_InputNodes();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.execution.executionflow.TaskNode#getLatchNodes <em>Latch Nodes</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.execution.executionflow.TaskGraph#getLatchNodes <em>Latch Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Latch Nodes</em>'.
-	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode#getLatchNodes()
-	 * @see #getTaskNode()
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskGraph#getLatchNodes()
+	 * @see #getTaskGraph()
 	 * @generated
 	 */
-	EReference getTaskNode_LatchNodes();
+	EReference getTaskGraph_LatchNodes();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode <em>Task Input Node</em>}'.
@@ -1676,15 +1676,15 @@ public interface ExecutionFlowPackage extends EPackage {
 	EClass getTaskInputNode();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskNode <em>Task Node</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskGraph <em>Task Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Task Node</em>'.
-	 * @see org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskNode()
+	 * @return the meta object for the container reference '<em>Task Graph</em>'.
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskGraph()
 	 * @see #getTaskInputNode()
 	 * @generated
 	 */
-	EReference getTaskInputNode_TaskNode();
+	EReference getTaskInputNode_TaskGraph();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.execution.executionflow.Edge <em>Edge</em>}'.
@@ -1975,12 +1975,12 @@ public interface ExecutionFlowPackage extends EPackage {
 		EAttribute EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT = eINSTANCE.getExecutionFlow_AsynchronousZoneCount();
 
 		/**
-		 * The meta object literal for the '<em><b>Task Nodes</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Task Graphs</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference EXECUTION_FLOW__TASK_NODES = eINSTANCE.getExecutionFlow_TaskNodes();
+		EReference EXECUTION_FLOW__TASK_GRAPHS = eINSTANCE.getExecutionFlow_TaskGraphs();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.GraphImpl <em>Graph</em>}' class.
@@ -2191,14 +2191,14 @@ public interface ExecutionFlowPackage extends EPackage {
 		EReference SUBSYSTEM_NODE__SUBSYSTEM = eINSTANCE.getSubsystemNode_Subsystem();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl <em>Task Node</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskGraphImpl <em>Task Graph</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl
-		 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskNode()
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.TaskGraphImpl
+		 * @see org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowPackageImpl#getTaskGraph()
 		 * @generated
 		 */
-		EClass TASK_NODE = eINSTANCE.getTaskNode();
+		EClass TASK_GRAPH = eINSTANCE.getTaskGraph();
 
 		/**
 		 * The meta object literal for the '<em><b>Input Nodes</b></em>' containment reference list feature.
@@ -2206,7 +2206,7 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TASK_NODE__INPUT_NODES = eINSTANCE.getTaskNode_InputNodes();
+		EReference TASK_GRAPH__INPUT_NODES = eINSTANCE.getTaskGraph_InputNodes();
 
 		/**
 		 * The meta object literal for the '<em><b>Latch Nodes</b></em>' reference list feature.
@@ -2214,7 +2214,7 @@ public interface ExecutionFlowPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TASK_NODE__LATCH_NODES = eINSTANCE.getTaskNode_LatchNodes();
+		EReference TASK_GRAPH__LATCH_NODES = eINSTANCE.getTaskGraph_LatchNodes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.TaskInputNodeImpl <em>Task Input Node</em>}' class.
@@ -2227,12 +2227,12 @@ public interface ExecutionFlowPackage extends EPackage {
 		EClass TASK_INPUT_NODE = eINSTANCE.getTaskInputNode();
 
 		/**
-		 * The meta object literal for the '<em><b>Task Node</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Task Graph</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TASK_INPUT_NODE__TASK_NODE = eINSTANCE.getTaskInputNode_TaskNode();
+		EReference TASK_INPUT_NODE__TASK_GRAPH = eINSTANCE.getTaskInputNode_TaskGraph();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.execution.executionflow.impl.EdgeImpl <em>Edge</em>}' class.

@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.LatchNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,14 +27,14 @@ import org.eclipselabs.damos.execution.executionflow.TaskNode;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl#getInputNodes <em>Input Nodes</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.TaskNodeImpl#getLatchNodes <em>Latch Nodes</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.TaskGraphImpl#getInputNodes <em>Input Nodes</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.TaskGraphImpl#getLatchNodes <em>Latch Nodes</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TaskNodeImpl extends GraphImpl implements TaskNode {
+public class TaskGraphImpl extends GraphImpl implements TaskGraph {
 	/**
 	 * The cached value of the '{@link #getInputNodes() <em>Input Nodes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -59,7 +59,7 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TaskNodeImpl() {
+	protected TaskGraphImpl() {
 		super();
 	}
 
@@ -70,7 +70,7 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExecutionFlowPackage.Literals.TASK_NODE;
+		return ExecutionFlowPackage.Literals.TASK_GRAPH;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	 */
 	public EList<TaskInputNode> getInputNodes() {
 		if (inputNodes == null) {
-			inputNodes = new EObjectContainmentWithInverseEList<TaskInputNode>(TaskInputNode.class, this, ExecutionFlowPackage.TASK_NODE__INPUT_NODES, ExecutionFlowPackage.TASK_INPUT_NODE__TASK_NODE);
+			inputNodes = new EObjectContainmentWithInverseEList<TaskInputNode>(TaskInputNode.class, this, ExecutionFlowPackage.TASK_GRAPH__INPUT_NODES, ExecutionFlowPackage.TASK_INPUT_NODE__TASK_GRAPH);
 		}
 		return inputNodes;
 	}
@@ -92,7 +92,7 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	 */
 	public EList<LatchNode> getLatchNodes() {
 		if (latchNodes == null) {
-			latchNodes = new EObjectWithInverseResolvingEList.ManyInverse<LatchNode>(LatchNode.class, this, ExecutionFlowPackage.TASK_NODE__LATCH_NODES, ExecutionFlowPackage.LATCH_NODE__TASK_NODES);
+			latchNodes = new EObjectWithInverseResolvingEList.ManyInverse<LatchNode>(LatchNode.class, this, ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES, ExecutionFlowPackage.LATCH_NODE__TASK_NODES);
 		}
 		return latchNodes;
 	}
@@ -106,9 +106,9 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExecutionFlowPackage.TASK_NODE__INPUT_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__INPUT_NODES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInputNodes()).basicAdd(otherEnd, msgs);
-			case ExecutionFlowPackage.TASK_NODE__LATCH_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getLatchNodes()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -122,9 +122,9 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExecutionFlowPackage.TASK_NODE__INPUT_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__INPUT_NODES:
 				return ((InternalEList<?>)getInputNodes()).basicRemove(otherEnd, msgs);
-			case ExecutionFlowPackage.TASK_NODE__LATCH_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES:
 				return ((InternalEList<?>)getLatchNodes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -138,9 +138,9 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExecutionFlowPackage.TASK_NODE__INPUT_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__INPUT_NODES:
 				return getInputNodes();
-			case ExecutionFlowPackage.TASK_NODE__LATCH_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES:
 				return getLatchNodes();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -155,11 +155,11 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExecutionFlowPackage.TASK_NODE__INPUT_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__INPUT_NODES:
 				getInputNodes().clear();
 				getInputNodes().addAll((Collection<? extends TaskInputNode>)newValue);
 				return;
-			case ExecutionFlowPackage.TASK_NODE__LATCH_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES:
 				getLatchNodes().clear();
 				getLatchNodes().addAll((Collection<? extends LatchNode>)newValue);
 				return;
@@ -175,10 +175,10 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExecutionFlowPackage.TASK_NODE__INPUT_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__INPUT_NODES:
 				getInputNodes().clear();
 				return;
-			case ExecutionFlowPackage.TASK_NODE__LATCH_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES:
 				getLatchNodes().clear();
 				return;
 		}
@@ -193,9 +193,9 @@ public class TaskNodeImpl extends GraphImpl implements TaskNode {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExecutionFlowPackage.TASK_NODE__INPUT_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__INPUT_NODES:
 				return inputNodes != null && !inputNodes.isEmpty();
-			case ExecutionFlowPackage.TASK_NODE__LATCH_NODES:
+			case ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES:
 				return latchNodes != null && !latchNodes.isEmpty();
 		}
 		return super.eIsSet(featureID);

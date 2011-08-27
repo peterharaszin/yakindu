@@ -27,8 +27,8 @@ import org.eclipse.emf.common.util.EList;
 public interface LatchNode extends ComponentNode {
 	/**
 	 * Returns the value of the '<em><b>Task Nodes</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionflow.TaskNode}.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.TaskNode#getLatchNodes <em>Latch Nodes</em>}'.
+	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionflow.TaskGraph}.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.TaskGraph#getLatchNodes <em>Latch Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Task Nodes</em>' reference list isn't clear,
@@ -37,10 +37,10 @@ public interface LatchNode extends ComponentNode {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Task Nodes</em>' reference list.
 	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getLatchNode_TaskNodes()
-	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode#getLatchNodes
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskGraph#getLatchNodes
 	 * @model opposite="latchNodes"
 	 * @generated
 	 */
-	EList<TaskNode> getTaskNodes();
+	EList<TaskGraph> getTaskNodes();
 
 } // LatchNode

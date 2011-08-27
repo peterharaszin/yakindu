@@ -37,8 +37,8 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.internal.build.FlattenerHelper;
-import org.eclipselabs.damos.execution.executionflow.internal.build.TimingContraintPropagationHelper;
 import org.eclipselabs.damos.execution.executionflow.internal.build.TaskNodeComputationHelper;
+import org.eclipselabs.damos.execution.executionflow.internal.build.TimingContraintPropagationHelper;
 
 /**
  * @author Andreas Unger

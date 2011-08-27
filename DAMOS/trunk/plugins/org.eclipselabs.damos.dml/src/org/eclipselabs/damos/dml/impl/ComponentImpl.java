@@ -304,6 +304,24 @@ public abstract class ComponentImpl extends FragmentElementImpl implements Compo
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
+	public EList<Input> getInputSockets() {
+		return ComponentOperations.getInputSockets(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<Output> getOutputSockets() {
+		return ComponentOperations.getOutputSockets(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public boolean isSource() {
 		return ComponentOperations.isSource(this);
 	}

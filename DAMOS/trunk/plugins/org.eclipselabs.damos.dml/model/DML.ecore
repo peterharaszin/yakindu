@@ -38,6 +38,8 @@
     <eOperations name="getFirstOutputPort" ordered="false" lowerBound="1" eType="#//OutputPort"/>
     <eOperations name="getPrimaryInputPorts" upperBound="-1" eType="#//InputPort"/>
     <eOperations name="getPrimaryOutputPorts" upperBound="-1" eType="#//OutputPort"/>
+    <eOperations name="getInputSockets" upperBound="-1" eType="#//Input"/>
+    <eOperations name="getOutputSockets" upperBound="-1" eType="#//Output"/>
     <eOperations name="isSource" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="isSink" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eOperations name="isTimingConstraintApplicable" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">

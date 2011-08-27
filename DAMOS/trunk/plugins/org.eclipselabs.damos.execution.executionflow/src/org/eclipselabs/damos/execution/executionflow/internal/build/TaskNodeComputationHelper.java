@@ -31,8 +31,8 @@ import org.eclipselabs.damos.execution.executionflow.ExecutionFlowFactory;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * @author Andreas Unger
@@ -48,7 +48,7 @@ public class TaskNodeComputationHelper {
 		Graph graph = executionFlow.getGraph();
 
 		for (int i = 0; i < executionFlow.getAsynchronousZoneCount(); ++i) {
-			executionFlow.getTaskNodes().add(ExecutionFlowFactory.eINSTANCE.createTaskNode());
+			executionFlow.getTaskGraphs().add(ExecutionFlowFactory.eINSTANCE.createTaskGraph());
 		}
 		
 		List<ComponentNode> asynchronousNodes = new LinkedList<ComponentNode>();
@@ -63,26 +63,26 @@ public class TaskNodeComputationHelper {
 		}
 		
 		for (ComponentNode node : asynchronousNodes) {
-			executionFlow.getTaskNodes().get(node.getAsynchronousZone()).getNodes().add(node);
+			executionFlow.getTaskGraphs().get(node.getAsynchronousZone()).getNodes().add(node);
 		}
 		
 		// Delete edges
-		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
-			for (Node node : taskNode.getNodes()) {
+		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+			for (Node node : taskGraph.getNodes()) {
 				if (node.getIncomingEdges().isEmpty()) {
-					taskNode.getInitialNodes().add(node);
+					taskGraph.getInitialNodes().add(node);
 				} else {
 					for (Edge edge : new ArrayList<Edge>(node.getIncomingEdges())) {
 						Node source = edge.getSource();
-						if (!source.isEnclosedBy(taskNode)) {
+						if (!source.isEnclosedBy(taskGraph)) {
 							deleteEdge(edge);
-							taskNode.getInitialNodes().add(node);
+							taskGraph.getInitialNodes().add(node);
 						}
 					}
 				}
 				for (Edge edge : new ArrayList<Edge>(node.getOutgoingEdges())) {
 					Node target = edge.getTarget();
-					if (!target.isEnclosedBy(taskNode)) {
+					if (!target.isEnclosedBy(taskGraph)) {
 						deleteEdge(edge);
 						target.getGraph().getInitialNodes().add(target);
 					}
@@ -91,14 +91,14 @@ public class TaskNodeComputationHelper {
 		}
 		
 		// Attach latch nodes to task nodes and create task input nodes
-		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
+		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
 			List<DataFlowTargetEnd> targetEnds = new ArrayList<DataFlowTargetEnd>();
-			for (Node node : taskNode.getNodes()) {
+			for (Node node : taskGraph.getNodes()) {
 				for (DataFlowTargetEnd targetEnd : node.getIncomingDataFlows()) {
 					Node sourceNode = targetEnd.getSourceEnd().getNode();
-					if (!sourceNode.isEnclosedBy(taskNode)) {
+					if (!sourceNode.isEnclosedBy(taskGraph)) {
 						if (sourceNode instanceof LatchNode) {
-							taskNode.getLatchNodes().add((LatchNode) sourceNode);
+							taskGraph.getLatchNodes().add((LatchNode) sourceNode);
 						} else {
 							targetEnds.add(targetEnd);
 						}
@@ -117,7 +117,7 @@ public class TaskNodeComputationHelper {
 	
 						sourceEnd.setNode(inputNode);
 						inputDataFlow.setSourceEnd(sourceEnd);
-						taskNode.getInputNodes().add(inputNode);
+						taskGraph.getInputNodes().add(inputNode);
 
 						executionFlow.getDataFlows().add(inputDataFlow);
 						inputNodes.put(targetEnd.getDataFlow(), inputNode);

@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 
 /**
  * @author Andreas Unger
@@ -39,8 +39,8 @@ public class ComponentGeneratorAdaptor {
 	public void adaptGenerators(GenModel genModel, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
-		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
-			adaptGenerators(taskNode, missingGeneratorComponents);
+		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+			adaptGenerators(taskGraph, missingGeneratorComponents);
 		}
 		adaptGenerators(executionFlow.getGraph(), missingGeneratorComponents);
 		

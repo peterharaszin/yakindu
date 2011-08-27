@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.LatchNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.Task;
@@ -48,9 +48,9 @@ public class LatchSimulationObject extends AbstractSimulationObject {
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, IValue value) {
 		this.value = value;
-		for (TaskNode taskNode : getNode().getTaskNodes()) {
-			if (taskNode.getInputNodes().isEmpty()) {
-				Task task = (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+		for (TaskGraph taskGraph : getNode().getTaskNodes()) {
+			if (taskGraph.getInputNodes().isEmpty()) {
+				Task task = (Task) EcoreUtil.getAdapter(taskGraph.eAdapters(), Task.class);
 				if (task != null) {
 					task.newLatchValueAvailable();
 				}

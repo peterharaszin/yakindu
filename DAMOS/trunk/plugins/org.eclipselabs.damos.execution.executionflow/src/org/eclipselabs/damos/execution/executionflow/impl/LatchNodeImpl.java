@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.LatchNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 
 /**
  * <!-- begin-user-doc -->
@@ -40,8 +40,7 @@ public class LatchNodeImpl extends ComponentNodeImpl implements LatchNode {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TaskNode> taskNodes;
-
+	protected EList<TaskGraph> taskNodes;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -66,9 +65,9 @@ public class LatchNodeImpl extends ComponentNodeImpl implements LatchNode {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TaskNode> getTaskNodes() {
+	public EList<TaskGraph> getTaskNodes() {
 		if (taskNodes == null) {
-			taskNodes = new EObjectWithInverseResolvingEList.ManyInverse<TaskNode>(TaskNode.class, this, ExecutionFlowPackage.LATCH_NODE__TASK_NODES, ExecutionFlowPackage.TASK_NODE__LATCH_NODES);
+			taskNodes = new EObjectWithInverseResolvingEList.ManyInverse<TaskGraph>(TaskGraph.class, this, ExecutionFlowPackage.LATCH_NODE__TASK_NODES, ExecutionFlowPackage.TASK_GRAPH__LATCH_NODES);
 		}
 		return taskNodes;
 	}
@@ -127,7 +126,7 @@ public class LatchNodeImpl extends ComponentNodeImpl implements LatchNode {
 		switch (featureID) {
 			case ExecutionFlowPackage.LATCH_NODE__TASK_NODES:
 				getTaskNodes().clear();
-				getTaskNodes().addAll((Collection<? extends TaskNode>)newValue);
+				getTaskNodes().addAll((Collection<? extends TaskGraph>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -2798,6 +2798,10 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		addEOperation(componentEClass, this.getOutputPort(), "getPrimaryOutputPorts", 0, -1, IS_UNIQUE, IS_ORDERED);
 
+		addEOperation(componentEClass, this.getInput(), "getInputSockets", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(componentEClass, this.getOutput(), "getOutputSockets", 0, -1, IS_UNIQUE, IS_ORDERED);
+
 		addEOperation(componentEClass, ecorePackage.getEBoolean(), "isSource", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		addEOperation(componentEClass, ecorePackage.getEBoolean(), "isSink", 1, 1, IS_UNIQUE, !IS_ORDERED);

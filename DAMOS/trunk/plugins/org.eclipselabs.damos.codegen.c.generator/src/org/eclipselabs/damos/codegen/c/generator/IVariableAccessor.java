@@ -25,5 +25,7 @@ public interface IVariableAccessor {
 	String getInputVariable(InputPort inputPort, boolean pointer);
 	
 	String getOutputVariable(OutputPort outputPort, boolean pointer);
+
+	String getMessageKindVariable(boolean pointer);
 	
 }

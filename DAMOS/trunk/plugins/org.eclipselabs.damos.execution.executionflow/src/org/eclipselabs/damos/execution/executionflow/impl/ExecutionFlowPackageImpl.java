@@ -32,8 +32,8 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -110,7 +110,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass taskNodeEClass = null;
+	private EClass taskGraphEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -282,7 +282,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getExecutionFlow_TaskNodes() {
+	public EReference getExecutionFlow_TaskGraphs() {
 		return (EReference)executionFlowEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -507,8 +507,8 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTaskNode() {
-		return taskNodeEClass;
+	public EClass getTaskGraph() {
+		return taskGraphEClass;
 	}
 
 	/**
@@ -516,8 +516,8 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTaskNode_InputNodes() {
-		return (EReference)taskNodeEClass.getEStructuralFeatures().get(0);
+	public EReference getTaskGraph_InputNodes() {
+		return (EReference)taskGraphEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -525,8 +525,8 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTaskNode_LatchNodes() {
-		return (EReference)taskNodeEClass.getEStructuralFeatures().get(1);
+	public EReference getTaskGraph_LatchNodes() {
+		return (EReference)taskGraphEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -543,7 +543,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTaskInputNode_TaskNode() {
+	public EReference getTaskInputNode_TaskGraph() {
 		return (EReference)taskInputNodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -769,7 +769,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		createEReference(executionFlowEClass, EXECUTION_FLOW__GRAPH);
 		createEReference(executionFlowEClass, EXECUTION_FLOW__DATA_FLOWS);
 		createEAttribute(executionFlowEClass, EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT);
-		createEReference(executionFlowEClass, EXECUTION_FLOW__TASK_NODES);
+		createEReference(executionFlowEClass, EXECUTION_FLOW__TASK_GRAPHS);
 
 		graphEClass = createEClass(GRAPH);
 		createEReference(graphEClass, GRAPH__NODES);
@@ -803,12 +803,12 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		subsystemNodeEClass = createEClass(SUBSYSTEM_NODE);
 		createEReference(subsystemNodeEClass, SUBSYSTEM_NODE__SUBSYSTEM);
 
-		taskNodeEClass = createEClass(TASK_NODE);
-		createEReference(taskNodeEClass, TASK_NODE__INPUT_NODES);
-		createEReference(taskNodeEClass, TASK_NODE__LATCH_NODES);
+		taskGraphEClass = createEClass(TASK_GRAPH);
+		createEReference(taskGraphEClass, TASK_GRAPH__INPUT_NODES);
+		createEReference(taskGraphEClass, TASK_GRAPH__LATCH_NODES);
 
 		taskInputNodeEClass = createEClass(TASK_INPUT_NODE);
-		createEReference(taskInputNodeEClass, TASK_INPUT_NODE__TASK_NODE);
+		createEReference(taskInputNodeEClass, TASK_INPUT_NODE__TASK_GRAPH);
 
 		edgeEClass = createEClass(EDGE);
 		createEReference(edgeEClass, EDGE__GRAPH);
@@ -877,7 +877,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		compoundNodeEClass.getESuperTypes().add(this.getSubgraph());
 		actionNodeEClass.getESuperTypes().add(this.getCompoundNode());
 		subsystemNodeEClass.getESuperTypes().add(this.getSubgraph());
-		taskNodeEClass.getESuperTypes().add(this.getGraph());
+		taskGraphEClass.getESuperTypes().add(this.getGraph());
 		taskInputNodeEClass.getESuperTypes().add(this.getNode());
 		dataFlowSourceEndEClass.getESuperTypes().add(this.getDataFlowEnd());
 		dataFlowTargetEndEClass.getESuperTypes().add(this.getDataFlowEnd());
@@ -889,16 +889,22 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getExecutionFlow_Graph(), this.getGraph(), null, "graph", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getExecutionFlow_DataFlows(), this.getDataFlow(), null, "dataFlows", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getExecutionFlow_AsynchronousZoneCount(), ecorePackage.getEInt(), "asynchronousZoneCount", null, 1, 1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExecutionFlow_TaskNodes(), this.getTaskNode(), null, "taskNodes", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getExecutionFlow_TaskGraphs(), this.getTaskGraph(), null, "taskGraphs", null, 0, -1, ExecutionFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = addEOperation(executionFlowEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getETreeIterator());
+		EGenericType g2 = createEGenericType(this.getNode());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		initEClass(graphEClass, Graph.class, "Graph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGraph_Nodes(), this.getNode(), this.getNode_Graph(), "nodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_InitialNodes(), this.getNode(), null, "initialNodes", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getGraph_Edges(), this.getEdge(), this.getEdge_Graph(), "edges", null, 0, -1, Graph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(graphEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getETreeIterator());
-		EGenericType g2 = createEGenericType(this.getNode());
+		op = addEOperation(graphEClass, null, "getAllNodes", 1, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getETreeIterator());
+		g2 = createEGenericType(this.getNode());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
@@ -935,7 +941,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEAttribute(getComponentNode_AsynchronousZone(), ecorePackage.getEInt(), "asynchronousZone", "-1", 0, 1, ComponentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(latchNodeEClass, LatchNode.class, "LatchNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLatchNode_TaskNodes(), this.getTaskNode(), this.getTaskNode_LatchNodes(), "taskNodes", null, 0, -1, LatchNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLatchNode_TaskNodes(), this.getTaskGraph(), this.getTaskGraph_LatchNodes(), "taskNodes", null, 0, -1, LatchNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compoundNodeEClass, CompoundNode.class, "CompoundNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompoundNode_Compound(), theDMLPackage.getCompound(), null, "compound", null, 1, 1, CompoundNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -946,12 +952,12 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEClass(subsystemNodeEClass, SubsystemNode.class, "SubsystemNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubsystemNode_Subsystem(), theDMLPackage.getSubsystem(), null, "subsystem", null, 1, 1, SubsystemNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(taskNodeEClass, TaskNode.class, "TaskNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTaskNode_InputNodes(), this.getTaskInputNode(), this.getTaskInputNode_TaskNode(), "inputNodes", null, 0, -1, TaskNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTaskNode_LatchNodes(), this.getLatchNode(), this.getLatchNode_TaskNodes(), "latchNodes", null, 0, -1, TaskNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(taskGraphEClass, TaskGraph.class, "TaskGraph", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTaskGraph_InputNodes(), this.getTaskInputNode(), this.getTaskInputNode_TaskGraph(), "inputNodes", null, 0, -1, TaskGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTaskGraph_LatchNodes(), this.getLatchNode(), this.getLatchNode_TaskNodes(), "latchNodes", null, 0, -1, TaskGraph.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(taskInputNodeEClass, TaskInputNode.class, "TaskInputNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTaskInputNode_TaskNode(), this.getTaskNode(), this.getTaskNode_InputNodes(), "taskNode", null, 1, 1, TaskInputNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTaskInputNode_TaskGraph(), this.getTaskGraph(), this.getTaskGraph_InputNodes(), "taskGraph", null, 1, 1, TaskInputNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(edgeEClass, Edge.class, "Edge", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEdge_Graph(), this.getGraph(), this.getGraph_Edges(), "graph", null, 1, 1, Edge.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

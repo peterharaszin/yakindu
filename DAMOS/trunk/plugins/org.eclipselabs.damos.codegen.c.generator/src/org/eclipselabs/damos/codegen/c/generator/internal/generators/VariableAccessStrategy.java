@@ -60,6 +60,14 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	 */
 	static String getInputVariableAccessString(Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputVariableDeclaration inputVariableDeclaration) {
 		int index = DMLUtil.indexOf(inputVariableDeclaration);
+		
+		if (!block.getInputSockets().isEmpty()) {
+			if (index == 0) {
+				return variableAccessor.getMessageKindVariable(false);
+			}
+			--index;
+		}
+		
 		BlockInput blockInput = (BlockInput) block.getInputs().get(index);
 		if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 			return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());

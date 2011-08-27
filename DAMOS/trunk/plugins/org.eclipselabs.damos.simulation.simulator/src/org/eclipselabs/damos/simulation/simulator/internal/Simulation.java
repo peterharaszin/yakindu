@@ -24,7 +24,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
@@ -129,9 +129,9 @@ public class Simulation implements ISimulation {
 		if (runnable.getComponent() != null) {
 			URI componentURI = EcoreUtil.getURI(runnable.getComponent());
 			ComponentNode componentNode = cachedNodes.get(componentURI);
-			if (componentNode != null && componentNode.getGraph() instanceof TaskNode) {
-				TaskNode taskNode = (TaskNode) componentNode.getGraph();
-				return (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+			if (componentNode != null && componentNode.getGraph() instanceof TaskGraph) {
+				TaskGraph taskGraph = (TaskGraph) componentNode.getGraph();
+				return (Task) EcoreUtil.getAdapter(taskGraph.eAdapters(), Task.class);
 			}
 		}
 		return null;
@@ -146,8 +146,8 @@ public class Simulation implements ISimulation {
 				if (cachedNodes == null) {
 					cachedNodes = new HashMap<URI, ComponentNode>();
 					cachedAgents = new HashMap<URI, ISimulationAgent>();
-					for (TaskNode taskNode : context.getExecutionFlow().getTaskNodes()) {
-						cache(taskNode);
+					for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+						cache(taskGraph);
 					}
 					cache(context.getExecutionFlow().getGraph());
 				}

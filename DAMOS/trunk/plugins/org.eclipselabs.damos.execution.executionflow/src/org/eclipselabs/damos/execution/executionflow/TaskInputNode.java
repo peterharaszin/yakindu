@@ -15,7 +15,7 @@ package org.eclipselabs.damos.execution.executionflow;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskNode <em>Task Node</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskGraph <em>Task Graph</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,30 +26,30 @@ package org.eclipselabs.damos.execution.executionflow;
 public interface TaskInputNode extends Node {
 
 	/**
-	 * Returns the value of the '<em><b>Task Node</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.TaskNode#getInputNodes <em>Input Nodes</em>}'.
+	 * Returns the value of the '<em><b>Task Graph</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.TaskGraph#getInputNodes <em>Input Nodes</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Task Node</em>' container reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Task Node</em>' container reference.
-	 * @see #setTaskNode(TaskNode)
-	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getTaskInputNode_TaskNode()
-	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode#getInputNodes
+	 * @return the value of the '<em>Task Graph</em>' container reference.
+	 * @see #setTaskGraph(TaskGraph)
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getTaskInputNode_TaskGraph()
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskGraph#getInputNodes
 	 * @model opposite="inputNodes" required="true" transient="false"
 	 * @generated
 	 */
-	TaskNode getTaskNode();
+	TaskGraph getTaskGraph();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskNode <em>Task Node</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.TaskInputNode#getTaskGraph <em>Task Graph</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Task Node</em>' container reference.
-	 * @see #getTaskNode()
+	 * @param value the new value of the '<em>Task Graph</em>' container reference.
+	 * @see #getTaskGraph()
 	 * @generated
 	 */
-	void setTaskNode(TaskNode value);
+	void setTaskGraph(TaskGraph value);
 } // TaskInputNode

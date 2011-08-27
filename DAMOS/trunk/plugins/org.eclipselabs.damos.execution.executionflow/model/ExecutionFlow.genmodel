@@ -13,7 +13,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/graph"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/dataFlows"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionFlow.ecore#//ExecutionFlow/asynchronousZoneCount"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/taskNodes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//ExecutionFlow/taskGraphs"/>
+      <genOperations ecoreOperation="ExecutionFlow.ecore#//ExecutionFlow/getAllNodes"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//Graph">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Graph/nodes"/>
@@ -60,12 +61,12 @@
     <genClasses ecoreClass="ExecutionFlow.ecore#//SubsystemNode">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//SubsystemNode/subsystem"/>
     </genClasses>
-    <genClasses ecoreClass="ExecutionFlow.ecore#//TaskNode">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//TaskNode/inputNodes"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//TaskNode/latchNodes"/>
+    <genClasses ecoreClass="ExecutionFlow.ecore#//TaskGraph">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//TaskGraph/inputNodes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//TaskGraph/latchNodes"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//TaskInputNode">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//TaskInputNode/taskNode"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//TaskInputNode/taskGraph"/>
     </genClasses>
     <genClasses ecoreClass="ExecutionFlow.ecore#//Edge">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ExecutionFlow.ecore#//Edge/graph"/>

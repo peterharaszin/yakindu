@@ -48,7 +48,9 @@ import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
 import org.eclipselabs.mscript.language.util.LanguageUtil;
 import org.eclipselabs.mscript.typesystem.ArrayType;
 import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.mscript.typesystem.IntegerType;
 import org.eclipselabs.mscript.typesystem.TensorType;
+import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
 import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
@@ -182,6 +184,13 @@ public class BehavioredBlockHelper {
 
 	public List<DataType> getInputParameterDataTypes(FunctionDefinition functionDefinition, IComponentSignature signature, MultiStatus status) {
 		List<DataType> dataTypes = new ArrayList<DataType>();
+
+		if (!block.getInputSockets().isEmpty()) {
+			IntegerType messageKindDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
+			messageKindDataType.setUnit(TypeSystemUtil.createUnit());
+			dataTypes.add(messageKindDataType);
+		}
+		
 		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDefinition.getInputParameterDeclarations().iterator();
 		for (Input input : block.getInputs()) {
 			BlockInput blockInput = (BlockInput) input;

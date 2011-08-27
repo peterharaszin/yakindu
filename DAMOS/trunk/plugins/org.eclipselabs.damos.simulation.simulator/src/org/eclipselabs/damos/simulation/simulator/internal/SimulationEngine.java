@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
@@ -80,8 +80,8 @@ public class SimulationEngine implements ISimulationEngine {
 			SimulationManager.getInstance().fireSimulationEvent(new SimulationEvent(this, simulation, SimulationEvent.START));
 			
 			// Start tasks
-			for (TaskNode taskNode : context.getExecutionFlow().getTaskNodes()) {
-				Task task = (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+				Task task = (Task) EcoreUtil.getAdapter(taskGraph.eAdapters(), Task.class);
 				if (task != null) {
 					task.start();
 				}
@@ -125,8 +125,8 @@ public class SimulationEngine implements ISimulationEngine {
 			simulation.takeRunnables();
 			
 			// Stop tasks
-			for (TaskNode taskNode : context.getExecutionFlow().getTaskNodes()) {
-				Task task = (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+			for (TaskGraph taskGraph : context.getExecutionFlow().getTaskGraphs()) {
+				Task task = (Task) EcoreUtil.getAdapter(taskGraph.eAdapters(), Task.class);
 				if (task != null) {
 					task.interrupt();
 				}

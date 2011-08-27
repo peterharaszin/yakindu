@@ -70,7 +70,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
 		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(
 				functionDefinition, signature, status);
-
+		
 		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
 		}

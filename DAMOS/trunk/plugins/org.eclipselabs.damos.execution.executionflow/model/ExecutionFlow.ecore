@@ -4,6 +4,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="executionflow"
     nsURI="http://www.eclipselabs.org/damos/ExecutionFlow/1.0.0" nsPrefix="executionflow">
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionFlow">
+    <eOperations name="getAllNodes" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ETreeIterator">
+        <eTypeArguments eClassifier="#//Node"/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFragment" ordered="false"
         lowerBound="1" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="#//Graph"
@@ -12,8 +17,8 @@
         upperBound="-1" eType="#//DataFlow" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="asynchronousZoneCount"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="taskNodes" upperBound="-1"
-        eType="#//TaskNode" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskGraphs" upperBound="-1"
+        eType="#//TaskGraph" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Graph">
     <eOperations name="getAllNodes" lowerBound="1">
@@ -66,7 +71,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LatchNode" eSuperTypes="#//ComponentNode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="taskNodes" upperBound="-1"
-        eType="#//TaskNode" eOpposite="#//TaskNode/latchNodes"/>
+        eType="#//TaskGraph" eOpposite="#//TaskGraph/latchNodes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompoundNode" eSuperTypes="#//Subgraph">
     <eStructuralFeatures xsi:type="ecore:EReference" name="compound" lowerBound="1"
@@ -79,15 +84,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TaskNode" eSuperTypes="#//Graph">
+  <eClassifiers xsi:type="ecore:EClass" name="TaskGraph" eSuperTypes="#//Graph">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputNodes" upperBound="-1"
-        eType="#//TaskInputNode" containment="true" eOpposite="#//TaskInputNode/taskNode"/>
+        eType="#//TaskInputNode" containment="true" eOpposite="#//TaskInputNode/taskGraph"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="latchNodes" upperBound="-1"
         eType="#//LatchNode" eOpposite="#//LatchNode/taskNodes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskInputNode" eSuperTypes="#//Node">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="taskNode" lowerBound="1"
-        eType="#//TaskNode" eOpposite="#//TaskNode/inputNodes"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="taskGraph" lowerBound="1"
+        eType="#//TaskGraph" eOpposite="#//TaskGraph/inputNodes"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Edge">
     <eStructuralFeatures xsi:type="ecore:EReference" name="graph" lowerBound="1" eType="#//Graph"

@@ -26,8 +26,8 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -155,10 +155,10 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ExecutionFlowPackage.TASK_NODE: {
-				TaskNode taskNode = (TaskNode)theEObject;
-				T result = caseTaskNode(taskNode);
-				if (result == null) result = caseGraph(taskNode);
+			case ExecutionFlowPackage.TASK_GRAPH: {
+				TaskGraph taskGraph = (TaskGraph)theEObject;
+				T result = caseTaskGraph(taskGraph);
+				if (result == null) result = caseGraph(taskGraph);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -354,17 +354,17 @@ public class ExecutionFlowSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Task Node</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Task Graph</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Task Node</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Task Graph</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTaskNode(TaskNode object) {
+	public T caseTaskGraph(TaskGraph object) {
 		return null;
 	}
 

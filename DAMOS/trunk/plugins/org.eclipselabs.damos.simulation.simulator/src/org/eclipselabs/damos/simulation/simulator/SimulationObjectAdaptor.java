@@ -24,7 +24,7 @@ import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
@@ -41,8 +41,8 @@ public class SimulationObjectAdaptor {
 		List<Component> missingSimulationObjectComponents = new ArrayList<Component>();
 		
 		ExecutionFlow executionFlow = context.getExecutionFlow();
-		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
-			adaptSimulationObjects(context, taskNode, missingSimulationObjectComponents);
+		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+			adaptSimulationObjects(context, taskGraph, missingSimulationObjectComponents);
 		}
 		adaptSimulationObjects(context, executionFlow.getGraph(), missingSimulationObjectComponents);
 		

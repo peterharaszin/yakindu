@@ -25,8 +25,8 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,7 +79,7 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 			case ExecutionFlowPackage.COMPOUND_NODE: return createCompoundNode();
 			case ExecutionFlowPackage.ACTION_NODE: return createActionNode();
 			case ExecutionFlowPackage.SUBSYSTEM_NODE: return createSubsystemNode();
-			case ExecutionFlowPackage.TASK_NODE: return createTaskNode();
+			case ExecutionFlowPackage.TASK_GRAPH: return createTaskGraph();
 			case ExecutionFlowPackage.TASK_INPUT_NODE: return createTaskInputNode();
 			case ExecutionFlowPackage.EDGE: return createEdge();
 			case ExecutionFlowPackage.DATA_FLOW: return createDataFlow();
@@ -166,9 +166,9 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TaskNode createTaskNode() {
-		TaskNodeImpl taskNode = new TaskNodeImpl();
-		return taskNode;
+	public TaskGraph createTaskGraph() {
+		TaskGraphImpl taskGraph = new TaskGraphImpl();
+		return taskGraph;
 	}
 
 	/**

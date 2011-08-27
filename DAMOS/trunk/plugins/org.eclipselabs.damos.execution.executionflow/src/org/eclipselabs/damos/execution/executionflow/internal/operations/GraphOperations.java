@@ -12,7 +12,6 @@
 package org.eclipselabs.damos.execution.executionflow.internal.operations;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 import org.eclipse.emf.common.util.AbstractTreeIterator;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -25,21 +24,6 @@ import org.eclipselabs.damos.execution.executionflow.Node;
  */
 public class GraphOperations {
 
-	private static final Iterator<Node> EMPTY_NODE_ITERATOR = new Iterator<Node>() {
-
-		public boolean hasNext() {
-			return false;
-		}
-
-		public Node next() {
-			throw new NoSuchElementException();
-		}
-
-		public void remove() {
-		}
-		
-	};
-
 	public static TreeIterator<Node> getAllNodes(Graph graph) {
 		return new AbstractTreeIterator<Node>(graph, false) {
 
@@ -50,7 +34,7 @@ public class GraphOperations {
 				if (object instanceof Graph) {
 					return ((Graph) object).getNodes().iterator();
 				}
-				return EMPTY_NODE_ITERATOR;
+				return ExecutionFlowOperations.EMPTY_NODE_ITERATOR;
 			}
 			
 		};

@@ -50,6 +50,8 @@
       <genOperations ecoreOperation="DML.ecore#//Component/getFirstOutputPort"/>
       <genOperations ecoreOperation="DML.ecore#//Component/getPrimaryInputPorts"/>
       <genOperations ecoreOperation="DML.ecore#//Component/getPrimaryOutputPorts"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getInputSockets"/>
+      <genOperations ecoreOperation="DML.ecore#//Component/getOutputSockets"/>
       <genOperations ecoreOperation="DML.ecore#//Component/isSource"/>
       <genOperations ecoreOperation="DML.ecore#//Component/isSink"/>
       <genOperations ecoreOperation="DML.ecore#//Component/isTimingConstraintApplicable">

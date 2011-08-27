@@ -292,7 +292,15 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private void writeInputVariables(PrintAppendable out) {
 		Iterator<Input> inputIterator = getComponent().getInputs().iterator();
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(out, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
+		
+		boolean skip = !getComponent().getInputSockets().isEmpty();
+		
 		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
+			if (skip) {
+				skip = false;
+				continue;
+			}
+			
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
 				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getDataType();

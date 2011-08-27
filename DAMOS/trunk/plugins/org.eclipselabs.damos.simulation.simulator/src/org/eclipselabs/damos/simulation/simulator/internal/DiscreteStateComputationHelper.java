@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
@@ -140,8 +140,8 @@ public class DiscreteStateComputationHelper {
 		for (DataFlowTargetEnd targetEnd : sourceEnd.getDataFlow().getTargetEnds()) {
 			if (targetEnd.getNode() instanceof TaskInputNode) {
 				TaskInputNode taskInputNode = (TaskInputNode) targetEnd.getNode();
-				TaskNode taskNode = taskInputNode.getTaskNode();
-				Task task = (Task) EcoreUtil.getAdapter(taskNode.eAdapters(), Task.class);
+				TaskGraph taskGraph = taskInputNode.getTaskGraph();
+				Task task = (Task) EcoreUtil.getAdapter(taskGraph.eAdapters(), Task.class);
 				if (task != null) {
 					task.sendValue(taskInputNode, value);
 				}

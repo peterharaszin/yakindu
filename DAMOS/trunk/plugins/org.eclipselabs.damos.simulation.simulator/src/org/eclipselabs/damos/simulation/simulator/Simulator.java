@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
@@ -76,8 +76,8 @@ public class Simulator {
 			return;
 		}
 		
-		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
-			taskNode.eAdapters().add(new Task(simulation, taskNode));
+		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+			taskGraph.eAdapters().add(new Task(simulation, taskGraph));
 		}
 
 		ISolverDescriptor solverDescriptor = ISolverRegistry.INSTANCE.getSolver(simulationModel.getSolverId());
@@ -132,8 +132,8 @@ public class Simulator {
 	}
 
 	private void initialize(ISimulation simulation, ExecutionFlow executionFlow, Map<Component, IComponentSignature> signatures, IProgressMonitor monitor) throws CoreException {
-		for (TaskNode taskNode : executionFlow.getTaskNodes()) {
-			initialize(simulation, taskNode, signatures, monitor);
+		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {
+			initialize(simulation, taskGraph, signatures, monitor);
 		}
 		initialize(simulation, executionFlow.getGraph(), signatures, monitor);
 	}

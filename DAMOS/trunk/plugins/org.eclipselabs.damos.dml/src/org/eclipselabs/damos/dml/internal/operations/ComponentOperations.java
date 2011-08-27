@@ -8,6 +8,7 @@ package org.eclipselabs.damos.dml.internal.operations;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
@@ -160,6 +161,32 @@ public class ComponentOperations {
 			return ECollections.unmodifiableEList(outputs.get(0).getPorts());
 		}
 		return ECollections.emptyEList();
+	}
+	
+	public static EList<Input> getInputSockets(Component component) {
+		EList<Input> inputSockets = null;
+		for (Input input : component.getInputs()) {
+			if (input.isSocket()) {
+				if (inputSockets == null) {
+					inputSockets = new BasicEList<Input>();
+				}
+				inputSockets.add(input);
+			}
+		}
+		return inputSockets != null ? inputSockets : ECollections.<Input>emptyEList();
+	}
+
+	public static EList<Output> getOutputSockets(Component component) {
+		EList<Output> outputSockets = null;
+		for (Output output : component.getOutputs()) {
+			if (output.isSocket()) {
+				if (outputSockets == null) {
+					outputSockets = new BasicEList<Output>();
+				}
+				outputSockets.add(output);
+			}
+		}
+		return outputSockets != null ? outputSockets : ECollections.<Output>emptyEList();
 	}
 
 	/**

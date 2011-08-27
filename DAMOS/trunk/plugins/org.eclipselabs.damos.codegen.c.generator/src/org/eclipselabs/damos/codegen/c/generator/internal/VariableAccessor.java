@@ -15,12 +15,15 @@ import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
 import org.eclipselabs.damos.dml.Inport;
+import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 
 /**
@@ -67,7 +70,12 @@ public class VariableAccessor implements IVariableAccessor {
 		DataFlowTargetEnd targetEnd = node.getIncomingDataFlow(inputPort);
 		DataFlowSourceEnd sourceEnd = targetEnd.getDataFlow().getSourceEnd();
 		if (sourceEnd.getNode() instanceof TaskInputNode) {
-			return InternalGeneratorUtil.getTaskInputVariableName(genModel, (TaskInputNode) sourceEnd.getNode());
+			TaskInputNode inputNode = (TaskInputNode) sourceEnd.getNode();
+			Input input = inputPort.getInput();
+			if (input.isSocket()) {
+				return InternalGeneratorUtil.getTaskName(genModel, inputNode.getTaskGraph()) + "_message.data." + input.getName();
+			}
+			return InternalGeneratorUtil.getTaskInputVariableName(genModel, inputNode);
 		}
 		OutputPort sourcePort = (OutputPort) sourceEnd.getConnector();
 		return getOutputVariable(sourcePort, pointer, sourceEnd.getNode());
@@ -99,5 +107,18 @@ public class VariableAccessor implements IVariableAccessor {
 		}
 		return sb.toString();
 	}
-
+	
+	public String getMessageKindVariable(boolean pointer) {
+		StringBuilder sb = new StringBuilder();
+		if (pointer) {
+			sb.append("(&");
+		}
+		sb.append(InternalGeneratorUtil.getTaskName(genModel, DMLUtil.getOwner(node, TaskGraph.class)));
+		sb.append("_message.kind");
+		if (pointer) {
+			sb.append(")");
+		}
+		return sb.toString();
+	}
+	
 }

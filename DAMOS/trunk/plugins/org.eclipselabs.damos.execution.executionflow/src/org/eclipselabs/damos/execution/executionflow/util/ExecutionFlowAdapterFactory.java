@@ -27,8 +27,8 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
 import org.eclipselabs.damos.execution.executionflow.Subgraph;
 import org.eclipselabs.damos.execution.executionflow.SubsystemNode;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,8 +123,8 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 				return createSubsystemNodeAdapter();
 			}
 			@Override
-			public Adapter caseTaskNode(TaskNode object) {
-				return createTaskNodeAdapter();
+			public Adapter caseTaskGraph(TaskGraph object) {
+				return createTaskGraphAdapter();
 			}
 			@Override
 			public Adapter caseTaskInputNode(TaskInputNode object) {
@@ -305,16 +305,16 @@ public class ExecutionFlowAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.execution.executionflow.TaskNode <em>Task Node</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.execution.executionflow.TaskGraph <em>Task Graph</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.execution.executionflow.TaskNode
+	 * @see org.eclipselabs.damos.execution.executionflow.TaskGraph
 	 * @generated
 	 */
-	public Adapter createTaskNodeAdapter() {
+	public Adapter createTaskGraphAdapter() {
 		return null;
 	}
 

@@ -11,6 +11,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -22,7 +23,9 @@ import org.eclipselabs.damos.execution.executionflow.DataFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage;
 import org.eclipselabs.damos.execution.executionflow.Graph;
-import org.eclipselabs.damos.execution.executionflow.TaskNode;
+import org.eclipselabs.damos.execution.executionflow.Node;
+import org.eclipselabs.damos.execution.executionflow.TaskGraph;
+import org.eclipselabs.damos.execution.executionflow.internal.operations.ExecutionFlowOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +38,7 @@ import org.eclipselabs.damos.execution.executionflow.TaskNode;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getDataFlows <em>Data Flows</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getTaskNodes <em>Task Nodes</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.ExecutionFlowImpl#getTaskGraphs <em>Task Graphs</em>}</li>
  * </ul>
  * </p>
  *
@@ -93,14 +96,14 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	protected int asynchronousZoneCount = ASYNCHRONOUS_ZONE_COUNT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTaskNodes() <em>Task Nodes</em>}' containment reference list.
+	 * The cached value of the '{@link #getTaskGraphs() <em>Task Graphs</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTaskNodes()
+	 * @see #getTaskGraphs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TaskNode> taskNodes;
+	protected EList<TaskGraph> taskGraphs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -240,11 +243,20 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TaskNode> getTaskNodes() {
-		if (taskNodes == null) {
-			taskNodes = new EObjectContainmentEList<TaskNode>(TaskNode.class, this, ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES);
+	public EList<TaskGraph> getTaskGraphs() {
+		if (taskGraphs == null) {
+			taskGraphs = new EObjectContainmentEList<TaskGraph>(TaskGraph.class, this, ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS);
 		}
-		return taskNodes;
+		return taskGraphs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public TreeIterator<Node> getAllNodes() {
+		return ExecutionFlowOperations.getAllNodes(this);
 	}
 
 	/**
@@ -259,8 +271,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return basicSetGraph(null, msgs);
 			case ExecutionFlowPackage.EXECUTION_FLOW__DATA_FLOWS:
 				return ((InternalEList<?>)getDataFlows()).basicRemove(otherEnd, msgs);
-			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
-				return ((InternalEList<?>)getTaskNodes()).basicRemove(otherEnd, msgs);
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
+				return ((InternalEList<?>)getTaskGraphs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -282,8 +294,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return getDataFlows();
 			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
 				return getAsynchronousZoneCount();
-			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
-				return getTaskNodes();
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
+				return getTaskGraphs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,9 +322,9 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
 				setAsynchronousZoneCount((Integer)newValue);
 				return;
-			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
-				getTaskNodes().clear();
-				getTaskNodes().addAll((Collection<? extends TaskNode>)newValue);
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
+				getTaskGraphs().clear();
+				getTaskGraphs().addAll((Collection<? extends TaskGraph>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -338,8 +350,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
 				setAsynchronousZoneCount(ASYNCHRONOUS_ZONE_COUNT_EDEFAULT);
 				return;
-			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
-				getTaskNodes().clear();
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
+				getTaskGraphs().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -361,8 +373,8 @@ public class ExecutionFlowImpl extends EObjectImpl implements ExecutionFlow {
 				return dataFlows != null && !dataFlows.isEmpty();
 			case ExecutionFlowPackage.EXECUTION_FLOW__ASYNCHRONOUS_ZONE_COUNT:
 				return asynchronousZoneCount != ASYNCHRONOUS_ZONE_COUNT_EDEFAULT;
-			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_NODES:
-				return taskNodes != null && !taskNodes.isEmpty();
+			case ExecutionFlowPackage.EXECUTION_FLOW__TASK_GRAPHS:
+				return taskGraphs != null && !taskGraphs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.execution.executionflow;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Fragment;
 
@@ -22,7 +23,7 @@ import org.eclipselabs.damos.dml.Fragment;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getDataFlows <em>Data Flows</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getAsynchronousZoneCount <em>Asynchronous Zone Count</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskNodes <em>Task Nodes</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.ExecutionFlow#getTaskGraphs <em>Task Graphs</em>}</li>
  * </ul>
  * </p>
  *
@@ -126,19 +127,27 @@ public interface ExecutionFlow extends EObject {
 	void setAsynchronousZoneCount(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Task Nodes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionflow.TaskNode}.
+	 * Returns the value of the '<em><b>Task Graphs</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionflow.TaskGraph}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Task Nodes</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Task Nodes</em>' containment reference list.
-	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getExecutionFlow_TaskNodes()
+	 * @return the value of the '<em>Task Graphs</em>' containment reference list.
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getExecutionFlow_TaskGraphs()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<TaskNode> getTaskNodes();
+	EList<TaskGraph> getTaskGraphs();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" required="true"
+	 * @generated
+	 */
+	TreeIterator<Node> getAllNodes();
 
 } // ExecutionFlow

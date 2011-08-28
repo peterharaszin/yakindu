@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.library.base.ui.logic.editparts;
 
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipselabs.damos.diagram.ui.figures.RectangularComponentFigure;
 import org.eclipselabs.damos.library.base.logic.util.CompareConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.ArgumentValueBlockEditPart;
 
@@ -34,6 +35,24 @@ public class CompareEditPart extends ArgumentValueBlockEditPart {
 	@Override
 	protected String getParameterName() {
 		return CompareConstants.PARAMETER__OPERATOR;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.RectangularComponentEditPart#createRectangularFigure()
+	 */
+	@Override
+	protected RectangularComponentFigure createRectangularComponentFigure() {
+		return new RectangularComponentFigure() {
+			
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.damos.diagram.ui.figures.RectangularComponentFigure#hasTopLeftMarker()
+			 */
+			@Override
+			protected boolean hasTopLeftMarker() {
+				return true;
+			}
+			
+		};
 	}
 
 }

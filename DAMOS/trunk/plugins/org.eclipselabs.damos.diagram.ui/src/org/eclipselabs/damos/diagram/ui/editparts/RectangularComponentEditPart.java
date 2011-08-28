@@ -32,6 +32,13 @@ public class RectangularComponentEditPart extends StandardComponentEditPart {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#createMainFigure()
 	 */
 	protected NodeFigure createMainFigure() {
+		return createRectangularComponentFigure();
+	}
+
+	/**
+	 * @return
+	 */
+	protected RectangularComponentFigure createRectangularComponentFigure() {
 		return new RectangularComponentFigure();
 	}
 

@@ -32,7 +32,7 @@ public abstract class ArgumentValueBlockEditPart extends LabeledRectangularBlock
 		super(view);
 	}
 
-	protected String getLabel() {
+	protected String getText() {
 		Block block = (Block) resolveSemanticElement();
 		if (block != null) {
 			Argument argument = block.getArgument(getParameterName());
@@ -54,7 +54,7 @@ public abstract class ArgumentValueBlockEditPart extends LabeledRectangularBlock
 		if (notifier instanceof Argument) {
 			String parameterName = ((Argument) notifier).getParameter().getName();
 			if (getParameterName().equals(parameterName)) {
-				refreshLabel();
+				refreshText();
 			}
 		}
 		super.handleNotificationEvent(notification);

@@ -39,13 +39,13 @@ public class LabeledRectangularBlockEditPart extends LabeledRectangularComponent
 		return new BlockEditPartDelegate(this);
 	}
 	
-	protected String getLabel() {
-		String label = "";
+	protected String getText() {
+		String text = "";
 		EObject o = ViewUtil.resolveSemanticElement((View) getModel());
 		if (o instanceof Block) {
-			label = ((Block) o).getType().getName().trim();
+			text = ((Block) o).getType().getName().trim();
 		}
-		return label.length() == 0 ? super.getLabel() : label;
+		return text.length() == 0 ? super.getText() : text;
 	}
 	
 }

@@ -110,6 +110,11 @@
             name="Discrete Derivative">
       </editPart>
       <editPart
+            blockType="org.eclipselabs.damos.library.base.discrete.Counter"
+            class="org.eclipselabs.damos.library.base.ui.discrete.editparts.CounterEditPart"
+            name="Counter">
+      </editPart>
+      <editPart
             blockType="org.eclipselabs.damos.library.base.logic.And"
             class="org.eclipselabs.damos.library.base.ui.logic.editparts.AndEditPart"
             name="And">
@@ -205,6 +210,11 @@
             blockType="org.eclipselabs.damos.library.base.discontinuities.Saturation"
             icon16="icons/discontinuities/Saturation16.png"
             icon24="icons/discontinuities/Saturation24.png">
+      </image>
+      <image
+            blockType="org.eclipselabs.damos.library.base.discrete.Counter"
+            icon16="icons/discrete/Counter16.png"
+            icon24="icons/discrete/Counter24.png">
       </image>
       <image
             blockType="org.eclipselabs.damos.library.base.discrete.Delay"

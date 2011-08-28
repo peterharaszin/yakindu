@@ -26,7 +26,7 @@ import org.eclipselabs.damos.dml.BlockType;
  */
 public class LabeledRectangularComponentEditPart extends RectangularComponentEditPart {
 
-	private Label labelFigure;
+	private Label label;
 	
 	/**
 	 * 
@@ -37,11 +37,11 @@ public class LabeledRectangularComponentEditPart extends RectangularComponentEdi
 	
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		refreshLabel();
+		refreshText();
 	}
 
-	protected void refreshLabel() {
-		labelFigure.setText(getLabel());
+	protected void refreshText() {
+		label.setText(getText());
 	}
 	
 	/* (non-Javadoc)
@@ -49,24 +49,31 @@ public class LabeledRectangularComponentEditPart extends RectangularComponentEdi
 	 */
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = super.createMainFigure();
-		labelFigure = new FontColorAwareLabel();
-		figure.add(labelFigure);
+		label = createLabel();
+		figure.add(label);
 		return figure;
 	}
+
+	/**
+	 * @return
+	 */
+	protected FontColorAwareLabel createLabel() {
+		return new FontColorAwareLabel();
+	}
 	
-	protected String getLabel() {
-		String label = null;
+	protected String getText() {
+		String text = null;
 		EObject o = ViewUtil.resolveSemanticElement((View) getModel());
 		if (o instanceof Block) {
 			BlockType blockType = ((Block) o).getType();
 			if (blockType != null) {
-				label = blockType.getName();
+				text = blockType.getName();
 			}
 		}
-		if (label == null && o != null) {
-			label = o.eClass().getName();
+		if (text == null && o != null) {
+			text = o.eClass().getName();
 		}
-		return label != null ? label : "Block";
+		return text != null ? text : "Block";
 	}
 	
 }

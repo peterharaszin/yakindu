@@ -183,7 +183,7 @@ public abstract class AbstractRegistryReader {
 		return value;
 	}
 
-	public <T> T createExecutableExtension(IConfigurationElement element, String attributeName, Class<T> clazz) {
+	protected <T> T createExecutableExtension(IConfigurationElement element, String attributeName, Class<T> clazz) {
         try {
 			Object o = element.createExecutableExtension(attributeName);
 			if (clazz.isInstance(o)) {
@@ -195,6 +195,10 @@ public abstract class AbstractRegistryReader {
 			logError(element, "Specified class in attribute '" + attributeName + "' could not be created", e);
 		}
 		return null;
+	}
+	
+	protected <T> IExecutableExtensionProvider<T> getExecutableExtensionProviderFor(IConfigurationElement element, String attributeName, Class<T> clazz) {
+		return new ExecutableExtensionProvider<T>(attributeName, clazz, element);
 	}
 
 	/**
@@ -237,5 +241,28 @@ public abstract class AbstractRegistryReader {
 
 		return candidateChildren[0].getAttribute(IRegistryConstants.ATT_CLASS);
 	}
+
+	private class ExecutableExtensionProvider<T> implements IExecutableExtensionProvider<T> {
 		
+		private final String attributeName;
+		private final Class<T> clazz;
+		private final IConfigurationElement element;
+	
+		/**
+		 * @param attributeName
+		 * @param clazz
+		 * @param element
+		 */
+		private ExecutableExtensionProvider(String attributeName, Class<T> clazz, IConfigurationElement element) {
+			this.attributeName = attributeName;
+			this.clazz = clazz;
+			this.element = element;
+		}
+	
+		public T createExecutableExtension() {
+			return AbstractRegistryReader.this.createExecutableExtension(element, attributeName, clazz);
+		}
+		
+	}
+	
 }

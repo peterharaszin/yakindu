@@ -28,10 +28,22 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ArrayContentProvider;
+import org.eclipse.jface.viewers.ComboViewer;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -42,7 +54,10 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
+import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLFactory;
+import org.eclipselabs.damos.dml.registry.BlockFamilyRegistry;
+import org.eclipselabs.damos.dml.registry.IBlockFamilyDescriptor;
 import org.eclipselabs.damos.dml.ui.DMLUIPlugin;
 
 
@@ -78,6 +93,8 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected BlockTypeModelWizardNewFileCreationPage newFileCreationPage;
+	
+	private BlockTypeWizardBlockFamilySelectionPage blockFamilySelectionPage;
 
 	/**
 	 * Remember the selection during initialization for populating the default container.
@@ -115,7 +132,15 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		return DMLFactory.eINSTANCE.createBlockType();
+		IBlockFamilyDescriptor blockFamily = blockFamilySelectionPage.getBlockFamily();
+		BlockType blockType;
+		if (blockFamily.getBlockTypeFactory() != null) {
+			blockType = blockFamily.getBlockTypeFactory().createBlockType();
+		} else {
+			blockType = DMLFactory.eINSTANCE.createBlockType();
+		}
+		blockType.setFamilyId(blockFamily.getId());
+		return blockType;
 	}
 
 	/**
@@ -256,6 +281,102 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 		}
 	}
 
+	private static class BlockTypeWizardBlockFamilySelectionPage extends WizardPage {
+
+		private ComboViewer blockFamilyViewer;
+		
+		/**
+		 * 
+		 */
+		public BlockTypeWizardBlockFamilySelectionPage() {
+			super("Block Family Selection");
+		}
+		
+		public void createControl(Composite parent) {
+			initializeDialogUnits(parent);
+			
+			// top level group
+			Composite topLevel = new Composite(parent, SWT.NONE);
+			GridLayout gridLayout = new GridLayout(2, false);
+			topLevel.setLayout(gridLayout);
+			topLevel.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_FILL | GridData.HORIZONTAL_ALIGN_FILL));
+			topLevel.setFont(parent.getFont());
+
+			Label label = new Label(topLevel, SWT.NONE);
+			label.setText("Block Family:");
+			label.setLayoutData(new GridData());
+			
+			blockFamilyViewer = new ComboViewer(topLevel, SWT.SINGLE | SWT.BORDER | SWT.READ_ONLY);
+			blockFamilyViewer.getCombo().setLayoutData(new GridData(GridData.FILL, GridData.BEGINNING, true, false));
+			blockFamilyViewer.setLabelProvider(new LabelProvider() {
+				
+				/* (non-Javadoc)
+				 * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+				 */
+				@Override
+				public String getText(Object element) {
+					if (element instanceof IBlockFamilyDescriptor) {
+						return ((IBlockFamilyDescriptor) element).getName();
+					}
+					return super.getText(element);
+				}
+				
+			});
+			blockFamilyViewer.setContentProvider(new ArrayContentProvider());
+			blockFamilyViewer.setInput(BlockFamilyRegistry.getInstance().getBlockFamilies());
+			blockFamilyViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+				
+				public void selectionChanged(SelectionChangedEvent event) {
+					updatePageComplete();
+				}
+				
+			});
+			
+			setErrorMessage(null);
+			setMessage(null);
+
+			setControl(topLevel);
+			
+			updatePageComplete();
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipse.jface.dialogs.DialogPage#setVisible(boolean)
+		 */
+		@Override
+		public void setVisible(boolean visible) {
+			if (visible) {
+				Combo combo = blockFamilyViewer.getCombo();
+				if (combo.getSelectionIndex() == -1) {
+					combo.select(0);
+					updatePageComplete();
+				}
+			}
+			super.setVisible(visible);
+		}
+
+		/**
+		 * @return
+		 */
+		public IBlockFamilyDescriptor getBlockFamily() {
+			return (IBlockFamilyDescriptor) ((IStructuredSelection) blockFamilyViewer.getSelection()).getFirstElement();
+		}
+
+		/**
+		 * 
+		 */
+		private void updatePageComplete() {
+			setErrorMessage(null);
+			setPageComplete(true);
+
+			if (!(getBlockFamily() instanceof IBlockFamilyDescriptor)) {
+				setPageComplete(false);
+				return;
+			}
+		}
+		
+	}
+	
 	/**
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
@@ -271,6 +392,11 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 		newFileCreationPage.setDescription(DMLUIPlugin.INSTANCE.getString("_UI_BlockTypeModelWizard_description"));
 		newFileCreationPage.setFileName(DMLUIPlugin.INSTANCE.getString("_UI_BlockTypeEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
+		
+		blockFamilySelectionPage = new BlockTypeWizardBlockFamilySelectionPage();
+		blockFamilySelectionPage.setTitle("Block Family");
+		blockFamilySelectionPage.setDescription("Specify the block family of the new block type");
+		addPage(blockFamilySelectionPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
 		//

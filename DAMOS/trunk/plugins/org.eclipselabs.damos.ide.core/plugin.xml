@@ -35,5 +35,12 @@
             </parameter>
          </run></builder>
    </extension>
+   <extension
+         point="org.eclipselabs.damos.dml.blockFamilies">
+      <blockFamily
+            id="org.eclipselabs.damos.ide.core.standard"
+            name="Damos Standard">
+      </blockFamily>
+   </extension>
 
 </plugin>

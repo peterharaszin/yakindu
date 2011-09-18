@@ -26,6 +26,11 @@
             supergroup="org.eclipselabs.damos.library.base">
       </group>
       <group
+            id="org.eclipselabs.damos.library.base.asynchronous"
+            name="Asynchronous"
+            supergroup="org.eclipselabs.damos.library.base.discrete">
+      </group>
+      <group
             id="org.eclipselabs.damos.library.base.logic"
             name="Logic"
             supergroup="org.eclipselabs.damos.library.base">
@@ -99,12 +104,12 @@
             name="Discrete Integrator"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/discrete/DiscreteIntegrator.blocktype.dml#/">
       </blockType>
-<!--      <blockType
-            group="org.eclipselabs.damos.library.base.discrete"
+      <blockType
+            group="org.eclipselabs.damos.library.base.asynchronous"
             name="Counter"
             qualifiedName="org.eclipselabs.damos.library.base.discrete.Counter"
             uri="http://www.eclipselabs.org/damos/library/1.0.0/discrete/Counter.blocktype.dml#/">
-      </blockType> -->
+      </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.logic"
             qualifiedName="org.eclipselabs.damos.library.base.logic.And"

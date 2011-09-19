@@ -30,6 +30,7 @@ import org.eclipselabs.mscript.language.ast.ExpressionList;
 import org.eclipselabs.mscript.language.il.transform.ITransformerContext;
 import org.eclipselabs.mscript.language.il.transform.TransformerContext;
 import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
+import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
 import org.eclipselabs.mscript.language.interpreter.StaticEvaluationContext;
 import org.eclipselabs.mscript.language.interpreter.util.ExpressionInterpreterHelper;
@@ -90,8 +91,9 @@ public class ExpressionUtil {
 	public static IValue evaluateExpression(String expressionString) throws CoreException {
 		Expression expression = parseExpression(expressionString);
 
-		ITransformerContext transformerContext = new TransformerContext(new StaticEvaluationContext());
-		IInterpreterContext interpreterContext = new InterpreterContext(new ComputationContext());
+		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+		ITransformerContext transformerContext = new TransformerContext(staticEvaluationContext);
+		IInterpreterContext interpreterContext = new InterpreterContext(staticEvaluationContext, new ComputationContext());
 
 		ExpressionInterpreterHelper expressionInterpreterHelper = new ExpressionInterpreterHelper(transformerContext,
 				interpreterContext, expression);
@@ -111,8 +113,9 @@ public class ExpressionUtil {
 		List<IValue> values = new ArrayList<IValue>();
 		ExpressionList expressions = (ExpressionList) result.getRootASTElement();
 		
-		ITransformerContext transformerContext = new TransformerContext(new StaticEvaluationContext());
-		IInterpreterContext interpreterContext = new InterpreterContext(new ComputationContext());
+		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+		ITransformerContext transformerContext = new TransformerContext(staticEvaluationContext);
+		IInterpreterContext interpreterContext = new InterpreterContext(staticEvaluationContext, new ComputationContext());
 		
 		for (Expression expression : expressions.getExpressions()) {
 			ExpressionInterpreterHelper expressionInterpreterHelper = new ExpressionInterpreterHelper(

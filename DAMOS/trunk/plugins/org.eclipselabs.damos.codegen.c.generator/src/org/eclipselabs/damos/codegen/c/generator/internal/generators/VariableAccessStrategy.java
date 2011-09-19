@@ -26,6 +26,7 @@ import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
 import org.eclipselabs.mscript.language.il.StatefulVariableDeclaration;
 import org.eclipselabs.mscript.language.il.VariableAccess;
 import org.eclipselabs.mscript.language.il.util.ILSwitch;
+import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
@@ -34,6 +35,7 @@ import org.eclipselabs.mscript.typesystem.DataType;
  */
 public class VariableAccessStrategy implements IVariableAccessStrategy {
 
+	private IStaticEvaluationContext staticEvaluationContext;
 	private Block block;
 	private IComponentSignature signature;
 	private IVariableAccessor variableAccessor;
@@ -41,7 +43,8 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	/**
 	 * 
 	 */
-	public VariableAccessStrategy(Block block, IComponentSignature signature, IVariableAccessor variableAccessor) {
+	public VariableAccessStrategy(IStaticEvaluationContext staticEvaluationContext, Block block, IComponentSignature signature, IVariableAccessor variableAccessor) {
+		this.staticEvaluationContext = staticEvaluationContext;
 		this.block = block;
 		this.signature = signature;
 		this.variableAccessor = variableAccessor;
@@ -58,7 +61,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	 * @param inputVariableDeclaration
 	 * @return
 	 */
-	static String getInputVariableAccessString(Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputVariableDeclaration inputVariableDeclaration) {
+	static String getInputVariableAccessString(IStaticEvaluationContext staticEvaluationContext, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputVariableDeclaration inputVariableDeclaration) {
 		int index = DMLUtil.indexOf(inputVariableDeclaration);
 		
 		if (!block.getInputSockets().isEmpty()) {
@@ -74,7 +77,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		} else {
 			InputPort inputPort = blockInput.getPorts().get(0);
 			DataType inputDataType = signature.getInputDataType(inputPort);
-			DataType targetDataType = inputVariableDeclaration.getDataType();
+			DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
 			if (!inputDataType.isEquivalentTo(targetDataType)) {
 				return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
 			}
@@ -106,7 +109,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		@Override
 		public String caseInputVariableDeclaration(InputVariableDeclaration inputVariableDeclaration) {
 			if (variableAccess.getStepIndex() == 0) {
-				return getInputVariableAccessString(block, signature, variableAccessor, inputVariableDeclaration);
+				return getInputVariableAccessString(staticEvaluationContext, block, signature, variableAccessor, inputVariableDeclaration);
 			}
 			return getContextAccess();
 		}

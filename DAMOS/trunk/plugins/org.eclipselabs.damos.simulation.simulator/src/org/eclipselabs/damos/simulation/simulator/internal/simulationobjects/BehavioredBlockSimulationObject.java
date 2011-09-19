@@ -140,7 +140,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		ILFunctionDefinition ilFunctionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
 		
-		interpreterContext = new InterpreterContext(getComputationContext());
+		interpreterContext = new InterpreterContext(staticEvaluationContext, getComputationContext());
 		functionObject = FunctionObject.create(interpreterContext, ilFunctionDefinition);
 
 		for (IVariable variable : functionObject.getVariables()) {
@@ -208,7 +208,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 
 	private void initializeArrayVariable(VariableDeclaration variableDeclaration, IVariable variable) throws CoreException {
-		DataType dataType = variableDeclaration.getDataType();
+		DataType dataType = interpreterContext.getStaticEvaluationContext().getValue(variableDeclaration).getDataType();
 		if (dataType instanceof ArrayType) {
 			if (dataType instanceof TensorType) {
 				TensorType tensorType = (TensorType) dataType;

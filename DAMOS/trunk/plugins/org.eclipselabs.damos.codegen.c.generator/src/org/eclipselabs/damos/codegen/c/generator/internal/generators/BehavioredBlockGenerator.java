@@ -155,7 +155,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 	private void writeContextStructureMember(PrintAppendable out, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
 		String name = variableDeclaration.getName();
-		DataType dataType = variableDeclaration.getDataType();
+		DataType dataType = staticEvaluationContext.getValue(variableDeclaration).getDataType();
 		if (variableDeclaration.getCircularBufferSize() > 1) {
 			int bufferSize = variableDeclaration.getCircularBufferSize();
 			out.printf("%s[%d];\n",
@@ -303,7 +303,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
-				ArrayType arrayType = (ArrayType) inputVariableDeclaration.getDataType();
+				ArrayType arrayType = (ArrayType) staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
 				out.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
@@ -318,7 +318,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
 				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
-				DataType targetDataType = inputVariableDeclaration.getDataType();
+				DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
 					out.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
 					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType);
@@ -331,7 +331,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private void writeUpdateInputContextStatement(PrintAppendable out, InputVariableDeclaration inputVariableDeclaration) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		String name = inputVariableDeclaration.getName();
-		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), inputVariableDeclaration));
+		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(staticEvaluationContext, getComponent(), getComponentSignature(), getVariableAccessor(), inputVariableDeclaration));
 	}
 	
 	/**
@@ -339,7 +339,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	private IVariableAccessStrategy getVariableAccessStrategy() {
 		if (cachedVariableAccessStrategy == null) {
-			cachedVariableAccessStrategy = new VariableAccessStrategy(getComponent(), getComponentSignature(), getVariableAccessor());
+			cachedVariableAccessStrategy = new VariableAccessStrategy(staticEvaluationContext, getComponent(), getComponentSignature(), getVariableAccessor());
 		}
 		return cachedVariableAccessStrategy;
 	}

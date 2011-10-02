@@ -139,7 +139,6 @@ public class BlockTypeWizard extends Wizard implements INewWizard {
 		} else {
 			blockType = DMLFactory.eINSTANCE.createBlockType();
 		}
-		blockType.setFamilyId(blockFamily.getId());
 		return blockType;
 	}
 

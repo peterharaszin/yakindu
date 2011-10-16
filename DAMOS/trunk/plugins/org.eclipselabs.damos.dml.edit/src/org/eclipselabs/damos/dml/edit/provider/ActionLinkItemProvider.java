@@ -175,7 +175,7 @@ public class ActionLinkItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.ACTION_LINK__CONDITION,
-				 DMLFactory.eINSTANCE.createOpaqueConditionSpecification()));
+				 DMLFactory.eINSTANCE.createExpressionSpecification()));
 	}
 
 	/**

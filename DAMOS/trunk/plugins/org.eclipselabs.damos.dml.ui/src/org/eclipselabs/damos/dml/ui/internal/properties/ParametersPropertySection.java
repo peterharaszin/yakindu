@@ -19,7 +19,6 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.property.value.IValueProperty;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
@@ -35,15 +34,21 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipselabs.damos.common.ui.widgets.FormWidgetFactory;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.ExpressionParameter;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
+import org.eclipselabs.damos.dml.ui.IValueSpecificationEditor;
 import org.eclipselabs.damos.dml.ui.internal.databinding.TextualElementUpdateValueStrategy;
+
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 /**
  * @author Andreas Unger
@@ -54,9 +59,14 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 	private static final String YES = "yes";
 	private static final String NO = "no";
 
+	@Inject
+	private Provider<IValueSpecificationEditor> valueSpecificationEditorProvider;
+	
 	private Composite composite;
 	
 	private List<IObservableValue> modelObservables = new ArrayList<IObservableValue>();
+	
+	private List<IValueSpecificationEditor> valueSpecificationEditors = new ArrayList<IValueSpecificationEditor>();
 	
 	private EMFDataBindingContext context;
 
@@ -79,22 +89,28 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 	public void refresh() {
 		super.refresh();
 		disposeModelObservables();
+		disposeValueSpecificationEditors();
 		
 		for (Control control : composite.getChildren()) {
 			control.dispose();
 		}
 		
 		for (Argument argument : ((Block) getModel()).getArguments()) {
-			IValueProperty property = EMFEditProperties.value(getEditingDomain(), DMLPackage.eINSTANCE.getArgument_Value());
-			IObservableValue argumentObservable = property.observe(argument);
-			addParameterWidgets(argument, argumentObservable);
-			modelObservables.add(argumentObservable);
+			addParameterWidgets(argument);
 		}
 	
 		composite.layout();
 	}
+	
+	private IObservableValue createModelObservable(Argument argument) {
+		IValueProperty property = EMFEditProperties.value(getEditingDomain(), DMLPackage.eINSTANCE.getArgument_Value());
+		IObservableValue observable = property.observe(argument);
+		modelObservables.add(observable);
+		return observable;
+	}
 
-	private void addParameterWidgets(Argument argument, IObservableValue argumentObservable) {
+	private void addParameterWidgets(Argument argument) {
+		// TODO: Remove the following if block
 		if (argument.getParameter() instanceof ExpressionParameter
 				&& argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
 			ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
@@ -105,14 +121,32 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 					String alias2 = predefinedExpressionEntries.get(1).getAlias();
 					if (YES.equalsIgnoreCase(alias1) && NO.equalsIgnoreCase(alias2) || YES.equalsIgnoreCase(alias2)
 							&& NO.equalsIgnoreCase(alias1)) {
-						initializeCheckboxParameter(argument, argumentObservable);
+						initializeCheckboxParameter(argument);
 						return;
 					}
 				}
-				initializeComboParameter(argument, argumentObservable);
+				initializeComboParameter(argument);
 				return;
 			}
-			addTextParameter(argument, argumentObservable);
+			addTextParameter(argument);
+			return;
+		}
+		if (argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
+			List<ParameterPredefinedValue> predefinedValues = argument.getParameter().getPredefinedValues();
+			if (!predefinedValues.isEmpty()) {
+				if (predefinedValues.size() == 2) {
+					String alias1 = predefinedValues.get(0).getAlias();
+					String alias2 = predefinedValues.get(1).getAlias();
+					if (YES.equalsIgnoreCase(alias1) && NO.equalsIgnoreCase(alias2) || YES.equalsIgnoreCase(alias2)
+							&& NO.equalsIgnoreCase(alias1)) {
+						initializeCheckboxParameter(argument);
+						return;
+					}
+				}
+				initializeComboParameter(argument);
+				return;
+			}
+			addTextParameter(argument);
 		}
 	}
 
@@ -123,22 +157,30 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		nameLabel.setLayoutData(gridData);
 	}
 
-	private void addTextParameter(Argument argument, IObservableValue argumentObservable) {
+	private void addTextParameter(Argument argument) {
 		addParameterLabel(argument);
-
-		Text text = getWidgetFactory().createText(composite, "");
-		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		text.setLayoutData(gridData);		
-
-		IWidgetValueProperty textProperty = WidgetProperties.text(new int[] { SWT.DefaultSelection, SWT.FocusOut });
-		IObservableValue textObservable = textProperty.observe(text);
-
-		UpdateValueStrategy updateValueStrategy = new TextualElementUpdateValueStrategy(
-				DMLPackage.eINSTANCE.getExpressionSpecification());
-		context.bindValue(textObservable, argumentObservable, updateValueStrategy, updateValueStrategy);
+		
+		if (valueSpecificationEditorProvider != null) {
+			IValueSpecificationEditor editor = valueSpecificationEditorProvider.get();
+			editor.createControl(composite, FormWidgetFactory.INSTANCE);
+			editor.initialize();
+			editor.refresh(getEditingDomain(), argument, DMLPackage.eINSTANCE.getArgument_Value());
+			valueSpecificationEditors.add(editor);
+		} else {
+			Text text = getWidgetFactory().createText(composite, "");
+			GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+			text.setLayoutData(gridData);		
+	
+			IWidgetValueProperty textProperty = WidgetProperties.text(new int[] { SWT.DefaultSelection, SWT.FocusOut });
+			IObservableValue textObservable = textProperty.observe(text);
+			UpdateValueStrategy updateValueStrategy = new TextualElementUpdateValueStrategy(
+					DMLPackage.eINSTANCE.getExpressionSpecification());
+			IObservableValue argumentObservable = createModelObservable(argument);
+			context.bindValue(textObservable, argumentObservable, updateValueStrategy, updateValueStrategy);
+		}
 	}
 	
-	private void initializeComboParameter(Argument argument, IObservableValue argumentObservable) {
+	private void initializeComboParameter(Argument argument) {
 		ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
 		addParameterLabel(argument);
 		
@@ -159,12 +201,12 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		comboViewer.setInput(parameter.getPredefinedExpressions());
 
 		IObservableValue comboObservable = ViewerProperties.singleSelection().observe(comboViewer);
-
 		UpdateValueStrategy updateValueStrategy = new ComboUpdateValueStrategy(parameter);
+		IObservableValue argumentObservable = createModelObservable(argument);
 		context.bindValue(comboObservable, argumentObservable, updateValueStrategy, updateValueStrategy);
 	}
 
-	private void initializeCheckboxParameter(Argument argument, IObservableValue argumentObservable) {
+	private void initializeCheckboxParameter(Argument argument) {
 		ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
 
 		Button button = getWidgetFactory().createButton(composite, NameUtil.formatName(parameter.getName()), SWT.CHECK);
@@ -175,8 +217,8 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		getWidgetFactory().createLabel(composite, "");
 
 		IObservableValue buttonObservable = WidgetProperties.selection().observe(button);
-
 		UpdateValueStrategy updateValueStrategy = new CheckboxUpdateValueStrategy(parameter);
+		IObservableValue argumentObservable = createModelObservable(argument);
 		context.bindValue(buttonObservable, argumentObservable, updateValueStrategy, updateValueStrategy);
 	}
 
@@ -194,6 +236,13 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		}
 		modelObservables.clear();
 	}
+	
+	private void disposeValueSpecificationEditors() {
+		for (IValueSpecificationEditor valueSpecificationEditor : valueSpecificationEditors) {
+			valueSpecificationEditor.dispose();
+		}
+		valueSpecificationEditors.clear();
+	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.views.properties.tabbed.AbstractPropertySection#dispose()
@@ -201,6 +250,7 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 	@Override
 	public void dispose() {
 		disposeModelObservables();
+		disposeValueSpecificationEditors();
 		super.dispose();
 	}
 	
@@ -224,7 +274,7 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 				return null;
 			}
 			if (value instanceof PredefinedExpressionEntry) {
-				return EcoreUtil.copy(((PredefinedExpressionEntry) value).getExpression());
+				return ((PredefinedExpressionEntry) value).getExpression().copy();
 			}
 			if (value instanceof ExpressionSpecification) {
 				return parameter.getPredefinedExpression(((ExpressionSpecification) value).getExpression());
@@ -263,7 +313,7 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 				if (entry == null) {
 					throw new IllegalArgumentException();
 				}
-				return EcoreUtil.copy(entry.getExpression());
+				return entry.getExpression().copy();
 			}
 			if (value instanceof ExpressionSpecification) {
 				PredefinedExpressionEntry entry = parameter.getPredefinedExpression(((ExpressionSpecification) value).getExpression());

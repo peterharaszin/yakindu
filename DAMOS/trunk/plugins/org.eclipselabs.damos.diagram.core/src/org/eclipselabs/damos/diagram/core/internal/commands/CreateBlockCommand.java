@@ -10,15 +10,24 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipselabs.damos.diagram.core.DiagramCorePlugin;
 import org.eclipselabs.damos.diagram.core.internal.provider.IBlockTypeProvider;
-import org.eclipselabs.damos.diagram.core.internal.util.ConfigureUtil;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.DMLFactory;
+import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
+import org.eclipselabs.damos.dml.registry.InjectorProviderRegistry;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.IElementInitializer;
+
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 public class CreateBlockCommand extends CreateElementCommand {
 
+	@Inject
+	private IElementInitializer elementInitializer;
+	
 	private EReference reference;
 	
 	/**
@@ -26,8 +35,13 @@ public class CreateBlockCommand extends CreateElementCommand {
 	 */
 	public CreateBlockCommand(CreateElementRequest request, EReference reference) {
 		super(request);
-		setElementToEdit(request.getContainer());
 		this.reference = reference;
+		setElementToEdit(request.getContainer());
+		
+		Injector injector = InjectorProviderRegistry.getInstance().getInjector(getElementToEdit());
+		if (injector != null) {
+			injector.injectMembers(this);
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -62,7 +76,13 @@ public class CreateBlockCommand extends CreateElementCommand {
 			}
 			break;
 		case SYNCHRONOUS:
-			ConfigureUtil.setSampleTime(block, "1");
+			if (elementInitializer != null) {
+				SynchronousTimingConstraint synchronousTimingConstraint = DMLFactory.eINSTANCE.createSynchronousTimingConstraint();
+				if (elementInitializer.initialize(synchronousTimingConstraint,
+						DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime(), null)) {
+					block.setTimingConstraint(synchronousTimingConstraint);
+				}
+			}
 			break;
 		}
     	
@@ -72,5 +92,5 @@ public class CreateBlockCommand extends CreateElementCommand {
     	
 		return block;
 	}
-	
+
 }

@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
-import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.ValueSpecification;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,7 +53,7 @@ public class ActionLinkImpl extends EObjectImpl implements ActionLink {
 	 * @generated
 	 * @ordered
 	 */
-	protected ConditionSpecification condition;
+	protected ValueSpecification condition;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,7 +180,7 @@ public class ActionLinkImpl extends EObjectImpl implements ActionLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionSpecification getCondition() {
+	public ValueSpecification getCondition() {
 		return condition;
 	}
 
@@ -189,8 +189,8 @@ public class ActionLinkImpl extends EObjectImpl implements ActionLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(ConditionSpecification newCondition, NotificationChain msgs) {
-		ConditionSpecification oldCondition = condition;
+	public NotificationChain basicSetCondition(ValueSpecification newCondition, NotificationChain msgs) {
+		ValueSpecification oldCondition = condition;
 		condition = newCondition;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.ACTION_LINK__CONDITION, oldCondition, newCondition);
@@ -204,7 +204,7 @@ public class ActionLinkImpl extends EObjectImpl implements ActionLink {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondition(ConditionSpecification newCondition) {
+	public void setCondition(ValueSpecification newCondition) {
 		if (newCondition != condition) {
 			NotificationChain msgs = null;
 			if (condition != null)
@@ -304,7 +304,7 @@ public class ActionLinkImpl extends EObjectImpl implements ActionLink {
 				setAction((Action)newValue);
 				return;
 			case DMLPackage.ACTION_LINK__CONDITION:
-				setCondition((ConditionSpecification)newValue);
+				setCondition((ValueSpecification)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -325,7 +325,7 @@ public class ActionLinkImpl extends EObjectImpl implements ActionLink {
 				setAction((Action)null);
 				return;
 			case DMLPackage.ACTION_LINK__CONDITION:
-				setCondition((ConditionSpecification)null);
+				setCondition((ValueSpecification)null);
 				return;
 		}
 		super.eUnset(featureID);

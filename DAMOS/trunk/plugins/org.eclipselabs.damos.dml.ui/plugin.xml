@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+   <extension-point id="injectorProviders" name="Injector Providers" schema="schema/injectorProviders.exsd"/>
 
    <extension point="org.eclipse.ui.newWizards">
       <wizard
@@ -70,6 +71,8 @@
          </propertyTab>
       </propertyTabs>
    </extension>
+   
+<!--
    <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
@@ -114,5 +117,5 @@
          </propertySection>
       </propertySections>
    </extension>
-
+-->
 </plugin>

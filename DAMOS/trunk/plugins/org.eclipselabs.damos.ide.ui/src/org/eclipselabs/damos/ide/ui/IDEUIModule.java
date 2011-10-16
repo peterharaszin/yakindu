@@ -11,6 +11,13 @@
 
 package org.eclipselabs.damos.ide.ui;
 
+import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
+import org.eclipselabs.damos.dml.ui.IDataTypeSpecificationEditor;
+import org.eclipselabs.damos.dml.ui.IValueSpecificationEditor;
+import org.eclipselabs.damos.ide.ui.internal.directedit.ValueSpecificationDirectEditHelper;
+import org.eclipselabs.damos.ide.ui.internal.editors.DataTypeSpecificationEditor;
+import org.eclipselabs.damos.ide.ui.internal.editors.ValueSpecificationEditor;
+
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
@@ -28,6 +35,9 @@ public class IDEUIModule extends AbstractModule {
 		configureBlockLibraryViewId();
 		configureFragmentExplorerViewId();
 		configureBlockDiagramFileExtension();
+		configureIValueSpecificationEditor();
+		configureIDataTypeSpecificationEditor();
+		configureIValueSpecificationDirectEditHelper();
 	}
 	
 	protected void configureBlockLibraryViewId() {
@@ -40,6 +50,18 @@ public class IDEUIModule extends AbstractModule {
 	
 	protected void configureBlockDiagramFileExtension() {
 		bind(String.class).annotatedWith(Names.named("blockDiagramFileExtension")).toInstance("blockdiagram");
+	}
+	
+	protected void configureIValueSpecificationEditor() {
+		bind(IValueSpecificationEditor.class).to(ValueSpecificationEditor.class);
+	}
+
+	protected void configureIDataTypeSpecificationEditor() {
+		bind(IDataTypeSpecificationEditor.class).to(DataTypeSpecificationEditor.class);
+	}
+	
+	protected void configureIValueSpecificationDirectEditHelper() {
+		bind(IValueSpecificationDirectEditHelper.class).to(ValueSpecificationDirectEditHelper.class);
 	}
 
 }

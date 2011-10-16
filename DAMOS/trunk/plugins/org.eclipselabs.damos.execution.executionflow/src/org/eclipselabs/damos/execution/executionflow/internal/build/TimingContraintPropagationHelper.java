@@ -105,7 +105,7 @@ public class TimingContraintPropagationHelper {
 		}
 		if (component.getTimingConstraint() instanceof SynchronousTimingConstraint) {
 			SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint) component.getTimingConstraint();
-			return Double.parseDouble(synchronousTimingConstraint.getSampleTime().stringSampleTime());
+			return Double.parseDouble(synchronousTimingConstraint.getSampleTime().stringValue());
 		}
 		throw new IllegalArgumentException();
 	}

@@ -14,12 +14,8 @@ package org.eclipselabs.damos.dml.ui.internal.properties;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.property.value.IValueProperty;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
-import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
-import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.IViewerValueProperty;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
@@ -33,16 +29,19 @@ import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipselabs.damos.common.ui.widgets.FormWidgetFactory;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
-import org.eclipselabs.damos.dml.ui.internal.databinding.TextualElementUpdateValueStrategy;
+import org.eclipselabs.damos.dml.ui.IValueSpecificationEditor;
+import org.eclipselabs.damos.dml.util.IElementInitializer;
+
+import com.google.inject.Inject;
+import com.google.inject.Provider;
 
 /**
  * @author Andreas Unger
@@ -51,15 +50,19 @@ import org.eclipselabs.damos.dml.ui.internal.databinding.TextualElementUpdateVal
 public class TimingPropertySection extends AbstractModelPropertySection {
 
 	private ComboViewer timingConstraintViewer;
-	private Text sampleTimeText;
+	
+	@Inject
+	private Provider<IValueSpecificationEditor> sampleTimeEditorProvider;
+	private IValueSpecificationEditor sampleTimeEditor;
+	
+	@Inject
+	private IElementInitializer elementInitializer;
 	
 	private EMFDataBindingContext context;
 	
-	private IObservableValue sampleTimeTextObservable;
-	private IObservableValue sampleTimeObservable;
 	private IObservableValue timingConstraintViewerObservable;
 	private IObservableValue timingConstraintObservable;
-	private IObservableValue sampleTimeTextEnabledObservable;
+	private IObservableValue sampleTimeControlEnabledObservable;
 	private IObservableValue sampleTimeLabelEnabledObservable;
 	private Label sampleTimeLabel;
 	
@@ -88,6 +91,8 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 	public void createControls(Composite parent, TabbedPropertySheetPage aTabbedPropertySheetPage) {
 		super.createControls(parent, aTabbedPropertySheetPage);
 		
+		sampleTimeEditor = sampleTimeEditorProvider.get();
+		
 		Composite client = (Composite) PropertySectionUtil.createTopLevelSection(parent, "Timing Information", 2,
 				getWidgetFactory()).getClient();
 		
@@ -104,9 +109,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		gridData = new GridData();
 		sampleTimeLabel.setLayoutData(gridData);
 		
-		sampleTimeText = getWidgetFactory().createText(client, "");
-		gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		sampleTimeText.setLayoutData(gridData);
+		sampleTimeEditor.createControl(client, FormWidgetFactory.INSTANCE);
 
 		timingConstraintViewer.setLabelProvider(new LabelProvider() {
 			
@@ -144,22 +147,17 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 			
 		});
 		
-		initializeDataBinding();
-	}
+		sampleTimeEditor.initialize();
 
-	private void initializeDataBinding() {
 		context = new EMFDataBindingContext();
-
-		IWidgetValueProperty sampleTimeUIProperty = WidgetProperties.text(new int[] { SWT.DefaultSelection, SWT.FocusOut });
-		sampleTimeTextObservable = sampleTimeUIProperty.observe(sampleTimeText);
 
 		IViewerValueProperty timingConstraintUIProperty = ViewerProperties.singleSelection();
 		timingConstraintViewerObservable = timingConstraintUIProperty.observe(timingConstraintViewer);
 		
-		sampleTimeTextEnabledObservable = WidgetProperties.enabled().observe(sampleTimeText);
+		sampleTimeControlEnabledObservable = WidgetProperties.enabled().observe(sampleTimeEditor.getControl());
 		sampleTimeLabelEnabledObservable = WidgetProperties.enabled().observe(sampleTimeLabel);
 	}
-	
+
 	private Component getComponent() {
 		return (Component) getModel();
 	}
@@ -175,13 +173,9 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		// Refresh viewer to refilter the input
 		timingConstraintViewer.refresh();
 
-		IValueProperty sampleTimeProperty = EMFEditProperties.value(
-				getEditingDomain(),
-				FeaturePath.fromList(DMLPackage.eINSTANCE.getComponent_TimingConstraint(),
-						DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime()));
-		sampleTimeObservable = sampleTimeProperty.observe(getComponent());
-		context.bindValue(sampleTimeTextObservable, sampleTimeObservable, new TextualElementUpdateValueStrategy(
-				DMLPackage.eINSTANCE.getOpaqueSampleTimeSpecification()), new SampleTimeUpdateValueStrategy());
+		sampleTimeEditor.refresh(getEditingDomain(), getComponent(),
+				DMLPackage.eINSTANCE.getComponent_TimingConstraint(),
+				DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime());
 
 		IValueProperty timingConstraintProperty = EMFEditProperties.value(getEditingDomain(),
 				DMLPackage.eINSTANCE.getComponent_TimingConstraint());
@@ -190,7 +184,7 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 		context.bindValue(timingConstraintViewerObservable, timingConstraintObservable, timingConstraintUpdateStrategy,
 				timingConstraintUpdateStrategy);
 		
-		context.bindValue(sampleTimeTextEnabledObservable, timingConstraintObservable, new UpdateValueStrategy(
+		context.bindValue(sampleTimeControlEnabledObservable, timingConstraintObservable, new UpdateValueStrategy(
 				UpdateValueStrategy.POLICY_NEVER), new SynchronousTimingConstraintUpdateValueStrategy());
 		context.bindValue(sampleTimeLabelEnabledObservable, timingConstraintObservable, new UpdateValueStrategy(
 				UpdateValueStrategy.POLICY_NEVER), new SynchronousTimingConstraintUpdateValueStrategy());
@@ -204,10 +198,6 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 			timingConstraintObservable.dispose();
 			timingConstraintObservable = null;
 		}
-		if (sampleTimeObservable != null) {
-			sampleTimeObservable.dispose();
-			sampleTimeObservable = null;
-		}
 	}
 
 	/* (non-Javadoc)
@@ -215,6 +205,9 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 	 */
 	@Override
 	public void dispose() {
+		if (sampleTimeEditor != null) {
+			sampleTimeEditor.dispose();
+		}
 		disposeModelObservables();
 		super.dispose();
 	}
@@ -281,9 +274,10 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 					synchronousTimingConstraint = (SynchronousTimingConstraint) getComponent().getTimingConstraint();
 				} else {
 					synchronousTimingConstraint = DMLFactory.eINSTANCE.createSynchronousTimingConstraint();
-					OpaqueSampleTimeSpecification sampleTimeSpecification = DMLFactory.eINSTANCE.createOpaqueSampleTimeSpecification();
-					sampleTimeSpecification.setSampleTime("1");
-					synchronousTimingConstraint.setSampleTime(sampleTimeSpecification);
+					if (elementInitializer != null) {
+						elementInitializer.initialize(synchronousTimingConstraint,
+								DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime(), null);
+					}
 				}
 			}
 			return synchronousTimingConstraint;
@@ -315,18 +309,6 @@ public class TimingPropertySection extends AbstractModelPropertySection {
 			return value instanceof SynchronousTimingConstraint;
 		}
 		
-	}
-
-	private static class SampleTimeUpdateValueStrategy extends TextualElementUpdateValueStrategy {
-		
-		@Override
-		protected IStatus doSet(IObservableValue observableValue, Object value) {
-			if (value != null) {
-				return super.doSet(observableValue, value);
-			}
-			return Status.OK_STATUS;
-		}
-
 	}
 
 }

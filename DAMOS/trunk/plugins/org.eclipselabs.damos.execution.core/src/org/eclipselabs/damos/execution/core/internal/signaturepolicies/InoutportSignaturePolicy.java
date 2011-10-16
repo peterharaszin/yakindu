@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
+import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.execution.core.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
@@ -89,6 +90,8 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 			} else {
 				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No data type specified"));
 			}
+		} else if (inoutport.getDataType() instanceof MscriptDataTypeSpecification) {
+			return ((MscriptDataTypeSpecification) inoutport.getDataType()).getType();
 		} else {
 			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));
 		}

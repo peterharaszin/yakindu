@@ -8,6 +8,7 @@ package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 
@@ -38,6 +39,15 @@ public abstract class DataTypeSpecificationImpl extends EObjectImpl implements D
 	@Override
 	protected EClass eStaticClass() {
 		return DMLPackage.Literals.DATA_TYPE_SPECIFICATION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public DataTypeSpecification copy() {
+		return EcoreUtil.copy(this);
 	}
 
 } //DataTypeSpecificationImpl

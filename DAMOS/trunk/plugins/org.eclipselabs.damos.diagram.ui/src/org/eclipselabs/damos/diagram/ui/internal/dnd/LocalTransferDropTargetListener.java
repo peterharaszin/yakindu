@@ -1,6 +1,5 @@
 package org.eclipselabs.damos.diagram.ui.internal.dnd;
 
-
 import java.util.Map;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -21,11 +20,6 @@ import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
  */
 public class LocalTransferDropTargetListener extends BlockTypeTransferDropTargetListener {
 
-	/**
-	 * @param viewer
-	 * @param blockDiagramEditor TODO
-	 * @param xfer
-	 */
 	public LocalTransferDropTargetListener(EditPartViewer viewer, EditingDomain editingDomain, PreferencesHint preferencesHint) {
 		super(viewer, LocalTransfer.getInstance(), editingDomain, preferencesHint);
 	}

@@ -199,11 +199,6 @@ public class OpaqueBehaviorSpecificationItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
-				 DMLFactory.eINSTANCE.createOpaqueSampleTimeSpecification()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
 				 DMLFactory.eINSTANCE.createConnection()));
 
 		newChildDescriptors.add
@@ -245,6 +240,16 @@ public class OpaqueBehaviorSpecificationItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
 				 DMLFactory.eINSTANCE.createOutputDefinition()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
+				 DMLFactory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
+				 DMLFactory.eINSTANCE.createParameterPredefinedValue()));
 
 		newChildDescriptors.add
 			(createChildParameter
@@ -405,11 +410,6 @@ public class OpaqueBehaviorSpecificationItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
 				 DMLFactory.eINSTANCE.createActionLink()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DMLPackage.Literals.OPAQUE_BEHAVIOR_SPECIFICATION__MODEL,
-				 DMLFactory.eINSTANCE.createOpaqueConditionSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter

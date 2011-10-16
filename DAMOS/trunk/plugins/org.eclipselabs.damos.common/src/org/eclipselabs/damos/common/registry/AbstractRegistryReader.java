@@ -197,8 +197,8 @@ public abstract class AbstractRegistryReader {
 		return null;
 	}
 	
-	protected <T> IExecutableExtensionProvider<T> getExecutableExtensionProviderFor(IConfigurationElement element, String attributeName, Class<T> clazz) {
-		return new ExecutableExtensionProvider<T>(attributeName, clazz, element);
+	protected <T> IExecutableExtensionProxy<T> getExecutableExtensionFor(IConfigurationElement element, String attributeName, Class<T> clazz) {
+		return new ExecutableExtensionProxy<T>(attributeName, clazz, element);
 	}
 
 	/**
@@ -242,25 +242,29 @@ public abstract class AbstractRegistryReader {
 		return candidateChildren[0].getAttribute(IRegistryConstants.ATT_CLASS);
 	}
 
-	private class ExecutableExtensionProvider<T> implements IExecutableExtensionProvider<T> {
+	private class ExecutableExtensionProxy<T> implements IExecutableExtensionProxy<T> {
 		
 		private final String attributeName;
 		private final Class<T> clazz;
 		private final IConfigurationElement element;
+		private T executableExtension;
 	
 		/**
 		 * @param attributeName
 		 * @param clazz
 		 * @param element
 		 */
-		private ExecutableExtensionProvider(String attributeName, Class<T> clazz, IConfigurationElement element) {
+		private ExecutableExtensionProxy(String attributeName, Class<T> clazz, IConfigurationElement element) {
 			this.attributeName = attributeName;
 			this.clazz = clazz;
 			this.element = element;
 		}
 	
-		public T createExecutableExtension() {
-			return AbstractRegistryReader.this.createExecutableExtension(element, attributeName, clazz);
+		public T get() {
+			if (executableExtension == null) {
+				executableExtension = AbstractRegistryReader.this.createExecutableExtension(element, attributeName, clazz);
+			}
+			return executableExtension;
 		}
 		
 	}

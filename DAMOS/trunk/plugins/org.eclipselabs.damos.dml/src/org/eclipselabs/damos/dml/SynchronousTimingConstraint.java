@@ -33,12 +33,12 @@ public interface SynchronousTimingConstraint extends TimingConstraint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sample Time</em>' containment reference.
-	 * @see #setSampleTime(SampleTimeSpecification)
+	 * @see #setSampleTime(ValueSpecification)
 	 * @see org.eclipselabs.damos.dml.DMLPackage#getSynchronousTimingConstraint_SampleTime()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	SampleTimeSpecification getSampleTime();
+	ValueSpecification getSampleTime();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.dml.SynchronousTimingConstraint#getSampleTime <em>Sample Time</em>}' containment reference.
@@ -48,6 +48,6 @@ public interface SynchronousTimingConstraint extends TimingConstraint {
 	 * @see #getSampleTime()
 	 * @generated
 	 */
-	void setSampleTime(SampleTimeSpecification value);
+	void setSampleTime(ValueSpecification value);
 
 } // SynchronousTimingConstraint

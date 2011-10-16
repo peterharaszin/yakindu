@@ -175,6 +175,11 @@ public class CategoryItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.PARAMETERABLE_ELEMENT__PARAMETERS,
+				 DMLFactory.eINSTANCE.createParameter()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.PARAMETERABLE_ELEMENT__PARAMETERS,
 				 DMLFactory.eINSTANCE.createExpressionParameter()));
 	}
 

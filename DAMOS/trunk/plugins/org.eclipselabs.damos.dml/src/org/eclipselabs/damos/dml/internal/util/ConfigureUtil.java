@@ -14,7 +14,6 @@ package org.eclipselabs.damos.dml.internal.util;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Category;
@@ -70,7 +69,7 @@ public class ConfigureUtil {
 		a.setParameter(parameter);
 		ValueSpecification defaultValue = parameter.getDefaultValue();
 		if (defaultValue != null) {
-			a.setValue(EcoreUtil.copy(defaultValue));
+			a.setValue(defaultValue.copy());
 		}
 		parameterizedElement.getArguments().add(a);
 	}

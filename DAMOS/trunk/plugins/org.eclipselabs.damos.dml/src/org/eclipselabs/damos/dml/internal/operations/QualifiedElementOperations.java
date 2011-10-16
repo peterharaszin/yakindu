@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.dml.internal.operations;
 
+import java.util.regex.Pattern;
+
 import org.eclipselabs.damos.dml.QualifiedElement;
 
 /**
@@ -19,10 +21,12 @@ import org.eclipselabs.damos.dml.QualifiedElement;
  */
 public class QualifiedElementOperations {
 
+	private static final Pattern QUALIFIED_NAME_SEPARATOR_PATTERN = Pattern.compile("\\.|::");
+	
 	public static String getName(QualifiedElement qualifiedElement) {
 		String qualifiedName = qualifiedElement.getQualifiedName();
 		if (qualifiedName != null) {
-			String[] segments = qualifiedName.split("\\.");
+			String[] segments = QUALIFIED_NAME_SEPARATOR_PATTERN.split(qualifiedName);
 			return segments[segments.length - 1];
 		}
 		return null;

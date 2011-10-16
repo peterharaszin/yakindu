@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
+import org.eclipselabs.damos.dml.ValueSpecification;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +37,7 @@ public class SynchronousTimingConstraintImpl extends TimingConstraintImpl implem
 	 * @generated
 	 * @ordered
 	 */
-	protected SampleTimeSpecification sampleTime;
+	protected ValueSpecification sampleTime;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class SynchronousTimingConstraintImpl extends TimingConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SampleTimeSpecification getSampleTime() {
+	public ValueSpecification getSampleTime() {
 		return sampleTime;
 	}
 
@@ -72,8 +72,8 @@ public class SynchronousTimingConstraintImpl extends TimingConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSampleTime(SampleTimeSpecification newSampleTime, NotificationChain msgs) {
-		SampleTimeSpecification oldSampleTime = sampleTime;
+	public NotificationChain basicSetSampleTime(ValueSpecification newSampleTime, NotificationChain msgs) {
+		ValueSpecification oldSampleTime = sampleTime;
 		sampleTime = newSampleTime;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME, oldSampleTime, newSampleTime);
@@ -87,7 +87,7 @@ public class SynchronousTimingConstraintImpl extends TimingConstraintImpl implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSampleTime(SampleTimeSpecification newSampleTime) {
+	public void setSampleTime(ValueSpecification newSampleTime) {
 		if (newSampleTime != sampleTime) {
 			NotificationChain msgs = null;
 			if (sampleTime != null)
@@ -138,7 +138,7 @@ public class SynchronousTimingConstraintImpl extends TimingConstraintImpl implem
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME:
-				setSampleTime((SampleTimeSpecification)newValue);
+				setSampleTime((ValueSpecification)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -153,7 +153,7 @@ public class SynchronousTimingConstraintImpl extends TimingConstraintImpl implem
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME:
-				setSampleTime((SampleTimeSpecification)null);
+				setSampleTime((ValueSpecification)null);
 				return;
 		}
 		super.eUnset(featureID);

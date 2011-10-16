@@ -35,7 +35,6 @@ import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
@@ -69,9 +68,7 @@ import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
-import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -80,12 +77,12 @@ import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
-import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
@@ -197,20 +194,6 @@ public class DMLSwitch<T> extends Switch<T> {
 				AsynchronousTimingConstraint asynchronousTimingConstraint = (AsynchronousTimingConstraint)theEObject;
 				T result = caseAsynchronousTimingConstraint(asynchronousTimingConstraint);
 				if (result == null) result = caseTimingConstraint(asynchronousTimingConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.SAMPLE_TIME_SPECIFICATION: {
-				SampleTimeSpecification sampleTimeSpecification = (SampleTimeSpecification)theEObject;
-				T result = caseSampleTimeSpecification(sampleTimeSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.OPAQUE_SAMPLE_TIME_SPECIFICATION: {
-				OpaqueSampleTimeSpecification opaqueSampleTimeSpecification = (OpaqueSampleTimeSpecification)theEObject;
-				T result = caseOpaqueSampleTimeSpecification(opaqueSampleTimeSpecification);
-				if (result == null) result = caseSampleTimeSpecification(opaqueSampleTimeSpecification);
-				if (result == null) result = caseITextualElement(opaqueSampleTimeSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -367,6 +350,12 @@ public class DMLSwitch<T> extends Switch<T> {
 				Parameter parameter = (Parameter)theEObject;
 				T result = caseParameter(parameter);
 				if (result == null) result = caseINamedElement(parameter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.PARAMETER_PREDEFINED_VALUE: {
+				ParameterPredefinedValue parameterPredefinedValue = (ParameterPredefinedValue)theEObject;
+				T result = caseParameterPredefinedValue(parameterPredefinedValue);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -776,20 +765,6 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLPackage.CONDITION_SPECIFICATION: {
-				ConditionSpecification conditionSpecification = (ConditionSpecification)theEObject;
-				T result = caseConditionSpecification(conditionSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.OPAQUE_CONDITION_SPECIFICATION: {
-				OpaqueConditionSpecification opaqueConditionSpecification = (OpaqueConditionSpecification)theEObject;
-				T result = caseOpaqueConditionSpecification(opaqueConditionSpecification);
-				if (result == null) result = caseConditionSpecification(opaqueConditionSpecification);
-				if (result == null) result = caseITextualElement(opaqueConditionSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DMLPackage.JOIN: {
 				Join join = (Join)theEObject;
 				T result = caseJoin(join);
@@ -972,36 +947,6 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseAsynchronousTimingConstraint(AsynchronousTimingConstraint object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Sample Time Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Sample Time Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSampleTimeSpecification(SampleTimeSpecification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Opaque Sample Time Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Opaque Sample Time Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOpaqueSampleTimeSpecification(OpaqueSampleTimeSpecification object) {
 		return null;
 	}
 
@@ -1377,6 +1322,21 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameter(Parameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameter Predefined Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameter Predefined Value</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterPredefinedValue(ParameterPredefinedValue object) {
 		return null;
 	}
 
@@ -2007,36 +1967,6 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseActionLink(ActionLink object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Condition Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Condition Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConditionSpecification(ConditionSpecification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Opaque Condition Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Opaque Condition Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOpaqueConditionSpecification(OpaqueConditionSpecification object) {
 		return null;
 	}
 

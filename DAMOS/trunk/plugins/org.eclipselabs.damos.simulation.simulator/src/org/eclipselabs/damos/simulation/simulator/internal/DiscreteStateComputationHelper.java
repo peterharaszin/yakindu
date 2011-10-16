@@ -211,7 +211,7 @@ public class DiscreteStateComputationHelper {
 		for (ActionLink actionLink : choice.getActionLinks()) {
 			Action action = actionLink.getAction();
 			if (actionLink.getCondition() != null) {
-				IValue conditionValue = ExpressionUtil.evaluateExpression(actionLink.getCondition().stringCondition());
+				IValue conditionValue = ExpressionUtil.evaluateExpression(actionLink.getCondition().stringValue());
 				IValue result = value.equalTo(conditionValue);
 				if (result instanceof IBooleanValue) {
 					IBooleanValue booleanResult = (IBooleanValue) result;

@@ -65,6 +65,50 @@
       </image>
    </extension>
    <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="org.eclipselabs.damos.dml.ui.properties">
+         <propertySection
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.GeneralPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.GeneralPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.blockName"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipselabs.damos.dml.ui.sections.blockName"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.TimingPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.TimingPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.InoutportDataTypePropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.InoutportDataTypePropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.inoutportDataType"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
+               afterSection="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.LatchPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.LatchPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.latch"
+               tab="org.eclipselabs.damos.dml.ui.tabs.general">
+         </propertySection>
+         <propertySection
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySection"
+               enablesFor="1"
+               filter="org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySectionFilter"
+               id="org.eclipselabs.damos.dml.ui.sections.parameters"
+               tab="org.eclipselabs.damos.dml.ui.tabs.parameters">
+         </propertySection>
+      </propertySections>
+   </extension>
+   <extension
          point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
       <decoratorProvider
             class="org.eclipselabs.damos.ide.ui.internal.providers.NatureCheckingDecoratorProvider">
@@ -84,6 +128,13 @@
                name="Lowest">
          </Priority>
       </paletteProvider>
+   </extension>
+   <extension
+         point="org.eclipselabs.damos.dml.ui.injectorProviders">
+      <provider
+            class="org.eclipselabs.damos.ide.ui.internal.providers.UIInjectorProvider"
+            language="org.eclipselabs.damos">
+      </provider>
    </extension>
 
 </plugin>

@@ -28,4 +28,12 @@ public interface ValueSpecification extends EObject {
 	 */
 	String stringValue();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	ValueSpecification copy();
+
 } // ValueSpecification

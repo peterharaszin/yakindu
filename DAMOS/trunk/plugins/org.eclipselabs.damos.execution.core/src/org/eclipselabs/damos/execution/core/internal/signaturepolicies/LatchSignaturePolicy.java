@@ -22,6 +22,7 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Latch;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
@@ -64,29 +65,31 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 	}
 
 	protected DataType getDataType(MultiStatus status, Latch latch) {
-		if (latch.getInitialValue() instanceof ExpressionSpecification) {
-			ExpressionSpecification expressionSpecification = (ExpressionSpecification) latch.getInitialValue();
-			if (expressionSpecification.getExpression() != null && expressionSpecification.getExpression().trim().length() > 0) {
-				try {
+		try {
+			if (latch.getInitialValue() instanceof ExpressionSpecification) {
+				ExpressionSpecification expressionSpecification = (ExpressionSpecification) latch.getInitialValue();
+				if (expressionSpecification.getExpression() != null && expressionSpecification.getExpression().trim().length() > 0) {
 					IValue value = ExpressionUtil.evaluateExpression(expressionSpecification.getExpression());
 					if (!(value.getDataType() instanceof InvalidDataType)) {
 						return value.getDataType();
 					} else {
 						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid initial value specified"));
 					}
-				} catch (CoreException e) {
-					status.add(new MultiStatus(
-							ExecutionEnginePlugin.PLUGIN_ID,
-							0,
-							new IStatus[] { e.getStatus() },
-							"Initial value evaluation failed",
-							null));
+				} else {
+					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No Initial Value specified"));
 				}
+			} else if (latch.getInitialValue() instanceof MscriptValueSpecification) {
+				return ExpressionUtil.evaluateExpression(((MscriptValueSpecification) latch.getInitialValue()).getExpression()).getDataType();
 			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No Initial Value specified"));
+				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));
 			}
-		} else {
-			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));
+		} catch (CoreException e) {
+			status.add(new MultiStatus(
+					ExecutionEnginePlugin.PLUGIN_ID,
+					0,
+					new IStatus[] { e.getStatus() },
+					"Initial value evaluation failed",
+					null));
 		}
 		return null;
 	}

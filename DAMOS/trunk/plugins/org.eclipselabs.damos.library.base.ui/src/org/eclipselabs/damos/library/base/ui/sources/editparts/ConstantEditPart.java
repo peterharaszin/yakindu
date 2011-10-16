@@ -13,7 +13,7 @@ package org.eclipselabs.damos.library.base.ui.sources.editparts;
 
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.editparts.EditableContentBlockEditPart;
+import org.eclipselabs.damos.diagram.ui.editparts.TextualContentBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareLabel;
 import org.eclipselabs.damos.diagram.ui.figures.RectangularComponentFigure;
 import org.eclipselabs.damos.diagram.ui.figures.StandardComponentFigure;
@@ -25,7 +25,7 @@ import org.eclipselabs.damos.library.base.sources.util.ConstantConstants;
  * @author Andreas Unger
  *
  */
-public class ConstantEditPart extends EditableContentBlockEditPart {
+public class ConstantEditPart extends TextualContentBlockEditPart {
 
 	/**
 	 * @param view
@@ -43,8 +43,16 @@ public class ConstantEditPart extends EditableContentBlockEditPart {
 		return figure;
 	}
 	
-	protected Argument getArgument() {
+	protected Argument getContentArgument() {
 		return ((ParameterizedElement) resolveSemanticElement()).getArgument(ConstantConstants.PARAMETER__VALUE);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.ITextualContentEditPart#setContentText(java.lang.String)
+	 */
+	public void setContentText(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

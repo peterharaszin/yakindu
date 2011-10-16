@@ -14,7 +14,7 @@ package org.eclipselabs.damos.library.base.ui.math.editparts;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
-import org.eclipselabs.damos.diagram.ui.editparts.EditableContentBlockEditPart;
+import org.eclipselabs.damos.diagram.ui.editparts.TextualContentBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.figures.FontColorAwareLabel;
 import org.eclipselabs.damos.diagram.ui.figures.StandardComponentFigure;
 import org.eclipselabs.damos.diagram.ui.figures.StandardComponentLayout;
@@ -27,7 +27,7 @@ import org.eclipselabs.damos.library.base.ui.math.figures.GainFigure;
  * @author Andreas Unger
  *
  */
-public class GainEditPart extends EditableContentBlockEditPart {
+public class GainEditPart extends TextualContentBlockEditPart {
 
 	/**
 	 * @param view
@@ -46,7 +46,7 @@ public class GainEditPart extends EditableContentBlockEditPart {
 		return figure;
 	}
 	
-	protected Argument getArgument() {
+	protected Argument getContentArgument() {
 		return ((ParameterizedElement) resolveSemanticElement()).getArgument(GainConstants.PARAMETER__GAIN);
 	}
 	

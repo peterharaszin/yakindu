@@ -64,12 +64,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SynchronousTimingConstraint/sampleTime"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//AsynchronousTimingConstraint"/>
-    <genClasses image="false" ecoreClass="DML.ecore#//SampleTimeSpecification">
-      <genOperations ecoreOperation="DML.ecore#//SampleTimeSpecification/stringSampleTime"/>
-    </genClasses>
-    <genClasses ecoreClass="DML.ecore#//OpaqueSampleTimeSpecification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueSampleTimeSpecification/sampleTime"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//FragmentElement">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//FragmentElement/owningFragment"/>
       <genOperations ecoreOperation="DML.ecore#//FragmentElement/getEnclosingFragment"/>
@@ -159,12 +153,27 @@
     <genClasses ecoreClass="DML.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/visibility"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/ownedDefaultValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/predefinedValues"/>
       <genOperations ecoreOperation="DML.ecore#//Parameter/getDefaultValue"/>
+      <genOperations ecoreOperation="DML.ecore#//Parameter/getPredefinedValue">
+        <genParameters ecoreParameter="DML.ecore#//Parameter/getPredefinedValue/stringValue"/>
+      </genOperations>
+      <genOperations ecoreOperation="DML.ecore#//Parameter/getPredefinedValueByAlias">
+        <genParameters ecoreParameter="DML.ecore#//Parameter/getPredefinedValueByAlias/alias"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//ParameterPredefinedValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//ParameterPredefinedValue/alias"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ParameterPredefinedValue/value"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//ValueSpecification">
       <genOperations ecoreOperation="DML.ecore#//ValueSpecification/stringValue"/>
+      <genOperations ecoreOperation="DML.ecore#//ValueSpecification/copy"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="DML.ecore#//DataTypeSpecification"/>
+    <genClasses image="false" ecoreClass="DML.ecore#//DataTypeSpecification">
+      <genOperations ecoreOperation="DML.ecore#//DataTypeSpecification/copy"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//DirectFeedthroughPolicy">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//DirectFeedthroughPolicy/inputDefinition"/>
       <genOperations ecoreOperation="DML.ecore#//DirectFeedthroughPolicy/computeDirectFeedthrough"/>
@@ -201,7 +210,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//PredefinedExpressionEntry/expression"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//BlockType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/familyId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/behavior"/>
@@ -305,12 +313,6 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//ActionLink/choice"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//ActionLink/action"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ActionLink/condition"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="DML.ecore#//ConditionSpecification">
-      <genOperations ecoreOperation="DML.ecore#//ConditionSpecification/stringCondition"/>
-    </genClasses>
-    <genClasses ecoreClass="DML.ecore#//OpaqueConditionSpecification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueConditionSpecification/condition"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Join"/>
     <genClasses ecoreClass="DML.ecore#//JoinInput"/>

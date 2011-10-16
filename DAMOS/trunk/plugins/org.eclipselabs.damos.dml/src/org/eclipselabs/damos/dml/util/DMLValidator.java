@@ -47,7 +47,6 @@ import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
@@ -82,9 +81,7 @@ import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
-import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -93,13 +90,13 @@ import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
-import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
@@ -199,10 +196,6 @@ public class DMLValidator extends EObjectValidator {
 				return validateSynchronousTimingConstraint((SynchronousTimingConstraint)value, diagnostics, context);
 			case DMLPackage.ASYNCHRONOUS_TIMING_CONSTRAINT:
 				return validateAsynchronousTimingConstraint((AsynchronousTimingConstraint)value, diagnostics, context);
-			case DMLPackage.SAMPLE_TIME_SPECIFICATION:
-				return validateSampleTimeSpecification((SampleTimeSpecification)value, diagnostics, context);
-			case DMLPackage.OPAQUE_SAMPLE_TIME_SPECIFICATION:
-				return validateOpaqueSampleTimeSpecification((OpaqueSampleTimeSpecification)value, diagnostics, context);
 			case DMLPackage.FRAGMENT_ELEMENT:
 				return validateFragmentElement((FragmentElement)value, diagnostics, context);
 			case DMLPackage.CONNECTION:
@@ -243,6 +236,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateParameterableElement((ParameterableElement)value, diagnostics, context);
 			case DMLPackage.PARAMETER:
 				return validateParameter((Parameter)value, diagnostics, context);
+			case DMLPackage.PARAMETER_PREDEFINED_VALUE:
+				return validateParameterPredefinedValue((ParameterPredefinedValue)value, diagnostics, context);
 			case DMLPackage.VALUE_SPECIFICATION:
 				return validateValueSpecification((ValueSpecification)value, diagnostics, context);
 			case DMLPackage.DATA_TYPE_SPECIFICATION:
@@ -337,10 +332,6 @@ public class DMLValidator extends EObjectValidator {
 				return validateAction((Action)value, diagnostics, context);
 			case DMLPackage.ACTION_LINK:
 				return validateActionLink((ActionLink)value, diagnostics, context);
-			case DMLPackage.CONDITION_SPECIFICATION:
-				return validateConditionSpecification((ConditionSpecification)value, diagnostics, context);
-			case DMLPackage.OPAQUE_CONDITION_SPECIFICATION:
-				return validateOpaqueConditionSpecification((OpaqueConditionSpecification)value, diagnostics, context);
 			case DMLPackage.JOIN:
 				return validateJoin((Join)value, diagnostics, context);
 			case DMLPackage.JOIN_INPUT:
@@ -585,24 +576,6 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateSampleTimeSpecification(SampleTimeSpecification sampleTimeSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(sampleTimeSpecification, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOpaqueSampleTimeSpecification(OpaqueSampleTimeSpecification opaqueSampleTimeSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(opaqueSampleTimeSpecification, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean validateFragmentElement(FragmentElement fragmentElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(fragmentElement, diagnostics, context);
 	}
@@ -795,6 +768,15 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateParameter(Parameter parameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(parameter, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateParameterPredefinedValue(ParameterPredefinedValue parameterPredefinedValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(parameterPredefinedValue, diagnostics, context);
 	}
 
 	/**
@@ -1488,7 +1470,7 @@ public class DMLValidator extends EObjectValidator {
 
 		for (ActionLink actionLink : actionLinks) {
 			if (actionLink.getCondition() != null) {
-				String condition = actionLink.getCondition().stringCondition();
+				String condition = actionLink.getCondition().stringValue();
 
 				ActionLink existingActionLink = conditions.put(condition, actionLink);
 				if (existingActionLink != null) {
@@ -1533,7 +1515,7 @@ public class DMLValidator extends EObjectValidator {
 			if (diagnostics != null) {
 				for (ActionLink actionLink : actionLinks) {
 					if (actionLink.getCondition() != null) {
-						String condition = actionLink.getCondition().stringCondition();
+						String condition = actionLink.getCondition().stringValue();
 						if (!("true".equals(condition) || "false".equals(condition))) {
 							diagnostics.add(new BasicDiagnostic(Diagnostic.WARNING,
 									DIAGNOSTIC_SOURCE,
@@ -1640,24 +1622,6 @@ public class DMLValidator extends EObjectValidator {
 			return false;
 		}
 		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateConditionSpecification(ConditionSpecification conditionSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(conditionSpecification, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOpaqueConditionSpecification(OpaqueConditionSpecification opaqueConditionSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(opaqueConditionSpecification, diagnostics, context);
 	}
 
 	/**

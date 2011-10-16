@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -41,13 +42,15 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
+import org.eclipselabs.damos.dml.registry.ILanguageDescriptor;
+import org.eclipselabs.damos.dml.registry.LanguageRegistry;
 
 /**
  * @author Andreas Unger
  *
  */
 public class DMLUtil {
-		
+	
 	@SuppressWarnings("rawtypes")
 	public static int indexOf(EObject o) {
 		EStructuralFeature feature = o.eContainingFeature();
@@ -285,6 +288,20 @@ public class DMLUtil {
 			}
 		}
 		return false;
+	}
+	
+	public static ILanguageDescriptor getLanguage(EObject eObject) {
+		Resource resource = eObject.eResource();
+		if (resource != null) {
+			URI uri = resource.getURI();
+			if (uri != null) {
+				String extension = uri.fileExtension();
+				if (extension.length() > 0) {
+					return LanguageRegistry.getInstance().getLanguageByExtension(extension);
+				}
+			}
+		}
+		return null;
 	}
 
 }

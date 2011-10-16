@@ -9,9 +9,11 @@
 -->
 
 <plugin>
+   <extension-point id="languages" name="Languages" schema="schema/languages.exsd"/>
    <extension-point id="blockGroups" name="Block Groups" schema="schema/blockGroups.exsd"/>
    <extension-point id="blockTypes" name="Block Types" schema="schema/blockTypes.exsd"/>
    <extension-point id="blockFamilies" name="Block Families" schema="schema/blockFamilies.exsd"/>
+   <extension-point id="injectorProviders" name="Injector Providers" schema="schema/injectorProviders.exsd"/>
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package

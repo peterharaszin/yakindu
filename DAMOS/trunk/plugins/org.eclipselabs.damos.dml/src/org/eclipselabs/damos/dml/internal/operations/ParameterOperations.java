@@ -7,39 +7,31 @@
 package org.eclipselabs.damos.dml.internal.operations;
 
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ValueSpecification;
 
-/**
- * <!-- begin-user-doc -->
- * A static utility class that provides operations related to '<em><b>Parameter</b></em>' model objects.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following operations are supported:
- * <ul>
- *   <li>{@link org.eclipselabs.damos.dml.Parameter#getDefaultValue() <em>Get Default Value</em>}</li>
- * </ul>
- * </p>
- *
- * @generated
- */
 public class ParameterOperations {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ParameterOperations() {
-		super();
-	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  ValueSpecification getDefaultValue(Parameter parameter) {
+	public static ValueSpecification getDefaultValue(Parameter parameter) {
+		return parameter.getOwnedDefaultValue();
+	}
+	
+	public static ParameterPredefinedValue getPredefinedValue(Parameter parameter, String stringValue) {
+		for (ParameterPredefinedValue entry : parameter.getPredefinedValues()) {
+			if (entry.getValue() != null && stringValue.equals(entry.getValue().stringValue())) {
+				return entry;
+			}
+		}
 		return null;
 	}
 
-} // ParameterOperations
+	public static ParameterPredefinedValue getPredefinedValueByAlias(Parameter parameter, String alias) {
+		for (ParameterPredefinedValue entry : parameter.getPredefinedValues()) {
+			if (alias.equals(entry.getAlias())) {
+				return entry;
+			}
+		}
+		return null;
+	}
+
+}

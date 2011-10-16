@@ -24,9 +24,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
-import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.DMLFactory;
-import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
+import org.eclipselabs.damos.dml.ExpressionSpecification;
+import org.eclipselabs.damos.dml.ValueSpecification;
 
 public class ConfigureActionLinkCommand extends ConfigureElementCommand {
 	
@@ -53,9 +53,9 @@ public class ConfigureActionLinkCommand extends ConfigureElementCommand {
 	    		setActionLinkCondition(actionLink, TRUE);
 	    		break;
 	    	case 1:
-	    		ConditionSpecification conditionSpecification = actionLinks.get(0).getCondition();
+	    		ValueSpecification conditionSpecification = actionLinks.get(0).getCondition();
 	    		if (conditionSpecification != null) {
-					String condition = conditionSpecification.stringCondition();
+					String condition = conditionSpecification.stringValue();
 					if (TRUE.equals(condition)) {
 		    			setActionLinkCondition(actionLink, FALSE);
 		    		} else if (FALSE.equals(condition)) {
@@ -70,8 +70,8 @@ public class ConfigureActionLinkCommand extends ConfigureElementCommand {
 	}
 	
 	private void setActionLinkCondition(ActionLink actionLink, String condition) {
-		OpaqueConditionSpecification conditionSpecification = DMLFactory.eINSTANCE.createOpaqueConditionSpecification();
-		conditionSpecification.setCondition(condition);
+		ExpressionSpecification conditionSpecification = DMLFactory.eINSTANCE.createExpressionSpecification();
+		conditionSpecification.setExpression(condition);
 		actionLink.setCondition(conditionSpecification);
 	}
 	

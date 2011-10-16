@@ -142,7 +142,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getFragmentElement()
 	 * @generated
 	 */
-	int FRAGMENT_ELEMENT = 8;
+	int FRAGMENT_ELEMENT = 6;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -339,53 +339,6 @@ public interface DMLPackage extends EPackage {
 	int ASYNCHRONOUS_TIMING_CONSTRAINT_FEATURE_COUNT = TIMING_CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SampleTimeSpecificationImpl <em>Sample Time Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.SampleTimeSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSampleTimeSpecification()
-	 * @generated
-	 */
-	int SAMPLE_TIME_SPECIFICATION = 6;
-
-	/**
-	 * The number of structural features of the '<em>Sample Time Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SAMPLE_TIME_SPECIFICATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OpaqueSampleTimeSpecificationImpl <em>Opaque Sample Time Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.OpaqueSampleTimeSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueSampleTimeSpecification()
-	 * @generated
-	 */
-	int OPAQUE_SAMPLE_TIME_SPECIFICATION = 7;
-
-	/**
-	 * The feature id for the '<em><b>Sample Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_SAMPLE_TIME_SPECIFICATION__SAMPLE_TIME = SAMPLE_TIME_SPECIFICATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Opaque Sample Time Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_SAMPLE_TIME_SPECIFICATION_FEATURE_COUNT = SAMPLE_TIME_SPECIFICATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.PortImpl <em>Port</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -393,7 +346,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPort()
 	 * @generated
 	 */
-	int PORT = 16;
+	int PORT = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InputPortImpl <em>Input Port</em>}' class.
@@ -403,7 +356,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInputPort()
 	 * @generated
 	 */
-	int INPUT_PORT = 17;
+	int INPUT_PORT = 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConnectionImpl <em>Connection</em>}' class.
@@ -413,7 +366,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConnection()
 	 * @generated
 	 */
-	int CONNECTION = 9;
+	int CONNECTION = 7;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -432,7 +385,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputPort()
 	 * @generated
 	 */
-	int OUTPUT_PORT = 18;
+	int OUTPUT_PORT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InoutputImpl <em>Inoutput</em>}' class.
@@ -442,7 +395,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutput()
 	 * @generated
 	 */
-	int INOUTPUT = 13;
+	int INOUTPUT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutputImpl <em>Output</em>}' class.
@@ -452,7 +405,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutput()
 	 * @generated
 	 */
-	int OUTPUT = 15;
+	int OUTPUT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InputImpl <em>Input</em>}' class.
@@ -462,7 +415,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInput()
 	 * @generated
 	 */
-	int INPUT = 14;
+	int INPUT = 12;
 
 	/**
 	 * The feature id for the '<em><b>Owning Fragment</b></em>' container reference.
@@ -508,7 +461,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConnector()
 	 * @generated
 	 */
-	int CONNECTOR = 10;
+	int CONNECTOR = 8;
 
 	/**
 	 * The number of structural features of the '<em>Connector</em>' class.
@@ -527,7 +480,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInputConnector()
 	 * @generated
 	 */
-	int INPUT_CONNECTOR = 11;
+	int INPUT_CONNECTOR = 9;
 
 	/**
 	 * The number of structural features of the '<em>Input Connector</em>' class.
@@ -546,7 +499,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputConnector()
 	 * @generated
 	 */
-	int OUTPUT_CONNECTOR = 12;
+	int OUTPUT_CONNECTOR = 10;
 
 	/**
 	 * The number of structural features of the '<em>Output Connector</em>' class.
@@ -565,7 +518,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getINamedElement()
 	 * @generated
 	 */
-	int INAMED_ELEMENT = 85;
+	int INAMED_ELEMENT = 82;
 
 	/**
 	 * The number of structural features of the '<em>INamed Element</em>' class.
@@ -701,7 +654,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSignalSpecification()
 	 * @generated
 	 */
-	int SIGNAL_SPECIFICATION = 19;
+	int SIGNAL_SPECIFICATION = 17;
 
 	/**
 	 * The number of structural features of the '<em>Signal Specification</em>' class.
@@ -720,7 +673,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockInput()
 	 * @generated
 	 */
-	int BLOCK_INPUT = 21;
+	int BLOCK_INPUT = 19;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockInoutputImpl <em>Block Inoutput</em>}' class.
@@ -730,7 +683,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockInoutput()
 	 * @generated
 	 */
-	int BLOCK_INOUTPUT = 20;
+	int BLOCK_INOUTPUT = 18;
 
 	/**
 	 * The number of structural features of the '<em>Block Inoutput</em>' class.
@@ -785,7 +738,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutputDefinition()
 	 * @generated
 	 */
-	int INOUTPUT_DEFINITION = 23;
+	int INOUTPUT_DEFINITION = 21;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InputDefinitionImpl <em>Input Definition</em>}' class.
@@ -795,7 +748,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInputDefinition()
 	 * @generated
 	 */
-	int INPUT_DEFINITION = 24;
+	int INPUT_DEFINITION = 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutputDefinitionImpl <em>Output Definition</em>}' class.
@@ -805,7 +758,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutputDefinition()
 	 * @generated
 	 */
-	int OUTPUT_DEFINITION = 25;
+	int OUTPUT_DEFINITION = 23;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterizedElementImpl <em>Parameterized Element</em>}' class.
@@ -815,7 +768,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterizedElement()
 	 * @generated
 	 */
-	int PARAMETERIZED_ELEMENT = 31;
+	int PARAMETERIZED_ELEMENT = 30;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ArgumentImpl <em>Argument</em>}' class.
@@ -825,7 +778,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getArgument()
 	 * @generated
 	 */
-	int ARGUMENT = 32;
+	int ARGUMENT = 31;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionParameterImpl <em>Expression Parameter</em>}' class.
@@ -835,7 +788,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionParameter()
 	 * @generated
 	 */
-	int EXPRESSION_PARAMETER = 33;
+	int EXPRESSION_PARAMETER = 32;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterableElementImpl <em>Parameterable Element</em>}' class.
@@ -845,7 +798,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterableElement()
 	 * @generated
 	 */
-	int PARAMETERABLE_ELEMENT = 26;
+	int PARAMETERABLE_ELEMENT = 24;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterImpl <em>Parameter</em>}' class.
@@ -855,7 +808,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 27;
+	int PARAMETER = 25;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
@@ -865,7 +818,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getValueSpecification()
 	 * @generated
 	 */
-	int VALUE_SPECIFICATION = 28;
+	int VALUE_SPECIFICATION = 27;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DirectFeedthroughPolicyImpl <em>Direct Feedthrough Policy</em>}' class.
@@ -875,7 +828,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDirectFeedthroughPolicy()
 	 * @generated
 	 */
-	int DIRECT_FEEDTHROUGH_POLICY = 30;
+	int DIRECT_FEEDTHROUGH_POLICY = 29;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockOutputImpl <em>Block Output</em>}' class.
@@ -885,7 +838,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockOutput()
 	 * @generated
 	 */
-	int BLOCK_OUTPUT = 22;
+	int BLOCK_OUTPUT = 20;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ExpressionSpecificationImpl <em>Expression Specification</em>}' class.
@@ -895,7 +848,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getExpressionSpecification()
 	 * @generated
 	 */
-	int EXPRESSION_SPECIFICATION = 34;
+	int EXPRESSION_SPECIFICATION = 33;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.PredefinedExpressionEntryImpl <em>Predefined Expression Entry</em>}' class.
@@ -905,7 +858,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPredefinedExpressionEntry()
 	 * @generated
 	 */
-	int PREDEFINED_EXPRESSION_ENTRY = 35;
+	int PREDEFINED_EXPRESSION_ENTRY = 34;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl <em>Data Type Specification</em>}' class.
@@ -915,7 +868,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getDataTypeSpecification()
 	 * @generated
 	 */
-	int DATA_TYPE_SPECIFICATION = 29;
+	int DATA_TYPE_SPECIFICATION = 28;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -1269,13 +1222,68 @@ public interface DMLPackage extends EPackage {
 	int PARAMETER__VISIBILITY = INAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Owned Default Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__OWNED_DEFAULT_VALUE = INAMED_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Predefined Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__PREDEFINED_VALUES = INAMED_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 2;
+	int PARAMETER_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ParameterPredefinedValueImpl <em>Parameter Predefined Value</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.ParameterPredefinedValueImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterPredefinedValue()
+	 * @generated
+	 */
+	int PARAMETER_PREDEFINED_VALUE = 26;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_PREDEFINED_VALUE__ALIAS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_PREDEFINED_VALUE__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Parameter Predefined Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_PREDEFINED_VALUE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of structural features of the '<em>Value Specification</em>' class.
@@ -1377,6 +1385,24 @@ public interface DMLPackage extends EPackage {
 	int EXPRESSION_PARAMETER__VISIBILITY = PARAMETER__VISIBILITY;
 
 	/**
+	 * The feature id for the '<em><b>Owned Default Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_PARAMETER__OWNED_DEFAULT_VALUE = PARAMETER__OWNED_DEFAULT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Predefined Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_PARAMETER__PREDEFINED_VALUES = PARAMETER__PREDEFINED_VALUES;
+
+	/**
 	 * The feature id for the '<em><b>Default Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1465,7 +1491,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getQualifiedElement()
 	 * @generated
 	 */
-	int QUALIFIED_ELEMENT = 37;
+	int QUALIFIED_ELEMENT = 36;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.CategorizedElementImpl <em>Categorized Element</em>}' class.
@@ -1475,7 +1501,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCategorizedElement()
 	 * @generated
 	 */
-	int CATEGORIZED_ELEMENT = 38;
+	int CATEGORIZED_ELEMENT = 37;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl <em>Block Type</em>}' class.
@@ -1485,7 +1511,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockType()
 	 * @generated
 	 */
-	int BLOCK_TYPE = 36;
+	int BLOCK_TYPE = 35;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -1513,7 +1539,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCategory()
 	 * @generated
 	 */
-	int CATEGORY = 39;
+	int CATEGORY = 38;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ModelImpl <em>Model</em>}' class.
@@ -1523,7 +1549,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getModel()
 	 * @generated
 	 */
-	int MODEL = 42;
+	int MODEL = 41;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemImpl <em>Subsystem</em>}' class.
@@ -1533,7 +1559,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystem()
 	 * @generated
 	 */
-	int SUBSYSTEM = 47;
+	int SUBSYSTEM = 46;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InoutletImpl <em>Inoutlet</em>}' class.
@@ -1543,7 +1569,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutlet()
 	 * @generated
 	 */
-	int INOUTLET = 50;
+	int INOUTLET = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InletImpl <em>Inlet</em>}' class.
@@ -1553,7 +1579,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInlet()
 	 * @generated
 	 */
-	int INLET = 49;
+	int INLET = 48;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutletImpl <em>Outlet</em>}' class.
@@ -1563,7 +1589,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutlet()
 	 * @generated
 	 */
-	int OUTLET = 51;
+	int OUTLET = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InoutportImpl <em>Inoutport</em>}' class.
@@ -1573,7 +1599,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInoutport()
 	 * @generated
 	 */
-	int INOUTPORT = 55;
+	int INOUTPORT = 54;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.InportImpl <em>Inport</em>}' class.
@@ -1583,7 +1609,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInport()
 	 * @generated
 	 */
-	int INPORT = 53;
+	int INPORT = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OutportImpl <em>Outport</em>}' class.
@@ -1593,7 +1619,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutport()
 	 * @generated
 	 */
-	int OUTPORT = 56;
+	int OUTPORT = 55;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemRealizationImpl <em>Subsystem Realization</em>}' class.
@@ -1603,7 +1629,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemRealization()
 	 * @generated
 	 */
-	int SUBSYSTEM_REALIZATION = 52;
+	int SUBSYSTEM_REALIZATION = 51;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1642,22 +1668,13 @@ public interface DMLPackage extends EPackage {
 	int BLOCK_TYPE__PARAMETERS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Family Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BLOCK_TYPE__FAMILY_ID = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
 	 * The feature id for the '<em><b>Input Definitions</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__INPUT_DEFINITIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int BLOCK_TYPE__INPUT_DEFINITIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Output Definitions</b></em>' containment reference list.
@@ -1666,7 +1683,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__OUTPUT_DEFINITIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
+	int BLOCK_TYPE__OUTPUT_DEFINITIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' containment reference.
@@ -1675,7 +1692,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__BEHAVIOR = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
+	int BLOCK_TYPE__BEHAVIOR = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Timing</b></em>' attribute.
@@ -1684,7 +1701,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__TIMING = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 9;
+	int BLOCK_TYPE__TIMING = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Block Type</em>' class.
@@ -1693,7 +1710,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 10;
+	int BLOCK_TYPE_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
@@ -1811,7 +1828,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBehaviorSpecification()
 	 * @generated
 	 */
-	int BEHAVIOR_SPECIFICATION = 40;
+	int BEHAVIOR_SPECIFICATION = 39;
 
 	/**
 	 * The number of structural features of the '<em>Behavior Specification</em>' class.
@@ -1830,7 +1847,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSystem()
 	 * @generated
 	 */
-	int SYSTEM = 43;
+	int SYSTEM = 42;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.BlockImpl <em>Block</em>}' class.
@@ -1840,7 +1857,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlock()
 	 * @generated
 	 */
-	int BLOCK = 41;
+	int BLOCK = 40;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2066,7 +2083,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockPort()
 	 * @generated
 	 */
-	int BLOCK_PORT = 44;
+	int BLOCK_PORT = 43;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -2094,7 +2111,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockInputPort()
 	 * @generated
 	 */
-	int BLOCK_INPUT_PORT = 45;
+	int BLOCK_INPUT_PORT = 44;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
@@ -2131,7 +2148,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBlockOutputPort()
 	 * @generated
 	 */
-	int BLOCK_OUTPUT_PORT = 46;
+	int BLOCK_OUTPUT_PORT = 45;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' container reference.
@@ -2258,7 +2275,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSystemInterface()
 	 * @generated
 	 */
-	int SYSTEM_INTERFACE = 48;
+	int SYSTEM_INTERFACE = 47;
 
 	/**
 	 * The feature id for the '<em><b>Inlets</b></em>' containment reference list.
@@ -2592,7 +2609,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getInportInput()
 	 * @generated
 	 */
-	int INPORT_INPUT = 54;
+	int INPORT_INPUT = 53;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -2710,7 +2727,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOutportOutput()
 	 * @generated
 	 */
-	int OUTPORT_OUTPUT = 57;
+	int OUTPORT_OUTPUT = 56;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -2747,7 +2764,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInput()
 	 * @generated
 	 */
-	int SUBSYSTEM_INPUT = 58;
+	int SUBSYSTEM_INPUT = 57;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -2793,7 +2810,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemOutput()
 	 * @generated
 	 */
-	int SUBSYSTEM_OUTPUT = 59;
+	int SUBSYSTEM_OUTPUT = 58;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -2839,7 +2856,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBooleanDirectFeedthroughPolicy()
 	 * @generated
 	 */
-	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 60;
+	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 59;
 
 	/**
 	 * The feature id for the '<em><b>Input Definition</b></em>' container reference.
@@ -2876,7 +2893,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueDataTypeSpecification()
 	 * @generated
 	 */
-	int OPAQUE_DATA_TYPE_SPECIFICATION = 61;
+	int OPAQUE_DATA_TYPE_SPECIFICATION = 60;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
@@ -2904,7 +2921,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueBehaviorSpecification()
 	 * @generated
 	 */
-	int OPAQUE_BEHAVIOR_SPECIFICATION = 62;
+	int OPAQUE_BEHAVIOR_SPECIFICATION = 61;
 
 	/**
 	 * The feature id for the '<em><b>Behavior</b></em>' attribute.
@@ -2941,7 +2958,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getLatch()
 	 * @generated
 	 */
-	int LATCH = 63;
+	int LATCH = 62;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3032,7 +3049,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getLatchInput()
 	 * @generated
 	 */
-	int LATCH_INPUT = 64;
+	int LATCH_INPUT = 63;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3069,7 +3086,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompound()
 	 * @generated
 	 */
-	int COMPOUND = 65;
+	int COMPOUND = 64;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3124,7 +3141,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundMember()
 	 * @generated
 	 */
-	int COMPOUND_MEMBER = 66;
+	int COMPOUND_MEMBER = 65;
 
 	/**
 	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
@@ -3152,7 +3169,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundConnector()
 	 * @generated
 	 */
-	int COMPOUND_CONNECTOR = 67;
+	int COMPOUND_CONNECTOR = 66;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3180,7 +3197,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundInputConnector()
 	 * @generated
 	 */
-	int COMPOUND_INPUT_CONNECTOR = 68;
+	int COMPOUND_INPUT_CONNECTOR = 67;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3208,7 +3225,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundOutputConnector()
 	 * @generated
 	 */
-	int COMPOUND_OUTPUT_CONNECTOR = 69;
+	int COMPOUND_OUTPUT_CONNECTOR = 68;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3236,7 +3253,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoice()
 	 * @generated
 	 */
-	int CHOICE = 70;
+	int CHOICE = 69;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3327,7 +3344,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInput()
 	 * @generated
 	 */
-	int CHOICE_INPUT = 71;
+	int CHOICE_INPUT = 70;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3364,7 +3381,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
 	 * @generated
 	 */
-	int CHOICE_INPUT_PORT = 72;
+	int CHOICE_INPUT_PORT = 71;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' container reference.
@@ -3401,7 +3418,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 73;
+	int ACTION = 72;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3465,7 +3482,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
 	 * @generated
 	 */
-	int ACTION_LINK = 74;
+	int ACTION_LINK = 73;
 
 	/**
 	 * The feature id for the '<em><b>Choice</b></em>' container reference.
@@ -3504,53 +3521,6 @@ public interface DMLPackage extends EPackage {
 	int ACTION_LINK_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl <em>Condition Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionSpecification()
-	 * @generated
-	 */
-	int CONDITION_SPECIFICATION = 75;
-
-	/**
-	 * The number of structural features of the '<em>Condition Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONDITION_SPECIFICATION_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl <em>Opaque Condition Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueConditionSpecification()
-	 * @generated
-	 */
-	int OPAQUE_CONDITION_SPECIFICATION = 76;
-
-	/**
-	 * The feature id for the '<em><b>Condition</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_CONDITION_SPECIFICATION__CONDITION = CONDITION_SPECIFICATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Opaque Condition Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_CONDITION_SPECIFICATION_FEATURE_COUNT = CONDITION_SPECIFICATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.JoinImpl <em>Join</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3558,7 +3528,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 77;
+	int JOIN = 74;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3640,7 +3610,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoinInput()
 	 * @generated
 	 */
-	int JOIN_INPUT = 78;
+	int JOIN_INPUT = 75;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3677,7 +3647,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
 	 * @generated
 	 */
-	int WHILE_LOOP = 79;
+	int WHILE_LOOP = 76;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3750,7 +3720,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
 	 * @generated
 	 */
-	int WHILE_LOOP_CONDITION = 80;
+	int WHILE_LOOP_CONDITION = 77;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3778,7 +3748,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemory()
 	 * @generated
 	 */
-	int MEMORY = 81;
+	int MEMORY = 78;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3860,7 +3830,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInitialCondition()
 	 * @generated
 	 */
-	int MEMORY_INITIAL_CONDITION = 82;
+	int MEMORY_INITIAL_CONDITION = 79;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3897,7 +3867,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInput()
 	 * @generated
 	 */
-	int MEMORY_INPUT = 83;
+	int MEMORY_INPUT = 80;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3934,7 +3904,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryOutput()
 	 * @generated
 	 */
-	int MEMORY_OUTPUT = 84;
+	int MEMORY_OUTPUT = 81;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -3971,7 +3941,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getITextualElement()
 	 * @generated
 	 */
-	int ITEXTUAL_ELEMENT = 86;
+	int ITEXTUAL_ELEMENT = 83;
 
 	/**
 	 * The number of structural features of the '<em>ITextual Element</em>' class.
@@ -3990,7 +3960,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getTimingKind()
 	 * @generated
 	 */
-	int TIMING_KIND = 88;
+	int TIMING_KIND = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}' enum.
@@ -4000,7 +3970,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterVisibilityKind()
 	 * @generated
 	 */
-	int PARAMETER_VISIBILITY_KIND = 87;
+	int PARAMETER_VISIBILITY_KIND = 84;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -4171,37 +4141,6 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAsynchronousTimingConstraint();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.SampleTimeSpecification <em>Sample Time Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Sample Time Specification</em>'.
-	 * @see org.eclipselabs.damos.dml.SampleTimeSpecification
-	 * @generated
-	 */
-	EClass getSampleTimeSpecification();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification <em>Opaque Sample Time Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Opaque Sample Time Specification</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification
-	 * @generated
-	 */
-	EClass getOpaqueSampleTimeSpecification();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification#getSampleTime <em>Sample Time</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sample Time</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification#getSampleTime()
-	 * @see #getOpaqueSampleTimeSpecification()
-	 * @generated
-	 */
-	EAttribute getOpaqueSampleTimeSpecification_SampleTime();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.FragmentElement <em>Fragment Element</em>}'.
@@ -4806,6 +4745,60 @@ public interface DMLPackage extends EPackage {
 	EAttribute getParameter_Visibility();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.Parameter#getOwnedDefaultValue <em>Owned Default Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Owned Default Value</em>'.
+	 * @see org.eclipselabs.damos.dml.Parameter#getOwnedDefaultValue()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EReference getParameter_OwnedDefaultValue();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dml.Parameter#getPredefinedValues <em>Predefined Values</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Predefined Values</em>'.
+	 * @see org.eclipselabs.damos.dml.Parameter#getPredefinedValues()
+	 * @see #getParameter()
+	 * @generated
+	 */
+	EReference getParameter_PredefinedValues();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ParameterPredefinedValue <em>Parameter Predefined Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Parameter Predefined Value</em>'.
+	 * @see org.eclipselabs.damos.dml.ParameterPredefinedValue
+	 * @generated
+	 */
+	EClass getParameterPredefinedValue();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.ParameterPredefinedValue#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Alias</em>'.
+	 * @see org.eclipselabs.damos.dml.ParameterPredefinedValue#getAlias()
+	 * @see #getParameterPredefinedValue()
+	 * @generated
+	 */
+	EAttribute getParameterPredefinedValue_Alias();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dml.ParameterPredefinedValue#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see org.eclipselabs.damos.dml.ParameterPredefinedValue#getValue()
+	 * @see #getParameterPredefinedValue()
+	 * @generated
+	 */
+	EReference getParameterPredefinedValue_Value();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ValueSpecification <em>Value Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4866,17 +4859,6 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBlockType();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.BlockType#getFamilyId <em>Family Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Family Id</em>'.
-	 * @see org.eclipselabs.damos.dml.BlockType#getFamilyId()
-	 * @see #getBlockType()
-	 * @generated
-	 */
-	EAttribute getBlockType_FamilyId();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dml.BlockType#getInputDefinitions <em>Input Definitions</em>}'.
@@ -5633,37 +5615,6 @@ public interface DMLPackage extends EPackage {
 	EReference getActionLink_Condition();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.ConditionSpecification <em>Condition Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Condition Specification</em>'.
-	 * @see org.eclipselabs.damos.dml.ConditionSpecification
-	 * @generated
-	 */
-	EClass getConditionSpecification();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OpaqueConditionSpecification <em>Opaque Condition Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Opaque Condition Specification</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueConditionSpecification
-	 * @generated
-	 */
-	EClass getOpaqueConditionSpecification();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.OpaqueConditionSpecification#getCondition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Condition</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueConditionSpecification#getCondition()
-	 * @see #getOpaqueConditionSpecification()
-	 * @generated
-	 */
-	EAttribute getOpaqueConditionSpecification_Condition();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Join <em>Join</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5955,34 +5906,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ASYNCHRONOUS_TIMING_CONSTRAINT = eINSTANCE.getAsynchronousTimingConstraint();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.SampleTimeSpecificationImpl <em>Sample Time Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.SampleTimeSpecificationImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSampleTimeSpecification()
-		 * @generated
-		 */
-		EClass SAMPLE_TIME_SPECIFICATION = eINSTANCE.getSampleTimeSpecification();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OpaqueSampleTimeSpecificationImpl <em>Opaque Sample Time Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.OpaqueSampleTimeSpecificationImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueSampleTimeSpecification()
-		 * @generated
-		 */
-		EClass OPAQUE_SAMPLE_TIME_SPECIFICATION = eINSTANCE.getOpaqueSampleTimeSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Sample Time</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPAQUE_SAMPLE_TIME_SPECIFICATION__SAMPLE_TIME = eINSTANCE.getOpaqueSampleTimeSpecification_SampleTime();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.FragmentElementImpl <em>Fragment Element</em>}' class.
@@ -6491,6 +6414,48 @@ public interface DMLPackage extends EPackage {
 		EAttribute PARAMETER__VISIBILITY = eINSTANCE.getParameter_Visibility();
 
 		/**
+		 * The meta object literal for the '<em><b>Owned Default Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER__OWNED_DEFAULT_VALUE = eINSTANCE.getParameter_OwnedDefaultValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Predefined Values</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER__PREDEFINED_VALUES = eINSTANCE.getParameter_PredefinedValues();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ParameterPredefinedValueImpl <em>Parameter Predefined Value</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.ParameterPredefinedValueImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterPredefinedValue()
+		 * @generated
+		 */
+		EClass PARAMETER_PREDEFINED_VALUE = eINSTANCE.getParameterPredefinedValue();
+
+		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PARAMETER_PREDEFINED_VALUE__ALIAS = eINSTANCE.getParameterPredefinedValue_Alias();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PARAMETER_PREDEFINED_VALUE__VALUE = eINSTANCE.getParameterPredefinedValue_Value();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ValueSpecificationImpl <em>Value Specification</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -6545,14 +6510,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BLOCK_TYPE = eINSTANCE.getBlockType();
-
-		/**
-		 * The meta object literal for the '<em><b>Family Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute BLOCK_TYPE__FAMILY_ID = eINSTANCE.getBlockType_FamilyId();
 
 		/**
 		 * The meta object literal for the '<em><b>Input Definitions</b></em>' containment reference list feature.
@@ -7205,34 +7162,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ACTION_LINK__CONDITION = eINSTANCE.getActionLink_Condition();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl <em>Condition Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.ConditionSpecificationImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getConditionSpecification()
-		 * @generated
-		 */
-		EClass CONDITION_SPECIFICATION = eINSTANCE.getConditionSpecification();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl <em>Opaque Condition Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.OpaqueConditionSpecificationImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueConditionSpecification()
-		 * @generated
-		 */
-		EClass OPAQUE_CONDITION_SPECIFICATION = eINSTANCE.getOpaqueConditionSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPAQUE_CONDITION_SPECIFICATION__CONDITION = eINSTANCE.getOpaqueConditionSpecification_Condition();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.JoinImpl <em>Join</em>}' class.

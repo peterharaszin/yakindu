@@ -17,6 +17,9 @@ import org.eclipse.emf.common.util.ResourceLocator;
  * @generated
  */
 public final class DMLUIPlugin extends EMFPlugin {
+
+	public static final String PLUGIN_ID = "org.eclipselabs.damos.dml.ui";
+	
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->

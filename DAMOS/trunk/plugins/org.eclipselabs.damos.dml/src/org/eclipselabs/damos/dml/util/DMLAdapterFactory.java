@@ -36,7 +36,6 @@ import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
@@ -70,9 +69,7 @@ import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
-import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -81,12 +78,12 @@ import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
-import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
@@ -180,14 +177,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createAsynchronousTimingConstraintAdapter();
 			}
 			@Override
-			public Adapter caseSampleTimeSpecification(SampleTimeSpecification object) {
-				return createSampleTimeSpecificationAdapter();
-			}
-			@Override
-			public Adapter caseOpaqueSampleTimeSpecification(OpaqueSampleTimeSpecification object) {
-				return createOpaqueSampleTimeSpecificationAdapter();
-			}
-			@Override
 			public Adapter caseFragmentElement(FragmentElement object) {
 				return createFragmentElementAdapter();
 			}
@@ -266,6 +255,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseParameter(Parameter object) {
 				return createParameterAdapter();
+			}
+			@Override
+			public Adapter caseParameterPredefinedValue(ParameterPredefinedValue object) {
+				return createParameterPredefinedValueAdapter();
 			}
 			@Override
 			public Adapter caseValueSpecification(ValueSpecification object) {
@@ -456,14 +449,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createActionLinkAdapter();
 			}
 			@Override
-			public Adapter caseConditionSpecification(ConditionSpecification object) {
-				return createConditionSpecificationAdapter();
-			}
-			@Override
-			public Adapter caseOpaqueConditionSpecification(OpaqueConditionSpecification object) {
-				return createOpaqueConditionSpecificationAdapter();
-			}
-			@Override
 			public Adapter caseJoin(Join object) {
 				return createJoinAdapter();
 			}
@@ -608,34 +593,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAsynchronousTimingConstraintAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.SampleTimeSpecification <em>Sample Time Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.SampleTimeSpecification
-	 * @generated
-	 */
-	public Adapter createSampleTimeSpecificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification <em>Opaque Sample Time Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification
-	 * @generated
-	 */
-	public Adapter createOpaqueSampleTimeSpecificationAdapter() {
 		return null;
 	}
 
@@ -986,6 +943,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ParameterPredefinedValue <em>Parameter Predefined Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ParameterPredefinedValue
+	 * @generated
+	 */
+	public Adapter createParameterPredefinedValueAdapter() {
 		return null;
 	}
 
@@ -1574,34 +1545,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createActionLinkAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ConditionSpecification <em>Condition Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.ConditionSpecification
-	 * @generated
-	 */
-	public Adapter createConditionSpecificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.OpaqueConditionSpecification <em>Opaque Condition Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.OpaqueConditionSpecification
-	 * @generated
-	 */
-	public Adapter createOpaqueConditionSpecificationAdapter() {
 		return null;
 	}
 

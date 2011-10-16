@@ -23,12 +23,15 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
+import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
+import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.mscript.computation.core.ComputationContext;
@@ -78,42 +81,50 @@ public class BehavioredBlockHelper {
 	}
 	
 	public FunctionDefinition createFunctionDefinition() throws CoreException {
-		if (!(block.getType().getBehavior() instanceof OpaqueBehaviorSpecification)) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior specified"));
-		}
-
-		OpaqueBehaviorSpecification behavior = (OpaqueBehaviorSpecification) block.getType().getBehavior();
-
-		if (behavior.getModel() == null) {
-			if (behavior.getBehavior() == null) {
-				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No block behavior specified"));
+		Module module;
+		if (block.getType().getBehavior() instanceof MscriptBehaviorSpecification) {
+			module = ((MscriptBehaviorSpecification) block.getType().getBehavior()).getModule();
+		} else {
+			if (!(block.getType().getBehavior() instanceof OpaqueBehaviorSpecification)) {
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior specified"));
 			}
 	
-			MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
-
-			IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule(),
-					new StringReader(behavior.getBehavior()));
-
-			if (parseResult.hasSyntaxErrors()) {
-				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block behavior failed"));
+			OpaqueBehaviorSpecification behavior = (OpaqueBehaviorSpecification) block.getType().getBehavior();
+	
+			if (behavior.getModel() == null) {
+				if (behavior.getBehavior() == null) {
+					throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No block behavior specified"));
+				}
+		
+				MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
+	
+				IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule(),
+						new StringReader(behavior.getBehavior()));
+	
+				if (parseResult.hasSyntaxErrors()) {
+					throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block behavior failed"));
+				}
+	
+				behavior.setModel((Module) parseResult.getRootASTElement());
+				
+				ILinker linker = ExecutionEnginePlugin.getDefault().getLinker();
+				linker.linkModel(behavior.getModel(), new ListBasedDiagnosticConsumer());
 			}
-
-			Module module = (Module) parseResult.getRootASTElement();
-			behavior.setModel(module);
-			
-			ILinker linker = ExecutionEnginePlugin.getDefault().getLinker();
-			linker.linkModel(module, new ListBasedDiagnosticConsumer());
+	
+			if (!(behavior.getModel() instanceof Module)) {
+				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior model"));
+			}
+	
+			module = (Module) behavior.getModel();
 		}
 
-		if (!(behavior.getModel() instanceof Module)) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior model"));
-		}
-
-		Module module = (Module) behavior.getModel();
-
-		FunctionDefinition functionDefinition = LanguageUtil.getFunctionDefinition(module, block.getType().getName());
+		FunctionDefinition functionDefinition = LanguageUtil.getFunctionDefinition(module, "main");
+		// TODO: Remove this, since the starting function must always be 'main'
 		if (functionDefinition == null) {
-			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Mscript function '" + block.getType().getName() + "' not found"));
+			functionDefinition = LanguageUtil.getFunctionDefinition(module, block.getType().getName());
+		}
+		if (functionDefinition == null) {
+			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Mscript function 'main' not found"));
 		}
 		
 		return functionDefinition;
@@ -154,7 +165,7 @@ public class BehavioredBlockHelper {
 		List<IValue> templateArguments = new ArrayList<IValue>();
 		for (ParameterDeclaration parameterDeclaration : functionDefinition.getTemplateParameterDeclarations()) {
 			String parameterName = parameterDeclaration.getName();
-			String argument = block.getArgumentStringValue(parameterName);
+			Argument argument = block.getArgument(parameterName);
 			if (argument == null) {
 				try {
 					IValue templateArgument = getInputTemplateArgumentValue(parameterName);
@@ -173,7 +184,7 @@ public class BehavioredBlockHelper {
 			}
 
 			try {
-				IValue value = ExpressionUtil.evaluateArgumentExpression(block, parameterName);
+				IValue value = evaluateArgumentValue(argument);
 				templateArguments.add(value);
 			} catch (CoreException e) {
 				status.add(e.getStatus());
@@ -246,7 +257,11 @@ public class BehavioredBlockHelper {
 				List<IValue> values = new ArrayList<IValue>(blockInput.getPorts().size());
 				for (InputPort inputPort : blockInput.getPorts()) {
 					BlockInputPort blockInputPort = (BlockInputPort) inputPort;
-					IValue value = ExpressionUtil.evaluateArgumentExpression(blockInputPort, name);
+					Argument argument = blockInputPort.getArgument(name);
+					if (argument == null) {
+						throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No argument for input parameter '" + name + "' found"));
+					}
+					IValue value = evaluateArgumentValue(argument);
 					if (elementType == null) {
 						elementType = value.getDataType();
 					} else {
@@ -269,6 +284,13 @@ public class BehavioredBlockHelper {
 	
 	protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 		return null;
+	}
+	
+	private IValue evaluateArgumentValue(Argument argument) throws CoreException {
+		if (argument.getValue() instanceof MscriptValueSpecification) {
+			return ExpressionUtil.evaluateExpression(((MscriptValueSpecification) argument.getValue()).getExpression());
+		}
+		return ExpressionUtil.evaluateExpression(argument.getValue().stringValue());
 	}
 
 }

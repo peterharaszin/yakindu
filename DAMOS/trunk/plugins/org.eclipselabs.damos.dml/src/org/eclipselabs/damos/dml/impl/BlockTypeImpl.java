@@ -48,7 +48,6 @@ import org.eclipselabs.damos.dml.internal.operations.QualifiedElementOperations;
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getQualifier <em>Qualifier</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getBelongingCategories <em>Belonging Categories</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getFamilyId <em>Family Id</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getInputDefinitions <em>Input Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getOutputDefinitions <em>Output Definitions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getBehavior <em>Behavior</em>}</li>
@@ -127,26 +126,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 * @ordered
 	 */
 	protected EList<Parameter> parameters;
-
-	/**
-	 * The default value of the '{@link #getFamilyId() <em>Family Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFamilyId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String FAMILY_ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getFamilyId() <em>Family Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFamilyId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String familyId = FAMILY_ID_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getInputDefinitions() <em>Input Definitions</em>}' containment reference list.
@@ -312,27 +291,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, DMLPackage.BLOCK_TYPE__PARAMETERS);
 		}
 		return parameters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getFamilyId() {
-		return familyId;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFamilyId(String newFamilyId) {
-		String oldFamilyId = familyId;
-		familyId = newFamilyId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__FAMILY_ID, oldFamilyId, familyId));
 	}
 
 	/**
@@ -540,8 +498,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return getBelongingCategories();
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 				return getParameters();
-			case DMLPackage.BLOCK_TYPE__FAMILY_ID:
-				return getFamilyId();
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 				return getInputDefinitions();
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
@@ -573,9 +529,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends Parameter>)newValue);
-				return;
-			case DMLPackage.BLOCK_TYPE__FAMILY_ID:
-				setFamilyId((String)newValue);
 				return;
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 				getInputDefinitions().clear();
@@ -612,9 +565,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 				getParameters().clear();
 				return;
-			case DMLPackage.BLOCK_TYPE__FAMILY_ID:
-				setFamilyId(FAMILY_ID_EDEFAULT);
-				return;
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 				getInputDefinitions().clear();
 				return;
@@ -649,8 +599,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return belongingCategories != null && !belongingCategories.isEmpty();
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
-			case DMLPackage.BLOCK_TYPE__FAMILY_ID:
-				return FAMILY_ID_EDEFAULT == null ? familyId != null : !FAMILY_ID_EDEFAULT.equals(familyId);
 			case DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS:
 				return inputDefinitions != null && !inputDefinitions.isEmpty();
 			case DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS:
@@ -745,8 +693,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (qualifiedName: ");
 		if (qualifiedNameESet) result.append(qualifiedName); else result.append("<unset>");
-		result.append(", familyId: ");
-		result.append(familyId);
 		result.append(", timing: ");
 		result.append(timing);
 		result.append(')');

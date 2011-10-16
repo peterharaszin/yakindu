@@ -92,12 +92,12 @@ public interface ActionLink extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(ConditionSpecification)
+	 * @see #setCondition(ValueSpecification)
 	 * @see org.eclipselabs.damos.dml.DMLPackage#getActionLink_Condition()
 	 * @model containment="true"
 	 * @generated
 	 */
-	ConditionSpecification getCondition();
+	ValueSpecification getCondition();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.dml.ActionLink#getCondition <em>Condition</em>}' containment reference.
@@ -107,6 +107,6 @@ public interface ActionLink extends EObject {
 	 * @see #getCondition()
 	 * @generated
 	 */
-	void setCondition(ConditionSpecification value);
+	void setCondition(ValueSpecification value);
 
 } // ActionLink

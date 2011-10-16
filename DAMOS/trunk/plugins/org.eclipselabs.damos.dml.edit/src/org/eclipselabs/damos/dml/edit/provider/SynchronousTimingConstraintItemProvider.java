@@ -151,7 +151,7 @@ public class SynchronousTimingConstraintItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(DMLPackage.Literals.SYNCHRONOUS_TIMING_CONSTRAINT__SAMPLE_TIME,
-				 DMLFactory.eINSTANCE.createOpaqueSampleTimeSpecification()));
+				 DMLFactory.eINSTANCE.createExpressionSpecification()));
 	}
 
 }

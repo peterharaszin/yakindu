@@ -62,15 +62,6 @@ public interface DMLFactory extends EFactory {
 	AsynchronousTimingConstraint createAsynchronousTimingConstraint();
 
 	/**
-	 * Returns a new object of class '<em>Opaque Sample Time Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Opaque Sample Time Specification</em>'.
-	 * @generated
-	 */
-	OpaqueSampleTimeSpecification createOpaqueSampleTimeSpecification();
-
-	/**
 	 * Returns a new object of class '<em>Input Port</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,6 +141,24 @@ public interface DMLFactory extends EFactory {
 	 * @generated
 	 */
 	OutputDefinition createOutputDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter</em>'.
+	 * @generated
+	 */
+	Parameter createParameter();
+
+	/**
+	 * Returns a new object of class '<em>Parameter Predefined Value</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Parameter Predefined Value</em>'.
+	 * @generated
+	 */
+	ParameterPredefinedValue createParameterPredefinedValue();
 
 	/**
 	 * Returns a new object of class '<em>Argument</em>'.
@@ -438,15 +447,6 @@ public interface DMLFactory extends EFactory {
 	 * @generated
 	 */
 	ActionLink createActionLink();
-
-	/**
-	 * Returns a new object of class '<em>Opaque Condition Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Opaque Condition Specification</em>'.
-	 * @generated
-	 */
-	OpaqueConditionSpecification createOpaqueConditionSpecification();
 
 	/**
 	 * Returns a new object of class '<em>Join</em>'.

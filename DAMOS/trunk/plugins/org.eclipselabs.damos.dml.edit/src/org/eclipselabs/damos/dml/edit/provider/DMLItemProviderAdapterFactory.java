@@ -166,29 +166,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OpaqueSampleTimeSpecificationItemProvider opaqueSampleTimeSpecificationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOpaqueSampleTimeSpecificationAdapter() {
-		if (opaqueSampleTimeSpecificationItemProvider == null) {
-			opaqueSampleTimeSpecificationItemProvider = new OpaqueSampleTimeSpecificationItemProvider(this);
-		}
-
-		return opaqueSampleTimeSpecificationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Input} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -393,6 +370,52 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		}
 
 		return outputDefinitionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Parameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ParameterItemProvider parameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.Parameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createParameterAdapter() {
+		if (parameterItemProvider == null) {
+			parameterItemProvider = new ParameterItemProvider(this);
+		}
+
+		return parameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ParameterPredefinedValue} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ParameterPredefinedValueItemProvider parameterPredefinedValueItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ParameterPredefinedValue}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createParameterPredefinedValueAdapter() {
+		if (parameterPredefinedValueItemProvider == null) {
+			parameterPredefinedValueItemProvider = new ParameterPredefinedValueItemProvider(this);
+		}
+
+		return parameterPredefinedValueItemProvider;
 	}
 
 	/**
@@ -1132,29 +1155,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OpaqueConditionSpecification} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OpaqueConditionSpecificationItemProvider opaqueConditionSpecificationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OpaqueConditionSpecification}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOpaqueConditionSpecificationAdapter() {
-		if (opaqueConditionSpecificationItemProvider == null) {
-			opaqueConditionSpecificationItemProvider = new OpaqueConditionSpecificationItemProvider(this);
-		}
-
-		return opaqueConditionSpecificationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Join} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1441,7 +1441,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (continuousTimingConstraintItemProvider != null) continuousTimingConstraintItemProvider.dispose();
 		if (synchronousTimingConstraintItemProvider != null) synchronousTimingConstraintItemProvider.dispose();
 		if (asynchronousTimingConstraintItemProvider != null) asynchronousTimingConstraintItemProvider.dispose();
-		if (opaqueSampleTimeSpecificationItemProvider != null) opaqueSampleTimeSpecificationItemProvider.dispose();
 		if (connectionItemProvider != null) connectionItemProvider.dispose();
 		if (inputItemProvider != null) inputItemProvider.dispose();
 		if (outputItemProvider != null) outputItemProvider.dispose();
@@ -1451,6 +1450,8 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (blockOutputItemProvider != null) blockOutputItemProvider.dispose();
 		if (inputDefinitionItemProvider != null) inputDefinitionItemProvider.dispose();
 		if (outputDefinitionItemProvider != null) outputDefinitionItemProvider.dispose();
+		if (parameterItemProvider != null) parameterItemProvider.dispose();
+		if (parameterPredefinedValueItemProvider != null) parameterPredefinedValueItemProvider.dispose();
 		if (argumentItemProvider != null) argumentItemProvider.dispose();
 		if (expressionParameterItemProvider != null) expressionParameterItemProvider.dispose();
 		if (expressionSpecificationItemProvider != null) expressionSpecificationItemProvider.dispose();
@@ -1483,7 +1484,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (choiceInputPortItemProvider != null) choiceInputPortItemProvider.dispose();
 		if (actionItemProvider != null) actionItemProvider.dispose();
 		if (actionLinkItemProvider != null) actionLinkItemProvider.dispose();
-		if (opaqueConditionSpecificationItemProvider != null) opaqueConditionSpecificationItemProvider.dispose();
 		if (joinItemProvider != null) joinItemProvider.dispose();
 		if (joinInputItemProvider != null) joinInputItemProvider.dispose();
 		if (whileLoopItemProvider != null) whileLoopItemProvider.dispose();

@@ -11,53 +11,45 @@
 
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gef.EditPolicy;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.requests.DirectEditRequest;
-import org.eclipse.gef.tools.CellEditorLocator;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.LabelDirectEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager;
+import org.eclipse.gmf.runtime.diagram.ui.label.ILabelDelegate;
+import org.eclipse.gmf.runtime.diagram.ui.label.LabelExDelegate;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
-import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.jface.viewers.CellEditor;
-import org.eclipse.jface.viewers.ICellEditorValidator;
-import org.eclipse.swt.widgets.Text;
+import org.eclipselabs.damos.diagram.ui.editparts.ITextualContentEditPart;
+import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.dml.ActionLink;
-import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
+import org.eclipselabs.damos.dml.ui.registry.UIInjectorProviderRegistry;
+
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ActionLinkConditionEditPart extends LabelEditPart implements ITextAwareEditPart {
+public class ActionLinkConditionEditPart extends LabelEditPart implements ITextualContentEditPart {
 
-	private Label conditionLabel;
+	private ILabelDelegate conditionLabel;
 
-	private IParser parser;
-	private TextDirectEditManager textDirectEditManager;
+	@Inject
+	private IValueSpecificationDirectEditHelper directEditHelper;
 	
 	/**
 	 * @param view
 	 */
 	public ActionLinkConditionEditPart(View view) {
 		super(view);
+		Injector injector = UIInjectorProviderRegistry.getInstance().getInjector(view.getElement());
+		if (injector != null) {
+			injector.injectMembers(this);
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -66,7 +58,7 @@ public class ActionLinkConditionEditPart extends LabelEditPart implements ITextA
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
+		directEditHelper.createDefaultEditPolicies(this);
 	}
 	
 	/* (non-Javadoc)
@@ -75,8 +67,9 @@ public class ActionLinkConditionEditPart extends LabelEditPart implements ITextA
 	@Override
 	protected IFigure createFigure() {
 		IFigure figure = super.createFigure();
-		conditionLabel = new LabelEx();
-		figure.add(conditionLabel);
+		LabelEx label = new LabelEx();
+		conditionLabel = new LabelExDelegate(label);
+		figure.add(label);
 		return figure;
 	}
 	
@@ -93,11 +86,19 @@ public class ActionLinkConditionEditPart extends LabelEditPart implements ITextA
 		ActionLink actionLink = (ActionLink) resolveSemanticElement();
 		if (conditionLabel != null && actionLink != null) {
 			if (actionLink.getCondition() != null) {
-				conditionLabel.setText(actionLink.getCondition().stringCondition());
+				conditionLabel.setText(actionLink.getCondition().stringValue());
 			} else {
 				conditionLabel.setText("default");
 			}
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.TopGraphicEditPart#performDirectEditRequest(org.eclipse.gef.Request)
+	 */
+	@Override
+	protected void performDirectEditRequest(Request request) {
+		directEditHelper.performDirectEditRequest(this, request);
 	}
 	
 	/* (non-Javadoc)
@@ -113,129 +114,42 @@ public class ActionLinkConditionEditPart extends LabelEditPart implements ITextA
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.TopGraphicEditPart#performDirectEditRequest(org.eclipse.gef.Request)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.ITextAwareEditPart#getEditableElement()
 	 */
-	protected void performDirectEditRequest(final Request request) {
-		try {
-			getEditingDomain().runExclusive(new Runnable() {
-				public void run() {
-					if (isActive() && request instanceof DirectEditRequest) {
-						DirectEditRequest editRequest = (DirectEditRequest) request;
-						getTextDirectEditManager().show(editRequest.getLocation().getSWTPoint());
-					}
-				}
-			});
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private TextDirectEditManager getTextDirectEditManager() {
-		if (textDirectEditManager == null) {
-			textDirectEditManager = new TextDirectEditManager(this, null, new CellEditorLocator() {
-				
-	            public void relocate(CellEditor celleditor) {
-		           	if (conditionLabel != null) {
-		                Text text = (Text) celleditor.getControl();
-		                Rectangle rect = conditionLabel.getTextBounds().getCopy();
-		                conditionLabel.translateToAbsolute(rect);
-		                int minWidth = 4 * rect.height;
-		                if (rect.width < minWidth) {
-		                	rect.width = minWidth;
-		                }
-		                if (!rect.equals(new Rectangle(text.getBounds()))) {
-		                    text.setBounds(rect.x, rect.y, rect.width, rect.height);
-		                }
-	            	}
-	            }
-	            
-	        });
-		}
-		return textDirectEditManager;
+	public EObject getContentElement() {
+		return resolveSemanticElement();
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getCompletionProcessor()
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.ITextAwareEditPart#getEditableFeature()
 	 */
-	public IContentAssistProcessor getCompletionProcessor() {
-		return null;
+	public EStructuralFeature getContentFeature() {
+		return DMLPackage.eINSTANCE.getActionLink_Condition();
 	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getEditText()
 	 */
-	public String getEditText() {
-		return getParser().getEditString(null, 0);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getEditTextValidator()
-	 */
-	public ICellEditorValidator getEditTextValidator() {
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getParser()
-	 */
-	public IParser getParser() {
-		if (parser == null) {
-			parser = new IParser() {
-	
-				public IContentAssistProcessor getCompletionProcessor(IAdaptable element) {
-					return null;
-				}
-	
-				public String getEditString(IAdaptable element, int flags) {
-					ActionLink actionLink = (ActionLink) resolveSemanticElement();
-					if (actionLink != null) {
-						if (actionLink.getCondition() != null) {
-							return actionLink.getCondition().stringCondition();
-						} else {
-							return "default";
-						}
-					}
-					return "";
-				}
-	
-				public ICommand getParseCommand(IAdaptable element, String newString, int flags) {
-					OpaqueConditionSpecification conditionSpecification = null;
-					newString = newString.trim();
-					if (!("".equals(newString) || "default".equals(newString) || "else".equals(newString))) {
-						conditionSpecification = DMLFactory.eINSTANCE.createOpaqueConditionSpecification();
-						conditionSpecification.setCondition(newString);
-					}
-					return new SetValueCommand(new SetRequest(getEditingDomain(), resolveSemanticElement(), DMLPackage.eINSTANCE.getActionLink_Condition(), conditionSpecification));
-				}
-	
-				public String getPrintString(IAdaptable element, int flags) {
-					return getEditString(element, flags);
-				}
-	
-				public boolean isAffectingEvent(Object event, int flags) {
-					return false;
-				}
-	
-				public IParserEditStatus isValidEditString(IAdaptable element, String editString) {
-					return ParserEditStatus.EDITABLE_STATUS;
-				}
-				
-			};
+	public String getContentText() {
+		ActionLink actionLink = (ActionLink) resolveSemanticElement();
+		if (actionLink != null) {
+			if (actionLink.getCondition() != null) {
+				return actionLink.getCondition().stringValue();
+			} else {
+				return "default";
+			}
 		}
-		return parser;
+		return "";
 	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#getParserOptions()
-	 */
-	public ParserOptions getParserOptions() {
-		return ParserOptions.NONE;
-	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart#setLabelText(java.lang.String)
 	 */
-	public void setLabelText(String text) {
+	public void setContentText(String text) {
 	}
-
+	
+	public ILabelDelegate getContentLabel() {
+		return conditionLabel;
+	}
+	
 }

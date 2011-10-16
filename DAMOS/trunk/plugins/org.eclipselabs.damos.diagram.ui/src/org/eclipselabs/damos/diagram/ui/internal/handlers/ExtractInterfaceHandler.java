@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -87,7 +86,7 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 				Inlet inlet = DMLFactory.eINSTANCE.createInlet();
 				inlet.setName(inport.getName());
 				if (inport.getDataType() != null) {
-					inlet.setDataType(EcoreUtil.copy(inport.getDataType()));
+					inlet.setDataType(inport.getDataType().copy());
 				}
 				systemInterface.getInlets().add(inlet);
 			} else if (component instanceof Outport) {
@@ -96,7 +95,7 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 				outlet.setName(component.getName());
 				systemInterface.getOutlets().add(outlet);
 				if (outport.getDataType() != null) {
-					outlet.setDataType(EcoreUtil.copy(outport.getDataType()));
+					outlet.setDataType(outport.getDataType().copy());
 				}
 			}
 		}

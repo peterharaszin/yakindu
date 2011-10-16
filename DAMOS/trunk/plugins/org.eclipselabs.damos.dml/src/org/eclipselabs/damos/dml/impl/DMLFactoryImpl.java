@@ -50,15 +50,15 @@ import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
-import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.Subsystem;
@@ -119,7 +119,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.CONTINUOUS_TIMING_CONSTRAINT: return createContinuousTimingConstraint();
 			case DMLPackage.SYNCHRONOUS_TIMING_CONSTRAINT: return createSynchronousTimingConstraint();
 			case DMLPackage.ASYNCHRONOUS_TIMING_CONSTRAINT: return createAsynchronousTimingConstraint();
-			case DMLPackage.OPAQUE_SAMPLE_TIME_SPECIFICATION: return createOpaqueSampleTimeSpecification();
 			case DMLPackage.CONNECTION: return createConnection();
 			case DMLPackage.INPUT: return createInput();
 			case DMLPackage.OUTPUT: return createOutput();
@@ -129,6 +128,8 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.BLOCK_OUTPUT: return createBlockOutput();
 			case DMLPackage.INPUT_DEFINITION: return createInputDefinition();
 			case DMLPackage.OUTPUT_DEFINITION: return createOutputDefinition();
+			case DMLPackage.PARAMETER: return createParameter();
+			case DMLPackage.PARAMETER_PREDEFINED_VALUE: return createParameterPredefinedValue();
 			case DMLPackage.ARGUMENT: return createArgument();
 			case DMLPackage.EXPRESSION_PARAMETER: return createExpressionParameter();
 			case DMLPackage.EXPRESSION_SPECIFICATION: return createExpressionSpecification();
@@ -161,7 +162,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.CHOICE_INPUT_PORT: return createChoiceInputPort();
 			case DMLPackage.ACTION: return createAction();
 			case DMLPackage.ACTION_LINK: return createActionLink();
-			case DMLPackage.OPAQUE_CONDITION_SPECIFICATION: return createOpaqueConditionSpecification();
 			case DMLPackage.JOIN: return createJoin();
 			case DMLPackage.JOIN_INPUT: return createJoinInput();
 			case DMLPackage.WHILE_LOOP: return createWhileLoop();
@@ -254,16 +254,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueSampleTimeSpecification createOpaqueSampleTimeSpecification() {
-		OpaqueSampleTimeSpecificationImpl opaqueSampleTimeSpecification = new OpaqueSampleTimeSpecificationImpl();
-		return opaqueSampleTimeSpecification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public InputPort createInputPort() {
 		InputPortImpl inputPort = new InputPortImpl();
 		return inputPort;
@@ -347,6 +337,26 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public OutputDefinition createOutputDefinition() {
 		OutputDefinitionImpl outputDefinition = new OutputDefinitionImpl();
 		return outputDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Parameter createParameter() {
+		ParameterImpl parameter = new ParameterImpl();
+		return parameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ParameterPredefinedValue createParameterPredefinedValue() {
+		ParameterPredefinedValueImpl parameterPredefinedValue = new ParameterPredefinedValueImpl();
+		return parameterPredefinedValue;
 	}
 
 	/**
@@ -667,16 +677,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public ActionLink createActionLink() {
 		ActionLinkImpl actionLink = new ActionLinkImpl();
 		return actionLink;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OpaqueConditionSpecification createOpaqueConditionSpecification() {
-		OpaqueConditionSpecificationImpl opaqueConditionSpecification = new OpaqueConditionSpecificationImpl();
-		return opaqueConditionSpecification;
 	}
 
 	/**

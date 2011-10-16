@@ -599,7 +599,7 @@ public class Generator {
 				int i = 0;
 				for (ActionLink actionLink : choice.getActionLinks()) {
 					if (actionLink.getCondition() != null) {
-						String condition = actionLink.getCondition().stringCondition();
+						String condition = actionLink.getCondition().stringValue();
 						if (i > 0) {
 							writer.print("} else ");
 						}

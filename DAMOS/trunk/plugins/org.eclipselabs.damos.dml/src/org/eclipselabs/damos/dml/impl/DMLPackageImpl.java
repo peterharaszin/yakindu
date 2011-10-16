@@ -39,7 +39,6 @@ import org.eclipselabs.damos.dml.CompoundConnector;
 import org.eclipselabs.damos.dml.CompoundInputConnector;
 import org.eclipselabs.damos.dml.CompoundMember;
 import org.eclipselabs.damos.dml.CompoundOutputConnector;
-import org.eclipselabs.damos.dml.ConditionSpecification;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
@@ -74,9 +73,7 @@ import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
 import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueConditionSpecification;
 import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
-import org.eclipselabs.damos.dml.OpaqueSampleTimeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -85,13 +82,13 @@ import org.eclipselabs.damos.dml.OutputConnector;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
-import org.eclipselabs.damos.dml.SampleTimeSpecification;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
@@ -154,20 +151,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass asynchronousTimingConstraintEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass sampleTimeSpecificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass opaqueSampleTimeSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -343,6 +326,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass parameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass parameterPredefinedValueEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -643,20 +633,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass conditionSpecificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass opaqueConditionSpecificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass joinEClass = null;
 
 	/**
@@ -948,33 +924,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EClass getAsynchronousTimingConstraint() {
 		return asynchronousTimingConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getSampleTimeSpecification() {
-		return sampleTimeSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getOpaqueSampleTimeSpecification() {
-		return opaqueSampleTimeSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getOpaqueSampleTimeSpecification_SampleTime() {
-		return (EAttribute)opaqueSampleTimeSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1495,6 +1444,51 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getParameter_OwnedDefaultValue() {
+		return (EReference)parameterEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParameter_PredefinedValues() {
+		return (EReference)parameterEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getParameterPredefinedValue() {
+		return parameterPredefinedValueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getParameterPredefinedValue_Alias() {
+		return (EAttribute)parameterPredefinedValueEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getParameterPredefinedValue_Value() {
+		return (EReference)parameterPredefinedValueEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getValueSpecification() {
 		return valueSpecificationEClass;
 	}
@@ -1549,17 +1543,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getBlockType_FamilyId() {
-		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getBlockType_InputDefinitions() {
-		return (EReference)blockTypeEClass.getEStructuralFeatures().get(1);
+		return (EReference)blockTypeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1568,7 +1553,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	public EReference getBlockType_OutputDefinitions() {
-		return (EReference)blockTypeEClass.getEStructuralFeatures().get(2);
+		return (EReference)blockTypeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1577,7 +1562,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	public EReference getBlockType_Behavior() {
-		return (EReference)blockTypeEClass.getEStructuralFeatures().get(3);
+		return (EReference)blockTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1586,7 +1571,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	public EAttribute getBlockType_Timing() {
-		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -2206,33 +2191,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getConditionSpecification() {
-		return conditionSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getOpaqueConditionSpecification() {
-		return opaqueConditionSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getOpaqueConditionSpecification_Condition() {
-		return (EAttribute)opaqueConditionSpecificationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getJoin() {
 		return joinEClass;
 	}
@@ -2395,11 +2353,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		asynchronousTimingConstraintEClass = createEClass(ASYNCHRONOUS_TIMING_CONSTRAINT);
 
-		sampleTimeSpecificationEClass = createEClass(SAMPLE_TIME_SPECIFICATION);
-
-		opaqueSampleTimeSpecificationEClass = createEClass(OPAQUE_SAMPLE_TIME_SPECIFICATION);
-		createEAttribute(opaqueSampleTimeSpecificationEClass, OPAQUE_SAMPLE_TIME_SPECIFICATION__SAMPLE_TIME);
-
 		fragmentElementEClass = createEClass(FRAGMENT_ELEMENT);
 		createEReference(fragmentElementEClass, FRAGMENT_ELEMENT__OWNING_FRAGMENT);
 
@@ -2463,6 +2416,12 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__NAME);
 		createEAttribute(parameterEClass, PARAMETER__VISIBILITY);
+		createEReference(parameterEClass, PARAMETER__OWNED_DEFAULT_VALUE);
+		createEReference(parameterEClass, PARAMETER__PREDEFINED_VALUES);
+
+		parameterPredefinedValueEClass = createEClass(PARAMETER_PREDEFINED_VALUE);
+		createEAttribute(parameterPredefinedValueEClass, PARAMETER_PREDEFINED_VALUE__ALIAS);
+		createEReference(parameterPredefinedValueEClass, PARAMETER_PREDEFINED_VALUE__VALUE);
 
 		valueSpecificationEClass = createEClass(VALUE_SPECIFICATION);
 
@@ -2491,7 +2450,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(predefinedExpressionEntryEClass, PREDEFINED_EXPRESSION_ENTRY__EXPRESSION);
 
 		blockTypeEClass = createEClass(BLOCK_TYPE);
-		createEAttribute(blockTypeEClass, BLOCK_TYPE__FAMILY_ID);
 		createEReference(blockTypeEClass, BLOCK_TYPE__INPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__OUTPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__BEHAVIOR);
@@ -2603,11 +2561,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(actionLinkEClass, ACTION_LINK__ACTION);
 		createEReference(actionLinkEClass, ACTION_LINK__CONDITION);
 
-		conditionSpecificationEClass = createEClass(CONDITION_SPECIFICATION);
-
-		opaqueConditionSpecificationEClass = createEClass(OPAQUE_CONDITION_SPECIFICATION);
-		createEAttribute(opaqueConditionSpecificationEClass, OPAQUE_CONDITION_SPECIFICATION__CONDITION);
-
 		joinEClass = createEClass(JOIN);
 
 		joinInputEClass = createEClass(JOIN_INPUT);
@@ -2670,8 +2623,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		continuousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
 		synchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
 		asynchronousTimingConstraintEClass.getESuperTypes().add(this.getTimingConstraint());
-		opaqueSampleTimeSpecificationEClass.getESuperTypes().add(this.getSampleTimeSpecification());
-		opaqueSampleTimeSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		fragmentElementEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		connectionEClass.getESuperTypes().add(this.getFragmentElement());
 		inputConnectorEClass.getESuperTypes().add(this.getConnector());
@@ -2747,8 +2698,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		choiceInputPortEClass.getESuperTypes().add(this.getInputPort());
 		choiceInputPortEClass.getESuperTypes().add(this.getINamedElement());
 		actionEClass.getESuperTypes().add(this.getCompound());
-		opaqueConditionSpecificationEClass.getESuperTypes().add(this.getConditionSpecification());
-		opaqueConditionSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		joinEClass.getESuperTypes().add(this.getComponent());
 		joinInputEClass.getESuperTypes().add(this.getInput());
 		whileLoopEClass.getESuperTypes().add(this.getAction());
@@ -2814,16 +2763,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(continuousTimingConstraintEClass, ContinuousTimingConstraint.class, "ContinuousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(synchronousTimingConstraintEClass, SynchronousTimingConstraint.class, "SynchronousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSynchronousTimingConstraint_SampleTime(), this.getSampleTimeSpecification(), null, "sampleTime", null, 1, 1, SynchronousTimingConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSynchronousTimingConstraint_SampleTime(), this.getValueSpecification(), null, "sampleTime", null, 1, 1, SynchronousTimingConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(asynchronousTimingConstraintEClass, AsynchronousTimingConstraint.class, "AsynchronousTimingConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(sampleTimeSpecificationEClass, SampleTimeSpecification.class, "SampleTimeSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		addEOperation(sampleTimeSpecificationEClass, ecorePackage.getEString(), "stringSampleTime", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(opaqueSampleTimeSpecificationEClass, OpaqueSampleTimeSpecification.class, "OpaqueSampleTimeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOpaqueSampleTimeSpecification_SampleTime(), ecorePackage.getEString(), "sampleTime", null, 1, 1, OpaqueSampleTimeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fragmentElementEClass, FragmentElement.class, "FragmentElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFragmentElement_OwningFragment(), this.getFragment(), this.getFragment_FragmentElements(), "owningFragment", null, 0, 1, FragmentElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2920,7 +2862,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getInoutputDefinition_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, InoutputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(inputDefinitionEClass, InputDefinition.class, "InputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInputDefinition_DirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy_InputDefinition(), "directFeedthroughPolicy", null, 1, 1, InputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getInputDefinition_DirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy(), this.getDirectFeedthroughPolicy_InputDefinition(), "directFeedthroughPolicy", null, 0, 1, InputDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(outputDefinitionEClass, OutputDefinition.class, "OutputDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2930,17 +2872,33 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		op = addEOperation(parameterableElementEClass, this.getParameter(), "getParameter", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
-		initEClass(parameterEClass, Parameter.class, "Parameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getParameter_Visibility(), this.getParameterVisibilityKind(), "visibility", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_OwnedDefaultValue(), this.getValueSpecification(), null, "ownedDefaultValue", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_PredefinedValues(), this.getParameterPredefinedValue(), null, "predefinedValues", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(parameterEClass, this.getValueSpecification(), "getDefaultValue", 0, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(parameterEClass, this.getParameterPredefinedValue(), "getPredefinedValue", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "stringValue", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		op = addEOperation(parameterEClass, this.getParameterPredefinedValue(), "getPredefinedValueByAlias", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, ecorePackage.getEString(), "alias", 1, 1, IS_UNIQUE, !IS_ORDERED);
+
+		initEClass(parameterPredefinedValueEClass, ParameterPredefinedValue.class, "ParameterPredefinedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getParameterPredefinedValue_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, ParameterPredefinedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getParameterPredefinedValue_Value(), this.getValueSpecification(), null, "value", null, 1, 1, ParameterPredefinedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueSpecificationEClass, ValueSpecification.class, "ValueSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		addEOperation(valueSpecificationEClass, ecorePackage.getEString(), "stringValue", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
+		addEOperation(valueSpecificationEClass, this.getValueSpecification(), "copy", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(dataTypeSpecificationEClass, DataTypeSpecification.class, "DataTypeSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(dataTypeSpecificationEClass, this.getDataTypeSpecification(), "copy", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(directFeedthroughPolicyEClass, DirectFeedthroughPolicy.class, "DirectFeedthroughPolicy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDirectFeedthroughPolicy_InputDefinition(), this.getInputDefinition(), this.getInputDefinition_DirectFeedthroughPolicy(), "inputDefinition", null, 1, 1, DirectFeedthroughPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2979,7 +2937,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getPredefinedExpressionEntry_Expression(), this.getExpressionSpecification(), null, "expression", null, 1, 1, PredefinedExpressionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(blockTypeEClass, BlockType.class, "BlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBlockType_FamilyId(), ecorePackage.getEString(), "familyId", null, 0, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_InputDefinitions(), this.getInputDefinition(), null, "inputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_OutputDefinitions(), this.getOutputDefinition(), null, "outputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_Behavior(), this.getBehaviorSpecification(), null, "behavior", null, 0, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -3100,14 +3057,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(actionLinkEClass, ActionLink.class, "ActionLink", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActionLink_Choice(), this.getChoice(), this.getChoice_ActionLinks(), "choice", null, 1, 1, ActionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getActionLink_Action(), this.getAction(), this.getAction_Link(), "action", null, 1, 1, ActionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getActionLink_Condition(), this.getConditionSpecification(), null, "condition", null, 0, 1, ActionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(conditionSpecificationEClass, ConditionSpecification.class, "ConditionSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		addEOperation(conditionSpecificationEClass, ecorePackage.getEString(), "stringCondition", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(opaqueConditionSpecificationEClass, OpaqueConditionSpecification.class, "OpaqueConditionSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOpaqueConditionSpecification_Condition(), ecorePackage.getEString(), "condition", null, 1, 1, OpaqueConditionSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActionLink_Condition(), this.getValueSpecification(), null, "condition", null, 0, 1, ActionLink.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

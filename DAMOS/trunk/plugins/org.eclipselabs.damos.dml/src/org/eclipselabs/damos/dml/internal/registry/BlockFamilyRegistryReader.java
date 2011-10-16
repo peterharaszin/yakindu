@@ -71,7 +71,7 @@ public class BlockFamilyRegistryReader extends AbstractRegistryReader {
 		blockFamily.setId(id);
 		blockFamily.setName(name);
 		if (blockTypeFactory != null && blockTypeFactory.trim().length() > 0) {
-			blockFamily.setBlockTypeFactoryProvider(getExecutableExtensionProviderFor(element, ATT_BLOCK_TYPE_FACTORY, IBlockTypeFactory.class));
+			blockFamily.setBlockTypeFactory(getExecutableExtensionFor(element, ATT_BLOCK_TYPE_FACTORY, IBlockTypeFactory.class));
 		}
 		registry.register(blockFamily);
 

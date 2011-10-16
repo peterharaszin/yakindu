@@ -37,7 +37,7 @@ public interface InputDefinition extends InoutputDefinition {
 	 * @see #setDirectFeedthroughPolicy(DirectFeedthroughPolicy)
 	 * @see org.eclipselabs.damos.dml.DMLPackage#getInputDefinition_DirectFeedthroughPolicy()
 	 * @see org.eclipselabs.damos.dml.DirectFeedthroughPolicy#getInputDefinition
-	 * @model opposite="inputDefinition" containment="true" required="true" ordered="false"
+	 * @model opposite="inputDefinition" containment="true" ordered="false"
 	 * @generated
 	 */
 	DirectFeedthroughPolicy getDirectFeedthroughPolicy();

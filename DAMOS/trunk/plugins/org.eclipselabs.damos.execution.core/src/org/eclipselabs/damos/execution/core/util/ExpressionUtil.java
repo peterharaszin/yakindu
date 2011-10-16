@@ -90,7 +90,15 @@ public class ExpressionUtil {
 
 	public static IValue evaluateExpression(String expressionString) throws CoreException {
 		Expression expression = parseExpression(expressionString);
+		return evaluateExpression(expression);
+	}
 
+	/**
+	 * @param expression
+	 * @return
+	 * @throws CoreException
+	 */
+	public static IValue evaluateExpression(Expression expression) throws CoreException {
 		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
 		ITransformerContext transformerContext = new TransformerContext(staticEvaluationContext);
 		IInterpreterContext interpreterContext = new InterpreterContext(staticEvaluationContext, new ComputationContext());

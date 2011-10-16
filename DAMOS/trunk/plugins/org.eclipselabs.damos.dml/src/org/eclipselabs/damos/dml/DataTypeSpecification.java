@@ -19,4 +19,12 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface DataTypeSpecification extends EObject {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 * @generated
+	 */
+	DataTypeSpecification copy();
 } // DataTypeSpecification

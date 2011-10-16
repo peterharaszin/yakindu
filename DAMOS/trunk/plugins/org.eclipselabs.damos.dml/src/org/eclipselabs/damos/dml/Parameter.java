@@ -6,6 +6,8 @@
  */
 package org.eclipselabs.damos.dml;
 
+import org.eclipse.emf.common.util.EList;
+
 
 
 
@@ -20,11 +22,13 @@ package org.eclipselabs.damos.dml;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.Parameter#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Parameter#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.Parameter#getOwnedDefaultValue <em>Owned Default Value</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.Parameter#getPredefinedValues <em>Predefined Values</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipselabs.damos.dml.DMLPackage#getParameter()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface Parameter extends INamedElement {
@@ -85,6 +89,48 @@ public interface Parameter extends INamedElement {
 	void setVisibility(ParameterVisibilityKind value);
 
 	/**
+	 * Returns the value of the '<em><b>Owned Default Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owned Default Value</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Owned Default Value</em>' containment reference.
+	 * @see #setOwnedDefaultValue(ValueSpecification)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getParameter_OwnedDefaultValue()
+	 * @model containment="true"
+	 * @generated
+	 */
+	ValueSpecification getOwnedDefaultValue();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Parameter#getOwnedDefaultValue <em>Owned Default Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owned Default Value</em>' containment reference.
+	 * @see #getOwnedDefaultValue()
+	 * @generated
+	 */
+	void setOwnedDefaultValue(ValueSpecification value);
+
+	/**
+	 * Returns the value of the '<em><b>Predefined Values</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.dml.ParameterPredefinedValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Predefined Values</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Predefined Values</em>' containment reference list.
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getParameter_PredefinedValues()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ParameterPredefinedValue> getPredefinedValues();
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Default Value</em>' attribute isn't clear,
@@ -95,4 +141,20 @@ public interface Parameter extends INamedElement {
 	 * @generated
 	 */
 	ValueSpecification getDefaultValue();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" stringValueRequired="true" stringValueOrdered="false"
+	 * @generated
+	 */
+	ParameterPredefinedValue getPredefinedValue(String stringValue);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" aliasRequired="true" aliasOrdered="false"
+	 * @generated
+	 */
+	ParameterPredefinedValue getPredefinedValueByAlias(String alias);
 } // Parameter

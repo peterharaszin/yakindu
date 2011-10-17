@@ -34,8 +34,8 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
-import org.eclipselabs.damos.dmltext.parser.MscriptDataTypeSpecificationParser;
-import org.eclipselabs.damos.dmltext.parser.MscriptValueSpecificationParser;
+import org.eclipselabs.damos.dmltext.parser.antlr.MscriptDataTypeSpecificationParser;
+import org.eclipselabs.damos.dmltext.parser.antlr.MscriptValueSpecificationParser;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 
 import com.google.inject.Inject;

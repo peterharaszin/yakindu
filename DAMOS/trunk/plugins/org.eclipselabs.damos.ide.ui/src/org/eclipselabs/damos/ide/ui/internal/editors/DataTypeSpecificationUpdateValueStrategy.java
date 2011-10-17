@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
-import org.eclipselabs.damos.dmltext.parser.MscriptDataTypeSpecificationParser;
+import org.eclipselabs.damos.dmltext.parser.antlr.MscriptDataTypeSpecificationParser;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 

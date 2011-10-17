@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.ValueSpecification;
-import org.eclipselabs.damos.dmltext.parser.MscriptValueSpecificationParser;
+import org.eclipselabs.damos.dmltext.parser.antlr.MscriptValueSpecificationParser;
 import org.eclipselabs.damos.ide.ui.IDEUIPlugin;
 
 import com.google.inject.Inject;

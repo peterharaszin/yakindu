@@ -10,7 +10,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.diagram.ui.editparts.ITextualContentEditPart;
-import org.eclipselabs.damos.dmltext.parser.MscriptValueSpecificationParser;
+import org.eclipselabs.damos.dmltext.parser.antlr.MscriptValueSpecificationParser;
 
 import com.google.inject.Inject;
 

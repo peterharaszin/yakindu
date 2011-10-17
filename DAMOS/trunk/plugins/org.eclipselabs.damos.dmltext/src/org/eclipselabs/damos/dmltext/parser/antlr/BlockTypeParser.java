@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.dmltext.parser;
+package org.eclipselabs.damos.dmltext.parser.antlr;
 
 import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser;
 
@@ -17,14 +17,14 @@ import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser;
  * @author Andreas Unger
  *
  */
-public class SystemInterfaceParser extends DMLTextParser {
+public class BlockTypeParser extends DMLTextParser {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser#getDefaultRuleName()
 	 */
 	@Override
 	protected String getDefaultRuleName() {
-		return getGrammarAccess().getSystemInterfaceRule().getName();
+		return getGrammarAccess().getBlockTypeRule().getName();
 	}
 	
 }

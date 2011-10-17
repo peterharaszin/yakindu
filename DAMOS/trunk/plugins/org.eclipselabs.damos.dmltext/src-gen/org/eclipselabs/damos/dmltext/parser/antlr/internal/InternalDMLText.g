@@ -45,7 +45,7 @@ import org.eclipselabs.damos.dmltext.services.DMLTextGrammarAccess;
     
     @Override
     protected String getFirstRuleName() {
-    	return "BlockType";	
+    	return "Root";	
    	}
    	
    	@Override
@@ -60,6 +60,64 @@ import org.eclipselabs.damos.dmltext.services.DMLTextGrammarAccess;
         appendSkippedTokens();
     } 
 }
+
+
+
+
+// Entry rule entryRuleRoot
+entryRuleRoot returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getRootRule()); }
+	 iv_ruleRoot=ruleRoot 
+	 { $current=$iv_ruleRoot.current; } 
+	 EOF 
+;
+
+// Rule Root
+ruleRoot returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRootAccess().getBlockTypesBlockTypeParserRuleCall_0_0()); 
+	    }
+		lv_blockTypes_0_0=ruleBlockType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRootRule());
+	        }
+       		add(
+       			$current, 
+       			"blockTypes",
+        		lv_blockTypes_0_0, 
+        		"BlockType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+    |(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getRootAccess().getSystemInterfacesSystemInterfaceParserRuleCall_1_0()); 
+	    }
+		lv_systemInterfaces_1_0=ruleSystemInterface		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getRootRule());
+	        }
+       		add(
+       			$current, 
+       			"systemInterfaces",
+        		lv_systemInterfaces_1_0, 
+        		"SystemInterface");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*
+;
+
 
 
 
@@ -1005,6 +1063,91 @@ ruleMscriptBehaviorSpecification returns [EObject current=null]
 ;
 
 
+
+
+
+// Entry rule entryRuleSystemInterface
+entryRuleSystemInterface returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getSystemInterfaceRule()); }
+	 iv_ruleSystemInterface=ruleSystemInterface 
+	 { $current=$iv_ruleSystemInterface.current; } 
+	 EOF 
+;
+
+// Rule SystemInterface
+ruleSystemInterface returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='systemInterface' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getSystemInterfaceAccess().getSystemInterfaceKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSystemInterfaceAccess().getNameValidIDParserRuleCall_1_0()); 
+	    }
+		lv_name_1_0=ruleValidID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSystemInterfaceRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_1_0, 
+        		"ValidID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2='{' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getSystemInterfaceAccess().getLeftCurlyBracketKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSystemInterfaceAccess().getInletsInletParserRuleCall_3_0()); 
+	    }
+		lv_inlets_3_0=ruleInlet		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSystemInterfaceRule());
+	        }
+       		add(
+       			$current, 
+       			"inlets",
+        		lv_inlets_3_0, 
+        		"Inlet");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getSystemInterfaceAccess().getOutletsOutletParserRuleCall_4_0()); 
+	    }
+		lv_outlets_4_0=ruleOutlet		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getSystemInterfaceRule());
+	        }
+       		add(
+       			$current, 
+       			"outlets",
+        		lv_outlets_4_0, 
+        		"Outlet");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*	otherlv_5='}' 
+    {
+    	newLeafNode(otherlv_5, grammarAccess.getSystemInterfaceAccess().getRightCurlyBracketKeyword_5());
+    }
+)
+;
 
 
 

@@ -25,7 +25,7 @@ public class DMLTextParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrP
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "BlockType";
+		return "Root";
 	}
 	
 	public DMLTextGrammarAccess getGrammarAccess() {

@@ -17,14 +17,14 @@ import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser;
  * @author Andreas Unger
  *
  */
-public class MscriptDataTypeSpecificationParser extends DMLTextParser {
+public class BlockTypeParser extends DMLTextParser {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser#getDefaultRuleName()
 	 */
 	@Override
 	protected String getDefaultRuleName() {
-		return getGrammarAccess().getMscriptDataTypeSpecificationRule().getName();
+		return getGrammarAccess().getBlockTypeRule().getName();
 	}
 	
 }

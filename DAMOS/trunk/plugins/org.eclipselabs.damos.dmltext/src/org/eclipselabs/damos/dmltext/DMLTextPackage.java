@@ -60,6 +60,43 @@ public interface DMLTextPackage extends EPackage {
 	DMLTextPackage eINSTANCE = org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl.init();
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dmltext.impl.RootImpl <em>Root</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dmltext.impl.RootImpl
+	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getRoot()
+	 * @generated
+	 */
+	int ROOT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Block Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT__BLOCK_TYPES = 0;
+
+	/**
+	 * The feature id for the '<em><b>System Interfaces</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT__SYSTEM_INTERFACES = 1;
+
+	/**
+	 * The number of structural features of the '<em>Root</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROOT_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptDataTypeSpecificationImpl <em>Mscript Data Type Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -67,7 +104,7 @@ public interface DMLTextPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptDataTypeSpecification()
 	 * @generated
 	 */
-	int MSCRIPT_DATA_TYPE_SPECIFICATION = 0;
+	int MSCRIPT_DATA_TYPE_SPECIFICATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Specifier</b></em>' containment reference.
@@ -105,7 +142,7 @@ public interface DMLTextPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptBehaviorSpecification()
 	 * @generated
 	 */
-	int MSCRIPT_BEHAVIOR_SPECIFICATION = 1;
+	int MSCRIPT_BEHAVIOR_SPECIFICATION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Module</b></em>' containment reference.
@@ -134,7 +171,7 @@ public interface DMLTextPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptValueSpecification()
 	 * @generated
 	 */
-	int MSCRIPT_VALUE_SPECIFICATION = 2;
+	int MSCRIPT_VALUE_SPECIFICATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -154,6 +191,38 @@ public interface DMLTextPackage extends EPackage {
 	 */
 	int MSCRIPT_VALUE_SPECIFICATION_FEATURE_COUNT = DMLPackage.VALUE_SPECIFICATION_FEATURE_COUNT + 1;
 
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dmltext.Root <em>Root</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Root</em>'.
+	 * @see org.eclipselabs.damos.dmltext.Root
+	 * @generated
+	 */
+	EClass getRoot();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dmltext.Root#getBlockTypes <em>Block Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Block Types</em>'.
+	 * @see org.eclipselabs.damos.dmltext.Root#getBlockTypes()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EReference getRoot_BlockTypes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dmltext.Root#getSystemInterfaces <em>System Interfaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>System Interfaces</em>'.
+	 * @see org.eclipselabs.damos.dmltext.Root#getSystemInterfaces()
+	 * @see #getRoot()
+	 * @generated
+	 */
+	EReference getRoot_SystemInterfaces();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification <em>Mscript Data Type Specification</em>}'.
@@ -251,6 +320,32 @@ public interface DMLTextPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dmltext.impl.RootImpl <em>Root</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dmltext.impl.RootImpl
+		 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getRoot()
+		 * @generated
+		 */
+		EClass ROOT = eINSTANCE.getRoot();
+
+		/**
+		 * The meta object literal for the '<em><b>Block Types</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROOT__BLOCK_TYPES = eINSTANCE.getRoot_BlockTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>System Interfaces</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ROOT__SYSTEM_INTERFACES = eINSTANCE.getRoot_SystemInterfaces();
+
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptDataTypeSpecificationImpl <em>Mscript Data Type Specification</em>}' class.
 		 * <!-- begin-user-doc -->

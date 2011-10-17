@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.dmltext;
 
 import org.eclipse.xtext.parser.IParser;
-import org.eclipselabs.damos.dmltext.parser.SystemInterfaceParser;
+import org.eclipselabs.damos.dmltext.parser.antlr.SystemInterfaceParser;
 
 /**
  * @author Andreas Unger

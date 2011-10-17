@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.dmltext;
 
 import org.eclipse.xtext.parser.IParser;
-import org.eclipselabs.damos.dmltext.parser.BlockTypeParser;
+import org.eclipselabs.damos.dmltext.parser.antlr.BlockTypeParser;
 
 /**
  * @author Andreas Unger

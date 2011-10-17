@@ -27,7 +27,6 @@ Import-Package: org.apache.log4j,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipselabs.damos.dmltext,
  org.eclipselabs.damos.dmltext.parseTreeConstruction,
- org.eclipselabs.damos.dmltext.parser,
  org.eclipselabs.damos.dmltext.parser.antlr,
  org.eclipselabs.damos.dmltext.parser.antlr.internal,
  org.eclipselabs.damos.dmltext.services,

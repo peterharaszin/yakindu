@@ -17,6 +17,7 @@ import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dmltext.Root;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,6 +76,10 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	protected DMLTextSwitch<Adapter> modelSwitch =
 		new DMLTextSwitch<Adapter>() {
 			@Override
+			public Adapter caseRoot(Root object) {
+				return createRootAdapter();
+			}
+			@Override
 			public Adapter caseMscriptDataTypeSpecification(MscriptDataTypeSpecification object) {
 				return createMscriptDataTypeSpecificationAdapter();
 			}
@@ -117,6 +122,20 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dmltext.Root <em>Root</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dmltext.Root
+	 * @generated
+	 */
+	public Adapter createRootAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification <em>Mscript Data Type Specification</em>}'.

@@ -17,6 +17,34 @@ import org.eclipselabs.mscript.language.services.MscriptGrammarAccess;
 public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
+	public class RootElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Root");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cBlockTypesAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cBlockTypesBlockTypeParserRuleCall_0_0 = (RuleCall)cBlockTypesAssignment_0.eContents().get(0);
+		private final Assignment cSystemInterfacesAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cSystemInterfacesSystemInterfaceParserRuleCall_1_0 = (RuleCall)cSystemInterfacesAssignment_1.eContents().get(0);
+		
+		//Root:
+		//	(blockTypes+=BlockType | systemInterfaces+=SystemInterface)*;
+		public ParserRule getRule() { return rule; }
+
+		//(blockTypes+=BlockType | systemInterfaces+=SystemInterface)*
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//blockTypes+=BlockType
+		public Assignment getBlockTypesAssignment_0() { return cBlockTypesAssignment_0; }
+
+		//BlockType
+		public RuleCall getBlockTypesBlockTypeParserRuleCall_0_0() { return cBlockTypesBlockTypeParserRuleCall_0_0; }
+
+		//systemInterfaces+=SystemInterface
+		public Assignment getSystemInterfacesAssignment_1() { return cSystemInterfacesAssignment_1; }
+
+		//SystemInterface
+		public RuleCall getSystemInterfacesSystemInterfaceParserRuleCall_1_0() { return cSystemInterfacesSystemInterfaceParserRuleCall_1_0; }
+	}
+
 	public class BlockTypeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BlockType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -780,6 +808,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getPrivatePrivateKeyword_1_0() { return cPrivatePrivateKeyword_1_0; }
 	}
 	
+	private RootElements pRoot;
 	private BlockTypeElements pBlockType;
 	private TimingKindElements unknownRuleTimingKind;
 	private InputDefinitionElements pInputDefinition;
@@ -818,6 +847,16 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
+	//Root:
+	//	(blockTypes+=BlockType | systemInterfaces+=SystemInterface)*;
+	public RootElements getRootAccess() {
+		return (pRoot != null) ? pRoot : (pRoot = new RootElements());
+	}
+	
+	public ParserRule getRootRule() {
+		return getRootAccess().getRule();
+	}
+
 	//BlockType:
 	//	timing=TimingKind? "blockType" qualifiedName=QualifiedName "{" inputDefinitions+=InputDefinition*
 	//	outputDefinitions+=OutputDefinition* parameters+=Parameter* behavior=MscriptBehaviorSpecification? "}";

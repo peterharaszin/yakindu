@@ -16,6 +16,7 @@ import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
+import org.eclipselabs.damos.dmltext.Root;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,6 +75,12 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case DMLTextPackage.ROOT: {
+				Root root = (Root)theEObject;
+				T result = caseRoot(root);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION: {
 				MscriptDataTypeSpecification mscriptDataTypeSpecification = (MscriptDataTypeSpecification)theEObject;
 				T result = caseMscriptDataTypeSpecification(mscriptDataTypeSpecification);
@@ -97,6 +104,21 @@ public class DMLTextSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Root</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Root</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRoot(Root object) {
+		return null;
 	}
 
 	/**

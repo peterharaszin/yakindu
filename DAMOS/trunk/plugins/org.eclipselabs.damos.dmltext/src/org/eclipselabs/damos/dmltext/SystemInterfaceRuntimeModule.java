@@ -9,22 +9,23 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.dmltext.parser;
+package org.eclipselabs.damos.dmltext;
 
-import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser;
+import org.eclipse.xtext.parser.IParser;
+import org.eclipselabs.damos.dmltext.parser.SystemInterfaceParser;
 
 /**
  * @author Andreas Unger
  *
  */
-public class MscriptDataTypeSpecificationParser extends DMLTextParser {
+public class SystemInterfaceRuntimeModule extends DMLTextRuntimeModule {
 
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser#getDefaultRuleName()
+	 * @see org.eclipselabs.damos.dmltext.AbstractDMLTextRuntimeModule#bindIParser()
 	 */
 	@Override
-	protected String getDefaultRuleName() {
-		return getGrammarAccess().getMscriptDataTypeSpecificationRule().getName();
+	public Class<? extends IParser> bindIParser() {
+		return SystemInterfaceParser.class;
 	}
 	
 }

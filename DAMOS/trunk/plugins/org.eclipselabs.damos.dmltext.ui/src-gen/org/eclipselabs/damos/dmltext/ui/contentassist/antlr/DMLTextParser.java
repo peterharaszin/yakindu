@@ -37,6 +37,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
+					put(grammarAccess.getRootAccess().getAlternatives(), "rule__Root__Alternatives");
 					put(grammarAccess.getBooleanDirectFeedthroughPolicyAccess().getAlternatives_1(), "rule__BooleanDirectFeedthroughPolicy__Alternatives_1");
 					put(grammarAccess.getUpperBoundLiteralAccess().getAlternatives(), "rule__UpperBoundLiteral__Alternatives");
 					put(grammarAccess.getDefinitionAccess().getAlternatives(), "rule__Definition__Alternatives");
@@ -252,6 +253,8 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitExponentAccess().getGroup(), "rule__UnitExponent__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
+					put(grammarAccess.getRootAccess().getBlockTypesAssignment_0(), "rule__Root__BlockTypesAssignment_0");
+					put(grammarAccess.getRootAccess().getSystemInterfacesAssignment_1(), "rule__Root__SystemInterfacesAssignment_1");
 					put(grammarAccess.getBlockTypeAccess().getTimingAssignment_0(), "rule__BlockType__TimingAssignment_0");
 					put(grammarAccess.getBlockTypeAccess().getQualifiedNameAssignment_2(), "rule__BlockType__QualifiedNameAssignment_2");
 					put(grammarAccess.getBlockTypeAccess().getInputDefinitionsAssignment_4(), "rule__BlockType__InputDefinitionsAssignment_4");
@@ -478,7 +481,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipselabs.damos.dmltext.ui.contentassist.antlr.internal.InternalDMLTextParser typedParser = (org.eclipselabs.damos.dmltext.ui.contentassist.antlr.internal.InternalDMLTextParser) parser;
-			typedParser.entryRuleBlockType();
+			typedParser.entryRuleRoot();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);

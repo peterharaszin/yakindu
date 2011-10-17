@@ -7,6 +7,10 @@
   <foreignModel>DMLText.ecore</foreignModel>
   <genPackages prefix="DMLText" basePackage="org.eclipselabs.damos" disposableProviderFactory="true"
       ecorePackage="DMLText.ecore#/">
+    <genClasses image="false" ecoreClass="DMLText.ecore#//Root">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//Root/blockTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//Root/systemInterfaces"/>
+    </genClasses>
     <genClasses ecoreClass="DMLText.ecore#//MscriptDataTypeSpecification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptDataTypeSpecification/specifier"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptDataTypeSpecification/type"/>

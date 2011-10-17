@@ -24,7 +24,7 @@ public class MscriptValueSpecificationParser extends DMLTextParser {
 	 */
 	@Override
 	protected String getDefaultRuleName() {
-		return "MscriptValueSpecification";
+		return getGrammarAccess().getMscriptValueSpecificationRule().getName();
 	}
 	
 }

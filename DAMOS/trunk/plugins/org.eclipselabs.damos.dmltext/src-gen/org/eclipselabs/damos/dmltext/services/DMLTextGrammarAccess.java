@@ -1045,7 +1045,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * DataTypeDefinition
 	// * / DataTypeDefinition:
-	//	EnumerationDefinition | RecordDefinition | TypeAliasDefinition;
+	//	EnumerationDefinition | StructDefinition | TypeAliasDefinition;
 	public MscriptGrammarAccess.DataTypeDefinitionElements getDataTypeDefinitionAccess() {
 		return gaMscript.getDataTypeDefinitionAccess();
 	}
@@ -1090,25 +1090,25 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// *
-	// * Record
-	// * / RecordDefinition:
-	//	"record" name=ValidID "{" fieldDeclarations+=RecordFieldDeclaration* "}";
-	public MscriptGrammarAccess.RecordDefinitionElements getRecordDefinitionAccess() {
-		return gaMscript.getRecordDefinitionAccess();
+	// * Struct
+	// * / StructDefinition:
+	//	"struct" name=ValidID "{" memberDeclarations+=StructMemberDeclaration* "}";
+	public MscriptGrammarAccess.StructDefinitionElements getStructDefinitionAccess() {
+		return gaMscript.getStructDefinitionAccess();
 	}
 	
-	public ParserRule getRecordDefinitionRule() {
-		return getRecordDefinitionAccess().getRule();
+	public ParserRule getStructDefinitionRule() {
+		return getStructDefinitionAccess().getRule();
 	}
 
-	//RecordFieldDeclaration:
+	//StructMemberDeclaration:
 	//	name=ValidID ":" type=DataTypeSpecifier ";";
-	public MscriptGrammarAccess.RecordFieldDeclarationElements getRecordFieldDeclarationAccess() {
-		return gaMscript.getRecordFieldDeclarationAccess();
+	public MscriptGrammarAccess.StructMemberDeclarationElements getStructMemberDeclarationAccess() {
+		return gaMscript.getStructMemberDeclarationAccess();
 	}
 	
-	public ParserRule getRecordFieldDeclarationRule() {
-		return getRecordFieldDeclarationAccess().getRule();
+	public ParserRule getStructMemberDeclarationRule() {
+		return getStructMemberDeclarationAccess().getRule();
 	}
 
 	/// *

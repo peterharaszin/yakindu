@@ -20,7 +20,9 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.themes.ColorUtil;
 
 /**
  * @author Andreas Unger
@@ -46,6 +48,7 @@ public abstract class CompoundFigure extends NodeFigure {
 		if (isUsingGradient()) {
 			Color gradientColor1 = FigureUtilities.integerToColor(getGradientColor1());
 			Color gradientColor2 = FigureUtilities.integerToColor(getGradientColor2());
+			Color backgroundColor = null;
 			try {
 				float x1 = (float) (bounds.x * graphics.getAbsoluteScale());
 				float y1 = (float) (bounds.y * graphics.getAbsoluteScale());
@@ -61,7 +64,10 @@ public abstract class CompoundFigure extends NodeFigure {
 					try {
 						graphics.setBackgroundPattern(pattern);
 					} catch (RuntimeException e) {
-						// Gradients not supported
+						// Gradients not supported, set background color instead
+						RGB rgb = ColorUtil.blend(gradientColor1.getRGB(), gradientColor2.getRGB());
+						backgroundColor = new Color(Display.getDefault(), rgb);
+						graphics.setBackgroundColor(backgroundColor);
 					}
 					paintCompound(graphics);
 				} finally {
@@ -70,6 +76,9 @@ public abstract class CompoundFigure extends NodeFigure {
 			} finally {
 				gradientColor1.dispose();
 				gradientColor2.dispose();
+				if (backgroundColor != null) {
+					backgroundColor.dispose();
+				}
 			}
 		} else {
 			paintCompound(graphics);

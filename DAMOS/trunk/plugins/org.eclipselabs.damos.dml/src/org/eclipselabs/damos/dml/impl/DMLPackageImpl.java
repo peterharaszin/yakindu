@@ -3093,7 +3093,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEEnumLiteral(parameterVisibilityKindEEnum, ParameterVisibilityKind.PRIVATE);
 
 		initEEnum(timingKindEEnum, TimingKind.class, "TimingKind");
-		addEEnumLiteral(timingKindEEnum, TimingKind.UNSPECIFIED);
 		addEEnumLiteral(timingKindEEnum, TimingKind.ANY);
 		addEEnumLiteral(timingKindEEnum, TimingKind.CONTINUOUS);
 		addEEnumLiteral(timingKindEEnum, TimingKind.SYNCHRONOUS);

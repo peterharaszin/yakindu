@@ -270,12 +270,11 @@
         eType="#//TimingKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TimingKind">
-    <eLiterals name="Unspecified"/>
-    <eLiterals name="Any" value="1"/>
-    <eLiterals name="Continuous" value="2"/>
-    <eLiterals name="Synchronous" value="3"/>
-    <eLiterals name="Asynchronous" value="4"/>
-    <eLiterals name="Discrete" value="5"/>
+    <eLiterals name="Any"/>
+    <eLiterals name="Continuous" value="1"/>
+    <eLiterals name="Synchronous" value="2"/>
+    <eLiterals name="Asynchronous" value="3"/>
+    <eLiterals name="Discrete" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="QualifiedElement" abstract="true" eSuperTypes="#//INamedElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" ordered="false"

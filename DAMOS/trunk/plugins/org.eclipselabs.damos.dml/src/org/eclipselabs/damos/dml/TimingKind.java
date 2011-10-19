@@ -23,16 +23,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum TimingKind implements Enumerator {
 	/**
-	 * The '<em><b>Unspecified</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #UNSPECIFIED_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	UNSPECIFIED(0, "Unspecified", "Unspecified"),
-
-	/**
 	 * The '<em><b>Any</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,7 +30,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ANY(1, "Any", "Any"),
+	ANY(0, "Any", "Any"),
 
 	/**
 	 * The '<em><b>Continuous</b></em>' literal object.
@@ -50,7 +40,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CONTINUOUS(2, "Continuous", "Continuous"),
+	CONTINUOUS(1, "Continuous", "Continuous"),
 
 	/**
 	 * The '<em><b>Synchronous</b></em>' literal object.
@@ -60,7 +50,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	SYNCHRONOUS(3, "Synchronous", "Synchronous"), /**
+	SYNCHRONOUS(2, "Synchronous", "Synchronous"), /**
 	 * The '<em><b>Asynchronous</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -68,7 +58,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ASYNCHRONOUS(4, "Asynchronous", "Asynchronous"), /**
+	ASYNCHRONOUS(3, "Asynchronous", "Asynchronous"), /**
 	 * The '<em><b>Discrete</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,22 +66,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DISCRETE(5, "Discrete", "Discrete");
-
-	/**
-	 * The '<em><b>Unspecified</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>None</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNSPECIFIED
-	 * @model name="Unspecified"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UNSPECIFIED_VALUE = 0;
+	DISCRETE(4, "Discrete", "Discrete");
 
 	/**
 	 * The '<em><b>Any</b></em>' literal value.
@@ -106,7 +81,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ANY_VALUE = 1;
+	public static final int ANY_VALUE = 0;
 
 	/**
 	 * The '<em><b>Continuous</b></em>' literal value.
@@ -121,7 +96,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CONTINUOUS_VALUE = 2;
+	public static final int CONTINUOUS_VALUE = 1;
 
 	/**
 	 * The '<em><b>Synchronous</b></em>' literal value.
@@ -136,7 +111,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SYNCHRONOUS_VALUE = 3;
+	public static final int SYNCHRONOUS_VALUE = 2;
 
 	/**
 	 * The '<em><b>Asynchronous</b></em>' literal value.
@@ -151,7 +126,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int ASYNCHRONOUS_VALUE = 4;
+	public static final int ASYNCHRONOUS_VALUE = 3;
 
 	/**
 	 * The '<em><b>Discrete</b></em>' literal value.
@@ -166,7 +141,7 @@ public enum TimingKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DISCRETE_VALUE = 5;
+	public static final int DISCRETE_VALUE = 4;
 
 	/**
 	 * An array of all the '<em><b>Timing Kind</b></em>' enumerators.
@@ -176,7 +151,6 @@ public enum TimingKind implements Enumerator {
 	 */
 	private static final TimingKind[] VALUES_ARRAY =
 		new TimingKind[] {
-			UNSPECIFIED,
 			ANY,
 			CONTINUOUS,
 			SYNCHRONOUS,
@@ -232,7 +206,6 @@ public enum TimingKind implements Enumerator {
 	 */
 	public static TimingKind get(int value) {
 		switch (value) {
-			case UNSPECIFIED_VALUE: return UNSPECIFIED;
 			case ANY_VALUE: return ANY;
 			case CONTINUOUS_VALUE: return CONTINUOUS;
 			case SYNCHRONOUS_VALUE: return SYNCHRONOUS;

@@ -174,7 +174,7 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final TimingKind TIMING_EDEFAULT = TimingKind.UNSPECIFIED;
+	protected static final TimingKind TIMING_EDEFAULT = TimingKind.ANY;
 
 	/**
 	 * The cached value of the '{@link #getTiming() <em>Timing</em>}' attribute.

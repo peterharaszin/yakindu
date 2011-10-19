@@ -15,7 +15,6 @@
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Private"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//TimingKind">
-      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Unspecified"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Any"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Continuous"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Synchronous"/>

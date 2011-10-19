@@ -23,7 +23,9 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.themes.ColorUtil;
 import org.eclipselabs.damos.diagram.core.internal.util.MathUtil;
 import org.eclipselabs.damos.diagram.ui.internal.figures.CanvasContext;
 import org.eclipselabs.damos.diagram.ui.internal.figures.TerminalBorderFigure;
@@ -184,6 +186,7 @@ public abstract class ComponentFigure extends NodeFigure implements IFontColorAw
 		if (isUsingGradient()) {
 			Color gradientColor1 = FigureUtilities.integerToColor(getGradientColor1());
 			Color gradientColor2 = FigureUtilities.integerToColor(getGradientColor2());
+			Color backgroundColor = null;
 			try {
 				float x2 = 0;
 				float y2 = 0;
@@ -197,7 +200,10 @@ public abstract class ComponentFigure extends NodeFigure implements IFontColorAw
 					try {
 						graphics.setBackgroundPattern(pattern);
 					} catch (RuntimeException e) {
-						// Gradients not supported
+						// Gradients not supported, set background color instead
+						RGB rgb = ColorUtil.blend(gradientColor1.getRGB(), gradientColor2.getRGB());
+						backgroundColor = new Color(Display.getDefault(), rgb);
+						graphics.setBackgroundColor(backgroundColor);
 					}
 					paintCanvas(new CanvasContext(graphics, getCanvasSize(), flipped, rotation));
 				} finally {
@@ -206,6 +212,9 @@ public abstract class ComponentFigure extends NodeFigure implements IFontColorAw
 			} finally {
 				gradientColor1.dispose();
 				gradientColor2.dispose();
+				if (backgroundColor != null) {
+					backgroundColor.dispose();
+				}
 			}
 		} else {
 			paintCanvas(new CanvasContext(graphics, getCanvasSize(), flipped, rotation));

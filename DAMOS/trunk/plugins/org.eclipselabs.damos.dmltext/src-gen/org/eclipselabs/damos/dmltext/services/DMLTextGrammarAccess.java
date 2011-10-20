@@ -631,72 +631,64 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Inlet");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cInletKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cDataTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDataTypeMscriptDataTypeSpecificationParserRuleCall_3_0 = (RuleCall)cDataTypeAssignment_3.eContents().get(0);
+		private final Assignment cDataTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDataTypeMscriptDataTypeSpecificationParserRuleCall_1_0 = (RuleCall)cDataTypeAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameValidIDParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		
 		//Inlet:
-		//	"inlet" name=ValidID ":" dataType=MscriptDataTypeSpecification;
+		//	"inlet" dataType=MscriptDataTypeSpecification name=ValidID;
 		public ParserRule getRule() { return rule; }
 
-		//"inlet" name=ValidID ":" dataType=MscriptDataTypeSpecification
+		//"inlet" dataType=MscriptDataTypeSpecification name=ValidID
 		public Group getGroup() { return cGroup; }
 
 		//"inlet"
 		public Keyword getInletKeyword_0() { return cInletKeyword_0; }
 
-		//name=ValidID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
-
-		//":"
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
-
 		//dataType=MscriptDataTypeSpecification
-		public Assignment getDataTypeAssignment_3() { return cDataTypeAssignment_3; }
+		public Assignment getDataTypeAssignment_1() { return cDataTypeAssignment_1; }
 
 		//MscriptDataTypeSpecification
-		public RuleCall getDataTypeMscriptDataTypeSpecificationParserRuleCall_3_0() { return cDataTypeMscriptDataTypeSpecificationParserRuleCall_3_0; }
+		public RuleCall getDataTypeMscriptDataTypeSpecificationParserRuleCall_1_0() { return cDataTypeMscriptDataTypeSpecificationParserRuleCall_1_0; }
+
+		//name=ValidID
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_2_0() { return cNameValidIDParserRuleCall_2_0; }
 	}
 
 	public class OutletElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Outlet");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cOutletKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cDataTypeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDataTypeMscriptDataTypeSpecificationParserRuleCall_3_0 = (RuleCall)cDataTypeAssignment_3.eContents().get(0);
+		private final Assignment cDataTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDataTypeMscriptDataTypeSpecificationParserRuleCall_1_0 = (RuleCall)cDataTypeAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameValidIDParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		
 		//Outlet:
-		//	"outlet" name=ValidID ":" dataType=MscriptDataTypeSpecification;
+		//	"outlet" dataType=MscriptDataTypeSpecification name=ValidID;
 		public ParserRule getRule() { return rule; }
 
-		//"outlet" name=ValidID ":" dataType=MscriptDataTypeSpecification
+		//"outlet" dataType=MscriptDataTypeSpecification name=ValidID
 		public Group getGroup() { return cGroup; }
 
 		//"outlet"
 		public Keyword getOutletKeyword_0() { return cOutletKeyword_0; }
 
-		//name=ValidID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-
-		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
-
-		//":"
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
-
 		//dataType=MscriptDataTypeSpecification
-		public Assignment getDataTypeAssignment_3() { return cDataTypeAssignment_3; }
+		public Assignment getDataTypeAssignment_1() { return cDataTypeAssignment_1; }
 
 		//MscriptDataTypeSpecification
-		public RuleCall getDataTypeMscriptDataTypeSpecificationParserRuleCall_3_0() { return cDataTypeMscriptDataTypeSpecificationParserRuleCall_3_0; }
+		public RuleCall getDataTypeMscriptDataTypeSpecificationParserRuleCall_1_0() { return cDataTypeMscriptDataTypeSpecificationParserRuleCall_1_0; }
+
+		//name=ValidID
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_2_0() { return cNameValidIDParserRuleCall_2_0; }
 	}
 
 	public class MscriptDataTypeSpecificationElements extends AbstractParserRuleElementFinder {
@@ -983,7 +975,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Inlet:
-	//	"inlet" name=ValidID ":" dataType=MscriptDataTypeSpecification;
+	//	"inlet" dataType=MscriptDataTypeSpecification name=ValidID;
 	public InletElements getInletAccess() {
 		return (pInlet != null) ? pInlet : (pInlet = new InletElements());
 	}
@@ -993,7 +985,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Outlet:
-	//	"outlet" name=ValidID ":" dataType=MscriptDataTypeSpecification;
+	//	"outlet" dataType=MscriptDataTypeSpecification name=ValidID;
 	public OutletElements getOutletAccess() {
 		return (pOutlet != null) ? pOutlet : (pOutlet = new OutletElements());
 	}
@@ -1102,7 +1094,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructMemberDeclaration:
-	//	name=ValidID ":" type=DataTypeSpecifier ";";
+	//	type=DataTypeSpecifier name=ValidID ";";
 	public MscriptGrammarAccess.StructMemberDeclarationElements getStructMemberDeclarationAccess() {
 		return gaMscript.getStructMemberDeclarationAccess();
 	}
@@ -1212,8 +1204,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionObjectDeclaration:
-	//	"fob" name=ValidID ":" functionName=[FunctionDefinition|QualifiedName] ("<" templateArguments+=Expression (","
-	//	templateArguments+=Expression)* ">")? ";";
+	//	"fob" functionName=[FunctionDefinition|QualifiedName] ("<" templateArguments+=Expression (","
+	//	templateArguments+=Expression)* ">")? name=ValidID ";";
 	public MscriptGrammarAccess.FunctionObjectDeclarationElements getFunctionObjectDeclarationAccess() {
 		return gaMscript.getFunctionObjectDeclarationAccess();
 	}

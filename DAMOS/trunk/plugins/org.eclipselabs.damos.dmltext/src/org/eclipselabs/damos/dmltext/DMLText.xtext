@@ -64,10 +64,10 @@ SystemInterface:
 	'}';
 	
 Inlet:
-	'inlet' name=ValidID ':' dataType=MscriptDataTypeSpecification;
+	'inlet' dataType=MscriptDataTypeSpecification name=ValidID;
 
 Outlet:
-	'outlet' name=ValidID ':' dataType=MscriptDataTypeSpecification;
+	'outlet' dataType=MscriptDataTypeSpecification name=ValidID;
 
 MscriptDataTypeSpecification:
 	specifier=DataTypeSpecifier;

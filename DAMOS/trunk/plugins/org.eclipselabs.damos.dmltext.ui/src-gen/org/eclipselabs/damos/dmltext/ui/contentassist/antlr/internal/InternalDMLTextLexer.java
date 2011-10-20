@@ -1112,10 +1112,11 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:58:7: ( ':' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:58:9: ':'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:58:7: ( 'outlet' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:58:9: 'outlet'
             {
-            match(':'); 
+            match("outlet"); 
+
 
             }
 
@@ -1132,10 +1133,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:59:7: ( 'outlet' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:59:9: 'outlet'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:59:7: ( 'enum' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:59:9: 'enum'
             {
-            match("outlet"); 
+            match("enum"); 
 
 
             }
@@ -1153,10 +1154,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:60:7: ( 'enum' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:60:9: 'enum'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:60:7: ( 'type' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:60:9: 'type'
             {
-            match("enum"); 
+            match("type"); 
 
 
             }
@@ -1174,11 +1175,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:61:7: ( 'type' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:61:9: 'type'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:61:7: ( ';' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:61:9: ';'
             {
-            match("type"); 
-
+            match(';'); 
 
             }
 
@@ -1195,10 +1195,11 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:62:7: ( ';' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:62:9: ';'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:62:7: ( 'struct' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:62:9: 'struct'
             {
-            match(';'); 
+            match("struct"); 
+
 
             }
 
@@ -1215,10 +1216,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:63:7: ( 'struct' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:63:9: 'struct'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:63:7: ( 'func' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:63:9: 'func'
             {
-            match("struct"); 
+            match("func"); 
 
 
             }
@@ -1236,11 +1237,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:64:7: ( 'func' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:64:9: 'func'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:64:7: ( '(' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:64:9: '('
             {
-            match("func"); 
-
+            match('('); 
 
             }
 
@@ -1257,10 +1257,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:65:7: ( '(' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:65:9: '('
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:65:7: ( ')' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:65:9: ')'
             {
-            match('('); 
+            match(')'); 
 
             }
 
@@ -1277,10 +1277,11 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:66:7: ( ')' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:66:9: ')'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:66:7: ( '->' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:66:9: '->'
             {
-            match(')'); 
+            match("->"); 
+
 
             }
 
@@ -1297,10 +1298,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:67:7: ( '->' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:67:9: '->'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:67:7: ( 'check' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:67:9: 'check'
             {
-            match("->"); 
+            match("check"); 
 
 
             }
@@ -1318,10 +1319,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:68:7: ( 'check' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:68:9: 'check'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:68:7: ( 'assert' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:68:9: 'assert'
             {
-            match("check"); 
+            match("assert"); 
 
 
             }
@@ -1339,11 +1340,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:69:7: ( 'assert' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:69:9: 'assert'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:69:7: ( ':' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:69:9: ':'
             {
-            match("assert"); 
-
+            match(':'); 
 
             }
 
@@ -2156,8 +2156,8 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_N;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25412:8: ( 'n' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25412:10: 'n'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25280:8: ( 'n' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25280:10: 'n'
             {
             match('n'); 
 
@@ -2176,8 +2176,8 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_IJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25414:9: ( ( 'i' | 'j' ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25414:11: ( 'i' | 'j' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25282:9: ( ( 'i' | 'j' ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25282:11: ( 'i' | 'j' )
             {
             if ( (input.LA(1)>='i' && input.LA(1)<='j') ) {
                 input.consume();
@@ -2204,8 +2204,8 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_E;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25416:8: ( ( 'e' | 'E' ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25416:10: ( 'e' | 'E' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25284:8: ( ( 'e' | 'E' ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25284:10: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2232,11 +2232,11 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_EXPIJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25418:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25418:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25286:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25286:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
             {
             mRULE_E(); 
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25418:21: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25286:21: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -2250,7 +2250,7 @@ public class InternalDMLTextLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25418:22: '0' .. '9'
+            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25286:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2266,7 +2266,7 @@ public class InternalDMLTextLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25418:33: ( RULE_IJ )?
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25286:33: ( RULE_IJ )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -2275,7 +2275,7 @@ public class InternalDMLTextLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25418:33: RULE_IJ
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25286:33: RULE_IJ
                     {
                     mRULE_IJ(); 
 
@@ -2300,8 +2300,8 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_ONE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25420:10: ( '1' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25420:12: '1'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25288:10: ( '1' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25288:12: '1'
             {
             match('1'); 
 
@@ -2320,10 +2320,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25422:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25422:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25290:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25290:12: ( '0' .. '9' )+
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25422:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25290:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -2337,7 +2337,7 @@ public class InternalDMLTextLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25422:13: '0' .. '9'
+            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25290:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2369,8 +2369,8 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25424:9: ( ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25424:11: ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25292:9: ( ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25292:11: ( '_' | 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -2381,7 +2381,7 @@ public class InternalDMLTextLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25424:35: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25292:35: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             loop4:
             do {
                 int alt4=2;
@@ -2430,11 +2430,11 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25426:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25426:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25294:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25294:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25426:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25294:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
             loop5:
             do {
                 int alt5=3;
@@ -2450,7 +2450,7 @@ public class InternalDMLTextLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25426:20: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25294:20: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2465,7 +2465,7 @@ public class InternalDMLTextLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25426:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25294:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='?'||input.LA(1)=='\\'||(input.LA(1)>='a' && input.LA(1)<='b')||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v' ) {
@@ -2503,12 +2503,12 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25428:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25428:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25296:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25296:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25428:24: ( options {greedy=false; } : . )*
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25296:24: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -2533,7 +2533,7 @@ public class InternalDMLTextLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25428:52: .
+            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25296:52: .
             	    {
             	    matchAny(); 
 
@@ -2563,12 +2563,12 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop7:
             do {
                 int alt7=2;
@@ -2581,7 +2581,7 @@ public class InternalDMLTextLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2601,7 +2601,7 @@ public class InternalDMLTextLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:40: ( ( '\\r' )? '\\n' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -2610,9 +2610,9 @@ public class InternalDMLTextLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:41: ( '\\r' )? '\\n'
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:41: ( '\\r' )?
+                    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:41: ( '\\r' )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -2621,7 +2621,7 @@ public class InternalDMLTextLexer extends Lexer {
                     }
                     switch (alt8) {
                         case 1 :
-                            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25430:41: '\\r'
+                            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25298:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2653,10 +2653,10 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25432:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25432:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25300:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25300:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25432:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25300:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -2710,8 +2710,8 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25434:16: ( . )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25434:18: .
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25302:16: ( . )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:25302:18: .
             {
             matchAny(); 
 
@@ -3502,10 +3502,10 @@ public class InternalDMLTextLexer extends Lexer {
     protected DFA11 dfa11 = new DFA11(this);
     static final String DFA11_eotS =
         "\2\uffff\1\64\2\uffff\1\70\6\63\1\116\1\63\1\125\1\130\1\132\1\134"+
-        "\1\136\1\141\1\146\1\uffff\1\63\4\uffff\1\161\1\63\1\uffff\1\165"+
-        "\1\63\3\uffff\4\63\1\60\1\uffff\1\116\1\125\1\u0083\2\uffff\1\60"+
+        "\1\136\1\141\1\146\1\uffff\1\63\4\uffff\1\161\1\63\1\uffff\1\63"+
+        "\3\uffff\1\174\4\63\1\60\1\uffff\1\116\1\125\1\u0083\2\uffff\1\60"+
         "\3\uffff\1\63\6\uffff\16\63\1\u00a0\3\63\1\u00aa\1\u00ab\1\u00ac"+
-        "\1\uffff\5\63\1\u00b3\23\uffff\4\63\6\uffff\1\63\3\uffff\4\63\3"+
+        "\1\uffff\5\63\1\u00b3\23\uffff\4\63\6\uffff\1\63\1\uffff\4\63\5"+
         "\uffff\4\63\6\uffff\4\63\1\u00c7\1\u00c8\22\63\1\u00dc\1\uffff\7"+
         "\63\1\u00e4\1\63\3\uffff\4\63\1\u00ea\1\63\1\uffff\1\u00b3\11\63"+
         "\1\u00f6\3\63\1\u00fa\3\63\1\u00fe\2\uffff\3\63\1\u0102\12\63\1"+
@@ -3529,12 +3529,12 @@ public class InternalDMLTextLexer extends Lexer {
     static final String DFA11_minS =
         "\1\0\1\uffff\1\60\2\uffff\1\76\2\141\1\157\1\154\1\145\1\141\1\60"+
         "\1\141\1\60\4\75\2\52\1\uffff\1\145\4\uffff\1\174\1\165\1\uffff"+
-        "\1\72\1\145\3\uffff\1\141\1\145\1\141\1\145\1\46\1\uffff\3\60\2"+
+        "\1\145\3\uffff\1\72\1\141\1\145\1\141\1\145\1\46\1\uffff\3\60\2"+
         "\uffff\1\0\3\uffff\1\166\6\uffff\1\154\1\156\1\142\1\155\1\145\1"+
         "\163\1\156\1\141\1\151\1\143\1\163\1\147\1\162\1\146\1\60\1\142"+
         "\1\145\1\162\3\60\1\uffff\1\162\1\151\1\162\1\144\1\163\1\60\23"+
-        "\uffff\1\157\1\150\1\157\1\145\6\uffff\1\164\3\uffff\1\160\1\145"+
-        "\1\163\1\165\3\uffff\1\162\1\141\1\165\1\164\6\uffff\1\145\1\163"+
+        "\uffff\1\157\1\150\1\157\1\145\6\uffff\1\164\1\uffff\1\160\1\145"+
+        "\1\163\1\165\5\uffff\1\162\1\141\1\165\1\164\6\uffff\1\145\1\163"+
         "\1\141\1\143\2\60\1\164\1\160\1\143\1\145\1\143\2\164\1\151\1\164"+
         "\1\153\1\156\1\145\1\141\1\157\1\141\1\143\1\145\1\141\1\60\1\uffff"+
         "\1\154\1\166\1\144\1\141\1\157\1\165\1\145\1\60\1\164\3\uffff\1"+
@@ -3562,12 +3562,12 @@ public class InternalDMLTextLexer extends Lexer {
     static final String DFA11_maxS =
         "\1\uffff\1\uffff\1\172\2\uffff\1\76\1\165\1\157\1\171\1\163\1\157"+
         "\1\165\1\172\1\150\1\172\1\76\3\75\1\57\1\136\1\uffff\1\162\4\uffff"+
-        "\1\174\1\165\1\uffff\1\72\1\171\3\uffff\1\141\1\145\1\141\1\145"+
+        "\1\174\1\165\1\uffff\1\171\3\uffff\1\72\1\141\1\145\1\141\1\145"+
         "\1\46\1\uffff\2\172\1\71\2\uffff\1\uffff\3\uffff\1\166\6\uffff\1"+
         "\164\1\156\1\162\1\156\1\145\2\163\1\162\1\151\1\143\1\171\1\167"+
         "\1\163\1\162\1\172\1\142\1\151\1\162\3\172\1\uffff\1\162\1\151\1"+
         "\162\1\165\1\163\1\172\23\uffff\1\157\1\150\1\157\1\145\6\uffff"+
-        "\1\164\3\uffff\1\160\1\145\1\163\1\165\3\uffff\1\162\1\164\1\165"+
+        "\1\164\1\uffff\1\160\1\145\1\163\1\165\5\uffff\1\162\1\164\1\165"+
         "\1\164\6\uffff\1\145\1\163\1\141\1\143\2\172\1\164\1\160\1\143\1"+
         "\145\1\143\2\164\1\165\1\164\1\153\1\156\1\145\1\141\1\157\1\141"+
         "\1\143\1\145\1\141\1\172\1\uffff\1\154\1\166\1\144\1\141\1\157\1"+
@@ -3595,20 +3595,20 @@ public class InternalDMLTextLexer extends Lexer {
         "\172\1\147\1\uffff\1\150\1\172\1\uffff";
     static final String DFA11_acceptS =
         "\1\uffff\1\1\1\uffff\1\3\1\4\20\uffff\1\33\1\uffff\1\37\1\40\1\42"+
-        "\1\44\2\uffff\1\53\2\uffff\1\64\1\67\1\70\5\uffff\1\123\3\uffff"+
+        "\1\44\2\uffff\1\53\1\uffff\1\63\1\66\1\67\6\uffff\1\123\3\uffff"+
         "\1\147\1\150\1\uffff\1\154\1\155\1\1\1\uffff\1\150\1\142\1\3\1\4"+
-        "\1\71\1\5\25\uffff\1\143\6\uffff\1\144\1\22\1\114\1\51\1\23\1\35"+
+        "\1\70\1\5\25\uffff\1\143\6\uffff\1\144\1\22\1\114\1\51\1\23\1\35"+
         "\1\25\1\24\1\27\1\26\1\152\1\153\1\30\1\31\1\32\1\34\1\43\1\120"+
-        "\1\33\4\uffff\1\37\1\40\1\42\1\44\1\115\1\45\1\uffff\1\53\1\133"+
-        "\1\60\4\uffff\1\64\1\67\1\70\4\uffff\1\116\1\123\1\146\1\147\1\151"+
+        "\1\33\4\uffff\1\37\1\40\1\42\1\44\1\115\1\45\1\uffff\1\53\4\uffff"+
+        "\1\63\1\66\1\67\1\133\1\73\4\uffff\1\116\1\123\1\146\1\147\1\151"+
         "\1\154\31\uffff\1\127\11\uffff\1\105\1\106\1\117\6\uffff\1\145\23"+
         "\uffff\1\75\1\122\23\uffff\1\121\7\uffff\1\77\5\uffff\1\124\13\uffff"+
-        "\1\74\3\uffff\1\104\3\uffff\1\66\3\uffff\1\113\13\uffff\1\125\10"+
-        "\uffff\1\16\6\uffff\1\62\1\110\2\uffff\1\102\3\uffff\1\63\1\107"+
-        "\1\uffff\1\141\1\76\2\uffff\1\2\1\6\1\21\2\uffff\1\72\12\uffff\1"+
+        "\1\74\3\uffff\1\104\3\uffff\1\65\3\uffff\1\113\13\uffff\1\125\10"+
+        "\uffff\1\16\6\uffff\1\61\1\110\2\uffff\1\102\3\uffff\1\62\1\107"+
+        "\1\uffff\1\141\1\76\2\uffff\1\2\1\6\1\21\2\uffff\1\71\12\uffff\1"+
         "\54\10\uffff\1\41\1\57\2\uffff\1\126\1\20\2\uffff\1\131\4\uffff"+
-        "\1\101\5\uffff\1\137\1\65\1\103\1\111\1\134\1\uffff\1\73\1\136\3"+
-        "\uffff\1\13\7\uffff\1\47\1\61\1\uffff\1\132\2\uffff\1\100\6\uffff"+
+        "\1\101\5\uffff\1\137\1\64\1\103\1\111\1\134\1\uffff\1\72\1\136\3"+
+        "\uffff\1\13\7\uffff\1\47\1\60\1\uffff\1\132\2\uffff\1\100\6\uffff"+
         "\1\112\1\14\2\uffff\1\140\1\17\4\uffff\1\130\2\uffff\1\15\1\uffff"+
         "\1\12\4\uffff\1\55\7\uffff\1\50\1\36\1\135\1\7\4\uffff\1\52\1\10"+
         "\4\uffff\1\11\5\uffff\1\56\2\uffff\1\46";
@@ -3616,10 +3616,10 @@ public class InternalDMLTextLexer extends Lexer {
         "\1\1\55\uffff\1\0\u017e\uffff}>";
     static final String[] DFA11_transitionS = {
             "\11\60\2\57\2\60\1\57\22\60\1\57\1\20\1\56\1\60\1\50\1\60\1"+
-            "\47\1\1\1\41\1\42\1\3\1\4\1\35\1\5\1\24\1\23\1\54\1\53\10\54"+
-            "\1\36\1\40\1\21\1\17\1\22\2\60\4\55\1\52\25\55\1\31\1\60\1\32"+
+            "\47\1\1\1\40\1\41\1\3\1\4\1\35\1\5\1\24\1\23\1\54\1\53\10\54"+
+            "\1\42\1\37\1\21\1\17\1\22\2\60\4\55\1\52\25\55\1\31\1\60\1\32"+
             "\1\25\1\55\1\60\1\11\1\26\1\7\1\12\1\16\1\6\1\45\1\55\1\14\1"+
-            "\51\1\55\1\46\1\55\1\2\1\34\1\13\1\55\1\44\1\10\1\37\1\55\1"+
+            "\51\1\55\1\46\1\55\1\2\1\34\1\13\1\55\1\44\1\10\1\36\1\55\1"+
             "\43\1\15\3\55\1\27\1\33\1\30\uff82\60",
             "",
             "\12\63\7\uffff\32\63\4\uffff\1\63\1\uffff\4\63\1\62\25\63",
@@ -3652,11 +3652,11 @@ public class InternalDMLTextLexer extends Lexer {
             "\1\160",
             "\1\162",
             "",
-            "\1\164",
-            "\1\170\2\uffff\1\167\11\uffff\1\171\6\uffff\1\166",
+            "\1\166\2\uffff\1\165\11\uffff\1\167\6\uffff\1\164",
             "",
             "",
             "",
+            "\1\173",
             "\1\175",
             "\1\176",
             "\1\177",
@@ -3740,12 +3740,12 @@ public class InternalDMLTextLexer extends Lexer {
             "",
             "\1\u00b9",
             "",
-            "",
-            "",
             "\1\u00ba",
             "\1\u00bb",
             "\1\u00bc",
             "\1\u00bd",
+            "",
+            "",
             "",
             "",
             "",
@@ -4163,15 +4163,15 @@ public class InternalDMLTextLexer extends Lexer {
 
                         else if ( (LA11_0==',') ) {s = 29;}
 
-                        else if ( (LA11_0==':') ) {s = 30;}
+                        else if ( (LA11_0=='t') ) {s = 30;}
 
-                        else if ( (LA11_0=='t') ) {s = 31;}
+                        else if ( (LA11_0==';') ) {s = 31;}
 
-                        else if ( (LA11_0==';') ) {s = 32;}
+                        else if ( (LA11_0=='(') ) {s = 32;}
 
-                        else if ( (LA11_0=='(') ) {s = 33;}
+                        else if ( (LA11_0==')') ) {s = 33;}
 
-                        else if ( (LA11_0==')') ) {s = 34;}
+                        else if ( (LA11_0==':') ) {s = 34;}
 
                         else if ( (LA11_0=='v') ) {s = 35;}
 

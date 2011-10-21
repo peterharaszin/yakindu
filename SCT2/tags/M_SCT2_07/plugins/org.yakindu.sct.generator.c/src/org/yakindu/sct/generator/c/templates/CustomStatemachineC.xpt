@@ -1,0 +1,194 @@
+«REM»
+
+Templates for the main statechart cpp file.
+
+@auther joern seger
+
+«ENDREM»
+
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+«IMPORT ecore»
+
+«IMPORT org::yakindu::sct::generator::c::templates»
+
+«EXTENSION org::yakindu::sct::generator::c::templates::Expression»
+«EXTENSION org::yakindu::sct::generator::c::templates::Naming»
+
+«DEFINE ActionCode FOR Step»
+// ActionCode for Step not defined
+«ENDDEFINE»
+
+«DEFINE ActionCode FOR Execution»
+	«this.statement.toCppCode()»
+«ENDDEFINE»
+
+«DEFINE ActionCode FOR Call»
+«this.step.functionName()»(handle);
+«ENDDEFINE»
+
+«DEFINE ActionCode FOR Sequence»
+  «EXPAND ActionCode FOREACH this.steps»
+«ENDDEFINE»
+
+«DEFINE ActionCode FOR Check -»
+  «IF this != null -»
+«this.condition.toCppCode() -»
+  «ELSE -»
+ bool_true «
+ ENDIF -»«
+  ENDDEFINE»
+
+«DEFINE ActionCode FOR CheckRef -»
+  «IF this.check != null -»
+  «this.check.functionName()»(handle) «
+  ELSE -»
+ bool_true «
+  ENDIF -»«
+ENDDEFINE»
+
+«DEFINE ActionCode FOR Reaction»
+  «EXPAND ActionCode FOR this.effect» 
+«ENDDEFINE»
+
+«DEFINE ActionCode FOR If»
+if («EXPAND ActionCode FOR this.check») { 
+  «EXPAND ActionCode FOR this.thenStep»
+}
+else {
+  «EXPAND ActionCode FOR this.elseStep»
+}
+«ENDDEFINE»
+
+«DEFINE ActionCode FOR EnterState»
+((StatemachineBase*)handle)->state[0] = _«this.state.simpleName»;
+«ENDDEFINE»
+
+«DEFINE ActionCode FOR ExitState»
+((StatemachineBase*)handle)->state[0] = last_state;
+«ENDDEFINE»
+
+«DEFINE ConditionMethodsImplement FOR ExecutionState»
+  «FOREACH reactions AS r»
+  «IF r.check != null -»
+boolean «r.check.functionName()»(«StName()»* handle) {
+  boolean retValue = bool_false;
+  if («r.check.condition.toCppCode()»)
+    retValue = bool_true;
+  
+  return retValue;
+}
+  «ENDIF -»
+  «ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE StatementMethodsImplement FOR ExecutionState»
+  «FOREACH reactions AS r»
+void «r.effect.functionName()»(«StName()»* handle) {
+ 
+  «DRName()»* variable = &handle->variableData;
+  
+  «EXPAND ActionCode FOR r.effect»
+}
+  «ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE CycleCode FOR Cycle» 
+«EXPAND ActionCode FOREACH this.steps»
+«ENDDEFINE»
+
+«DEFINE CycleMethodsImplement FOR ExecutionState»
+void «StName().toFirstLower()»_cycle_«this.simpleName»(«StName()»* handle)
+{
+	«EXPAND CycleCode FOR cycle»
+}
+«ENDDEFINE»
+
+«DEFINE EnterMethodImplement FOR ExecutionState»
+«IF this.entryAction != null»
+void «StName().toFirstLower()»_«this.entryAction.entryActionFunctionName()»(«StName()»* handle)
+{
+«EXPAND ActionCode FOR this.entryAction»
+}
+«ENDIF»
+«ENDDEFINE»
+
+«DEFINE ExitMethodImplement FOR ExecutionState»
+«IF this.exitAction != null»
+void «StName().toFirstLower()»_«this.exitAction.exitActionFunctionName()»(«StName()»* handle)
+{
+«EXPAND ActionCode FOR this.exitAction»
+}
+«ENDIF»
+«ENDDEFINE»
+
+«DEFINE file FOR ExecutionFlow»
+«FILE StName()+'.c'»
+#include "«StName()».h"
+
+«EXPAND ConditionMethodsImplement FOREACH this.states»
+
+«EXPAND StatementMethodsImplement FOREACH this.states»
+
+«EXPAND CycleMethodsImplement FOREACH this.states»
+
+«EXPAND EnterMethodImplement FOREACH this.states»
+
+«EXPAND ExitMethodImplement FOREACH this.states»
+
+
+void «stName()»_init(«StName()»* handle, Timer* timer, EventPool* eventPool)
+{
+	statemachine_cy_init(&handle->base, MAX_PARALLEL_STATES,
+			event_last, timer, eventPool);
+			
+	«DRName().toFirstLower()»_init(&handle->variableData);
+	
+	//((StatemachineBase*)handle)->state[0] = st_State1;
+
+	«EXPAND ActionCode FOREACH this.enterSequence.steps»
+}
+
+void «stName()»_exit(«StName()»* handle)
+{
+	statemachine_cy_exit(&handle->base);
+//	variableData_exit(&handle->variableData);
+
+}
+
+void «stName()»_runCycle(«StName()»* handle)
+{
+	statemachine_cy_runCycle(&handle->base);
+}
+
+void «stName()»_setEvent(«StName()»* handle, _Event* ev)
+{
+	statemachine_cy_setEvent(&handle->base, ev);
+}
+
+boolean «StName().toFirstLower()»_eventWaiting(«StName()»* handle)
+{
+	return statemachine_cy_eventWaiting(&handle->base);
+}
+
+
+void statemachine_cy__runCycle(Statemachine_cy* handle)
+{
+	uint32_t i;
+	for (i=0; i<MAX_PARALLEL_STATES; ++i) {
+		switch(((StatemachineBase*)handle)->state[i]) {
+	«FOREACH this.states AS state»
+	    case _«state.simpleName»:
+	        «stName()»_cycle_«state.simpleName»((«StName()»*) handle);
+	        break;
+	«ENDFOREACH»
+		default:
+			/* no state found */
+			break;
+		}
+	}
+}
+«ENDFILE»
+
+«ENDDEFINE»

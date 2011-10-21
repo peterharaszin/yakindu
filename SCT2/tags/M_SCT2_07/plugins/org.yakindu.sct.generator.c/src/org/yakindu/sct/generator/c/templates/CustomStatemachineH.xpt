@@ -1,0 +1,64 @@
+«REM»
+
+Templates for the main statechart cpp file.
+
+@auther joern seger
+
+«ENDREM»
+
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+
+«EXTENSION org::yakindu::sct::generator::c::templates::Expression»
+«EXTENSION org::yakindu::sct::generator::c::templates::Naming»
+
+«DEFINE file FOR ExecutionFlow»
+
+«FILE StName()+'.h'»
+#ifndef «STNAME()»_H_
+#define «STNAME()»_H_
+
+#include "Statemachine_cy.h"
+#include "«DRName()».h"
+#include "«EvName()».h"
+
+typedef enum {
+    «FOREACH this.states AS exState-»
+      _«exState.simpleName», 
+    «ENDFOREACH»
+	last_state
+} States;
+
+#define MAX_PARALLEL_STATES «this.stateVector.size»
+
+
+typedef void(*raiseEventFPtr)(_Event* evPtr);
+
+typedef struct {
+
+	Statemachine_cy  base;
+	«DRName()» variableData;
+	raiseEventFPtr raiseEvent;
+	
+} «StName()»;
+
+/* Explicit Constructor & Destructor */
+extern void «StName().toFirstLower()»_init(«StName()»* handle, Timer* timer, EventPool* eventPool);
+extern void «StName().toFirstLower()»_exit(«StName()»* handle);
+
+extern void «StName().toFirstLower()»_setEvent(«StName()»* handle, _Event* ev);
+extern void «StName().toFirstLower()»_runCycle(«StName()»* handle);
+
+extern boolean «StName().toFirstLower()»_eventWaiting(«StName()»* handle);
+
+	/* virtual function form state machine must be implemented here */
+extern void statemachine_cy__runCycle(Statemachine_cy* handle);
+
+
+#endif /* «STNAME()»_H_ */
+
+«ENDFILE»
+
+«ENDDEFINE»
+

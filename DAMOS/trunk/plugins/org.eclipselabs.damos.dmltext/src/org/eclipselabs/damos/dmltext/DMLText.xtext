@@ -9,12 +9,11 @@ Root:
 	(blockTypes+=BlockType | systemInterfaces+=SystemInterface)*;
 	
 BlockType:
-	(timing=TimingKind)? 'blockType' qualifiedName=QualifiedName '{'
-		(inputDefinitions+=InputDefinition)*
-		(outputDefinitions+=OutputDefinition)*
-		(parameters+=Parameter)*
-		(behavior=MscriptBehaviorSpecification)?
-	'}';
+	(timing=TimingKind)? 'blockType' qualifiedName=QualifiedName
+		((inputDefinitions+=InputDefinition)* &
+		(outputDefinitions+=OutputDefinition)* &
+		(parameters+=Parameter)* &
+		(behavior=MscriptBehaviorSpecification)?);
 
 enum TimingKind:
 	Continuous='continuous' |
@@ -24,8 +23,8 @@ enum TimingKind:
 
 InputDefinition:
 	((socket?='socket')? & (testPoint?='testPoint')?) 'input' name=ValidID ('[' minimumPortCount=ValidInt '..'  maximumPortCount=UpperBoundLiteral ('|' defaultPortCount=ValidInt)? ']')? ('{'
-		('directFeedthrough' directFeedthroughPolicy=DirectFeedthroughPolicy)?
-		(parameters+=Parameter)*
+		(('directFeedthrough' directFeedthroughPolicy=DirectFeedthroughPolicy)? &
+		(parameters+=Parameter)*)
 	'}')?;
 	
 DirectFeedthroughPolicy:
@@ -58,10 +57,9 @@ MscriptBehaviorSpecification:
 	'}';
 	
 SystemInterface:
-	'systemInterface' qualifiedName=QualifiedName '{'
-		(inlets+=Inlet)*
-		(outlets+=Outlet)*
-	'}';
+	'systemInterface' qualifiedName=QualifiedName
+		((inlets+=Inlet)* &
+		(outlets+=Outlet)*);
 	
 Inlet:
 	'inlet' dataType=MscriptDataTypeSpecification name=ValidID;

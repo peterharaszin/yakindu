@@ -277,13 +277,13 @@ protected class Root_SystemInterfacesAssignment_1 extends AssignmentToken  {
 /************ begin Rule BlockType ****************
  *
  * BlockType:
- * 	timing=TimingKind? "blockType" qualifiedName=QualifiedName "{" inputDefinitions+=InputDefinition*
- * 	outputDefinitions+=OutputDefinition* parameters+=Parameter* behavior=MscriptBehaviorSpecification? "}";
+ * 	timing=TimingKind? "blockType" qualifiedName=QualifiedName (inputDefinitions+=InputDefinition* &
+ * 	outputDefinitions+=OutputDefinition* & parameters+=Parameter* & behavior=MscriptBehaviorSpecification?);
  *
  **/
 
-// timing=TimingKind? "blockType" qualifiedName=QualifiedName "{" inputDefinitions+=InputDefinition*
-// outputDefinitions+=OutputDefinition* parameters+=Parameter* behavior=MscriptBehaviorSpecification? "}"
+// timing=TimingKind? "blockType" qualifiedName=QualifiedName (inputDefinitions+=InputDefinition* &
+// outputDefinitions+=OutputDefinition* & parameters+=Parameter* & behavior=MscriptBehaviorSpecification?)
 protected class BlockType_Group extends GroupToken {
 	
 	public BlockType_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -298,7 +298,7 @@ protected class BlockType_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new BlockType_RightCurlyBracketKeyword_8(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new BlockType_UnorderedGroup_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -401,22 +401,27 @@ protected class BlockType_QualifiedNameAssignment_2 extends AssignmentToken  {
 
 }
 
-// "{"
-protected class BlockType_LeftCurlyBracketKeyword_3 extends KeywordToken  {
+// inputDefinitions+=InputDefinition* & outputDefinitions+=OutputDefinition* & parameters+=Parameter* &
+// behavior=MscriptBehaviorSpecification?
+protected class BlockType_UnorderedGroup_3 extends UnorderedGroupToken {
 	
-	public BlockType_LeftCurlyBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public BlockType_UnorderedGroup_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getBlockTypeAccess().getLeftCurlyBracketKeyword_3();
+	public UnorderedGroup getGrammarElement() {
+		return grammarAccess.getBlockTypeAccess().getUnorderedGroup_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new BlockType_QualifiedNameAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new BlockType_BehaviorAssignment_3_3(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new BlockType_ParametersAssignment_3_2(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new BlockType_OutputDefinitionsAssignment_3_1(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new BlockType_InputDefinitionsAssignment_3_0(lastRuleCallOrigin, this, 3, inst);
+			case 4: return new BlockType_QualifiedNameAssignment_2(lastRuleCallOrigin, this, 4, inst);
 			default: return null;
 		}	
 	}
@@ -424,15 +429,15 @@ protected class BlockType_LeftCurlyBracketKeyword_3 extends KeywordToken  {
 }
 
 // inputDefinitions+=InputDefinition*
-protected class BlockType_InputDefinitionsAssignment_4 extends AssignmentToken  {
+protected class BlockType_InputDefinitionsAssignment_3_0 extends AssignmentToken  {
 	
-	public BlockType_InputDefinitionsAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public BlockType_InputDefinitionsAssignment_3_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getBlockTypeAccess().getInputDefinitionsAssignment_4();
+		return grammarAccess.getBlockTypeAccess().getInputDefinitionsAssignment_3_0();
 	}
 
     @Override
@@ -451,7 +456,7 @@ protected class BlockType_InputDefinitionsAssignment_4 extends AssignmentToken  
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getInputDefinitionRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getBlockTypeAccess().getInputDefinitionsInputDefinitionParserRuleCall_4_0(); 
+				element = grammarAccess.getBlockTypeAccess().getInputDefinitionsInputDefinitionParserRuleCall_3_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -463,23 +468,23 @@ protected class BlockType_InputDefinitionsAssignment_4 extends AssignmentToken  
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new BlockType_InputDefinitionsAssignment_4(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new BlockType_LeftCurlyBracketKeyword_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new BlockType_InputDefinitionsAssignment_3_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new BlockType_QualifiedNameAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // outputDefinitions+=OutputDefinition*
-protected class BlockType_OutputDefinitionsAssignment_5 extends AssignmentToken  {
+protected class BlockType_OutputDefinitionsAssignment_3_1 extends AssignmentToken  {
 	
-	public BlockType_OutputDefinitionsAssignment_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public BlockType_OutputDefinitionsAssignment_3_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getBlockTypeAccess().getOutputDefinitionsAssignment_5();
+		return grammarAccess.getBlockTypeAccess().getOutputDefinitionsAssignment_3_1();
 	}
 
     @Override
@@ -498,7 +503,7 @@ protected class BlockType_OutputDefinitionsAssignment_5 extends AssignmentToken 
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getOutputDefinitionRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getBlockTypeAccess().getOutputDefinitionsOutputDefinitionParserRuleCall_5_0(); 
+				element = grammarAccess.getBlockTypeAccess().getOutputDefinitionsOutputDefinitionParserRuleCall_3_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -510,24 +515,24 @@ protected class BlockType_OutputDefinitionsAssignment_5 extends AssignmentToken 
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new BlockType_OutputDefinitionsAssignment_5(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new BlockType_InputDefinitionsAssignment_4(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new BlockType_LeftCurlyBracketKeyword_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new BlockType_OutputDefinitionsAssignment_3_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new BlockType_InputDefinitionsAssignment_3_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new BlockType_QualifiedNameAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // parameters+=Parameter*
-protected class BlockType_ParametersAssignment_6 extends AssignmentToken  {
+protected class BlockType_ParametersAssignment_3_2 extends AssignmentToken  {
 	
-	public BlockType_ParametersAssignment_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public BlockType_ParametersAssignment_3_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getBlockTypeAccess().getParametersAssignment_6();
+		return grammarAccess.getBlockTypeAccess().getParametersAssignment_3_2();
 	}
 
     @Override
@@ -546,7 +551,7 @@ protected class BlockType_ParametersAssignment_6 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getBlockTypeAccess().getParametersParameterParserRuleCall_6_0(); 
+				element = grammarAccess.getBlockTypeAccess().getParametersParameterParserRuleCall_3_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -558,25 +563,25 @@ protected class BlockType_ParametersAssignment_6 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new BlockType_ParametersAssignment_6(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new BlockType_OutputDefinitionsAssignment_5(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new BlockType_InputDefinitionsAssignment_4(lastRuleCallOrigin, next, actIndex, consumed);
-			case 3: return new BlockType_LeftCurlyBracketKeyword_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new BlockType_ParametersAssignment_3_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new BlockType_OutputDefinitionsAssignment_3_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new BlockType_InputDefinitionsAssignment_3_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 3: return new BlockType_QualifiedNameAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // behavior=MscriptBehaviorSpecification?
-protected class BlockType_BehaviorAssignment_7 extends AssignmentToken  {
+protected class BlockType_BehaviorAssignment_3_3 extends AssignmentToken  {
 	
-	public BlockType_BehaviorAssignment_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public BlockType_BehaviorAssignment_3_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getBlockTypeAccess().getBehaviorAssignment_7();
+		return grammarAccess.getBlockTypeAccess().getBehaviorAssignment_3_3();
 	}
 
     @Override
@@ -595,7 +600,7 @@ protected class BlockType_BehaviorAssignment_7 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getMscriptBehaviorSpecificationRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getBlockTypeAccess().getBehaviorMscriptBehaviorSpecificationParserRuleCall_7_0(); 
+				element = grammarAccess.getBlockTypeAccess().getBehaviorMscriptBehaviorSpecificationParserRuleCall_3_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -607,40 +612,15 @@ protected class BlockType_BehaviorAssignment_7 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new BlockType_ParametersAssignment_6(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new BlockType_OutputDefinitionsAssignment_5(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new BlockType_InputDefinitionsAssignment_4(lastRuleCallOrigin, next, actIndex, consumed);
-			case 3: return new BlockType_LeftCurlyBracketKeyword_3(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new BlockType_ParametersAssignment_3_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new BlockType_OutputDefinitionsAssignment_3_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new BlockType_InputDefinitionsAssignment_3_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 3: return new BlockType_QualifiedNameAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
-// "}"
-protected class BlockType_RightCurlyBracketKeyword_8 extends KeywordToken  {
-	
-	public BlockType_RightCurlyBracketKeyword_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getBlockTypeAccess().getRightCurlyBracketKeyword_8();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new BlockType_BehaviorAssignment_7(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new BlockType_ParametersAssignment_6(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new BlockType_OutputDefinitionsAssignment_5(lastRuleCallOrigin, this, 2, inst);
-			case 3: return new BlockType_InputDefinitionsAssignment_4(lastRuleCallOrigin, this, 3, inst);
-			case 4: return new BlockType_LeftCurlyBracketKeyword_3(lastRuleCallOrigin, this, 4, inst);
-			default: return null;
-		}	
-	}
-
-}
 
 
 /************ end Rule BlockType ****************/
@@ -650,14 +630,14 @@ protected class BlockType_RightCurlyBracketKeyword_8 extends KeywordToken  {
  *
  * InputDefinition:
  * 	(socket?="socket"? & testPoint?="testPoint"?) "input" name=ValidID ("[" minimumPortCount=ValidInt ".."
- * 	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" ("directFeedthrough"
- * 	directFeedthroughPolicy=DirectFeedthroughPolicy)? parameters+=Parameter* "}")?;
+ * 	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" (("directFeedthrough"
+ * 	directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?;
  *
  **/
 
 // (socket?="socket"? & testPoint?="testPoint"?) "input" name=ValidID ("[" minimumPortCount=ValidInt ".."
-// maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" ("directFeedthrough"
-// directFeedthroughPolicy=DirectFeedthroughPolicy)? parameters+=Parameter* "}")?
+// maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" (("directFeedthrough"
+// directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?
 protected class InputDefinition_Group extends GroupToken {
 	
 	public InputDefinition_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1072,7 +1052,7 @@ protected class InputDefinition_RightSquareBracketKeyword_3_5 extends KeywordTok
 }
 
 
-// ("{" ("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)? parameters+=Parameter* "}")?
+// ("{" (("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?
 protected class InputDefinition_Group_4 extends GroupToken {
 	
 	public InputDefinition_Group_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1087,7 +1067,7 @@ protected class InputDefinition_Group_4 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InputDefinition_RightCurlyBracketKeyword_4_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new InputDefinition_RightCurlyBracketKeyword_4_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -1117,22 +1097,45 @@ protected class InputDefinition_LeftCurlyBracketKeyword_4_0 extends KeywordToken
 
 }
 
-// ("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)?
-protected class InputDefinition_Group_4_1 extends GroupToken {
+// ("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*
+protected class InputDefinition_UnorderedGroup_4_1 extends UnorderedGroupToken {
 	
-	public InputDefinition_Group_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InputDefinition_UnorderedGroup_4_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getInputDefinitionAccess().getGroup_4_1();
+	public UnorderedGroup getGrammarElement() {
+		return grammarAccess.getInputDefinitionAccess().getUnorderedGroup_4_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InputDefinition_DirectFeedthroughPolicyAssignment_4_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new InputDefinition_ParametersAssignment_4_1_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new InputDefinition_Group_4_1_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)?
+protected class InputDefinition_Group_4_1_0 extends GroupToken {
+	
+	public InputDefinition_Group_4_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getInputDefinitionAccess().getGroup_4_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new InputDefinition_DirectFeedthroughPolicyAssignment_4_1_0_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -1140,15 +1143,15 @@ protected class InputDefinition_Group_4_1 extends GroupToken {
 }
 
 // "directFeedthrough"
-protected class InputDefinition_DirectFeedthroughKeyword_4_1_0 extends KeywordToken  {
+protected class InputDefinition_DirectFeedthroughKeyword_4_1_0_0 extends KeywordToken  {
 	
-	public InputDefinition_DirectFeedthroughKeyword_4_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InputDefinition_DirectFeedthroughKeyword_4_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getInputDefinitionAccess().getDirectFeedthroughKeyword_4_1_0();
+		return grammarAccess.getInputDefinitionAccess().getDirectFeedthroughKeyword_4_1_0_0();
 	}
 
     @Override
@@ -1162,15 +1165,15 @@ protected class InputDefinition_DirectFeedthroughKeyword_4_1_0 extends KeywordTo
 }
 
 // directFeedthroughPolicy=DirectFeedthroughPolicy
-protected class InputDefinition_DirectFeedthroughPolicyAssignment_4_1_1 extends AssignmentToken  {
+protected class InputDefinition_DirectFeedthroughPolicyAssignment_4_1_0_1 extends AssignmentToken  {
 	
-	public InputDefinition_DirectFeedthroughPolicyAssignment_4_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InputDefinition_DirectFeedthroughPolicyAssignment_4_1_0_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getInputDefinitionAccess().getDirectFeedthroughPolicyAssignment_4_1_1();
+		return grammarAccess.getInputDefinitionAccess().getDirectFeedthroughPolicyAssignment_4_1_0_1();
 	}
 
     @Override
@@ -1189,7 +1192,7 @@ protected class InputDefinition_DirectFeedthroughPolicyAssignment_4_1_1 extends 
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getDirectFeedthroughPolicyRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getInputDefinitionAccess().getDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_1_0(); 
+				element = grammarAccess.getInputDefinitionAccess().getDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_0_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -1201,7 +1204,7 @@ protected class InputDefinition_DirectFeedthroughPolicyAssignment_4_1_1 extends 
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new InputDefinition_DirectFeedthroughKeyword_4_1_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new InputDefinition_DirectFeedthroughKeyword_4_1_0_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -1209,15 +1212,15 @@ protected class InputDefinition_DirectFeedthroughPolicyAssignment_4_1_1 extends 
 
 
 // parameters+=Parameter*
-protected class InputDefinition_ParametersAssignment_4_2 extends AssignmentToken  {
+protected class InputDefinition_ParametersAssignment_4_1_1 extends AssignmentToken  {
 	
-	public InputDefinition_ParametersAssignment_4_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InputDefinition_ParametersAssignment_4_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getInputDefinitionAccess().getParametersAssignment_4_2();
+		return grammarAccess.getInputDefinitionAccess().getParametersAssignment_4_1_1();
 	}
 
     @Override
@@ -1236,7 +1239,7 @@ protected class InputDefinition_ParametersAssignment_4_2 extends AssignmentToken
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getInputDefinitionAccess().getParametersParameterParserRuleCall_4_2_0(); 
+				element = grammarAccess.getInputDefinitionAccess().getParametersParameterParserRuleCall_4_1_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -1248,31 +1251,31 @@ protected class InputDefinition_ParametersAssignment_4_2 extends AssignmentToken
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new InputDefinition_ParametersAssignment_4_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new InputDefinition_Group_4_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new InputDefinition_ParametersAssignment_4_1_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new InputDefinition_Group_4_1_0(lastRuleCallOrigin, next, actIndex, consumed);
 			case 2: return new InputDefinition_LeftCurlyBracketKeyword_4_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
+
 // "}"
-protected class InputDefinition_RightCurlyBracketKeyword_4_3 extends KeywordToken  {
+protected class InputDefinition_RightCurlyBracketKeyword_4_2 extends KeywordToken  {
 	
-	public InputDefinition_RightCurlyBracketKeyword_4_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public InputDefinition_RightCurlyBracketKeyword_4_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getInputDefinitionAccess().getRightCurlyBracketKeyword_4_3();
+		return grammarAccess.getInputDefinitionAccess().getRightCurlyBracketKeyword_4_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new InputDefinition_ParametersAssignment_4_2(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new InputDefinition_Group_4_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new InputDefinition_UnorderedGroup_4_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -2823,11 +2826,11 @@ protected class MscriptBehaviorSpecification_RightCurlyBracketKeyword_3 extends 
 /************ begin Rule SystemInterface ****************
  *
  * SystemInterface:
- * 	"systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}";
+ * 	"systemInterface" qualifiedName=QualifiedName (inlets+=Inlet* & outlets+=Outlet*);
  *
  **/
 
-// "systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}"
+// "systemInterface" qualifiedName=QualifiedName (inlets+=Inlet* & outlets+=Outlet*)
 protected class SystemInterface_Group extends GroupToken {
 	
 	public SystemInterface_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2842,7 +2845,7 @@ protected class SystemInterface_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SystemInterface_RightCurlyBracketKeyword_5(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new SystemInterface_UnorderedGroup_2(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -2911,22 +2914,24 @@ protected class SystemInterface_QualifiedNameAssignment_1 extends AssignmentToke
 
 }
 
-// "{"
-protected class SystemInterface_LeftCurlyBracketKeyword_2 extends KeywordToken  {
+// inlets+=Inlet* & outlets+=Outlet*
+protected class SystemInterface_UnorderedGroup_2 extends UnorderedGroupToken {
 	
-	public SystemInterface_LeftCurlyBracketKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SystemInterface_UnorderedGroup_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getSystemInterfaceAccess().getLeftCurlyBracketKeyword_2();
+	public UnorderedGroup getGrammarElement() {
+		return grammarAccess.getSystemInterfaceAccess().getUnorderedGroup_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SystemInterface_QualifiedNameAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new SystemInterface_OutletsAssignment_2_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new SystemInterface_InletsAssignment_2_0(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new SystemInterface_QualifiedNameAssignment_1(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
@@ -2934,15 +2939,15 @@ protected class SystemInterface_LeftCurlyBracketKeyword_2 extends KeywordToken  
 }
 
 // inlets+=Inlet*
-protected class SystemInterface_InletsAssignment_3 extends AssignmentToken  {
+protected class SystemInterface_InletsAssignment_2_0 extends AssignmentToken  {
 	
-	public SystemInterface_InletsAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SystemInterface_InletsAssignment_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getSystemInterfaceAccess().getInletsAssignment_3();
+		return grammarAccess.getSystemInterfaceAccess().getInletsAssignment_2_0();
 	}
 
     @Override
@@ -2961,7 +2966,7 @@ protected class SystemInterface_InletsAssignment_3 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getInletRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getSystemInterfaceAccess().getInletsInletParserRuleCall_3_0(); 
+				element = grammarAccess.getSystemInterfaceAccess().getInletsInletParserRuleCall_2_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -2973,23 +2978,23 @@ protected class SystemInterface_InletsAssignment_3 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new SystemInterface_InletsAssignment_3(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new SystemInterface_LeftCurlyBracketKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new SystemInterface_InletsAssignment_2_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new SystemInterface_QualifiedNameAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // outlets+=Outlet*
-protected class SystemInterface_OutletsAssignment_4 extends AssignmentToken  {
+protected class SystemInterface_OutletsAssignment_2_1 extends AssignmentToken  {
 	
-	public SystemInterface_OutletsAssignment_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SystemInterface_OutletsAssignment_2_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getSystemInterfaceAccess().getOutletsAssignment_4();
+		return grammarAccess.getSystemInterfaceAccess().getOutletsAssignment_2_1();
 	}
 
     @Override
@@ -3008,7 +3013,7 @@ protected class SystemInterface_OutletsAssignment_4 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getOutletRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getSystemInterfaceAccess().getOutletsOutletParserRuleCall_4_0(); 
+				element = grammarAccess.getSystemInterfaceAccess().getOutletsOutletParserRuleCall_2_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -3020,37 +3025,14 @@ protected class SystemInterface_OutletsAssignment_4 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new SystemInterface_OutletsAssignment_4(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new SystemInterface_InletsAssignment_3(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new SystemInterface_LeftCurlyBracketKeyword_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new SystemInterface_OutletsAssignment_2_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new SystemInterface_InletsAssignment_2_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new SystemInterface_QualifiedNameAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
-// "}"
-protected class SystemInterface_RightCurlyBracketKeyword_5 extends KeywordToken  {
-	
-	public SystemInterface_RightCurlyBracketKeyword_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getSystemInterfaceAccess().getRightCurlyBracketKeyword_5();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new SystemInterface_OutletsAssignment_4(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new SystemInterface_InletsAssignment_3(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new SystemInterface_LeftCurlyBracketKeyword_2(lastRuleCallOrigin, this, 2, inst);
-			default: return null;
-		}	
-	}
-
-}
 
 
 /************ end Rule SystemInterface ****************/

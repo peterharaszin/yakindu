@@ -832,15 +832,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFragment_Name() {
-		return (EAttribute)fragmentEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getComponent() {
 		return componentEClass;
 	}
@@ -1759,15 +1750,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSystemInterface_Name() {
-		return (EAttribute)systemInterfaceEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getInlet() {
 		return inletEClass;
 	}
@@ -2336,7 +2318,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(fragmentEClass, FRAGMENT__FRAGMENT_ELEMENTS);
 		createEReference(fragmentEClass, FRAGMENT__CONNECTIONS);
 		createEReference(fragmentEClass, FRAGMENT__PARENT);
-		createEAttribute(fragmentEClass, FRAGMENT__NAME);
 
 		componentEClass = createEClass(COMPONENT);
 		createEReference(componentEClass, COMPONENT__INPUTS);
@@ -2486,7 +2467,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		systemInterfaceEClass = createEClass(SYSTEM_INTERFACE);
 		createEReference(systemInterfaceEClass, SYSTEM_INTERFACE__INLETS);
 		createEReference(systemInterfaceEClass, SYSTEM_INTERFACE__OUTLETS);
-		createEAttribute(systemInterfaceEClass, SYSTEM_INTERFACE__NAME);
 
 		inletEClass = createEClass(INLET);
 
@@ -2616,7 +2596,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Add supertypes to classes
 		fragmentEClass.getESuperTypes().add(ecorePackage.getEModelElement());
-		fragmentEClass.getESuperTypes().add(this.getINamedElement());
+		fragmentEClass.getESuperTypes().add(this.getQualifiedElement());
 		componentEClass.getESuperTypes().add(this.getFragmentElement());
 		componentEClass.getESuperTypes().add(this.getCompoundMember());
 		componentEClass.getESuperTypes().add(this.getINamedElement());
@@ -2667,7 +2647,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockOutputPortEClass.getESuperTypes().add(this.getOutputPort());
 		blockOutputPortEClass.getESuperTypes().add(this.getBlockPort());
 		subsystemEClass.getESuperTypes().add(this.getComponent());
-		systemInterfaceEClass.getESuperTypes().add(this.getINamedElement());
+		systemInterfaceEClass.getESuperTypes().add(this.getQualifiedElement());
 		inletEClass.getESuperTypes().add(this.getInoutlet());
 		inoutletEClass.getESuperTypes().add(this.getINamedElement());
 		outletEClass.getESuperTypes().add(this.getInoutlet());
@@ -2713,7 +2693,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getFragment_FragmentElements(), this.getFragmentElement(), this.getFragmentElement_OwningFragment(), "fragmentElements", null, 0, -1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getFragment_Connections(), this.getConnection(), null, "connections", null, 0, -1, Fragment.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getFragment_Parent(), this.getFragment(), null, "parent", null, 0, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFragment_Name(), ecorePackage.getEString(), "name", null, 1, 1, Fragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		addEOperation(fragmentEClass, this.getFragment(), "getChildren", 0, -1, IS_UNIQUE, !IS_ORDERED);
 
@@ -2984,7 +2963,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(systemInterfaceEClass, SystemInterface.class, "SystemInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSystemInterface_Inlets(), this.getInlet(), null, "inlets", null, 0, -1, SystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSystemInterface_Outlets(), this.getOutlet(), null, "outlets", null, 0, -1, SystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSystemInterface_Name(), ecorePackage.getEString(), "name", null, 1, 1, SystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(inletEClass, Inlet.class, "Inlet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

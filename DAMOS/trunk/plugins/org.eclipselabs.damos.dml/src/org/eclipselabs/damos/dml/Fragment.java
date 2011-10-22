@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EModelElement;
  *   <li>{@link org.eclipselabs.damos.dml.Fragment#getFragmentElements <em>Fragment Elements</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Fragment#getConnections <em>Connections</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Fragment#getParent <em>Parent</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.Fragment#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -29,7 +28,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='WellFormedName UniqueComponentNames'"
  * @generated
  */
-public interface Fragment extends EModelElement, INamedElement {
+public interface Fragment extends EModelElement, QualifiedElement {
 	/**
 	 * Returns the value of the '<em><b>Components</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.dml.Component}.
@@ -105,32 +104,6 @@ public interface Fragment extends EModelElement, INamedElement {
 	 * @generated
 	 */
 	void setParent(Fragment value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.dml.DMLPackage#getFragment_Name()
-	 * @model required="true" ordered="false"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Fragment#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

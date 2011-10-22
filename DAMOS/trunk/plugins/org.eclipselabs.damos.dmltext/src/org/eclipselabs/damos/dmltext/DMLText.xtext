@@ -58,7 +58,7 @@ MscriptBehaviorSpecification:
 	'}';
 	
 SystemInterface:
-	'systemInterface' name=ValidID '{'
+	'systemInterface' qualifiedName=QualifiedName '{'
 		(inlets+=Inlet)*
 		(outlets+=Outlet)*
 	'}';

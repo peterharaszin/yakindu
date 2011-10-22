@@ -8,13 +8,10 @@ package org.eclipselabs.damos.dml.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -31,13 +28,12 @@ import org.eclipselabs.damos.dml.SystemInterface;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl#getInlets <em>Inlets</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl#getOutlets <em>Outlets</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.SystemInterfaceImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface {
+public class SystemInterfaceImpl extends QualifiedElementImpl implements SystemInterface {
 	/**
 	 * The cached value of the '{@link #getInlets() <em>Inlets</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -57,26 +53,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 	 * @ordered
 	 */
 	protected EList<Outlet> outlets;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -126,27 +102,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.SYSTEM_INTERFACE__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -170,8 +125,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 				return getInlets();
 			case DMLPackage.SYSTEM_INTERFACE__OUTLETS:
 				return getOutlets();
-			case DMLPackage.SYSTEM_INTERFACE__NAME:
-				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,9 +146,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 				getOutlets().clear();
 				getOutlets().addAll((Collection<? extends Outlet>)newValue);
 				return;
-			case DMLPackage.SYSTEM_INTERFACE__NAME:
-				setName((String)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -214,9 +164,6 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 			case DMLPackage.SYSTEM_INTERFACE__OUTLETS:
 				getOutlets().clear();
 				return;
-			case DMLPackage.SYSTEM_INTERFACE__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -233,26 +180,8 @@ public class SystemInterfaceImpl extends EObjectImpl implements SystemInterface 
 				return inlets != null && !inlets.isEmpty();
 			case DMLPackage.SYSTEM_INTERFACE__OUTLETS:
 				return outlets != null && !outlets.isEmpty();
-			case DMLPackage.SYSTEM_INTERFACE__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //SystemInterfaceImpl

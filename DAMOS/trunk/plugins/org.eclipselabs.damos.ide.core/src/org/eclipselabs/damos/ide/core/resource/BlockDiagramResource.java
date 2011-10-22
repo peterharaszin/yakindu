@@ -18,19 +18,16 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLSave;
-import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.resource.DMLResource;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
@@ -123,24 +120,7 @@ public class BlockDiagramResource extends GMFResource {
 	 */
 	@Override
 	protected XMLHelper createXMLHelper() {
-		return new XMIHelperImpl(this) {
-			
-			/* (non-Javadoc)
-			 * @see org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl#getFeature(org.eclipse.emf.ecore.EClass, java.lang.String, java.lang.String)
-			 */
-			@Override
-			public EStructuralFeature getFeature(EClass eClass, String namespaceURI, String name) {
-				if (eClass == DMLPackage.eINSTANCE.getConnection()) {
-					if ("sourcePort".equals(name)) {
-						name = "source";
-					} else if ("targetPort".equals(name)) {
-						name = "target";
-					}
-				}
-				return super.getFeature(eClass, namespaceURI, name);
-			}
-			
-		};
+		return new DMLResource.XMIHelper(this);
 	}
 	
 	/* (non-Javadoc)

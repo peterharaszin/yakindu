@@ -31,7 +31,7 @@ public class RenameFragmentHandler extends AbstractHandler {
 						EditingDomain editingDomain = TransactionUtil.getEditingDomain(fragment);
 						Command command = editingDomain.createCommand(
 								SetCommand.class,
-								new CommandParameter(fragment, DMLPackage.Literals.FRAGMENT__NAME, d.getValue()));
+								new CommandParameter(fragment, DMLPackage.eINSTANCE.getQualifiedElement_QualifiedName(), d.getValue()));
 						editingDomain.getCommandStack().execute(command);
 					}
 				}

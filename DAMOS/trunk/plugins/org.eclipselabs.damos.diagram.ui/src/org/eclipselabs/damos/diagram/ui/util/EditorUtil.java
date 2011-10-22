@@ -180,8 +180,8 @@ public class EditorUtil extends IDEEditorUtil {
 					
 					String name = newDiagramFile.getFullPath().removeFileExtension().lastSegment();
 
-					if (system.getName() == null || system.getName().length() == 0) {
-						system.setName(name);
+					if (system.getQualifiedName() == null || system.getQualifiedName().length() == 0) {
+						system.setQualifiedName(name);
 					}
 
 					if (view != null) {

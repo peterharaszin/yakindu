@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIHelperImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -49,24 +50,45 @@ public class DMLResource extends XMIResourceImpl {
 	 */
 	@Override
 	protected XMLHelper createXMLHelper() {
-		return new XMIHelperImpl(this) {
-			
-			/* (non-Javadoc)
-			 * @see org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl#getFeature(org.eclipse.emf.ecore.EClass, java.lang.String, java.lang.String)
-			 */
-			@Override
-			public EStructuralFeature getFeature(EClass eClass, String namespaceURI, String name) {
-				if (eClass == DMLPackage.eINSTANCE.getConnection()) {
-					if ("sourcePort".equals(name)) {
-						name = "source";
-					} else if ("targetPort".equals(name)) {
-						name = "target";
-					}
+		return new XMIHelper(this);
+	}
+
+	/**
+	 * <em>Note: This class is not public API, it may be removed in the feature.</em>
+	 * 
+	 * @author Andreas Unger
+	 * 
+	 * @noextend
+	 * @noimplement
+	 */
+	public static final class XMIHelper extends XMIHelperImpl {
+
+		/**
+		 * @param resource
+		 */
+		public XMIHelper(XMLResource resource) {
+			super(resource);
+		}
+	
+		/* (non-Javadoc)
+		 * @see org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl#getFeature(org.eclipse.emf.ecore.EClass, java.lang.String, java.lang.String)
+		 */
+		@Override
+		public EStructuralFeature getFeature(EClass eClass, String namespaceURI, String name) {
+			if (DMLPackage.eINSTANCE.getConnection().isSuperTypeOf(eClass)) {
+				if ("sourcePort".equals(name)) {
+					name = "source";
+				} else if ("targetPort".equals(name)) {
+					name = "target";
 				}
-				return super.getFeature(eClass, namespaceURI, name);
+			} else if (DMLPackage.eINSTANCE.getFragment().isSuperTypeOf(eClass) || DMLPackage.eINSTANCE.getSystemInterface().isSuperTypeOf(eClass)) {
+				if ("name".equals(name)) {
+					name = "qualifiedName";
+				}
 			}
-			
-		};
+			return super.getFeature(eClass, namespaceURI, name);
+		}
+		
 	}
 	
 }

@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dml"
     nsURI="http://www.eclipselabs.org/damos/DML/1.0.0" nsPrefix="dml">
-  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement #//INamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Fragment" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement #//QualifiedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="WellFormedName UniqueComponentNames"/>
     </eAnnotations>
@@ -19,8 +19,6 @@
         upperBound="-1" eType="#//Connection" volatile="true" transient="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parent" ordered="false"
         eType="#//Fragment"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Component" abstract="true" eSuperTypes="#//FragmentElement #//CompoundMember #//INamedElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -313,13 +311,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="providedInterface" lowerBound="1"
         eType="#//SystemInterface"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SystemInterface" eSuperTypes="#//INamedElement">
+  <eClassifiers xsi:type="ecore:EClass" name="SystemInterface" eSuperTypes="#//QualifiedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlets" upperBound="-1"
         eType="#//Inlet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outlets" upperBound="-1"
         eType="#//Outlet" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Inlet" eSuperTypes="#//Inoutlet"/>
   <eClassifiers xsi:type="ecore:EClass" name="Inoutlet" abstract="true" eSuperTypes="#//INamedElement">

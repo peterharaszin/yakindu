@@ -112,8 +112,8 @@ RULE_WS=14
 'directFeedthrough'=26
 '=='=104
 'string'=62
-'type'=41
 ';'=42
+'typedef'=41
 'return'=89
 'warning'=101
 'continuous'=93

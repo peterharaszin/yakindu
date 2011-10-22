@@ -81,40 +81,13 @@ public interface DMLPackage extends EPackage {
 	int FRAGMENT__EANNOTATIONS = EcorePackage.EMODEL_ELEMENT__EANNOTATIONS;
 
 	/**
-	 * The feature id for the '<em><b>Components</b></em>' reference list.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__COMPONENTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Fragment Elements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT__FRAGMENT_ELEMENTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Connections</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT__CONNECTIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Parent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FRAGMENT__PARENT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+	int FRAGMENT__QUALIFIED_NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -123,7 +96,52 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FRAGMENT__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__QUALIFIER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Components</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__COMPONENTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Fragment Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__FRAGMENT_ELEMENTS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Connections</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__CONNECTIONS = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Parent</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAGMENT__PARENT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Fragment</em>' class.
@@ -132,7 +150,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
+	int FRAGMENT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.FragmentElementImpl <em>Fragment Element</em>}' class.
@@ -1959,6 +1977,33 @@ public interface DMLPackage extends EPackage {
 	int SYSTEM__EANNOTATIONS = FRAGMENT__EANNOTATIONS;
 
 	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__QUALIFIED_NAME = FRAGMENT__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__NAME = FRAGMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM__QUALIFIER = FRAGMENT__QUALIFIER;
+
+	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1995,15 +2040,6 @@ public interface DMLPackage extends EPackage {
 	int SYSTEM__PARENT = FRAGMENT__PARENT;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM__NAME = FRAGMENT__NAME;
-
-	/**
 	 * The number of structural features of the '<em>System</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2020,6 +2056,33 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__EANNOTATIONS = SYSTEM__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__QUALIFIED_NAME = SYSTEM__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__NAME = SYSTEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__QUALIFIER = SYSTEM__QUALIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
@@ -2056,15 +2119,6 @@ public interface DMLPackage extends EPackage {
 	 * @ordered
 	 */
 	int MODEL__PARENT = SYSTEM__PARENT;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL__NAME = SYSTEM__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Model</em>' class.
@@ -2278,22 +2332,13 @@ public interface DMLPackage extends EPackage {
 	int SYSTEM_INTERFACE = 47;
 
 	/**
-	 * The feature id for the '<em><b>Inlets</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE__INLETS = INAMED_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Outlets</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM_INTERFACE__OUTLETS = INAMED_ELEMENT_FEATURE_COUNT + 1;
+	int SYSTEM_INTERFACE__QUALIFIED_NAME = QUALIFIED_ELEMENT__QUALIFIED_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -2302,7 +2347,34 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE__NAME = INAMED_ELEMENT_FEATURE_COUNT + 2;
+	int SYSTEM_INTERFACE__NAME = QUALIFIED_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INTERFACE__QUALIFIER = QUALIFIED_ELEMENT__QUALIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Inlets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INTERFACE__INLETS = QUALIFIED_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Outlets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_INTERFACE__OUTLETS = QUALIFIED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>System Interface</em>' class.
@@ -2311,7 +2383,7 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE_FEATURE_COUNT = INAMED_ELEMENT_FEATURE_COUNT + 3;
+	int SYSTEM_INTERFACE_FEATURE_COUNT = QUALIFIED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Data Type</b></em>' containment reference.
@@ -4027,17 +4099,6 @@ public interface DMLPackage extends EPackage {
 	EReference getFragment_Parent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.Fragment#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.dml.Fragment#getName()
-	 * @see #getFragment()
-	 * @generated
-	 */
-	EAttribute getFragment_Name();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Component <em>Component</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5113,17 +5174,6 @@ public interface DMLPackage extends EPackage {
 	EReference getSystemInterface_Outlets();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.SystemInterface#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.dml.SystemInterface#getName()
-	 * @see #getSystemInterface()
-	 * @generated
-	 */
-	EAttribute getSystemInterface_Name();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Inlet <em>Inlet</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5808,14 +5858,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FRAGMENT__PARENT = eINSTANCE.getFragment_Parent();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FRAGMENT__NAME = eINSTANCE.getFragment_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.ComponentImpl <em>Component</em>}' class.
@@ -6726,14 +6768,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SYSTEM_INTERFACE__OUTLETS = eINSTANCE.getSystemInterface_Outlets();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SYSTEM_INTERFACE__NAME = eINSTANCE.getSystemInterface_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.InletImpl <em>Inlet</em>}' class.

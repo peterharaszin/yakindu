@@ -26,10 +26,10 @@ public class NewFragmentHandler extends AbstractHandler {
 				Object element = structuredSelection.getFirstElement();
 				if (element instanceof Fragment) {
 					Fragment fragment = (Fragment) element;
-					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Create Fragment", "Fragment name:", "Unnamed", null);
+					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Create Fragment", "Qualified name:", "org::example::Unnamed", null);
 					if (d.open() == Dialog.OK) {
 						Fragment newFragment = DMLFactory.eINSTANCE.createFragment();
-						newFragment.setName(d.getValue());
+						newFragment.setQualifiedName(d.getValue());
 						newFragment.setParent(fragment);
 						TransactionalEditingDomain editingDomain = TransactionUtil.getEditingDomain(fragment);
 						Command command = new AddFragmentCommand(fragment.eResource(), newFragment);

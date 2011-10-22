@@ -79,7 +79,7 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IFile file = root.getFile(path);
 		SystemInterface systemInterface = DMLFactory.eINSTANCE.createSystemInterface();
-		systemInterface.setName(fragment.getName());
+		systemInterface.setQualifiedName(fragment.getQualifiedName() + "Interface");
 		for (Component component : fragment.getAllComponents()) {
 			if (component instanceof Inport) {
 				Inport inport = (Inport) component;

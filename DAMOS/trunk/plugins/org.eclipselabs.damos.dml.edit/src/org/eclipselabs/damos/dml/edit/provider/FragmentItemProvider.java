@@ -65,12 +65,34 @@ public class FragmentItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addQualifiedNamePropertyDescriptor(object);
 			addComponentsPropertyDescriptor(object);
 			addConnectionsPropertyDescriptor(object);
 			addParentPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Qualified Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addQualifiedNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_QualifiedElement_qualifiedName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_qualifiedName_feature", "_UI_QualifiedElement_type"),
+				 DMLPackage.Literals.QUALIFIED_ELEMENT__QUALIFIED_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -135,28 +157,6 @@ public class FragmentItemProvider
 				 false,
 				 true,
 				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Name feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Fragment_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Fragment_name_feature", "_UI_Fragment_type"),
-				 DMLPackage.Literals.FRAGMENT__NAME,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -229,9 +229,11 @@ public class FragmentItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Fragment.class)) {
+			case DMLPackage.FRAGMENT__QUALIFIED_NAME:
+			case DMLPackage.FRAGMENT__NAME:
+			case DMLPackage.FRAGMENT__QUALIFIER:
 			case DMLPackage.FRAGMENT__COMPONENTS:
 			case DMLPackage.FRAGMENT__CONNECTIONS:
-			case DMLPackage.FRAGMENT__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case DMLPackage.FRAGMENT__EANNOTATIONS:

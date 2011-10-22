@@ -112,9 +112,9 @@ RULE_WS=14
 'directFeedthrough'=53
 '=='=33
 'string'=82
-'type'=65
 ';'=66
 'warning'=30
+'typedef'=65
 'return'=105
 'continuous'=22
 'for'=97

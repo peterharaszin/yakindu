@@ -583,8 +583,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SystemInterface");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSystemInterfaceKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cQualifiedNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cQualifiedNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cQualifiedNameAssignment_1.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cInletsAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cInletsInletParserRuleCall_3_0 = (RuleCall)cInletsAssignment_3.eContents().get(0);
@@ -593,20 +593,20 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//SystemInterface:
-		//	"systemInterface" name=ValidID "{" inlets+=Inlet* outlets+=Outlet* "}";
+		//	"systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"systemInterface" name=ValidID "{" inlets+=Inlet* outlets+=Outlet* "}"
+		//"systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"systemInterface"
 		public Keyword getSystemInterfaceKeyword_0() { return cSystemInterfaceKeyword_0; }
 
-		//name=ValidID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//qualifiedName=QualifiedName
+		public Assignment getQualifiedNameAssignment_1() { return cQualifiedNameAssignment_1; }
 
-		//ValidID
-		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
+		//QualifiedName
+		public RuleCall getQualifiedNameQualifiedNameParserRuleCall_1_0() { return cQualifiedNameQualifiedNameParserRuleCall_1_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
@@ -965,7 +965,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SystemInterface:
-	//	"systemInterface" name=ValidID "{" inlets+=Inlet* outlets+=Outlet* "}";
+	//	"systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}";
 	public SystemInterfaceElements getSystemInterfaceAccess() {
 		return (pSystemInterface != null) ? pSystemInterface : (pSystemInterface = new SystemInterfaceElements());
 	}
@@ -1037,7 +1037,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * DataTypeDefinition
 	// * / DataTypeDefinition:
-	//	EnumerationDefinition | StructDefinition | TypeAliasDefinition;
+	//	EnumerationDefinition | StructDefinition | TypedefDeclaration;
 	public MscriptGrammarAccess.DataTypeDefinitionElements getDataTypeDefinitionAccess() {
 		return gaMscript.getDataTypeDefinitionAccess();
 	}
@@ -1070,15 +1070,15 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	/// *
-	// * TypeAlias
-	// * / TypeAliasDefinition:
-	//	"type" name=ValidID "=" type=PrimitiveType ";";
-	public MscriptGrammarAccess.TypeAliasDefinitionElements getTypeAliasDefinitionAccess() {
-		return gaMscript.getTypeAliasDefinitionAccess();
+	// * Typedef
+	// * / TypedefDeclaration:
+	//	"typedef" type=DataTypeSpecifier name=ValidID ";";
+	public MscriptGrammarAccess.TypedefDeclarationElements getTypedefDeclarationAccess() {
+		return gaMscript.getTypedefDeclarationAccess();
 	}
 	
-	public ParserRule getTypeAliasDefinitionRule() {
-		return getTypeAliasDefinitionAccess().getRule();
+	public ParserRule getTypedefDeclarationRule() {
+		return getTypedefDeclarationAccess().getRule();
 	}
 
 	/// *

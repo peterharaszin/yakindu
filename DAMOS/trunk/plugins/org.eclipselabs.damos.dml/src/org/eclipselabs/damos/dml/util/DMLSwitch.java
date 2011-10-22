@@ -156,6 +156,7 @@ public class DMLSwitch<T> extends Switch<T> {
 				Fragment fragment = (Fragment)theEObject;
 				T result = caseFragment(fragment);
 				if (result == null) result = caseEModelElement(fragment);
+				if (result == null) result = caseQualifiedElement(fragment);
 				if (result == null) result = caseINamedElement(fragment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -469,6 +470,7 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = caseSystem(model);
 				if (result == null) result = caseFragment(model);
 				if (result == null) result = caseEModelElement(model);
+				if (result == null) result = caseQualifiedElement(model);
 				if (result == null) result = caseINamedElement(model);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -478,6 +480,7 @@ public class DMLSwitch<T> extends Switch<T> {
 				T result = caseSystem(system);
 				if (result == null) result = caseFragment(system);
 				if (result == null) result = caseEModelElement(system);
+				if (result == null) result = caseQualifiedElement(system);
 				if (result == null) result = caseINamedElement(system);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -529,6 +532,7 @@ public class DMLSwitch<T> extends Switch<T> {
 			case DMLPackage.SYSTEM_INTERFACE: {
 				SystemInterface systemInterface = (SystemInterface)theEObject;
 				T result = caseSystemInterface(systemInterface);
+				if (result == null) result = caseQualifiedElement(systemInterface);
 				if (result == null) result = caseINamedElement(systemInterface);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

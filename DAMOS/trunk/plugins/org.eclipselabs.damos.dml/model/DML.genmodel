@@ -26,7 +26,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/fragmentElements"/>
       <genFeatures createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/connections"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Fragment/parent"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Fragment/name"/>
       <genOperations ecoreOperation="DML.ecore#//Fragment/getChildren"/>
       <genOperations ecoreOperation="DML.ecore#//Fragment/getAllFragmentElements"/>
       <genOperations ecoreOperation="DML.ecore#//Fragment/getAllComponents"/>
@@ -248,7 +247,6 @@
     <genClasses ecoreClass="DML.ecore#//SystemInterface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SystemInterface/inlets"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//SystemInterface/outlets"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//SystemInterface/name"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Inlet"/>
     <genClasses image="false" ecoreClass="DML.ecore#//Inoutlet">

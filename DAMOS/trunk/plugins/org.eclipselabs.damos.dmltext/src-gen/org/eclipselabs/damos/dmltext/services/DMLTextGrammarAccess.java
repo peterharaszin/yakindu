@@ -53,24 +53,23 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cBlockTypeKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cQualifiedNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cQualifiedNameQualifiedNameParserRuleCall_2_0 = (RuleCall)cQualifiedNameAssignment_2.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cInputDefinitionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cInputDefinitionsInputDefinitionParserRuleCall_4_0 = (RuleCall)cInputDefinitionsAssignment_4.eContents().get(0);
-		private final Assignment cOutputDefinitionsAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cOutputDefinitionsOutputDefinitionParserRuleCall_5_0 = (RuleCall)cOutputDefinitionsAssignment_5.eContents().get(0);
-		private final Assignment cParametersAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cParametersParameterParserRuleCall_6_0 = (RuleCall)cParametersAssignment_6.eContents().get(0);
-		private final Assignment cBehaviorAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cBehaviorMscriptBehaviorSpecificationParserRuleCall_7_0 = (RuleCall)cBehaviorAssignment_7.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final UnorderedGroup cUnorderedGroup_3 = (UnorderedGroup)cGroup.eContents().get(3);
+		private final Assignment cInputDefinitionsAssignment_3_0 = (Assignment)cUnorderedGroup_3.eContents().get(0);
+		private final RuleCall cInputDefinitionsInputDefinitionParserRuleCall_3_0_0 = (RuleCall)cInputDefinitionsAssignment_3_0.eContents().get(0);
+		private final Assignment cOutputDefinitionsAssignment_3_1 = (Assignment)cUnorderedGroup_3.eContents().get(1);
+		private final RuleCall cOutputDefinitionsOutputDefinitionParserRuleCall_3_1_0 = (RuleCall)cOutputDefinitionsAssignment_3_1.eContents().get(0);
+		private final Assignment cParametersAssignment_3_2 = (Assignment)cUnorderedGroup_3.eContents().get(2);
+		private final RuleCall cParametersParameterParserRuleCall_3_2_0 = (RuleCall)cParametersAssignment_3_2.eContents().get(0);
+		private final Assignment cBehaviorAssignment_3_3 = (Assignment)cUnorderedGroup_3.eContents().get(3);
+		private final RuleCall cBehaviorMscriptBehaviorSpecificationParserRuleCall_3_3_0 = (RuleCall)cBehaviorAssignment_3_3.eContents().get(0);
 		
 		//BlockType:
-		//	timing=TimingKind? "blockType" qualifiedName=QualifiedName "{" inputDefinitions+=InputDefinition*
-		//	outputDefinitions+=OutputDefinition* parameters+=Parameter* behavior=MscriptBehaviorSpecification? "}";
+		//	timing=TimingKind? "blockType" qualifiedName=QualifiedName (inputDefinitions+=InputDefinition* &
+		//	outputDefinitions+=OutputDefinition* & parameters+=Parameter* & behavior=MscriptBehaviorSpecification?);
 		public ParserRule getRule() { return rule; }
 
-		//timing=TimingKind? "blockType" qualifiedName=QualifiedName "{" inputDefinitions+=InputDefinition*
-		//outputDefinitions+=OutputDefinition* parameters+=Parameter* behavior=MscriptBehaviorSpecification? "}"
+		//timing=TimingKind? "blockType" qualifiedName=QualifiedName (inputDefinitions+=InputDefinition* &
+		//outputDefinitions+=OutputDefinition* & parameters+=Parameter* & behavior=MscriptBehaviorSpecification?)
 		public Group getGroup() { return cGroup; }
 
 		//timing=TimingKind?
@@ -88,35 +87,33 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getQualifiedNameQualifiedNameParserRuleCall_2_0() { return cQualifiedNameQualifiedNameParserRuleCall_2_0; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
+		//inputDefinitions+=InputDefinition* & outputDefinitions+=OutputDefinition* & parameters+=Parameter* &
+		//behavior=MscriptBehaviorSpecification?
+		public UnorderedGroup getUnorderedGroup_3() { return cUnorderedGroup_3; }
 
 		//inputDefinitions+=InputDefinition*
-		public Assignment getInputDefinitionsAssignment_4() { return cInputDefinitionsAssignment_4; }
+		public Assignment getInputDefinitionsAssignment_3_0() { return cInputDefinitionsAssignment_3_0; }
 
 		//InputDefinition
-		public RuleCall getInputDefinitionsInputDefinitionParserRuleCall_4_0() { return cInputDefinitionsInputDefinitionParserRuleCall_4_0; }
+		public RuleCall getInputDefinitionsInputDefinitionParserRuleCall_3_0_0() { return cInputDefinitionsInputDefinitionParserRuleCall_3_0_0; }
 
 		//outputDefinitions+=OutputDefinition*
-		public Assignment getOutputDefinitionsAssignment_5() { return cOutputDefinitionsAssignment_5; }
+		public Assignment getOutputDefinitionsAssignment_3_1() { return cOutputDefinitionsAssignment_3_1; }
 
 		//OutputDefinition
-		public RuleCall getOutputDefinitionsOutputDefinitionParserRuleCall_5_0() { return cOutputDefinitionsOutputDefinitionParserRuleCall_5_0; }
+		public RuleCall getOutputDefinitionsOutputDefinitionParserRuleCall_3_1_0() { return cOutputDefinitionsOutputDefinitionParserRuleCall_3_1_0; }
 
 		//parameters+=Parameter*
-		public Assignment getParametersAssignment_6() { return cParametersAssignment_6; }
+		public Assignment getParametersAssignment_3_2() { return cParametersAssignment_3_2; }
 
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_6_0() { return cParametersParameterParserRuleCall_6_0; }
+		public RuleCall getParametersParameterParserRuleCall_3_2_0() { return cParametersParameterParserRuleCall_3_2_0; }
 
 		//behavior=MscriptBehaviorSpecification?
-		public Assignment getBehaviorAssignment_7() { return cBehaviorAssignment_7; }
+		public Assignment getBehaviorAssignment_3_3() { return cBehaviorAssignment_3_3; }
 
 		//MscriptBehaviorSpecification
-		public RuleCall getBehaviorMscriptBehaviorSpecificationParserRuleCall_7_0() { return cBehaviorMscriptBehaviorSpecificationParserRuleCall_7_0; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public RuleCall getBehaviorMscriptBehaviorSpecificationParserRuleCall_3_3_0() { return cBehaviorMscriptBehaviorSpecificationParserRuleCall_3_3_0; }
 	}
 
 	public class InputDefinitionElements extends AbstractParserRuleElementFinder {
@@ -144,23 +141,24 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3_5 = (Keyword)cGroup_3.eContents().get(5);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Keyword cLeftCurlyBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
-		private final Keyword cDirectFeedthroughKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
-		private final Assignment cDirectFeedthroughPolicyAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
-		private final RuleCall cDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_1_0 = (RuleCall)cDirectFeedthroughPolicyAssignment_4_1_1.eContents().get(0);
-		private final Assignment cParametersAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cParametersParameterParserRuleCall_4_2_0 = (RuleCall)cParametersAssignment_4_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
+		private final UnorderedGroup cUnorderedGroup_4_1 = (UnorderedGroup)cGroup_4.eContents().get(1);
+		private final Group cGroup_4_1_0 = (Group)cUnorderedGroup_4_1.eContents().get(0);
+		private final Keyword cDirectFeedthroughKeyword_4_1_0_0 = (Keyword)cGroup_4_1_0.eContents().get(0);
+		private final Assignment cDirectFeedthroughPolicyAssignment_4_1_0_1 = (Assignment)cGroup_4_1_0.eContents().get(1);
+		private final RuleCall cDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_0_1_0 = (RuleCall)cDirectFeedthroughPolicyAssignment_4_1_0_1.eContents().get(0);
+		private final Assignment cParametersAssignment_4_1_1 = (Assignment)cUnorderedGroup_4_1.eContents().get(1);
+		private final RuleCall cParametersParameterParserRuleCall_4_1_1_0 = (RuleCall)cParametersAssignment_4_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//InputDefinition:
 		//	(socket?="socket"? & testPoint?="testPoint"?) "input" name=ValidID ("[" minimumPortCount=ValidInt ".."
-		//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" ("directFeedthrough"
-		//	directFeedthroughPolicy=DirectFeedthroughPolicy)? parameters+=Parameter* "}")?;
+		//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" (("directFeedthrough"
+		//	directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?;
 		public ParserRule getRule() { return rule; }
 
 		//(socket?="socket"? & testPoint?="testPoint"?) "input" name=ValidID ("[" minimumPortCount=ValidInt ".."
-		//maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" ("directFeedthrough"
-		//directFeedthroughPolicy=DirectFeedthroughPolicy)? parameters+=Parameter* "}")?
+		//maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" (("directFeedthrough"
+		//directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?
 		public Group getGroup() { return cGroup; }
 
 		//socket?="socket"? & testPoint?="testPoint"?
@@ -223,32 +221,35 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3_5() { return cRightSquareBracketKeyword_3_5; }
 
-		//("{" ("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)? parameters+=Parameter* "}")?
+		//("{" (("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4_0() { return cLeftCurlyBracketKeyword_4_0; }
 
+		//("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*
+		public UnorderedGroup getUnorderedGroup_4_1() { return cUnorderedGroup_4_1; }
+
 		//("directFeedthrough" directFeedthroughPolicy=DirectFeedthroughPolicy)?
-		public Group getGroup_4_1() { return cGroup_4_1; }
+		public Group getGroup_4_1_0() { return cGroup_4_1_0; }
 
 		//"directFeedthrough"
-		public Keyword getDirectFeedthroughKeyword_4_1_0() { return cDirectFeedthroughKeyword_4_1_0; }
+		public Keyword getDirectFeedthroughKeyword_4_1_0_0() { return cDirectFeedthroughKeyword_4_1_0_0; }
 
 		//directFeedthroughPolicy=DirectFeedthroughPolicy
-		public Assignment getDirectFeedthroughPolicyAssignment_4_1_1() { return cDirectFeedthroughPolicyAssignment_4_1_1; }
+		public Assignment getDirectFeedthroughPolicyAssignment_4_1_0_1() { return cDirectFeedthroughPolicyAssignment_4_1_0_1; }
 
 		//DirectFeedthroughPolicy
-		public RuleCall getDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_1_0() { return cDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_1_0; }
+		public RuleCall getDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_0_1_0() { return cDirectFeedthroughPolicyDirectFeedthroughPolicyParserRuleCall_4_1_0_1_0; }
 
 		//parameters+=Parameter*
-		public Assignment getParametersAssignment_4_2() { return cParametersAssignment_4_2; }
+		public Assignment getParametersAssignment_4_1_1() { return cParametersAssignment_4_1_1; }
 
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_4_2_0() { return cParametersParameterParserRuleCall_4_2_0; }
+		public RuleCall getParametersParameterParserRuleCall_4_1_1_0() { return cParametersParameterParserRuleCall_4_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_4_3() { return cRightCurlyBracketKeyword_4_3; }
+		public Keyword getRightCurlyBracketKeyword_4_2() { return cRightCurlyBracketKeyword_4_2; }
 	}
 
 	public class DirectFeedthroughPolicyElements extends AbstractParserRuleElementFinder {
@@ -585,18 +586,17 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSystemInterfaceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cQualifiedNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cQualifiedNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cQualifiedNameAssignment_1.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cInletsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cInletsInletParserRuleCall_3_0 = (RuleCall)cInletsAssignment_3.eContents().get(0);
-		private final Assignment cOutletsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOutletsOutletParserRuleCall_4_0 = (RuleCall)cOutletsAssignment_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final UnorderedGroup cUnorderedGroup_2 = (UnorderedGroup)cGroup.eContents().get(2);
+		private final Assignment cInletsAssignment_2_0 = (Assignment)cUnorderedGroup_2.eContents().get(0);
+		private final RuleCall cInletsInletParserRuleCall_2_0_0 = (RuleCall)cInletsAssignment_2_0.eContents().get(0);
+		private final Assignment cOutletsAssignment_2_1 = (Assignment)cUnorderedGroup_2.eContents().get(1);
+		private final RuleCall cOutletsOutletParserRuleCall_2_1_0 = (RuleCall)cOutletsAssignment_2_1.eContents().get(0);
 		
 		//SystemInterface:
-		//	"systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}";
+		//	"systemInterface" qualifiedName=QualifiedName (inlets+=Inlet* & outlets+=Outlet*);
 		public ParserRule getRule() { return rule; }
 
-		//"systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}"
+		//"systemInterface" qualifiedName=QualifiedName (inlets+=Inlet* & outlets+=Outlet*)
 		public Group getGroup() { return cGroup; }
 
 		//"systemInterface"
@@ -608,23 +608,20 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//QualifiedName
 		public RuleCall getQualifiedNameQualifiedNameParserRuleCall_1_0() { return cQualifiedNameQualifiedNameParserRuleCall_1_0; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
+		//inlets+=Inlet* & outlets+=Outlet*
+		public UnorderedGroup getUnorderedGroup_2() { return cUnorderedGroup_2; }
 
 		//inlets+=Inlet*
-		public Assignment getInletsAssignment_3() { return cInletsAssignment_3; }
+		public Assignment getInletsAssignment_2_0() { return cInletsAssignment_2_0; }
 
 		//Inlet
-		public RuleCall getInletsInletParserRuleCall_3_0() { return cInletsInletParserRuleCall_3_0; }
+		public RuleCall getInletsInletParserRuleCall_2_0_0() { return cInletsInletParserRuleCall_2_0_0; }
 
 		//outlets+=Outlet*
-		public Assignment getOutletsAssignment_4() { return cOutletsAssignment_4; }
+		public Assignment getOutletsAssignment_2_1() { return cOutletsAssignment_2_1; }
 
 		//Outlet
-		public RuleCall getOutletsOutletParserRuleCall_4_0() { return cOutletsOutletParserRuleCall_4_0; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
+		public RuleCall getOutletsOutletParserRuleCall_2_1_0() { return cOutletsOutletParserRuleCall_2_1_0; }
 	}
 
 	public class InletElements extends AbstractParserRuleElementFinder {
@@ -850,8 +847,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BlockType:
-	//	timing=TimingKind? "blockType" qualifiedName=QualifiedName "{" inputDefinitions+=InputDefinition*
-	//	outputDefinitions+=OutputDefinition* parameters+=Parameter* behavior=MscriptBehaviorSpecification? "}";
+	//	timing=TimingKind? "blockType" qualifiedName=QualifiedName (inputDefinitions+=InputDefinition* &
+	//	outputDefinitions+=OutputDefinition* & parameters+=Parameter* & behavior=MscriptBehaviorSpecification?);
 	public BlockTypeElements getBlockTypeAccess() {
 		return (pBlockType != null) ? pBlockType : (pBlockType = new BlockTypeElements());
 	}
@@ -872,8 +869,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	//InputDefinition:
 	//	(socket?="socket"? & testPoint?="testPoint"?) "input" name=ValidID ("[" minimumPortCount=ValidInt ".."
-	//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" ("directFeedthrough"
-	//	directFeedthroughPolicy=DirectFeedthroughPolicy)? parameters+=Parameter* "}")?;
+	//	maximumPortCount=UpperBoundLiteral ("|" defaultPortCount=ValidInt)? "]")? ("{" (("directFeedthrough"
+	//	directFeedthroughPolicy=DirectFeedthroughPolicy)? & parameters+=Parameter*) "}")?;
 	public InputDefinitionElements getInputDefinitionAccess() {
 		return (pInputDefinition != null) ? pInputDefinition : (pInputDefinition = new InputDefinitionElements());
 	}
@@ -965,7 +962,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SystemInterface:
-	//	"systemInterface" qualifiedName=QualifiedName "{" inlets+=Inlet* outlets+=Outlet* "}";
+	//	"systemInterface" qualifiedName=QualifiedName (inlets+=Inlet* & outlets+=Outlet*);
 	public SystemInterfaceElements getSystemInterfaceAccess() {
 		return (pSystemInterface != null) ? pSystemInterface : (pSystemInterface = new SystemInterfaceElements());
 	}

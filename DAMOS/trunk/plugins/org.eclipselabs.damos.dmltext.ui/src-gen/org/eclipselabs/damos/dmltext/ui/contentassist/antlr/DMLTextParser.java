@@ -92,7 +92,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getInputDefinitionAccess().getGroup_3(), "rule__InputDefinition__Group_3__0");
 					put(grammarAccess.getInputDefinitionAccess().getGroup_3_4(), "rule__InputDefinition__Group_3_4__0");
 					put(grammarAccess.getInputDefinitionAccess().getGroup_4(), "rule__InputDefinition__Group_4__0");
-					put(grammarAccess.getInputDefinitionAccess().getGroup_4_1(), "rule__InputDefinition__Group_4_1__0");
+					put(grammarAccess.getInputDefinitionAccess().getGroup_4_1_0(), "rule__InputDefinition__Group_4_1_0__0");
 					put(grammarAccess.getBooleanDirectFeedthroughPolicyAccess().getGroup(), "rule__BooleanDirectFeedthroughPolicy__Group__0");
 					put(grammarAccess.getOutputDefinitionAccess().getGroup(), "rule__OutputDefinition__Group__0");
 					put(grammarAccess.getOutputDefinitionAccess().getGroup_3(), "rule__OutputDefinition__Group_3__0");
@@ -257,18 +257,18 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRootAccess().getSystemInterfacesAssignment_1(), "rule__Root__SystemInterfacesAssignment_1");
 					put(grammarAccess.getBlockTypeAccess().getTimingAssignment_0(), "rule__BlockType__TimingAssignment_0");
 					put(grammarAccess.getBlockTypeAccess().getQualifiedNameAssignment_2(), "rule__BlockType__QualifiedNameAssignment_2");
-					put(grammarAccess.getBlockTypeAccess().getInputDefinitionsAssignment_4(), "rule__BlockType__InputDefinitionsAssignment_4");
-					put(grammarAccess.getBlockTypeAccess().getOutputDefinitionsAssignment_5(), "rule__BlockType__OutputDefinitionsAssignment_5");
-					put(grammarAccess.getBlockTypeAccess().getParametersAssignment_6(), "rule__BlockType__ParametersAssignment_6");
-					put(grammarAccess.getBlockTypeAccess().getBehaviorAssignment_7(), "rule__BlockType__BehaviorAssignment_7");
+					put(grammarAccess.getBlockTypeAccess().getInputDefinitionsAssignment_3_0(), "rule__BlockType__InputDefinitionsAssignment_3_0");
+					put(grammarAccess.getBlockTypeAccess().getOutputDefinitionsAssignment_3_1(), "rule__BlockType__OutputDefinitionsAssignment_3_1");
+					put(grammarAccess.getBlockTypeAccess().getParametersAssignment_3_2(), "rule__BlockType__ParametersAssignment_3_2");
+					put(grammarAccess.getBlockTypeAccess().getBehaviorAssignment_3_3(), "rule__BlockType__BehaviorAssignment_3_3");
 					put(grammarAccess.getInputDefinitionAccess().getSocketAssignment_0_0(), "rule__InputDefinition__SocketAssignment_0_0");
 					put(grammarAccess.getInputDefinitionAccess().getTestPointAssignment_0_1(), "rule__InputDefinition__TestPointAssignment_0_1");
 					put(grammarAccess.getInputDefinitionAccess().getNameAssignment_2(), "rule__InputDefinition__NameAssignment_2");
 					put(grammarAccess.getInputDefinitionAccess().getMinimumPortCountAssignment_3_1(), "rule__InputDefinition__MinimumPortCountAssignment_3_1");
 					put(grammarAccess.getInputDefinitionAccess().getMaximumPortCountAssignment_3_3(), "rule__InputDefinition__MaximumPortCountAssignment_3_3");
 					put(grammarAccess.getInputDefinitionAccess().getDefaultPortCountAssignment_3_4_1(), "rule__InputDefinition__DefaultPortCountAssignment_3_4_1");
-					put(grammarAccess.getInputDefinitionAccess().getDirectFeedthroughPolicyAssignment_4_1_1(), "rule__InputDefinition__DirectFeedthroughPolicyAssignment_4_1_1");
-					put(grammarAccess.getInputDefinitionAccess().getParametersAssignment_4_2(), "rule__InputDefinition__ParametersAssignment_4_2");
+					put(grammarAccess.getInputDefinitionAccess().getDirectFeedthroughPolicyAssignment_4_1_0_1(), "rule__InputDefinition__DirectFeedthroughPolicyAssignment_4_1_0_1");
+					put(grammarAccess.getInputDefinitionAccess().getParametersAssignment_4_1_1(), "rule__InputDefinition__ParametersAssignment_4_1_1");
 					put(grammarAccess.getBooleanDirectFeedthroughPolicyAccess().getDirectFeedthroughAssignment_1_0(), "rule__BooleanDirectFeedthroughPolicy__DirectFeedthroughAssignment_1_0");
 					put(grammarAccess.getOutputDefinitionAccess().getSocketAssignment_0_0(), "rule__OutputDefinition__SocketAssignment_0_0");
 					put(grammarAccess.getOutputDefinitionAccess().getTestPointAssignment_0_1(), "rule__OutputDefinition__TestPointAssignment_0_1");
@@ -287,8 +287,8 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMscriptValueSpecificationAccess().getExpressionAssignment(), "rule__MscriptValueSpecification__ExpressionAssignment");
 					put(grammarAccess.getMscriptBehaviorSpecificationAccess().getModuleAssignment_2(), "rule__MscriptBehaviorSpecification__ModuleAssignment_2");
 					put(grammarAccess.getSystemInterfaceAccess().getQualifiedNameAssignment_1(), "rule__SystemInterface__QualifiedNameAssignment_1");
-					put(grammarAccess.getSystemInterfaceAccess().getInletsAssignment_3(), "rule__SystemInterface__InletsAssignment_3");
-					put(grammarAccess.getSystemInterfaceAccess().getOutletsAssignment_4(), "rule__SystemInterface__OutletsAssignment_4");
+					put(grammarAccess.getSystemInterfaceAccess().getInletsAssignment_2_0(), "rule__SystemInterface__InletsAssignment_2_0");
+					put(grammarAccess.getSystemInterfaceAccess().getOutletsAssignment_2_1(), "rule__SystemInterface__OutletsAssignment_2_1");
 					put(grammarAccess.getInletAccess().getDataTypeAssignment_1(), "rule__Inlet__DataTypeAssignment_1");
 					put(grammarAccess.getInletAccess().getNameAssignment_2(), "rule__Inlet__NameAssignment_2");
 					put(grammarAccess.getOutletAccess().getDataTypeAssignment_1(), "rule__Outlet__DataTypeAssignment_1");
@@ -469,8 +469,11 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitDenominatorAccess().getFactorsAssignment_1_2_1(), "rule__UnitDenominator__FactorsAssignment_1_2_1");
 					put(grammarAccess.getUnitFactorAccess().getSymbolAssignment_0(), "rule__UnitFactor__SymbolAssignment_0");
 					put(grammarAccess.getUnitFactorAccess().getExponentAssignment_1_1(), "rule__UnitFactor__ExponentAssignment_1_1");
+					put(grammarAccess.getBlockTypeAccess().getUnorderedGroup_3(), "rule__BlockType__UnorderedGroup_3");
 					put(grammarAccess.getInputDefinitionAccess().getUnorderedGroup_0(), "rule__InputDefinition__UnorderedGroup_0");
+					put(grammarAccess.getInputDefinitionAccess().getUnorderedGroup_4_1(), "rule__InputDefinition__UnorderedGroup_4_1");
 					put(grammarAccess.getOutputDefinitionAccess().getUnorderedGroup_0(), "rule__OutputDefinition__UnorderedGroup_0");
+					put(grammarAccess.getSystemInterfaceAccess().getUnorderedGroup_2(), "rule__SystemInterface__UnorderedGroup_2");
 				}
 			};
 		}

@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.util;
 
+import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanType;
@@ -25,7 +26,6 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 /**
  * @author Andreas Unger

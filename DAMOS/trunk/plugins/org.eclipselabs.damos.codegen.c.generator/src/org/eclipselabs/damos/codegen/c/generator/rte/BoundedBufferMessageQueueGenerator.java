@@ -14,7 +14,7 @@ package org.eclipselabs.damos.codegen.c.generator.rte;
 import java.io.IOException;
 
 import org.eclipselabs.damos.codegen.c.generator.internal.rte.SemaphoreInfo;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
+import org.eclipselabs.damos.common.util.PrintAppendable;
 
 /**
  * @author Andreas Unger

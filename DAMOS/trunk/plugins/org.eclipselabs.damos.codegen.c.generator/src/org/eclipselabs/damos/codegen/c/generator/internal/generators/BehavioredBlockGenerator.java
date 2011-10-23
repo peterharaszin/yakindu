@@ -34,6 +34,13 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.codegen.c.CompoundGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.ICompoundGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
+import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
+import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
+import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
+import org.eclipselabs.damos.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
@@ -52,13 +59,6 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
-import org.eclipselabs.mscript.codegen.c.CompoundGenerator;
-import org.eclipselabs.mscript.codegen.c.ICompoundGenerator;
-import org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext;
-import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
-import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
-import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 /**

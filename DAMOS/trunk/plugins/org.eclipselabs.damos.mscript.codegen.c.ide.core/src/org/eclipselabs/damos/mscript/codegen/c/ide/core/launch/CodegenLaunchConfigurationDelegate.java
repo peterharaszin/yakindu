@@ -13,12 +13,12 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.codegen.c.ide.core.CodegenCIDECorePlugin;
+import org.eclipselabs.damos.mscript.ide.core.launch.AbstractMscriptLaunchConfigurationDelegate;
 import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.transform.ArrayOperationDecomposer;
 import org.eclipselabs.damos.mscript.il.transform.IArrayOperationDecomposer;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
-import org.eclipselabs.mscript.ide.core.launch.AbstractMscriptLaunchConfigurationDelegate;
 
 public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchConfigurationDelegate {
 

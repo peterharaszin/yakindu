@@ -35,8 +35,8 @@ import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.IComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.core.internal.registry.ComponentSignaturePolicyProviderRegistry;
-import org.eclipselabs.mscript.typesystem.BooleanType;
-import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.damos.mscript.BooleanType;
+import org.eclipselabs.damos.mscript.DataType;
 
 /**
  * @author Andreas Unger

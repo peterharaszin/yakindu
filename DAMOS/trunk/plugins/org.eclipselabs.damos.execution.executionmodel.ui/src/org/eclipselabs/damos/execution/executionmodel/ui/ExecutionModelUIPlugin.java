@@ -10,8 +10,6 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
-import org.eclipselabs.mscript.computation.computationmodel.edit.ComputationModelEditPlugin;
-import org.eclipselabs.mscript.typesystem.edit.TypeSystemEditPlugin;
 
 /**
  * This is the central singleton for the ExecutionModel editor plugin.
@@ -45,9 +43,7 @@ public final class ExecutionModelUIPlugin extends EMFPlugin {
 	public ExecutionModelUIPlugin() {
 		super
 			(new ResourceLocator [] {
-				ComputationModelEditPlugin.INSTANCE,
-				DMLEditPlugin.INSTANCE,
-				TypeSystemEditPlugin.INSTANCE,
+				DMLEditPlugin.INSTANCE
 			});
 	}
 

@@ -28,13 +28,13 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.StepConstants;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -77,7 +77,7 @@ public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Initial Value and Final Value must have same unit"));
 		}
 		
-		if (!stepTimeDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit(UnitSymbol.SECOND), true)) {
+		if (!stepTimeDataType.getUnit().isEquivalentTo(TypeUtil.createUnit(UnitSymbol.SECOND), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Step Time unit must be second"));
 		}
 
@@ -90,9 +90,9 @@ public class StepSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 		NumericType outputDataType;
 		if (initialValueDataType instanceof RealType || finalValueDataType instanceof RealType) {
-			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
+			outputDataType = MscriptFactory.eINSTANCE.createRealType();
 		} else {
-			outputDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
+			outputDataType = MscriptFactory.eINSTANCE.createIntegerType();
 		}
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);

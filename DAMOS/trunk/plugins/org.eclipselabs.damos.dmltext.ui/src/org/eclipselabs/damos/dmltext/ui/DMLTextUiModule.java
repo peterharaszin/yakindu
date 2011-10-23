@@ -7,9 +7,9 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
-import org.eclipselabs.mscript.language.ui.syntaxcoloring.MscriptAntlrTokenToAttributeIdMapper;
-import org.eclipselabs.mscript.language.ui.syntaxcoloring.MscriptHighlightingConfiguration;
-import org.eclipselabs.mscript.language.ui.syntaxcoloring.MscriptSemanticHighlightingCalculator;
+import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptAntlrTokenToAttributeIdMapper;
+import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptHighlightingConfiguration;
+import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptSemanticHighlightingCalculator;
 
 /**
  * Use this class to register components to be used within the IDE.

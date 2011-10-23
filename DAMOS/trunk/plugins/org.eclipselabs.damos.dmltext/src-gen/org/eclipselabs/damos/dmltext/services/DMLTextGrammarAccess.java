@@ -11,7 +11,7 @@ import org.eclipse.xtext.*;
 import org.eclipse.xtext.service.GrammarProvider;
 import org.eclipse.xtext.service.AbstractElementFinder.*;
 
-import org.eclipselabs.mscript.language.services.MscriptGrammarAccess;
+import org.eclipselabs.damos.mscript.services.MscriptGrammarAccess;
 
 @Singleton
 public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {

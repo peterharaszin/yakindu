@@ -14,10 +14,10 @@ package org.eclipselabs.damos.simulation.simulator.internal.simulationobjects;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
-import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

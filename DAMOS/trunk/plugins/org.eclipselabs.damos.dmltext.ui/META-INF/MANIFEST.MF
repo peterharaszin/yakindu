@@ -15,8 +15,8 @@ Require-Bundle: org.eclipselabs.damos.dmltext;visibility:=reexport,
  org.antlr.runtime,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.xtext.ui.codetemplates.ui,
- org.eclipselabs.mscript.language;bundle-version="0.1.0",
- org.eclipselabs.mscript.language.ui;bundle-version="0.1.0"
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0",
+ org.eclipselabs.damos.mscript.ui;bundle-version="0.3.0"
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -28,10 +28,10 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.vi.LibraryVIPlugin;
 import org.eclipselabs.damos.library.vi.util.controls.SliderConstants;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.Unit;
 
 /**
  * @author Andreas Unger
@@ -75,7 +75,7 @@ public class SliderSignaturePolicy extends AbstractComponentSignaturePolicy {
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		NumericType outputDataType;
-		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
+		outputDataType = MscriptFactory.eINSTANCE.createRealType();
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		

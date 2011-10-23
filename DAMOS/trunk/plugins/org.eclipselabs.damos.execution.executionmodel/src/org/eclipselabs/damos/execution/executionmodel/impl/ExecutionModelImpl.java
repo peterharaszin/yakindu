@@ -22,7 +22,7 @@ import org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
 import org.eclipselabs.damos.execution.executionmodel.internal.operations.ExecutionModelOperations;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * <!-- begin-user-doc -->

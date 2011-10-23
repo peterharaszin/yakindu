@@ -3,7 +3,7 @@
  */
 package org.eclipselabs.damos.dmltext.scoping;
 
-import org.eclipselabs.mscript.language.scoping.MscriptScopeProvider;
+import org.eclipselabs.damos.mscript.scoping.MscriptScopeProvider;
 
 /**
  * This class contains custom scoping description.

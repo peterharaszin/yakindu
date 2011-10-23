@@ -13,15 +13,15 @@ package org.eclipselabs.damos.library.vi.simulation.controls;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationVariationPoint;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.core.IComputationContext;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger

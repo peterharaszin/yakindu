@@ -15,7 +15,7 @@ import com.google.inject.Injector;
 public class DMLTextStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
-		org.eclipselabs.mscript.language.MscriptStandaloneSetup.doSetup();
+		org.eclipselabs.damos.mscript.MscriptStandaloneSetup.doSetup();
 
 		Injector injector = createInjector();
 		register(injector);

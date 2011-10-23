@@ -7,7 +7,7 @@
 package org.eclipselabs.damos.dmltext;
 
 import org.eclipselabs.damos.dml.ValueSpecification;
-import org.eclipselabs.mscript.typesystem.Expression;
+import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * <!-- begin-user-doc -->

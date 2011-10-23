@@ -155,12 +155,6 @@
 
 
 
-   <extension
-         point="org.eclipse.xtext.builder.participant">
-      <participant
-            class="org.eclipselabs.damos.dmltext.ui.DMLTextExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
-      </participant>
-   </extension>
 
 	<!-- Quick Outline -->
 	<extension

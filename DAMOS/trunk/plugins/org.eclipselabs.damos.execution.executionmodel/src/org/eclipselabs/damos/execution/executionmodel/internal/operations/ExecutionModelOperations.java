@@ -14,7 +14,7 @@ package org.eclipselabs.damos.execution.executionmodel.internal.operations;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * @author Andreas Unger

@@ -8,9 +8,9 @@ import org.eclipselabs.damos.dml.util.IElementInitializer;
 import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
-import org.eclipselabs.mscript.typesystem.IntegerLiteral;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.IntegerLiteral;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class ElementInitializer implements IElementInitializer {
 
@@ -19,9 +19,9 @@ public class ElementInitializer implements IElementInitializer {
 				&& feature == DMLPackage.eINSTANCE.getSynchronousTimingConstraint_SampleTime()) {
 			SynchronousTimingConstraint stc = (SynchronousTimingConstraint) element;
 			MscriptValueSpecification value = DMLTextFactory.eINSTANCE.createMscriptValueSpecification();
-			IntegerLiteral integerLiteral = TypeSystemFactory.eINSTANCE.createIntegerLiteral();
+			IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
 			integerLiteral.setValue(1);
-			integerLiteral.setUnit(TypeSystemUtil.createUnit("s"));
+			integerLiteral.setUnit(TypeUtil.createUnit("s"));
 			value.setExpression(integerLiteral);
 			DMLTextUtil.setText(value, "1");
 			stc.setSampleTime(value);

@@ -21,14 +21,14 @@ import org.eclipselabs.damos.diagram.ui.figures.StandardComponentLayout;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.library.vi.ui.figures.controls.SliderContentFigure;
 import org.eclipselabs.damos.library.vi.ui.figures.controls.SliderContentFigure.ISliderChangeListener;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
+import org.eclipselabs.damos.simulation.core.AbstractSimulationRunnable;
 import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationVariationPoint;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
-import org.eclipselabs.damos.simulation.core.AbstractSimulationRunnable;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger

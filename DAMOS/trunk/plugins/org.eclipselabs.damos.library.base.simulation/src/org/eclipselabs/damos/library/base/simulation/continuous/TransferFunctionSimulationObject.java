@@ -19,16 +19,16 @@ import org.eclipselabs.damos.common.math.jama.Matrix;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
 import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.TensorType;
+import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.core.value.IArrayValue;
-import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TensorType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 public class TransferFunctionSimulationObject extends AbstractBlockSimulationObject {
 
@@ -45,8 +45,8 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
-		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
-		outputDataType.setUnit(TypeSystemUtil.createUnit());
+		outputDataType = MscriptFactory.eINSTANCE.createRealType();
+		outputDataType.setUnit(TypeUtil.createUnit());
 		
 		double[] numeratorCoefficients = getCoefficients(TransferFunctionConstants.PARAMETER__NUMERATOR_COEFFICIENTS);
 		if (numeratorCoefficients == null) {
@@ -152,7 +152,7 @@ public class TransferFunctionSimulationObject extends AbstractBlockSimulationObj
 		TensorType tensorType = (TensorType) coefficientVector.getDataType();
 		IArrayValue arrayValue = (IArrayValue) coefficientVector;
 		
-		int arraySize = TypeSystemUtil.getArraySize(tensorType);
+		int arraySize = TypeUtil.getArraySize(tensorType);
 		coefficients = new double[arraySize];
 		for (int i = 0; i < arraySize; ++i) {
 			IValue element = arrayValue.get(i);

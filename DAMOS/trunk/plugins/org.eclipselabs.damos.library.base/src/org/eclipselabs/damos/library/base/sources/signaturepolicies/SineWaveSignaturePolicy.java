@@ -28,13 +28,13 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.OperatorKind;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -84,11 +84,11 @@ public class SineWaveSignaturePolicy extends AbstractComponentSignaturePolicy {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Amplitude and Bias must have same unit"));
 		}
 		
-		if (!frequencyDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit().evaluate(OperatorKind.DIVIDE, TypeSystemUtil.createUnit(UnitSymbol.SECOND)), true)) {
+		if (!frequencyDataType.getUnit().isEquivalentTo(TypeUtil.createUnit().evaluate(OperatorKind.DIVIDE, TypeUtil.createUnit(UnitSymbol.SECOND)), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Frequency unit must be 1/s"));
 		}
 
-		if (!phaseDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit(), true)) {
+		if (!phaseDataType.getUnit().isEquivalentTo(TypeUtil.createUnit(), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Phase unit must be dimensionless"));
 		}
 
@@ -100,7 +100,7 @@ public class SineWaveSignaturePolicy extends AbstractComponentSignaturePolicy {
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		NumericType outputDataType;
-		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
+		outputDataType = MscriptFactory.eINSTANCE.createRealType();
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		

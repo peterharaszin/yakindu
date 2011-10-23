@@ -75,16 +75,16 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.il.VariableAccess;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
-import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
-import org.eclipselabs.mscript.language.il.VariableAccess;
-import org.eclipselabs.mscript.language.interpreter.StaticEvaluationContext;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.Expression;
 
 /**
  * @author Andreas Unger

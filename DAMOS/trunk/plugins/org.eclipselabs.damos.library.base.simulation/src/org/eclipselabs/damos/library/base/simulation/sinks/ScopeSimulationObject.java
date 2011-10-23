@@ -13,14 +13,14 @@ package org.eclipselabs.damos.library.base.simulation.sinks;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.IXYChartData;
 import org.eclipselabs.damos.simulation.core.IXYChartDataProvider;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.core.value.IBooleanValue;
-import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

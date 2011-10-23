@@ -7,7 +7,7 @@
 package org.eclipselabs.damos.dmltext;
 
 import org.eclipselabs.damos.dml.BehaviorSpecification;
-import org.eclipselabs.mscript.language.ast.Module;
+import org.eclipselabs.damos.mscript.Module;
 
 /**
  * <!-- begin-user-doc -->

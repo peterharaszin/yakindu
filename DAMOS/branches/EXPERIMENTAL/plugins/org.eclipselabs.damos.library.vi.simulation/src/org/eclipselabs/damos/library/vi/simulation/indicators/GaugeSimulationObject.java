@@ -11,11 +11,11 @@
 
 package org.eclipselabs.damos.library.vi.simulation.indicators;
 
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.AbstractSimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationTracePoint;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

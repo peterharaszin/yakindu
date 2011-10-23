@@ -20,10 +20,10 @@ import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.LatchNode;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.simulator.AbstractSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.Task;
-import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

@@ -12,8 +12,8 @@ import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.vi.LibraryVIPlugin;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.NumericType;
 
 /**
  * @author Andreas Unger

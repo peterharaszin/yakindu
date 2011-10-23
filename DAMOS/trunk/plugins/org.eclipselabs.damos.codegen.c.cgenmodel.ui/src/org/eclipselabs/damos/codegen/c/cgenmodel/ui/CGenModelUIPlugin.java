@@ -10,9 +10,6 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
-import org.eclipselabs.damos.execution.executionmodel.edit.ExecutionModelEditPlugin;
-import org.eclipselabs.mscript.computation.computationmodel.edit.ComputationModelEditPlugin;
-import org.eclipselabs.mscript.typesystem.edit.TypeSystemEditPlugin;
 
 /**
  * This is the central singleton for the CGenModel editor plugin.
@@ -46,10 +43,7 @@ public final class CGenModelUIPlugin extends EMFPlugin {
 	public CGenModelUIPlugin() {
 		super
 			(new ResourceLocator [] {
-				ComputationModelEditPlugin.INSTANCE,
-				DMLEditPlugin.INSTANCE,
-				ExecutionModelEditPlugin.INSTANCE,
-				TypeSystemEditPlugin.INSTANCE,
+				DMLEditPlugin.INSTANCE
 			});
 	}
 

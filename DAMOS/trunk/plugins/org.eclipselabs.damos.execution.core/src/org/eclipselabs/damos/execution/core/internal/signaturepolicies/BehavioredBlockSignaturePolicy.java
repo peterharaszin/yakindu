@@ -32,19 +32,19 @@ import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.language.ast.FunctionDefinition;
-import org.eclipselabs.mscript.language.ast.OutputParameterDeclaration;
-import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.mscript.typesystem.ArrayType;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePolicy {
 
@@ -143,13 +143,13 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		@Override
 		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
-				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
+				RealType realType = MscriptFactory.eINSTANCE.createRealType();
+				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
 				return Values.valueOf(new ComputationContext(), realType, 1);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
-				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeSystemUtil.createUnit(UnitSymbol.SECOND);
+				RealType realType = MscriptFactory.eINSTANCE.createRealType();
+				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
 				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, 1);

@@ -15,8 +15,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipselabs.damos.dml;bundle-version="0.2.0",
  org.eclipselabs.damos.diagram.ui;bundle-version="0.2.0",
  org.eclipselabs.damos.simulation.simulationmodel;bundle-version="0.2.0",
+ org.eclipselabs.damos.simulation.simulationmodel.ui;bundle-version="0.2.0",
  org.eclipselabs.damos.simulation.simulator;bundle-version="0.2.0",
- org.eclipselabs.damos.simulation.ide.core;bundle-version="0.2.0",
- org.eclipselabs.damos.simulation.simulationmodel.ui;bundle-version="0.2.0"
+ org.eclipselabs.damos.simulation.ide.core;bundle-version="0.2.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

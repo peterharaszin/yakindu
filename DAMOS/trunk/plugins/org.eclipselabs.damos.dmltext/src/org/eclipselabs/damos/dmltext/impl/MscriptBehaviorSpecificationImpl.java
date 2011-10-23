@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.impl.BehaviorSpecificationImpl;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
-import org.eclipselabs.mscript.language.ast.Module;
+import org.eclipselabs.damos.mscript.Module;
 
 /**
  * <!-- begin-user-doc -->

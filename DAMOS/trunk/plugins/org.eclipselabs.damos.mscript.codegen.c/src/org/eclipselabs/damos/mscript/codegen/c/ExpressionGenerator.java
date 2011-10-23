@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.DataType;
@@ -49,7 +50,6 @@ import org.eclipselabs.damos.mscript.il.builtin.BuiltinFunctionDescriptor;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 public class ExpressionGenerator implements IExpressionGenerator {
 

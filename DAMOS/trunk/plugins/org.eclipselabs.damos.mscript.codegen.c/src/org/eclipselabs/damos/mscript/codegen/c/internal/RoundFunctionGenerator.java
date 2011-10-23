@@ -14,6 +14,7 @@ package org.eclipselabs.damos.mscript.codegen.c.internal;
 import java.util.List;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerType;
@@ -28,7 +29,6 @@ import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 /**
  * @author Andreas Unger

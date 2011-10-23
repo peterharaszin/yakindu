@@ -14,10 +14,10 @@ package org.eclipselabs.damos.codegen.c.generator.internal.generators;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 /**
  * @author Andreas Unger

@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.codegen.c.generator.AbstractBlockGenerator;
 import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.Input;
@@ -59,7 +60,6 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 /**
  * @author Andreas Unger

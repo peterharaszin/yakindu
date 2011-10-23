@@ -13,6 +13,7 @@ package org.eclipselabs.damos.mscript.codegen.c.internal;
 
 import java.util.List;
 
+import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.TensorType;
@@ -21,7 +22,6 @@ import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 /**
  * @author Andreas Unger

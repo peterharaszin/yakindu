@@ -11,13 +11,13 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal.util;
 
+import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelSwitch;
-import org.eclipselabs.mscript.common.util.PrintAppendable;
 
 public abstract class CastToFloatingPointHelper extends ComputationModelSwitch<Boolean> {
 

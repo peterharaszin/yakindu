@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Damos Mscript
+Bundle-Name: Mscript
 Bundle-Vendor: Damos Project
 Bundle-Version: 0.3.0.qualifier
 Bundle-SymbolicName: org.eclipselabs.damos.mscript; singleton:=true

@@ -29,9 +29,9 @@ import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.InvalidDataType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.InvalidDataType;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger

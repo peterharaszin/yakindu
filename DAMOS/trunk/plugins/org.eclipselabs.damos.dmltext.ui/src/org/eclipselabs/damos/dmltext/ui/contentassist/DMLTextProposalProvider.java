@@ -3,7 +3,6 @@
 */
 package org.eclipselabs.damos.dmltext.ui.contentassist;
 
-import org.eclipselabs.damos.dmltext.ui.contentassist.AbstractDMLTextProposalProvider;
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant
  */

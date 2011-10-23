@@ -27,6 +27,31 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.il.Compound;
+import org.eclipselabs.damos.mscript.il.ComputationCompound;
+import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.transform.ArrayOperationDecomposer;
+import org.eclipselabs.damos.mscript.il.transform.FunctionDefinitionTransformer;
+import org.eclipselabs.damos.mscript.il.transform.IArrayOperationDecomposer;
+import org.eclipselabs.damos.mscript.il.transform.IFunctionDefinitionTransformerResult;
+import org.eclipselabs.damos.mscript.il.util.ILUtil;
+import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.eclipselabs.mscript.codegen.c.CompoundGenerator;
 import org.eclipselabs.mscript.codegen.c.ICompoundGenerator;
 import org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext;
@@ -35,31 +60,6 @@ import org.eclipselabs.mscript.codegen.c.MscriptGeneratorContext;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.mscript.codegen.c.util.NameNormalizer;
 import org.eclipselabs.mscript.common.util.PrintAppendable;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.language.ast.FunctionDefinition;
-import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
-import org.eclipselabs.mscript.language.il.Compound;
-import org.eclipselabs.mscript.language.il.ComputationCompound;
-import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
-import org.eclipselabs.mscript.language.il.InputVariableDeclaration;
-import org.eclipselabs.mscript.language.il.InstanceVariableDeclaration;
-import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
-import org.eclipselabs.mscript.language.il.StatefulVariableDeclaration;
-import org.eclipselabs.mscript.language.il.transform.ArrayOperationDecomposer;
-import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
-import org.eclipselabs.mscript.language.il.transform.IArrayOperationDecomposer;
-import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
-import org.eclipselabs.mscript.language.il.util.ILUtil;
-import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.mscript.typesystem.ArrayType;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger
@@ -357,14 +357,14 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleTime = getNode().getSampleTime();
-				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
+				RealType realType = MscriptFactory.eINSTANCE.createRealType();
+				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
 				return Values.valueOf(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
-				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeSystemUtil.createUnit(UnitSymbol.SECOND);
+				RealType realType = MscriptFactory.eINSTANCE.createRealType();
+				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
 				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);

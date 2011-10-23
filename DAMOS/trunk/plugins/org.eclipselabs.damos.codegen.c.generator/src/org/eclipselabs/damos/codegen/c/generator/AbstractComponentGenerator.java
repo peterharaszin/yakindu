@@ -22,8 +22,8 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
-import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 
 /**
  * @author Andreas Unger

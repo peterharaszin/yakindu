@@ -7,9 +7,9 @@ import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipselabs.damos.dmltext.conversion.DMLTextTerminalConverters;
-import org.eclipselabs.mscript.language.naming.QualifiedNameConverter;
-import org.eclipselabs.mscript.language.naming.QualifiedNameProvider;
-import org.eclipselabs.mscript.language.scoping.GlobalScopeProvider;
+import org.eclipselabs.damos.mscript.naming.QualifiedNameConverter;
+import org.eclipselabs.damos.mscript.naming.QualifiedNameProvider;
+import org.eclipselabs.damos.mscript.scoping.GlobalScopeProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.

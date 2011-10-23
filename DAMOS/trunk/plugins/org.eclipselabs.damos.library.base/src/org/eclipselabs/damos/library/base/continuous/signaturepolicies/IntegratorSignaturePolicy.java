@@ -16,13 +16,13 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.IntegratorConstants;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.OperatorKind;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -77,8 +77,8 @@ public class IntegratorSignaturePolicy extends AbstractComponentSignaturePolicy 
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		RealType outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
-		outputDataType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND).evaluate(OperatorKind.MULTIPLY, incomingNumericType.getUnit()).evaluate(OperatorKind.MULTIPLY, gainDataType.getUnit()));
+		RealType outputDataType = MscriptFactory.eINSTANCE.createRealType();
+		outputDataType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND).evaluate(OperatorKind.MULTIPLY, incomingNumericType.getUnit()).evaluate(OperatorKind.MULTIPLY, gainDataType.getUnit()));
 		
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);

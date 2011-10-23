@@ -27,13 +27,13 @@ import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.PortInfo;
-import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
+import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
-import org.eclipselabs.mscript.computation.core.value.IBooleanValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

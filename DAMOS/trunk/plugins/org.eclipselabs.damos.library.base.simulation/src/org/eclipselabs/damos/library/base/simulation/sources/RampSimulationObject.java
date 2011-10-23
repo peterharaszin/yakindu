@@ -15,17 +15,17 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.computation.core.IComputationContext;
-import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger
@@ -47,8 +47,8 @@ public class RampSimulationObject extends AbstractBlockSimulationObject {
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		defaultComputationContext = new ComputationContext();
 		
-		timeDataType = TypeSystemFactory.eINSTANCE.createRealType();
-		timeDataType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
+		timeDataType = MscriptFactory.eINSTANCE.createRealType();
+		timeDataType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
 		
 		initialValue = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), RampConstants.PARAMETER__INITIAL_VALUE);
 		startTime = ExpressionUtil.evaluateSimpleNumericArgument(getComponent(), RampConstants.PARAMETER__START_TIME);

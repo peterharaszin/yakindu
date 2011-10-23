@@ -29,12 +29,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.library.vi.simulation.LibraryVISimulationPlugin;
 import org.eclipselabs.damos.library.vi.util.communication.UDPSourceConstants;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationClock;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
 
 /**
  * @author Andreas Unger

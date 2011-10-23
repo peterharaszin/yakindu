@@ -5,7 +5,7 @@ package org.eclipselabs.damos.dmltext.ui.contentassist;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.*;
-import org.eclipselabs.mscript.language.ui.contentassist.MscriptProposalProvider;
+import org.eclipselabs.damos.mscript.ui.contentassist.MscriptProposalProvider;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 

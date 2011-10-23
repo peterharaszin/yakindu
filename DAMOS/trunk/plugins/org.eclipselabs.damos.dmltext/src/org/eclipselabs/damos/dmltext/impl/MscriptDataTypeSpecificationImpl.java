@@ -16,8 +16,8 @@ import org.eclipselabs.damos.dml.impl.DataTypeSpecificationImpl;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.internal.operations.MscriptDataTypeSpecificationOperations;
-import org.eclipselabs.mscript.language.ast.DataTypeSpecifier;
-import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->

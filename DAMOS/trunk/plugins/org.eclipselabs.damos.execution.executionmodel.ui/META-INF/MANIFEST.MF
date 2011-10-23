@@ -10,12 +10,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipselabs.damos.execution.executionmodel.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
- org.eclipselabs.damos.dml.edit;visibility:=reexport,
- org.eclipselabs.mscript.computation.computationmodel.edit;visibility:=reexport,
- org.eclipselabs.mscript.computation.computationmodel.ui;bundle-version="0.1.0",
- org.eclipselabs.mscript.typesystem.edit;visibility:=reexport
+ org.eclipselabs.damos.dml.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -25,43 +25,43 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
+import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.TensorType;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.il.Compound;
+import org.eclipselabs.damos.mscript.il.ComputationCompound;
+import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.VariableDeclaration;
+import org.eclipselabs.damos.mscript.il.transform.FunctionDefinitionTransformer;
+import org.eclipselabs.damos.mscript.il.transform.IFunctionDefinitionTransformerResult;
+import org.eclipselabs.damos.mscript.interpreter.CompoundInterpreter;
+import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.FunctionObject;
+import org.eclipselabs.damos.mscript.interpreter.ICompoundInterpreter;
+import org.eclipselabs.damos.mscript.interpreter.IFunctionObject;
+import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.IVariable;
+import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
+import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.Values;
+import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.computation.core.value.ArrayValue;
-import org.eclipselabs.mscript.computation.core.value.IArrayValue;
-import org.eclipselabs.mscript.computation.core.value.INumericValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.Values;
-import org.eclipselabs.mscript.computation.core.value.VectorValue;
-import org.eclipselabs.mscript.language.ast.FunctionDefinition;
-import org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor;
-import org.eclipselabs.mscript.language.il.Compound;
-import org.eclipselabs.mscript.language.il.ComputationCompound;
-import org.eclipselabs.mscript.language.il.ILFunctionDefinition;
-import org.eclipselabs.mscript.language.il.InputVariableDeclaration;
-import org.eclipselabs.mscript.language.il.OutputVariableDeclaration;
-import org.eclipselabs.mscript.language.il.VariableDeclaration;
-import org.eclipselabs.mscript.language.il.transform.FunctionDefinitionTransformer;
-import org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult;
-import org.eclipselabs.mscript.language.interpreter.CompoundInterpreter;
-import org.eclipselabs.mscript.language.interpreter.FunctionObject;
-import org.eclipselabs.mscript.language.interpreter.ICompoundInterpreter;
-import org.eclipselabs.mscript.language.interpreter.IFunctionObject;
-import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
-import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.mscript.language.interpreter.IVariable;
-import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
-import org.eclipselabs.mscript.typesystem.ArrayType;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TensorType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
 
 /**
  * @author Andreas Unger
@@ -99,8 +99,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		hasInputSockets = !block.getInputSockets().isEmpty();
 		if (hasInputSockets) {
-			IntegerType messageKindDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
-			messageKindDataType.setUnit(TypeSystemUtil.createUnit());
+			IntegerType messageKindDataType = MscriptFactory.eINSTANCE.createIntegerType();
+			messageKindDataType.setUnit(TypeUtil.createUnit());
 
 			EList<Input> inputs = block.getInputs();
 			EList<Input> socketInputs = block.getInputSockets();
@@ -212,10 +212,10 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		if (dataType instanceof ArrayType) {
 			if (dataType instanceof TensorType) {
 				TensorType tensorType = (TensorType) dataType;
-				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), tensorType, new INumericValue[TypeSystemUtil.getArraySize(tensorType)]));
+				variable.setValue(0, new VectorValue(interpreterContext.getComputationContext(), tensorType, new INumericValue[TypeUtil.getArraySize(tensorType)]));
 			} else {
 				ArrayType arrayType = (ArrayType) dataType;
-				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeSystemUtil.getArraySize(arrayType)]));
+				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));
 			}
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID,
@@ -292,14 +292,14 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		protected IValue getGlobalTemplateArgument(String name) throws CoreException {
 			if (SAMPLE_TIME_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleTime = getNode().getSampleTime();
-				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				realType.setUnit(TypeSystemUtil.createUnit(UnitSymbol.SECOND));
+				RealType realType = MscriptFactory.eINSTANCE.createRealType();
+				realType.setUnit(TypeUtil.createUnit(UnitSymbol.SECOND));
 				return Values.valueOf(new ComputationContext(), realType, sampleTime);
 			}
 			if (SAMPLE_RATE_TEMPLATE_PARAMETER_NAME.equals(name)) {
 				double sampleRate = 1 / getNode().getSampleTime();
-				RealType realType = TypeSystemFactory.eINSTANCE.createRealType();
-				Unit herzUnit = TypeSystemUtil.createUnit(UnitSymbol.SECOND);
+				RealType realType = MscriptFactory.eINSTANCE.createRealType();
+				Unit herzUnit = TypeUtil.createUnit(UnitSymbol.SECOND);
 				herzUnit.getNumerator().getFactor(UnitSymbol.SECOND).setExponent(-1);
 				realType.setUnit(herzUnit);
 				return Values.valueOf(new ComputationContext(), realType, sampleRate);

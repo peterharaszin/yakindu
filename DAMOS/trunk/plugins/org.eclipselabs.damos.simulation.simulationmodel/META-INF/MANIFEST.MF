@@ -13,8 +13,6 @@ Export-Package: org.eclipselabs.damos.simulation.simulationmodel,
  org.eclipselabs.damos.simulation.simulationmodel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipselabs.mscript.typesystem;visibility:=reexport,
- org.eclipselabs.mscript.computation.computationmodel;visibility:=reexport,
  org.eclipselabs.damos.common;bundle-version="0.2.0",
  org.eclipselabs.damos.dml;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.executionmodel;visibility:=reexport

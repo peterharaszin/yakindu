@@ -17,7 +17,7 @@ import java.util.Map.Entry;
 
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.damos.mscript.DataType;
 
 /**
  * @author Andreas Unger

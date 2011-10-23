@@ -12,8 +12,6 @@ Export-Package: org.eclipselabs.damos.codegen.c.cgenmodel,
  org.eclipselabs.damos.codegen.c.cgenmodel.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipselabs.mscript.computation.computationmodel;visibility:=reexport,
  org.eclipselabs.damos.dml;visibility:=reexport,
- org.eclipselabs.damos.execution.executionmodel;visibility:=reexport,
- org.eclipselabs.mscript.typesystem;visibility:=reexport
+ org.eclipselabs.damos.execution.executionmodel;visibility:=reexport
 Bundle-ActivationPolicy: lazy

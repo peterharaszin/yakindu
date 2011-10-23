@@ -22,10 +22,10 @@ import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.library.vi.LibraryVIPlugin;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -44,8 +44,8 @@ public class UDPSourceSignaturePolicy extends UDPSignaturePolicy {
 
 		for (OutputPort outputPort : component.getOutputPorts()) {
 			NumericType outputDataType;
-			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
-			outputDataType.setUnit(TypeSystemUtil.createUnit());
+			outputDataType = MscriptFactory.eINSTANCE.createRealType();
+			outputDataType.setUnit(TypeUtil.createUnit());
 			signature.getOutputDataTypes().put(outputPort, outputDataType);
 		}
 		

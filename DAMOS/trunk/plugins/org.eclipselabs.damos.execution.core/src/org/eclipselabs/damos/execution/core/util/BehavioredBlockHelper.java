@@ -34,27 +34,27 @@ import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.computation.core.value.AnyValue;
-import org.eclipselabs.mscript.computation.core.value.ArrayValue;
-import org.eclipselabs.mscript.computation.core.value.INumericValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.computation.core.value.VectorValue;
-import org.eclipselabs.mscript.language.ast.FunctionDefinition;
-import org.eclipselabs.mscript.language.ast.InputParameterDeclaration;
-import org.eclipselabs.mscript.language.ast.Module;
-import org.eclipselabs.mscript.language.ast.ParameterDeclaration;
-import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.mscript.language.interpreter.StaticEvaluationContext;
-import org.eclipselabs.mscript.language.interpreter.StaticFunctionEvaluator;
-import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
-import org.eclipselabs.mscript.language.util.LanguageUtil;
-import org.eclipselabs.mscript.typesystem.ArrayType;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.IntegerType;
-import org.eclipselabs.mscript.typesystem.TensorType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.Module;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.ParameterDeclaration;
+import org.eclipselabs.damos.mscript.TensorType;
+import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticFunctionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
+import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
+import org.eclipselabs.damos.mscript.util.MscriptUtil;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -118,10 +118,10 @@ public class BehavioredBlockHelper {
 			module = (Module) behavior.getModel();
 		}
 
-		FunctionDefinition functionDefinition = LanguageUtil.getFunctionDefinition(module, "main");
+		FunctionDefinition functionDefinition = MscriptUtil.getFunctionDefinition(module, "main");
 		// TODO: Remove this, since the starting function must always be 'main'
 		if (functionDefinition == null) {
-			functionDefinition = LanguageUtil.getFunctionDefinition(module, block.getType().getName());
+			functionDefinition = MscriptUtil.getFunctionDefinition(module, block.getType().getName());
 		}
 		if (functionDefinition == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Mscript function 'main' not found"));
@@ -197,8 +197,8 @@ public class BehavioredBlockHelper {
 		List<DataType> dataTypes = new ArrayList<DataType>();
 
 		if (!block.getInputSockets().isEmpty()) {
-			IntegerType messageKindDataType = TypeSystemFactory.eINSTANCE.createIntegerType();
-			messageKindDataType.setUnit(TypeSystemUtil.createUnit());
+			IntegerType messageKindDataType = MscriptFactory.eINSTANCE.createIntegerType();
+			messageKindDataType.setUnit(TypeUtil.createUnit());
 			dataTypes.add(messageKindDataType);
 		}
 		
@@ -221,7 +221,7 @@ public class BehavioredBlockHelper {
 						if (elementDataType == null) {
 							elementDataType = dataType;
 						} else {
-							elementDataType = TypeSystemUtil.getLeftHandDataType(elementDataType, dataType);
+							elementDataType = TypeUtil.getLeftHandDataType(elementDataType, dataType);
 							if (elementDataType == null) {
 								status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Input '" + parameterDeclaration.getName() + "' has incompatible input values"));
 								continue;
@@ -232,7 +232,7 @@ public class BehavioredBlockHelper {
 				if (elementDataType == null) {
 					return null;
 				}
-				dataTypes.add(TypeSystemUtil.createArrayType(elementDataType, input.getPorts().size()));
+				dataTypes.add(TypeUtil.createArrayType(elementDataType, input.getPorts().size()));
 			} else {
 				DataType dataType = null;
 				if (input.getPorts().isEmpty()) {
@@ -265,14 +265,14 @@ public class BehavioredBlockHelper {
 					if (elementType == null) {
 						elementType = value.getDataType();
 					} else {
-						elementType = TypeSystemUtil.getLeftHandDataType(elementType, value.getDataType());
+						elementType = TypeUtil.getLeftHandDataType(elementType, value.getDataType());
 						if (elementType == null) {
 							throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Argument values of input parameter '" + name + "' have incompatible data types"));
 						}
 					}
 					values.add(value);
 				}
-				ArrayType arrayType = TypeSystemUtil.createArrayType(elementType, values.size());
+				ArrayType arrayType = TypeUtil.createArrayType(elementType, values.size());
 				if (arrayType instanceof TensorType) {
 					return new VectorValue(new ComputationContext(), (TensorType) arrayType, values.toArray(new INumericValue[values.size()]));
 				}

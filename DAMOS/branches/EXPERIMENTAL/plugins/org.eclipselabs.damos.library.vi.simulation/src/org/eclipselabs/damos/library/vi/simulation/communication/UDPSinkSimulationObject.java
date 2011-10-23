@@ -23,8 +23,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.library.vi.simulation.LibraryVISimulationPlugin;
 import org.eclipselabs.damos.library.vi.util.communication.UDPSourceConstants;
-import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger

@@ -16,7 +16,7 @@ import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
-import org.eclipselabs.mscript.language.conversion.MscriptTerminalConverters;
+import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
 
 /**
  * @author Andreas Unger

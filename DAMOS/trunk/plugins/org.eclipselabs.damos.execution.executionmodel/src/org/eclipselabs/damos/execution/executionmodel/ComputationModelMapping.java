@@ -8,7 +8,7 @@ package org.eclipselabs.damos.execution.executionmodel;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
  * <!-- begin-user-doc -->

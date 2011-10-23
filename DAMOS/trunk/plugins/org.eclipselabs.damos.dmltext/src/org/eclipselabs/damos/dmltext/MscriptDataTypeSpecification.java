@@ -7,8 +7,8 @@
 package org.eclipselabs.damos.dmltext;
 
 import org.eclipselabs.damos.dml.DataTypeSpecification;
-import org.eclipselabs.mscript.language.ast.DataTypeSpecifier;
-import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 
 /**
  * <!-- begin-user-doc -->

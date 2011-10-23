@@ -17,14 +17,14 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.continuous.util.TransferFunctionConstants;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.RealType;
-import org.eclipselabs.mscript.typesystem.TensorType;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.TensorType;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -56,11 +56,11 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 			return new ComponentSignatureEvaluationResult(status);
 		}
 		
-		if (!TypeSystemUtil.isVector(numerator.getDataType())) {
+		if (!TypeUtil.isVector(numerator.getDataType())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Numerator must be be vector"));
 		}
 		
-		if (!TypeSystemUtil.isVector(denominator.getDataType())) {
+		if (!TypeUtil.isVector(denominator.getDataType())) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Denominator must be be vector"));
 		}
 
@@ -68,7 +68,7 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		Unit dimensionlessUnit = TypeSystemUtil.createUnit();
+		Unit dimensionlessUnit = TypeUtil.createUnit();
 		
 		TensorType numeratorType = (TensorType) numerator.getDataType();
 		TensorType denominatorType = (TensorType) denominator.getDataType();
@@ -107,8 +107,8 @@ public class TransferFunctionSignaturePolicy extends AbstractComponentSignatureP
 		if (incomingDataType instanceof RealType) {
 			outputDataType = EcoreUtil.copy((RealType) incomingDataType);
 		} else {
-			outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
-			outputDataType.setUnit(TypeSystemUtil.createUnit());
+			outputDataType = MscriptFactory.eINSTANCE.createRealType();
+			outputDataType.setUnit(TypeUtil.createUnit());
 		}
 
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);

@@ -17,8 +17,8 @@ import java.util.Formatter;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.codegen.c.generator.AbstractComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.rte.IFastLockGenerator;
+import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.mscript.typesystem.DataType;
 
 /**
  * @author Andreas Unger

@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.simulation.core;
 
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.typesystem.DataType;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger

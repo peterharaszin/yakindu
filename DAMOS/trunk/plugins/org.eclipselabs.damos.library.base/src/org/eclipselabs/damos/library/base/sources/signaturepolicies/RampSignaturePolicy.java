@@ -28,13 +28,13 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.LibraryBasePlugin;
 import org.eclipselabs.damos.library.base.sources.util.RampConstants;
-import org.eclipselabs.mscript.typesystem.DataType;
-import org.eclipselabs.mscript.typesystem.NumericType;
-import org.eclipselabs.mscript.typesystem.OperatorKind;
-import org.eclipselabs.mscript.typesystem.TypeSystemFactory;
-import org.eclipselabs.mscript.typesystem.Unit;
-import org.eclipselabs.mscript.typesystem.UnitSymbol;
-import org.eclipselabs.mscript.typesystem.util.TypeSystemUtil;
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.UnitSymbol;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
@@ -73,11 +73,11 @@ public class RampSignaturePolicy extends AbstractComponentSignaturePolicy {
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		if (!startTimeDataType.getUnit().isEquivalentTo(TypeSystemUtil.createUnit(UnitSymbol.SECOND), true)) {
+		if (!startTimeDataType.getUnit().isEquivalentTo(TypeUtil.createUnit(UnitSymbol.SECOND), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Start Time unit must be second"));
 		}
 
-		if (!slopeDataType.getUnit().isEquivalentTo(initialValueDataType.getUnit().evaluate(OperatorKind.DIVIDE, TypeSystemUtil.createUnit(UnitSymbol.SECOND)), true)) {
+		if (!slopeDataType.getUnit().isEquivalentTo(initialValueDataType.getUnit().evaluate(OperatorKind.DIVIDE, TypeUtil.createUnit(UnitSymbol.SECOND)), true)) {
 			status.add(new Status(IStatus.ERROR, LibraryBasePlugin.PLUGIN_ID, "Slope unit must be Initial Value unit divided by seconds"));
 		}
 
@@ -89,7 +89,7 @@ public class RampSignaturePolicy extends AbstractComponentSignaturePolicy {
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 
 		NumericType outputDataType;
-		outputDataType = TypeSystemFactory.eINSTANCE.createRealType();
+		outputDataType = MscriptFactory.eINSTANCE.createRealType();
 		outputDataType.setUnit(EcoreUtil.copy(unit));
 		signature.getOutputDataTypes().put(component.getFirstOutputPort(), outputDataType);
 		

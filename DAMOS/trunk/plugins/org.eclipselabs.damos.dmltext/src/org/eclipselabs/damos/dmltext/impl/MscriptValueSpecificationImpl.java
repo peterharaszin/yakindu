@@ -16,7 +16,7 @@ import org.eclipselabs.damos.dml.impl.ValueSpecificationImpl;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.internal.operations.MscriptValueSpecificationOperations;
-import org.eclipselabs.mscript.typesystem.Expression;
+import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * <!-- begin-user-doc -->

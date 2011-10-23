@@ -17,7 +17,7 @@ import org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModelPackage;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 
 /**
  * <!-- begin-user-doc -->

@@ -17,15 +17,15 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IOverflowMonitor;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.mscript.computation.computationmodel.ComputationModel;
-import org.eclipselabs.mscript.computation.computationmodel.util.ComputationModelUtil;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.computation.core.IComputationContext;
-import org.eclipselabs.mscript.computation.core.IOverflowMonitor;
-import org.eclipselabs.mscript.computation.core.value.IValue;
 
 /**
  * @author Andreas Unger

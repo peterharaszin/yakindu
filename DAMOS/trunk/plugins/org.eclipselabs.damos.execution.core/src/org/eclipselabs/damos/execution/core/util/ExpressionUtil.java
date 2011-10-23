@@ -22,21 +22,21 @@ import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
-import org.eclipselabs.mscript.computation.core.ComputationContext;
-import org.eclipselabs.mscript.computation.core.value.IBooleanValue;
-import org.eclipselabs.mscript.computation.core.value.ISimpleNumericValue;
-import org.eclipselabs.mscript.computation.core.value.IValue;
-import org.eclipselabs.mscript.language.ast.ExpressionList;
-import org.eclipselabs.mscript.language.il.transform.ITransformerContext;
-import org.eclipselabs.mscript.language.il.transform.TransformerContext;
-import org.eclipselabs.mscript.language.interpreter.IInterpreterContext;
-import org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext;
-import org.eclipselabs.mscript.language.interpreter.InterpreterContext;
-import org.eclipselabs.mscript.language.interpreter.StaticEvaluationContext;
-import org.eclipselabs.mscript.language.interpreter.util.ExpressionInterpreterHelper;
-import org.eclipselabs.mscript.language.parser.antlr.MscriptParser;
-import org.eclipselabs.mscript.typesystem.Expression;
-import org.eclipselabs.mscript.typesystem.IntegerType;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ExpressionList;
+import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.il.transform.ITransformerContext;
+import org.eclipselabs.damos.mscript.il.transform.TransformerContext;
+import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.util.ExpressionInterpreterHelper;
+import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
 
 /**
  * @author Andreas Unger

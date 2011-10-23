@@ -11,28 +11,7 @@
 <plugin>
    <extension-point id="solverConfigurationPages" name="Solver Configuration Pages" schema="schema/solverConfigurationPages.exsd"/>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <wizard
-            id="org.eclipselabs.damos.simulation.simulationmodel.ui.editor.presentation.SimulationModelModelWizardID"
-            name="%_UI_SimulationModelModelWizard_label"
-            class="org.eclipselabs.damos.simulation.simulationmodel.ui.editor.presentation.SimulationModelModelWizard"
-            category="org.eclipselabs.damos.ide.ui.damosCategory"
-            icon="icons/full/obj16/SimulationModelModelFile.gif">
-         <description>%_UI_SimulationModelModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
 
-   <extension point="org.eclipse.ui.editors">
-      <editor
-            id="org.eclipselabs.damos.simulation.simulationmodel.ui.editor.presentation.SimulationModelEditorID"
-            name="%_UI_SimulationModelEditor_label"
-            icon="icons/full/obj16/SimulationModelModelFile.gif"
-            extensions="simulationmodel"
-            class="org.eclipselabs.damos.simulation.simulationmodel.ui.editor.presentation.SimulationModelEditor"
-            contributorClass="org.eclipselabs.damos.simulation.simulationmodel.ui.editor.presentation.SimulationModelActionBarContributor">
-      </editor>
-   </extension>
    <extension
          point="org.eclipselabs.damos.simulation.simulationmodel.ui.solverConfigurationPages">
       <page

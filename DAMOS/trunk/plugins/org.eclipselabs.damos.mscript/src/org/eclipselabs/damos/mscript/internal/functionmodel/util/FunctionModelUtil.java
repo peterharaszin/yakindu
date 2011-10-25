@@ -88,6 +88,11 @@ public class FunctionModelUtil {
 		/**
 		 * 
 		 */
+		private static final Iterator<EquationDescriptor> EMPTY_ITERATOR = ECollections.<EquationDescriptor>emptyEList().iterator();
+		
+		/**
+		 * 
+		 */
 		public EquationIterator(EquationDescriptor equationDescriptor) {
 			super(equationDescriptor, true);
 		}
@@ -107,7 +112,7 @@ public class FunctionModelUtil {
 				}
 				return equations.iterator();
 			}
-			return ECollections.<EquationDescriptor>emptyEList().iterator();
+			return EMPTY_ITERATOR;
 		}
 
 	}

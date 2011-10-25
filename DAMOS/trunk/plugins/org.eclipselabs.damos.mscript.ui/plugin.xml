@@ -310,7 +310,7 @@
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
         <resourceServiceProvider
             class="org.eclipselabs.damos.mscript.computationmodel.ui.ComputationModelExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-            uriExtension="mscript">
+            uriExtension="computationmodel">
         </resourceServiceProvider>
     </extension>
 

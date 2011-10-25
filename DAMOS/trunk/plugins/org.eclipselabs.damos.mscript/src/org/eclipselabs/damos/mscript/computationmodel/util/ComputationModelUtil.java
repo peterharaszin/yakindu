@@ -39,7 +39,7 @@ public class ComputationModelUtil {
 		computationModel.getNumberFormats().add(floatingPointFormat);
 		
 		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
-		fixedPointFormat.setIntegerLength(63);
+		fixedPointFormat.setIntegerLength(64);
 		computationModel.getNumberFormats().add(fixedPointFormat);
 		
 		NumberFormatMapping mapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();

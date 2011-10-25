@@ -317,12 +317,12 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cBinary16EnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
 		private final Keyword cBinary16Binary16Keyword_0_0 = (Keyword)cBinary16EnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cBinary16EnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cBinary16Binary32Keyword_1_0 = (Keyword)cBinary16EnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cBinary16EnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cBinary16Binary64Keyword_2_0 = (Keyword)cBinary16EnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cBinary16EnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cBinary16Binary128Keyword_3_0 = (Keyword)cBinary16EnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cBinary32EnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cBinary32Binary32Keyword_1_0 = (Keyword)cBinary32EnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cBinary64EnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cBinary64Binary64Keyword_2_0 = (Keyword)cBinary64EnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cBinary128EnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cBinary128Binary128Keyword_3_0 = (Keyword)cBinary128EnumLiteralDeclaration_3.eContents().get(0);
 		private final EnumLiteralDeclaration cDecimal32EnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
 		private final Keyword cDecimal32Decimal32Keyword_4_0 = (Keyword)cDecimal32EnumLiteralDeclaration_4.eContents().get(0);
 		private final EnumLiteralDeclaration cDecimal64EnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
@@ -331,11 +331,11 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 		private final Keyword cDecimal128Decimal128Keyword_6_0 = (Keyword)cDecimal128EnumLiteralDeclaration_6.eContents().get(0);
 		
 		//enum FloatingPointFormatKind:
-		//	Binary16="binary16" | Binary16="binary32" | Binary16="binary64" | Binary16="binary128" | Decimal32="decimal32" |
+		//	Binary16="binary16" | Binary32="binary32" | Binary64="binary64" | Binary128="binary128" | Decimal32="decimal32" |
 		//	Decimal64="decimal64" | Decimal128="decimal128";
 		public EnumRule getRule() { return rule; }
 
-		//Binary16="binary16" | Binary16="binary32" | Binary16="binary64" | Binary16="binary128" | Decimal32="decimal32" |
+		//Binary16="binary16" | Binary32="binary32" | Binary64="binary64" | Binary128="binary128" | Decimal32="decimal32" |
 		//Decimal64="decimal64" | Decimal128="decimal128"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -345,23 +345,23 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 		//"binary16"
 		public Keyword getBinary16Binary16Keyword_0_0() { return cBinary16Binary16Keyword_0_0; }
 
-		//Binary16="binary32"
-		public EnumLiteralDeclaration getBinary16EnumLiteralDeclaration_1() { return cBinary16EnumLiteralDeclaration_1; }
+		//Binary32="binary32"
+		public EnumLiteralDeclaration getBinary32EnumLiteralDeclaration_1() { return cBinary32EnumLiteralDeclaration_1; }
 
 		//"binary32"
-		public Keyword getBinary16Binary32Keyword_1_0() { return cBinary16Binary32Keyword_1_0; }
+		public Keyword getBinary32Binary32Keyword_1_0() { return cBinary32Binary32Keyword_1_0; }
 
-		//Binary16="binary64"
-		public EnumLiteralDeclaration getBinary16EnumLiteralDeclaration_2() { return cBinary16EnumLiteralDeclaration_2; }
+		//Binary64="binary64"
+		public EnumLiteralDeclaration getBinary64EnumLiteralDeclaration_2() { return cBinary64EnumLiteralDeclaration_2; }
 
 		//"binary64"
-		public Keyword getBinary16Binary64Keyword_2_0() { return cBinary16Binary64Keyword_2_0; }
+		public Keyword getBinary64Binary64Keyword_2_0() { return cBinary64Binary64Keyword_2_0; }
 
-		//Binary16="binary128"
-		public EnumLiteralDeclaration getBinary16EnumLiteralDeclaration_3() { return cBinary16EnumLiteralDeclaration_3; }
+		//Binary128="binary128"
+		public EnumLiteralDeclaration getBinary128EnumLiteralDeclaration_3() { return cBinary128EnumLiteralDeclaration_3; }
 
 		//"binary128"
-		public Keyword getBinary16Binary128Keyword_3_0() { return cBinary16Binary128Keyword_3_0; }
+		public Keyword getBinary128Binary128Keyword_3_0() { return cBinary128Binary128Keyword_3_0; }
 
 		//Decimal32="decimal32"
 		public EnumLiteralDeclaration getDecimal32EnumLiteralDeclaration_4() { return cDecimal32EnumLiteralDeclaration_4; }
@@ -504,7 +504,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//enum FloatingPointFormatKind:
-	//	Binary16="binary16" | Binary16="binary32" | Binary16="binary64" | Binary16="binary128" | Decimal32="decimal32" |
+	//	Binary16="binary16" | Binary32="binary32" | Binary64="binary64" | Binary128="binary128" | Decimal32="decimal32" |
 	//	Decimal64="decimal64" | Decimal128="decimal128";
 	public FloatingPointFormatKindElements getFloatingPointFormatKindAccess() {
 		return (unknownRuleFloatingPointFormatKind != null) ? unknownRuleFloatingPointFormatKind : (unknownRuleFloatingPointFormatKind = new FloatingPointFormatKindElements());

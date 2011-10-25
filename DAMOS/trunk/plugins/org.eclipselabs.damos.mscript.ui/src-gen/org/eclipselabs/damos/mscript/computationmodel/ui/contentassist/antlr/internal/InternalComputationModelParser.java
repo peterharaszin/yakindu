@@ -15127,7 +15127,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4433:1: ( 'binary32' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1()); 
+                       before(grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1()); 
                     }
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4434:1: ( 'binary32' )
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4434:3: 'binary32'
@@ -15137,7 +15137,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1()); 
+                       after(grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1()); 
                     }
 
                     }
@@ -15152,7 +15152,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4440:1: ( 'binary64' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2()); 
+                       before(grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2()); 
                     }
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4441:1: ( 'binary64' )
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4441:3: 'binary64'
@@ -15162,7 +15162,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2()); 
+                       after(grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2()); 
                     }
 
                     }
@@ -15177,7 +15177,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4447:1: ( 'binary128' )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3()); 
+                       before(grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3()); 
                     }
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4448:1: ( 'binary128' )
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4448:3: 'binary128'
@@ -15187,7 +15187,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3()); 
+                       after(grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3()); 
                     }
 
                     }

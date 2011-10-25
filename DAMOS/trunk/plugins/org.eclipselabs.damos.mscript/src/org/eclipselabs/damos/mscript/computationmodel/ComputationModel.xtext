@@ -26,9 +26,9 @@ FloatingPointFormat:
 
 enum FloatingPointFormatKind:
 	Binary16='binary16' |
-	Binary16='binary32' |
-	Binary16='binary64' |
-	Binary16='binary128' |
+	Binary32='binary32' |
+	Binary64='binary64' |
+	Binary128='binary128' |
 	Decimal32='decimal32' |
 	Decimal64='decimal64' |
 	Decimal128='decimal128';

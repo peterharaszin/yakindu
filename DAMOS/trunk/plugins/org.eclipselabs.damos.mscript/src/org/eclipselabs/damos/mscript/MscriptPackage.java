@@ -230,13 +230,13 @@ public interface MscriptPackage extends EPackage {
 	int TYPEDEF_DECLARATION__NAME = DATA_TYPE_DEFINITION__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPEDEF_DECLARATION__TYPE = DATA_TYPE_DEFINITION_FEATURE_COUNT + 0;
+	int TYPEDEF_DECLARATION__TYPE_SPECIFIER = DATA_TYPE_DEFINITION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Typedef Declaration</em>' class.
@@ -304,13 +304,13 @@ public interface MscriptPackage extends EPackage {
 	int STRUCT_MEMBER_DECLARATION__NAME = 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRUCT_MEMBER_DECLARATION__TYPE = 1;
+	int STRUCT_MEMBER_DECLARATION__TYPE_SPECIFIER = 1;
 
 	/**
 	 * The number of structural features of the '<em>Struct Member Declaration</em>' class.
@@ -1792,13 +1792,13 @@ public interface MscriptPackage extends EPackage {
 	int TYPE_TEST_EXPRESSION__EXPRESSION = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TYPE_TEST_EXPRESSION__TYPE = EXPRESSION_FEATURE_COUNT + 1;
+	int TYPE_TEST_EXPRESSION__TYPE_SPECIFIER = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Type Test Expression</em>' class.
@@ -3902,15 +3902,15 @@ public interface MscriptPackage extends EPackage {
 	EClass getTypedefDeclaration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.TypedefDeclaration#getType <em>Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.TypedefDeclaration#getTypeSpecifier <em>Type Specifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.TypedefDeclaration#getType()
+	 * @return the meta object for the containment reference '<em>Type Specifier</em>'.
+	 * @see org.eclipselabs.damos.mscript.TypedefDeclaration#getTypeSpecifier()
 	 * @see #getTypedefDeclaration()
 	 * @generated
 	 */
-	EReference getTypedefDeclaration_Type();
+	EReference getTypedefDeclaration_TypeSpecifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StructDefinition <em>Struct Definition</em>}'.
@@ -3955,15 +3955,15 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getStructMemberDeclaration_Name();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.StructMemberDeclaration#getType <em>Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.StructMemberDeclaration#getTypeSpecifier <em>Type Specifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.StructMemberDeclaration#getType()
+	 * @return the meta object for the containment reference '<em>Type Specifier</em>'.
+	 * @see org.eclipselabs.damos.mscript.StructMemberDeclaration#getTypeSpecifier()
 	 * @see #getStructMemberDeclaration()
 	 * @generated
 	 */
-	EReference getStructMemberDeclaration_Type();
+	EReference getStructMemberDeclaration_TypeSpecifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.FunctionDefinition <em>Function Definition</em>}'.
@@ -5204,15 +5204,15 @@ public interface MscriptPackage extends EPackage {
 	EReference getTypeTestExpression_Expression();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.TypeTestExpression#getType <em>Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.TypeTestExpression#getTypeSpecifier <em>Type Specifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.TypeTestExpression#getType()
+	 * @return the meta object for the containment reference '<em>Type Specifier</em>'.
+	 * @see org.eclipselabs.damos.mscript.TypeTestExpression#getTypeSpecifier()
 	 * @see #getTypeTestExpression()
 	 * @generated
 	 */
-	EReference getTypeTestExpression_Type();
+	EReference getTypeTestExpression_TypeSpecifier();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.AdditiveExpression <em>Additive Expression</em>}'.
@@ -6779,12 +6779,12 @@ public interface MscriptPackage extends EPackage {
 		EClass TYPEDEF_DECLARATION = eINSTANCE.getTypedefDeclaration();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Type Specifier</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPEDEF_DECLARATION__TYPE = eINSTANCE.getTypedefDeclaration_Type();
+		EReference TYPEDEF_DECLARATION__TYPE_SPECIFIER = eINSTANCE.getTypedefDeclaration_TypeSpecifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StructDefinitionImpl <em>Struct Definition</em>}' class.
@@ -6823,12 +6823,12 @@ public interface MscriptPackage extends EPackage {
 		EAttribute STRUCT_MEMBER_DECLARATION__NAME = eINSTANCE.getStructMemberDeclaration_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Type Specifier</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference STRUCT_MEMBER_DECLARATION__TYPE = eINSTANCE.getStructMemberDeclaration_Type();
+		EReference STRUCT_MEMBER_DECLARATION__TYPE_SPECIFIER = eINSTANCE.getStructMemberDeclaration_TypeSpecifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl <em>Function Definition</em>}' class.
@@ -7835,12 +7835,12 @@ public interface MscriptPackage extends EPackage {
 		EReference TYPE_TEST_EXPRESSION__EXPRESSION = eINSTANCE.getTypeTestExpression_Expression();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Type Specifier</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TYPE_TEST_EXPRESSION__TYPE = eINSTANCE.getTypeTestExpression_Type();
+		EReference TYPE_TEST_EXPRESSION__TYPE_SPECIFIER = eINSTANCE.getTypeTestExpression_TypeSpecifier();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.AdditiveExpressionImpl <em>Additive Expression</em>}' class.

@@ -299,11 +299,11 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_0(), "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0");
 					put(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_1_1(), "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1");
 					put(grammarAccess.getEnumerationLiteralDeclarationAccess().getNameAssignment(), "rule__EnumerationLiteralDeclaration__NameAssignment");
-					put(grammarAccess.getTypedefDeclarationAccess().getTypeAssignment_1(), "rule__TypedefDeclaration__TypeAssignment_1");
+					put(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierAssignment_1(), "rule__TypedefDeclaration__TypeSpecifierAssignment_1");
 					put(grammarAccess.getTypedefDeclarationAccess().getNameAssignment_2(), "rule__TypedefDeclaration__NameAssignment_2");
 					put(grammarAccess.getStructDefinitionAccess().getNameAssignment_1(), "rule__StructDefinition__NameAssignment_1");
 					put(grammarAccess.getStructDefinitionAccess().getMemberDeclarationsAssignment_3(), "rule__StructDefinition__MemberDeclarationsAssignment_3");
-					put(grammarAccess.getStructMemberDeclarationAccess().getTypeAssignment_0(), "rule__StructMemberDeclaration__TypeAssignment_0");
+					put(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierAssignment_0(), "rule__StructMemberDeclaration__TypeSpecifierAssignment_0");
 					put(grammarAccess.getStructMemberDeclarationAccess().getNameAssignment_1(), "rule__StructMemberDeclaration__NameAssignment_1");
 					put(grammarAccess.getFunctionDefinitionAccess().getKindAssignment_0(), "rule__FunctionDefinition__KindAssignment_0");
 					put(grammarAccess.getFunctionDefinitionAccess().getNameAssignment_2(), "rule__FunctionDefinition__NameAssignment_2");
@@ -380,7 +380,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEqualityExpressionAccess().getRightOperandAssignment_1_2(), "rule__EqualityExpression__RightOperandAssignment_1_2");
 					put(grammarAccess.getRelationalExpressionAccess().getOperatorAssignment_1_0_0_1(), "rule__RelationalExpression__OperatorAssignment_1_0_0_1");
 					put(grammarAccess.getRelationalExpressionAccess().getRightOperandAssignment_1_0_0_2(), "rule__RelationalExpression__RightOperandAssignment_1_0_0_2");
-					put(grammarAccess.getRelationalExpressionAccess().getTypeAssignment_1_0_1_2(), "rule__RelationalExpression__TypeAssignment_1_0_1_2");
+					put(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierAssignment_1_0_1_2(), "rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2");
 					put(grammarAccess.getAdditiveExpressionAccess().getOperatorAssignment_1_1(), "rule__AdditiveExpression__OperatorAssignment_1_1");
 					put(grammarAccess.getAdditiveExpressionAccess().getRightOperandAssignment_1_2(), "rule__AdditiveExpression__RightOperandAssignment_1_2");
 					put(grammarAccess.getMultiplicativeExpressionAccess().getOperatorAssignment_1_1(), "rule__MultiplicativeExpression__OperatorAssignment_1_1");

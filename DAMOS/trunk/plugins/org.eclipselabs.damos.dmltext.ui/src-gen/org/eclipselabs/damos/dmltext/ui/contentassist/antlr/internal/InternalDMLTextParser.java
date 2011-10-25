@@ -23906,26 +23906,26 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedefDeclaration__Group__1__Impl"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7509:1: rule__TypedefDeclaration__Group__1__Impl : ( ( rule__TypedefDeclaration__TypeAssignment_1 ) ) ;
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7509:1: rule__TypedefDeclaration__Group__1__Impl : ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) ) ;
     public final void rule__TypedefDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7513:1: ( ( ( rule__TypedefDeclaration__TypeAssignment_1 ) ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7514:1: ( ( rule__TypedefDeclaration__TypeAssignment_1 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7513:1: ( ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7514:1: ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) )
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7514:1: ( ( rule__TypedefDeclaration__TypeAssignment_1 ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7515:1: ( rule__TypedefDeclaration__TypeAssignment_1 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7514:1: ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7515:1: ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypedefDeclarationAccess().getTypeAssignment_1()); 
+               before(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierAssignment_1()); 
             }
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7516:1: ( rule__TypedefDeclaration__TypeAssignment_1 )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7516:2: rule__TypedefDeclaration__TypeAssignment_1
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7516:1: ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7516:2: rule__TypedefDeclaration__TypeSpecifierAssignment_1
             {
-            pushFollow(FOLLOW_rule__TypedefDeclaration__TypeAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl15861);
-            rule__TypedefDeclaration__TypeAssignment_1();
+            pushFollow(FOLLOW_rule__TypedefDeclaration__TypeSpecifierAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl15861);
+            rule__TypedefDeclaration__TypeSpecifierAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -23933,7 +23933,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypedefDeclarationAccess().getTypeAssignment_1()); 
+               after(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierAssignment_1()); 
             }
 
             }
@@ -24586,26 +24586,26 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StructMemberDeclaration__Group__0__Impl"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7765:1: rule__StructMemberDeclaration__Group__0__Impl : ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) ) ;
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7765:1: rule__StructMemberDeclaration__Group__0__Impl : ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) ) ;
     public final void rule__StructMemberDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7769:1: ( ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7770:1: ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7769:1: ( ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7770:1: ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) )
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7770:1: ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7771:1: ( rule__StructMemberDeclaration__TypeAssignment_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7770:1: ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7771:1: ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructMemberDeclarationAccess().getTypeAssignment_0()); 
+               before(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierAssignment_0()); 
             }
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7772:1: ( rule__StructMemberDeclaration__TypeAssignment_0 )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7772:2: rule__StructMemberDeclaration__TypeAssignment_0
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7772:1: ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:7772:2: rule__StructMemberDeclaration__TypeSpecifierAssignment_0
             {
-            pushFollow(FOLLOW_rule__StructMemberDeclaration__TypeAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl16362);
-            rule__StructMemberDeclaration__TypeAssignment_0();
+            pushFollow(FOLLOW_rule__StructMemberDeclaration__TypeSpecifierAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl16362);
+            rule__StructMemberDeclaration__TypeSpecifierAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -24613,7 +24613,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructMemberDeclarationAccess().getTypeAssignment_0()); 
+               after(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierAssignment_0()); 
             }
 
             }
@@ -39798,26 +39798,26 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1_0_1__2__Impl"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13394:1: rule__RelationalExpression__Group_1_0_1__2__Impl : ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) ) ;
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13394:1: rule__RelationalExpression__Group_1_0_1__2__Impl : ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) ) ;
     public final void rule__RelationalExpression__Group_1_0_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13398:1: ( ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13399:1: ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13398:1: ( ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13399:1: ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) )
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13399:1: ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13400:1: ( rule__RelationalExpression__TypeAssignment_1_0_1_2 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13399:1: ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13400:1: ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRelationalExpressionAccess().getTypeAssignment_1_0_1_2()); 
+               before(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierAssignment_1_0_1_2()); 
             }
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13401:1: ( rule__RelationalExpression__TypeAssignment_1_0_1_2 )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13401:2: rule__RelationalExpression__TypeAssignment_1_0_1_2
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13401:1: ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:13401:2: rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2
             {
-            pushFollow(FOLLOW_rule__RelationalExpression__TypeAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl27421);
-            rule__RelationalExpression__TypeAssignment_1_0_1_2();
+            pushFollow(FOLLOW_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl27421);
+            rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -39825,7 +39825,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRelationalExpressionAccess().getTypeAssignment_1_0_1_2()); 
+               after(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierAssignment_1_0_1_2()); 
             }
 
             }
@@ -65275,9 +65275,9 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EnumerationLiteralDeclaration__NameAssignment"
 
 
-    // $ANTLR start "rule__TypedefDeclaration__TypeAssignment_1"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:22702:1: rule__TypedefDeclaration__TypeAssignment_1 : ( ruleDataTypeSpecifier ) ;
-    public final void rule__TypedefDeclaration__TypeAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__TypedefDeclaration__TypeSpecifierAssignment_1"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:22702:1: rule__TypedefDeclaration__TypeSpecifierAssignment_1 : ( ruleDataTypeSpecifier ) ;
+    public final void rule__TypedefDeclaration__TypeSpecifierAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -65289,15 +65289,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:22708:1: ruleDataTypeSpecifier
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypedefDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_1_0()); 
+               before(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeAssignment_146596);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeSpecifierAssignment_146596);
             ruleDataTypeSpecifier();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypedefDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_1_0()); 
+               after(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0()); 
             }
 
             }
@@ -65317,7 +65317,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypedefDeclaration__TypeAssignment_1"
+    // $ANTLR end "rule__TypedefDeclaration__TypeSpecifierAssignment_1"
 
 
     // $ANTLR start "rule__TypedefDeclaration__NameAssignment_2"
@@ -65455,9 +65455,9 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__StructDefinition__MemberDeclarationsAssignment_3"
 
 
-    // $ANTLR start "rule__StructMemberDeclaration__TypeAssignment_0"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:22762:1: rule__StructMemberDeclaration__TypeAssignment_0 : ( ruleDataTypeSpecifier ) ;
-    public final void rule__StructMemberDeclaration__TypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__StructMemberDeclaration__TypeSpecifierAssignment_0"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:22762:1: rule__StructMemberDeclaration__TypeSpecifierAssignment_0 : ( ruleDataTypeSpecifier ) ;
+    public final void rule__StructMemberDeclaration__TypeSpecifierAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -65469,15 +65469,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:22768:1: ruleDataTypeSpecifier
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructMemberDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_0_0()); 
+               before(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeAssignment_046720);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeSpecifierAssignment_046720);
             ruleDataTypeSpecifier();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructMemberDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_0_0()); 
+               after(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); 
             }
 
             }
@@ -65497,7 +65497,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__StructMemberDeclaration__TypeAssignment_0"
+    // $ANTLR end "rule__StructMemberDeclaration__TypeSpecifierAssignment_0"
 
 
     // $ANTLR start "rule__StructMemberDeclaration__NameAssignment_1"
@@ -68986,9 +68986,9 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__RelationalExpression__RightOperandAssignment_1_0_0_2"
 
 
-    // $ANTLR start "rule__RelationalExpression__TypeAssignment_1_0_1_2"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:23962:1: rule__RelationalExpression__TypeAssignment_1_0_1_2 : ( ruleDataTypeSpecifier ) ;
-    public final void rule__RelationalExpression__TypeAssignment_1_0_1_2() throws RecognitionException {
+    // $ANTLR start "rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2"
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:23962:1: rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 : ( ruleDataTypeSpecifier ) ;
+    public final void rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -69000,15 +69000,15 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:23968:1: ruleDataTypeSpecifier
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRelationalExpressionAccess().getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
+               before(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeAssignment_1_0_1_249185);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_249185);
             ruleDataTypeSpecifier();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRelationalExpressionAccess().getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
+               after(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
             }
 
             }
@@ -69028,7 +69028,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RelationalExpression__TypeAssignment_1_0_1_2"
+    // $ANTLR end "rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2"
 
 
     // $ANTLR start "rule__AdditiveExpression__OperatorAssignment_1_1"
@@ -76558,7 +76558,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_65_in_rule__TypedefDeclaration__Group__0__Impl15800 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__1__Impl_in_rule__TypedefDeclaration__Group__115831 = new BitSet(new long[]{0x0000000000000730L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__2_in_rule__TypedefDeclaration__Group__115834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TypedefDeclaration__TypeAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl15861 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TypedefDeclaration__TypeSpecifierAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl15861 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__2__Impl_in_rule__TypedefDeclaration__Group__215891 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__3_in_rule__TypedefDeclaration__Group__215894 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__NameAssignment_2_in_rule__TypedefDeclaration__Group__2__Impl15921 = new BitSet(new long[]{0x0000000000000002L});
@@ -76580,7 +76580,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_52_in_rule__StructDefinition__Group__4__Impl16291 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__0__Impl_in_rule__StructMemberDeclaration__Group__016332 = new BitSet(new long[]{0x0000000000000730L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__1_in_rule__StructMemberDeclaration__Group__016335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructMemberDeclaration__TypeAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl16362 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructMemberDeclaration__TypeSpecifierAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl16362 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__1__Impl_in_rule__StructMemberDeclaration__Group__116392 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000004L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__2_in_rule__StructMemberDeclaration__Group__116395 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__NameAssignment_1_in_rule__StructMemberDeclaration__Group__1__Impl16422 = new BitSet(new long[]{0x0000000000000002L});
@@ -77047,7 +77047,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1_0_1__2_in_rule__RelationalExpression__Group_1_0_1__127335 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_94_in_rule__RelationalExpression__Group_1_0_1__1__Impl27363 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1_0_1__2__Impl_in_rule__RelationalExpression__Group_1_0_1__227394 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RelationalExpression__TypeAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl27421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl27421 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__027457 = new BitSet(new long[]{0x0000000000180000L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__1_in_rule__AdditiveExpression__Group__027460 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__Group__0__Impl27487 = new BitSet(new long[]{0x0000000000000002L});
@@ -77784,11 +77784,11 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_046503 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_146534 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationLiteralDeclaration__NameAssignment46565 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeAssignment_146596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeSpecifierAssignment_146596 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__TypedefDeclaration__NameAssignment_246627 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__StructDefinition__NameAssignment_146658 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_rule__StructDefinition__MemberDeclarationsAssignment_346689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeAssignment_046720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeSpecifierAssignment_046720 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__StructMemberDeclaration__NameAssignment_146751 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionKind_in_rule__FunctionDefinition__KindAssignment_046782 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionDefinition__NameAssignment_246813 = new BitSet(new long[]{0x0000000000000002L});
@@ -77865,7 +77865,7 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__RightOperandAssignment_1_249092 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRelationalOperator_in_rule__RelationalExpression__OperatorAssignment_1_0_0_149123 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_rule__RelationalExpression__RightOperandAssignment_1_0_0_249154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeAssignment_1_0_1_249185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_249185 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveOperator_in_rule__AdditiveExpression__OperatorAssignment_1_149216 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__RightOperandAssignment_1_249247 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_rule__MultiplicativeExpression__OperatorAssignment_1_149278 = new BitSet(new long[]{0x0000000000000002L});

@@ -344,16 +344,16 @@ ruleTypedefDeclaration returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getTypedefDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0()); 
 	    }
-		lv_type_1_0=ruleDataTypeSpecifier		{
+		lv_typeSpecifier_1_0=ruleDataTypeSpecifier		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getTypedefDeclarationRule());
 	        }
        		set(
        			$current, 
-       			"type",
-        		lv_type_1_0, 
+       			"typeSpecifier",
+        		lv_typeSpecifier_1_0, 
         		"DataTypeSpecifier");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -474,16 +474,16 @@ ruleStructMemberDeclaration returns [EObject current=null]
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getStructMemberDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); 
 	    }
-		lv_type_0_0=ruleDataTypeSpecifier		{
+		lv_typeSpecifier_0_0=ruleDataTypeSpecifier		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getStructMemberDeclarationRule());
 	        }
        		set(
        			$current, 
-       			"type",
-        		lv_type_0_0, 
+       			"typeSpecifier",
+        		lv_typeSpecifier_0_0, 
         		"DataTypeSpecifier");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -3124,16 +3124,16 @@ ruleDataTypeSpecifier
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getRelationalExpressionAccess().getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
+	        newCompositeNode(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
 	    }
-		lv_type_6_0=ruleDataTypeSpecifier		{
+		lv_typeSpecifier_6_0=ruleDataTypeSpecifier		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getRelationalExpressionRule());
 	        }
        		set(
        			$current, 
-       			"type",
-        		lv_type_6_0, 
+       			"typeSpecifier",
+        		lv_typeSpecifier_6_0, 
         		"DataTypeSpecifier");
 	        afterParserOrEnumRuleCall();
 	    }

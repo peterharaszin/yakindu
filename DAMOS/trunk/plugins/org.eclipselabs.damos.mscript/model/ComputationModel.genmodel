@@ -34,7 +34,9 @@
     <genClasses ecoreClass="ComputationModel.ecore#//FloatingPointFormat">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//FloatingPointFormat/kind"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="ComputationModel.ecore#//NumberFormat"/>
+    <genClasses image="false" ecoreClass="ComputationModel.ecore#//NumberFormat">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//NumberFormat/name"/>
+    </genClasses>
     <genClasses ecoreClass="ComputationModel.ecore#//FixedPointFormat">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//FixedPointFormat/integerLength"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//FixedPointFormat/fractionLength"/>
@@ -50,6 +52,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//FixedPointOperation/saturate"/>
     </genClasses>
     <genClasses ecoreClass="ComputationModel.ecore#//ComputationModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//ComputationModel/qualifiedName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ComputationModel.ecore#//ComputationModel/numberFormats"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ComputationModel.ecore#//ComputationModel/numberFormatMappings"/>
       <genOperations ecoreOperation="ComputationModel.ecore#//ComputationModel/getNumberFormat">
@@ -57,8 +60,7 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="ComputationModel.ecore#//NumberFormatMapping">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ComputationModel.ecore#//NumberFormatMapping/ownedDataType"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ComputationModel.ecore#//NumberFormatMapping/dataType"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ComputationModel.ecore#//NumberFormatMapping/typeSpecifier"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ComputationModel.ecore#//NumberFormatMapping/numberFormat"/>
     </genClasses>
   </genPackages>

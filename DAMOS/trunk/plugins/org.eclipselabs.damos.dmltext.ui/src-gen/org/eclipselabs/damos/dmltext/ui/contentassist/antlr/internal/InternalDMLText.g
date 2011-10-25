@@ -7512,9 +7512,9 @@ rule__TypedefDeclaration__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getTypedefDeclarationAccess().getTypeAssignment_1()); }
-(rule__TypedefDeclaration__TypeAssignment_1)
-{ after(grammarAccess.getTypedefDeclarationAccess().getTypeAssignment_1()); }
+{ before(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierAssignment_1()); }
+(rule__TypedefDeclaration__TypeSpecifierAssignment_1)
+{ after(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierAssignment_1()); }
 )
 
 ;
@@ -7768,9 +7768,9 @@ rule__StructMemberDeclaration__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getStructMemberDeclarationAccess().getTypeAssignment_0()); }
-(rule__StructMemberDeclaration__TypeAssignment_0)
-{ after(grammarAccess.getStructMemberDeclarationAccess().getTypeAssignment_0()); }
+{ before(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierAssignment_0()); }
+(rule__StructMemberDeclaration__TypeSpecifierAssignment_0)
+{ after(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierAssignment_0()); }
 )
 
 ;
@@ -13397,9 +13397,9 @@ rule__RelationalExpression__Group_1_0_1__2__Impl
     }
 :
 (
-{ before(grammarAccess.getRelationalExpressionAccess().getTypeAssignment_1_0_1_2()); }
-(rule__RelationalExpression__TypeAssignment_1_0_1_2)
-{ after(grammarAccess.getRelationalExpressionAccess().getTypeAssignment_1_0_1_2()); }
+{ before(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierAssignment_1_0_1_2()); }
+(rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2)
+{ after(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierAssignment_1_0_1_2()); }
 )
 
 ;
@@ -22699,14 +22699,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__TypedefDeclaration__TypeAssignment_1
+rule__TypedefDeclaration__TypeSpecifierAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getTypedefDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_1_0()); }
-	ruleDataTypeSpecifier{ after(grammarAccess.getTypedefDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_1_0()); }
+{ before(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0()); }
+	ruleDataTypeSpecifier{ after(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0()); }
 )
 
 ;
@@ -22759,14 +22759,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__StructMemberDeclaration__TypeAssignment_0
+rule__StructMemberDeclaration__TypeSpecifierAssignment_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getStructMemberDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_0_0()); }
-	ruleDataTypeSpecifier{ after(grammarAccess.getStructMemberDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_0_0()); }
+{ before(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); }
+	ruleDataTypeSpecifier{ after(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); }
 )
 
 ;
@@ -23959,14 +23959,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RelationalExpression__TypeAssignment_1_0_1_2
+rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getRelationalExpressionAccess().getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0()); }
-	ruleDataTypeSpecifier{ after(grammarAccess.getRelationalExpressionAccess().getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0()); }
+{ before(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); }
+	ruleDataTypeSpecifier{ after(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); }
 )
 
 ;

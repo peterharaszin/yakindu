@@ -29,10 +29,10 @@ import org.eclipselabs.damos.mscript.internal.computationmodel.operations.FixedP
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.impl.FixedPointFormatImpl#getIntegerLength <em>Integer Length</em>}</li>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.impl.FixedPointFormatImpl#getFractionLength <em>Fraction Length</em>}</li>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.impl.FixedPointFormatImpl#getWordSize <em>Word Size</em>}</li>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.impl.FixedPointFormatImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getIntegerLength <em>Integer Length</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getFractionLength <em>Fraction Length</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getWordSize <em>Word Size</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getOperations <em>Operations</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,7 +47,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int INTEGER_LENGTH_EDEFAULT = 0;
+	protected static final int INTEGER_LENGTH_EDEFAULT = 1;
 
 	/**
 	 * The cached value of the '{@link #getIntegerLength() <em>Integer Length</em>}' attribute.
@@ -166,7 +166,7 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	 * @generated NOT
 	 */
 	public int getWordSize() {
-		return getIntegerLength() + getFractionLength() + 1;
+		return getIntegerLength() + getFractionLength();
 	}
 
 	/**

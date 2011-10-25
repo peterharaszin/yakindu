@@ -9960,7 +9960,134 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         try {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3252:1: ( ( rulePrimitiveType ) | ( ruleArrayType ) )
             int alt6=2;
-            alt6 = dfa6.predict(input);
+            switch ( input.LA(1) ) {
+            case 56:
+                {
+                int LA6_1 = input.LA(2);
+
+                if ( (synpred10_InternalMscript()) ) {
+                    alt6=1;
+                }
+                else if ( (true) ) {
+                    alt6=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 6, 1, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 57:
+                {
+                int LA6_2 = input.LA(2);
+
+                if ( (synpred10_InternalMscript()) ) {
+                    alt6=1;
+                }
+                else if ( (true) ) {
+                    alt6=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 6, 2, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 58:
+                {
+                int LA6_3 = input.LA(2);
+
+                if ( (synpred10_InternalMscript()) ) {
+                    alt6=1;
+                }
+                else if ( (true) ) {
+                    alt6=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 6, 3, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 59:
+                {
+                int LA6_4 = input.LA(2);
+
+                if ( (synpred10_InternalMscript()) ) {
+                    alt6=1;
+                }
+                else if ( (true) ) {
+                    alt6=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 6, 4, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 60:
+                {
+                int LA6_5 = input.LA(2);
+
+                if ( (synpred10_InternalMscript()) ) {
+                    alt6=1;
+                }
+                else if ( (true) ) {
+                    alt6=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 6, 5, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 61:
+                {
+                int LA6_6 = input.LA(2);
+
+                if ( (synpred10_InternalMscript()) ) {
+                    alt6=1;
+                }
+                else if ( (true) ) {
+                    alt6=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 6, 6, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case RULE_ID:
+                {
+                alt6=2;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return ;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 6, 0, input);
+
+                throw nvae;
+            }
+
             switch (alt6) {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3253:1: ( rulePrimitiveType )
@@ -15838,26 +15965,26 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__TypedefDeclaration__Group__1__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4709:1: rule__TypedefDeclaration__Group__1__Impl : ( ( rule__TypedefDeclaration__TypeAssignment_1 ) ) ;
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4709:1: rule__TypedefDeclaration__Group__1__Impl : ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) ) ;
     public final void rule__TypedefDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4713:1: ( ( ( rule__TypedefDeclaration__TypeAssignment_1 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4714:1: ( ( rule__TypedefDeclaration__TypeAssignment_1 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4713:1: ( ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4714:1: ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4714:1: ( ( rule__TypedefDeclaration__TypeAssignment_1 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4715:1: ( rule__TypedefDeclaration__TypeAssignment_1 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4714:1: ( ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4715:1: ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypedefDeclarationAccess().getTypeAssignment_1()); 
+               before(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierAssignment_1()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4716:1: ( rule__TypedefDeclaration__TypeAssignment_1 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4716:2: rule__TypedefDeclaration__TypeAssignment_1
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4716:1: ( rule__TypedefDeclaration__TypeSpecifierAssignment_1 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4716:2: rule__TypedefDeclaration__TypeSpecifierAssignment_1
             {
-            pushFollow(FOLLOW_rule__TypedefDeclaration__TypeAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl10226);
-            rule__TypedefDeclaration__TypeAssignment_1();
+            pushFollow(FOLLOW_rule__TypedefDeclaration__TypeSpecifierAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl10226);
+            rule__TypedefDeclaration__TypeSpecifierAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -15865,7 +15992,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypedefDeclarationAccess().getTypeAssignment_1()); 
+               after(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierAssignment_1()); 
             }
 
             }
@@ -16518,26 +16645,26 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StructMemberDeclaration__Group__0__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4965:1: rule__StructMemberDeclaration__Group__0__Impl : ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) ) ;
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4965:1: rule__StructMemberDeclaration__Group__0__Impl : ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) ) ;
     public final void rule__StructMemberDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4969:1: ( ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4970:1: ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4969:1: ( ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4970:1: ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4970:1: ( ( rule__StructMemberDeclaration__TypeAssignment_0 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4971:1: ( rule__StructMemberDeclaration__TypeAssignment_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4970:1: ( ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4971:1: ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructMemberDeclarationAccess().getTypeAssignment_0()); 
+               before(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierAssignment_0()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4972:1: ( rule__StructMemberDeclaration__TypeAssignment_0 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4972:2: rule__StructMemberDeclaration__TypeAssignment_0
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4972:1: ( rule__StructMemberDeclaration__TypeSpecifierAssignment_0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:4972:2: rule__StructMemberDeclaration__TypeSpecifierAssignment_0
             {
-            pushFollow(FOLLOW_rule__StructMemberDeclaration__TypeAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl10727);
-            rule__StructMemberDeclaration__TypeAssignment_0();
+            pushFollow(FOLLOW_rule__StructMemberDeclaration__TypeSpecifierAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl10727);
+            rule__StructMemberDeclaration__TypeSpecifierAssignment_0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16545,7 +16672,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructMemberDeclarationAccess().getTypeAssignment_0()); 
+               after(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierAssignment_0()); 
             }
 
             }
@@ -31730,26 +31857,26 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__RelationalExpression__Group_1_0_1__2__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10594:1: rule__RelationalExpression__Group_1_0_1__2__Impl : ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) ) ;
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10594:1: rule__RelationalExpression__Group_1_0_1__2__Impl : ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) ) ;
     public final void rule__RelationalExpression__Group_1_0_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10598:1: ( ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10599:1: ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10598:1: ( ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10599:1: ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10599:1: ( ( rule__RelationalExpression__TypeAssignment_1_0_1_2 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10600:1: ( rule__RelationalExpression__TypeAssignment_1_0_1_2 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10599:1: ( ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10600:1: ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRelationalExpressionAccess().getTypeAssignment_1_0_1_2()); 
+               before(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierAssignment_1_0_1_2()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10601:1: ( rule__RelationalExpression__TypeAssignment_1_0_1_2 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10601:2: rule__RelationalExpression__TypeAssignment_1_0_1_2
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10601:1: ( rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:10601:2: rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2
             {
-            pushFollow(FOLLOW_rule__RelationalExpression__TypeAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl21786);
-            rule__RelationalExpression__TypeAssignment_1_0_1_2();
+            pushFollow(FOLLOW_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl21786);
+            rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -31757,7 +31884,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRelationalExpressionAccess().getTypeAssignment_1_0_1_2()); 
+               after(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierAssignment_1_0_1_2()); 
             }
 
             }
@@ -53404,9 +53531,9 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__EnumerationLiteralDeclaration__NameAssignment"
 
 
-    // $ANTLR start "rule__TypedefDeclaration__TypeAssignment_1"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18673:1: rule__TypedefDeclaration__TypeAssignment_1 : ( ruleDataTypeSpecifier ) ;
-    public final void rule__TypedefDeclaration__TypeAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__TypedefDeclaration__TypeSpecifierAssignment_1"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18673:1: rule__TypedefDeclaration__TypeSpecifierAssignment_1 : ( ruleDataTypeSpecifier ) ;
+    public final void rule__TypedefDeclaration__TypeSpecifierAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -53418,15 +53545,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18679:1: ruleDataTypeSpecifier
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getTypedefDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_1_0()); 
+               before(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeAssignment_137630);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeSpecifierAssignment_137630);
             ruleDataTypeSpecifier();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getTypedefDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_1_0()); 
+               after(grammarAccess.getTypedefDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0()); 
             }
 
             }
@@ -53446,7 +53573,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__TypedefDeclaration__TypeAssignment_1"
+    // $ANTLR end "rule__TypedefDeclaration__TypeSpecifierAssignment_1"
 
 
     // $ANTLR start "rule__TypedefDeclaration__NameAssignment_2"
@@ -53584,9 +53711,9 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__StructDefinition__MemberDeclarationsAssignment_3"
 
 
-    // $ANTLR start "rule__StructMemberDeclaration__TypeAssignment_0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18733:1: rule__StructMemberDeclaration__TypeAssignment_0 : ( ruleDataTypeSpecifier ) ;
-    public final void rule__StructMemberDeclaration__TypeAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__StructMemberDeclaration__TypeSpecifierAssignment_0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18733:1: rule__StructMemberDeclaration__TypeSpecifierAssignment_0 : ( ruleDataTypeSpecifier ) ;
+    public final void rule__StructMemberDeclaration__TypeSpecifierAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -53598,15 +53725,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:18739:1: ruleDataTypeSpecifier
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructMemberDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_0_0()); 
+               before(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeAssignment_037754);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeSpecifierAssignment_037754);
             ruleDataTypeSpecifier();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructMemberDeclarationAccess().getTypeDataTypeSpecifierParserRuleCall_0_0()); 
+               after(grammarAccess.getStructMemberDeclarationAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0()); 
             }
 
             }
@@ -53626,7 +53753,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__StructMemberDeclaration__TypeAssignment_0"
+    // $ANTLR end "rule__StructMemberDeclaration__TypeSpecifierAssignment_0"
 
 
     // $ANTLR start "rule__StructMemberDeclaration__NameAssignment_1"
@@ -57115,9 +57242,9 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__RelationalExpression__RightOperandAssignment_1_0_0_2"
 
 
-    // $ANTLR start "rule__RelationalExpression__TypeAssignment_1_0_1_2"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19933:1: rule__RelationalExpression__TypeAssignment_1_0_1_2 : ( ruleDataTypeSpecifier ) ;
-    public final void rule__RelationalExpression__TypeAssignment_1_0_1_2() throws RecognitionException {
+    // $ANTLR start "rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19933:1: rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2 : ( ruleDataTypeSpecifier ) ;
+    public final void rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -57129,15 +57256,15 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:19939:1: ruleDataTypeSpecifier
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRelationalExpressionAccess().getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
+               before(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeAssignment_1_0_1_240219);
+            pushFollow(FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_240219);
             ruleDataTypeSpecifier();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRelationalExpressionAccess().getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
+               after(grammarAccess.getRelationalExpressionAccess().getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0()); 
             }
 
             }
@@ -57157,7 +57284,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__RelationalExpression__TypeAssignment_1_0_1_2"
+    // $ANTLR end "rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2"
 
 
     // $ANTLR start "rule__AdditiveExpression__OperatorAssignment_1_1"
@@ -61215,6 +61342,30 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     }
     // $ANTLR end "rule__UnitFactor__ExponentAssignment_1_1"
 
+    // $ANTLR start synpred10_InternalMscript
+    public final void synpred10_InternalMscript_fragment() throws RecognitionException {   
+        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3253:1: ( ( rulePrimitiveType ) )
+        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3253:1: ( rulePrimitiveType )
+        {
+        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3253:1: ( rulePrimitiveType )
+        // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3254:1: rulePrimitiveType
+        {
+        if ( state.backtracking==0 ) {
+           before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+        }
+        pushFollow(FOLLOW_rulePrimitiveType_in_synpred10_InternalMscript6873);
+        rulePrimitiveType();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+
+        }
+    }
+    // $ANTLR end synpred10_InternalMscript
+
     // $ANTLR start synpred16_InternalMscript
     public final void synpred16_InternalMscript_fragment() throws RecognitionException {   
         // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/ui/contentassist/antlr/internal/InternalMscript.g:3337:1: ( ( ruleTensorType ) )
@@ -61285,6 +61436,20 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
         state.failed=false;
         return success;
     }
+    public final boolean synpred10_InternalMscript() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred10_InternalMscript_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
     public final boolean synpred16_InternalMscript() {
         state.backtracking++;
         int start = input.mark();
@@ -61315,339 +61480,9 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     }
 
 
-    protected DFA6 dfa6 = new DFA6(this);
     protected DFA15 dfa15 = new DFA15(this);
     protected DFA28 dfa28 = new DFA28(this);
     protected DFA81 dfa81 = new DFA81(this);
-    static final String DFA6_eotS =
-        "\u00e1\uffff";
-    static final String DFA6_eofS =
-        "\1\uffff\6\11\14\uffff\2\11\14\uffff\1\11\6\uffff\1\11\1\uffff\1"+
-        "\11\3\uffff\1\11\3\uffff\1\11\3\uffff\1\11\u00aa\uffff";
-    static final String DFA6_minS =
-        "\1\12\6\4\1\uffff\1\4\1\uffff\3\4\1\41\5\40\2\4\1\41\5\40\1\41\5"+
-        "\40\1\4\1\41\5\40\3\4\1\6\3\4\1\6\3\4\1\6\3\4\1\6\1\4\5\44\1\4\1"+
-        "\6\7\40\5\44\1\4\1\6\7\40\5\44\1\4\1\6\7\40\5\44\1\4\1\6\7\40\1"+
-        "\6\5\40\2\6\5\40\2\6\5\40\2\6\5\40\2\6\2\60\1\6\1\4\1\60\1\6\2\40"+
-        "\1\6\2\60\1\6\1\4\1\60\1\6\2\40\1\6\2\60\1\6\1\4\1\60\1\6\2\40\1"+
-        "\6\2\60\1\6\1\4\1\60\1\6\2\40\1\6\7\40\1\6\7\40\1\6\7\40\1\6\7\40"+
-        "\5\6\2\40\1\6\2\40\1\6\2\40\1\6\2\40";
-    static final String DFA6_maxS =
-        "\1\75\6\124\1\uffff\1\60\1\uffff\11\60\2\124\14\60\1\124\6\60\1"+
-        "\124\1\57\1\124\1\22\1\12\1\57\1\124\1\22\1\12\1\57\1\124\1\22\1"+
-        "\12\1\57\1\124\1\22\1\12\5\60\1\12\1\7\14\60\1\12\1\7\14\60\1\12"+
-        "\1\7\14\60\1\12\1\7\7\60\1\22\5\60\2\22\5\60\2\22\5\60\2\22\5\60"+
-        "\1\22\1\7\2\60\1\22\1\12\1\60\1\7\2\60\1\7\2\60\1\22\1\12\1\60\1"+
-        "\7\2\60\1\7\2\60\1\22\1\12\1\60\1\7\2\60\1\7\2\60\1\22\1\12\1\60"+
-        "\1\7\2\60\1\7\7\60\1\7\7\60\1\7\7\60\1\7\7\60\4\22\1\7\2\60\1\7"+
-        "\2\60\1\7\2\60\1\7\2\60";
-    static final String DFA6_acceptS =
-        "\7\uffff\1\2\1\uffff\1\1\u00d7\uffff";
-    static final String DFA6_specialS =
-        "\u00e1\uffff}>";
-    static final String[] DFA6_transitionS = {
-            "\1\7\55\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\2\uffff\1\10\1\11\3\uffff\1\11\2\uffff\1\11\6"+
-            "\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff"+
-            "\1\11\2\uffff\1\11\3\uffff\1\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\2\uffff\1\12\1\11\3\uffff\1\11\2\uffff\1\11\6"+
-            "\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff"+
-            "\1\11\2\uffff\1\11\3\uffff\1\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\2\uffff\1\13\1\11\3\uffff\1\11\2\uffff\1\11\6"+
-            "\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff"+
-            "\1\11\2\uffff\1\11\3\uffff\1\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\2\uffff\1\14\1\11\3\uffff\1\11\2\uffff\1\11\6"+
-            "\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff"+
-            "\1\11\2\uffff\1\11\3\uffff\1\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "",
-            "\1\17\1\21\1\15\1\uffff\1\16\1\20\1\22\45\uffff\1\23",
-            "",
-            "\1\27\1\31\1\25\1\uffff\1\26\1\30\1\32\45\uffff\1\24",
-            "\1\35\1\37\1\33\1\uffff\1\34\1\36\1\40\45\uffff\1\41",
-            "\1\44\1\46\1\42\1\uffff\1\43\1\45\1\47\45\uffff\1\50",
-            "\1\51\16\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\13\uffff\1\52",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\1\55\16\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\13\uffff\1\56",
-            "\1\61\16\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\13\uffff\1\62",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\1\65\16\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\13\uffff\1\66",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\1\72\1\74\2\uffff\1\71\1\73\1\75\44\uffff\1\76",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\1\100\1\101\12\uffff\1\77",
-            "\1\103\1\105\2\uffff\1\102\1\104\1\106",
-            "\1\110\1\112\2\uffff\1\107\1\111\1\113\44\uffff\1\114",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\1\116\1\117\12\uffff\1\115",
-            "\1\121\1\123\2\uffff\1\120\1\122\1\124",
-            "\1\126\1\130\2\uffff\1\125\1\127\1\131\44\uffff\1\132",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\1\134\1\135\12\uffff\1\133",
-            "\1\137\1\141\2\uffff\1\136\1\140\1\142",
-            "\1\144\1\146\2\uffff\1\143\1\145\1\147\44\uffff\1\150",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\12\uffff\2\11"+
-            "\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\2\uffff\1\11\6\uffff"+
-            "\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\1\11"+
-            "\2\uffff\1\11\3\uffff\1\11",
-            "\1\152\1\153\12\uffff\1\151",
-            "\1\155\1\157\2\uffff\1\154\1\156\1\160",
-            "\1\161\13\uffff\1\52",
-            "\1\161\13\uffff\1\52",
-            "\1\161\13\uffff\1\52",
-            "\1\161\13\uffff\1\52",
-            "\1\161\13\uffff\1\52",
-            "\1\163\1\165\2\uffff\1\162\1\164\1\166",
-            "\1\100\1\101",
-            "\1\54\1\51\16\uffff\1\52",
-            "\1\54\1\51\16\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\13\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\13\uffff\1\52",
-            "\1\170\13\uffff\1\56",
-            "\1\170\13\uffff\1\56",
-            "\1\170\13\uffff\1\56",
-            "\1\170\13\uffff\1\56",
-            "\1\170\13\uffff\1\56",
-            "\1\172\1\174\2\uffff\1\171\1\173\1\175",
-            "\1\116\1\117",
-            "\1\60\1\55\16\uffff\1\56",
-            "\1\60\1\55\16\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\13\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\13\uffff\1\56",
-            "\1\177\13\uffff\1\62",
-            "\1\177\13\uffff\1\62",
-            "\1\177\13\uffff\1\62",
-            "\1\177\13\uffff\1\62",
-            "\1\177\13\uffff\1\62",
-            "\1\u0081\1\u0083\2\uffff\1\u0080\1\u0082\1\u0084",
-            "\1\134\1\135",
-            "\1\64\1\61\16\uffff\1\62",
-            "\1\64\1\61\16\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\13\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\13\uffff\1\62",
-            "\1\u0086\13\uffff\1\66",
-            "\1\u0086\13\uffff\1\66",
-            "\1\u0086\13\uffff\1\66",
-            "\1\u0086\13\uffff\1\66",
-            "\1\u0086\13\uffff\1\66",
-            "\1\u0088\1\u008a\2\uffff\1\u0087\1\u0089\1\u008b",
-            "\1\152\1\153",
-            "\1\70\1\65\16\uffff\1\66",
-            "\1\70\1\65\16\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\13\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\13\uffff\1\66",
-            "\1\u008e\1\u008f\12\uffff\1\u008d",
-            "\1\u0091\3\uffff\1\u0090\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\13\uffff\1\u0092",
-            "\1\u0094\1\u0095\12\uffff\1\u0093",
-            "\1\u0097\1\u0098\12\uffff\1\u0096",
-            "\1\u009a\3\uffff\1\u0099\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\13\uffff\1\u009b",
-            "\1\u009d\1\u009e\12\uffff\1\u009c",
-            "\1\u00a0\1\u00a1\12\uffff\1\u009f",
-            "\1\u00a3\3\uffff\1\u00a2\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\13\uffff\1\u00a4",
-            "\1\u00a6\1\u00a7\12\uffff\1\u00a5",
-            "\1\u00a9\1\u00aa\12\uffff\1\u00a8",
-            "\1\u00ac\3\uffff\1\u00ab\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\13\uffff\1\u00ad",
-            "\1\u00af\1\u00b0\12\uffff\1\u00ae",
-            "\1\u008e\1\u008f",
-            "\1\52",
-            "\1\52",
-            "\1\u00b2\1\u00b3\12\uffff\1\u00b1",
-            "\1\u00b5\1\u00b7\2\uffff\1\u00b4\1\u00b6\1\u00b8",
-            "\1\52",
-            "\1\u0094\1\u0095",
-            "\1\54\1\51\16\uffff\1\52",
-            "\1\54\1\51\16\uffff\1\52",
-            "\1\u0097\1\u0098",
-            "\1\56",
-            "\1\56",
-            "\1\u00ba\1\u00bb\12\uffff\1\u00b9",
-            "\1\u00bd\1\u00bf\2\uffff\1\u00bc\1\u00be\1\u00c0",
-            "\1\56",
-            "\1\u009d\1\u009e",
-            "\1\60\1\55\16\uffff\1\56",
-            "\1\60\1\55\16\uffff\1\56",
-            "\1\u00a0\1\u00a1",
-            "\1\62",
-            "\1\62",
-            "\1\u00c2\1\u00c3\12\uffff\1\u00c1",
-            "\1\u00c5\1\u00c7\2\uffff\1\u00c4\1\u00c6\1\u00c8",
-            "\1\62",
-            "\1\u00a6\1\u00a7",
-            "\1\64\1\61\16\uffff\1\62",
-            "\1\64\1\61\16\uffff\1\62",
-            "\1\u00a9\1\u00aa",
-            "\1\66",
-            "\1\66",
-            "\1\u00ca\1\u00cb\12\uffff\1\u00c9",
-            "\1\u00cd\1\u00cf\2\uffff\1\u00cc\1\u00ce\1\u00d0",
-            "\1\66",
-            "\1\u00af\1\u00b0",
-            "\1\70\1\65\16\uffff\1\66",
-            "\1\70\1\65\16\uffff\1\66",
-            "\1\u00b2\1\u00b3",
-            "\1\u0091\17\uffff\1\u0092",
-            "\1\u0091\17\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\13\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\13\uffff\1\u0092",
-            "\1\u00ba\1\u00bb",
-            "\1\u009a\17\uffff\1\u009b",
-            "\1\u009a\17\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\13\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\13\uffff\1\u009b",
-            "\1\u00c2\1\u00c3",
-            "\1\u00a3\17\uffff\1\u00a4",
-            "\1\u00a3\17\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\13\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\13\uffff\1\u00a4",
-            "\1\u00ca\1\u00cb",
-            "\1\u00ac\17\uffff\1\u00ad",
-            "\1\u00ac\17\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\13\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\13\uffff\1\u00ad",
-            "\1\u00d6\1\u00d7\12\uffff\1\u00d5",
-            "\1\u00d9\1\u00da\12\uffff\1\u00d8",
-            "\1\u00dc\1\u00dd\12\uffff\1\u00db",
-            "\1\u00df\1\u00e0\12\uffff\1\u00de",
-            "\1\u00d6\1\u00d7",
-            "\1\u0091\17\uffff\1\u0092",
-            "\1\u0091\17\uffff\1\u0092",
-            "\1\u00d9\1\u00da",
-            "\1\u009a\17\uffff\1\u009b",
-            "\1\u009a\17\uffff\1\u009b",
-            "\1\u00dc\1\u00dd",
-            "\1\u00a3\17\uffff\1\u00a4",
-            "\1\u00a3\17\uffff\1\u00a4",
-            "\1\u00df\1\u00e0",
-            "\1\u00ac\17\uffff\1\u00ad",
-            "\1\u00ac\17\uffff\1\u00ad"
-    };
-
-    static final short[] DFA6_eot = DFA.unpackEncodedString(DFA6_eotS);
-    static final short[] DFA6_eof = DFA.unpackEncodedString(DFA6_eofS);
-    static final char[] DFA6_min = DFA.unpackEncodedStringToUnsignedChars(DFA6_minS);
-    static final char[] DFA6_max = DFA.unpackEncodedStringToUnsignedChars(DFA6_maxS);
-    static final short[] DFA6_accept = DFA.unpackEncodedString(DFA6_acceptS);
-    static final short[] DFA6_special = DFA.unpackEncodedString(DFA6_specialS);
-    static final short[][] DFA6_transition;
-
-    static {
-        int numStates = DFA6_transitionS.length;
-        DFA6_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA6_transition[i] = DFA.unpackEncodedString(DFA6_transitionS[i]);
-        }
-    }
-
-    class DFA6 extends DFA {
-
-        public DFA6(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 6;
-            this.eot = DFA6_eot;
-            this.eof = DFA6_eof;
-            this.min = DFA6_min;
-            this.max = DFA6_max;
-            this.accept = DFA6_accept;
-            this.special = DFA6_special;
-            this.transition = DFA6_transition;
-        }
-        public String getDescription() {
-            return "3248:1: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) );";
-        }
-    }
     static final String DFA15_eotS =
         "\26\uffff";
     static final String DFA15_eofS =
@@ -62414,7 +62249,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_43_in_rule__TypedefDeclaration__Group__0__Impl10165 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__1__Impl_in_rule__TypedefDeclaration__Group__110196 = new BitSet(new long[]{0x0000000000000730L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__2_in_rule__TypedefDeclaration__Group__110199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__TypedefDeclaration__TypeAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl10226 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__TypedefDeclaration__TypeSpecifierAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl10226 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__2__Impl_in_rule__TypedefDeclaration__Group__210256 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__3_in_rule__TypedefDeclaration__Group__210259 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__NameAssignment_2_in_rule__TypedefDeclaration__Group__2__Impl10286 = new BitSet(new long[]{0x0000000000000002L});
@@ -62436,7 +62271,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_41_in_rule__StructDefinition__Group__4__Impl10656 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__0__Impl_in_rule__StructMemberDeclaration__Group__010697 = new BitSet(new long[]{0x0000000000000730L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__1_in_rule__StructMemberDeclaration__Group__010700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructMemberDeclaration__TypeAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl10727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructMemberDeclaration__TypeSpecifierAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl10727 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__1__Impl_in_rule__StructMemberDeclaration__Group__110757 = new BitSet(new long[]{0x0000100000000000L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__2_in_rule__StructMemberDeclaration__Group__110760 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__NameAssignment_1_in_rule__StructMemberDeclaration__Group__1__Impl10787 = new BitSet(new long[]{0x0000000000000002L});
@@ -62903,7 +62738,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1_0_1__2_in_rule__RelationalExpression__Group_1_0_1__121700 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_rule__RelationalExpression__Group_1_0_1__1__Impl21728 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1_0_1__2__Impl_in_rule__RelationalExpression__Group_1_0_1__221759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RelationalExpression__TypeAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl21786 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_2_in_rule__RelationalExpression__Group_1_0_1__2__Impl21786 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__0__Impl_in_rule__AdditiveExpression__Group__021822 = new BitSet(new long[]{0x0000000000060000L});
     public static final BitSet FOLLOW_rule__AdditiveExpression__Group__1_in_rule__AdditiveExpression__Group__021825 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__Group__0__Impl21852 = new BitSet(new long[]{0x0000000000000002L});
@@ -63557,11 +63392,11 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_037537 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_137568 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationLiteralDeclaration__NameAssignment37599 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeAssignment_137630 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeSpecifierAssignment_137630 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__TypedefDeclaration__NameAssignment_237661 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__StructDefinition__NameAssignment_137692 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_rule__StructDefinition__MemberDeclarationsAssignment_337723 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeAssignment_037754 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeSpecifierAssignment_037754 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__StructMemberDeclaration__NameAssignment_137785 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionKind_in_rule__FunctionDefinition__KindAssignment_037816 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionDefinition__NameAssignment_237847 = new BitSet(new long[]{0x0000000000000002L});
@@ -63638,7 +63473,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleRelationalExpression_in_rule__EqualityExpression__RightOperandAssignment_1_240126 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRelationalOperator_in_rule__RelationalExpression__OperatorAssignment_1_0_0_140157 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_rule__RelationalExpression__RightOperandAssignment_1_0_0_240188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeAssignment_1_0_1_240219 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__RelationalExpression__TypeSpecifierAssignment_1_0_1_240219 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveOperator_in_rule__AdditiveExpression__OperatorAssignment_1_140250 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_rule__AdditiveExpression__RightOperandAssignment_1_240281 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_rule__MultiplicativeExpression__OperatorAssignment_1_140312 = new BitSet(new long[]{0x0000000000000002L});
@@ -63727,6 +63562,7 @@ public class InternalMscriptParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_142967 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_042998 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_143029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_synpred10_InternalMscript6873 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTensorType_in_synpred16_InternalMscript7071 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1__0_in_synpred118_InternalMscript21358 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_synpred146_InternalMscript32892 = new BitSet(new long[]{0x0000000000000002L});

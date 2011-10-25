@@ -71,13 +71,22 @@ public interface ComputationModelPackage extends EPackage {
 	int NUMBER_FORMAT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_FORMAT__NAME = 0;
+
+	/**
 	 * The number of structural features of the '<em>Number Format</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_FORMAT_FEATURE_COUNT = 0;
+	int NUMBER_FORMAT_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FloatingPointFormatImpl <em>Floating Point Format</em>}' class.
@@ -88,6 +97,15 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 */
 	int FLOATING_POINT_FORMAT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FLOATING_POINT_FORMAT__NAME = NUMBER_FORMAT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -116,6 +134,15 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 */
 	int FIXED_POINT_FORMAT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__NAME = NUMBER_FORMAT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Integer Length</b></em>' attribute.
@@ -219,13 +246,22 @@ public interface ComputationModelPackage extends EPackage {
 	int COMPUTATION_MODEL = 4;
 
 	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_MODEL__QUALIFIED_NAME = 0;
+
+	/**
 	 * The feature id for the '<em><b>Number Formats</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_MODEL__NUMBER_FORMATS = 0;
+	int COMPUTATION_MODEL__NUMBER_FORMATS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Number Format Mappings</b></em>' containment reference list.
@@ -234,7 +270,7 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS = 1;
+	int COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Computation Model</em>' class.
@@ -243,7 +279,7 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_MODEL_FEATURE_COUNT = 2;
+	int COMPUTATION_MODEL_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl <em>Number Format Mapping</em>}' class.
@@ -256,22 +292,13 @@ public interface ComputationModelPackage extends EPackage {
 	int NUMBER_FORMAT_MAPPING = 5;
 
 	/**
-	 * The feature id for the '<em><b>Owned Data Type</b></em>' containment reference.
+	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Data Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_FORMAT_MAPPING__DATA_TYPE = 1;
+	int NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER = 0;
 
 	/**
 	 * The feature id for the '<em><b>Number Format</b></em>' reference.
@@ -280,7 +307,7 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_FORMAT_MAPPING__NUMBER_FORMAT = 2;
+	int NUMBER_FORMAT_MAPPING__NUMBER_FORMAT = 1;
 
 	/**
 	 * The number of structural features of the '<em>Number Format Mapping</em>' class.
@@ -289,7 +316,7 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NUMBER_FORMAT_MAPPING_FEATURE_COUNT = 3;
+	int NUMBER_FORMAT_MAPPING_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind <em>Floating Point Format Kind</em>}' enum.
@@ -342,6 +369,17 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNumberFormat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormat#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.NumberFormat#getName()
+	 * @see #getNumberFormat()
+	 * @generated
+	 */
+	EAttribute getNumberFormat_Name();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat <em>Fixed Point Format</em>}'.
@@ -473,6 +511,17 @@ public interface ComputationModelPackage extends EPackage {
 	EReference getComputationModel_NumberFormatMappings();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getQualifiedName <em>Qualified Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getQualifiedName()
+	 * @see #getComputationModel()
+	 * @generated
+	 */
+	EAttribute getComputationModel_QualifiedName();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping <em>Number Format Mapping</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -483,26 +532,15 @@ public interface ComputationModelPackage extends EPackage {
 	EClass getNumberFormatMapping();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getOwnedDataType <em>Owned Data Type</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getTypeSpecifier <em>Type Specifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Owned Data Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getOwnedDataType()
+	 * @return the meta object for the containment reference '<em>Type Specifier</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getTypeSpecifier()
 	 * @see #getNumberFormatMapping()
 	 * @generated
 	 */
-	EReference getNumberFormatMapping_OwnedDataType();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getDataType <em>Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Data Type</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getDataType()
-	 * @see #getNumberFormatMapping()
-	 * @generated
-	 */
-	EReference getNumberFormatMapping_DataType();
+	EReference getNumberFormatMapping_TypeSpecifier();
 
 	/**
 	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getNumberFormat <em>Number Format</em>}'.
@@ -584,6 +622,14 @@ public interface ComputationModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NUMBER_FORMAT = eINSTANCE.getNumberFormat();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NUMBER_FORMAT__NAME = eINSTANCE.getNumberFormat_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl <em>Fixed Point Format</em>}' class.
@@ -688,6 +734,14 @@ public interface ComputationModelPackage extends EPackage {
 		EReference COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS = eINSTANCE.getComputationModel_NumberFormatMappings();
 
 		/**
+		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMPUTATION_MODEL__QUALIFIED_NAME = eINSTANCE.getComputationModel_QualifiedName();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl <em>Number Format Mapping</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -698,20 +752,12 @@ public interface ComputationModelPackage extends EPackage {
 		EClass NUMBER_FORMAT_MAPPING = eINSTANCE.getNumberFormatMapping();
 
 		/**
-		 * The meta object literal for the '<em><b>Owned Data Type</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Type Specifier</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE = eINSTANCE.getNumberFormatMapping_OwnedDataType();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference NUMBER_FORMAT_MAPPING__DATA_TYPE = eINSTANCE.getNumberFormatMapping_DataType();
+		EReference NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER = eINSTANCE.getNumberFormatMapping_TypeSpecifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Number Format</b></em>' reference feature.

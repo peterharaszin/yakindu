@@ -388,7 +388,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		TypeTestExpression transformedTypeTestExpression = MscriptFactory.eINSTANCE.createTypeTestExpression();
 		Expression expression = doSwitch(typeTestExpression.getExpression());
 		transformedTypeTestExpression.setExpression(expression);
-		transformedTypeTestExpression.setType(EcoreUtil.copy(typeTestExpression.getType()));
+		transformedTypeTestExpression.setTypeSpecifier(EcoreUtil.copy(typeTestExpression.getTypeSpecifier()));
 		return transformedTypeTestExpression;
 	}
 	

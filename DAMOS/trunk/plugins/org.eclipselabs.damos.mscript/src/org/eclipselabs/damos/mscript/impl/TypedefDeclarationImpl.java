@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.TypedefDeclaration;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.TypedefDeclarationImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.TypedefDeclarationImpl#getTypeSpecifier <em>Type Specifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -30,15 +30,14 @@ import org.eclipselabs.damos.mscript.TypedefDeclaration;
  */
 public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements TypedefDeclaration {
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+	 * The cached value of the '{@link #getTypeSpecifier() <em>Type Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getTypeSpecifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier type;
-
+	protected DataTypeSpecifier typeSpecifier;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,8 +62,8 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getType() {
-		return type;
+	public DataTypeSpecifier getTypeSpecifier() {
+		return typeSpecifier;
 	}
 
 	/**
@@ -72,11 +71,11 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(DataTypeSpecifier newType, NotificationChain msgs) {
-		DataTypeSpecifier oldType = type;
-		type = newType;
+	public NotificationChain basicSetTypeSpecifier(DataTypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		DataTypeSpecifier oldTypeSpecifier = typeSpecifier;
+		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPEDEF_DECLARATION__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -87,18 +86,18 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(DataTypeSpecifier newType) {
-		if (newType != type) {
+	public void setTypeSpecifier(DataTypeSpecifier newTypeSpecifier) {
+		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPEDEF_DECLARATION__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPEDEF_DECLARATION__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
+			if (typeSpecifier != null)
+				msgs = ((InternalEObject)typeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER, null, msgs);
+			if (newTypeSpecifier != null)
+				msgs = ((InternalEObject)newTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER, null, msgs);
+			msgs = basicSetTypeSpecifier(newTypeSpecifier, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPEDEF_DECLARATION__TYPE, newType, newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER, newTypeSpecifier, newTypeSpecifier));
 	}
 
 	/**
@@ -109,8 +108,8 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.TYPEDEF_DECLARATION__TYPE:
-				return basicSetType(null, msgs);
+			case MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER:
+				return basicSetTypeSpecifier(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -123,8 +122,8 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.TYPEDEF_DECLARATION__TYPE:
-				return getType();
+			case MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER:
+				return getTypeSpecifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -137,8 +136,8 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.TYPEDEF_DECLARATION__TYPE:
-				setType((DataTypeSpecifier)newValue);
+			case MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER:
+				setTypeSpecifier((DataTypeSpecifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -152,8 +151,8 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.TYPEDEF_DECLARATION__TYPE:
-				setType((DataTypeSpecifier)null);
+			case MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER:
+				setTypeSpecifier((DataTypeSpecifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -167,8 +166,8 @@ public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements Ty
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.TYPEDEF_DECLARATION__TYPE:
-				return type != null;
+			case MscriptPackage.TYPEDEF_DECLARATION__TYPE_SPECIFIER:
+				return typeSpecifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

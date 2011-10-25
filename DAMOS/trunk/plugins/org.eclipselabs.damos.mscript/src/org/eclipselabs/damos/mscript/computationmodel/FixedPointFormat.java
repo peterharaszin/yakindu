@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 public interface FixedPointFormat extends NumberFormat {
 	/**
 	 * Returns the value of the '<em><b>Integer Length</b></em>' attribute.
+	 * The default value is <code>"1"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Integer Length</em>' attribute isn't clear,
@@ -39,7 +40,7 @@ public interface FixedPointFormat extends NumberFormat {
 	 * @return the value of the '<em>Integer Length</em>' attribute.
 	 * @see #setIntegerLength(int)
 	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getFixedPointFormat_IntegerLength()
-	 * @model required="true" ordered="false"
+	 * @model default="1" required="true" ordered="false"
 	 * @generated
 	 */
 	int getIntegerLength();

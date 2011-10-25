@@ -184,6 +184,15 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNumberFormat_Name() {
+		return (EAttribute)numberFormatEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFixedPointFormat() {
 		return fixedPointFormatEClass;
 	}
@@ -275,7 +284,7 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * @generated
 	 */
 	public EReference getComputationModel_NumberFormats() {
-		return (EReference)computationModelEClass.getEStructuralFeatures().get(0);
+		return (EReference)computationModelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -284,7 +293,16 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * @generated
 	 */
 	public EReference getComputationModel_NumberFormatMappings() {
-		return (EReference)computationModelEClass.getEStructuralFeatures().get(1);
+		return (EReference)computationModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getComputationModel_QualifiedName() {
+		return (EAttribute)computationModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -301,7 +319,7 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNumberFormatMapping_OwnedDataType() {
+	public EReference getNumberFormatMapping_TypeSpecifier() {
 		return (EReference)numberFormatMappingEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -310,17 +328,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNumberFormatMapping_DataType() {
-		return (EReference)numberFormatMappingEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getNumberFormatMapping_NumberFormat() {
-		return (EReference)numberFormatMappingEClass.getEStructuralFeatures().get(2);
+		return (EReference)numberFormatMappingEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -373,6 +382,7 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		createEAttribute(floatingPointFormatEClass, FLOATING_POINT_FORMAT__KIND);
 
 		numberFormatEClass = createEClass(NUMBER_FORMAT);
+		createEAttribute(numberFormatEClass, NUMBER_FORMAT__NAME);
 
 		fixedPointFormatEClass = createEClass(FIXED_POINT_FORMAT);
 		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__INTEGER_LENGTH);
@@ -386,12 +396,12 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		createEAttribute(fixedPointOperationEClass, FIXED_POINT_OPERATION__SATURATE);
 
 		computationModelEClass = createEClass(COMPUTATION_MODEL);
+		createEAttribute(computationModelEClass, COMPUTATION_MODEL__QUALIFIED_NAME);
 		createEReference(computationModelEClass, COMPUTATION_MODEL__NUMBER_FORMATS);
 		createEReference(computationModelEClass, COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS);
 
 		numberFormatMappingEClass = createEClass(NUMBER_FORMAT_MAPPING);
-		createEReference(numberFormatMappingEClass, NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE);
-		createEReference(numberFormatMappingEClass, NUMBER_FORMAT_MAPPING__DATA_TYPE);
+		createEReference(numberFormatMappingEClass, NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER);
 		createEReference(numberFormatMappingEClass, NUMBER_FORMAT_MAPPING__NUMBER_FORMAT);
 
 		// Create enums
@@ -438,9 +448,10 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		initEAttribute(getFloatingPointFormat_Kind(), this.getFloatingPointFormatKind(), "kind", null, 1, 1, FloatingPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(numberFormatEClass, NumberFormat.class, "NumberFormat", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNumberFormat_Name(), ecorePackage.getEString(), "name", null, 0, 1, NumberFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fixedPointFormatEClass, FixedPointFormat.class, "FixedPointFormat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFixedPointFormat_IntegerLength(), ecorePackage.getEInt(), "integerLength", null, 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFixedPointFormat_IntegerLength(), ecorePackage.getEInt(), "integerLength", "1", 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPointFormat_FractionLength(), ecorePackage.getEInt(), "fractionLength", null, 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPointFormat_WordSize(), ecorePackage.getEInt(), "wordSize", null, 1, 1, FixedPointFormat.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getFixedPointFormat_Operations(), this.getFixedPointOperation(), null, "operations", null, 0, -1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -454,6 +465,7 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		initEAttribute(getFixedPointOperation_Saturate(), ecorePackage.getEBoolean(), "saturate", null, 1, 1, FixedPointOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(computationModelEClass, ComputationModel.class, "ComputationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getComputationModel_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ComputationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComputationModel_NumberFormats(), this.getNumberFormat(), null, "numberFormats", null, 0, -1, ComputationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getComputationModel_NumberFormatMappings(), this.getNumberFormatMapping(), null, "numberFormatMappings", null, 0, -1, ComputationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
@@ -461,9 +473,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		addEParameter(op, theMscriptPackage.getDataType(), "dataType", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(numberFormatMappingEClass, NumberFormatMapping.class, "NumberFormatMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNumberFormatMapping_OwnedDataType(), theMscriptPackage.getDataType(), null, "ownedDataType", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNumberFormatMapping_DataType(), theMscriptPackage.getDataType(), null, "dataType", null, 1, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNumberFormatMapping_NumberFormat(), this.getNumberFormat(), null, "numberFormat", null, 1, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getNumberFormatMapping_TypeSpecifier(), theMscriptPackage.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getNumberFormatMapping_NumberFormat(), this.getNumberFormat(), null, "numberFormat", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(floatingPointFormatKindEEnum, FloatingPointFormatKind.class, "FloatingPointFormatKind");

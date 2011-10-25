@@ -71,7 +71,7 @@
     </type>
     <alternatives xsi:type="xtext:Group">
       <elements xsi:type="xtext:Keyword" value="typedef"/>
-      <elements xsi:type="xtext:Assignment" feature="type" operator="=">
+      <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.19"/>
       </elements>
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
@@ -101,7 +101,7 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/Mscript#//StructMemberDeclaration"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Assignment" feature="type" operator="=">
+      <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.19"/>
       </elements>
       <elements xsi:type="xtext:Assignment" feature="name" operator="=">
@@ -849,7 +849,7 @@
               </type>
             </elements>
             <elements xsi:type="xtext:Keyword" value="is"/>
-            <elements xsi:type="xtext:Assignment" feature="type" operator="=">
+            <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
               <terminal xsi:type="xtext:RuleCall" rule="//@rules.19"/>
             </elements>
           </elements>

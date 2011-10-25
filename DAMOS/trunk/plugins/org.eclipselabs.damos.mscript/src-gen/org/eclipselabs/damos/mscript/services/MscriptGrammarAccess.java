@@ -162,8 +162,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TypedefDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cTypedefKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTypeDataTypeSpecifierParserRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Assignment cTypeSpecifierAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0 = (RuleCall)cTypeSpecifierAssignment_1.eContents().get(0);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameValidIDParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
@@ -171,20 +171,20 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		/// *
 		// * Typedef
 		// * / TypedefDeclaration:
-		//	"typedef" type=DataTypeSpecifier name=ValidID ";";
+		//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID ";";
 		public ParserRule getRule() { return rule; }
 
-		//"typedef" type=DataTypeSpecifier name=ValidID ";"
+		//"typedef" typeSpecifier=DataTypeSpecifier name=ValidID ";"
 		public Group getGroup() { return cGroup; }
 
 		//"typedef"
 		public Keyword getTypedefKeyword_0() { return cTypedefKeyword_0; }
 
-		//type=DataTypeSpecifier
-		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
+		//typeSpecifier=DataTypeSpecifier
+		public Assignment getTypeSpecifierAssignment_1() { return cTypeSpecifierAssignment_1; }
 
 		//DataTypeSpecifier
-		public RuleCall getTypeDataTypeSpecifierParserRuleCall_1_0() { return cTypeDataTypeSpecifierParserRuleCall_1_0; }
+		public RuleCall getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0() { return cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0; }
 
 		//name=ValidID
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
@@ -241,24 +241,24 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class StructMemberDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructMemberDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cTypeAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cTypeDataTypeSpecifierParserRuleCall_0_0 = (RuleCall)cTypeAssignment_0.eContents().get(0);
+		private final Assignment cTypeSpecifierAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTypeSpecifierDataTypeSpecifierParserRuleCall_0_0 = (RuleCall)cTypeSpecifierAssignment_0.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameValidIDParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
 		private final Keyword cSemicolonKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//StructMemberDeclaration:
-		//	type=DataTypeSpecifier name=ValidID ";";
+		//	typeSpecifier=DataTypeSpecifier name=ValidID ";";
 		public ParserRule getRule() { return rule; }
 
-		//type=DataTypeSpecifier name=ValidID ";"
+		//typeSpecifier=DataTypeSpecifier name=ValidID ";"
 		public Group getGroup() { return cGroup; }
 
-		//type=DataTypeSpecifier
-		public Assignment getTypeAssignment_0() { return cTypeAssignment_0; }
+		//typeSpecifier=DataTypeSpecifier
+		public Assignment getTypeSpecifierAssignment_0() { return cTypeSpecifierAssignment_0; }
 
 		//DataTypeSpecifier
-		public RuleCall getTypeDataTypeSpecifierParserRuleCall_0_0() { return cTypeDataTypeSpecifierParserRuleCall_0_0; }
+		public RuleCall getTypeSpecifierDataTypeSpecifierParserRuleCall_0_0() { return cTypeSpecifierDataTypeSpecifierParserRuleCall_0_0; }
 
 		//name=ValidID
 		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
@@ -1795,27 +1795,27 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_0_1 = (Group)cAlternatives_1_0.eContents().get(1);
 		private final Action cTypeTestExpressionExpressionAction_1_0_1_0 = (Action)cGroup_1_0_1.eContents().get(0);
 		private final Keyword cIsKeyword_1_0_1_1 = (Keyword)cGroup_1_0_1.eContents().get(1);
-		private final Assignment cTypeAssignment_1_0_1_2 = (Assignment)cGroup_1_0_1.eContents().get(2);
-		private final RuleCall cTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0 = (RuleCall)cTypeAssignment_1_0_1_2.eContents().get(0);
+		private final Assignment cTypeSpecifierAssignment_1_0_1_2 = (Assignment)cGroup_1_0_1.eContents().get(2);
+		private final RuleCall cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0 = (RuleCall)cTypeSpecifierAssignment_1_0_1_2.eContents().get(0);
 		
 		//RelationalExpression returns Expression:
 		//	AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
-		//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" type=DataTypeSpecifier)?;
+		//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?;
 		public ParserRule getRule() { return rule; }
 
 		//AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
-		//rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" type=DataTypeSpecifier)?
+		//rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?
 		public Group getGroup() { return cGroup; }
 
 		//AdditiveExpression
 		public RuleCall getAdditiveExpressionParserRuleCall_0() { return cAdditiveExpressionParserRuleCall_0; }
 
 		//=> ({RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression |
-		//{TypeTestExpression.expression=current} "is" type=DataTypeSpecifier)?
+		//{TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?
 		public Group getGroup_1() { return cGroup_1; }
 
 		//{RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression |
-		//{TypeTestExpression.expression=current} "is" type=DataTypeSpecifier
+		//{TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier
 		public Alternatives getAlternatives_1_0() { return cAlternatives_1_0; }
 
 		//{RelationalExpression.leftOperand=current} operator=RelationalOperator rightOperand=AdditiveExpression
@@ -1836,7 +1836,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//AdditiveExpression
 		public RuleCall getRightOperandAdditiveExpressionParserRuleCall_1_0_0_2_0() { return cRightOperandAdditiveExpressionParserRuleCall_1_0_0_2_0; }
 
-		//{TypeTestExpression.expression=current} "is" type=DataTypeSpecifier
+		//{TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier
 		public Group getGroup_1_0_1() { return cGroup_1_0_1; }
 
 		//{TypeTestExpression.expression=current}
@@ -1845,11 +1845,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//"is"
 		public Keyword getIsKeyword_1_0_1_1() { return cIsKeyword_1_0_1_1; }
 
-		//type=DataTypeSpecifier
-		public Assignment getTypeAssignment_1_0_1_2() { return cTypeAssignment_1_0_1_2; }
+		//typeSpecifier=DataTypeSpecifier
+		public Assignment getTypeSpecifierAssignment_1_0_1_2() { return cTypeSpecifierAssignment_1_0_1_2; }
 
 		//DataTypeSpecifier
-		public RuleCall getTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0() { return cTypeDataTypeSpecifierParserRuleCall_1_0_1_2_0; }
+		public RuleCall getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0() { return cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0_1_2_0; }
 	}
 
 	public class AdditiveExpressionElements extends AbstractParserRuleElementFinder {
@@ -4784,7 +4784,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Typedef
 	// * / TypedefDeclaration:
-	//	"typedef" type=DataTypeSpecifier name=ValidID ";";
+	//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID ";";
 	public TypedefDeclarationElements getTypedefDeclarationAccess() {
 		return (pTypedefDeclaration != null) ? pTypedefDeclaration : (pTypedefDeclaration = new TypedefDeclarationElements());
 	}
@@ -4806,7 +4806,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructMemberDeclaration:
-	//	type=DataTypeSpecifier name=ValidID ";";
+	//	typeSpecifier=DataTypeSpecifier name=ValidID ";";
 	public StructMemberDeclarationElements getStructMemberDeclarationAccess() {
 		return (pStructMemberDeclaration != null) ? pStructMemberDeclaration : (pStructMemberDeclaration = new StructMemberDeclarationElements());
 	}
@@ -5197,7 +5197,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RelationalExpression returns Expression:
 	//	AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
-	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" type=DataTypeSpecifier)?;
+	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?;
 	public RelationalExpressionElements getRelationalExpressionAccess() {
 		return (pRelationalExpression != null) ? pRelationalExpression : (pRelationalExpression = new RelationalExpressionElements());
 	}

@@ -21,5 +21,6 @@ Export-Package: org.eclipselabs.damos.mscript.ui,
  org.eclipselabs.damos.mscript.ui.contentassist,
  org.eclipselabs.damos.mscript.ui.contentassist.antlr,
  org.eclipselabs.damos.mscript.ui.internal;x-friends:="org.eclipselabs.damos.mscript.tests",
- org.eclipselabs.damos.mscript.ui.syntaxcoloring
+ org.eclipselabs.damos.mscript.ui.syntaxcoloring,
+ org.eclipselabs.damos.mscript.computationmodel.ui.contentassist.antlr
 Bundle-Activator: org.eclipselabs.damos.mscript.ui.internal.MscriptActivator

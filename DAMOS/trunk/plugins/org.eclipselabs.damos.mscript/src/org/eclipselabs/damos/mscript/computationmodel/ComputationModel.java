@@ -18,6 +18,7 @@ import org.eclipselabs.damos.mscript.DataType;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getNumberFormats <em>Number Formats</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getNumberFormatMappings <em>Number Format Mappings</em>}</li>
  * </ul>
@@ -59,6 +60,32 @@ public interface ComputationModel extends EObject {
 	 * @generated
 	 */
 	EList<NumberFormatMapping> getNumberFormatMappings();
+
+	/**
+	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualified Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Qualified Name</em>' attribute.
+	 * @see #setQualifiedName(String)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getComputationModel_QualifiedName()
+	 * @model
+	 * @generated
+	 */
+	String getQualifiedName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getQualifiedName <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Qualified Name</em>' attribute.
+	 * @see #getQualifiedName()
+	 * @generated
+	 */
+	void setQualifiedName(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -1069,7 +1069,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Typedef
 	// * / TypedefDeclaration:
-	//	"typedef" type=DataTypeSpecifier name=ValidID ";";
+	//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID ";";
 	public MscriptGrammarAccess.TypedefDeclarationElements getTypedefDeclarationAccess() {
 		return gaMscript.getTypedefDeclarationAccess();
 	}
@@ -1091,7 +1091,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructMemberDeclaration:
-	//	type=DataTypeSpecifier name=ValidID ";";
+	//	typeSpecifier=DataTypeSpecifier name=ValidID ";";
 	public MscriptGrammarAccess.StructMemberDeclarationElements getStructMemberDeclarationAccess() {
 		return gaMscript.getStructMemberDeclarationAccess();
 	}
@@ -1482,7 +1482,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	//RelationalExpression returns Expression:
 	//	AdditiveExpression => ({RelationalExpression.leftOperand=current} operator=RelationalOperator
-	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" type=DataTypeSpecifier)?;
+	//	rightOperand=AdditiveExpression | {TypeTestExpression.expression=current} "is" typeSpecifier=DataTypeSpecifier)?;
 	public MscriptGrammarAccess.RelationalExpressionElements getRelationalExpressionAccess() {
 		return gaMscript.getRelationalExpressionAccess();
 	}

@@ -7,7 +7,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" lowerBound="1"
         eType="#//FloatingPointFormatKind"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NumberFormat" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberFormat" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FloatingPointFormatKind">
     <eLiterals name="Binary16"/>
     <eLiterals name="Binary32" value="1"/>
@@ -22,7 +24,8 @@
       <eParameters name="kind" ordered="false" lowerBound="1" eType="#//FixedPointOperationKind"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="integerLength" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral="1"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fractionLength" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wordSize" ordered="false"
@@ -51,17 +54,16 @@
     <eOperations name="getNumberFormat" ordered="false" eType="#//NumberFormat">
       <eParameters name="dataType" ordered="false" lowerBound="1" eType="ecore:EClass Mscript.ecore#//DataType"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="numberFormats" ordered="false"
         upperBound="-1" eType="#//NumberFormat" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="numberFormatMappings" ordered="false"
         upperBound="-1" eType="#//NumberFormatMapping" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberFormatMapping">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDataType" ordered="false"
-        eType="ecore:EClass Mscript.ecore#//DataType" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
-        lowerBound="1" eType="ecore:EClass Mscript.ecore#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="typeSpecifier" ordered="false"
+        eType="ecore:EClass Mscript.ecore#//DataTypeSpecifier" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="numberFormat" ordered="false"
-        lowerBound="1" eType="#//NumberFormat"/>
+        eType="#//NumberFormat"/>
   </eClassifiers>
 </ecore:EPackage>

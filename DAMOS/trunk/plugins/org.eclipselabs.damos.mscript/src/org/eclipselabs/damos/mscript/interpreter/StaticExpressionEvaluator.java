@@ -399,7 +399,7 @@ public class StaticExpressionEvaluator {
 			if (value instanceof InvalidValue) {
 				return value;
 			}
-			DataType dataType = EcoreUtil.copy(typeTestExpression.getType().getType());
+			DataType dataType = EcoreUtil.copy(typeTestExpression.getTypeSpecifier().getType());
 			return Values.valueOf(context.getComputationContext(), dataType.isAssignableFrom(value.getDataType()));
 		}
 

@@ -44,7 +44,7 @@ public class ComputationModelOperations {
 		NumberFormat numberFormat = null;
 		DataType foundDataType = null;
 		for (NumberFormatMapping mapping : computationModel.getNumberFormatMappings()) {
-			DataType mappingDataType = mapping.getDataType();
+			DataType mappingDataType = mapping.getTypeSpecifier().getType();
 			if (mappingDataType.isAssignableFrom(dataType)) {
 				if (foundDataType != null) {
 					if (foundDataType.isAssignableFrom(mappingDataType)) {

@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
@@ -24,9 +24,8 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.impl.NumberFormatMappingImpl#getOwnedDataType <em>Owned Data Type</em>}</li>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.impl.NumberFormatMappingImpl#getDataType <em>Data Type</em>}</li>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.impl.NumberFormatMappingImpl#getNumberFormat <em>Number Format</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl#getTypeSpecifier <em>Type Specifier</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl#getNumberFormat <em>Number Format</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,24 +33,14 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
  */
 public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormatMapping {
 	/**
-	 * The cached value of the '{@link #getOwnedDataType() <em>Owned Data Type</em>}' containment reference.
+	 * The cached value of the '{@link #getTypeSpecifier() <em>Type Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOwnedDataType()
+	 * @see #getTypeSpecifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataType ownedDataType;
-
-	/**
-	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDataType()
-	 * @generated
-	 * @ordered
-	 */
-	protected DataType dataType;
+	protected DataTypeSpecifier typeSpecifier;
 
 	/**
 	 * The cached value of the '{@link #getNumberFormat() <em>Number Format</em>}' reference.
@@ -87,8 +76,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataType getOwnedDataType() {
-		return ownedDataType;
+	public DataTypeSpecifier getTypeSpecifier() {
+		return typeSpecifier;
 	}
 
 	/**
@@ -96,11 +85,11 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOwnedDataType(DataType newOwnedDataType, NotificationChain msgs) {
-		DataType oldOwnedDataType = ownedDataType;
-		ownedDataType = newOwnedDataType;
+	public NotificationChain basicSetTypeSpecifier(DataTypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		DataTypeSpecifier oldTypeSpecifier = typeSpecifier;
+		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE, oldOwnedDataType, newOwnedDataType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -111,64 +100,18 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwnedDataType(DataType newOwnedDataType) {
-		if (newOwnedDataType != ownedDataType) {
+	public void setTypeSpecifier(DataTypeSpecifier newTypeSpecifier) {
+		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
-			if (ownedDataType != null)
-				msgs = ((InternalEObject)ownedDataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE, null, msgs);
-			if (newOwnedDataType != null)
-				msgs = ((InternalEObject)newOwnedDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE, null, msgs);
-			msgs = basicSetOwnedDataType(newOwnedDataType, msgs);
+			if (typeSpecifier != null)
+				msgs = ((InternalEObject)typeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, null, msgs);
+			if (newTypeSpecifier != null)
+				msgs = ((InternalEObject)newTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, null, msgs);
+			msgs = basicSetTypeSpecifier(newTypeSpecifier, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE, newOwnedDataType, newOwnedDataType));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataType getDataTypeGen() {
-		if (dataType != null && dataType.eIsProxy()) {
-			InternalEObject oldDataType = (InternalEObject)dataType;
-			dataType = (DataType)eResolveProxy(oldDataType);
-			if (dataType != oldDataType) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputationModelPackage.NUMBER_FORMAT_MAPPING__DATA_TYPE, oldDataType, dataType));
-			}
-		}
-		return dataType;
-	}
-	
-	public DataType getDataType() {
-		DataType dataType = getDataTypeGen();
-		if (dataType == null) {
-			dataType = getOwnedDataType();
-		}
-		return dataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataType basicGetDataType() {
-		return dataType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDataType(DataType newDataType) {
-		DataType oldDataType = dataType;
-		dataType = newDataType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__DATA_TYPE, oldDataType, dataType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER, newTypeSpecifier, newTypeSpecifier));
 	}
 
 	/**
@@ -217,8 +160,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE:
-				return basicSetOwnedDataType(null, msgs);
+			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+				return basicSetTypeSpecifier(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -231,11 +174,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE:
-				return getOwnedDataType();
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__DATA_TYPE:
-				if (resolve) return getDataType();
-				return basicGetDataType();
+			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+				return getTypeSpecifier();
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				if (resolve) return getNumberFormat();
 				return basicGetNumberFormat();
@@ -251,11 +191,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE:
-				setOwnedDataType((DataType)newValue);
-				return;
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__DATA_TYPE:
-				setDataType((DataType)newValue);
+			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+				setTypeSpecifier((DataTypeSpecifier)newValue);
 				return;
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				setNumberFormat((NumberFormat)newValue);
@@ -272,11 +209,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE:
-				setOwnedDataType((DataType)null);
-				return;
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__DATA_TYPE:
-				setDataType((DataType)null);
+			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+				setTypeSpecifier((DataTypeSpecifier)null);
 				return;
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				setNumberFormat((NumberFormat)null);
@@ -293,10 +227,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__OWNED_DATA_TYPE:
-				return ownedDataType != null;
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__DATA_TYPE:
-				return dataType != null;
+			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
+				return typeSpecifier != null;
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
 				return numberFormat != null;
 		}

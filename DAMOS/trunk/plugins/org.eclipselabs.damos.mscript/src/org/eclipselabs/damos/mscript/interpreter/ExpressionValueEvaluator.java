@@ -277,7 +277,7 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 		@Override
 		public IValue caseTypeTestExpression(TypeTestExpression typeTestExpression) {
 			IValue value = doSwitch(typeTestExpression.getExpression());
-			DataType dataType = EcoreUtil.copy(typeTestExpression.getType().getType());
+			DataType dataType = EcoreUtil.copy(typeTestExpression.getTypeSpecifier().getType());
 			return Values.valueOf(context.getComputationContext(), dataType.isAssignableFrom(value.getDataType()));
 		}
 	

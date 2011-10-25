@@ -93,14 +93,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//EnumerationLiteralDeclaration/name"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//TypedefDeclaration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypedefDeclaration/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypedefDeclaration/typeSpecifier"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StructDefinition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructDefinition/memberDeclarations"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StructMemberDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StructMemberDeclaration/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructMemberDeclaration/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//StructMemberDeclaration/typeSpecifier"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//FunctionDefinition">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionDefinition/kind"/>
@@ -253,7 +253,7 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//TypeTestExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeTestExpression/expression"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeTestExpression/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//TypeTestExpression/typeSpecifier"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//AdditiveExpression">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//AdditiveExpression/operator"/>

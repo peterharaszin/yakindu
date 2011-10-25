@@ -991,7 +991,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypedefDeclaration_Type() {
+	public EReference getTypedefDeclaration_TypeSpecifier() {
 		return (EReference)typedefDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1036,7 +1036,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructMemberDeclaration_Type() {
+	public EReference getStructMemberDeclaration_TypeSpecifier() {
 		return (EReference)structMemberDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2089,7 +2089,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTypeTestExpression_Type() {
+	public EReference getTypeTestExpression_TypeSpecifier() {
 		return (EReference)typeTestExpressionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -3378,14 +3378,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(enumerationLiteralDeclarationEClass, ENUMERATION_LITERAL_DECLARATION__NAME);
 
 		typedefDeclarationEClass = createEClass(TYPEDEF_DECLARATION);
-		createEReference(typedefDeclarationEClass, TYPEDEF_DECLARATION__TYPE);
+		createEReference(typedefDeclarationEClass, TYPEDEF_DECLARATION__TYPE_SPECIFIER);
 
 		structDefinitionEClass = createEClass(STRUCT_DEFINITION);
 		createEReference(structDefinitionEClass, STRUCT_DEFINITION__MEMBER_DECLARATIONS);
 
 		structMemberDeclarationEClass = createEClass(STRUCT_MEMBER_DECLARATION);
 		createEAttribute(structMemberDeclarationEClass, STRUCT_MEMBER_DECLARATION__NAME);
-		createEReference(structMemberDeclarationEClass, STRUCT_MEMBER_DECLARATION__TYPE);
+		createEReference(structMemberDeclarationEClass, STRUCT_MEMBER_DECLARATION__TYPE_SPECIFIER);
 
 		functionDefinitionEClass = createEClass(FUNCTION_DEFINITION);
 		createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__KIND);
@@ -3540,7 +3540,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		typeTestExpressionEClass = createEClass(TYPE_TEST_EXPRESSION);
 		createEReference(typeTestExpressionEClass, TYPE_TEST_EXPRESSION__EXPRESSION);
-		createEReference(typeTestExpressionEClass, TYPE_TEST_EXPRESSION__TYPE);
+		createEReference(typeTestExpressionEClass, TYPE_TEST_EXPRESSION__TYPE_SPECIFIER);
 
 		additiveExpressionEClass = createEClass(ADDITIVE_EXPRESSION);
 		createEAttribute(additiveExpressionEClass, ADDITIVE_EXPRESSION__OPERATOR);
@@ -3873,14 +3873,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEAttribute(getEnumerationLiteralDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumerationLiteralDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typedefDeclarationEClass, TypedefDeclaration.class, "TypedefDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTypedefDeclaration_Type(), this.getDataTypeSpecifier(), null, "type", null, 0, 1, TypedefDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypedefDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypedefDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(structDefinitionEClass, StructDefinition.class, "StructDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStructDefinition_MemberDeclarations(), this.getStructMemberDeclaration(), null, "memberDeclarations", null, 0, -1, StructDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(structMemberDeclarationEClass, StructMemberDeclaration.class, "StructMemberDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStructMemberDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getStructMemberDeclaration_Type(), this.getDataTypeSpecifier(), null, "type", null, 0, 1, StructMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getStructMemberDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, StructMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionDefinitionEClass, FunctionDefinition.class, "FunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionDefinition_Kind(), this.getFunctionKind(), "kind", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4039,7 +4039,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(typeTestExpressionEClass, TypeTestExpression.class, "TypeTestExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypeTestExpression_Expression(), this.getExpression(), null, "expression", null, 0, 1, TypeTestExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTypeTestExpression_Type(), this.getDataTypeSpecifier(), null, "type", null, 0, 1, TypeTestExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTypeTestExpression_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypeTestExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(additiveExpressionEClass, AdditiveExpression.class, "AdditiveExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getAdditiveExpression_Operator(), this.getAdditiveOperator(), "operator", null, 0, 1, AdditiveExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

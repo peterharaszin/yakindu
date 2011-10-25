@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.TypeTestExpressionImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.TypeTestExpressionImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.TypeTestExpressionImpl#getTypeSpecifier <em>Type Specifier</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,14 +42,14 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	protected Expression expression;
 
 	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
+	 * The cached value of the '{@link #getTypeSpecifier() <em>Type Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getType()
+	 * @see #getTypeSpecifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected DataTypeSpecifier type;
+	protected DataTypeSpecifier typeSpecifier;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,8 +118,8 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeSpecifier getType() {
-		return type;
+	public DataTypeSpecifier getTypeSpecifier() {
+		return typeSpecifier;
 	}
 
 	/**
@@ -127,11 +127,11 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetType(DataTypeSpecifier newType, NotificationChain msgs) {
-		DataTypeSpecifier oldType = type;
-		type = newType;
+	public NotificationChain basicSetTypeSpecifier(DataTypeSpecifier newTypeSpecifier, NotificationChain msgs) {
+		DataTypeSpecifier oldTypeSpecifier = typeSpecifier;
+		typeSpecifier = newTypeSpecifier;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPE_TEST_EXPRESSION__TYPE, oldType, newType);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER, oldTypeSpecifier, newTypeSpecifier);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -142,18 +142,18 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(DataTypeSpecifier newType) {
-		if (newType != type) {
+	public void setTypeSpecifier(DataTypeSpecifier newTypeSpecifier) {
+		if (newTypeSpecifier != typeSpecifier) {
 			NotificationChain msgs = null;
-			if (type != null)
-				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPE_TEST_EXPRESSION__TYPE, null, msgs);
-			if (newType != null)
-				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPE_TEST_EXPRESSION__TYPE, null, msgs);
-			msgs = basicSetType(newType, msgs);
+			if (typeSpecifier != null)
+				msgs = ((InternalEObject)typeSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER, null, msgs);
+			if (newTypeSpecifier != null)
+				msgs = ((InternalEObject)newTypeSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER, null, msgs);
+			msgs = basicSetTypeSpecifier(newTypeSpecifier, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPE_TEST_EXPRESSION__TYPE, newType, newType));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER, newTypeSpecifier, newTypeSpecifier));
 	}
 
 	/**
@@ -166,8 +166,8 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 		switch (featureID) {
 			case MscriptPackage.TYPE_TEST_EXPRESSION__EXPRESSION:
 				return basicSetExpression(null, msgs);
-			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE:
-				return basicSetType(null, msgs);
+			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER:
+				return basicSetTypeSpecifier(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -182,8 +182,8 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 		switch (featureID) {
 			case MscriptPackage.TYPE_TEST_EXPRESSION__EXPRESSION:
 				return getExpression();
-			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE:
-				return getType();
+			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER:
+				return getTypeSpecifier();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -199,8 +199,8 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 			case MscriptPackage.TYPE_TEST_EXPRESSION__EXPRESSION:
 				setExpression((Expression)newValue);
 				return;
-			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE:
-				setType((DataTypeSpecifier)newValue);
+			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER:
+				setTypeSpecifier((DataTypeSpecifier)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -217,8 +217,8 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 			case MscriptPackage.TYPE_TEST_EXPRESSION__EXPRESSION:
 				setExpression((Expression)null);
 				return;
-			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE:
-				setType((DataTypeSpecifier)null);
+			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER:
+				setTypeSpecifier((DataTypeSpecifier)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -234,8 +234,8 @@ public class TypeTestExpressionImpl extends ExpressionImpl implements TypeTestEx
 		switch (featureID) {
 			case MscriptPackage.TYPE_TEST_EXPRESSION__EXPRESSION:
 				return expression != null;
-			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE:
-				return type != null;
+			case MscriptPackage.TYPE_TEST_EXPRESSION__TYPE_SPECIFIER:
+				return typeSpecifier != null;
 		}
 		return super.eIsSet(featureID);
 	}

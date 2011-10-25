@@ -4430,24 +4430,24 @@ rule__FloatingPointFormatKind__Alternatives
 )
 
     |(
-{ before(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1()); }
+{ before(grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1()); }
 (	'binary32' 
 )
-{ after(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1()); }
+{ after(grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1()); }
 )
 
     |(
-{ before(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2()); }
+{ before(grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2()); }
 (	'binary64' 
 )
-{ after(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2()); }
+{ after(grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2()); }
 )
 
     |(
-{ before(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3()); }
+{ before(grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3()); }
 (	'binary128' 
 )
-{ after(grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3()); }
+{ after(grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3()); }
 )
 
     |(

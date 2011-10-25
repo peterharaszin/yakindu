@@ -59,15 +59,15 @@
           <literal value="binary16"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/ComputationModel#//FloatingPointFormatKind/Binary16"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/ComputationModel#//FloatingPointFormatKind/Binary32"/>
           <literal value="binary32"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/ComputationModel#//FloatingPointFormatKind/Binary16"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/ComputationModel#//FloatingPointFormatKind/Binary64"/>
           <literal value="binary64"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/ComputationModel#//FloatingPointFormatKind/Binary16"/>
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/ComputationModel#//FloatingPointFormatKind/Binary128"/>
           <literal value="binary128"/>
         </elements>
         <elements xsi:type="xtext:EnumLiteralDeclaration">

@@ -22471,8 +22471,8 @@ public class InternalComputationModelParser extends AbstractInternalAntlrParser 
                     enumLiteral_1=(Token)match(input,87,FOLLOW_87_in_ruleFloatingPointFormatKind17409); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                              current = grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-                              newLeafNode(enumLiteral_1, grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1()); 
+                              current = grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+                              newLeafNode(enumLiteral_1, grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1()); 
                           
                     }
 
@@ -22490,8 +22490,8 @@ public class InternalComputationModelParser extends AbstractInternalAntlrParser 
                     enumLiteral_2=(Token)match(input,88,FOLLOW_88_in_ruleFloatingPointFormatKind17426); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                              current = grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-                              newLeafNode(enumLiteral_2, grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2()); 
+                              current = grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+                              newLeafNode(enumLiteral_2, grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2()); 
                           
                     }
 
@@ -22509,8 +22509,8 @@ public class InternalComputationModelParser extends AbstractInternalAntlrParser 
                     enumLiteral_3=(Token)match(input,89,FOLLOW_89_in_ruleFloatingPointFormatKind17443); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                              current = grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-                              newLeafNode(enumLiteral_3, grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3()); 
+                              current = grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+                              newLeafNode(enumLiteral_3, grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3()); 
                           
                     }
 

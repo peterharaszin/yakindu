@@ -7671,20 +7671,20 @@ ruleFloatingPointFormatKind returns [Enumerator current=null]
 )
     |(	enumLiteral_1='binary32' 
 	{
-        $current = grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_1()); 
+        $current = grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_1, grammarAccess.getFloatingPointFormatKindAccess().getBinary32EnumLiteralDeclaration_1()); 
     }
 )
     |(	enumLiteral_2='binary64' 
 	{
-        $current = grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_2, grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_2()); 
+        $current = grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_2, grammarAccess.getFloatingPointFormatKindAccess().getBinary64EnumLiteralDeclaration_2()); 
     }
 )
     |(	enumLiteral_3='binary128' 
 	{
-        $current = grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_3, grammarAccess.getFloatingPointFormatKindAccess().getBinary16EnumLiteralDeclaration_3()); 
+        $current = grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_3, grammarAccess.getFloatingPointFormatKindAccess().getBinary128EnumLiteralDeclaration_3()); 
     }
 )
     |(	enumLiteral_4='decimal32' 

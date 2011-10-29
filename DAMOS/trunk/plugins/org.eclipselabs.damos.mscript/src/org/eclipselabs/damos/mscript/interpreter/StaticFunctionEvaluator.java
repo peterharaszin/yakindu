@@ -127,30 +127,44 @@ public class StaticFunctionEvaluator {
 			}
 		}
 		
-		for (EquationDescriptor equationDescriptor : getSortedEquations(functionDescriptor, status)) {
-			StatusUtil.merge(status, staticExpressionEvaluator.evaluate(context, equationDescriptor.getRightHandSide().getExpression()));
-			VariableAccess variableAccess = (VariableAccess) equationDescriptor.getLeftHandSide().getExpression();
-			IValue leftHandSideValue = context.getValue(variableAccess.getFeature());
-			IValue rightHandSideValue = context.getValue(equationDescriptor.getRightHandSide().getExpression());
-			if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
-				DataType dataType;
-				if (leftHandSideValue != null) {
-					dataType = TypeUtil.getLeftHandDataType(leftHandSideValue.getDataType(), rightHandSideValue.getDataType());
-				} else {
-					dataType = rightHandSideValue.getDataType();
-				}
-				if (dataType != null) {
-					AnyValue value = new AnyValue(context.getComputationContext(), dataType);
-					context.setValue(variableAccess, value);
-					context.setValue(variableAccess.getFeature(), value);
-				} else {
-					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
-							"The data type of the variable " + variableAccess.getFeature().getName()
-									+ " could not be determined",
-							variableAccess.getFeature()));
+		Collection<EquationDescriptor> sortedEquations = getSortedEquations(functionDescriptor, status);
+		
+		boolean changed;
+		do {
+			changed = false;
+			for (EquationDescriptor equationDescriptor : sortedEquations) {
+				StatusUtil.merge(status, staticExpressionEvaluator.evaluate(context, equationDescriptor.getRightHandSide().getExpression()));
+				VariableAccess variableAccess = (VariableAccess) equationDescriptor.getLeftHandSide().getExpression();
+				IValue leftHandSideValue = context.getValue(variableAccess.getFeature());
+				IValue rightHandSideValue = context.getValue(equationDescriptor.getRightHandSide().getExpression());
+				if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
+					DataType dataType;
+					if (leftHandSideValue != null) {
+						dataType = TypeUtil.getLeftHandDataType(leftHandSideValue.getDataType(), rightHandSideValue.getDataType());
+					} else {
+						dataType = rightHandSideValue.getDataType();
+					}
+					if (dataType != null) {
+						DataType previousDataType = null;
+						IValue previousValue = context.getValue(variableAccess.getFeature());
+						if (previousValue != null) {
+							previousDataType = previousValue.getDataType();
+						}
+						if (previousDataType == null || !previousDataType.isEquivalentTo(dataType)) {
+							changed = true;
+						}
+						AnyValue value = new AnyValue(context.getComputationContext(), dataType);
+						context.setValue(variableAccess, value);
+						context.setValue(variableAccess.getFeature(), value);
+					} else {
+						status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
+								"The data type of the variable " + variableAccess.getFeature().getName()
+										+ " could not be determined",
+								variableAccess.getFeature()));
+					}
 				}
 			}
-		}
+		} while (changed);
 		
 		return status;
 	}

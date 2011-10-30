@@ -15,13 +15,58 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
+import org.eclipselabs.damos.dmltext.DMLTextFactory;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.internal.util.TextAdapter;
+import org.eclipselabs.damos.mscript.BooleanLiteral;
+import org.eclipselabs.damos.mscript.IntegerLiteral;
+import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.RealLiteral;
+import org.eclipselabs.damos.mscript.Unit;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
  *
  */
 public class DMLTextUtil {
+
+	public static MscriptValueSpecification createValueSpecification(double value) {
+		return createValueSpecification(value, TypeUtil.createUnit());
+	}
+	
+	public static MscriptValueSpecification createValueSpecification(double value, Unit unit) {
+		MscriptValueSpecification valueSpecification = DMLTextFactory.eINSTANCE.createMscriptValueSpecification();
+		RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
+		realLiteral.setValue(value);
+		realLiteral.setUnit(unit);
+		valueSpecification.setExpression(realLiteral);
+		DMLTextUtil.setText(valueSpecification, Double.toString(value));
+		return valueSpecification;
+	}
+	
+	public static MscriptValueSpecification createValueSpecification(long value) {
+		return createValueSpecification(value, TypeUtil.createUnit());
+	}
+	
+	public static MscriptValueSpecification createValueSpecification(long value, Unit unit) {
+		MscriptValueSpecification valueSpecification = DMLTextFactory.eINSTANCE.createMscriptValueSpecification();
+		IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
+		integerLiteral.setValue(value);
+		integerLiteral.setUnit(unit);
+		valueSpecification.setExpression(integerLiteral);
+		DMLTextUtil.setText(valueSpecification, Long.toString(value));
+		return valueSpecification;
+	}
+
+	public static MscriptValueSpecification createValueSpecification(boolean value) {
+		MscriptValueSpecification valueSpecification = DMLTextFactory.eINSTANCE.createMscriptValueSpecification();
+		BooleanLiteral booleanLiteral = MscriptFactory.eINSTANCE.createBooleanLiteral();
+		booleanLiteral.setTrue(value);
+		valueSpecification.setExpression(booleanLiteral);
+		DMLTextUtil.setText(valueSpecification, Boolean.toString(value));
+		return valueSpecification;
+	}
 
 	public static String getText(EObject eObject) {
 		TextAdapter adapter = (TextAdapter) EcoreUtil.getAdapter(eObject.eAdapters(), TextAdapter.class);

@@ -1069,7 +1069,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Typedef
 	// * / TypedefDeclaration:
-	//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID ";";
+	//	"typedef" typeSpecifier=DataTypeSpecifier name=ValidID;
 	public MscriptGrammarAccess.TypedefDeclarationElements getTypedefDeclarationAccess() {
 		return gaMscript.getTypedefDeclarationAccess();
 	}
@@ -1091,7 +1091,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StructMemberDeclaration:
-	//	typeSpecifier=DataTypeSpecifier name=ValidID ";";
+	//	typeSpecifier=DataTypeSpecifier name=ValidID;
 	public MscriptGrammarAccess.StructMemberDeclarationElements getStructMemberDeclarationAccess() {
 		return gaMscript.getStructMemberDeclarationAccess();
 	}
@@ -1109,7 +1109,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	//	")" "->" outputParameterDeclarations+=OutputParameterDeclaration (","
 	//	outputParameterDeclarations+=OutputParameterDeclaration)* "{" (checks+=Check | assertions+=Assertion |
 	//	functionObjectDeclarations+=FunctionObjectDeclaration | stateVariableDeclarations+=StateVariableDeclaration |
-	//	equations+=Equation)* "}";
+	//	constantDeclarations+=ConstantDeclaration | equations+=Equation)* "}";
 	public MscriptGrammarAccess.FunctionDefinitionElements getFunctionDefinitionAccess() {
 		return gaMscript.getFunctionDefinitionAccess();
 	}
@@ -1161,7 +1161,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	//Check:
 	//	"check" ("<" templateArguments+=Expression ("," templateArguments+=Expression)* ">")? "("
 	//	(inputParameterTypes+=DataTypeSpecifier ("," inputParameterTypes+=DataTypeSpecifier)*)? ")" "->"
-	//	outputParameterTypes+=DataTypeSpecifier ("," outputParameterTypes+=DataTypeSpecifier)* ";";
+	//	outputParameterTypes+=DataTypeSpecifier ("," outputParameterTypes+=DataTypeSpecifier)*;
 	public MscriptGrammarAccess.CheckElements getCheckAccess() {
 		return gaMscript.getCheckAccess();
 	}
@@ -1181,7 +1181,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assertion:
-	//	static?="static"? "assert" condition=Expression ":" statusKind=AssertionStatusKind message=Expression ";";
+	//	static?="static"? "assert" condition=Expression ":" statusKind=AssertionStatusKind message=Expression;
 	public MscriptGrammarAccess.AssertionElements getAssertionAccess() {
 		return gaMscript.getAssertionAccess();
 	}
@@ -1191,7 +1191,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StateVariableDeclaration:
-	//	"var" name=ValidID ";";
+	//	"var" name=ValidID;
 	public MscriptGrammarAccess.StateVariableDeclarationElements getStateVariableDeclarationAccess() {
 		return gaMscript.getStateVariableDeclarationAccess();
 	}
@@ -1200,9 +1200,19 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getStateVariableDeclarationAccess().getRule();
 	}
 
+	//ConstantDeclaration:
+	//	"const" name=ValidID "=" initializer=Expression;
+	public MscriptGrammarAccess.ConstantDeclarationElements getConstantDeclarationAccess() {
+		return gaMscript.getConstantDeclarationAccess();
+	}
+	
+	public ParserRule getConstantDeclarationRule() {
+		return getConstantDeclarationAccess().getRule();
+	}
+
 	//FunctionObjectDeclaration:
 	//	"fob" functionName=[FunctionDefinition|QualifiedName] ("<" templateArguments+=Expression (","
-	//	templateArguments+=Expression)* ">")? name=ValidID ";";
+	//	templateArguments+=Expression)* ">")? name=ValidID;
 	public MscriptGrammarAccess.FunctionObjectDeclarationElements getFunctionObjectDeclarationAccess() {
 		return gaMscript.getFunctionObjectDeclarationAccess();
 	}
@@ -1212,7 +1222,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Equation:
-	//	initial?="initial"? leftHandSide=Expression "=" rightHandSide=Expression ";";
+	//	initial?="initial"? "eq" leftHandSide=Expression "=" rightHandSide=Expression;
 	public MscriptGrammarAccess.EquationElements getEquationAccess() {
 		return gaMscript.getEquationAccess();
 	}
@@ -1594,7 +1604,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum PostfixOperator:
-	//	Transpose="\'";
+	//	Derivative="\'";
 	public MscriptGrammarAccess.PostfixOperatorElements getPostfixOperatorAccess() {
 		return gaMscript.getPostfixOperatorAccess();
 	}
@@ -1669,8 +1679,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PrimaryExpression returns Expression:
-	//	Literal | FeatureCall | DerivativeOperator | UnitConstructionOperator | ArrayConstructionOperator |
-	//	ArrayConcatenationOperator | ParenthesizedExpression | EndExpression | AlgorithmExpression;
+	//	Literal | FeatureCall | UnitConstructionOperator | ArrayConstructionOperator | ArrayConcatenationOperator |
+	//	ParenthesizedExpression | EndExpression | AlgorithmExpression;
 	public MscriptGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return gaMscript.getPrimaryExpressionAccess();
 	}
@@ -1740,7 +1750,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerData hidden():
-	//	(ONE | INT) IJ?;
+	//	ValidInt IJ?;
 	public MscriptGrammarAccess.IntegerDataElements getIntegerDataAccess() {
 		return gaMscript.getIntegerDataAccess();
 	}
@@ -1868,16 +1878,6 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getStepNRule() {
 		return getStepNAccess().getRule();
-	}
-
-	//DerivativeOperator:
-	//	"der" variable=[CallableElement|ValidID];
-	public MscriptGrammarAccess.DerivativeOperatorElements getDerivativeOperatorAccess() {
-		return gaMscript.getDerivativeOperatorAccess();
-	}
-	
-	public ParserRule getDerivativeOperatorRule() {
-		return getDerivativeOperatorAccess().getRule();
 	}
 
 	//ArrayConstructionOperator:
@@ -2215,7 +2215,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ID:
-	//	("_" | "a".."z" | "A".."Z") ("0".."9" | "_" | "a".."z" | "A".."Z")*;
+	//	"_"* ("a".."z" | "A".."Z") ("0".."9" | "_" | "a".."z" | "A".."Z")*;
 	public TerminalRule getIDRule() {
 		return gaMscript.getIDRule();
 	} 

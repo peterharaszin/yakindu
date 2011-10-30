@@ -48,6 +48,8 @@
         upperBound="-1" eType="#//FunctionObjectDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="stateVariableDeclarations"
         upperBound="-1" eType="#//StateVariableDeclaration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constantDeclarations" upperBound="-1"
+        eType="#//ConstantDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="equations" upperBound="-1"
         eType="#//Equation" containment="true"/>
   </eClassifiers>
@@ -93,6 +95,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StateVariableDeclaration" eSuperTypes="#//CallableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstantDeclaration" eSuperTypes="#//CallableElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionObjectDeclaration" eSuperTypes="#//CallableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -181,7 +188,7 @@
     <eLiterals name="LogicalNot" value="1" literal="!"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PostfixOperator">
-    <eLiterals name="Transpose" literal="'"/>
+    <eLiterals name="Derivative" literal="'"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayElementAccess" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="array" eType="#//Expression"
@@ -214,9 +221,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//Expression"
         containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DerivativeOperator" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variable" eType="#//CallableElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ArrayConstructionOperator" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"

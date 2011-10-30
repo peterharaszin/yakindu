@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Assertion;
 import org.eclipselabs.damos.mscript.Check;
+import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.FunctionKind;
@@ -44,6 +45,7 @@ import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getAssertions <em>Assertions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getFunctionObjectDeclarations <em>Function Object Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getConstantDeclarations <em>Constant Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getEquations <em>Equations</em>}</li>
  * </ul>
  * </p>
@@ -140,6 +142,16 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 * @ordered
 	 */
 	protected EList<StateVariableDeclaration> stateVariableDeclarations;
+
+	/**
+	 * The cached value of the '{@link #getConstantDeclarations() <em>Constant Declarations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstantDeclarations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConstantDeclaration> constantDeclarations;
 
 	/**
 	 * The cached value of the '{@link #getEquations() <em>Equations</em>}' containment reference list.
@@ -280,6 +292,18 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<ConstantDeclaration> getConstantDeclarations() {
+		if (constantDeclarations == null) {
+			constantDeclarations = new EObjectContainmentEList<ConstantDeclaration>(ConstantDeclaration.class, this, MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS);
+		}
+		return constantDeclarations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Equation> getEquations() {
 		if (equations == null) {
 			equations = new EObjectContainmentEList<Equation>(Equation.class, this, MscriptPackage.FUNCTION_DEFINITION__EQUATIONS);
@@ -333,6 +357,8 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 				return ((InternalEList<?>)getFunctionObjectDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
 				return ((InternalEList<?>)getStateVariableDeclarations()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+				return ((InternalEList<?>)getConstantDeclarations()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
 				return ((InternalEList<?>)getEquations()).basicRemove(otherEnd, msgs);
 		}
@@ -363,6 +389,8 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 				return getFunctionObjectDeclarations();
 			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
 				return getStateVariableDeclarations();
+			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+				return getConstantDeclarations();
 			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
 				return getEquations();
 		}
@@ -409,6 +437,10 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 				getStateVariableDeclarations().clear();
 				getStateVariableDeclarations().addAll((Collection<? extends StateVariableDeclaration>)newValue);
 				return;
+			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+				getConstantDeclarations().clear();
+				getConstantDeclarations().addAll((Collection<? extends ConstantDeclaration>)newValue);
+				return;
 			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
 				getEquations().clear();
 				getEquations().addAll((Collection<? extends Equation>)newValue);
@@ -449,6 +481,9 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
 				getStateVariableDeclarations().clear();
 				return;
+			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+				getConstantDeclarations().clear();
+				return;
 			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
 				getEquations().clear();
 				return;
@@ -480,6 +515,8 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 				return functionObjectDeclarations != null && !functionObjectDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
 				return stateVariableDeclarations != null && !stateVariableDeclarations.isEmpty();
+			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+				return constantDeclarations != null && !constantDeclarations.isEmpty();
 			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
 				return equations != null && !equations.isEmpty();
 		}

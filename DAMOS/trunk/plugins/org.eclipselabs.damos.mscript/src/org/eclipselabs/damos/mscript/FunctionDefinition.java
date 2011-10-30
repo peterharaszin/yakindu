@@ -24,6 +24,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getAssertions <em>Assertions</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getFunctionObjectDeclarations <em>Function Object Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getConstantDeclarations <em>Constant Declarations</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getEquations <em>Equations</em>}</li>
  * </ul>
  * </p>
@@ -175,6 +176,22 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * @generated
 	 */
 	EList<StateVariableDeclaration> getStateVariableDeclarations();
+
+	/**
+	 * Returns the value of the '<em><b>Constant Declarations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.ConstantDeclaration}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Constant Declarations</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Constant Declarations</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_ConstantDeclarations()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<ConstantDeclaration> getConstantDeclarations();
 
 	/**
 	 * Returns the value of the '<em><b>Equations</b></em>' containment reference list.

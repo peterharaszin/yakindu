@@ -1,0 +1,17 @@
+blockType org::eclipselabs::damos::library::base::logic::Inverter
+
+input u
+output y
+
+behavior {
+
+	func main(u) -> y {
+		check(bool) -> bool
+		
+		static assert u is bool :
+			error "Input value must be boolean"
+			
+		eq y = !u
+	}
+	
+}

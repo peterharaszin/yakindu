@@ -4,9 +4,13 @@
 package org.eclipselabs.damos.mscript;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
+import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
+import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
+import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.naming.QualifiedNameConverter;
@@ -17,6 +21,10 @@ import org.eclipselabs.damos.mscript.scoping.GlobalScopeProvider;
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.AbstractMscriptRuntimeModule {
+
+	public Class<? extends AbstractIDValueConverter> bindAbstractIDValueConverter() {
+		return MscriptIDValueConverter.class;
+	}
 
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
@@ -29,6 +37,10 @@ public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.Abstract
 	@Override
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		return GlobalScopeProvider.class;
+	}
+	
+	public Class<? extends QualifiedNameValueConverter> bindQualifiedNameValueConverter() {
+		return MscriptQualifiedNameValueConverter.class;
 	}
 	
 	/* (non-Javadoc)
@@ -51,5 +63,5 @@ public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.Abstract
 		// TODO: Remove this binding, use LazyLinker instead
 		return MscriptLinker.class;
 	}
-
+	
 }

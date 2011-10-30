@@ -1,0 +1,6 @@
+continuous blockType org::eclipselabs::damos::library::base::_continuous::Derivative
+
+input _input
+output _output
+
+parameter gain = 1(s)

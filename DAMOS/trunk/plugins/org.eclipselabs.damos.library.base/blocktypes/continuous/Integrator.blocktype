@@ -1,0 +1,9 @@
+continuous blockType org::eclipselabs::damos::library::base::_continuous::Integrator
+
+input _input {
+	directFeedthrough never
+}
+output _output
+
+parameter initialCondition = 0
+parameter gain = 1(1/s) // normalized

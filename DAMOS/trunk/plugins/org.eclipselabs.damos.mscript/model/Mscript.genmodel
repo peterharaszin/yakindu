@@ -52,7 +52,7 @@
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//UnaryOperator/LogicalNot"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//PostfixOperator">
-      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//PostfixOperator/Transpose"/>
+      <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//PostfixOperator/Derivative"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Mscript.ecore#//OperatorKind">
       <genEnumLiterals ecoreEnumLiteral="Mscript.ecore#//OperatorKind/Add"/>
@@ -111,6 +111,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDefinition/assertions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDefinition/functionObjectDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDefinition/stateVariableDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDefinition/constantDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//FunctionDefinition/equations"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//Check">
@@ -137,6 +138,10 @@
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//StateVariableDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//StateVariableDeclaration/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//ConstantDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ConstantDeclaration/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ConstantDeclaration/initializer"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//FunctionObjectDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//FunctionObjectDeclaration/name"/>
@@ -201,9 +206,6 @@
     <genClasses ecoreClass="Mscript.ecore#//IterationAccumulator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//IterationAccumulator/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//IterationAccumulator/initializer"/>
-    </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//DerivativeOperator">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//DerivativeOperator/variable"/>
     </genClasses>
     <genClasses ecoreClass="Mscript.ecore#//ArrayConstructionOperator">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//ArrayConstructionOperator/expressions"/>

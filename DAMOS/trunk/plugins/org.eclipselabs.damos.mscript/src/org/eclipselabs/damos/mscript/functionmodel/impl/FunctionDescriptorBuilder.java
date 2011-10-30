@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.CallableElement;
-import org.eclipselabs.damos.mscript.DerivativeOperator;
 import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
@@ -100,33 +99,6 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			return status;
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.MscriptSwitch#caseDerivativeOperator(org.eclipselabs.mscript.language.ast.DerivativeOperator)
-		 */
-		@Override
-		public Boolean caseDerivativeOperator(DerivativeOperator derivativeOperator) {
-			String name = derivativeOperator.getVariable().getName();
-			
-			FunctionDescriptor functionDescriptor = equationSide.getDescriptor().getFunctionDescriptor();
-			VariableKind variableKind = getVariableKind(derivativeOperator.getVariable());
-			
-			if (variableKind != VariableKind.UNKNOWN) {
-				EquationPart part = FunctionModelFactory.eINSTANCE.createEquationPart();
-				part.setSide(equationSide);
-				part.setVariableAccess(derivativeOperator);
-				VariableDescriptor variableDescriptor = getVariableDescriptor(functionDescriptor, name, variableKind);
-				
-				VariableStep variableStep = variableDescriptor.getStep(0, false, true);
-				if (variableStep == null) {
-					variableStep = FunctionModelFactory.eINSTANCE.createVariableStep();
-					variableStep.setDescriptor(variableDescriptor);
-					variableStep.setDerivative(true);
-				}
-				part.setVariableStep(variableStep);
-			}
-			return true;
-		}
-
 		@Override
 		public Boolean caseVariableAccess(VariableAccess variableAccess) {
 			String name = variableAccess.getFeature().getName();

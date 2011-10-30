@@ -1,0 +1,17 @@
+blockType org::eclipselabs::damos::library::base::logic::Or
+
+input _input[2..*]
+output y
+
+behavior {
+
+	func main(_input) -> y {
+		check(bool[2]) -> bool
+		
+		static assert _input is bool[] :
+			error "Input values must be boolean"
+	
+		eq y = _input.iterate(e; or = false | or || e)
+	}
+	
+}

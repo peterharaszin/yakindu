@@ -64,7 +64,6 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_0_2_2_1(), "rule__RealData__Alternatives_1_0_2_2_1");
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_1(), "rule__RealData__Alternatives_1_1");
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_1_1_1(), "rule__RealData__Alternatives_1_1_1_1");
-					put(grammarAccess.getIntegerDataAccess().getAlternatives_0(), "rule__IntegerData__Alternatives_0");
 					put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
 					put(grammarAccess.getFeatureCallAccess().getAlternatives(), "rule__FeatureCall__Alternatives");
 					put(grammarAccess.getNegateStepExpressionAccess().getAlternatives(), "rule__NegateStepExpression__Alternatives");
@@ -117,6 +116,7 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCheckAccess().getGroup_7(), "rule__Check__Group_7__0");
 					put(grammarAccess.getAssertionAccess().getGroup(), "rule__Assertion__Group__0");
 					put(grammarAccess.getStateVariableDeclarationAccess().getGroup(), "rule__StateVariableDeclaration__Group__0");
+					put(grammarAccess.getConstantDeclarationAccess().getGroup(), "rule__ConstantDeclaration__Group__0");
 					put(grammarAccess.getFunctionObjectDeclarationAccess().getGroup(), "rule__FunctionObjectDeclaration__Group__0");
 					put(grammarAccess.getFunctionObjectDeclarationAccess().getGroup_2(), "rule__FunctionObjectDeclaration__Group_2__0");
 					put(grammarAccess.getFunctionObjectDeclarationAccess().getGroup_2_2(), "rule__FunctionObjectDeclaration__Group_2_2__0");
@@ -199,7 +199,6 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAdditiveStepExpressionAccess().getGroup_1(), "rule__AdditiveStepExpression__Group_1__0");
 					put(grammarAccess.getNegateStepExpressionAccess().getGroup_1(), "rule__NegateStepExpression__Group_1__0");
 					put(grammarAccess.getStepNAccess().getGroup(), "rule__StepN__Group__0");
-					put(grammarAccess.getDerivativeOperatorAccess().getGroup(), "rule__DerivativeOperator__Group__0");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup(), "rule__ArrayConstructionOperator__Group__0");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup_2_0(), "rule__ArrayConstructionOperator__Group_2_0__0");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getGroup_2_1(), "rule__ArrayConstructionOperator__Group_2_1__0");
@@ -281,7 +280,8 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionDefinitionAccess().getAssertionsAssignment_11_1(), "rule__FunctionDefinition__AssertionsAssignment_11_1");
 					put(grammarAccess.getFunctionDefinitionAccess().getFunctionObjectDeclarationsAssignment_11_2(), "rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2");
 					put(grammarAccess.getFunctionDefinitionAccess().getStateVariableDeclarationsAssignment_11_3(), "rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3");
-					put(grammarAccess.getFunctionDefinitionAccess().getEquationsAssignment_11_4(), "rule__FunctionDefinition__EquationsAssignment_11_4");
+					put(grammarAccess.getFunctionDefinitionAccess().getConstantDeclarationsAssignment_11_4(), "rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4");
+					put(grammarAccess.getFunctionDefinitionAccess().getEquationsAssignment_11_5(), "rule__FunctionDefinition__EquationsAssignment_11_5");
 					put(grammarAccess.getTemplateParameterDeclarationAccess().getNameAssignment(), "rule__TemplateParameterDeclaration__NameAssignment");
 					put(grammarAccess.getInputParameterDeclarationAccess().getNameAssignment(), "rule__InputParameterDeclaration__NameAssignment");
 					put(grammarAccess.getOutputParameterDeclarationAccess().getNameAssignment(), "rule__OutputParameterDeclaration__NameAssignment");
@@ -296,13 +296,15 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssertionAccess().getStatusKindAssignment_4(), "rule__Assertion__StatusKindAssignment_4");
 					put(grammarAccess.getAssertionAccess().getMessageAssignment_5(), "rule__Assertion__MessageAssignment_5");
 					put(grammarAccess.getStateVariableDeclarationAccess().getNameAssignment_1(), "rule__StateVariableDeclaration__NameAssignment_1");
+					put(grammarAccess.getConstantDeclarationAccess().getNameAssignment_1(), "rule__ConstantDeclaration__NameAssignment_1");
+					put(grammarAccess.getConstantDeclarationAccess().getInitializerAssignment_3(), "rule__ConstantDeclaration__InitializerAssignment_3");
 					put(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameAssignment_1(), "rule__FunctionObjectDeclaration__FunctionNameAssignment_1");
 					put(grammarAccess.getFunctionObjectDeclarationAccess().getTemplateArgumentsAssignment_2_1(), "rule__FunctionObjectDeclaration__TemplateArgumentsAssignment_2_1");
 					put(grammarAccess.getFunctionObjectDeclarationAccess().getTemplateArgumentsAssignment_2_2_1(), "rule__FunctionObjectDeclaration__TemplateArgumentsAssignment_2_2_1");
 					put(grammarAccess.getFunctionObjectDeclarationAccess().getNameAssignment_3(), "rule__FunctionObjectDeclaration__NameAssignment_3");
 					put(grammarAccess.getEquationAccess().getInitialAssignment_0(), "rule__Equation__InitialAssignment_0");
-					put(grammarAccess.getEquationAccess().getLeftHandSideAssignment_1(), "rule__Equation__LeftHandSideAssignment_1");
-					put(grammarAccess.getEquationAccess().getRightHandSideAssignment_3(), "rule__Equation__RightHandSideAssignment_3");
+					put(grammarAccess.getEquationAccess().getLeftHandSideAssignment_2(), "rule__Equation__LeftHandSideAssignment_2");
+					put(grammarAccess.getEquationAccess().getRightHandSideAssignment_4(), "rule__Equation__RightHandSideAssignment_4");
 					put(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypeAssignment_0(), "rule__DataTypeSpecifier__DefinedTypeAssignment_0");
 					put(grammarAccess.getDataTypeSpecifierAccess().getTypeAssignment_1(), "rule__DataTypeSpecifier__TypeAssignment_1");
 					put(grammarAccess.getRealTypeAccess().getUnitAssignment_2(), "rule__RealType__UnitAssignment_2");
@@ -388,7 +390,6 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAdditiveStepExpressionAccess().getRightOperandAssignment_1_2(), "rule__AdditiveStepExpression__RightOperandAssignment_1_2");
 					put(grammarAccess.getNegateStepExpressionAccess().getOperandAssignment_1_2(), "rule__NegateStepExpression__OperandAssignment_1_2");
 					put(grammarAccess.getStepLiteralAccess().getValueAssignment(), "rule__StepLiteral__ValueAssignment");
-					put(grammarAccess.getDerivativeOperatorAccess().getVariableAssignment_1(), "rule__DerivativeOperator__VariableAssignment_1");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsAssignment_1(), "rule__ArrayConstructionOperator__ExpressionsAssignment_1");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getExpressionsAssignment_2_0_1(), "rule__ArrayConstructionOperator__ExpressionsAssignment_2_0_1");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getIterationClausesAssignment_2_1_1(), "rule__ArrayConstructionOperator__IterationClausesAssignment_2_1_1");

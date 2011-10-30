@@ -4,9 +4,11 @@
 package org.eclipselabs.damos.mscript.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipselabs.damos.mscript.ui.autoedit.MscriptAutoEditStrategyProvider;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptAntlrTokenToAttributeIdMapper;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptHighlightingConfiguration;
 import org.eclipselabs.damos.mscript.ui.syntaxcoloring.MscriptSemanticHighlightingCalculator;
@@ -30,6 +32,11 @@ public class MscriptUiModule extends org.eclipselabs.damos.mscript.ui.AbstractMs
 	
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return MscriptSemanticHighlightingCalculator.class;
+	}
+
+	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return MscriptAutoEditStrategyProvider.class;
 	}
 
 }

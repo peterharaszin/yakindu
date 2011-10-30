@@ -19,17 +19,30 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipselabs.damos.dml.DMLFactory;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
+import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Output;
+import org.eclipselabs.damos.dml.registry.InjectorProviderRegistry;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.IElementInitializer;
+
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 public class ConfigureLatchCommand extends ConfigureElementCommand {
 	
-    public ConfigureLatchCommand(ConfigureRequest request, EClass configurableType) {
+	@Inject
+	private IElementInitializer elementInitializer;
+
+	public ConfigureLatchCommand(ConfigureRequest request, EClass configurableType) {
         super(request);
         setEClass(configurableType);
+
+        Injector injector = InjectorProviderRegistry.getInstance().getInjector(getElementToEdit());
+		if (injector != null) {
+			injector.injectMembers(this);
+		}
     }
     
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -37,10 +50,10 @@ public class ConfigureLatchCommand extends ConfigureElementCommand {
 		Latch latch = (Latch) request.getElementToConfigure();
     	
     	latch.setName(DMLUtil.findAvailableComponentName(latch.getEnclosingFragment(), "Latch"));
-    	ExpressionSpecification expressionSpecification = DMLFactory.eINSTANCE.createExpressionSpecification();
-    	expressionSpecification.setExpression("");
-    	latch.setInitialValue(expressionSpecification);
-
+    	if (elementInitializer != null) {
+    		elementInitializer.initialize(latch, DMLPackage.eINSTANCE.getLatch_InitialValue(), null);
+    	}
+ 
     	Input input = DMLFactory.eINSTANCE.createLatchInput();
     	input.getPorts().add(DMLFactory.eINSTANCE.createInputPort());
     	latch.getInputs().add(input);

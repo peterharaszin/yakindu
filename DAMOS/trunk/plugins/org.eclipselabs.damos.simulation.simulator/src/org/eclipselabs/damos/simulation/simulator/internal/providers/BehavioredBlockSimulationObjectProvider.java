@@ -13,7 +13,6 @@ package org.eclipselabs.damos.simulation.simulator.internal.providers;
 
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectProvider;
@@ -31,8 +30,7 @@ public class BehavioredBlockSimulationObjectProvider implements ISimulationObjec
 	public ISimulationObject createSimulationObject(Component component) {
 		if (component instanceof Block) {
 			Block block = (Block) component;
-			if (block.getType().getBehavior() instanceof MscriptBehaviorSpecification
-					|| block.getType().getBehavior() instanceof OpaqueBehaviorSpecification) {
+			if (block.getType().getBehavior() instanceof MscriptBehaviorSpecification) {
 				return new BehavioredBlockSimulationObject();
 			}
 		}

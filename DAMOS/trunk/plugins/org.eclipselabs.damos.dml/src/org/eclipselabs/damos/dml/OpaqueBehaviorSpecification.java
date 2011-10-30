@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.dml;
 
-import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -18,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification#getBehavior <em>Behavior</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification#getModel <em>Model</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,31 +50,5 @@ public interface OpaqueBehaviorSpecification extends BehaviorSpecification, ITex
 	 * @generated
 	 */
 	void setBehavior(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Model</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Model</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Model</em>' containment reference.
-	 * @see #setModel(EObject)
-	 * @see org.eclipselabs.damos.dml.DMLPackage#getOpaqueBehaviorSpecification_Model()
-	 * @model containment="true" transient="true" derived="true"
-	 * @generated
-	 */
-	EObject getModel();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification#getModel <em>Model</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Model</em>' containment reference.
-	 * @see #getModel()
-	 * @generated
-	 */
-	void setModel(EObject value);
 
 } // OpaqueBehaviorSpecification

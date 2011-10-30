@@ -41,8 +41,6 @@ import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
-import org.eclipselabs.damos.dml.ExpressionParameter;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.INamedElement;
@@ -81,7 +79,6 @@ import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
-import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
@@ -387,28 +384,6 @@ public class DMLSwitch<T> extends Switch<T> {
 			case DMLPackage.ARGUMENT: {
 				Argument argument = (Argument)theEObject;
 				T result = caseArgument(argument);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.EXPRESSION_PARAMETER: {
-				ExpressionParameter expressionParameter = (ExpressionParameter)theEObject;
-				T result = caseExpressionParameter(expressionParameter);
-				if (result == null) result = caseParameter(expressionParameter);
-				if (result == null) result = caseINamedElement(expressionParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.EXPRESSION_SPECIFICATION: {
-				ExpressionSpecification expressionSpecification = (ExpressionSpecification)theEObject;
-				T result = caseExpressionSpecification(expressionSpecification);
-				if (result == null) result = caseValueSpecification(expressionSpecification);
-				if (result == null) result = caseITextualElement(expressionSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.PREDEFINED_EXPRESSION_ENTRY: {
-				PredefinedExpressionEntry predefinedExpressionEntry = (PredefinedExpressionEntry)theEObject;
-				T result = casePredefinedExpressionEntry(predefinedExpressionEntry);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1236,51 +1211,6 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseArgument(Argument object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExpressionParameter(ExpressionParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Expression Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Expression Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseExpressionSpecification(ExpressionSpecification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Predefined Expression Entry</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Predefined Expression Entry</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T casePredefinedExpressionEntry(PredefinedExpressionEntry object) {
 		return null;
 	}
 

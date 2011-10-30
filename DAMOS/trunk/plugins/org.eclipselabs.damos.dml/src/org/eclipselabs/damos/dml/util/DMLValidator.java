@@ -54,8 +54,6 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DMLPlugin;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
-import org.eclipselabs.damos.dml.ExpressionParameter;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.INamedElement;
@@ -95,7 +93,6 @@ import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
-import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
@@ -248,12 +245,6 @@ public class DMLValidator extends EObjectValidator {
 				return validateParameterizedElement((ParameterizedElement)value, diagnostics, context);
 			case DMLPackage.ARGUMENT:
 				return validateArgument((Argument)value, diagnostics, context);
-			case DMLPackage.EXPRESSION_PARAMETER:
-				return validateExpressionParameter((ExpressionParameter)value, diagnostics, context);
-			case DMLPackage.EXPRESSION_SPECIFICATION:
-				return validateExpressionSpecification((ExpressionSpecification)value, diagnostics, context);
-			case DMLPackage.PREDEFINED_EXPRESSION_ENTRY:
-				return validatePredefinedExpressionEntry((PredefinedExpressionEntry)value, diagnostics, context);
 			case DMLPackage.BLOCK_TYPE:
 				return validateBlockType((BlockType)value, diagnostics, context);
 			case DMLPackage.QUALIFIED_ELEMENT:
@@ -840,33 +831,6 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateArgument(Argument argument, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(argument, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExpressionParameter(ExpressionParameter expressionParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(expressionParameter, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateExpressionSpecification(ExpressionSpecification expressionSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(expressionSpecification, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validatePredefinedExpressionEntry(PredefinedExpressionEntry predefinedExpressionEntry, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(predefinedExpressionEntry, diagnostics, context);
 	}
 
 	/**

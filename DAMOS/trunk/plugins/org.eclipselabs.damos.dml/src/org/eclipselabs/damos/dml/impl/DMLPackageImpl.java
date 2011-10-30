@@ -46,8 +46,6 @@ import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
-import org.eclipselabs.damos.dml.ExpressionParameter;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.INamedElement;
@@ -87,7 +85,6 @@ import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
-import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
@@ -284,27 +281,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass argumentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass expressionParameterEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass expressionSpecificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass predefinedExpressionEntryEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1300,87 +1276,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getExpressionParameter() {
-		return expressionParameterEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExpressionParameter_DefaultExpression() {
-		return (EReference)expressionParameterEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExpressionParameter_PredefinedExpressions() {
-		return (EReference)expressionParameterEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getExpressionParameter_DataType() {
-		return (EReference)expressionParameterEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getExpressionSpecification() {
-		return expressionSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getExpressionSpecification_Expression() {
-		return (EAttribute)expressionSpecificationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getPredefinedExpressionEntry() {
-		return predefinedExpressionEntryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getPredefinedExpressionEntry_Alias() {
-		return (EAttribute)predefinedExpressionEntryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getPredefinedExpressionEntry_Expression() {
-		return (EReference)predefinedExpressionEntryEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getDataTypeSpecification() {
 		return dataTypeSpecificationEClass;
 	}
@@ -1966,15 +1861,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOpaqueBehaviorSpecification_Model() {
-		return (EReference)opaqueBehaviorSpecificationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getLatch() {
 		return latchEClass;
 	}
@@ -2418,18 +2304,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(argumentEClass, ARGUMENT__VALUE);
 		createEReference(argumentEClass, ARGUMENT__PARAMETER);
 
-		expressionParameterEClass = createEClass(EXPRESSION_PARAMETER);
-		createEReference(expressionParameterEClass, EXPRESSION_PARAMETER__DEFAULT_EXPRESSION);
-		createEReference(expressionParameterEClass, EXPRESSION_PARAMETER__PREDEFINED_EXPRESSIONS);
-		createEReference(expressionParameterEClass, EXPRESSION_PARAMETER__DATA_TYPE);
-
-		expressionSpecificationEClass = createEClass(EXPRESSION_SPECIFICATION);
-		createEAttribute(expressionSpecificationEClass, EXPRESSION_SPECIFICATION__EXPRESSION);
-
-		predefinedExpressionEntryEClass = createEClass(PREDEFINED_EXPRESSION_ENTRY);
-		createEAttribute(predefinedExpressionEntryEClass, PREDEFINED_EXPRESSION_ENTRY__ALIAS);
-		createEReference(predefinedExpressionEntryEClass, PREDEFINED_EXPRESSION_ENTRY__EXPRESSION);
-
 		blockTypeEClass = createEClass(BLOCK_TYPE);
 		createEReference(blockTypeEClass, BLOCK_TYPE__INPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__OUTPUT_DEFINITIONS);
@@ -2505,7 +2379,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		opaqueBehaviorSpecificationEClass = createEClass(OPAQUE_BEHAVIOR_SPECIFICATION);
 		createEAttribute(opaqueBehaviorSpecificationEClass, OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR);
-		createEReference(opaqueBehaviorSpecificationEClass, OPAQUE_BEHAVIOR_SPECIFICATION__MODEL);
 
 		latchEClass = createEClass(LATCH);
 		createEReference(latchEClass, LATCH__INITIAL_VALUE);
@@ -2625,9 +2498,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		inputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		outputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		parameterEClass.getESuperTypes().add(this.getINamedElement());
-		expressionParameterEClass.getESuperTypes().add(this.getParameter());
-		expressionSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
-		expressionSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		blockTypeEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		blockTypeEClass.getESuperTypes().add(this.getQualifiedElement());
 		blockTypeEClass.getESuperTypes().add(this.getCategorizedElement());
@@ -2897,24 +2767,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getArgument_Value(), this.getValueSpecification(), null, "value", null, 0, 1, Argument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getArgument_Parameter(), this.getParameter(), null, "parameter", null, 1, 1, Argument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		initEClass(expressionParameterEClass, ExpressionParameter.class, "ExpressionParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getExpressionParameter_DefaultExpression(), this.getExpressionSpecification(), null, "defaultExpression", null, 0, 1, ExpressionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getExpressionParameter_PredefinedExpressions(), this.getPredefinedExpressionEntry(), null, "predefinedExpressions", null, 0, -1, ExpressionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getExpressionParameter_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, ExpressionParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		op = addEOperation(expressionParameterEClass, this.getPredefinedExpressionEntry(), "getPredefinedExpression", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "expression", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		op = addEOperation(expressionParameterEClass, this.getPredefinedExpressionEntry(), "getPredefinedExpressionByAlias", 1, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, ecorePackage.getEString(), "alias", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEClass(expressionSpecificationEClass, ExpressionSpecification.class, "ExpressionSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getExpressionSpecification_Expression(), ecorePackage.getEString(), "expression", null, 1, 1, ExpressionSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(predefinedExpressionEntryEClass, PredefinedExpressionEntry.class, "PredefinedExpressionEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getPredefinedExpressionEntry_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, PredefinedExpressionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getPredefinedExpressionEntry_Expression(), this.getExpressionSpecification(), null, "expression", null, 1, 1, PredefinedExpressionEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(blockTypeEClass, BlockType.class, "BlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockType_InputDefinitions(), this.getInputDefinition(), null, "inputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_OutputDefinitions(), this.getOutputDefinition(), null, "outputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3001,7 +2853,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(opaqueBehaviorSpecificationEClass, OpaqueBehaviorSpecification.class, "OpaqueBehaviorSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOpaqueBehaviorSpecification_Behavior(), ecorePackage.getEString(), "behavior", null, 1, 1, OpaqueBehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getOpaqueBehaviorSpecification_Model(), ecorePackage.getEObject(), null, "model", null, 0, 1, OpaqueBehaviorSpecification.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(latchEClass, Latch.class, "Latch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLatch_InitialValue(), this.getValueSpecification(), null, "initialValue", null, 1, 1, Latch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

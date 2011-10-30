@@ -16,7 +16,6 @@ import org.eclipselabs.damos.codegen.c.generator.IComponentGeneratorProvider;
 import org.eclipselabs.damos.codegen.c.generator.internal.generators.BehavioredBlockGenerator;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 
 /**
@@ -31,8 +30,7 @@ public class BehavioredBlockGeneratorProvider implements IComponentGeneratorProv
 	public IComponentGenerator createGenerator(Component component) {
 		if (component instanceof Block) {
 			Block block = (Block) component;
-			if (block.getType().getBehavior() instanceof MscriptBehaviorSpecification
-					|| block.getType().getBehavior() instanceof OpaqueBehaviorSpecification) {
+			if (block.getType().getBehavior() instanceof MscriptBehaviorSpecification) {
 				return new BehavioredBlockGenerator();
 			}
 		}

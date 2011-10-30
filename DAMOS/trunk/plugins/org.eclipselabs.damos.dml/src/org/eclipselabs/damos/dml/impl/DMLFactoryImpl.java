@@ -31,8 +31,6 @@ import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.ExpressionParameter;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Inport;
@@ -60,7 +58,6 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
-import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
@@ -131,9 +128,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.PARAMETER: return createParameter();
 			case DMLPackage.PARAMETER_PREDEFINED_VALUE: return createParameterPredefinedValue();
 			case DMLPackage.ARGUMENT: return createArgument();
-			case DMLPackage.EXPRESSION_PARAMETER: return createExpressionParameter();
-			case DMLPackage.EXPRESSION_SPECIFICATION: return createExpressionSpecification();
-			case DMLPackage.PREDEFINED_EXPRESSION_ENTRY: return createPredefinedExpressionEntry();
 			case DMLPackage.BLOCK_TYPE: return createBlockType();
 			case DMLPackage.CATEGORY: return createCategory();
 			case DMLPackage.BLOCK: return createBlock();
@@ -367,36 +361,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public Argument createArgument() {
 		ArgumentImpl argument = new ArgumentImpl();
 		return argument;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpressionParameter createExpressionParameter() {
-		ExpressionParameterImpl expressionParameter = new ExpressionParameterImpl();
-		return expressionParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ExpressionSpecification createExpressionSpecification() {
-		ExpressionSpecificationImpl expressionSpecification = new ExpressionSpecificationImpl();
-		return expressionSpecification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PredefinedExpressionEntry createPredefinedExpressionEntry() {
-		PredefinedExpressionEntryImpl predefinedExpressionEntry = new PredefinedExpressionEntryImpl();
-		return predefinedExpressionEntry;
 	}
 
 	/**

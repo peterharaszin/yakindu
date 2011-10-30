@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipselabs.damos.dml.ActionLink;
-import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
 
@@ -171,11 +170,6 @@ public class ActionLinkItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DMLPackage.Literals.ACTION_LINK__CONDITION,
-				 DMLFactory.eINSTANCE.createExpressionSpecification()));
 	}
 
 	/**

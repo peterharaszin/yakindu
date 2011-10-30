@@ -16,7 +16,6 @@ import org.eclipse.gef.EditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.ComponentAttributeEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.PortEditPart;
-import org.eclipselabs.damos.diagram.ui.properties.ParametersPropertySectionDelegate;
 import org.eclipselabs.damos.dml.Block;
 
 /**
@@ -58,11 +57,4 @@ public class BlockEditPartDelegate extends ComponentEditPartDelegate {
 		return super.getPrimaryChildEditPart();
 	}
 	
-	public Object getAdapter(@SuppressWarnings("rawtypes") Class key) {
-		if (key == ParametersPropertySectionDelegate.class) {
-			return new ParametersPropertySectionDelegate();
-		}
-		return super.getAdapter(key);
-	}
-
 }

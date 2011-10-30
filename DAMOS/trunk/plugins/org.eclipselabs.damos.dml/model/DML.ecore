@@ -229,31 +229,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" ordered="false"
         lowerBound="1" eType="#//Parameter"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionParameter" eSuperTypes="#//Parameter">
-    <eOperations name="getPredefinedExpression" ordered="false" lowerBound="1" eType="#//PredefinedExpressionEntry">
-      <eParameters name="expression" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
-    <eOperations name="getPredefinedExpressionByAlias" ordered="false" lowerBound="1"
-        eType="#//PredefinedExpressionEntry">
-      <eParameters name="alias" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultExpression" ordered="false"
-        eType="#//ExpressionSpecification" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="predefinedExpressions"
-        upperBound="-1" eType="#//PredefinedExpressionEntry" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" ordered="false"
-        eType="#//DataTypeSpecification" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionSpecification" eSuperTypes="#//ValueSpecification #//ITextualElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PredefinedExpressionEntry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" ordered="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString" unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" ordered="false"
-        lowerBound="1" eType="#//ExpressionSpecification" containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlockType" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EModelElement #//QualifiedElement #//CategorizedElement #//ParameterableElement">
     <eOperations name="newInstance" ordered="false" lowerBound="1" eType="#//Block">
       <eParameters name="name" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -365,8 +340,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorSpecification" eSuperTypes="#//BehaviorSpecification #//ITextualElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="behavior" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
-        transient="true" derived="true" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Latch" eSuperTypes="#//Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" lowerBound="1"

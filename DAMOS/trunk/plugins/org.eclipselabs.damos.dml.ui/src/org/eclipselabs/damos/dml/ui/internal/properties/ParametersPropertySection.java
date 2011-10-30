@@ -19,7 +19,6 @@ import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.property.value.IValueProperty;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
-import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -32,20 +31,17 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipselabs.damos.common.ui.widgets.FormWidgetFactory;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.ExpressionParameter;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
+import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
-import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
+import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dml.ui.IValueSpecificationEditor;
-import org.eclipselabs.damos.dml.ui.internal.databinding.TextualElementUpdateValueStrategy;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -110,27 +106,6 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 	}
 
 	private void addParameterWidgets(Argument argument) {
-		// TODO: Remove the following if block
-		if (argument.getParameter() instanceof ExpressionParameter
-				&& argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
-			ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
-			List<PredefinedExpressionEntry> predefinedExpressionEntries = parameter.getPredefinedExpressions();
-			if (!predefinedExpressionEntries.isEmpty()) {
-				if (predefinedExpressionEntries.size() == 2) {
-					String alias1 = predefinedExpressionEntries.get(0).getAlias();
-					String alias2 = predefinedExpressionEntries.get(1).getAlias();
-					if (YES.equalsIgnoreCase(alias1) && NO.equalsIgnoreCase(alias2) || YES.equalsIgnoreCase(alias2)
-							&& NO.equalsIgnoreCase(alias1)) {
-						initializeCheckboxParameter(argument);
-						return;
-					}
-				}
-				initializeComboParameter(argument);
-				return;
-			}
-			addTextParameter(argument);
-			return;
-		}
 		if (argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
 			List<ParameterPredefinedValue> predefinedValues = argument.getParameter().getPredefinedValues();
 			if (!predefinedValues.isEmpty()) {
@@ -166,22 +141,10 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 			editor.initialize();
 			editor.refresh(getEditingDomain(), argument, DMLPackage.eINSTANCE.getArgument_Value());
 			valueSpecificationEditors.add(editor);
-		} else {
-			Text text = getWidgetFactory().createText(composite, "");
-			GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
-			text.setLayoutData(gridData);		
-	
-			IWidgetValueProperty textProperty = WidgetProperties.text(new int[] { SWT.DefaultSelection, SWT.FocusOut });
-			IObservableValue textObservable = textProperty.observe(text);
-			UpdateValueStrategy updateValueStrategy = new TextualElementUpdateValueStrategy(
-					DMLPackage.eINSTANCE.getExpressionSpecification());
-			IObservableValue argumentObservable = createModelObservable(argument);
-			context.bindValue(textObservable, argumentObservable, updateValueStrategy, updateValueStrategy);
 		}
 	}
 	
 	private void initializeComboParameter(Argument argument) {
-		ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
 		addParameterLabel(argument);
 		
 		CCombo combo = getWidgetFactory().createCCombo(composite, SWT.BORDER | SWT.READ_ONLY);
@@ -191,23 +154,28 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 			
 			@Override
 			public String getText(Object element) {
-				if (element instanceof PredefinedExpressionEntry) {
-					return ((PredefinedExpressionEntry) element).getAlias();
+				if (element instanceof ParameterPredefinedValue) {
+					ParameterPredefinedValue predefinedValue = (ParameterPredefinedValue) element;
+					String alias = predefinedValue.getAlias();
+					if (alias != null && alias.trim().length() > 0) {
+						return alias;
+					}
+					return predefinedValue.getValue().stringValue();
 				}
 				return super.getText(element);
 			}
 			
 		});
-		comboViewer.setInput(parameter.getPredefinedExpressions());
+		comboViewer.setInput(argument.getParameter().getPredefinedValues());
 
 		IObservableValue comboObservable = ViewerProperties.singleSelection().observe(comboViewer);
-		UpdateValueStrategy updateValueStrategy = new ComboUpdateValueStrategy(parameter);
+		UpdateValueStrategy updateValueStrategy = new ComboUpdateValueStrategy(argument.getParameter());
 		IObservableValue argumentObservable = createModelObservable(argument);
 		context.bindValue(comboObservable, argumentObservable, updateValueStrategy, updateValueStrategy);
 	}
 
 	private void initializeCheckboxParameter(Argument argument) {
-		ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
+		Parameter parameter = (Parameter) argument.getParameter();
 
 		Button button = getWidgetFactory().createButton(composite, NameUtil.formatName(parameter.getName()), SWT.CHECK);
 		GridData gridData = new GridData();
@@ -256,12 +224,12 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 	
 	private static class ComboUpdateValueStrategy extends UpdateValueStrategy {
 		
-		private ExpressionParameter parameter;
+		private Parameter parameter;
 		
 		/**
 		 * 
 		 */
-		public ComboUpdateValueStrategy(ExpressionParameter parameter) {
+		public ComboUpdateValueStrategy(Parameter parameter) {
 			this.parameter = parameter;
 		}
 		
@@ -273,11 +241,11 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 			if (value == null) {
 				return null;
 			}
-			if (value instanceof PredefinedExpressionEntry) {
-				return ((PredefinedExpressionEntry) value).getExpression().copy();
+			if (value instanceof ParameterPredefinedValue) {
+				return ((ParameterPredefinedValue) value).getValue().copy();
 			}
-			if (value instanceof ExpressionSpecification) {
-				return parameter.getPredefinedExpression(((ExpressionSpecification) value).getExpression());
+			if (value instanceof ValueSpecification) {
+				return parameter.getPredefinedValue(((ValueSpecification) value).stringValue());
 			}
 			throw new IllegalArgumentException();
 		}
@@ -286,12 +254,12 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 
 	private static class CheckboxUpdateValueStrategy extends UpdateValueStrategy {
 		
-		private ExpressionParameter parameter;
+		private Parameter parameter;
 		
 		/**
 		 * 
 		 */
-		public CheckboxUpdateValueStrategy(ExpressionParameter parameter) {
+		public CheckboxUpdateValueStrategy(Parameter parameter) {
 			this.parameter = parameter;
 		}
 		
@@ -304,20 +272,20 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 				return null;
 			}
 			if (value instanceof Boolean) {
-				PredefinedExpressionEntry entry;
+				ParameterPredefinedValue predefinedValue;
 				if (((Boolean) value).booleanValue()) {
-					entry = parameter.getPredefinedExpressionByAlias(YES);
+					predefinedValue = parameter.getPredefinedValueByAlias(YES);
 				} else {
-					entry = parameter.getPredefinedExpressionByAlias(NO);
+					predefinedValue = parameter.getPredefinedValueByAlias(NO);
 				}
-				if (entry == null) {
+				if (predefinedValue == null) {
 					throw new IllegalArgumentException();
 				}
-				return entry.getExpression().copy();
+				return predefinedValue.getValue().copy();
 			}
-			if (value instanceof ExpressionSpecification) {
-				PredefinedExpressionEntry entry = parameter.getPredefinedExpression(((ExpressionSpecification) value).getExpression());
-				return entry != null && YES.equalsIgnoreCase(entry.getAlias());
+			if (value instanceof ValueSpecification) {
+				ParameterPredefinedValue predefinedValue = parameter.getPredefinedValue(((ValueSpecification) value).stringValue());
+				return predefinedValue != null && YES.equalsIgnoreCase(predefinedValue.getAlias());
 			}
 			throw new IllegalArgumentException();
 		}

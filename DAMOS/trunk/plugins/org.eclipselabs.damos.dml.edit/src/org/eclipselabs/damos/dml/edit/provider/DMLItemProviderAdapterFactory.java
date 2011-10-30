@@ -442,75 +442,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ExpressionParameter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExpressionParameterItemProvider expressionParameterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ExpressionParameter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExpressionParameterAdapter() {
-		if (expressionParameterItemProvider == null) {
-			expressionParameterItemProvider = new ExpressionParameterItemProvider(this);
-		}
-
-		return expressionParameterItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.ExpressionSpecification} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExpressionSpecificationItemProvider expressionSpecificationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.ExpressionSpecification}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExpressionSpecificationAdapter() {
-		if (expressionSpecificationItemProvider == null) {
-			expressionSpecificationItemProvider = new ExpressionSpecificationItemProvider(this);
-		}
-
-		return expressionSpecificationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.PredefinedExpressionEntry} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected PredefinedExpressionEntryItemProvider predefinedExpressionEntryItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.PredefinedExpressionEntry}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createPredefinedExpressionEntryAdapter() {
-		if (predefinedExpressionEntryItemProvider == null) {
-			predefinedExpressionEntryItemProvider = new PredefinedExpressionEntryItemProvider(this);
-		}
-
-		return predefinedExpressionEntryItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.BlockType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1453,9 +1384,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
 		if (parameterPredefinedValueItemProvider != null) parameterPredefinedValueItemProvider.dispose();
 		if (argumentItemProvider != null) argumentItemProvider.dispose();
-		if (expressionParameterItemProvider != null) expressionParameterItemProvider.dispose();
-		if (expressionSpecificationItemProvider != null) expressionSpecificationItemProvider.dispose();
-		if (predefinedExpressionEntryItemProvider != null) predefinedExpressionEntryItemProvider.dispose();
 		if (blockTypeItemProvider != null) blockTypeItemProvider.dispose();
 		if (categoryItemProvider != null) categoryItemProvider.dispose();
 		if (blockItemProvider != null) blockItemProvider.dispose();

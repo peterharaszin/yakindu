@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.execution.core.util;
 
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,16 +19,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.xtext.linking.ILinker;
-import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.resource.impl.ListBasedDiagnosticConsumer;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
@@ -52,7 +47,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
-import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
 import org.eclipselabs.damos.mscript.util.MscriptUtil;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -81,48 +75,9 @@ public class BehavioredBlockHelper {
 	}
 	
 	public FunctionDefinition createFunctionDefinition() throws CoreException {
-		Module module;
-		if (block.getType().getBehavior() instanceof MscriptBehaviorSpecification) {
-			module = ((MscriptBehaviorSpecification) block.getType().getBehavior()).getModule();
-		} else {
-			if (!(block.getType().getBehavior() instanceof OpaqueBehaviorSpecification)) {
-				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior specified"));
-			}
-	
-			OpaqueBehaviorSpecification behavior = (OpaqueBehaviorSpecification) block.getType().getBehavior();
-	
-			if (behavior.getModel() == null) {
-				if (behavior.getBehavior() == null) {
-					throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No block behavior specified"));
-				}
-		
-				MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
-	
-				IParseResult parseResult = parser.parse(parser.getGrammarAccess().getModuleRule(),
-						new StringReader(behavior.getBehavior()));
-	
-				if (parseResult.hasSyntaxErrors()) {
-					throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Parsing block behavior failed"));
-				}
-	
-				behavior.setModel((Module) parseResult.getRootASTElement());
-				
-				ILinker linker = ExecutionEnginePlugin.getDefault().getLinker();
-				linker.linkModel(behavior.getModel(), new ListBasedDiagnosticConsumer());
-			}
-	
-			if (!(behavior.getModel() instanceof Module)) {
-				throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid block behavior model"));
-			}
-	
-			module = (Module) behavior.getModel();
-		}
+		Module module = ((MscriptBehaviorSpecification) block.getType().getBehavior()).getModule();
 
 		FunctionDefinition functionDefinition = MscriptUtil.getFunctionDefinition(module, "main");
-		// TODO: Remove this, since the starting function must always be 'main'
-		if (functionDefinition == null) {
-			functionDefinition = MscriptUtil.getFunctionDefinition(module, block.getType().getName());
-		}
 		if (functionDefinition == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Mscript function 'main' not found"));
 		}

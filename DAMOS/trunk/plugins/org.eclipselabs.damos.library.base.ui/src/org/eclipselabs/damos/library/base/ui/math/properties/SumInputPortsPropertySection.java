@@ -52,12 +52,11 @@ import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
-import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
 import org.eclipselabs.damos.library.base.math.util.SumConstants;
 import org.eclipselabs.damos.library.base.ui.math.figures.shapes.SumShapeType;
 import org.eclipselabs.damos.library.base.ui.math.view.styles.SumStyles;
@@ -290,13 +289,11 @@ public class SumInputPortsPropertySection extends AbstractModelerPropertySection
 						Argument signArgument = blockInputPort.getArgument(SumConstants.PORT_PARAMETER__SIGN);
 						if (signArgument != null) {
 							double sign = DMLUtil.getArgumentValueAsDouble(blockInputPort, SumConstants.PORT_PARAMETER__SIGN, 1);
-							ExpressionSpecification expressionSpec = DMLFactory.eINSTANCE.createExpressionSpecification();
-							expressionSpec.setExpression(sign >= 0 ? "-1" : "1");
 							SetRequest setRequest = new SetRequest(
 									editPart.getEditingDomain(),
 									signArgument,
 									DMLPackage.Literals.ARGUMENT__VALUE,
-									expressionSpec);
+									DMLTextUtil.createValueSpecification(sign >= 0 ? -1 : 1));
 					        ICommand command = ElementTypes.ARGUMENT.getEditCommand(setRequest);
 					        executeAsCompositeCommand("Change Input Port Sign", Collections.singletonList(command));
 						}

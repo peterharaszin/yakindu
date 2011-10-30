@@ -23,7 +23,7 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class QualifiedNameProvider extends IQualifiedNameProvider.AbstractImpl {
+public class MscriptQualifiedNameProvider extends IQualifiedNameProvider.AbstractImpl {
 
 	@Inject
 	private IQualifiedNameConverter qualifiedNameConverter;

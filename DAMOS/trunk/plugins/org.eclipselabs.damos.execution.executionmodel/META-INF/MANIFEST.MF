@@ -9,9 +9,22 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipselabs.damos.execution.executionmodel,
  org.eclipselabs.damos.execution.executionmodel.impl,
- org.eclipselabs.damos.execution.executionmodel.util
+ org.eclipselabs.damos.execution.executionmodel.util,
+ org.eclipselabs.damos.execution.executionmodel.services,
+ org.eclipselabs.damos.execution.executionmodel.parseTreeConstruction,
+ org.eclipselabs.damos.execution.executionmodel.parser.antlr,
+ org.eclipselabs.damos.execution.executionmodel.parser.antlr.internal,
+ org.eclipselabs.damos.execution.executionmodel.validation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.mwe2.launch;bundle-version="2.0.0",
+ org.eclipse.xtext.generator;bundle-version="2.0.0",
  org.eclipselabs.damos.dml;bundle-version="0.2.0",
- org.eclipselabs.damos.mscript;bundle-version="0.3.0"
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0",
+ org.eclipse.xtext,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types
 Bundle-ActivationPolicy: lazy
+Import-Package: org.apache.log4j

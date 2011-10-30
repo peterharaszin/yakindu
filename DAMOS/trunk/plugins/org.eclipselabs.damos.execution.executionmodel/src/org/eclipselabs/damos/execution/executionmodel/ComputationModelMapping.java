@@ -39,7 +39,7 @@ public interface ComputationModelMapping extends EObject {
 	 * @return the value of the '<em>Fragment</em>' reference.
 	 * @see #setFragment(Fragment)
 	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getComputationModelMapping_Fragment()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Fragment getFragment();
@@ -65,7 +65,7 @@ public interface ComputationModelMapping extends EObject {
 	 * @return the value of the '<em>Computation Model</em>' reference.
 	 * @see #setComputationModel(ComputationModel)
 	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getComputationModelMapping_ComputationModel()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	ComputationModel getComputationModel();

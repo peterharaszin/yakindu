@@ -41,7 +41,7 @@ public interface ExecutionModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/ExecutionModel/1.0.0";
+	String eNS_URI = "http://www.eclipselabs.org/damos/2011/ExecutionModel";
 
 	/**
 	 * The package namespace name.
@@ -70,13 +70,22 @@ public interface ExecutionModelPackage extends EPackage {
 	int EXECUTION_MODEL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_MODEL__QUALIFIED_NAME = 0;
+
+	/**
 	 * The feature id for the '<em><b>Computation Model Mappings</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS = 0;
+	int EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Runtime Environment Id</b></em>' attribute.
@@ -85,7 +94,7 @@ public interface ExecutionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_MODEL__RUNTIME_ENVIRONMENT_ID = 1;
+	int EXECUTION_MODEL__RUNTIME_ENVIRONMENT_ID = 2;
 
 	/**
 	 * The number of structural features of the '<em>Execution Model</em>' class.
@@ -94,7 +103,7 @@ public interface ExecutionModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_MODEL_FEATURE_COUNT = 2;
+	int EXECUTION_MODEL_FEATURE_COUNT = 3;
 
 
 	/**
@@ -144,6 +153,17 @@ public interface ExecutionModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getExecutionModel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getQualifiedName <em>Qualified Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
+	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getQualifiedName()
+	 * @see #getExecutionModel()
+	 * @generated
+	 */
+	EAttribute getExecutionModel_QualifiedName();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModelMappings <em>Computation Model Mappings</em>}'.
@@ -230,6 +250,14 @@ public interface ExecutionModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXECUTION_MODEL = eINSTANCE.getExecutionModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_MODEL__QUALIFIED_NAME = eINSTANCE.getExecutionModel_QualifiedName();
 
 		/**
 		 * The meta object literal for the '<em><b>Computation Model Mappings</b></em>' containment reference list feature.

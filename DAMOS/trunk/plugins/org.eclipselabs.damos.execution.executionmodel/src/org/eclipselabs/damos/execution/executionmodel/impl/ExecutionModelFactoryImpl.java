@@ -31,7 +31,7 @@ public class ExecutionModelFactoryImpl extends EFactoryImpl implements Execution
 	 */
 	public static ExecutionModelFactory init() {
 		try {
-			ExecutionModelFactory theExecutionModelFactory = (ExecutionModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/ExecutionModel/1.0.0"); 
+			ExecutionModelFactory theExecutionModelFactory = (ExecutionModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/2011/ExecutionModel"); 
 			if (theExecutionModelFactory != null) {
 				return theExecutionModelFactory;
 			}

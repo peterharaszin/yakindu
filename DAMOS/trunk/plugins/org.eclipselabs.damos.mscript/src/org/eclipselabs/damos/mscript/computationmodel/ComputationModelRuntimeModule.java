@@ -6,9 +6,12 @@ package org.eclipselabs.damos.mscript.computationmodel;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.computationmodel.conversion.ComputationModelTerminalConverters;
+import org.eclipselabs.damos.mscript.computationmodel.naming.ComputationModelQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
+import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameConverter;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -26,6 +29,18 @@ public class ComputationModelRuntimeModule extends org.eclipselabs.damos.mscript
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return ComputationModelTerminalConverters.class;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.AbstractComputationModelRuntimeModule#bindIQualifiedNameProvider()
+	 */
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return ComputationModelQualifiedNameProvider.class;
+	}
+	
+	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameConverter> bindIQualifiedNameConverter() {
+		return MscriptQualifiedNameConverter.class;
 	}
 
 }

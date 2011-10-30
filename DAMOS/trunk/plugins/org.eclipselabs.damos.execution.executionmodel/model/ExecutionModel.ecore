@@ -2,19 +2,18 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="executionmodel"
-    nsURI="http://www.eclipselabs.org/damos/ExecutionModel/1.0.0" nsPrefix="executionmodel">
+    nsURI="http://www.eclipselabs.org/damos/2011/ExecutionModel" nsPrefix="executionmodel">
   <eClassifiers xsi:type="ecore:EClass" name="ExecutionModel">
     <eOperations name="getComputationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/ComputationModel.ecore#//ComputationModel">
       <eParameters name="fragment" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="computationModelMappings"
         upperBound="-1" eType="#//ComputationModelMapping" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="runtimeEnvironmentId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputationModelMapping">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fragment" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/ComputationModel.ecore#//ComputationModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragment" eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="computationModel" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/ComputationModel.ecore#//ComputationModel"/>
   </eClassifiers>
 </ecore:EPackage>

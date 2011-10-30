@@ -19,6 +19,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getComputationModelMappings <em>Computation Model Mappings</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getRuntimeEnvironmentId <em>Runtime Environment Id</em>}</li>
  * </ul>
@@ -29,6 +30,32 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * @generated
  */
 public interface ExecutionModel extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualified Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Qualified Name</em>' attribute.
+	 * @see #setQualifiedName(String)
+	 * @see org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage#getExecutionModel_QualifiedName()
+	 * @model
+	 * @generated
+	 */
+	String getQualifiedName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionmodel.ExecutionModel#getQualifiedName <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Qualified Name</em>' attribute.
+	 * @see #getQualifiedName()
+	 * @generated
+	 */
+	void setQualifiedName(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Computation Model Mappings</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionmodel.ComputationModelMapping}.

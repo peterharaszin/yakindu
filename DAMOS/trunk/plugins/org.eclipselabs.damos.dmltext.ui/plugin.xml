@@ -151,6 +151,10 @@
               class="org.eclipselabs.damos.dmltext.ui.SystemInterfaceExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
               uriExtension="systeminterface">
         </resourceServiceProvider>
+        <resourceServiceProvider
+              class="org.eclipselabs.damos.dmltext.ui.DMLTextExecutableExtensionFactory:org.eclipselabs.damos.dmltext.resource.BlockDiagramResourceServiceProvider"
+              uriExtension="blockdiagram">
+        </resourceServiceProvider>
     </extension>
 
 

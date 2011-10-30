@@ -46,4 +46,20 @@ public class MscriptQualifiedNameValueConverter extends QualifiedNameValueConver
 		return ruleNames.contains(ruleCall.getRule().getName());
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter#getStringNamespaceDelimiter()
+	 */
+	@Override
+	protected String getStringNamespaceDelimiter() {
+		return "::";
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter#getValueNamespaceDelimiter()
+	 */
+	@Override
+	protected String getValueNamespaceDelimiter() {
+		return "::";
+	}
+	
 }

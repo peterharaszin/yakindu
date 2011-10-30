@@ -31,6 +31,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getComputationModelMappings <em>Computation Model Mappings</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionmodel.impl.ExecutionModelImpl#getRuntimeEnvironmentId <em>Runtime Environment Id</em>}</li>
  * </ul>
@@ -39,6 +40,26 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * @generated
  */
 public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
+	/**
+	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getComputationModelMappings() <em>Computation Model Mappings</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -85,6 +106,27 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	protected EClass eStaticClass() {
 		return ExecutionModelPackage.Literals.EXECUTION_MODEL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getQualifiedName() {
+		return qualifiedName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setQualifiedName(String newQualifiedName) {
+		String oldQualifiedName = qualifiedName;
+		qualifiedName = newQualifiedName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionModelPackage.EXECUTION_MODEL__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
 	}
 
 	/**
@@ -151,6 +193,8 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ExecutionModelPackage.EXECUTION_MODEL__QUALIFIED_NAME:
+				return getQualifiedName();
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
 				return getComputationModelMappings();
 			case ExecutionModelPackage.EXECUTION_MODEL__RUNTIME_ENVIRONMENT_ID:
@@ -168,6 +212,9 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ExecutionModelPackage.EXECUTION_MODEL__QUALIFIED_NAME:
+				setQualifiedName((String)newValue);
+				return;
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
 				getComputationModelMappings().clear();
 				getComputationModelMappings().addAll((Collection<? extends ComputationModelMapping>)newValue);
@@ -187,6 +234,9 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ExecutionModelPackage.EXECUTION_MODEL__QUALIFIED_NAME:
+				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
 				getComputationModelMappings().clear();
 				return;
@@ -205,6 +255,8 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ExecutionModelPackage.EXECUTION_MODEL__QUALIFIED_NAME:
+				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
 			case ExecutionModelPackage.EXECUTION_MODEL__COMPUTATION_MODEL_MAPPINGS:
 				return computationModelMappings != null && !computationModelMappings.isEmpty();
 			case ExecutionModelPackage.EXECUTION_MODEL__RUNTIME_ENVIRONMENT_ID:
@@ -223,7 +275,9 @@ public class ExecutionModelImpl extends EObjectImpl implements ExecutionModel {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (runtimeEnvironmentId: ");
+		result.append(" (qualifiedName: ");
+		result.append(qualifiedName);
+		result.append(", runtimeEnvironmentId: ");
 		result.append(runtimeEnvironmentId);
 		result.append(')');
 		return result.toString();

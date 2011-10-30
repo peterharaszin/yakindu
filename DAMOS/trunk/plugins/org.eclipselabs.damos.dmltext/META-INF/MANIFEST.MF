@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipselabs.damos.dmltext
+Bundle-Name: Damos DMLText
 Bundle-Vendor: Damos Project
-Bundle-Version: 0.2.0
+Bundle-Version: 0.3.0
 Bundle-SymbolicName: org.eclipselabs.damos.dmltext; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
@@ -28,6 +28,7 @@ Export-Package: org.eclipselabs.damos.dmltext,
  org.eclipselabs.damos.dmltext.parseTreeConstruction,
  org.eclipselabs.damos.dmltext.parser.antlr,
  org.eclipselabs.damos.dmltext.parser.antlr.internal,
+ org.eclipselabs.damos.dmltext.resource,
  org.eclipselabs.damos.dmltext.services,
  org.eclipselabs.damos.dmltext.util,
  org.eclipselabs.damos.dmltext.validation

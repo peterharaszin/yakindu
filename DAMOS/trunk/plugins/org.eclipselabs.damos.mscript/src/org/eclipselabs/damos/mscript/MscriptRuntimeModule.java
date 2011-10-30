@@ -13,8 +13,8 @@ import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
-import org.eclipselabs.damos.mscript.naming.QualifiedNameConverter;
-import org.eclipselabs.damos.mscript.naming.QualifiedNameProvider;
+import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameConverter;
+import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.scoping.GlobalScopeProvider;
 
 /**
@@ -48,11 +48,11 @@ public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.Abstract
 	 */
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return QualifiedNameProvider.class;
+		return MscriptQualifiedNameProvider.class;
 	}
 	
 	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		return QualifiedNameConverter.class;
+		return MscriptQualifiedNameConverter.class;
 	}
 
 	/* (non-Javadoc)

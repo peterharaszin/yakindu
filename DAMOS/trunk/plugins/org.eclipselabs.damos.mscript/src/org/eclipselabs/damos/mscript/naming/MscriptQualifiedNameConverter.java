@@ -17,7 +17,7 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter.DefaultImpl;
  * @author Andreas Unger
  *
  */
-public class QualifiedNameConverter extends DefaultImpl {
+public class MscriptQualifiedNameConverter extends DefaultImpl {
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.xtext.naming.IQualifiedNameConverter.DefaultImpl#getDelimiter()

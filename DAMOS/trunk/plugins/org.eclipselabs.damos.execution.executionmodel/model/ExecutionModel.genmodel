@@ -12,6 +12,7 @@
       disposableProviderFactory="true" providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
       multipleEditorPages="false" generateModelWizard="false" ecorePackage="ExecutionModel.ecore#/">
     <genClasses ecoreClass="ExecutionModel.ecore#//ExecutionModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionModel.ecore#//ExecutionModel/qualifiedName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ExecutionModel.ecore#//ExecutionModel/computationModelMappings"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ExecutionModel.ecore#//ExecutionModel/runtimeEnvironmentId"/>
       <genOperations ecoreOperation="ExecutionModel.ecore#//ExecutionModel/getComputationModel">

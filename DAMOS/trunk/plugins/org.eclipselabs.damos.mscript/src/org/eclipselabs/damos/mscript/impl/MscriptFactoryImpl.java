@@ -71,6 +71,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.OUTPUT_PARAMETER_DECLARATION: return createOutputParameterDeclaration();
 			case MscriptPackage.ASSERTION: return createAssertion();
 			case MscriptPackage.STATE_VARIABLE_DECLARATION: return createStateVariableDeclaration();
+			case MscriptPackage.CONSTANT_DECLARATION: return createConstantDeclaration();
 			case MscriptPackage.FUNCTION_OBJECT_DECLARATION: return createFunctionObjectDeclaration();
 			case MscriptPackage.EQUATION: return createEquation();
 			case MscriptPackage.DATA_TYPE_SPECIFIER: return createDataTypeSpecifier();
@@ -85,7 +86,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ITERATION_CALL: return createIterationCall();
 			case MscriptPackage.ITERATION_VARIABLE: return createIterationVariable();
 			case MscriptPackage.ITERATION_ACCUMULATOR: return createIterationAccumulator();
-			case MscriptPackage.DERIVATIVE_OPERATOR: return createDerivativeOperator();
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR: return createArrayConstructionOperator();
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE: return createArrayConstructionIterationClause();
 			case MscriptPackage.ARRAY_CONCATENATION_OPERATOR: return createArrayConcatenationOperator();
@@ -366,6 +366,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ConstantDeclaration createConstantDeclaration() {
+		ConstantDeclarationImpl constantDeclaration = new ConstantDeclarationImpl();
+		return constantDeclaration;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public FunctionObjectDeclaration createFunctionObjectDeclaration() {
 		FunctionObjectDeclarationImpl functionObjectDeclaration = new FunctionObjectDeclarationImpl();
 		return functionObjectDeclaration;
@@ -499,16 +509,6 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public IterationAccumulator createIterationAccumulator() {
 		IterationAccumulatorImpl iterationAccumulator = new IterationAccumulatorImpl();
 		return iterationAccumulator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DerivativeOperator createDerivativeOperator() {
-		DerivativeOperatorImpl derivativeOperator = new DerivativeOperatorImpl();
-		return derivativeOperator;
 	}
 
 	/**

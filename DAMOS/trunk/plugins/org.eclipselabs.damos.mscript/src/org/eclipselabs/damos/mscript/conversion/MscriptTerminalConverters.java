@@ -17,10 +17,14 @@ import org.eclipse.xtext.common.services.DefaultTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
+import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
+import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 import org.eclipselabs.damos.mscript.IntegerData;
 import org.eclipselabs.damos.mscript.RealData;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -28,6 +32,12 @@ import org.eclipselabs.damos.mscript.RealData;
  */
 public class MscriptTerminalConverters extends DefaultTerminalConverters {
 	
+	@Inject
+	private AbstractIDValueConverter idValueConverter;
+
+	@Inject
+	private QualifiedNameValueConverter qualifiedNameValueConverter;
+
 	private static final Pattern WHITE_SPACE_PATTERN = Pattern.compile("\\s");
 
 	@ValueConverter(rule = "RealData")
@@ -74,6 +84,11 @@ public class MscriptTerminalConverters extends DefaultTerminalConverters {
 		};
 	}
 
+	@ValueConverter(rule = "ValidID")
+	public IValueConverter<String> ValidID() {
+		return idValueConverter;
+	}
+	
 	@ValueConverter(rule = "ValidInt")
 	public IValueConverter<Integer> ValidInt() {
 		return new IValueConverter<Integer>() {
@@ -138,6 +153,11 @@ public class MscriptTerminalConverters extends DefaultTerminalConverters {
 			}
 
 		};
+	}
+
+	@ValueConverter(rule = "QualifiedName")
+	public IValueConverter<String> QualifiedName() {
+		return qualifiedNameValueConverter;
 	}
 
 }

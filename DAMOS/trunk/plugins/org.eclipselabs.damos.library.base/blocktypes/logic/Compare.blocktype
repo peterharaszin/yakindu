@@ -1,0 +1,56 @@
+blockType org::eclipselabs::damos::library::base::logic::Compare
+
+input a
+input b
+output y
+
+parameter operator = 0 predefined {
+	0 alias "==",
+	1 alias "!=",
+	2 alias "<",
+	3 alias "<=",
+	4 alias ">=",
+	5 alias ">"
+}
+
+behavior {
+
+	func main<operator>(a, b) -> y {
+		check<3>(real, real) -> bool
+		check<1>(bool, bool) -> bool
+
+		static assert operator < 2 => a is real() || a is bool :
+			error "Input value A must be numeric or boolean"
+			
+		static assert operator < 2 => b is real() || b is bool :
+			error "Input value B must be numeric or boolean"
+	
+		static assert operator >= 2 => a is real() :
+			error "Input value A must be numeric"
+			
+		static assert operator >= 2 => b is real() :
+			error "Input value B must be numeric"
+			
+		static assert a is real() && b is real() => unit(a) == unit(b) :
+			error "Input values must have same unit"
+			
+		static assert operator is real && operator >=0 && operator <= 5 :
+			error "Invalid operator specified"
+
+		// TODO: Use static switch expression
+		eq y =
+			static if operator == 0 then
+				a == b
+			else static if operator == 1 then
+				a != b
+			else static if operator == 2 then
+				a < b
+			else static if operator == 3 then
+				a <= b
+			else static if operator == 4 then
+				a >= b
+			else
+				a > b
+	}
+	
+}

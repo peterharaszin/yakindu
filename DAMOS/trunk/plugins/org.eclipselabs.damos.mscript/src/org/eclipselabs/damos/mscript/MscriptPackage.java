@@ -413,13 +413,22 @@ public interface MscriptPackage extends EPackage {
 	int FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS = DEFINITION_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Constant Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_DEFINITION__CONSTANT_DECLARATIONS = DEFINITION_FEATURE_COUNT + 8;
+
+	/**
 	 * The feature id for the '<em><b>Equations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DEFINITION__EQUATIONS = DEFINITION_FEATURE_COUNT + 8;
+	int FUNCTION_DEFINITION__EQUATIONS = DEFINITION_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Function Definition</em>' class.
@@ -428,7 +437,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DEFINITION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 9;
+	int FUNCTION_DEFINITION_FEATURE_COUNT = DEFINITION_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.CheckImpl <em>Check</em>}' class.
@@ -700,6 +709,43 @@ public interface MscriptPackage extends EPackage {
 	int STATE_VARIABLE_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ConstantDeclarationImpl <em>Constant Declaration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.impl.ConstantDeclarationImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantDeclaration()
+	 * @generated
+	 */
+	int CONSTANT_DECLARATION = 17;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_DECLARATION__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Initializer</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_DECLARATION__INITIALIZER = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Constant Declaration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTANT_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.FunctionObjectDeclarationImpl <em>Function Object Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -707,7 +753,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getFunctionObjectDeclaration()
 	 * @generated
 	 */
-	int FUNCTION_OBJECT_DECLARATION = 17;
+	int FUNCTION_OBJECT_DECLARATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -753,7 +799,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getEquation()
 	 * @generated
 	 */
-	int EQUATION = 18;
+	int EQUATION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Initial</b></em>' attribute.
@@ -799,7 +845,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDataTypeSpecifier()
 	 * @generated
 	 */
-	int DATA_TYPE_SPECIFIER = 19;
+	int DATA_TYPE_SPECIFIER = 20;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -855,7 +901,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpression()
 	 * @generated
 	 */
-	int LET_EXPRESSION = 20;
+	int LET_EXPRESSION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Variable Declarations</b></em>' containment reference list.
@@ -892,7 +938,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionVariableDeclaration()
 	 * @generated
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION = 21;
+	int LET_EXPRESSION_VARIABLE_DECLARATION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -929,7 +975,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionVariableDeclarationPart()
 	 * @generated
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION_PART = 22;
+	int LET_EXPRESSION_VARIABLE_DECLARATION_PART = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -957,7 +1003,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIfExpression()
 	 * @generated
 	 */
-	int IF_EXPRESSION = 23;
+	int IF_EXPRESSION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
@@ -1012,7 +1058,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getSwitchExpression()
 	 * @generated
 	 */
-	int SWITCH_EXPRESSION = 24;
+	int SWITCH_EXPRESSION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
@@ -1067,7 +1113,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getSwitchCase()
 	 * @generated
 	 */
-	int SWITCH_CASE = 25;
+	int SWITCH_CASE = 26;
 
 	/**
 	 * The feature id for the '<em><b>Case Expression</b></em>' containment reference.
@@ -1104,7 +1150,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getArrayElementAccess()
 	 * @generated
 	 */
-	int ARRAY_ELEMENT_ACCESS = 26;
+	int ARRAY_ELEMENT_ACCESS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Array</b></em>' containment reference.
@@ -1141,7 +1187,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getArraySubscript()
 	 * @generated
 	 */
-	int ARRAY_SUBSCRIPT = 27;
+	int ARRAY_SUBSCRIPT = 28;
 
 	/**
 	 * The feature id for the '<em><b>Slice</b></em>' attribute.
@@ -1178,7 +1224,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIterationCall()
 	 * @generated
 	 */
-	int ITERATION_CALL = 28;
+	int ITERATION_CALL = 29;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
@@ -1251,7 +1297,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIterationVariable()
 	 * @generated
 	 */
-	int ITERATION_VARIABLE = 29;
+	int ITERATION_VARIABLE = 30;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1279,7 +1325,7 @@ public interface MscriptPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIterationAccumulator()
 	 * @generated
 	 */
-	int ITERATION_ACCUMULATOR = 30;
+	int ITERATION_ACCUMULATOR = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1307,34 +1353,6 @@ public interface MscriptPackage extends EPackage {
 	 * @ordered
 	 */
 	int ITERATION_ACCUMULATOR_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.DerivativeOperatorImpl <em>Derivative Operator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.DerivativeOperatorImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDerivativeOperator()
-	 * @generated
-	 */
-	int DERIVATIVE_OPERATOR = 31;
-
-	/**
-	 * The feature id for the '<em><b>Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DERIVATIVE_OPERATOR__VARIABLE = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Derivative Operator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DERIVATIVE_OPERATOR_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionOperatorImpl <em>Array Construction Operator</em>}' class.
@@ -4064,6 +4082,17 @@ public interface MscriptPackage extends EPackage {
 	EReference getFunctionDefinition_StateVariableDeclarations();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDefinition#getConstantDeclarations <em>Constant Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Constant Declarations</em>'.
+	 * @see org.eclipselabs.damos.mscript.FunctionDefinition#getConstantDeclarations()
+	 * @see #getFunctionDefinition()
+	 * @generated
+	 */
+	EReference getFunctionDefinition_ConstantDeclarations();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.FunctionDefinition#getEquations <em>Equations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4263,6 +4292,38 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getStateVariableDeclaration_Name();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ConstantDeclaration <em>Constant Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Constant Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.ConstantDeclaration
+	 * @generated
+	 */
+	EClass getConstantDeclaration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ConstantDeclaration#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipselabs.damos.mscript.ConstantDeclaration#getName()
+	 * @see #getConstantDeclaration()
+	 * @generated
+	 */
+	EAttribute getConstantDeclaration_Name();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ConstantDeclaration#getInitializer <em>Initializer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Initializer</em>'.
+	 * @see org.eclipselabs.damos.mscript.ConstantDeclaration#getInitializer()
+	 * @see #getConstantDeclaration()
+	 * @generated
+	 */
+	EReference getConstantDeclaration_Initializer();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration <em>Function Object Declaration</em>}'.
@@ -4799,27 +4860,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getIterationAccumulator_Initializer();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.DerivativeOperator <em>Derivative Operator</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Derivative Operator</em>'.
-	 * @see org.eclipselabs.damos.mscript.DerivativeOperator
-	 * @generated
-	 */
-	EClass getDerivativeOperator();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.DerivativeOperator#getVariable <em>Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Variable</em>'.
-	 * @see org.eclipselabs.damos.mscript.DerivativeOperator#getVariable()
-	 * @see #getDerivativeOperator()
-	 * @generated
-	 */
-	EReference getDerivativeOperator_Variable();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ArrayConstructionOperator <em>Array Construction Operator</em>}'.
@@ -6905,6 +6945,14 @@ public interface MscriptPackage extends EPackage {
 		EReference FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS = eINSTANCE.getFunctionDefinition_StateVariableDeclarations();
 
 		/**
+		 * The meta object literal for the '<em><b>Constant Declarations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_DEFINITION__CONSTANT_DECLARATIONS = eINSTANCE.getFunctionDefinition_ConstantDeclarations();
+
+		/**
 		 * The meta object literal for the '<em><b>Equations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7071,6 +7119,32 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STATE_VARIABLE_DECLARATION__NAME = eINSTANCE.getStateVariableDeclaration_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ConstantDeclarationImpl <em>Constant Declaration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.ConstantDeclarationImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getConstantDeclaration()
+		 * @generated
+		 */
+		EClass CONSTANT_DECLARATION = eINSTANCE.getConstantDeclaration();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTANT_DECLARATION__NAME = eINSTANCE.getConstantDeclaration_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Initializer</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTANT_DECLARATION__INITIALIZER = eINSTANCE.getConstantDeclaration_Initializer();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.FunctionObjectDeclarationImpl <em>Function Object Declaration</em>}' class.
@@ -7499,24 +7573,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ITERATION_ACCUMULATOR__INITIALIZER = eINSTANCE.getIterationAccumulator_Initializer();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.DerivativeOperatorImpl <em>Derivative Operator</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.DerivativeOperatorImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getDerivativeOperator()
-		 * @generated
-		 */
-		EClass DERIVATIVE_OPERATOR = eINSTANCE.getDerivativeOperator();
-
-		/**
-		 * The meta object literal for the '<em><b>Variable</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference DERIVATIVE_OPERATOR__VARIABLE = eINSTANCE.getDerivativeOperator_Variable();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionOperatorImpl <em>Array Construction Operator</em>}' class.

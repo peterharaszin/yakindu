@@ -1,0 +1,19 @@
+blockType org::eclipselabs::damos::library::base::math::Gain
+
+input u
+output y
+
+parameter gain = 1
+
+behavior {
+
+	func main<gain>(u) -> y {
+		check<1>(real) -> real
+		
+		static assert u is real() :
+			error "Input value must be numeric"
+	
+		eq y = gain * u
+	}
+	
+}

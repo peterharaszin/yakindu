@@ -143,6 +143,15 @@ public interface MscriptFactory extends EFactory {
 	StateVariableDeclaration createStateVariableDeclaration();
 
 	/**
+	 * Returns a new object of class '<em>Constant Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constant Declaration</em>'.
+	 * @generated
+	 */
+	ConstantDeclaration createConstantDeclaration();
+
+	/**
 	 * Returns a new object of class '<em>Function Object Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,15 +276,6 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	IterationAccumulator createIterationAccumulator();
-
-	/**
-	 * Returns a new object of class '<em>Derivative Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Derivative Operator</em>'.
-	 * @generated
-	 */
-	DerivativeOperator createDerivativeOperator();
 
 	/**
 	 * Returns a new object of class '<em>Array Construction Operator</em>'.

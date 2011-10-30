@@ -12,8 +12,10 @@
 package org.eclipselabs.damos.dmltext.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.IContentAssistParser;
 import org.eclipselabs.damos.dmltext.ui.contentassist.antlr.BlockTypeContentAssistParser;
+import org.eclipselabs.damos.mscript.ui.autoedit.MscriptAutoEditStrategyProvider;
 
 /**
  * @author Andreas Unger
@@ -35,5 +37,10 @@ public class BlockTypeUiModule extends DMLTextUiModule {
 	public Class<? extends IContentAssistParser> bindIContentAssistParser() {
 		return BlockTypeContentAssistParser.class;
 	}
+	
+	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return MscriptAutoEditStrategyProvider.class;
+	}	
 	
 }

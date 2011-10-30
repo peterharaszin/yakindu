@@ -187,6 +187,13 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.CONSTANT_DECLARATION: {
+				ConstantDeclaration constantDeclaration = (ConstantDeclaration)theEObject;
+				T result = caseConstantDeclaration(constantDeclaration);
+				if (result == null) result = caseCallableElement(constantDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.FUNCTION_OBJECT_DECLARATION: {
 				FunctionObjectDeclaration functionObjectDeclaration = (FunctionObjectDeclaration)theEObject;
 				T result = caseFunctionObjectDeclaration(functionObjectDeclaration);
@@ -277,13 +284,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 				IterationAccumulator iterationAccumulator = (IterationAccumulator)theEObject;
 				T result = caseIterationAccumulator(iterationAccumulator);
 				if (result == null) result = caseCallableElement(iterationAccumulator);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MscriptPackage.DERIVATIVE_OPERATOR: {
-				DerivativeOperator derivativeOperator = (DerivativeOperator)theEObject;
-				T result = caseDerivativeOperator(derivativeOperator);
-				if (result == null) result = caseExpression(derivativeOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1070,6 +1070,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constant Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constant Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstantDeclaration(ConstantDeclaration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Function Object Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1276,21 +1291,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIterationAccumulator(IterationAccumulator object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Derivative Operator</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Derivative Operator</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseDerivativeOperator(DerivativeOperator object) {
 		return null;
 	}
 

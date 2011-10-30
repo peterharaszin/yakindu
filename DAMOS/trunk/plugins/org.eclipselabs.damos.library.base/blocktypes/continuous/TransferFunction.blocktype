@@ -1,0 +1,9 @@
+continuous blockType org::eclipselabs::damos::library::base::_continuous::TransferFunction
+
+input _input {
+	directFeedthrough never
+}
+output _output
+
+parameter numeratorCoefficients = { 1 }
+parameter denominatorCoefficients = { 1, 1 }

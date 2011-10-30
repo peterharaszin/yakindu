@@ -147,6 +147,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass constantDeclarationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass functionObjectDeclarationEClass = null;
 
 	/**
@@ -239,13 +246,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * @generated
 	 */
 	private EClass iterationAccumulatorEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass derivativeOperatorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1126,8 +1126,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_Equations() {
+	public EReference getFunctionDefinition_ConstantDeclarations() {
 		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionDefinition_Equations() {
+		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -1290,6 +1299,33 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EAttribute getStateVariableDeclaration_Name() {
 		return (EAttribute)stateVariableDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConstantDeclaration() {
+		return constantDeclarationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstantDeclaration_Name() {
+		return (EAttribute)constantDeclarationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstantDeclaration_Initializer() {
+		return (EReference)constantDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1740,24 +1776,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EReference getIterationAccumulator_Initializer() {
 		return (EReference)iterationAccumulatorEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getDerivativeOperator() {
-		return derivativeOperatorEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getDerivativeOperator_Variable() {
-		return (EReference)derivativeOperatorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3396,6 +3414,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__ASSERTIONS);
 		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS);
 		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS);
+		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__CONSTANT_DECLARATIONS);
 		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__EQUATIONS);
 
 		checkEClass = createEClass(CHECK);
@@ -3423,6 +3442,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		stateVariableDeclarationEClass = createEClass(STATE_VARIABLE_DECLARATION);
 		createEAttribute(stateVariableDeclarationEClass, STATE_VARIABLE_DECLARATION__NAME);
+
+		constantDeclarationEClass = createEClass(CONSTANT_DECLARATION);
+		createEAttribute(constantDeclarationEClass, CONSTANT_DECLARATION__NAME);
+		createEReference(constantDeclarationEClass, CONSTANT_DECLARATION__INITIALIZER);
 
 		functionObjectDeclarationEClass = createEClass(FUNCTION_OBJECT_DECLARATION);
 		createEAttribute(functionObjectDeclarationEClass, FUNCTION_OBJECT_DECLARATION__NAME);
@@ -3487,9 +3510,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		iterationAccumulatorEClass = createEClass(ITERATION_ACCUMULATOR);
 		createEAttribute(iterationAccumulatorEClass, ITERATION_ACCUMULATOR__NAME);
 		createEReference(iterationAccumulatorEClass, ITERATION_ACCUMULATOR__INITIALIZER);
-
-		derivativeOperatorEClass = createEClass(DERIVATIVE_OPERATOR);
-		createEReference(derivativeOperatorEClass, DERIVATIVE_OPERATOR__VARIABLE);
 
 		arrayConstructionOperatorEClass = createEClass(ARRAY_CONSTRUCTION_OPERATOR);
 		createEReference(arrayConstructionOperatorEClass, ARRAY_CONSTRUCTION_OPERATOR__EXPRESSIONS);
@@ -3782,6 +3802,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		inputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		outputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		stateVariableDeclarationEClass.getESuperTypes().add(this.getCallableElement());
+		constantDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		functionObjectDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		letExpressionEClass.getESuperTypes().add(this.getExpression());
 		letExpressionVariableDeclarationPartEClass.getESuperTypes().add(this.getCallableElement());
@@ -3791,7 +3812,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		iterationCallEClass.getESuperTypes().add(this.getExpression());
 		iterationVariableEClass.getESuperTypes().add(this.getCallableElement());
 		iterationAccumulatorEClass.getESuperTypes().add(this.getCallableElement());
-		derivativeOperatorEClass.getESuperTypes().add(this.getExpression());
 		arrayConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		arrayConcatenationOperatorEClass.getESuperTypes().add(this.getExpression());
 		unitConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
@@ -3891,6 +3911,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getFunctionDefinition_Assertions(), this.getAssertion(), null, "assertions", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDefinition_FunctionObjectDeclarations(), this.getFunctionObjectDeclaration(), null, "functionObjectDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDefinition_StateVariableDeclarations(), this.getStateVariableDeclaration(), null, "stateVariableDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDefinition_ConstantDeclarations(), this.getConstantDeclaration(), null, "constantDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDefinition_Equations(), this.getEquation(), null, "equations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(checkEClass, Check.class, "Check", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -3922,6 +3943,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(stateVariableDeclarationEClass, StateVariableDeclaration.class, "StateVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStateVariableDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, StateVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constantDeclarationEClass, ConstantDeclaration.class, "ConstantDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstantDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstantDeclaration_Initializer(), this.getExpression(), null, "initializer", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionObjectDeclarationEClass, FunctionObjectDeclaration.class, "FunctionObjectDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionObjectDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3986,9 +4011,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(iterationAccumulatorEClass, IterationAccumulator.class, "IterationAccumulator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIterationAccumulator_Name(), ecorePackage.getEString(), "name", null, 0, 1, IterationAccumulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterationAccumulator_Initializer(), this.getExpression(), null, "initializer", null, 0, 1, IterationAccumulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(derivativeOperatorEClass, DerivativeOperator.class, "DerivativeOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getDerivativeOperator_Variable(), this.getCallableElement(), null, "variable", null, 0, 1, DerivativeOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(arrayConstructionOperatorEClass, ArrayConstructionOperator.class, "ArrayConstructionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getArrayConstructionOperator_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, ArrayConstructionOperator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4301,7 +4323,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		addEEnumLiteral(unaryOperatorEEnum, UnaryOperator.LOGICAL_NOT);
 
 		initEEnum(postfixOperatorEEnum, PostfixOperator.class, "PostfixOperator");
-		addEEnumLiteral(postfixOperatorEEnum, PostfixOperator.TRANSPOSE);
+		addEEnumLiteral(postfixOperatorEEnum, PostfixOperator.DERIVATIVE);
 
 		initEEnum(operatorKindEEnum, OperatorKind.class, "OperatorKind");
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.ADD);

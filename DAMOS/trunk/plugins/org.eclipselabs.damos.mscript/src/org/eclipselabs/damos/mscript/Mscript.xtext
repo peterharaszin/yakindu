@@ -48,7 +48,7 @@ EnumerationLiteralDeclaration:
  */
  
 TypedefDeclaration:
-	'typedef' typeSpecifier=DataTypeSpecifier name=ValidID ';';	
+	'typedef' typeSpecifier=DataTypeSpecifier name=ValidID;	
 
 /*
  * Struct
@@ -60,7 +60,7 @@ StructDefinition:
 	'}'; 
 
 StructMemberDeclaration:
-	typeSpecifier=DataTypeSpecifier name=ValidID ';';
+	typeSpecifier=DataTypeSpecifier name=ValidID;
 
 /*
  * Function
@@ -75,6 +75,7 @@ FunctionDefinition:
 		assertions+=Assertion |
 		functionObjectDeclarations+=FunctionObjectDeclaration |
 		stateVariableDeclarations+=StateVariableDeclaration |
+		constantDeclarations+=ConstantDeclaration |
 		equations+=Equation)*
 	'}';
 
@@ -94,7 +95,7 @@ Check:
 	'check'
 			('<' templateArguments+=Expression (',' templateArguments+=Expression)* '>')?
 			'(' (inputParameterTypes+=DataTypeSpecifier (',' inputParameterTypes+=DataTypeSpecifier)*)? ')'
-			'->' outputParameterTypes+=DataTypeSpecifier (',' outputParameterTypes+=DataTypeSpecifier)* ';';
+			'->' outputParameterTypes+=DataTypeSpecifier (',' outputParameterTypes+=DataTypeSpecifier)*;
 
 enum AssertionStatusKind:
 	Info='info' |
@@ -103,16 +104,19 @@ enum AssertionStatusKind:
 	Fatal='fatal';
 
 Assertion:
-	(static?='static')? 'assert' condition=Expression ':' statusKind=AssertionStatusKind message=Expression ';';
+	(static?='static')? 'assert' condition=Expression ':' statusKind=AssertionStatusKind message=Expression;
 
 StateVariableDeclaration:
-	'var' name=ValidID ';';
-	
+	'var' name=ValidID;
+
+ConstantDeclaration:
+	'const' name=ValidID '=' initializer=Expression;
+
 FunctionObjectDeclaration:
-	'fob' functionName=[FunctionDefinition|QualifiedName] ('<' templateArguments+=Expression (',' templateArguments+=Expression)* '>')? name=ValidID ';';
+	'fob' functionName=[FunctionDefinition|QualifiedName] ('<' templateArguments+=Expression (',' templateArguments+=Expression)* '>')? name=ValidID;
 
 Equation:
-	(initial?='initial')? leftHandSide=Expression '=' rightHandSide=Expression ';';
+	(initial?='initial')? 'eq' leftHandSide=Expression '=' rightHandSide=Expression;
 
 /*
  * Data type specifier
@@ -243,7 +247,7 @@ PostfixExpression returns Expression:
 	ArrayElementAccess ({PostfixExpression.operand=current} operator=PostfixOperator)?;
 
 enum PostfixOperator:
-	Transpose="'";
+	Derivative="'";
 
 ArrayElementAccess returns Expression:
 	MemberFeatureCall ({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')*;
@@ -268,7 +272,6 @@ ArraySubscript:
 PrimaryExpression returns Expression:
 	Literal |
 	FeatureCall |
-	DerivativeOperator |
 	UnitConstructionOperator |
 	ArrayConstructionOperator |
 	ArrayConcatenationOperator |
@@ -296,7 +299,7 @@ IntegerLiteral:
 	data=IntegerData unit=Unit;
 
 IntegerData returns IntegerData hidden():
-	(ONE | INT) IJ?;
+	ValidInt IJ?;
 
 BooleanLiteral:
 	{BooleanLiteral} (true?='true' | 'false');
@@ -333,9 +336,6 @@ StepLiteral:
 	
 StepN:
 	{StepN} N;
-
-DerivativeOperator:
-	'der' variable=[CallableElement|ValidID];
 
 ArrayConstructionOperator:
 	'{' expressions+=Expression ((',' expressions+=Expression)* | 'for' iterationClauses+=ArrayConstructionIterationClause (',' iterationClauses+=ArrayConstructionIterationClause)*) '}';
@@ -460,7 +460,7 @@ terminal INT:
 	('0'..'9')+;
 
 terminal ID:
-	('_' | 'a'..'z' | 'A'..'Z') ('0'..'9' | '_' | 'a'..'z' | 'A'..'Z')*;
+	'_'* ('a'..'z' | 'A'..'Z') ('0'..'9' | '_' | 'a'..'z' | 'A'..'Z')*;
 
 terminal STRING: 
 	'"' (!('\\' | '"') | '\\' ("'" | '"' | '?' | '\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v'))* '"';

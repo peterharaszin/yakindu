@@ -4,9 +4,13 @@
 package org.eclipselabs.damos.dmltext;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
+import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipselabs.damos.dmltext.conversion.DMLTextTerminalConverters;
+import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
+import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.naming.QualifiedNameConverter;
 import org.eclipselabs.damos.mscript.naming.QualifiedNameProvider;
 import org.eclipselabs.damos.mscript.scoping.GlobalScopeProvider;
@@ -15,6 +19,10 @@ import org.eclipselabs.damos.mscript.scoping.GlobalScopeProvider;
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.AbstractDMLTextRuntimeModule {
+
+	public Class<? extends AbstractIDValueConverter> bindAbstractIDValueConverter() {
+		return MscriptIDValueConverter.class;
+	}
 
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
@@ -29,6 +37,10 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 		return GlobalScopeProvider.class;
 	}
 	
+	public Class<? extends QualifiedNameValueConverter> bindQualifiedNameValueConverter() {
+		return MscriptQualifiedNameValueConverter.class;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.AbstractMscriptRuntimeModule#bindIQualifiedNameProvider()
 	 */

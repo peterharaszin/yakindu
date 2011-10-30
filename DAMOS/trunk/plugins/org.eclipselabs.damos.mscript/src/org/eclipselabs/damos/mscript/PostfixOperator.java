@@ -23,29 +23,29 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum PostfixOperator implements Enumerator {
 	/**
-	 * The '<em><b>Transpose</b></em>' literal object.
+	 * The '<em><b>Derivative</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #TRANSPOSE_VALUE
+	 * @see #DERIVATIVE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TRANSPOSE(0, "Transpose", "\'");
+	DERIVATIVE(0, "Derivative", "\'");
 
 	/**
-	 * The '<em><b>Transpose</b></em>' literal value.
+	 * The '<em><b>Derivative</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>Transpose</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>Derivative</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #TRANSPOSE
-	 * @model name="Transpose" literal="\'"
+	 * @see #DERIVATIVE
+	 * @model name="Derivative" literal="\'"
 	 * @generated
 	 * @ordered
 	 */
-	public static final int TRANSPOSE_VALUE = 0;
+	public static final int DERIVATIVE_VALUE = 0;
 
 	/**
 	 * An array of all the '<em><b>Postfix Operator</b></em>' enumerators.
@@ -55,7 +55,7 @@ public enum PostfixOperator implements Enumerator {
 	 */
 	private static final PostfixOperator[] VALUES_ARRAY =
 		new PostfixOperator[] {
-			TRANSPOSE,
+			DERIVATIVE,
 		};
 
 	/**
@@ -106,7 +106,7 @@ public enum PostfixOperator implements Enumerator {
 	 */
 	public static PostfixOperator get(int value) {
 		switch (value) {
-			case TRANSPOSE_VALUE: return TRANSPOSE;
+			case DERIVATIVE_VALUE: return DERIVATIVE;
 		}
 		return null;
 	}

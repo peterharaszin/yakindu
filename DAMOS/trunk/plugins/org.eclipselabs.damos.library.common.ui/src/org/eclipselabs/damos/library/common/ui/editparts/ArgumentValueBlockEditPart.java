@@ -16,8 +16,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editparts.LabeledRectangularBlockEditPart;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.dml.ExpressionParameter;
-import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
+import org.eclipselabs.damos.dml.Parameter;
+import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 
 /**
  * @author Andreas Unger
@@ -36,12 +36,12 @@ public abstract class ArgumentValueBlockEditPart extends LabeledRectangularBlock
 		Block block = (Block) resolveSemanticElement();
 		if (block != null) {
 			Argument argument = block.getArgument(getParameterName());
-			if (argument != null && argument.getParameter() instanceof ExpressionParameter) {
-				ExpressionParameter parameter = (ExpressionParameter) argument.getParameter();
+			if (argument != null) {
+				Parameter parameter = argument.getParameter();
 				String stringValue = argument.getValue().stringValue();
-				PredefinedExpressionEntry entry = parameter.getPredefinedExpression(stringValue);
-				if (entry != null) {
-					return entry.getAlias();
+				ParameterPredefinedValue value = parameter.getPredefinedValue(stringValue);
+				if (value != null) {
+					return value.getAlias();
 				}
 				return stringValue;
 			}

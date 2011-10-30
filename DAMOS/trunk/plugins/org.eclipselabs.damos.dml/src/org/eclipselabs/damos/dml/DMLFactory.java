@@ -170,33 +170,6 @@ public interface DMLFactory extends EFactory {
 	Argument createArgument();
 
 	/**
-	 * Returns a new object of class '<em>Expression Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression Parameter</em>'.
-	 * @generated
-	 */
-	ExpressionParameter createExpressionParameter();
-
-	/**
-	 * Returns a new object of class '<em>Expression Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Expression Specification</em>'.
-	 * @generated
-	 */
-	ExpressionSpecification createExpressionSpecification();
-
-	/**
-	 * Returns a new object of class '<em>Predefined Expression Entry</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Predefined Expression Entry</em>'.
-	 * @generated
-	 */
-	PredefinedExpressionEntry createPredefinedExpressionEntry();
-
-	/**
 	 * Returns a new object of class '<em>Block Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

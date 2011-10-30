@@ -19,7 +19,6 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
@@ -30,8 +29,6 @@ import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.InvalidDataType;
-import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
@@ -66,19 +63,7 @@ public class LatchSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	protected DataType getDataType(MultiStatus status, Latch latch) {
 		try {
-			if (latch.getInitialValue() instanceof ExpressionSpecification) {
-				ExpressionSpecification expressionSpecification = (ExpressionSpecification) latch.getInitialValue();
-				if (expressionSpecification.getExpression() != null && expressionSpecification.getExpression().trim().length() > 0) {
-					IValue value = ExpressionUtil.evaluateExpression(expressionSpecification.getExpression());
-					if (!(value.getDataType() instanceof InvalidDataType)) {
-						return value.getDataType();
-					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid initial value specified"));
-					}
-				} else {
-					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No Initial Value specified"));
-				}
-			} else if (latch.getInitialValue() instanceof MscriptValueSpecification) {
+			if (latch.getInitialValue() instanceof MscriptValueSpecification) {
 				return ExpressionUtil.evaluateExpression(((MscriptValueSpecification) latch.getInitialValue()).getExpression()).getDataType();
 			} else {
 				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));

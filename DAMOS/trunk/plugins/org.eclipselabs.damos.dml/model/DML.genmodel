@@ -189,24 +189,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EReference DML.ecore#//Argument/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Argument/parameter"/>
     </genClasses>
-    <genClasses ecoreClass="DML.ecore#//ExpressionParameter">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ExpressionParameter/defaultExpression"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ExpressionParameter/predefinedExpressions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//ExpressionParameter/dataType"/>
-      <genOperations ecoreOperation="DML.ecore#//ExpressionParameter/getPredefinedExpression">
-        <genParameters ecoreParameter="DML.ecore#//ExpressionParameter/getPredefinedExpression/expression"/>
-      </genOperations>
-      <genOperations ecoreOperation="DML.ecore#//ExpressionParameter/getPredefinedExpressionByAlias">
-        <genParameters ecoreParameter="DML.ecore#//ExpressionParameter/getPredefinedExpressionByAlias/alias"/>
-      </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="DML.ecore#//ExpressionSpecification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//ExpressionSpecification/expression"/>
-    </genClasses>
-    <genClasses ecoreClass="DML.ecore#//PredefinedExpressionEntry">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//PredefinedExpressionEntry/alias"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//PredefinedExpressionEntry/expression"/>
-    </genClasses>
     <genClasses ecoreClass="DML.ecore#//BlockType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
@@ -279,7 +261,6 @@
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//OpaqueBehaviorSpecification">
       <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueBehaviorSpecification/behavior"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//OpaqueBehaviorSpecification/model"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Latch">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Latch/initialValue"/>

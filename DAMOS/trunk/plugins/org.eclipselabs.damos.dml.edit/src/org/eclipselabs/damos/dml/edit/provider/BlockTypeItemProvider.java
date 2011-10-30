@@ -244,11 +244,6 @@ public class BlockTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DMLPackage.Literals.PARAMETERABLE_ELEMENT__PARAMETERS,
-				 DMLFactory.eINSTANCE.createExpressionParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(DMLPackage.Literals.BLOCK_TYPE__INPUT_DEFINITIONS,
 				 DMLFactory.eINSTANCE.createInputDefinition()));
 

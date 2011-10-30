@@ -47,7 +47,7 @@ public class SumInputPortEditPart extends BlockInputPortEditPart {
 	protected void refreshSign() {
 		Argument a = getSignArgument();
 		if (a != null) {
-			String literal = "1".equals(a.getValue().stringValue()) ? "+" : "-";
+			String literal = Double.parseDouble(a.getValue().stringValue()) >= 0 ? "+" : "-";
 			((SumInputPortContentFigure) ((PortFigure) getFigure()).getContentFigure()).setSign(literal);
 		}
 	}

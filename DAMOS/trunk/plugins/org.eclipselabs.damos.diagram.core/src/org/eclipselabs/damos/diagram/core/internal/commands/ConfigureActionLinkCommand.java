@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.diagram.core.internal.commands;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -24,18 +23,26 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
-import org.eclipselabs.damos.dml.DMLFactory;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
-import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.registry.InjectorProviderRegistry;
+import org.eclipselabs.damos.dml.util.IElementInitializer;
+
+import com.google.inject.Inject;
+import com.google.inject.Injector;
 
 public class ConfigureActionLinkCommand extends ConfigureElementCommand {
 	
-	private static final String TRUE = "true";
-	private static final String FALSE = "false";
-	
+	@Inject
+	private IElementInitializer elementInitializer;
+
     public ConfigureActionLinkCommand(ConfigureRequest request, EClass configurableType) {
         super(request);
         setEClass(configurableType);
+
+        Injector injector = InjectorProviderRegistry.getInstance().getInjector(getElementToEdit());
+		if (injector != null) {
+			injector.injectMembers(this);
+		}
     }
     
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -45,34 +52,12 @@ public class ConfigureActionLinkCommand extends ConfigureElementCommand {
     	
     	List<ActionLink> actionLinks = actionLink.getChoice().getActionLinks();
     	if (actionLinks.size() < 3) {
-    		actionLinks = new ArrayList<ActionLink>(actionLinks);
-	    	actionLinks.remove(actionLink);
-	    	
-	    	switch (actionLinks.size()) {
-	    	case 0:
-	    		setActionLinkCondition(actionLink, TRUE);
-	    		break;
-	    	case 1:
-	    		ValueSpecification conditionSpecification = actionLinks.get(0).getCondition();
-	    		if (conditionSpecification != null) {
-					String condition = conditionSpecification.stringValue();
-					if (TRUE.equals(condition)) {
-		    			setActionLinkCondition(actionLink, FALSE);
-		    		} else if (FALSE.equals(condition)) {
-		    			setActionLinkCondition(actionLink, TRUE);
-		    		}
-	    		}
-	    		break;
+	    	if (elementInitializer != null) {
+	    		elementInitializer.initialize(actionLink, DMLPackage.eINSTANCE.getActionLink_Condition(), null);
 	    	}
     	}
     	
 		return CommandResult.newOKCommandResult(actionLink);
 	}
-	
-	private void setActionLinkCondition(ActionLink actionLink, String condition) {
-		ExpressionSpecification conditionSpecification = DMLFactory.eINSTANCE.createExpressionSpecification();
-		conditionSpecification.setExpression(condition);
-		actionLink.setCondition(conditionSpecification);
-	}
-	
+		
 }

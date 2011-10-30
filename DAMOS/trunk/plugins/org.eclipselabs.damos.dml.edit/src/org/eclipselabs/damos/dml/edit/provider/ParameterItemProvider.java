@@ -207,11 +207,6 @@ public class ParameterItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(DMLPackage.Literals.PARAMETER__OWNED_DEFAULT_VALUE,
-				 DMLFactory.eINSTANCE.createExpressionSpecification()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(DMLPackage.Literals.PARAMETER__PREDEFINED_VALUES,
 				 DMLFactory.eINSTANCE.createParameterPredefinedValue()));
 	}

@@ -42,8 +42,6 @@ import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.DirectFeedthroughPolicy;
-import org.eclipselabs.damos.dml.ExpressionParameter;
-import org.eclipselabs.damos.dml.ExpressionSpecification;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.INamedElement;
@@ -82,7 +80,6 @@ import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
-import org.eclipselabs.damos.dml.PredefinedExpressionEntry;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
@@ -279,18 +276,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseArgument(Argument object) {
 				return createArgumentAdapter();
-			}
-			@Override
-			public Adapter caseExpressionParameter(ExpressionParameter object) {
-				return createExpressionParameterAdapter();
-			}
-			@Override
-			public Adapter caseExpressionSpecification(ExpressionSpecification object) {
-				return createExpressionSpecificationAdapter();
-			}
-			@Override
-			public Adapter casePredefinedExpressionEntry(PredefinedExpressionEntry object) {
-				return createPredefinedExpressionEntryAdapter();
 			}
 			@Override
 			public Adapter caseBlockType(BlockType object) {
@@ -859,48 +844,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createArgumentAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ExpressionParameter <em>Expression Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.ExpressionParameter
-	 * @generated
-	 */
-	public Adapter createExpressionParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ExpressionSpecification <em>Expression Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.ExpressionSpecification
-	 * @generated
-	 */
-	public Adapter createExpressionSpecificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.PredefinedExpressionEntry <em>Predefined Expression Entry</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.PredefinedExpressionEntry
-	 * @generated
-	 */
-	public Adapter createPredefinedExpressionEntryAdapter() {
 		return null;
 	}
 

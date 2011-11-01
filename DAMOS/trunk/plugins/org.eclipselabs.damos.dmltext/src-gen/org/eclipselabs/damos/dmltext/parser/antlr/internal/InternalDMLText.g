@@ -5762,24 +5762,24 @@ ruleNumericLiteral returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getNumericLiteralAccess().getRealLiteralParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getNumericLiteralAccess().getIntegerLiteralParserRuleCall_0()); 
     }
-    this_RealLiteral_0=ruleRealLiteral
+    this_IntegerLiteral_0=ruleIntegerLiteral
     { 
-        $current = $this_RealLiteral_0.current; 
+        $current = $this_IntegerLiteral_0.current; 
         afterParserOrEnumRuleCall();
     }
 
-    |((	ruleIntegerLiteral)=>
+    |
     { 
-        newCompositeNode(grammarAccess.getNumericLiteralAccess().getIntegerLiteralParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getNumericLiteralAccess().getRealLiteralParserRuleCall_1()); 
     }
-    this_IntegerLiteral_1=ruleIntegerLiteral
+    this_RealLiteral_1=ruleRealLiteral
     { 
-        $current = $this_IntegerLiteral_1.current; 
+        $current = $this_RealLiteral_1.current; 
         afterParserOrEnumRuleCall();
     }
-))
+)
 ;
 
 
@@ -5892,19 +5892,12 @@ ruleRealData returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     { 
         afterParserOrEnumRuleCall();
     }
-(((RULE_IJ
-    |RULE_EXPIJ
-    |(RULE_E(
-	'+' 
-
-    |
-	'-' 
-)ruleValidInt((RULE_IJ)=>RULE_IJ)?)))=>(    this_IJ_3=RULE_IJ    {
+(    this_IJ_3=RULE_IJ    {
 		$current.merge(this_IJ_3);
     }
 
     { 
-    newLeafNode(this_IJ_3, grammarAccess.getRealDataAccess().getIJTerminalRuleCall_1_0_2_0_0()); 
+    newLeafNode(this_IJ_3, grammarAccess.getRealDataAccess().getIJTerminalRuleCall_1_0_2_0()); 
     }
 
     |    this_EXPIJ_4=RULE_EXPIJ    {
@@ -5912,7 +5905,7 @@ ruleRealData returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     }
 
     { 
-    newLeafNode(this_EXPIJ_4, grammarAccess.getRealDataAccess().getEXPIJTerminalRuleCall_1_0_2_0_1()); 
+    newLeafNode(this_EXPIJ_4, grammarAccess.getRealDataAccess().getEXPIJTerminalRuleCall_1_0_2_1()); 
     }
 
     |(    this_E_5=RULE_E    {
@@ -5920,24 +5913,24 @@ ruleRealData returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     }
 
     { 
-    newLeafNode(this_E_5, grammarAccess.getRealDataAccess().getETerminalRuleCall_1_0_2_0_2_0()); 
+    newLeafNode(this_E_5, grammarAccess.getRealDataAccess().getETerminalRuleCall_1_0_2_2_0()); 
     }
 (
 	kw='+' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRealDataAccess().getPlusSignKeyword_1_0_2_0_2_1_0()); 
+        newLeafNode(kw, grammarAccess.getRealDataAccess().getPlusSignKeyword_1_0_2_2_1_0()); 
     }
 
     |
 	kw='-' 
     {
         $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getRealDataAccess().getHyphenMinusKeyword_1_0_2_0_2_1_1()); 
+        newLeafNode(kw, grammarAccess.getRealDataAccess().getHyphenMinusKeyword_1_0_2_2_1_1()); 
     }
 )
     { 
-        newCompositeNode(grammarAccess.getRealDataAccess().getValidIntParserRuleCall_1_0_2_0_2_2()); 
+        newCompositeNode(grammarAccess.getRealDataAccess().getValidIntParserRuleCall_1_0_2_2_2()); 
     }
     this_ValidInt_8=ruleValidInt    {
 		$current.merge(this_ValidInt_8);
@@ -5946,14 +5939,14 @@ ruleRealData returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     { 
         afterParserOrEnumRuleCall();
     }
-((RULE_IJ)=>    this_IJ_9=RULE_IJ    {
+(    this_IJ_9=RULE_IJ    {
 		$current.merge(this_IJ_9);
     }
 
     { 
-    newLeafNode(this_IJ_9, grammarAccess.getRealDataAccess().getIJTerminalRuleCall_1_0_2_0_2_3()); 
+    newLeafNode(this_IJ_9, grammarAccess.getRealDataAccess().getIJTerminalRuleCall_1_0_2_2_3()); 
     }
-)?)))?)
+)?))?)
     |(    this_EXPIJ_10=RULE_EXPIJ    {
 		$current.merge(this_EXPIJ_10);
     }
@@ -5993,7 +5986,7 @@ ruleRealData returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     { 
         afterParserOrEnumRuleCall();
     }
-((RULE_IJ)=>    this_IJ_15=RULE_IJ    {
+(    this_IJ_15=RULE_IJ    {
 		$current.merge(this_IJ_15);
     }
 
@@ -6099,7 +6092,7 @@ ruleIntegerData returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
     { 
         afterParserOrEnumRuleCall();
     }
-((RULE_IJ)=>    this_IJ_1=RULE_IJ    {
+(    this_IJ_1=RULE_IJ    {
 		$current.merge(this_IJ_1);
     }
 

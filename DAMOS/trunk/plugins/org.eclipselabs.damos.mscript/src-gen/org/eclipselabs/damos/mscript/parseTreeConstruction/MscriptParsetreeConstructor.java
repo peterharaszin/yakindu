@@ -13485,11 +13485,11 @@ protected class Literal_StringLiteralParserRuleCall_2 extends RuleCallToken {
 /************ begin Rule NumericLiteral ****************
  *
  * NumericLiteral:
- * 	RealLiteral | => IntegerLiteral;
+ * 	IntegerLiteral | RealLiteral;
  *
  **/
 
-// RealLiteral | => IntegerLiteral
+// IntegerLiteral | RealLiteral
 protected class NumericLiteral_Alternatives extends AlternativesToken {
 
 	public NumericLiteral_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -13504,8 +13504,8 @@ protected class NumericLiteral_Alternatives extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new NumericLiteral_RealLiteralParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new NumericLiteral_IntegerLiteralParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new NumericLiteral_IntegerLiteralParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new NumericLiteral_RealLiteralParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -13520,52 +13520,16 @@ protected class NumericLiteral_Alternatives extends AlternativesToken {
 
 }
 
-// RealLiteral
-protected class NumericLiteral_RealLiteralParserRuleCall_0 extends RuleCallToken {
+// IntegerLiteral
+protected class NumericLiteral_IntegerLiteralParserRuleCall_0 extends RuleCallToken {
 	
-	public NumericLiteral_RealLiteralParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public NumericLiteral_IntegerLiteralParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getNumericLiteralAccess().getRealLiteralParserRuleCall_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new RealLiteral_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getRealLiteralRule().getType().getClassifier())
-			return null;
-		if(checkForRecursion(RealLiteral_Group.class, eObjectConsumer)) return null;
-		return eObjectConsumer;
-	}
-	
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-// => IntegerLiteral
-protected class NumericLiteral_IntegerLiteralParserRuleCall_1 extends RuleCallToken {
-	
-	public NumericLiteral_IntegerLiteralParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getNumericLiteralAccess().getIntegerLiteralParserRuleCall_1();
+		return grammarAccess.getNumericLiteralAccess().getIntegerLiteralParserRuleCall_0();
 	}
 
     @Override
@@ -13581,6 +13545,42 @@ protected class NumericLiteral_IntegerLiteralParserRuleCall_1 extends RuleCallTo
 		if(getEObject().eClass() != grammarAccess.getIntegerLiteralRule().getType().getClassifier())
 			return null;
 		if(checkForRecursion(IntegerLiteral_Group.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
+	}
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// RealLiteral
+protected class NumericLiteral_RealLiteralParserRuleCall_1 extends RuleCallToken {
+	
+	public NumericLiteral_RealLiteralParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getNumericLiteralAccess().getRealLiteralParserRuleCall_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new RealLiteral_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getRealLiteralRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(RealLiteral_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
 	}
 	

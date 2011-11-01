@@ -61,8 +61,8 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLiteralAccess().getAlternatives(), "rule__Literal__Alternatives");
 					put(grammarAccess.getNumericLiteralAccess().getAlternatives(), "rule__NumericLiteral__Alternatives");
 					put(grammarAccess.getRealDataAccess().getAlternatives_1(), "rule__RealData__Alternatives_1");
-					put(grammarAccess.getRealDataAccess().getAlternatives_1_0_2_0(), "rule__RealData__Alternatives_1_0_2_0");
-					put(grammarAccess.getRealDataAccess().getAlternatives_1_0_2_0_2_1(), "rule__RealData__Alternatives_1_0_2_0_2_1");
+					put(grammarAccess.getRealDataAccess().getAlternatives_1_0_2(), "rule__RealData__Alternatives_1_0_2");
+					put(grammarAccess.getRealDataAccess().getAlternatives_1_0_2_2_1(), "rule__RealData__Alternatives_1_0_2_2_1");
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_1(), "rule__RealData__Alternatives_1_1");
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_1_1_1(), "rule__RealData__Alternatives_1_1_1_1");
 					put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
@@ -194,8 +194,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRealLiteralAccess().getGroup(), "rule__RealLiteral__Group__0");
 					put(grammarAccess.getRealDataAccess().getGroup(), "rule__RealData__Group__0");
 					put(grammarAccess.getRealDataAccess().getGroup_1_0(), "rule__RealData__Group_1_0__0");
-					put(grammarAccess.getRealDataAccess().getGroup_1_0_2(), "rule__RealData__Group_1_0_2__0");
-					put(grammarAccess.getRealDataAccess().getGroup_1_0_2_0_2(), "rule__RealData__Group_1_0_2_0_2__0");
+					put(grammarAccess.getRealDataAccess().getGroup_1_0_2_2(), "rule__RealData__Group_1_0_2_2__0");
 					put(grammarAccess.getRealDataAccess().getGroup_1_1_1(), "rule__RealData__Group_1_1_1__0");
 					put(grammarAccess.getIntegerLiteralAccess().getGroup(), "rule__IntegerLiteral__Group__0");
 					put(grammarAccess.getIntegerDataAccess().getGroup(), "rule__IntegerData__Group__0");

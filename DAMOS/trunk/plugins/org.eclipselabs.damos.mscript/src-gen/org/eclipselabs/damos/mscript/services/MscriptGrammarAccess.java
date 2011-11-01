@@ -2558,21 +2558,21 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class NumericLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumericLiteral");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cRealLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIntegerLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIntegerLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cRealLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//NumericLiteral:
-		//	RealLiteral | => IntegerLiteral;
+		//	IntegerLiteral | RealLiteral;
 		public ParserRule getRule() { return rule; }
 
-		//RealLiteral | => IntegerLiteral
+		//IntegerLiteral | RealLiteral
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//RealLiteral
-		public RuleCall getRealLiteralParserRuleCall_0() { return cRealLiteralParserRuleCall_0; }
+		//IntegerLiteral
+		public RuleCall getIntegerLiteralParserRuleCall_0() { return cIntegerLiteralParserRuleCall_0; }
 
-		//=> IntegerLiteral
-		public RuleCall getIntegerLiteralParserRuleCall_1() { return cIntegerLiteralParserRuleCall_1; }
+		//RealLiteral
+		public RuleCall getRealLiteralParserRuleCall_1() { return cRealLiteralParserRuleCall_1; }
 	}
 
 	public class RealLiteralElements extends AbstractParserRuleElementFinder {
@@ -2611,17 +2611,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
 		private final Keyword cFullStopKeyword_1_0_0 = (Keyword)cGroup_1_0.eContents().get(0);
 		private final RuleCall cValidIntParserRuleCall_1_0_1 = (RuleCall)cGroup_1_0.eContents().get(1);
-		private final Group cGroup_1_0_2 = (Group)cGroup_1_0.eContents().get(2);
-		private final Alternatives cAlternatives_1_0_2_0 = (Alternatives)cGroup_1_0_2.eContents().get(0);
-		private final RuleCall cIJTerminalRuleCall_1_0_2_0_0 = (RuleCall)cAlternatives_1_0_2_0.eContents().get(0);
-		private final RuleCall cEXPIJTerminalRuleCall_1_0_2_0_1 = (RuleCall)cAlternatives_1_0_2_0.eContents().get(1);
-		private final Group cGroup_1_0_2_0_2 = (Group)cAlternatives_1_0_2_0.eContents().get(2);
-		private final RuleCall cETerminalRuleCall_1_0_2_0_2_0 = (RuleCall)cGroup_1_0_2_0_2.eContents().get(0);
-		private final Alternatives cAlternatives_1_0_2_0_2_1 = (Alternatives)cGroup_1_0_2_0_2.eContents().get(1);
-		private final Keyword cPlusSignKeyword_1_0_2_0_2_1_0 = (Keyword)cAlternatives_1_0_2_0_2_1.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_1_0_2_0_2_1_1 = (Keyword)cAlternatives_1_0_2_0_2_1.eContents().get(1);
-		private final RuleCall cValidIntParserRuleCall_1_0_2_0_2_2 = (RuleCall)cGroup_1_0_2_0_2.eContents().get(2);
-		private final RuleCall cIJTerminalRuleCall_1_0_2_0_2_3 = (RuleCall)cGroup_1_0_2_0_2.eContents().get(3);
+		private final Alternatives cAlternatives_1_0_2 = (Alternatives)cGroup_1_0.eContents().get(2);
+		private final RuleCall cIJTerminalRuleCall_1_0_2_0 = (RuleCall)cAlternatives_1_0_2.eContents().get(0);
+		private final RuleCall cEXPIJTerminalRuleCall_1_0_2_1 = (RuleCall)cAlternatives_1_0_2.eContents().get(1);
+		private final Group cGroup_1_0_2_2 = (Group)cAlternatives_1_0_2.eContents().get(2);
+		private final RuleCall cETerminalRuleCall_1_0_2_2_0 = (RuleCall)cGroup_1_0_2_2.eContents().get(0);
+		private final Alternatives cAlternatives_1_0_2_2_1 = (Alternatives)cGroup_1_0_2_2.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0_2_2_1_0 = (Keyword)cAlternatives_1_0_2_2_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_1_0_2_2_1_1 = (Keyword)cAlternatives_1_0_2_2_1.eContents().get(1);
+		private final RuleCall cValidIntParserRuleCall_1_0_2_2_2 = (RuleCall)cGroup_1_0_2_2.eContents().get(2);
+		private final RuleCall cIJTerminalRuleCall_1_0_2_2_3 = (RuleCall)cGroup_1_0_2_2.eContents().get(3);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cAlternatives_1.eContents().get(1);
 		private final RuleCall cEXPIJTerminalRuleCall_1_1_0 = (RuleCall)cAlternatives_1_1.eContents().get(0);
 		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
@@ -2633,19 +2632,19 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIJTerminalRuleCall_1_1_1_3 = (RuleCall)cGroup_1_1_1.eContents().get(3);
 		
 		//RealData hidden():
-		//	ValidInt ("." ValidInt => (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)? | (EXPIJ | E ("+" | "-") ValidInt => IJ?));
+		//	ValidInt ("." ValidInt (IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)? | (EXPIJ | E ("+" | "-") ValidInt IJ?));
 		public ParserRule getRule() { return rule; }
 
-		//ValidInt ("." ValidInt => (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)? | (EXPIJ | E ("+" | "-") ValidInt => IJ?))
+		//ValidInt ("." ValidInt (IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)? | (EXPIJ | E ("+" | "-") ValidInt IJ?))
 		public Group getGroup() { return cGroup; }
 
 		//ValidInt
 		public RuleCall getValidIntParserRuleCall_0() { return cValidIntParserRuleCall_0; }
 
-		//"." ValidInt => (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)? | (EXPIJ | E ("+" | "-") ValidInt => IJ?)
+		//"." ValidInt (IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)? | (EXPIJ | E ("+" | "-") ValidInt IJ?)
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//"." ValidInt => (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)?
+		//"." ValidInt (IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)?
 		public Group getGroup_1_0() { return cGroup_1_0; }
 
 		//"."
@@ -2654,46 +2653,43 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidInt
 		public RuleCall getValidIntParserRuleCall_1_0_1() { return cValidIntParserRuleCall_1_0_1; }
 
-		//=> (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)?
-		public Group getGroup_1_0_2() { return cGroup_1_0_2; }
-
-		//IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?
-		public Alternatives getAlternatives_1_0_2_0() { return cAlternatives_1_0_2_0; }
+		//(IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)?
+		public Alternatives getAlternatives_1_0_2() { return cAlternatives_1_0_2; }
 
 		//IJ
-		public RuleCall getIJTerminalRuleCall_1_0_2_0_0() { return cIJTerminalRuleCall_1_0_2_0_0; }
+		public RuleCall getIJTerminalRuleCall_1_0_2_0() { return cIJTerminalRuleCall_1_0_2_0; }
 
 		//EXPIJ
-		public RuleCall getEXPIJTerminalRuleCall_1_0_2_0_1() { return cEXPIJTerminalRuleCall_1_0_2_0_1; }
+		public RuleCall getEXPIJTerminalRuleCall_1_0_2_1() { return cEXPIJTerminalRuleCall_1_0_2_1; }
 
-		//E ("+" | "-") ValidInt => IJ?
-		public Group getGroup_1_0_2_0_2() { return cGroup_1_0_2_0_2; }
+		//E ("+" | "-") ValidInt IJ?
+		public Group getGroup_1_0_2_2() { return cGroup_1_0_2_2; }
 
 		//E
-		public RuleCall getETerminalRuleCall_1_0_2_0_2_0() { return cETerminalRuleCall_1_0_2_0_2_0; }
+		public RuleCall getETerminalRuleCall_1_0_2_2_0() { return cETerminalRuleCall_1_0_2_2_0; }
 
 		//"+" | "-"
-		public Alternatives getAlternatives_1_0_2_0_2_1() { return cAlternatives_1_0_2_0_2_1; }
+		public Alternatives getAlternatives_1_0_2_2_1() { return cAlternatives_1_0_2_2_1; }
 
 		//"+"
-		public Keyword getPlusSignKeyword_1_0_2_0_2_1_0() { return cPlusSignKeyword_1_0_2_0_2_1_0; }
+		public Keyword getPlusSignKeyword_1_0_2_2_1_0() { return cPlusSignKeyword_1_0_2_2_1_0; }
 
 		//"-"
-		public Keyword getHyphenMinusKeyword_1_0_2_0_2_1_1() { return cHyphenMinusKeyword_1_0_2_0_2_1_1; }
+		public Keyword getHyphenMinusKeyword_1_0_2_2_1_1() { return cHyphenMinusKeyword_1_0_2_2_1_1; }
 
 		//ValidInt
-		public RuleCall getValidIntParserRuleCall_1_0_2_0_2_2() { return cValidIntParserRuleCall_1_0_2_0_2_2; }
+		public RuleCall getValidIntParserRuleCall_1_0_2_2_2() { return cValidIntParserRuleCall_1_0_2_2_2; }
 
-		//=> IJ?
-		public RuleCall getIJTerminalRuleCall_1_0_2_0_2_3() { return cIJTerminalRuleCall_1_0_2_0_2_3; }
+		//IJ?
+		public RuleCall getIJTerminalRuleCall_1_0_2_2_3() { return cIJTerminalRuleCall_1_0_2_2_3; }
 
-		//EXPIJ | E ("+" | "-") ValidInt => IJ?
+		//EXPIJ | E ("+" | "-") ValidInt IJ?
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 
 		//EXPIJ
 		public RuleCall getEXPIJTerminalRuleCall_1_1_0() { return cEXPIJTerminalRuleCall_1_1_0; }
 
-		//E ("+" | "-") ValidInt => IJ?
+		//E ("+" | "-") ValidInt IJ?
 		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
 
 		//E
@@ -2711,7 +2707,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//ValidInt
 		public RuleCall getValidIntParserRuleCall_1_1_1_2() { return cValidIntParserRuleCall_1_1_1_2; }
 
-		//=> IJ?
+		//IJ?
 		public RuleCall getIJTerminalRuleCall_1_1_1_3() { return cIJTerminalRuleCall_1_1_1_3; }
 	}
 
@@ -2750,16 +2746,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIJTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
 		//IntegerData hidden():
-		//	ValidInt => IJ?;
+		//	ValidInt IJ?;
 		public ParserRule getRule() { return rule; }
 
-		//ValidInt => IJ?
+		//ValidInt IJ?
 		public Group getGroup() { return cGroup; }
 
 		//ValidInt
 		public RuleCall getValidIntParserRuleCall_0() { return cValidIntParserRuleCall_0; }
 
-		//=> IJ?
+		//IJ?
 		public RuleCall getIJTerminalRuleCall_1() { return cIJTerminalRuleCall_1; }
 	}
 
@@ -5417,7 +5413,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumericLiteral:
-	//	RealLiteral | => IntegerLiteral;
+	//	IntegerLiteral | RealLiteral;
 	public NumericLiteralElements getNumericLiteralAccess() {
 		return (pNumericLiteral != null) ? pNumericLiteral : (pNumericLiteral = new NumericLiteralElements());
 	}
@@ -5437,7 +5433,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealData hidden():
-	//	ValidInt ("." ValidInt => (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)? | (EXPIJ | E ("+" | "-") ValidInt => IJ?));
+	//	ValidInt ("." ValidInt (IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)? | (EXPIJ | E ("+" | "-") ValidInt IJ?));
 	public RealDataElements getRealDataAccess() {
 		return (pRealData != null) ? pRealData : (pRealData = new RealDataElements());
 	}
@@ -5457,7 +5453,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerData hidden():
-	//	ValidInt => IJ?;
+	//	ValidInt IJ?;
 	public IntegerDataElements getIntegerDataAccess() {
 		return (pIntegerData != null) ? pIntegerData : (pIntegerData = new IntegerDataElements());
 	}

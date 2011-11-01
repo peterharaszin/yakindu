@@ -287,19 +287,19 @@ Literal:
 	NumericLiteral | BooleanLiteral | StringLiteral;
 	
 NumericLiteral:
-	RealLiteral | =>IntegerLiteral;
+	IntegerLiteral | RealLiteral;
 	
 RealLiteral:
 	data=RealData unit=Unit;
 	
 RealData returns RealData hidden():
-	ValidInt (('.' ValidInt =>(IJ | EXPIJ | (E ('+' | '-') ValidInt =>IJ?))?) | (EXPIJ | (E ('+' | '-') ValidInt =>IJ?)));
+	ValidInt (('.' ValidInt (IJ | EXPIJ | (E ('+' | '-') ValidInt IJ?))?) | (EXPIJ | (E ('+' | '-') ValidInt IJ?)));
 
 IntegerLiteral:
 	data=IntegerData unit=Unit;
 
 IntegerData returns IntegerData hidden():
-	ValidInt =>IJ?;
+	ValidInt IJ?;
 
 BooleanLiteral:
 	{BooleanLiteral} (true?='true' | 'false');

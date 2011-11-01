@@ -1710,7 +1710,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumericLiteral:
-	//	RealLiteral | => IntegerLiteral;
+	//	IntegerLiteral | RealLiteral;
 	public MscriptGrammarAccess.NumericLiteralElements getNumericLiteralAccess() {
 		return gaMscript.getNumericLiteralAccess();
 	}
@@ -1730,7 +1730,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealData hidden():
-	//	ValidInt ("." ValidInt => (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)? | (EXPIJ | E ("+" | "-") ValidInt => IJ?));
+	//	ValidInt ("." ValidInt (IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)? | (EXPIJ | E ("+" | "-") ValidInt IJ?));
 	public MscriptGrammarAccess.RealDataElements getRealDataAccess() {
 		return gaMscript.getRealDataAccess();
 	}
@@ -1750,7 +1750,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerData hidden():
-	//	ValidInt => IJ?;
+	//	ValidInt IJ?;
 	public MscriptGrammarAccess.IntegerDataElements getIntegerDataAccess() {
 		return gaMscript.getIntegerDataAccess();
 	}

@@ -6,7 +6,7 @@
     modelName="ExecutionModel" editPluginClass="org.eclipselabs.damos.execution.executionmodel.edit.ExecutionModelEditPlugin"
     editorPluginClass="org.eclipselabs.damos.execution.executionmodel.ui.ExecutionModelUIPlugin"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    editorPluginID="org.eclipselabs.damos.execution.executionmodel.ui" usedGenPackages="../../org.eclipselabs.damos.mscript/model/ComputationModel.genmodel#//computationmodel platform:/plugin/org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.mscript/model/Mscript.genmodel#//mscript">
+    editorPluginID="org.eclipselabs.damos.execution.executionmodel.ui" usedGenPackages="../../org.eclipselabs.damos.mscript/model/ComputationModel.genmodel#//computationmodel ../../org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.mscript/model/Mscript.genmodel#//mscript">
   <foreignModel>ExecutionModel.ecore</foreignModel>
   <genPackages prefix="ExecutionModel" basePackage="org.eclipselabs.damos.execution"
       disposableProviderFactory="true" providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"

@@ -7,14 +7,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="ValidSimulationTime"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="executionModel" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.ecore#//ExecutionModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFragment" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="simulationTime" ordered="false"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble" unsettable="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="solverConfiguration" lowerBound="1"
-        eType="#//SolverConfiguration" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionModel" eType="ecore:EClass ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.ecore#//ExecutionModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="topLevelFragment" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="simulationTime" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="solverConfiguration" eType="#//SolverConfiguration"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SolverType">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -40,15 +39,14 @@
     <eOperations name="getArgumentValue" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression">
       <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//SolverType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//SolverType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
         eType="#//SolverArgument" containment="true" eOpposite="#//SolverArgument/configuration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SolverArgument">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" lowerBound="1"
-        eType="#//SolverConfiguration" eOpposite="#//SolverConfiguration/arguments"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
-        eType="#//SolverParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configuration" eType="#//SolverConfiguration"
+        eOpposite="#//SolverConfiguration/arguments"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" eType="#//SolverParameter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Expression"
         containment="true"/>
   </eClassifiers>

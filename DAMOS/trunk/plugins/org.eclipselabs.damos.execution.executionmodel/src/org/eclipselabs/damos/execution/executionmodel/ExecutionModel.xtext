@@ -10,4 +10,4 @@ ExecutionModel:
 		(computationModelMappings+=ComputationModelMapping)*;
 
 ComputationModelMapping:
-	'map' ^fragment=[Fragment|QualifiedName] 'to' computationModel=[ComputationModel|QualifiedName];
+	'use' computationModel=[ComputationModel|QualifiedName] 'for' ^fragment=[Fragment|QualifiedName];

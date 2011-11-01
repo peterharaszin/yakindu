@@ -41,7 +41,7 @@ public interface SolverArgument extends EObject {
 	 * @see #setConfiguration(SolverConfiguration)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSolverArgument_Configuration()
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration#getArguments
-	 * @model opposite="arguments" required="true" transient="false"
+	 * @model opposite="arguments" transient="false"
 	 * @generated
 	 */
 	SolverConfiguration getConfiguration();
@@ -67,7 +67,7 @@ public interface SolverArgument extends EObject {
 	 * @return the value of the '<em>Parameter</em>' reference.
 	 * @see #setParameter(SolverParameter)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSolverArgument_Parameter()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	SolverParameter getParameter();

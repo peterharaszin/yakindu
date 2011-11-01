@@ -70,13 +70,22 @@ public interface SimulationModelPackage extends EPackage {
 	int SIMULATION_MODEL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMULATION_MODEL__QUALIFIED_NAME = 0;
+
+	/**
 	 * The feature id for the '<em><b>Execution Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL__EXECUTION_MODEL = 0;
+	int SIMULATION_MODEL__EXECUTION_MODEL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Top Level Fragment</b></em>' reference.
@@ -85,16 +94,16 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL__TOP_LEVEL_FRAGMENT = 1;
+	int SIMULATION_MODEL__TOP_LEVEL_FRAGMENT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Simulation Time</b></em>' attribute.
+	 * The feature id for the '<em><b>Simulation Time</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL__SIMULATION_TIME = 2;
+	int SIMULATION_MODEL__SIMULATION_TIME = 3;
 
 	/**
 	 * The feature id for the '<em><b>Solver Configuration</b></em>' containment reference.
@@ -103,7 +112,7 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL__SOLVER_CONFIGURATION = 3;
+	int SIMULATION_MODEL__SOLVER_CONFIGURATION = 4;
 
 	/**
 	 * The number of structural features of the '<em>Simulation Model</em>' class.
@@ -112,7 +121,7 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL_FEATURE_COUNT = 4;
+	int SIMULATION_MODEL_FEATURE_COUNT = 5;
 
 
 	/**
@@ -333,15 +342,15 @@ public interface SimulationModelPackage extends EPackage {
 	EReference getSimulationModel_TopLevelFragment();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Simulation Time</em>'.
+	 * @return the meta object for the containment reference '<em>Simulation Time</em>'.
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime()
 	 * @see #getSimulationModel()
 	 * @generated
 	 */
-	EAttribute getSimulationModel_SimulationTime();
+	EReference getSimulationModel_SimulationTime();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSolverConfiguration <em>Solver Configuration</em>}'.
@@ -353,6 +362,17 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSimulationModel_SolverConfiguration();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getQualifiedName <em>Qualified Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getQualifiedName()
+	 * @see #getSimulationModel()
+	 * @generated
+	 */
+	EAttribute getSimulationModel_QualifiedName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverType <em>Solver Type</em>}'.
@@ -563,12 +583,12 @@ public interface SimulationModelPackage extends EPackage {
 		EReference SIMULATION_MODEL__TOP_LEVEL_FRAGMENT = eINSTANCE.getSimulationModel_TopLevelFragment();
 
 		/**
-		 * The meta object literal for the '<em><b>Simulation Time</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Simulation Time</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute SIMULATION_MODEL__SIMULATION_TIME = eINSTANCE.getSimulationModel_SimulationTime();
+		EReference SIMULATION_MODEL__SIMULATION_TIME = eINSTANCE.getSimulationModel_SimulationTime();
 
 		/**
 		 * The meta object literal for the '<em><b>Solver Configuration</b></em>' containment reference feature.
@@ -577,6 +597,14 @@ public interface SimulationModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SIMULATION_MODEL__SOLVER_CONFIGURATION = eINSTANCE.getSimulationModel_SolverConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SIMULATION_MODEL__QUALIFIED_NAME = eINSTANCE.getSimulationModel_QualifiedName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverTypeImpl <em>Solver Type</em>}' class.

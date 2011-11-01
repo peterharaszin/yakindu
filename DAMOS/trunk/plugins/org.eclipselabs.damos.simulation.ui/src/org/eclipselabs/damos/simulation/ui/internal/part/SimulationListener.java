@@ -23,6 +23,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.simulation.core.ISimulationListener;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
+import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
 import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**
@@ -38,7 +39,7 @@ public class SimulationListener implements ISimulationListener {
 	public void handleSimulationEvent(final SimulationEvent event) {
 		switch (event.getKind()) {
 		case SimulationEvent.START:
-			realtime = !event.getSimulation().getModel().isSetSimulationTime();
+			realtime = event.getSimulation().getModel().getSimulationTime() == null;
 			progress = 0;
 			overflowedComponents.clear();
 			break;
@@ -53,7 +54,7 @@ public class SimulationListener implements ISimulationListener {
 				}
 				progress = newTime;
 			} else {
-				long newProgress = Math.round(100.0 * event.getTime() / event.getSimulation().getModel().getSimulationTime());
+				long newProgress = Math.round(100.0 * event.getTime() / SimulationModelUtil.getSimulationTime(event.getSimulation().getModel()));
 				if (newProgress == progress) {
 					return;
 				}

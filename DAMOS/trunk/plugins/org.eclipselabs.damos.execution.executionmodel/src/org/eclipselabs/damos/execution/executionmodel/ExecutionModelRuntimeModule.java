@@ -6,6 +6,8 @@ package org.eclipselabs.damos.execution.executionmodel;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipselabs.damos.execution.executionmodel.naming.ExecutionModelQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
@@ -31,6 +33,14 @@ public class ExecutionModelRuntimeModule extends org.eclipselabs.damos.execution
 
 	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameConverter> bindIQualifiedNameConverter() {
 		return MscriptQualifiedNameConverter.class;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.execution.executionmodel.AbstractExecutionModelRuntimeModule#bindIQualifiedNameProvider()
+	 */
+	@Override
+	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
+		return ExecutionModelQualifiedNameProvider.class;
 	}
 
 }

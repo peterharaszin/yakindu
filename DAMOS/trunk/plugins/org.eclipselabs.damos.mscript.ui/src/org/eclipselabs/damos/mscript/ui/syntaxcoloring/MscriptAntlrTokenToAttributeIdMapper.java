@@ -25,7 +25,7 @@ public class MscriptAntlrTokenToAttributeIdMapper extends DefaultAntlrTokenToAtt
 	 */
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		if("RULE_INT".equals(tokenName) || "RULE_ONE".equals(tokenName) || "RULE_REAL".equals(tokenName)) {
+		if("RULE_INT".equals(tokenName)) {
 			return DefaultHighlightingConfiguration.NUMBER_ID;
 		}
 		return super.calculateId(tokenName, tokenType);

@@ -77,8 +77,9 @@ public abstract class AdaptiveStepSizeSolver extends AbstractSolver {
 		
 		minimumStepSize = SimulationModelUtil.getSolverArgumentDoubleValue(solverConfiguration, "minimumStepSize", 1e-10);
 		
-		if (simulationModel.isSetSimulationTime() && simulationModel.getSimulationTime() > 0) {
-			maximumStepSize = simulationModel.getSimulationTime() / 100;
+		double simulationTime = SimulationModelUtil.getSimulationTime(simulationModel);
+		if (simulationTime > 0) {
+			maximumStepSize = simulationTime / 100;
 		} else {
 			maximumStepSize = 0.04; // 25 Hz
 		}

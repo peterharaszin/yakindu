@@ -52,45 +52,45 @@ public class ExecutionModelGrammarAccess extends AbstractGrammarElementFinder {
 	public class ComputationModelMappingElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ComputationModelMapping");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cMapKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cFragmentAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cFragmentFragmentCrossReference_1_0 = (CrossReference)cFragmentAssignment_1.eContents().get(0);
-		private final RuleCall cFragmentFragmentQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cFragmentFragmentCrossReference_1_0.eContents().get(1);
-		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cComputationModelAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cComputationModelComputationModelCrossReference_3_0 = (CrossReference)cComputationModelAssignment_3.eContents().get(0);
-		private final RuleCall cComputationModelComputationModelQualifiedNameParserRuleCall_3_0_1 = (RuleCall)cComputationModelComputationModelCrossReference_3_0.eContents().get(1);
+		private final Keyword cUseKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cComputationModelAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cComputationModelComputationModelCrossReference_1_0 = (CrossReference)cComputationModelAssignment_1.eContents().get(0);
+		private final RuleCall cComputationModelComputationModelQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cComputationModelComputationModelCrossReference_1_0.eContents().get(1);
+		private final Keyword cForKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cFragmentAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final CrossReference cFragmentFragmentCrossReference_3_0 = (CrossReference)cFragmentAssignment_3.eContents().get(0);
+		private final RuleCall cFragmentFragmentQualifiedNameParserRuleCall_3_0_1 = (RuleCall)cFragmentFragmentCrossReference_3_0.eContents().get(1);
 		
 		//ComputationModelMapping:
-		//	"map" ^fragment=[Fragment|QualifiedName] "to" computationModel=[ComputationModel|QualifiedName];
+		//	"use" computationModel=[ComputationModel|QualifiedName] "for" ^fragment=[Fragment|QualifiedName];
 		public ParserRule getRule() { return rule; }
 
-		//"map" ^fragment=[Fragment|QualifiedName] "to" computationModel=[ComputationModel|QualifiedName]
+		//"use" computationModel=[ComputationModel|QualifiedName] "for" ^fragment=[Fragment|QualifiedName]
 		public Group getGroup() { return cGroup; }
 
-		//"map"
-		public Keyword getMapKeyword_0() { return cMapKeyword_0; }
-
-		//^fragment=[Fragment|QualifiedName]
-		public Assignment getFragmentAssignment_1() { return cFragmentAssignment_1; }
-
-		//[Fragment|QualifiedName]
-		public CrossReference getFragmentFragmentCrossReference_1_0() { return cFragmentFragmentCrossReference_1_0; }
-
-		//QualifiedName
-		public RuleCall getFragmentFragmentQualifiedNameParserRuleCall_1_0_1() { return cFragmentFragmentQualifiedNameParserRuleCall_1_0_1; }
-
-		//"to"
-		public Keyword getToKeyword_2() { return cToKeyword_2; }
+		//"use"
+		public Keyword getUseKeyword_0() { return cUseKeyword_0; }
 
 		//computationModel=[ComputationModel|QualifiedName]
-		public Assignment getComputationModelAssignment_3() { return cComputationModelAssignment_3; }
+		public Assignment getComputationModelAssignment_1() { return cComputationModelAssignment_1; }
 
 		//[ComputationModel|QualifiedName]
-		public CrossReference getComputationModelComputationModelCrossReference_3_0() { return cComputationModelComputationModelCrossReference_3_0; }
+		public CrossReference getComputationModelComputationModelCrossReference_1_0() { return cComputationModelComputationModelCrossReference_1_0; }
 
 		//QualifiedName
-		public RuleCall getComputationModelComputationModelQualifiedNameParserRuleCall_3_0_1() { return cComputationModelComputationModelQualifiedNameParserRuleCall_3_0_1; }
+		public RuleCall getComputationModelComputationModelQualifiedNameParserRuleCall_1_0_1() { return cComputationModelComputationModelQualifiedNameParserRuleCall_1_0_1; }
+
+		//"for"
+		public Keyword getForKeyword_2() { return cForKeyword_2; }
+
+		//^fragment=[Fragment|QualifiedName]
+		public Assignment getFragmentAssignment_3() { return cFragmentAssignment_3; }
+
+		//[Fragment|QualifiedName]
+		public CrossReference getFragmentFragmentCrossReference_3_0() { return cFragmentFragmentCrossReference_3_0; }
+
+		//QualifiedName
+		public RuleCall getFragmentFragmentQualifiedNameParserRuleCall_3_0_1() { return cFragmentFragmentQualifiedNameParserRuleCall_3_0_1; }
 	}
 	
 	
@@ -129,7 +129,7 @@ public class ExecutionModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ComputationModelMapping:
-	//	"map" ^fragment=[Fragment|QualifiedName] "to" computationModel=[ComputationModel|QualifiedName];
+	//	"use" computationModel=[ComputationModel|QualifiedName] "for" ^fragment=[Fragment|QualifiedName];
 	public ComputationModelMappingElements getComputationModelMappingAccess() {
 		return (pComputationModelMapping != null) ? pComputationModelMapping : (pComputationModelMapping = new ComputationModelMappingElements());
 	}
@@ -361,7 +361,7 @@ public class ExecutionModelGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	definedType=(PrimitiveType | ArrayType) | type=[DataType];
+	//	definedType=(PrimitiveType | ArrayType) | type=[DataType|QualifiedName];
 	public MscriptGrammarAccess.DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return gaMscript.getDataTypeSpecifierAccess();
 	}
@@ -451,8 +451,8 @@ public class ExecutionModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayType:
-	//	TensorType | => (definedElementType=PrimitiveType | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
-	//	dimensions+=ArrayDimension)* "]";
+	//	TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+	//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public MscriptGrammarAccess.ArrayTypeElements getArrayTypeAccess() {
 		return gaMscript.getArrayTypeAccess();
 	}
@@ -837,7 +837,7 @@ public class ExecutionModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//NumericLiteral:
-	//	RealLiteral | IntegerLiteral;
+	//	IntegerLiteral | RealLiteral;
 	public MscriptGrammarAccess.NumericLiteralElements getNumericLiteralAccess() {
 		return gaMscript.getNumericLiteralAccess();
 	}

@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipselabs.damos.simulation.simulationmodel.ui;singleton:=true
 Bundle-Version: 0.3.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipselabs.damos.simulation.simulationmodel.ui.internal.SimulationModelUIPlugin$Implementation
+Bundle-Activator: org.eclipselabs.damos.simulation.simulationmodel.ui.internal.SimulationModelActivator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -16,7 +16,18 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipselabs.damos.common;bundle-version="0.2.0",
  org.eclipselabs.damos.dml.edit;visibility:=reexport,
  org.eclipselabs.damos.simulation.simulationmodel;bundle-version="0.2.0",
- org.eclipselabs.damos.mscript;bundle-version="0.3.0"
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0",
+ org.eclipse.xtext.ui,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui.editors,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipselabs.damos.mscript.ui;bundle-version="0.3.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipselabs.damos.simulation.simulationmodel.ui,
- org.eclipselabs.damos.simulation.simulationmodel.ui.registry
+ org.eclipselabs.damos.simulation.simulationmodel.ui.registry,
+ org.eclipselabs.damos.simulation.simulationmodel.ui.contentassist.antlr,
+ org.eclipselabs.damos.simulation.simulationmodel.ui.internal
+Import-Package: org.apache.log4j

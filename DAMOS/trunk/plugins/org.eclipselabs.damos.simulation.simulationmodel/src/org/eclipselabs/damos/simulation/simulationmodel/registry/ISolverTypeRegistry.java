@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.simulation.simulationmodel.registry;
 
+import java.util.Collection;
+
 import org.eclipselabs.damos.simulation.simulationmodel.internal.registry.SolverTypeRegistry;
 
 /**
@@ -21,6 +23,7 @@ public interface ISolverTypeRegistry {
 
 	ISolverTypeRegistry INSTANCE = new SolverTypeRegistry();
 	
+	Collection<ISolverTypeDescriptor> getSolverTypes();
 	ISolverTypeDescriptor getSolverType(String id);
 
 }

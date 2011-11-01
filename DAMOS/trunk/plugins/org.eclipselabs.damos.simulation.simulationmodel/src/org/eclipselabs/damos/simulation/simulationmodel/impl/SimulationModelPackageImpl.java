@@ -162,15 +162,6 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 	 * @generated
 	 */
 	public EReference getSimulationModel_ExecutionModel() {
-		return (EReference)simulationModelEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getSimulationModel_TopLevelFragment() {
 		return (EReference)simulationModelEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -179,8 +170,17 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getSimulationModel_SimulationTime() {
-		return (EAttribute)simulationModelEClass.getEStructuralFeatures().get(2);
+	public EReference getSimulationModel_TopLevelFragment() {
+		return (EReference)simulationModelEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSimulationModel_SimulationTime() {
+		return (EReference)simulationModelEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -189,7 +189,16 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 	 * @generated
 	 */
 	public EReference getSimulationModel_SolverConfiguration() {
-		return (EReference)simulationModelEClass.getEStructuralFeatures().get(3);
+		return (EReference)simulationModelEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getSimulationModel_QualifiedName() {
+		return (EAttribute)simulationModelEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -356,9 +365,10 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 
 		// Create classes and their features
 		simulationModelEClass = createEClass(SIMULATION_MODEL);
+		createEAttribute(simulationModelEClass, SIMULATION_MODEL__QUALIFIED_NAME);
 		createEReference(simulationModelEClass, SIMULATION_MODEL__EXECUTION_MODEL);
 		createEReference(simulationModelEClass, SIMULATION_MODEL__TOP_LEVEL_FRAGMENT);
-		createEAttribute(simulationModelEClass, SIMULATION_MODEL__SIMULATION_TIME);
+		createEReference(simulationModelEClass, SIMULATION_MODEL__SIMULATION_TIME);
 		createEReference(simulationModelEClass, SIMULATION_MODEL__SOLVER_CONFIGURATION);
 
 		solverTypeEClass = createEClass(SOLVER_TYPE);
@@ -418,10 +428,11 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(simulationModelEClass, SimulationModel.class, "SimulationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSimulationModel_ExecutionModel(), theExecutionModelPackage.getExecutionModel(), null, "executionModel", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSimulationModel_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getSimulationModel_SimulationTime(), ecorePackage.getEDouble(), "simulationTime", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getSimulationModel_SolverConfiguration(), this.getSolverConfiguration(), null, "solverConfiguration", null, 1, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSimulationModel_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimulationModel_ExecutionModel(), theExecutionModelPackage.getExecutionModel(), null, "executionModel", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimulationModel_TopLevelFragment(), theDMLPackage.getFragment(), null, "topLevelFragment", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimulationModel_SimulationTime(), theMscriptPackage.getExpression(), null, "simulationTime", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSimulationModel_SolverConfiguration(), this.getSolverConfiguration(), null, "solverConfiguration", null, 0, 1, SimulationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(solverTypeEClass, SolverType.class, "SolverType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSolverType_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, SolverType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -438,7 +449,7 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 		initEAttribute(getSolverParameter_Name(), ecorePackage.getEString(), "name", null, 0, 1, SolverParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(solverConfigurationEClass, SolverConfiguration.class, "SolverConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSolverConfiguration_Type(), this.getSolverType(), null, "type", null, 1, 1, SolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSolverConfiguration_Type(), this.getSolverType(), null, "type", null, 0, 1, SolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSolverConfiguration_Arguments(), this.getSolverArgument(), this.getSolverArgument_Configuration(), "arguments", null, 0, -1, SolverConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(solverConfigurationEClass, this.getSolverArgument(), "getArgument", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -448,8 +459,8 @@ public class SimulationModelPackageImpl extends EPackageImpl implements Simulati
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(solverArgumentEClass, SolverArgument.class, "SolverArgument", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSolverArgument_Configuration(), this.getSolverConfiguration(), this.getSolverConfiguration_Arguments(), "configuration", null, 1, 1, SolverArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSolverArgument_Parameter(), this.getSolverParameter(), null, "parameter", null, 1, 1, SolverArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSolverArgument_Configuration(), this.getSolverConfiguration(), this.getSolverConfiguration_Arguments(), "configuration", null, 0, 1, SolverArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSolverArgument_Parameter(), this.getSolverParameter(), null, "parameter", null, 0, 1, SolverArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSolverArgument_Value(), theMscriptPackage.getExpression(), null, "value", null, 0, 1, SolverArgument.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource

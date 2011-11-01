@@ -9,6 +9,7 @@ package org.eclipselabs.damos.simulation.simulationmodel;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
+import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +19,7 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getExecutionModel <em>Execution Model</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}</li>
@@ -41,7 +43,7 @@ public interface SimulationModel extends EObject {
 	 * @return the value of the '<em>Execution Model</em>' reference.
 	 * @see #setExecutionModel(ExecutionModel)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSimulationModel_ExecutionModel()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	ExecutionModel getExecutionModel();
@@ -67,7 +69,7 @@ public interface SimulationModel extends EObject {
 	 * @return the value of the '<em>Top Level Fragment</em>' reference.
 	 * @see #setTopLevelFragment(Fragment)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSimulationModel_TopLevelFragment()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Fragment getTopLevelFragment();
@@ -83,57 +85,30 @@ public interface SimulationModel extends EObject {
 	void setTopLevelFragment(Fragment value);
 
 	/**
-	 * Returns the value of the '<em><b>Simulation Time</b></em>' attribute.
+	 * Returns the value of the '<em><b>Simulation Time</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Simulation Time</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Simulation Time</em>' attribute.
-	 * @see #isSetSimulationTime()
-	 * @see #unsetSimulationTime()
-	 * @see #setSimulationTime(double)
+	 * @return the value of the '<em>Simulation Time</em>' containment reference.
+	 * @see #setSimulationTime(Expression)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSimulationModel_SimulationTime()
-	 * @model unsettable="true" ordered="false"
+	 * @model containment="true"
 	 * @generated
 	 */
-	double getSimulationTime();
+	Expression getSimulationTime();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Simulation Time</em>' attribute.
-	 * @see #isSetSimulationTime()
-	 * @see #unsetSimulationTime()
+	 * @param value the new value of the '<em>Simulation Time</em>' containment reference.
 	 * @see #getSimulationTime()
 	 * @generated
 	 */
-	void setSimulationTime(double value);
-
-	/**
-	 * Unsets the value of the '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isSetSimulationTime()
-	 * @see #getSimulationTime()
-	 * @see #setSimulationTime(double)
-	 * @generated
-	 */
-	void unsetSimulationTime();
-
-	/**
-	 * Returns whether the value of the '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}' attribute is set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return whether the value of the '<em>Simulation Time</em>' attribute is set.
-	 * @see #unsetSimulationTime()
-	 * @see #getSimulationTime()
-	 * @see #setSimulationTime(double)
-	 * @generated
-	 */
-	boolean isSetSimulationTime();
+	void setSimulationTime(Expression value);
 
 	/**
 	 * Returns the value of the '<em><b>Solver Configuration</b></em>' containment reference.
@@ -146,7 +121,7 @@ public interface SimulationModel extends EObject {
 	 * @return the value of the '<em>Solver Configuration</em>' containment reference.
 	 * @see #setSolverConfiguration(SolverConfiguration)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSimulationModel_SolverConfiguration()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	SolverConfiguration getSolverConfiguration();
@@ -160,5 +135,31 @@ public interface SimulationModel extends EObject {
 	 * @generated
 	 */
 	void setSolverConfiguration(SolverConfiguration value);
+
+	/**
+	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualified Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Qualified Name</em>' attribute.
+	 * @see #setQualifiedName(String)
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSimulationModel_QualifiedName()
+	 * @model
+	 * @generated
+	 */
+	String getQualifiedName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getQualifiedName <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Qualified Name</em>' attribute.
+	 * @see #getQualifiedName()
+	 * @generated
+	 */
+	void setQualifiedName(String value);
 
 } // SimulationModel

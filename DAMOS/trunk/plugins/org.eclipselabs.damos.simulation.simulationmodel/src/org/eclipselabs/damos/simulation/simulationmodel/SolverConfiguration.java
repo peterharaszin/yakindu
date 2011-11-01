@@ -40,7 +40,7 @@ public interface SolverConfiguration extends EObject {
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(SolverType)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSolverConfiguration_Type()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	SolverType getType();

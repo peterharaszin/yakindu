@@ -8,14 +8,14 @@
       <ePackage href="http://www.eclipselabs.org/damos/mscript/ComputationModel#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel">
-      <ePackage href="http://www.eclipselabs.org/damos/ExecutionModel#/"/>
+      <ePackage href="http://www.eclipselabs.org/damos/2011/ExecutionModel#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
       <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="ExecutionModel">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/ExecutionModel#//ExecutionModel"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/ExecutionModel#//ExecutionModel"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="execution"/>
@@ -29,23 +29,23 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ComputationModelMapping">
       <type metamodel="/0/@metamodelDeclarations.2">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/ExecutionModel#//ComputationModelMapping"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/ExecutionModel#//ComputationModelMapping"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:Keyword" value="map"/>
-        <elements xsi:type="xtext:Assignment" feature="fragment" operator="=">
-          <terminal xsi:type="xtext:CrossReference">
-            <type metamodel="/0/@metamodelDeclarations.0">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/DML/1.0.0#//Fragment"/>
-            </type>
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.109"/>
-          </terminal>
-        </elements>
-        <elements xsi:type="xtext:Keyword" value="to"/>
+        <elements xsi:type="xtext:Keyword" value="use"/>
         <elements xsi:type="xtext:Assignment" feature="computationModel" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.1">
               <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/ComputationModel#//ComputationModel"/>
+            </type>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.109"/>
+          </terminal>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="for"/>
+        <elements xsi:type="xtext:Assignment" feature="fragment" operator="=">
+          <terminal xsi:type="xtext:CrossReference">
+            <type metamodel="/0/@metamodelDeclarations.0">
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/DML/1.0.0#//Fragment"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.109"/>
           </terminal>
@@ -453,7 +453,7 @@
             <type metamodel="/1/@metamodelDeclarations.1">
               <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/Mscript#//DataType"/>
             </type>
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.118"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.109"/>
           </terminal>
         </elements>
       </alternatives>
@@ -579,7 +579,10 @@
           <elements xsi:type="xtext:Group" predicated="true">
             <elements xsi:type="xtext:Alternatives">
               <elements xsi:type="xtext:Assignment" feature="definedElementType" operator="=">
-                <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.21"/>
+                <terminal xsi:type="xtext:Alternatives">
+                  <elements xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
+                  <elements xsi:type="xtext:RuleCall" rule="/1/@rules.28"/>
+                </terminal>
               </elements>
               <elements xsi:type="xtext:Assignment" feature="elementType" operator="=">
                 <terminal xsi:type="xtext:CrossReference">
@@ -1342,8 +1345,8 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/Mscript#//NumericLiteral"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
-        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.67"/>
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.69"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.67"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="RealLiteral">

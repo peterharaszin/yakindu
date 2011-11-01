@@ -744,7 +744,7 @@
             <type metamodel="/1/@metamodelDeclarations.1">
               <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/Mscript#//DataType"/>
             </type>
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.118"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.109"/>
           </terminal>
         </elements>
       </alternatives>
@@ -870,7 +870,10 @@
           <elements xsi:type="xtext:Group" predicated="true">
             <elements xsi:type="xtext:Alternatives">
               <elements xsi:type="xtext:Assignment" feature="definedElementType" operator="=">
-                <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.21"/>
+                <terminal xsi:type="xtext:Alternatives">
+                  <elements xsi:type="xtext:RuleCall" rule="/1/@rules.27"/>
+                  <elements xsi:type="xtext:RuleCall" rule="/1/@rules.28"/>
+                </terminal>
               </elements>
               <elements xsi:type="xtext:Assignment" feature="elementType" operator="=">
                 <terminal xsi:type="xtext:CrossReference">
@@ -1634,7 +1637,7 @@
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.67"/>
-        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.69"/>
+        <elements xsi:type="xtext:RuleCall" predicated="true" rule="/1/@rules.69"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="RealLiteral">
@@ -1660,17 +1663,19 @@
           <elements xsi:type="xtext:Group">
             <elements xsi:type="xtext:Keyword" value="."/>
             <elements xsi:type="xtext:RuleCall" rule="/1/@rules.110"/>
-            <elements xsi:type="xtext:Alternatives" cardinality="?">
-              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.113"/>
-              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
-              <elements xsi:type="xtext:Group">
-                <elements xsi:type="xtext:RuleCall" rule="/1/@rules.114"/>
-                <elements xsi:type="xtext:Alternatives">
-                  <elements xsi:type="xtext:Keyword" value="+"/>
-                  <elements xsi:type="xtext:Keyword" value="-"/>
+            <elements xsi:type="xtext:Group" cardinality="?" predicated="true">
+              <elements xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:RuleCall" rule="/1/@rules.113"/>
+                <elements xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
+                <elements xsi:type="xtext:Group">
+                  <elements xsi:type="xtext:RuleCall" rule="/1/@rules.114"/>
+                  <elements xsi:type="xtext:Alternatives">
+                    <elements xsi:type="xtext:Keyword" value="+"/>
+                    <elements xsi:type="xtext:Keyword" value="-"/>
+                  </elements>
+                  <elements xsi:type="xtext:RuleCall" rule="/1/@rules.110"/>
+                  <elements xsi:type="xtext:RuleCall" cardinality="?" predicated="true" rule="/1/@rules.113"/>
                 </elements>
-                <elements xsi:type="xtext:RuleCall" rule="/1/@rules.110"/>
-                <elements xsi:type="xtext:RuleCall" cardinality="?" rule="/1/@rules.113"/>
               </elements>
             </elements>
           </elements>
@@ -1683,7 +1688,7 @@
                 <elements xsi:type="xtext:Keyword" value="-"/>
               </elements>
               <elements xsi:type="xtext:RuleCall" rule="/1/@rules.110"/>
-              <elements xsi:type="xtext:RuleCall" cardinality="?" rule="/1/@rules.113"/>
+              <elements xsi:type="xtext:RuleCall" cardinality="?" predicated="true" rule="/1/@rules.113"/>
             </elements>
           </elements>
         </elements>
@@ -1708,7 +1713,7 @@
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.110"/>
-        <elements xsi:type="xtext:RuleCall" cardinality="?" rule="/1/@rules.113"/>
+        <elements xsi:type="xtext:RuleCall" cardinality="?" predicated="true" rule="/1/@rules.113"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="BooleanLiteral">

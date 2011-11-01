@@ -123,7 +123,7 @@ Equation:
  */
 
 DataTypeSpecifier:
-	definedType=(PrimitiveType | ArrayType) | type=[DataType];
+	definedType=(PrimitiveType | ArrayType) | type=[DataType|QualifiedName];
 
 PrimitiveType:
 	NumericType | BooleanType | StringType;
@@ -150,7 +150,7 @@ StringType:
 	{StringType} 'string';
 	
 ArrayType:
-	TensorType | =>(definedElementType=PrimitiveType | elementType=[DataType]) '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
+	TensorType | =>(definedElementType=(BooleanType | StringType) | elementType=[DataType]) '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
 	
 TensorType:
 	definedElementType=NumericType '[' dimensions+=ArrayDimension (',' dimensions+=ArrayDimension)* ']';
@@ -287,19 +287,19 @@ Literal:
 	NumericLiteral | BooleanLiteral | StringLiteral;
 	
 NumericLiteral:
-	RealLiteral | IntegerLiteral;
+	RealLiteral | =>IntegerLiteral;
 	
 RealLiteral:
 	data=RealData unit=Unit;
 	
 RealData returns RealData hidden():
-	ValidInt (('.' ValidInt (IJ | EXPIJ | (E ('+' | '-') ValidInt IJ?))?) | (EXPIJ | (E ('+' | '-') ValidInt IJ?)));
+	ValidInt (('.' ValidInt =>(IJ | EXPIJ | (E ('+' | '-') ValidInt =>IJ?))?) | (EXPIJ | (E ('+' | '-') ValidInt =>IJ?)));
 
 IntegerLiteral:
 	data=IntegerData unit=Unit;
 
 IntegerData returns IntegerData hidden():
-	ValidInt IJ?;
+	ValidInt =>IJ?;
 
 BooleanLiteral:
 	{BooleanLiteral} (true?='true' | 'false');

@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.simulationmodel.ui.internal;
+package org.eclipselabs.damos.simulation.simulationmodel.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -20,9 +20,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.AbstractSolverConfigurationPage;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.SolverConfigurationPageChangeEvent;
@@ -66,15 +64,13 @@ public class FixedStepSizeSolverConfigurationPage extends AbstractSolverConfigur
 
 	public void initializeFrom(SimulationModel simulationModel) {
 		SolverConfiguration solverConfiguration = simulationModel.getSolverConfiguration();
-		initializeFromDoubleValueAttribute(solverConfiguration, SimulationModelPackage.eINSTANCE.getFixedStepSizeSolverConfiguration_StepSize(), stepSizeText);
+		initializeFromDoubleValueAttribute(solverConfiguration, "stepSize", stepSizeText);
 	}
 
 	public boolean performApply(SimulationModel simulationModel) {
-		FixedStepSizeSolverConfiguration solverConfiguration = (FixedStepSizeSolverConfiguration) simulationModel.getSolverConfiguration();
 		setErrorMessage(null);
 		boolean ret = true;
-		SimulationModelPackage p = SimulationModelPackage.eINSTANCE;
-		ret &= applyDoubleValueAttribute(solverConfiguration, p.getFixedStepSizeSolverConfiguration_StepSize(), stepSizeText, "step size");
+		ret &= applyDoubleValueAttribute(simulationModel.getSolverConfiguration(), "stepSize", stepSizeText, "step size");
 		return ret;
 	}
 	

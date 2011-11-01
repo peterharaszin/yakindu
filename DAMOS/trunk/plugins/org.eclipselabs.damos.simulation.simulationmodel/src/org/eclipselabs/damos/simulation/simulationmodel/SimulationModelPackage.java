@@ -41,7 +41,7 @@ public interface SimulationModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/SimulationModel/1.0.0";
+	String eNS_URI = "http://www.eclipselabs.org/damos/2011/SimulationModel";
 
 	/**
 	 * The package namespace name.
@@ -97,22 +97,13 @@ public interface SimulationModelPackage extends EPackage {
 	int SIMULATION_MODEL__SIMULATION_TIME = 2;
 
 	/**
-	 * The feature id for the '<em><b>Solver Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMULATION_MODEL__SOLVER_ID = 3;
-
-	/**
 	 * The feature id for the '<em><b>Solver Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL__SOLVER_CONFIGURATION = 4;
+	int SIMULATION_MODEL__SOLVER_CONFIGURATION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Simulation Model</em>' class.
@@ -121,8 +112,110 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SIMULATION_MODEL_FEATURE_COUNT = 5;
+	int SIMULATION_MODEL_FEATURE_COUNT = 4;
 
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverTypeImpl <em>Solver Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverTypeImpl
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverType()
+	 * @generated
+	 */
+	int SOLVER_TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_TYPE__QUALIFIED_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Configuration Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_TYPE__CONFIGURATION_DEFINITION = 1;
+
+	/**
+	 * The number of structural features of the '<em>Solver Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_TYPE_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverConfigurationDefinitionImpl <em>Solver Configuration Definition</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverConfigurationDefinitionImpl
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverConfigurationDefinition()
+	 * @generated
+	 */
+	int SOLVER_CONFIGURATION_DEFINITION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_CONFIGURATION_DEFINITION__PARAMETERS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Solver Configuration Definition</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_CONFIGURATION_DEFINITION_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverParameterImpl <em>Solver Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverParameterImpl
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverParameter()
+	 * @generated
+	 */
+	int SOLVER_PARAMETER = 3;
+
+	/**
+	 * The feature id for the '<em><b>Configuration Definition</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_PARAMETER__CONFIGURATION_DEFINITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_PARAMETER__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Solver Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_PARAMETER_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverConfigurationImpl <em>Solver Configuration</em>}' class.
@@ -132,7 +225,25 @@ public interface SimulationModelPackage extends EPackage {
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverConfiguration()
 	 * @generated
 	 */
-	int SOLVER_CONFIGURATION = 1;
+	int SOLVER_CONFIGURATION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_CONFIGURATION__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SOLVER_CONFIGURATION__ARGUMENTS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Solver Configuration</em>' class.
@@ -141,100 +252,53 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SOLVER_CONFIGURATION_FEATURE_COUNT = 0;
+	int SOLVER_CONFIGURATION_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.FixedStepSizeSolverConfigurationImpl <em>Fixed Step Size Solver Configuration</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverArgumentImpl <em>Solver Argument</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.FixedStepSizeSolverConfigurationImpl
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getFixedStepSizeSolverConfiguration()
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverArgumentImpl
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverArgument()
 	 * @generated
 	 */
-	int FIXED_STEP_SIZE_SOLVER_CONFIGURATION = 2;
+	int SOLVER_ARGUMENT = 5;
 
 	/**
-	 * The feature id for the '<em><b>Step Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_STEP_SIZE_SOLVER_CONFIGURATION__STEP_SIZE = SOLVER_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Fixed Step Size Solver Configuration</em>' class.
+	 * The feature id for the '<em><b>Configuration</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FIXED_STEP_SIZE_SOLVER_CONFIGURATION_FEATURE_COUNT = SOLVER_CONFIGURATION_FEATURE_COUNT + 1;
+	int SOLVER_ARGUMENT__CONFIGURATION = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.AdaptiveStepSizeSolverConfigurationImpl <em>Adaptive Step Size Solver Configuration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.AdaptiveStepSizeSolverConfigurationImpl
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getAdaptiveStepSizeSolverConfiguration()
-	 * @generated
-	 */
-	int ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Minimum Step Size</b></em>' attribute.
+	 * The feature id for the '<em><b>Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__MINIMUM_STEP_SIZE = SOLVER_CONFIGURATION_FEATURE_COUNT + 0;
+	int SOLVER_ARGUMENT__PARAMETER = 1;
 
 	/**
-	 * The feature id for the '<em><b>Maximum Step Size</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__MAXIMUM_STEP_SIZE = SOLVER_CONFIGURATION_FEATURE_COUNT + 1;
+	int SOLVER_ARGUMENT__VALUE = 2;
 
 	/**
-	 * The feature id for the '<em><b>Initial Step Size</b></em>' attribute.
+	 * The number of structural features of the '<em>Solver Argument</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__INITIAL_STEP_SIZE = SOLVER_CONFIGURATION_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Absolute Tolerance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__ABSOLUTE_TOLERANCE = SOLVER_CONFIGURATION_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Relative Tolerance</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__RELATIVE_TOLERANCE = SOLVER_CONFIGURATION_FEATURE_COUNT + 4;
-
-	/**
-	 * The number of structural features of the '<em>Adaptive Step Size Solver Configuration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION_FEATURE_COUNT = SOLVER_CONFIGURATION_FEATURE_COUNT + 5;
-
+	int SOLVER_ARGUMENT_FEATURE_COUNT = 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel <em>Simulation Model</em>}'.
@@ -280,17 +344,6 @@ public interface SimulationModelPackage extends EPackage {
 	EAttribute getSimulationModel_SimulationTime();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSolverId <em>Solver Id</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Solver Id</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSolverId()
-	 * @see #getSimulationModel()
-	 * @generated
-	 */
-	EAttribute getSimulationModel_SolverId();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSolverConfiguration <em>Solver Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -300,6 +353,91 @@ public interface SimulationModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSimulationModel_SolverConfiguration();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverType <em>Solver Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Solver Type</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverType
+	 * @generated
+	 */
+	EClass getSolverType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverType#getQualifiedName <em>Qualified Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverType#getQualifiedName()
+	 * @see #getSolverType()
+	 * @generated
+	 */
+	EAttribute getSolverType_QualifiedName();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverType#getConfigurationDefinition <em>Configuration Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Configuration Definition</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverType#getConfigurationDefinition()
+	 * @see #getSolverType()
+	 * @generated
+	 */
+	EReference getSolverType_ConfigurationDefinition();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition <em>Solver Configuration Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Solver Configuration Definition</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition
+	 * @generated
+	 */
+	EClass getSolverConfigurationDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition#getParameters()
+	 * @see #getSolverConfigurationDefinition()
+	 * @generated
+	 */
+	EReference getSolverConfigurationDefinition_Parameters();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverParameter <em>Solver Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Solver Parameter</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverParameter
+	 * @generated
+	 */
+	EClass getSolverParameter();
+
+	/**
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverParameter#getConfigurationDefinition <em>Configuration Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Configuration Definition</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverParameter#getConfigurationDefinition()
+	 * @see #getSolverParameter()
+	 * @generated
+	 */
+	EReference getSolverParameter_ConfigurationDefinition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverParameter#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverParameter#getName()
+	 * @see #getSolverParameter()
+	 * @generated
+	 */
+	EAttribute getSolverParameter_Name();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration <em>Solver Configuration</em>}'.
@@ -312,90 +450,69 @@ public interface SimulationModelPackage extends EPackage {
 	EClass getSolverConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration <em>Fixed Step Size Solver Configuration</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fixed Step Size Solver Configuration</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration#getType()
+	 * @see #getSolverConfiguration()
 	 * @generated
 	 */
-	EClass getFixedStepSizeSolverConfiguration();
+	EReference getSolverConfiguration_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration#getStepSize <em>Step Size</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration#getArguments <em>Arguments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Step Size</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration#getStepSize()
-	 * @see #getFixedStepSizeSolverConfiguration()
+	 * @return the meta object for the containment reference list '<em>Arguments</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration#getArguments()
+	 * @see #getSolverConfiguration()
 	 * @generated
 	 */
-	EAttribute getFixedStepSizeSolverConfiguration_StepSize();
+	EReference getSolverConfiguration_Arguments();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration <em>Adaptive Step Size Solver Configuration</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverArgument <em>Solver Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Adaptive Step Size Solver Configuration</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration
+	 * @return the meta object for class '<em>Solver Argument</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverArgument
 	 * @generated
 	 */
-	EClass getAdaptiveStepSizeSolverConfiguration();
+	EClass getSolverArgument();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getMinimumStepSize <em>Minimum Step Size</em>}'.
+	 * Returns the meta object for the container reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverArgument#getConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Minimum Step Size</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getMinimumStepSize()
-	 * @see #getAdaptiveStepSizeSolverConfiguration()
+	 * @return the meta object for the container reference '<em>Configuration</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverArgument#getConfiguration()
+	 * @see #getSolverArgument()
 	 * @generated
 	 */
-	EAttribute getAdaptiveStepSizeSolverConfiguration_MinimumStepSize();
+	EReference getSolverArgument_Configuration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getMaximumStepSize <em>Maximum Step Size</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverArgument#getParameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Maximum Step Size</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getMaximumStepSize()
-	 * @see #getAdaptiveStepSizeSolverConfiguration()
+	 * @return the meta object for the reference '<em>Parameter</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverArgument#getParameter()
+	 * @see #getSolverArgument()
 	 * @generated
 	 */
-	EAttribute getAdaptiveStepSizeSolverConfiguration_MaximumStepSize();
+	EReference getSolverArgument_Parameter();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getInitialStepSize <em>Initial Step Size</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverArgument#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Initial Step Size</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getInitialStepSize()
-	 * @see #getAdaptiveStepSizeSolverConfiguration()
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverArgument#getValue()
+	 * @see #getSolverArgument()
 	 * @generated
 	 */
-	EAttribute getAdaptiveStepSizeSolverConfiguration_InitialStepSize();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getAbsoluteTolerance <em>Absolute Tolerance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Absolute Tolerance</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getAbsoluteTolerance()
-	 * @see #getAdaptiveStepSizeSolverConfiguration()
-	 * @generated
-	 */
-	EAttribute getAdaptiveStepSizeSolverConfiguration_AbsoluteTolerance();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getRelativeTolerance <em>Relative Tolerance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Relative Tolerance</em>'.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration#getRelativeTolerance()
-	 * @see #getAdaptiveStepSizeSolverConfiguration()
-	 * @generated
-	 */
-	EAttribute getAdaptiveStepSizeSolverConfiguration_RelativeTolerance();
+	EReference getSolverArgument_Value();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -454,20 +571,82 @@ public interface SimulationModelPackage extends EPackage {
 		EAttribute SIMULATION_MODEL__SIMULATION_TIME = eINSTANCE.getSimulationModel_SimulationTime();
 
 		/**
-		 * The meta object literal for the '<em><b>Solver Id</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute SIMULATION_MODEL__SOLVER_ID = eINSTANCE.getSimulationModel_SolverId();
-
-		/**
 		 * The meta object literal for the '<em><b>Solver Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference SIMULATION_MODEL__SOLVER_CONFIGURATION = eINSTANCE.getSimulationModel_SolverConfiguration();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverTypeImpl <em>Solver Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverTypeImpl
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverType()
+		 * @generated
+		 */
+		EClass SOLVER_TYPE = eINSTANCE.getSolverType();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SOLVER_TYPE__QUALIFIED_NAME = eINSTANCE.getSolverType_QualifiedName();
+
+		/**
+		 * The meta object literal for the '<em><b>Configuration Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOLVER_TYPE__CONFIGURATION_DEFINITION = eINSTANCE.getSolverType_ConfigurationDefinition();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverConfigurationDefinitionImpl <em>Solver Configuration Definition</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverConfigurationDefinitionImpl
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverConfigurationDefinition()
+		 * @generated
+		 */
+		EClass SOLVER_CONFIGURATION_DEFINITION = eINSTANCE.getSolverConfigurationDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOLVER_CONFIGURATION_DEFINITION__PARAMETERS = eINSTANCE.getSolverConfigurationDefinition_Parameters();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverParameterImpl <em>Solver Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverParameterImpl
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverParameter()
+		 * @generated
+		 */
+		EClass SOLVER_PARAMETER = eINSTANCE.getSolverParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Configuration Definition</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SOLVER_PARAMETER__CONFIGURATION_DEFINITION = eINSTANCE.getSolverParameter_ConfigurationDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute SOLVER_PARAMETER__NAME = eINSTANCE.getSolverParameter_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverConfigurationImpl <em>Solver Configuration</em>}' class.
@@ -480,72 +659,54 @@ public interface SimulationModelPackage extends EPackage {
 		EClass SOLVER_CONFIGURATION = eINSTANCE.getSolverConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.FixedStepSizeSolverConfigurationImpl <em>Fixed Step Size Solver Configuration</em>}' class.
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.FixedStepSizeSolverConfigurationImpl
-		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getFixedStepSizeSolverConfiguration()
 		 * @generated
 		 */
-		EClass FIXED_STEP_SIZE_SOLVER_CONFIGURATION = eINSTANCE.getFixedStepSizeSolverConfiguration();
+		EReference SOLVER_CONFIGURATION__TYPE = eINSTANCE.getSolverConfiguration_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Step Size</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Arguments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FIXED_STEP_SIZE_SOLVER_CONFIGURATION__STEP_SIZE = eINSTANCE.getFixedStepSizeSolverConfiguration_StepSize();
+		EReference SOLVER_CONFIGURATION__ARGUMENTS = eINSTANCE.getSolverConfiguration_Arguments();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.AdaptiveStepSizeSolverConfigurationImpl <em>Adaptive Step Size Solver Configuration</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SolverArgumentImpl <em>Solver Argument</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.AdaptiveStepSizeSolverConfigurationImpl
-		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getAdaptiveStepSizeSolverConfiguration()
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SolverArgumentImpl
+		 * @see org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelPackageImpl#getSolverArgument()
 		 * @generated
 		 */
-		EClass ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION = eINSTANCE.getAdaptiveStepSizeSolverConfiguration();
+		EClass SOLVER_ARGUMENT = eINSTANCE.getSolverArgument();
 
 		/**
-		 * The meta object literal for the '<em><b>Minimum Step Size</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Configuration</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__MINIMUM_STEP_SIZE = eINSTANCE.getAdaptiveStepSizeSolverConfiguration_MinimumStepSize();
+		EReference SOLVER_ARGUMENT__CONFIGURATION = eINSTANCE.getSolverArgument_Configuration();
 
 		/**
-		 * The meta object literal for the '<em><b>Maximum Step Size</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Parameter</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__MAXIMUM_STEP_SIZE = eINSTANCE.getAdaptiveStepSizeSolverConfiguration_MaximumStepSize();
+		EReference SOLVER_ARGUMENT__PARAMETER = eINSTANCE.getSolverArgument_Parameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Initial Step Size</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__INITIAL_STEP_SIZE = eINSTANCE.getAdaptiveStepSizeSolverConfiguration_InitialStepSize();
-
-		/**
-		 * The meta object literal for the '<em><b>Absolute Tolerance</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__ABSOLUTE_TOLERANCE = eINSTANCE.getAdaptiveStepSizeSolverConfiguration_AbsoluteTolerance();
-
-		/**
-		 * The meta object literal for the '<em><b>Relative Tolerance</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION__RELATIVE_TOLERANCE = eINSTANCE.getAdaptiveStepSizeSolverConfiguration_RelativeTolerance();
+		EReference SOLVER_ARGUMENT__VALUE = eINSTANCE.getSolverArgument_Value();
 
 	}
 

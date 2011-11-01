@@ -7,7 +7,7 @@
     editPluginClass="org.eclipselabs.damos.simulation.simulationmodel.edit.SimulationModelEditPlugin"
     editorPluginClass="org.eclipselabs.damos.simulation.simulationmodel.ui.SimulationModelUIPlugin"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.genmodel#//computationmodel ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.genmodel#//executionmodel ../../org.eclipselabs.mscript.typesystem/model/TypeSystem.genmodel#//typesystem platform:/plugin/org.eclipselabs.damos.dml/model/DML.genmodel#//dml">
+    usedGenPackages="../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.genmodel#//executionmodel platform:/plugin/org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.mscript/model/Mscript.genmodel#//mscript ../../org.eclipselabs.damos.mscript/model/ComputationModel.genmodel#//computationmodel">
   <foreignModel>SimulationModel.ecore</foreignModel>
   <genPackages prefix="SimulationModel" basePackage="org.eclipselabs.damos.simulation"
       disposableProviderFactory="true" providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
@@ -16,19 +16,36 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SimulationModel/executionModel"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SimulationModel/topLevelFragment"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//SimulationModel/simulationTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//SimulationModel/solverId"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SimulationModel/solverConfiguration"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="SimulationModel.ecore#//SolverConfiguration"/>
-    <genClasses ecoreClass="SimulationModel.ecore#//FixedStepSizeSolverConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//FixedStepSizeSolverConfiguration/stepSize"/>
+    <genClasses ecoreClass="SimulationModel.ecore#//SolverType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//SolverType/qualifiedName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverType/configurationDefinition"/>
     </genClasses>
-    <genClasses ecoreClass="SimulationModel.ecore#//AdaptiveStepSizeSolverConfiguration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//AdaptiveStepSizeSolverConfiguration/minimumStepSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//AdaptiveStepSizeSolverConfiguration/maximumStepSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//AdaptiveStepSizeSolverConfiguration/initialStepSize"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//AdaptiveStepSizeSolverConfiguration/absoluteTolerance"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//AdaptiveStepSizeSolverConfiguration/relativeTolerance"/>
+    <genClasses ecoreClass="SimulationModel.ecore#//SolverConfigurationDefinition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverConfigurationDefinition/parameters"/>
+      <genOperations ecoreOperation="SimulationModel.ecore#//SolverConfigurationDefinition/getParameter">
+        <genParameters ecoreParameter="SimulationModel.ecore#//SolverConfigurationDefinition/getParameter/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="SimulationModel.ecore#//SolverParameter">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverParameter/configurationDefinition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimulationModel.ecore#//SolverParameter/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="SimulationModel.ecore#//SolverConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverConfiguration/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverConfiguration/arguments"/>
+      <genOperations ecoreOperation="SimulationModel.ecore#//SolverConfiguration/getArgument">
+        <genParameters ecoreParameter="SimulationModel.ecore#//SolverConfiguration/getArgument/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="SimulationModel.ecore#//SolverConfiguration/getArgumentValue">
+        <genParameters ecoreParameter="SimulationModel.ecore#//SolverConfiguration/getArgumentValue/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="SimulationModel.ecore#//SolverArgument">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverArgument/configuration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverArgument/parameter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference SimulationModel.ecore#//SolverArgument/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.DMLPlugin;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverConfigurationDescriptor;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationPage;
 
 /**
@@ -25,31 +25,13 @@ import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationP
  */
 public class SolverConfigurationPageDescriptor {
 
-	private String id;
-	private ISolverConfigurationDescriptor solverConfiguration;
+	private ISolverTypeDescriptor solverType;
 	private String className;
 	private IConfigurationElement configurationElement;
 	private Class<?> clazz;
 	
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
-	}
-	
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
-	}
-	
-	/**
-	 * @param solverConfiguration the solverConfiguration to set
-	 */
-	public void setSolverConfiguration(ISolverConfigurationDescriptor solverConfiguration) {
-		this.solverConfiguration = solverConfiguration;
+	public void setSolverType(ISolverTypeDescriptor solverType) {
+		this.solverType = solverType;
 	}
 	
 	/**
@@ -76,8 +58,8 @@ public class SolverConfigurationPageDescriptor {
 	/**
 	 * @return the solverConfiguration
 	 */
-	public ISolverConfigurationDescriptor getSolverConfiguration() {
-		return solverConfiguration;
+	public ISolverTypeDescriptor getSolverConfiguration() {
+		return solverType;
 	}
 
 	/**
@@ -130,8 +112,8 @@ public class SolverConfigurationPageDescriptor {
 						+ configurationElement.getDeclaringExtension().getNamespaceIdentifier()
 						+ "' in extension of '"
 						+ configurationElement.getDeclaringExtension().getExtensionPointUniqueIdentifier()
-						+ "' solverConfigurationPage'"
-						+ id
+						+ "' solverConfigurationPage for solverType '"
+						+ solverType.getQualifiedName()
 						+ "': " + msg));
 	}
 

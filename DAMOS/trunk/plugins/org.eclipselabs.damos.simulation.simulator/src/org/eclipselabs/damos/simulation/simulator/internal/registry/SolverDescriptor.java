@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipselabs.damos.dml.DMLPlugin;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverConfigurationDescriptor;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
 import org.eclipselabs.damos.simulation.simulator.registry.ISolverDescriptor;
 import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
 
@@ -26,27 +26,20 @@ import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
  */
 public class SolverDescriptor implements ISolverDescriptor {
 
-	private String id;
+	private ISolverTypeDescriptor solverType;
 	private String name;
 	private String className;
-	private ISolverConfigurationDescriptor configuration;
 	private IConfigurationElement configurationElement;
 	private Class<?> clazz;
 	
-	/**
-	 * @return the id
-	 */
-	public String getId() {
-		return id;
+	public ISolverTypeDescriptor getSolverType() {
+		return solverType;
 	}
-	
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
+
+	public void setSolverType(ISolverTypeDescriptor solverType) {
+		this.solverType = solverType;
 	}
-	
+
 	/**
 	 * @return the name
 	 */
@@ -73,17 +66,6 @@ public class SolverDescriptor implements ISolverDescriptor {
 	 */
 	public void setClassName(String className) {
 		this.className = className;
-	}
-	
-	public ISolverConfigurationDescriptor getConfiguration() {
-		return configuration;
-	}
-	
-	/**
-	 * @param configuration the configuration to set
-	 */
-	public void setConfiguration(ISolverConfigurationDescriptor configuration) {
-		this.configuration = configuration;
 	}
 	
 	/**

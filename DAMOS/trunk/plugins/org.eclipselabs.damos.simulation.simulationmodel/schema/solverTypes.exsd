@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipselabs.damos.simulation.simulationmodel" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipselabs.damos.simulation.simulationmodel" id="solverConfigurations" name="Solver Configurations"/>
+         <meta.schema plugin="org.eclipselabs.damos.simulation.simulationmodel" id="solverTypes" name="Solver Types"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="solverConfiguration" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="solverType" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,9 +47,9 @@
       </complexType>
    </element>
 
-   <element name="solverConfiguration">
+   <element name="solverType">
       <complexType>
-         <attribute name="id" type="string" use="required">
+         <attribute name="qualifiedName" type="string" use="required">
             <annotation>
                <documentation>
                   
@@ -61,16 +61,6 @@
                <documentation>
                   
                </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="validator" type="string">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EValidator"/>
-               </appInfo>
             </annotation>
          </attribute>
       </complexType>

@@ -49,11 +49,14 @@
 
    <element name="solver">
       <complexType>
-         <attribute name="id" type="string" use="required">
+         <attribute name="solverType" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
+               <appinfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipselabs.damos.simulation.simulationmodel.solverTypes/solverType/@qualifiedName"/>
+               </appinfo>
             </annotation>
          </attribute>
          <attribute name="name" type="string" use="required">
@@ -70,16 +73,6 @@
                </documentation>
                <appinfo>
                   <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.simulation.simulator.solver.ISolver"/>
-               </appinfo>
-            </annotation>
-         </attribute>
-         <attribute name="configuration" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appinfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipselabs.damos.simulation.simulationmodel.solverConfigurations/solverConfiguration/@id"/>
                </appinfo>
             </annotation>
          </attribute>

@@ -10,11 +10,13 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration;
-import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverArgument;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverParameter;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverType;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,16 +79,24 @@ public class SimulationModelAdapterFactory extends AdapterFactoryImpl {
 				return createSimulationModelAdapter();
 			}
 			@Override
+			public Adapter caseSolverType(SolverType object) {
+				return createSolverTypeAdapter();
+			}
+			@Override
+			public Adapter caseSolverConfigurationDefinition(SolverConfigurationDefinition object) {
+				return createSolverConfigurationDefinitionAdapter();
+			}
+			@Override
+			public Adapter caseSolverParameter(SolverParameter object) {
+				return createSolverParameterAdapter();
+			}
+			@Override
 			public Adapter caseSolverConfiguration(SolverConfiguration object) {
 				return createSolverConfigurationAdapter();
 			}
 			@Override
-			public Adapter caseFixedStepSizeSolverConfiguration(FixedStepSizeSolverConfiguration object) {
-				return createFixedStepSizeSolverConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseAdaptiveStepSizeSolverConfiguration(AdaptiveStepSizeSolverConfiguration object) {
-				return createAdaptiveStepSizeSolverConfigurationAdapter();
+			public Adapter caseSolverArgument(SolverArgument object) {
+				return createSolverArgumentAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -123,6 +133,48 @@ public class SimulationModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverType <em>Solver Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverType
+	 * @generated
+	 */
+	public Adapter createSolverTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition <em>Solver Configuration Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition
+	 * @generated
+	 */
+	public Adapter createSolverConfigurationDefinitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverParameter <em>Solver Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverParameter
+	 * @generated
+	 */
+	public Adapter createSolverParameterAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration <em>Solver Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -137,30 +189,16 @@ public class SimulationModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration <em>Fixed Step Size Solver Configuration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.simulation.simulationmodel.SolverArgument <em>Solver Argument</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.SolverArgument
 	 * @generated
 	 */
-	public Adapter createFixedStepSizeSolverConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration <em>Adaptive Step Size Solver Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration
-	 * @generated
-	 */
-	public Adapter createAdaptiveStepSizeSolverConfigurationAdapter() {
+	public Adapter createSolverArgumentAdapter() {
 		return null;
 	}
 

@@ -15,5 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipselabs.damos.common;bundle-version="0.2.0",
  org.eclipselabs.damos.dml;bundle-version="0.2.0",
- org.eclipselabs.damos.execution.executionmodel;visibility:=reexport
+ org.eclipselabs.damos.execution.executionmodel;visibility:=reexport,
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0"
 Bundle-ActivationPolicy: lazy

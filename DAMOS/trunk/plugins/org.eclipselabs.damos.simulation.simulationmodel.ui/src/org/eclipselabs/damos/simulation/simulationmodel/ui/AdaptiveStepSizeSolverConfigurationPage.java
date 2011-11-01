@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.simulationmodel.ui.internal;
+package org.eclipselabs.damos.simulation.simulationmodel.ui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.AbstractSolverConfigurationPage;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.SolverConfigurationPageChangeEvent;
@@ -102,24 +101,22 @@ public class AdaptiveStepSizeSolverConfigurationPage extends AbstractSolverConfi
 
 	public void initializeFrom(SimulationModel simulationModel) {
 		SolverConfiguration solverConfiguration = simulationModel.getSolverConfiguration();
-		SimulationModelPackage p = SimulationModelPackage.eINSTANCE;
-		initializeFromDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_MinimumStepSize(), minimumStepSizeText);
-		initializeFromDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_MaximumStepSize(), maximumStepSizeText);
-		initializeFromDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_InitialStepSize(), initialStepSizeText);
-		initializeFromDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_AbsoluteTolerance(), absoluteToleranceText);
-		initializeFromDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_RelativeTolerance(), relativeToleranceText);
+		initializeFromDoubleValueAttribute(solverConfiguration, "minimumStepSize", minimumStepSizeText);
+		initializeFromDoubleValueAttribute(solverConfiguration, "maximumStepSize", maximumStepSizeText);
+		initializeFromDoubleValueAttribute(solverConfiguration, "initialStepSize", initialStepSizeText);
+		initializeFromDoubleValueAttribute(solverConfiguration, "absoluteTolerance", absoluteToleranceText);
+		initializeFromDoubleValueAttribute(solverConfiguration, "relativeTolerance", relativeToleranceText);
 	}
 
 	public boolean performApply(SimulationModel simulationModel) {
 		SolverConfiguration solverConfiguration = simulationModel.getSolverConfiguration();
 		setErrorMessage(null);
 		boolean ret = true;
-		SimulationModelPackage p = SimulationModelPackage.eINSTANCE;
-		ret &= applyDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_MinimumStepSize(), minimumStepSizeText, "minimum step size");
-		ret &= applyDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_MaximumStepSize(), maximumStepSizeText, "maximum step size");
-		ret &= applyDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_InitialStepSize(), initialStepSizeText, "initial step size");
-		ret &= applyDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_AbsoluteTolerance(), absoluteToleranceText, "absolute tolerance");
-		ret &= applyDoubleValueAttribute(solverConfiguration, p.getAdaptiveStepSizeSolverConfiguration_RelativeTolerance(), relativeToleranceText, "relative tolerance");
+		ret &= applyDoubleValueAttribute(solverConfiguration, "minimumStepSize", minimumStepSizeText, "minimum step size");
+		ret &= applyDoubleValueAttribute(solverConfiguration, "maximumStepSize", maximumStepSizeText, "maximum step size");
+		ret &= applyDoubleValueAttribute(solverConfiguration, "initialStepSize", initialStepSizeText, "initial step size");
+		ret &= applyDoubleValueAttribute(solverConfiguration, "absoluteTolerance", absoluteToleranceText, "absolute tolerance");
+		ret &= applyDoubleValueAttribute(solverConfiguration, "relativeTolerance", relativeToleranceText, "relative tolerance");
 		return ret;
 	}
 	

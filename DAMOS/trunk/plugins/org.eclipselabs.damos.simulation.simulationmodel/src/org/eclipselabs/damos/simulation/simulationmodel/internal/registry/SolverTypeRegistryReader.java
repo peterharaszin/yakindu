@@ -16,23 +16,23 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
-import org.eclipselabs.damos.common.registry.IRegistryConstants;
 import org.eclipselabs.damos.simulation.simulationmodel.internal.SimulationModelPlugin;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SolverConfigurationRegistryReader extends AbstractRegistryReader implements IRegistryConstants {
+public class SolverTypeRegistryReader extends AbstractRegistryReader {
 
-	private static final String EXTENSION_POINT_NAME = "solverConfigurations";
+	private static final String EXTENSION_POINT_NAME = "solverTypes";
 
-	private static final String TAG = "solverConfiguration";
+	private static final String TAG = "solverType";
+	private static final String ATT_QUALIFIED_NAME = "qualifiedName";
 	private static final String ATT_URI = "uri";
 
-	private SolverConfigurationRegistry registry;
+	private SolverTypeRegistry registry;
 	
-	public void registerProviders(SolverConfigurationRegistry registry) {
+	public void registerProviders(SolverTypeRegistry registry) {
 		this.registry = registry;
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);
 	}
@@ -62,15 +62,15 @@ public class SolverConfigurationRegistryReader extends AbstractRegistryReader im
 			return false;
 		}
 
-		String id = getRequiredAttribute(element, ATT_ID);
+		String qualifiedName = getRequiredAttribute(element, ATT_QUALIFIED_NAME);
 		String uriString = getRequiredAttribute(element, ATT_URI);
 		
-		SolverConfigurationDescriptor solverConfiguration = new SolverConfigurationDescriptor();
-		solverConfiguration.setId(id);
+		SolverTypeDescriptor solverType = new SolverTypeDescriptor();
+		solverType.setQualifiedName(qualifiedName);
 
 		try {
-			solverConfiguration.setURI(URI.createURI(uriString));
-			registry.register(solverConfiguration);
+			solverType.setURI(URI.createURI(uriString));
+			registry.register(solverType);
 		} catch (IllegalArgumentException e) {
 			logError(element, "Invalid URI '" + uriString + "' specified");
 		}

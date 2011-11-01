@@ -21,7 +21,6 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getExecutionModel <em>Execution Model</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSimulationTime <em>Simulation Time</em>}</li>
- *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSolverId <em>Solver Id</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSolverConfiguration <em>Solver Configuration</em>}</li>
  * </ul>
  * </p>
@@ -135,32 +134,6 @@ public interface SimulationModel extends EObject {
 	 * @generated
 	 */
 	boolean isSetSimulationTime();
-
-	/**
-	 * Returns the value of the '<em><b>Solver Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Solver Id</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Solver Id</em>' attribute.
-	 * @see #setSolverId(String)
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage#getSimulationModel_SolverId()
-	 * @model
-	 * @generated
-	 */
-	String getSolverId();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.simulation.simulationmodel.SimulationModel#getSolverId <em>Solver Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Solver Id</em>' attribute.
-	 * @see #getSolverId()
-	 * @generated
-	 */
-	void setSolverId(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Solver Configuration</b></em>' containment reference.

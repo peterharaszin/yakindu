@@ -28,7 +28,7 @@ public class SimulationLaunchConfigurationDelegate extends LaunchConfigurationDe
 	public static final String ATTRIBUTE__SIMULATION_MODEL_PATH = "simulationModelPath";
 	
 	public static final double DEFAULT_SIMULATION_TIME = 10;
-	public static final String DEFAULT_SOLVER_ID = "org.eclipselabs.damos.simulation.simulator.solvers.dormandPrince54";
+	public static final String DEFAULT_SOLVER_TYPE = "org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince54";
 
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor progressMonitor) throws CoreException {
 		boolean createSimulationModel = configuration.getAttribute(ATTRIBUTE__CREATE_SIMULATION_MODEL, true);

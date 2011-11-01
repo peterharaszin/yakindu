@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -30,9 +31,13 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
 import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
 import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate;
-import org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverType;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeRegistry;
+import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -40,7 +45,7 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
  */
 public class LaunchConfigurationUtil {
 
-	private static final String TEMPORARY_SIMULATIONMODEL_FILE_NAME = "temporary.simulationmodel";
+	private static final String TEMPORARY_SIMULATIONMODEL_FILE_NAME = "temp.xmi";
 
 	public static SimulationModel loadSimulationModel(ILaunchConfiguration configuration) throws CoreException {
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -80,13 +85,20 @@ public class LaunchConfigurationUtil {
 		simulationModel.setExecutionModel(executionModel);
 		simulationModel.setTopLevelFragment(topLevelFragment);
 		simulationModel.setSimulationTime(SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
-		simulationModel.setSolverId(SimulationLaunchConfigurationDelegate.DEFAULT_SOLVER_ID);
 		
-		AdaptiveStepSizeSolverConfiguration solverConfiguration = SimulationModelFactory.eINSTANCE.createAdaptiveStepSizeSolverConfiguration();
-		solverConfiguration.setMinimumStepSize(1e-10);
-		solverConfiguration.setAbsoluteTolerance(1e-10);
-		solverConfiguration.setRelativeTolerance(1e-10);
-		simulationModel.setSolverConfiguration(solverConfiguration);
+		ISolverTypeDescriptor solverTypeDescriptor = ISolverTypeRegistry.INSTANCE.getSolverType(SimulationLaunchConfigurationDelegate.DEFAULT_SOLVER_TYPE);
+		if (solverTypeDescriptor != null) {
+			EObject eObject = topLevelFragment.eResource().getResourceSet().getEObject(solverTypeDescriptor.getURI(), true);
+			if (eObject instanceof SolverType) {
+				SolverType solverType = (SolverType) eObject;
+				SolverConfiguration solverConfiguration = SimulationModelFactory.eINSTANCE.createSolverConfiguration();
+				solverConfiguration.setType(solverType);
+				SimulationModelUtil.setSolverArgumentValue(solverConfiguration, "minimumStepSize", 1e-10);
+				SimulationModelUtil.setSolverArgumentValue(solverConfiguration, "absoluteTolerance", 1e-10);
+				SimulationModelUtil.setSolverArgumentValue(solverConfiguration, "relativeTolerance", 1e-10);
+				simulationModel.setSolverConfiguration(solverConfiguration);
+			}
+		}
 		
 		return simulationModel;
 	}

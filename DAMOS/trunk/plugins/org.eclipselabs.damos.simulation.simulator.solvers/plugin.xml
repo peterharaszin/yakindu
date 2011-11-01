@@ -2,29 +2,44 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         point="org.eclipselabs.damos.simulation.simulationmodel.solverTypes">
+      <solverType
+            qualifiedName="org::eclipselabs::damos::simulation::simulator::solvers::Euler"
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/EulerSolverType.xmi#/">
+      </solverType>
+      <solverType
+            qualifiedName="org::eclipselabs::damos::simulation::simulator::solvers::ClassicalRungeKutta"
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/ClassicalRungeKuttaSolverType.xmi#/">
+      </solverType>
+      <solverType
+            qualifiedName="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince54"
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/DormandPrince54SolverType.xmi#/">
+      </solverType>
+      <solverType
+            qualifiedName="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince83"
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/DormandPrince83SolverType.xmi#/">
+      </solverType>
+   </extension>
+   <extension
          point="org.eclipselabs.damos.simulation.simulator.solvers">
       <solver
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::Euler"
             class="org.eclipselabs.damos.simulation.simulator.solvers.EulerSolver"
-            configuration="org.eclipselabs.damos.simulation.simulationmodel.fixedStepSizeSolverConfiguration"
-            id="org.eclipselabs.damos.simulation.simulator.solvers.eulerRungeKutta"
             name="Euler">
       </solver>
       <solver
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::ClassicalRungeKutta"
             class="org.eclipselabs.damos.simulation.simulator.solvers.ClassicalRungeKuttaSolver"
-            configuration="org.eclipselabs.damos.simulation.simulationmodel.fixedStepSizeSolverConfiguration"
-            id="org.eclipselabs.damos.simulation.simulator.solvers.classicalRungeKutta"
             name="Classical Runge-Kutta">
       </solver>
       <solver
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince54"
             class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince54Solver"
-            configuration="org.eclipselabs.damos.simulation.simulationmodel.adaptiveStepSizeSolverConfiguration"
-            id="org.eclipselabs.damos.simulation.simulator.solvers.dormandPrince54"
             name="Dormand-Prince 5(4)">
       </solver>
       <solver
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince83"
             class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince853Solver"
-            configuration="org.eclipselabs.damos.simulation.simulationmodel.adaptiveStepSizeSolverConfiguration"
-            id="org.eclipselabs.damos.simulation.simulator.solvers.dormandPrince853"
             name="Dormand-Prince 8(5,3)">
       </solver>
    </extension>

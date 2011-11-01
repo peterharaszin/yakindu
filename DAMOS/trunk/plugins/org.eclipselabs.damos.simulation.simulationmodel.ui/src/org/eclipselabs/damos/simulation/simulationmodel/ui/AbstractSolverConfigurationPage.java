@@ -14,11 +14,11 @@ package org.eclipselabs.damos.simulation.simulationmodel.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -76,20 +76,21 @@ public abstract class AbstractSolverConfigurationPage implements ISolverConfigur
 		}
 	}
 
-	protected void initializeFromDoubleValueAttribute(SolverConfiguration solverConfiguration, EAttribute attribute, Text text) {
-		if (solverConfiguration.eIsSet(attribute)) {
-			text.setText(((Double) solverConfiguration.eGet(attribute)).toString());
+	protected void initializeFromDoubleValueAttribute(SolverConfiguration solverConfiguration, String parameterName, Text text) {
+		double value = SimulationModelUtil.getSolverArgumentDoubleValue(solverConfiguration, parameterName);
+		if (!Double.isNaN(value)) {
+			text.setText(Double.toString(value));
 		}
 	}
 
-	protected boolean applyDoubleValueAttribute(SolverConfiguration solverConfiguration, EAttribute attribute, Text text, String name) {
+	protected boolean applyDoubleValueAttribute(SolverConfiguration solverConfiguration, String parameterName, Text text, String name) {
 		String valueString = text.getText().trim();
 		if (valueString.length() == 0) {
 			return true;
 		}
 		try {
 			double value = Double.parseDouble(valueString);
-			solverConfiguration.eSet(attribute, value);
+			SimulationModelUtil.setSolverArgumentValue(solverConfiguration, parameterName, value);
 		} catch (NumberFormatException e) {
 			setErrorMessage("Invalid " + name + " value specified");
 			return false;

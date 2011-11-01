@@ -49,20 +49,13 @@
 
    <element name="page">
       <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-            </annotation>
-         </attribute>
-         <attribute name="solverConfiguration" type="string" use="required">
+         <attribute name="solverType" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipselabs.damos.simulation.simulationmodel.solverConfigurations/solverConfiguration/@id"/>
+                  <meta.attribute kind="identifier" basedOn="org.eclipselabs.damos.simulation.simulationmodel.solverTypes/solverType/@qualifiedName"/>
                </appInfo>
             </annotation>
          </attribute>

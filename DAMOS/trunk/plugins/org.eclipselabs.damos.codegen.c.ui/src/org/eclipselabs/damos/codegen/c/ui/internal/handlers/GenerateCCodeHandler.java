@@ -5,8 +5,14 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -21,9 +27,9 @@ public class GenerateCCodeHandler extends AbstractHandler {
 	private static final String ERROR_MESSAGE = "C Code Generation failed";
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final GenModel cGenModel = getGenModel(event);
+		final GenModel genModel = getGenModel(event);
 		
-		if (cGenModel == null) {
+		if (genModel == null) {
 			throw new ExecutionException("Selected object must be C generator model");
 		}
 		
@@ -34,7 +40,7 @@ public class GenerateCCodeHandler extends AbstractHandler {
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					Generator generator = new Generator();
 					try {
-						generator.generate(cGenModel, monitor);
+						generator.generate(genModel, monitor);
 					} catch (CoreException e) {
 						throw new InvocationTargetException(e);
 					}
@@ -58,8 +64,20 @@ public class GenerateCCodeHandler extends AbstractHandler {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-			if (structuredSelection.getFirstElement() instanceof GenModel) {
-				return (GenModel) structuredSelection.getFirstElement();
+			Object firstElement = structuredSelection.getFirstElement();
+			if (firstElement instanceof GenModel) {
+				return (GenModel) firstElement;
+			}
+			if (firstElement instanceof IFile) {
+				IFile file = (IFile) firstElement;
+				URI uri = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+				ResourceSet resourceSet = new ResourceSetImpl();
+				Resource resource = resourceSet.getResource(uri, true);
+				for (EObject o : resource.getContents()) {
+					if (o instanceof GenModel) {
+						return (GenModel) o;
+					}
+				}
 			}
 		}
 		return null;

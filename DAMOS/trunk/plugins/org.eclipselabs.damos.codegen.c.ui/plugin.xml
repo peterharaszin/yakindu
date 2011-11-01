@@ -24,9 +24,14 @@
                         value="1">
                   </count>
                   <iterate>
+                  	<or>
                      <instanceof
                            value="org.eclipselabs.damos.codegen.c.cgenmodel.GenModel">
                      </instanceof>
+                     <adapt type="org.eclipse.core.resources.IFile">
+                       <test property="org.eclipse.core.resources.name" value="*.cgenmodel"/>
+                     </adapt>
+                    </or>
                   </iterate>
                </and>
             </visibleWhen>
@@ -38,18 +43,6 @@
       <handler
             class="org.eclipselabs.damos.codegen.c.ui.internal.handlers.GenerateCCodeHandler"
             commandId="org.eclipselabs.damos.codegen.c.ui.commands.generateCCode">
-         <enabledWhen>
-               <and>
-                  <count
-                        value="1">
-                  </count>
-                  <iterate>
-                     <instanceof
-                           value="org.eclipselabs.damos.codegen.c.cgenmodel.GenModel">
-                     </instanceof>
-                  </iterate>
-               </and>
-         </enabledWhen>
       </handler>
    </extension>
 </plugin>

@@ -36,7 +36,7 @@ public interface GenTopLevelSystem extends GenSystem {
 	 * @return the value of the '<em>Fragment</em>' reference.
 	 * @see #setFragment(Fragment)
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenTopLevelSystem_Fragment()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Fragment getFragment();

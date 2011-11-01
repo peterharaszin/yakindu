@@ -39,7 +39,7 @@ public interface GenSubsystem extends GenSystem {
 	 * @see #setEnclosingGenSystem(GenSystem)
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenSubsystem_EnclosingGenSystem()
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem#getGenSubsystems
-	 * @model opposite="genSubsystems" required="true" transient="false"
+	 * @model opposite="genSubsystems" transient="false"
 	 * @generated
 	 */
 	GenSystem getEnclosingGenSystem();
@@ -65,7 +65,7 @@ public interface GenSubsystem extends GenSystem {
 	 * @return the value of the '<em>Subsystem</em>' reference.
 	 * @see #setSubsystem(Subsystem)
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenSubsystem_Subsystem()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	Subsystem getSubsystem();

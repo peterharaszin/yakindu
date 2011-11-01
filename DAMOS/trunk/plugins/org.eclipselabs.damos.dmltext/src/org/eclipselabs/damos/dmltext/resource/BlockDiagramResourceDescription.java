@@ -29,6 +29,7 @@ import org.eclipse.xtext.resource.IReferenceDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.impl.AbstractResourceDescription;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.Subsystem;
 
 import com.google.inject.Inject;
 
@@ -55,6 +56,12 @@ public class BlockDiagramResourceDescription extends AbstractResourceDescription
 				String qualifiedName = ((Fragment) eObject).getQualifiedName();
 				if (qualifiedName != null) {
 					exportedObjects.add(new EObjectDescription(qualifiedNameConverter.toQualifiedName(qualifiedName), eObject, userData));
+				}
+			} else if (eObject instanceof Subsystem) {
+				Subsystem subsystem = (Subsystem) eObject;
+				String qualifiedName = subsystem.getOwningFragment().getQualifiedName();
+				if (qualifiedName != null) {
+					exportedObjects.add(new EObjectDescription(qualifiedNameConverter.toQualifiedName(qualifiedName).append(subsystem.getName()), eObject, userData));
 				}
 			}
 		}

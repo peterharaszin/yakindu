@@ -17,6 +17,7 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getExecutionModel <em>Execution Model</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getGenTopLevelSystem <em>Gen Top Level System</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getSourceDirectory <em>Source Directory</em>}</li>
@@ -33,6 +34,32 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  */
 public interface GenModel extends EObject {
 	/**
+	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Qualified Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Qualified Name</em>' attribute.
+	 * @see #setQualifiedName(String)
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenModel_QualifiedName()
+	 * @model
+	 * @generated
+	 */
+	String getQualifiedName();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getQualifiedName <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Qualified Name</em>' attribute.
+	 * @see #getQualifiedName()
+	 * @generated
+	 */
+	void setQualifiedName(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Gen Top Level System</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -43,7 +70,7 @@ public interface GenModel extends EObject {
 	 * @return the value of the '<em>Gen Top Level System</em>' containment reference.
 	 * @see #setGenTopLevelSystem(GenTopLevelSystem)
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenModel_GenTopLevelSystem()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	GenTopLevelSystem getGenTopLevelSystem();
@@ -69,7 +96,7 @@ public interface GenModel extends EObject {
 	 * @return the value of the '<em>Execution Model</em>' reference.
 	 * @see #setExecutionModel(ExecutionModel)
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenModel_ExecutionModel()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	ExecutionModel getExecutionModel();
@@ -95,7 +122,7 @@ public interface GenModel extends EObject {
 	 * @return the value of the '<em>Source Directory</em>' attribute.
 	 * @see #setSourceDirectory(String)
 	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage#getGenModel_SourceDirectory()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	String getSourceDirectory();

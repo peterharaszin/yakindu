@@ -4,12 +4,11 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="cgenmodel"
     nsURI="http://www.eclipselabs.org/damos/CGenModel/1.0.0" nsPrefix="cgenmodel">
   <eClassifiers xsi:type="ecore:EClass" name="GenModel">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="executionModel" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.ecore#//ExecutionModel"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="genTopLevelSystem" lowerBound="1"
-        eType="#//GenTopLevelSystem" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceDirectory" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="qualifiedName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="executionModel" eType="ecore:EClass ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.ecore#//ExecutionModel"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="genTopLevelSystem" eType="#//GenTopLevelSystem"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceDirectory" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="headerDirectory" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mainSourceFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mainHeaderFile" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -21,13 +20,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenTopLevelSystem" eSuperTypes="#//GenSystem">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fragment" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fragment" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Fragment"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GenSubsystem" eSuperTypes="#//GenSystem">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="enclosingGenSystem" lowerBound="1"
-        eType="#//GenSystem" eOpposite="#//GenSystem/genSubsystems"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enclosingGenSystem" eType="#//GenSystem"
+        eOpposite="#//GenSystem/genSubsystems"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subsystem" eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
   </eClassifiers>
 </ecore:EPackage>

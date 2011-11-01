@@ -24,6 +24,7 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getExecutionModel <em>Execution Model</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getGenTopLevelSystem <em>Gen Top Level System</em>}</li>
  *   <li>{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenModelImpl#getSourceDirectory <em>Source Directory</em>}</li>
@@ -37,6 +38,26 @@ import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
  * @generated
  */
 public class GenModelImpl extends EObjectImpl implements GenModel {
+	/**
+	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getExecutionModel() <em>Execution Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -174,6 +195,27 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	protected EClass eStaticClass() {
 		return CGenModelPackage.Literals.GEN_MODEL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getQualifiedName() {
+		return qualifiedName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setQualifiedName(String newQualifiedName) {
+		String oldQualifiedName = qualifiedName;
+		qualifiedName = newQualifiedName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, CGenModelPackage.GEN_MODEL__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
 	}
 
 	/**
@@ -384,6 +426,8 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_MODEL__QUALIFIED_NAME:
+				return getQualifiedName();
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				if (resolve) return getExecutionModel();
 				return basicGetExecutionModel();
@@ -411,6 +455,9 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_MODEL__QUALIFIED_NAME:
+				setQualifiedName((String)newValue);
+				return;
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)newValue);
 				return;
@@ -444,6 +491,9 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_MODEL__QUALIFIED_NAME:
+				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)null);
 				return;
@@ -477,6 +527,8 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case CGenModelPackage.GEN_MODEL__QUALIFIED_NAME:
+				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
 			case CGenModelPackage.GEN_MODEL__EXECUTION_MODEL:
 				return executionModel != null;
 			case CGenModelPackage.GEN_MODEL__GEN_TOP_LEVEL_SYSTEM:
@@ -505,7 +557,9 @@ public class GenModelImpl extends EObjectImpl implements GenModel {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (sourceDirectory: ");
+		result.append(" (qualifiedName: ");
+		result.append(qualifiedName);
+		result.append(", sourceDirectory: ");
 		result.append(sourceDirectory);
 		result.append(", headerDirectory: ");
 		result.append(headerDirectory);

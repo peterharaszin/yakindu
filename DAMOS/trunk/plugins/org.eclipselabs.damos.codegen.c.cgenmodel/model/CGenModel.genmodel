@@ -6,12 +6,13 @@
     modelName="CGenModel" editPluginClass="org.eclipselabs.damos.codegen.c.cgenmodel.edit.CGenModelEditPlugin"
     editorPluginClass="org.eclipselabs.damos.codegen.c.cgenmodel.ui.CGenModelUIPlugin"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    editorPluginID="org.eclipselabs.damos.codegen.c.cgenmodel.ui" usedGenPackages="../../org.eclipselabs.mscript.computation.computationmodel/model/ComputationModel.genmodel#//computationmodel platform:/plugin/org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.genmodel#//executionmodel ../../org.eclipselabs.mscript.typesystem/model/TypeSystem.genmodel#//typesystem">
+    editorPluginID="org.eclipselabs.damos.codegen.c.cgenmodel.ui" usedGenPackages="../../org.eclipselabs.damos.dml/model/DML.genmodel#//dml ../../org.eclipselabs.damos.execution.executionmodel/model/ExecutionModel.genmodel#//executionmodel ../../org.eclipselabs.damos.mscript/model/ComputationModel.genmodel#//computationmodel ../../org.eclipselabs.damos.mscript/model/Mscript.genmodel#//mscript">
   <foreignModel>CGenModel.ecore</foreignModel>
   <genPackages prefix="CGenModel" basePackage="org.eclipselabs.damos.codegen.c" disposableProviderFactory="true"
       providerPackageSuffix="edit.provider" presentationPackageSuffix="ui.editor.presentation"
       multipleEditorPages="false" generateModelWizard="false" ecorePackage="CGenModel.ecore#/">
     <genClasses ecoreClass="CGenModel.ecore#//GenModel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CGenModel.ecore#//GenModel/qualifiedName"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenModel/executionModel"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CGenModel.ecore#//GenModel/genTopLevelSystem"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CGenModel.ecore#//GenModel/sourceDirectory"/>

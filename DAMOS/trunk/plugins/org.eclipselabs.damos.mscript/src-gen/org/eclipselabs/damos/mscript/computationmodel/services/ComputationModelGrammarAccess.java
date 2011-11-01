@@ -788,7 +788,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	/// *
 	// * Data type specifier
 	// * / DataTypeSpecifier:
-	//	definedType=(PrimitiveType | ArrayType) | type=[DataType];
+	//	definedType=(PrimitiveType | ArrayType) | type=[DataType|QualifiedName];
 	public MscriptGrammarAccess.DataTypeSpecifierElements getDataTypeSpecifierAccess() {
 		return gaMscript.getDataTypeSpecifierAccess();
 	}
@@ -878,8 +878,8 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//ArrayType:
-	//	TensorType | => (definedElementType=PrimitiveType | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
-	//	dimensions+=ArrayDimension)* "]";
+	//	TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+	//	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
 	public MscriptGrammarAccess.ArrayTypeElements getArrayTypeAccess() {
 		return gaMscript.getArrayTypeAccess();
 	}
@@ -1264,7 +1264,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//NumericLiteral:
-	//	RealLiteral | IntegerLiteral;
+	//	RealLiteral | => IntegerLiteral;
 	public MscriptGrammarAccess.NumericLiteralElements getNumericLiteralAccess() {
 		return gaMscript.getNumericLiteralAccess();
 	}
@@ -1284,7 +1284,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//RealData hidden():
-	//	ValidInt ("." ValidInt (IJ | EXPIJ | E ("+" | "-") ValidInt IJ?)? | (EXPIJ | E ("+" | "-") ValidInt IJ?));
+	//	ValidInt ("." ValidInt => (IJ | EXPIJ | E ("+" | "-") ValidInt => IJ?)? | (EXPIJ | E ("+" | "-") ValidInt => IJ?));
 	public MscriptGrammarAccess.RealDataElements getRealDataAccess() {
 		return gaMscript.getRealDataAccess();
 	}
@@ -1304,7 +1304,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//IntegerData hidden():
-	//	ValidInt IJ?;
+	//	ValidInt => IJ?;
 	public MscriptGrammarAccess.IntegerDataElements getIntegerDataAccess() {
 		return gaMscript.getIntegerDataAccess();
 	}

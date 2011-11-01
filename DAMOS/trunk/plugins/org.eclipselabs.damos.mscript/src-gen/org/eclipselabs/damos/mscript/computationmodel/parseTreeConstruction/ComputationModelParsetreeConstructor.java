@@ -5486,11 +5486,11 @@ protected class Equation_RightHandSideAssignment_4 extends AssignmentToken  {
  * / *
  *  * Data type specifier
  *  * / DataTypeSpecifier:
- * 	definedType=(PrimitiveType | ArrayType) | type=[DataType];
+ * 	definedType=(PrimitiveType | ArrayType) | type=[DataType|QualifiedName];
  *
  **/
 
-// definedType=(PrimitiveType | ArrayType) | type=[DataType]
+// definedType=(PrimitiveType | ArrayType) | type=[DataType|QualifiedName]
 protected class DataTypeSpecifier_Alternatives extends AlternativesToken {
 
 	public DataTypeSpecifier_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -5575,7 +5575,7 @@ protected class DataTypeSpecifier_DefinedTypeAssignment_0 extends AssignmentToke
 	}	
 }
 
-// type=[DataType]
+// type=[DataType|QualifiedName]
 protected class DataTypeSpecifier_TypeAssignment_1 extends AssignmentToken  {
 	
 	public DataTypeSpecifier_TypeAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6678,13 +6678,13 @@ protected class StringType_StringKeyword_1 extends KeywordToken  {
 /************ begin Rule ArrayType ****************
  *
  * ArrayType:
- * 	TensorType | => (definedElementType=PrimitiveType | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
- * 	dimensions+=ArrayDimension)* "]";
+ * 	TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "["
+ * 	dimensions+=ArrayDimension ("," dimensions+=ArrayDimension)* "]";
  *
  **/
 
-// TensorType | => (definedElementType=PrimitiveType | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
-// dimensions+=ArrayDimension)* "]"
+// TensorType | => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension
+// ("," dimensions+=ArrayDimension)* "]"
 protected class ArrayType_Alternatives extends AlternativesToken {
 
 	public ArrayType_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6751,7 +6751,7 @@ protected class ArrayType_TensorTypeParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// => (definedElementType=PrimitiveType | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
+// => (definedElementType=(BooleanType | StringType) | elementType=[DataType]) "[" dimensions+=ArrayDimension (","
 // dimensions+=ArrayDimension)* "]"
 protected class ArrayType_Group_1 extends GroupToken {
 	
@@ -6781,7 +6781,7 @@ protected class ArrayType_Group_1 extends GroupToken {
 
 }
 
-// => (definedElementType=PrimitiveType | elementType=[DataType])
+// => (definedElementType=(BooleanType | StringType) | elementType=[DataType])
 protected class ArrayType_Group_1_0 extends GroupToken {
 	
 	public ArrayType_Group_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6803,7 +6803,7 @@ protected class ArrayType_Group_1_0 extends GroupToken {
 
 }
 
-// definedElementType=PrimitiveType | elementType=[DataType]
+// definedElementType=(BooleanType | StringType) | elementType=[DataType]
 protected class ArrayType_Alternatives_1_0_0 extends AlternativesToken {
 
 	public ArrayType_Alternatives_1_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6826,7 +6826,7 @@ protected class ArrayType_Alternatives_1_0_0 extends AlternativesToken {
 
 }
 
-// definedElementType=PrimitiveType
+// definedElementType=(BooleanType | StringType)
 protected class ArrayType_DefinedElementTypeAssignment_1_0_0_0 extends AssignmentToken  {
 	
 	public ArrayType_DefinedElementTypeAssignment_1_0_0_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6841,7 +6841,8 @@ protected class ArrayType_DefinedElementTypeAssignment_1_0_0_0 extends Assignmen
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new PrimitiveType_Alternatives(this, this, 0, inst);
+			case 0: return new BooleanType_Group(this, this, 0, inst);
+			case 1: return new StringType_Group(this, this, 1, inst);
 			default: return null;
 		}	
 	}
@@ -6852,9 +6853,18 @@ protected class ArrayType_DefinedElementTypeAssignment_1_0_0_0 extends Assignmen
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("definedElementType");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getPrimitiveTypeRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getBooleanTypeRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getArrayTypeAccess().getDefinedElementTypePrimitiveTypeParserRuleCall_1_0_0_0_0(); 
+				element = grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getStringTypeRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1(); 
 				consumed = obj;
 				return param;
 			}
@@ -14791,11 +14801,11 @@ protected class Literal_StringLiteralParserRuleCall_2 extends RuleCallToken {
 /************ begin Rule NumericLiteral ****************
  *
  * NumericLiteral:
- * 	RealLiteral | IntegerLiteral;
+ * 	RealLiteral | => IntegerLiteral;
  *
  **/
 
-// RealLiteral | IntegerLiteral
+// RealLiteral | => IntegerLiteral
 protected class NumericLiteral_Alternatives extends AlternativesToken {
 
 	public NumericLiteral_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -14862,7 +14872,7 @@ protected class NumericLiteral_RealLiteralParserRuleCall_0 extends RuleCallToken
 	}	
 }
 
-// IntegerLiteral
+// => IntegerLiteral
 protected class NumericLiteral_IntegerLiteralParserRuleCall_1 extends RuleCallToken {
 	
 	public NumericLiteral_IntegerLiteralParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {

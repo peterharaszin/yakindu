@@ -139,9 +139,9 @@ ruleComputationModelMapping returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='map' 
+(	otherlv_0='use' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getComputationModelMappingAccess().getMapKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getComputationModelMappingAccess().getUseKeyword_0());
     }
 (
 (
@@ -151,16 +151,16 @@ ruleComputationModelMapping returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getComputationModelMappingAccess().getFragmentFragmentCrossReference_1_0()); 
+	        newCompositeNode(grammarAccess.getComputationModelMappingAccess().getComputationModelComputationModelCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_2='to' 
+)	otherlv_2='for' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getComputationModelMappingAccess().getToKeyword_2());
+    	newLeafNode(otherlv_2, grammarAccess.getComputationModelMappingAccess().getForKeyword_2());
     }
 (
 (
@@ -170,7 +170,7 @@ ruleComputationModelMapping returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getComputationModelMappingAccess().getComputationModelComputationModelCrossReference_3_0()); 
+	        newCompositeNode(grammarAccess.getComputationModelMappingAccess().getFragmentFragmentCrossReference_3_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
@@ -1647,10 +1647,12 @@ ruleDataTypeSpecifier returns [EObject current=null]
 	            $current = createModelElement(grammarAccess.getDataTypeSpecifierRule());
 	        }
         }
-	otherlv_1=RULE_ID
-	{
-		newLeafNode(otherlv_1, grammarAccess.getDataTypeSpecifierAccess().getTypeDataTypeCrossReference_1_0()); 
-	}
+		{ 
+	        newCompositeNode(grammarAccess.getDataTypeSpecifierAccess().getTypeDataTypeCrossReference_1_0()); 
+	    }
+		ruleQualifiedName		{ 
+	        afterParserOrEnumRuleCall();
+	    }
 
 )
 ))
@@ -2054,7 +2056,11 @@ ruleArrayType returns [EObject current=null]
 
     |(((((
 (
-rulePrimitiveType
+(
+ruleBooleanType
+    |ruleStringType
+)
+
 )
 )
     |(
@@ -2064,20 +2070,38 @@ rulePrimitiveType
 )
 )))=>((
 (
+(
 		{ 
-	        newCompositeNode(grammarAccess.getArrayTypeAccess().getDefinedElementTypePrimitiveTypeParserRuleCall_1_0_0_0_0()); 
+	        newCompositeNode(grammarAccess.getArrayTypeAccess().getDefinedElementTypeBooleanTypeParserRuleCall_1_0_0_0_0_0()); 
 	    }
-		lv_definedElementType_1_0=rulePrimitiveType		{
+		lv_definedElementType_1_1=ruleBooleanType		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getArrayTypeRule());
 	        }
        		set(
        			$current, 
        			"definedElementType",
-        		lv_definedElementType_1_0, 
-        		"PrimitiveType");
+        		lv_definedElementType_1_1, 
+        		"BooleanType");
 	        afterParserOrEnumRuleCall();
 	    }
+
+    |		{ 
+	        newCompositeNode(grammarAccess.getArrayTypeAccess().getDefinedElementTypeStringTypeParserRuleCall_1_0_0_0_0_1()); 
+	    }
+		lv_definedElementType_1_2=ruleStringType		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getArrayTypeRule());
+	        }
+       		set(
+       			$current, 
+       			"definedElementType",
+        		lv_definedElementType_1_2, 
+        		"StringType");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
 
 )
 )
@@ -4404,21 +4428,21 @@ ruleNumericLiteral returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getNumericLiteralAccess().getRealLiteralParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getNumericLiteralAccess().getIntegerLiteralParserRuleCall_0()); 
     }
-    this_RealLiteral_0=ruleRealLiteral
+    this_IntegerLiteral_0=ruleIntegerLiteral
     { 
-        $current = $this_RealLiteral_0.current; 
+        $current = $this_IntegerLiteral_0.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getNumericLiteralAccess().getIntegerLiteralParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getNumericLiteralAccess().getRealLiteralParserRuleCall_1()); 
     }
-    this_IntegerLiteral_1=ruleIntegerLiteral
+    this_RealLiteral_1=ruleRealLiteral
     { 
-        $current = $this_IntegerLiteral_1.current; 
+        $current = $this_RealLiteral_1.current; 
         afterParserOrEnumRuleCall();
     }
 )

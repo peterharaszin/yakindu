@@ -13,7 +13,7 @@ public class AbstractExecutionModelJavaValidator extends MscriptJavaValidator {
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
-	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/ExecutionModel"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/2011/ExecutionModel"));
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/mscript/Mscript"));
 		return result;
 	}

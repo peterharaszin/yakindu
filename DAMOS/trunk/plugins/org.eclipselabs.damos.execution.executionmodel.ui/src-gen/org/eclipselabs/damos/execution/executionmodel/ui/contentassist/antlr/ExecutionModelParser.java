@@ -46,6 +46,7 @@ public class ExecutionModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getNumericTypeAccess().getAlternatives(), "rule__NumericType__Alternatives");
 					put(grammarAccess.getArrayTypeAccess().getAlternatives(), "rule__ArrayType__Alternatives");
 					put(grammarAccess.getArrayTypeAccess().getAlternatives_1_0_0(), "rule__ArrayType__Alternatives_1_0_0");
+					put(grammarAccess.getArrayTypeAccess().getDefinedElementTypeAlternatives_1_0_0_0_0(), "rule__ArrayType__DefinedElementTypeAlternatives_1_0_0_0_0");
 					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
 					put(grammarAccess.getLetExpressionVariableDeclarationAccess().getAlternatives_0(), "rule__LetExpressionVariableDeclaration__Alternatives_0");
 					put(grammarAccess.getRelationalExpressionAccess().getAlternatives_1_0(), "rule__RelationalExpression__Alternatives_1_0");
@@ -231,8 +232,8 @@ public class ExecutionModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
 					put(grammarAccess.getExecutionModelAccess().getQualifiedNameAssignment_1(), "rule__ExecutionModel__QualifiedNameAssignment_1");
 					put(grammarAccess.getExecutionModelAccess().getComputationModelMappingsAssignment_2(), "rule__ExecutionModel__ComputationModelMappingsAssignment_2");
-					put(grammarAccess.getComputationModelMappingAccess().getFragmentAssignment_1(), "rule__ComputationModelMapping__FragmentAssignment_1");
-					put(grammarAccess.getComputationModelMappingAccess().getComputationModelAssignment_3(), "rule__ComputationModelMapping__ComputationModelAssignment_3");
+					put(grammarAccess.getComputationModelMappingAccess().getComputationModelAssignment_1(), "rule__ComputationModelMapping__ComputationModelAssignment_1");
+					put(grammarAccess.getComputationModelMappingAccess().getFragmentAssignment_3(), "rule__ComputationModelMapping__FragmentAssignment_3");
 					put(grammarAccess.getModuleAccess().getDefinitionsAssignment(), "rule__Module__DefinitionsAssignment");
 					put(grammarAccess.getEnumerationDefinitionAccess().getNameAssignment_1(), "rule__EnumerationDefinition__NameAssignment_1");
 					put(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_0(), "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0");

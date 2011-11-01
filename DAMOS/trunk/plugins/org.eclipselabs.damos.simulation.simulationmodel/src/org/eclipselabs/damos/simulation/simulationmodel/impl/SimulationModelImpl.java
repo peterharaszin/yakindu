@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
+import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
@@ -25,6 +26,7 @@ import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getExecutionModel <em>Execution Model</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getSimulationTime <em>Simulation Time</em>}</li>
@@ -35,6 +37,26 @@ import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
  * @generated
  */
 public class SimulationModelImpl extends EObjectImpl implements SimulationModel {
+	/**
+	 * The default value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUALIFIED_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQualifiedName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getExecutionModel() <em>Execution Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -56,33 +78,14 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	protected Fragment topLevelFragment;
 
 	/**
-	 * The default value of the '{@link #getSimulationTime() <em>Simulation Time</em>}' attribute.
+	 * The cached value of the '{@link #getSimulationTime() <em>Simulation Time</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getSimulationTime()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final double SIMULATION_TIME_EDEFAULT = 0.0;
-
-	/**
-	 * The cached value of the '{@link #getSimulationTime() <em>Simulation Time</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSimulationTime()
-	 * @generated
-	 * @ordered
-	 */
-	protected double simulationTime = SIMULATION_TIME_EDEFAULT;
-
-	/**
-	 * This is true if the Simulation Time attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean simulationTimeESet;
+	protected Expression simulationTime;
 
 	/**
 	 * The cached value of the '{@link #getSolverConfiguration() <em>Solver Configuration</em>}' containment reference.
@@ -194,7 +197,7 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public double getSimulationTime() {
+	public Expression getSimulationTime() {
 		return simulationTime;
 	}
 
@@ -203,13 +206,14 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSimulationTime(double newSimulationTime) {
-		double oldSimulationTime = simulationTime;
+	public NotificationChain basicSetSimulationTime(Expression newSimulationTime, NotificationChain msgs) {
+		Expression oldSimulationTime = simulationTime;
 		simulationTime = newSimulationTime;
-		boolean oldSimulationTimeESet = simulationTimeESet;
-		simulationTimeESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME, oldSimulationTime, simulationTime, !oldSimulationTimeESet));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME, oldSimulationTime, newSimulationTime);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -217,22 +221,18 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void unsetSimulationTime() {
-		double oldSimulationTime = simulationTime;
-		boolean oldSimulationTimeESet = simulationTimeESet;
-		simulationTime = SIMULATION_TIME_EDEFAULT;
-		simulationTimeESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME, oldSimulationTime, SIMULATION_TIME_EDEFAULT, oldSimulationTimeESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetSimulationTime() {
-		return simulationTimeESet;
+	public void setSimulationTime(Expression newSimulationTime) {
+		if (newSimulationTime != simulationTime) {
+			NotificationChain msgs = null;
+			if (simulationTime != null)
+				msgs = ((InternalEObject)simulationTime).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME, null, msgs);
+			if (newSimulationTime != null)
+				msgs = ((InternalEObject)newSimulationTime).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME, null, msgs);
+			msgs = basicSetSimulationTime(newSimulationTime, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME, newSimulationTime, newSimulationTime));
 	}
 
 	/**
@@ -283,9 +283,32 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getQualifiedName() {
+		return qualifiedName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setQualifiedName(String newQualifiedName) {
+		String oldQualifiedName = qualifiedName;
+		qualifiedName = newQualifiedName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimulationModelPackage.SIMULATION_MODEL__QUALIFIED_NAME, oldQualifiedName, qualifiedName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
+				return basicSetSimulationTime(null, msgs);
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				return basicSetSolverConfiguration(null, msgs);
 		}
@@ -300,6 +323,8 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case SimulationModelPackage.SIMULATION_MODEL__QUALIFIED_NAME:
+				return getQualifiedName();
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				if (resolve) return getExecutionModel();
 				return basicGetExecutionModel();
@@ -322,6 +347,9 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case SimulationModelPackage.SIMULATION_MODEL__QUALIFIED_NAME:
+				setQualifiedName((String)newValue);
+				return;
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)newValue);
 				return;
@@ -329,7 +357,7 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 				setTopLevelFragment((Fragment)newValue);
 				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
-				setSimulationTime((Double)newValue);
+				setSimulationTime((Expression)newValue);
 				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				setSolverConfiguration((SolverConfiguration)newValue);
@@ -346,6 +374,9 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case SimulationModelPackage.SIMULATION_MODEL__QUALIFIED_NAME:
+				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				setExecutionModel((ExecutionModel)null);
 				return;
@@ -353,7 +384,7 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 				setTopLevelFragment((Fragment)null);
 				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
-				unsetSimulationTime();
+				setSimulationTime((Expression)null);
 				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				setSolverConfiguration((SolverConfiguration)null);
@@ -370,12 +401,14 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case SimulationModelPackage.SIMULATION_MODEL__QUALIFIED_NAME:
+				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
 			case SimulationModelPackage.SIMULATION_MODEL__EXECUTION_MODEL:
 				return executionModel != null;
 			case SimulationModelPackage.SIMULATION_MODEL__TOP_LEVEL_FRAGMENT:
 				return topLevelFragment != null;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
-				return isSetSimulationTime();
+				return simulationTime != null;
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				return solverConfiguration != null;
 		}
@@ -392,8 +425,8 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (simulationTime: ");
-		if (simulationTimeESet) result.append(simulationTime); else result.append("<unset>");
+		result.append(" (qualifiedName: ");
+		result.append(qualifiedName);
 		result.append(')');
 		return result.toString();
 	}

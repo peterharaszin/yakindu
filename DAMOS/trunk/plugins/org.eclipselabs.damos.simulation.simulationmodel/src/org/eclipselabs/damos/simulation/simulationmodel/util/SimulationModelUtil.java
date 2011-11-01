@@ -21,6 +21,7 @@ import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
+import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverArgument;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
@@ -82,6 +83,26 @@ public class SimulationModelUtil {
 		realLiteral.setValue(value);
 		realLiteral.setUnit(TypeUtil.createUnit());
 		setSolverArgumentValue(solverConfiguration, parameterName, realLiteral);
+	}
+	
+	public static double getSimulationTime(SimulationModel simulationModel) {
+		if (simulationModel.getSimulationTime() != null) {
+			IStaticEvaluationContext context = new StaticEvaluationContext();
+			if (new StaticExpressionEvaluator().evaluate(context, simulationModel.getSimulationTime()).isOK()) {
+				IValue simulationTimeValue = context.getValue(simulationModel.getSimulationTime());
+				if (simulationTimeValue instanceof ISimpleNumericValue) {
+					return ((ISimpleNumericValue) simulationTimeValue).doubleValue();
+				}
+			}
+		}
+		return Double.NaN;
+	}
+
+	public static void setSimulationTime(SimulationModel simulationModel, double simulationTime) {
+		RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
+		realLiteral.setValue(simulationTime);
+		realLiteral.setUnit(TypeUtil.createUnit());
+		simulationModel.setSimulationTime(realLiteral);
 	}
 
 }

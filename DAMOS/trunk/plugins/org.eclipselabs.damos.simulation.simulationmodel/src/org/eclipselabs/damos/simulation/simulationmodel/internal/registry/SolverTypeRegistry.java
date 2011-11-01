@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.simulation.simulationmodel.internal.registry;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +31,13 @@ public class SolverTypeRegistry implements ISolverTypeRegistry {
 	 */
 	public SolverTypeRegistry() {
 		initializeFromStorage();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeRegistry#getSolverTypes()
+	 */
+	public Collection<ISolverTypeDescriptor> getSolverTypes() {
+		return solverTypes.values();
 	}
 	
 	/* (non-Javadoc)

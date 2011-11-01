@@ -84,7 +84,7 @@ public class LaunchConfigurationUtil {
 		ExecutionModel executionModel = ExecutionModelFactory.eINSTANCE.createExecutionModel();
 		simulationModel.setExecutionModel(executionModel);
 		simulationModel.setTopLevelFragment(topLevelFragment);
-		simulationModel.setSimulationTime(SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
+		SimulationModelUtil.setSimulationTime(simulationModel, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
 		
 		ISolverTypeDescriptor solverTypeDescriptor = ISolverTypeRegistry.INSTANCE.getSolverType(SimulationLaunchConfigurationDelegate.DEFAULT_SOLVER_TYPE);
 		if (solverTypeDescriptor != null) {

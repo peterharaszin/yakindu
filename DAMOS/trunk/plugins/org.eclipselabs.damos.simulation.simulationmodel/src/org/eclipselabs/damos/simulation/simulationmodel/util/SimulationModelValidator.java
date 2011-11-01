@@ -8,10 +8,9 @@ package org.eclipselabs.damos.simulation.simulationmodel.util;
 
 import java.util.Map;
 
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
@@ -112,6 +111,14 @@ public class SimulationModelValidator extends EObjectValidator {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.util.EObjectValidator#validate_EveryProxyResolves(org.eclipse.emf.ecore.EObject, org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 */
+	@Override
+	public boolean validate_EveryProxyResolves(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,7 +137,7 @@ public class SimulationModelValidator extends EObjectValidator {
 		if (result || diagnostics != null) result &= validateSimulationModel_ValidSimulationTime(simulationModel, diagnostics, context);
 		return result;
 	}
-
+	
 	/**
 	 * Validates the ValidSimulationTime constraint of '<em>Simulation Model</em>'.
 	 * <!-- begin-user-doc -->
@@ -138,45 +145,45 @@ public class SimulationModelValidator extends EObjectValidator {
 	 * @generated NOT
 	 */
 	public boolean validateSimulationModel_ValidSimulationTime(SimulationModel simulationModel, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!simulationModel.isSetSimulationTime()) {
-			return true;
-		}
-		
-		double simulationTime = simulationModel.getSimulationTime();
-
-		if (Double.isNaN(simulationTime)) {
-			if (diagnostics != null) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0,
-						"Simulation time must not be NaN",
-						new Object[] { simulationModel }));
-			}
-			return false;
-		}
-
-		if (Double.isInfinite(simulationTime)) {
-			if (diagnostics != null) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0,
-						"Simulation time must not be infinite",
-						new Object[] { simulationModel }));
-			}
-			return false;
-		}
-
-		if (simulationTime <= 0) {
-			if (diagnostics != null) {
-				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
-						DIAGNOSTIC_SOURCE,
-						0,
-						"Simulation time must be greater than zero",
-						new Object[] { simulationModel }));
-			}
-			return false;
-		}
-		
+//		if (!simulationModel.isSetSimulationTime()) {
+//			return true;
+//		}
+//		
+//		double simulationTime = SimulationModelUtil.getSimulationTime(simulationModel);
+//
+//		if (Double.isNaN(simulationTime)) {
+//			if (diagnostics != null) {
+//				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+//						DIAGNOSTIC_SOURCE,
+//						0,
+//						"Simulation time must not be NaN",
+//						new Object[] { simulationModel }));
+//			}
+//			return false;
+//		}
+//
+//		if (Double.isInfinite(simulationTime)) {
+//			if (diagnostics != null) {
+//				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+//						DIAGNOSTIC_SOURCE,
+//						0,
+//						"Simulation time must not be infinite",
+//						new Object[] { simulationModel }));
+//			}
+//			return false;
+//		}
+//
+//		if (simulationTime <= 0) {
+//			if (diagnostics != null) {
+//				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+//						DIAGNOSTIC_SOURCE,
+//						0,
+//						"Simulation time must be greater than zero",
+//						new Object[] { simulationModel }));
+//			}
+//			return false;
+//		}
+//		
 		return true;
 	}
 

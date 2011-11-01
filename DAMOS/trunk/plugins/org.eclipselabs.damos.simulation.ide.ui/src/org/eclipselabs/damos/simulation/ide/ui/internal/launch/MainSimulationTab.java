@@ -81,6 +81,7 @@ import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationP
 import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationPageChangeListener;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.SolverConfigurationPageChangeEvent;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.registry.ISolverConfigurationPageRegistry;
+import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
 import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelValidator;
 import org.eclipselabs.damos.simulation.simulator.registry.ISolverDescriptor;
 import org.eclipselabs.damos.simulation.simulator.registry.ISolverRegistry;
@@ -393,8 +394,8 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 						fragmentViewer.setInput(topLevelFragment.eResource().getResourceSet());
 						fragmentViewer.setSelection(new StructuredSelection(topLevelFragment));
 					}
-					if (simulationModel.isSetSimulationTime()) {
-						simulationTimeText.setText(Double.toString(simulationModel.getSimulationTime()));
+					if (simulationModel.getSimulationTime() != null) {
+						simulationTimeText.setText(Double.toString(SimulationModelUtil.getSimulationTime(simulationModel)));
 					}
 					ISolverDescriptor solver = ISolverRegistry.INSTANCE.getSolver(simulationModel.getSolverConfiguration().getType().getQualifiedName());
 					if (solver != null) {
@@ -443,7 +444,7 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 				String simulationTimeString = simulationTimeText.getText().trim();
 				if (simulationTimeString.length() > 0) {
 					double simulationTime = Double.parseDouble(simulationTimeString);
-					simulationModel.setSimulationTime(simulationTime);
+					SimulationModelUtil.setSimulationTime(simulationModel, simulationTime);
 				}
 			} catch (NumberFormatException e) {
 				errorMessage = "Invalid simulation time";

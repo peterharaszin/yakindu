@@ -10,20 +10,4 @@
 
 <plugin>
    <extension-point id="solverConfigurationPages" name="Solver Configuration Pages" schema="schema/solverConfigurationPages.exsd"/>
-
-
-   <extension
-         point="org.eclipselabs.damos.simulation.simulationmodel.ui.solverConfigurationPages">
-      <page
-            class="org.eclipselabs.damos.simulation.simulationmodel.ui.internal.FixedStepSizeSolverConfigurationPage"
-            id="org.eclipselabs.damos.simulation.simulationmodel.ui.fixedStepSizeSolverConfigurationPage"
-            solverConfiguration="org.eclipselabs.damos.simulation.simulationmodel.fixedStepSizeSolverConfiguration">
-      </page>
-      <page
-            class="org.eclipselabs.damos.simulation.simulationmodel.ui.internal.AdaptiveStepSizeSolverConfigurationPage"
-            id="org.eclipselabs.damos.simulation.simulationmodel.ui.adaptiveStepSizeSolverConfigurationPage"
-            solverConfiguration="org.eclipselabs.damos.simulation.simulationmodel.adaptiveStepSizeSolverConfiguration">
-      </page>
-   </extension>
-
 </plugin>

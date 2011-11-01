@@ -16,8 +16,8 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverConfigurationDescriptor;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverConfigurationRegistry;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeRegistry;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 
 /**
@@ -29,7 +29,7 @@ public class SolverRegistryReader extends AbstractRegistryReader implements IReg
 	private static final String EXTENSION_POINT_NAME = "solvers";
 
 	private static final String TAG = "solver";
-	private static final String ATT_CONFIGURATION = "configuration";
+	private static final String ATT_SOLVER_TYPE = "solverType";
 
 	private SolverRegistry registry;
 	
@@ -63,22 +63,20 @@ public class SolverRegistryReader extends AbstractRegistryReader implements IReg
 			return false;
 		}
 
-		String id = getRequiredAttribute(element, ATT_ID);
+		String solverTypeQualifiedName = getRequiredAttribute(element, ATT_SOLVER_TYPE);
 		String name = getRequiredAttribute(element, ATT_NAME);
 		String className = getRequiredAttribute(element, ATT_CLASS);
-		String configurationId = getRequiredAttribute(element, ATT_CONFIGURATION);
 		
-		ISolverConfigurationDescriptor configuration = ISolverConfigurationRegistry.INSTANCE.getSolverConfiguration(configurationId);
-		if (configuration != null) {
+		ISolverTypeDescriptor solverType = ISolverTypeRegistry.INSTANCE.getSolverType(solverTypeQualifiedName);
+		if (solverType != null) {
 			SolverDescriptor solver = new SolverDescriptor();
-			solver.setId(id);
+			solver.setSolverType(solverType);
 			solver.setName(name);
 			solver.setClassName(className);
-			solver.setConfiguration(configuration);
 			solver.setConfigurationElement(element);
 			registry.register(solver);
 		} else {
-			logError(element, "Solver configuration '" + configurationId + "' not found");
+			logError(element, "Solver type '" + solverTypeQualifiedName + "' not found");
 		}
 		
 		return true;

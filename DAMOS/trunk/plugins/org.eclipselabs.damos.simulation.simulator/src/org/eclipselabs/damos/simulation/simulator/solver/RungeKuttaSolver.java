@@ -21,8 +21,8 @@ import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
+import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
@@ -88,8 +88,7 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	@Override
 	public void initialize(ISimulationContext context, IProgressMonitor monitor) throws CoreException {
 		super.initialize(context, monitor);
-		FixedStepSizeSolverConfiguration fixedStepSizeSolverConfiguration = (FixedStepSizeSolverConfiguration) context.getSimulationModel().getSolverConfiguration();
-		stepSize = computeStepSize(context.getExecutionFlow().getGraph(), fixedStepSizeSolverConfiguration.getStepSize());
+		stepSize = computeStepSize(context.getExecutionFlow().getGraph(), stepSize);
 		n = 0;
 	}
 
@@ -97,10 +96,9 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#initialize(org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration)
 	 */
 	public void configure(SimulationModel simulationModel) {
-		FixedStepSizeSolverConfiguration fixedStepSizeSolverConfiguration = (FixedStepSizeSolverConfiguration) simulationModel.getSolverConfiguration();
-		this.stepSize = Math.abs(fixedStepSizeSolverConfiguration.getStepSize());
+		this.stepSize = Math.abs(SimulationModelUtil.getSolverArgumentDoubleValue(context.getSimulationModel().getSolverConfiguration(), "stepSize", 1.0));
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#createData(org.eclipselabs.damos.simulation.simulator.ISimulationObject, org.eclipselabs.damos.simulation.simulationmodel.SimulationModel)
 	 */

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipselabs.damos.simulation.simulationmodel.ui.solverConfigurationPages">
+      <page
+            class="org.eclipselabs.damos.simulation.simulationmodel.ui.FixedStepSizeSolverConfigurationPage"
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::Euler">
+      </page>
+      <page
+            class="org.eclipselabs.damos.simulation.simulationmodel.ui.FixedStepSizeSolverConfigurationPage"
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::ClassicalRungeKutta">
+      </page>
+      <page
+            class="org.eclipselabs.damos.simulation.simulationmodel.ui.AdaptiveStepSizeSolverConfigurationPage"
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince54">
+      </page>
+      <page
+            class="org.eclipselabs.damos.simulation.simulationmodel.ui.AdaptiveStepSizeSolverConfigurationPage"
+            solverType="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince83">
+      </page>
+   </extension>
+
+</plugin>

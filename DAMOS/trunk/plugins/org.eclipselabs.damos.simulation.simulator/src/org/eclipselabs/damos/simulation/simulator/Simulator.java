@@ -80,9 +80,10 @@ public class Simulator {
 			taskGraph.eAdapters().add(new Task(simulation, taskGraph));
 		}
 
-		ISolverDescriptor solverDescriptor = ISolverRegistry.INSTANCE.getSolver(simulationModel.getSolverId());
+		String solverQualifiedName = simulationModel.getSolverConfiguration().getType().getQualifiedName();
+		ISolverDescriptor solverDescriptor = ISolverRegistry.INSTANCE.getSolver(solverQualifiedName);
 		if (solverDescriptor == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Solver '" + simulationModel.getSolverId() + "' not found"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Solver '" + solverQualifiedName + "' not found"));
 		}
 		
 		ISolver solver = solverDescriptor.createSolver();

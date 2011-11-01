@@ -6,15 +6,16 @@
  */
 package org.eclipselabs.damos.simulation.simulationmodel.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.simulation.simulationmodel.AdaptiveStepSizeSolverConfiguration;
-import org.eclipselabs.damos.simulation.simulationmodel.FixedStepSizeSolverConfiguration;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverArgument;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverConfigurationDefinition;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverParameter;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverType;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +30,7 @@ import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
  * @see org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage
  * @generated
  */
-public class SimulationModelSwitch<T> {
+public class SimulationModelSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -51,14 +52,16 @@ public class SimulationModelSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -68,31 +71,30 @@ public class SimulationModelSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case SimulationModelPackage.SIMULATION_MODEL: {
 				SimulationModel simulationModel = (SimulationModel)theEObject;
 				T result = caseSimulationModel(simulationModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SimulationModelPackage.SOLVER_TYPE: {
+				SolverType solverType = (SolverType)theEObject;
+				T result = caseSolverType(solverType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SimulationModelPackage.SOLVER_CONFIGURATION_DEFINITION: {
+				SolverConfigurationDefinition solverConfigurationDefinition = (SolverConfigurationDefinition)theEObject;
+				T result = caseSolverConfigurationDefinition(solverConfigurationDefinition);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SimulationModelPackage.SOLVER_PARAMETER: {
+				SolverParameter solverParameter = (SolverParameter)theEObject;
+				T result = caseSolverParameter(solverParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,17 +104,9 @@ public class SimulationModelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case SimulationModelPackage.FIXED_STEP_SIZE_SOLVER_CONFIGURATION: {
-				FixedStepSizeSolverConfiguration fixedStepSizeSolverConfiguration = (FixedStepSizeSolverConfiguration)theEObject;
-				T result = caseFixedStepSizeSolverConfiguration(fixedStepSizeSolverConfiguration);
-				if (result == null) result = caseSolverConfiguration(fixedStepSizeSolverConfiguration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case SimulationModelPackage.ADAPTIVE_STEP_SIZE_SOLVER_CONFIGURATION: {
-				AdaptiveStepSizeSolverConfiguration adaptiveStepSizeSolverConfiguration = (AdaptiveStepSizeSolverConfiguration)theEObject;
-				T result = caseAdaptiveStepSizeSolverConfiguration(adaptiveStepSizeSolverConfiguration);
-				if (result == null) result = caseSolverConfiguration(adaptiveStepSizeSolverConfiguration);
+			case SimulationModelPackage.SOLVER_ARGUMENT: {
+				SolverArgument solverArgument = (SolverArgument)theEObject;
+				T result = caseSolverArgument(solverArgument);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -136,6 +130,51 @@ public class SimulationModelSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Solver Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Solver Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSolverType(SolverType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Solver Configuration Definition</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Solver Configuration Definition</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSolverConfigurationDefinition(SolverConfigurationDefinition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Solver Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Solver Parameter</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSolverParameter(SolverParameter object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Solver Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -151,32 +190,17 @@ public class SimulationModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fixed Step Size Solver Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Solver Argument</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fixed Step Size Solver Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Solver Argument</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFixedStepSizeSolverConfiguration(FixedStepSizeSolverConfiguration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Adaptive Step Size Solver Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Adaptive Step Size Solver Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAdaptiveStepSizeSolverConfiguration(AdaptiveStepSizeSolverConfiguration object) {
+	public T caseSolverArgument(SolverArgument object) {
 		return null;
 	}
 
@@ -191,6 +215,7 @@ public class SimulationModelSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
+	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

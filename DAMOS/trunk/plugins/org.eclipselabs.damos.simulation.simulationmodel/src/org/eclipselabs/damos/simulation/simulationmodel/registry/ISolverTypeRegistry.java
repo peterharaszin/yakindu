@@ -11,22 +11,16 @@
 
 package org.eclipselabs.damos.simulation.simulationmodel.registry;
 
-import org.eclipse.emf.common.util.URI;
+import org.eclipselabs.damos.simulation.simulationmodel.internal.registry.SolverTypeRegistry;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface ISolverConfigurationDescriptor {
+public interface ISolverTypeRegistry {
 
-	/**
-	 * @return the id
-	 */
-	String getId();
-
-	/**
-	 * @return the uri
-	 */
-	URI getURI();
+	ISolverTypeRegistry INSTANCE = new SolverTypeRegistry();
+	
+	ISolverTypeDescriptor getSolverType(String id);
 
 }

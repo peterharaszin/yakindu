@@ -41,11 +41,11 @@ public class SolverConfigurationPageRegistry implements ISolverConfigurationPage
 	}
 	
 	public void register(SolverConfigurationPageDescriptor solver) {
-		pages.put(solver.getSolverConfiguration().getId(), solver);
+		pages.put(solver.getSolverConfiguration().getQualifiedName(), solver);
 	}
 	
 	public void unregister(SolverConfigurationPageDescriptor solver) {
-		pages.remove(solver.getSolverConfiguration().getId());
+		pages.remove(solver.getSolverConfiguration().getQualifiedName());
 	}
 
 	private void initializeFromStorage() {

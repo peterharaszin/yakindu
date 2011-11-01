@@ -28,7 +28,6 @@ import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getExecutionModel <em>Execution Model</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getTopLevelFragment <em>Top Level Fragment</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getSimulationTime <em>Simulation Time</em>}</li>
- *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getSolverId <em>Solver Id</em>}</li>
  *   <li>{@link org.eclipselabs.damos.simulation.simulationmodel.impl.SimulationModelImpl#getSolverConfiguration <em>Solver Configuration</em>}</li>
  * </ul>
  * </p>
@@ -84,26 +83,6 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * @ordered
 	 */
 	protected boolean simulationTimeESet;
-
-	/**
-	 * The default value of the '{@link #getSolverId() <em>Solver Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSolverId()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String SOLVER_ID_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getSolverId() <em>Solver Id</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getSolverId()
-	 * @generated
-	 * @ordered
-	 */
-	protected String solverId = SOLVER_ID_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getSolverConfiguration() <em>Solver Configuration</em>}' containment reference.
@@ -261,27 +240,6 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSolverId() {
-		return solverId;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setSolverId(String newSolverId) {
-		String oldSolverId = solverId;
-		solverId = newSolverId;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, SimulationModelPackage.SIMULATION_MODEL__SOLVER_ID, oldSolverId, solverId));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public SolverConfiguration getSolverConfiguration() {
 		return solverConfiguration;
 	}
@@ -350,8 +308,6 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 				return basicGetTopLevelFragment();
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				return getSimulationTime();
-			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_ID:
-				return getSolverId();
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				return getSolverConfiguration();
 		}
@@ -374,9 +330,6 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				setSimulationTime((Double)newValue);
-				return;
-			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_ID:
-				setSolverId((String)newValue);
 				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				setSolverConfiguration((SolverConfiguration)newValue);
@@ -402,9 +355,6 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				unsetSimulationTime();
 				return;
-			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_ID:
-				setSolverId(SOLVER_ID_EDEFAULT);
-				return;
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				setSolverConfiguration((SolverConfiguration)null);
 				return;
@@ -426,8 +376,6 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 				return topLevelFragment != null;
 			case SimulationModelPackage.SIMULATION_MODEL__SIMULATION_TIME:
 				return isSetSimulationTime();
-			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_ID:
-				return SOLVER_ID_EDEFAULT == null ? solverId != null : !SOLVER_ID_EDEFAULT.equals(solverId);
 			case SimulationModelPackage.SIMULATION_MODEL__SOLVER_CONFIGURATION:
 				return solverConfiguration != null;
 		}
@@ -446,8 +394,6 @@ public class SimulationModelImpl extends EObjectImpl implements SimulationModel 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (simulationTime: ");
 		if (simulationTimeESet) result.append(simulationTime); else result.append("<unset>");
-		result.append(", solverId: ");
-		result.append(solverId);
 		result.append(')');
 		return result.toString();
 	}

@@ -12,29 +12,23 @@
 package org.eclipselabs.damos.simulation.simulationmodel.internal.registry;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverConfigurationDescriptor;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SolverConfigurationDescriptor implements ISolverConfigurationDescriptor {
+public class SolverTypeDescriptor implements ISolverTypeDescriptor {
 
-	private String id;
+	private String qualifiedName;
 	private URI uri;
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.simulationmodel.internal.registry.ISolverConfigurationDescriptor#getId()
-	 */
-	public String getId() {
-		return id;
+	public String getQualifiedName() {
+		return qualifiedName;
 	}
 	
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(String id) {
-		this.id = id;
+	public void setQualifiedName(String qualifiedName) {
+		this.qualifiedName = qualifiedName;
 	}
 	
 	/* (non-Javadoc)

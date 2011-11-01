@@ -35,22 +35,49 @@ public interface SimulationModelFactory extends EFactory {
 	SimulationModel createSimulationModel();
 
 	/**
-	 * Returns a new object of class '<em>Fixed Step Size Solver Configuration</em>'.
+	 * Returns a new object of class '<em>Solver Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fixed Step Size Solver Configuration</em>'.
+	 * @return a new object of class '<em>Solver Type</em>'.
 	 * @generated
 	 */
-	FixedStepSizeSolverConfiguration createFixedStepSizeSolverConfiguration();
+	SolverType createSolverType();
 
 	/**
-	 * Returns a new object of class '<em>Adaptive Step Size Solver Configuration</em>'.
+	 * Returns a new object of class '<em>Solver Configuration Definition</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Adaptive Step Size Solver Configuration</em>'.
+	 * @return a new object of class '<em>Solver Configuration Definition</em>'.
 	 * @generated
 	 */
-	AdaptiveStepSizeSolverConfiguration createAdaptiveStepSizeSolverConfiguration();
+	SolverConfigurationDefinition createSolverConfigurationDefinition();
+
+	/**
+	 * Returns a new object of class '<em>Solver Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Solver Parameter</em>'.
+	 * @generated
+	 */
+	SolverParameter createSolverParameter();
+
+	/**
+	 * Returns a new object of class '<em>Solver Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Solver Configuration</em>'.
+	 * @generated
+	 */
+	SolverConfiguration createSolverConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Solver Argument</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Solver Argument</em>'.
+	 * @generated
+	 */
+	SolverArgument createSolverArgument();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -14,41 +14,41 @@ package org.eclipselabs.damos.simulation.simulationmodel.internal.registry;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverConfigurationDescriptor;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverConfigurationRegistry;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
+import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeRegistry;
 
 /**
  * @author Andreas Unger
  *
  */
-public class SolverConfigurationRegistry implements ISolverConfigurationRegistry {
+public class SolverTypeRegistry implements ISolverTypeRegistry {
 
-	private Map<String, ISolverConfigurationDescriptor> solverConfigurations = new HashMap<String, ISolverConfigurationDescriptor>();
+	private Map<String, ISolverTypeDescriptor> solverTypes = new HashMap<String, ISolverTypeDescriptor>();
 	
 	/**
 	 * 
 	 */
-	public SolverConfigurationRegistry() {
+	public SolverTypeRegistry() {
 		initializeFromStorage();
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulationmodel.internal.registry.ISolverConfigurationRegistry#getSolverConfiguration(java.lang.String)
 	 */
-	public ISolverConfigurationDescriptor getSolverConfiguration(String id) {
-		return solverConfigurations.get(id);
+	public ISolverTypeDescriptor getSolverType(String qualifiedName) {
+		return solverTypes.get(qualifiedName);
 	}
 
-	public void register(ISolverConfigurationDescriptor solverConfiguration) {
-		solverConfigurations.put(solverConfiguration.getId(), solverConfiguration);
+	public void register(ISolverTypeDescriptor solverType) {
+		solverTypes.put(solverType.getQualifiedName(), solverType);
 	}
 	
-	public void unregister(ISolverConfigurationDescriptor solverConfiguration) {
-		solverConfigurations.remove(solverConfiguration.getId());
+	public void unregister(ISolverTypeDescriptor solverType) {
+		solverTypes.remove(solverType.getQualifiedName());
 	}
 
 	private void initializeFromStorage() {
-		SolverConfigurationRegistryReader reader = new SolverConfigurationRegistryReader();
+		SolverTypeRegistryReader reader = new SolverTypeRegistryReader();
 		reader.registerProviders(this);
 	}
 	

@@ -28,10 +28,7 @@ import org.eclipse.debug.ui.AbstractLaunchConfigurationTab;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -79,6 +76,7 @@ import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
 import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
+import org.eclipselabs.damos.simulation.simulationmodel.SolverType;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationPage;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.ISolverConfigurationPageChangeListener;
 import org.eclipselabs.damos.simulation.simulationmodel.ui.SolverConfigurationPageChangeEvent;
@@ -358,14 +356,14 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 		IStructuredSelection selection = (IStructuredSelection) solverViewer.getSelection();
 		ISolverDescriptor solver = (ISolverDescriptor) selection.getFirstElement();
 		if (solver != null) {
-			String solverConfigurationId = solver.getConfiguration().getId();
-			solverConfigurationPage = solverConfigurationPages.get(solverConfigurationId);
+			String solverTypeQualifiedName = solver.getSolverType().getQualifiedName();
+			solverConfigurationPage = solverConfigurationPages.get(solverTypeQualifiedName);
 			if (solverConfigurationPage == null) {
-				solverConfigurationPage = ISolverConfigurationPageRegistry.INSTANCE.createPage(solverConfigurationId);
+				solverConfigurationPage = ISolverConfigurationPageRegistry.INSTANCE.createPage(solverTypeQualifiedName);
 				if (solverConfigurationPage != null) {
 					solverConfigurationPage.createControl(solverConfigurationGroup);
 					solverConfigurationPage.addChangeListener(solverConfigurationPageChangeListener);
-					solverConfigurationPages.put(solverConfigurationId, solverConfigurationPage);
+					solverConfigurationPages.put(solverTypeQualifiedName, solverConfigurationPage);
 				}
 			}
 		}
@@ -398,11 +396,11 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 					if (simulationModel.isSetSimulationTime()) {
 						simulationTimeText.setText(Double.toString(simulationModel.getSimulationTime()));
 					}
-					ISolverDescriptor solver = ISolverRegistry.INSTANCE.getSolver(simulationModel.getSolverId());
+					ISolverDescriptor solver = ISolverRegistry.INSTANCE.getSolver(simulationModel.getSolverConfiguration().getType().getQualifiedName());
 					if (solver != null) {
 						solverViewer.setSelection(new StructuredSelection(solver));
 						updateSolverConfigurationPage();
-						ISolverConfigurationPage page = solverConfigurationPages.get(solver.getConfiguration().getId());
+						ISolverConfigurationPage page = solverConfigurationPages.get(solver.getSolverType().getQualifiedName());
 						if (page != null) {
 							page.initializeFrom(simulationModel);
 						}
@@ -456,24 +454,21 @@ public class MainSimulationTab extends AbstractLaunchConfigurationTab {
 			IStructuredSelection solverSelection = (IStructuredSelection) solverViewer.getSelection();
 			ISolverDescriptor solver = (ISolverDescriptor) solverSelection.getFirstElement();
 			if (solver != null) {
-				URI uri = solver.getConfiguration().getURI();
+				URI uri = solver.getSolverType().getURI();
 				ResourceSet resourceSet = new ResourceSetImpl();
 				EObject eObject = resourceSet.getEObject(uri, true);
-				if (eObject instanceof EClass) {
-					EClass eClass = (EClass) eObject;
-					EFactory eFactory = EPackage.Registry.INSTANCE.getEFactory(eClass.getEPackage().getNsURI());
-					EObject solverConfiguration = eFactory.create(eClass);
-					if (solverConfiguration instanceof SolverConfiguration) {
-						simulationModel.setSolverConfiguration((SolverConfiguration) solverConfiguration);
-						ISolverConfigurationPage page = solverConfigurationPages.get(solver.getConfiguration().getId());
-						if (page != null) {
-							if (!page.performApply(simulationModel)) {
-								errorMessage = page.getErrorMessage();
-							}
+				if (eObject instanceof SolverType) {
+					SolverType solverType = (SolverType) eObject;
+					SolverConfiguration solverConfiguration = SimulationModelFactory.eINSTANCE.createSolverConfiguration();
+					solverConfiguration.setType(solverType);
+					simulationModel.setSolverConfiguration(solverConfiguration);
+					ISolverConfigurationPage page = solverConfigurationPages.get(solver.getSolverType().getQualifiedName());
+					if (page != null) {
+						if (!page.performApply(simulationModel)) {
+							errorMessage = page.getErrorMessage();
 						}
 					}
 				}
-				simulationModel.setSolverId(solver.getId());
 			}
 			
 			if (errorMessage == null) {

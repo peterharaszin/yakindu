@@ -70,13 +70,22 @@ public interface CGenModelPackage extends EPackage {
 	int GEN_MODEL = 0;
 
 	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GEN_MODEL__QUALIFIED_NAME = 0;
+
+	/**
 	 * The feature id for the '<em><b>Execution Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__EXECUTION_MODEL = 0;
+	int GEN_MODEL__EXECUTION_MODEL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Gen Top Level System</b></em>' containment reference.
@@ -85,7 +94,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__GEN_TOP_LEVEL_SYSTEM = 1;
+	int GEN_MODEL__GEN_TOP_LEVEL_SYSTEM = 2;
 
 	/**
 	 * The feature id for the '<em><b>Source Directory</b></em>' attribute.
@@ -94,7 +103,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__SOURCE_DIRECTORY = 2;
+	int GEN_MODEL__SOURCE_DIRECTORY = 3;
 
 	/**
 	 * The feature id for the '<em><b>Header Directory</b></em>' attribute.
@@ -103,7 +112,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__HEADER_DIRECTORY = 3;
+	int GEN_MODEL__HEADER_DIRECTORY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Main Source File</b></em>' attribute.
@@ -112,7 +121,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__MAIN_SOURCE_FILE = 4;
+	int GEN_MODEL__MAIN_SOURCE_FILE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Main Header File</b></em>' attribute.
@@ -121,7 +130,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__MAIN_HEADER_FILE = 5;
+	int GEN_MODEL__MAIN_HEADER_FILE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Singleton</b></em>' attribute.
@@ -130,7 +139,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL__SINGLETON = 6;
+	int GEN_MODEL__SINGLETON = 7;
 
 	/**
 	 * The number of structural features of the '<em>Gen Model</em>' class.
@@ -139,7 +148,7 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int GEN_MODEL_FEATURE_COUNT = 7;
+	int GEN_MODEL_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.codegen.c.cgenmodel.impl.GenSystemImpl <em>Gen System</em>}' class.
@@ -289,6 +298,17 @@ public interface CGenModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getGenModel();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getQualifiedName <em>Qualified Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
+	 * @see org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getQualifiedName()
+	 * @see #getGenModel()
+	 * @generated
+	 */
+	EAttribute getGenModel_QualifiedName();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.codegen.c.cgenmodel.GenModel#getGenTopLevelSystem <em>Gen Top Level System</em>}'.
@@ -483,6 +503,14 @@ public interface CGenModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass GEN_MODEL = eINSTANCE.getGenModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GEN_MODEL__QUALIFIED_NAME = eINSTANCE.getGenModel_QualifiedName();
 
 		/**
 		 * The meta object literal for the '<em><b>Gen Top Level System</b></em>' containment reference feature.

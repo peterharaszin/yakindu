@@ -129,8 +129,17 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGenModel_QualifiedName() {
+		return (EAttribute)genModelEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getGenModel_GenTopLevelSystem() {
-		return (EReference)genModelEClass.getEStructuralFeatures().get(1);
+		return (EReference)genModelEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -139,7 +148,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * @generated
 	 */
 	public EReference getGenModel_ExecutionModel() {
-		return (EReference)genModelEClass.getEStructuralFeatures().get(0);
+		return (EReference)genModelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -148,15 +157,6 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * @generated
 	 */
 	public EAttribute getGenModel_SourceDirectory() {
-		return (EAttribute)genModelEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getGenModel_HeaderDirectory() {
 		return (EAttribute)genModelEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -165,7 +165,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGenModel_MainSourceFile() {
+	public EAttribute getGenModel_HeaderDirectory() {
 		return (EAttribute)genModelEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -174,7 +174,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGenModel_MainHeaderFile() {
+	public EAttribute getGenModel_MainSourceFile() {
 		return (EAttribute)genModelEClass.getEStructuralFeatures().get(5);
 	}
 
@@ -183,8 +183,17 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getGenModel_Singleton() {
+	public EAttribute getGenModel_MainHeaderFile() {
 		return (EAttribute)genModelEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGenModel_Singleton() {
+		return (EAttribute)genModelEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -288,6 +297,7 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 
 		// Create classes and their features
 		genModelEClass = createEClass(GEN_MODEL);
+		createEAttribute(genModelEClass, GEN_MODEL__QUALIFIED_NAME);
 		createEReference(genModelEClass, GEN_MODEL__EXECUTION_MODEL);
 		createEReference(genModelEClass, GEN_MODEL__GEN_TOP_LEVEL_SYSTEM);
 		createEAttribute(genModelEClass, GEN_MODEL__SOURCE_DIRECTORY);
@@ -345,9 +355,10 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(genModelEClass, GenModel.class, "GenModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGenModel_ExecutionModel(), theExecutionModelPackage.getExecutionModel(), null, "executionModel", null, 1, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGenModel_GenTopLevelSystem(), this.getGenTopLevelSystem(), null, "genTopLevelSystem", null, 1, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getGenModel_SourceDirectory(), ecorePackage.getEString(), "sourceDirectory", null, 1, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGenModel_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenModel_ExecutionModel(), theExecutionModelPackage.getExecutionModel(), null, "executionModel", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenModel_GenTopLevelSystem(), this.getGenTopLevelSystem(), null, "genTopLevelSystem", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGenModel_SourceDirectory(), ecorePackage.getEString(), "sourceDirectory", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenModel_HeaderDirectory(), ecorePackage.getEString(), "headerDirectory", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenModel_MainSourceFile(), ecorePackage.getEString(), "mainSourceFile", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGenModel_MainHeaderFile(), ecorePackage.getEString(), "mainHeaderFile", null, 0, 1, GenModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -358,11 +369,11 @@ public class CGenModelPackageImpl extends EPackageImpl implements CGenModelPacka
 		initEAttribute(getGenSystem_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, GenSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genTopLevelSystemEClass, GenTopLevelSystem.class, "GenTopLevelSystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGenTopLevelSystem_Fragment(), theDMLPackage.getFragment(), null, "fragment", null, 1, 1, GenTopLevelSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenTopLevelSystem_Fragment(), theDMLPackage.getFragment(), null, "fragment", null, 0, 1, GenTopLevelSystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(genSubsystemEClass, GenSubsystem.class, "GenSubsystem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getGenSubsystem_EnclosingGenSystem(), this.getGenSystem(), this.getGenSystem_GenSubsystems(), "enclosingGenSystem", null, 1, 1, GenSubsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getGenSubsystem_Subsystem(), theDMLPackage.getSubsystem(), null, "subsystem", null, 1, 1, GenSubsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenSubsystem_EnclosingGenSystem(), this.getGenSystem(), this.getGenSystem_GenSubsystems(), "enclosingGenSystem", null, 0, 1, GenSubsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGenSubsystem_Subsystem(), theDMLPackage.getSubsystem(), null, "subsystem", null, 0, 1, GenSubsystem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

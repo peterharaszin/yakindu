@@ -32,7 +32,7 @@ public class CGenModelFactoryImpl extends EFactoryImpl implements CGenModelFacto
 	 */
 	public static CGenModelFactory init() {
 		try {
-			CGenModelFactory theCGenModelFactory = (CGenModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/CGenModel/1.0.0"); 
+			CGenModelFactory theCGenModelFactory = (CGenModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/2011/CGenModel"); 
 			if (theCGenModelFactory != null) {
 				return theCGenModelFactory;
 			}

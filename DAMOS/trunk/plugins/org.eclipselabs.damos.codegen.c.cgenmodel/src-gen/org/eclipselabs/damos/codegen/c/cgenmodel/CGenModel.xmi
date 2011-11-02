@@ -11,14 +11,14 @@
       <ePackage href="http://www.eclipselabs.org/damos/2011/ExecutionModel#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel">
-      <ePackage href="http://www.eclipselabs.org/damos/CGenModel/1.0.0#/"/>
+      <ePackage href="http://www.eclipselabs.org/damos/2011/CGenModel#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
       <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="GenModel">
       <type metamodel="/0/@metamodelDeclarations.3">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/CGenModel/1.0.0#//GenModel"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/CGenModel#//GenModel"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="cgen"/>
@@ -67,7 +67,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="GenTopLevelSystem">
       <type metamodel="/0/@metamodelDeclarations.3">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/CGenModel/1.0.0#//GenTopLevelSystem"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/CGenModel#//GenTopLevelSystem"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="fragment"/>
@@ -98,7 +98,7 @@
     </rules>
     <rules xsi:type="xtext:ParserRule" name="GenSubsystem">
       <type metamodel="/0/@metamodelDeclarations.3">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/CGenModel/1.0.0#//GenSubsystem"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/CGenModel#//GenSubsystem"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="subsystem"/>

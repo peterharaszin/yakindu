@@ -13,7 +13,7 @@ public class AbstractCGenModelJavaValidator extends MscriptJavaValidator {
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
-	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/CGenModel/1.0.0"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/2011/CGenModel"));
 	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/mscript/Mscript"));
 		return result;
 	}

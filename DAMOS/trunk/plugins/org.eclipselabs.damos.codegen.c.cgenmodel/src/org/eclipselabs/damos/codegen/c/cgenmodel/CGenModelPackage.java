@@ -41,7 +41,7 @@ public interface CGenModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/CGenModel/1.0.0";
+	String eNS_URI = "http://www.eclipselabs.org/damos/2011/CGenModel";
 
 	/**
 	 * The package namespace name.

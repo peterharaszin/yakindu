@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipselabs.org/damos/CGenModel/1.0.0"
+            uri="http://www.eclipselabs.org/damos/2011/CGenModel"
             class="org.eclipselabs.damos.codegen.c.cgenmodel.CGenModelPackage"
             genModel="model/CGenModel.genmodel"/>
    </extension>

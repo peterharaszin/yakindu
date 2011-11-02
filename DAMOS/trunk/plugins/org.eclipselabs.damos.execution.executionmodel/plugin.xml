@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://www.eclipselabs.org/damos/ExecutionModel"
+            uri="http://www.eclipselabs.org/damos/2011/ExecutionModel"
             class="org.eclipselabs.damos.execution.executionmodel.ExecutionModelPackage"
             genModel="model/ExecutionModel.genmodel"/>
    </extension>

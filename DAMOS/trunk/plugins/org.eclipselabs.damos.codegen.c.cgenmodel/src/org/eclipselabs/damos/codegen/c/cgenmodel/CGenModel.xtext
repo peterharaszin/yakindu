@@ -15,13 +15,13 @@ GenModel:
 		('mainHeaderFile' mainHeaderFile=STRING));
 
 GenTopLevelSystem:
-	^fragment=[Fragment|QualifiedName] '{'
-		(('prefix' prefix=STRING) &
+	'fragment' ^fragment=[Fragment|QualifiedName] ('{'
+		(('prefix' prefix=STRING)? &
 		(genSubsystems+=GenSubsystem)*)
-	'}';
+	'}')?;
 	
 GenSubsystem:
-	subsystem=[Subsystem|QualifiedName] '{'
-		(('prefix' prefix=STRING) &
+	'subsystem' subsystem=[Subsystem|QualifiedName] ('{'
+		(('prefix' prefix=STRING)? &
 		(genSubsystems+=GenSubsystem)*)
-	'}';
+	'}')?;

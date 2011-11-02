@@ -141,121 +141,137 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	public class GenTopLevelSystemElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "GenTopLevelSystem");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cFragmentAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cFragmentFragmentCrossReference_0_0 = (CrossReference)cFragmentAssignment_0.eContents().get(0);
-		private final RuleCall cFragmentFragmentQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cFragmentFragmentCrossReference_0_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final UnorderedGroup cUnorderedGroup_2 = (UnorderedGroup)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cUnorderedGroup_2.eContents().get(0);
-		private final Keyword cPrefixKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cPrefixAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cPrefixSTRINGTerminalRuleCall_2_0_1_0 = (RuleCall)cPrefixAssignment_2_0_1.eContents().get(0);
-		private final Assignment cGenSubsystemsAssignment_2_1 = (Assignment)cUnorderedGroup_2.eContents().get(1);
-		private final RuleCall cGenSubsystemsGenSubsystemParserRuleCall_2_1_0 = (RuleCall)cGenSubsystemsAssignment_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cFragmentKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cFragmentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cFragmentFragmentCrossReference_1_0 = (CrossReference)cFragmentAssignment_1.eContents().get(0);
+		private final RuleCall cFragmentFragmentQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cFragmentFragmentCrossReference_1_0.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup_2_1 = (UnorderedGroup)cGroup_2.eContents().get(1);
+		private final Group cGroup_2_1_0 = (Group)cUnorderedGroup_2_1.eContents().get(0);
+		private final Keyword cPrefixKeyword_2_1_0_0 = (Keyword)cGroup_2_1_0.eContents().get(0);
+		private final Assignment cPrefixAssignment_2_1_0_1 = (Assignment)cGroup_2_1_0.eContents().get(1);
+		private final RuleCall cPrefixSTRINGTerminalRuleCall_2_1_0_1_0 = (RuleCall)cPrefixAssignment_2_1_0_1.eContents().get(0);
+		private final Assignment cGenSubsystemsAssignment_2_1_1 = (Assignment)cUnorderedGroup_2_1.eContents().get(1);
+		private final RuleCall cGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0 = (RuleCall)cGenSubsystemsAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		
 		//GenTopLevelSystem:
-		//	^fragment=[Fragment|QualifiedName] "{" ("prefix" prefix=STRING & genSubsystems+=GenSubsystem*) "}";
+		//	"fragment" ^fragment=[Fragment|QualifiedName] ("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//^fragment=[Fragment|QualifiedName] "{" ("prefix" prefix=STRING & genSubsystems+=GenSubsystem*) "}"
+		//"fragment" ^fragment=[Fragment|QualifiedName] ("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?
 		public Group getGroup() { return cGroup; }
 
+		//"fragment"
+		public Keyword getFragmentKeyword_0() { return cFragmentKeyword_0; }
+
 		//^fragment=[Fragment|QualifiedName]
-		public Assignment getFragmentAssignment_0() { return cFragmentAssignment_0; }
+		public Assignment getFragmentAssignment_1() { return cFragmentAssignment_1; }
 
 		//[Fragment|QualifiedName]
-		public CrossReference getFragmentFragmentCrossReference_0_0() { return cFragmentFragmentCrossReference_0_0; }
+		public CrossReference getFragmentFragmentCrossReference_1_0() { return cFragmentFragmentCrossReference_1_0; }
 
 		//QualifiedName
-		public RuleCall getFragmentFragmentQualifiedNameParserRuleCall_0_0_1() { return cFragmentFragmentQualifiedNameParserRuleCall_0_0_1; }
+		public RuleCall getFragmentFragmentQualifiedNameParserRuleCall_1_0_1() { return cFragmentFragmentQualifiedNameParserRuleCall_1_0_1; }
+
+		//("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		public Keyword getLeftCurlyBracketKeyword_2_0() { return cLeftCurlyBracketKeyword_2_0; }
 
-		//"prefix" prefix=STRING & genSubsystems+=GenSubsystem*
-		public UnorderedGroup getUnorderedGroup_2() { return cUnorderedGroup_2; }
+		//("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*
+		public UnorderedGroup getUnorderedGroup_2_1() { return cUnorderedGroup_2_1; }
 
-		//"prefix" prefix=STRING
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//("prefix" prefix=STRING)?
+		public Group getGroup_2_1_0() { return cGroup_2_1_0; }
 
 		//"prefix"
-		public Keyword getPrefixKeyword_2_0_0() { return cPrefixKeyword_2_0_0; }
+		public Keyword getPrefixKeyword_2_1_0_0() { return cPrefixKeyword_2_1_0_0; }
 
 		//prefix=STRING
-		public Assignment getPrefixAssignment_2_0_1() { return cPrefixAssignment_2_0_1; }
+		public Assignment getPrefixAssignment_2_1_0_1() { return cPrefixAssignment_2_1_0_1; }
 
 		//STRING
-		public RuleCall getPrefixSTRINGTerminalRuleCall_2_0_1_0() { return cPrefixSTRINGTerminalRuleCall_2_0_1_0; }
+		public RuleCall getPrefixSTRINGTerminalRuleCall_2_1_0_1_0() { return cPrefixSTRINGTerminalRuleCall_2_1_0_1_0; }
 
 		//genSubsystems+=GenSubsystem*
-		public Assignment getGenSubsystemsAssignment_2_1() { return cGenSubsystemsAssignment_2_1; }
+		public Assignment getGenSubsystemsAssignment_2_1_1() { return cGenSubsystemsAssignment_2_1_1; }
 
 		//GenSubsystem
-		public RuleCall getGenSubsystemsGenSubsystemParserRuleCall_2_1_0() { return cGenSubsystemsGenSubsystemParserRuleCall_2_1_0; }
+		public RuleCall getGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0() { return cGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public Keyword getRightCurlyBracketKeyword_2_2() { return cRightCurlyBracketKeyword_2_2; }
 	}
 
 	public class GenSubsystemElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "GenSubsystem");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cSubsystemAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cSubsystemSubsystemCrossReference_0_0 = (CrossReference)cSubsystemAssignment_0.eContents().get(0);
-		private final RuleCall cSubsystemSubsystemQualifiedNameParserRuleCall_0_0_1 = (RuleCall)cSubsystemSubsystemCrossReference_0_0.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final UnorderedGroup cUnorderedGroup_2 = (UnorderedGroup)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cUnorderedGroup_2.eContents().get(0);
-		private final Keyword cPrefixKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
-		private final Assignment cPrefixAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cPrefixSTRINGTerminalRuleCall_2_0_1_0 = (RuleCall)cPrefixAssignment_2_0_1.eContents().get(0);
-		private final Assignment cGenSubsystemsAssignment_2_1 = (Assignment)cUnorderedGroup_2.eContents().get(1);
-		private final RuleCall cGenSubsystemsGenSubsystemParserRuleCall_2_1_0 = (RuleCall)cGenSubsystemsAssignment_2_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cSubsystemKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cSubsystemAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cSubsystemSubsystemCrossReference_1_0 = (CrossReference)cSubsystemAssignment_1.eContents().get(0);
+		private final RuleCall cSubsystemSubsystemQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cSubsystemSubsystemCrossReference_1_0.eContents().get(1);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLeftCurlyBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final UnorderedGroup cUnorderedGroup_2_1 = (UnorderedGroup)cGroup_2.eContents().get(1);
+		private final Group cGroup_2_1_0 = (Group)cUnorderedGroup_2_1.eContents().get(0);
+		private final Keyword cPrefixKeyword_2_1_0_0 = (Keyword)cGroup_2_1_0.eContents().get(0);
+		private final Assignment cPrefixAssignment_2_1_0_1 = (Assignment)cGroup_2_1_0.eContents().get(1);
+		private final RuleCall cPrefixSTRINGTerminalRuleCall_2_1_0_1_0 = (RuleCall)cPrefixAssignment_2_1_0_1.eContents().get(0);
+		private final Assignment cGenSubsystemsAssignment_2_1_1 = (Assignment)cUnorderedGroup_2_1.eContents().get(1);
+		private final RuleCall cGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0 = (RuleCall)cGenSubsystemsAssignment_2_1_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		
 		//GenSubsystem:
-		//	subsystem=[Subsystem|QualifiedName] "{" ("prefix" prefix=STRING & genSubsystems+=GenSubsystem*) "}";
+		//	"subsystem" subsystem=[Subsystem|QualifiedName] ("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//subsystem=[Subsystem|QualifiedName] "{" ("prefix" prefix=STRING & genSubsystems+=GenSubsystem*) "}"
+		//"subsystem" subsystem=[Subsystem|QualifiedName] ("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?
 		public Group getGroup() { return cGroup; }
 
+		//"subsystem"
+		public Keyword getSubsystemKeyword_0() { return cSubsystemKeyword_0; }
+
 		//subsystem=[Subsystem|QualifiedName]
-		public Assignment getSubsystemAssignment_0() { return cSubsystemAssignment_0; }
+		public Assignment getSubsystemAssignment_1() { return cSubsystemAssignment_1; }
 
 		//[Subsystem|QualifiedName]
-		public CrossReference getSubsystemSubsystemCrossReference_0_0() { return cSubsystemSubsystemCrossReference_0_0; }
+		public CrossReference getSubsystemSubsystemCrossReference_1_0() { return cSubsystemSubsystemCrossReference_1_0; }
 
 		//QualifiedName
-		public RuleCall getSubsystemSubsystemQualifiedNameParserRuleCall_0_0_1() { return cSubsystemSubsystemQualifiedNameParserRuleCall_0_0_1; }
+		public RuleCall getSubsystemSubsystemQualifiedNameParserRuleCall_1_0_1() { return cSubsystemSubsystemQualifiedNameParserRuleCall_1_0_1; }
+
+		//("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?
+		public Group getGroup_2() { return cGroup_2; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
+		public Keyword getLeftCurlyBracketKeyword_2_0() { return cLeftCurlyBracketKeyword_2_0; }
 
-		//"prefix" prefix=STRING & genSubsystems+=GenSubsystem*
-		public UnorderedGroup getUnorderedGroup_2() { return cUnorderedGroup_2; }
+		//("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*
+		public UnorderedGroup getUnorderedGroup_2_1() { return cUnorderedGroup_2_1; }
 
-		//"prefix" prefix=STRING
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		//("prefix" prefix=STRING)?
+		public Group getGroup_2_1_0() { return cGroup_2_1_0; }
 
 		//"prefix"
-		public Keyword getPrefixKeyword_2_0_0() { return cPrefixKeyword_2_0_0; }
+		public Keyword getPrefixKeyword_2_1_0_0() { return cPrefixKeyword_2_1_0_0; }
 
 		//prefix=STRING
-		public Assignment getPrefixAssignment_2_0_1() { return cPrefixAssignment_2_0_1; }
+		public Assignment getPrefixAssignment_2_1_0_1() { return cPrefixAssignment_2_1_0_1; }
 
 		//STRING
-		public RuleCall getPrefixSTRINGTerminalRuleCall_2_0_1_0() { return cPrefixSTRINGTerminalRuleCall_2_0_1_0; }
+		public RuleCall getPrefixSTRINGTerminalRuleCall_2_1_0_1_0() { return cPrefixSTRINGTerminalRuleCall_2_1_0_1_0; }
 
 		//genSubsystems+=GenSubsystem*
-		public Assignment getGenSubsystemsAssignment_2_1() { return cGenSubsystemsAssignment_2_1; }
+		public Assignment getGenSubsystemsAssignment_2_1_1() { return cGenSubsystemsAssignment_2_1_1; }
 
 		//GenSubsystem
-		public RuleCall getGenSubsystemsGenSubsystemParserRuleCall_2_1_0() { return cGenSubsystemsGenSubsystemParserRuleCall_2_1_0; }
+		public RuleCall getGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0() { return cGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public Keyword getRightCurlyBracketKeyword_2_2() { return cRightCurlyBracketKeyword_2_2; }
 	}
 	
 	
@@ -297,7 +313,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GenTopLevelSystem:
-	//	^fragment=[Fragment|QualifiedName] "{" ("prefix" prefix=STRING & genSubsystems+=GenSubsystem*) "}";
+	//	"fragment" ^fragment=[Fragment|QualifiedName] ("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?;
 	public GenTopLevelSystemElements getGenTopLevelSystemAccess() {
 		return (pGenTopLevelSystem != null) ? pGenTopLevelSystem : (pGenTopLevelSystem = new GenTopLevelSystemElements());
 	}
@@ -307,7 +323,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GenSubsystem:
-	//	subsystem=[Subsystem|QualifiedName] "{" ("prefix" prefix=STRING & genSubsystems+=GenSubsystem*) "}";
+	//	"subsystem" subsystem=[Subsystem|QualifiedName] ("{" (("prefix" prefix=STRING)? & genSubsystems+=GenSubsystem*) "}")?;
 	public GenSubsystemElements getGenSubsystemAccess() {
 		return (pGenSubsystem != null) ? pGenSubsystem : (pGenSubsystem = new GenSubsystemElements());
 	}

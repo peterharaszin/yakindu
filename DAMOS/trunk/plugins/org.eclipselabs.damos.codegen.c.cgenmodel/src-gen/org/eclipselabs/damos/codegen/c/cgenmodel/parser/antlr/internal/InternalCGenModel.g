@@ -323,7 +323,11 @@ ruleGenTopLevelSystem returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(	otherlv_0='fragment' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getGenTopLevelSystemAccess().getFragmentKeyword_0());
+    }
+(
 (
 		{
 			if ($current==null) {
@@ -331,40 +335,40 @@ ruleGenTopLevelSystem returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getGenTopLevelSystemAccess().getFragmentFragmentCrossReference_0_0()); 
+	        newCompositeNode(grammarAccess.getGenTopLevelSystemAccess().getFragmentFragmentCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_1='{' 
+)(	otherlv_2='{' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getGenTopLevelSystemAccess().getLeftCurlyBracketKeyword_1());
+    	newLeafNode(otherlv_2, grammarAccess.getGenTopLevelSystemAccess().getLeftCurlyBracketKeyword_2_0());
     }
 (
 
 (
 	{ 
-	  getUnorderedGroupHelper().enter(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2());
+	  getUnorderedGroupHelper().enter(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1());
 	}
 	(
 		(
 
 			( 
-				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2(), 0)}?=>(
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1(), 0)}?=>(
 					{ 
-	 				  getUnorderedGroupHelper().select(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2(), 0);
+	 				  getUnorderedGroupHelper().select(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1(), 0);
 	 				}
-					({true}?=>(	otherlv_3='prefix' 
+					({true}?=>(	otherlv_4='prefix' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getGenTopLevelSystemAccess().getPrefixKeyword_2_0_0());
+    	newLeafNode(otherlv_4, grammarAccess.getGenTopLevelSystemAccess().getPrefixKeyword_2_1_0_0());
     }
 (
 (
-		lv_prefix_4_0=RULE_STRING
+		lv_prefix_5_0=RULE_STRING
 		{
-			newLeafNode(lv_prefix_4_0, grammarAccess.getGenTopLevelSystemAccess().getPrefixSTRINGTerminalRuleCall_2_0_1_0()); 
+			newLeafNode(lv_prefix_5_0, grammarAccess.getGenTopLevelSystemAccess().getPrefixSTRINGTerminalRuleCall_2_1_0_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -373,36 +377,36 @@ ruleGenTopLevelSystem returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"prefix",
-        		lv_prefix_4_0, 
+        		lv_prefix_5_0, 
         		"STRING");
 	    }
 
 )
 )))
 					{ 
-	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2());
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1());
 	 				}
  				)
 			)  |
 
 			( 
-				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2(), 1)}?=>(
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1(), 1)}?=>(
 					{ 
-	 				  getUnorderedGroupHelper().select(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2(), 1);
+	 				  getUnorderedGroupHelper().select(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1(), 1);
 	 				}
 					({true}?=>(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getGenTopLevelSystemAccess().getGenSubsystemsGenSubsystemParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getGenTopLevelSystemAccess().getGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0()); 
 	    }
-		lv_genSubsystems_5_0=ruleGenSubsystem		{
+		lv_genSubsystems_6_0=ruleGenSubsystem		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getGenTopLevelSystemRule());
 	        }
        		add(
        			$current, 
        			"genSubsystems",
-        		lv_genSubsystems_5_0, 
+        		lv_genSubsystems_6_0, 
         		"GenSubsystem");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -410,24 +414,23 @@ ruleGenTopLevelSystem returns [EObject current=null]
 )
 ))+
 					{ 
-	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2());
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1());
 	 				}
  				)
 			)  
 
-		)+
-	  	{getUnorderedGroupHelper().canLeave(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2())}?	
+		)*	
 	)
 )
 	{ 
-	  getUnorderedGroupHelper().leave(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2());
+	  getUnorderedGroupHelper().leave(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1());
 	}
 
-)	otherlv_6='}' 
+)	otherlv_7='}' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getGenTopLevelSystemAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_7, grammarAccess.getGenTopLevelSystemAccess().getRightCurlyBracketKeyword_2_2());
     }
-)
+)?)
 ;
 
 
@@ -448,7 +451,11 @@ ruleGenSubsystem returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-((
+(	otherlv_0='subsystem' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getGenSubsystemAccess().getSubsystemKeyword_0());
+    }
+(
 (
 		{
 			if ($current==null) {
@@ -456,40 +463,40 @@ ruleGenSubsystem returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getGenSubsystemAccess().getSubsystemSubsystemCrossReference_0_0()); 
+	        newCompositeNode(grammarAccess.getGenSubsystemAccess().getSubsystemSubsystemCrossReference_1_0()); 
 	    }
 		ruleQualifiedName		{ 
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	otherlv_1='{' 
+)(	otherlv_2='{' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getGenSubsystemAccess().getLeftCurlyBracketKeyword_1());
+    	newLeafNode(otherlv_2, grammarAccess.getGenSubsystemAccess().getLeftCurlyBracketKeyword_2_0());
     }
 (
 
 (
 	{ 
-	  getUnorderedGroupHelper().enter(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2());
+	  getUnorderedGroupHelper().enter(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1());
 	}
 	(
 		(
 
 			( 
-				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2(), 0)}?=>(
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1(), 0)}?=>(
 					{ 
-	 				  getUnorderedGroupHelper().select(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2(), 0);
+	 				  getUnorderedGroupHelper().select(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1(), 0);
 	 				}
-					({true}?=>(	otherlv_3='prefix' 
+					({true}?=>(	otherlv_4='prefix' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getGenSubsystemAccess().getPrefixKeyword_2_0_0());
+    	newLeafNode(otherlv_4, grammarAccess.getGenSubsystemAccess().getPrefixKeyword_2_1_0_0());
     }
 (
 (
-		lv_prefix_4_0=RULE_STRING
+		lv_prefix_5_0=RULE_STRING
 		{
-			newLeafNode(lv_prefix_4_0, grammarAccess.getGenSubsystemAccess().getPrefixSTRINGTerminalRuleCall_2_0_1_0()); 
+			newLeafNode(lv_prefix_5_0, grammarAccess.getGenSubsystemAccess().getPrefixSTRINGTerminalRuleCall_2_1_0_1_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -498,36 +505,36 @@ ruleGenSubsystem returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"prefix",
-        		lv_prefix_4_0, 
+        		lv_prefix_5_0, 
         		"STRING");
 	    }
 
 )
 )))
 					{ 
-	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2());
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1());
 	 				}
  				)
 			)  |
 
 			( 
-				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2(), 1)}?=>(
+				{getUnorderedGroupHelper().canSelect(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1(), 1)}?=>(
 					{ 
-	 				  getUnorderedGroupHelper().select(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2(), 1);
+	 				  getUnorderedGroupHelper().select(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1(), 1);
 	 				}
 					({true}?=>(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getGenSubsystemAccess().getGenSubsystemsGenSubsystemParserRuleCall_2_1_0()); 
+	        newCompositeNode(grammarAccess.getGenSubsystemAccess().getGenSubsystemsGenSubsystemParserRuleCall_2_1_1_0()); 
 	    }
-		lv_genSubsystems_5_0=ruleGenSubsystem		{
+		lv_genSubsystems_6_0=ruleGenSubsystem		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getGenSubsystemRule());
 	        }
        		add(
        			$current, 
        			"genSubsystems",
-        		lv_genSubsystems_5_0, 
+        		lv_genSubsystems_6_0, 
         		"GenSubsystem");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -535,24 +542,23 @@ ruleGenSubsystem returns [EObject current=null]
 )
 ))+
 					{ 
-	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2());
+	 				  getUnorderedGroupHelper().returnFromSelection(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1());
 	 				}
  				)
 			)  
 
-		)+
-	  	{getUnorderedGroupHelper().canLeave(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2())}?	
+		)*	
 	)
 )
 	{ 
-	  getUnorderedGroupHelper().leave(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2());
+	  getUnorderedGroupHelper().leave(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1());
 	}
 
-)	otherlv_6='}' 
+)	otherlv_7='}' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getGenSubsystemAccess().getRightCurlyBracketKeyword_3());
+    	newLeafNode(otherlv_7, grammarAccess.getGenSubsystemAccess().getRightCurlyBracketKeyword_2_2());
     }
-)
+)?)
 ;
 
 

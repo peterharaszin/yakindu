@@ -88,9 +88,11 @@ public class CGenModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGenModelAccess().getGroup_4_3(), "rule__GenModel__Group_4_3__0");
 					put(grammarAccess.getGenModelAccess().getGroup_4_4(), "rule__GenModel__Group_4_4__0");
 					put(grammarAccess.getGenTopLevelSystemAccess().getGroup(), "rule__GenTopLevelSystem__Group__0");
-					put(grammarAccess.getGenTopLevelSystemAccess().getGroup_2_0(), "rule__GenTopLevelSystem__Group_2_0__0");
+					put(grammarAccess.getGenTopLevelSystemAccess().getGroup_2(), "rule__GenTopLevelSystem__Group_2__0");
+					put(grammarAccess.getGenTopLevelSystemAccess().getGroup_2_1_0(), "rule__GenTopLevelSystem__Group_2_1_0__0");
 					put(grammarAccess.getGenSubsystemAccess().getGroup(), "rule__GenSubsystem__Group__0");
-					put(grammarAccess.getGenSubsystemAccess().getGroup_2_0(), "rule__GenSubsystem__Group_2_0__0");
+					put(grammarAccess.getGenSubsystemAccess().getGroup_2(), "rule__GenSubsystem__Group_2__0");
+					put(grammarAccess.getGenSubsystemAccess().getGroup_2_1_0(), "rule__GenSubsystem__Group_2_1_0__0");
 					put(grammarAccess.getEnumerationDefinitionAccess().getGroup(), "rule__EnumerationDefinition__Group__0");
 					put(grammarAccess.getEnumerationDefinitionAccess().getGroup_3(), "rule__EnumerationDefinition__Group_3__0");
 					put(grammarAccess.getEnumerationDefinitionAccess().getGroup_3_1(), "rule__EnumerationDefinition__Group_3_1__0");
@@ -244,12 +246,12 @@ public class CGenModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getGenModelAccess().getHeaderDirectoryAssignment_4_2_1(), "rule__GenModel__HeaderDirectoryAssignment_4_2_1");
 					put(grammarAccess.getGenModelAccess().getMainSourceFileAssignment_4_3_1(), "rule__GenModel__MainSourceFileAssignment_4_3_1");
 					put(grammarAccess.getGenModelAccess().getMainHeaderFileAssignment_4_4_1(), "rule__GenModel__MainHeaderFileAssignment_4_4_1");
-					put(grammarAccess.getGenTopLevelSystemAccess().getFragmentAssignment_0(), "rule__GenTopLevelSystem__FragmentAssignment_0");
-					put(grammarAccess.getGenTopLevelSystemAccess().getPrefixAssignment_2_0_1(), "rule__GenTopLevelSystem__PrefixAssignment_2_0_1");
-					put(grammarAccess.getGenTopLevelSystemAccess().getGenSubsystemsAssignment_2_1(), "rule__GenTopLevelSystem__GenSubsystemsAssignment_2_1");
-					put(grammarAccess.getGenSubsystemAccess().getSubsystemAssignment_0(), "rule__GenSubsystem__SubsystemAssignment_0");
-					put(grammarAccess.getGenSubsystemAccess().getPrefixAssignment_2_0_1(), "rule__GenSubsystem__PrefixAssignment_2_0_1");
-					put(grammarAccess.getGenSubsystemAccess().getGenSubsystemsAssignment_2_1(), "rule__GenSubsystem__GenSubsystemsAssignment_2_1");
+					put(grammarAccess.getGenTopLevelSystemAccess().getFragmentAssignment_1(), "rule__GenTopLevelSystem__FragmentAssignment_1");
+					put(grammarAccess.getGenTopLevelSystemAccess().getPrefixAssignment_2_1_0_1(), "rule__GenTopLevelSystem__PrefixAssignment_2_1_0_1");
+					put(grammarAccess.getGenTopLevelSystemAccess().getGenSubsystemsAssignment_2_1_1(), "rule__GenTopLevelSystem__GenSubsystemsAssignment_2_1_1");
+					put(grammarAccess.getGenSubsystemAccess().getSubsystemAssignment_1(), "rule__GenSubsystem__SubsystemAssignment_1");
+					put(grammarAccess.getGenSubsystemAccess().getPrefixAssignment_2_1_0_1(), "rule__GenSubsystem__PrefixAssignment_2_1_0_1");
+					put(grammarAccess.getGenSubsystemAccess().getGenSubsystemsAssignment_2_1_1(), "rule__GenSubsystem__GenSubsystemsAssignment_2_1_1");
 					put(grammarAccess.getModuleAccess().getDefinitionsAssignment(), "rule__Module__DefinitionsAssignment");
 					put(grammarAccess.getEnumerationDefinitionAccess().getNameAssignment_1(), "rule__EnumerationDefinition__NameAssignment_1");
 					put(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_0(), "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0");
@@ -428,8 +430,8 @@ public class CGenModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitFactorAccess().getSymbolAssignment_0(), "rule__UnitFactor__SymbolAssignment_0");
 					put(grammarAccess.getUnitFactorAccess().getExponentAssignment_1_1(), "rule__UnitFactor__ExponentAssignment_1_1");
 					put(grammarAccess.getGenModelAccess().getUnorderedGroup_4(), "rule__GenModel__UnorderedGroup_4");
-					put(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2(), "rule__GenTopLevelSystem__UnorderedGroup_2");
-					put(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2(), "rule__GenSubsystem__UnorderedGroup_2");
+					put(grammarAccess.getGenTopLevelSystemAccess().getUnorderedGroup_2_1(), "rule__GenTopLevelSystem__UnorderedGroup_2_1");
+					put(grammarAccess.getGenSubsystemAccess().getUnorderedGroup_2_1(), "rule__GenSubsystem__UnorderedGroup_2_1");
 				}
 			};
 		}

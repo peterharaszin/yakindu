@@ -40,7 +40,7 @@ public abstract class PolypointTerminalFigure extends TerminalFigure {
 
 		PointList points = getTransformedPointList();
 		if (points != null) {
-			getParent().setConstraint(this, points.getBounds().getExpanded(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH));
+			setBounds(points.getBounds().getExpanded(IFigureConstants.DEFAULT_LINE_WIDTH, IFigureConstants.DEFAULT_LINE_WIDTH));
 		}
 		
 		super.validate();

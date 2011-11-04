@@ -55,8 +55,8 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure, IFon
 		if (contentFigure != null) {
 			add(contentFigure);
 		}
-				
 		setConnectionAnchor(new PortAnchor(this));
+		terminalFigure = createTerminalFigure();
 	}
 	
 	/* (non-Javadoc)
@@ -130,9 +130,6 @@ public abstract class PortFigure extends NodeFigure implements IPortFigure, IFon
 	}
 	
 	public TerminalFigure getTerminalFigure() {
-		if (terminalFigure == null) {
-			terminalFigure = createTerminalFigure();
-		}
 		return terminalFigure;
 	}
 

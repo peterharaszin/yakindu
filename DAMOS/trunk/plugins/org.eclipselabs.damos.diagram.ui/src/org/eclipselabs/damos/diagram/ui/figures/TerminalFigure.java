@@ -13,11 +13,10 @@ package org.eclipselabs.damos.diagram.ui.figures;
 
 import org.eclipse.draw2d.AncestorListener;
 import org.eclipse.draw2d.Cursors;
-import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.swt.graphics.Cursor;
-import org.eclipselabs.damos.diagram.ui.internal.figures.IBlankableFigure;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
 import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
 
@@ -25,10 +24,9 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Extents;
  * @author Andreas Unger
  *
  */
-public abstract class TerminalFigure extends NodeFigure implements IBlankableFigure {
+public abstract class TerminalFigure extends Figure {
 
 	private IConnectorFigure owner;
-	private boolean blanked;
 	private boolean connected;
 	
 	private AncestorListener ancestorListener = new AncestorListener() {
@@ -38,9 +36,28 @@ public abstract class TerminalFigure extends NodeFigure implements IBlankableFig
 		}
 		
 		public void ancestorAdded(IFigure ancestor) {
+			IFigure parent = getParent();
+			if (parent != null) {
+				parent.add(TerminalFigure.this);
+			}
 		}
 
 		public void ancestorRemoved(IFigure ancestor) {
+			IFigure parent = TerminalFigure.this.getParent();
+			if (parent != null) {
+				parent.remove(TerminalFigure.this);
+			}
+		}
+
+		private IFigure getParent() {
+			IFigure figure = owner.getParent();
+			while (figure != null) {
+				if (figure instanceof BorderedNodeFigure) {
+					return ((BorderedNodeFigure) figure).getBorderItemContainer();
+				}
+				figure = figure.getParent();
+			}
+			return null;
 		}
 
 	};
@@ -50,6 +67,7 @@ public abstract class TerminalFigure extends NodeFigure implements IBlankableFig
 	 */
 	public TerminalFigure(IConnectorFigure owner) {
 		this.owner = owner;
+		owner.addAncestorListener(ancestorListener);
 		setForegroundColor(IFigureConstants.DEFAULT_TERMINAL_COLOR);
 	}
 	
@@ -58,21 +76,6 @@ public abstract class TerminalFigure extends NodeFigure implements IBlankableFig
 	 */
 	public IConnectorFigure getOwner() {
 		return owner;
-	}
-	
-	/**
-	 * @return the blanked
-	 */
-	public boolean isBlanked() {
-		return blanked;
-	}
-	
-	/**
-	 * @param blanked the blanked to set
-	 */
-	public void setBlanked(boolean blanked) {
-		this.blanked = blanked;
-		repaint();
 	}
 	
 	/**
@@ -99,31 +102,5 @@ public abstract class TerminalFigure extends NodeFigure implements IBlankableFig
 	}
 	
 	public abstract Extents getExtents(double rotationHint);
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.draw2d.Figure#paint(org.eclipse.draw2d.Graphics)
-	 */
-	@Override
-	public void paint(Graphics graphics) {
-		if (!isBlanked()) {
-			super.paint(graphics);
-		}
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.draw2d.Figure#addNotify()
-	 */
-	public void addNotify() {
-		super.addNotify();
-		owner.addAncestorListener(ancestorListener);
-	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipse.draw2d.Figure#removeNotify()
-	 */
-	public void removeNotify() {
-		owner.removeAncestorListener(ancestorListener);
-		super.removeNotify();
-	}
 	
 }

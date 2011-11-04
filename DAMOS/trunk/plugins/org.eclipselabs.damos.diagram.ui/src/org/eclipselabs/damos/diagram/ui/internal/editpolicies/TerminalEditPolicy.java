@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Layer;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -80,7 +78,13 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 	@Override
 	public void activate() {
 		super.activate();
-		addTerminalFigure();
+		
+		if (getTerminalFigure() != null) {
+			@SuppressWarnings("unchecked")
+			Map<Object, Object> visualMap = getHost().getViewer().getVisualPartMap();
+			visualMap.put(getTerminalFigure(), getHost());
+		}
+
 		refreshTerminalFigure();
 		
 		FragmentSelectionManager fragmentManager = (FragmentSelectionManager) getHost().getParent().getRoot().getContents().getAdapter(FragmentSelectionManager.class);
@@ -119,7 +123,10 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 			fragmentManager.removeFragmentSelectionChangeListener(fragmentChangeListener);
 		}
 
-		removeTerminalFigure();
+		if (getTerminalFigure() != null) {
+			getHost().getViewer().getVisualPartMap().remove(getTerminalFigure());
+		}
+
 		super.deactivate();
 	}
 	
@@ -140,46 +147,14 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 		
 		EObject element = getHost().resolveSemanticElement();
 		if (element instanceof Connector) {
-			Connector connector = (Connector) element;
-			Fragment owningFragment = DMLUtil.getOwner(connector, Fragment.class);
-			if (owningFragment == null || owningFragment != selectedFragment && !DMLUtil.isChildFragment(selectedFragment, owningFragment)) {
-				getTerminalFigure().setBlanked(true);
-			} else {
-				int connectionCount = 0;
-				for (Connection connection : getConnections()) {
-					if (connection.getOwningFragment() == selectedFragment
-							|| DMLUtil.isChildFragment(selectedFragment, connection.getOwningFragment())) {
-						++connectionCount;
-					}
+			int connectionCount = 0;
+			for (Connection connection : getConnections()) {
+				if (connection.getOwningFragment() == selectedFragment
+						|| DMLUtil.isChildFragment(selectedFragment, connection.getOwningFragment())) {
+					++connectionCount;
 				}
-				getTerminalFigure().setBlanked(false);
-				getTerminalFigure().setConnected(connectionCount != 0);
 			}
-		}
-	}
-	
-	protected void addTerminalFigure() {
-		if (getTerminalFigure() != null) {
-			getTerminalFigure().setBlanked(true);
-			IFigure parent = getTerminalParentFigure();
-			if (parent != null) {
-				parent.add(getTerminalFigure(), new Rectangle(0, 0, -1, -1));
-			}
-			
-			@SuppressWarnings("unchecked")
-			Map<Object, Object> visualMap = getHost().getViewer().getVisualPartMap();
-			visualMap.put(getTerminalFigure(), getHost());
-		}
-	}
-	
-	protected void removeTerminalFigure() {
-		if (getTerminalFigure() != null) {
-			getHost().getViewer().getVisualPartMap().remove(getTerminalFigure());
-			IFigure parent = getTerminalParentFigure();
-			if (parent != null) {
-				parent.remove(getTerminalFigure());
-			}
-			getTerminalFigure().invalidate();
+			getTerminalFigure().setConnected(connectionCount != 0);
 		}
 	}
 	
@@ -189,14 +164,6 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 			return ((IConnectorFigure) hostFigure).getTerminalFigure();
 		}
 		return null;
-	}
-	
-	protected IFigure getTerminalParentFigure() {
-		IFigure parent = getHostFigure().getParent();
-		while (parent != null && !(parent instanceof Layer)) {
-			parent = parent.getParent();
-		}
-		return parent;
 	}
 	
 	protected List<Connection> getConnections() {

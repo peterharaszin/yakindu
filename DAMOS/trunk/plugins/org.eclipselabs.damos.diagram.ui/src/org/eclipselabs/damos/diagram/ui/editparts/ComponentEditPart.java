@@ -181,6 +181,17 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 			}
 		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#getContentPaneFor(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 */
+	@Override
+	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if (editPart instanceof ComponentAttributeEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
+		return super.getContentPaneFor(editPart);
+	}
 
 	protected int getChildVisualIndexOf(EditPart childEditPart, int index) {
 		if (childEditPart instanceof PortEditPart) {

@@ -15,6 +15,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.label.ILabelDelegate;
@@ -22,6 +23,7 @@ import org.eclipse.gmf.runtime.diagram.ui.label.LabelExDelegate;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editparts.ITextualContentEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editpolicies.NonResizableLabelEditPolicy;
 import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -58,6 +60,7 @@ public class ActionLinkConditionEditPart extends LabelEditPart implements ITextu
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new NonResizableLabelEditPolicy());
 		directEditHelper.createDefaultEditPolicies(this);
 	}
 	

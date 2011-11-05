@@ -11,6 +11,11 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 
+/**
+ * Fix for bug #362973
+ * 
+ * @author Andreas Unger
+ */
 public class NonResizableLabelEditPolicy extends org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy {
 
 	protected void showChangeBoundsFeedback(ChangeBoundsRequest request) {

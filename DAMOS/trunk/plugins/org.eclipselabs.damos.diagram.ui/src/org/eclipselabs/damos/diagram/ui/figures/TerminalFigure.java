@@ -32,7 +32,7 @@ public abstract class TerminalFigure extends Figure {
 	private AncestorListener ancestorListener = new AncestorListener() {
 		
 		public void ancestorMoved(IFigure ancestor) {
-			invalidate();
+			revalidate();
 		}
 		
 		public void ancestorAdded(IFigure ancestor) {

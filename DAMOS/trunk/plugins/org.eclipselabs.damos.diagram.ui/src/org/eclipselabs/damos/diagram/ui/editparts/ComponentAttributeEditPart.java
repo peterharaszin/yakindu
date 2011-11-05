@@ -10,13 +10,12 @@
  ****************************************************************************/
 package org.eclipselabs.damos.diagram.ui.editparts;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.dml.Component;
@@ -24,8 +23,10 @@ import org.eclipselabs.damos.dml.Component;
 /**
  * @author Andreas Unger
  */
-public abstract class ComponentAttributeEditPart extends AbstractBorderItemEditPart {
+public abstract class ComponentAttributeEditPart extends LabelEditPart {
 
+	private Label label;
+	
 	public ComponentAttributeEditPart(View view) {
 		super(view);
 	}
@@ -35,6 +36,14 @@ public abstract class ComponentAttributeEditPart extends AbstractBorderItemEditP
 		removeEditPolicy(IEditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
+	@Override
+	protected IFigure createFigure() {
+		IFigure figure = super.createFigure();
+		label = new LabelEx();
+		figure.add(label);
+		return figure;
+	}
+
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshAttribute();
@@ -42,7 +51,6 @@ public abstract class ComponentAttributeEditPart extends AbstractBorderItemEditP
 	
 	protected void refreshAttribute() {
 		Component component = (Component) resolveSemanticElement();
-		Label label = (Label) getFigure().getChildren().get(0);
 		label.setText(component.eGet(getAttributeFeature()).toString());
 	}
 
@@ -56,14 +64,4 @@ public abstract class ComponentAttributeEditPart extends AbstractBorderItemEditP
 	
 	protected abstract EStructuralFeature getAttributeFeature();
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#createNodeFigure()
-	 */
-	protected NodeFigure createNodeFigure() {
-		NodeFigure figure = new NodeFigure();
-		figure.setLayoutManager(new ConstrainedToolbarLayout());
-		figure.add(new LabelEx());
-		return figure;
-	}
-	
 }

@@ -24,10 +24,9 @@ public class FunctionBlockFigure extends RectangularComponentFigure {
 		headerLabel.setText(text);
 	}
 	
-	private class HeaderFigure extends LabelEx {
+	private class HeaderFigure extends FontColorAwareLabel {
 		
 		protected void paintFigure(Graphics g) {
-			g.setForegroundColor(getFontColor());
 			super.paintFigure(g);
 			Rectangle bounds = getBounds();
 			g.setLineWidth(IFigureConstants.DEFAULT_LINE_WIDTH);

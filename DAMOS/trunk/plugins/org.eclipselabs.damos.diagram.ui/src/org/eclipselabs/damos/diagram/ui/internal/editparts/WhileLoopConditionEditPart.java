@@ -32,7 +32,7 @@ public class WhileLoopConditionEditPart extends CompoundConnectorEditPart {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#createNodeFigure()
 	 */
 	@Override
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		return new WhileLoopConditionFigure();
 	}
 

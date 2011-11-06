@@ -19,7 +19,7 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.LocationRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -38,7 +38,7 @@ import org.eclipselabs.damos.dml.Connector;
  * @author Andreas Unger
  *
  */
-public abstract class CompoundConnectorEditPart extends AbstractBorderItemEditPart implements IConnectorEditPart {
+public abstract class CompoundConnectorEditPart extends BorderedBorderItemEditPart implements IConnectorEditPart {
 
 	/**
 	 * @param view
@@ -66,15 +66,15 @@ public abstract class CompoundConnectorEditPart extends AbstractBorderItemEditPa
 	@Override
 	protected void refreshBounds() {
 		super.refreshBounds();
-		getFigure().revalidate();
+		getMainFigure().revalidate();
 	}
-
+	
 	public Connector getConnector() {
 		return (Connector) resolveSemanticElement();
 	}
 
 	public IConnectorFigure getConnectorFigure() {
-		return (IConnectorFigure) getFigure();
+		return (IConnectorFigure) getMainFigure();
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public abstract class CompoundConnectorEditPart extends AbstractBorderItemEditPa
 
 	@Override
 	protected void setFontColor(Color color) {
-		IFigure figure = getFigure();
+		IFigure figure = getMainFigure();
 		if (figure instanceof IFontColorAwareFigure) {
 			IFontColorAwareFigure fontColorAwareFigure = (IFontColorAwareFigure) figure;
 			fontColorAwareFigure.setFontColor(color);

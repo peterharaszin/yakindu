@@ -15,19 +15,17 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
 import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
-import org.eclipselabs.damos.diagram.ui.internal.figures.IConnectorFigure;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.DMLPackage;
@@ -159,11 +157,7 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 	}
 	
 	protected TerminalFigure getTerminalFigure() {
-		IFigure hostFigure = getHostFigure();
-		if (hostFigure instanceof IConnectorFigure) {
-			return ((IConnectorFigure) hostFigure).getTerminalFigure();
-		}
-		return null;
+		return getHost().getConnectorFigure().getTerminalFigure();
 	}
 	
 	protected List<Connection> getConnections() {
@@ -178,8 +172,8 @@ public class TerminalEditPolicy extends GraphicalEditPolicy {
 	 * @see org.eclipse.gef.editpolicies.AbstractEditPolicy#getHost()
 	 */
 	@Override
-	public IGraphicalEditPart getHost() {
-		return (IGraphicalEditPart) super.getHost();
+	public IConnectorEditPart getHost() {
+		return (IConnectorEditPart) super.getHost();
 	}
 
 }

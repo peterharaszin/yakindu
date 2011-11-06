@@ -18,7 +18,7 @@ import org.eclipse.swt.SWT;
  * @author Andreas Unger
  *
  */
-public class FBComponentLayoutData {
+public class ThreePaneLayoutData {
 
 	public static final int BODY = 0;
 	public static final int HEADER = 1;
@@ -32,11 +32,11 @@ public class FBComponentLayoutData {
 	/**
 	 * 
 	 */
-	public FBComponentLayoutData(int contentType) {
+	public ThreePaneLayoutData(int contentType) {
 		this.contentType = contentType;
 	}
 	
-	public FBComponentLayoutData(int contentType, int horizontalAlignment, int verticalAlignment) {
+	public ThreePaneLayoutData(int contentType, int horizontalAlignment, int verticalAlignment) {
 		this.contentType = contentType;
 		this.horizontalAlignment = horizontalAlignment;
 		this.verticalAlignment = verticalAlignment;

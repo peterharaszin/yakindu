@@ -11,12 +11,9 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
-import org.eclipselabs.damos.dml.Outlet;
-import org.eclipselabs.damos.dml.OutputPort;
-import org.eclipselabs.damos.dml.SubsystemOutput;
+import org.eclipselabs.damos.dml.Port;
 
 /**
  * @author Andreas Unger
@@ -41,15 +38,9 @@ public class SubsystemOutputPortEditPart extends OutputPortEditPart {
 	}
 	
 	protected void refreshName() {
-		EObject element = resolveSemanticElement();
-		if (element instanceof OutputPort) {
-			OutputPort outputPort = (OutputPort) element;
-			if (outputPort.getOutput() instanceof SubsystemOutput) {
-				Outlet outlet = ((SubsystemOutput) outputPort.getOutput()).getOutlet();
-				if (outlet != null) {
-					((PortFigure) getFigure()).setText(outlet != null ? outlet.getName() : "");
-				}
-			}
+		Port port = (Port) resolveSemanticElement();
+		if (port != null) {
+			((PortFigure) getFigure()).setText(port.getInoutput().getName());
 		}
 	}
 

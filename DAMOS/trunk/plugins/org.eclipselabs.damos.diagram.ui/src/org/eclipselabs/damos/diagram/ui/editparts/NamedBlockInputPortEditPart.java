@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2009 Andreas Unger and others.
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,30 +9,36 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.internal.editparts;
+package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.editparts.LabeledRectangularComponentEditPart;
 
 /**
  * @author Andreas Unger
  *
  */
-public class FallbackBlockEditPart extends LabeledRectangularComponentEditPart {
+public class NamedBlockInputPortEditPart extends BlockInputPortEditPart {
 
+	private final NamedBlockPortHelper helper = new NamedBlockPortHelper(this);
+	
 	/**
 	 * @param view
 	 */
-	public FallbackBlockEditPart(View view) {
+	public NamedBlockInputPortEditPart(View view) {
 		super(view);
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.diagram.ui.editparts.BlockEditPart#createDelegate()
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.PortEditPart#refreshVisuals()
 	 */
 	@Override
-	protected final ComponentEditPartDelegate createDelegate() {
-		return new BlockEditPartDelegate(this);
+	protected void refreshVisuals() {
+		super.refreshVisuals();
+		refreshName();
 	}
 	
+	protected void refreshName() {
+		helper.refreshName();
+	}
+
 }

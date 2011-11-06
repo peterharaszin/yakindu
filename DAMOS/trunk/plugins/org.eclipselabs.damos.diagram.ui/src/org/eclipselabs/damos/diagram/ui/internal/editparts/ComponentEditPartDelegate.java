@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.diagram.ui.internal.editparts;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.Request;
 import org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart;
 
 /**
@@ -31,7 +32,11 @@ public class ComponentEditPartDelegate {
 	
 	public void createDefaultEditPolicies() {
 	}
-		
+
+	public boolean performRequest(Request request) {
+		return false;
+	}
+	
 	public void addSemanticListeners() {
 	}
 	

@@ -206,11 +206,13 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 							Resource resource = realizingFragment.eResource();
 							if (resource != null) {
 								Path path = new Path(resource.getURI().toPlatformString(true));
-								IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
-								try {
-									IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file, true);
-								} catch (PartInitException e) {
-									DiagramUIPlugin.getDefault().getLog().log(e.getStatus());
+								if (path != null) {
+									IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
+									try {
+										IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file, true);
+									} catch (PartInitException e) {
+										DiagramUIPlugin.getDefault().getLog().log(e.getStatus());
+									}
 								}
 							}
 						}

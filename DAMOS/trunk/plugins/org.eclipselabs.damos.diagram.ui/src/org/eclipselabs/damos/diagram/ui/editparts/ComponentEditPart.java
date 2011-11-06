@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
+import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -132,6 +133,16 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		if (mainFigure instanceof IFontColorAwareFigure) {
 			IFontColorAwareFigure fontColorAwareFigure = (IFontColorAwareFigure) mainFigure;
 			fontColorAwareFigure.setFontColor(color);
+		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#performRequest(org.eclipse.gef.Request)
+	 */
+	@Override
+	public void performRequest(Request request) {
+		if (!delegate.performRequest(request)) {
+			super.performRequest(request);
 		}
 	}
 	

@@ -26,7 +26,6 @@ package org.eclipselabs.damos.dml;
 public interface BooleanDirectFeedthroughPolicy extends DirectFeedthroughPolicy {
 	/**
 	 * Returns the value of the '<em><b>Direct Feedthrough</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Direct Feedthrough</em>' attribute isn't clear,
@@ -36,7 +35,7 @@ public interface BooleanDirectFeedthroughPolicy extends DirectFeedthroughPolicy 
 	 * @return the value of the '<em>Direct Feedthrough</em>' attribute.
 	 * @see #setDirectFeedthrough(boolean)
 	 * @see org.eclipselabs.damos.dml.DMLPackage#getBooleanDirectFeedthroughPolicy_DirectFeedthrough()
-	 * @model default="true" required="true" ordered="false"
+	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isDirectFeedthrough();

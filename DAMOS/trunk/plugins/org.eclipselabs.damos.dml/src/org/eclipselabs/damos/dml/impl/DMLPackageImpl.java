@@ -2846,7 +2846,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEReference(getSubsystemOutput_Outlet(), this.getOutlet(), null, "outlet", null, 1, 1, SubsystemOutput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(booleanDirectFeedthroughPolicyEClass, BooleanDirectFeedthroughPolicy.class, "BooleanDirectFeedthroughPolicy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBooleanDirectFeedthroughPolicy_DirectFeedthrough(), ecorePackage.getEBoolean(), "directFeedthrough", "true", 1, 1, BooleanDirectFeedthroughPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getBooleanDirectFeedthroughPolicy_DirectFeedthrough(), ecorePackage.getEBoolean(), "directFeedthrough", null, 1, 1, BooleanDirectFeedthroughPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(opaqueDataTypeSpecificationEClass, OpaqueDataTypeSpecification.class, "OpaqueDataTypeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOpaqueDataTypeSpecification_DataType(), ecorePackage.getEString(), "dataType", null, 1, 1, OpaqueDataTypeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

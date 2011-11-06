@@ -35,7 +35,7 @@ public class BooleanDirectFeedthroughPolicyImpl extends DirectFeedthroughPolicyI
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean DIRECT_FEEDTHROUGH_EDEFAULT = true;
+	protected static final boolean DIRECT_FEEDTHROUGH_EDEFAULT = false;
 
 	/**
 	 * The cached value of the '{@link #isDirectFeedthrough() <em>Direct Feedthrough</em>}' attribute.

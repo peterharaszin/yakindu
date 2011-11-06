@@ -42,6 +42,7 @@ public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure impl
 	 */
 	public CompoundConnectorFigure() {
 		super(DEFAULT_SIZE);
+		terminalFigure = createTerminalFigure();
 	}
 	
 	/* (non-Javadoc)
@@ -63,9 +64,6 @@ public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure impl
 	}
 
 	public TerminalFigure getTerminalFigure() {
-		if (terminalFigure == null) {
-			terminalFigure = createTerminalFigure();
-		}
 		return terminalFigure;
 	}
 
@@ -152,7 +150,7 @@ public abstract class CompoundConnectorFigure extends DefaultSizeNodeFigure impl
 	}
 
 	private int getCurrentSideOfParent() {
-		Object constraint = getParent().getLayoutManager().getConstraint(this);
+		Object constraint = getParent().getParent().getLayoutManager().getConstraint(getParent());
 		if (constraint instanceof IBorderItemLocator) {
 			IBorderItemLocator locator = (IBorderItemLocator) constraint;
 			return locator.getCurrentSideOfParent();

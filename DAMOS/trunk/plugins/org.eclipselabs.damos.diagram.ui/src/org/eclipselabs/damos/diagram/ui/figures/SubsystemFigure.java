@@ -11,38 +11,38 @@
 
 package org.eclipselabs.damos.diagram.ui.figures;
 
-import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.GridLayout;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.LabelEx;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 
-public class SubsystemFigure extends StandardComponentFigure implements IFigureConstants {
+public class SubsystemFigure extends ComponentFigure implements IFigureConstants {
 	
 	private int borderStyle = SWT.LINE_DASH;
-	private Label leftTextIcon;
-	private Label rightTextIcon;
-	private Label textLabel;
+	
+	private Label systemInterfaceNameLabel;
+	private Label overrideIcon;
 	
 	/**
 	 * 
 	 */
 	public SubsystemFigure() {
-		((StandardComponentLayout) getLayoutManager()).setEqualPortExtents(true);
+		ThreePaneLayout layout = new ThreePaneLayout();
+		layout.setEqualPortExtents(true);
+		layout.setTopHeaderPadding(IFigureConstants.DEFAULT_LINE_WIDTH);
+		setLayoutManager(layout);
 		
-		Figure textContainer = new FontColorAwareFigure();
-		textContainer.setLayoutManager(new GridLayout(3, false));
+		systemInterfaceNameLabel = new LabelEx();
+		systemInterfaceNameLabel.setOpaque(true);
+		systemInterfaceNameLabel.setForegroundColor(ColorConstants.white);
+		systemInterfaceNameLabel.setBackgroundColor(ColorConstants.black);
 		
-		leftTextIcon = new LabelEx();
-		textContainer.add(leftTextIcon);
-		textLabel = new FontColorAwareLabel();
-		textContainer.add(textLabel);
-		rightTextIcon = new LabelEx();
-		textContainer.add(rightTextIcon);
-		
-		add(textContainer);
+		add(systemInterfaceNameLabel, new ThreePaneLayoutData(ThreePaneLayoutData.HEADER, SWT.CENTER, SWT.BEGINNING));
+
+		overrideIcon = new LabelEx();
+		add(overrideIcon, new ThreePaneLayoutData(ThreePaneLayoutData.BODY));
 	}
 	
 	public Dimension calculateMinimumCanvasSize(int wHint, int hHint) {
@@ -74,16 +74,12 @@ public class SubsystemFigure extends StandardComponentFigure implements IFigureC
 		repaint();
 	}
 	
-	public void setLeftTextIcon(Image image) {
-		leftTextIcon.setIcon(image);
+	public void setOverrideIcon(Image image) {
+		overrideIcon.setIcon(image);
 	}
 	
-	public void setRightTextIcon(Image image) {
-		rightTextIcon.setIcon(image);
-	}
-	
-	public void setText(String text) {
-		textLabel.setText(text);
+	public void setSystemInterfaceName(String text) {
+		systemInterfaceNameLabel.setText(" " + text + " ");
 	}
 	
 }

@@ -150,22 +150,21 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		switch (getSubsystemRealizationType()) {
 		case EXISTS:
 			subsystemFigure.setBorderStyle(SWT.LINE_SOLID);
-			subsystemFigure.setLeftTextIcon(getBlankImage());
+			subsystemFigure.setOverrideIcon(getBlankImage());
 			break;
 		case IMPLEMENTS:
 			subsystemFigure.setBorderStyle(SWT.LINE_SOLID);
-			subsystemFigure.setLeftTextIcon(getImplementationImage());
+			subsystemFigure.setOverrideIcon(getImplementationImage());
 			break;
 		case OVERRIDES:
 			subsystemFigure.setBorderStyle(SWT.LINE_SOLID);
-			subsystemFigure.setLeftTextIcon(getOverrideImage());
+			subsystemFigure.setOverrideIcon(getOverrideImage());
 			break;
 		default:
 			subsystemFigure.setBorderStyle(SWT.LINE_DASH);
-			subsystemFigure.setLeftTextIcon(getBlankImage());
+			subsystemFigure.setOverrideIcon(getBlankImage());
 			break;
 		}
-		subsystemFigure.setRightTextIcon(getBlankImage());
 	}
 	
 	private SubsystemRealizationType getSubsystemRealizationType() {
@@ -182,9 +181,9 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 			SubsystemFigure figure = (SubsystemFigure) getMainFigure();
 			SystemInterface providedInterface = ((Subsystem) element).getProvidedInterface();
 			if (providedInterface != null) {
-				figure.setText(providedInterface.getName());
+				figure.setSystemInterfaceName(providedInterface.getName());
 			} else {
-				figure.setText("");
+				figure.setSystemInterfaceName("");
 			}
 		}
 	}

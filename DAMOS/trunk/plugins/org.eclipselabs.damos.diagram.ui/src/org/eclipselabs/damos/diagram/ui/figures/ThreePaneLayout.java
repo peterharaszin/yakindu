@@ -32,7 +32,7 @@ import org.eclipselabs.damos.diagram.ui.internal.geometry.Geometry;
  * @author Andreas Unger
  *
  */
-public class FBComponentLayout extends AbstractLayout {
+public class ThreePaneLayout extends AbstractLayout {
 
 	private int portPadding = 50;
 
@@ -55,6 +55,7 @@ public class FBComponentLayout extends AbstractLayout {
 	private List<PortFigure> westPortFigures;
 	private List<PortFigure> eastPortFigures;
 	
+	private boolean figureCacheInitialized;
 	private IFigure bodyFigure;
 	private IFigure headerFigure;
 	private IFigure footerFigure;
@@ -64,7 +65,7 @@ public class FBComponentLayout extends AbstractLayout {
 	/**
 	 * 
 	 */
-	public FBComponentLayout() {
+	public ThreePaneLayout() {
 	}
 	
 	/**
@@ -444,50 +445,52 @@ public class FBComponentLayout extends AbstractLayout {
 	}
 	
 	protected IFigure getBodyFigure(ComponentFigure componentFigure) {
-		if (bodyFigure == null) {
-			initializeContentFigureCache(componentFigure);
+		if (!figureCacheInitialized) {
+			initializeFigureCache(componentFigure);
 		}
 		return bodyFigure;
 	}
 	
 	protected IFigure getHeaderFigure(ComponentFigure componentFigure) {
-		if (headerFigure == null) {
-			initializeContentFigureCache(componentFigure);
+		if (!figureCacheInitialized) {
+			initializeFigureCache(componentFigure);
 		}
 		return headerFigure;
 	}
 
 	protected IFigure getFooterFigure(ComponentFigure componentFigure) {
-		if (footerFigure == null) {
-			initializeContentFigureCache(componentFigure);
+		if (!figureCacheInitialized) {
+			initializeFigureCache(componentFigure);
 		}
 		return footerFigure;
 	}
  
-	private void initializeContentFigureCache(ComponentFigure componentFigure) {
+	private void initializeFigureCache(ComponentFigure componentFigure) {
 		for (IFigure contentFigure : componentFigure.getContentFigures()) {
 			Object constraint = constraints.get(contentFigure);
-			if (constraint instanceof FBComponentLayoutData) {
-				FBComponentLayoutData layoutData = (FBComponentLayoutData) constraint;
+			if (constraint instanceof ThreePaneLayoutData) {
+				ThreePaneLayoutData layoutData = (ThreePaneLayoutData) constraint;
 				switch (layoutData.contentType) {
-				case FBComponentLayoutData.BODY:
+				case ThreePaneLayoutData.BODY:
 					bodyFigure = contentFigure;
 					break;
-				case FBComponentLayoutData.HEADER:
+				case ThreePaneLayoutData.HEADER:
 					headerFigure = contentFigure;
 					break;
-				case FBComponentLayoutData.FOOTER:
+				case ThreePaneLayoutData.FOOTER:
 					footerFigure = contentFigure;
 					break;
 				}
 			}
 		}
+		figureCacheInitialized = true;
 	}
 
 	private void clearFigureCache() {
 		bodyFigure = null;
 		headerFigure = null;
 		footerFigure = null;
+		figureCacheInitialized = false;
 	}
 	
 	/* (non-Javadoc)
@@ -497,8 +500,8 @@ public class FBComponentLayout extends AbstractLayout {
 		int horizontalAlignment = SWT.CENTER;
 		int verticalAlignment = SWT.CENTER;
 		Object constraint = constraints.get(contentFigure);
-		if (constraint instanceof FBComponentLayoutData) {
-			FBComponentLayoutData layoutData = (FBComponentLayoutData) constraint;
+		if (constraint instanceof ThreePaneLayoutData) {
+			ThreePaneLayoutData layoutData = (ThreePaneLayoutData) constraint;
 			horizontalAlignment = layoutData.horizontalAlignment;
 			verticalAlignment = layoutData.verticalAlignment;
 		}

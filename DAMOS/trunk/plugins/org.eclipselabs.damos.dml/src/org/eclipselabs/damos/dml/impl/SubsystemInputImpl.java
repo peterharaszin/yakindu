@@ -94,6 +94,15 @@ public class SubsystemInputImpl extends InputImpl implements SubsystemInput {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.SUBSYSTEM_INPUT__INLET, oldInlet, inlet));
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.InputImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		Inlet inlet = getInlet();
+		return inlet != null ? inlet.getName() : super.getName();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

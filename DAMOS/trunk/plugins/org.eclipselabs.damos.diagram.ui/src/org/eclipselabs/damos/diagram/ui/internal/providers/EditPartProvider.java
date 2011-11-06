@@ -24,6 +24,8 @@ import org.eclipselabs.damos.diagram.ui.editparts.BlockOutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.InoutportEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.InputPortEditPart;
+import org.eclipselabs.damos.diagram.ui.editparts.NamedBlockInputPortEditPart;
+import org.eclipselabs.damos.diagram.ui.editparts.NamedBlockOutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.OutputPortEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.SubsystemEditPart;
 import org.eclipselabs.damos.diagram.ui.editparts.SubsystemInputPortEditPart;
@@ -35,8 +37,8 @@ import org.eclipselabs.damos.diagram.ui.internal.editparts.BlockDiagramRootEditP
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ChoiceEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.ComponentNameEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.CompoundCompartmentEditPart;
-import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.FallbackComponentEditPart;
+import org.eclipselabs.damos.diagram.ui.internal.editparts.FunctionBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.JoinEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.LatchEditPart;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.MemoryEditPart;
@@ -55,12 +57,10 @@ import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Compound;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Inoutport;
-import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Memory;
-import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
@@ -98,16 +98,14 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			}
 			if (inputPort instanceof BlockInputPort) {
 				Class<?> clazz = null;
-				Input input = inputPort.getInput();
-				if (input instanceof BlockInput) {
-					BlockInput blockInput = (BlockInput) input;
-					if (input.getComponent() instanceof Block) {
-						Block block = (Block) input.getComponent();
-						clazz = delegate.getInputClass(block.getType().getQualifiedName(), blockInput.getDefinition().getName());
-					}
-				}
+				BlockInput input = (BlockInput) inputPort.getInput();
+				Block block = (Block) input.getComponent();
+				clazz = delegate.getInputClass(block.getType().getQualifiedName(), input.getDefinition().getName());
 				if (clazz != null) {
 					return clazz;
+				}
+				if (getBlockEditPartClass(block, semanticHint) == null) {
+					return NamedBlockInputPortEditPart.class;
 				}
 				return BlockInputPortEditPart.class;
 			}
@@ -121,16 +119,14 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			}
 			if (outputPort instanceof BlockOutputPort) {
 				Class<?> clazz = null;
-				Output output = outputPort.getOutput();
-				if (output instanceof BlockOutput) {
-					BlockOutput blockOutput = (BlockOutput) output;
-					if (output.getComponent() instanceof Block) {
-						Block block = (Block) output.getComponent();
-						clazz = delegate.getOutputClass(block.getType().getQualifiedName(), blockOutput.getDefinition().getName());
-					}
-				}
+				BlockOutput output = (BlockOutput) outputPort.getOutput();
+				Block block = (Block) output.getComponent();
+				clazz = delegate.getOutputClass(block.getType().getQualifiedName(), output.getDefinition().getName());
 				if (clazz != null) {
 					return clazz;
+				}
+				if (getBlockEditPartClass(block, semanticHint) == null) {
+					return NamedBlockOutputPortEditPart.class;
 				}
 				return BlockOutputPortEditPart.class;
 			}
@@ -161,18 +157,8 @@ public class EditPartProvider extends AbstractEditPartProvider {
 			}
 			if (element instanceof Block) {
 				Block block = (Block) element;
-				if (semanticHint != null && semanticHint.length() != 0) {
-					Class<?> clazz = delegate.getContentClass(block.getType().getQualifiedName(), semanticHint);
-					if (clazz != null) {
-						return clazz;
-					}
-				} else {
-					Class<?> clazz = delegate.getClazz(block.getType().getQualifiedName());
-					if (clazz != null) {
-						return clazz;
-					}
-				}
-				return FallbackBlockEditPart.class;
+				Class<?> clazz = getBlockEditPartClass(block, semanticHint);
+				return clazz != null ? clazz : FunctionBlockEditPart.class;
 			}
 			return FallbackComponentEditPart.class;
 		}
@@ -198,6 +184,21 @@ public class EditPartProvider extends AbstractEditPartProvider {
 		}
 
 		return super.getNodeEditPartClass(view);
+	}
+	
+	protected Class<?> getBlockEditPartClass(Block block, String semanticHint) {
+		if (semanticHint != null && semanticHint.length() != 0) {
+			Class<?> clazz = delegate.getContentClass(block.getType().getQualifiedName(), semanticHint);
+			if (clazz != null) {
+				return clazz;
+			}
+		} else {
+			Class<?> clazz = delegate.getClazz(block.getType().getQualifiedName());
+			if (clazz != null) {
+				return clazz;
+			}
+		}
+		return null;
 	}
 	
 	protected Class<?> getEdgeEditPartClass(View view) {

@@ -94,6 +94,15 @@ public class SubsystemOutputImpl extends OutputImpl implements SubsystemOutput {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.SUBSYSTEM_OUTPUT__OUTLET, oldOutlet, outlet));
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.impl.OutputImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		Outlet outlet = getOutlet();
+		return outlet != null ? outlet.getName() : super.getName();
+	}
 
 	/**
 	 * <!-- begin-user-doc -->

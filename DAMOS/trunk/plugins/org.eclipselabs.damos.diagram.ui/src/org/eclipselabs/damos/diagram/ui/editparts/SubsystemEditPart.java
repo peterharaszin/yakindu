@@ -32,6 +32,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
+import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
+import org.eclipselabs.damos.diagram.ui.editpolicies.NonRotatableTransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.SubsystemFigure;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
@@ -133,6 +135,15 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		}
 
 		super.deactivate();
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.diagram.ui.editparts.ComponentEditPart#createDefaultEditPolicies()
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(IEditPolicyRoles.TRANSFORM_ROLE, new NonRotatableTransformEditPolicy());
 	}
 	
 	/* (non-Javadoc)

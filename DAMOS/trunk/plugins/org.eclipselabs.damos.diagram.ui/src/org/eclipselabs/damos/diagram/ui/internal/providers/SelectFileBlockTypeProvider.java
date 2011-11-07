@@ -38,7 +38,7 @@ public class SelectFileBlockTypeProvider extends AbstractFileBlockTypeProvider {
 				false,
 				ResourcesPlugin.getWorkspace().getRoot(),
 				IResource.FILE);
-		d.setInitialPattern("*.blocktype.dml");
+		d.setInitialPattern("*.blocktype");
 		
 		if (d.open() == Dialog.OK) {
 			Object firstResult = d.getFirstResult();

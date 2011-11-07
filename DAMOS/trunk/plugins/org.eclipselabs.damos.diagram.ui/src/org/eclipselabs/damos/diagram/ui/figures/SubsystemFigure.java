@@ -32,6 +32,7 @@ public class SubsystemFigure extends ComponentFigure implements IFigureConstants
 		ThreePaneLayout layout = new ThreePaneLayout();
 		layout.setEqualPortExtents(true);
 		layout.setTopHeaderPadding(IFigureConstants.DEFAULT_LINE_WIDTH);
+		layout.setHorizontalHeaderPadding(300);
 		setLayoutManager(layout);
 		
 		systemInterfaceNameLabel = new LabelEx();

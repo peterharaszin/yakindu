@@ -47,7 +47,7 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 					d.open();
 					IPath path = d.getResult();
 					if (path != null) {
-						createInterfaceFile(path, fragment); 
+						createSystemInterfaceFile(path, fragment); 
 					}
 				}
 			}
@@ -68,18 +68,18 @@ public class ExtractInterfaceHandler extends AbstractHandler {
 				if (uri.isPlatformResource()) {
 					IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 					file = root.getFile(new Path(uri.toPlatformString(false)).removeFileExtension()
-							.addFileExtension("interface").addFileExtension("dml"));
+							.addFileExtension("systeminterface"));
 				}
 			}
 		}
 		return file;
 	}
 	
-	private void createInterfaceFile(IPath path, Fragment fragment) {
+	private void createSystemInterfaceFile(IPath path, Fragment fragment) {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		IFile file = root.getFile(path);
 		SystemInterface systemInterface = DMLFactory.eINSTANCE.createSystemInterface();
-		systemInterface.setQualifiedName(fragment.getQualifiedName() + "Interface");
+		systemInterface.setQualifiedName(fragment.getQualifiedName());
 		for (Component component : fragment.getAllComponents()) {
 			if (component instanceof Inport) {
 				Inport inport = (Inport) component;

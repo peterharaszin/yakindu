@@ -101,8 +101,8 @@
             name="Rename Fragment">
       </command>
       <command
-            id="org.eclipselabs.damos.diagram.ui.commands.extractInterface"
-            name="Extract Interface">
+            id="org.eclipselabs.damos.diagram.ui.commands.extractSystemInterface"
+            name="Extract System Interface">
       </command>
       <command
             id="org.eclipselabs.damos.diagram.ui.commands.moveToAnotherFragment"
@@ -138,9 +138,10 @@
                id="org.eclipselabs.damos.diagram.ui.refactor"
                label="Refactor">
          </menu>
+<!--
          <command
-               commandId="org.eclipselabs.damos.diagram.ui.commands.extractInterface"
-               label="Extract Interface..."
+               commandId="org.eclipselabs.damos.diagram.ui.commands.extractSystemInterface"
+               label="Extract System Interface..."
                style="push">
             <visibleWhen>
                <and>
@@ -155,6 +156,7 @@
                </and>
             </visibleWhen>
          </command>
+-->
          <dynamic
                class="org.eclipselabs.damos.diagram.ui.internal.commands.ChangePortCountContributionItem"
                id="org.eclipselabs.damos.diagram.ui.changePortCountContributionItem">
@@ -259,7 +261,7 @@
       </handler>
       <handler
             class="org.eclipselabs.damos.diagram.ui.internal.handlers.ExtractInterfaceHandler"
-            commandId="org.eclipselabs.damos.diagram.ui.commands.extractInterface">
+            commandId="org.eclipselabs.damos.diagram.ui.commands.extractSystemInterface">
       </handler>
       <handler
             class="org.eclipselabs.damos.diagram.ui.internal.handlers.MoveToAnotherFragmentHandler"

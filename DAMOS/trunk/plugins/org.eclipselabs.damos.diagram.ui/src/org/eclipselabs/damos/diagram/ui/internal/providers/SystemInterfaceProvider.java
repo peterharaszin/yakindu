@@ -54,7 +54,7 @@ public class SystemInterfaceProvider implements ISystemInterfaceProvider {
 					false,
 					ResourcesPlugin.getWorkspace().getRoot(),
 					IResource.FILE);
-			d.setInitialPattern("*.interface.dml");
+			d.setInitialPattern("*.systeminterface");
 			
 			if (d.open() == Dialog.OK) {
 				Object firstResult = d.getFirstResult();

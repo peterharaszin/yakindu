@@ -65,22 +65,14 @@ Forum.</p>
 <!-- 
 	Optionally provide the background that has lead you to creating this project.
  -->
-<p>Nowadays companies in the field of engineering are more and more struggling with the
-increasing software complexity of their systems.
-Engineers who were used to focus merely on physical and technical aspects of a system
-now need to deal with software engineering issues.
-The time pressure due to time-to-market constraints and the fact that many engineers
-are not adequately trained to handle such complex software structures lead to poor software quality,
-which results in less maintainable code&mdash;and more importantly&mdash;in an increase of system malfunctions.</p>
 
-<p>To get a grip on the software complexity, a model-driven engineering approach becomes common practice.
-Since many engineers already utilize Eclipse for embedded software development using CDT, DSDP, and other technologies,
-it would be beneficial to perform system modeling, simulation, and code generation in Eclipse rather than in an external tool.</p>
-
-<p>In the field of engineering, data flow-oriented designs are commonly used.
-On the one hand it allows engineers to focus on the data processing aspects of a technical system,
+<p>In the field of science and engineering, data flow-oriented modeling is commonly used for analyzing and designing systems.
+On the one hand it allows scientists and engineers to focus on the data processing aspects of a system,
 and on the other hand it provides a means to specify the physical environment of the system to
-facilitate system simulation.</p>
+facilitate close-to-real-world system simulation.</p>
+
+<p>Since many scientists and engineers already utilize Eclipse for software development using CDT, DSDP, and other technologies,
+it would be beneficial to perform system modeling, simulation, and code generation in Eclipse rather than in an external tool.</p>
 
 <h2>Scope</h2>
 
@@ -89,27 +81,8 @@ facilitate system simulation.</p>
 	is in-scope and (optionally) what is out-of-scope. An Eclipse project
 	cannot have an open-ended scope.
  -->
-This project will provide:
-<ul>
-
-<li>Ecore models for specifying the semantics of data flow-oriented systems.
-This enables users to perform model analysis and transformation using well-known Eclipse modeling technologies.</li>
-
-<li>A graphical block diagram editor for editing system models.
-This editor will also be used to visualize real-time simulation results using virtual instruments.</li>
-
-<li>A simulation environment that utilizes adaptive and fixed step size solvers to simulate continuous systems.
-It will also provide asynchronous and real-time simulation capabilities.</li>
-
-<li>Code generation tooling, which will initially include a C code generator.</li>
-
-<li>Standard block library containing commonly used blocks.
-If required, the user will be able to define his/her own blocks.
-This can be done using a declarative programming language, which will be part of this project.</li>
-
-<li>Extension mechanisms to customize and extend various aspects of the tooling.</li>
-
-</ul>
+ 
+This project will provide a data flow-oriented modeling environment.
 
 <h2>Description</h2>
 
@@ -119,9 +92,8 @@ This can be done using a declarative programming language, which will be part of
 	has at least a fighting chance of understanding its purpose.
  -->
 
-<p>The goal of this project is to provide a modeling environment for modeling systems using a data flow-oriented approach.
-Such system models are usually comprised of software components (e.g. control algorithm), mechanical components,
-and the physical environment.
+<p>The goal of this project is to provide a modeling environment for analyzing and designing systems using a data flow-oriented approach.
+Such system models are usually comprised of software components (e.g. control algorithm), mechanical components, and the physical environment.
 Even though data flow-oriented design is not bound to a specific domain,
 it is most commonly used in control systems engineering and digital signal processing.</p>
 
@@ -146,7 +118,32 @@ it is most commonly used in control systems engineering and digital signal proce
 	of community that exists around the code. Include a listing of third-party libraries 
 	and associated licenses.
  -->
- 
+
+<p>The initial contribution consists of sources found in the current Damos repository at <a href="http://eclipselabs.org/p/yakindu">EclipseLabs</a>.</p>
+
+<p>The main components are:</p>
+
+<ul>
+
+<li>Ecore models for specifying the semantics of data flow-oriented systems.
+This enables users to perform model analysis and transformation using well-known Eclipse modeling technologies.</li>
+
+<li>A graphical block diagram editor for editing system models.
+This editor is also used to visualize real-time simulation results using virtual instruments.</li>
+
+<li>A simulation environment that utilizes adaptive and fixed step size solvers to simulate continuous systems.
+It also provides asynchronous and real-time simulation capabilities.</li>
+
+<li>Code generation tooling, which will initially include a C code generator.</li>
+
+<li>Standard block library containing commonly used blocks.
+If required, the user will be able to define his/her own blocks.
+This can be done using the declarative programming language Mscript, which is part of this project.</li>
+
+<li>Extension mechanisms to customize and extend various aspects of the tooling.</li>
+
+</ul>
+
 <h2>Legal Issues</h2>
 
 <!-- 

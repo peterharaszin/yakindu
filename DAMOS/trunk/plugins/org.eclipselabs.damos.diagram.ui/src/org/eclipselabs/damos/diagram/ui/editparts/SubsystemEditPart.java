@@ -31,6 +31,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
+import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.NonRotatableTransformEditPolicy;
@@ -153,7 +154,7 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshRealizationIndicators();
-		refreshText();
+		refreshName();
 	}
 	
 	protected void refreshRealizationIndicators() {
@@ -186,13 +187,13 @@ public class SubsystemEditPart extends StandardComponentEditPart {
 		return SubsystemRealizationType.NONE;
 	}
 	
-	protected void refreshText() {
+	protected void refreshName() {
 		EObject element = resolveSemanticElement();
 		if (element instanceof Subsystem) {
 			SubsystemFigure figure = (SubsystemFigure) getMainFigure();
 			SystemInterface providedInterface = ((Subsystem) element).getProvidedInterface();
 			if (providedInterface != null) {
-				figure.setSystemInterfaceName(providedInterface.getName());
+				figure.setSystemInterfaceName(NameUtil.formatName(providedInterface.getName()));
 			} else {
 				figure.setSystemInterfaceName("");
 			}

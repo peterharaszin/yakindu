@@ -54,7 +54,11 @@ public abstract class ComponentAttributeEditPart extends LabelEditPart {
 	
 	protected void refreshAttribute() {
 		Component component = (Component) resolveSemanticElement();
-		label.setText(component.eGet(getAttributeFeature()).toString());
+		label.setText(getAttributeStringValue(component.eGet(getAttributeFeature())));
+	}
+	
+	protected String getAttributeStringValue(Object attributeValue) {
+		return attributeValue.toString();
 	}
 
 	protected void handleNotificationEvent(Notification notification) {

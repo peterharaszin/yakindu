@@ -68,7 +68,7 @@ Forum.</p>
 
 <p>In the field of science and engineering, data flow-oriented modeling is commonly used for analyzing and designing systems.
 On the one hand it allows scientists and engineers to focus on the data processing aspects of a system,
-and on the other hand it provides a means to specify the physical environment of the system to
+and on the other hand it provides a means to specify the dynamics of the mechanical components and the physical environment of the system to
 facilitate close-to-real-world system simulation.</p>
 
 <p>Since many scientists and engineers already utilize Eclipse for software development using CDT, DSDP, and other technologies,
@@ -82,7 +82,8 @@ it would be beneficial to perform system modeling, simulation, and code generati
 	cannot have an open-ended scope.
  -->
  
-This project will provide a data flow-oriented modeling environment.
+This project will provide a data flow-oriented modeling environment. 
+Furthermore, it will provide support to derive own data flow-oriented languages based on the structural and diagram editing components of this project.
 
 <h2>Description</h2>
 
@@ -121,28 +122,67 @@ it is most commonly used in control systems engineering and digital signal proce
 
 <p>The initial contribution consists of sources found in the current Damos repository at <a href="http://eclipselabs.org/p/yakindu">EclipseLabs</a>.</p>
 
-<p>The main components are:</p>
+<h3>Architecture</h3>
 
-<ul>
+<p>In order to facilitate customization, Damos is split into a set of top-level components (i.e. Eclipse features).
+There are two main groups of components. The first group contains components providing the structural semantics
+and the diagram editing features of the modeling environment (orange).
+The second group provides simulation and code generation components as well as the standard block library (green).
+This enables other projects to build their own data flow-oriented languages by reusing the structural semantics
+and diagram editing components, and without being required to ship unneeded components.</p>
 
-<li>Ecore models for specifying the semantics of data flow-oriented systems.
-This enables users to perform model analysis and transformation using well-known Eclipse modeling technologies.</li>
+<p></p>
 
-<li>A graphical block diagram editor for editing system models.
-This editor is also used to visualize real-time simulation results using virtual instruments.</li>
+<p><img src="architecture.png"/></p>
 
-<li>A simulation environment that utilizes adaptive and fixed step size solvers to simulate continuous systems.
-It also provides asynchronous and real-time simulation capabilities.</li>
+<h3>Main Components</h3>
 
-<li>Code generation tooling, which will initially include a C code generator.</li>
+<h4>Models</h4>
 
-<li>Standard block library containing commonly used blocks.
-If required, the user will be able to define his/her own blocks.
-This can be done using the declarative programming language Mscript, which is part of this project.</li>
+<p>EMF-based models are used to specify the semantics of data flow-oriented systems.
+This enables users to perform model analysis and transformation using well-known Eclipse modeling technologies.<p>
 
-<li>Extension mechanisms to customize and extend various aspects of the tooling.</li>
+<p>System models are comprised of models describing the mechanical components and the physical environment of a device,
+and the software model that will later be executed on that device.
+These models are described graphically using block diagrams.</p>
 
-</ul>
+<p>When performing model simulation or code generation, an execution flow is first derived from the system model.
+The execution flow contains the execution graphs (i.e. the execution order of system components) of the system model.
+The execution-specific configuration must be provided in an execution model.
+The simulation and the code generation models are used to configure the simulation process (e.g. solver configuration)
+and the code generator (e.g. target directories), respectively.
+The computation model specifies the computation algorithms utilized in the target device (e.g. fixed-point arithmetic vs. floating-point arithmetic).</p>
+
+<p>Damos provides a GMF-based graphical block diagram editor for the system model.
+For all other models, textual model editors based on Xtext are provided.</p>
+
+<p><img src="models.png"/></p>
+
+<h4>Block Diagram Editor</h4>
+
+<p>The graphical block diagram editor is used for editing system models.
+It can also be used to visualize real-time simulation results using virtual instruments.</p>
+
+<p><a href="block-diagram-editor.png"><img src="block-diagram-editor-small.png"/></a></p>
+
+<h4>Simulation Environment</h4>
+
+<p>The simulation environment utilizes adaptive and fixed step size solvers to simulate continuous systems.
+It also provides asynchronous and real-time simulation capabilities.</p>
+
+<h4>Code Generator</h4>
+
+<p>The code generation tooling initially includes a standard compliant C code generator.</p>
+
+<h4>Block Library</h4>
+
+<p>The standard block library contains commonly used blocks.
+If required, the user is able to define his/her own blocks.
+This can be done using the declarative programming language Mscript, which is part of this project.</p>
+
+<h4>Extension Mechanisms</h4>
+
+<p>Extension mechanisms can be used to customize and extend various aspects of the tooling.</p>
 
 <h2>Legal Issues</h2>
 

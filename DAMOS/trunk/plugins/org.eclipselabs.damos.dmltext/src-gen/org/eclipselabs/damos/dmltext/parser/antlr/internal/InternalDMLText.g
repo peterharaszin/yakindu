@@ -1043,9 +1043,9 @@ ruleParameterPredefinedValue returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_1='alias' 
+)(	otherlv_1='as' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getParameterPredefinedValueAccess().getAliasKeyword_1_0());
+    	newLeafNode(otherlv_1, grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0());
     }
 (
 (

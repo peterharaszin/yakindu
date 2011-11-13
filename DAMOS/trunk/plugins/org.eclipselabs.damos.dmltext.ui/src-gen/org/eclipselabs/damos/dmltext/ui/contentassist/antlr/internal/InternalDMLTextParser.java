@@ -24,7 +24,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IJ", "RULE_EXPIJ", "RULE_ONE", "RULE_INT", "RULE_N", "RULE_E", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'\\''", "'never'", "'*'", "'+'", "'-'", "'false'", "'continuous'", "'synchronous'", "'asynchronous'", "'discrete'", "'public'", "'private'", "'stateful'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<'", "'<='", "'>'", "'>='", "'/'", "'.*'", "'./'", "'^'", "'.^'", "'!'", "'blockType'", "'input'", "'['", "'..'", "']'", "'|'", "'{'", "'}'", "'directFeedthrough'", "'output'", "'parameter'", "'='", "'predefined'", "','", "'alias'", "'behavior'", "'systemInterface'", "'inlet'", "'outlet'", "'enum'", "'typedef'", "'struct'", "'func'", "'('", "')'", "'->'", "'check'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'::'", "'socket'", "'testPoint'", "'always'", "'static'", "'initial'", "'true'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_IJ", "RULE_EXPIJ", "RULE_ONE", "RULE_INT", "RULE_N", "RULE_E", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'\\''", "'never'", "'*'", "'+'", "'-'", "'false'", "'continuous'", "'synchronous'", "'asynchronous'", "'discrete'", "'public'", "'private'", "'stateful'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<'", "'<='", "'>'", "'>='", "'/'", "'.*'", "'./'", "'^'", "'.^'", "'!'", "'blockType'", "'input'", "'['", "'..'", "']'", "'|'", "'{'", "'}'", "'directFeedthrough'", "'output'", "'parameter'", "'='", "'predefined'", "','", "'as'", "'behavior'", "'systemInterface'", "'inlet'", "'outlet'", "'enum'", "'typedef'", "'struct'", "'func'", "'('", "')'", "'->'", "'check'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'::'", "'socket'", "'testPoint'", "'always'", "'static'", "'initial'", "'true'"
     };
     public static final int RULE_ID=10;
     public static final int T__29=29;
@@ -21743,24 +21743,24 @@ public class InternalDMLTextParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ParameterPredefinedValue__Group_1__0__Impl"
-    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6720:1: rule__ParameterPredefinedValue__Group_1__0__Impl : ( 'alias' ) ;
+    // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6720:1: rule__ParameterPredefinedValue__Group_1__0__Impl : ( 'as' ) ;
     public final void rule__ParameterPredefinedValue__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6724:1: ( ( 'alias' ) )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6725:1: ( 'alias' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6724:1: ( ( 'as' ) )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6725:1: ( 'as' )
             {
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6725:1: ( 'alias' )
-            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6726:1: 'alias'
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6725:1: ( 'as' )
+            // ../org.eclipselabs.damos.dmltext.ui/src-gen/org/eclipselabs/damos/dmltext/ui/contentassist/antlr/internal/InternalDMLText.g:6726:1: 'as'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getParameterPredefinedValueAccess().getAliasKeyword_1_0()); 
+               before(grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0()); 
             }
             match(input,59,FOLLOW_59_in_rule__ParameterPredefinedValue__Group_1__0__Impl14313); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getParameterPredefinedValueAccess().getAliasKeyword_1_0()); 
+               after(grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0()); 
             }
 
             }

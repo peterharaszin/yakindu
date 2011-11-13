@@ -502,15 +502,15 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cValueMscriptValueSpecificationParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cAliasKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cAsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cAliasAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cAliasSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cAliasAssignment_1_1.eContents().get(0);
 		
 		//ParameterPredefinedValue:
-		//	value=MscriptValueSpecification ("alias" alias=STRING)?;
+		//	value=MscriptValueSpecification ("as" alias=STRING)?;
 		public ParserRule getRule() { return rule; }
 
-		//value=MscriptValueSpecification ("alias" alias=STRING)?
+		//value=MscriptValueSpecification ("as" alias=STRING)?
 		public Group getGroup() { return cGroup; }
 
 		//value=MscriptValueSpecification
@@ -519,11 +519,11 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//MscriptValueSpecification
 		public RuleCall getValueMscriptValueSpecificationParserRuleCall_0_0() { return cValueMscriptValueSpecificationParserRuleCall_0_0; }
 
-		//("alias" alias=STRING)?
+		//("as" alias=STRING)?
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"alias"
-		public Keyword getAliasKeyword_1_0() { return cAliasKeyword_1_0; }
+		//"as"
+		public Keyword getAsKeyword_1_0() { return cAsKeyword_1_0; }
 
 		//alias=STRING
 		public Assignment getAliasAssignment_1_1() { return cAliasAssignment_1_1; }
@@ -922,7 +922,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParameterPredefinedValue:
-	//	value=MscriptValueSpecification ("alias" alias=STRING)?;
+	//	value=MscriptValueSpecification ("as" alias=STRING)?;
 	public ParameterPredefinedValueElements getParameterPredefinedValueAccess() {
 		return (pParameterPredefinedValue != null) ? pParameterPredefinedValue : (pParameterPredefinedValue = new ParameterPredefinedValueElements());
 	}

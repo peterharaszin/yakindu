@@ -4,7 +4,7 @@ input u
 output y
 
 parameter kind = 0 predefined {
-	0 alias "round"
+	0 as "round"
 }
 
 behavior {

@@ -142,7 +142,6 @@ RULE_WS=14
 'never'=17
 'const'=75
 '.*'=40
-'alias'=59
 '='=56
 'systemInterface'=61
 'bool'=82
@@ -175,6 +174,7 @@ RULE_WS=14
 'let'=84
 'break'=105
 'fatal'=32
+'as'=59
 'private'=27
 'socket'=108
 'int'=79

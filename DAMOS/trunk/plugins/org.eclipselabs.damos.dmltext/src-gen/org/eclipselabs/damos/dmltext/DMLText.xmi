@@ -236,7 +236,7 @@
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
         </elements>
         <elements xsi:type="xtext:Group" cardinality="?">
-          <elements xsi:type="xtext:Keyword" value="alias"/>
+          <elements xsi:type="xtext:Keyword" value="as"/>
           <elements xsi:type="xtext:Assignment" feature="alias" operator="=">
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.119"/>
           </elements>

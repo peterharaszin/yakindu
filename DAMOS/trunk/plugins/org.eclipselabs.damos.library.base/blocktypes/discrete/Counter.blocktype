@@ -13,14 +13,14 @@ parameter step = 1
 parameter upperLimit = 10
 parameter lowerLimit = 0
 parameter upTrigger = 0 predefined {
-	0 alias "Rising",
-	1 alias "Falling",
-	2 alias "Both"
+	0 as "Rising",
+	1 as "Falling",
+	2 as "Both"
 }
 parameter downTrigger = 0 predefined {
-	0 alias "Rising",
-	1 alias "Falling",
-	2 alias "Both"
+	0 as "Rising",
+	1 as "Falling",
+	2 as "Both"
 }
 
 behavior {

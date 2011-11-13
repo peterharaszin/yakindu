@@ -6723,11 +6723,11 @@ rule__ParameterPredefinedValue__Group_1__0__Impl
     }
 :
 (
-{ before(grammarAccess.getParameterPredefinedValueAccess().getAliasKeyword_1_0()); }
+{ before(grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0()); }
 
-	'alias' 
+	'as' 
 
-{ after(grammarAccess.getParameterPredefinedValueAccess().getAliasKeyword_1_0()); }
+{ after(grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0()); }
 )
 
 ;

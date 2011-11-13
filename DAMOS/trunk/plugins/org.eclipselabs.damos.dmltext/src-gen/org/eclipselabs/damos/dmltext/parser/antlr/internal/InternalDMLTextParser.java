@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalDMLTextParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_E", "RULE_N", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'blockType'", "'socket'", "'testPoint'", "'input'", "'['", "'..'", "'|'", "']'", "'{'", "'directFeedthrough'", "'}'", "'always'", "'never'", "'output'", "'parameter'", "'='", "'predefined'", "','", "'alias'", "'behavior'", "'systemInterface'", "'inlet'", "'outlet'", "'*'", "'enum'", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'+'", "'-'", "'true'", "'false'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'^'", "'::'", "'continuous'", "'synchronous'", "'asynchronous'", "'discrete'", "'public'", "'private'", "'stateful'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'.^'", "'!'", "'\\''"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_E", "RULE_N", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'blockType'", "'socket'", "'testPoint'", "'input'", "'['", "'..'", "'|'", "']'", "'{'", "'directFeedthrough'", "'}'", "'always'", "'never'", "'output'", "'parameter'", "'='", "'predefined'", "','", "'as'", "'behavior'", "'systemInterface'", "'inlet'", "'outlet'", "'*'", "'enum'", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'+'", "'-'", "'true'", "'false'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'^'", "'::'", "'continuous'", "'synchronous'", "'asynchronous'", "'discrete'", "'public'", "'private'", "'stateful'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'.^'", "'!'", "'\\''"
     };
     public static final int RULE_ID=5;
     public static final int T__29=29;
@@ -2924,7 +2924,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleParameterPredefinedValue"
-    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1024:1: ruleParameterPredefinedValue returns [EObject current=null] : ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'alias' ( (lv_alias_2_0= RULE_STRING ) ) )? ) ;
+    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1024:1: ruleParameterPredefinedValue returns [EObject current=null] : ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'as' ( (lv_alias_2_0= RULE_STRING ) ) )? ) ;
     public final EObject ruleParameterPredefinedValue() throws RecognitionException {
         EObject current = null;
 
@@ -2936,11 +2936,11 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1027:28: ( ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'alias' ( (lv_alias_2_0= RULE_STRING ) ) )? ) )
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1028:1: ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'alias' ( (lv_alias_2_0= RULE_STRING ) ) )? )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1027:28: ( ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'as' ( (lv_alias_2_0= RULE_STRING ) ) )? ) )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1028:1: ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'as' ( (lv_alias_2_0= RULE_STRING ) ) )? )
             {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1028:1: ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'alias' ( (lv_alias_2_0= RULE_STRING ) ) )? )
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1028:2: ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'alias' ( (lv_alias_2_0= RULE_STRING ) ) )?
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1028:1: ( ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'as' ( (lv_alias_2_0= RULE_STRING ) ) )? )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1028:2: ( (lv_value_0_0= ruleMscriptValueSpecification ) ) (otherlv_1= 'as' ( (lv_alias_2_0= RULE_STRING ) ) )?
             {
             // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1028:2: ( (lv_value_0_0= ruleMscriptValueSpecification ) )
             // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1029:1: (lv_value_0_0= ruleMscriptValueSpecification )
@@ -2977,7 +2977,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1046:2: (otherlv_1= 'alias' ( (lv_alias_2_0= RULE_STRING ) ) )?
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1046:2: (otherlv_1= 'as' ( (lv_alias_2_0= RULE_STRING ) ) )?
             int alt22=2;
             int LA22_0 = input.LA(1);
 
@@ -2986,12 +2986,12 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             }
             switch (alt22) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1046:4: otherlv_1= 'alias' ( (lv_alias_2_0= RULE_STRING ) )
+                    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1046:4: otherlv_1= 'as' ( (lv_alias_2_0= RULE_STRING ) )
                     {
                     otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleParameterPredefinedValue2316); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_1, grammarAccess.getParameterPredefinedValueAccess().getAliasKeyword_1_0());
+                          	newLeafNode(otherlv_1, grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0());
                           
                     }
                     // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:1050:1: ( (lv_alias_2_0= RULE_STRING ) )

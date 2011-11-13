@@ -2453,11 +2453,11 @@ protected class Parameter_RightCurlyBracketKeyword_5_4 extends KeywordToken  {
 /************ begin Rule ParameterPredefinedValue ****************
  *
  * ParameterPredefinedValue:
- * 	value=MscriptValueSpecification ("alias" alias=STRING)?;
+ * 	value=MscriptValueSpecification ("as" alias=STRING)?;
  *
  **/
 
-// value=MscriptValueSpecification ("alias" alias=STRING)?
+// value=MscriptValueSpecification ("as" alias=STRING)?
 protected class ParameterPredefinedValue_Group extends GroupToken {
 	
 	public ParameterPredefinedValue_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2532,7 +2532,7 @@ protected class ParameterPredefinedValue_ValueAssignment_0 extends AssignmentTok
 	}	
 }
 
-// ("alias" alias=STRING)?
+// ("as" alias=STRING)?
 protected class ParameterPredefinedValue_Group_1 extends GroupToken {
 	
 	public ParameterPredefinedValue_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2554,16 +2554,16 @@ protected class ParameterPredefinedValue_Group_1 extends GroupToken {
 
 }
 
-// "alias"
-protected class ParameterPredefinedValue_AliasKeyword_1_0 extends KeywordToken  {
+// "as"
+protected class ParameterPredefinedValue_AsKeyword_1_0 extends KeywordToken  {
 	
-	public ParameterPredefinedValue_AliasKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ParameterPredefinedValue_AsKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getParameterPredefinedValueAccess().getAliasKeyword_1_0();
+		return grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0();
 	}
 
     @Override
@@ -2591,7 +2591,7 @@ protected class ParameterPredefinedValue_AliasAssignment_1_1 extends AssignmentT
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ParameterPredefinedValue_AliasKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ParameterPredefinedValue_AsKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

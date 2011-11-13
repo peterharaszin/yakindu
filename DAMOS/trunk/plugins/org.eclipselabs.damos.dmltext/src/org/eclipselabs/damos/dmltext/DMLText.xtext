@@ -43,7 +43,7 @@ Parameter:
 		('predefined' '{' predefinedValues+=ParameterPredefinedValue (',' predefinedValues+=ParameterPredefinedValue)* '}')?;
 	
 ParameterPredefinedValue:
-	value=MscriptValueSpecification ('alias' alias=STRING)?;
+	value=MscriptValueSpecification ('as' alias=STRING)?;
 
 enum ParameterVisibilityKind:
 	Public='public' | Private='private';

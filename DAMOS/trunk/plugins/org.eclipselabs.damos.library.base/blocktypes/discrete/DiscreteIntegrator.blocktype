@@ -8,8 +8,8 @@ output y
 parameter initialCondition = 0
 parameter gain = 1(1/s) // normalized
 parameter accumulate = false predefined {
-	true alias "yes",
-	false alias "no"
+	true as "yes",
+	false as "no"
 }
 
 behavior {

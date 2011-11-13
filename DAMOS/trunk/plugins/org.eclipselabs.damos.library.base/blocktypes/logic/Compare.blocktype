@@ -5,12 +5,12 @@ input b
 output y
 
 parameter operator = 0 predefined {
-	0 alias "==",
-	1 alias "!=",
-	2 alias "<",
-	3 alias "<=",
-	4 alias ">=",
-	5 alias ">"
+	0 as "==",
+	1 as "!=",
+	2 as "<",
+	3 as "<=",
+	4 as ">=",
+	5 as ">"
 }
 
 behavior {

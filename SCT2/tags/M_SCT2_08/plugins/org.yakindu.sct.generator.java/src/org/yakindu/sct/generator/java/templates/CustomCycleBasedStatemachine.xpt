@@ -1,0 +1,42 @@
+«REM»
+Copyright (c) 2011 committers of YAKINDU and others.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+Contributors:
+	committers of YAKINDU - initial API and implementation
+ 	
+@author Markus Muehlbrandt - Initial contribution and API
+«ENDREM»
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+«IMPORT ecore»
+
+«EXTENSION org::yakindu::sct::generator::java::templates::Expression»
+«EXTENSION org::yakindu::sct::generator::java::templates::Naming»
+
+«DEFINE file(sgen::GeneratorEntry entry) FOR ExecutionFlow»
+«FILE getImplementationPackagePath(entry)+"/"+getCycleBasedStatemachineName() + '.java'»
+«getLicenseHeader()»
+package «getImplementationPackageName(entry)»;
+
+import java.util.HashSet;
+
+import «entry.getBasePackageName()».Event;
+
+public class «getCycleBasedStatemachineName()» extends «getBaseStatemachineName()» {
+
+	public «getCycleBasedStatemachineName()»() {
+		super(new HashSet<Event<?>>());
+	}
+
+	public void runCycle() {
+		runCycle(getOccuredEvents());
+		// remove all events
+		getOccuredEvents().clear();
+	}
+}
+«ENDFILE-»
+«ENDDEFINE»

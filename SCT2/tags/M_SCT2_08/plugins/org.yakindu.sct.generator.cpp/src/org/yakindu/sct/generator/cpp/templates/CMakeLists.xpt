@@ -1,0 +1,48 @@
+«REM»
+
+Templates for the main statechart cpp file.
+
+@auther joern seger
+
+«ENDREM»
+
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+
+«EXTENSION org::yakindu::sct::generator::cpp::templates::Expression»
+«EXTENSION org::yakindu::sct::generator::cpp::templates::Naming»
+
+«DEFINE file FOR ExecutionFlow»
+
+«FILE 'CMakeLists.txt'»
+cmake_minimum_required(VERSION 2.8)
+
+set ( SRC_BASE
+	DataRepository.cpp
+	DummyTimer.cpp
+	EventSet.cpp
+	StatemachineBase.cpp
+)
+
+set ( SRC_EV
+	Statemachine_ev.cpp
+	Statemachine_ev.h
+	main_ev.cpp
+	«StName()»_ev.cpp
+)
+
+set ( SRC_CY
+	Statemachine_cy.cpp
+	Statemachine_cy.h
+	main_cy.cpp
+	«StName()»_cy.cpp
+)
+
+add_definitions( -Wall -O0 -g)
+add_executable(«StName()»_ev_main ${SRC_BASE} ${SRC_EV})
+add_executable(«StName()»_cy_main ${SRC_BASE} ${SRC_CY})
+
+«ENDFILE»
+
+«ENDDEFINE»

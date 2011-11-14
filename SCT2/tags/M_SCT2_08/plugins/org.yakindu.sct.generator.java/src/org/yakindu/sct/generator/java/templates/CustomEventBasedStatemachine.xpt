@@ -1,0 +1,51 @@
+«REM»
+Copyright (c) 2011 committers of YAKINDU and others.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+Contributors:
+	committers of YAKINDU - initial API and implementation
+ 	
+@author Markus Muehlbrandt - Initial contribution and API
+«ENDREM»
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+«IMPORT ecore»
+
+«EXTENSION org::yakindu::sct::generator::java::templates::Expression»
+«EXTENSION org::yakindu::sct::generator::java::templates::Naming»
+
+«DEFINE file(sgen::GeneratorEntry entry) FOR ExecutionFlow»
+«FILE getImplementationPackagePath(entry)+"/"+getEventBasedStatemachineName()+'.java'-»
+«getLicenseHeader()»
+package «getImplementationPackageName(entry)»;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import «entry.getBasePackageName()».Event;
+
+public class «getEventBasedStatemachineName()» extends «getBaseStatemachineName()» {
+
+	public «getEventBasedStatemachineName()»() {
+		super(new LinkedList<Event<?>>());
+	}
+	
+	@Override
+	protected Queue<Event<?>> getOccuredEvents() {
+		return (Queue<Event<?>>) super.getOccuredEvents();
+	}
+	
+	@Override
+	public void runCycle() {
+		if (eventOccured()) {
+			Event<?> event = getOccuredEvents().poll();
+			runCycle(Collections.singletonList(event));
+		}
+	}
+}
+«ENDFILE-»
+«ENDDEFINE»

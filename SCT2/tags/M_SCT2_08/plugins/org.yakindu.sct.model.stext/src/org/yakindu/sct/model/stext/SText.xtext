@@ -1,0 +1,311 @@
+grammar org.yakindu.sct.model.stext.SText with org.eclipse.xtext.common.Terminals
+
+generate stext "http://www.yakindu.org/sct/statechart/SText"
+import "platform:/resource/org.yakindu.sct.model.sgraph/model/emf/sgraph.ecore" as sct
+/* ---- root rules ----
+These root rules are not relevant for the grammar integration in the statechart. They just integrate the different start rules consistently 
+into a single grammar. 
+*/
+Root:
+	(roots+=DefRoot)*;
+
+DefRoot:
+	StatechartRoot | StateRoot | TransitionRoot;
+
+StatechartRoot:
+	'@@statechart@@' def=StatechartDefinition;
+
+StateRoot:
+	'@@state@@' def=StateDeclaration;
+
+TransitionRoot:
+	'@@transition@@' def=TransitionStatement;
+
+	/* ---- start rules ----
+Define the starting points used by the statechart integration. These rules hook in the concrete rules of the specific grammar.
+*/
+StatechartDefinition:
+	{StatechartDefinition}
+	('namespace' namespace = FQN)?
+	(definitionScopes+=StatechartScope)*;
+
+StateDeclaration:
+	scope=SimpleScope;
+
+TransitionStatement:
+//	Reaction;
+	TransitionReaction;
+
+	/* ---- scope rules ----
+Defines different kinds of scopes that contain element definitions. Scopes are used for element definitions in statechart, regions, and state 
+*/
+Scope returns sct::Scope:
+	(SimpleScope | StatechartScope);
+
+	// a SimpleScope is used for states and regions
+SimpleScope returns sct::Scope:
+	{SimpleScope} (declarations+=Declaration)*;
+
+	// defines the poosible scopes for statecharts
+StatechartScope returns sct::Scope:
+	InterfaceScope | InternalScope;
+
+InterfaceScope returns sct::Scope:
+	{InterfaceScope} 'interface' (name=ID)? ':' (declarations+=Declaration)*;
+
+InternalScope returns sct::Scope:
+	{InternalScope} 'internal' ':' (declarations+=Declaration)*;
+
+	/* ---- declarations ----
+a definition is a top level element of a definition scope. */
+Declaration returns sct::Declaration:
+	EventDefinition | VariableDefinition | Clock | Operation | LocalReaction | Entrypoint | Exitpoint;
+
+	// DataElement: EventDefinition | VariableDefinition;
+
+/* ---- event definition ---- */
+EventDefinition returns sct::Event:
+	{EventDefinition} (direction=Direction)? 'event' name=ID (':' type=Type)? (derivation=EventDerivation)?;
+
+EventDerivation:
+	'=' condition=Expression (':' value=Expression)?;
+
+enum Direction:
+	LOCAL='local' | IN='in' | OUT='out';
+
+/* ---- variable definition ---- */
+VariableDefinition returns sct::Variable:
+	{VariableDefinition} 'var' ((readonly?='readonly')? & (external?='external')?) name=ID ':' type=Type ('='
+	initialValue=Literal)?;
+
+/* ---- clock definition ---- */
+Clock returns sct::Declaration:
+	{Clock}'clock' name=ID;
+
+/* ---- clock definition ---- */
+Operation returns sct::Declaration:
+	{Operation} 'operation' name=ID '(' (paramTypes+=Type (',' paramTypes+=Type)*)? ')' (':' type=Type)?;
+
+/* ---- entrypoint definition ---- */
+Entrypoint returns sct::Declaration:
+	{Entrypoint} 'entrypoint' name=ID;
+
+/* ---- exitpoint definition ---- */
+Exitpoint returns sct::Declaration:
+	{Exitpoint} 'exitpoint' name=ID;
+
+/* ---- Datatype rules ---- */
+FQN:
+	ID ('.'ID)*;
+
+	/* ---- reaction rules ----
+Define the structure of reactions that are central for describing the statecharts behavior. 
+*/
+Reaction returns sct::Reaction:
+	LocalReaction | TransitionReaction;
+
+LocalReaction:
+	(trigger=ReactionTrigger) ('/' effect=ReactionEffect) ('#' properties=ReactionProperties)?;
+
+TransitionReaction:
+	{TransitionReaction} (trigger=ReactionTrigger)? ('/' effect=ReactionEffect)? ('#' properties=ReactionProperties)?;
+
+
+ReactionTrigger returns sct::Trigger:
+	{ReactionTrigger} (
+		(triggers+=EventSpec ("," triggers+=EventSpec)* (=>'[' guardExpression=Expression ']')?)
+		| ('[' guardExpression=Expression ']'));
+
+ReactionEffect returns sct::Effect:
+	{ReactionEffect} (actions+=Statement ';')+;
+
+ReactionProperties:
+	{ReactionProperties} (properties+=ReactionProperty)*;
+
+ReactionProperty:
+	ReactionPriority | EntryPointSpec | ExitPointSpec;
+
+ReactionPriority:
+	priority=INT;
+
+EntryPointSpec:
+	'>' entrypoint=[Entrypoint|FQN];
+
+ExitPointSpec:
+	exitpoint=[Exitpoint|FQN] '>';
+
+EventSpec:
+	RegularEventSpec | TimeEventSpec | BuiltinEventSpec;
+
+RegularEventSpec:
+	event=[sct::Event|FQN];
+
+	// TODO: redefine after trigger - we need to use it with clocks
+TimeEventSpec: 
+	type=TimeEventType value=INT (unit=TimeUnit)?;
+
+enum TimeEventType: after | every;
+
+	// TODO: add dereived events like in(state), entered(state)	
+BuiltinEventSpec:
+	EntryEvent | ExitEvent | OnCycleEvent | AlwaysEvent;
+
+EntryEvent:
+	{EntryEvent} 'entry';
+
+ExitEvent:
+	{ExitEvent} 'exit';
+
+OnCycleEvent:
+	{OnCycleEvent} 'oncycle'; // TODO: ?!? better 'ontick' ?!?
+	
+AlwaysEvent:
+	{AlwaysEvent} 'always';
+
+/* --- statements --- */
+Statement returns sct::Statement:
+	Assignment | EventRaising | OperationCall;
+
+Assignment:
+	varRef=[sct::Variable|FQN] operator=AssignmentOperator expression=Expression;
+	
+	
+enum AssignmentOperator
+: assign = '=' 
+| multAssign = '*=' 
+| divAssign = '/=' 
+| modAssign = '%=' 
+| addAssign = '+=' 
+| subAssign = '-=' 
+| leftShiftAssign = '<<=' 
+| rightShiftAssign = '>>=' 
+| andAssign = '&=' 
+| xorAssign = '^=' 
+| orAssign = '|='
+;
+
+
+EventRaising:
+	'raise' event=[sct::Event|FQN] (':' value=Expression)?;
+
+
+//****************
+// Expression Grammar
+//****************
+//ExpressionRule:
+//	expression=(LogicalOrExpression | RaiseEventExpression);
+Expression returns Expression:
+	ConditionalExpression;
+
+
+ConditionalExpression returns Expression
+:  	LogicalOrExpression ( {ConditionalExpression.condition=current} '?' trueCase=LogicalOrExpression ':' falseCase=LogicalOrExpression)?
+;
+
+LogicalOrExpression returns Expression:
+	LogicalAndExpression ({LogicalOrExpression.leftOperand=current} '||'
+	rightOperand=LogicalAndExpression)*;
+
+LogicalAndExpression returns Expression:
+	LogicalNotExpression ({LogicalAndExpression.leftOperand=current}
+	'&&' rightOperand=LogicalNotExpression)*;
+
+LogicalNotExpression returns Expression:
+	BitwiseXorExpression | {LogicalNotExpression} '!'
+	operand=BitwiseXorExpression;
+
+BitwiseXorExpression returns Expression
+	: BitwiseOrExpression ({BitwiseXorExpression.leftOperand=current} '^' rightOperand = BitwiseOrExpression)*
+	;
+
+BitwiseOrExpression returns Expression
+	: BitwiseAndExpression ({BitwiseOrExpression.leftOperand=current} '|' rightOperand = BitwiseAndExpression)*
+	;
+
+BitwiseAndExpression returns Expression
+	: LogicalRelationExpression ({BitwiseAndExpression.leftOperand=current} '&' rightOperand = LogicalRelationExpression)*
+	;
+
+LogicalRelationExpression returns Expression:
+	ShiftExpression
+	({LogicalRelationExpression.leftOperand=current} operator=RelationalOperator
+	rightOperand=ShiftExpression)*;
+
+ShiftExpression returns Expression
+:	NumericalAddSubtractExpression ({ShiftExpression.leftOperand=current} operator=ShiftOperator
+	rightOperand=NumericalAddSubtractExpression)*
+;	
+	
+enum ShiftOperator
+:	left = '<<'
+|   right = '>>'
+;
+
+
+NumericalAddSubtractExpression returns Expression:
+	NumericalMultiplyDivideExpression
+	({NumericalAddSubtractExpression.leftOperand=current}
+	operator=AdditiveOperator
+	rightOperand=NumericalMultiplyDivideExpression)*;
+
+NumericalMultiplyDivideExpression returns Expression:
+	NumericalUnaryExpression
+	({NumericalMultiplyDivideExpression.leftOperand=current}
+	operator=MultiplicativeOperator
+	rightOperand=NumericalUnaryExpression)*;
+
+NumericalUnaryExpression returns Expression:
+	PrimaryExpression | {NumericalUnaryExpression}
+	operator=UnaryOperator operand=PrimaryExpression;
+
+PrimaryExpression returns Expression:
+	ValueExpression | '(' Expression ')' | OperationCall ;
+	
+
+enum AdditiveOperator:
+	plus='+' | minus='-';
+
+enum MultiplicativeOperator:
+	mul='*' | div='/' | mod='%';
+
+enum UnaryOperator:
+	positive='+' | negative='-' | complement='~';
+
+enum RelationalOperator:
+	smaller='<' | smallerEqual='<=' | greater='>' | greaterEqual='>=' |
+	equals='==' | notEquals='!=';
+
+enum TimeUnit:
+	second='s'
+	| millisecond='ms'
+	| nanosecond='ns';
+
+enum Type:
+	void | integer | real | boolean | string;
+
+ValueExpression returns Expression:
+	PrimitiveValueExpression | ElementReferenceExpression;
+
+PrimitiveValueExpression returns Expression:
+	{PrimitiveValueExpression} value=Literal;
+
+ElementReferenceExpression returns Expression:
+	{ElementReferenceExpression} value=[sct::Declaration|FQN];
+
+OperationCall returns Expression:
+	{OperationCall} operation=[Operation|FQN] '(' (args+=Expression (',' args+=Expression)*)? ')';
+
+Literal:
+	BOOL | INT | HEX | STRING | FLOAT;
+
+terminal BOOL:
+	'true' | 'false';
+
+terminal HEX: 
+	('0') ('x'|'X') ('0'..'9'|'a'..'f'|'A'..'F')+
+;
+
+terminal FLOAT:
+	(INT '.' INT) ('e' ('-' | '+') INT)? ('f'|'F'|'d'|'D')?
+;
+

@@ -1,0 +1,50 @@
+GeneratorModel for yakindu::java {
+	statechart InterfaceTest {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/InterfaceTest"
+		}
+	}
+	statechart Test_DeepHistory {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/Test_DeepHistory"
+		}
+	}
+	statechart Test_Expression {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/Test_Expression"
+		}
+	}
+	statechart Test_Hierarchy {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/Test_Hierarchy"
+		}
+	}
+	statechart Test_LocalActions {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/Test_LocalActions"
+		}
+	}
+	statechart Test_ParallelRegions {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/Test_ParallelRegions"
+		}
+	}
+	statechart Test_ShallowHistory {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/Test_ShallowHistory"
+		}
+	}
+	statechart Test_Transition {
+		feature OutletFeature {
+			targetProject = "TestScenarios"
+			targetFolder = "src-gen-java/Test_Transition"
+		}
+	}
+}

@@ -256,12 +256,6 @@
     <genClasses ecoreClass="DML.ecore#//BooleanDirectFeedthroughPolicy">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BooleanDirectFeedthroughPolicy/directFeedthrough"/>
     </genClasses>
-    <genClasses ecoreClass="DML.ecore#//OpaqueDataTypeSpecification">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueDataTypeSpecification/dataType"/>
-    </genClasses>
-    <genClasses ecoreClass="DML.ecore#//OpaqueBehaviorSpecification">
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute DML.ecore#//OpaqueBehaviorSpecification/behavior"/>
-    </genClasses>
     <genClasses ecoreClass="DML.ecore#//Latch">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Latch/initialValue"/>
     </genClasses>

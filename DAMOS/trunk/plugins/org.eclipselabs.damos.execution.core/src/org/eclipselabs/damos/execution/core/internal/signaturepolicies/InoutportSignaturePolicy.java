@@ -13,7 +13,6 @@ package org.eclipselabs.damos.execution.core.internal.signaturepolicies;
 
 import java.util.Map;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
@@ -21,16 +20,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Inoutport;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.execution.core.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.core.util.DataTypeSpecifierUtil;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.InvalidDataType;
 
 /**
  * @author Andreas Unger
@@ -69,28 +65,7 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 	 * @param inoutport
 	 */
 	protected DataType getDataType(MultiStatus status, Inoutport inoutport) {
-		if (inoutport.getDataType() instanceof OpaqueDataTypeSpecification) {
-			OpaqueDataTypeSpecification dataTypeSpecification = (OpaqueDataTypeSpecification) inoutport.getDataType();
-			if (dataTypeSpecification.getDataType() != null && dataTypeSpecification.getDataType().trim().length() > 0) {
-				try {
-					DataType dataType = DataTypeSpecifierUtil.evaluateDataTypeSpecifierDataType(dataTypeSpecification.getDataType());
-					if (!(dataType instanceof InvalidDataType)) {
-						return dataType;
-					} else {
-						status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid data type specified"));
-					}
-				} catch (CoreException e) {
-					status.add(new MultiStatus(
-							ExecutionEnginePlugin.PLUGIN_ID,
-							0,
-							new IStatus[] { e.getStatus() },
-							"Data type evaluation failed",
-							null));
-				}
-			} else {
-				status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "No data type specified"));
-			}
-		} else if (inoutport.getDataType() instanceof MscriptDataTypeSpecification) {
+		if (inoutport.getDataType() instanceof MscriptDataTypeSpecification) {
 			return ((MscriptDataTypeSpecification) inoutport.getDataType()).getType();
 		} else {
 			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));

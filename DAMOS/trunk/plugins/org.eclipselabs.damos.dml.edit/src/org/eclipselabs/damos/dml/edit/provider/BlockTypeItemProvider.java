@@ -251,11 +251,6 @@ public class BlockTypeItemProvider
 			(createChildParameter
 				(DMLPackage.Literals.BLOCK_TYPE__OUTPUT_DEFINITIONS,
 				 DMLFactory.eINSTANCE.createOutputDefinition()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DMLPackage.Literals.BLOCK_TYPE__BEHAVIOR,
-				 DMLFactory.eINSTANCE.createOpaqueBehaviorSpecification()));
 	}
 
 	/**

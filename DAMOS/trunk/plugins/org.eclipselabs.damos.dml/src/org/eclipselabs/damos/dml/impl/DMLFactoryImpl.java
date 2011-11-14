@@ -47,8 +47,6 @@ import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
-import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -147,8 +145,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.SUBSYSTEM_INPUT: return createSubsystemInput();
 			case DMLPackage.SUBSYSTEM_OUTPUT: return createSubsystemOutput();
 			case DMLPackage.BOOLEAN_DIRECT_FEEDTHROUGH_POLICY: return createBooleanDirectFeedthroughPolicy();
-			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION: return createOpaqueDataTypeSpecification();
-			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: return createOpaqueBehaviorSpecification();
 			case DMLPackage.LATCH: return createLatch();
 			case DMLPackage.LATCH_INPUT: return createLatchInput();
 			case DMLPackage.CHOICE: return createChoice();
@@ -551,26 +547,6 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public BooleanDirectFeedthroughPolicy createBooleanDirectFeedthroughPolicy() {
 		BooleanDirectFeedthroughPolicyImpl booleanDirectFeedthroughPolicy = new BooleanDirectFeedthroughPolicyImpl();
 		return booleanDirectFeedthroughPolicy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OpaqueDataTypeSpecification createOpaqueDataTypeSpecification() {
-		OpaqueDataTypeSpecificationImpl opaqueDataTypeSpecification = new OpaqueDataTypeSpecificationImpl();
-		return opaqueDataTypeSpecification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OpaqueBehaviorSpecification createOpaqueBehaviorSpecification() {
-		OpaqueBehaviorSpecificationImpl opaqueBehaviorSpecification = new OpaqueBehaviorSpecificationImpl();
-		return opaqueBehaviorSpecification;
 	}
 
 	/**

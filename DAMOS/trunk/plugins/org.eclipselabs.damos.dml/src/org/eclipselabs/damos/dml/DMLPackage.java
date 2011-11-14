@@ -536,7 +536,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getINamedElement()
 	 * @generated
 	 */
-	int INAMED_ELEMENT = 79;
+	int INAMED_ELEMENT = 77;
 
 	/**
 	 * The number of structural features of the '<em>INamed Element</em>' class.
@@ -2811,62 +2811,6 @@ public interface DMLPackage extends EPackage {
 	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY_FEATURE_COUNT = DIRECT_FEEDTHROUGH_POLICY_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OpaqueDataTypeSpecificationImpl <em>Opaque Data Type Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.OpaqueDataTypeSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueDataTypeSpecification()
-	 * @generated
-	 */
-	int OPAQUE_DATA_TYPE_SPECIFICATION = 57;
-
-	/**
-	 * The feature id for the '<em><b>Data Type</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_DATA_TYPE_SPECIFICATION__DATA_TYPE = DATA_TYPE_SPECIFICATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Opaque Data Type Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_DATA_TYPE_SPECIFICATION_FEATURE_COUNT = DATA_TYPE_SPECIFICATION_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.OpaqueBehaviorSpecificationImpl <em>Opaque Behavior Specification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dml.impl.OpaqueBehaviorSpecificationImpl
-	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueBehaviorSpecification()
-	 * @generated
-	 */
-	int OPAQUE_BEHAVIOR_SPECIFICATION = 58;
-
-	/**
-	 * The feature id for the '<em><b>Behavior</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Opaque Behavior Specification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OPAQUE_BEHAVIOR_SPECIFICATION_FEATURE_COUNT = BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.LatchImpl <em>Latch</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2874,7 +2818,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getLatch()
 	 * @generated
 	 */
-	int LATCH = 59;
+	int LATCH = 57;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2965,7 +2909,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getLatchInput()
 	 * @generated
 	 */
-	int LATCH_INPUT = 60;
+	int LATCH_INPUT = 58;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3002,7 +2946,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompound()
 	 * @generated
 	 */
-	int COMPOUND = 61;
+	int COMPOUND = 59;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3057,7 +3001,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundMember()
 	 * @generated
 	 */
-	int COMPOUND_MEMBER = 62;
+	int COMPOUND_MEMBER = 60;
 
 	/**
 	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
@@ -3085,7 +3029,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundConnector()
 	 * @generated
 	 */
-	int COMPOUND_CONNECTOR = 63;
+	int COMPOUND_CONNECTOR = 61;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3113,7 +3057,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundInputConnector()
 	 * @generated
 	 */
-	int COMPOUND_INPUT_CONNECTOR = 64;
+	int COMPOUND_INPUT_CONNECTOR = 62;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3141,7 +3085,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundOutputConnector()
 	 * @generated
 	 */
-	int COMPOUND_OUTPUT_CONNECTOR = 65;
+	int COMPOUND_OUTPUT_CONNECTOR = 63;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3169,7 +3113,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoice()
 	 * @generated
 	 */
-	int CHOICE = 66;
+	int CHOICE = 64;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3260,7 +3204,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInput()
 	 * @generated
 	 */
-	int CHOICE_INPUT = 67;
+	int CHOICE_INPUT = 65;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3297,7 +3241,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
 	 * @generated
 	 */
-	int CHOICE_INPUT_PORT = 68;
+	int CHOICE_INPUT_PORT = 66;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' container reference.
@@ -3334,7 +3278,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 69;
+	int ACTION = 67;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3398,7 +3342,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
 	 * @generated
 	 */
-	int ACTION_LINK = 70;
+	int ACTION_LINK = 68;
 
 	/**
 	 * The feature id for the '<em><b>Choice</b></em>' container reference.
@@ -3444,7 +3388,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 71;
+	int JOIN = 69;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3526,7 +3470,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoinInput()
 	 * @generated
 	 */
-	int JOIN_INPUT = 72;
+	int JOIN_INPUT = 70;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3563,7 +3507,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
 	 * @generated
 	 */
-	int WHILE_LOOP = 73;
+	int WHILE_LOOP = 71;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3636,7 +3580,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
 	 * @generated
 	 */
-	int WHILE_LOOP_CONDITION = 74;
+	int WHILE_LOOP_CONDITION = 72;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3664,7 +3608,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemory()
 	 * @generated
 	 */
-	int MEMORY = 75;
+	int MEMORY = 73;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3746,7 +3690,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInitialCondition()
 	 * @generated
 	 */
-	int MEMORY_INITIAL_CONDITION = 76;
+	int MEMORY_INITIAL_CONDITION = 74;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3783,7 +3727,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInput()
 	 * @generated
 	 */
-	int MEMORY_INPUT = 77;
+	int MEMORY_INPUT = 75;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3820,7 +3764,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryOutput()
 	 * @generated
 	 */
-	int MEMORY_OUTPUT = 78;
+	int MEMORY_OUTPUT = 76;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -3857,7 +3801,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getITextualElement()
 	 * @generated
 	 */
-	int ITEXTUAL_ELEMENT = 80;
+	int ITEXTUAL_ELEMENT = 78;
 
 	/**
 	 * The number of structural features of the '<em>ITextual Element</em>' class.
@@ -3876,7 +3820,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getTimingKind()
 	 * @generated
 	 */
-	int TIMING_KIND = 82;
+	int TIMING_KIND = 80;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}' enum.
@@ -3886,7 +3830,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterVisibilityKind()
 	 * @generated
 	 */
-	int PARAMETER_VISIBILITY_KIND = 81;
+	int PARAMETER_VISIBILITY_KIND = 79;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -5128,48 +5072,6 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getBooleanDirectFeedthroughPolicy_DirectFeedthrough();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OpaqueDataTypeSpecification <em>Opaque Data Type Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Opaque Data Type Specification</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueDataTypeSpecification
-	 * @generated
-	 */
-	EClass getOpaqueDataTypeSpecification();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.OpaqueDataTypeSpecification#getDataType <em>Data Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Data Type</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueDataTypeSpecification#getDataType()
-	 * @see #getOpaqueDataTypeSpecification()
-	 * @generated
-	 */
-	EAttribute getOpaqueDataTypeSpecification_DataType();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification <em>Opaque Behavior Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Opaque Behavior Specification</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueBehaviorSpecification
-	 * @generated
-	 */
-	EClass getOpaqueBehaviorSpecification();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification#getBehavior <em>Behavior</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Behavior</em>'.
-	 * @see org.eclipselabs.damos.dml.OpaqueBehaviorSpecification#getBehavior()
-	 * @see #getOpaqueBehaviorSpecification()
-	 * @generated
-	 */
-	EAttribute getOpaqueBehaviorSpecification_Behavior();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Latch <em>Latch</em>}'.
@@ -6611,42 +6513,6 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute BOOLEAN_DIRECT_FEEDTHROUGH_POLICY__DIRECT_FEEDTHROUGH = eINSTANCE.getBooleanDirectFeedthroughPolicy_DirectFeedthrough();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OpaqueDataTypeSpecificationImpl <em>Opaque Data Type Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.OpaqueDataTypeSpecificationImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueDataTypeSpecification()
-		 * @generated
-		 */
-		EClass OPAQUE_DATA_TYPE_SPECIFICATION = eINSTANCE.getOpaqueDataTypeSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Data Type</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPAQUE_DATA_TYPE_SPECIFICATION__DATA_TYPE = eINSTANCE.getOpaqueDataTypeSpecification_DataType();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.OpaqueBehaviorSpecificationImpl <em>Opaque Behavior Specification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dml.impl.OpaqueBehaviorSpecificationImpl
-		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getOpaqueBehaviorSpecification()
-		 * @generated
-		 */
-		EClass OPAQUE_BEHAVIOR_SPECIFICATION = eINSTANCE.getOpaqueBehaviorSpecification();
-
-		/**
-		 * The meta object literal for the '<em><b>Behavior</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR = eINSTANCE.getOpaqueBehaviorSpecification_Behavior();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.LatchImpl <em>Latch</em>}' class.

@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * @see org.eclipselabs.mscript.language.functionmodel.FunctionModelPackage
+ * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage
  * @generated
  */
 public class FunctionModelValidator extends EObjectValidator {
@@ -45,7 +45,7 @@ public class FunctionModelValidator extends EObjectValidator {
 	 * @see org.eclipse.emf.common.util.Diagnostic#getCode()
 	 * @generated
 	 */
-	public static final String DIAGNOSTIC_SOURCE = "org.eclipselabs.mscript.language.functionmodel";
+	public static final String DIAGNOSTIC_SOURCE = "org.eclipselabs.damos.mscript.functionmodel";
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has No Duplicate Equations' of 'Function Descriptor'.

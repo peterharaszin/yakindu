@@ -14,8 +14,9 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Size;
-import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
+import org.eclipselabs.damos.diagram.dmlnotation.FlippableBounds;
+import org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds;
 
 /**
  * <!-- begin-user-doc -->
@@ -74,8 +75,12 @@ public class DMLNotationAdapterFactory extends AdapterFactoryImpl {
 	protected DMLNotationSwitch<Adapter> modelSwitch =
 		new DMLNotationSwitch<Adapter>() {
 			@Override
-			public Adapter caseComponentLayoutConstraint(ComponentLayoutConstraint object) {
-				return createComponentLayoutConstraintAdapter();
+			public Adapter caseFlippableBounds(FlippableBounds object) {
+				return createFlippableBoundsAdapter();
+			}
+			@Override
+			public Adapter caseRotatableBounds(RotatableBounds object) {
+				return createRotatableBoundsAdapter();
 			}
 			@Override
 			public Adapter caseLayoutConstraint(LayoutConstraint object) {
@@ -114,16 +119,30 @@ public class DMLNotationAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint <em>Component Layout Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.diagram.dmlnotation.FlippableBounds <em>Flippable Bounds</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint
+	 * @see org.eclipselabs.damos.diagram.dmlnotation.FlippableBounds
 	 * @generated
 	 */
-	public Adapter createComponentLayoutConstraintAdapter() {
+	public Adapter createFlippableBoundsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds <em>Rotatable Bounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds
+	 * @generated
+	 */
+	public Adapter createRotatableBoundsAdapter() {
 		return null;
 	}
 

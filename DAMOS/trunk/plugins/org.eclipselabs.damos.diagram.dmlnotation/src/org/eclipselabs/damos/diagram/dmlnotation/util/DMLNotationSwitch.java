@@ -6,16 +6,16 @@
  */
 package org.eclipselabs.damos.diagram.dmlnotation.util;
 
-import java.util.List;
-
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Size;
-import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
+import org.eclipselabs.damos.diagram.dmlnotation.FlippableBounds;
+import org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
  * @see org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage
  * @generated
  */
-public class DMLNotationSwitch<T> {
+public class DMLNotationSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -52,14 +52,16 @@ public class DMLNotationSwitch<T> {
 	}
 
 	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @parameter ePackage the package in question.
+	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
-	public T doSwitch(EObject theEObject) {
-		return doSwitch(theEObject.eClass(), theEObject);
+	@Override
+	protected boolean isSwitchFor(EPackage ePackage) {
+		return ePackage == modelPackage;
 	}
 
 	/**
@@ -69,35 +71,27 @@ public class DMLNotationSwitch<T> {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected T doSwitch(EClass theEClass, EObject theEObject) {
-		if (theEClass.eContainer() == modelPackage) {
-			return doSwitch(theEClass.getClassifierID(), theEObject);
-		}
-		else {
-			List<EClass> eSuperTypes = theEClass.getESuperTypes();
-			return
-				eSuperTypes.isEmpty() ?
-					defaultCase(theEObject) :
-					doSwitch(eSuperTypes.get(0), theEObject);
-		}
-	}
-
-	/**
-	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the first non-null result returned by a <code>caseXXX</code> call.
-	 * @generated
-	 */
+	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case DMLNotationPackage.COMPONENT_LAYOUT_CONSTRAINT: {
-				ComponentLayoutConstraint componentLayoutConstraint = (ComponentLayoutConstraint)theEObject;
-				T result = caseComponentLayoutConstraint(componentLayoutConstraint);
-				if (result == null) result = caseBounds(componentLayoutConstraint);
-				if (result == null) result = caseLocation(componentLayoutConstraint);
-				if (result == null) result = caseSize(componentLayoutConstraint);
-				if (result == null) result = caseLayoutConstraint(componentLayoutConstraint);
+			case DMLNotationPackage.FLIPPABLE_BOUNDS: {
+				FlippableBounds flippableBounds = (FlippableBounds)theEObject;
+				T result = caseFlippableBounds(flippableBounds);
+				if (result == null) result = caseBounds(flippableBounds);
+				if (result == null) result = caseLocation(flippableBounds);
+				if (result == null) result = caseSize(flippableBounds);
+				if (result == null) result = caseLayoutConstraint(flippableBounds);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLNotationPackage.ROTATABLE_BOUNDS: {
+				RotatableBounds rotatableBounds = (RotatableBounds)theEObject;
+				T result = caseRotatableBounds(rotatableBounds);
+				if (result == null) result = caseFlippableBounds(rotatableBounds);
+				if (result == null) result = caseBounds(rotatableBounds);
+				if (result == null) result = caseLocation(rotatableBounds);
+				if (result == null) result = caseSize(rotatableBounds);
+				if (result == null) result = caseLayoutConstraint(rotatableBounds);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -106,17 +100,32 @@ public class DMLNotationSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Component Layout Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Flippable Bounds</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Component Layout Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Flippable Bounds</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseComponentLayoutConstraint(ComponentLayoutConstraint object) {
+	public T caseFlippableBounds(FlippableBounds object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Rotatable Bounds</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Rotatable Bounds</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRotatableBounds(RotatableBounds object) {
 		return null;
 	}
 
@@ -191,6 +200,7 @@ public class DMLNotationSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
+	@Override
 	public T defaultCase(EObject object) {
 		return null;
 	}

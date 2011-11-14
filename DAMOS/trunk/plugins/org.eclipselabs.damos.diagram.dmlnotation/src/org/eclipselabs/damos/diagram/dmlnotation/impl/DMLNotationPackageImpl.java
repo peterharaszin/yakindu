@@ -11,9 +11,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationFactory;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
+import org.eclipselabs.damos.diagram.dmlnotation.FlippableBounds;
+import org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +28,13 @@ public class DMLNotationPackageImpl extends EPackageImpl implements DMLNotationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass componentLayoutConstraintEClass = null;
+	private EClass flippableBoundsEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass rotatableBoundsEClass = null;
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -97,8 +104,8 @@ public class DMLNotationPackageImpl extends EPackageImpl implements DMLNotationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getComponentLayoutConstraint() {
-		return componentLayoutConstraintEClass;
+	public EClass getFlippableBounds() {
+		return flippableBoundsEClass;
 	}
 
 	/**
@@ -106,8 +113,8 @@ public class DMLNotationPackageImpl extends EPackageImpl implements DMLNotationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getComponentLayoutConstraint_Flipped() {
-		return (EAttribute)componentLayoutConstraintEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFlippableBounds_Flipped() {
+		return (EAttribute)flippableBoundsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -115,8 +122,17 @@ public class DMLNotationPackageImpl extends EPackageImpl implements DMLNotationP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getComponentLayoutConstraint_Rotation() {
-		return (EAttribute)componentLayoutConstraintEClass.getEStructuralFeatures().get(1);
+	public EClass getRotatableBounds() {
+		return rotatableBoundsEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRotatableBounds_Rotation() {
+		return (EAttribute)rotatableBoundsEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -147,9 +163,11 @@ public class DMLNotationPackageImpl extends EPackageImpl implements DMLNotationP
 		isCreated = true;
 
 		// Create classes and their features
-		componentLayoutConstraintEClass = createEClass(COMPONENT_LAYOUT_CONSTRAINT);
-		createEAttribute(componentLayoutConstraintEClass, COMPONENT_LAYOUT_CONSTRAINT__FLIPPED);
-		createEAttribute(componentLayoutConstraintEClass, COMPONENT_LAYOUT_CONSTRAINT__ROTATION);
+		flippableBoundsEClass = createEClass(FLIPPABLE_BOUNDS);
+		createEAttribute(flippableBoundsEClass, FLIPPABLE_BOUNDS__FLIPPED);
+
+		rotatableBoundsEClass = createEClass(ROTATABLE_BOUNDS);
+		createEAttribute(rotatableBoundsEClass, ROTATABLE_BOUNDS__ROTATION);
 	}
 
 	/**
@@ -183,12 +201,15 @@ public class DMLNotationPackageImpl extends EPackageImpl implements DMLNotationP
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		componentLayoutConstraintEClass.getESuperTypes().add(theNotationPackage.getBounds());
+		flippableBoundsEClass.getESuperTypes().add(theNotationPackage.getBounds());
+		rotatableBoundsEClass.getESuperTypes().add(this.getFlippableBounds());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(componentLayoutConstraintEClass, ComponentLayoutConstraint.class, "ComponentLayoutConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getComponentLayoutConstraint_Flipped(), ecorePackage.getEBoolean(), "flipped", null, 0, 1, ComponentLayoutConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComponentLayoutConstraint_Rotation(), ecorePackage.getEInt(), "rotation", null, 0, 1, ComponentLayoutConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(flippableBoundsEClass, FlippableBounds.class, "FlippableBounds", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFlippableBounds_Flipped(), ecorePackage.getEBoolean(), "flipped", null, 0, 1, FlippableBounds.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(rotatableBoundsEClass, RotatableBounds.class, "RotatableBounds", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRotatableBounds_Rotation(), ecorePackage.getEInt(), "rotation", null, 0, 1, RotatableBounds.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

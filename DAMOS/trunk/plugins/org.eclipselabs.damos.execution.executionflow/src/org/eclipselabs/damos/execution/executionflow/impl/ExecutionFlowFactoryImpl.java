@@ -43,7 +43,7 @@ public class ExecutionFlowFactoryImpl extends EFactoryImpl implements ExecutionF
 	 */
 	public static ExecutionFlowFactory init() {
 		try {
-			ExecutionFlowFactory theExecutionFlowFactory = (ExecutionFlowFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/ExecutionFlow/1.0.0"); 
+			ExecutionFlowFactory theExecutionFlowFactory = (ExecutionFlowFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/2011/ExecutionFlow"); 
 			if (theExecutionFlowFactory != null) {
 				return theExecutionFlowFactory;
 			}

@@ -44,7 +44,7 @@ public class ComponentViewFactory extends AbstractShapeViewFactory {
 	 * @see org.eclipse.gmf.runtime.diagram.ui.view.factories.AbstractShapeViewFactory#createLayoutConstraint()
 	 */
 	protected LayoutConstraint createLayoutConstraint() {
-		return DMLNotationFactory.eINSTANCE.createComponentLayoutConstraint();
+		return DMLNotationFactory.eINSTANCE.createRotatableBounds();
 	}
 	
 }

@@ -83,7 +83,7 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 */
 	public static DMLFactory init() {
 		try {
-			DMLFactory theDMLFactory = (DMLFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/DML/1.0.0"); 
+			DMLFactory theDMLFactory = (DMLFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/2011/DML"); 
 			if (theDMLFactory != null) {
 				return theDMLFactory;
 			}

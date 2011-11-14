@@ -18,7 +18,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
+import org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds;
 
 /**
  * @author Andreas Unger
@@ -40,7 +40,7 @@ public class ResetFlipAndRotateComponentCommand extends AbstractTransactionalCom
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		ComponentLayoutConstraint l = (ComponentLayoutConstraint) node.getLayoutConstraint();
+		RotatableBounds l = (RotatableBounds) node.getLayoutConstraint();
 
 		l.setFlipped(false);
 
@@ -57,8 +57,8 @@ public class ResetFlipAndRotateComponentCommand extends AbstractTransactionalCom
 	}
 
 	public boolean canExecute() {
-		if (node != null && node.getLayoutConstraint() instanceof ComponentLayoutConstraint) {
-			ComponentLayoutConstraint l = (ComponentLayoutConstraint) node.getLayoutConstraint();
+		if (node != null && node.getLayoutConstraint() instanceof RotatableBounds) {
+			RotatableBounds l = (RotatableBounds) node.getLayoutConstraint();
 			if (l.isFlipped() || l.getRotation() != 0) {
 				return super.canExecute();
 			}

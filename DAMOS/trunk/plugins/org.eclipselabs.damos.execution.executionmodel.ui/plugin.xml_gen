@@ -71,6 +71,19 @@
         </page>
     </extension>
     <extension
+            point="org.eclipse.ui.propertyPages">
+        <page
+            class="org.eclipselabs.damos.execution.executionmodel.ui.ExecutionModelExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+            id="org.eclipselabs.damos.execution.executionmodel.ExecutionModel"
+            name="ExecutionModel">
+            <keywordReference id="org.eclipselabs.damos.execution.executionmodel.ui.keyword_ExecutionModel"/>
+            <enabledWhen>
+	            <adapt type="org.eclipse.core.resources.IProject"/>
+			</enabledWhen>
+	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
+        </page>
+    </extension>
+    <extension
         point="org.eclipse.ui.keywords">
         <keyword
             id="org.eclipselabs.damos.execution.executionmodel.ui.keyword_ExecutionModel"

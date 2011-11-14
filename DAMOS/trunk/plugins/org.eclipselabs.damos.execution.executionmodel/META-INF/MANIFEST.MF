@@ -14,7 +14,9 @@ Export-Package: org.eclipselabs.damos.execution.executionmodel,
  org.eclipselabs.damos.execution.executionmodel.parseTreeConstruction,
  org.eclipselabs.damos.execution.executionmodel.parser.antlr,
  org.eclipselabs.damos.execution.executionmodel.parser.antlr.internal,
- org.eclipselabs.damos.execution.executionmodel.validation
+ org.eclipselabs.damos.execution.executionmodel.validation,
+ org.eclipselabs.damos.execution.executionmodel.scoping,
+ org.eclipselabs.damos.execution.executionmodel.formatting
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.mwe2.launch;bundle-version="2.0.0",

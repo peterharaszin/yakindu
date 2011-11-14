@@ -31,4 +31,6 @@ Export-Package: org.eclipselabs.damos.dmltext,
  org.eclipselabs.damos.dmltext.resource,
  org.eclipselabs.damos.dmltext.services,
  org.eclipselabs.damos.dmltext.util,
- org.eclipselabs.damos.dmltext.validation
+ org.eclipselabs.damos.dmltext.validation,
+ org.eclipselabs.damos.dmltext.scoping,
+ org.eclipselabs.damos.dmltext.formatting

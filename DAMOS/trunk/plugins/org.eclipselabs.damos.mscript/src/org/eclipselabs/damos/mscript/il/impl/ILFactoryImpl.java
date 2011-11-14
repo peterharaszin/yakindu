@@ -42,7 +42,7 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	 */
 	public static ILFactory init() {
 		try {
-			ILFactory theILFactory = (ILFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/IL"); 
+			ILFactory theILFactory = (ILFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/IL"); 
 			if (theILFactory != null) {
 				return theILFactory;
 			}

@@ -32,7 +32,7 @@ public class DMLTextFactoryImpl extends EFactoryImpl implements DMLTextFactory {
 	 */
 	public static DMLTextFactory init() {
 		try {
-			DMLTextFactory theDMLTextFactory = (DMLTextFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/DMLText/1.0.0"); 
+			DMLTextFactory theDMLTextFactory = (DMLTextFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/2011/DMLText"); 
 			if (theDMLTextFactory != null) {
 				return theDMLTextFactory;
 			}

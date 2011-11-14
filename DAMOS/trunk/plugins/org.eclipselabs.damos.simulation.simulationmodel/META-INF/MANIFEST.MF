@@ -15,7 +15,9 @@ Export-Package: org.eclipselabs.damos.simulation.simulationmodel,
  org.eclipselabs.damos.simulation.simulationmodel.parseTreeConstruction,
  org.eclipselabs.damos.simulation.simulationmodel.parser.antlr,
  org.eclipselabs.damos.simulation.simulationmodel.parser.antlr.internal,
- org.eclipselabs.damos.simulation.simulationmodel.validation
+ org.eclipselabs.damos.simulation.simulationmodel.validation,
+ org.eclipselabs.damos.simulation.simulationmodel.scoping,
+ org.eclipselabs.damos.simulation.simulationmodel.formatting
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipselabs.damos.common;bundle-version="0.2.0",

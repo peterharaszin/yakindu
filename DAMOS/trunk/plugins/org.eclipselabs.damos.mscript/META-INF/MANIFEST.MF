@@ -49,5 +49,8 @@ Export-Package: org.eclipselabs.damos.mscript,
  org.eclipselabs.damos.mscript.computationmodel.parseTreeConstruction,
  org.eclipselabs.damos.mscript.computationmodel.parser.antlr,
  org.eclipselabs.damos.mscript.computationmodel.parser.antlr.internal,
- org.eclipselabs.damos.mscript.computationmodel.validation
+ org.eclipselabs.damos.mscript.computationmodel.validation,
+ org.eclipselabs.damos.mscript.formatting,
+ org.eclipselabs.damos.mscript.computationmodel.scoping,
+ org.eclipselabs.damos.mscript.computationmodel.formatting
 

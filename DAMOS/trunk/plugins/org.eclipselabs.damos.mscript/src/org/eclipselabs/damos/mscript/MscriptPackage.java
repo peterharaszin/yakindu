@@ -43,7 +43,7 @@ public interface MscriptPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/Mscript";
+	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/Mscript";
 
 	/**
 	 * The package namespace name.

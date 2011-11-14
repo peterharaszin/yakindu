@@ -16490,6 +16490,7 @@ protected class ArrayConstructionOperator_Alternatives_2 extends AlternativesTok
 		switch(index) {
 			case 0: return new ArrayConstructionOperator_Group_2_0(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new ArrayConstructionOperator_Group_2_1(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new ArrayConstructionOperator_ExpressionsAssignment_1(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}

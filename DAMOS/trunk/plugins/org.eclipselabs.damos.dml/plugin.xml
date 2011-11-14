@@ -19,7 +19,7 @@
       <package
             class="org.eclipselabs.damos.dml.DMLPackage"
             genModel="model/DML.genmodel"
-            uri="http://www.eclipselabs.org/damos/DML/1.0.0">
+            uri="http://www.eclipselabs.org/damos/2011/DML">
       </package>
    </extension>
    <extension

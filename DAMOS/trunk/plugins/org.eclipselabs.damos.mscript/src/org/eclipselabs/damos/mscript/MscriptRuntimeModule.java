@@ -15,7 +15,7 @@ import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
 import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameConverter;
 import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameProvider;
-import org.eclipselabs.damos.mscript.scoping.GlobalScopeProvider;
+import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -36,7 +36,7 @@ public class MscriptRuntimeModule extends org.eclipselabs.damos.mscript.Abstract
 	 */
 	@Override
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return GlobalScopeProvider.class;
+		return MscriptGlobalScopeProvider.class;
 	}
 	
 	public Class<? extends QualifiedNameValueConverter> bindQualifiedNameValueConverter() {

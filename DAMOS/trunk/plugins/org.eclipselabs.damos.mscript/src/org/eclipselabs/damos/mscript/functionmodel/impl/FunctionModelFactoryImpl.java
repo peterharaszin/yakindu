@@ -37,7 +37,7 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	 */
 	public static FunctionModelFactory init() {
 		try {
-			FunctionModelFactory theFunctionModelFactory = (FunctionModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/FunctionModel"); 
+			FunctionModelFactory theFunctionModelFactory = (FunctionModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/FunctionModel"); 
 			if (theFunctionModelFactory != null) {
 				return theFunctionModelFactory;
 			}

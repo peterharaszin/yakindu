@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
       <metamodel
-            nsURI="http://www.eclipselabs.org/damos/DML/1.0.0">
+            nsURI="http://www.eclipselabs.org/damos/2011/DML">
          <metamodelType
                eclass="Fragment"
                edithelper="org.eclipselabs.damos.diagram.core.internal.edithelpers.FragmentEditHelper"

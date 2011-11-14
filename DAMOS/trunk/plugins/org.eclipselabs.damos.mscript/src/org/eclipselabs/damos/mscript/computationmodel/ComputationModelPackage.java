@@ -42,7 +42,7 @@ public interface ComputationModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/ComputationModel";
+	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/ComputationModel";
 
 	/**
 	 * The package namespace name.

@@ -37,7 +37,7 @@ public class ComputationModelFactoryImpl extends EFactoryImpl implements Computa
 	 */
 	public static ComputationModelFactory init() {
 		try {
-			ComputationModelFactory theComputationModelFactory = (ComputationModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/ComputationModel"); 
+			ComputationModelFactory theComputationModelFactory = (ComputationModelFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/ComputationModel"); 
 			if (theComputationModelFactory != null) {
 				return theComputationModelFactory;
 			}

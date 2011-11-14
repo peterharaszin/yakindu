@@ -11,9 +11,11 @@
   <foreignModel>DMLNotation.ecore</foreignModel>
   <genPackages prefix="DMLNotation" basePackage="org.eclipselabs.damos.diagram" disposableProviderFactory="true"
       ecorePackage="DMLNotation.ecore#/">
-    <genClasses ecoreClass="DMLNotation.ecore#//ComponentLayoutConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMLNotation.ecore#//ComponentLayoutConstraint/flipped"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMLNotation.ecore#//ComponentLayoutConstraint/rotation"/>
+    <genClasses ecoreClass="DMLNotation.ecore#//FlippableBounds">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMLNotation.ecore#//FlippableBounds/flipped"/>
+    </genClasses>
+    <genClasses ecoreClass="DMLNotation.ecore#//RotatableBounds">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DMLNotation.ecore#//RotatableBounds/rotation"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

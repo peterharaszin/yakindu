@@ -12,7 +12,7 @@
 
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            uri="http://www.eclipselabs.org/damos/DML/1.0.0"
+            uri="http://www.eclipselabs.org/damos/2011/DML"
             class="org.eclipselabs.damos.dml.edit.provider.DMLItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.dmltext.parser.antlr;
 
-import org.eclipselabs.damos.dmltext.parser.antlr.DMLTextParser;
 
 /**
  * @author Andreas Unger

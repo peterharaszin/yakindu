@@ -11,9 +11,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationFactory;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
+import org.eclipselabs.damos.diagram.dmlnotation.FlippableBounds;
+import org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +31,7 @@ public class DMLNotationFactoryImpl extends EFactoryImpl implements DMLNotationF
 	 */
 	public static DMLNotationFactory init() {
 		try {
-			DMLNotationFactory theDMLNotationFactory = (DMLNotationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/DMLNotation/1.0.0"); 
+			DMLNotationFactory theDMLNotationFactory = (DMLNotationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/2011/DMLNotation"); 
 			if (theDMLNotationFactory != null) {
 				return theDMLNotationFactory;
 			}
@@ -59,7 +60,8 @@ public class DMLNotationFactoryImpl extends EFactoryImpl implements DMLNotationF
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case DMLNotationPackage.COMPONENT_LAYOUT_CONSTRAINT: return createComponentLayoutConstraint();
+			case DMLNotationPackage.FLIPPABLE_BOUNDS: return createFlippableBounds();
+			case DMLNotationPackage.ROTATABLE_BOUNDS: return createRotatableBounds();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -70,9 +72,19 @@ public class DMLNotationFactoryImpl extends EFactoryImpl implements DMLNotationF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComponentLayoutConstraint createComponentLayoutConstraint() {
-		ComponentLayoutConstraintImpl componentLayoutConstraint = new ComponentLayoutConstraintImpl();
-		return componentLayoutConstraint;
+	public FlippableBounds createFlippableBounds() {
+		FlippableBoundsImpl flippableBounds = new FlippableBoundsImpl();
+		return flippableBounds;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RotatableBounds createRotatableBounds() {
+		RotatableBoundsImpl rotatableBounds = new RotatableBoundsImpl();
+		return rotatableBounds;
 	}
 
 	/**

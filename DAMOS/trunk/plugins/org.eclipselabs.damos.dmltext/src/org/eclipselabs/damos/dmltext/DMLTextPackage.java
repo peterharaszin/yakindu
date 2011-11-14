@@ -41,7 +41,7 @@ public interface DMLTextPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/DMLText/1.0.0";
+	String eNS_URI = "http://www.eclipselabs.org/damos/2011/DMLText";
 
 	/**
 	 * The package namespace name.

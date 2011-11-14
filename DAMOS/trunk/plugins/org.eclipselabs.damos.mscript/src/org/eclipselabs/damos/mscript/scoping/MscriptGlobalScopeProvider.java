@@ -33,12 +33,12 @@ import com.google.inject.Inject;
  * @author Andreas Unger
  *
  */
-public class GlobalScopeProvider extends ImportUriGlobalScopeProvider {
+public class MscriptGlobalScopeProvider extends ImportUriGlobalScopeProvider {
 	
 	/**
 	 * 
 	 */
-	private static final String LIBRARY_URI = "/org.eclipselabs.damos.mscript/model/MscriptLibrary.xmi";
+	private static final String LIBRARY_URI = "http://www.eclipselabs.org/damos/mscript/library/Standard.xmi";
 
 	@Inject
 	private ResourceSet resourceSet;
@@ -64,10 +64,10 @@ public class GlobalScopeProvider extends ImportUriGlobalScopeProvider {
 		if (eObjectDescriptions != null) {
 			return eObjectDescriptions;
 		}
-		synchronized (GlobalScopeProvider.class) {
+		synchronized (MscriptGlobalScopeProvider.class) {
 			if (eObjectDescriptions == null) {
 				eObjectDescriptions = new ArrayList<IEObjectDescription>();
-				URI uri = URI.createPlatformPluginURI(LIBRARY_URI, true);
+				URI uri = URI.createURI(LIBRARY_URI, true);
 				Resource resource = resourceSet.getResource(uri, true);
 				for (EObject eObject : resource.getContents().get(0).eContents()) {
 					eObjectDescriptions.add(EObjectDescription.create(((Definition) eObject).getName(), eObject));

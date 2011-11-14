@@ -19,7 +19,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipselabs.damos.diagram.core.internal.util.MathUtil;
-import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
+import org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds;
 
 /**
  * @author Andreas Unger
@@ -41,7 +41,7 @@ public class RotateComponentCommand extends AbstractTransactionalCommand {
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		ComponentLayoutConstraint l = (ComponentLayoutConstraint) node.getLayoutConstraint();
+		RotatableBounds l = (RotatableBounds) node.getLayoutConstraint();
 
 		// Transform the size of the block (swap width and height) 
 		int width = l.getWidth();
@@ -55,7 +55,7 @@ public class RotateComponentCommand extends AbstractTransactionalCommand {
 	}
 
 	public boolean canExecute() {
-		if (node != null && node.getLayoutConstraint() instanceof ComponentLayoutConstraint) {
+		if (node != null && node.getLayoutConstraint() instanceof RotatableBounds) {
 			return super.canExecute();
 		}
 		return false;

@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.swt.graphics.Color;
-import org.eclipselabs.damos.diagram.dmlnotation.ComponentLayoutConstraint;
+import org.eclipselabs.damos.diagram.dmlnotation.RotatableBounds;
 import org.eclipselabs.damos.diagram.dmlnotation.DMLNotationPackage;
 import org.eclipselabs.damos.diagram.ui.editpolicies.ComponentCanonicalEditPolicy;
 import org.eclipselabs.damos.diagram.ui.editpolicies.DeleteSemanticComponentEditPolicy;
@@ -108,8 +108,8 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		Node node = (Node) getNotationView();
 		if (node != null) {
 			LayoutConstraint l = node.getLayoutConstraint();
-			if (l instanceof ComponentLayoutConstraint) {
-				getComponentFigure().setFlipped(((ComponentLayoutConstraint) l).isFlipped());
+			if (l instanceof RotatableBounds) {
+				getComponentFigure().setFlipped(((RotatableBounds) l).isFlipped());
 			}
 		}
 	}
@@ -118,8 +118,8 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		Node node = (Node) getNotationView();
 		if (node != null) {
 			LayoutConstraint l = node.getLayoutConstraint();
-			if (l instanceof ComponentLayoutConstraint) {
-				getComponentFigure().setRotation(((ComponentLayoutConstraint) l).getRotation());
+			if (l instanceof RotatableBounds) {
+				getComponentFigure().setRotation(((RotatableBounds) l).getRotation());
 			}
 		}
 	}
@@ -153,9 +153,9 @@ public abstract class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		Object feature = notification.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
 			refreshFontColor();
-		} else if (DMLNotationPackage.eINSTANCE.getComponentLayoutConstraint_Flipped().equals(feature)) {
+		} else if (DMLNotationPackage.eINSTANCE.getFlippableBounds_Flipped().equals(feature)) {
 			refreshFlipped();
-		} else if (DMLNotationPackage.eINSTANCE.getComponentLayoutConstraint_Rotation().equals(feature)) {
+		} else if (DMLNotationPackage.eINSTANCE.getRotatableBounds_Rotation().equals(feature)) {
 			refreshRotation();
 		} else {
 			super.handleNotificationEvent(notification);

@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dmltext"
-    nsURI="http://www.eclipselabs.org/damos/DMLText/1.0.0" nsPrefix="dmltext">
+    nsURI="http://www.eclipselabs.org/damos/2011/DMLText" nsPrefix="dmltext">
   <eClassifiers xsi:type="ecore:EClass" name="Root" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="blockTypes" upperBound="-1"
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//BlockType"

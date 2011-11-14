@@ -14,7 +14,9 @@ Export-Package: org.eclipselabs.damos.codegen.c.cgenmodel,
  org.eclipselabs.damos.codegen.c.cgenmodel.parseTreeConstruction,
  org.eclipselabs.damos.codegen.c.cgenmodel.parser.antlr,
  org.eclipselabs.damos.codegen.c.cgenmodel.parser.antlr.internal,
- org.eclipselabs.damos.codegen.c.cgenmodel.validation
+ org.eclipselabs.damos.codegen.c.cgenmodel.validation,
+ org.eclipselabs.damos.codegen.c.cgenmodel.scoping,
+ org.eclipselabs.damos.codegen.c.cgenmodel.formatting
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipselabs.damos.dml;visibility:=reexport,

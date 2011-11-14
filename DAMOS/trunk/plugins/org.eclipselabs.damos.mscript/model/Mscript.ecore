@@ -2,7 +2,7 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="mscript"
-    nsURI="http://www.eclipselabs.org/damos/mscript/Mscript" nsPrefix="mscript">
+    nsURI="http://www.eclipselabs.org/damos/mscript/2011/Mscript" nsPrefix="mscript">
   <eClassifiers xsi:type="ecore:EClass" name="Module">
     <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
         eType="#//Definition" containment="true"/>

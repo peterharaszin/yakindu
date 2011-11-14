@@ -42,7 +42,7 @@ public interface ILPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/IL";
+	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/IL";
 
 	/**
 	 * The package namespace name.

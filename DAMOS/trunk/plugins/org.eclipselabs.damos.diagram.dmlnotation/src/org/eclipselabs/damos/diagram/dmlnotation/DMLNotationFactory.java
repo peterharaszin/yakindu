@@ -26,13 +26,22 @@ public interface DMLNotationFactory extends EFactory {
 	DMLNotationFactory eINSTANCE = org.eclipselabs.damos.diagram.dmlnotation.impl.DMLNotationFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Component Layout Constraint</em>'.
+	 * Returns a new object of class '<em>Flippable Bounds</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Component Layout Constraint</em>'.
+	 * @return a new object of class '<em>Flippable Bounds</em>'.
 	 * @generated
 	 */
-	ComponentLayoutConstraint createComponentLayoutConstraint();
+	FlippableBounds createFlippableBounds();
+
+	/**
+	 * Returns a new object of class '<em>Rotatable Bounds</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Rotatable Bounds</em>'.
+	 * @generated
+	 */
+	RotatableBounds createRotatableBounds();
 
 	/**
 	 * Returns the package supported by this factory.

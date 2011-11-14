@@ -29,7 +29,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 */
 	public static MscriptFactory init() {
 		try {
-			MscriptFactory theMscriptFactory = (MscriptFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/Mscript"); 
+			MscriptFactory theMscriptFactory = (MscriptFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipselabs.org/damos/mscript/2011/Mscript"); 
 			if (theMscriptFactory != null) {
 				return theMscriptFactory;
 			}

@@ -13,9 +13,9 @@ public class AbstractDMLTextJavaValidator extends MscriptJavaValidator {
 	@Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
-	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/DMLText/1.0.0"));
-	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/DML/1.0.0"));
-	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/mscript/Mscript"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/2011/DMLText"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/2011/DML"));
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.eclipselabs.org/damos/mscript/2011/Mscript"));
 		return result;
 	}
 

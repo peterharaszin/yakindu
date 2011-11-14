@@ -42,7 +42,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/FunctionModel";
+	String eNS_URI = "http://www.eclipselabs.org/damos/mscript/2011/FunctionModel";
 
 	/**
 	 * The package namespace name.

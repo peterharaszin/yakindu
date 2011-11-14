@@ -13,7 +13,7 @@ import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
 import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameConverter;
 import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameProvider;
-import org.eclipselabs.damos.mscript.scoping.GlobalScopeProvider;
+import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -34,7 +34,7 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 	 */
 	@Override
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return GlobalScopeProvider.class;
+		return MscriptGlobalScopeProvider.class;
 	}
 	
 	public Class<? extends QualifiedNameValueConverter> bindQualifiedNameValueConverter() {

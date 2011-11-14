@@ -24,7 +24,6 @@ import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
@@ -21301,7 +21300,7 @@ rule__BlockType__UnorderedGroup_3__Impl
 					)
 					(
 						{ before(grammarAccess.getBlockTypeAccess().getInputDefinitionsAssignment_3_0()); }
-						(rule__BlockType__InputDefinitionsAssignment_3_0)*
+						((rule__BlockType__InputDefinitionsAssignment_3_0)=>rule__BlockType__InputDefinitionsAssignment_3_0)*
 						{ after(grammarAccess.getBlockTypeAccess().getInputDefinitionsAssignment_3_0()); }
 					)					)
  				)
@@ -21323,7 +21322,7 @@ rule__BlockType__UnorderedGroup_3__Impl
 					)
 					(
 						{ before(grammarAccess.getBlockTypeAccess().getOutputDefinitionsAssignment_3_1()); }
-						(rule__BlockType__OutputDefinitionsAssignment_3_1)*
+						((rule__BlockType__OutputDefinitionsAssignment_3_1)=>rule__BlockType__OutputDefinitionsAssignment_3_1)*
 						{ after(grammarAccess.getBlockTypeAccess().getOutputDefinitionsAssignment_3_1()); }
 					)					)
  				)
@@ -21345,7 +21344,7 @@ rule__BlockType__UnorderedGroup_3__Impl
 					)
 					(
 						{ before(grammarAccess.getBlockTypeAccess().getParametersAssignment_3_2()); }
-						(rule__BlockType__ParametersAssignment_3_2)*
+						((rule__BlockType__ParametersAssignment_3_2)=>rule__BlockType__ParametersAssignment_3_2)*
 						{ after(grammarAccess.getBlockTypeAccess().getParametersAssignment_3_2()); }
 					)					)
  				)
@@ -21589,7 +21588,7 @@ rule__InputDefinition__UnorderedGroup_4_1__Impl
 					)
 					(
 						{ before(grammarAccess.getInputDefinitionAccess().getParametersAssignment_4_1_1()); }
-						(rule__InputDefinition__ParametersAssignment_4_1_1)*
+						((rule__InputDefinition__ParametersAssignment_4_1_1)=>rule__InputDefinition__ParametersAssignment_4_1_1)*
 						{ after(grammarAccess.getInputDefinitionAccess().getParametersAssignment_4_1_1()); }
 					)					)
  				)
@@ -21769,7 +21768,7 @@ rule__SystemInterface__UnorderedGroup_2__Impl
 					)
 					(
 						{ before(grammarAccess.getSystemInterfaceAccess().getInletsAssignment_2_0()); }
-						(rule__SystemInterface__InletsAssignment_2_0)*
+						((rule__SystemInterface__InletsAssignment_2_0)=>rule__SystemInterface__InletsAssignment_2_0)*
 						{ after(grammarAccess.getSystemInterfaceAccess().getInletsAssignment_2_0()); }
 					)					)
  				)
@@ -21791,7 +21790,7 @@ rule__SystemInterface__UnorderedGroup_2__Impl
 					)
 					(
 						{ before(grammarAccess.getSystemInterfaceAccess().getOutletsAssignment_2_1()); }
-						(rule__SystemInterface__OutletsAssignment_2_1)*
+						((rule__SystemInterface__OutletsAssignment_2_1)=>rule__SystemInterface__OutletsAssignment_2_1)*
 						{ after(grammarAccess.getSystemInterfaceAccess().getOutletsAssignment_2_1()); }
 					)					)
  				)

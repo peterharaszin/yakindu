@@ -332,14 +332,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="directFeedthrough" ordered="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueDataTypeSpecification" eSuperTypes="#//DataTypeSpecification #//ITextualElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="dataType" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OpaqueBehaviorSpecification" eSuperTypes="#//BehaviorSpecification #//ITextualElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="behavior" ordered="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Latch" eSuperTypes="#//Component">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initialValue" lowerBound="1"
         eType="#//ValueSpecification" containment="true"/>

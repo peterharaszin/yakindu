@@ -78,8 +78,6 @@ import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
-import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -295,10 +293,6 @@ public class DMLValidator extends EObjectValidator {
 				return validateSubsystemOutput((SubsystemOutput)value, diagnostics, context);
 			case DMLPackage.BOOLEAN_DIRECT_FEEDTHROUGH_POLICY:
 				return validateBooleanDirectFeedthroughPolicy((BooleanDirectFeedthroughPolicy)value, diagnostics, context);
-			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION:
-				return validateOpaqueDataTypeSpecification((OpaqueDataTypeSpecification)value, diagnostics, context);
-			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION:
-				return validateOpaqueBehaviorSpecification((OpaqueBehaviorSpecification)value, diagnostics, context);
 			case DMLPackage.LATCH:
 				return validateLatch((Latch)value, diagnostics, context);
 			case DMLPackage.LATCH_INPUT:
@@ -1301,24 +1295,6 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateBooleanDirectFeedthroughPolicy(BooleanDirectFeedthroughPolicy booleanDirectFeedthroughPolicy, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(booleanDirectFeedthroughPolicy, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOpaqueDataTypeSpecification(OpaqueDataTypeSpecification opaqueDataTypeSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(opaqueDataTypeSpecification, diagnostics, context);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateOpaqueBehaviorSpecification(OpaqueBehaviorSpecification opaqueBehaviorSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(opaqueBehaviorSpecification, diagnostics, context);
 	}
 
 	/**

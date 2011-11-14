@@ -24,7 +24,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Inoutlet;
 import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
@@ -167,11 +166,6 @@ public class InoutletItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(DMLPackage.Literals.INOUTLET__DATA_TYPE,
-				 DMLFactory.eINSTANCE.createOpaqueDataTypeSpecification()));
 	}
 
 	/**

@@ -65,8 +65,6 @@ import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
-import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -618,22 +616,6 @@ public class DMLSwitch<T> extends Switch<T> {
 				BooleanDirectFeedthroughPolicy booleanDirectFeedthroughPolicy = (BooleanDirectFeedthroughPolicy)theEObject;
 				T result = caseBooleanDirectFeedthroughPolicy(booleanDirectFeedthroughPolicy);
 				if (result == null) result = caseDirectFeedthroughPolicy(booleanDirectFeedthroughPolicy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.OPAQUE_DATA_TYPE_SPECIFICATION: {
-				OpaqueDataTypeSpecification opaqueDataTypeSpecification = (OpaqueDataTypeSpecification)theEObject;
-				T result = caseOpaqueDataTypeSpecification(opaqueDataTypeSpecification);
-				if (result == null) result = caseDataTypeSpecification(opaqueDataTypeSpecification);
-				if (result == null) result = caseITextualElement(opaqueDataTypeSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DMLPackage.OPAQUE_BEHAVIOR_SPECIFICATION: {
-				OpaqueBehaviorSpecification opaqueBehaviorSpecification = (OpaqueBehaviorSpecification)theEObject;
-				T result = caseOpaqueBehaviorSpecification(opaqueBehaviorSpecification);
-				if (result == null) result = caseBehaviorSpecification(opaqueBehaviorSpecification);
-				if (result == null) result = caseITextualElement(opaqueBehaviorSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1691,36 +1673,6 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBooleanDirectFeedthroughPolicy(BooleanDirectFeedthroughPolicy object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Opaque Data Type Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Opaque Data Type Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOpaqueDataTypeSpecification(OpaqueDataTypeSpecification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Opaque Behavior Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Opaque Behavior Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOpaqueBehaviorSpecification(OpaqueBehaviorSpecification object) {
 		return null;
 	}
 

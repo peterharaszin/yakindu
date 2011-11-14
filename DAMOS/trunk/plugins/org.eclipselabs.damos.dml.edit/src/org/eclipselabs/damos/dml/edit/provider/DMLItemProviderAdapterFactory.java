@@ -879,52 +879,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OpaqueDataTypeSpecification} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OpaqueDataTypeSpecificationItemProvider opaqueDataTypeSpecificationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OpaqueDataTypeSpecification}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOpaqueDataTypeSpecificationAdapter() {
-		if (opaqueDataTypeSpecificationItemProvider == null) {
-			opaqueDataTypeSpecificationItemProvider = new OpaqueDataTypeSpecificationItemProvider(this);
-		}
-
-		return opaqueDataTypeSpecificationItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected OpaqueBehaviorSpecificationItemProvider opaqueBehaviorSpecificationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.OpaqueBehaviorSpecification}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createOpaqueBehaviorSpecificationAdapter() {
-		if (opaqueBehaviorSpecificationItemProvider == null) {
-			opaqueBehaviorSpecificationItemProvider = new OpaqueBehaviorSpecificationItemProvider(this);
-		}
-
-		return opaqueBehaviorSpecificationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Latch} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1403,8 +1357,6 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (subsystemInputItemProvider != null) subsystemInputItemProvider.dispose();
 		if (subsystemOutputItemProvider != null) subsystemOutputItemProvider.dispose();
 		if (booleanDirectFeedthroughPolicyItemProvider != null) booleanDirectFeedthroughPolicyItemProvider.dispose();
-		if (opaqueDataTypeSpecificationItemProvider != null) opaqueDataTypeSpecificationItemProvider.dispose();
-		if (opaqueBehaviorSpecificationItemProvider != null) opaqueBehaviorSpecificationItemProvider.dispose();
 		if (latchItemProvider != null) latchItemProvider.dispose();
 		if (latchInputItemProvider != null) latchInputItemProvider.dispose();
 		if (choiceItemProvider != null) choiceItemProvider.dispose();

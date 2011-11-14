@@ -70,8 +70,6 @@ import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
 import org.eclipselabs.damos.dml.MemoryOutput;
 import org.eclipselabs.damos.dml.Model;
-import org.eclipselabs.damos.dml.OpaqueBehaviorSpecification;
-import org.eclipselabs.damos.dml.OpaqueDataTypeSpecification;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.Outport;
 import org.eclipselabs.damos.dml.OutportOutput;
@@ -505,20 +503,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass booleanDirectFeedthroughPolicyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass opaqueDataTypeSpecificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass opaqueBehaviorSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1825,42 +1809,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getOpaqueDataTypeSpecification() {
-		return opaqueDataTypeSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getOpaqueDataTypeSpecification_DataType() {
-		return (EAttribute)opaqueDataTypeSpecificationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getOpaqueBehaviorSpecification() {
-		return opaqueBehaviorSpecificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getOpaqueBehaviorSpecification_Behavior() {
-		return (EAttribute)opaqueBehaviorSpecificationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getLatch() {
 		return latchEClass;
 	}
@@ -2374,12 +2322,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		booleanDirectFeedthroughPolicyEClass = createEClass(BOOLEAN_DIRECT_FEEDTHROUGH_POLICY);
 		createEAttribute(booleanDirectFeedthroughPolicyEClass, BOOLEAN_DIRECT_FEEDTHROUGH_POLICY__DIRECT_FEEDTHROUGH);
 
-		opaqueDataTypeSpecificationEClass = createEClass(OPAQUE_DATA_TYPE_SPECIFICATION);
-		createEAttribute(opaqueDataTypeSpecificationEClass, OPAQUE_DATA_TYPE_SPECIFICATION__DATA_TYPE);
-
-		opaqueBehaviorSpecificationEClass = createEClass(OPAQUE_BEHAVIOR_SPECIFICATION);
-		createEAttribute(opaqueBehaviorSpecificationEClass, OPAQUE_BEHAVIOR_SPECIFICATION__BEHAVIOR);
-
 		latchEClass = createEClass(LATCH);
 		createEReference(latchEClass, LATCH__INITIAL_VALUE);
 
@@ -2530,10 +2472,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		subsystemInputEClass.getESuperTypes().add(this.getInput());
 		subsystemOutputEClass.getESuperTypes().add(this.getOutput());
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
-		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
-		opaqueDataTypeSpecificationEClass.getESuperTypes().add(this.getITextualElement());
-		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getBehaviorSpecification());
-		opaqueBehaviorSpecificationEClass.getESuperTypes().add(this.getITextualElement());
 		latchEClass.getESuperTypes().add(this.getComponent());
 		latchInputEClass.getESuperTypes().add(this.getInput());
 		compoundEClass.getESuperTypes().add(this.getFragmentElement());
@@ -2847,12 +2785,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(booleanDirectFeedthroughPolicyEClass, BooleanDirectFeedthroughPolicy.class, "BooleanDirectFeedthroughPolicy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBooleanDirectFeedthroughPolicy_DirectFeedthrough(), ecorePackage.getEBoolean(), "directFeedthrough", null, 1, 1, BooleanDirectFeedthroughPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(opaqueDataTypeSpecificationEClass, OpaqueDataTypeSpecification.class, "OpaqueDataTypeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOpaqueDataTypeSpecification_DataType(), ecorePackage.getEString(), "dataType", null, 1, 1, OpaqueDataTypeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(opaqueBehaviorSpecificationEClass, OpaqueBehaviorSpecification.class, "OpaqueBehaviorSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOpaqueBehaviorSpecification_Behavior(), ecorePackage.getEString(), "behavior", null, 1, 1, OpaqueBehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(latchEClass, Latch.class, "Latch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLatch_InitialValue(), this.getValueSpecification(), null, "initialValue", null, 1, 1, Latch.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

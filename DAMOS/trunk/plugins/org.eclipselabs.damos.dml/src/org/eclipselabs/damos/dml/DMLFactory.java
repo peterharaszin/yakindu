@@ -341,24 +341,6 @@ public interface DMLFactory extends EFactory {
 	BooleanDirectFeedthroughPolicy createBooleanDirectFeedthroughPolicy();
 
 	/**
-	 * Returns a new object of class '<em>Opaque Data Type Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Opaque Data Type Specification</em>'.
-	 * @generated
-	 */
-	OpaqueDataTypeSpecification createOpaqueDataTypeSpecification();
-
-	/**
-	 * Returns a new object of class '<em>Opaque Behavior Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Opaque Behavior Specification</em>'.
-	 * @generated
-	 */
-	OpaqueBehaviorSpecification createOpaqueBehaviorSpecification();
-
-	/**
 	 * Returns a new object of class '<em>Latch</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

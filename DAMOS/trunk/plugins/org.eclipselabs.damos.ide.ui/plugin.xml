@@ -52,7 +52,7 @@
             category="org.eclipselabs.damos.ide.ui.damosCategory"
             class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.wizards.BlockDiagramEditorCreationWizard"
             icon="icons/blockdiagram.gif"
-            id="org.eclipselabs.damos.diagram.ui.blockDiagramWizard"
+            id="org.eclipselabs.damos.ide.ui.blockDiagramWizard"
             name="Block Diagram">
       </wizard>
    </extension>
@@ -224,7 +224,7 @@
          point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-            id="org.eclipselabs.damos.diagram.ui.globalActionHandlerProvider">
+            id="org.eclipselabs.damos.ide.ui.globalActionHandlerProvider">
          <Priority
                name="Lowest">
          </Priority>
@@ -238,7 +238,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
-            id="org.eclipselabs.damos.diagram.ui.diagramWithPrintGlobalActionHandlerProvider">
+            id="org.eclipselabs.damos.ide.ui.diagramWithPrintGlobalActionHandlerProvider">
          <Priority
                name="Lowest">
          </Priority>

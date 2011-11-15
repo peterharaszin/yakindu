@@ -321,7 +321,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		}
 	}
 
-	private ToolEntry createBlockCreationToolEntry(IEditorPart editor, IBlockTypeDescriptor blockType) {
+	protected ToolEntry createBlockCreationToolEntry(IEditorPart editor, IBlockTypeDescriptor blockType) {
 		BlockCreationToolEntry entry = new BlockCreationToolEntry(editor, blockType);
 		BlockImageDescriptor blockImageDescriptor = BlockImageRegistry.getInstance().getBlockImage(blockType.getQualifiedName());
 		if (blockImageDescriptor != null) {

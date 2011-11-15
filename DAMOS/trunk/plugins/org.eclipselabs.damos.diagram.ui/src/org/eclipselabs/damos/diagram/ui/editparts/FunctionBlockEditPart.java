@@ -9,11 +9,10 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.internal.editparts;
+package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.common.util.NameUtil;
-import org.eclipselabs.damos.diagram.ui.editparts.StandardBlockEditPart;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.NonRotatableTransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.FunctionBlockFigure;

@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.internal.properties;
+package org.eclipselabs.damos.diagram.ui.properties;
 
 import java.util.List;
 
@@ -18,7 +18,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.diagram.ui.properties.AbstractCheckboxPropertySection;
 import org.eclipselabs.damos.diagram.ui.view.ISemanticHints;
 
 /**

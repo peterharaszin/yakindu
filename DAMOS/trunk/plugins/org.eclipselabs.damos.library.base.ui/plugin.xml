@@ -190,7 +190,7 @@
       </editPart>
    </extension>
    <extension
-         point="org.eclipselabs.damos.diagram.ui.blockImages">
+         point="org.eclipselabs.damos.dml.ui.blockImages">
       <image
             blockType="org::eclipselabs::damos::library::base::continuous::Integrator"
             icon16="icons/continuous/Integrator16.png"

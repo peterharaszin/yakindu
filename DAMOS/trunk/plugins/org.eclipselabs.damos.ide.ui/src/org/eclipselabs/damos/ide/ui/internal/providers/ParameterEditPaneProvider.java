@@ -25,7 +25,7 @@ import com.google.inject.Provider;
  * @author Andreas Unger
  *
  */
-public class ParameterEditorProvider implements IParameterEditPaneProvider {
+public class ParameterEditPaneProvider implements IParameterEditPaneProvider {
 
 	@Inject
 	private Provider<IValueSpecificationEditPane> editorProvider;

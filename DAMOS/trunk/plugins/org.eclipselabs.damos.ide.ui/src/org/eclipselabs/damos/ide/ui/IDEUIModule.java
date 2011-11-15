@@ -19,7 +19,7 @@ import org.eclipselabs.damos.dml.ui.editpane.IValueSpecificationEditPane;
 import org.eclipselabs.damos.ide.ui.internal.directedit.ValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.ide.ui.internal.editors.DataTypeSpecificationEditPane;
 import org.eclipselabs.damos.ide.ui.internal.editors.ValueSpecificationEditPane;
-import org.eclipselabs.damos.ide.ui.internal.providers.ParameterEditorProvider;
+import org.eclipselabs.damos.ide.ui.internal.providers.ParameterEditPaneProvider;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
@@ -69,7 +69,7 @@ public class IDEUIModule extends AbstractModule {
 	}
 
 	protected void configureIArgumentEditorProvider() {
-		bind(IParameterEditPaneProvider.class).annotatedWith(Default.class).to(ParameterEditorProvider.class);
+		bind(IParameterEditPaneProvider.class).annotatedWith(Default.class).to(ParameterEditPaneProvider.class);
 	}
 
 }

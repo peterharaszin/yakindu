@@ -33,6 +33,7 @@ import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -114,91 +115,165 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 	protected List<PaletteEntry> createGeneralEntries(IEditorPart editor) {
 		List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
 		PaletteEntry entry;
-		
-		entry = new ConnectionElementCreationToolEntry(
-				ElementTypes.CONNECTION,
-				DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Connection16.png"),
-				DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Connection24.png"));
-		entry.setId(IPaletteConstants.CONNECTION_ENTRY_ID);
-		entries.add(entry);
-		
-		entries.add(new PaletteSeparator());
 
-		entry = new ElementCreationToolEntry(ElementTypes.INPORT, null, null);
-		entry.setId(IPaletteConstants.INPORT_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Inport16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Inport24.png"));
-		entries.add(entry);
-		
-		entry = new ElementCreationToolEntry(ElementTypes.OUTPORT, null, null);
-		entry.setId(IPaletteConstants.OUTPORT_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Outport16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Outport24.png"));
-		entries.add(entry);
-		
-		entry = new SubsystemCreationToolEntry(editor);
-		entry.setId(IPaletteConstants.SUBSYSTEM_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Subsystem16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Subsystem24.png"));
-		entries.add(entry);
+		if (includeElementType(ElementTypes.CONNECTION)) {
+			entry = new ConnectionElementCreationToolEntry(ElementTypes.CONNECTION,
+					DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+							"icons/builtin/Connection16.png"), DiagramUIPlugin.imageDescriptorFromPlugin(
+							DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Connection24.png"));
+			entry.setId(IPaletteConstants.CONNECTION_ENTRY_ID);
+			entries.add(entry);
 
-		entries.add(new PaletteSeparator());
+			entries.add(new PaletteSeparator());
+		}
 
-		entry = new ElementCreationToolEntry(ElementTypes.CHOICE, null, null);
-		entry.setId(IPaletteConstants.CHOICE_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Choice16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Choice24.png"));
-		entries.add(entry);
+		boolean separate = false;
 
-		entry = new ElementCreationToolEntry(ElementTypes.JOIN, null, null);
-		entry.setId(IPaletteConstants.JOIN_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Join16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Join24.png"));
-		entries.add(entry);
+		if (includeElementType(ElementTypes.INPORT)) {
+			entry = new ElementCreationToolEntry(ElementTypes.INPORT, null, null);
+			entry.setId(IPaletteConstants.INPORT_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Inport16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Inport24.png"));
+			entries.add(entry);
+			separate = true;
+		}
 
-		entry = new ElementCreationToolEntry(ElementTypes.ACTION, null, null);
-		entry.setId(IPaletteConstants.ACTION_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Action16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Action24.png"));
-		entries.add(entry);
+		if (includeElementType(ElementTypes.OUTPORT)) {
+			entry = new ElementCreationToolEntry(ElementTypes.OUTPORT, null, null);
+			entry.setId(IPaletteConstants.OUTPORT_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Outport16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Outport24.png"));
+			entries.add(entry);
+			separate = true;
+		}
 
-		entry = new ConnectionElementCreationToolEntry(ElementTypes.ACTION_LINK, null, null);
-		entry.setId(IPaletteConstants.ACTION_LINK_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/ActionLink16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/ActionLink24.png"));
-		entries.add(entry);
+		if (includeElementType(ElementTypes.SUBSYSTEM)) {
+			entry = new SubsystemCreationToolEntry(editor);
+			entry.setId(IPaletteConstants.SUBSYSTEM_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Subsystem16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Subsystem24.png"));
+			entries.add(entry);
+			separate = true;
+		}
 
-		entry = new ElementCreationToolEntry(ElementTypes.WHILE_LOOP, null, null);
-		entry.setId(IPaletteConstants.WHILE_LOOP_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/WhileLoop16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/WhileLoop24.png"));
-		entries.add(entry);
+		if (separate) {
+			entries.add(new PaletteSeparator());
+			separate = false;
+		}
 
-		entry = new ElementCreationToolEntry(ElementTypes.MEMORY, null, null);
-		entry.setId(IPaletteConstants.MEMORY_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Memory16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Memory24.png"));
-		entries.add(entry);
-		
-		entries.add(new PaletteSeparator());
-		
-		entry = new ElementCreationToolEntry(ElementTypes.LATCH, null, null);
-		entry.setId(IPaletteConstants.LATCH_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Latch16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/Latch24.png"));
-		entries.add(entry);
+		if (includeElementType(ElementTypes.CHOICE)) {
+			entry = new ElementCreationToolEntry(ElementTypes.CHOICE, null, null);
+			entry.setId(IPaletteConstants.CHOICE_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Choice16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Choice24.png"));
+			entries.add(entry);
+			separate = true;
+		}
 
-		entries.add(new PaletteSeparator());
-		
-		entry = new InstantiateBlockTypeToolEntry(editor);
-		entry.setId(IPaletteConstants.INSTANTIATE_BLOCK_TYPE_ENTRY_ID);
-		entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/InstantiateBlockType16.png"));
-		entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/builtin/InstantiateBlockType24.png"));
-		entries.add(entry);
+		if (includeElementType(ElementTypes.JOIN)) {
+			entry = new ElementCreationToolEntry(ElementTypes.JOIN, null, null);
+			entry.setId(IPaletteConstants.JOIN_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Join16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Join24.png"));
+			entries.add(entry);
+			separate = true;
+		}
+
+		if (includeElementType(ElementTypes.ACTION)) {
+			entry = new ElementCreationToolEntry(ElementTypes.ACTION, null, null);
+			entry.setId(IPaletteConstants.ACTION_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Action16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Action24.png"));
+			entries.add(entry);
+			separate = true;
+		}
+
+		if (includeElementType(ElementTypes.ACTION_LINK)) {
+			entry = new ConnectionElementCreationToolEntry(ElementTypes.ACTION_LINK, null, null);
+			entry.setId(IPaletteConstants.ACTION_LINK_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/ActionLink16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/ActionLink24.png"));
+			entries.add(entry);
+			separate = true;
+		}
+
+		if (includeElementType(ElementTypes.WHILE_LOOP)) {
+			entry = new ElementCreationToolEntry(ElementTypes.WHILE_LOOP, null, null);
+			entry.setId(IPaletteConstants.WHILE_LOOP_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/WhileLoop16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/WhileLoop24.png"));
+			entries.add(entry);
+			separate = true;
+		}
+
+		if (includeElementType(ElementTypes.MEMORY)) {
+			entry = new ElementCreationToolEntry(ElementTypes.MEMORY, null, null);
+			entry.setId(IPaletteConstants.MEMORY_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Memory16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Memory24.png"));
+			entries.add(entry);
+			separate = true;
+		}
+
+		if (separate) {
+			entries.add(new PaletteSeparator());
+			separate = false;
+		}
+
+		if (includeElementType(ElementTypes.LATCH)) {
+			entry = new ElementCreationToolEntry(ElementTypes.LATCH, null, null);
+			entry.setId(IPaletteConstants.LATCH_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Latch16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/Latch24.png"));
+			entries.add(entry);
+			separate = true;
+		}
+
+		if (includeInstantiateBlockType()) {
+			if (separate) {
+				entries.add(new PaletteSeparator());
+			}
+	
+			entry = new InstantiateBlockTypeToolEntry(editor);
+			entry.setId(IPaletteConstants.INSTANTIATE_BLOCK_TYPE_ENTRY_ID);
+			entry.setSmallIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/InstantiateBlockType16.png"));
+			entry.setLargeIcon(DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID,
+					"icons/builtin/InstantiateBlockType24.png"));
+			entries.add(entry);
+		}
 
 		return entries;
 	}
 	
+	protected boolean includeElementType(IElementType elementType) {
+		return true;
+	}
+	
+	protected boolean includeInstantiateBlockType() {
+		return true;
+	}
+
 	protected List<PaletteEntry> createCommonBlockEntries(IEditorPart editor) {
 		List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
 		

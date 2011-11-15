@@ -186,38 +186,6 @@
             </visibleWhen>
          </command>
       </menuContribution>
-      <menuContribution
-            locationURI="toolbar:org.eclipselabs.damos.ide.ui.fragmentExplorerView">
-         <command
-               commandId="org.eclipselabs.damos.diagram.ui.commands.newFragment"
-               icon="icons/newfile_wiz.gif"
-               label="New Fragment"
-               style="push">
-         </command>
-      </menuContribution>
-      <menuContribution
-            locationURI="popup:org.eclipselabs.damos.ide.ui.fragmentExplorerView?after=file">
-         <command
-               commandId="org.eclipselabs.damos.diagram.ui.commands.newFragment"
-               icon="icons/newfile_wiz.gif"
-               label="New..."
-               style="push">
-         </command>
-      </menuContribution>
-      <menuContribution
-            locationURI="popup:org.eclipselabs.damos.ide.ui.fragmentExplorerView?after=edit">
-         <command
-               commandId="org.eclipselabs.damos.diagram.ui.commands.deleteFragment"
-               icon="icons/delete.gif"
-               label="Delete"
-               style="push">
-         </command>
-         <command
-               commandId="org.eclipselabs.damos.diagram.ui.commands.renameFragment"
-               label="Rename..."
-               style="push">
-         </command>
-      </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -275,39 +243,6 @@
             class="org.eclipselabs.damos.diagram.ui.internal.handlers.ChangePortCountHandler"
             commandId="org.eclipselabs.damos.diagram.ui.commands.changePortCount">
       </handler>
-   </extension>
-   <extension
-         point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
-      <GlobalActionHandlerProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-            id="org.eclipselabs.damos.diagram.ui.globalActionHandlerProvider">
-         <Priority
-               name="Lowest">
-         </Priority>
-         <ViewId
-               id="org.eclipselabs.damos.ide.ui.blockDiagramEditor">
-            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId actionId="save">
-               </GlobalActionId>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
-      <GlobalActionHandlerProvider
-            class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
-            id="org.eclipselabs.damos.diagram.ui.diagramWithPrintGlobalActionHandlerProvider">
-         <Priority
-               name="Lowest">
-         </Priority>
-         <ViewId
-               id="org.eclipselabs.damos.ide.ui.blockDiagramEditor">
-            <ElementType
-                  class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
-               <GlobalActionId
-                     actionId="print">
-               </GlobalActionId>
-            </ElementType>
-         </ViewId>
-      </GlobalActionHandlerProvider>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">

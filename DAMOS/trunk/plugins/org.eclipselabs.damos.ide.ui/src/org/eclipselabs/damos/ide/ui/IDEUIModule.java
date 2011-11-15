@@ -12,6 +12,7 @@
 package org.eclipselabs.damos.ide.ui;
 
 import org.eclipselabs.damos.common.inject.Default;
+import org.eclipselabs.damos.diagram.ui.ContributorId;
 import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider;
 import org.eclipselabs.damos.dml.ui.editpane.IDataTypeSpecificationEditPane;
@@ -35,6 +36,7 @@ public class IDEUIModule extends AbstractModule {
 	 */
 	@Override
 	protected void configure() {
+		configureContributorId();
 		configureBlockLibraryViewId();
 		configureFragmentExplorerViewId();
 		configureBlockDiagramFileExtension();
@@ -44,6 +46,10 @@ public class IDEUIModule extends AbstractModule {
 		configureIArgumentEditorProvider();
 	}
 	
+	protected void configureContributorId() {
+		bind(String.class).annotatedWith(ContributorId.class).toInstance("org.eclipselabs.damos.ide.ui.properties");
+	}
+
 	protected void configureBlockLibraryViewId() {
 		bind(String.class).annotatedWith(Names.named("blockLibraryViewId")).toInstance("org.eclipselabs.damos.ide.ui.blockLibraryView");
 	}

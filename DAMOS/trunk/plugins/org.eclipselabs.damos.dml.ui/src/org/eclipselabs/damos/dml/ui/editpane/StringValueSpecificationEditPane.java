@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipselabs.damos.common.ui.widgets.IWidgetFactory;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.StringValueSpecification;
+import org.eclipselabs.damos.dml.ValueSpecification;
 
 /**
  * @author Andreas Unger
@@ -117,8 +118,8 @@ public class StringValueSpecificationEditPane implements IValueSpecificationEdit
 				valueSpecification.setValue((String) value);
 				return valueSpecification;
 			}
-			if (value instanceof StringValueSpecification) {
-				return ((StringValueSpecification) value).getValue();
+			if (value instanceof ValueSpecification) {
+				return ((ValueSpecification) value).stringValue();
 			}
 			throw new IllegalArgumentException();
 		}

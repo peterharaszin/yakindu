@@ -26,6 +26,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
+import org.eclipselabs.damos.diagram.ui.ContributorId;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.diagram.ui.internal.dnd.LocalTransferDropTargetListener;
@@ -33,13 +34,25 @@ import org.eclipselabs.damos.diagram.ui.internal.dnd.ResourceTransferDropTargetL
 import org.eclipselabs.damos.diagram.ui.internal.dnd.ToolTransferDropTargetListener;
 import org.eclipselabs.damos.diagram.ui.internal.palette.PaletteViewerProvider;
 
+import com.google.inject.Inject;
+
 public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 
+	private final String contributorId;
+	
+	/**
+	 * 
+	 */
+	@Inject
+	BlockDiagramEditor(@ContributorId String contributorId) {
+		this.contributorId = contributorId;
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#getContributorId()
 	 */
 	public String getContributorId() {
-		return "org.eclipselabs.damos.dml.ui.properties";
+		return contributorId;
 	}
 	
 	protected PreferencesHint getPreferencesHint() {

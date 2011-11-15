@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipselabs.damos.diagram.ui.part.BlockDiagramEditor"
-            contributorClass="org.eclipselabs.damos.diagram.ui.part.BlockDiagramActionBarContributor"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.part.BlockDiagramEditor"
+            contributorClass="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.part.BlockDiagramActionBarContributor"
             default="true"
             extensions="blockdiagram"
             icon="icons/blockdiagram.gif"
@@ -65,9 +65,76 @@
       </image>
    </extension>
    <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipselabs.damos.ide.ui.fragmentExplorerView">
+         <command
+               commandId="org.eclipselabs.damos.diagram.ui.commands.newFragment"
+               icon="icons/newfile_wiz.gif"
+               label="New Fragment"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipselabs.damos.ide.ui.fragmentExplorerView?after=file">
+         <command
+               commandId="org.eclipselabs.damos.diagram.ui.commands.newFragment"
+               icon="icons/newfile_wiz.gif"
+               label="New..."
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipselabs.damos.ide.ui.fragmentExplorerView?after=edit">
+         <command
+               commandId="org.eclipselabs.damos.diagram.ui.commands.deleteFragment"
+               icon="icons/delete.gif"
+               label="Delete"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipselabs.damos.diagram.ui.commands.renameFragment"
+               label="Rename..."
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyContributor">
+      <propertyContributor
+            contributorId="org.eclipselabs.damos.ide.ui.properties">
+         <propertyCategory
+               category="default">
+         </propertyCategory>
+         <propertyCategory
+               category="extended">
+         </propertyCategory>
+         <propertyCategory
+               category="advanced">
+         </propertyCategory>
+      </propertyContributor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertyTabs">
+      <propertyTabs
+            contributorId="org.eclipselabs.damos.ide.ui.properties">
+         <propertyTab
+               category="default"
+               id="org.eclipselabs.damos.dml.ui.tabs.general"
+               label="General">
+         </propertyTab>
+         <propertyTab
+               afterTab="org.eclipselabs.damos.dml.ui.tabs.general"
+               category="default"
+               id="org.eclipselabs.damos.dml.ui.tabs.parameters"
+               label="Parameters">
+         </propertyTab>
+      </propertyTabs>
+   </extension>
+   <extension
          point="org.eclipse.ui.views.properties.tabbed.propertySections">
       <propertySections
-            contributorId="org.eclipselabs.damos.dml.ui.properties">
+            contributorId="org.eclipselabs.damos.ide.ui.properties">
          <propertySection
                class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.properties.GeneralPropertySection"
                enablesFor="1"

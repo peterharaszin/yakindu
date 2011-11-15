@@ -26,13 +26,13 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PartInitException;
-import org.eclipselabs.damos.diagram.ui.ContributorId;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.diagram.ui.internal.dnd.LocalTransferDropTargetListener;
 import org.eclipselabs.damos.diagram.ui.internal.dnd.ResourceTransferDropTargetListener;
 import org.eclipselabs.damos.diagram.ui.internal.dnd.ToolTransferDropTargetListener;
 import org.eclipselabs.damos.diagram.ui.internal.palette.PaletteViewerProvider;
+import org.eclipselabs.damos.dml.ui.properties.ContributorId;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 
 import com.google.inject.Inject;
 

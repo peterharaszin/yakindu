@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin>
+   <extension-point id="blockImages" name="Block Images" schema="schema/blockImages.exsd"/>
    <extension-point id="injectorProviders" name="Injector Providers" schema="schema/injectorProviders.exsd"/>
    <extension-point id="argumentEditPaneProviders" name="Argument Edit Pane Providers" schema="schema/argumentEditPaneProviders.exsd"/>
 

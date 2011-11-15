@@ -21,9 +21,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
-import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
 import org.eclipselabs.damos.diagram.ui.figures.TerminalFigure;
 import org.eclipselabs.damos.diagram.ui.internal.editparts.IConnectorEditPart;
 import org.eclipselabs.damos.dml.Connection;
@@ -34,7 +31,10 @@ import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.util.ConnectionEvent;
 import org.eclipselabs.damos.dml.util.ConnectionEventBroker;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.FragmentSelectionChangeEvent;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 import org.eclipselabs.damos.dml.util.IConnectionListener;
+import org.eclipselabs.damos.dml.util.IFragmentSelectionChangeListener;
 
 /**
  * @author Andreas Unger

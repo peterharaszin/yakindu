@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.parts;
+package org.eclipselabs.damos.dml.ui.parts;
 
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
@@ -24,11 +24,11 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageDescriptor;
-import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageRegistry;
-import org.eclipselabs.damos.diagram.ui.internal.viewers.BlockLibraryContentProvider;
-import org.eclipselabs.damos.diagram.ui.internal.viewers.BlockLibraryLabelProvider;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
+import org.eclipselabs.damos.dml.ui.internal.registry.BlockImageDescriptor;
+import org.eclipselabs.damos.dml.ui.internal.registry.BlockImageRegistry;
+import org.eclipselabs.damos.dml.ui.viewers.BlockLibraryContentProvider;
+import org.eclipselabs.damos.dml.ui.viewers.BlockLibraryLabelProvider;
 
 /**
  * @author Andreas Unger

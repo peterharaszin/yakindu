@@ -14,14 +14,14 @@ package org.eclipselabs.damos.diagram.ui.wizards;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.wizards.EditorCreationWizard;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
+import org.eclipselabs.damos.diagram.core.resource.BlockDiagramFileExtension;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 public class BlockDiagramEditorCreationWizard extends EditorCreationWizard {
 
 	@Inject
-	@Named("blockDiagramFileExtension")
+	@BlockDiagramFileExtension
 	private String fileExtension;
 	
 	/**

@@ -24,9 +24,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElemen
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipselabs.damos.diagram.core.type.ElementTypes;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputConnector;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 
 /**
  * @author Andreas Unger

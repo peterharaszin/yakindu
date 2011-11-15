@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
-import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
 import org.eclipselabs.damos.diagram.ui.internal.figures.IBlankableFigure;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.FragmentSelectionChangeEvent;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
+import org.eclipselabs.damos.dml.util.IFragmentSelectionChangeListener;
 
 /**
  * @author Andreas Unger

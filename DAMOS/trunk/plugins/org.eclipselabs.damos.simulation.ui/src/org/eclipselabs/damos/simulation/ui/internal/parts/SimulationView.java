@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.simulation.ui.internal.part;
+package org.eclipselabs.damos.simulation.ui.internal.parts;
 
 import java.util.ArrayList;
 import java.util.Collections;

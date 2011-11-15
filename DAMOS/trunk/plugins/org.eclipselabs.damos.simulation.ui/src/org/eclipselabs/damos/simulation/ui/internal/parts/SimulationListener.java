@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.ui.internal.part;
+package org.eclipselabs.damos.simulation.ui.internal.parts;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

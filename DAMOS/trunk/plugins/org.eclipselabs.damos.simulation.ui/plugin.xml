@@ -5,7 +5,7 @@
          point="org.eclipse.ui.views">
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.simulation.ui.internal.part.SimulationView"
+            class="org.eclipselabs.damos.simulation.ui.internal.parts.SimulationView"
             icon="icons/Simulation.gif"
             id="org.eclipselabs.damos.simulation.ui.simulationView"
             name="Simulation"
@@ -15,7 +15,7 @@
    <extension
          point="org.eclipselabs.damos.simulation.core.simulationListeners">
       <listener
-            class="org.eclipselabs.damos.simulation.ui.internal.part.SimulationListener">
+            class="org.eclipselabs.damos.simulation.ui.internal.parts.SimulationListener">
       </listener>
    </extension>
 

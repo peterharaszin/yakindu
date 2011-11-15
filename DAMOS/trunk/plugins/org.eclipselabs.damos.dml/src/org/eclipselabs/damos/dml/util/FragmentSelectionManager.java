@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.editparts;
+package org.eclipselabs.damos.dml.util;
 
 import java.util.HashSet;
 import java.util.Set;

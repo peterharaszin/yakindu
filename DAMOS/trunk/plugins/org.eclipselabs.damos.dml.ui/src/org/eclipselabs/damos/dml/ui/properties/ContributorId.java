@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.diagram.ui;
+package org.eclipselabs.damos.dml.ui.properties;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 

@@ -52,9 +52,9 @@ import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
+import org.eclipselabs.damos.dml.ui.parts.BlockLibraryViewId;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 /**
  * @author Andreas Unger
@@ -63,7 +63,7 @@ import com.google.inject.name.Named;
 public class PaletteProvider extends AbstractProvider implements IPaletteProvider {
 	
 	@Inject
-	@Named("blockLibraryViewId")
+	@BlockLibraryViewId
 	private String blockLibraryViewId;
 
 	private static final BlockGroupComparator BLOCK_GROUP_COMPARATOR = new BlockGroupComparator();

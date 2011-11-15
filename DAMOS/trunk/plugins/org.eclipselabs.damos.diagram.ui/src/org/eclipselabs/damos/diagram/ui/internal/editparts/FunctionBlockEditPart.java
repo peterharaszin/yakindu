@@ -41,10 +41,10 @@ public class FunctionBlockEditPart extends StandardBlockEditPart {
 	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
-		refreshName();
+		refreshHeader();
 	}
 
-	protected void refreshName() {
+	protected void refreshHeader() {
 		Block block = (Block) resolveSemanticElement();
 		if (block != null) {
 			getMainFigure().setHeaderText(NameUtil.formatName(block.getType().getName()));

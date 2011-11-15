@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.simulation.ui.internal.part;
+package org.eclipselabs.damos.simulation.ui.internal.parts;
 
 import org.eclipse.birt.chart.factory.GeneratedChartState;
 import org.eclipse.birt.chart.model.ChartWithAxes;

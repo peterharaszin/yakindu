@@ -15,12 +15,12 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipselabs.damos.diagram.ui.dialogs.ChangeRealizationDialog;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 
 public class ChangeRealizationHandler extends AbstractHandler {
 

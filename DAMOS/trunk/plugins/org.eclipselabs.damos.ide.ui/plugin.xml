@@ -22,14 +22,14 @@
       </category>
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.FragmentExplorerView"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.parts.FragmentExplorerView"
             id="org.eclipselabs.damos.ide.ui.fragmentExplorerView"
             name="Fragment Explorer"
             restorable="true">
       </view>
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.BlockLibraryView"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.parts.BlockLibraryView"
             id="org.eclipselabs.damos.ide.ui.blockLibraryView"
             name="Block Library">
       </view>
@@ -174,6 +174,39 @@
                tab="org.eclipselabs.damos.dml.ui.tabs.parameters">
          </propertySection>
       </propertySections>
+   </extension>
+   <extension
+         point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders">
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+            id="org.eclipselabs.damos.diagram.ui.globalActionHandlerProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <ViewId
+               id="org.eclipselabs.damos.ide.ui.blockDiagramEditor">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.printing.render.providers.DiagramWithPrintGlobalActionHandlerProvider"
+            id="org.eclipselabs.damos.diagram.ui.diagramWithPrintGlobalActionHandlerProvider">
+         <Priority
+               name="Lowest">
+         </Priority>
+         <ViewId
+               id="org.eclipselabs.damos.ide.ui.blockDiagramEditor">
+            <ElementType
+                  class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId
+                     actionId="print">
+               </GlobalActionId>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
    </extension>
    <extension
          point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">

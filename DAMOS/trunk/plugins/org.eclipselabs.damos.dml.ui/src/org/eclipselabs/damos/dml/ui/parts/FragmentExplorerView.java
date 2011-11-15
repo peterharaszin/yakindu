@@ -1,5 +1,15 @@
-package org.eclipselabs.damos.diagram.ui.parts;
+/****************************************************************************
+ * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Andreas Unger - initial API and implementation 
+ ****************************************************************************/
 
+package org.eclipselabs.damos.dml.ui.parts;
 
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
@@ -21,19 +31,18 @@ import org.eclipse.ui.part.Page;
 import org.eclipse.ui.part.PageBook;
 import org.eclipse.ui.part.PageBookView;
 import org.eclipselabs.damos.common.ui.viewers.FragmentTreeContentProvider;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
-import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
-import org.eclipselabs.damos.diagram.ui.viewers.FragmentTreeLabelProvider;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.ui.viewers.FragmentTreeLabelProvider;
+import org.eclipselabs.damos.dml.util.FragmentSelectionChangeEvent;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
+import org.eclipselabs.damos.dml.util.IFragmentSelectionChangeListener;
 
 import com.google.inject.Inject;
-import com.google.inject.name.Named;
 
 public class FragmentExplorerView extends PageBookView {
 
 	@Inject
-	@Named("fragmentExplorerViewId")
+	@FragmentExplorerViewId
 	private String fragmentExplorerViewId;
 
 	/* (non-Javadoc)

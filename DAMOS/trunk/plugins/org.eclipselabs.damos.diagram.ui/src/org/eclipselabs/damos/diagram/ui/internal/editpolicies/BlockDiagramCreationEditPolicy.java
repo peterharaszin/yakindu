@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 
 /**
  * @author Andreas Unger

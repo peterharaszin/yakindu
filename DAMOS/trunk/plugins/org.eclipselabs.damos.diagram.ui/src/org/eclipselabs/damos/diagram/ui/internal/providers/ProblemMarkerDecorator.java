@@ -36,12 +36,12 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.common.markers.IMarkerConstants;
 import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionChangeEvent;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
-import org.eclipselabs.damos.diagram.ui.editparts.IFragmentSelectionChangeListener;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.util.FragmentSelectionChangeEvent;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
+import org.eclipselabs.damos.dml.util.IFragmentSelectionChangeListener;
 
 class ProblemMarkerDecorator extends AbstractDecorator {
 

@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.viewers;
+package org.eclipselabs.damos.dml.ui.viewers;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
@@ -20,10 +20,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
-import org.eclipselabs.damos.diagram.ui.editparts.FragmentSelectionManager;
 import org.eclipselabs.damos.dml.Fragment;
+import org.eclipselabs.damos.dml.ui.DMLUIPlugin;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 
 public class FragmentTreeLabelProvider extends BaseLabelProvider implements ILabelProvider, IFontProvider {
 	
@@ -45,9 +45,9 @@ public class FragmentTreeLabelProvider extends BaseLabelProvider implements ILab
 		fontData.setStyle(SWT.BOLD);
 		this.boldFont = new Font(defaultFont.getDevice(), fontData);
 		
-		visibleImageDescriptor = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/fragment_visible.gif");
+		visibleImageDescriptor = DMLUIPlugin.Implementation.imageDescriptorFromPlugin(DMLUIPlugin.PLUGIN_ID, "icons/fragment_visible.gif");
 		visibleImage = JFaceResources.getResources().createImageWithDefault(visibleImageDescriptor);
-		invisibleImageDescriptor = DiagramUIPlugin.imageDescriptorFromPlugin(DiagramUIPlugin.PLUGIN_ID, "icons/fragment_invisible.gif");
+		invisibleImageDescriptor = DMLUIPlugin.Implementation.imageDescriptorFromPlugin(DMLUIPlugin.PLUGIN_ID, "icons/fragment_invisible.gif");
 		invisibleImage = JFaceResources.getResources().createImageWithDefault(invisibleImageDescriptor);
 	}
 

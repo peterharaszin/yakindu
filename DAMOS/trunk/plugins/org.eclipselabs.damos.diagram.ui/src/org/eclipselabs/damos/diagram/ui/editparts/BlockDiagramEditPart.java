@@ -21,6 +21,7 @@ import org.eclipselabs.damos.diagram.ui.editpolicies.SnapToConnectorFeedbackPoli
 import org.eclipselabs.damos.diagram.ui.internal.editparts.SnapToConnector;
 import org.eclipselabs.damos.diagram.ui.internal.editpolicies.BlockDiagramCreationEditPolicy;
 import org.eclipselabs.damos.dml.System;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
 
 /**
  * @author Andreas Unger

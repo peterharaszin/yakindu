@@ -43,6 +43,9 @@ import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dml.util.DMLUtil.SubsystemRealizationType;
+import org.eclipselabs.damos.dml.util.FragmentSelectionChangeEvent;
+import org.eclipselabs.damos.dml.util.FragmentSelectionManager;
+import org.eclipselabs.damos.dml.util.IFragmentSelectionChangeListener;
 
 /**
  * @author Andreas Unger

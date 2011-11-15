@@ -12,18 +12,20 @@
 package org.eclipselabs.damos.ide.ui;
 
 import org.eclipselabs.damos.common.inject.Default;
-import org.eclipselabs.damos.diagram.ui.ContributorId;
+import org.eclipselabs.damos.diagram.core.resource.BlockDiagramFileExtension;
 import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
-import org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider;
 import org.eclipselabs.damos.dml.ui.editpane.IDataTypeSpecificationEditPane;
+import org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider;
 import org.eclipselabs.damos.dml.ui.editpane.IValueSpecificationEditPane;
+import org.eclipselabs.damos.dml.ui.parts.BlockLibraryViewId;
+import org.eclipselabs.damos.dml.ui.parts.FragmentExplorerViewId;
+import org.eclipselabs.damos.dml.ui.properties.ContributorId;
 import org.eclipselabs.damos.ide.ui.internal.directedit.ValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.ide.ui.internal.editors.DataTypeSpecificationEditPane;
 import org.eclipselabs.damos.ide.ui.internal.editors.ValueSpecificationEditPane;
 import org.eclipselabs.damos.ide.ui.internal.providers.ParameterEditPaneProvider;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.name.Names;
 
 /**
  * @author Andreas Unger
@@ -51,15 +53,15 @@ public class IDEUIModule extends AbstractModule {
 	}
 
 	protected void configureBlockLibraryViewId() {
-		bind(String.class).annotatedWith(Names.named("blockLibraryViewId")).toInstance("org.eclipselabs.damos.ide.ui.blockLibraryView");
+		bind(String.class).annotatedWith(BlockLibraryViewId.class).toInstance("org.eclipselabs.damos.ide.ui.blockLibraryView");
 	}
 
 	protected void configureFragmentExplorerViewId() {
-		bind(String.class).annotatedWith(Names.named("fragmentExplorerViewId")).toInstance("org.eclipselabs.damos.ide.ui.fragmentExplorerView");
+		bind(String.class).annotatedWith(FragmentExplorerViewId.class).toInstance("org.eclipselabs.damos.ide.ui.fragmentExplorerView");
 	}
 	
 	protected void configureBlockDiagramFileExtension() {
-		bind(String.class).annotatedWith(Names.named("blockDiagramFileExtension")).toInstance("blockdiagram");
+		bind(String.class).annotatedWith(BlockDiagramFileExtension.class).toInstance("blockdiagram");
 	}
 	
 	protected void configureIValueSpecificationEditor() {

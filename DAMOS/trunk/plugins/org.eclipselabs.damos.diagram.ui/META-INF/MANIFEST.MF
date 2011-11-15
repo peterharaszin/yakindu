@@ -37,5 +37,4 @@ Export-Package: org.eclipselabs.damos.diagram.ui,
  org.eclipselabs.damos.diagram.ui.view,
  org.eclipselabs.damos.diagram.ui.view.factories,
  org.eclipselabs.damos.diagram.ui.view.util,
- org.eclipselabs.damos.diagram.ui.views,
  org.eclipselabs.damos.diagram.ui.wizards

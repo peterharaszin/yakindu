@@ -177,11 +177,15 @@ public abstract class PortEditPart extends ShapeNodeEditPart implements IConnect
 				return new ConnectionCreationDragTracker(ElementTypes.CONNECTION);
 			}
 		}
-		EditPart parent = getParent();
+		EditPart parent = getDragTrackerTargetEditPart(request);
 		if (parent != null) {
 			return new DragEditPartsTrackerEx(parent);
 		}
 		return null;
+	}
+	
+	protected EditPart getDragTrackerTargetEditPart(Request request) {
+		return getParent();
 	}
 	
 }

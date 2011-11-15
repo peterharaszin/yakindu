@@ -35,11 +35,11 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipselabs.damos.common.ui.widgets.FormWidgetFactory;
 import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.dml.Argument;
-import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
+import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.ValueSpecification;
 import org.eclipselabs.damos.dml.ui.editpane.IValueSpecificationEditPane;
 import org.eclipselabs.damos.dml.ui.internal.registry.ParameterEditPaneProviderRegistry;
@@ -91,7 +91,7 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 			control.dispose();
 		}
 		
-		for (Argument argument : ((Block) getModel()).getArguments()) {
+		for (Argument argument : ((ParameterizedElement) getModel()).getArguments()) {
 			addParameterWidgets(argument);
 		}
 	

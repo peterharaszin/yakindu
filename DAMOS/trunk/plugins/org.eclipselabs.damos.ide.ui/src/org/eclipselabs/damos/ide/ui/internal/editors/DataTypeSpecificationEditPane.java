@@ -61,11 +61,10 @@ public class DataTypeSpecificationEditPane implements IDataTypeSpecificationEdit
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.ui.IDataTypeSpecificationEditor#createEditControl(org.eclipse.swt.widgets.Composite)
 	 */
-	public Control createEditControl(Composite parent, IWidgetFactory widgetFactory) {
+	public void createEditControl(Composite parent, IWidgetFactory widgetFactory) {
 		dataTypeText = widgetFactory.createText(parent, "");
 		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		dataTypeText.setLayoutData(gridData);
-		return dataTypeText;
 	}
 
 	/* (non-Javadoc)

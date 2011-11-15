@@ -24,7 +24,7 @@ import org.eclipselabs.damos.common.ui.widgets.IWidgetFactory;
  */
 public interface IValueSpecificationEditPane {
 	
-	Control createControl(Composite parent, IWidgetFactory widgetFactory);
+	void createControl(Composite parent, IWidgetFactory widgetFactory);
 	
 	Control getControl();
 

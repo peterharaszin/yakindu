@@ -44,11 +44,10 @@ public class StringValueSpecificationEditPane implements IValueSpecificationEdit
 	
 	private Text text;
 
-	public Control createControl(Composite parent, IWidgetFactory widgetFactory) {
+	public void createControl(Composite parent, IWidgetFactory widgetFactory) {
 		text = widgetFactory.createText(parent, "");
 		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
 		text.setLayoutData(gridData);		
-		return text;
 	}
 	
 	public Control getControl() {

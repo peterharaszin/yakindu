@@ -65,6 +65,7 @@ import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.LatchInput;
+import org.eclipselabs.damos.dml.LiteralValueSpecification;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -83,8 +84,11 @@ import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.PrimitiveTypeKind;
+import org.eclipselabs.damos.dml.PrimitiveTypeSpecification;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
+import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
@@ -292,6 +296,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass primitiveTypeSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass parameterableElementEClass = null;
 
 	/**
@@ -314,6 +325,20 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass valueSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass literalValueSpecificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass stringValueSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -671,6 +696,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EEnum parameterVisibilityKindEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum primitiveTypeKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1269,6 +1301,24 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPrimitiveTypeSpecification() {
+		return primitiveTypeSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getPrimitiveTypeSpecification_Kind() {
+		return (EAttribute)primitiveTypeSpecificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getParameterableElement() {
 		return parameterableElementEClass;
 	}
@@ -1305,8 +1355,17 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getParameter_DataType() {
+		return (EReference)parameterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getParameter_Visibility() {
-		return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)parameterEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1315,7 +1374,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	public EReference getParameter_OwnedDefaultValue() {
-		return (EReference)parameterEClass.getEStructuralFeatures().get(2);
+		return (EReference)parameterEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1324,7 +1383,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	public EReference getParameter_PredefinedValues() {
-		return (EReference)parameterEClass.getEStructuralFeatures().get(3);
+		return (EReference)parameterEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1361,6 +1420,33 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EClass getValueSpecification() {
 		return valueSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLiteralValueSpecification() {
+		return literalValueSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getStringValueSpecification() {
+		return stringValueSpecificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getStringValueSpecification_Value() {
+		return (EAttribute)stringValueSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2124,6 +2210,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getPrimitiveTypeKind() {
+		return primitiveTypeKindEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public DMLFactory getDMLFactory() {
 		return (DMLFactory)getEFactoryInstance();
 	}
@@ -2230,6 +2325,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__NAME);
+		createEReference(parameterEClass, PARAMETER__DATA_TYPE);
 		createEAttribute(parameterEClass, PARAMETER__VISIBILITY);
 		createEReference(parameterEClass, PARAMETER__OWNED_DEFAULT_VALUE);
 		createEReference(parameterEClass, PARAMETER__PREDEFINED_VALUES);
@@ -2240,7 +2336,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		valueSpecificationEClass = createEClass(VALUE_SPECIFICATION);
 
+		literalValueSpecificationEClass = createEClass(LITERAL_VALUE_SPECIFICATION);
+
+		stringValueSpecificationEClass = createEClass(STRING_VALUE_SPECIFICATION);
+		createEAttribute(stringValueSpecificationEClass, STRING_VALUE_SPECIFICATION__VALUE);
+
 		dataTypeSpecificationEClass = createEClass(DATA_TYPE_SPECIFICATION);
+
+		primitiveTypeSpecificationEClass = createEClass(PRIMITIVE_TYPE_SPECIFICATION);
+		createEAttribute(primitiveTypeSpecificationEClass, PRIMITIVE_TYPE_SPECIFICATION__KIND);
 
 		directFeedthroughPolicyEClass = createEClass(DIRECT_FEEDTHROUGH_POLICY);
 		createEReference(directFeedthroughPolicyEClass, DIRECT_FEEDTHROUGH_POLICY__INPUT_DEFINITION);
@@ -2379,6 +2483,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		// Create enums
 		parameterVisibilityKindEEnum = createEEnum(PARAMETER_VISIBILITY_KIND);
+		primitiveTypeKindEEnum = createEEnum(PRIMITIVE_TYPE_KIND);
 		timingKindEEnum = createEEnum(TIMING_KIND);
 	}
 
@@ -2440,6 +2545,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		inputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		outputDefinitionEClass.getESuperTypes().add(this.getInoutputDefinition());
 		parameterEClass.getESuperTypes().add(this.getINamedElement());
+		literalValueSpecificationEClass.getESuperTypes().add(this.getValueSpecification());
+		stringValueSpecificationEClass.getESuperTypes().add(this.getLiteralValueSpecification());
+		primitiveTypeSpecificationEClass.getESuperTypes().add(this.getDataTypeSpecification());
 		blockTypeEClass.getESuperTypes().add(ecorePackage.getEModelElement());
 		blockTypeEClass.getESuperTypes().add(this.getQualifiedElement());
 		blockTypeEClass.getESuperTypes().add(this.getCategorizedElement());
@@ -2661,6 +2769,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getParameter_DataType(), this.getDataTypeSpecification(), null, "dataType", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_Visibility(), this.getParameterVisibilityKind(), "visibility", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParameter_OwnedDefaultValue(), this.getValueSpecification(), null, "ownedDefaultValue", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getParameter_PredefinedValues(), this.getParameterPredefinedValue(), null, "predefinedValues", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2683,9 +2792,17 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		addEOperation(valueSpecificationEClass, this.getValueSpecification(), "copy", 1, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(literalValueSpecificationEClass, LiteralValueSpecification.class, "LiteralValueSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(stringValueSpecificationEClass, StringValueSpecification.class, "StringValueSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringValueSpecification_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringValueSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(dataTypeSpecificationEClass, DataTypeSpecification.class, "DataTypeSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		addEOperation(dataTypeSpecificationEClass, this.getDataTypeSpecification(), "copy", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(primitiveTypeSpecificationEClass, PrimitiveTypeSpecification.class, "PrimitiveTypeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getPrimitiveTypeSpecification_Kind(), this.getPrimitiveTypeKind(), "kind", null, 0, 1, PrimitiveTypeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(directFeedthroughPolicyEClass, DirectFeedthroughPolicy.class, "DirectFeedthroughPolicy", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDirectFeedthroughPolicy_InputDefinition(), this.getInputDefinition(), this.getInputDefinition_DirectFeedthroughPolicy(), "inputDefinition", null, 1, 1, DirectFeedthroughPolicy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -2852,6 +2969,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEEnum(parameterVisibilityKindEEnum, ParameterVisibilityKind.class, "ParameterVisibilityKind");
 		addEEnumLiteral(parameterVisibilityKindEEnum, ParameterVisibilityKind.PUBLIC);
 		addEEnumLiteral(parameterVisibilityKindEEnum, ParameterVisibilityKind.PRIVATE);
+
+		initEEnum(primitiveTypeKindEEnum, PrimitiveTypeKind.class, "PrimitiveTypeKind");
+		addEEnumLiteral(primitiveTypeKindEEnum, PrimitiveTypeKind.STRING);
 
 		initEEnum(timingKindEEnum, TimingKind.class, "TimingKind");
 		addEEnumLiteral(timingKindEEnum, TimingKind.ANY);

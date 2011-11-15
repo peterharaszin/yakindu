@@ -2,6 +2,7 @@
 <?eclipse version="3.0"?>
 <plugin>
    <extension-point id="injectorProviders" name="Injector Providers" schema="schema/injectorProviders.exsd"/>
+   <extension-point id="argumentEditPaneProviders" name="Argument Edit Pane Providers" schema="schema/argumentEditPaneProviders.exsd"/>
 
    <extension point="org.eclipse.ui.newWizards">
       <wizard

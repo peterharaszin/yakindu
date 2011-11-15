@@ -419,6 +419,52 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.StringValueSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringValueSpecificationItemProvider stringValueSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.StringValueSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStringValueSpecificationAdapter() {
+		if (stringValueSpecificationItemProvider == null) {
+			stringValueSpecificationItemProvider = new StringValueSpecificationItemProvider(this);
+		}
+
+		return stringValueSpecificationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.PrimitiveTypeSpecification} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PrimitiveTypeSpecificationItemProvider primitiveTypeSpecificationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipselabs.damos.dml.PrimitiveTypeSpecification}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPrimitiveTypeSpecificationAdapter() {
+		if (primitiveTypeSpecificationItemProvider == null) {
+			primitiveTypeSpecificationItemProvider = new PrimitiveTypeSpecificationItemProvider(this);
+		}
+
+		return primitiveTypeSpecificationItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipselabs.damos.dml.Argument} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1337,6 +1383,8 @@ public class DMLItemProviderAdapterFactory extends DMLAdapterFactory implements 
 		if (outputDefinitionItemProvider != null) outputDefinitionItemProvider.dispose();
 		if (parameterItemProvider != null) parameterItemProvider.dispose();
 		if (parameterPredefinedValueItemProvider != null) parameterPredefinedValueItemProvider.dispose();
+		if (stringValueSpecificationItemProvider != null) stringValueSpecificationItemProvider.dispose();
+		if (primitiveTypeSpecificationItemProvider != null) primitiveTypeSpecificationItemProvider.dispose();
 		if (argumentItemProvider != null) argumentItemProvider.dispose();
 		if (blockTypeItemProvider != null) blockTypeItemProvider.dispose();
 		if (categoryItemProvider != null) categoryItemProvider.dispose();

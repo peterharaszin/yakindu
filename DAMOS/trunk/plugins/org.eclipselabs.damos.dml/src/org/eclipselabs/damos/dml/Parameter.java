@@ -21,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.Parameter#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.Parameter#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Parameter#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Parameter#getOwnedDefaultValue <em>Owned Default Value</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.Parameter#getPredefinedValues <em>Predefined Values</em>}</li>
@@ -58,6 +59,32 @@ public interface Parameter extends INamedElement {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Data Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Data Type</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Data Type</em>' containment reference.
+	 * @see #setDataType(DataTypeSpecification)
+	 * @see org.eclipselabs.damos.dml.DMLPackage#getParameter_DataType()
+	 * @model containment="true"
+	 * @generated
+	 */
+	DataTypeSpecification getDataType();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.dml.Parameter#getDataType <em>Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Data Type</em>' containment reference.
+	 * @see #getDataType()
+	 * @generated
+	 */
+	void setDataType(DataTypeSpecification value);
 
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.

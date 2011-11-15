@@ -126,6 +126,7 @@ public class ParameterItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
+			childrenFeatures.add(DMLPackage.Literals.PARAMETER__DATA_TYPE);
 			childrenFeatures.add(DMLPackage.Literals.PARAMETER__OWNED_DEFAULT_VALUE);
 			childrenFeatures.add(DMLPackage.Literals.PARAMETER__PREDEFINED_VALUES);
 		}
@@ -186,6 +187,7 @@ public class ParameterItemProvider
 			case DMLPackage.PARAMETER__VISIBILITY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
+			case DMLPackage.PARAMETER__DATA_TYPE:
 			case DMLPackage.PARAMETER__OWNED_DEFAULT_VALUE:
 			case DMLPackage.PARAMETER__PREDEFINED_VALUES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -204,6 +206,16 @@ public class ParameterItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.PARAMETER__DATA_TYPE,
+				 DMLFactory.eINSTANCE.createPrimitiveTypeSpecification()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.PARAMETER__OWNED_DEFAULT_VALUE,
+				 DMLFactory.eINSTANCE.createStringValueSpecification()));
 
 		newChildDescriptors.add
 			(createChildParameter

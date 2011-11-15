@@ -44,13 +44,6 @@
       </language>
    </extension>
    <extension
-         point="org.eclipselabs.damos.dml.blockFamilies">
-      <blockFamily
-            id="org.eclipselabs.damos.ide.core.standard"
-            name="Damos Standard">
-      </blockFamily>
-   </extension>
-   <extension
          point="org.eclipselabs.damos.dml.injectorProviders">
       <provider
             class="org.eclipselabs.damos.ide.core.internal.providers.InjectorProvider"

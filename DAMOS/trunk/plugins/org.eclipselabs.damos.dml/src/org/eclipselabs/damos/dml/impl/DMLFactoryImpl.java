@@ -56,6 +56,9 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
+import org.eclipselabs.damos.dml.PrimitiveTypeKind;
+import org.eclipselabs.damos.dml.PrimitiveTypeSpecification;
+import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
@@ -125,6 +128,8 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 			case DMLPackage.OUTPUT_DEFINITION: return createOutputDefinition();
 			case DMLPackage.PARAMETER: return createParameter();
 			case DMLPackage.PARAMETER_PREDEFINED_VALUE: return createParameterPredefinedValue();
+			case DMLPackage.STRING_VALUE_SPECIFICATION: return createStringValueSpecification();
+			case DMLPackage.PRIMITIVE_TYPE_SPECIFICATION: return createPrimitiveTypeSpecification();
 			case DMLPackage.ARGUMENT: return createArgument();
 			case DMLPackage.BLOCK_TYPE: return createBlockType();
 			case DMLPackage.CATEGORY: return createCategory();
@@ -175,6 +180,8 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 		switch (eDataType.getClassifierID()) {
 			case DMLPackage.PARAMETER_VISIBILITY_KIND:
 				return createParameterVisibilityKindFromString(eDataType, initialValue);
+			case DMLPackage.PRIMITIVE_TYPE_KIND:
+				return createPrimitiveTypeKindFromString(eDataType, initialValue);
 			case DMLPackage.TIMING_KIND:
 				return createTimingKindFromString(eDataType, initialValue);
 			default:
@@ -192,6 +199,8 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 		switch (eDataType.getClassifierID()) {
 			case DMLPackage.PARAMETER_VISIBILITY_KIND:
 				return convertParameterVisibilityKindToString(eDataType, instanceValue);
+			case DMLPackage.PRIMITIVE_TYPE_KIND:
+				return convertPrimitiveTypeKindToString(eDataType, instanceValue);
 			case DMLPackage.TIMING_KIND:
 				return convertTimingKindToString(eDataType, instanceValue);
 			default:
@@ -347,6 +356,26 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	public ParameterPredefinedValue createParameterPredefinedValue() {
 		ParameterPredefinedValueImpl parameterPredefinedValue = new ParameterPredefinedValueImpl();
 		return parameterPredefinedValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StringValueSpecification createStringValueSpecification() {
+		StringValueSpecificationImpl stringValueSpecification = new StringValueSpecificationImpl();
+		return stringValueSpecification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimitiveTypeSpecification createPrimitiveTypeSpecification() {
+		PrimitiveTypeSpecificationImpl primitiveTypeSpecification = new PrimitiveTypeSpecificationImpl();
+		return primitiveTypeSpecification;
 	}
 
 	/**
@@ -736,6 +765,26 @@ public class DMLFactoryImpl extends EFactoryImpl implements DMLFactory {
 	 * @generated
 	 */
 	public String convertParameterVisibilityKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PrimitiveTypeKind createPrimitiveTypeKindFromString(EDataType eDataType, String initialValue) {
+		PrimitiveTypeKind result = PrimitiveTypeKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPrimitiveTypeKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

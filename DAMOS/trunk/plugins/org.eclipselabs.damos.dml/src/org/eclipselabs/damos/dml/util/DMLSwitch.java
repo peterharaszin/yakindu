@@ -60,6 +60,7 @@ import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.LatchInput;
+import org.eclipselabs.damos.dml.LiteralValueSpecification;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -77,8 +78,10 @@ import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.PrimitiveTypeSpecification;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
+import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
@@ -361,9 +364,31 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLPackage.LITERAL_VALUE_SPECIFICATION: {
+				LiteralValueSpecification literalValueSpecification = (LiteralValueSpecification)theEObject;
+				T result = caseLiteralValueSpecification(literalValueSpecification);
+				if (result == null) result = caseValueSpecification(literalValueSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.STRING_VALUE_SPECIFICATION: {
+				StringValueSpecification stringValueSpecification = (StringValueSpecification)theEObject;
+				T result = caseStringValueSpecification(stringValueSpecification);
+				if (result == null) result = caseLiteralValueSpecification(stringValueSpecification);
+				if (result == null) result = caseValueSpecification(stringValueSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLPackage.DATA_TYPE_SPECIFICATION: {
 				DataTypeSpecification dataTypeSpecification = (DataTypeSpecification)theEObject;
 				T result = caseDataTypeSpecification(dataTypeSpecification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLPackage.PRIMITIVE_TYPE_SPECIFICATION: {
+				PrimitiveTypeSpecification primitiveTypeSpecification = (PrimitiveTypeSpecification)theEObject;
+				T result = casePrimitiveTypeSpecification(primitiveTypeSpecification);
+				if (result == null) result = caseDataTypeSpecification(primitiveTypeSpecification);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -1212,6 +1237,21 @@ public class DMLSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Primitive Type Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Primitive Type Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePrimitiveTypeSpecification(PrimitiveTypeSpecification object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1268,6 +1308,36 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseValueSpecification(ValueSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Literal Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Literal Value Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLiteralValueSpecification(LiteralValueSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String Value Specification</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringValueSpecification(StringValueSpecification object) {
 		return null;
 	}
 

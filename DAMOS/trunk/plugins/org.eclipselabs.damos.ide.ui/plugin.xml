@@ -69,40 +69,40 @@
       <propertySections
             contributorId="org.eclipselabs.damos.dml.ui.properties">
          <propertySection
-               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.GeneralPropertySection"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.properties.GeneralPropertySection"
                enablesFor="1"
-               filter="org.eclipselabs.damos.dml.ui.internal.properties.GeneralPropertySectionFilter"
+               filter="org.eclipselabs.damos.dml.ui.properties.GeneralPropertySectionFilter"
                id="org.eclipselabs.damos.dml.ui.sections.blockName"
                tab="org.eclipselabs.damos.dml.ui.tabs.general">
          </propertySection>
          <propertySection
                afterSection="org.eclipselabs.damos.dml.ui.sections.blockName"
-               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.TimingPropertySection"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.properties.TimingPropertySection"
                enablesFor="1"
-               filter="org.eclipselabs.damos.dml.ui.internal.properties.TimingPropertySectionFilter"
+               filter="org.eclipselabs.damos.dml.ui.properties.TimingPropertySectionFilter"
                id="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
                tab="org.eclipselabs.damos.dml.ui.tabs.general">
          </propertySection>
          <propertySection
                afterSection="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
-               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.InoutportDataTypePropertySection"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.properties.InoutportDataTypePropertySection"
                enablesFor="1"
-               filter="org.eclipselabs.damos.dml.ui.internal.properties.InoutportDataTypePropertySectionFilter"
+               filter="org.eclipselabs.damos.dml.ui.properties.InoutportDataTypePropertySectionFilter"
                id="org.eclipselabs.damos.dml.ui.sections.inoutportDataType"
                tab="org.eclipselabs.damos.dml.ui.tabs.general">
          </propertySection>
          <propertySection
                afterSection="org.eclipselabs.damos.dml.ui.sections.timingConstraint"
-               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.LatchPropertySection"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.properties.LatchPropertySection"
                enablesFor="1"
-               filter="org.eclipselabs.damos.dml.ui.internal.properties.LatchPropertySectionFilter"
+               filter="org.eclipselabs.damos.dml.ui.properties.LatchPropertySectionFilter"
                id="org.eclipselabs.damos.dml.ui.sections.latch"
                tab="org.eclipselabs.damos.dml.ui.tabs.general">
          </propertySection>
          <propertySection
-               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySection"
+               class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.properties.ParametersPropertySection"
                enablesFor="1"
-               filter="org.eclipselabs.damos.dml.ui.internal.properties.ParametersPropertySectionFilter"
+               filter="org.eclipselabs.damos.dml.ui.properties.ParametersPropertySectionFilter"
                id="org.eclipselabs.damos.dml.ui.sections.parameters"
                tab="org.eclipselabs.damos.dml.ui.tabs.parameters">
          </propertySection>

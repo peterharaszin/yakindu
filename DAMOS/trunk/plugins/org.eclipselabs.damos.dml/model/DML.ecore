@@ -185,6 +185,8 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataType" eType="#//DataTypeSpecification"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="visibility" eType="#//ParameterVisibilityKind"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ownedDefaultValue" eType="#//ValueSpecification"
         containment="true"/>
@@ -205,8 +207,19 @@
     <eOperations name="stringValue" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="copy" lowerBound="1" eType="#//ValueSpecification"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralValueSpecification" abstract="true"
+      eSuperTypes="#//ValueSpecification"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringValueSpecification" eSuperTypes="#//LiteralValueSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataTypeSpecification" abstract="true">
     <eOperations name="copy" lowerBound="1" eType="#//DataTypeSpecification"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PrimitiveTypeSpecification" eSuperTypes="#//DataTypeSpecification">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//PrimitiveTypeKind"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PrimitiveTypeKind">
+    <eLiterals name="String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DirectFeedthroughPolicy" abstract="true">
     <eOperations name="computeDirectFeedthrough" ordered="false" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>

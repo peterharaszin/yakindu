@@ -14,6 +14,9 @@
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Public"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//ParameterVisibilityKind/Private"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//PrimitiveTypeKind">
+      <genEnumLiterals ecoreEnumLiteral="DML.ecore#//PrimitiveTypeKind/String"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="DML.ecore#//TimingKind">
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Any"/>
       <genEnumLiterals ecoreEnumLiteral="DML.ecore#//TimingKind/Continuous"/>
@@ -150,6 +153,7 @@
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/dataType"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//Parameter/visibility"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/ownedDefaultValue"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//Parameter/predefinedValues"/>
@@ -169,8 +173,15 @@
       <genOperations ecoreOperation="DML.ecore#//ValueSpecification/stringValue"/>
       <genOperations ecoreOperation="DML.ecore#//ValueSpecification/copy"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="DML.ecore#//LiteralValueSpecification"/>
+    <genClasses ecoreClass="DML.ecore#//StringValueSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//StringValueSpecification/value"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//DataTypeSpecification">
       <genOperations ecoreOperation="DML.ecore#//DataTypeSpecification/copy"/>
+    </genClasses>
+    <genClasses ecoreClass="DML.ecore#//PrimitiveTypeSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//PrimitiveTypeSpecification/kind"/>
     </genClasses>
     <genClasses image="false" ecoreClass="DML.ecore#//DirectFeedthroughPolicy">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference DML.ecore#//DirectFeedthroughPolicy/inputDefinition"/>

@@ -11,12 +11,15 @@
 
 package org.eclipselabs.damos.ide.ui;
 
+import org.eclipselabs.damos.common.inject.Default;
 import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
-import org.eclipselabs.damos.dml.ui.IDataTypeSpecificationEditor;
-import org.eclipselabs.damos.dml.ui.IValueSpecificationEditor;
+import org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider;
+import org.eclipselabs.damos.dml.ui.editpane.IDataTypeSpecificationEditPane;
+import org.eclipselabs.damos.dml.ui.editpane.IValueSpecificationEditPane;
 import org.eclipselabs.damos.ide.ui.internal.directedit.ValueSpecificationDirectEditHelper;
-import org.eclipselabs.damos.ide.ui.internal.editors.DataTypeSpecificationEditor;
-import org.eclipselabs.damos.ide.ui.internal.editors.ValueSpecificationEditor;
+import org.eclipselabs.damos.ide.ui.internal.editors.DataTypeSpecificationEditPane;
+import org.eclipselabs.damos.ide.ui.internal.editors.ValueSpecificationEditPane;
+import org.eclipselabs.damos.ide.ui.internal.providers.ParameterEditorProvider;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
@@ -38,6 +41,7 @@ public class IDEUIModule extends AbstractModule {
 		configureIValueSpecificationEditor();
 		configureIDataTypeSpecificationEditor();
 		configureIValueSpecificationDirectEditHelper();
+		configureIArgumentEditorProvider();
 	}
 	
 	protected void configureBlockLibraryViewId() {
@@ -53,15 +57,19 @@ public class IDEUIModule extends AbstractModule {
 	}
 	
 	protected void configureIValueSpecificationEditor() {
-		bind(IValueSpecificationEditor.class).to(ValueSpecificationEditor.class);
+		bind(IValueSpecificationEditPane.class).to(ValueSpecificationEditPane.class);
 	}
 
 	protected void configureIDataTypeSpecificationEditor() {
-		bind(IDataTypeSpecificationEditor.class).to(DataTypeSpecificationEditor.class);
+		bind(IDataTypeSpecificationEditPane.class).to(DataTypeSpecificationEditPane.class);
 	}
 	
 	protected void configureIValueSpecificationDirectEditHelper() {
 		bind(IValueSpecificationDirectEditHelper.class).to(ValueSpecificationDirectEditHelper.class);
+	}
+
+	protected void configureIArgumentEditorProvider() {
+		bind(IParameterEditPaneProvider.class).annotatedWith(Default.class).to(ParameterEditorProvider.class);
 	}
 
 }

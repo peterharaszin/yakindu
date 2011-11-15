@@ -73,6 +73,7 @@ import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.LatchInput;
+import org.eclipselabs.damos.dml.LiteralValueSpecification;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -91,8 +92,11 @@ import org.eclipselabs.damos.dml.ParameterVisibilityKind;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.PrimitiveTypeKind;
+import org.eclipselabs.damos.dml.PrimitiveTypeSpecification;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
+import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
@@ -235,8 +239,14 @@ public class DMLValidator extends EObjectValidator {
 				return validateParameterPredefinedValue((ParameterPredefinedValue)value, diagnostics, context);
 			case DMLPackage.VALUE_SPECIFICATION:
 				return validateValueSpecification((ValueSpecification)value, diagnostics, context);
+			case DMLPackage.LITERAL_VALUE_SPECIFICATION:
+				return validateLiteralValueSpecification((LiteralValueSpecification)value, diagnostics, context);
+			case DMLPackage.STRING_VALUE_SPECIFICATION:
+				return validateStringValueSpecification((StringValueSpecification)value, diagnostics, context);
 			case DMLPackage.DATA_TYPE_SPECIFICATION:
 				return validateDataTypeSpecification((DataTypeSpecification)value, diagnostics, context);
+			case DMLPackage.PRIMITIVE_TYPE_SPECIFICATION:
+				return validatePrimitiveTypeSpecification((PrimitiveTypeSpecification)value, diagnostics, context);
 			case DMLPackage.DIRECT_FEEDTHROUGH_POLICY:
 				return validateDirectFeedthroughPolicy((DirectFeedthroughPolicy)value, diagnostics, context);
 			case DMLPackage.PARAMETERIZED_ELEMENT:
@@ -339,6 +349,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateITextualElement((ITextualElement)value, diagnostics, context);
 			case DMLPackage.PARAMETER_VISIBILITY_KIND:
 				return validateParameterVisibilityKind((ParameterVisibilityKind)value, diagnostics, context);
+			case DMLPackage.PRIMITIVE_TYPE_KIND:
+				return validatePrimitiveTypeKind((PrimitiveTypeKind)value, diagnostics, context);
 			case DMLPackage.TIMING_KIND:
 				return validateTimingKind((TimingKind)value, diagnostics, context);
 			default:
@@ -778,8 +790,35 @@ public class DMLValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validateLiteralValueSpecification(LiteralValueSpecification literalValueSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(literalValueSpecification, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateStringValueSpecification(StringValueSpecification stringValueSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(stringValueSpecification, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validateDataTypeSpecification(DataTypeSpecification dataTypeSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(dataTypeSpecification, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePrimitiveTypeSpecification(PrimitiveTypeSpecification primitiveTypeSpecification, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(primitiveTypeSpecification, diagnostics, context);
 	}
 
 	/**
@@ -1910,6 +1949,15 @@ public class DMLValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateParameterVisibilityKind(ParameterVisibilityKind parameterVisibilityKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validatePrimitiveTypeKind(PrimitiveTypeKind primitiveTypeKind, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return true;
 	}
 

@@ -61,6 +61,7 @@ import org.eclipselabs.damos.dml.Join;
 import org.eclipselabs.damos.dml.JoinInput;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.LatchInput;
+import org.eclipselabs.damos.dml.LiteralValueSpecification;
 import org.eclipselabs.damos.dml.Memory;
 import org.eclipselabs.damos.dml.MemoryInitialCondition;
 import org.eclipselabs.damos.dml.MemoryInput;
@@ -78,8 +79,10 @@ import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.ParameterizedElement;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.PrimitiveTypeSpecification;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
+import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
@@ -260,8 +263,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 				return createValueSpecificationAdapter();
 			}
 			@Override
+			public Adapter caseLiteralValueSpecification(LiteralValueSpecification object) {
+				return createLiteralValueSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseStringValueSpecification(StringValueSpecification object) {
+				return createStringValueSpecificationAdapter();
+			}
+			@Override
 			public Adapter caseDataTypeSpecification(DataTypeSpecification object) {
 				return createDataTypeSpecificationAdapter();
+			}
+			@Override
+			public Adapter casePrimitiveTypeSpecification(PrimitiveTypeSpecification object) {
+				return createPrimitiveTypeSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseDirectFeedthroughPolicy(DirectFeedthroughPolicy object) {
@@ -852,6 +867,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.PrimitiveTypeSpecification <em>Primitive Type Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.PrimitiveTypeSpecification
+	 * @generated
+	 */
+	public Adapter createPrimitiveTypeSpecificationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ParameterableElement <em>Parameterable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -904,6 +933,34 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createValueSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.LiteralValueSpecification <em>Literal Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.LiteralValueSpecification
+	 * @generated
+	 */
+	public Adapter createLiteralValueSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.StringValueSpecification <em>String Value Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.StringValueSpecification
+	 * @generated
+	 */
+	public Adapter createStringValueSpecificationAdapter() {
 		return null;
 	}
 

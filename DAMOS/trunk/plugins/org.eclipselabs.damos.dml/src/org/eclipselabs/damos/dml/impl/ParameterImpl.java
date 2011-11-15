@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.DataTypeSpecification;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.ParameterVisibilityKind;
@@ -32,6 +33,7 @@ import org.eclipselabs.damos.dml.internal.operations.ParameterOperations;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ParameterImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.ParameterImpl#getDataType <em>Data Type</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ParameterImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ParameterImpl#getOwnedDefaultValue <em>Owned Default Value</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.ParameterImpl#getPredefinedValues <em>Predefined Values</em>}</li>
@@ -60,6 +62,15 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
 	 */
 	protected String name = NAME_EDEFAULT;
 
+	/**
+	 * The cached value of the '{@link #getDataType() <em>Data Type</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDataType()
+	 * @generated
+	 * @ordered
+	 */
+	protected DataTypeSpecification dataType;
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -136,6 +147,49 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.PARAMETER__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public DataTypeSpecification getDataType() {
+		return dataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetDataType(DataTypeSpecification newDataType, NotificationChain msgs) {
+		DataTypeSpecification oldDataType = dataType;
+		dataType = newDataType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DMLPackage.PARAMETER__DATA_TYPE, oldDataType, newDataType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDataType(DataTypeSpecification newDataType) {
+		if (newDataType != dataType) {
+			NotificationChain msgs = null;
+			if (dataType != null)
+				msgs = ((InternalEObject)dataType).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DMLPackage.PARAMETER__DATA_TYPE, null, msgs);
+			if (newDataType != null)
+				msgs = ((InternalEObject)newDataType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DMLPackage.PARAMETER__DATA_TYPE, null, msgs);
+			msgs = basicSetDataType(newDataType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.PARAMETER__DATA_TYPE, newDataType, newDataType));
 	}
 
 	/**
@@ -249,6 +303,8 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case DMLPackage.PARAMETER__DATA_TYPE:
+				return basicSetDataType(null, msgs);
 			case DMLPackage.PARAMETER__OWNED_DEFAULT_VALUE:
 				return basicSetOwnedDefaultValue(null, msgs);
 			case DMLPackage.PARAMETER__PREDEFINED_VALUES:
@@ -267,6 +323,8 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
 		switch (featureID) {
 			case DMLPackage.PARAMETER__NAME:
 				return getName();
+			case DMLPackage.PARAMETER__DATA_TYPE:
+				return getDataType();
 			case DMLPackage.PARAMETER__VISIBILITY:
 				return getVisibility();
 			case DMLPackage.PARAMETER__OWNED_DEFAULT_VALUE:
@@ -288,6 +346,9 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
 		switch (featureID) {
 			case DMLPackage.PARAMETER__NAME:
 				setName((String)newValue);
+				return;
+			case DMLPackage.PARAMETER__DATA_TYPE:
+				setDataType((DataTypeSpecification)newValue);
 				return;
 			case DMLPackage.PARAMETER__VISIBILITY:
 				setVisibility((ParameterVisibilityKind)newValue);
@@ -314,6 +375,9 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
 			case DMLPackage.PARAMETER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case DMLPackage.PARAMETER__DATA_TYPE:
+				setDataType((DataTypeSpecification)null);
+				return;
 			case DMLPackage.PARAMETER__VISIBILITY:
 				setVisibility(VISIBILITY_EDEFAULT);
 				return;
@@ -337,6 +401,8 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
 		switch (featureID) {
 			case DMLPackage.PARAMETER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DMLPackage.PARAMETER__DATA_TYPE:
+				return dataType != null;
 			case DMLPackage.PARAMETER__VISIBILITY:
 				return visibility != VISIBILITY_EDEFAULT;
 			case DMLPackage.PARAMETER__OWNED_DEFAULT_VALUE:

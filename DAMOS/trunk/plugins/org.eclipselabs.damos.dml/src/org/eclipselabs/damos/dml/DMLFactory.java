@@ -161,6 +161,24 @@ public interface DMLFactory extends EFactory {
 	ParameterPredefinedValue createParameterPredefinedValue();
 
 	/**
+	 * Returns a new object of class '<em>String Value Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String Value Specification</em>'.
+	 * @generated
+	 */
+	StringValueSpecification createStringValueSpecification();
+
+	/**
+	 * Returns a new object of class '<em>Primitive Type Specification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Primitive Type Specification</em>'.
+	 * @generated
+	 */
+	PrimitiveTypeSpecification createPrimitiveTypeSpecification();
+
+	/**
 	 * Returns a new object of class '<em>Argument</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

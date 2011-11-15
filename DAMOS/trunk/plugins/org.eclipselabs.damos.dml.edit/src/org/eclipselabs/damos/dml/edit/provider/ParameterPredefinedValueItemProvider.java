@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipselabs.damos.dml.DMLFactory;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.ParameterPredefinedValue;
 import org.eclipselabs.damos.dml.edit.DMLEditPlugin;
@@ -177,6 +178,11 @@ public class ParameterPredefinedValueItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DMLPackage.Literals.PARAMETER_PREDEFINED_VALUE__VALUE,
+				 DMLFactory.eINSTANCE.createStringValueSpecification()));
 	}
 
 	/**

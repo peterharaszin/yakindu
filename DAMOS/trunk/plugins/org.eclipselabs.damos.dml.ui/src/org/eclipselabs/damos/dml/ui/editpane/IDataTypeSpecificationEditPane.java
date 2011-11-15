@@ -24,7 +24,7 @@ import org.eclipselabs.damos.common.ui.widgets.IWidgetFactory;
  */
 public interface IDataTypeSpecificationEditPane {
 	
-	Control createEditControl(Composite parent, IWidgetFactory widgetFactory);
+	void createEditControl(Composite parent, IWidgetFactory widgetFactory);
 	
 	Control getEditControl();
 

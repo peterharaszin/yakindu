@@ -4,8 +4,8 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.part.BlockDiagramEditor"
-            contributorClass="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.part.BlockDiagramActionBarContributor"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.BlockDiagramEditor"
+            contributorClass="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.BlockDiagramActionBarContributor"
             default="true"
             extensions="blockdiagram"
             icon="icons/blockdiagram.gif"
@@ -22,14 +22,14 @@
       </category>
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.part.FragmentExplorerView"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.FragmentExplorerView"
             id="org.eclipselabs.damos.ide.ui.fragmentExplorerView"
             name="Fragment Explorer"
             restorable="true">
       </view>
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.views.BlockLibraryView"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.BlockLibraryView"
             id="org.eclipselabs.damos.ide.ui.blockLibraryView"
             name="Block Library">
       </view>

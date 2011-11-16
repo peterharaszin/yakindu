@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.dml.ui.editor.presentation;
+package org.eclipselabs.damos.dml.ui.internal.parts;
 
 import java.util.ArrayList;
 import java.util.Collection;

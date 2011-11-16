@@ -5,35 +5,11 @@
    <extension-point id="injectorProviders" name="Injector Providers" schema="schema/injectorProviders.exsd"/>
    <extension-point id="parameterEditPaneProviders" name="Parameter Edit Pane Providers" schema="schema/parameterEditPaneProviders.exsd"/>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <wizard
-            id="org.eclipselabs.damos.dml.ui.blockTypeWizard"
-            name="%_UI_BlockTypeModelWizard_label"
-            class="org.eclipselabs.damos.dml.ui.editor.presentation.BlockTypeWizard"
-            category="org.eclipselabs.damos.ide.ui.damosCategory"
-            icon="icons/full/obj16/BlockTypeFile.gif">
-         <description>%_UI_BlockTypeModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-      <wizard
-            category="org.eclipselabs.damos.ide.ui.damosCategory"
-            class="org.eclipselabs.damos.dml.ui.editor.presentation.CategoryWizard"
-            icon="icons/full/obj16/CategoryFile.gif"
-            id="org.eclipselabs.damos.dml.ui.categoryWizard"
-            name="%_UI_CategoryModelWizard_label">
-         <description>
-            %_UI_CategoryModelWizard_description
-         </description>
-         <selection
-               class="org.eclipse.core.resources.IResource">
-         </selection>
-      </wizard>
-   </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipselabs.damos.dml.ui.editor.presentation.DMLEditor"
-            contributorClass="org.eclipselabs.damos.dml.ui.editor.presentation.DMLActionBarContributor"
+            class="org.eclipselabs.damos.dml.ui.internal.parts.DMLEditor"
+            contributorClass="org.eclipselabs.damos.dml.ui.internal.parts.DMLActionBarContributor"
             extensions="dml"
             icon="icons/full/obj16/DMLModelFile.gif"
             id="org.eclipselabs.damos.dml.ui.dmlModelEditor"

@@ -302,53 +302,5 @@
             icon24="icons/sources/Step24.png">
       </image>
    </extension>
-   <extension
-         point="org.eclipselabs.damos.diagram.ui.defaultCommonBlocks">
-      <block
-            blockType="org::eclipselabs::damos::library::base::continuous::Integrator">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::continuous::TransferFunction">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::discontinuities::Saturation">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::discrete::Delay">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::discrete::DiscreteIntegrator">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::logic::And">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::logic::Or">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::logic::Inverter">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::logic::Compare">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::math::Gain">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::math::Sum">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::signal::Switch">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::sinks::Scope">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::sources::Constant">
-      </block>
-      <block
-            blockType="org::eclipselabs::damos::library::base::sources::Step">
-      </block>
-   </extension>
 
 </plugin>

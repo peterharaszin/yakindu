@@ -13,6 +13,7 @@ package org.eclipselabs.damos.ide.ui;
 
 import org.eclipselabs.damos.common.inject.Default;
 import org.eclipselabs.damos.diagram.core.resource.BlockDiagramFileExtension;
+import org.eclipselabs.damos.diagram.ui.preferences.IDefaultCommonBlockTypesProvider;
 import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.dml.ui.editpane.IDataTypeSpecificationEditPane;
 import org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider;
@@ -23,6 +24,7 @@ import org.eclipselabs.damos.dml.ui.properties.ContributorId;
 import org.eclipselabs.damos.ide.ui.internal.directedit.ValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.ide.ui.internal.editors.DataTypeSpecificationEditPane;
 import org.eclipselabs.damos.ide.ui.internal.editors.ValueSpecificationEditPane;
+import org.eclipselabs.damos.ide.ui.internal.providers.DefaultCommonBlockTypesProvider;
 import org.eclipselabs.damos.ide.ui.internal.providers.ParameterEditPaneProvider;
 
 import com.google.inject.AbstractModule;
@@ -46,6 +48,7 @@ public class IDEUIModule extends AbstractModule {
 		configureIDataTypeSpecificationEditor();
 		configureIValueSpecificationDirectEditHelper();
 		configureIArgumentEditorProvider();
+		configureIDefaultCommonBlockTypesProvider();
 	}
 	
 	protected void configureContributorId() {
@@ -78,6 +81,10 @@ public class IDEUIModule extends AbstractModule {
 
 	protected void configureIArgumentEditorProvider() {
 		bind(IParameterEditPaneProvider.class).annotatedWith(Default.class).to(ParameterEditPaneProvider.class);
+	}
+
+	protected void configureIDefaultCommonBlockTypesProvider() {
+		bind(IDefaultCommonBlockTypesProvider.class).to(DefaultCommonBlockTypesProvider.class);
 	}
 
 }

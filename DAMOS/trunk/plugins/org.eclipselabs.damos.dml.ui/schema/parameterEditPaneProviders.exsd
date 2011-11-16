@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipselabs.damos.dml.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipselabs.damos.dml.ui" id="argumentEditPaneProviders" name="Argument Edit Pane Providers"/>
+         <meta.schema plugin="org.eclipselabs.damos.dml.ui" id="parameterEditPaneProviders" name="Parameter Edit Pane Providers"/>
       </appInfo>
       <documentation>
          [Enter description of this extension point.]
@@ -18,7 +18,6 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="language"/>
             <element ref="provider" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
@@ -50,6 +49,9 @@
 
    <element name="provider">
       <complexType>
+         <sequence>
+            <element ref="language"/>
+         </sequence>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>

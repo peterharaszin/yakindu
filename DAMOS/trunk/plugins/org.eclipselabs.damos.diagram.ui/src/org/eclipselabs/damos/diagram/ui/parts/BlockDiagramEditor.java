@@ -150,21 +150,4 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 		return file;
 	}
 	
-//	@Override
-//	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-//		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-//			return BlockDiagramDocumentProvider.getInstance();
-//		}
-//		return super.getDocumentProvider(input);
-//	}
-//
-//	@Override
-//	protected void setDocumentProvider(IEditorInput input) {
-//		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-//			setDocumentProvider(BlockDiagramDocumentProvider.getInstance());
-//		} else {
-//			super.setDocumentProvider(input);
-//		}
-//	}
-
 }

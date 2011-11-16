@@ -2,6 +2,12 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.preferences.BlockDiagramPreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
          point="org.eclipse.ui.editors">
       <editor
             class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.diagram.ui.parts.BlockDiagramEditor"
@@ -22,14 +28,14 @@
       </category>
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.ide.ui.parts.FragmentExplorerView"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.parts.FragmentExplorerView"
             id="org.eclipselabs.damos.ide.ui.fragmentExplorerView"
             name="Fragment Explorer"
             restorable="true">
       </view>
       <view
             category="org.eclipselabs.damos.ide.ui.damos"
-            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.ide.ui.parts.BlockLibraryView"
+            class="org.eclipselabs.damos.ide.ui.IDEUIExecutableExtensionFactory:org.eclipselabs.damos.dml.ui.parts.BlockLibraryView"
             id="org.eclipselabs.damos.ide.ui.blockLibraryView"
             name="Block Library">
       </view>

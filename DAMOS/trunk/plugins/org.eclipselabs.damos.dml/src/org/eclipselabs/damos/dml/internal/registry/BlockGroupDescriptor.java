@@ -16,6 +16,7 @@ import java.util.Collection;
 
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
+import org.eclipselabs.damos.dml.registry.ILanguageDescriptor;
 
 /**
  * @author Andreas Unger
@@ -29,6 +30,8 @@ public class BlockGroupDescriptor implements IBlockGroupDescriptor {
 	
 	Collection<IBlockGroupDescriptor> subgroups = new ArrayList<IBlockGroupDescriptor>();
 	Collection<IBlockTypeDescriptor> blockTypes = new ArrayList<IBlockTypeDescriptor>();
+	
+	private ILanguageDescriptor language;
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.internal.services.BlockGroupDescriptor#getId()
@@ -85,6 +88,23 @@ public class BlockGroupDescriptor implements IBlockGroupDescriptor {
 	 */
 	public Collection<IBlockTypeDescriptor> getBlockTypes() {
 		return blockTypes;
+	}
+	
+	/**
+	 * @return the language
+	 */
+	public ILanguageDescriptor getLanguage() {
+		if (language == null && supergroup != null) {
+			return supergroup.language;
+		}
+		return language;
+	}
+	
+	/**
+	 * @param language the language to set
+	 */
+	public void setLanguage(ILanguageDescriptor language) {
+		this.language = language;
 	}
 	
 }

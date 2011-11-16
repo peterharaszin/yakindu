@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.ide.core;
 
+import org.eclipselabs.damos.dml.LanguageId;
 import org.eclipselabs.damos.dml.util.IElementInitializer;
 import org.eclipselabs.damos.ide.core.internal.util.ElementInitializer;
 
@@ -27,9 +28,14 @@ public class IDEModule extends AbstractModule {
 	 */
 	@Override
 	protected void configure() {
+		configureLanguageId();
 		configureIElementInitializer();
 	}
 	
+	protected void configureLanguageId() {
+		bind(String.class).annotatedWith(LanguageId.class).toInstance("org.eclipselabs.damos");
+	}
+
 	protected void configureIElementInitializer() {
 		bind(IElementInitializer.class).to(ElementInitializer.class);
 	}

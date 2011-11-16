@@ -39,5 +39,7 @@ public interface IBlockGroupDescriptor {
 	Collection<IBlockGroupDescriptor> getSubgroups();
 	
 	Collection<IBlockTypeDescriptor> getBlockTypes();
+	
+	ILanguageDescriptor getLanguage();
 
 }

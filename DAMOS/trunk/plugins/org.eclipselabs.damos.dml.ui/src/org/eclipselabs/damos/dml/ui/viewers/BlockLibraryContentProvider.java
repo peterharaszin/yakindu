@@ -26,6 +26,15 @@ import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
  */
 public class BlockLibraryContentProvider implements ITreeContentProvider {
 
+	private final String languageId;
+	
+	/**
+	 * 
+	 */
+	public BlockLibraryContentProvider(String languageId) {
+		this.languageId = languageId;
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer, java.lang.Object, java.lang.Object)
 	 */
@@ -38,7 +47,7 @@ public class BlockLibraryContentProvider implements ITreeContentProvider {
 	public Object[] getElements(Object inputElement) {
 		List<IBlockGroupDescriptor> topLevelGroups = new ArrayList<IBlockGroupDescriptor>();
 		for (IBlockGroupDescriptor group : BlockGroupRegistry.getInstance().getBlockGroups()) {
-			if (group.getSupergroup() == null) {
+			if (group.getSupergroup() == null && group.getLanguage() != null && languageId.equals(group.getLanguage().getId())) {
 				topLevelGroups.add(group);
 			}
 		}

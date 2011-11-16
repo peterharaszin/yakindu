@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.diagram.ui;
 
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -22,14 +21,7 @@ public class DiagramUIPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipselabs.damos.diagram.ui";
-	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(PLUGIN_ID);
 	
-	/**
-	 * The block diagram notation editor ID. This matches the id used in this plugin's
-	 * XML for the editor extension point.
-	 */
-	public static final String EDITOR_ID = "org.eclipselabs.damos.ide.ui.blockDiagramEditor"; //$NON-NLS-1$
-
 	// The shared instance
 	private static DiagramUIPlugin plugin;
 	
@@ -46,7 +38,6 @@ public class DiagramUIPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
-		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
 	}
 
 	/*

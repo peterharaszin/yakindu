@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2009 Andreas Unger and others.
+ * Copyright (c) 2008, 2011 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,25 +11,21 @@
 
 package org.eclipselabs.damos.diagram.ui.parts;
 
-import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-import com.google.inject.Inject;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-public class BlockDiagramActionBarContributor extends DiagramActionBarContributor {
+import com.google.inject.BindingAnnotation;
 
-	private final String editorId;
-	
-	@Inject
-	BlockDiagramActionBarContributor(@BlockDiagramEditorId String editorId) {
-		this.editorId = editorId;
-	}
-	
-	protected Class<?> getEditorClass() {
-		return BlockDiagramEditor.class;
-	}
-
-	protected String getEditorId() {
-		return editorId;
-	}
+/**
+ * @author Andreas Unger
+ *
+ */
+@Retention(RUNTIME)
+@Target({ ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD })
+@BindingAnnotation
+public @interface BlockDiagramEditorId {
 
 }

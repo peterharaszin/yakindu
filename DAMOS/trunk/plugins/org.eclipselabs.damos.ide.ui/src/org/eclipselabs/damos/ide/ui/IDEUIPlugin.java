@@ -1,5 +1,6 @@
 package org.eclipselabs.damos.ide.ui;
 
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -27,6 +28,7 @@ public class IDEUIPlugin extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		PreferencesHint.registerPreferenceStore(IDEUIModule.PREFERENCES_HINT, getPreferenceStore());
 	}
 
 	/*

@@ -39,13 +39,15 @@ import com.google.inject.Inject;
 public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 
 	private final String contributorId;
+	private final PreferencesHint preferencesHint;
 	
 	/**
 	 * 
 	 */
 	@Inject
-	BlockDiagramEditor(@ContributorId String contributorId) {
+	BlockDiagramEditor(@ContributorId String contributorId, PreferencesHint preferencesHint) {
 		this.contributorId = contributorId;
+		this.preferencesHint = preferencesHint;
 	}
 	
 	/* (non-Javadoc)
@@ -56,7 +58,7 @@ public class BlockDiagramEditor extends FileDiagramEditorWithFlyoutPalette {
 	}
 	
 	protected PreferencesHint getPreferencesHint() {
-		return DiagramUIPlugin.DIAGRAM_PREFERENCES_HINT;
+		return preferencesHint;
 	}
 	
 	/* (non-Javadoc)

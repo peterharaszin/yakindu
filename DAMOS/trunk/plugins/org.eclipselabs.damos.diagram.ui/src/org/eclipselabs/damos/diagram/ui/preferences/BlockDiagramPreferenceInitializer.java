@@ -11,18 +11,13 @@
 
 package org.eclipselabs.damos.diagram.ui.preferences;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.gef.rulers.RulerProvider;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramPreferenceInitializer;
 import org.eclipse.gmf.runtime.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipselabs.damos.diagram.ui.DiagramUIPlugin;
 
 import com.google.inject.Inject;
 
@@ -32,13 +27,15 @@ import com.google.inject.Inject;
  */
 public class BlockDiagramPreferenceInitializer extends DiagramPreferenceInitializer implements IPreferenceConstants, org.eclipselabs.damos.diagram.ui.preferences.IPreferenceConstants {
 
+	private final PreferencesHint preferencesHint;
 	private final IDefaultCommonBlockTypesProvider defaultCommonBlockTypesProvider;
 	
 	/**
 	 * 
 	 */
 	@Inject
-	public BlockDiagramPreferenceInitializer(IDefaultCommonBlockTypesProvider defaultCommonBlockTypesProvider) {
+	BlockDiagramPreferenceInitializer(PreferencesHint preferencesHint, IDefaultCommonBlockTypesProvider defaultCommonBlockTypesProvider) {
+		this.preferencesHint = preferencesHint;
 		this.defaultCommonBlockTypesProvider = defaultCommonBlockTypesProvider;
 	}
 	
@@ -60,17 +57,7 @@ public class BlockDiagramPreferenceInitializer extends DiagramPreferenceInitiali
 	 * 
 	 */
 	private void initializeDefaultCommonBlockTypes() {
-		List<String> blockTypes = new ArrayList<String>(defaultCommonBlockTypesProvider.getBlockTypes());
-		Collections.sort(blockTypes, new Comparator<String>() {
-
-			public int compare(String s1, String s2) {
-				s1 = s1.substring(s1.lastIndexOf('.') + 1);
-				s2 = s2.substring(s2.lastIndexOf('.') + 1);
-				return s1.compareTo(s2);
-			}
-			
-		});
-
+		List<String> blockTypes = defaultCommonBlockTypesProvider.getBlockTypes();
 		StringBuilder sb = new StringBuilder();
 		for (String blockType : blockTypes) {
 			if (sb.length() > 0) {
@@ -78,15 +65,15 @@ public class BlockDiagramPreferenceInitializer extends DiagramPreferenceInitiali
 			}
 			sb.append(blockType);
 		}
-		IEclipsePreferences node = InstanceScope.INSTANCE.getNode(DiagramUIPlugin.PLUGIN_ID);
-		node.put(COMMON_BLOCKS, sb.toString());
+		IPreferenceStore store = getPreferenceStore();
+		store.setDefault(COMMON_BLOCKS, sb.toString());
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipse.gmf.runtime.diagram.ui.preferences.DiagramPreferenceInitializer#getPreferenceStore()
 	 */
 	protected IPreferenceStore getPreferenceStore() {
-		return DiagramUIPlugin.getDefault().getPreferenceStore();
+		return (IPreferenceStore) preferencesHint.getPreferenceStore();
 	}
 
 }

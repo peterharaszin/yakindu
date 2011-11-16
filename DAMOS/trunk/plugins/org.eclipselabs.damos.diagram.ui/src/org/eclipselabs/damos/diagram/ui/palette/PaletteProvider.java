@@ -20,8 +20,6 @@ import java.util.TreeSet;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.preferences.IPreferencesService;
 import org.eclipse.draw2d.ActionEvent;
 import org.eclipse.draw2d.ActionListener;
 import org.eclipse.gef.palette.PaletteContainer;
@@ -32,9 +30,11 @@ import org.eclipse.gef.palette.PaletteToolbar;
 import org.eclipse.gef.palette.ToolEntry;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.IPaletteProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -65,6 +65,9 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 	@Inject
 	@BlockLibraryViewId
 	private String blockLibraryViewId;
+	
+	@Inject
+	private PreferencesHint preferencesHint;
 
 	private static final BlockGroupComparator BLOCK_GROUP_COMPARATOR = new BlockGroupComparator();
 	
@@ -277,8 +280,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 	protected List<PaletteEntry> createCommonBlockEntries(IEditorPart editor) {
 		List<PaletteEntry> entries = new ArrayList<PaletteEntry>();
 		
-		IPreferencesService service = Platform.getPreferencesService();
-		String commonBlocksString = service.getString(DiagramUIPlugin.PLUGIN_ID, IPreferenceConstants.COMMON_BLOCKS, null, null);
+		String commonBlocksString = ((IPreferenceStore) preferencesHint.getPreferenceStore()).getString(IPreferenceConstants.COMMON_BLOCKS);
 		if (commonBlocksString != null) {
 			String[] commonBlocks = STRING_LIST_SEPARATOR_PATTERN.split(commonBlocksString);
 			for (String commonBlock : commonBlocks) {

@@ -29,9 +29,6 @@ public interface IDefaultCommonBlockTypesProvider {
 	
 	static class NullImpl implements IDefaultCommonBlockTypesProvider {
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.damos.diagram.ui.preferences.IDefaultCommonBlockTypesProvider#getBlockTypes()
-		 */
 		public List<String> getBlockTypes() {
 			return Collections.emptyList();
 		}

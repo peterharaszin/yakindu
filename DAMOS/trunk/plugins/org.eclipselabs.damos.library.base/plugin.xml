@@ -58,6 +58,9 @@
       <group
             id="org.eclipselabs.damos.library.base"
             name="Damos Base">
+         <language
+               id="org.eclipselabs.damos">
+         </language>
       </group>
    </extension>
    <extension

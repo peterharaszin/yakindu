@@ -28,6 +28,9 @@
       <group
             id="org.eclipselabs.damos.library.vi"
             name="Damos Virtual Instruments">
+         <language
+               id="org.eclipselabs.damos">
+         </language>
       </group>
    </extension>
    <extension

@@ -24,11 +24,14 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipselabs.damos.dml.LanguageId;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
 import org.eclipselabs.damos.dml.ui.internal.registry.BlockImageDescriptor;
 import org.eclipselabs.damos.dml.ui.internal.registry.BlockImageRegistry;
 import org.eclipselabs.damos.dml.ui.viewers.BlockLibraryContentProvider;
 import org.eclipselabs.damos.dml.ui.viewers.BlockLibraryLabelProvider;
+
+import com.google.inject.Inject;
 
 /**
  * @author Andreas Unger
@@ -36,9 +39,13 @@ import org.eclipselabs.damos.dml.ui.viewers.BlockLibraryLabelProvider;
  */
 public class BlockLibraryView extends ViewPart {
 
+	private final String languageId;
+	
 	private TreeViewer viewer;
 
-	public BlockLibraryView() {
+	@Inject
+	public BlockLibraryView(@LanguageId String languageId) {
+		this.languageId = languageId;
 	}
 
 	/**
@@ -93,7 +100,7 @@ public class BlockLibraryView extends ViewPart {
 			
 		});
 		
-		viewer.setContentProvider(new BlockLibraryContentProvider());
+		viewer.setContentProvider(new BlockLibraryContentProvider(languageId));
 		viewer.setLabelProvider(new BlockLibraryLabelProvider());
 		viewer.setInput(new Object());
 	}

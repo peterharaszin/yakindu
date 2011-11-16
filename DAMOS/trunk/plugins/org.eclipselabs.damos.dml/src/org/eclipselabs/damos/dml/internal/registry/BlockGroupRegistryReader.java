@@ -23,6 +23,8 @@ import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
 import org.eclipselabs.damos.dml.DMLPlugin;
 import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
+import org.eclipselabs.damos.dml.registry.ILanguageDescriptor;
+import org.eclipselabs.damos.dml.registry.LanguageRegistry;
 
 /**
  * @author Andreas Unger
@@ -33,6 +35,7 @@ public class BlockGroupRegistryReader extends AbstractRegistryReader {
 	private static final String EXTENSION_POINT_NAME = "blockGroups";
 
 	private static final String TAG_GROUP = "group";
+	private static final String TAG_LANGUAGE = "language";
 	private static final String ATT_SUPERGROUP = "supergroup";
 	
 	private BlockGroupRegistry registry;
@@ -41,6 +44,8 @@ public class BlockGroupRegistryReader extends AbstractRegistryReader {
 
 	private List<SupergroupMapping> supergroupMappings = new ArrayList<SupergroupMapping>();
 	
+	private ILanguageDescriptor language;
+
 	public void registerBlockGroups(BlockGroupRegistry registry) {
 		this.registry = registry;
 		
@@ -76,29 +81,40 @@ public class BlockGroupRegistryReader extends AbstractRegistryReader {
 	 */
 	@Override
 	protected boolean readElement(IConfigurationElement element) {
-        if (!element.getName().equals(TAG_GROUP)) {
-			return false;
-		}
+		if (TAG_GROUP.equals(element.getName())) {
+			readElementChildren(element);
 
-        String id = getRequiredAttribute(element, IRegistryConstants.ATT_ID);
-		String name = getRequiredAttribute(element, IRegistryConstants.ATT_NAME);
-		String supergroupId = element.getAttribute(ATT_SUPERGROUP);
-		
-		BlockGroupDescriptor blockGroup = new BlockGroupDescriptor();
-		blockGroup.setId(id);
-		blockGroup.setName(name);
-		if (supergroupId != null && supergroupId.length() > 0) {
-			SupergroupMapping supergroupMapping = new SupergroupMapping();
-			supergroupMapping.group = blockGroup;
-			supergroupMapping.supergroupId = supergroupId;
-			supergroupMapping.element = element;
-			supergroupMappings.add(supergroupMapping);
+			String id = getRequiredAttribute(element, IRegistryConstants.ATT_ID);
+			String name = getRequiredAttribute(element, IRegistryConstants.ATT_NAME);
+			String supergroupId = element.getAttribute(ATT_SUPERGROUP);
+			
+			BlockGroupDescriptor blockGroup = new BlockGroupDescriptor();
+			blockGroup.setId(id);
+			blockGroup.setName(name);
+			blockGroup.setLanguage(language);
+			if (supergroupId != null && supergroupId.length() > 0) {
+				SupergroupMapping supergroupMapping = new SupergroupMapping();
+				supergroupMapping.group = blockGroup;
+				supergroupMapping.supergroupId = supergroupId;
+				supergroupMapping.element = element;
+				supergroupMappings.add(supergroupMapping);
+			}
+			
+			blockGroups.put(id, blockGroup);
+			registry.register(blockGroup);
+			language = null;
+			return true;
 		}
 		
-		blockGroups.put(id, blockGroup);
-		registry.register(blockGroup);
-
-		return true;
+		if (TAG_LANGUAGE.equals(element.getName())) {
+			String id = getRequiredAttribute(element, IRegistryConstants.ATT_ID);
+			if (id != null) {
+				language = LanguageRegistry.getInstance().getLanguage(id);
+			}
+			return true;
+		}
+		
+		return false;
 	}
 	
 	private static class SupergroupMapping {

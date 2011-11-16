@@ -16,6 +16,7 @@ import java.io.InputStream;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.util.IDEEditorFileCreator;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.wizards.EditorWizardPage;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.util.DiagramFileCreator;
@@ -27,6 +28,7 @@ import org.eclipselabs.damos.diagram.ui.util.EditorUtil;
 public class BlockDiagramEditorWizardPage extends EditorWizardPage {
 
 	private final String fileExtension;
+	private final PreferencesHint preferencesHint;
 	
 	/**
 	 * LogicDiagramWizardPage constructor
@@ -36,11 +38,12 @@ public class BlockDiagramEditorWizardPage extends EditorWizardPage {
 	 * @param selection
 	 *            selection
 	 */
-	public BlockDiagramEditorWizardPage(IWorkbench aWorkbench, IStructuredSelection selection, String fileExtension) {
+	public BlockDiagramEditorWizardPage(IWorkbench aWorkbench, IStructuredSelection selection, String fileExtension, PreferencesHint preferencesHint) {
 		super("BlockDiagramPage", aWorkbench, selection); //$NON-NLS-1$
 		this.setTitle("Create Block Diagram");
 		this.setDescription("Create a new block diagram.");
 		this.fileExtension = fileExtension;
+		this.preferencesHint = preferencesHint;
 	}
 	
 	public IFile createAndOpenDiagram(
@@ -64,7 +67,8 @@ public class BlockDiagramEditorWizardPage extends EditorWizardPage {
 				progressMonitor,
 				isOpenNewlyCreatedDiagramEditor(),
 				saveDiagram,
-				semanticResourcePath);
+				semanticResourcePath,
+				preferencesHint);
 	}
 	
 

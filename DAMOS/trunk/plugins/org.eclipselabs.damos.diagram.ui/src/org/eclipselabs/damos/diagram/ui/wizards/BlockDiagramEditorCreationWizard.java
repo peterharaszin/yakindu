@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.diagram.ui.wizards;
 
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.wizards.EditorCreationWizard;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
@@ -24,13 +25,16 @@ public class BlockDiagramEditorCreationWizard extends EditorCreationWizard {
 	@BlockDiagramFileExtension
 	private String fileExtension;
 	
+	@Inject
+	private PreferencesHint preferencesHint;
+	
 	/**
 	 * @see org.eclipse.jface.wizard.IWizard#addPages()
 	 */
 	public void addPages() {
 		super.addPages();
 		if (page == null) {
-			page = new BlockDiagramEditorWizardPage(getWorkbench(), getSelection(), fileExtension);
+			page = new BlockDiagramEditorWizardPage(getWorkbench(), getSelection(), fileExtension, preferencesHint);
 		}
 		addPage(page);
 	}

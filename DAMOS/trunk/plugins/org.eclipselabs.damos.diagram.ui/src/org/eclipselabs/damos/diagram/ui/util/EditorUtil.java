@@ -36,6 +36,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.common.core.util.Trace;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.util.IDEEditorUtil;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.util.DiagramFileCreator;
@@ -61,10 +62,10 @@ public class EditorUtil extends IDEEditorUtil {
 	 */
 	public static final IFile createAndOpenDiagram(DiagramFileCreator diagramFileCreator, IPath containerPath, String fileName,
 			InputStream initialContents, String kind, IWorkbenchWindow dWindow, IProgressMonitor progressMonitor,
-			boolean openEditor, boolean saveDiagram, String semanticResourcePath) {
+			boolean openEditor, boolean saveDiagram, String semanticResourcePath, PreferencesHint preferencesHint) {
 
 		IFile newFile = createNewDiagramFile(diagramFileCreator, containerPath, fileName, initialContents, kind,
-				dWindow.getShell(), progressMonitor, semanticResourcePath);
+				dWindow.getShell(), progressMonitor, semanticResourcePath, preferencesHint);
 
 		if (newFile != null && openEditor) {
 			// Since the file resource was created fine, open it for editing
@@ -99,7 +100,7 @@ public class EditorUtil extends IDEEditorUtil {
 	 */
 	public static final IFile createNewDiagramFile(DiagramFileCreator diagramFileCreator, IPath containerFullPath, String fileName,
 			InputStream initialContents, final String kind, Shell shell, final IProgressMonitor progressMonitor,
-			final String semanticResourcePath) {
+			final String semanticResourcePath, final PreferencesHint preferencesHint) {
 
 		/** cache of newly-created file */
 		final IFile newDiagramFile = diagramFileCreator.createNewFile(containerFullPath, fileName, initialContents, shell,
@@ -176,7 +177,7 @@ public class EditorUtil extends IDEEditorUtil {
 						notationResource.getContents().add(system);
 					}
 
-					Diagram view = ViewService.createDiagram(system, kind, DiagramUIPlugin.DIAGRAM_PREFERENCES_HINT);
+					Diagram view = ViewService.createDiagram(system, kind, preferencesHint);
 					
 					String name = newDiagramFile.getFullPath().removeFileExtension().lastSegment();
 

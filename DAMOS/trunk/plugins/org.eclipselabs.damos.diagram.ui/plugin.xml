@@ -4,12 +4,6 @@
    <extension-point id="blockViewFactories" name="Block ViewFactories" schema="schema/blockViewFactories.exsd"/>
    <extension-point id="blockEditParts" name="Block EditParts" schema="schema/blockEditParts.exsd"/>
    <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="org.eclipselabs.damos.diagram.ui.preferences.BlockDiagramPreferenceInitializer">
-      </initializer>
-   </extension>
-   <extension
          point="org.eclipse.ui.commands">
       <command
             id="org.eclipselabs.damos.diagram.ui.commands.changePortCount"

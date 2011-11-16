@@ -11,8 +11,10 @@
 
 package org.eclipselabs.damos.ide.ui;
 
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipselabs.damos.common.inject.Default;
 import org.eclipselabs.damos.diagram.core.resource.BlockDiagramFileExtension;
+import org.eclipselabs.damos.diagram.ui.parts.BlockDiagramEditorId;
 import org.eclipselabs.damos.diagram.ui.preferences.IDefaultCommonBlockTypesProvider;
 import org.eclipselabs.damos.diagram.ui.tools.IValueSpecificationDirectEditHelper;
 import org.eclipselabs.damos.dml.ui.editpane.IDataTypeSpecificationEditPane;
@@ -35,6 +37,10 @@ import com.google.inject.AbstractModule;
  */
 public class IDEUIModule extends AbstractModule {
 
+	private static final String BLOCK_DIAGRAM_EDITOR_ID = "org.eclipselabs.damos.ide.ui.blockDiagramEditor";
+
+	static final PreferencesHint PREFERENCES_HINT = new PreferencesHint(BLOCK_DIAGRAM_EDITOR_ID);
+
 	/* (non-Javadoc)
 	 * @see com.google.inject.AbstractModule#configure()
 	 */
@@ -49,6 +55,8 @@ public class IDEUIModule extends AbstractModule {
 		configureIValueSpecificationDirectEditHelper();
 		configureIArgumentEditorProvider();
 		configureIDefaultCommonBlockTypesProvider();
+		configureBlockDiagramEditorId();
+		configurePreferencesHint();
 	}
 	
 	protected void configureContributorId() {
@@ -85,6 +93,14 @@ public class IDEUIModule extends AbstractModule {
 
 	protected void configureIDefaultCommonBlockTypesProvider() {
 		bind(IDefaultCommonBlockTypesProvider.class).to(DefaultCommonBlockTypesProvider.class);
+	}
+
+	protected void configureBlockDiagramEditorId() {
+		bind(String.class).annotatedWith(BlockDiagramEditorId.class).toInstance(BLOCK_DIAGRAM_EDITOR_ID);
+	}
+
+	protected void configurePreferencesHint() {
+		bind(PreferencesHint.class).toInstance(PREFERENCES_HINT);
 	}
 
 }

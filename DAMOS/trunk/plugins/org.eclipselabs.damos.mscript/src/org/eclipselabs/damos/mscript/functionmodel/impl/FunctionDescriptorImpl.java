@@ -206,12 +206,14 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 				StringBuilder message = new StringBuilder();
 				message.append("Duplicate equation for ");
 				message.append(variableStep.getDescriptor().getName());
-				message.append("(n");
-				if (variableStep.getIndex() >= 0) {
-					message.append("+");
+				message.append("{n");
+				if (variableStep.getIndex() != 0) { 
+					if (variableStep.getIndex() > 0) {
+						message.append("+");
+					}
+					message.append(variableStep.getIndex());
 				}
-				message.append(variableStep.getIndex());
-				message.append(")");
+				message.append("}");
 				
 				diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 						FunctionModelValidator.DIAGNOSTIC_SOURCE,
@@ -356,7 +358,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 		}
 		if (!ok && diagnostics != null) {
 			String message = String.format(
-					"No '%s(n+i) = ...' equation with i >= %d specified",
+					"No '%s{n+i} = ...' equation with i >= %d specified",
 					variableDescriptor.getName(),
 					index);
 			diagnostics.add(new BasicDiagnostic(
@@ -382,12 +384,12 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 					String message;
 					if (initialOnly) {
 						message = String.format(
-								"No '%s(%d) = ...' equation specified",
+								"No '%s{%d} = ...' equation specified",
 								variableDescriptor.getName(),
 								i);
 					} else {
 						message = String.format(
-								"No '%s(%d) = ...' or '%s(n%s) = ...' equation specified",
+								"No '%s{%d} = ...' or '%s{n%s} = ...' equation specified",
 								variableDescriptor.getName(),
 								i,
 								variableDescriptor.getName(),

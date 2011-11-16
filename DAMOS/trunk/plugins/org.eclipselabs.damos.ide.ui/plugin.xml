@@ -61,6 +61,13 @@
             id="org.eclipselabs.damos.ide.ui.blockDiagramWizard"
             name="Block Diagram">
       </wizard>
+      <wizard
+            category="org.eclipselabs.damos.ide.ui.damosCategory"
+            class="org.eclipselabs.damos.ide.ui.wizards.NewBlockTypeWizard"
+            icon="icons/full/obj16/BlockTypeFile.gif"
+            id="org.eclipselabs.damos.ide.ui.newBlockTypeWizard"
+            name="Block Type">
+      </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.ide.projectNatureImages">

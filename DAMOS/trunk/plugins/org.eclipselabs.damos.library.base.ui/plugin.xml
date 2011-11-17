@@ -21,7 +21,7 @@
                afterSection="org.eclipselabs.damos.diagram.ui.sections.showName"
                class="org.eclipselabs.damos.library.base.ui.logic.properties.LogicGateShapePropertySection"
                id="org.eclipselabs.damos.library.base.ui.sections.logic.logicGateShape"
-               tab="org.eclipselabs.damos.diagram.ui.tabs.appearance">
+               tab="org.eclipselabs.damos.ide.ui.tabs.appearance">
             <input
                   type="org.eclipselabs.damos.library.base.ui.logic.editparts.LogicGateEditPart">
             </input>
@@ -38,7 +38,7 @@
                afterSection="org.eclipselabs.damos.diagram.ui.sections.showName"
                class="org.eclipselabs.damos.library.base.ui.math.properties.SumShapePropertySection"
                id="org.eclipselabs.damos.library.base.ui.sections.math.sumShape"
-               tab="org.eclipselabs.damos.diagram.ui.tabs.appearance">
+               tab="org.eclipselabs.damos.ide.ui.tabs.appearance">
             <input
                   type="org.eclipselabs.damos.library.base.ui.math.editparts.SumEditPart">
             </input>

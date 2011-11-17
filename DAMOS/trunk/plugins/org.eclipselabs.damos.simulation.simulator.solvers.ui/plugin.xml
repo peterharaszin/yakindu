@@ -5,19 +5,19 @@
          point="org.eclipselabs.damos.simulation.simulationmodel.ui.solverConfigurationPages">
       <page
             class="org.eclipselabs.damos.simulation.simulationmodel.ui.FixedStepSizeSolverConfigurationPage"
-            solverType="org::eclipselabs::damos::simulation::simulator::solvers::Euler">
+            solverType="damos::solvers::Euler">
       </page>
       <page
             class="org.eclipselabs.damos.simulation.simulationmodel.ui.FixedStepSizeSolverConfigurationPage"
-            solverType="org::eclipselabs::damos::simulation::simulator::solvers::ClassicalRungeKutta">
+            solverType="damos::solvers::ClassicalRungeKutta">
       </page>
       <page
             class="org.eclipselabs.damos.simulation.simulationmodel.ui.AdaptiveStepSizeSolverConfigurationPage"
-            solverType="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince54">
+            solverType="damos::solvers::DormandPrince54">
       </page>
       <page
             class="org.eclipselabs.damos.simulation.simulationmodel.ui.AdaptiveStepSizeSolverConfigurationPage"
-            solverType="org::eclipselabs::damos::simulation::simulator::solvers::DormandPrince83">
+            solverType="damos::solvers::DormandPrince83">
       </page>
    </extension>
 

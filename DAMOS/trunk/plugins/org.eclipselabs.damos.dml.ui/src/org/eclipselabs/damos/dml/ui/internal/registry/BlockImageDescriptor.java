@@ -12,15 +12,16 @@
 package org.eclipselabs.damos.dml.ui.internal.registry;
 
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipselabs.damos.dml.ui.registry.IBlockImageDescriptor;
 
-public class BlockImageDescriptor {
+public class BlockImageDescriptor implements IBlockImageDescriptor {
 	
 	private String blockTypeQualifiedName;
 	private ImageDescriptor icon16ImageDescriptor;
 	private ImageDescriptor icon24ImageDescriptor;
 	
-	/**
-	 * @return the blockType
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.ui.internal.registry.IBlockImageDescriptor#getBlockTypeQualifiedName()
 	 */
 	public String getBlockTypeQualifiedName() {
 		return blockTypeQualifiedName;
@@ -33,8 +34,8 @@ public class BlockImageDescriptor {
 		this.blockTypeQualifiedName = blockTypeQualifiedName;
 	}
 	
-	/**
-	 * @return the icon16ImageDescriptor
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.ui.internal.registry.IBlockImageDescriptor#getIcon16ImageDescriptor()
 	 */
 	public ImageDescriptor getIcon16ImageDescriptor() {
 		return icon16ImageDescriptor;
@@ -47,8 +48,8 @@ public class BlockImageDescriptor {
 		this.icon16ImageDescriptor = icon16ImageDescriptor;
 	}
 	
-	/**
-	 * @return the icon24ImageDescriptor
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.ui.internal.registry.IBlockImageDescriptor#getIcon24ImageDescriptor()
 	 */
 	public ImageDescriptor getIcon24ImageDescriptor() {
 		return icon24ImageDescriptor;

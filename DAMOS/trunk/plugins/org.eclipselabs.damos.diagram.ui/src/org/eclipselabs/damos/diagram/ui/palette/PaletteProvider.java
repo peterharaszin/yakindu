@@ -45,14 +45,14 @@ import org.eclipselabs.damos.diagram.ui.internal.palette.InstantiateBlockTypeToo
 import org.eclipselabs.damos.diagram.ui.internal.palette.LinkEntry;
 import org.eclipselabs.damos.diagram.ui.internal.palette.PaletteDrawer;
 import org.eclipselabs.damos.diagram.ui.internal.palette.SubsystemCreationToolEntry;
-import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageDescriptor;
-import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageRegistry;
 import org.eclipselabs.damos.diagram.ui.preferences.IPreferenceConstants;
 import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
 import org.eclipselabs.damos.dml.ui.parts.BlockLibraryViewId;
+import org.eclipselabs.damos.dml.ui.registry.BlockImageRegistry;
+import org.eclipselabs.damos.dml.ui.registry.IBlockImageDescriptor;
 
 import com.google.inject.Inject;
 
@@ -284,9 +284,13 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 		if (commonBlocksString != null) {
 			String[] commonBlocks = STRING_LIST_SEPARATOR_PATTERN.split(commonBlocksString);
 			for (String commonBlock : commonBlocks) {
-				IBlockTypeDescriptor blockType = BlockTypeRegistry.getInstance().getBlockType(commonBlock);
-				if (blockType != null) {
-					entries.add(createBlockCreationToolEntry(editor, blockType));
+				if ("|".equals(commonBlock)) {
+					entries.add(new PaletteSeparator());
+				} else {
+					IBlockTypeDescriptor blockType = BlockTypeRegistry.getInstance().getBlockType(commonBlock);
+					if (blockType != null) {
+						entries.add(createBlockCreationToolEntry(editor, blockType));
+					}
 				}
 			}
 		}
@@ -325,7 +329,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 
 	protected ToolEntry createBlockCreationToolEntry(IEditorPart editor, IBlockTypeDescriptor blockType) {
 		BlockCreationToolEntry entry = new BlockCreationToolEntry(editor, blockType);
-		BlockImageDescriptor blockImageDescriptor = BlockImageRegistry.getInstance().getBlockImage(blockType.getQualifiedName());
+		IBlockImageDescriptor blockImageDescriptor = BlockImageRegistry.getInstance().getBlockImage(blockType.getQualifiedName());
 		if (blockImageDescriptor != null) {
 			entry.setSmallIcon(blockImageDescriptor.getIcon16ImageDescriptor());
 			entry.setLargeIcon(blockImageDescriptor.getIcon24ImageDescriptor());

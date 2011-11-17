@@ -19,10 +19,10 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
-import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageDescriptor;
-import org.eclipselabs.damos.diagram.ui.internal.registry.BlockImageRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
+import org.eclipselabs.damos.dml.ui.registry.BlockImageRegistry;
+import org.eclipselabs.damos.dml.ui.registry.IBlockImageDescriptor;
 
 /**
  * @author Andreas Unger
@@ -55,7 +55,7 @@ public class BlockLibraryLabelProvider extends LabelProvider {
 	public Image getImage(Object element) {
 		if (element instanceof IBlockTypeDescriptor) {
 			IBlockTypeDescriptor blockType = (IBlockTypeDescriptor) element;
-			BlockImageDescriptor blockImage = BlockImageRegistry.getInstance().getBlockImage(blockType.getQualifiedName());
+			IBlockImageDescriptor blockImage = BlockImageRegistry.getInstance().getBlockImage(blockType.getQualifiedName());
 			if (blockImage != null) {
 				ImageDescriptor icon = blockImage.getIcon16ImageDescriptor();
 				Image iconImage = images.get(icon);

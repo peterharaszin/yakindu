@@ -26,8 +26,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipselabs.damos.dml.LanguageId;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
-import org.eclipselabs.damos.dml.ui.internal.registry.BlockImageDescriptor;
-import org.eclipselabs.damos.dml.ui.internal.registry.BlockImageRegistry;
+import org.eclipselabs.damos.dml.ui.registry.BlockImageRegistry;
+import org.eclipselabs.damos.dml.ui.registry.IBlockImageDescriptor;
 import org.eclipselabs.damos.dml.ui.viewers.BlockLibraryContentProvider;
 import org.eclipselabs.damos.dml.ui.viewers.BlockLibraryLabelProvider;
 
@@ -70,7 +70,7 @@ public class BlockLibraryView extends ViewPart {
 					Object element = structuredSelection.getFirstElement();
 					if (element instanceof IBlockTypeDescriptor) {
 						IBlockTypeDescriptor blockType = (IBlockTypeDescriptor) element;
-						BlockImageDescriptor blockImage = BlockImageRegistry.getInstance().getBlockImage(blockType.getQualifiedName());
+						IBlockImageDescriptor blockImage = BlockImageRegistry.getInstance().getBlockImage(blockType.getQualifiedName());
 						if (blockImage != null) {
 							ImageDescriptor icon = blockImage.getIcon24ImageDescriptor();
 							if (icon == null) {

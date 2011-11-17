@@ -9,10 +9,12 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.diagram.ui.internal.registry;
+package org.eclipselabs.damos.dml.ui.registry;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.eclipselabs.damos.dml.ui.internal.registry.BlockImageRegistryReader;
 
 /**
  * @author Andreas Unger
@@ -22,7 +24,7 @@ public class BlockImageRegistry {
 
 	private static final BlockImageRegistry INSTANCE = new BlockImageRegistry();
 
-	private Map<String, BlockImageDescriptor> blockImages = new HashMap<String, BlockImageDescriptor>();
+	private Map<String, IBlockImageDescriptor> blockImages = new HashMap<String, IBlockImageDescriptor>();
 	
 	/**
 	 * 
@@ -38,19 +40,19 @@ public class BlockImageRegistry {
 		return INSTANCE;
 	}
 
-	public BlockImageDescriptor getBlockImage(String blockType) {
-		BlockImageDescriptor blockImage = blockImages.get(blockType);
+	public IBlockImageDescriptor getBlockImage(String blockType) {
+		IBlockImageDescriptor blockImage = blockImages.get(blockType);
 		if (blockImage != null) {
 			return blockImage;
 		}
 		return null;
 	}
 	
-	public void register(BlockImageDescriptor blockImage) {
+	public void register(IBlockImageDescriptor blockImage) {
 		blockImages.put(blockImage.getBlockTypeQualifiedName(), blockImage);
 	}
 	
-	public void unregister(BlockImageDescriptor blockImage) {
+	public void unregister(IBlockImageDescriptor blockImage) {
 		blockImages.remove(blockImage.getBlockTypeQualifiedName());
 	}
 

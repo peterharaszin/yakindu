@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.dml.ui.DMLUIPlugin;
+import org.eclipselabs.damos.dml.ui.registry.BlockImageRegistry;
 
 /**
  * @author Andreas Unger

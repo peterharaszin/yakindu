@@ -25,21 +25,25 @@ public class DefaultCommonBlockTypesProvider implements IDefaultCommonBlockTypes
 	private static final List<String> BLOCK_TYPES = new ArrayList<String>();
 	
 	static {
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::continuous::Integrator");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::continuous::TransferFunction");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::discontinuities::Saturation");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::discrete::Delay");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::discrete::DiscreteIntegrator");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::sources::Constant");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::sources::Step");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::sinks::Scope");
+        BLOCK_TYPES.add("|");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::math::Gain");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::math::Sum");
+        BLOCK_TYPES.add("|");
         BLOCK_TYPES.add("org::eclipselabs::damos::library::base::logic::And");
         BLOCK_TYPES.add("org::eclipselabs::damos::library::base::logic::Or");
         BLOCK_TYPES.add("org::eclipselabs::damos::library::base::logic::Inverter");
         BLOCK_TYPES.add("org::eclipselabs::damos::library::base::logic::Compare");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::math::Gain");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::math::Sum");
+        BLOCK_TYPES.add("|");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::continuous::TransferFunction");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::continuous::Integrator");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::discrete::DiscreteIntegrator");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::discrete::Delay");
+        BLOCK_TYPES.add("|");
+        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::discontinuities::Saturation");
         BLOCK_TYPES.add("org::eclipselabs::damos::library::base::signal::Switch");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::sinks::Scope");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::sources::Constant");
-        BLOCK_TYPES.add("org::eclipselabs::damos::library::base::sources::Step");
 	}
 	
 	/* (non-Javadoc)

@@ -1,4 +1,4 @@
-synchronous blockType org::eclipselabs::damos::library::base::_discrete::DiscreteIntegrator
+synchronous blockType damos::library::base::_discrete::DiscreteIntegrator
 
 input u {
 	directFeedthrough never

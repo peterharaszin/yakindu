@@ -4,12 +4,12 @@
    <extension
          point="org.eclipselabs.damos.diagram.ui.blockEditParts">
       <editPart
-            blockType="org.eclipselabs.damos.library.vi.controls.Slider"
+            blockType="damos::library::vi::controls::Slider"
             class="org.eclipselabs.damos.library.vi.ui.editparts.controls.SliderEditPart"
             name="Slider">
       </editPart>
       <editPart
-            blockType="org.eclipselabs.damos.library.vi.indicators.Gauge"
+            blockType="damos::library::vi::indicators::Gauge"
             class="org.eclipselabs.damos.library.vi.ui.editparts.indicators.GaugeEditPart"
             name="Gauge">
       </editPart>

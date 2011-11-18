@@ -1,4 +1,4 @@
-blockType org::eclipselabs::damos::library::base::logic::Or
+blockType damos::library::base::logic::Or
 
 input _input[2..*]
 output y

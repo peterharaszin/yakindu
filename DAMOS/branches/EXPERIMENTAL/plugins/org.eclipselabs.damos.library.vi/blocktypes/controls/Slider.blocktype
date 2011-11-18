@@ -1,0 +1,6 @@
+blockType damos::library::vi::controls::Slider
+
+output _output
+
+parameter minimumValue = 0
+parameter maximumValue = 1

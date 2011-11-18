@@ -1,4 +1,4 @@
-continuous blockType org::eclipselabs::damos::library::base::_continuous::TransferFunction
+continuous blockType damos::library::base::_continuous::TransferFunction
 
 input _input {
 	directFeedthrough never

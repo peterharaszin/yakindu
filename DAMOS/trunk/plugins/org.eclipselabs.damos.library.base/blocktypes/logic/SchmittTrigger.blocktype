@@ -1,4 +1,4 @@
-blockType org::eclipselabs::damos::library::base::logic::SchmittTrigger
+blockType damos::library::base::logic::SchmittTrigger
 
 input u
 output y

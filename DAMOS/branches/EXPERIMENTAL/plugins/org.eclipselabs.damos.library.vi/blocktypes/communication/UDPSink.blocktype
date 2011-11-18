@@ -1,0 +1,6 @@
+synchronous blockType damos::library::vi::communication::UDPSink
+
+input _input[1..*]
+
+opaque parameter host = ""
+opaque parameter port = ""

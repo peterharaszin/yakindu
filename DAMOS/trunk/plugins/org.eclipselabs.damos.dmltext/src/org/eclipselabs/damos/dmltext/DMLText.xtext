@@ -39,14 +39,33 @@ OutputDefinition:
 	'}')?;
 
 Parameter:
-	(visibility=ParameterVisibilityKind)? 'parameter' name=ValidID '=' ownedDefaultValue=MscriptValueSpecification
-		('predefined' '{' predefinedValues+=ParameterPredefinedValue (',' predefinedValues+=ParameterPredefinedValue)* '}')?;
+	OpaqueParameter | MscriptParameter;
 	
-ParameterPredefinedValue:
+OpaqueParameter returns Parameter:
+	(visibility=ParameterVisibilityKind)? dataType=OpaqueTypeSpecification 'parameter' name=ValidID '=' ownedDefaultValue=StringValueSpecification
+		('predefined' '{' predefinedValues+=OpaqueParameterPredefinedValue (',' predefinedValues+=OpaqueParameterPredefinedValue)* '}')?;
+
+MscriptParameter returns Parameter:
+	(visibility=ParameterVisibilityKind)? 'parameter' name=ValidID '=' ownedDefaultValue=MscriptValueSpecification
+		('predefined' '{' predefinedValues+=MscriptParameterPredefinedValue (',' predefinedValues+=MscriptParameterPredefinedValue)* '}')?;
+
+OpaqueParameterPredefinedValue returns ParameterPredefinedValue:
+	value=StringValueSpecification ('as' alias=STRING)?;
+
+MscriptParameterPredefinedValue returns ParameterPredefinedValue:
 	value=MscriptValueSpecification ('as' alias=STRING)?;
 
 enum ParameterVisibilityKind:
 	Public='public' | Private='private';
+
+OpaqueTypeSpecification returns PrimitiveTypeSpecification:
+	kind=OpaqueTypeKind;
+
+enum OpaqueTypeKind returns PrimitiveTypeKind:
+	String='opaque'; 
+
+StringValueSpecification:
+	value=STRING;
 
 MscriptValueSpecification:
 	expression=Expression;

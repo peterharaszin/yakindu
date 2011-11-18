@@ -4,22 +4,22 @@
    <extension
          point="org.eclipselabs.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
-            blockType="org.eclipselabs.damos.library.vi.communication.UDPSource"
+            blockType="damos::library::vi::communication::UDPSource"
             class="org.eclipselabs.damos.library.vi.simulation.communication.UDPSourceSimulationObject"
             name="UDPSource">
       </simulationObject>
       <simulationObject
-            blockType="org.eclipselabs.damos.library.vi.communication.UDPSink"
+            blockType="damos::library::vi::communication::UDPSink"
             class="org.eclipselabs.damos.library.vi.simulation.communication.UDPSinkSimulationObject"
             name="UDPSink">
       </simulationObject>
       <simulationObject
-            blockType="org.eclipselabs.damos.library.vi.controls.Slider"
+            blockType="damos::library::vi::controls::Slider"
             class="org.eclipselabs.damos.library.vi.simulation.controls.SliderSimulationObject"
             name="Slider">
       </simulationObject>
       <simulationObject
-            blockType="org.eclipselabs.damos.library.vi.indicators.Gauge"
+            blockType="damos::library::vi::indicators::Gauge"
             class="org.eclipselabs.damos.library.vi.simulation.indicators.GaugeSimulationObject"
             name="Gauge">
       </simulationObject>

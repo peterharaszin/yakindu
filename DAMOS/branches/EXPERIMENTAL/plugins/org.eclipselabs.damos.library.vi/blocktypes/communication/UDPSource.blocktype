@@ -1,0 +1,6 @@
+synchronous blockType damos::library::vi::communication::UDPSource
+
+output _output[1..*]
+
+opaque parameter host = ""
+opaque parameter port = ""

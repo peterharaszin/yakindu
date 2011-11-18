@@ -412,6 +412,123 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Parameter");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cOpaqueParameterParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cMscriptParameterParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Parameter:
+		//	OpaqueParameter | MscriptParameter;
+		public ParserRule getRule() { return rule; }
+
+		//OpaqueParameter | MscriptParameter
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//OpaqueParameter
+		public RuleCall getOpaqueParameterParserRuleCall_0() { return cOpaqueParameterParserRuleCall_0; }
+
+		//MscriptParameter
+		public RuleCall getMscriptParameterParserRuleCall_1() { return cMscriptParameterParserRuleCall_1; }
+	}
+
+	public class OpaqueParameterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OpaqueParameter");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cVisibilityParameterVisibilityKindEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
+		private final Assignment cDataTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDataTypeOpaqueTypeSpecificationParserRuleCall_1_0 = (RuleCall)cDataTypeAssignment_1.eContents().get(0);
+		private final Keyword cParameterKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameValidIDParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cOwnedDefaultValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cOwnedDefaultValueStringValueSpecificationParserRuleCall_5_0 = (RuleCall)cOwnedDefaultValueAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cPredefinedKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final Assignment cPredefinedValuesAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
+		private final RuleCall cPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_2_0 = (RuleCall)cPredefinedValuesAssignment_6_2.eContents().get(0);
+		private final Group cGroup_6_3 = (Group)cGroup_6.eContents().get(3);
+		private final Keyword cCommaKeyword_6_3_0 = (Keyword)cGroup_6_3.eContents().get(0);
+		private final Assignment cPredefinedValuesAssignment_6_3_1 = (Assignment)cGroup_6_3.eContents().get(1);
+		private final RuleCall cPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_3_1_0 = (RuleCall)cPredefinedValuesAssignment_6_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
+		
+		//OpaqueParameter returns Parameter:
+		//	visibility=ParameterVisibilityKind? dataType=OpaqueTypeSpecification "parameter" name=ValidID "="
+		//	ownedDefaultValue=StringValueSpecification ("predefined" "{" predefinedValues+=OpaqueParameterPredefinedValue (","
+		//	predefinedValues+=OpaqueParameterPredefinedValue)* "}")?;
+		public ParserRule getRule() { return rule; }
+
+		//visibility=ParameterVisibilityKind? dataType=OpaqueTypeSpecification "parameter" name=ValidID "="
+		//ownedDefaultValue=StringValueSpecification ("predefined" "{" predefinedValues+=OpaqueParameterPredefinedValue (","
+		//predefinedValues+=OpaqueParameterPredefinedValue)* "}")?
+		public Group getGroup() { return cGroup; }
+
+		//visibility=ParameterVisibilityKind?
+		public Assignment getVisibilityAssignment_0() { return cVisibilityAssignment_0; }
+
+		//ParameterVisibilityKind
+		public RuleCall getVisibilityParameterVisibilityKindEnumRuleCall_0_0() { return cVisibilityParameterVisibilityKindEnumRuleCall_0_0; }
+
+		//dataType=OpaqueTypeSpecification
+		public Assignment getDataTypeAssignment_1() { return cDataTypeAssignment_1; }
+
+		//OpaqueTypeSpecification
+		public RuleCall getDataTypeOpaqueTypeSpecificationParserRuleCall_1_0() { return cDataTypeOpaqueTypeSpecificationParserRuleCall_1_0; }
+
+		//"parameter"
+		public Keyword getParameterKeyword_2() { return cParameterKeyword_2; }
+
+		//name=ValidID
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
+
+		//ValidID
+		public RuleCall getNameValidIDParserRuleCall_3_0() { return cNameValidIDParserRuleCall_3_0; }
+
+		//"="
+		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
+
+		//ownedDefaultValue=StringValueSpecification
+		public Assignment getOwnedDefaultValueAssignment_5() { return cOwnedDefaultValueAssignment_5; }
+
+		//StringValueSpecification
+		public RuleCall getOwnedDefaultValueStringValueSpecificationParserRuleCall_5_0() { return cOwnedDefaultValueStringValueSpecificationParserRuleCall_5_0; }
+
+		//("predefined" "{" predefinedValues+=OpaqueParameterPredefinedValue (","
+		//predefinedValues+=OpaqueParameterPredefinedValue)* "}")?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//"predefined"
+		public Keyword getPredefinedKeyword_6_0() { return cPredefinedKeyword_6_0; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_6_1() { return cLeftCurlyBracketKeyword_6_1; }
+
+		//predefinedValues+=OpaqueParameterPredefinedValue
+		public Assignment getPredefinedValuesAssignment_6_2() { return cPredefinedValuesAssignment_6_2; }
+
+		//OpaqueParameterPredefinedValue
+		public RuleCall getPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_2_0() { return cPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_2_0; }
+
+		//("," predefinedValues+=OpaqueParameterPredefinedValue)*
+		public Group getGroup_6_3() { return cGroup_6_3; }
+
+		//","
+		public Keyword getCommaKeyword_6_3_0() { return cCommaKeyword_6_3_0; }
+
+		//predefinedValues+=OpaqueParameterPredefinedValue
+		public Assignment getPredefinedValuesAssignment_6_3_1() { return cPredefinedValuesAssignment_6_3_1; }
+
+		//OpaqueParameterPredefinedValue
+		public RuleCall getPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_3_1_0() { return cPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_3_1_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_6_4() { return cRightCurlyBracketKeyword_6_4; }
+	}
+
+	public class MscriptParameterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MscriptParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cVisibilityAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cVisibilityParameterVisibilityKindEnumRuleCall_0_0 = (RuleCall)cVisibilityAssignment_0.eContents().get(0);
@@ -425,20 +542,22 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPredefinedKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
 		private final Assignment cPredefinedValuesAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cPredefinedValuesParameterPredefinedValueParserRuleCall_5_2_0 = (RuleCall)cPredefinedValuesAssignment_5_2.eContents().get(0);
+		private final RuleCall cPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_2_0 = (RuleCall)cPredefinedValuesAssignment_5_2.eContents().get(0);
 		private final Group cGroup_5_3 = (Group)cGroup_5.eContents().get(3);
 		private final Keyword cCommaKeyword_5_3_0 = (Keyword)cGroup_5_3.eContents().get(0);
 		private final Assignment cPredefinedValuesAssignment_5_3_1 = (Assignment)cGroup_5_3.eContents().get(1);
-		private final RuleCall cPredefinedValuesParameterPredefinedValueParserRuleCall_5_3_1_0 = (RuleCall)cPredefinedValuesAssignment_5_3_1.eContents().get(0);
+		private final RuleCall cPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_3_1_0 = (RuleCall)cPredefinedValuesAssignment_5_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5_4 = (Keyword)cGroup_5.eContents().get(4);
 		
-		//Parameter:
+		//MscriptParameter returns Parameter:
 		//	visibility=ParameterVisibilityKind? "parameter" name=ValidID "=" ownedDefaultValue=MscriptValueSpecification
-		//	("predefined" "{" predefinedValues+=ParameterPredefinedValue ("," predefinedValues+=ParameterPredefinedValue)* "}")?;
+		//	("predefined" "{" predefinedValues+=MscriptParameterPredefinedValue (","
+		//	predefinedValues+=MscriptParameterPredefinedValue)* "}")?;
 		public ParserRule getRule() { return rule; }
 
 		//visibility=ParameterVisibilityKind? "parameter" name=ValidID "=" ownedDefaultValue=MscriptValueSpecification
-		//("predefined" "{" predefinedValues+=ParameterPredefinedValue ("," predefinedValues+=ParameterPredefinedValue)* "}")?
+		//("predefined" "{" predefinedValues+=MscriptParameterPredefinedValue (","
+		//predefinedValues+=MscriptParameterPredefinedValue)* "}")?
 		public Group getGroup() { return cGroup; }
 
 		//visibility=ParameterVisibilityKind?
@@ -465,7 +584,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//MscriptValueSpecification
 		public RuleCall getOwnedDefaultValueMscriptValueSpecificationParserRuleCall_4_0() { return cOwnedDefaultValueMscriptValueSpecificationParserRuleCall_4_0; }
 
-		//("predefined" "{" predefinedValues+=ParameterPredefinedValue ("," predefinedValues+=ParameterPredefinedValue)* "}")?
+		//("predefined" "{" predefinedValues+=MscriptParameterPredefinedValue (","
+		//predefinedValues+=MscriptParameterPredefinedValue)* "}")?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//"predefined"
@@ -474,30 +594,66 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_5_1() { return cLeftCurlyBracketKeyword_5_1; }
 
-		//predefinedValues+=ParameterPredefinedValue
+		//predefinedValues+=MscriptParameterPredefinedValue
 		public Assignment getPredefinedValuesAssignment_5_2() { return cPredefinedValuesAssignment_5_2; }
 
-		//ParameterPredefinedValue
-		public RuleCall getPredefinedValuesParameterPredefinedValueParserRuleCall_5_2_0() { return cPredefinedValuesParameterPredefinedValueParserRuleCall_5_2_0; }
+		//MscriptParameterPredefinedValue
+		public RuleCall getPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_2_0() { return cPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_2_0; }
 
-		//("," predefinedValues+=ParameterPredefinedValue)*
+		//("," predefinedValues+=MscriptParameterPredefinedValue)*
 		public Group getGroup_5_3() { return cGroup_5_3; }
 
 		//","
 		public Keyword getCommaKeyword_5_3_0() { return cCommaKeyword_5_3_0; }
 
-		//predefinedValues+=ParameterPredefinedValue
+		//predefinedValues+=MscriptParameterPredefinedValue
 		public Assignment getPredefinedValuesAssignment_5_3_1() { return cPredefinedValuesAssignment_5_3_1; }
 
-		//ParameterPredefinedValue
-		public RuleCall getPredefinedValuesParameterPredefinedValueParserRuleCall_5_3_1_0() { return cPredefinedValuesParameterPredefinedValueParserRuleCall_5_3_1_0; }
+		//MscriptParameterPredefinedValue
+		public RuleCall getPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_3_1_0() { return cPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_3_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5_4() { return cRightCurlyBracketKeyword_5_4; }
 	}
 
-	public class ParameterPredefinedValueElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ParameterPredefinedValue");
+	public class OpaqueParameterPredefinedValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OpaqueParameterPredefinedValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cValueAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cValueStringValueSpecificationParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cAsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cAliasAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cAliasSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cAliasAssignment_1_1.eContents().get(0);
+		
+		//OpaqueParameterPredefinedValue returns ParameterPredefinedValue:
+		//	value=StringValueSpecification ("as" alias=STRING)?;
+		public ParserRule getRule() { return rule; }
+
+		//value=StringValueSpecification ("as" alias=STRING)?
+		public Group getGroup() { return cGroup; }
+
+		//value=StringValueSpecification
+		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
+
+		//StringValueSpecification
+		public RuleCall getValueStringValueSpecificationParserRuleCall_0_0() { return cValueStringValueSpecificationParserRuleCall_0_0; }
+
+		//("as" alias=STRING)?
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"as"
+		public Keyword getAsKeyword_1_0() { return cAsKeyword_1_0; }
+
+		//alias=STRING
+		public Assignment getAliasAssignment_1_1() { return cAliasAssignment_1_1; }
+
+		//STRING
+		public RuleCall getAliasSTRINGTerminalRuleCall_1_1_0() { return cAliasSTRINGTerminalRuleCall_1_1_0; }
+	}
+
+	public class MscriptParameterPredefinedValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MscriptParameterPredefinedValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cValueAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cValueMscriptValueSpecificationParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
@@ -506,7 +662,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cAliasAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cAliasSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cAliasAssignment_1_1.eContents().get(0);
 		
-		//ParameterPredefinedValue:
+		//MscriptParameterPredefinedValue returns ParameterPredefinedValue:
 		//	value=MscriptValueSpecification ("as" alias=STRING)?;
 		public ParserRule getRule() { return rule; }
 
@@ -530,6 +686,38 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 
 		//STRING
 		public RuleCall getAliasSTRINGTerminalRuleCall_1_1_0() { return cAliasSTRINGTerminalRuleCall_1_1_0; }
+	}
+
+	public class OpaqueTypeSpecificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OpaqueTypeSpecification");
+		private final Assignment cKindAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cKindOpaqueTypeKindEnumRuleCall_0 = (RuleCall)cKindAssignment.eContents().get(0);
+		
+		//OpaqueTypeSpecification returns PrimitiveTypeSpecification:
+		//	kind=OpaqueTypeKind;
+		public ParserRule getRule() { return rule; }
+
+		//kind=OpaqueTypeKind
+		public Assignment getKindAssignment() { return cKindAssignment; }
+
+		//OpaqueTypeKind
+		public RuleCall getKindOpaqueTypeKindEnumRuleCall_0() { return cKindOpaqueTypeKindEnumRuleCall_0; }
+	}
+
+	public class StringValueSpecificationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringValueSpecification");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//StringValueSpecification:
+		//	value=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//value=STRING
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//STRING
+		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
 
 	public class MscriptValueSpecificationElements extends AbstractParserRuleElementFinder {
@@ -796,6 +984,22 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//"private"
 		public Keyword getPrivatePrivateKeyword_1_0() { return cPrivatePrivateKeyword_1_0; }
 	}
+
+	public class OpaqueTypeKindElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "OpaqueTypeKind");
+		private final EnumLiteralDeclaration cStringEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
+		private final Keyword cStringOpaqueKeyword_0 = (Keyword)cStringEnumLiteralDeclaration.eContents().get(0);
+		
+		//enum OpaqueTypeKind returns PrimitiveTypeKind:
+		//	String="opaque";
+		public EnumRule getRule() { return rule; }
+
+		//String="opaque"
+		public EnumLiteralDeclaration getStringEnumLiteralDeclaration() { return cStringEnumLiteralDeclaration; }
+
+		//"opaque"
+		public Keyword getStringOpaqueKeyword_0() { return cStringOpaqueKeyword_0; }
+	}
 	
 	private RootElements pRoot;
 	private BlockTypeElements pBlockType;
@@ -805,8 +1009,14 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	private BooleanDirectFeedthroughPolicyElements pBooleanDirectFeedthroughPolicy;
 	private OutputDefinitionElements pOutputDefinition;
 	private ParameterElements pParameter;
-	private ParameterPredefinedValueElements pParameterPredefinedValue;
+	private OpaqueParameterElements pOpaqueParameter;
+	private MscriptParameterElements pMscriptParameter;
+	private OpaqueParameterPredefinedValueElements pOpaqueParameterPredefinedValue;
+	private MscriptParameterPredefinedValueElements pMscriptParameterPredefinedValue;
 	private ParameterVisibilityKindElements unknownRuleParameterVisibilityKind;
+	private OpaqueTypeSpecificationElements pOpaqueTypeSpecification;
+	private OpaqueTypeKindElements unknownRuleOpaqueTypeKind;
+	private StringValueSpecificationElements pStringValueSpecification;
 	private MscriptValueSpecificationElements pMscriptValueSpecification;
 	private MscriptBehaviorSpecificationElements pMscriptBehaviorSpecification;
 	private SystemInterfaceElements pSystemInterface;
@@ -911,8 +1121,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Parameter:
-	//	visibility=ParameterVisibilityKind? "parameter" name=ValidID "=" ownedDefaultValue=MscriptValueSpecification
-	//	("predefined" "{" predefinedValues+=ParameterPredefinedValue ("," predefinedValues+=ParameterPredefinedValue)* "}")?;
+	//	OpaqueParameter | MscriptParameter;
 	public ParameterElements getParameterAccess() {
 		return (pParameter != null) ? pParameter : (pParameter = new ParameterElements());
 	}
@@ -921,14 +1130,48 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getParameterAccess().getRule();
 	}
 
-	//ParameterPredefinedValue:
-	//	value=MscriptValueSpecification ("as" alias=STRING)?;
-	public ParameterPredefinedValueElements getParameterPredefinedValueAccess() {
-		return (pParameterPredefinedValue != null) ? pParameterPredefinedValue : (pParameterPredefinedValue = new ParameterPredefinedValueElements());
+	//OpaqueParameter returns Parameter:
+	//	visibility=ParameterVisibilityKind? dataType=OpaqueTypeSpecification "parameter" name=ValidID "="
+	//	ownedDefaultValue=StringValueSpecification ("predefined" "{" predefinedValues+=OpaqueParameterPredefinedValue (","
+	//	predefinedValues+=OpaqueParameterPredefinedValue)* "}")?;
+	public OpaqueParameterElements getOpaqueParameterAccess() {
+		return (pOpaqueParameter != null) ? pOpaqueParameter : (pOpaqueParameter = new OpaqueParameterElements());
 	}
 	
-	public ParserRule getParameterPredefinedValueRule() {
-		return getParameterPredefinedValueAccess().getRule();
+	public ParserRule getOpaqueParameterRule() {
+		return getOpaqueParameterAccess().getRule();
+	}
+
+	//MscriptParameter returns Parameter:
+	//	visibility=ParameterVisibilityKind? "parameter" name=ValidID "=" ownedDefaultValue=MscriptValueSpecification
+	//	("predefined" "{" predefinedValues+=MscriptParameterPredefinedValue (","
+	//	predefinedValues+=MscriptParameterPredefinedValue)* "}")?;
+	public MscriptParameterElements getMscriptParameterAccess() {
+		return (pMscriptParameter != null) ? pMscriptParameter : (pMscriptParameter = new MscriptParameterElements());
+	}
+	
+	public ParserRule getMscriptParameterRule() {
+		return getMscriptParameterAccess().getRule();
+	}
+
+	//OpaqueParameterPredefinedValue returns ParameterPredefinedValue:
+	//	value=StringValueSpecification ("as" alias=STRING)?;
+	public OpaqueParameterPredefinedValueElements getOpaqueParameterPredefinedValueAccess() {
+		return (pOpaqueParameterPredefinedValue != null) ? pOpaqueParameterPredefinedValue : (pOpaqueParameterPredefinedValue = new OpaqueParameterPredefinedValueElements());
+	}
+	
+	public ParserRule getOpaqueParameterPredefinedValueRule() {
+		return getOpaqueParameterPredefinedValueAccess().getRule();
+	}
+
+	//MscriptParameterPredefinedValue returns ParameterPredefinedValue:
+	//	value=MscriptValueSpecification ("as" alias=STRING)?;
+	public MscriptParameterPredefinedValueElements getMscriptParameterPredefinedValueAccess() {
+		return (pMscriptParameterPredefinedValue != null) ? pMscriptParameterPredefinedValue : (pMscriptParameterPredefinedValue = new MscriptParameterPredefinedValueElements());
+	}
+	
+	public ParserRule getMscriptParameterPredefinedValueRule() {
+		return getMscriptParameterPredefinedValueAccess().getRule();
 	}
 
 	//enum ParameterVisibilityKind:
@@ -939,6 +1182,36 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public EnumRule getParameterVisibilityKindRule() {
 		return getParameterVisibilityKindAccess().getRule();
+	}
+
+	//OpaqueTypeSpecification returns PrimitiveTypeSpecification:
+	//	kind=OpaqueTypeKind;
+	public OpaqueTypeSpecificationElements getOpaqueTypeSpecificationAccess() {
+		return (pOpaqueTypeSpecification != null) ? pOpaqueTypeSpecification : (pOpaqueTypeSpecification = new OpaqueTypeSpecificationElements());
+	}
+	
+	public ParserRule getOpaqueTypeSpecificationRule() {
+		return getOpaqueTypeSpecificationAccess().getRule();
+	}
+
+	//enum OpaqueTypeKind returns PrimitiveTypeKind:
+	//	String="opaque";
+	public OpaqueTypeKindElements getOpaqueTypeKindAccess() {
+		return (unknownRuleOpaqueTypeKind != null) ? unknownRuleOpaqueTypeKind : (unknownRuleOpaqueTypeKind = new OpaqueTypeKindElements());
+	}
+	
+	public EnumRule getOpaqueTypeKindRule() {
+		return getOpaqueTypeKindAccess().getRule();
+	}
+
+	//StringValueSpecification:
+	//	value=STRING;
+	public StringValueSpecificationElements getStringValueSpecificationAccess() {
+		return (pStringValueSpecification != null) ? pStringValueSpecification : (pStringValueSpecification = new StringValueSpecificationElements());
+	}
+	
+	public ParserRule getStringValueSpecificationRule() {
+		return getStringValueSpecificationAccess().getRule();
 	}
 
 	//MscriptValueSpecification:

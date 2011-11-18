@@ -89,6 +89,15 @@ public abstract class NumberFormatImpl extends EObjectImpl implements NumberForm
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public boolean isEquivalentTo(NumberFormat other) {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

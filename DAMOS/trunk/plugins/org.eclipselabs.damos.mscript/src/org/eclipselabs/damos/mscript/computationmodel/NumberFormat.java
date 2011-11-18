@@ -51,4 +51,12 @@ public interface NumberFormat extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" otherRequired="true"
+	 * @generated
+	 */
+	boolean isEquivalentTo(NumberFormat other);
 } // NumberFormat

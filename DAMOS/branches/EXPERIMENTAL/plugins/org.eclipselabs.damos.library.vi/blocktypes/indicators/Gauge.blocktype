@@ -1,0 +1,6 @@
+blockType damos::library::vi::indicators::Gauge
+
+input _input
+
+parameter scaleMinimum = 0
+parameter scaleMaximum = 1

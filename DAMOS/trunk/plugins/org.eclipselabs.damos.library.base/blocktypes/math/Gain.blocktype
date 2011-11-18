@@ -1,4 +1,4 @@
-blockType org::eclipselabs::damos::library::base::math::Gain
+blockType damos::library::base::math::Gain
 
 input u
 output y

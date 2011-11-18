@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_wGFw4ZagEeC6_7T6PnZGyg" qualifiedName="org.eclipselabs.damos.library.vi.communication.UDPSource" timing="Synchronous">
-  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_cx3BMbhMEeCV5PaiQvv4IQ" name="host"/>
-  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_-ggbMLhOEeCV5PaiQvv4IQ" name="port"/>
-  <outputDefinitions xmi:id="_f3i-UJajEeC6_7T6PnZGyg" maximumPortCount="-1" name="output"/>
-</dml:BlockType>

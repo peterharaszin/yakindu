@@ -1,4 +1,4 @@
-blockType org::eclipselabs::damos::library::base::math::Sum
+blockType damos::library::base::math::Sum
 
 input _input[2..*] {
 	parameter sign = 1

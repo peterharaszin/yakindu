@@ -4,37 +4,37 @@
    <extension
          point="org.eclipselabs.damos.simulation.simulator.blockSimulationObjects">
       <simulationObject
-            blockType="org::eclipselabs::damos::library::base::continuous::Integrator"
+            blockType="damos::library::base::continuous::Integrator"
             class="org.eclipselabs.damos.library.base.simulation.continuous.IntegratorSimulationObject"
             name="Integrator">
       </simulationObject>
       <simulationObject
-            blockType="org::eclipselabs::damos::library::base::continuous::Derivative"
+            blockType="damos::library::base::continuous::Derivative"
             class="org.eclipselabs.damos.library.base.simulation.continuous.DerivativeSimulationObject"
             name="Derivative">
       </simulationObject>
       <simulationObject
-            blockType="org::eclipselabs::damos::library::base::continuous::TransferFunction"
+            blockType="damos::library::base::continuous::TransferFunction"
             class="org.eclipselabs.damos.library.base.simulation.continuous.TransferFunctionSimulationObject"
             name="Transfer Function">
       </simulationObject>
       <simulationObject
-            blockType="org::eclipselabs::damos::library::base::sources::Step"
+            blockType="damos::library::base::sources::Step"
             class="org.eclipselabs.damos.library.base.simulation.sources.StepSimulationObject"
             name="Step">
       </simulationObject>
       <simulationObject
-            blockType="org::eclipselabs::damos::library::base::sources::Ramp"
+            blockType="damos::library::base::sources::Ramp"
             class="org.eclipselabs.damos.library.base.simulation.sources.RampSimulationObject"
             name="Ramp">
       </simulationObject>
       <simulationObject
-            blockType="org::eclipselabs::damos::library::base::sources::SineWave"
+            blockType="damos::library::base::sources::SineWave"
             class="org.eclipselabs.damos.library.base.simulation.sources.SineWaveSimulationObject"
             name="Sine Wave">
       </simulationObject>
       <simulationObject
-            blockType="org::eclipselabs::damos::library::base::sinks::Scope"
+            blockType="damos::library::base::sinks::Scope"
             class="org.eclipselabs.damos.library.base.simulation.sinks.ScopeSimulationObject"
             name="Scope">
       </simulationObject>

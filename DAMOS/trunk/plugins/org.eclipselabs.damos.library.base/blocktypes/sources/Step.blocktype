@@ -1,4 +1,4 @@
-blockType org::eclipselabs::damos::library::base::sources::Step
+blockType damos::library::base::sources::Step
 
 output _output
 

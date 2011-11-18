@@ -1,4 +1,4 @@
-blockType org::eclipselabs::damos::library::base::_discrete::Delay
+blockType damos::library::base::_discrete::Delay
 
 input u {
 	directFeedthrough never

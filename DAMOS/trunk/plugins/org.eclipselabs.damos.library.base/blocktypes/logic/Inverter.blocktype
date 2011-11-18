@@ -1,4 +1,4 @@
-blockType org::eclipselabs::damos::library::base::logic::Inverter
+blockType damos::library::base::logic::Inverter
 
 input u
 output y

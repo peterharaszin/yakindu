@@ -890,14 +890,207 @@ ruleParameter returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getParameterAccess().getOpaqueParameterParserRuleCall_0()); 
+    }
+    this_OpaqueParameter_0=ruleOpaqueParameter
+    { 
+        $current = $this_OpaqueParameter_0.current; 
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getParameterAccess().getMscriptParameterParserRuleCall_1()); 
+    }
+    this_MscriptParameter_1=ruleMscriptParameter
+    { 
+        $current = $this_MscriptParameter_1.current; 
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleOpaqueParameter
+entryRuleOpaqueParameter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getOpaqueParameterRule()); }
+	 iv_ruleOpaqueParameter=ruleOpaqueParameter 
+	 { $current=$iv_ruleOpaqueParameter.current; } 
+	 EOF 
+;
+
+// Rule OpaqueParameter
+ruleOpaqueParameter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParameterAccess().getVisibilityParameterVisibilityKindEnumRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getOpaqueParameterAccess().getVisibilityParameterVisibilityKindEnumRuleCall_0_0()); 
 	    }
 		lv_visibility_0_0=ruleParameterVisibilityKind		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterRule());
+	            $current = createModelElementForParent(grammarAccess.getOpaqueParameterRule());
+	        }
+       		set(
+       			$current, 
+       			"visibility",
+        		lv_visibility_0_0, 
+        		"ParameterVisibilityKind");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)?(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOpaqueParameterAccess().getDataTypeOpaqueTypeSpecificationParserRuleCall_1_0()); 
+	    }
+		lv_dataType_1_0=ruleOpaqueTypeSpecification		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOpaqueParameterRule());
+	        }
+       		set(
+       			$current, 
+       			"dataType",
+        		lv_dataType_1_0, 
+        		"OpaqueTypeSpecification");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_2='parameter' 
+    {
+    	newLeafNode(otherlv_2, grammarAccess.getOpaqueParameterAccess().getParameterKeyword_2());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOpaqueParameterAccess().getNameValidIDParserRuleCall_3_0()); 
+	    }
+		lv_name_3_0=ruleValidID		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOpaqueParameterRule());
+	        }
+       		set(
+       			$current, 
+       			"name",
+        		lv_name_3_0, 
+        		"ValidID");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)	otherlv_4='=' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getOpaqueParameterAccess().getEqualsSignKeyword_4());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOpaqueParameterAccess().getOwnedDefaultValueStringValueSpecificationParserRuleCall_5_0()); 
+	    }
+		lv_ownedDefaultValue_5_0=ruleStringValueSpecification		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOpaqueParameterRule());
+	        }
+       		set(
+       			$current, 
+       			"ownedDefaultValue",
+        		lv_ownedDefaultValue_5_0, 
+        		"StringValueSpecification");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_6='predefined' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getOpaqueParameterAccess().getPredefinedKeyword_6_0());
+    }
+	otherlv_7='{' 
+    {
+    	newLeafNode(otherlv_7, grammarAccess.getOpaqueParameterAccess().getLeftCurlyBracketKeyword_6_1());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOpaqueParameterAccess().getPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_2_0()); 
+	    }
+		lv_predefinedValues_8_0=ruleOpaqueParameterPredefinedValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOpaqueParameterRule());
+	        }
+       		add(
+       			$current, 
+       			"predefinedValues",
+        		lv_predefinedValues_8_0, 
+        		"OpaqueParameterPredefinedValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_9=',' 
+    {
+    	newLeafNode(otherlv_9, grammarAccess.getOpaqueParameterAccess().getCommaKeyword_6_3_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOpaqueParameterAccess().getPredefinedValuesOpaqueParameterPredefinedValueParserRuleCall_6_3_1_0()); 
+	    }
+		lv_predefinedValues_10_0=ruleOpaqueParameterPredefinedValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOpaqueParameterRule());
+	        }
+       		add(
+       			$current, 
+       			"predefinedValues",
+        		lv_predefinedValues_10_0, 
+        		"OpaqueParameterPredefinedValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))*	otherlv_11='}' 
+    {
+    	newLeafNode(otherlv_11, grammarAccess.getOpaqueParameterAccess().getRightCurlyBracketKeyword_6_4());
+    }
+)?)
+;
+
+
+
+
+
+// Entry rule entryRuleMscriptParameter
+entryRuleMscriptParameter returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMscriptParameterRule()); }
+	 iv_ruleMscriptParameter=ruleMscriptParameter 
+	 { $current=$iv_ruleMscriptParameter.current; } 
+	 EOF 
+;
+
+// Rule MscriptParameter
+ruleMscriptParameter returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMscriptParameterAccess().getVisibilityParameterVisibilityKindEnumRuleCall_0_0()); 
+	    }
+		lv_visibility_0_0=ruleParameterVisibilityKind		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getMscriptParameterRule());
 	        }
        		set(
        			$current, 
@@ -910,16 +1103,16 @@ ruleParameter returns [EObject current=null]
 )
 )?	otherlv_1='parameter' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getParameterAccess().getParameterKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getMscriptParameterAccess().getParameterKeyword_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParameterAccess().getNameValidIDParserRuleCall_2_0()); 
+	        newCompositeNode(grammarAccess.getMscriptParameterAccess().getNameValidIDParserRuleCall_2_0()); 
 	    }
 		lv_name_2_0=ruleValidID		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterRule());
+	            $current = createModelElementForParent(grammarAccess.getMscriptParameterRule());
 	        }
        		set(
        			$current, 
@@ -932,16 +1125,16 @@ ruleParameter returns [EObject current=null]
 )
 )	otherlv_3='=' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getParameterAccess().getEqualsSignKeyword_3());
+    	newLeafNode(otherlv_3, grammarAccess.getMscriptParameterAccess().getEqualsSignKeyword_3());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParameterAccess().getOwnedDefaultValueMscriptValueSpecificationParserRuleCall_4_0()); 
+	        newCompositeNode(grammarAccess.getMscriptParameterAccess().getOwnedDefaultValueMscriptValueSpecificationParserRuleCall_4_0()); 
 	    }
 		lv_ownedDefaultValue_4_0=ruleMscriptValueSpecification		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterRule());
+	            $current = createModelElementForParent(grammarAccess.getMscriptParameterRule());
 	        }
        		set(
        			$current, 
@@ -954,55 +1147,55 @@ ruleParameter returns [EObject current=null]
 )
 )(	otherlv_5='predefined' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getParameterAccess().getPredefinedKeyword_5_0());
+    	newLeafNode(otherlv_5, grammarAccess.getMscriptParameterAccess().getPredefinedKeyword_5_0());
     }
 	otherlv_6='{' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getParameterAccess().getLeftCurlyBracketKeyword_5_1());
+    	newLeafNode(otherlv_6, grammarAccess.getMscriptParameterAccess().getLeftCurlyBracketKeyword_5_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParameterAccess().getPredefinedValuesParameterPredefinedValueParserRuleCall_5_2_0()); 
+	        newCompositeNode(grammarAccess.getMscriptParameterAccess().getPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_2_0()); 
 	    }
-		lv_predefinedValues_7_0=ruleParameterPredefinedValue		{
+		lv_predefinedValues_7_0=ruleMscriptParameterPredefinedValue		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterRule());
+	            $current = createModelElementForParent(grammarAccess.getMscriptParameterRule());
 	        }
        		add(
        			$current, 
        			"predefinedValues",
         		lv_predefinedValues_7_0, 
-        		"ParameterPredefinedValue");
+        		"MscriptParameterPredefinedValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )(	otherlv_8=',' 
     {
-    	newLeafNode(otherlv_8, grammarAccess.getParameterAccess().getCommaKeyword_5_3_0());
+    	newLeafNode(otherlv_8, grammarAccess.getMscriptParameterAccess().getCommaKeyword_5_3_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParameterAccess().getPredefinedValuesParameterPredefinedValueParserRuleCall_5_3_1_0()); 
+	        newCompositeNode(grammarAccess.getMscriptParameterAccess().getPredefinedValuesMscriptParameterPredefinedValueParserRuleCall_5_3_1_0()); 
 	    }
-		lv_predefinedValues_9_0=ruleParameterPredefinedValue		{
+		lv_predefinedValues_9_0=ruleMscriptParameterPredefinedValue		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterRule());
+	            $current = createModelElementForParent(grammarAccess.getMscriptParameterRule());
 	        }
        		add(
        			$current, 
        			"predefinedValues",
         		lv_predefinedValues_9_0, 
-        		"ParameterPredefinedValue");
+        		"MscriptParameterPredefinedValue");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))*	otherlv_10='}' 
     {
-    	newLeafNode(otherlv_10, grammarAccess.getParameterAccess().getRightCurlyBracketKeyword_5_4());
+    	newLeafNode(otherlv_10, grammarAccess.getMscriptParameterAccess().getRightCurlyBracketKeyword_5_4());
     }
 )?)
 ;
@@ -1011,28 +1204,89 @@ ruleParameter returns [EObject current=null]
 
 
 
-// Entry rule entryRuleParameterPredefinedValue
-entryRuleParameterPredefinedValue returns [EObject current=null] 
+// Entry rule entryRuleOpaqueParameterPredefinedValue
+entryRuleOpaqueParameterPredefinedValue returns [EObject current=null] 
 	:
-	{ newCompositeNode(grammarAccess.getParameterPredefinedValueRule()); }
-	 iv_ruleParameterPredefinedValue=ruleParameterPredefinedValue 
-	 { $current=$iv_ruleParameterPredefinedValue.current; } 
+	{ newCompositeNode(grammarAccess.getOpaqueParameterPredefinedValueRule()); }
+	 iv_ruleOpaqueParameterPredefinedValue=ruleOpaqueParameterPredefinedValue 
+	 { $current=$iv_ruleOpaqueParameterPredefinedValue.current; } 
 	 EOF 
 ;
 
-// Rule ParameterPredefinedValue
-ruleParameterPredefinedValue returns [EObject current=null] 
+// Rule OpaqueParameterPredefinedValue
+ruleOpaqueParameterPredefinedValue returns [EObject current=null] 
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
 ((
 (
 		{ 
-	        newCompositeNode(grammarAccess.getParameterPredefinedValueAccess().getValueMscriptValueSpecificationParserRuleCall_0_0()); 
+	        newCompositeNode(grammarAccess.getOpaqueParameterPredefinedValueAccess().getValueStringValueSpecificationParserRuleCall_0_0()); 
+	    }
+		lv_value_0_0=ruleStringValueSpecification		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOpaqueParameterPredefinedValueRule());
+	        }
+       		set(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"StringValueSpecification");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(	otherlv_1='as' 
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getOpaqueParameterPredefinedValueAccess().getAsKeyword_1_0());
+    }
+(
+(
+		lv_alias_2_0=RULE_STRING
+		{
+			newLeafNode(lv_alias_2_0, grammarAccess.getOpaqueParameterPredefinedValueAccess().getAliasSTRINGTerminalRuleCall_1_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getOpaqueParameterPredefinedValueRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"alias",
+        		lv_alias_2_0, 
+        		"STRING");
+	    }
+
+)
+))?)
+;
+
+
+
+
+
+// Entry rule entryRuleMscriptParameterPredefinedValue
+entryRuleMscriptParameterPredefinedValue returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getMscriptParameterPredefinedValueRule()); }
+	 iv_ruleMscriptParameterPredefinedValue=ruleMscriptParameterPredefinedValue 
+	 { $current=$iv_ruleMscriptParameterPredefinedValue.current; } 
+	 EOF 
+;
+
+// Rule MscriptParameterPredefinedValue
+ruleMscriptParameterPredefinedValue returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+(
+		{ 
+	        newCompositeNode(grammarAccess.getMscriptParameterPredefinedValueAccess().getValueMscriptValueSpecificationParserRuleCall_0_0()); 
 	    }
 		lv_value_0_0=ruleMscriptValueSpecification		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getParameterPredefinedValueRule());
+	            $current = createModelElementForParent(grammarAccess.getMscriptParameterPredefinedValueRule());
 	        }
        		set(
        			$current, 
@@ -1045,17 +1299,17 @@ ruleParameterPredefinedValue returns [EObject current=null]
 )
 )(	otherlv_1='as' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getParameterPredefinedValueAccess().getAsKeyword_1_0());
+    	newLeafNode(otherlv_1, grammarAccess.getMscriptParameterPredefinedValueAccess().getAsKeyword_1_0());
     }
 (
 (
 		lv_alias_2_0=RULE_STRING
 		{
-			newLeafNode(lv_alias_2_0, grammarAccess.getParameterPredefinedValueAccess().getAliasSTRINGTerminalRuleCall_1_1_0()); 
+			newLeafNode(lv_alias_2_0, grammarAccess.getMscriptParameterPredefinedValueAccess().getAliasSTRINGTerminalRuleCall_1_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getParameterPredefinedValueRule());
+	            $current = createModelElement(grammarAccess.getMscriptParameterPredefinedValueRule());
 	        }
        		setWithLastConsumed(
        			$current, 
@@ -1066,6 +1320,84 @@ ruleParameterPredefinedValue returns [EObject current=null]
 
 )
 ))?)
+;
+
+
+
+
+
+// Entry rule entryRuleOpaqueTypeSpecification
+entryRuleOpaqueTypeSpecification returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getOpaqueTypeSpecificationRule()); }
+	 iv_ruleOpaqueTypeSpecification=ruleOpaqueTypeSpecification 
+	 { $current=$iv_ruleOpaqueTypeSpecification.current; } 
+	 EOF 
+;
+
+// Rule OpaqueTypeSpecification
+ruleOpaqueTypeSpecification returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getOpaqueTypeSpecificationAccess().getKindOpaqueTypeKindEnumRuleCall_0()); 
+	    }
+		lv_kind_0_0=ruleOpaqueTypeKind		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getOpaqueTypeSpecificationRule());
+	        }
+       		set(
+       			$current, 
+       			"kind",
+        		lv_kind_0_0, 
+        		"OpaqueTypeKind");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleStringValueSpecification
+entryRuleStringValueSpecification returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getStringValueSpecificationRule()); }
+	 iv_ruleStringValueSpecification=ruleStringValueSpecification 
+	 { $current=$iv_ruleStringValueSpecification.current; } 
+	 EOF 
+;
+
+// Rule StringValueSpecification
+ruleStringValueSpecification returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		lv_value_0_0=RULE_STRING
+		{
+			newLeafNode(lv_value_0_0, grammarAccess.getStringValueSpecificationAccess().getValueSTRINGTerminalRuleCall_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStringValueSpecificationRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"STRING");
+	    }
+
+)
+)
 ;
 
 
@@ -8664,6 +8996,19 @@ ruleParameterVisibilityKind returns [Enumerator current=null]
         newLeafNode(enumLiteral_1, grammarAccess.getParameterVisibilityKindAccess().getPrivateEnumLiteralDeclaration_1()); 
     }
 ));
+
+
+
+// Rule OpaqueTypeKind
+ruleOpaqueTypeKind returns [Enumerator current=null] 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+(	enumLiteral_0='opaque' 
+	{
+        $current = grammarAccess.getOpaqueTypeKindAccess().getStringEnumLiteralDeclaration().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_0, grammarAccess.getOpaqueTypeKindAccess().getStringEnumLiteralDeclaration()); 
+    }
+);
 
 
 

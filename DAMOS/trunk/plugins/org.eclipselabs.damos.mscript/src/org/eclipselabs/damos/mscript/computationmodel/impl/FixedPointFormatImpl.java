@@ -20,6 +20,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
+import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.internal.computationmodel.operations.FixedPointFormatOperations;
 
 /**
@@ -188,6 +189,14 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	 */
 	public FixedPointOperation getOperation(FixedPointOperationKind kind) {
 		return FixedPointFormatOperations.getOperation(this, kind);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatImpl#isEquivalentTo(org.eclipselabs.damos.mscript.computationmodel.NumberFormat)
+	 */
+	@Override
+	public boolean isEquivalentTo(NumberFormat other) {
+		return FixedPointFormatOperations.isEquivalentTo(this, other);
 	}
 
 	/**

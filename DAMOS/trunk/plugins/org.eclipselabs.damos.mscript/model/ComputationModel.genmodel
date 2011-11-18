@@ -36,6 +36,9 @@
     </genClasses>
     <genClasses image="false" ecoreClass="ComputationModel.ecore#//NumberFormat">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//NumberFormat/name"/>
+      <genOperations ecoreOperation="ComputationModel.ecore#//NumberFormat/isEquivalentTo">
+        <genParameters ecoreParameter="ComputationModel.ecore#//NumberFormat/isEquivalentTo/other"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="ComputationModel.ecore#//FixedPointFormat">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ComputationModel.ecore#//FixedPointFormat/integerLength"/>

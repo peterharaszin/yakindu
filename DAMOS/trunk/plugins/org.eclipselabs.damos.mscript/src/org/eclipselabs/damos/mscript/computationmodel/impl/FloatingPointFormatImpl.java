@@ -12,6 +12,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind;
+import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
+import org.eclipselabs.damos.mscript.internal.computationmodel.operations.FloatingPointFormatOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -85,6 +87,14 @@ public class FloatingPointFormatImpl extends NumberFormatImpl implements Floatin
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FLOATING_POINT_FORMAT__KIND, oldKind, kind));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatImpl#isEquivalentTo(org.eclipselabs.damos.mscript.computationmodel.NumberFormat)
+	 */
+	@Override
+	public boolean isEquivalentTo(NumberFormat other) {
+		return FloatingPointFormatOperations.isEquivalentTo(this, other);
 	}
 
 	/**

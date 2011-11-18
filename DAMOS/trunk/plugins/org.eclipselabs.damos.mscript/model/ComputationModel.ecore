@@ -8,6 +8,9 @@
         eType="#//FloatingPointFormatKind"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NumberFormat" abstract="true">
+    <eOperations name="isEquivalentTo" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="other" lowerBound="1" eType="#//NumberFormat"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FloatingPointFormatKind">

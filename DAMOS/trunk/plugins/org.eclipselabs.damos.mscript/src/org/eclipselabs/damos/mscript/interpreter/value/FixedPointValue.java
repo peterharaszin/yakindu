@@ -63,7 +63,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 	@Override
 	protected IValue doConvert(DataType dataType) {
 		NumberFormat numberFormat = getContext().getComputationModel().getNumberFormat(dataType);
-		if (EcoreUtil.equals(numberFormat, getNumberFormat())) {
+		if (getNumberFormat().isEquivalentTo(numberFormat)) {
 			return new FixedPointValue(getContext(), (NumericType) dataType, getNumberFormat(), rawValue);
 		}
 		return doCast((NumericType) dataType, numberFormat);
@@ -221,7 +221,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 	}
 	
 	protected AbstractNumericValue cast(NumberFormat numberFormat) {
-		if (EcoreUtil.equals(numberFormat, getNumberFormat())) {
+		if (getNumberFormat().isEquivalentTo(numberFormat)) {
 			return this;
 		}
 		return doCast(getDataType(), numberFormat);

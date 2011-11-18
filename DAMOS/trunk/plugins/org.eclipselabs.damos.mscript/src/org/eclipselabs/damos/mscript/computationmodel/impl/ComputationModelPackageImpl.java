@@ -450,13 +450,16 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		initEClass(numberFormatEClass, NumberFormat.class, "NumberFormat", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNumberFormat_Name(), ecorePackage.getEString(), "name", null, 0, 1, NumberFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		EOperation op = addEOperation(numberFormatEClass, ecorePackage.getEBoolean(), "isEquivalentTo", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNumberFormat(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(fixedPointFormatEClass, FixedPointFormat.class, "FixedPointFormat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFixedPointFormat_IntegerLength(), ecorePackage.getEInt(), "integerLength", "1", 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPointFormat_FractionLength(), ecorePackage.getEInt(), "fractionLength", null, 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getFixedPointFormat_WordSize(), ecorePackage.getEInt(), "wordSize", null, 1, 1, FixedPointFormat.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
 		initEReference(getFixedPointFormat_Operations(), this.getFixedPointOperation(), null, "operations", null, 0, -1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
-		EOperation op = addEOperation(fixedPointFormatEClass, this.getFixedPointOperation(), "getOperation", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		op = addEOperation(fixedPointFormatEClass, this.getFixedPointOperation(), "getOperation", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, this.getFixedPointOperationKind(), "kind", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(fixedPointOperationEClass, FixedPointOperation.class, "FixedPointOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

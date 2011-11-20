@@ -28,6 +28,11 @@
             class="org.eclipselabs.damos.library.vi.simulation.indicators.GaugeSimulationObject"
             name="Gauge">
       </simulationObject>
+      <simulationObject
+            blockType="damos::library::vi::indicators::Display"
+            class="org.eclipselabs.damos.library.vi.simulation.indicators.DisplaySimulationObject"
+            name="Display">
+      </simulationObject>
    </extension>
 
 </plugin>

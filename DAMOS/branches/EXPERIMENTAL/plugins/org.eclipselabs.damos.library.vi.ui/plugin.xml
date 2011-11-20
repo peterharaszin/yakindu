@@ -18,6 +18,11 @@
             class="org.eclipselabs.damos.library.vi.ui.editparts.indicators.GaugeEditPart"
             name="Gauge">
       </editPart>
+      <editPart
+            blockType="damos::library::vi::indicators::Display"
+            class="org.eclipselabs.damos.library.vi.ui.editparts.indicators.DisplayEditPart"
+            name="Display">
+      </editPart>
    </extension>
 
 </plugin>

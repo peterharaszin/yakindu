@@ -14,7 +14,7 @@ package org.eclipselabs.damos.library.base.simulation.sources;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
-import org.eclipselabs.damos.library.base.sources.util.SineWaveConstants;
+import org.eclipselabs.damos.library.base.util.sources.SineWaveConstants;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;

@@ -9,48 +9,65 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.library.base.ui.figures.math.shapes;
+package org.eclipselabs.damos.library.base.ui.figures.shapes.math;
 
 import org.eclipse.draw2d.LayoutManager;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipselabs.damos.diagram.ui.figures.ComponentFigure;
 import org.eclipselabs.damos.diagram.ui.figures.ICanvasContext;
 import org.eclipselabs.damos.diagram.ui.figures.IFigureConstants;
-import org.eclipselabs.damos.diagram.ui.figures.OvalComponentLayout;
+import org.eclipselabs.damos.diagram.ui.figures.StandardComponentLayout;
+import org.eclipselabs.damos.diagram.ui.figures.StandardComponentLayoutData;
+import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dml.OutputPort;
+import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.library.common.ui.figures.shapes.AbstractBlockShape;
 
 /**
  * @author Andreas Unger
  *
  */
-public class RoundSumShape extends AbstractBlockShape implements IFigureConstants {
+public class RectangularSumShape extends AbstractBlockShape implements IFigureConstants {
 	
 	/**
 	 * @param blockFigure
 	 */
-	public RoundSumShape(ComponentFigure blockFigure) {
+	public RectangularSumShape(ComponentFigure blockFigure) {
 		super(blockFigure);
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.library.basicblocks.figures.AbstractBlockShape#createLayoutManager()
 	 */
 	public LayoutManager createLayoutManager() {
-		OvalComponentLayout layout = new OvalComponentLayout();
-		layout.setOutputPortsArrangement("|o");
-		return layout;
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.diagram.figures.BlockFigure#calculateMinimumCanvasSize(int, int)
-	 */
-	public Dimension calculateMinimumCanvasSize(int wHint, int hHint) {
-		return new Dimension(546, 546);
+		return new StandardComponentLayout();
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure#paintFigure(org.eclipse.draw2d.Graphics)
+	 * @see org.eclipselabs.damos.library.basicblocks.figures.AbstractBlockShape#getPortFigureConstraint(org.eclipselabs.damos.semantic.blockdiagram.Port)
 	 */
+	public Object getPortFigureConstraint(Port port) {
+		if (port instanceof InputPort) {
+			return new StandardComponentLayoutData(PositionConstants.WEST);
+		}
+		if (port instanceof OutputPort) {
+			return new StandardComponentLayoutData(PositionConstants.EAST);
+		}
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.draw2d.Figure#getMinimumSize(int, int)
+	 */
+	public Dimension calculateMinimumCanvasSize(int wHint, int hHint) {
+		Dimension size = blockFigure.getPreferredCanvasSize().getCopy();
+		if (size.width < size.height) {
+			size.width = size.height;
+		}
+		return size;
+	}
+
 	public void paintCanvas(ICanvasContext cc) {
 		Dimension size = blockFigure.getCanvasSize();
 		
@@ -60,8 +77,8 @@ public class RoundSumShape extends AbstractBlockShape implements IFigureConstant
 		int height = size.height - DEFAULT_LINE_WIDTH;
 
 		cc.setLineWidth(DEFAULT_LINE_WIDTH);
-		cc.fillOval(x, y, width, height);
-		cc.drawOval(x, y, width, height);
+		cc.fillRectangle(x, y, width, height);
+		cc.drawRectangle(x, y, width, height);
 	}
 
 }

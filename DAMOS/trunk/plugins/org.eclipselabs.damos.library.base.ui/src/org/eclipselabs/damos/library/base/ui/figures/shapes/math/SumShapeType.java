@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.library.base.ui.figures.math.shapes;
+package org.eclipselabs.damos.library.base.ui.figures.shapes.math;
 
 /**
  * @author Andreas Unger

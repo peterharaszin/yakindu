@@ -14,7 +14,7 @@ package org.eclipselabs.damos.library.base.simulation.sources;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
-import org.eclipselabs.damos.library.base.sources.util.StepConstants;
+import org.eclipselabs.damos.library.base.util.sources.StepConstants;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;

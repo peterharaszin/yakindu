@@ -202,37 +202,37 @@
          point="org.eclipselabs.damos.execution.core.blockSignaturePolicies">
       <policy
             blockType="damos::library::base::continuous::Integrator"
-            class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.IntegratorSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.IntegratorSignaturePolicy"
             name="Integrator">
       </policy>
       <policy
             blockType="damos::library::base::continuous::Derivative"
-            class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.DerivativeSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.DerivativeSignaturePolicy"
             name="Derivative">
       </policy>
       <policy
             blockType="damos::library::base::continuous::TransferFunction"
-            class="org.eclipselabs.damos.library.base.continuous.signaturepolicies.TransferFunctionSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.TransferFunctionSignaturePolicy"
             name="Transfer Function">
       </policy>
       <policy
             blockType="damos::library::base::sinks::Scope"
-            class="org.eclipselabs.damos.library.base.sinks.signaturepolicies.ScopeSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.sinks.ScopeSignaturePolicy"
             name="Scope">
       </policy>
       <policy
             blockType="damos::library::base::sources::Step"
-            class="org.eclipselabs.damos.library.base.sources.signaturepolicies.StepSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.sources.StepSignaturePolicy"
             name="Step">
       </policy>
       <policy
             blockType="damos::library::base::sources::Ramp"
-            class="org.eclipselabs.damos.library.base.sources.signaturepolicies.RampSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.sources.RampSignaturePolicy"
             name="Ramp">
       </policy>
       <policy
             blockType="damos::library::base::sources::SineWave"
-            class="org.eclipselabs.damos.library.base.sources.signaturepolicies.SineWaveSignaturePolicy"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.sources.SineWaveSignaturePolicy"
             name="Sine Wave">
       </policy>
    </extension>

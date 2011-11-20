@@ -54,6 +54,12 @@
             uri="http://www.eclipselabs.org/damos/library/vi/controls/Slider.blocktype#/">
       </blockType>
       <blockType
+            group="org.eclipselabs.damos.library.vi.controls"
+            name="Button"
+            qualifiedName="damos::library::vi::controls::Button"
+            uri="http://www.eclipselabs.org/damos/library/vi/controls/Button.blocktype#/">
+      </blockType>
+      <blockType
             group="org.eclipselabs.damos.library.vi.indicators"
             qualifiedName="damos::library::vi::indicators::Gauge"
             name="Gauge"
@@ -76,6 +82,11 @@
             blockType="damos::library::vi::controls::Slider"
             class="org.eclipselabs.damos.library.vi.signatures.controls.SliderSignaturePolicy"
             name="Slider">
+      </policy>
+      <policy
+            blockType="damos::library::vi::controls::Button"
+            class="org.eclipselabs.damos.library.vi.signatures.controls.ButtonSignaturePolicy"
+            name="Button">
       </policy>
       <policy
             blockType="damos::library::vi::indicators::Gauge"

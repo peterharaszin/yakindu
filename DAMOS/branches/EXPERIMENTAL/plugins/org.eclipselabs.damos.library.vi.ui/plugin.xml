@@ -9,6 +9,11 @@
             name="Slider">
       </editPart>
       <editPart
+            blockType="damos::library::vi::controls::Button"
+            class="org.eclipselabs.damos.library.vi.ui.editparts.controls.ButtonEditPart"
+            name="Button">
+      </editPart>
+      <editPart
             blockType="damos::library::vi::indicators::Gauge"
             class="org.eclipselabs.damos.library.vi.ui.editparts.indicators.GaugeEditPart"
             name="Gauge">

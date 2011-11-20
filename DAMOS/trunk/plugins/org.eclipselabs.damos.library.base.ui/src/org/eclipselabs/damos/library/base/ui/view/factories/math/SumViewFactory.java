@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.PropertiesSetStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.view.factories.ComponentViewFactory;
-import org.eclipselabs.damos.library.base.ui.figures.math.shapes.SumShapeType;
+import org.eclipselabs.damos.library.base.ui.figures.shapes.math.SumShapeType;
 import org.eclipselabs.damos.library.base.ui.view.styles.math.SumStyles;
 import org.eclipselabs.damos.library.common.ui.view.styles.MultiShapeBlockStyles;
 

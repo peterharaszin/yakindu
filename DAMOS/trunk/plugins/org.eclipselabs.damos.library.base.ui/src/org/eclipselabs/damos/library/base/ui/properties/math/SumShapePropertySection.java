@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipselabs.damos.diagram.ui.view.util.PropertiesSetStyleUtil;
-import org.eclipselabs.damos.library.base.ui.figures.math.shapes.SumShapeType;
+import org.eclipselabs.damos.library.base.ui.figures.shapes.math.SumShapeType;
 import org.eclipselabs.damos.library.common.ui.properties.ShapePropertySection;
 import org.eclipselabs.damos.library.common.ui.view.styles.MultiShapeBlockStyles;
 

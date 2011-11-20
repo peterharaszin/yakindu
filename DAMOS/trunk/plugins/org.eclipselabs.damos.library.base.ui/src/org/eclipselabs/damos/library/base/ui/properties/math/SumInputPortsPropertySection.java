@@ -57,7 +57,7 @@ import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dmltext.util.DMLTextUtil;
-import org.eclipselabs.damos.library.base.ui.figures.math.shapes.SumShapeType;
+import org.eclipselabs.damos.library.base.ui.figures.shapes.math.SumShapeType;
 import org.eclipselabs.damos.library.base.ui.view.styles.math.SumStyles;
 import org.eclipselabs.damos.library.base.util.math.SumConstants;
 import org.eclipselabs.damos.library.common.ui.view.styles.MultiShapeBlockStyles;

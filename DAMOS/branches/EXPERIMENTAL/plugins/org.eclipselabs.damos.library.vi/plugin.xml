@@ -65,6 +65,12 @@
             name="Gauge"
             uri="http://www.eclipselabs.org/damos/library/vi/indicators/Gauge.blocktype#/">
       </blockType>
+      <blockType
+            group="org.eclipselabs.damos.library.vi.indicators"
+            name="Display"
+            qualifiedName="damos::library::vi::indicators::Display"
+            uri="http://www.eclipselabs.org/damos/library/vi/indicators/Display.blocktype#/">
+      </blockType>
    </extension>
    <extension
          point="org.eclipselabs.damos.execution.core.blockSignaturePolicies">
@@ -92,6 +98,11 @@
             blockType="damos::library::vi::indicators::Gauge"
             class="org.eclipselabs.damos.library.vi.signatures.indicators.GaugeSignaturePolicy"
             name="Gauge">
+      </policy>
+      <policy
+            blockType="damos::library::vi::indicators::Display"
+            class="org.eclipselabs.damos.library.vi.signatures.indicators.DisplaySignaturePolicy"
+            name="Display">
       </policy>
    </extension>
 

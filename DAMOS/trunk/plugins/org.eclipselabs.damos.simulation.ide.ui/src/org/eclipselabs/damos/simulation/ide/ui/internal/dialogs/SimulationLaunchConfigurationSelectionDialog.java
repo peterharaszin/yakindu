@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.simulation.ide.ui.internal.dialogs;
 
+import java.util.Collection;
+
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -38,7 +40,7 @@ public class SimulationLaunchConfigurationSelectionDialog extends ListDialog {
 	/**
 	 * @param parentShell
 	 */
-	public SimulationLaunchConfigurationSelectionDialog(Shell parentShell, String name, ILaunchConfiguration[] launchConfigurations) {
+	public SimulationLaunchConfigurationSelectionDialog(Shell parentShell, String name, Collection<ILaunchConfiguration> launchConfigurations) {
 		super(parentShell);
 		setLabelProvider(labelProvider);
 		setContentProvider(new ArrayContentProvider());

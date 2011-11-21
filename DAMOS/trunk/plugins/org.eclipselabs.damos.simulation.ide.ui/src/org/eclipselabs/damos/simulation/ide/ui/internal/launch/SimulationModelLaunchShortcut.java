@@ -1,6 +1,7 @@
 package org.eclipselabs.damos.simulation.ide.ui.internal.launch;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,6 +34,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate;
 import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
 import org.eclipselabs.damos.simulation.ide.ui.internal.dialogs.SimulationLaunchConfigurationSelectionDialog;
+import org.eclipselabs.damos.simulation.ide.ui.internal.util.LaunchShortcutUtil;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 
@@ -51,12 +53,12 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 	}
 	
 	private void launch(SimulationModel simulationModel, String mode) {
-		ILaunchConfiguration[] launchConfigurations = getLaunchConfigurations(simulationModel);
+		Collection<ILaunchConfiguration> launchConfigurations = getLaunchConfigurations(simulationModel);
 		
 		URI uri = EcoreUtil.getURI(simulationModel);
 		IPath path = new Path(uri.toPlatformString(true));
 		
-		if (launchConfigurations == null) {
+		if (launchConfigurations.isEmpty()) {
 			try {
 				ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 				ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(SimulationLaunchConfigurationDelegate.LAUNCH_CONFIGURATION_TYPE);
@@ -73,8 +75,8 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 						"Launching configuration creation failed", e));
 			}
 		} else {
-			if (launchConfigurations.length == 1) {
-				DebugUITools.launch(launchConfigurations[0], mode);
+			if (launchConfigurations.size() == 1) {
+				DebugUITools.launch(launchConfigurations.iterator().next(), mode);
 			} else {
 				SimulationLaunchConfigurationSelectionDialog d = new SimulationLaunchConfigurationSelectionDialog(
 						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), path.toFile().getName(), launchConfigurations);
@@ -95,7 +97,7 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 	public ILaunchConfiguration[] getLaunchConfigurations(ISelection selection) {
 		SimulationModel simulationModel = getSimulationModel(selection);
 		if (simulationModel != null) {
-			return getLaunchConfigurations(simulationModel);
+			return LaunchShortcutUtil.toArray(getLaunchConfigurations(simulationModel));
 		}
 		return null;
 	}
@@ -104,6 +106,13 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 	 * @see org.eclipse.debug.ui.ILaunchShortcut2#getLaunchConfigurations(org.eclipse.ui.IEditorPart)
 	 */
 	public ILaunchConfiguration[] getLaunchConfigurations(IEditorPart editor) {
+		IFile file = getLaunchableResource(editor);
+		if (file != null) {
+			SimulationModel simulationModel = getSimulationModel(file);
+			if (simulationModel != null) {
+				return LaunchShortcutUtil.toArray(getLaunchConfigurations(simulationModel));
+			}
+		}
 		return null;
 	}
 	
@@ -117,7 +126,7 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 	/* (non-Javadoc)
 	 * @see org.eclipse.debug.ui.ILaunchShortcut2#getLaunchableResource(org.eclipse.ui.IEditorPart)
 	 */
-	public IResource getLaunchableResource(IEditorPart editor) {
+	public IFile getLaunchableResource(IEditorPart editor) {
 		IEditorInput editorInput = editor.getEditorInput();
 		if (editorInput instanceof IFileEditorInput) {
 			return ((IFileEditorInput) editorInput).getFile();
@@ -125,7 +134,7 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 		return null;
 	}
 
-	private ILaunchConfiguration[] getLaunchConfigurations(SimulationModel simulationModel) {
+	private Collection<ILaunchConfiguration> getLaunchConfigurations(SimulationModel simulationModel) {
 		URI uri = EcoreUtil.getURI(simulationModel);
 		IPath path = new Path(uri.toPlatformString(true));
 
@@ -142,15 +151,13 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 						}
 					}
 				}
-				if (!launchConfigurations.isEmpty()) {
-					return launchConfigurations.toArray(new ILaunchConfiguration[launchConfigurations.size()]);
-				}
+				return launchConfigurations;
 			}
 		} catch (Exception e) {
 			SimulationIDEUIPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, SimulationIDEUIPlugin.PLUGIN_ID, 
 					"Querying launch configurations failed", e)); 
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	private SimulationModel getSimulationModel(ISelection selection) {
@@ -162,14 +169,18 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 					return (SimulationModel) element;
 				}
 				if (element instanceof IFile) {
-					IFile file = (IFile) element;
-					String extension = file.getFullPath().getFileExtension();
-					if (SIMULATION_MODEL_FILE_EXTENSION.equals(extension)) {
-						List<EObject> contents = getResourceContents(file);
-						return (SimulationModel) EcoreUtil.getObjectByType(contents, SimulationModelPackage.eINSTANCE.getSimulationModel());
-					}
+					return getSimulationModel((IFile) element);
 				}
 			}
+		}
+		return null;
+	}
+	
+	private SimulationModel getSimulationModel(IFile file) {
+		String extension = file.getFullPath().getFileExtension();
+		if (SIMULATION_MODEL_FILE_EXTENSION.equals(extension)) {
+			List<EObject> contents = getResourceContents(file);
+			return (SimulationModel) EcoreUtil.getObjectByType(contents, SimulationModelPackage.eINSTANCE.getSimulationModel());
 		}
 		return null;
 	}

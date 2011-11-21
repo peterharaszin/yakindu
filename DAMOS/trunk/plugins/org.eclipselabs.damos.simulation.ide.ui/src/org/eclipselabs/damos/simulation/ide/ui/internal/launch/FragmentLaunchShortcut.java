@@ -30,6 +30,8 @@ import org.eclipse.gef.RootEditPart;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
@@ -43,6 +45,7 @@ import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunc
 import org.eclipselabs.damos.simulation.ide.core.util.LaunchConfigurationUtil;
 import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
 import org.eclipselabs.damos.simulation.ide.ui.internal.dialogs.SimulationLaunchConfigurationSelectionDialog;
+import org.eclipselabs.damos.simulation.ide.ui.internal.util.LaunchShortcutUtil;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 
@@ -65,12 +68,12 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 	}
 	
 	private void launch(Fragment fragment, String mode) {
-		ILaunchConfiguration[] launchConfigurations = getLaunchConfigurations(fragment);
+		Collection<ILaunchConfiguration> launchConfigurations = getLaunchConfigurations(fragment);
 		
 		URI uri = EcoreUtil.getURI(fragment);
 		IPath path = new Path(uri.toPlatformString(true));
 		
-		if (launchConfigurations == null) {
+		if (launchConfigurations.isEmpty()) {
 			try {
 				ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 				ILaunchConfigurationType launchConfigurationType = launchManager.getLaunchConfigurationType(SimulationLaunchConfigurationDelegate.LAUNCH_CONFIGURATION_TYPE);
@@ -87,8 +90,8 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 						"Launching configuration creation failed", e));
 			}
 		} else {
-			if (launchConfigurations.length == 1) {
-				DebugUITools.launch(launchConfigurations[0], mode);
+			if (launchConfigurations.size() == 1) {
+				DebugUITools.launch(launchConfigurations.iterator().next(), mode);
 			} else {
 				SimulationLaunchConfigurationSelectionDialog d = new SimulationLaunchConfigurationSelectionDialog(
 						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), path.toFile().getName(), launchConfigurations);
@@ -107,11 +110,12 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 	 * @see org.eclipse.debug.ui.ILaunchShortcut2#getLaunchConfigurations(org.eclipse.jface.viewers.ISelection)
 	 */
 	public ILaunchConfiguration[] getLaunchConfigurations(ISelection selection) {
-		Fragment fragment = getFragment(selection);
-		if (fragment != null) {
-			return getLaunchConfigurations(fragment);
+		Collection<Fragment> fragments = getFragments(selection);
+		List<ILaunchConfiguration> launchConfigurations = new ArrayList<ILaunchConfiguration>();
+		for (Fragment fragment : fragments) {
+			launchConfigurations.addAll(getLaunchConfigurations(fragment));
 		}
-		return null;
+		return LaunchShortcutUtil.toArray(launchConfigurations);
 	}
 
 	/* (non-Javadoc)
@@ -120,7 +124,7 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 	public ILaunchConfiguration[] getLaunchConfigurations(IEditorPart editor) {
 		Fragment fragment = getFragment(editor);
 		if (fragment != null) {
-			return getLaunchConfigurations(fragment);
+			return LaunchShortcutUtil.toArray(getLaunchConfigurations(fragment));
 		}
 		return null;
 	}
@@ -143,7 +147,7 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 		return null;
 	}
 
-	private ILaunchConfiguration[] getLaunchConfigurations(Fragment fragment) {
+	private Collection<ILaunchConfiguration> getLaunchConfigurations(Fragment fragment) {
 		URI uri = EcoreUtil.getURI(fragment);
 
 		try {
@@ -176,15 +180,13 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 						}
 					}
 				}
-				if (!launchConfigurations.isEmpty()) {
-					return launchConfigurations.toArray(new ILaunchConfiguration[launchConfigurations.size()]);
-				}
+				return launchConfigurations;
 			}
 		} catch (Exception e) {
 			SimulationIDEUIPlugin.getDefault().getLog().log(new Status(IStatus.ERROR, SimulationIDEUIPlugin.PLUGIN_ID, 
 					"Querying launch configurations failed", e)); 
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	private Fragment getFragment(IEditorPart editor) {
@@ -205,31 +207,39 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 	}
 	
 	private Fragment getFragment(ISelection selection) {
+		Collection<Fragment> fragments = getFragments(selection);
+		if (fragments.size() == 1) {
+			return fragments.iterator().next();
+		} else if (fragments.size() > 1 && Display.getCurrent() != null) {
+			Shell shell = PlatformUI.getWorkbench().getModalDialogShellProvider().getShell();
+			if (shell != null) {
+				return SelectFragmentDialog.open(shell, "Damos Simulation", "Select fragment to simulate:", DMLUtil.getResourceSet(fragments.iterator().next()));
+			}
+		}
+		return null;
+	}
+	
+	private Collection<Fragment> getFragments(ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			if (structuredSelection.size() == 1) {
 				Object element = structuredSelection.getFirstElement();
 				if (element instanceof Fragment) {
-					return (Fragment) element;
+					return Collections.singleton((Fragment) element);
 				}
 				if (element instanceof IFile) {
 					IFile file = (IFile) element;
 					String extension = file.getFullPath().getFileExtension();
 					if (BLOCK_DIAGRAM_FILE_EXTENSION.equals(extension)) {
 						List<EObject> contents = getResourceContents(file);
-						Collection<Fragment> fragments = EcoreUtil.getObjectsByType(contents, DMLPackage.eINSTANCE.getFragment());
-						if (fragments.size() == 1) {
-							return fragments.iterator().next();
-						} else if (fragments.size() > 1) {
-							return SelectFragmentDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Damos Simulation", "Select fragment to simulate:", DMLUtil.getResourceSet(fragments.iterator().next()));
-						}
+						return EcoreUtil.getObjectsByType(contents, DMLPackage.eINSTANCE.getFragment());
 					}
 				}
 			}
 		}
-		return null;
+		return Collections.emptyList();
 	}
-	
+
 	private List<EObject> getResourceContents(IFile file) {
 		return getResourceContents(file.getFullPath().toString());
 	}

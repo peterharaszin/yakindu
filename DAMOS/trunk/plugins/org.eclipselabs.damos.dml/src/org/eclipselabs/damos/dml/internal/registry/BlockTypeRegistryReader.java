@@ -18,7 +18,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
 import org.eclipselabs.damos.dml.DMLPlugin;
-import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 
 /**
@@ -79,7 +78,7 @@ public class BlockTypeRegistryReader extends AbstractRegistryReader {
 			return true;
 		}
 
-		BlockGroupDescriptor group = (BlockGroupDescriptor) BlockGroupRegistry.getInstance().getBlockGroup(groupString);
+		BlockGroupDescriptor group = (BlockGroupDescriptor) registry.getBlockGroup(groupString);
 		if (group == null) {
 			logError(element, "Block group '" + groupString + "' not found");
 			return true;

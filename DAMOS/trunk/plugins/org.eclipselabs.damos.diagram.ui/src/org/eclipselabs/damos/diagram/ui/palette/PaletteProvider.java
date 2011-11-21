@@ -46,7 +46,6 @@ import org.eclipselabs.damos.diagram.ui.internal.palette.LinkEntry;
 import org.eclipselabs.damos.diagram.ui.internal.palette.PaletteDrawer;
 import org.eclipselabs.damos.diagram.ui.internal.palette.SubsystemCreationToolEntry;
 import org.eclipselabs.damos.diagram.ui.preferences.IPreferenceConstants;
-import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
 import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.IBlockGroupDescriptor;
 import org.eclipselabs.damos.dml.registry.IBlockTypeDescriptor;
@@ -349,7 +348,7 @@ public class PaletteProvider extends AbstractProvider implements IPaletteProvide
 	private Collection<IBlockGroupDescriptor> getTopLevelBlockGroups() {
 		Collection<IBlockGroupDescriptor> groups = new TreeSet<IBlockGroupDescriptor>(BLOCK_GROUP_COMPARATOR);
 		
-		for (IBlockGroupDescriptor group : BlockGroupRegistry.getInstance().getBlockGroups()) {
+		for (IBlockGroupDescriptor group : BlockTypeRegistry.getInstance().getBlockGroups()) {
 			if (group.getSupergroup() == null) {
 				groups.add(group);
 			}

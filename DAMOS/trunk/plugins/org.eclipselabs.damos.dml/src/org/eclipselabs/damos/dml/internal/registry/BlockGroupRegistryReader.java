@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
 import org.eclipselabs.damos.dml.DMLPlugin;
-import org.eclipselabs.damos.dml.registry.BlockGroupRegistry;
+import org.eclipselabs.damos.dml.registry.BlockTypeRegistry;
 import org.eclipselabs.damos.dml.registry.ILanguageDescriptor;
 import org.eclipselabs.damos.dml.registry.LanguageRegistry;
 
@@ -38,7 +38,7 @@ public class BlockGroupRegistryReader extends AbstractRegistryReader {
 	private static final String TAG_LANGUAGE = "language";
 	private static final String ATT_SUPERGROUP = "supergroup";
 	
-	private BlockGroupRegistry registry;
+	private BlockTypeRegistry registry;
 	
 	private Map<String, BlockGroupDescriptor> blockGroups = new HashMap<String, BlockGroupDescriptor>();
 
@@ -46,7 +46,7 @@ public class BlockGroupRegistryReader extends AbstractRegistryReader {
 	
 	private ILanguageDescriptor language;
 
-	public void registerBlockGroups(BlockGroupRegistry registry) {
+	public void registerBlockGroups(BlockTypeRegistry registry) {
 		this.registry = registry;
 		
 		readRegistry(Platform.getExtensionRegistry(), EXTENSION_POINT_NAME);

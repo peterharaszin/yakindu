@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipselabs.damos.dml.internal.registry.BlockGroupRegistryReader;
 import org.eclipselabs.damos.dml.internal.registry.BlockTypeRegistryReader;
 
 /**
@@ -26,6 +27,7 @@ public class BlockTypeRegistry {
 
 	private static final BlockTypeRegistry INSTANCE = new BlockTypeRegistry();
 
+	private Map<String, IBlockGroupDescriptor> blockGroups = new HashMap<String, IBlockGroupDescriptor>();
 	private Map<String, IBlockTypeDescriptor> blockTypes = new HashMap<String, IBlockTypeDescriptor>();
 	
 	/**
@@ -42,6 +44,22 @@ public class BlockTypeRegistry {
 		return INSTANCE;
 	}
 		
+	public Collection<IBlockGroupDescriptor> getBlockGroups() {
+		return Collections.unmodifiableCollection(blockGroups.values());
+	}
+
+	public IBlockGroupDescriptor getBlockGroup(String id) {
+		return blockGroups.get(id);
+	}
+	
+	public void register(IBlockGroupDescriptor blockGroup) {
+		blockGroups.put(blockGroup.getId(), blockGroup);
+	}
+	
+	public void unregister(IBlockGroupDescriptor blockGroup) {
+		blockGroups.remove(blockGroup.getId());
+	}
+
 	public Collection<IBlockTypeDescriptor> getBlockTypes() {
 		return Collections.unmodifiableCollection(blockTypes.values());
 	}
@@ -59,8 +77,8 @@ public class BlockTypeRegistry {
 	}
 
 	private void initializeFromStorage() {
-		BlockTypeRegistryReader reader = new BlockTypeRegistryReader();
-		reader.registerBlockTypes(this);
+		new BlockGroupRegistryReader().registerBlockGroups(this);
+		new BlockTypeRegistryReader().registerBlockTypes(this);
 	}
 	
 }

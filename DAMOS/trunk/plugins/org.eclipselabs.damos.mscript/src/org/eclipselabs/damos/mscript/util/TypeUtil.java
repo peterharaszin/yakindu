@@ -21,9 +21,11 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
+import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitFactor;
@@ -39,7 +41,34 @@ public class TypeUtil {
 	public static final DataType STRING_TYPE = MscriptFactory.eINSTANCE.createStringType();
 	public static final DataType UNIT_TYPE = MscriptFactory.eINSTANCE.createUnitType();
 	
+	public static RealType createRealType() {
+		return createRealType(createUnit());
+	}
 	
+	public static RealType createRealType(String... symbols) {
+		return createRealType(createUnit(symbols));
+	}
+
+	public static RealType createRealType(Unit unit) {
+		RealType realType = MscriptFactory.eINSTANCE.createRealType();
+		realType.setUnit(unit);
+		return realType;
+	}
+
+	public static IntegerType createIntegerType() {
+		return createIntegerType(createUnit());
+	}
+	
+	public static IntegerType createIntegerType(String... symbols) {
+		return createIntegerType(createUnit(symbols));
+	}
+
+	public static IntegerType createIntegerType(Unit unit) {
+		IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
+		integerType.setUnit(unit);
+		return integerType;
+	}
+
 	public static int getArraySize(ArrayType arrayType) {
 		return getArrayRowSize(arrayType);
 	}

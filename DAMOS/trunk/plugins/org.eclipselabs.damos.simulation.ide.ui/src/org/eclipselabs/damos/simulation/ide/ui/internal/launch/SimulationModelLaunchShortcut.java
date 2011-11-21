@@ -50,6 +50,13 @@ public class SimulationModelLaunchShortcut implements ILaunchShortcut2 {
 	}
 
 	public void launch(IEditorPart editor, String mode) {
+		IFile file = getLaunchableResource(editor);
+		if (file != null) {
+			SimulationModel simulationModel = getSimulationModel(file);
+			if (simulationModel != null) {
+				launch(simulationModel, mode);
+			}
+		}
 	}
 	
 	private void launch(SimulationModel simulationModel, String mode) {

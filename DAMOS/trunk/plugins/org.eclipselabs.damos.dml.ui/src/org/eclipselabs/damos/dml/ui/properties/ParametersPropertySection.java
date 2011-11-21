@@ -91,8 +91,10 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 			control.dispose();
 		}
 		
-		for (Argument argument : ((ParameterizedElement) getModel()).getArguments()) {
-			addParameterWidgets(argument);
+		if (getModel() instanceof ParameterizedElement) {
+			for (Argument argument : ((ParameterizedElement) getModel()).getArguments()) {
+				addParameterWidgets(argument);
+			}
 		}
 	
 		composite.layout();

@@ -49,31 +49,13 @@
 
    <element name="provider">
       <complexType>
-         <sequence>
-            <element ref="language"/>
-         </sequence>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.dml.ui.editpane.IArgumentEditPaneProvider"/>
-               </appInfo>
-            </annotation>
-         </attribute>
-      </complexType>
-   </element>
-
-   <element name="language">
-      <complexType>
-         <attribute name="id" type="string" use="required">
-            <annotation>
-               <documentation>
-                  
-               </documentation>
-               <appInfo>
-                  <meta.attribute kind="identifier" basedOn="org.eclipselabs.damos.dml.languages/language/@id"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider"/>
                </appInfo>
             </annotation>
          </attribute>

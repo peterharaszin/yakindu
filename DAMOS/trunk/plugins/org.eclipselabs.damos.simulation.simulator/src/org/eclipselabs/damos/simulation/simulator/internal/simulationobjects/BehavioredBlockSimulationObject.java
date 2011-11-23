@@ -52,6 +52,7 @@ import org.eclipselabs.damos.mscript.interpreter.IInterpreterContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.IVariable;
 import org.eclipselabs.damos.mscript.interpreter.InterpreterContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
@@ -95,7 +96,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 		Block block = getComponent();
 
-		Helper helper = new Helper(block);
+		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+		Helper helper = new Helper(staticEvaluationContext, block);
 		
 		hasInputSockets = !block.getInputSockets().isEmpty();
 		if (hasInputSockets) {
@@ -127,7 +129,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
-		IStaticEvaluationContext staticEvaluationContext = helper.createStaticEvaluationContext(functionDefinition, templateArguments, inputParameterDataTypes);
+		helper.evaluateFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes);
 		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
 
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
@@ -284,8 +286,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		/**
 		 * @param block
 		 */
-		public Helper(Block block) {
-			super(block);
+		public Helper(IStaticEvaluationContext staticEvaluationContext, Block block) {
+			super(staticEvaluationContext, block);
 		}
 
 		@Override

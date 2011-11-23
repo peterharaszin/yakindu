@@ -42,6 +42,7 @@ import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -55,7 +56,8 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
 
-		Helper helper = new Helper(block);
+		IStaticEvaluationContext staticEvaluationContext = new StaticEvaluationContext();
+		Helper helper = new Helper(staticEvaluationContext, block);
 
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		
@@ -79,9 +81,8 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			return new ComponentSignatureEvaluationResult();
 		}
 
-		IStaticEvaluationContext staticEvaluationContext;
 		try {
-			staticEvaluationContext = helper.createStaticEvaluationContext(functionDefinition, templateArguments, inputParameterDataTypes);
+			helper.evaluateFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 			return new ComponentSignatureEvaluationResult(status);
@@ -136,8 +137,8 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		/**
 		 * @param block
 		 */
-		public Helper(Block block) {
-			super(block);
+		public Helper(IStaticEvaluationContext staticEvaluationContext, Block block) {
+			super(staticEvaluationContext, block);
 		}
 
 		@Override

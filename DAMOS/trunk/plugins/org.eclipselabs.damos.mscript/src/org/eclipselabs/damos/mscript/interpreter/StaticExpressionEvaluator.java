@@ -16,11 +16,15 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConcatenationOperator;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
+import org.eclipselabs.damos.mscript.ArrayDimension;
+import org.eclipselabs.damos.mscript.ArrayElementAccess;
+import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.BooleanType;
@@ -59,6 +63,7 @@ import org.eclipselabs.damos.mscript.interpreter.builtin.IBuiltinFunctionLookupT
 import org.eclipselabs.damos.mscript.interpreter.builtin.IFunction;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -540,6 +545,8 @@ public class StaticExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			
+			context.setValue(arrayType.getDimensions().get(0).getSize(), Values.valueOf(context.getComputationContext(), TypeUtil.createIntegerType(), size));
+
 			if (arrayType instanceof TensorType) {
 				return new VectorValue(context.getComputationContext(), (TensorType) arrayType, (INumericValue[]) elements);
 			}
@@ -624,6 +631,68 @@ public class StaticExpressionEvaluator {
 		@Override
 		public IValue caseParenthesizedExpression(ParenthesizedExpression parenthesizedExpression) {
 			return evaluate(parenthesizedExpression.getExpressions().get(0));
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseArrayElementAccess(org.eclipselabs.damos.mscript.ArrayElementAccess)
+		 */
+		@Override
+		public IValue caseArrayElementAccess(ArrayElementAccess arrayElementAccess) {
+			IValue value = evaluate(arrayElementAccess.getArray());
+			if (value == null) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for array", arrayElementAccess.getArray()));
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (!(value instanceof IArrayValue)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Dynamic arrays not supported", arrayElementAccess.getArray()));
+				return InvalidValue.SINGLETON;
+			}
+			
+			IArrayValue arrayValue = (IArrayValue) value;
+			
+			if (arrayElementAccess.getSubscripts().size() != 1) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript dimensionality must be 1", arrayElementAccess));
+				return InvalidValue.SINGLETON;
+			}
+			
+			EList<ArrayDimension> dimensions = arrayValue.getDataType().getDimensions();
+			if (dimensions.size() != 1) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array dimensionality must be 1", arrayElementAccess));
+				return InvalidValue.SINGLETON;
+			}
+			
+			IValue sizeValue = context.getValue(dimensions.get(0).getSize());
+			if (sizeValue == null || !(sizeValue.getDataType() instanceof IntegerType) || !(sizeValue instanceof ISimpleNumericValue)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid array size data type", arrayElementAccess));
+				return InvalidValue.SINGLETON;
+			}
+			
+			int size = (int) ((ISimpleNumericValue) sizeValue).longValue();
+			
+			ArraySubscript subscript = arrayElementAccess.getSubscripts().get(0);
+			if (subscript.getExpression() == null) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript not set", subscript));
+				return InvalidValue.SINGLETON;
+			}
+			
+			IValue subsciptValue = evaluate(subscript.getExpression());
+			if (!(subsciptValue.getDataType() instanceof IntegerType)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript data type must be integer", arrayElementAccess));
+				return InvalidValue.SINGLETON;
+			}
+			
+			if (subsciptValue instanceof ISimpleNumericValue) {
+				int index = (int) ((ISimpleNumericValue) subsciptValue).longValue();
+				if (index < size) {
+					return arrayValue.get(index);
+				} else {
+					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array subscript must be less than " + size, arrayElementAccess));
+					return InvalidValue.SINGLETON;
+				}
+			}
+			
+			return new AnyValue(context.getComputationContext(), arrayValue.getDataType().getElementType());
 		}
 		
 		/* (non-Javadoc)

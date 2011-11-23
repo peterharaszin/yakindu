@@ -57,6 +57,7 @@ import org.eclipselabs.damos.mscript.il.transform.IFunctionDefinitionTransformer
 import org.eclipselabs.damos.mscript.il.util.ILUtil;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -81,7 +82,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 		Block block = getComponent();
 
-		Helper helper = new Helper(block);
+		staticEvaluationContext = new StaticEvaluationContext();
+		Helper helper = new Helper(staticEvaluationContext, block);
 		
 		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
 		
@@ -96,7 +98,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
-		staticEvaluationContext = helper.createStaticEvaluationContext(functionDefinition, templateArguments, inputParameterDataTypes);
+		helper.evaluateFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes);
 		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
 
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
@@ -349,8 +351,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		/**
 		 * @param block
 		 */
-		public Helper(Block block) {
-			super(block);
+		public Helper(IStaticEvaluationContext staticEvaluationContext, Block block) {
+			super(staticEvaluationContext, block);
 		}
 
 		@Override

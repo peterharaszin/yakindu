@@ -644,6 +644,11 @@ public class StaticExpressionEvaluator {
 				return InvalidValue.SINGLETON;
 			}
 			
+			if (!(value.getDataType() instanceof ArrayType)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Array element access is only applicable to arrays", arrayElementAccess.getArray()));
+				return InvalidValue.SINGLETON;
+			}
+
 			if (!(value instanceof IArrayValue)) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Dynamic arrays not supported", arrayElementAccess.getArray()));
 				return InvalidValue.SINGLETON;

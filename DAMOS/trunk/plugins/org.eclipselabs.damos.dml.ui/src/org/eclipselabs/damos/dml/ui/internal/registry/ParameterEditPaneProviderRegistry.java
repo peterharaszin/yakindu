@@ -43,14 +43,14 @@ public class ParameterEditPaneProviderRegistry {
 		initializeFromStorage();
 	}
 
-	public IValueSpecificationEditPane createEditor(Parameter parameter) {
+	public IValueSpecificationEditPane createEditPane(Parameter parameter) {
 		for (IParameterEditPaneProvider provider : providers) {
-			IValueSpecificationEditPane editor = provider.createEditor(parameter);
-			if (editor != null) {
-				return editor;
+			IValueSpecificationEditPane editPane = provider.createEditPane(parameter);
+			if (editPane != null) {
+				return editPane;
 			}
 		}
-		return defaultProvider.createEditor(parameter);
+		return defaultProvider.createEditPane(parameter);
 	}
 		
 	public Collection<IParameterEditPaneProvider> getProviders() {

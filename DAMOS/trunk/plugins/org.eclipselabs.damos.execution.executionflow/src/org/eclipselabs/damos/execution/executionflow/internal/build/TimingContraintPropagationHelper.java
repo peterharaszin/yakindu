@@ -25,12 +25,20 @@ import org.eclipselabs.damos.dml.ContinuousTimingConstraint;
 import org.eclipselabs.damos.dml.Latch;
 import org.eclipselabs.damos.dml.Port;
 import org.eclipselabs.damos.dml.SynchronousTimingConstraint;
+import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.DataFlowEnd;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowPlugin;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
@@ -42,6 +50,8 @@ public class TimingContraintPropagationHelper {
 	private static final double CONTINUOUS = 0;
 	private static final double ASYNCHRONOUS = Double.POSITIVE_INFINITY;
 
+	private final StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
+	
 	private int asynchronousZone;
 
 	public void propagateTimingConstraints(ExecutionFlow executionFlow) throws CoreException {
@@ -94,9 +104,6 @@ public class TimingContraintPropagationHelper {
 	 * @return
 	 */
 	private double getSampleTime(Component component) {
-		if (component.getTimingConstraint() == null) {
-			return INHERITED;
-		}
 		if (component.getTimingConstraint() instanceof ContinuousTimingConstraint) {
 			return CONTINUOUS;
 		}
@@ -105,9 +112,18 @@ public class TimingContraintPropagationHelper {
 		}
 		if (component.getTimingConstraint() instanceof SynchronousTimingConstraint) {
 			SynchronousTimingConstraint synchronousTimingConstraint = (SynchronousTimingConstraint) component.getTimingConstraint();
-			return Double.parseDouble(synchronousTimingConstraint.getSampleTime().stringValue());
+			ValueSpecification sampleTimeSpecification = synchronousTimingConstraint.getSampleTime();
+			if (sampleTimeSpecification instanceof MscriptValueSpecification) {
+				IStaticEvaluationContext context = new StaticEvaluationContext();
+				Expression sampleTimeExpression = ((MscriptValueSpecification) sampleTimeSpecification).getExpression();
+				staticExpressionEvaluator.evaluate(context, sampleTimeExpression);
+				IValue sampleTime = context.getValue(sampleTimeExpression);
+				if (sampleTime instanceof ISimpleNumericValue) {
+					return ((ISimpleNumericValue) sampleTime).doubleValue();
+				}
+			}
 		}
-		throw new IllegalArgumentException();
+		return INHERITED;
 	}
 
 	private boolean inheritSampleTimes(List<ComponentNode> inheritingNodes, boolean backwards) {

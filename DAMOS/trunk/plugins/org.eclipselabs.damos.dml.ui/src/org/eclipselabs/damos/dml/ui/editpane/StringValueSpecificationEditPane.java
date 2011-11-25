@@ -47,10 +47,17 @@ public class StringValueSpecificationEditPane implements IValueSpecificationEdit
 	public void createControl(Composite parent, IWidgetFactory widgetFactory) {
 		text = widgetFactory.createText(parent, "");
 		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		text.setLayoutData(gridData);		
+		text.setLayoutData(gridData);
 	}
 	
 	public Control getControl() {
+		return getText();
+	}
+	
+	/**
+	 * @return the text
+	 */
+	protected Text getText() {
 		return text;
 	}
 
@@ -58,7 +65,7 @@ public class StringValueSpecificationEditPane implements IValueSpecificationEdit
 		context = new EMFDataBindingContext();
 
 		IWidgetValueProperty textProperty = WidgetProperties.text(new int[] { SWT.DefaultSelection, SWT.FocusOut });
-		valueTextObservable = textProperty.observe(text);
+		valueTextObservable = textProperty.observe(getText());
 	}
 
 	/* (non-Javadoc)

@@ -1,0 +1,5 @@
+blockType damos::library::base::sinks::AudioFileSink
+
+input _input[1..*]
+
+opaque parameter fileURI = ""

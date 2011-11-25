@@ -15,14 +15,13 @@ import org.eclipselabs.damos.library.common.util.BlockConstants;
 
 /**
  * @author Andreas Unger
- *
+ * 
  */
 public interface SineWaveConstants extends BlockConstants {
 
-        String PARAMETER__AMPLITUDE = "amplitude";
-        String PARAMETER__BIAS = "bias";
-        String PARAMETER__FREQUENCY = "frequency";
-        String PARAMETER__PHASE = "phase";
+	String PARAMETER__AMPLITUDE = "amplitude";
+	String PARAMETER__BIAS = "bias";
+	String PARAMETER__FREQUENCY = "frequency";
+	String PARAMETER__PHASE = "phase";
 
 }
-

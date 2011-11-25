@@ -169,6 +169,11 @@
             name="Scope">
       </editPart>
       <editPart
+            blockType="damos::library::base::sinks::AudioFileSink"
+            class="org.eclipselabs.damos.library.base.ui.editparts.sinks.AudioFileSinkEditPart"
+            name="Audio File Sink">
+      </editPart>
+      <editPart
             blockType="damos::library::base::sources::Constant"
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.ConstantEditPart"
             name="Constant">
@@ -187,6 +192,11 @@
             blockType="damos::library::base::sources::Ramp"
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.RampEditPart"
             name="Ramp">
+      </editPart>
+      <editPart
+            blockType="damos::library::base::sources::AudioFileSource"
+            class="org.eclipselabs.damos.library.base.ui.editparts.sources.AudioFileSourceEditPart"
+            name="Audio File Source">
       </editPart>
    </extension>
    <extension
@@ -301,6 +311,25 @@
             icon16="icons/sources/Step16.png"
             icon24="icons/sources/Step24.png">
       </image>
+      <image
+            blockType="damos::library::base::sinks::AudioFileSink"
+            icon16="icons/sinks/AudioFileSink16.png"
+            icon24="icons/sinks/AudioFileSink24.png">
+      </image>
+      <image
+            blockType="damos::library::base::sources::AudioFileSource"
+            icon16="icons/sources/AudioFileSource16.png"
+            icon24="icons/sources/AudioFileSource24.png">
+      </image>
+   </extension>
+   <extension
+         point="org.eclipselabs.damos.dml.ui.parameterEditPaneProviders">
+      <provider
+            class="org.eclipselabs.damos.library.base.ui.providers.sinks.AudioFileSinkEditPaneProvider">
+      </provider>
+      <provider
+            class="org.eclipselabs.damos.library.base.ui.providers.sources.AudioFileSourceEditPaneProvider">
+      </provider>
    </extension>
 
 </plugin>

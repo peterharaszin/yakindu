@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.common.ui.widgets;
 
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -34,5 +35,7 @@ public interface IWidgetFactory {
 	Label createLabel(Composite parent, String text, int style);
 	
 	Hyperlink createHyperlink(Composite parent, String text, int style);
+	
+	Button createButton(Composite parent, String text, int style);
 	
 }

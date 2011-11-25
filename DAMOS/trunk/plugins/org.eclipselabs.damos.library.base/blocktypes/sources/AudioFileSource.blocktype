@@ -1,0 +1,5 @@
+blockType damos::library::base::sources::AudioFileSource
+
+output _output[1..*]
+
+opaque parameter fileURI = ""

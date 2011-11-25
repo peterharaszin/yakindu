@@ -25,7 +25,7 @@ import org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider;
  */
 public class ParameterEditPaneProviderRegistryReader extends AbstractRegistryReader {
 
-	private static final String EXTENSION_POINT_NAME = "argumentEditorProviders";
+	private static final String EXTENSION_POINT_NAME = "parameterEditPaneProviders";
 
 	private static final String TAG_PROVIDER = "provider";
 

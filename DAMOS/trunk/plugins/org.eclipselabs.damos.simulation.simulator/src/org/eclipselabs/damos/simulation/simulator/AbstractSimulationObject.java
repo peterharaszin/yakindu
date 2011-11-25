@@ -83,7 +83,7 @@ public abstract class AbstractSimulationObject implements ISimulationObject {
 	public void computeOutputValues(double t, ISimulationMonitor monitor) throws CoreException {
 	}
 
-	public void update(double t) {
+	public void update(double t) throws CoreException {
 	}
 	
 	/* (non-Javadoc)

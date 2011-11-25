@@ -8,7 +8,7 @@ import org.eclipselabs.damos.dml.Parameter;
  */
 public class DefaultParameterEditPaneProvider implements IParameterEditPaneProvider {
 
-	public IValueSpecificationEditPane createEditor(Parameter parameter) {
+	public IValueSpecificationEditPane createEditPane(Parameter parameter) {
 //		DataTypeSpecification dataType = parameter.getDataType();
 //		if (dataType instanceof PrimitiveTypeSpecification) {
 //			switch (((PrimitiveTypeSpecification) dataType).getKind()) {

@@ -29,10 +29,10 @@ public class ParameterEditPaneProvider extends DefaultParameterEditPaneProvider 
 	@Inject
 	private Provider<IValueSpecificationEditPane> editorProvider;
 	
-	public IValueSpecificationEditPane createEditor(Parameter parameter) {
+	public IValueSpecificationEditPane createEditPane(Parameter parameter) {
 		DataTypeSpecification dataType = parameter.getDataType();
 		if (dataType instanceof PrimitiveTypeSpecification) {
-			return super.createEditor(parameter);
+			return super.createEditPane(parameter);
 		}
 		return editorProvider.get();
 	}

@@ -93,7 +93,7 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		
 		if (getModel() instanceof ParameterizedElement) {
 			for (Argument argument : ((ParameterizedElement) getModel()).getArguments()) {
-				addParameterWidgets(argument);
+				initializeParameterWidgets(argument);
 			}
 		}
 	
@@ -107,7 +107,7 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		return observable;
 	}
 
-	private void addParameterWidgets(Argument argument) {
+	private void initializeParameterWidgets(Argument argument) {
 		if (argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
 			List<ParameterPredefinedValue> predefinedValues = argument.getParameter().getPredefinedValues();
 			if (!predefinedValues.isEmpty()) {
@@ -116,14 +116,14 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 					String alias2 = predefinedValues.get(1).getAlias();
 					if (YES.equalsIgnoreCase(alias1) && NO.equalsIgnoreCase(alias2) || YES.equalsIgnoreCase(alias2)
 							&& NO.equalsIgnoreCase(alias1)) {
-						initializeCheckboxParameter(argument);
+						initializeParameterCheckbox(argument);
 						return;
 					}
 				}
-				initializeComboParameter(argument);
+				initializeParameterCombo(argument);
 				return;
 			}
-			addTextParameter(argument);
+			initializeParameterEditPane(argument);
 		}
 	}
 
@@ -134,17 +134,17 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		nameLabel.setLayoutData(gridData);
 	}
 
-	private void addTextParameter(Argument argument) {
+	private void initializeParameterEditPane(Argument argument) {
 		addParameterLabel(argument);
 		
-		IValueSpecificationEditPane editor = parameterEditPaneProviderRegistry.createEditor(argument.getParameter());
+		IValueSpecificationEditPane editor = parameterEditPaneProviderRegistry.createEditPane(argument.getParameter());
 		editor.createControl(composite, FormWidgetFactory.INSTANCE);
 		editor.initialize();
 		editor.refresh(getEditingDomain(), argument, DMLPackage.eINSTANCE.getArgument_Value());
 		valueSpecificationEditPanes.add(editor);
 	}
 	
-	private void initializeComboParameter(Argument argument) {
+	private void initializeParameterCombo(Argument argument) {
 		addParameterLabel(argument);
 		
 		CCombo combo = getWidgetFactory().createCCombo(composite, SWT.BORDER | SWT.READ_ONLY);
@@ -174,7 +174,7 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		context.bindValue(comboObservable, argumentObservable, updateValueStrategy, updateValueStrategy);
 	}
 
-	private void initializeCheckboxParameter(Argument argument) {
+	private void initializeParameterCheckbox(Argument argument) {
 		Parameter parameter = (Parameter) argument.getParameter();
 
 		Button button = getWidgetFactory().createButton(composite, NameUtil.formatName(parameter.getName()), SWT.CHECK);

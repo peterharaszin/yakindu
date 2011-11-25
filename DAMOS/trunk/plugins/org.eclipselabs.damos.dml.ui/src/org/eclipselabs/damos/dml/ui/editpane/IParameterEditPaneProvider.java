@@ -19,6 +19,6 @@ import org.eclipselabs.damos.dml.Parameter;
  */
 public interface IParameterEditPaneProvider {
 
-	IValueSpecificationEditPane createEditor(Parameter parameter);
+	IValueSpecificationEditPane createEditPane(Parameter parameter);
 	
 }

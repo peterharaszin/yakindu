@@ -34,7 +34,7 @@ public interface ISimulationObject {
 
 	IValue getOutputValue(int outputIndex, int portIndex);
 	
-	void update(double t);
+	void update(double t) throws CoreException;
 	
 	boolean stop();
 	

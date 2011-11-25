@@ -60,7 +60,13 @@ public class StringValueSpecificationEditPane implements IValueSpecificationEdit
 	protected Text getText() {
 		return text;
 	}
-
+	
+	protected void setValue(String value) {
+		StringValueSpecification valueSpecification = DMLFactory.eINSTANCE.createStringValueSpecification();
+		valueSpecification.setValue(value);
+		valueObservable.setValue(valueSpecification);
+	}
+	
 	public void initialize() {
 		context = new EMFDataBindingContext();
 

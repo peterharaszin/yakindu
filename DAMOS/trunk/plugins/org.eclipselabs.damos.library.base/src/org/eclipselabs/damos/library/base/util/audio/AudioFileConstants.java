@@ -6,10 +6,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *    Andreas Unger - initial API and implementation
+ *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.library.base.util.sources;
+package org.eclipselabs.damos.library.base.util.audio;
 
 import org.eclipselabs.damos.library.common.util.BlockConstants;
 
@@ -17,8 +17,8 @@ import org.eclipselabs.damos.library.common.util.BlockConstants;
  * @author Andreas Unger
  * 
  */
-public interface ConstantConstants extends BlockConstants {
+public interface AudioFileConstants extends BlockConstants {
 
-	String PARAMETER__VALUE = "value";
+	String PARAMETER__FILE_URI = "fileURI";
 
 }

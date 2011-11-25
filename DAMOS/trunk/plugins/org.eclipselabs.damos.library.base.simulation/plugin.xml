@@ -38,6 +38,16 @@
             class="org.eclipselabs.damos.library.base.simulation.sinks.ScopeSimulationObject"
             name="Scope">
       </simulationObject>
+      <simulationObject
+            blockType="damos::library::base::sources::AudioFileSource"
+            class="org.eclipselabs.damos.library.base.simulation.sources.AudioFileSourceSimulationObject"
+            name="Audio File Source">
+      </simulationObject>
+      <simulationObject
+            blockType="damos::library::base::sinks::AudioFileSink"
+            class="org.eclipselabs.damos.library.base.simulation.sinks.AudioFileSinkSimulationObject"
+            name="Audio File Sink">
+      </simulationObject>
    </extension>
 
 </plugin>

@@ -15,12 +15,12 @@ import org.eclipselabs.damos.library.common.util.BlockConstants;
 
 /**
  * @author Andreas Unger
- *
+ * 
  */
 public interface StepConstants extends BlockConstants {
 
-        String PARAMETER__INITIAL_VALUE = "initialValue";
-        String PARAMETER__FINAL_VALUE = "finalValue";
-        String PARAMETER__STEP_TIME = "stepTime";
-        
+	String PARAMETER__INITIAL_VALUE = "initialValue";
+	String PARAMETER__FINAL_VALUE = "finalValue";
+	String PARAMETER__STEP_TIME = "stepTime";
+
 }

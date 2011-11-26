@@ -688,8 +688,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LetExpression:
-	//	"let" variableDeclarations+=LetExpressionVariableDeclaration (","
-	//	variableDeclarations+=LetExpressionVariableDeclaration)* "in" targetExpression=Expression;
+	//	"let" assignments+=LetExpressionAssignment ("," assignments+=LetExpressionAssignment)* "in" target=Expression;
 	public MscriptGrammarAccess.LetExpressionElements getLetExpressionAccess() {
 		return gaMscript.getLetExpressionAccess();
 	}
@@ -698,25 +697,25 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getLetExpressionAccess().getRule();
 	}
 
+	//LetExpressionAssignment:
+	//	(variables+=LetExpressionVariableDeclaration | "(" variables+=LetExpressionVariableDeclaration (","
+	//	variables+=LetExpressionVariableDeclaration)+ ")") "=" assignedExpression=Expression;
+	public MscriptGrammarAccess.LetExpressionAssignmentElements getLetExpressionAssignmentAccess() {
+		return gaMscript.getLetExpressionAssignmentAccess();
+	}
+	
+	public ParserRule getLetExpressionAssignmentRule() {
+		return getLetExpressionAssignmentAccess().getRule();
+	}
+
 	//LetExpressionVariableDeclaration:
-	//	(parts+=LetExpressionVariableDeclarationPart | "(" parts+=LetExpressionVariableDeclarationPart (","
-	//	parts+=LetExpressionVariableDeclarationPart)+ ")") "=" assignedExpression=Expression;
+	//	name=ValidID;
 	public MscriptGrammarAccess.LetExpressionVariableDeclarationElements getLetExpressionVariableDeclarationAccess() {
 		return gaMscript.getLetExpressionVariableDeclarationAccess();
 	}
 	
 	public ParserRule getLetExpressionVariableDeclarationRule() {
 		return getLetExpressionVariableDeclarationAccess().getRule();
-	}
-
-	//LetExpressionVariableDeclarationPart:
-	//	name=ValidID;
-	public MscriptGrammarAccess.LetExpressionVariableDeclarationPartElements getLetExpressionVariableDeclarationPartAccess() {
-		return gaMscript.getLetExpressionVariableDeclarationPartAccess();
-	}
-	
-	public ParserRule getLetExpressionVariableDeclarationPartRule() {
-		return getLetExpressionVariableDeclarationPartAccess().getRule();
 	}
 
 	//IfExpression:
@@ -948,9 +947,9 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	//MemberFeatureCall returns Expression:
 	//	PrimaryExpression ({MemberVariableAccess.target=current} "." memberVariable=[CallableElement|ValidID] |
 	//	{FunctionCall.arguments+=current} "." feature=[CallableElement|ValidID] "(" (arguments+=Expression (","
-	//	arguments+=Expression)*)? ")" | {IterationCall.target=current} "." identifier=ValidID "(" variables+=IterationVariable
-	//	("," variables+=IterationVariable)* (";" accumulator=IterationAccumulator)? (";" breakCondition=Expression)? "|"
-	//	expression=Expression ")")*;
+	//	arguments+=Expression)*)? ")" | {IterationCall.target=current} "." identifier=ValidID "("
+	//	iterationVariables+=IterationVariableDeclaration ("," iterationVariables+=IterationVariableDeclaration)* (";"
+	//	accumulator=IterationAccumulator)? (";" breakCondition=Expression)? "|" expression=Expression ")")*;
 	public MscriptGrammarAccess.MemberFeatureCallElements getMemberFeatureCallAccess() {
 		return gaMscript.getMemberFeatureCallAccess();
 	}
@@ -969,16 +968,6 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignableMemberFeatureCallAccess().getRule();
 	}
 
-	//IterationVariable:
-	//	name=ValidID;
-	public MscriptGrammarAccess.IterationVariableElements getIterationVariableAccess() {
-		return gaMscript.getIterationVariableAccess();
-	}
-	
-	public ParserRule getIterationVariableRule() {
-		return getIterationVariableAccess().getRule();
-	}
-
 	//IterationAccumulator:
 	//	name=ValidID "=" initializer=Expression;
 	public MscriptGrammarAccess.IterationAccumulatorElements getIterationAccumulatorAccess() {
@@ -987,6 +976,16 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getIterationAccumulatorRule() {
 		return getIterationAccumulatorAccess().getRule();
+	}
+
+	//IterationVariableDeclaration:
+	//	name=ValidID;
+	public MscriptGrammarAccess.IterationVariableDeclarationElements getIterationVariableDeclarationAccess() {
+		return gaMscript.getIterationVariableDeclarationAccess();
+	}
+	
+	public ParserRule getIterationVariableDeclarationRule() {
+		return getIterationVariableDeclarationAccess().getRule();
 	}
 
 	//ArraySubscript:
@@ -1304,7 +1303,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignment:
-	//	target=AssignableMemberFeatureCall "=" expression=Expression ";";
+	//	target=AssignableMemberFeatureCall "=" assignedExpression=Expression ";";
 	public MscriptGrammarAccess.AssignmentElements getAssignmentAccess() {
 		return gaMscript.getAssignmentAccess();
 	}
@@ -1344,8 +1343,8 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ForStatement:
-	//	"for" "(" ("var" declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) "in"
-	//	collectionExpression=Expression (";" condition=Expression)? ")" body=Statement;
+	//	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ("while"
+	//	condition=Expression)? ")" body=Statement;
 	public MscriptGrammarAccess.ForStatementElements getForStatementAccess() {
 		return gaMscript.getForStatementAccess();
 	}

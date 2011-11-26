@@ -1936,8 +1936,8 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_N;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22767:8: ( 'n' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22767:10: 'n'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22663:8: ( 'n' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22663:10: 'n'
             {
             match('n'); 
 
@@ -1956,8 +1956,8 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_IJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22769:9: ( ( 'i' | 'j' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22769:11: ( 'i' | 'j' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22665:9: ( ( 'i' | 'j' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22665:11: ( 'i' | 'j' )
             {
             if ( (input.LA(1)>='i' && input.LA(1)<='j') ) {
                 input.consume();
@@ -1984,8 +1984,8 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_E;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22771:8: ( ( 'e' | 'E' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22771:10: ( 'e' | 'E' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22667:8: ( ( 'e' | 'E' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22667:10: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2012,11 +2012,11 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_EXPIJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22773:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22773:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22669:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22669:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
             {
             mRULE_E(); 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22773:21: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22669:21: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -2030,7 +2030,7 @@ public class InternalCGenModelLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22773:22: '0' .. '9'
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22669:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2046,7 +2046,7 @@ public class InternalCGenModelLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22773:33: ( RULE_IJ )?
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22669:33: ( RULE_IJ )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -2055,7 +2055,7 @@ public class InternalCGenModelLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22773:33: RULE_IJ
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22669:33: RULE_IJ
                     {
                     mRULE_IJ(); 
 
@@ -2080,8 +2080,8 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_ONE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22775:10: ( '1' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22775:12: '1'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22671:10: ( '1' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22671:12: '1'
             {
             match('1'); 
 
@@ -2100,10 +2100,10 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22777:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22777:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22673:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22673:12: ( '0' .. '9' )+
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22777:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22673:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -2117,7 +2117,7 @@ public class InternalCGenModelLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22777:13: '0' .. '9'
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22673:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2149,10 +2149,10 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22779:9: ( ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22779:11: ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:9: ( ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22779:11: ( '_' )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: ( '_' )*
             loop4:
             do {
                 int alt4=2;
@@ -2165,7 +2165,7 @@ public class InternalCGenModelLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22779:11: '_'
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: '_'
             	    {
             	    match('_'); 
 
@@ -2186,7 +2186,7 @@ public class InternalCGenModelLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22779:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             loop5:
             do {
                 int alt5=2;
@@ -2235,11 +2235,11 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22781:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22781:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22677:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22677:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22781:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22677:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
             loop6:
             do {
                 int alt6=3;
@@ -2255,7 +2255,7 @@ public class InternalCGenModelLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22781:20: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22677:20: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2270,7 +2270,7 @@ public class InternalCGenModelLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22781:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22677:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='?'||input.LA(1)=='\\'||(input.LA(1)>='a' && input.LA(1)<='b')||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v' ) {
@@ -2308,12 +2308,12 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22783:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22783:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22679:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22679:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22783:24: ( options {greedy=false; } : . )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22679:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -2338,7 +2338,7 @@ public class InternalCGenModelLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22783:52: .
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22679:52: .
             	    {
             	    matchAny(); 
 
@@ -2368,12 +2368,12 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -2386,7 +2386,7 @@ public class InternalCGenModelLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2406,7 +2406,7 @@ public class InternalCGenModelLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2415,9 +2415,9 @@ public class InternalCGenModelLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:41: ( '\\r' )? '\\n'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:41: ( '\\r' )?
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -2426,7 +2426,7 @@ public class InternalCGenModelLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22785:41: '\\r'
+                            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22681:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2458,10 +2458,10 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22787:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22787:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22683:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22683:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22787:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22683:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -2515,8 +2515,8 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22789:16: ( . )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22789:18: .
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22685:16: ( . )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22685:18: .
             {
             matchAny(); 
 

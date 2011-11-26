@@ -18,6 +18,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.Scope;
@@ -157,8 +158,8 @@ public class NameNormalizer {
 		private class AstCompoundNormalizer extends MscriptSwitch<Boolean> {
 			
 			@Override
-			public Boolean caseVariableDeclaration(VariableDeclaration variableDeclaration) {
-				String preferredName = variableDeclaration.getName();
+			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
+				String preferredName = localVariableDeclaration.getName();
 				if (preferredName == null) {
 					preferredName = "temp";
 				}
@@ -170,14 +171,14 @@ public class NameNormalizer {
 				while (scope.findInEnclosingScopes(name) != null) {
 					name = preferredName + ++n;
 				}
-				variableDeclaration.setName(name);
-				scope.add(name, variableDeclaration);
+				localVariableDeclaration.setName(name);
+				scope.add(name, localVariableDeclaration);
 				return true;
 			}
 			
 			@Override
 			public Boolean caseForStatement(ForStatement forStatement) {
-				CompoundNormalizer.this.doSwitch(forStatement.getDeclaredIterationVariable());
+				CompoundNormalizer.this.doSwitch(forStatement.getIterationVariable());
 				return true;
 			}
 			

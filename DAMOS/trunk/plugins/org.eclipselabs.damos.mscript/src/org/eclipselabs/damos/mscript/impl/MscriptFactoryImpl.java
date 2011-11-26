@@ -76,15 +76,15 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.EQUATION: return createEquation();
 			case MscriptPackage.DATA_TYPE_SPECIFIER: return createDataTypeSpecifier();
 			case MscriptPackage.LET_EXPRESSION: return createLetExpression();
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT: return createLetExpressionAssignment();
 			case MscriptPackage.LET_EXPRESSION_VARIABLE_DECLARATION: return createLetExpressionVariableDeclaration();
-			case MscriptPackage.LET_EXPRESSION_VARIABLE_DECLARATION_PART: return createLetExpressionVariableDeclarationPart();
 			case MscriptPackage.IF_EXPRESSION: return createIfExpression();
 			case MscriptPackage.SWITCH_EXPRESSION: return createSwitchExpression();
 			case MscriptPackage.SWITCH_CASE: return createSwitchCase();
 			case MscriptPackage.ARRAY_ELEMENT_ACCESS: return createArrayElementAccess();
 			case MscriptPackage.ARRAY_SUBSCRIPT: return createArraySubscript();
 			case MscriptPackage.ITERATION_CALL: return createIterationCall();
-			case MscriptPackage.ITERATION_VARIABLE: return createIterationVariable();
+			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: return createIterationVariableDeclaration();
 			case MscriptPackage.ITERATION_ACCUMULATOR: return createIterationAccumulator();
 			case MscriptPackage.ARRAY_CONSTRUCTION_OPERATOR: return createArrayConstructionOperator();
 			case MscriptPackage.ARRAY_CONSTRUCTION_ITERATION_CLAUSE: return createArrayConstructionIterationClause();
@@ -416,9 +416,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LetExpressionVariableDeclaration createLetExpressionVariableDeclaration() {
-		LetExpressionVariableDeclarationImpl letExpressionVariableDeclaration = new LetExpressionVariableDeclarationImpl();
-		return letExpressionVariableDeclaration;
+	public LetExpressionAssignment createLetExpressionAssignment() {
+		LetExpressionAssignmentImpl letExpressionAssignment = new LetExpressionAssignmentImpl();
+		return letExpressionAssignment;
 	}
 
 	/**
@@ -426,9 +426,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LetExpressionVariableDeclarationPart createLetExpressionVariableDeclarationPart() {
-		LetExpressionVariableDeclarationPartImpl letExpressionVariableDeclarationPart = new LetExpressionVariableDeclarationPartImpl();
-		return letExpressionVariableDeclarationPart;
+	public LetExpressionVariableDeclaration createLetExpressionVariableDeclaration() {
+		LetExpressionVariableDeclarationImpl letExpressionVariableDeclaration = new LetExpressionVariableDeclarationImpl();
+		return letExpressionVariableDeclaration;
 	}
 
 	/**
@@ -496,9 +496,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IterationVariable createIterationVariable() {
-		IterationVariableImpl iterationVariable = new IterationVariableImpl();
-		return iterationVariable;
+	public IterationVariableDeclaration createIterationVariableDeclaration() {
+		IterationVariableDeclarationImpl iterationVariableDeclaration = new IterationVariableDeclarationImpl();
+		return iterationVariableDeclaration;
 	}
 
 	/**

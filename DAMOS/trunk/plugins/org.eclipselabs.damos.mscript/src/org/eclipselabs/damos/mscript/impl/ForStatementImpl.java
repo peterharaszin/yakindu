@@ -11,10 +11,9 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ForStatement;
-import org.eclipselabs.damos.mscript.IterationVariable;
+import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.Statement;
 
@@ -25,7 +24,6 @@ import org.eclipselabs.damos.mscript.Statement;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getDeclaredIterationVariable <em>Declared Iteration Variable</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getIterationVariable <em>Iteration Variable</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getCollectionExpression <em>Collection Expression</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getCondition <em>Condition</em>}</li>
@@ -37,24 +35,14 @@ import org.eclipselabs.damos.mscript.Statement;
  */
 public class ForStatementImpl extends StatementImpl implements ForStatement {
 	/**
-	 * The cached value of the '{@link #getDeclaredIterationVariable() <em>Declared Iteration Variable</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getDeclaredIterationVariable()
-	 * @generated
-	 * @ordered
-	 */
-	protected IterationVariable declaredIterationVariable;
-
-	/**
-	 * The cached value of the '{@link #getIterationVariable() <em>Iteration Variable</em>}' reference.
+	 * The cached value of the '{@link #getIterationVariable() <em>Iteration Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getIterationVariable()
 	 * @generated
 	 * @ordered
 	 */
-	protected CallableElement iterationVariable;
+	protected IterationVariableDeclaration iterationVariable;
 
 	/**
 	 * The cached value of the '{@link #getCollectionExpression() <em>Collection Expression</em>}' containment reference.
@@ -110,8 +98,8 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IterationVariable getDeclaredIterationVariable() {
-		return declaredIterationVariable;
+	public IterationVariableDeclaration getIterationVariable() {
+		return iterationVariable;
 	}
 
 	/**
@@ -119,11 +107,11 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetDeclaredIterationVariable(IterationVariable newDeclaredIterationVariable, NotificationChain msgs) {
-		IterationVariable oldDeclaredIterationVariable = declaredIterationVariable;
-		declaredIterationVariable = newDeclaredIterationVariable;
+	public NotificationChain basicSetIterationVariable(IterationVariableDeclaration newIterationVariable, NotificationChain msgs) {
+		IterationVariableDeclaration oldIterationVariable = iterationVariable;
+		iterationVariable = newIterationVariable;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE, oldDeclaredIterationVariable, newDeclaredIterationVariable);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE, oldIterationVariable, newIterationVariable);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -134,61 +122,18 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDeclaredIterationVariable(IterationVariable newDeclaredIterationVariable) {
-		if (newDeclaredIterationVariable != declaredIterationVariable) {
+	public void setIterationVariable(IterationVariableDeclaration newIterationVariable) {
+		if (newIterationVariable != iterationVariable) {
 			NotificationChain msgs = null;
-			if (declaredIterationVariable != null)
-				msgs = ((InternalEObject)declaredIterationVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE, null, msgs);
-			if (newDeclaredIterationVariable != null)
-				msgs = ((InternalEObject)newDeclaredIterationVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE, null, msgs);
-			msgs = basicSetDeclaredIterationVariable(newDeclaredIterationVariable, msgs);
+			if (iterationVariable != null)
+				msgs = ((InternalEObject)iterationVariable).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE, null, msgs);
+			if (newIterationVariable != null)
+				msgs = ((InternalEObject)newIterationVariable).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE, null, msgs);
+			msgs = basicSetIterationVariable(newIterationVariable, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE, newDeclaredIterationVariable, newDeclaredIterationVariable));
-	}
-
-	public CallableElement getIterationVariable() {
-		CallableElement iterationVariable = getDeclaredIterationVariable();
-		return iterationVariable != null ? iterationVariable : getIterationVariableGen();
-	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CallableElement getIterationVariableGen() {
-		if (iterationVariable != null && iterationVariable.eIsProxy()) {
-			InternalEObject oldIterationVariable = (InternalEObject)iterationVariable;
-			iterationVariable = (CallableElement)eResolveProxy(oldIterationVariable);
-			if (iterationVariable != oldIterationVariable) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE, oldIterationVariable, iterationVariable));
-			}
-		}
-		return iterationVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CallableElement basicGetIterationVariable() {
-		return iterationVariable;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setIterationVariable(CallableElement newIterationVariable) {
-		CallableElement oldIterationVariable = iterationVariable;
-		iterationVariable = newIterationVariable;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE, oldIterationVariable, iterationVariable));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE, newIterationVariable, newIterationVariable));
 	}
 
 	/**
@@ -328,8 +273,8 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE:
-				return basicSetDeclaredIterationVariable(null, msgs);
+			case MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE:
+				return basicSetIterationVariable(null, msgs);
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				return basicSetCollectionExpression(null, msgs);
 			case MscriptPackage.FOR_STATEMENT__CONDITION:
@@ -348,11 +293,8 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE:
-				return getDeclaredIterationVariable();
 			case MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE:
-				if (resolve) return getIterationVariable();
-				return basicGetIterationVariable();
+				return getIterationVariable();
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				return getCollectionExpression();
 			case MscriptPackage.FOR_STATEMENT__CONDITION:
@@ -371,11 +313,8 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE:
-				setDeclaredIterationVariable((IterationVariable)newValue);
-				return;
 			case MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE:
-				setIterationVariable((CallableElement)newValue);
+				setIterationVariable((IterationVariableDeclaration)newValue);
 				return;
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				setCollectionExpression((Expression)newValue);
@@ -398,11 +337,8 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE:
-				setDeclaredIterationVariable((IterationVariable)null);
-				return;
 			case MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE:
-				setIterationVariable((CallableElement)null);
+				setIterationVariable((IterationVariableDeclaration)null);
 				return;
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				setCollectionExpression((Expression)null);
@@ -425,8 +361,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.FOR_STATEMENT__DECLARED_ITERATION_VARIABLE:
-				return declaredIterationVariable != null;
 			case MscriptPackage.FOR_STATEMENT__ITERATION_VARIABLE:
 				return iterationVariable != null;
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:

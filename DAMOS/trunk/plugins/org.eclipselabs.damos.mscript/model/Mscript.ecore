@@ -97,9 +97,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="message" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StateVariableDeclaration" eSuperTypes="#//CallableElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StateVariableDeclaration" eSuperTypes="#//VariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConstantDeclaration" eSuperTypes="#//CallableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//Expression"
@@ -124,21 +122,18 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LetExpression" eSuperTypes="#//Expression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variableDeclarations" upperBound="-1"
-        eType="#//LetExpressionVariableDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="targetExpression" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignments" upperBound="-1"
+        eType="#//LetExpressionAssignment" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LetExpressionVariableDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
-        eType="#//LetExpressionVariableDeclarationPart" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LetExpressionAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//LetExpressionVariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="assignedExpression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LetExpressionVariableDeclarationPart"
-      eSuperTypes="#//CallableElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LetExpressionVariableDeclaration" eSuperTypes="#//VariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="IfExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="static" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"
@@ -209,8 +204,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
-        eType="#//IterationVariable" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iterationVariables" upperBound="-1"
+        eType="#//IterationVariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="accumulator" eType="#//IterationAccumulator"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="breakCondition" eType="#//Expression"
@@ -218,9 +213,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IterationVariable" eSuperTypes="#//VariableDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IterationAccumulator" eSuperTypes="#//CallableElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IterationVariableDeclaration" eSuperTypes="#//VariableDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IterationAccumulator" eSuperTypes="#//VariableDeclaration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializer" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
@@ -377,7 +371,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Assignment" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignedExpression" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LocalVariableDeclaration" eSuperTypes="#//Statement #//VariableDeclaration">
@@ -405,9 +399,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ForStatement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="declaredIterationVariable"
-        eType="#//IterationVariable" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="iterationVariable" eType="#//CallableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iterationVariable" eType="#//IterationVariableDeclaration"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="collectionExpression" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//Expression"

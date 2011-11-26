@@ -7,25 +7,25 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipselabs.damos.mscript.IterationVariable;
+import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Iteration Variable</b></em>'.
+ * An implementation of the model object '<em><b>Iteration Variable Declaration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class IterationVariableImpl extends VariableDeclarationImpl implements IterationVariable {
+public class IterationVariableDeclarationImpl extends VariableDeclarationImpl implements IterationVariableDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected IterationVariableImpl() {
+	protected IterationVariableDeclarationImpl() {
 		super();
 	}
 
@@ -36,7 +36,7 @@ public class IterationVariableImpl extends VariableDeclarationImpl implements It
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.ITERATION_VARIABLE;
+		return MscriptPackage.Literals.ITERATION_VARIABLE_DECLARATION;
 	}
 
-} //IterationVariableImpl
+} //IterationVariableDeclarationImpl

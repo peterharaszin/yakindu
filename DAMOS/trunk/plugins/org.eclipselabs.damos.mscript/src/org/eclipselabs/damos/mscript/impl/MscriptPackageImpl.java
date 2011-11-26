@@ -189,14 +189,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass letExpressionVariableDeclarationEClass = null;
+	private EClass letExpressionAssignmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass letExpressionVariableDeclarationPartEClass = null;
+	private EClass letExpressionVariableDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -245,7 +245,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iterationVariableEClass = null;
+	private EClass iterationVariableDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1322,15 +1322,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStateVariableDeclaration_Name() {
-		return (EAttribute)stateVariableDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getConstantDeclaration() {
 		return constantDeclarationEClass;
 	}
@@ -1466,7 +1457,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLetExpression_VariableDeclarations() {
+	public EReference getLetExpression_Assignments() {
 		return (EReference)letExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1475,8 +1466,35 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLetExpression_TargetExpression() {
+	public EReference getLetExpression_Target() {
 		return (EReference)letExpressionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getLetExpressionAssignment() {
+		return letExpressionAssignmentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLetExpressionAssignment_Variables() {
+		return (EReference)letExpressionAssignmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLetExpressionAssignment_AssignedExpression() {
+		return (EReference)letExpressionAssignmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1486,42 +1504,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EClass getLetExpressionVariableDeclaration() {
 		return letExpressionVariableDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLetExpressionVariableDeclaration_Parts() {
-		return (EReference)letExpressionVariableDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getLetExpressionVariableDeclaration_AssignedExpression() {
-		return (EReference)letExpressionVariableDeclarationEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getLetExpressionVariableDeclarationPart() {
-		return letExpressionVariableDeclarationPartEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getLetExpressionVariableDeclarationPart_Name() {
-		return (EAttribute)letExpressionVariableDeclarationPartEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1727,7 +1709,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getIterationCall_Variables() {
+	public EReference getIterationCall_IterationVariables() {
 		return (EReference)iterationCallEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -1763,8 +1745,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIterationVariable() {
-		return iterationVariableEClass;
+	public EClass getIterationVariableDeclaration() {
+		return iterationVariableDeclarationEClass;
 	}
 
 	/**
@@ -1781,17 +1763,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getIterationAccumulator_Name() {
-		return (EAttribute)iterationAccumulatorEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getIterationAccumulator_Initializer() {
-		return (EReference)iterationAccumulatorEClass.getEStructuralFeatures().get(1);
+		return (EReference)iterationAccumulatorEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -2564,7 +2537,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssignment_Expression() {
+	public EReference getAssignment_AssignedExpression() {
 		return (EReference)assignmentEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2690,7 +2663,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForStatement_DeclaredIterationVariable() {
+	public EReference getForStatement_IterationVariable() {
 		return (EReference)forStatementEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -2699,7 +2672,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForStatement_IterationVariable() {
+	public EReference getForStatement_CollectionExpression() {
 		return (EReference)forStatementEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -2708,7 +2681,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForStatement_CollectionExpression() {
+	public EReference getForStatement_Condition() {
 		return (EReference)forStatementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2717,17 +2690,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getForStatement_Condition() {
-		return (EReference)forStatementEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getForStatement_Body() {
-		return (EReference)forStatementEClass.getEStructuralFeatures().get(4);
+		return (EReference)forStatementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -3451,7 +3415,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(assertionEClass, ASSERTION__MESSAGE);
 
 		stateVariableDeclarationEClass = createEClass(STATE_VARIABLE_DECLARATION);
-		createEAttribute(stateVariableDeclarationEClass, STATE_VARIABLE_DECLARATION__NAME);
 
 		constantDeclarationEClass = createEClass(CONSTANT_DECLARATION);
 		createEAttribute(constantDeclarationEClass, CONSTANT_DECLARATION__NAME);
@@ -3472,15 +3435,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(dataTypeSpecifierEClass, DATA_TYPE_SPECIFIER__DEFINED_TYPE);
 
 		letExpressionEClass = createEClass(LET_EXPRESSION);
-		createEReference(letExpressionEClass, LET_EXPRESSION__VARIABLE_DECLARATIONS);
-		createEReference(letExpressionEClass, LET_EXPRESSION__TARGET_EXPRESSION);
+		createEReference(letExpressionEClass, LET_EXPRESSION__ASSIGNMENTS);
+		createEReference(letExpressionEClass, LET_EXPRESSION__TARGET);
+
+		letExpressionAssignmentEClass = createEClass(LET_EXPRESSION_ASSIGNMENT);
+		createEReference(letExpressionAssignmentEClass, LET_EXPRESSION_ASSIGNMENT__VARIABLES);
+		createEReference(letExpressionAssignmentEClass, LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION);
 
 		letExpressionVariableDeclarationEClass = createEClass(LET_EXPRESSION_VARIABLE_DECLARATION);
-		createEReference(letExpressionVariableDeclarationEClass, LET_EXPRESSION_VARIABLE_DECLARATION__PARTS);
-		createEReference(letExpressionVariableDeclarationEClass, LET_EXPRESSION_VARIABLE_DECLARATION__ASSIGNED_EXPRESSION);
-
-		letExpressionVariableDeclarationPartEClass = createEClass(LET_EXPRESSION_VARIABLE_DECLARATION_PART);
-		createEAttribute(letExpressionVariableDeclarationPartEClass, LET_EXPRESSION_VARIABLE_DECLARATION_PART__NAME);
 
 		ifExpressionEClass = createEClass(IF_EXPRESSION);
 		createEAttribute(ifExpressionEClass, IF_EXPRESSION__STATIC);
@@ -3509,15 +3471,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		iterationCallEClass = createEClass(ITERATION_CALL);
 		createEReference(iterationCallEClass, ITERATION_CALL__TARGET);
 		createEAttribute(iterationCallEClass, ITERATION_CALL__IDENTIFIER);
-		createEReference(iterationCallEClass, ITERATION_CALL__VARIABLES);
+		createEReference(iterationCallEClass, ITERATION_CALL__ITERATION_VARIABLES);
 		createEReference(iterationCallEClass, ITERATION_CALL__ACCUMULATOR);
 		createEReference(iterationCallEClass, ITERATION_CALL__BREAK_CONDITION);
 		createEReference(iterationCallEClass, ITERATION_CALL__EXPRESSION);
 
-		iterationVariableEClass = createEClass(ITERATION_VARIABLE);
+		iterationVariableDeclarationEClass = createEClass(ITERATION_VARIABLE_DECLARATION);
 
 		iterationAccumulatorEClass = createEClass(ITERATION_ACCUMULATOR);
-		createEAttribute(iterationAccumulatorEClass, ITERATION_ACCUMULATOR__NAME);
 		createEReference(iterationAccumulatorEClass, ITERATION_ACCUMULATOR__INITIALIZER);
 
 		arrayConstructionOperatorEClass = createEClass(ARRAY_CONSTRUCTION_OPERATOR);
@@ -3638,7 +3599,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		assignmentEClass = createEClass(ASSIGNMENT);
 		createEReference(assignmentEClass, ASSIGNMENT__TARGET);
-		createEReference(assignmentEClass, ASSIGNMENT__EXPRESSION);
+		createEReference(assignmentEClass, ASSIGNMENT__ASSIGNED_EXPRESSION);
 
 		localVariableDeclarationEClass = createEClass(LOCAL_VARIABLE_DECLARATION);
 		createEReference(localVariableDeclarationEClass, LOCAL_VARIABLE_DECLARATION__INITIALIZER);
@@ -3657,7 +3618,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(doWhileStatementEClass, DO_WHILE_STATEMENT__BODY);
 
 		forStatementEClass = createEClass(FOR_STATEMENT);
-		createEReference(forStatementEClass, FOR_STATEMENT__DECLARED_ITERATION_VARIABLE);
 		createEReference(forStatementEClass, FOR_STATEMENT__ITERATION_VARIABLE);
 		createEReference(forStatementEClass, FOR_STATEMENT__COLLECTION_EXPRESSION);
 		createEReference(forStatementEClass, FOR_STATEMENT__CONDITION);
@@ -3810,17 +3770,17 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		templateParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		inputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		outputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
-		stateVariableDeclarationEClass.getESuperTypes().add(this.getCallableElement());
+		stateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		constantDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		functionObjectDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		letExpressionEClass.getESuperTypes().add(this.getExpression());
-		letExpressionVariableDeclarationPartEClass.getESuperTypes().add(this.getCallableElement());
+		letExpressionVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		ifExpressionEClass.getESuperTypes().add(this.getExpression());
 		switchExpressionEClass.getESuperTypes().add(this.getExpression());
 		arrayElementAccessEClass.getESuperTypes().add(this.getExpression());
 		iterationCallEClass.getESuperTypes().add(this.getExpression());
-		iterationVariableEClass.getESuperTypes().add(this.getVariableDeclaration());
-		iterationAccumulatorEClass.getESuperTypes().add(this.getCallableElement());
+		iterationVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
+		iterationAccumulatorEClass.getESuperTypes().add(this.getVariableDeclaration());
 		arrayConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
 		arrayConcatenationOperatorEClass.getESuperTypes().add(this.getExpression());
 		unitConstructionOperatorEClass.getESuperTypes().add(this.getExpression());
@@ -3954,7 +3914,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getAssertion_Message(), this.getExpression(), null, "message", null, 0, 1, Assertion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(stateVariableDeclarationEClass, StateVariableDeclaration.class, "StateVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStateVariableDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, StateVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constantDeclarationEClass, ConstantDeclaration.class, "ConstantDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstantDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ConstantDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3975,15 +3934,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getDataTypeSpecifier_DefinedType(), this.getDataType(), null, "definedType", null, 0, 1, DataTypeSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(letExpressionEClass, LetExpression.class, "LetExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLetExpression_VariableDeclarations(), this.getLetExpressionVariableDeclaration(), null, "variableDeclarations", null, 0, -1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLetExpression_TargetExpression(), this.getExpression(), null, "targetExpression", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLetExpression_Assignments(), this.getLetExpressionAssignment(), null, "assignments", null, 0, -1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLetExpression_Target(), this.getExpression(), null, "target", null, 0, 1, LetExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(letExpressionAssignmentEClass, LetExpressionAssignment.class, "LetExpressionAssignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLetExpressionAssignment_Variables(), this.getLetExpressionVariableDeclaration(), null, "variables", null, 0, -1, LetExpressionAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLetExpressionAssignment_AssignedExpression(), this.getExpression(), null, "assignedExpression", null, 0, 1, LetExpressionAssignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(letExpressionVariableDeclarationEClass, LetExpressionVariableDeclaration.class, "LetExpressionVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLetExpressionVariableDeclaration_Parts(), this.getLetExpressionVariableDeclarationPart(), null, "parts", null, 0, -1, LetExpressionVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLetExpressionVariableDeclaration_AssignedExpression(), this.getExpression(), null, "assignedExpression", null, 0, 1, LetExpressionVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(letExpressionVariableDeclarationPartEClass, LetExpressionVariableDeclarationPart.class, "LetExpressionVariableDeclarationPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLetExpressionVariableDeclarationPart_Name(), ecorePackage.getEString(), "name", null, 0, 1, LetExpressionVariableDeclarationPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(ifExpressionEClass, IfExpression.class, "IfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIfExpression_Static(), ecorePackage.getEBoolean(), "static", null, 0, 1, IfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4012,15 +3970,14 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(iterationCallEClass, IterationCall.class, "IterationCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getIterationCall_Target(), this.getExpression(), null, "target", null, 0, 1, IterationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getIterationCall_Identifier(), ecorePackage.getEString(), "identifier", null, 0, 1, IterationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIterationCall_Variables(), this.getIterationVariable(), null, "variables", null, 0, -1, IterationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIterationCall_IterationVariables(), this.getIterationVariableDeclaration(), null, "iterationVariables", null, 0, -1, IterationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterationCall_Accumulator(), this.getIterationAccumulator(), null, "accumulator", null, 0, 1, IterationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterationCall_BreakCondition(), this.getExpression(), null, "breakCondition", null, 0, 1, IterationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterationCall_Expression(), this.getExpression(), null, "expression", null, 0, 1, IterationCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(iterationVariableEClass, IterationVariable.class, "IterationVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(iterationVariableDeclarationEClass, IterationVariableDeclaration.class, "IterationVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(iterationAccumulatorEClass, IterationAccumulator.class, "IterationAccumulator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIterationAccumulator_Name(), ecorePackage.getEString(), "name", null, 0, 1, IterationAccumulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getIterationAccumulator_Initializer(), this.getExpression(), null, "initializer", null, 0, 1, IterationAccumulator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(arrayConstructionOperatorEClass, ArrayConstructionOperator.class, "ArrayConstructionOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4143,7 +4100,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssignment_Target(), this.getExpression(), null, "target", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssignment_Expression(), this.getExpression(), null, "expression", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_AssignedExpression(), this.getExpression(), null, "assignedExpression", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(localVariableDeclarationEClass, LocalVariableDeclaration.class, "LocalVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getLocalVariableDeclaration_Initializer(), this.getExpression(), null, "initializer", null, 0, 1, LocalVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -4162,8 +4119,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getDoWhileStatement_Body(), this.getStatement(), null, "body", null, 0, 1, DoWhileStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(forStatementEClass, ForStatement.class, "ForStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getForStatement_DeclaredIterationVariable(), this.getIterationVariable(), null, "declaredIterationVariable", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getForStatement_IterationVariable(), this.getCallableElement(), null, "iterationVariable", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForStatement_IterationVariable(), this.getIterationVariableDeclaration(), null, "iterationVariable", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForStatement_CollectionExpression(), this.getExpression(), null, "collectionExpression", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForStatement_Condition(), this.getExpression(), null, "condition", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getForStatement_Body(), this.getStatement(), null, "body", null, 0, 1, ForStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

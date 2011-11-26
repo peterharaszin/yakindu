@@ -15,7 +15,6 @@ package org.eclipselabs.damos.mscript;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.ForStatement#getDeclaredIterationVariable <em>Declared Iteration Variable</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ForStatement#getIterationVariable <em>Iteration Variable</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ForStatement#getCollectionExpression <em>Collection Expression</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.ForStatement#getCondition <em>Condition</em>}</li>
@@ -29,56 +28,30 @@ package org.eclipselabs.damos.mscript;
  */
 public interface ForStatement extends Statement {
 	/**
-	 * Returns the value of the '<em><b>Declared Iteration Variable</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Declared Iteration Variable</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Declared Iteration Variable</em>' containment reference.
-	 * @see #setDeclaredIterationVariable(IterationVariable)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getForStatement_DeclaredIterationVariable()
-	 * @model containment="true"
-	 * @generated
-	 */
-	IterationVariable getDeclaredIterationVariable();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ForStatement#getDeclaredIterationVariable <em>Declared Iteration Variable</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Declared Iteration Variable</em>' containment reference.
-	 * @see #getDeclaredIterationVariable()
-	 * @generated
-	 */
-	void setDeclaredIterationVariable(IterationVariable value);
-
-	/**
-	 * Returns the value of the '<em><b>Iteration Variable</b></em>' reference.
+	 * Returns the value of the '<em><b>Iteration Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Iteration Variable</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Iteration Variable</em>' reference.
-	 * @see #setIterationVariable(CallableElement)
+	 * @return the value of the '<em>Iteration Variable</em>' containment reference.
+	 * @see #setIterationVariable(IterationVariableDeclaration)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getForStatement_IterationVariable()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	CallableElement getIterationVariable();
+	IterationVariableDeclaration getIterationVariable();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ForStatement#getIterationVariable <em>Iteration Variable</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ForStatement#getIterationVariable <em>Iteration Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Iteration Variable</em>' reference.
+	 * @param value the new value of the '<em>Iteration Variable</em>' containment reference.
 	 * @see #getIterationVariable()
 	 * @generated
 	 */
-	void setIterationVariable(CallableElement value);
+	void setIterationVariable(IterationVariableDeclaration value);
 
 	/**
 	 * Returns the value of the '<em><b>Collection Expression</b></em>' containment reference.

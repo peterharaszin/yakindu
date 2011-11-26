@@ -156,7 +156,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 			
 			@Override
 			public Boolean caseForStatement(ForStatement forStatement) {
-				VariableDeclaration iterationVariableDeclaration = forStatement.getDeclaredIterationVariable();
+				VariableDeclaration iterationVariableDeclaration = forStatement.getIterationVariable();
 				DataType collectionDataType = getDataType(forStatement.getCollectionExpression());
 				if (!(collectionDataType instanceof ArrayType)) {
 					throw new RuntimeException("Collection type must be array type");

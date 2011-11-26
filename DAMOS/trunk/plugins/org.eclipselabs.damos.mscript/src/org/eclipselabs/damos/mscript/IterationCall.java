@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.IterationCall#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.IterationCall#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.IterationCall#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.IterationCall#getIterationVariables <em>Iteration Variables</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.IterationCall#getAccumulator <em>Accumulator</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.IterationCall#getBreakCondition <em>Break Condition</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.IterationCall#getExpression <em>Expression</em>}</li>
@@ -83,20 +83,20 @@ public interface IterationCall extends Expression {
 	void setIdentifier(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.IterationVariable}.
+	 * Returns the value of the '<em><b>Iteration Variables</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.IterationVariableDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Iteration Variables</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variables</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getIterationCall_Variables()
+	 * @return the value of the '<em>Iteration Variables</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getIterationCall_IterationVariables()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<IterationVariable> getVariables();
+	EList<IterationVariableDeclaration> getIterationVariables();
 
 	/**
 	 * Returns the value of the '<em><b>Accumulator</b></em>' containment reference.

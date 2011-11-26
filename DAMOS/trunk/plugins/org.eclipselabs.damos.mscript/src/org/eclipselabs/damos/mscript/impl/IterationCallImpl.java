@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IterationAccumulator;
 import org.eclipselabs.damos.mscript.IterationCall;
-import org.eclipselabs.damos.mscript.IterationVariable;
+import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
@@ -31,7 +31,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.IterationCallImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.IterationCallImpl#getIdentifier <em>Identifier</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.IterationCallImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.IterationCallImpl#getIterationVariables <em>Iteration Variables</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.IterationCallImpl#getAccumulator <em>Accumulator</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.IterationCallImpl#getBreakCondition <em>Break Condition</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.IterationCallImpl#getExpression <em>Expression</em>}</li>
@@ -72,14 +72,14 @@ public class IterationCallImpl extends ExpressionImpl implements IterationCall {
 	protected String identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
+	 * The cached value of the '{@link #getIterationVariables() <em>Iteration Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getVariables()
+	 * @see #getIterationVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<IterationVariable> variables;
+	protected EList<IterationVariableDeclaration> iterationVariables;
 
 	/**
 	 * The cached value of the '{@link #getAccumulator() <em>Accumulator</em>}' containment reference.
@@ -199,11 +199,11 @@ public class IterationCallImpl extends ExpressionImpl implements IterationCall {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<IterationVariable> getVariables() {
-		if (variables == null) {
-			variables = new EObjectContainmentEList<IterationVariable>(IterationVariable.class, this, MscriptPackage.ITERATION_CALL__VARIABLES);
+	public EList<IterationVariableDeclaration> getIterationVariables() {
+		if (iterationVariables == null) {
+			iterationVariables = new EObjectContainmentEList<IterationVariableDeclaration>(IterationVariableDeclaration.class, this, MscriptPackage.ITERATION_CALL__ITERATION_VARIABLES);
 		}
-		return variables;
+		return iterationVariables;
 	}
 
 	/**
@@ -345,8 +345,8 @@ public class IterationCallImpl extends ExpressionImpl implements IterationCall {
 		switch (featureID) {
 			case MscriptPackage.ITERATION_CALL__TARGET:
 				return basicSetTarget(null, msgs);
-			case MscriptPackage.ITERATION_CALL__VARIABLES:
-				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.ITERATION_CALL__ITERATION_VARIABLES:
+				return ((InternalEList<?>)getIterationVariables()).basicRemove(otherEnd, msgs);
 			case MscriptPackage.ITERATION_CALL__ACCUMULATOR:
 				return basicSetAccumulator(null, msgs);
 			case MscriptPackage.ITERATION_CALL__BREAK_CONDITION:
@@ -369,8 +369,8 @@ public class IterationCallImpl extends ExpressionImpl implements IterationCall {
 				return getTarget();
 			case MscriptPackage.ITERATION_CALL__IDENTIFIER:
 				return getIdentifier();
-			case MscriptPackage.ITERATION_CALL__VARIABLES:
-				return getVariables();
+			case MscriptPackage.ITERATION_CALL__ITERATION_VARIABLES:
+				return getIterationVariables();
 			case MscriptPackage.ITERATION_CALL__ACCUMULATOR:
 				return getAccumulator();
 			case MscriptPackage.ITERATION_CALL__BREAK_CONDITION:
@@ -396,9 +396,9 @@ public class IterationCallImpl extends ExpressionImpl implements IterationCall {
 			case MscriptPackage.ITERATION_CALL__IDENTIFIER:
 				setIdentifier((String)newValue);
 				return;
-			case MscriptPackage.ITERATION_CALL__VARIABLES:
-				getVariables().clear();
-				getVariables().addAll((Collection<? extends IterationVariable>)newValue);
+			case MscriptPackage.ITERATION_CALL__ITERATION_VARIABLES:
+				getIterationVariables().clear();
+				getIterationVariables().addAll((Collection<? extends IterationVariableDeclaration>)newValue);
 				return;
 			case MscriptPackage.ITERATION_CALL__ACCUMULATOR:
 				setAccumulator((IterationAccumulator)newValue);
@@ -427,8 +427,8 @@ public class IterationCallImpl extends ExpressionImpl implements IterationCall {
 			case MscriptPackage.ITERATION_CALL__IDENTIFIER:
 				setIdentifier(IDENTIFIER_EDEFAULT);
 				return;
-			case MscriptPackage.ITERATION_CALL__VARIABLES:
-				getVariables().clear();
+			case MscriptPackage.ITERATION_CALL__ITERATION_VARIABLES:
+				getIterationVariables().clear();
 				return;
 			case MscriptPackage.ITERATION_CALL__ACCUMULATOR:
 				setAccumulator((IterationAccumulator)null);
@@ -455,8 +455,8 @@ public class IterationCallImpl extends ExpressionImpl implements IterationCall {
 				return target != null;
 			case MscriptPackage.ITERATION_CALL__IDENTIFIER:
 				return IDENTIFIER_EDEFAULT == null ? identifier != null : !IDENTIFIER_EDEFAULT.equals(identifier);
-			case MscriptPackage.ITERATION_CALL__VARIABLES:
-				return variables != null && !variables.isEmpty();
+			case MscriptPackage.ITERATION_CALL__ITERATION_VARIABLES:
+				return iterationVariables != null && !iterationVariables.isEmpty();
 			case MscriptPackage.ITERATION_CALL__ACCUMULATOR:
 				return accumulator != null;
 			case MscriptPackage.ITERATION_CALL__BREAK_CONDITION:

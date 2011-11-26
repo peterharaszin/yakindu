@@ -166,12 +166,12 @@ Expression:
 	LetExpression | IfExpression | SwitchExpression | RangeExpression;
 
 LetExpression:
-	'let' variableDeclarations+=LetExpressionVariableDeclaration (',' variableDeclarations+=LetExpressionVariableDeclaration)* 'in' targetExpression=Expression;
+	'let' assignments+=LetExpressionAssignment (',' assignments+=LetExpressionAssignment)* 'in' target=Expression;
 	
-LetExpressionVariableDeclaration:
-	(parts+=LetExpressionVariableDeclarationPart | '(' parts+=LetExpressionVariableDeclarationPart (',' parts+=LetExpressionVariableDeclarationPart)+ ')') '=' assignedExpression=Expression;
+LetExpressionAssignment:
+	(variables+=LetExpressionVariableDeclaration | '(' variables+=LetExpressionVariableDeclaration (',' variables+=LetExpressionVariableDeclaration)+ ')') '=' assignedExpression=Expression;
 
-LetExpressionVariableDeclarationPart:
+LetExpressionVariableDeclaration:
 	name=ValidID;
 	
 IfExpression:
@@ -255,16 +255,16 @@ ArrayElementAccess returns Expression:
 MemberFeatureCall returns Expression:
 	PrimaryExpression (({MemberVariableAccess.target=current} '.' memberVariable=[CallableElement|ValidID])
 		| ({FunctionCall.arguments+=current} '.' feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')')
-		| ({IterationCall.target=current} '.' identifier=ValidID '(' variables+=IterationVariable (',' variables+=IterationVariable)* (';' accumulator=IterationAccumulator)? (';' breakCondition=Expression)? '|' expression=Expression ')'))*;
+		| ({IterationCall.target=current} '.' identifier=ValidID '(' iterationVariables+=IterationVariableDeclaration (',' iterationVariables+=IterationVariableDeclaration)* (';' accumulator=IterationAccumulator)? (';' breakCondition=Expression)? '|' expression=Expression ')'))*;
 
 AssignableMemberFeatureCall returns Expression:
 	AssignablePrimaryExpression (({MemberVariableAccess.target=current} '.' memberVariable=[CallableElement|ValidID]))*;
 
-IterationVariable:
-	name=ValidID;
-
 IterationAccumulator:
 	name=ValidID '=' initializer=Expression;
+
+IterationVariableDeclaration:
+	name=ValidID;
 
 ArraySubscript:
 	slice?=':' | expression=Expression;
@@ -377,7 +377,7 @@ Statement:
 	ReturnStatement;
 	
 Assignment:
-	target=AssignableMemberFeatureCall '=' expression=Expression ';';
+	target=AssignableMemberFeatureCall '=' assignedExpression=Expression ';';
 	
 LocalVariableDeclaration:
 	'var' name=ValidID '=' initializer=Expression ';';
@@ -389,7 +389,7 @@ WhileStatement:
 	'while' '(' condition=Expression ')' body=Statement;
 
 ForStatement:
-	'for' '(' ('var' declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) 'in' collectionExpression=Expression (';' condition=Expression)? ')' body=Statement;
+	'for' '(' iterationVariable=IterationVariableDeclaration 'in' collectionExpression=Expression ('while' condition=Expression)? ')' body=Statement;
 
 DoWhileStatement:
 	'do' body=Statement 'while' '(' condition=Expression ')' ';';

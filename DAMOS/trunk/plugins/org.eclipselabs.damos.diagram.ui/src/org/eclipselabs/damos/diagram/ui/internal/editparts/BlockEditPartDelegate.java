@@ -64,8 +64,9 @@ public class BlockEditPartDelegate extends ComponentEditPartDelegate {
 			if (block != null && block.getType() != null) {
 				Resource resource = block.getType().eResource();
 				if (resource != null) {
-					Path path = new Path(resource.getURI().toPlatformString(true));
-					if (path != null) {
+					String pathString = resource.getURI().toPlatformString(true);
+					if (pathString != null) {
+						Path path = new Path(pathString);
 						IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 						try {
 							IDE.openEditor(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage(), file, true);

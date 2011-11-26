@@ -20,10 +20,6 @@ import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
-import org.eclipselabs.damos.mscript.IterationAccumulator;
-import org.eclipselabs.damos.mscript.IterationVariable;
-import org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart;
-import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -32,6 +28,7 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
@@ -41,7 +38,6 @@ import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
-
 
 public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 
@@ -65,12 +61,8 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	public void checkVariableAccessReferencesVariable(VariableAccess variableAccess) {
 		CallableElement ce = variableAccess.getFeature();
 		if (!(ce instanceof ParameterDeclaration
-				|| ce instanceof StateVariableDeclaration
-				|| ce instanceof LetExpressionVariableDeclarationPart
-				|| ce instanceof IterationVariable
-				|| ce instanceof IterationAccumulator
-				|| ce instanceof BuiltinVariable
-				|| ce instanceof LocalVariableDeclaration)) {
+				|| ce instanceof VariableDeclaration
+				|| ce instanceof BuiltinVariable)) {
 			error("Invalid variable reference " + variableAccess.getFeature().getName(), null);
 		}
 	}

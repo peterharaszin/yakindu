@@ -40,7 +40,7 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.InvalidDataType;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LetExpression;
-import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
+import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -134,11 +134,11 @@ public class StaticExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseLetExpression(LetExpression letExpression) {
-			for (LetExpressionVariableDeclaration declaration : letExpression.getVariableDeclarations()) {
-				IValue value = evaluate(declaration.getAssignedExpression());
-				context.setValue(declaration.getParts().get(0), value);
+			for (LetExpressionAssignment assignment : letExpression.getAssignments()) {
+				IValue value = evaluate(assignment.getAssignedExpression());
+				context.setValue(assignment.getVariables().get(0), value);
 			}
-			return evaluate(letExpression.getTargetExpression());
+			return evaluate(letExpression.getTarget());
 		}
 
 		/* (non-Javadoc)
@@ -783,12 +783,12 @@ public class StaticExpressionEvaluator {
 			
 			context.setValue(iterationCall.getAccumulator(), accumulatorValue);
 			
-			if (iterationCall.getVariables().size() != 1) {
+			if (iterationCall.getIterationVariables().size() != 1) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Iteration call must have exactly one iteration variable", iterationCall));
 				return InvalidValue.SINGLETON;
 			}
 			
-			context.setValue(iterationCall.getVariables().get(0), new AnyValue(context.getComputationContext(), arrayType.getElementType()));
+			context.setValue(iterationCall.getIterationVariables().get(0), new AnyValue(context.getComputationContext(), arrayType.getElementType()));
 
 			IValue expressionValue = evaluate(iterationCall.getExpression());
 			if (expressionValue instanceof InvalidValue) {

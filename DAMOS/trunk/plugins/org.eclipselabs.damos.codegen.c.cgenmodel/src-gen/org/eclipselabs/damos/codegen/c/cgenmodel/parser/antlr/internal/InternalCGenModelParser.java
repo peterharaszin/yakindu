@@ -5441,7 +5441,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 {
                 int LA30_2 = input.LA(2);
 
-                if ( (LA30_2==EOF||(LA30_2>=RULE_ID && LA30_2<=RULE_N)||LA30_2==25||LA30_2==28||LA30_2==33||LA30_2==35||(LA30_2>=37 && LA30_2<=46)||LA30_2==54||LA30_2==56||(LA30_2>=58 && LA30_2<=59)||(LA30_2>=61 && LA30_2<=65)||(LA30_2>=68 && LA30_2<=69)||LA30_2==75||LA30_2==87||(LA30_2>=94 && LA30_2<=95)) ) {
+                if ( (LA30_2==EOF||(LA30_2>=RULE_ID && LA30_2<=RULE_N)||LA30_2==25||LA30_2==28||LA30_2==33||LA30_2==35||(LA30_2>=37 && LA30_2<=46)||LA30_2==54||LA30_2==56||(LA30_2>=58 && LA30_2<=59)||(LA30_2>=61 && LA30_2<=65)||(LA30_2>=68 && LA30_2<=69)||LA30_2==75||LA30_2==79||LA30_2==87||(LA30_2>=94 && LA30_2<=95)) ) {
                     alt30=2;
                 }
                 else if ( (LA30_2==53) ) {
@@ -7789,28 +7789,28 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLetExpression"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2759:1: ruleLetExpression returns [EObject current=null] : (otherlv_0= 'let' ( (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_2= ',' ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) ) )* otherlv_4= 'in' ( (lv_targetExpression_5_0= ruleExpression ) ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2759:1: ruleLetExpression returns [EObject current=null] : (otherlv_0= 'let' ( (lv_assignments_1_0= ruleLetExpressionAssignment ) ) (otherlv_2= ',' ( (lv_assignments_3_0= ruleLetExpressionAssignment ) ) )* otherlv_4= 'in' ( (lv_target_5_0= ruleExpression ) ) ) ;
     public final EObject ruleLetExpression() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_2=null;
         Token otherlv_4=null;
-        EObject lv_variableDeclarations_1_0 = null;
+        EObject lv_assignments_1_0 = null;
 
-        EObject lv_variableDeclarations_3_0 = null;
+        EObject lv_assignments_3_0 = null;
 
-        EObject lv_targetExpression_5_0 = null;
+        EObject lv_target_5_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2762:28: ( (otherlv_0= 'let' ( (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_2= ',' ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) ) )* otherlv_4= 'in' ( (lv_targetExpression_5_0= ruleExpression ) ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2763:1: (otherlv_0= 'let' ( (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_2= ',' ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) ) )* otherlv_4= 'in' ( (lv_targetExpression_5_0= ruleExpression ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2762:28: ( (otherlv_0= 'let' ( (lv_assignments_1_0= ruleLetExpressionAssignment ) ) (otherlv_2= ',' ( (lv_assignments_3_0= ruleLetExpressionAssignment ) ) )* otherlv_4= 'in' ( (lv_target_5_0= ruleExpression ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2763:1: (otherlv_0= 'let' ( (lv_assignments_1_0= ruleLetExpressionAssignment ) ) (otherlv_2= ',' ( (lv_assignments_3_0= ruleLetExpressionAssignment ) ) )* otherlv_4= 'in' ( (lv_target_5_0= ruleExpression ) ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2763:1: (otherlv_0= 'let' ( (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_2= ',' ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) ) )* otherlv_4= 'in' ( (lv_targetExpression_5_0= ruleExpression ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2763:3: otherlv_0= 'let' ( (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_2= ',' ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) ) )* otherlv_4= 'in' ( (lv_targetExpression_5_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2763:1: (otherlv_0= 'let' ( (lv_assignments_1_0= ruleLetExpressionAssignment ) ) (otherlv_2= ',' ( (lv_assignments_3_0= ruleLetExpressionAssignment ) ) )* otherlv_4= 'in' ( (lv_target_5_0= ruleExpression ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2763:3: otherlv_0= 'let' ( (lv_assignments_1_0= ruleLetExpressionAssignment ) ) (otherlv_2= ',' ( (lv_assignments_3_0= ruleLetExpressionAssignment ) ) )* otherlv_4= 'in' ( (lv_target_5_0= ruleExpression ) )
             {
             otherlv_0=(Token)match(input,55,FOLLOW_55_in_ruleLetExpression6120); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -7818,19 +7818,19 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_0, grammarAccess.getLetExpressionAccess().getLetKeyword_0());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2767:1: ( (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2768:1: (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2767:1: ( (lv_assignments_1_0= ruleLetExpressionAssignment ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2768:1: (lv_assignments_1_0= ruleLetExpressionAssignment )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2768:1: (lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2769:3: lv_variableDeclarations_1_0= ruleLetExpressionVariableDeclaration
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2768:1: (lv_assignments_1_0= ruleLetExpressionAssignment )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2769:3: lv_assignments_1_0= ruleLetExpressionAssignment
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getLetExpressionAccess().getVariableDeclarationsLetExpressionVariableDeclarationParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getLetExpressionAccess().getAssignmentsLetExpressionAssignmentParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpression6141);
-            lv_variableDeclarations_1_0=ruleLetExpressionVariableDeclaration();
+            pushFollow(FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression6141);
+            lv_assignments_1_0=ruleLetExpressionAssignment();
 
             state._fsp--;
             if (state.failed) return current;
@@ -7841,9 +7841,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
               	        }
                      		add(
                      			current, 
-                     			"variableDeclarations",
-                      		lv_variableDeclarations_1_0, 
-                      		"LetExpressionVariableDeclaration");
+                     			"assignments",
+                      		lv_assignments_1_0, 
+                      		"LetExpressionAssignment");
               	        afterParserOrEnumRuleCall();
               	    
             }
@@ -7853,7 +7853,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2785:2: (otherlv_2= ',' ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) ) )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2785:2: (otherlv_2= ',' ( (lv_assignments_3_0= ruleLetExpressionAssignment ) ) )*
             loop40:
             do {
                 int alt40=2;
@@ -7866,7 +7866,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                 switch (alt40) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2785:4: otherlv_2= ',' ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2785:4: otherlv_2= ',' ( (lv_assignments_3_0= ruleLetExpressionAssignment ) )
             	    {
             	    otherlv_2=(Token)match(input,28,FOLLOW_28_in_ruleLetExpression6154); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -7874,19 +7874,19 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	          	newLeafNode(otherlv_2, grammarAccess.getLetExpressionAccess().getCommaKeyword_2_0());
             	          
             	    }
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2789:1: ( (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration ) )
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2790:1: (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2789:1: ( (lv_assignments_3_0= ruleLetExpressionAssignment ) )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2790:1: (lv_assignments_3_0= ruleLetExpressionAssignment )
             	    {
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2790:1: (lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration )
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2791:3: lv_variableDeclarations_3_0= ruleLetExpressionVariableDeclaration
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2790:1: (lv_assignments_3_0= ruleLetExpressionAssignment )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2791:3: lv_assignments_3_0= ruleLetExpressionAssignment
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getLetExpressionAccess().getVariableDeclarationsLetExpressionVariableDeclarationParserRuleCall_2_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getLetExpressionAccess().getAssignmentsLetExpressionAssignmentParserRuleCall_2_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpression6175);
-            	    lv_variableDeclarations_3_0=ruleLetExpressionVariableDeclaration();
+            	    pushFollow(FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression6175);
+            	    lv_assignments_3_0=ruleLetExpressionAssignment();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -7897,9 +7897,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	      	        }
             	             		add(
             	             			current, 
-            	             			"variableDeclarations",
-            	              		lv_variableDeclarations_3_0, 
-            	              		"LetExpressionVariableDeclaration");
+            	             			"assignments",
+            	              		lv_assignments_3_0, 
+            	              		"LetExpressionAssignment");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -7924,19 +7924,19 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_4, grammarAccess.getLetExpressionAccess().getInKeyword_3());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2811:1: ( (lv_targetExpression_5_0= ruleExpression ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2812:1: (lv_targetExpression_5_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2811:1: ( (lv_target_5_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2812:1: (lv_target_5_0= ruleExpression )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2812:1: (lv_targetExpression_5_0= ruleExpression )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2813:3: lv_targetExpression_5_0= ruleExpression
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2812:1: (lv_target_5_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2813:3: lv_target_5_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getLetExpressionAccess().getTargetExpressionExpressionParserRuleCall_4_0()); 
+              	        newCompositeNode(grammarAccess.getLetExpressionAccess().getTargetExpressionParserRuleCall_4_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleExpression_in_ruleLetExpression6210);
-            lv_targetExpression_5_0=ruleExpression();
+            lv_target_5_0=ruleExpression();
 
             state._fsp--;
             if (state.failed) return current;
@@ -7947,8 +7947,8 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
               	        }
                      		set(
                      			current, 
-                     			"targetExpression",
-                      		lv_targetExpression_5_0, 
+                     			"target",
+                      		lv_target_5_0, 
                       		"Expression");
               	        afterParserOrEnumRuleCall();
               	    
@@ -7981,30 +7981,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleLetExpression"
 
 
-    // $ANTLR start "entryRuleLetExpressionVariableDeclaration"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2837:1: entryRuleLetExpressionVariableDeclaration returns [EObject current=null] : iv_ruleLetExpressionVariableDeclaration= ruleLetExpressionVariableDeclaration EOF ;
-    public final EObject entryRuleLetExpressionVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "entryRuleLetExpressionAssignment"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2837:1: entryRuleLetExpressionAssignment returns [EObject current=null] : iv_ruleLetExpressionAssignment= ruleLetExpressionAssignment EOF ;
+    public final EObject entryRuleLetExpressionAssignment() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleLetExpressionVariableDeclaration = null;
+        EObject iv_ruleLetExpressionAssignment = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2838:2: (iv_ruleLetExpressionVariableDeclaration= ruleLetExpressionVariableDeclaration EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2839:2: iv_ruleLetExpressionVariableDeclaration= ruleLetExpressionVariableDeclaration EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2838:2: (iv_ruleLetExpressionAssignment= ruleLetExpressionAssignment EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2839:2: iv_ruleLetExpressionAssignment= ruleLetExpressionAssignment EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationRule()); 
+               newCompositeNode(grammarAccess.getLetExpressionAssignmentRule()); 
             }
-            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_entryRuleLetExpressionVariableDeclaration6246);
-            iv_ruleLetExpressionVariableDeclaration=ruleLetExpressionVariableDeclaration();
+            pushFollow(FOLLOW_ruleLetExpressionAssignment_in_entryRuleLetExpressionAssignment6246);
+            iv_ruleLetExpressionAssignment=ruleLetExpressionAssignment();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleLetExpressionVariableDeclaration; 
+               current =iv_ruleLetExpressionAssignment; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclaration6256); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLetExpressionAssignment6256); if (state.failed) return current;
 
             }
 
@@ -8018,23 +8018,23 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleLetExpressionVariableDeclaration"
+    // $ANTLR end "entryRuleLetExpressionAssignment"
 
 
-    // $ANTLR start "ruleLetExpressionVariableDeclaration"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2846:1: ruleLetExpressionVariableDeclaration returns [EObject current=null] : ( ( ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) ) | (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) ) ;
-    public final EObject ruleLetExpressionVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "ruleLetExpressionAssignment"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2846:1: ruleLetExpressionAssignment returns [EObject current=null] : ( ( ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) ) | (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) ) ;
+    public final EObject ruleLetExpressionAssignment() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
         Token otherlv_3=null;
         Token otherlv_5=null;
         Token otherlv_6=null;
-        EObject lv_parts_0_0 = null;
+        EObject lv_variables_0_0 = null;
 
-        EObject lv_parts_2_0 = null;
+        EObject lv_variables_2_0 = null;
 
-        EObject lv_parts_4_0 = null;
+        EObject lv_variables_4_0 = null;
 
         EObject lv_assignedExpression_7_0 = null;
 
@@ -8042,13 +8042,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2849:28: ( ( ( ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) ) | (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:1: ( ( ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) ) | (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2849:28: ( ( ( ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) ) | (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:1: ( ( ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) ) | (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:1: ( ( ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) ) | (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:2: ( ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) ) | (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:1: ( ( ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) ) | (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:2: ( ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) ) | (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' ) ) otherlv_6= '=' ( (lv_assignedExpression_7_0= ruleExpression ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:2: ( ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) ) | (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:2: ( ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) ) | (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' ) )
             int alt42=2;
             int LA42_0 = input.LA(1);
 
@@ -8067,34 +8067,34 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             }
             switch (alt42) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:3: ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:3: ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:3: ( (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2851:1: (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2850:3: ( (lv_variables_0_0= ruleLetExpressionVariableDeclaration ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2851:1: (lv_variables_0_0= ruleLetExpressionVariableDeclaration )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2851:1: (lv_parts_0_0= ruleLetExpressionVariableDeclarationPart )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2852:3: lv_parts_0_0= ruleLetExpressionVariableDeclarationPart
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2851:1: (lv_variables_0_0= ruleLetExpressionVariableDeclaration )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2852:3: lv_variables_0_0= ruleLetExpressionVariableDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationAccess().getPartsLetExpressionVariableDeclarationPartParserRuleCall_0_0_0()); 
+                      	        newCompositeNode(grammarAccess.getLetExpressionAssignmentAccess().getVariablesLetExpressionVariableDeclarationParserRuleCall_0_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleLetExpressionVariableDeclarationPart_in_ruleLetExpressionVariableDeclaration6303);
-                    lv_parts_0_0=ruleLetExpressionVariableDeclarationPart();
+                    pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment6303);
+                    lv_variables_0_0=ruleLetExpressionVariableDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getLetExpressionVariableDeclarationRule());
+                      	            current = createModelElementForParent(grammarAccess.getLetExpressionAssignmentRule());
                       	        }
                              		add(
                              			current, 
-                             			"parts",
-                              		lv_parts_0_0, 
-                              		"LetExpressionVariableDeclarationPart");
+                             			"variables",
+                              		lv_variables_0_0, 
+                              		"LetExpressionVariableDeclaration");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -8108,43 +8108,43 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2869:6: (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2869:6: (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2869:6: (otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2869:8: otherlv_1= '(' ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) ) (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+ otherlv_5= ')'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2869:6: (otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2869:8: otherlv_1= '(' ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) ) (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+ otherlv_5= ')'
                     {
-                    otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleLetExpressionVariableDeclaration6322); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleLetExpressionAssignment6322); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_1, grammarAccess.getLetExpressionVariableDeclarationAccess().getLeftParenthesisKeyword_0_1_0());
+                          	newLeafNode(otherlv_1, grammarAccess.getLetExpressionAssignmentAccess().getLeftParenthesisKeyword_0_1_0());
                           
                     }
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2873:1: ( (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2874:1: (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2873:1: ( (lv_variables_2_0= ruleLetExpressionVariableDeclaration ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2874:1: (lv_variables_2_0= ruleLetExpressionVariableDeclaration )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2874:1: (lv_parts_2_0= ruleLetExpressionVariableDeclarationPart )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2875:3: lv_parts_2_0= ruleLetExpressionVariableDeclarationPart
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2874:1: (lv_variables_2_0= ruleLetExpressionVariableDeclaration )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2875:3: lv_variables_2_0= ruleLetExpressionVariableDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationAccess().getPartsLetExpressionVariableDeclarationPartParserRuleCall_0_1_1_0()); 
+                      	        newCompositeNode(grammarAccess.getLetExpressionAssignmentAccess().getVariablesLetExpressionVariableDeclarationParserRuleCall_0_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleLetExpressionVariableDeclarationPart_in_ruleLetExpressionVariableDeclaration6343);
-                    lv_parts_2_0=ruleLetExpressionVariableDeclarationPart();
+                    pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment6343);
+                    lv_variables_2_0=ruleLetExpressionVariableDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getLetExpressionVariableDeclarationRule());
+                      	            current = createModelElementForParent(grammarAccess.getLetExpressionAssignmentRule());
                       	        }
                              		add(
                              			current, 
-                             			"parts",
-                              		lv_parts_2_0, 
-                              		"LetExpressionVariableDeclarationPart");
+                             			"variables",
+                              		lv_variables_2_0, 
+                              		"LetExpressionVariableDeclaration");
                       	        afterParserOrEnumRuleCall();
                       	    
                     }
@@ -8154,7 +8154,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2891:2: (otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) ) )+
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2891:2: (otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) ) )+
                     int cnt41=0;
                     loop41:
                     do {
@@ -8168,40 +8168,40 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                         switch (alt41) {
                     	case 1 :
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2891:4: otherlv_3= ',' ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2891:4: otherlv_3= ',' ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,28,FOLLOW_28_in_ruleLetExpressionVariableDeclaration6356); if (state.failed) return current;
+                    	    otherlv_3=(Token)match(input,28,FOLLOW_28_in_ruleLetExpressionAssignment6356); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
-                    	          	newLeafNode(otherlv_3, grammarAccess.getLetExpressionVariableDeclarationAccess().getCommaKeyword_0_1_2_0());
+                    	          	newLeafNode(otherlv_3, grammarAccess.getLetExpressionAssignmentAccess().getCommaKeyword_0_1_2_0());
                     	          
                     	    }
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2895:1: ( (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart ) )
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2896:1: (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2895:1: ( (lv_variables_4_0= ruleLetExpressionVariableDeclaration ) )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2896:1: (lv_variables_4_0= ruleLetExpressionVariableDeclaration )
                     	    {
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2896:1: (lv_parts_4_0= ruleLetExpressionVariableDeclarationPart )
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2897:3: lv_parts_4_0= ruleLetExpressionVariableDeclarationPart
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2896:1: (lv_variables_4_0= ruleLetExpressionVariableDeclaration )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2897:3: lv_variables_4_0= ruleLetExpressionVariableDeclaration
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
-                    	      	        newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationAccess().getPartsLetExpressionVariableDeclarationPartParserRuleCall_0_1_2_1_0()); 
+                    	      	        newCompositeNode(grammarAccess.getLetExpressionAssignmentAccess().getVariablesLetExpressionVariableDeclarationParserRuleCall_0_1_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleLetExpressionVariableDeclarationPart_in_ruleLetExpressionVariableDeclaration6377);
-                    	    lv_parts_4_0=ruleLetExpressionVariableDeclarationPart();
+                    	    pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment6377);
+                    	    lv_variables_4_0=ruleLetExpressionVariableDeclaration();
 
                     	    state._fsp--;
                     	    if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	      	        if (current==null) {
-                    	      	            current = createModelElementForParent(grammarAccess.getLetExpressionVariableDeclarationRule());
+                    	      	            current = createModelElementForParent(grammarAccess.getLetExpressionAssignmentRule());
                     	      	        }
                     	             		add(
                     	             			current, 
-                    	             			"parts",
-                    	              		lv_parts_4_0, 
-                    	              		"LetExpressionVariableDeclarationPart");
+                    	             			"variables",
+                    	              		lv_variables_4_0, 
+                    	              		"LetExpressionVariableDeclaration");
                     	      	        afterParserOrEnumRuleCall();
                     	      	    
                     	    }
@@ -8225,10 +8225,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                         cnt41++;
                     } while (true);
 
-                    otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleLetExpressionVariableDeclaration6391); if (state.failed) return current;
+                    otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleLetExpressionAssignment6391); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_5, grammarAccess.getLetExpressionVariableDeclarationAccess().getRightParenthesisKeyword_0_1_3());
+                          	newLeafNode(otherlv_5, grammarAccess.getLetExpressionAssignmentAccess().getRightParenthesisKeyword_0_1_3());
                           
                     }
 
@@ -8240,10 +8240,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,43,FOLLOW_43_in_ruleLetExpressionVariableDeclaration6405); if (state.failed) return current;
+            otherlv_6=(Token)match(input,43,FOLLOW_43_in_ruleLetExpressionAssignment6405); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_6, grammarAccess.getLetExpressionVariableDeclarationAccess().getEqualsSignKeyword_1());
+                  	newLeafNode(otherlv_6, grammarAccess.getLetExpressionAssignmentAccess().getEqualsSignKeyword_1());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2921:1: ( (lv_assignedExpression_7_0= ruleExpression ) )
@@ -8254,10 +8254,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationAccess().getAssignedExpressionExpressionParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getLetExpressionAssignmentAccess().getAssignedExpressionExpressionParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleLetExpressionVariableDeclaration6426);
+            pushFollow(FOLLOW_ruleExpression_in_ruleLetExpressionAssignment6426);
             lv_assignedExpression_7_0=ruleExpression();
 
             state._fsp--;
@@ -8265,7 +8265,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getLetExpressionVariableDeclarationRule());
+              	            current = createModelElementForParent(grammarAccess.getLetExpressionAssignmentRule());
               	        }
                      		set(
                      			current, 
@@ -8300,33 +8300,33 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleLetExpressionVariableDeclaration"
+    // $ANTLR end "ruleLetExpressionAssignment"
 
 
-    // $ANTLR start "entryRuleLetExpressionVariableDeclarationPart"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2947:1: entryRuleLetExpressionVariableDeclarationPart returns [EObject current=null] : iv_ruleLetExpressionVariableDeclarationPart= ruleLetExpressionVariableDeclarationPart EOF ;
-    public final EObject entryRuleLetExpressionVariableDeclarationPart() throws RecognitionException {
+    // $ANTLR start "entryRuleLetExpressionVariableDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2947:1: entryRuleLetExpressionVariableDeclaration returns [EObject current=null] : iv_ruleLetExpressionVariableDeclaration= ruleLetExpressionVariableDeclaration EOF ;
+    public final EObject entryRuleLetExpressionVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleLetExpressionVariableDeclarationPart = null;
+        EObject iv_ruleLetExpressionVariableDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2948:2: (iv_ruleLetExpressionVariableDeclarationPart= ruleLetExpressionVariableDeclarationPart EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2949:2: iv_ruleLetExpressionVariableDeclarationPart= ruleLetExpressionVariableDeclarationPart EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2948:2: (iv_ruleLetExpressionVariableDeclaration= ruleLetExpressionVariableDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2949:2: iv_ruleLetExpressionVariableDeclaration= ruleLetExpressionVariableDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationPartRule()); 
+               newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleLetExpressionVariableDeclarationPart_in_entryRuleLetExpressionVariableDeclarationPart6462);
-            iv_ruleLetExpressionVariableDeclarationPart=ruleLetExpressionVariableDeclarationPart();
+            pushFollow(FOLLOW_ruleLetExpressionVariableDeclaration_in_entryRuleLetExpressionVariableDeclaration6462);
+            iv_ruleLetExpressionVariableDeclaration=ruleLetExpressionVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleLetExpressionVariableDeclarationPart; 
+               current =iv_ruleLetExpressionVariableDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclarationPart6472); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclaration6472); if (state.failed) return current;
 
             }
 
@@ -8340,12 +8340,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleLetExpressionVariableDeclarationPart"
+    // $ANTLR end "entryRuleLetExpressionVariableDeclaration"
 
 
-    // $ANTLR start "ruleLetExpressionVariableDeclarationPart"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2956:1: ruleLetExpressionVariableDeclarationPart returns [EObject current=null] : ( (lv_name_0_0= ruleValidID ) ) ;
-    public final EObject ruleLetExpressionVariableDeclarationPart() throws RecognitionException {
+    // $ANTLR start "ruleLetExpressionVariableDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2956:1: ruleLetExpressionVariableDeclaration returns [EObject current=null] : ( (lv_name_0_0= ruleValidID ) ) ;
+    public final EObject ruleLetExpressionVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
         AntlrDatatypeRuleToken lv_name_0_0 = null;
@@ -8365,10 +8365,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationPartAccess().getNameValidIDParserRuleCall_0()); 
+              	        newCompositeNode(grammarAccess.getLetExpressionVariableDeclarationAccess().getNameValidIDParserRuleCall_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleLetExpressionVariableDeclarationPart6517);
+            pushFollow(FOLLOW_ruleValidID_in_ruleLetExpressionVariableDeclaration6517);
             lv_name_0_0=ruleValidID();
 
             state._fsp--;
@@ -8376,7 +8376,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getLetExpressionVariableDeclarationPartRule());
+              	            current = createModelElementForParent(grammarAccess.getLetExpressionVariableDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -8408,7 +8408,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleLetExpressionVariableDeclarationPart"
+    // $ANTLR end "ruleLetExpressionVariableDeclaration"
 
 
     // $ANTLR start "entryRuleIfExpression"
@@ -11630,7 +11630,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMemberFeatureCall"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4134:1: ruleMemberFeatureCall returns [EObject current=null] : (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4134:1: ruleMemberFeatureCall returns [EObject current=null] : (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* ) ;
     public final EObject ruleMemberFeatureCall() throws RecognitionException {
         EObject current = null;
 
@@ -11654,9 +11654,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
         AntlrDatatypeRuleToken lv_identifier_14_0 = null;
 
-        EObject lv_variables_16_0 = null;
+        EObject lv_iterationVariables_16_0 = null;
 
-        EObject lv_variables_18_0 = null;
+        EObject lv_iterationVariables_18_0 = null;
 
         EObject lv_accumulator_20_0 = null;
 
@@ -11668,11 +11668,11 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4137:28: ( (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4138:1: (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4137:28: ( (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4138:1: (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4138:1: (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4139:5: this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4138:1: (this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )* )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4139:5: this_PrimaryExpression_0= rulePrimaryExpression ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )*
             {
             if ( state.backtracking==0 ) {
                
@@ -11690,7 +11690,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                       afterParserOrEnumRuleCall();
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4147:1: ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4147:1: ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )*
             loop66:
             do {
                 int alt66=4;
@@ -11956,10 +11956,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 3 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4247:6: ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4247:6: ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' )
             	    {
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4247:6: ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' )
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4247:7: () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')'
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4247:6: ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4247:7: () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')'
             	    {
             	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4247:7: ()
             	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4248:5: 
@@ -12021,19 +12021,19 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	          	newLeafNode(otherlv_15, grammarAccess.getMemberFeatureCallAccess().getLeftParenthesisKeyword_1_2_3());
             	          
             	    }
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4279:1: ( (lv_variables_16_0= ruleIterationVariable ) )
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4280:1: (lv_variables_16_0= ruleIterationVariable )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4279:1: ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4280:1: (lv_iterationVariables_16_0= ruleIterationVariableDeclaration )
             	    {
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4280:1: (lv_variables_16_0= ruleIterationVariable )
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4281:3: lv_variables_16_0= ruleIterationVariable
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4280:1: (lv_iterationVariables_16_0= ruleIterationVariableDeclaration )
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4281:3: lv_iterationVariables_16_0= ruleIterationVariableDeclaration
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getMemberFeatureCallAccess().getVariablesIterationVariableParserRuleCall_1_2_4_0()); 
+            	      	        newCompositeNode(grammarAccess.getMemberFeatureCallAccess().getIterationVariablesIterationVariableDeclarationParserRuleCall_1_2_4_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleIterationVariable_in_ruleMemberFeatureCall9296);
-            	    lv_variables_16_0=ruleIterationVariable();
+            	    pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_ruleMemberFeatureCall9296);
+            	    lv_iterationVariables_16_0=ruleIterationVariableDeclaration();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -12044,9 +12044,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	      	        }
             	             		add(
             	             			current, 
-            	             			"variables",
-            	              		lv_variables_16_0, 
-            	              		"IterationVariable");
+            	             			"iterationVariables",
+            	              		lv_iterationVariables_16_0, 
+            	              		"IterationVariableDeclaration");
             	      	        afterParserOrEnumRuleCall();
             	      	    
             	    }
@@ -12056,7 +12056,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4297:2: (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )*
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4297:2: (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )*
             	    loop63:
             	    do {
             	        int alt63=2;
@@ -12069,7 +12069,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             	        switch (alt63) {
             	    	case 1 :
-            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4297:4: otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) )
+            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4297:4: otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) )
             	    	    {
             	    	    otherlv_17=(Token)match(input,28,FOLLOW_28_in_ruleMemberFeatureCall9309); if (state.failed) return current;
             	    	    if ( state.backtracking==0 ) {
@@ -12077,19 +12077,19 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    	          	newLeafNode(otherlv_17, grammarAccess.getMemberFeatureCallAccess().getCommaKeyword_1_2_5_0());
             	    	          
             	    	    }
-            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4301:1: ( (lv_variables_18_0= ruleIterationVariable ) )
-            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4302:1: (lv_variables_18_0= ruleIterationVariable )
+            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4301:1: ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) )
+            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4302:1: (lv_iterationVariables_18_0= ruleIterationVariableDeclaration )
             	    	    {
-            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4302:1: (lv_variables_18_0= ruleIterationVariable )
-            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4303:3: lv_variables_18_0= ruleIterationVariable
+            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4302:1: (lv_iterationVariables_18_0= ruleIterationVariableDeclaration )
+            	    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4303:3: lv_iterationVariables_18_0= ruleIterationVariableDeclaration
             	    	    {
             	    	    if ( state.backtracking==0 ) {
             	    	       
-            	    	      	        newCompositeNode(grammarAccess.getMemberFeatureCallAccess().getVariablesIterationVariableParserRuleCall_1_2_5_1_0()); 
+            	    	      	        newCompositeNode(grammarAccess.getMemberFeatureCallAccess().getIterationVariablesIterationVariableDeclarationParserRuleCall_1_2_5_1_0()); 
             	    	      	    
             	    	    }
-            	    	    pushFollow(FOLLOW_ruleIterationVariable_in_ruleMemberFeatureCall9330);
-            	    	    lv_variables_18_0=ruleIterationVariable();
+            	    	    pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_ruleMemberFeatureCall9330);
+            	    	    lv_iterationVariables_18_0=ruleIterationVariableDeclaration();
 
             	    	    state._fsp--;
             	    	    if (state.failed) return current;
@@ -12100,9 +12100,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    	      	        }
             	    	             		add(
             	    	             			current, 
-            	    	             			"variables",
-            	    	              		lv_variables_18_0, 
-            	    	              		"IterationVariable");
+            	    	             			"iterationVariables",
+            	    	              		lv_iterationVariables_18_0, 
+            	    	              		"IterationVariableDeclaration");
             	    	      	        afterParserOrEnumRuleCall();
             	    	      	    
             	    	    }
@@ -12538,116 +12538,8 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleAssignableMemberFeatureCall"
 
 
-    // $ANTLR start "entryRuleIterationVariable"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4452:1: entryRuleIterationVariable returns [EObject current=null] : iv_ruleIterationVariable= ruleIterationVariable EOF ;
-    public final EObject entryRuleIterationVariable() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleIterationVariable = null;
-
-
-        try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4453:2: (iv_ruleIterationVariable= ruleIterationVariable EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4454:2: iv_ruleIterationVariable= ruleIterationVariable EOF
-            {
-            if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getIterationVariableRule()); 
-            }
-            pushFollow(FOLLOW_ruleIterationVariable_in_entryRuleIterationVariable9627);
-            iv_ruleIterationVariable=ruleIterationVariable();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-               current =iv_ruleIterationVariable; 
-            }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIterationVariable9637); if (state.failed) return current;
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleIterationVariable"
-
-
-    // $ANTLR start "ruleIterationVariable"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4461:1: ruleIterationVariable returns [EObject current=null] : ( (lv_name_0_0= ruleValidID ) ) ;
-    public final EObject ruleIterationVariable() throws RecognitionException {
-        EObject current = null;
-
-        AntlrDatatypeRuleToken lv_name_0_0 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4464:28: ( ( (lv_name_0_0= ruleValidID ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4465:1: ( (lv_name_0_0= ruleValidID ) )
-            {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4465:1: ( (lv_name_0_0= ruleValidID ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4466:1: (lv_name_0_0= ruleValidID )
-            {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4466:1: (lv_name_0_0= ruleValidID )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4467:3: lv_name_0_0= ruleValidID
-            {
-            if ( state.backtracking==0 ) {
-               
-              	        newCompositeNode(grammarAccess.getIterationVariableAccess().getNameValidIDParserRuleCall_0()); 
-              	    
-            }
-            pushFollow(FOLLOW_ruleValidID_in_ruleIterationVariable9682);
-            lv_name_0_0=ruleValidID();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getIterationVariableRule());
-              	        }
-                     		set(
-                     			current, 
-                     			"name",
-                      		lv_name_0_0, 
-                      		"ValidID");
-              	        afterParserOrEnumRuleCall();
-              	    
-            }
-
-            }
-
-
-            }
-
-
-            }
-
-            if ( state.backtracking==0 ) {
-               leaveRule(); 
-            }
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleIterationVariable"
-
-
     // $ANTLR start "entryRuleIterationAccumulator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4491:1: entryRuleIterationAccumulator returns [EObject current=null] : iv_ruleIterationAccumulator= ruleIterationAccumulator EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4452:1: entryRuleIterationAccumulator returns [EObject current=null] : iv_ruleIterationAccumulator= ruleIterationAccumulator EOF ;
     public final EObject entryRuleIterationAccumulator() throws RecognitionException {
         EObject current = null;
 
@@ -12655,13 +12547,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4492:2: (iv_ruleIterationAccumulator= ruleIterationAccumulator EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4493:2: iv_ruleIterationAccumulator= ruleIterationAccumulator EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4453:2: (iv_ruleIterationAccumulator= ruleIterationAccumulator EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4454:2: iv_ruleIterationAccumulator= ruleIterationAccumulator EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getIterationAccumulatorRule()); 
             }
-            pushFollow(FOLLOW_ruleIterationAccumulator_in_entryRuleIterationAccumulator9717);
+            pushFollow(FOLLOW_ruleIterationAccumulator_in_entryRuleIterationAccumulator9627);
             iv_ruleIterationAccumulator=ruleIterationAccumulator();
 
             state._fsp--;
@@ -12669,7 +12561,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleIterationAccumulator; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIterationAccumulator9727); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIterationAccumulator9637); if (state.failed) return current;
 
             }
 
@@ -12687,7 +12579,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIterationAccumulator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4500:1: ruleIterationAccumulator returns [EObject current=null] : ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4461:1: ruleIterationAccumulator returns [EObject current=null] : ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) ) ;
     public final EObject ruleIterationAccumulator() throws RecognitionException {
         EObject current = null;
 
@@ -12700,24 +12592,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4503:28: ( ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4504:1: ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4464:28: ( ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4465:1: ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4504:1: ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4504:2: ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4465:1: ( ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4465:2: ( (lv_name_0_0= ruleValidID ) ) otherlv_1= '=' ( (lv_initializer_2_0= ruleExpression ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4504:2: ( (lv_name_0_0= ruleValidID ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4505:1: (lv_name_0_0= ruleValidID )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4465:2: ( (lv_name_0_0= ruleValidID ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4466:1: (lv_name_0_0= ruleValidID )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4505:1: (lv_name_0_0= ruleValidID )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4506:3: lv_name_0_0= ruleValidID
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4466:1: (lv_name_0_0= ruleValidID )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4467:3: lv_name_0_0= ruleValidID
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getIterationAccumulatorAccess().getNameValidIDParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleIterationAccumulator9773);
+            pushFollow(FOLLOW_ruleValidID_in_ruleIterationAccumulator9683);
             lv_name_0_0=ruleValidID();
 
             state._fsp--;
@@ -12741,24 +12633,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,43,FOLLOW_43_in_ruleIterationAccumulator9785); if (state.failed) return current;
+            otherlv_1=(Token)match(input,43,FOLLOW_43_in_ruleIterationAccumulator9695); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getIterationAccumulatorAccess().getEqualsSignKeyword_1());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4526:1: ( (lv_initializer_2_0= ruleExpression ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4527:1: (lv_initializer_2_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4487:1: ( (lv_initializer_2_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4488:1: (lv_initializer_2_0= ruleExpression )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4527:1: (lv_initializer_2_0= ruleExpression )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4528:3: lv_initializer_2_0= ruleExpression
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4488:1: (lv_initializer_2_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4489:3: lv_initializer_2_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getIterationAccumulatorAccess().getInitializerExpressionParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleIterationAccumulator9806);
+            pushFollow(FOLLOW_ruleExpression_in_ruleIterationAccumulator9716);
             lv_initializer_2_0=ruleExpression();
 
             state._fsp--;
@@ -12802,6 +12694,114 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         return current;
     }
     // $ANTLR end "ruleIterationAccumulator"
+
+
+    // $ANTLR start "entryRuleIterationVariableDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4513:1: entryRuleIterationVariableDeclaration returns [EObject current=null] : iv_ruleIterationVariableDeclaration= ruleIterationVariableDeclaration EOF ;
+    public final EObject entryRuleIterationVariableDeclaration() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleIterationVariableDeclaration = null;
+
+
+        try {
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4514:2: (iv_ruleIterationVariableDeclaration= ruleIterationVariableDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4515:2: iv_ruleIterationVariableDeclaration= ruleIterationVariableDeclaration EOF
+            {
+            if ( state.backtracking==0 ) {
+               newCompositeNode(grammarAccess.getIterationVariableDeclarationRule()); 
+            }
+            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_entryRuleIterationVariableDeclaration9752);
+            iv_ruleIterationVariableDeclaration=ruleIterationVariableDeclaration();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+               current =iv_ruleIterationVariableDeclaration; 
+            }
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIterationVariableDeclaration9762); if (state.failed) return current;
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleIterationVariableDeclaration"
+
+
+    // $ANTLR start "ruleIterationVariableDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4522:1: ruleIterationVariableDeclaration returns [EObject current=null] : ( (lv_name_0_0= ruleValidID ) ) ;
+    public final EObject ruleIterationVariableDeclaration() throws RecognitionException {
+        EObject current = null;
+
+        AntlrDatatypeRuleToken lv_name_0_0 = null;
+
+
+         enterRule(); 
+            
+        try {
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4525:28: ( ( (lv_name_0_0= ruleValidID ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4526:1: ( (lv_name_0_0= ruleValidID ) )
+            {
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4526:1: ( (lv_name_0_0= ruleValidID ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4527:1: (lv_name_0_0= ruleValidID )
+            {
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4527:1: (lv_name_0_0= ruleValidID )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:4528:3: lv_name_0_0= ruleValidID
+            {
+            if ( state.backtracking==0 ) {
+               
+              	        newCompositeNode(grammarAccess.getIterationVariableDeclarationAccess().getNameValidIDParserRuleCall_0()); 
+              	    
+            }
+            pushFollow(FOLLOW_ruleValidID_in_ruleIterationVariableDeclaration9807);
+            lv_name_0_0=ruleValidID();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              	        if (current==null) {
+              	            current = createModelElementForParent(grammarAccess.getIterationVariableDeclarationRule());
+              	        }
+                     		set(
+                     			current, 
+                     			"name",
+                      		lv_name_0_0, 
+                      		"ValidID");
+              	        afterParserOrEnumRuleCall();
+              	    
+            }
+
+            }
+
+
+            }
+
+
+            }
+
+            if ( state.backtracking==0 ) {
+               leaveRule(); 
+            }
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleIterationVariableDeclaration"
 
 
     // $ANTLR start "entryRuleArraySubscript"
@@ -13709,6 +13709,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 case 70:
                 case 71:
                 case 75:
+                case 79:
                 case 84:
                 case 85:
                 case 86:
@@ -13819,6 +13820,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 case 70:
                 case 71:
                 case 75:
+                case 79:
                 case 84:
                 case 85:
                 case 86:
@@ -18721,7 +18723,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssignment"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6452:1: ruleAssignment returns [EObject current=null] : ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_expression_2_0= ruleExpression ) ) otherlv_3= ';' ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6452:1: ruleAssignment returns [EObject current=null] : ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_assignedExpression_2_0= ruleExpression ) ) otherlv_3= ';' ) ;
     public final EObject ruleAssignment() throws RecognitionException {
         EObject current = null;
 
@@ -18729,17 +18731,17 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         Token otherlv_3=null;
         EObject lv_target_0_0 = null;
 
-        EObject lv_expression_2_0 = null;
+        EObject lv_assignedExpression_2_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6455:28: ( ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_expression_2_0= ruleExpression ) ) otherlv_3= ';' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6456:1: ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_expression_2_0= ruleExpression ) ) otherlv_3= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6455:28: ( ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_assignedExpression_2_0= ruleExpression ) ) otherlv_3= ';' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6456:1: ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_assignedExpression_2_0= ruleExpression ) ) otherlv_3= ';' )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6456:1: ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_expression_2_0= ruleExpression ) ) otherlv_3= ';' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6456:2: ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_expression_2_0= ruleExpression ) ) otherlv_3= ';'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6456:1: ( ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_assignedExpression_2_0= ruleExpression ) ) otherlv_3= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6456:2: ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) ) otherlv_1= '=' ( (lv_assignedExpression_2_0= ruleExpression ) ) otherlv_3= ';'
             {
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6456:2: ( (lv_target_0_0= ruleAssignableMemberFeatureCall ) )
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6457:1: (lv_target_0_0= ruleAssignableMemberFeatureCall )
@@ -18782,19 +18784,19 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_1, grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6478:1: ( (lv_expression_2_0= ruleExpression ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6479:1: (lv_expression_2_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6478:1: ( (lv_assignedExpression_2_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6479:1: (lv_assignedExpression_2_0= ruleExpression )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6479:1: (lv_expression_2_0= ruleExpression )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6480:3: lv_expression_2_0= ruleExpression
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6479:1: (lv_assignedExpression_2_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6480:3: lv_assignedExpression_2_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getAssignmentAccess().getExpressionExpressionParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getAssignmentAccess().getAssignedExpressionExpressionParserRuleCall_2_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleExpression_in_ruleAssignment14606);
-            lv_expression_2_0=ruleExpression();
+            lv_assignedExpression_2_0=ruleExpression();
 
             state._fsp--;
             if (state.failed) return current;
@@ -18805,8 +18807,8 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
               	        }
                      		set(
                      			current, 
-                     			"expression",
-                      		lv_expression_2_0, 
+                     			"assignedExpression",
+                      		lv_assignedExpression_2_0, 
                       		"Expression");
               	        afterParserOrEnumRuleCall();
               	    
@@ -19473,33 +19475,32 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleForStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6747:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6747:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (lv_iterationVariable_2_0= ruleIterationVariableDeclaration ) ) otherlv_3= 'in' ( (lv_collectionExpression_4_0= ruleExpression ) ) (otherlv_5= 'while' ( (lv_condition_6_0= ruleExpression ) ) )? otherlv_7= ')' ( (lv_body_8_0= ruleStatement ) ) ) ;
     public final EObject ruleForStatement() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
         Token otherlv_1=null;
-        Token otherlv_2=null;
+        Token otherlv_3=null;
         Token otherlv_5=null;
         Token otherlv_7=null;
-        Token otherlv_9=null;
-        EObject lv_declaredIterationVariable_3_0 = null;
+        EObject lv_iterationVariable_2_0 = null;
 
-        EObject lv_collectionExpression_6_0 = null;
+        EObject lv_collectionExpression_4_0 = null;
 
-        EObject lv_condition_8_0 = null;
+        EObject lv_condition_6_0 = null;
 
-        EObject lv_body_10_0 = null;
+        EObject lv_body_8_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6750:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6750:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (lv_iterationVariable_2_0= ruleIterationVariableDeclaration ) ) otherlv_3= 'in' ( (lv_collectionExpression_4_0= ruleExpression ) ) (otherlv_5= 'while' ( (lv_condition_6_0= ruleExpression ) ) )? otherlv_7= ')' ( (lv_body_8_0= ruleStatement ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (lv_iterationVariable_2_0= ruleIterationVariableDeclaration ) ) otherlv_3= 'in' ( (lv_collectionExpression_4_0= ruleExpression ) ) (otherlv_5= 'while' ( (lv_condition_6_0= ruleExpression ) ) )? otherlv_7= ')' ( (lv_body_8_0= ruleStatement ) ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:3: otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (lv_iterationVariable_2_0= ruleIterationVariableDeclaration ) ) otherlv_3= 'in' ( (lv_collectionExpression_4_0= ruleExpression ) ) (otherlv_5= 'while' ( (lv_condition_6_0= ruleExpression ) ) )? otherlv_7= ')' ( (lv_body_8_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:3: otherlv_0= 'for' otherlv_1= '(' ( (lv_iterationVariable_2_0= ruleIterationVariableDeclaration ) ) otherlv_3= 'in' ( (lv_collectionExpression_4_0= ruleExpression ) ) (otherlv_5= 'while' ( (lv_condition_6_0= ruleExpression ) ) )? otherlv_7= ')' ( (lv_body_8_0= ruleStatement ) )
             {
             otherlv_0=(Token)match(input,75,FOLLOW_75_in_ruleForStatement15193); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -19513,139 +19514,60 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                   	newLeafNode(otherlv_1, grammarAccess.getForStatementAccess().getLeftParenthesisKeyword_1());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6759:1: ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) )
-            int alt99=2;
-            int LA99_0 = input.LA(1);
-
-            if ( (LA99_0==41) ) {
-                alt99=1;
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6759:1: ( (lv_iterationVariable_2_0= ruleIterationVariableDeclaration ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6760:1: (lv_iterationVariable_2_0= ruleIterationVariableDeclaration )
+            {
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6760:1: (lv_iterationVariable_2_0= ruleIterationVariableDeclaration )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6761:3: lv_iterationVariable_2_0= ruleIterationVariableDeclaration
+            {
+            if ( state.backtracking==0 ) {
+               
+              	        newCompositeNode(grammarAccess.getForStatementAccess().getIterationVariableIterationVariableDeclarationParserRuleCall_2_0()); 
+              	    
             }
-            else if ( ((LA99_0>=RULE_ID && LA99_0<=RULE_N)) ) {
-                alt99=2;
-            }
-            else {
-                if (state.backtracking>0) {state.failed=true; return current;}
-                NoViableAltException nvae =
-                    new NoViableAltException("", 99, 0, input);
+            pushFollow(FOLLOW_ruleIterationVariableDeclaration_in_ruleForStatement15226);
+            lv_iterationVariable_2_0=ruleIterationVariableDeclaration();
 
-                throw nvae;
-            }
-            switch (alt99) {
-                case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6759:2: (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) )
-                    {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6759:2: (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6759:4: otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) )
-                    {
-                    otherlv_2=(Token)match(input,41,FOLLOW_41_in_ruleForStatement15219); if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                          	newLeafNode(otherlv_2, grammarAccess.getForStatementAccess().getVarKeyword_2_0_0());
-                          
-                    }
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6763:1: ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6764:1: (lv_declaredIterationVariable_3_0= ruleIterationVariable )
-                    {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6764:1: (lv_declaredIterationVariable_3_0= ruleIterationVariable )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6765:3: lv_declaredIterationVariable_3_0= ruleIterationVariable
-                    {
-                    if ( state.backtracking==0 ) {
-                       
-                      	        newCompositeNode(grammarAccess.getForStatementAccess().getDeclaredIterationVariableIterationVariableParserRuleCall_2_0_1_0()); 
-                      	    
-                    }
-                    pushFollow(FOLLOW_ruleIterationVariable_in_ruleForStatement15240);
-                    lv_declaredIterationVariable_3_0=ruleIterationVariable();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-
-                      	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getForStatementRule());
-                      	        }
-                             		set(
-                             			current, 
-                             			"declaredIterationVariable",
-                              		lv_declaredIterationVariable_3_0, 
-                              		"IterationVariable");
-                      	        afterParserOrEnumRuleCall();
-                      	    
-                    }
-
-                    }
-
-
-                    }
-
-
-                    }
-
-
-                    }
-                    break;
-                case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6782:6: ( ( ruleValidID ) )
-                    {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6782:6: ( ( ruleValidID ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6783:1: ( ruleValidID )
-                    {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6783:1: ( ruleValidID )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6784:3: ruleValidID
-                    {
-                    if ( state.backtracking==0 ) {
-
-                      			if (current==null) {
-                      	            current = createModelElement(grammarAccess.getForStatementRule());
-                      	        }
-                              
-                    }
-                    if ( state.backtracking==0 ) {
-                       
-                      	        newCompositeNode(grammarAccess.getForStatementAccess().getIterationVariableCallableElementCrossReference_2_1_0()); 
-                      	    
-                    }
-                    pushFollow(FOLLOW_ruleValidID_in_ruleForStatement15270);
-                    ruleValidID();
-
-                    state._fsp--;
-                    if (state.failed) return current;
-                    if ( state.backtracking==0 ) {
-                       
-                      	        afterParserOrEnumRuleCall();
-                      	    
-                    }
-
-                    }
-
-
-                    }
-
-
-                    }
-                    break;
-
-            }
-
-            otherlv_5=(Token)match(input,56,FOLLOW_56_in_ruleForStatement15283); if (state.failed) return current;
+            state._fsp--;
+            if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_5, grammarAccess.getForStatementAccess().getInKeyword_3());
+              	        if (current==null) {
+              	            current = createModelElementForParent(grammarAccess.getForStatementRule());
+              	        }
+                     		set(
+                     			current, 
+                     			"iterationVariable",
+                      		lv_iterationVariable_2_0, 
+                      		"IterationVariableDeclaration");
+              	        afterParserOrEnumRuleCall();
+              	    
+            }
+
+            }
+
+
+            }
+
+            otherlv_3=(Token)match(input,56,FOLLOW_56_in_ruleForStatement15238); if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+                  	newLeafNode(otherlv_3, grammarAccess.getForStatementAccess().getInKeyword_3());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6801:1: ( (lv_collectionExpression_6_0= ruleExpression ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6802:1: (lv_collectionExpression_6_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6781:1: ( (lv_collectionExpression_4_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6782:1: (lv_collectionExpression_4_0= ruleExpression )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6802:1: (lv_collectionExpression_6_0= ruleExpression )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6803:3: lv_collectionExpression_6_0= ruleExpression
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6782:1: (lv_collectionExpression_4_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6783:3: lv_collectionExpression_4_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getForStatementAccess().getCollectionExpressionExpressionParserRuleCall_4_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleForStatement15304);
-            lv_collectionExpression_6_0=ruleExpression();
+            pushFollow(FOLLOW_ruleExpression_in_ruleForStatement15259);
+            lv_collectionExpression_4_0=ruleExpression();
 
             state._fsp--;
             if (state.failed) return current;
@@ -19657,7 +19579,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                      		set(
                      			current, 
                      			"collectionExpression",
-                      		lv_collectionExpression_6_0, 
+                      		lv_collectionExpression_4_0, 
                       		"Expression");
               	        afterParserOrEnumRuleCall();
               	    
@@ -19668,36 +19590,36 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6819:2: (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )?
-            int alt100=2;
-            int LA100_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6799:2: (otherlv_5= 'while' ( (lv_condition_6_0= ruleExpression ) ) )?
+            int alt99=2;
+            int LA99_0 = input.LA(1);
 
-            if ( (LA100_0==68) ) {
-                alt100=1;
+            if ( (LA99_0==79) ) {
+                alt99=1;
             }
-            switch (alt100) {
+            switch (alt99) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6819:4: otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6799:4: otherlv_5= 'while' ( (lv_condition_6_0= ruleExpression ) )
                     {
-                    otherlv_7=(Token)match(input,68,FOLLOW_68_in_ruleForStatement15317); if (state.failed) return current;
+                    otherlv_5=(Token)match(input,79,FOLLOW_79_in_ruleForStatement15272); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getSemicolonKeyword_5_0());
+                          	newLeafNode(otherlv_5, grammarAccess.getForStatementAccess().getWhileKeyword_5_0());
                           
                     }
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6823:1: ( (lv_condition_8_0= ruleExpression ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6824:1: (lv_condition_8_0= ruleExpression )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6803:1: ( (lv_condition_6_0= ruleExpression ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6804:1: (lv_condition_6_0= ruleExpression )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6824:1: (lv_condition_8_0= ruleExpression )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6825:3: lv_condition_8_0= ruleExpression
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6804:1: (lv_condition_6_0= ruleExpression )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6805:3: lv_condition_6_0= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getForStatementAccess().getConditionExpressionParserRuleCall_5_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleExpression_in_ruleForStatement15338);
-                    lv_condition_8_0=ruleExpression();
+                    pushFollow(FOLLOW_ruleExpression_in_ruleForStatement15293);
+                    lv_condition_6_0=ruleExpression();
 
                     state._fsp--;
                     if (state.failed) return current;
@@ -19709,7 +19631,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                              		set(
                              			current, 
                              			"condition",
-                              		lv_condition_8_0, 
+                              		lv_condition_6_0, 
                               		"Expression");
                       	        afterParserOrEnumRuleCall();
                       	    
@@ -19726,25 +19648,25 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,35,FOLLOW_35_in_ruleForStatement15352); if (state.failed) return current;
+            otherlv_7=(Token)match(input,35,FOLLOW_35_in_ruleForStatement15307); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_9, grammarAccess.getForStatementAccess().getRightParenthesisKeyword_6());
+                  	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getRightParenthesisKeyword_6());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6845:1: ( (lv_body_10_0= ruleStatement ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6846:1: (lv_body_10_0= ruleStatement )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6825:1: ( (lv_body_8_0= ruleStatement ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6826:1: (lv_body_8_0= ruleStatement )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6846:1: (lv_body_10_0= ruleStatement )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6847:3: lv_body_10_0= ruleStatement
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6826:1: (lv_body_8_0= ruleStatement )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6827:3: lv_body_8_0= ruleStatement
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getForStatementAccess().getBodyStatementParserRuleCall_7_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleStatement_in_ruleForStatement15373);
-            lv_body_10_0=ruleStatement();
+            pushFollow(FOLLOW_ruleStatement_in_ruleForStatement15328);
+            lv_body_8_0=ruleStatement();
 
             state._fsp--;
             if (state.failed) return current;
@@ -19756,7 +19678,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                      		set(
                      			current, 
                      			"body",
-                      		lv_body_10_0, 
+                      		lv_body_8_0, 
                       		"Statement");
               	        afterParserOrEnumRuleCall();
               	    
@@ -19790,7 +19712,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDoWhileStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6871:1: entryRuleDoWhileStatement returns [EObject current=null] : iv_ruleDoWhileStatement= ruleDoWhileStatement EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6851:1: entryRuleDoWhileStatement returns [EObject current=null] : iv_ruleDoWhileStatement= ruleDoWhileStatement EOF ;
     public final EObject entryRuleDoWhileStatement() throws RecognitionException {
         EObject current = null;
 
@@ -19798,13 +19720,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6872:2: (iv_ruleDoWhileStatement= ruleDoWhileStatement EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6873:2: iv_ruleDoWhileStatement= ruleDoWhileStatement EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6852:2: (iv_ruleDoWhileStatement= ruleDoWhileStatement EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6853:2: iv_ruleDoWhileStatement= ruleDoWhileStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getDoWhileStatementRule()); 
             }
-            pushFollow(FOLLOW_ruleDoWhileStatement_in_entryRuleDoWhileStatement15409);
+            pushFollow(FOLLOW_ruleDoWhileStatement_in_entryRuleDoWhileStatement15364);
             iv_ruleDoWhileStatement=ruleDoWhileStatement();
 
             state._fsp--;
@@ -19812,7 +19734,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleDoWhileStatement; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDoWhileStatement15419); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDoWhileStatement15374); if (state.failed) return current;
 
             }
 
@@ -19830,7 +19752,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDoWhileStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6880:1: ruleDoWhileStatement returns [EObject current=null] : (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6860:1: ruleDoWhileStatement returns [EObject current=null] : (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' ) ;
     public final EObject ruleDoWhileStatement() throws RecognitionException {
         EObject current = null;
 
@@ -19847,30 +19769,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6883:28: ( (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6884:1: (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6863:28: ( (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6864:1: (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6884:1: (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6884:3: otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6864:1: (otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6864:3: otherlv_0= 'do' ( (lv_body_1_0= ruleStatement ) ) otherlv_2= 'while' otherlv_3= '(' ( (lv_condition_4_0= ruleExpression ) ) otherlv_5= ')' otherlv_6= ';'
             {
-            otherlv_0=(Token)match(input,80,FOLLOW_80_in_ruleDoWhileStatement15456); if (state.failed) return current;
+            otherlv_0=(Token)match(input,80,FOLLOW_80_in_ruleDoWhileStatement15411); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getDoWhileStatementAccess().getDoKeyword_0());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6888:1: ( (lv_body_1_0= ruleStatement ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6889:1: (lv_body_1_0= ruleStatement )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6868:1: ( (lv_body_1_0= ruleStatement ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6869:1: (lv_body_1_0= ruleStatement )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6889:1: (lv_body_1_0= ruleStatement )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6890:3: lv_body_1_0= ruleStatement
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6869:1: (lv_body_1_0= ruleStatement )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6870:3: lv_body_1_0= ruleStatement
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getDoWhileStatementAccess().getBodyStatementParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleStatement_in_ruleDoWhileStatement15477);
+            pushFollow(FOLLOW_ruleStatement_in_ruleDoWhileStatement15432);
             lv_body_1_0=ruleStatement();
 
             state._fsp--;
@@ -19894,30 +19816,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,79,FOLLOW_79_in_ruleDoWhileStatement15489); if (state.failed) return current;
+            otherlv_2=(Token)match(input,79,FOLLOW_79_in_ruleDoWhileStatement15444); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getDoWhileStatementAccess().getWhileKeyword_2());
                   
             }
-            otherlv_3=(Token)match(input,34,FOLLOW_34_in_ruleDoWhileStatement15501); if (state.failed) return current;
+            otherlv_3=(Token)match(input,34,FOLLOW_34_in_ruleDoWhileStatement15456); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_3, grammarAccess.getDoWhileStatementAccess().getLeftParenthesisKeyword_3());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6914:1: ( (lv_condition_4_0= ruleExpression ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6915:1: (lv_condition_4_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6894:1: ( (lv_condition_4_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6895:1: (lv_condition_4_0= ruleExpression )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6915:1: (lv_condition_4_0= ruleExpression )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6916:3: lv_condition_4_0= ruleExpression
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6895:1: (lv_condition_4_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6896:3: lv_condition_4_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getDoWhileStatementAccess().getConditionExpressionParserRuleCall_4_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleDoWhileStatement15522);
+            pushFollow(FOLLOW_ruleExpression_in_ruleDoWhileStatement15477);
             lv_condition_4_0=ruleExpression();
 
             state._fsp--;
@@ -19941,13 +19863,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleDoWhileStatement15534); if (state.failed) return current;
+            otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleDoWhileStatement15489); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_5, grammarAccess.getDoWhileStatementAccess().getRightParenthesisKeyword_5());
                   
             }
-            otherlv_6=(Token)match(input,68,FOLLOW_68_in_ruleDoWhileStatement15546); if (state.failed) return current;
+            otherlv_6=(Token)match(input,68,FOLLOW_68_in_ruleDoWhileStatement15501); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_6, grammarAccess.getDoWhileStatementAccess().getSemicolonKeyword_6());
@@ -19976,7 +19898,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleContinueStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6948:1: entryRuleContinueStatement returns [EObject current=null] : iv_ruleContinueStatement= ruleContinueStatement EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6928:1: entryRuleContinueStatement returns [EObject current=null] : iv_ruleContinueStatement= ruleContinueStatement EOF ;
     public final EObject entryRuleContinueStatement() throws RecognitionException {
         EObject current = null;
 
@@ -19984,13 +19906,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6949:2: (iv_ruleContinueStatement= ruleContinueStatement EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6950:2: iv_ruleContinueStatement= ruleContinueStatement EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6929:2: (iv_ruleContinueStatement= ruleContinueStatement EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6930:2: iv_ruleContinueStatement= ruleContinueStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getContinueStatementRule()); 
             }
-            pushFollow(FOLLOW_ruleContinueStatement_in_entryRuleContinueStatement15582);
+            pushFollow(FOLLOW_ruleContinueStatement_in_entryRuleContinueStatement15537);
             iv_ruleContinueStatement=ruleContinueStatement();
 
             state._fsp--;
@@ -19998,7 +19920,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleContinueStatement; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleContinueStatement15592); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleContinueStatement15547); if (state.failed) return current;
 
             }
 
@@ -20016,7 +19938,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleContinueStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6957:1: ruleContinueStatement returns [EObject current=null] : ( () otherlv_1= 'continue' otherlv_2= ';' ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6937:1: ruleContinueStatement returns [EObject current=null] : ( () otherlv_1= 'continue' otherlv_2= ';' ) ;
     public final EObject ruleContinueStatement() throws RecognitionException {
         EObject current = null;
 
@@ -20026,14 +19948,14 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6960:28: ( ( () otherlv_1= 'continue' otherlv_2= ';' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6961:1: ( () otherlv_1= 'continue' otherlv_2= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6940:28: ( ( () otherlv_1= 'continue' otherlv_2= ';' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6941:1: ( () otherlv_1= 'continue' otherlv_2= ';' )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6961:1: ( () otherlv_1= 'continue' otherlv_2= ';' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6961:2: () otherlv_1= 'continue' otherlv_2= ';'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6941:1: ( () otherlv_1= 'continue' otherlv_2= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6941:2: () otherlv_1= 'continue' otherlv_2= ';'
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6961:2: ()
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6962:5: 
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6941:2: ()
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6942:5: 
             {
             if ( state.backtracking==0 ) {
 
@@ -20045,13 +19967,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,81,FOLLOW_81_in_ruleContinueStatement15638); if (state.failed) return current;
+            otherlv_1=(Token)match(input,81,FOLLOW_81_in_ruleContinueStatement15593); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getContinueStatementAccess().getContinueKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,68,FOLLOW_68_in_ruleContinueStatement15650); if (state.failed) return current;
+            otherlv_2=(Token)match(input,68,FOLLOW_68_in_ruleContinueStatement15605); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getContinueStatementAccess().getSemicolonKeyword_2());
@@ -20080,7 +20002,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBreakStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6983:1: entryRuleBreakStatement returns [EObject current=null] : iv_ruleBreakStatement= ruleBreakStatement EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6963:1: entryRuleBreakStatement returns [EObject current=null] : iv_ruleBreakStatement= ruleBreakStatement EOF ;
     public final EObject entryRuleBreakStatement() throws RecognitionException {
         EObject current = null;
 
@@ -20088,13 +20010,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6984:2: (iv_ruleBreakStatement= ruleBreakStatement EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6985:2: iv_ruleBreakStatement= ruleBreakStatement EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6964:2: (iv_ruleBreakStatement= ruleBreakStatement EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6965:2: iv_ruleBreakStatement= ruleBreakStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBreakStatementRule()); 
             }
-            pushFollow(FOLLOW_ruleBreakStatement_in_entryRuleBreakStatement15686);
+            pushFollow(FOLLOW_ruleBreakStatement_in_entryRuleBreakStatement15641);
             iv_ruleBreakStatement=ruleBreakStatement();
 
             state._fsp--;
@@ -20102,7 +20024,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleBreakStatement; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBreakStatement15696); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBreakStatement15651); if (state.failed) return current;
 
             }
 
@@ -20120,7 +20042,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBreakStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6992:1: ruleBreakStatement returns [EObject current=null] : ( () otherlv_1= 'break' otherlv_2= ';' ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6972:1: ruleBreakStatement returns [EObject current=null] : ( () otherlv_1= 'break' otherlv_2= ';' ) ;
     public final EObject ruleBreakStatement() throws RecognitionException {
         EObject current = null;
 
@@ -20130,14 +20052,14 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6995:28: ( ( () otherlv_1= 'break' otherlv_2= ';' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6996:1: ( () otherlv_1= 'break' otherlv_2= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6975:28: ( ( () otherlv_1= 'break' otherlv_2= ';' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6976:1: ( () otherlv_1= 'break' otherlv_2= ';' )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6996:1: ( () otherlv_1= 'break' otherlv_2= ';' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6996:2: () otherlv_1= 'break' otherlv_2= ';'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6976:1: ( () otherlv_1= 'break' otherlv_2= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6976:2: () otherlv_1= 'break' otherlv_2= ';'
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6996:2: ()
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6997:5: 
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6976:2: ()
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6977:5: 
             {
             if ( state.backtracking==0 ) {
 
@@ -20149,13 +20071,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,82,FOLLOW_82_in_ruleBreakStatement15742); if (state.failed) return current;
+            otherlv_1=(Token)match(input,82,FOLLOW_82_in_ruleBreakStatement15697); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_1, grammarAccess.getBreakStatementAccess().getBreakKeyword_1());
                   
             }
-            otherlv_2=(Token)match(input,68,FOLLOW_68_in_ruleBreakStatement15754); if (state.failed) return current;
+            otherlv_2=(Token)match(input,68,FOLLOW_68_in_ruleBreakStatement15709); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getBreakStatementAccess().getSemicolonKeyword_2());
@@ -20184,7 +20106,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleReturnStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7018:1: entryRuleReturnStatement returns [EObject current=null] : iv_ruleReturnStatement= ruleReturnStatement EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6998:1: entryRuleReturnStatement returns [EObject current=null] : iv_ruleReturnStatement= ruleReturnStatement EOF ;
     public final EObject entryRuleReturnStatement() throws RecognitionException {
         EObject current = null;
 
@@ -20192,13 +20114,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7019:2: (iv_ruleReturnStatement= ruleReturnStatement EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7020:2: iv_ruleReturnStatement= ruleReturnStatement EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6999:2: (iv_ruleReturnStatement= ruleReturnStatement EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7000:2: iv_ruleReturnStatement= ruleReturnStatement EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getReturnStatementRule()); 
             }
-            pushFollow(FOLLOW_ruleReturnStatement_in_entryRuleReturnStatement15790);
+            pushFollow(FOLLOW_ruleReturnStatement_in_entryRuleReturnStatement15745);
             iv_ruleReturnStatement=ruleReturnStatement();
 
             state._fsp--;
@@ -20206,7 +20128,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleReturnStatement; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleReturnStatement15800); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleReturnStatement15755); if (state.failed) return current;
 
             }
 
@@ -20224,7 +20146,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleReturnStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7027:1: ruleReturnStatement returns [EObject current=null] : (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7007:1: ruleReturnStatement returns [EObject current=null] : (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' ) ;
     public final EObject ruleReturnStatement() throws RecognitionException {
         EObject current = null;
 
@@ -20236,30 +20158,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7030:28: ( (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7031:1: (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7010:28: ( (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7011:1: (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7031:1: (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7031:3: otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7011:1: (otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7011:3: otherlv_0= 'return' ( (lv_expression_1_0= ruleExpression ) ) otherlv_2= ';'
             {
-            otherlv_0=(Token)match(input,83,FOLLOW_83_in_ruleReturnStatement15837); if (state.failed) return current;
+            otherlv_0=(Token)match(input,83,FOLLOW_83_in_ruleReturnStatement15792); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getReturnStatementAccess().getReturnKeyword_0());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7035:1: ( (lv_expression_1_0= ruleExpression ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7036:1: (lv_expression_1_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7015:1: ( (lv_expression_1_0= ruleExpression ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7016:1: (lv_expression_1_0= ruleExpression )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7036:1: (lv_expression_1_0= ruleExpression )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7037:3: lv_expression_1_0= ruleExpression
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7016:1: (lv_expression_1_0= ruleExpression )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7017:3: lv_expression_1_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getReturnStatementAccess().getExpressionExpressionParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleReturnStatement15858);
+            pushFollow(FOLLOW_ruleExpression_in_ruleReturnStatement15813);
             lv_expression_1_0=ruleExpression();
 
             state._fsp--;
@@ -20283,7 +20205,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,68,FOLLOW_68_in_ruleReturnStatement15870); if (state.failed) return current;
+            otherlv_2=(Token)match(input,68,FOLLOW_68_in_ruleReturnStatement15825); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_2, grammarAccess.getReturnStatementAccess().getSemicolonKeyword_2());
@@ -20312,7 +20234,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnit"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7065:1: entryRuleUnit returns [EObject current=null] : iv_ruleUnit= ruleUnit EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7045:1: entryRuleUnit returns [EObject current=null] : iv_ruleUnit= ruleUnit EOF ;
     public final EObject entryRuleUnit() throws RecognitionException {
         EObject current = null;
 
@@ -20320,13 +20242,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7066:2: (iv_ruleUnit= ruleUnit EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7067:2: iv_ruleUnit= ruleUnit EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7046:2: (iv_ruleUnit= ruleUnit EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7047:2: iv_ruleUnit= ruleUnit EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUnitRule()); 
             }
-            pushFollow(FOLLOW_ruleUnit_in_entryRuleUnit15906);
+            pushFollow(FOLLOW_ruleUnit_in_entryRuleUnit15861);
             iv_ruleUnit=ruleUnit();
 
             state._fsp--;
@@ -20334,7 +20256,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleUnit; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnit15916); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnit15871); if (state.failed) return current;
 
             }
 
@@ -20352,7 +20274,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnit"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7074:1: ruleUnit returns [EObject current=null] : ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7054:1: ruleUnit returns [EObject current=null] : ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) ) ;
     public final EObject ruleUnit() throws RecognitionException {
         EObject current = null;
 
@@ -20371,14 +20293,14 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7077:28: ( ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7078:1: ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7057:28: ( ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7058:1: ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7078:1: ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7078:2: () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7058:1: ( () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7058:2: () ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7078:2: ()
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7079:5: 
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7058:2: ()
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7059:5: 
             {
             if ( state.backtracking==0 ) {
 
@@ -20390,51 +20312,51 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7084:2: ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) )
-            int alt102=3;
-            int LA102_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7064:2: ( (otherlv_1= '(' otherlv_2= ')' ) | (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' ) | ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) ) )
+            int alt101=3;
+            int LA101_0 = input.LA(1);
 
-            if ( (LA102_0==34) ) {
-                int LA102_1 = input.LA(2);
+            if ( (LA101_0==34) ) {
+                int LA101_1 = input.LA(2);
 
-                if ( (LA102_1==35) ) {
-                    alt102=1;
+                if ( (LA101_1==35) ) {
+                    alt101=1;
                 }
-                else if ( ((LA102_1>=RULE_ID && LA102_1<=RULE_ONE)) ) {
-                    alt102=2;
+                else if ( ((LA101_1>=RULE_ID && LA101_1<=RULE_ONE)) ) {
+                    alt101=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 102, 1, input);
+                        new NoViableAltException("", 101, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( (LA102_0==EOF||(LA102_0>=RULE_ID && LA102_0<=RULE_N)||LA102_0==25||LA102_0==28||(LA102_0>=32 && LA102_0<=33)||LA102_0==35||(LA102_0>=37 && LA102_0<=46)||(LA102_0>=53 && LA102_0<=54)||LA102_0==56||(LA102_0>=58 && LA102_0<=59)||(LA102_0>=61 && LA102_0<=71)||LA102_0==75||(LA102_0>=84 && LA102_0<=86)||(LA102_0>=94 && LA102_0<=100)||LA102_0==102) ) {
-                alt102=3;
+            else if ( (LA101_0==EOF||(LA101_0>=RULE_ID && LA101_0<=RULE_N)||LA101_0==25||LA101_0==28||(LA101_0>=32 && LA101_0<=33)||LA101_0==35||(LA101_0>=37 && LA101_0<=46)||(LA101_0>=53 && LA101_0<=54)||LA101_0==56||(LA101_0>=58 && LA101_0<=59)||(LA101_0>=61 && LA101_0<=71)||LA101_0==75||LA101_0==79||(LA101_0>=84 && LA101_0<=86)||(LA101_0>=94 && LA101_0<=100)||LA101_0==102) ) {
+                alt101=3;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 102, 0, input);
+                    new NoViableAltException("", 101, 0, input);
 
                 throw nvae;
             }
-            switch (alt102) {
+            switch (alt101) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7084:3: (otherlv_1= '(' otherlv_2= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7064:3: (otherlv_1= '(' otherlv_2= ')' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7084:3: (otherlv_1= '(' otherlv_2= ')' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7084:5: otherlv_1= '(' otherlv_2= ')'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7064:3: (otherlv_1= '(' otherlv_2= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7064:5: otherlv_1= '(' otherlv_2= ')'
                     {
-                    otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleUnit15964); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleUnit15919); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getUnitAccess().getLeftParenthesisKeyword_1_0_0());
                           
                     }
-                    otherlv_2=(Token)match(input,35,FOLLOW_35_in_ruleUnit15976); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,35,FOLLOW_35_in_ruleUnit15931); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getUnitAccess().getRightParenthesisKeyword_1_0_1());
@@ -20447,29 +20369,29 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7093:6: (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7073:6: (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7093:6: (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7093:8: otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7073:6: (otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7073:8: otherlv_3= '(' ( (lv_numerator_4_0= ruleUnitNumerator ) ) (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )? otherlv_7= ')'
                     {
-                    otherlv_3=(Token)match(input,34,FOLLOW_34_in_ruleUnit15996); if (state.failed) return current;
+                    otherlv_3=(Token)match(input,34,FOLLOW_34_in_ruleUnit15951); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_3, grammarAccess.getUnitAccess().getLeftParenthesisKeyword_1_1_0());
                           
                     }
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7097:1: ( (lv_numerator_4_0= ruleUnitNumerator ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7098:1: (lv_numerator_4_0= ruleUnitNumerator )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7077:1: ( (lv_numerator_4_0= ruleUnitNumerator ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7078:1: (lv_numerator_4_0= ruleUnitNumerator )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7098:1: (lv_numerator_4_0= ruleUnitNumerator )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7099:3: lv_numerator_4_0= ruleUnitNumerator
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7078:1: (lv_numerator_4_0= ruleUnitNumerator )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7079:3: lv_numerator_4_0= ruleUnitNumerator
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getUnitAccess().getNumeratorUnitNumeratorParserRuleCall_1_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleUnitNumerator_in_ruleUnit16017);
+                    pushFollow(FOLLOW_ruleUnitNumerator_in_ruleUnit15972);
                     lv_numerator_4_0=ruleUnitNumerator();
 
                     state._fsp--;
@@ -20493,35 +20415,35 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7115:2: (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )?
-                    int alt101=2;
-                    int LA101_0 = input.LA(1);
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7095:2: (otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) ) )?
+                    int alt100=2;
+                    int LA100_0 = input.LA(1);
 
-                    if ( (LA101_0==84) ) {
-                        alt101=1;
+                    if ( (LA100_0==84) ) {
+                        alt100=1;
                     }
-                    switch (alt101) {
+                    switch (alt100) {
                         case 1 :
-                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7115:4: otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) )
+                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7095:4: otherlv_5= '/' ( (lv_denominator_6_0= ruleUnitDenominator ) )
                             {
-                            otherlv_5=(Token)match(input,84,FOLLOW_84_in_ruleUnit16030); if (state.failed) return current;
+                            otherlv_5=(Token)match(input,84,FOLLOW_84_in_ruleUnit15985); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                                   	newLeafNode(otherlv_5, grammarAccess.getUnitAccess().getSolidusKeyword_1_1_2_0());
                                   
                             }
-                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7119:1: ( (lv_denominator_6_0= ruleUnitDenominator ) )
-                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7120:1: (lv_denominator_6_0= ruleUnitDenominator )
+                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7099:1: ( (lv_denominator_6_0= ruleUnitDenominator ) )
+                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7100:1: (lv_denominator_6_0= ruleUnitDenominator )
                             {
-                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7120:1: (lv_denominator_6_0= ruleUnitDenominator )
-                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7121:3: lv_denominator_6_0= ruleUnitDenominator
+                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7100:1: (lv_denominator_6_0= ruleUnitDenominator )
+                            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7101:3: lv_denominator_6_0= ruleUnitDenominator
                             {
                             if ( state.backtracking==0 ) {
                                
                               	        newCompositeNode(grammarAccess.getUnitAccess().getDenominatorUnitDenominatorParserRuleCall_1_1_2_1_0()); 
                               	    
                             }
-                            pushFollow(FOLLOW_ruleUnitDenominator_in_ruleUnit16051);
+                            pushFollow(FOLLOW_ruleUnitDenominator_in_ruleUnit16006);
                             lv_denominator_6_0=ruleUnitDenominator();
 
                             state._fsp--;
@@ -20551,7 +20473,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_7=(Token)match(input,35,FOLLOW_35_in_ruleUnit16065); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,35,FOLLOW_35_in_ruleUnit16020); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_7, grammarAccess.getUnitAccess().getRightParenthesisKeyword_1_1_3());
@@ -20564,20 +20486,20 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7142:6: ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7122:6: ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7142:6: ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7143:1: (lv_numerator_8_0= ruleImplicitUnitNumerator )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7122:6: ( (lv_numerator_8_0= ruleImplicitUnitNumerator ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7123:1: (lv_numerator_8_0= ruleImplicitUnitNumerator )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7143:1: (lv_numerator_8_0= ruleImplicitUnitNumerator )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7144:3: lv_numerator_8_0= ruleImplicitUnitNumerator
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7123:1: (lv_numerator_8_0= ruleImplicitUnitNumerator )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7124:3: lv_numerator_8_0= ruleImplicitUnitNumerator
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getUnitAccess().getNumeratorImplicitUnitNumeratorParserRuleCall_1_2_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleImplicitUnitNumerator_in_ruleUnit16093);
+                    pushFollow(FOLLOW_ruleImplicitUnitNumerator_in_ruleUnit16048);
                     lv_numerator_8_0=ruleImplicitUnitNumerator();
 
                     state._fsp--;
@@ -20630,7 +20552,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExplicitUnit"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7168:1: entryRuleExplicitUnit returns [EObject current=null] : iv_ruleExplicitUnit= ruleExplicitUnit EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7148:1: entryRuleExplicitUnit returns [EObject current=null] : iv_ruleExplicitUnit= ruleExplicitUnit EOF ;
     public final EObject entryRuleExplicitUnit() throws RecognitionException {
         EObject current = null;
 
@@ -20638,13 +20560,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7169:2: (iv_ruleExplicitUnit= ruleExplicitUnit EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7170:2: iv_ruleExplicitUnit= ruleExplicitUnit EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7149:2: (iv_ruleExplicitUnit= ruleExplicitUnit EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7150:2: iv_ruleExplicitUnit= ruleExplicitUnit EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExplicitUnitRule()); 
             }
-            pushFollow(FOLLOW_ruleExplicitUnit_in_entryRuleExplicitUnit16130);
+            pushFollow(FOLLOW_ruleExplicitUnit_in_entryRuleExplicitUnit16085);
             iv_ruleExplicitUnit=ruleExplicitUnit();
 
             state._fsp--;
@@ -20652,7 +20574,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleExplicitUnit; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleExplicitUnit16140); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleExplicitUnit16095); if (state.failed) return current;
 
             }
 
@@ -20670,7 +20592,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExplicitUnit"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7177:1: ruleExplicitUnit returns [EObject current=null] : (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7157:1: ruleExplicitUnit returns [EObject current=null] : (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' ) ;
     public final EObject ruleExplicitUnit() throws RecognitionException {
         EObject current = null;
 
@@ -20685,30 +20607,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7180:28: ( (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7181:1: (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7160:28: ( (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7161:1: (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7181:1: (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7181:3: otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')'
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7161:1: (otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7161:3: otherlv_0= '(' ( (lv_numerator_1_0= ruleUnitNumerator ) ) (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )? otherlv_4= ')'
             {
-            otherlv_0=(Token)match(input,34,FOLLOW_34_in_ruleExplicitUnit16177); if (state.failed) return current;
+            otherlv_0=(Token)match(input,34,FOLLOW_34_in_ruleExplicitUnit16132); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_0, grammarAccess.getExplicitUnitAccess().getLeftParenthesisKeyword_0());
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7185:1: ( (lv_numerator_1_0= ruleUnitNumerator ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7186:1: (lv_numerator_1_0= ruleUnitNumerator )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7165:1: ( (lv_numerator_1_0= ruleUnitNumerator ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7166:1: (lv_numerator_1_0= ruleUnitNumerator )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7186:1: (lv_numerator_1_0= ruleUnitNumerator )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7187:3: lv_numerator_1_0= ruleUnitNumerator
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7166:1: (lv_numerator_1_0= ruleUnitNumerator )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7167:3: lv_numerator_1_0= ruleUnitNumerator
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getExplicitUnitAccess().getNumeratorUnitNumeratorParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleUnitNumerator_in_ruleExplicitUnit16198);
+            pushFollow(FOLLOW_ruleUnitNumerator_in_ruleExplicitUnit16153);
             lv_numerator_1_0=ruleUnitNumerator();
 
             state._fsp--;
@@ -20732,35 +20654,35 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7203:2: (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )?
-            int alt103=2;
-            int LA103_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7183:2: (otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) ) )?
+            int alt102=2;
+            int LA102_0 = input.LA(1);
 
-            if ( (LA103_0==84) ) {
-                alt103=1;
+            if ( (LA102_0==84) ) {
+                alt102=1;
             }
-            switch (alt103) {
+            switch (alt102) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7203:4: otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7183:4: otherlv_2= '/' ( (lv_denominator_3_0= ruleUnitDenominator ) )
                     {
-                    otherlv_2=(Token)match(input,84,FOLLOW_84_in_ruleExplicitUnit16211); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,84,FOLLOW_84_in_ruleExplicitUnit16166); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_2, grammarAccess.getExplicitUnitAccess().getSolidusKeyword_2_0());
                           
                     }
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7207:1: ( (lv_denominator_3_0= ruleUnitDenominator ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7208:1: (lv_denominator_3_0= ruleUnitDenominator )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7187:1: ( (lv_denominator_3_0= ruleUnitDenominator ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7188:1: (lv_denominator_3_0= ruleUnitDenominator )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7208:1: (lv_denominator_3_0= ruleUnitDenominator )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7209:3: lv_denominator_3_0= ruleUnitDenominator
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7188:1: (lv_denominator_3_0= ruleUnitDenominator )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7189:3: lv_denominator_3_0= ruleUnitDenominator
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getExplicitUnitAccess().getDenominatorUnitDenominatorParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleUnitDenominator_in_ruleExplicitUnit16232);
+                    pushFollow(FOLLOW_ruleUnitDenominator_in_ruleExplicitUnit16187);
                     lv_denominator_3_0=ruleUnitDenominator();
 
                     state._fsp--;
@@ -20790,7 +20712,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,35,FOLLOW_35_in_ruleExplicitUnit16246); if (state.failed) return current;
+            otherlv_4=(Token)match(input,35,FOLLOW_35_in_ruleExplicitUnit16201); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                   	newLeafNode(otherlv_4, grammarAccess.getExplicitUnitAccess().getRightParenthesisKeyword_3());
@@ -20819,7 +20741,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnitNumerator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7237:1: entryRuleUnitNumerator returns [EObject current=null] : iv_ruleUnitNumerator= ruleUnitNumerator EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7217:1: entryRuleUnitNumerator returns [EObject current=null] : iv_ruleUnitNumerator= ruleUnitNumerator EOF ;
     public final EObject entryRuleUnitNumerator() throws RecognitionException {
         EObject current = null;
 
@@ -20827,13 +20749,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7238:2: (iv_ruleUnitNumerator= ruleUnitNumerator EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7239:2: iv_ruleUnitNumerator= ruleUnitNumerator EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7218:2: (iv_ruleUnitNumerator= ruleUnitNumerator EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7219:2: iv_ruleUnitNumerator= ruleUnitNumerator EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUnitNumeratorRule()); 
             }
-            pushFollow(FOLLOW_ruleUnitNumerator_in_entryRuleUnitNumerator16282);
+            pushFollow(FOLLOW_ruleUnitNumerator_in_entryRuleUnitNumerator16237);
             iv_ruleUnitNumerator=ruleUnitNumerator();
 
             state._fsp--;
@@ -20841,7 +20763,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleUnitNumerator; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitNumerator16292); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitNumerator16247); if (state.failed) return current;
 
             }
 
@@ -20859,7 +20781,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitNumerator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7246:1: ruleUnitNumerator returns [EObject current=null] : ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7226:1: ruleUnitNumerator returns [EObject current=null] : ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) ) ;
     public final EObject ruleUnitNumerator() throws RecognitionException {
         EObject current = null;
 
@@ -20873,35 +20795,35 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7249:28: ( ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7250:1: ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7229:28: ( ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7230:1: ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7250:1: ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) )
-            int alt105=2;
-            int LA105_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7230:1: ( ( () this_ONE_1= RULE_ONE ) | ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* ) )
+            int alt104=2;
+            int LA104_0 = input.LA(1);
 
-            if ( (LA105_0==RULE_ONE) ) {
-                alt105=1;
+            if ( (LA104_0==RULE_ONE) ) {
+                alt104=1;
             }
-            else if ( ((LA105_0>=RULE_ID && LA105_0<=RULE_N)) ) {
-                alt105=2;
+            else if ( ((LA104_0>=RULE_ID && LA104_0<=RULE_N)) ) {
+                alt104=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 105, 0, input);
+                    new NoViableAltException("", 104, 0, input);
 
                 throw nvae;
             }
-            switch (alt105) {
+            switch (alt104) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7250:2: ( () this_ONE_1= RULE_ONE )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7230:2: ( () this_ONE_1= RULE_ONE )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7250:2: ( () this_ONE_1= RULE_ONE )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7250:3: () this_ONE_1= RULE_ONE
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7230:2: ( () this_ONE_1= RULE_ONE )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7230:3: () this_ONE_1= RULE_ONE
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7250:3: ()
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7251:5: 
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7230:3: ()
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7231:5: 
                     {
                     if ( state.backtracking==0 ) {
 
@@ -20913,7 +20835,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    this_ONE_1=(Token)match(input,RULE_ONE,FOLLOW_RULE_ONE_in_ruleUnitNumerator16338); if (state.failed) return current;
+                    this_ONE_1=(Token)match(input,RULE_ONE,FOLLOW_RULE_ONE_in_ruleUnitNumerator16293); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
                           newLeafNode(this_ONE_1, grammarAccess.getUnitNumeratorAccess().getONETerminalRuleCall_0_1()); 
@@ -20926,23 +20848,23 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7261:6: ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7241:6: ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7261:6: ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7261:7: ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )*
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7241:6: ( ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7241:7: ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )*
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7261:7: ( (lv_factors_2_0= ruleUnitFactor ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7262:1: (lv_factors_2_0= ruleUnitFactor )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7241:7: ( (lv_factors_2_0= ruleUnitFactor ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7242:1: (lv_factors_2_0= ruleUnitFactor )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7262:1: (lv_factors_2_0= ruleUnitFactor )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7263:3: lv_factors_2_0= ruleUnitFactor
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7242:1: (lv_factors_2_0= ruleUnitFactor )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7243:3: lv_factors_2_0= ruleUnitFactor
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getUnitNumeratorAccess().getFactorsUnitFactorParserRuleCall_1_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16366);
+                    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16321);
                     lv_factors_2_0=ruleUnitFactor();
 
                     state._fsp--;
@@ -20966,39 +20888,39 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7279:2: (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )*
-                    loop104:
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7259:2: (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )*
+                    loop103:
                     do {
-                        int alt104=2;
-                        int LA104_0 = input.LA(1);
+                        int alt103=2;
+                        int LA103_0 = input.LA(1);
 
-                        if ( (LA104_0==85) ) {
-                            alt104=1;
+                        if ( (LA103_0==85) ) {
+                            alt103=1;
                         }
 
 
-                        switch (alt104) {
+                        switch (alt103) {
                     	case 1 :
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7279:4: otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7259:4: otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,85,FOLLOW_85_in_ruleUnitNumerator16379); if (state.failed) return current;
+                    	    otherlv_3=(Token)match(input,85,FOLLOW_85_in_ruleUnitNumerator16334); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_3, grammarAccess.getUnitNumeratorAccess().getAsteriskKeyword_1_1_0());
                     	          
                     	    }
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7283:1: ( (lv_factors_4_0= ruleUnitFactor ) )
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7284:1: (lv_factors_4_0= ruleUnitFactor )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7263:1: ( (lv_factors_4_0= ruleUnitFactor ) )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7264:1: (lv_factors_4_0= ruleUnitFactor )
                     	    {
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7284:1: (lv_factors_4_0= ruleUnitFactor )
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7285:3: lv_factors_4_0= ruleUnitFactor
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7264:1: (lv_factors_4_0= ruleUnitFactor )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7265:3: lv_factors_4_0= ruleUnitFactor
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
                     	      	        newCompositeNode(grammarAccess.getUnitNumeratorAccess().getFactorsUnitFactorParserRuleCall_1_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16400);
+                    	    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16355);
                     	    lv_factors_4_0=ruleUnitFactor();
 
                     	    state._fsp--;
@@ -21027,7 +20949,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop104;
+                    	    break loop103;
                         }
                     } while (true);
 
@@ -21060,7 +20982,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleImplicitUnitNumerator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7309:1: entryRuleImplicitUnitNumerator returns [EObject current=null] : iv_ruleImplicitUnitNumerator= ruleImplicitUnitNumerator EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7289:1: entryRuleImplicitUnitNumerator returns [EObject current=null] : iv_ruleImplicitUnitNumerator= ruleImplicitUnitNumerator EOF ;
     public final EObject entryRuleImplicitUnitNumerator() throws RecognitionException {
         EObject current = null;
 
@@ -21068,13 +20990,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7310:2: (iv_ruleImplicitUnitNumerator= ruleImplicitUnitNumerator EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7311:2: iv_ruleImplicitUnitNumerator= ruleImplicitUnitNumerator EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7290:2: (iv_ruleImplicitUnitNumerator= ruleImplicitUnitNumerator EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7291:2: iv_ruleImplicitUnitNumerator= ruleImplicitUnitNumerator EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getImplicitUnitNumeratorRule()); 
             }
-            pushFollow(FOLLOW_ruleImplicitUnitNumerator_in_entryRuleImplicitUnitNumerator16439);
+            pushFollow(FOLLOW_ruleImplicitUnitNumerator_in_entryRuleImplicitUnitNumerator16394);
             iv_ruleImplicitUnitNumerator=ruleImplicitUnitNumerator();
 
             state._fsp--;
@@ -21082,7 +21004,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleImplicitUnitNumerator; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleImplicitUnitNumerator16449); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleImplicitUnitNumerator16404); if (state.failed) return current;
 
             }
 
@@ -21100,18 +21022,18 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleImplicitUnitNumerator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7318:1: ruleImplicitUnitNumerator returns [EObject current=null] : () ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7298:1: ruleImplicitUnitNumerator returns [EObject current=null] : () ;
     public final EObject ruleImplicitUnitNumerator() throws RecognitionException {
         EObject current = null;
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7321:28: ( () )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7322:1: ()
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7301:28: ( () )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7302:1: ()
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7322:1: ()
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7323:5: 
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7302:1: ()
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7303:5: 
             {
             if ( state.backtracking==0 ) {
 
@@ -21138,7 +21060,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnitDenominator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7336:1: entryRuleUnitDenominator returns [EObject current=null] : iv_ruleUnitDenominator= ruleUnitDenominator EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7316:1: entryRuleUnitDenominator returns [EObject current=null] : iv_ruleUnitDenominator= ruleUnitDenominator EOF ;
     public final EObject entryRuleUnitDenominator() throws RecognitionException {
         EObject current = null;
 
@@ -21146,13 +21068,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7337:2: (iv_ruleUnitDenominator= ruleUnitDenominator EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7338:2: iv_ruleUnitDenominator= ruleUnitDenominator EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7317:2: (iv_ruleUnitDenominator= ruleUnitDenominator EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7318:2: iv_ruleUnitDenominator= ruleUnitDenominator EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUnitDenominatorRule()); 
             }
-            pushFollow(FOLLOW_ruleUnitDenominator_in_entryRuleUnitDenominator16517);
+            pushFollow(FOLLOW_ruleUnitDenominator_in_entryRuleUnitDenominator16472);
             iv_ruleUnitDenominator=ruleUnitDenominator();
 
             state._fsp--;
@@ -21160,7 +21082,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleUnitDenominator; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitDenominator16527); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitDenominator16482); if (state.failed) return current;
 
             }
 
@@ -21178,7 +21100,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitDenominator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7345:1: ruleUnitDenominator returns [EObject current=null] : ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7325:1: ruleUnitDenominator returns [EObject current=null] : ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) ) ;
     public final EObject ruleUnitDenominator() throws RecognitionException {
         EObject current = null;
 
@@ -21195,42 +21117,42 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7348:28: ( ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7349:1: ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7328:28: ( ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7329:1: ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7349:1: ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) )
-            int alt107=2;
-            int LA107_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7329:1: ( ( (lv_factors_0_0= ruleUnitFactor ) ) | (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' ) )
+            int alt106=2;
+            int LA106_0 = input.LA(1);
 
-            if ( ((LA107_0>=RULE_ID && LA107_0<=RULE_N)) ) {
-                alt107=1;
+            if ( ((LA106_0>=RULE_ID && LA106_0<=RULE_N)) ) {
+                alt106=1;
             }
-            else if ( (LA107_0==34) ) {
-                alt107=2;
+            else if ( (LA106_0==34) ) {
+                alt106=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 107, 0, input);
+                    new NoViableAltException("", 106, 0, input);
 
                 throw nvae;
             }
-            switch (alt107) {
+            switch (alt106) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7349:2: ( (lv_factors_0_0= ruleUnitFactor ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7329:2: ( (lv_factors_0_0= ruleUnitFactor ) )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7349:2: ( (lv_factors_0_0= ruleUnitFactor ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7350:1: (lv_factors_0_0= ruleUnitFactor )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7329:2: ( (lv_factors_0_0= ruleUnitFactor ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7330:1: (lv_factors_0_0= ruleUnitFactor )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7350:1: (lv_factors_0_0= ruleUnitFactor )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7351:3: lv_factors_0_0= ruleUnitFactor
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7330:1: (lv_factors_0_0= ruleUnitFactor )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7331:3: lv_factors_0_0= ruleUnitFactor
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getUnitDenominatorAccess().getFactorsUnitFactorParserRuleCall_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16573);
+                    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16528);
                     lv_factors_0_0=ruleUnitFactor();
 
                     state._fsp--;
@@ -21258,29 +21180,29 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7368:6: (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7348:6: (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7368:6: (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7368:8: otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7348:6: (otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7348:8: otherlv_1= '(' ( (lv_factors_2_0= ruleUnitFactor ) ) (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )* otherlv_5= ')'
                     {
-                    otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleUnitDenominator16592); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,34,FOLLOW_34_in_ruleUnitDenominator16547); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getUnitDenominatorAccess().getLeftParenthesisKeyword_1_0());
                           
                     }
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7372:1: ( (lv_factors_2_0= ruleUnitFactor ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7373:1: (lv_factors_2_0= ruleUnitFactor )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7352:1: ( (lv_factors_2_0= ruleUnitFactor ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7353:1: (lv_factors_2_0= ruleUnitFactor )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7373:1: (lv_factors_2_0= ruleUnitFactor )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7374:3: lv_factors_2_0= ruleUnitFactor
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7353:1: (lv_factors_2_0= ruleUnitFactor )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7354:3: lv_factors_2_0= ruleUnitFactor
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getUnitDenominatorAccess().getFactorsUnitFactorParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16613);
+                    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16568);
                     lv_factors_2_0=ruleUnitFactor();
 
                     state._fsp--;
@@ -21304,39 +21226,39 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7390:2: (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )*
-                    loop106:
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7370:2: (otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) ) )*
+                    loop105:
                     do {
-                        int alt106=2;
-                        int LA106_0 = input.LA(1);
+                        int alt105=2;
+                        int LA105_0 = input.LA(1);
 
-                        if ( (LA106_0==85) ) {
-                            alt106=1;
+                        if ( (LA105_0==85) ) {
+                            alt105=1;
                         }
 
 
-                        switch (alt106) {
+                        switch (alt105) {
                     	case 1 :
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7390:4: otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7370:4: otherlv_3= '*' ( (lv_factors_4_0= ruleUnitFactor ) )
                     	    {
-                    	    otherlv_3=(Token)match(input,85,FOLLOW_85_in_ruleUnitDenominator16626); if (state.failed) return current;
+                    	    otherlv_3=(Token)match(input,85,FOLLOW_85_in_ruleUnitDenominator16581); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
                     	          	newLeafNode(otherlv_3, grammarAccess.getUnitDenominatorAccess().getAsteriskKeyword_1_2_0());
                     	          
                     	    }
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7394:1: ( (lv_factors_4_0= ruleUnitFactor ) )
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7395:1: (lv_factors_4_0= ruleUnitFactor )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7374:1: ( (lv_factors_4_0= ruleUnitFactor ) )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7375:1: (lv_factors_4_0= ruleUnitFactor )
                     	    {
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7395:1: (lv_factors_4_0= ruleUnitFactor )
-                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7396:3: lv_factors_4_0= ruleUnitFactor
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7375:1: (lv_factors_4_0= ruleUnitFactor )
+                    	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7376:3: lv_factors_4_0= ruleUnitFactor
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
                     	      	        newCompositeNode(grammarAccess.getUnitDenominatorAccess().getFactorsUnitFactorParserRuleCall_1_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16647);
+                    	    pushFollow(FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16602);
                     	    lv_factors_4_0=ruleUnitFactor();
 
                     	    state._fsp--;
@@ -21365,11 +21287,11 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop106;
+                    	    break loop105;
                         }
                     } while (true);
 
-                    otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleUnitDenominator16661); if (state.failed) return current;
+                    otherlv_5=(Token)match(input,35,FOLLOW_35_in_ruleUnitDenominator16616); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_5, grammarAccess.getUnitDenominatorAccess().getRightParenthesisKeyword_1_3());
@@ -21404,7 +21326,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnitFactor"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7424:1: entryRuleUnitFactor returns [EObject current=null] : iv_ruleUnitFactor= ruleUnitFactor EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7404:1: entryRuleUnitFactor returns [EObject current=null] : iv_ruleUnitFactor= ruleUnitFactor EOF ;
     public final EObject entryRuleUnitFactor() throws RecognitionException {
         EObject current = null;
 
@@ -21412,13 +21334,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7425:2: (iv_ruleUnitFactor= ruleUnitFactor EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7426:2: iv_ruleUnitFactor= ruleUnitFactor EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7405:2: (iv_ruleUnitFactor= ruleUnitFactor EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7406:2: iv_ruleUnitFactor= ruleUnitFactor EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUnitFactorRule()); 
             }
-            pushFollow(FOLLOW_ruleUnitFactor_in_entryRuleUnitFactor16698);
+            pushFollow(FOLLOW_ruleUnitFactor_in_entryRuleUnitFactor16653);
             iv_ruleUnitFactor=ruleUnitFactor();
 
             state._fsp--;
@@ -21426,7 +21348,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleUnitFactor; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitFactor16708); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitFactor16663); if (state.failed) return current;
 
             }
 
@@ -21444,7 +21366,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitFactor"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7433:1: ruleUnitFactor returns [EObject current=null] : ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7413:1: ruleUnitFactor returns [EObject current=null] : ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? ) ;
     public final EObject ruleUnitFactor() throws RecognitionException {
         EObject current = null;
 
@@ -21457,24 +21379,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7436:28: ( ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7437:1: ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7416:28: ( ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7417:1: ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7437:1: ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7437:2: ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )?
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7417:1: ( ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )? )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7417:2: ( (lv_symbol_0_0= ruleValidID ) ) (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )?
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7437:2: ( (lv_symbol_0_0= ruleValidID ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7438:1: (lv_symbol_0_0= ruleValidID )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7417:2: ( (lv_symbol_0_0= ruleValidID ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7418:1: (lv_symbol_0_0= ruleValidID )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7438:1: (lv_symbol_0_0= ruleValidID )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7439:3: lv_symbol_0_0= ruleValidID
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7418:1: (lv_symbol_0_0= ruleValidID )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7419:3: lv_symbol_0_0= ruleValidID
             {
             if ( state.backtracking==0 ) {
                
               	        newCompositeNode(grammarAccess.getUnitFactorAccess().getSymbolValidIDParserRuleCall_0_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleUnitFactor16754);
+            pushFollow(FOLLOW_ruleValidID_in_ruleUnitFactor16709);
             lv_symbol_0_0=ruleValidID();
 
             state._fsp--;
@@ -21498,35 +21420,35 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7455:2: (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )?
-            int alt108=2;
-            int LA108_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7435:2: (otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) ) )?
+            int alt107=2;
+            int LA107_0 = input.LA(1);
 
-            if ( (LA108_0==86) ) {
-                alt108=1;
+            if ( (LA107_0==86) ) {
+                alt107=1;
             }
-            switch (alt108) {
+            switch (alt107) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7455:4: otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7435:4: otherlv_1= '^' ( (lv_exponent_2_0= ruleUnitExponent ) )
                     {
-                    otherlv_1=(Token)match(input,86,FOLLOW_86_in_ruleUnitFactor16767); if (state.failed) return current;
+                    otherlv_1=(Token)match(input,86,FOLLOW_86_in_ruleUnitFactor16722); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                           	newLeafNode(otherlv_1, grammarAccess.getUnitFactorAccess().getCircumflexAccentKeyword_1_0());
                           
                     }
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7459:1: ( (lv_exponent_2_0= ruleUnitExponent ) )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7460:1: (lv_exponent_2_0= ruleUnitExponent )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7439:1: ( (lv_exponent_2_0= ruleUnitExponent ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7440:1: (lv_exponent_2_0= ruleUnitExponent )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7460:1: (lv_exponent_2_0= ruleUnitExponent )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7461:3: lv_exponent_2_0= ruleUnitExponent
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7440:1: (lv_exponent_2_0= ruleUnitExponent )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7441:3: lv_exponent_2_0= ruleUnitExponent
                     {
                     if ( state.backtracking==0 ) {
                        
                       	        newCompositeNode(grammarAccess.getUnitFactorAccess().getExponentUnitExponentParserRuleCall_1_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleUnitExponent_in_ruleUnitFactor16788);
+                    pushFollow(FOLLOW_ruleUnitExponent_in_ruleUnitFactor16743);
                     lv_exponent_2_0=ruleUnitExponent();
 
                     state._fsp--;
@@ -21579,7 +21501,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleUnitExponent"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7485:1: entryRuleUnitExponent returns [String current=null] : iv_ruleUnitExponent= ruleUnitExponent EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7465:1: entryRuleUnitExponent returns [String current=null] : iv_ruleUnitExponent= ruleUnitExponent EOF ;
     public final String entryRuleUnitExponent() throws RecognitionException {
         String current = null;
 
@@ -21587,13 +21509,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7486:2: (iv_ruleUnitExponent= ruleUnitExponent EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7487:2: iv_ruleUnitExponent= ruleUnitExponent EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7466:2: (iv_ruleUnitExponent= ruleUnitExponent EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7467:2: iv_ruleUnitExponent= ruleUnitExponent EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getUnitExponentRule()); 
             }
-            pushFollow(FOLLOW_ruleUnitExponent_in_entryRuleUnitExponent16827);
+            pushFollow(FOLLOW_ruleUnitExponent_in_entryRuleUnitExponent16782);
             iv_ruleUnitExponent=ruleUnitExponent();
 
             state._fsp--;
@@ -21601,7 +21523,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleUnitExponent.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitExponent16838); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnitExponent16793); if (state.failed) return current;
 
             }
 
@@ -21619,7 +21541,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitExponent"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7494:1: ruleUnitExponent returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '-' )? this_ValidInt_1= ruleValidInt ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7474:1: ruleUnitExponent returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : ( (kw= '-' )? this_ValidInt_1= ruleValidInt ) ;
     public final AntlrDatatypeRuleToken ruleUnitExponent() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -21630,24 +21552,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7497:28: ( ( (kw= '-' )? this_ValidInt_1= ruleValidInt ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7498:1: ( (kw= '-' )? this_ValidInt_1= ruleValidInt )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7477:28: ( ( (kw= '-' )? this_ValidInt_1= ruleValidInt ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7478:1: ( (kw= '-' )? this_ValidInt_1= ruleValidInt )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7498:1: ( (kw= '-' )? this_ValidInt_1= ruleValidInt )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7498:2: (kw= '-' )? this_ValidInt_1= ruleValidInt
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7478:1: ( (kw= '-' )? this_ValidInt_1= ruleValidInt )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7478:2: (kw= '-' )? this_ValidInt_1= ruleValidInt
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7498:2: (kw= '-' )?
-            int alt109=2;
-            int LA109_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7478:2: (kw= '-' )?
+            int alt108=2;
+            int LA108_0 = input.LA(1);
 
-            if ( (LA109_0==71) ) {
-                alt109=1;
+            if ( (LA108_0==71) ) {
+                alt108=1;
             }
-            switch (alt109) {
+            switch (alt108) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7499:2: kw= '-'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7479:2: kw= '-'
                     {
-                    kw=(Token)match(input,71,FOLLOW_71_in_ruleUnitExponent16877); if (state.failed) return current;
+                    kw=(Token)match(input,71,FOLLOW_71_in_ruleUnitExponent16832); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current.merge(kw);
@@ -21665,7 +21587,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                       newCompositeNode(grammarAccess.getUnitExponentAccess().getValidIntParserRuleCall_1()); 
                   
             }
-            pushFollow(FOLLOW_ruleValidInt_in_ruleUnitExponent16901);
+            pushFollow(FOLLOW_ruleValidInt_in_ruleUnitExponent16856);
             this_ValidInt_1=ruleValidInt();
 
             state._fsp--;
@@ -21703,7 +21625,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleQualifiedName"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7523:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7503:1: entryRuleQualifiedName returns [String current=null] : iv_ruleQualifiedName= ruleQualifiedName EOF ;
     public final String entryRuleQualifiedName() throws RecognitionException {
         String current = null;
 
@@ -21711,13 +21633,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7524:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7525:2: iv_ruleQualifiedName= ruleQualifiedName EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7504:2: (iv_ruleQualifiedName= ruleQualifiedName EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7505:2: iv_ruleQualifiedName= ruleQualifiedName EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getQualifiedNameRule()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName16947);
+            pushFollow(FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName16902);
             iv_ruleQualifiedName=ruleQualifiedName();
 
             state._fsp--;
@@ -21725,7 +21647,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleQualifiedName.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName16958); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleQualifiedName16913); if (state.failed) return current;
 
             }
 
@@ -21743,7 +21665,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleQualifiedName"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7532:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7512:1: ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* ) ;
     public final AntlrDatatypeRuleToken ruleQualifiedName() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -21756,18 +21678,18 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7535:28: ( (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7536:1: (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7515:28: ( (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7516:1: (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7536:1: (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7537:5: this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7516:1: (this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )* )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7517:5: this_ValidID_0= ruleValidID (kw= '::' this_ValidID_2= ruleValidID )*
             {
             if ( state.backtracking==0 ) {
                
                       newCompositeNode(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_0()); 
                   
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName17005);
+            pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName16960);
             this_ValidID_0=ruleValidID();
 
             state._fsp--;
@@ -21782,22 +21704,22 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                       afterParserOrEnumRuleCall();
                   
             }
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7547:1: (kw= '::' this_ValidID_2= ruleValidID )*
-            loop110:
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7527:1: (kw= '::' this_ValidID_2= ruleValidID )*
+            loop109:
             do {
-                int alt110=2;
-                int LA110_0 = input.LA(1);
+                int alt109=2;
+                int LA109_0 = input.LA(1);
 
-                if ( (LA110_0==87) ) {
-                    alt110=1;
+                if ( (LA109_0==87) ) {
+                    alt109=1;
                 }
 
 
-                switch (alt110) {
+                switch (alt109) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7548:2: kw= '::' this_ValidID_2= ruleValidID
+            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7528:2: kw= '::' this_ValidID_2= ruleValidID
             	    {
-            	    kw=(Token)match(input,87,FOLLOW_87_in_ruleQualifiedName17024); if (state.failed) return current;
+            	    kw=(Token)match(input,87,FOLLOW_87_in_ruleQualifiedName16979); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	              current.merge(kw);
@@ -21809,7 +21731,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	              newCompositeNode(grammarAccess.getQualifiedNameAccess().getValidIDParserRuleCall_1_1()); 
             	          
             	    }
-            	    pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName17046);
+            	    pushFollow(FOLLOW_ruleValidID_in_ruleQualifiedName17001);
             	    this_ValidID_2=ruleValidID();
 
             	    state._fsp--;
@@ -21829,7 +21751,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop110;
+            	    break loop109;
                 }
             } while (true);
 
@@ -21856,7 +21778,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleValidInt"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7572:1: entryRuleValidInt returns [String current=null] : iv_ruleValidInt= ruleValidInt EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7552:1: entryRuleValidInt returns [String current=null] : iv_ruleValidInt= ruleValidInt EOF ;
     public final String entryRuleValidInt() throws RecognitionException {
         String current = null;
 
@@ -21864,13 +21786,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7573:2: (iv_ruleValidInt= ruleValidInt EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7574:2: iv_ruleValidInt= ruleValidInt EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7553:2: (iv_ruleValidInt= ruleValidInt EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7554:2: iv_ruleValidInt= ruleValidInt EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getValidIntRule()); 
             }
-            pushFollow(FOLLOW_ruleValidInt_in_entryRuleValidInt17094);
+            pushFollow(FOLLOW_ruleValidInt_in_entryRuleValidInt17049);
             iv_ruleValidInt=ruleValidInt();
 
             state._fsp--;
@@ -21878,7 +21800,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleValidInt.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleValidInt17105); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleValidInt17060); if (state.failed) return current;
 
             }
 
@@ -21896,7 +21818,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValidInt"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7581:1: ruleValidInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7561:1: ruleValidInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT ) ;
     public final AntlrDatatypeRuleToken ruleValidInt() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -21906,31 +21828,31 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7584:28: ( (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7585:1: (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7564:28: ( (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7565:1: (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7585:1: (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT )
-            int alt111=2;
-            int LA111_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7565:1: (this_ONE_0= RULE_ONE | this_INT_1= RULE_INT )
+            int alt110=2;
+            int LA110_0 = input.LA(1);
 
-            if ( (LA111_0==RULE_ONE) ) {
-                alt111=1;
+            if ( (LA110_0==RULE_ONE) ) {
+                alt110=1;
             }
-            else if ( (LA111_0==RULE_INT) ) {
-                alt111=2;
+            else if ( (LA110_0==RULE_INT) ) {
+                alt110=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 111, 0, input);
+                    new NoViableAltException("", 110, 0, input);
 
                 throw nvae;
             }
-            switch (alt111) {
+            switch (alt110) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7585:6: this_ONE_0= RULE_ONE
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7565:6: this_ONE_0= RULE_ONE
                     {
-                    this_ONE_0=(Token)match(input,RULE_ONE,FOLLOW_RULE_ONE_in_ruleValidInt17145); if (state.failed) return current;
+                    this_ONE_0=(Token)match(input,RULE_ONE,FOLLOW_RULE_ONE_in_ruleValidInt17100); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_ONE_0);
@@ -21945,9 +21867,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7593:10: this_INT_1= RULE_INT
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7573:10: this_INT_1= RULE_INT
                     {
-                    this_INT_1=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleValidInt17171); if (state.failed) return current;
+                    this_INT_1=(Token)match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleValidInt17126); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_INT_1);
@@ -21984,7 +21906,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleValidID"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7608:1: entryRuleValidID returns [String current=null] : iv_ruleValidID= ruleValidID EOF ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7588:1: entryRuleValidID returns [String current=null] : iv_ruleValidID= ruleValidID EOF ;
     public final String entryRuleValidID() throws RecognitionException {
         String current = null;
 
@@ -21992,13 +21914,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7609:2: (iv_ruleValidID= ruleValidID EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7610:2: iv_ruleValidID= ruleValidID EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7589:2: (iv_ruleValidID= ruleValidID EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7590:2: iv_ruleValidID= ruleValidID EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getValidIDRule()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_entryRuleValidID17217);
+            pushFollow(FOLLOW_ruleValidID_in_entryRuleValidID17172);
             iv_ruleValidID=ruleValidID();
 
             state._fsp--;
@@ -22006,7 +21928,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
                current =iv_ruleValidID.getText(); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleValidID17228); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleValidID17183); if (state.failed) return current;
 
             }
 
@@ -22024,7 +21946,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleValidID"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7617:1: ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7597:1: ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID ) ;
     public final AntlrDatatypeRuleToken ruleValidID() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -22037,50 +21959,50 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7620:28: ( (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7621:1: (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7600:28: ( (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7601:1: (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7621:1: (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID )
-            int alt112=5;
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7601:1: (this_N_0= RULE_N | this_IJ_1= RULE_IJ | this_E_2= RULE_E | this_EXPIJ_3= RULE_EXPIJ | this_ID_4= RULE_ID )
+            int alt111=5;
             switch ( input.LA(1) ) {
             case RULE_N:
                 {
-                alt112=1;
+                alt111=1;
                 }
                 break;
             case RULE_IJ:
                 {
-                alt112=2;
+                alt111=2;
                 }
                 break;
             case RULE_E:
                 {
-                alt112=3;
+                alt111=3;
                 }
                 break;
             case RULE_EXPIJ:
                 {
-                alt112=4;
+                alt111=4;
                 }
                 break;
             case RULE_ID:
                 {
-                alt112=5;
+                alt111=5;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 112, 0, input);
+                    new NoViableAltException("", 111, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt112) {
+            switch (alt111) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7621:6: this_N_0= RULE_N
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7601:6: this_N_0= RULE_N
                     {
-                    this_N_0=(Token)match(input,RULE_N,FOLLOW_RULE_N_in_ruleValidID17268); if (state.failed) return current;
+                    this_N_0=(Token)match(input,RULE_N,FOLLOW_RULE_N_in_ruleValidID17223); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_N_0);
@@ -22095,9 +22017,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7629:10: this_IJ_1= RULE_IJ
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7609:10: this_IJ_1= RULE_IJ
                     {
-                    this_IJ_1=(Token)match(input,RULE_IJ,FOLLOW_RULE_IJ_in_ruleValidID17294); if (state.failed) return current;
+                    this_IJ_1=(Token)match(input,RULE_IJ,FOLLOW_RULE_IJ_in_ruleValidID17249); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_IJ_1);
@@ -22112,9 +22034,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7637:10: this_E_2= RULE_E
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7617:10: this_E_2= RULE_E
                     {
-                    this_E_2=(Token)match(input,RULE_E,FOLLOW_RULE_E_in_ruleValidID17320); if (state.failed) return current;
+                    this_E_2=(Token)match(input,RULE_E,FOLLOW_RULE_E_in_ruleValidID17275); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_E_2);
@@ -22129,9 +22051,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7645:10: this_EXPIJ_3= RULE_EXPIJ
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7625:10: this_EXPIJ_3= RULE_EXPIJ
                     {
-                    this_EXPIJ_3=(Token)match(input,RULE_EXPIJ,FOLLOW_RULE_EXPIJ_in_ruleValidID17346); if (state.failed) return current;
+                    this_EXPIJ_3=(Token)match(input,RULE_EXPIJ,FOLLOW_RULE_EXPIJ_in_ruleValidID17301); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_EXPIJ_3);
@@ -22146,9 +22068,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7653:10: this_ID_4= RULE_ID
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7633:10: this_ID_4= RULE_ID
                     {
-                    this_ID_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValidID17372); if (state.failed) return current;
+                    this_ID_4=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleValidID17327); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       		current.merge(this_ID_4);
@@ -22185,7 +22107,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFunctionKind"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7668:1: ruleFunctionKind returns [Enumerator current=null] : ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7648:1: ruleFunctionKind returns [Enumerator current=null] : ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) ) ;
     public final Enumerator ruleFunctionKind() throws RecognitionException {
         Enumerator current = null;
 
@@ -22194,34 +22116,34 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7670:28: ( ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7671:1: ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7650:28: ( ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7651:1: ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7671:1: ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) )
-            int alt113=2;
-            int LA113_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7651:1: ( (enumLiteral_0= 'stateful' ) | (enumLiteral_1= 'continuous' ) )
+            int alt112=2;
+            int LA112_0 = input.LA(1);
 
-            if ( (LA113_0==88) ) {
-                alt113=1;
+            if ( (LA112_0==88) ) {
+                alt112=1;
             }
-            else if ( (LA113_0==89) ) {
-                alt113=2;
+            else if ( (LA112_0==89) ) {
+                alt112=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 113, 0, input);
+                    new NoViableAltException("", 112, 0, input);
 
                 throw nvae;
             }
-            switch (alt113) {
+            switch (alt112) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7671:2: (enumLiteral_0= 'stateful' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7651:2: (enumLiteral_0= 'stateful' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7671:2: (enumLiteral_0= 'stateful' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7671:4: enumLiteral_0= 'stateful'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7651:2: (enumLiteral_0= 'stateful' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7651:4: enumLiteral_0= 'stateful'
                     {
-                    enumLiteral_0=(Token)match(input,88,FOLLOW_88_in_ruleFunctionKind17431); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,88,FOLLOW_88_in_ruleFunctionKind17386); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getFunctionKindAccess().getStatefulEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22235,12 +22157,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7677:6: (enumLiteral_1= 'continuous' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7657:6: (enumLiteral_1= 'continuous' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7677:6: (enumLiteral_1= 'continuous' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7677:8: enumLiteral_1= 'continuous'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7657:6: (enumLiteral_1= 'continuous' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7657:8: enumLiteral_1= 'continuous'
                     {
-                    enumLiteral_1=(Token)match(input,89,FOLLOW_89_in_ruleFunctionKind17448); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,89,FOLLOW_89_in_ruleFunctionKind17403); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getFunctionKindAccess().getContinuousEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22276,7 +22198,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssertionStatusKind"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7687:1: ruleAssertionStatusKind returns [Enumerator current=null] : ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7667:1: ruleAssertionStatusKind returns [Enumerator current=null] : ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) ) ;
     public final Enumerator ruleAssertionStatusKind() throws RecognitionException {
         Enumerator current = null;
 
@@ -22287,48 +22209,48 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7689:28: ( ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7690:1: ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7669:28: ( ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7670:1: ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7690:1: ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) )
-            int alt114=4;
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7670:1: ( (enumLiteral_0= 'info' ) | (enumLiteral_1= 'warning' ) | (enumLiteral_2= 'error' ) | (enumLiteral_3= 'fatal' ) )
+            int alt113=4;
             switch ( input.LA(1) ) {
             case 90:
                 {
-                alt114=1;
+                alt113=1;
                 }
                 break;
             case 91:
                 {
-                alt114=2;
+                alt113=2;
                 }
                 break;
             case 92:
                 {
-                alt114=3;
+                alt113=3;
                 }
                 break;
             case 93:
                 {
-                alt114=4;
+                alt113=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 114, 0, input);
+                    new NoViableAltException("", 113, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt114) {
+            switch (alt113) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7690:2: (enumLiteral_0= 'info' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7670:2: (enumLiteral_0= 'info' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7690:2: (enumLiteral_0= 'info' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7690:4: enumLiteral_0= 'info'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7670:2: (enumLiteral_0= 'info' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7670:4: enumLiteral_0= 'info'
                     {
-                    enumLiteral_0=(Token)match(input,90,FOLLOW_90_in_ruleAssertionStatusKind17493); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,90,FOLLOW_90_in_ruleAssertionStatusKind17448); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getAssertionStatusKindAccess().getInfoEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22342,12 +22264,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7696:6: (enumLiteral_1= 'warning' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7676:6: (enumLiteral_1= 'warning' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7696:6: (enumLiteral_1= 'warning' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7696:8: enumLiteral_1= 'warning'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7676:6: (enumLiteral_1= 'warning' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7676:8: enumLiteral_1= 'warning'
                     {
-                    enumLiteral_1=(Token)match(input,91,FOLLOW_91_in_ruleAssertionStatusKind17510); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,91,FOLLOW_91_in_ruleAssertionStatusKind17465); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getAssertionStatusKindAccess().getWarningEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22361,12 +22283,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7702:6: (enumLiteral_2= 'error' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7682:6: (enumLiteral_2= 'error' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7702:6: (enumLiteral_2= 'error' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7702:8: enumLiteral_2= 'error'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7682:6: (enumLiteral_2= 'error' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7682:8: enumLiteral_2= 'error'
                     {
-                    enumLiteral_2=(Token)match(input,92,FOLLOW_92_in_ruleAssertionStatusKind17527); if (state.failed) return current;
+                    enumLiteral_2=(Token)match(input,92,FOLLOW_92_in_ruleAssertionStatusKind17482); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getAssertionStatusKindAccess().getErrorEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
@@ -22380,12 +22302,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7708:6: (enumLiteral_3= 'fatal' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7688:6: (enumLiteral_3= 'fatal' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7708:6: (enumLiteral_3= 'fatal' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7708:8: enumLiteral_3= 'fatal'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7688:6: (enumLiteral_3= 'fatal' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7688:8: enumLiteral_3= 'fatal'
                     {
-                    enumLiteral_3=(Token)match(input,93,FOLLOW_93_in_ruleAssertionStatusKind17544); if (state.failed) return current;
+                    enumLiteral_3=(Token)match(input,93,FOLLOW_93_in_ruleAssertionStatusKind17499); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getAssertionStatusKindAccess().getFatalEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
@@ -22421,7 +22343,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEqualityOperator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7718:1: ruleEqualityOperator returns [Enumerator current=null] : ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7698:1: ruleEqualityOperator returns [Enumerator current=null] : ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) ) ;
     public final Enumerator ruleEqualityOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22430,34 +22352,34 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7720:28: ( ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7721:1: ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7700:28: ( ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7701:1: ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7721:1: ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) )
-            int alt115=2;
-            int LA115_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7701:1: ( (enumLiteral_0= '==' ) | (enumLiteral_1= '!=' ) )
+            int alt114=2;
+            int LA114_0 = input.LA(1);
 
-            if ( (LA115_0==94) ) {
-                alt115=1;
+            if ( (LA114_0==94) ) {
+                alt114=1;
             }
-            else if ( (LA115_0==95) ) {
-                alt115=2;
+            else if ( (LA114_0==95) ) {
+                alt114=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 115, 0, input);
+                    new NoViableAltException("", 114, 0, input);
 
                 throw nvae;
             }
-            switch (alt115) {
+            switch (alt114) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7721:2: (enumLiteral_0= '==' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7701:2: (enumLiteral_0= '==' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7721:2: (enumLiteral_0= '==' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7721:4: enumLiteral_0= '=='
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7701:2: (enumLiteral_0= '==' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7701:4: enumLiteral_0= '=='
                     {
-                    enumLiteral_0=(Token)match(input,94,FOLLOW_94_in_ruleEqualityOperator17589); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,94,FOLLOW_94_in_ruleEqualityOperator17544); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getEqualityOperatorAccess().getEqualToEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22471,12 +22393,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7727:6: (enumLiteral_1= '!=' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7707:6: (enumLiteral_1= '!=' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7727:6: (enumLiteral_1= '!=' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7727:8: enumLiteral_1= '!='
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7707:6: (enumLiteral_1= '!=' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7707:8: enumLiteral_1= '!='
                     {
-                    enumLiteral_1=(Token)match(input,95,FOLLOW_95_in_ruleEqualityOperator17606); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,95,FOLLOW_95_in_ruleEqualityOperator17561); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getEqualityOperatorAccess().getNotEqualToEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22512,7 +22434,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelationalOperator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7737:1: ruleRelationalOperator returns [Enumerator current=null] : ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7717:1: ruleRelationalOperator returns [Enumerator current=null] : ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) ) ;
     public final Enumerator ruleRelationalOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22523,48 +22445,48 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7739:28: ( ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7740:1: ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7719:28: ( ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7720:1: ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7740:1: ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) )
-            int alt116=4;
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7720:1: ( (enumLiteral_0= '<' ) | (enumLiteral_1= '<=' ) | (enumLiteral_2= '>' ) | (enumLiteral_3= '>=' ) )
+            int alt115=4;
             switch ( input.LA(1) ) {
             case 32:
                 {
-                alt116=1;
+                alt115=1;
                 }
                 break;
             case 96:
                 {
-                alt116=2;
+                alt115=2;
                 }
                 break;
             case 33:
                 {
-                alt116=3;
+                alt115=3;
                 }
                 break;
             case 97:
                 {
-                alt116=4;
+                alt115=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 116, 0, input);
+                    new NoViableAltException("", 115, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt116) {
+            switch (alt115) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7740:2: (enumLiteral_0= '<' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7720:2: (enumLiteral_0= '<' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7740:2: (enumLiteral_0= '<' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7740:4: enumLiteral_0= '<'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7720:2: (enumLiteral_0= '<' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7720:4: enumLiteral_0= '<'
                     {
-                    enumLiteral_0=(Token)match(input,32,FOLLOW_32_in_ruleRelationalOperator17651); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,32,FOLLOW_32_in_ruleRelationalOperator17606); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getRelationalOperatorAccess().getLessThanEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22578,12 +22500,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7746:6: (enumLiteral_1= '<=' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7726:6: (enumLiteral_1= '<=' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7746:6: (enumLiteral_1= '<=' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7746:8: enumLiteral_1= '<='
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7726:6: (enumLiteral_1= '<=' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7726:8: enumLiteral_1= '<='
                     {
-                    enumLiteral_1=(Token)match(input,96,FOLLOW_96_in_ruleRelationalOperator17668); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,96,FOLLOW_96_in_ruleRelationalOperator17623); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getRelationalOperatorAccess().getLessThanOrEqualToEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22597,12 +22519,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7752:6: (enumLiteral_2= '>' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7732:6: (enumLiteral_2= '>' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7752:6: (enumLiteral_2= '>' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7752:8: enumLiteral_2= '>'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7732:6: (enumLiteral_2= '>' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7732:8: enumLiteral_2= '>'
                     {
-                    enumLiteral_2=(Token)match(input,33,FOLLOW_33_in_ruleRelationalOperator17685); if (state.failed) return current;
+                    enumLiteral_2=(Token)match(input,33,FOLLOW_33_in_ruleRelationalOperator17640); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getRelationalOperatorAccess().getGreaterThanEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
@@ -22616,12 +22538,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7758:6: (enumLiteral_3= '>=' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7738:6: (enumLiteral_3= '>=' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7758:6: (enumLiteral_3= '>=' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7758:8: enumLiteral_3= '>='
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7738:6: (enumLiteral_3= '>=' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7738:8: enumLiteral_3= '>='
                     {
-                    enumLiteral_3=(Token)match(input,97,FOLLOW_97_in_ruleRelationalOperator17702); if (state.failed) return current;
+                    enumLiteral_3=(Token)match(input,97,FOLLOW_97_in_ruleRelationalOperator17657); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getRelationalOperatorAccess().getGreaterThanOrEqualToEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
@@ -22657,7 +22579,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAdditiveOperator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7768:1: ruleAdditiveOperator returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7748:1: ruleAdditiveOperator returns [Enumerator current=null] : ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) ;
     public final Enumerator ruleAdditiveOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22666,34 +22588,34 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7770:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7771:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7750:28: ( ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7751:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7771:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
-            int alt117=2;
-            int LA117_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7751:1: ( (enumLiteral_0= '+' ) | (enumLiteral_1= '-' ) )
+            int alt116=2;
+            int LA116_0 = input.LA(1);
 
-            if ( (LA117_0==70) ) {
-                alt117=1;
+            if ( (LA116_0==70) ) {
+                alt116=1;
             }
-            else if ( (LA117_0==71) ) {
-                alt117=2;
+            else if ( (LA116_0==71) ) {
+                alt116=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 117, 0, input);
+                    new NoViableAltException("", 116, 0, input);
 
                 throw nvae;
             }
-            switch (alt117) {
+            switch (alt116) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7771:2: (enumLiteral_0= '+' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7751:2: (enumLiteral_0= '+' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7771:2: (enumLiteral_0= '+' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7771:4: enumLiteral_0= '+'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7751:2: (enumLiteral_0= '+' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7751:4: enumLiteral_0= '+'
                     {
-                    enumLiteral_0=(Token)match(input,70,FOLLOW_70_in_ruleAdditiveOperator17747); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,70,FOLLOW_70_in_ruleAdditiveOperator17702); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getAdditiveOperatorAccess().getAddEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22707,12 +22629,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7777:6: (enumLiteral_1= '-' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7757:6: (enumLiteral_1= '-' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7777:6: (enumLiteral_1= '-' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7777:8: enumLiteral_1= '-'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7757:6: (enumLiteral_1= '-' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7757:8: enumLiteral_1= '-'
                     {
-                    enumLiteral_1=(Token)match(input,71,FOLLOW_71_in_ruleAdditiveOperator17764); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,71,FOLLOW_71_in_ruleAdditiveOperator17719); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getAdditiveOperatorAccess().getSubtractEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22748,7 +22670,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicativeOperator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7787:1: ruleMultiplicativeOperator returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7767:1: ruleMultiplicativeOperator returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) ) ;
     public final Enumerator ruleMultiplicativeOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22759,48 +22681,48 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7789:28: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7790:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7769:28: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7770:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7790:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) )
-            int alt118=4;
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7770:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) )
+            int alt117=4;
             switch ( input.LA(1) ) {
             case 85:
                 {
-                alt118=1;
+                alt117=1;
                 }
                 break;
             case 84:
                 {
-                alt118=2;
+                alt117=2;
                 }
                 break;
             case 98:
                 {
-                alt118=3;
+                alt117=3;
                 }
                 break;
             case 99:
                 {
-                alt118=4;
+                alt117=4;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 118, 0, input);
+                    new NoViableAltException("", 117, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt118) {
+            switch (alt117) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7790:2: (enumLiteral_0= '*' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7770:2: (enumLiteral_0= '*' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7790:2: (enumLiteral_0= '*' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7790:4: enumLiteral_0= '*'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7770:2: (enumLiteral_0= '*' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7770:4: enumLiteral_0= '*'
                     {
-                    enumLiteral_0=(Token)match(input,85,FOLLOW_85_in_ruleMultiplicativeOperator17809); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,85,FOLLOW_85_in_ruleMultiplicativeOperator17764); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getMultiplicativeOperatorAccess().getMultiplyEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22814,12 +22736,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7796:6: (enumLiteral_1= '/' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7776:6: (enumLiteral_1= '/' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7796:6: (enumLiteral_1= '/' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7796:8: enumLiteral_1= '/'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7776:6: (enumLiteral_1= '/' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7776:8: enumLiteral_1= '/'
                     {
-                    enumLiteral_1=(Token)match(input,84,FOLLOW_84_in_ruleMultiplicativeOperator17826); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,84,FOLLOW_84_in_ruleMultiplicativeOperator17781); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getMultiplicativeOperatorAccess().getDivideEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22833,12 +22755,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7802:6: (enumLiteral_2= '.*' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7782:6: (enumLiteral_2= '.*' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7802:6: (enumLiteral_2= '.*' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7802:8: enumLiteral_2= '.*'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7782:6: (enumLiteral_2= '.*' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7782:8: enumLiteral_2= '.*'
                     {
-                    enumLiteral_2=(Token)match(input,98,FOLLOW_98_in_ruleMultiplicativeOperator17843); if (state.failed) return current;
+                    enumLiteral_2=(Token)match(input,98,FOLLOW_98_in_ruleMultiplicativeOperator17798); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getMultiplicativeOperatorAccess().getElementWiseMultiplyEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
@@ -22852,12 +22774,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7808:6: (enumLiteral_3= './' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7788:6: (enumLiteral_3= './' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7808:6: (enumLiteral_3= './' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7808:8: enumLiteral_3= './'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7788:6: (enumLiteral_3= './' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7788:8: enumLiteral_3= './'
                     {
-                    enumLiteral_3=(Token)match(input,99,FOLLOW_99_in_ruleMultiplicativeOperator17860); if (state.failed) return current;
+                    enumLiteral_3=(Token)match(input,99,FOLLOW_99_in_ruleMultiplicativeOperator17815); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
@@ -22893,7 +22815,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePowerOperator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7818:1: rulePowerOperator returns [Enumerator current=null] : ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7798:1: rulePowerOperator returns [Enumerator current=null] : ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) ;
     public final Enumerator rulePowerOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22902,34 +22824,34 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7820:28: ( ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7821:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7800:28: ( ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7801:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7821:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
-            int alt119=2;
-            int LA119_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7801:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
+            int alt118=2;
+            int LA118_0 = input.LA(1);
 
-            if ( (LA119_0==86) ) {
-                alt119=1;
+            if ( (LA118_0==86) ) {
+                alt118=1;
             }
-            else if ( (LA119_0==100) ) {
-                alt119=2;
+            else if ( (LA118_0==100) ) {
+                alt118=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 119, 0, input);
+                    new NoViableAltException("", 118, 0, input);
 
                 throw nvae;
             }
-            switch (alt119) {
+            switch (alt118) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7821:2: (enumLiteral_0= '^' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7801:2: (enumLiteral_0= '^' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7821:2: (enumLiteral_0= '^' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7821:4: enumLiteral_0= '^'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7801:2: (enumLiteral_0= '^' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7801:4: enumLiteral_0= '^'
                     {
-                    enumLiteral_0=(Token)match(input,86,FOLLOW_86_in_rulePowerOperator17905); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,86,FOLLOW_86_in_rulePowerOperator17860); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getPowerOperatorAccess().getPowerEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22943,12 +22865,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7827:6: (enumLiteral_1= '.^' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7807:6: (enumLiteral_1= '.^' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7827:6: (enumLiteral_1= '.^' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7827:8: enumLiteral_1= '.^'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7807:6: (enumLiteral_1= '.^' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7807:8: enumLiteral_1= '.^'
                     {
-                    enumLiteral_1=(Token)match(input,100,FOLLOW_100_in_rulePowerOperator17922); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,100,FOLLOW_100_in_rulePowerOperator17877); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getPowerOperatorAccess().getElementWisePowerEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22984,7 +22906,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryOperator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7837:1: ruleUnaryOperator returns [Enumerator current=null] : ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7817:1: ruleUnaryOperator returns [Enumerator current=null] : ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) ;
     public final Enumerator ruleUnaryOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22993,34 +22915,34 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7839:28: ( ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7840:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7819:28: ( ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7820:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7840:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
-            int alt120=2;
-            int LA120_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7820:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
+            int alt119=2;
+            int LA119_0 = input.LA(1);
 
-            if ( (LA120_0==71) ) {
-                alt120=1;
+            if ( (LA119_0==71) ) {
+                alt119=1;
             }
-            else if ( (LA120_0==101) ) {
-                alt120=2;
+            else if ( (LA119_0==101) ) {
+                alt119=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 120, 0, input);
+                    new NoViableAltException("", 119, 0, input);
 
                 throw nvae;
             }
-            switch (alt120) {
+            switch (alt119) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7840:2: (enumLiteral_0= '-' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7820:2: (enumLiteral_0= '-' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7840:2: (enumLiteral_0= '-' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7840:4: enumLiteral_0= '-'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7820:2: (enumLiteral_0= '-' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7820:4: enumLiteral_0= '-'
                     {
-                    enumLiteral_0=(Token)match(input,71,FOLLOW_71_in_ruleUnaryOperator17967); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,71,FOLLOW_71_in_ruleUnaryOperator17922); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getUnaryOperatorAccess().getNegateEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -23034,12 +22956,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7846:6: (enumLiteral_1= '!' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7826:6: (enumLiteral_1= '!' )
                     {
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7846:6: (enumLiteral_1= '!' )
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7846:8: enumLiteral_1= '!'
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7826:6: (enumLiteral_1= '!' )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7826:8: enumLiteral_1= '!'
                     {
-                    enumLiteral_1=(Token)match(input,101,FOLLOW_101_in_ruleUnaryOperator17984); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,101,FOLLOW_101_in_ruleUnaryOperator17939); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getUnaryOperatorAccess().getLogicalNotEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -23075,7 +22997,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePostfixOperator"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7856:1: rulePostfixOperator returns [Enumerator current=null] : (enumLiteral_0= '\\'' ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7836:1: rulePostfixOperator returns [Enumerator current=null] : (enumLiteral_0= '\\'' ) ;
     public final Enumerator rulePostfixOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -23083,13 +23005,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7858:28: ( (enumLiteral_0= '\\'' ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7859:1: (enumLiteral_0= '\\'' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7838:28: ( (enumLiteral_0= '\\'' ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7839:1: (enumLiteral_0= '\\'' )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7859:1: (enumLiteral_0= '\\'' )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7859:3: enumLiteral_0= '\\''
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7839:1: (enumLiteral_0= '\\'' )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7839:3: enumLiteral_0= '\\''
             {
-            enumLiteral_0=(Token)match(input,102,FOLLOW_102_in_rulePostfixOperator18028); if (state.failed) return current;
+            enumLiteral_0=(Token)match(input,102,FOLLOW_102_in_rulePostfixOperator17983); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current = grammarAccess.getPostfixOperatorAccess().getDerivativeEnumLiteralDeclaration().getEnumLiteral().getInstance();
@@ -23123,23 +23045,23 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2438:9: ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) )
         {
         // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2438:9: ( ( ( ( ruleBooleanType | ruleStringType ) ) ) | ( ( RULE_ID ) ) )
-        int alt122=2;
-        int LA122_0 = input.LA(1);
+        int alt121=2;
+        int LA121_0 = input.LA(1);
 
-        if ( ((LA122_0>=51 && LA122_0<=52)) ) {
-            alt122=1;
+        if ( ((LA121_0>=51 && LA121_0<=52)) ) {
+            alt121=1;
         }
-        else if ( (LA122_0==RULE_ID) ) {
-            alt122=2;
+        else if ( (LA121_0==RULE_ID) ) {
+            alt121=2;
         }
         else {
             if (state.backtracking>0) {state.failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("", 122, 0, input);
+                new NoViableAltException("", 121, 0, input);
 
             throw nvae;
         }
-        switch (alt122) {
+        switch (alt121) {
             case 1 :
                 // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2438:10: ( ( ( ruleBooleanType | ruleStringType ) ) )
                 {
@@ -23150,23 +23072,23 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2440:1: ( ruleBooleanType | ruleStringType )
                 {
                 // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2440:1: ( ruleBooleanType | ruleStringType )
-                int alt121=2;
-                int LA121_0 = input.LA(1);
+                int alt120=2;
+                int LA120_0 = input.LA(1);
 
-                if ( (LA121_0==51) ) {
-                    alt121=1;
+                if ( (LA120_0==51) ) {
+                    alt120=1;
                 }
-                else if ( (LA121_0==52) ) {
-                    alt121=2;
+                else if ( (LA120_0==52) ) {
+                    alt120=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 121, 0, input);
+                        new NoViableAltException("", 120, 0, input);
 
                     throw nvae;
                 }
-                switch (alt121) {
+                switch (alt120) {
                     case 1 :
                         // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:2441:1: ruleBooleanType
                         {
@@ -23234,23 +23156,23 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:3603:3: ( ( () ( ( ruleRelationalOperator ) ) ( ( ruleAdditiveExpression ) ) ) | ( () 'is' ( ( ruleDataTypeSpecifier ) ) ) )
         {
         // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:3603:3: ( ( () ( ( ruleRelationalOperator ) ) ( ( ruleAdditiveExpression ) ) ) | ( () 'is' ( ( ruleDataTypeSpecifier ) ) ) )
-        int alt123=2;
-        int LA123_0 = input.LA(1);
+        int alt122=2;
+        int LA122_0 = input.LA(1);
 
-        if ( ((LA123_0>=32 && LA123_0<=33)||(LA123_0>=96 && LA123_0<=97)) ) {
-            alt123=1;
+        if ( ((LA122_0>=32 && LA122_0<=33)||(LA122_0>=96 && LA122_0<=97)) ) {
+            alt122=1;
         }
-        else if ( (LA123_0==66) ) {
-            alt123=2;
+        else if ( (LA122_0==66) ) {
+            alt122=2;
         }
         else {
             if (state.backtracking>0) {state.failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("", 123, 0, input);
+                new NoViableAltException("", 122, 0, input);
 
             throw nvae;
         }
-        switch (alt123) {
+        switch (alt122) {
             case 1 :
                 // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:3603:4: ( () ( ( ruleRelationalOperator ) ) ( ( ruleAdditiveExpression ) ) )
                 {
@@ -23409,19 +23331,19 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     static final String DFA29_eotS =
         "\u00e1\uffff";
     static final String DFA29_eofS =
-        "\1\uffff\6\11\14\uffff\2\11\6\uffff\1\11\14\uffff\1\11\1\uffff\1"+
+        "\1\uffff\6\11\14\uffff\1\11\6\uffff\2\11\6\uffff\1\11\7\uffff\1"+
         "\11\3\uffff\1\11\3\uffff\1\11\3\uffff\1\11\u00aa\uffff";
     static final String DFA29_minS =
-        "\7\5\1\uffff\1\5\1\uffff\3\5\6\43\2\5\6\43\1\5\14\43\3\5\1\12\3"+
-        "\5\1\12\3\5\1\12\3\5\1\12\1\5\5\43\1\5\1\12\14\43\1\5\1\12\14\43"+
-        "\1\5\1\12\14\43\1\5\1\12\7\43\1\12\5\43\2\12\5\43\2\12\5\43\2\12"+
-        "\5\43\2\12\2\43\1\12\1\5\1\43\1\12\2\43\1\12\2\43\1\12\1\5\1\43"+
-        "\1\12\2\43\1\12\2\43\1\12\1\5\1\43\1\12\2\43\1\12\2\43\1\12\1\5"+
-        "\1\43\1\12\2\43\1\12\7\43\1\12\7\43\1\12\7\43\1\12\7\43\5\12\2\43"+
-        "\1\12\2\43\1\12\2\43\1\12\2\43";
+        "\7\5\1\uffff\1\5\1\uffff\3\5\6\43\1\5\6\43\2\5\6\43\1\5\6\43\2\5"+
+        "\1\12\3\5\1\12\3\5\1\12\3\5\1\12\1\5\5\43\1\5\1\12\14\43\1\5\1\12"+
+        "\14\43\1\5\1\12\14\43\1\5\1\12\7\43\1\12\5\43\2\12\5\43\2\12\5\43"+
+        "\2\12\5\43\2\12\2\43\1\12\1\5\1\43\1\12\2\43\1\12\2\43\1\12\1\5"+
+        "\1\43\1\12\2\43\1\12\2\43\1\12\1\5\1\43\1\12\2\43\1\12\2\43\1\12"+
+        "\1\5\1\43\1\12\2\43\1\12\7\43\1\12\7\43\1\12\7\43\1\12\7\43\5\12"+
+        "\2\43\1\12\2\43\1\12\2\43\1\12\2\43";
     static final String DFA29_maxS =
-        "\1\64\6\137\1\uffff\1\43\1\uffff\3\43\1\124\5\126\2\137\1\124\5"+
-        "\126\1\137\1\124\5\126\1\124\5\126\1\137\1\42\1\137\1\107\1\11\1"+
+        "\1\64\6\137\1\uffff\1\43\1\uffff\3\43\1\124\5\126\1\137\1\124\5"+
+        "\126\2\137\1\124\5\126\1\137\1\124\5\126\1\42\1\137\1\107\1\11\1"+
         "\42\1\137\1\107\1\11\1\42\1\137\1\107\1\11\1\42\1\137\1\107\1\11"+
         "\5\126\1\11\1\13\2\125\12\126\1\11\1\13\2\125\12\126\1\11\1\13\2"+
         "\125\12\126\1\11\1\13\2\125\5\126\1\107\5\126\2\107\5\126\2\107"+
@@ -23438,28 +23360,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\7\51\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\10\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\12\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\13\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\14\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "",
             "\1\22\1\17\1\21\1\20\1\16\1\15\30\uffff\1\23",
             "",
-            "\1\32\1\27\1\31\1\30\1\26\1\25\30\uffff\1\24",
+            "\1\31\1\26\1\30\1\27\1\25\1\24\30\uffff\1\32",
             "\1\41\1\36\1\40\1\37\1\35\1\34\30\uffff\1\33",
-            "\1\47\1\44\1\46\1\45\1\43\1\42\30\uffff\1\50",
+            "\1\50\1\45\1\47\1\46\1\44\1\43\30\uffff\1\42",
             "\1\52\60\uffff\1\51",
             "\1\52\60\uffff\1\51\1\54\1\53",
             "\1\52\60\uffff\1\51\1\54\1\53",
@@ -23468,10 +23392,8 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\52\60\uffff\1\51\1\54\1\53",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
-            "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
-            "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\1\56\60\uffff\1\55",
             "\1\56\60\uffff\1\55\1\60\1\57",
             "\1\56\60\uffff\1\55\1\60\1\57",
@@ -23480,44 +23402,54 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\56\60\uffff\1\55\1\60\1\57",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
+            "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
+            "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\1\62\60\uffff\1\61",
             "\1\62\60\uffff\1\61\1\64\1\63",
             "\1\62\60\uffff\1\61\1\64\1\63",
             "\1\62\60\uffff\1\61\1\64\1\63",
             "\1\62\60\uffff\1\61\1\64\1\63",
             "\1\62\60\uffff\1\61\1\64\1\63",
+            "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
+            "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\1\66\60\uffff\1\65",
             "\1\66\60\uffff\1\65\1\70\1\67",
             "\1\66\60\uffff\1\65\1\70\1\67",
             "\1\66\60\uffff\1\65\1\70\1\67",
             "\1\66\60\uffff\1\65\1\70\1\67",
             "\1\66\60\uffff\1\65\1\70\1\67",
-            "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
-            "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\75\1\72\1\74\1\73\1\71\30\uffff\1\76",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\1\100\1\101\73\uffff\1\77",
             "\1\106\1\103\1\105\1\104\1\102",
             "\1\113\1\110\1\112\1\111\1\107\30\uffff\1\114",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\1\116\1\117\73\uffff\1\115",
             "\1\124\1\121\1\123\1\122\1\120",
             "\1\131\1\126\1\130\1\127\1\125\30\uffff\1\132",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\1\134\1\135\73\uffff\1\133",
             "\1\142\1\137\1\141\1\140\1\136",
             "\1\147\1\144\1\146\1\145\1\143\30\uffff\1\150",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
+            "\2\11",
             "\1\152\1\153\73\uffff\1\151",
             "\1\160\1\155\1\157\1\156\1\154",
             "\1\52\62\uffff\1\161",
@@ -23724,24 +23656,25 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
     }
     static final String DFA53_eotS =
-        "\42\uffff";
+        "\43\uffff";
     static final String DFA53_eofS =
-        "\1\6\41\uffff";
+        "\1\6\42\uffff";
     static final String DFA53_minS =
-        "\1\31\2\uffff\1\0\36\uffff";
+        "\1\31\2\uffff\1\0\37\uffff";
     static final String DFA53_maxS =
-        "\1\141\2\uffff\1\0\36\uffff";
+        "\1\141\2\uffff\1\0\37\uffff";
     static final String DFA53_acceptS =
-        "\1\uffff\2\1\1\uffff\2\1\1\2\33\uffff";
+        "\1\uffff\2\1\1\uffff\2\1\1\2\34\uffff";
     static final String DFA53_specialS =
-        "\1\0\2\uffff\1\1\36\uffff}>";
+        "\1\0\2\uffff\1\1\37\uffff}>";
     static final String[] DFA53_transitionS = {
             "\1\6\2\uffff\1\6\3\uffff\1\1\1\3\1\uffff\1\6\1\uffff\12\6\7"+
             "\uffff\1\6\1\uffff\1\6\1\uffff\2\6\1\uffff\5\6\1\5\1\uffff\2"+
-            "\6\5\uffff\1\6\22\uffff\2\6\1\2\1\4",
+            "\6\5\uffff\1\6\3\uffff\1\6\16\uffff\2\6\1\2\1\4",
             "",
             "",
             "\1\uffff",
+            "",
             "",
             "",
             "",
@@ -23827,7 +23760,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                         else if ( (LA53_0==66) && (synpred2_InternalCGenModel())) {s = 5;}
 
-                        else if ( (LA53_0==EOF||LA53_0==25||LA53_0==28||LA53_0==35||(LA53_0>=37 && LA53_0<=46)||LA53_0==54||LA53_0==56||(LA53_0>=58 && LA53_0<=59)||(LA53_0>=61 && LA53_0<=65)||(LA53_0>=68 && LA53_0<=69)||LA53_0==75||(LA53_0>=94 && LA53_0<=95)) ) {s = 6;}
+                        else if ( (LA53_0==EOF||LA53_0==25||LA53_0==28||LA53_0==35||(LA53_0>=37 && LA53_0<=46)||LA53_0==54||LA53_0==56||(LA53_0>=58 && LA53_0<=59)||(LA53_0>=61 && LA53_0<=65)||(LA53_0>=68 && LA53_0<=69)||LA53_0==75||LA53_0==79||(LA53_0>=94 && LA53_0<=95)) ) {s = 6;}
 
                          
                         input.seek(index53_0);
@@ -23859,41 +23792,40 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     static final String DFA66_eotS =
         "\27\uffff";
     static final String DFA66_eofS =
-        "\1\1\2\uffff\5\10\17\uffff";
+        "\1\1\2\uffff\5\11\17\uffff";
     static final String DFA66_minS =
-        "\1\31\1\uffff\1\5\5\31\1\uffff\1\4\1\uffff\5\27\1\4\1\uffff\5\27";
+        "\1\31\1\uffff\1\5\5\31\1\4\2\uffff\5\27\1\4\1\uffff\5\27";
     static final String DFA66_maxS =
-        "\1\146\1\uffff\1\11\5\146\1\uffff\1\145\1\uffff\5\146\1\145\1\uffff"+
-        "\5\146";
+        "\1\146\1\uffff\1\11\5\146\1\145\2\uffff\5\146\1\145\1\uffff\5\146";
     static final String DFA66_acceptS =
-        "\1\uffff\1\4\6\uffff\1\1\1\uffff\1\2\6\uffff\1\3\5\uffff";
+        "\1\uffff\1\4\7\uffff\1\1\1\2\6\uffff\1\3\5\uffff";
     static final String DFA66_specialS =
         "\27\uffff}>";
     static final String[] DFA66_transitionS = {
             "\1\1\2\uffff\1\1\3\uffff\2\1\1\uffff\1\1\1\uffff\12\1\6\uffff"+
             "\2\1\1\uffff\1\1\1\uffff\2\1\1\uffff\6\1\1\2\4\1\3\uffff\1\1"+
-            "\10\uffff\3\1\7\uffff\7\1\1\uffff\1\1",
+            "\3\uffff\1\1\4\uffff\3\1\7\uffff\7\1\1\uffff\1\1",
             "",
             "\1\7\1\4\1\6\1\5\1\3",
-            "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
-            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
-            "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
-            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
-            "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
-            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
-            "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
-            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
-            "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
-            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
-            "",
+            "\1\11\2\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff\12\11\6\uffff"+
+            "\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11\3\uffff\1\11\3"+
+            "\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\1\11\2\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff\12\11\6\uffff"+
+            "\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11\3\uffff\1\11\3"+
+            "\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\1\11\2\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff\12\11\6\uffff"+
+            "\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11\3\uffff\1\11\3"+
+            "\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\1\11\2\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff\12\11\6\uffff"+
+            "\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11\3\uffff\1\11\3"+
+            "\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\1\11\2\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff\12\11\6\uffff"+
+            "\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11\3\uffff\1\11\3"+
+            "\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
             "\1\12\1\17\1\14\1\16\1\15\1\13\2\12\13\uffff\1\12\12\uffff"+
             "\2\12\2\uffff\1\12\16\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2"+
             "\uffff\1\12\12\uffff\3\12\2\uffff\3\12\26\uffff\1\12",
+            "",
             "",
             "\1\12\4\uffff\1\20\3\uffff\4\12\4\uffff\1\12\14\uffff\1\12"+
             "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
@@ -23961,56 +23893,66 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             this.transition = DFA66_transition;
         }
         public String getDescription() {
-            return "()* loopback of 4147:1: ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_variables_16_0= ruleIterationVariable ) ) (otherlv_17= ',' ( (lv_variables_18_0= ruleIterationVariable ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )*";
+            return "()* loopback of 4147:1: ( ( () otherlv_2= '.' ( ( ruleValidID ) ) ) | ( () otherlv_5= '.' ( ( ruleValidID ) ) otherlv_7= '(' ( ( (lv_arguments_8_0= ruleExpression ) ) (otherlv_9= ',' ( (lv_arguments_10_0= ruleExpression ) ) )* )? otherlv_11= ')' ) | ( () otherlv_13= '.' ( (lv_identifier_14_0= ruleValidID ) ) otherlv_15= '(' ( (lv_iterationVariables_16_0= ruleIterationVariableDeclaration ) ) (otherlv_17= ',' ( (lv_iterationVariables_18_0= ruleIterationVariableDeclaration ) ) )* (otherlv_19= ';' ( (lv_accumulator_20_0= ruleIterationAccumulator ) ) )? (otherlv_21= ';' ( (lv_breakCondition_22_0= ruleExpression ) ) )? otherlv_23= '|' ( (lv_expression_24_0= ruleExpression ) ) otherlv_25= ')' ) )*";
         }
     }
     static final String DFA82_eotS =
         "\16\uffff";
     static final String DFA82_eofS =
-        "\1\uffff\5\7\3\uffff\5\7";
+        "\1\uffff\5\10\3\uffff\5\10";
     static final String DFA82_minS =
         "\1\5\5\27\1\5\2\uffff\5\27";
     static final String DFA82_maxS =
         "\1\11\5\146\1\11\2\uffff\5\146";
     static final String DFA82_acceptS =
-        "\7\uffff\1\1\1\2\5\uffff";
+        "\7\uffff\1\2\1\1\5\uffff";
     static final String DFA82_specialS =
         "\16\uffff}>";
     static final String[] DFA82_transitionS = {
             "\1\5\1\2\1\4\1\3\1\1",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
             "\1\15\1\12\1\14\1\13\1\11",
             "",
             "",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
-            "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
-            "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7"
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10",
+            "\1\10\1\uffff\1\10\2\uffff\1\10\3\uffff\2\10\1\7\1\10\1\uffff"+
+            "\12\10\6\uffff\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10"+
+            "\3\uffff\1\10\3\uffff\1\10\4\uffff\3\10\1\6\6\uffff\7\10\1\uffff"+
+            "\1\10"
     };
 
     static final short[] DFA82_eot = DFA.unpackEncodedString(DFA82_eotS);
@@ -24275,24 +24217,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleLetExpression_in_entryRuleLetExpression6073 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLetExpression6083 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_55_in_ruleLetExpression6120 = new BitSet(new long[]{0x00000004000003E0L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpression6141 = new BitSet(new long[]{0x0100000010000000L});
+    public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression6141 = new BitSet(new long[]{0x0100000010000000L});
     public static final BitSet FOLLOW_28_in_ruleLetExpression6154 = new BitSet(new long[]{0x00000004000003E0L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpression6175 = new BitSet(new long[]{0x0100000010000000L});
+    public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression6175 = new BitSet(new long[]{0x0100000010000000L});
     public static final BitSet FOLLOW_56_in_ruleLetExpression6189 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleLetExpression6210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_entryRuleLetExpressionVariableDeclaration6246 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclaration6256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclarationPart_in_ruleLetExpressionVariableDeclaration6303 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_34_in_ruleLetExpressionVariableDeclaration6322 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclarationPart_in_ruleLetExpressionVariableDeclaration6343 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_ruleLetExpressionVariableDeclaration6356 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclarationPart_in_ruleLetExpressionVariableDeclaration6377 = new BitSet(new long[]{0x0000000810000000L});
-    public static final BitSet FOLLOW_35_in_ruleLetExpressionVariableDeclaration6391 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_ruleLetExpressionVariableDeclaration6405 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleLetExpressionVariableDeclaration6426 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclarationPart_in_entryRuleLetExpressionVariableDeclarationPart6462 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclarationPart6472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleLetExpressionVariableDeclarationPart6517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_entryRuleLetExpressionAssignment6246 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionAssignment6256 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment6303 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_34_in_ruleLetExpressionAssignment6322 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment6343 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_ruleLetExpressionAssignment6356 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment6377 = new BitSet(new long[]{0x0000000810000000L});
+    public static final BitSet FOLLOW_35_in_ruleLetExpressionAssignment6391 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_ruleLetExpressionAssignment6405 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleLetExpressionAssignment6426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_entryRuleLetExpressionVariableDeclaration6462 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclaration6472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleLetExpressionVariableDeclaration6517 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfExpression_in_entryRuleIfExpression6552 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfExpression6562 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_ruleIfExpression6605 = new BitSet(new long[]{0x0200000000000000L});
@@ -24398,9 +24340,9 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_67_in_ruleMemberFeatureCall9242 = new BitSet(new long[]{0x00000000000003E0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleMemberFeatureCall9263 = new BitSet(new long[]{0x0000000400000000L});
     public static final BitSet FOLLOW_34_in_ruleMemberFeatureCall9275 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleIterationVariable_in_ruleMemberFeatureCall9296 = new BitSet(new long[]{0x0000000010000000L,0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleMemberFeatureCall9296 = new BitSet(new long[]{0x0000000010000000L,0x0000000000000030L});
     public static final BitSet FOLLOW_28_in_ruleMemberFeatureCall9309 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleIterationVariable_in_ruleMemberFeatureCall9330 = new BitSet(new long[]{0x0000000010000000L,0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleMemberFeatureCall9330 = new BitSet(new long[]{0x0000000010000000L,0x0000000000000030L});
     public static final BitSet FOLLOW_68_in_ruleMemberFeatureCall9345 = new BitSet(new long[]{0x00000000000003E0L});
     public static final BitSet FOLLOW_ruleIterationAccumulator_in_ruleMemberFeatureCall9366 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000030L});
     public static final BitSet FOLLOW_68_in_ruleMemberFeatureCall9381 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
@@ -24413,14 +24355,14 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAssignablePrimaryExpression_in_ruleAssignableMemberFeatureCall9545 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
     public static final BitSet FOLLOW_67_in_ruleAssignableMemberFeatureCall9566 = new BitSet(new long[]{0x00000000000003E0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleAssignableMemberFeatureCall9589 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000008L});
-    public static final BitSet FOLLOW_ruleIterationVariable_in_entryRuleIterationVariable9627 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIterationVariable9637 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleIterationVariable9682 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIterationAccumulator_in_entryRuleIterationAccumulator9717 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIterationAccumulator9727 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleIterationAccumulator9773 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_ruleIterationAccumulator9785 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleIterationAccumulator9806 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationAccumulator_in_entryRuleIterationAccumulator9627 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIterationAccumulator9637 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleIterationAccumulator9683 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_ruleIterationAccumulator9695 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleIterationAccumulator9716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_entryRuleIterationVariableDeclaration9752 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIterationVariableDeclaration9762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleIterationVariableDeclaration9807 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArraySubscript_in_entryRuleArraySubscript9842 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArraySubscript9852 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_40_in_ruleArraySubscript9895 = new BitSet(new long[]{0x0000000000000002L});
@@ -24626,119 +24568,117 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleForStatement_in_entryRuleForStatement15146 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleForStatement15156 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_ruleForStatement15193 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleForStatement15205 = new BitSet(new long[]{0x00000200000003E0L});
-    public static final BitSet FOLLOW_41_in_ruleForStatement15219 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleIterationVariable_in_ruleForStatement15240 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleForStatement15270 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleForStatement15283 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement15304 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_ruleForStatement15317 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement15338 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleForStatement15352 = new BitSet(new long[]{0x02000204008003E0L,0x00000000000F8800L});
-    public static final BitSet FOLLOW_ruleStatement_in_ruleForStatement15373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDoWhileStatement_in_entryRuleDoWhileStatement15409 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDoWhileStatement15419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_ruleDoWhileStatement15456 = new BitSet(new long[]{0x02000204008003E0L,0x00000000000F8800L});
-    public static final BitSet FOLLOW_ruleStatement_in_ruleDoWhileStatement15477 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_ruleDoWhileStatement15489 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleDoWhileStatement15501 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleDoWhileStatement15522 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleDoWhileStatement15534 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_ruleDoWhileStatement15546 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleContinueStatement_in_entryRuleContinueStatement15582 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleContinueStatement15592 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_ruleContinueStatement15638 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_ruleContinueStatement15650 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBreakStatement_in_entryRuleBreakStatement15686 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBreakStatement15696 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_ruleBreakStatement15742 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_ruleBreakStatement15754 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleReturnStatement_in_entryRuleReturnStatement15790 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleReturnStatement15800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_83_in_ruleReturnStatement15837 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleReturnStatement15858 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_ruleReturnStatement15870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnit_in_entryRuleUnit15906 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnit15916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleUnit15964 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleUnit15976 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleUnit15996 = new BitSet(new long[]{0x00000000000007E0L});
-    public static final BitSet FOLLOW_ruleUnitNumerator_in_ruleUnit16017 = new BitSet(new long[]{0x0000000800000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_ruleUnit16030 = new BitSet(new long[]{0x00000004000007E0L});
-    public static final BitSet FOLLOW_ruleUnitDenominator_in_ruleUnit16051 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleUnit16065 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImplicitUnitNumerator_in_ruleUnit16093 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExplicitUnit_in_entryRuleExplicitUnit16130 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleExplicitUnit16140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleExplicitUnit16177 = new BitSet(new long[]{0x00000000000007E0L});
-    public static final BitSet FOLLOW_ruleUnitNumerator_in_ruleExplicitUnit16198 = new BitSet(new long[]{0x0000000800000000L,0x0000000000100000L});
-    public static final BitSet FOLLOW_84_in_ruleExplicitUnit16211 = new BitSet(new long[]{0x00000004000007E0L});
-    public static final BitSet FOLLOW_ruleUnitDenominator_in_ruleExplicitUnit16232 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_ruleExplicitUnit16246 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitNumerator_in_entryRuleUnitNumerator16282 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnitNumerator16292 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ONE_in_ruleUnitNumerator16338 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16366 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-    public static final BitSet FOLLOW_85_in_ruleUnitNumerator16379 = new BitSet(new long[]{0x00000000000007E0L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16400 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
-    public static final BitSet FOLLOW_ruleImplicitUnitNumerator_in_entryRuleImplicitUnitNumerator16439 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleImplicitUnitNumerator16449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitDenominator_in_entryRuleUnitDenominator16517 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnitDenominator16527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleUnitDenominator16592 = new BitSet(new long[]{0x00000000000007E0L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16613 = new BitSet(new long[]{0x0000000800000000L,0x0000000000200000L});
-    public static final BitSet FOLLOW_85_in_ruleUnitDenominator16626 = new BitSet(new long[]{0x00000000000007E0L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16647 = new BitSet(new long[]{0x0000000800000000L,0x0000000000200000L});
-    public static final BitSet FOLLOW_35_in_ruleUnitDenominator16661 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitFactor_in_entryRuleUnitFactor16698 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnitFactor16708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleUnitFactor16754 = new BitSet(new long[]{0x0000000000000002L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_ruleUnitFactor16767 = new BitSet(new long[]{0x0000000000000C00L,0x0000000000000080L});
-    public static final BitSet FOLLOW_ruleUnitExponent_in_ruleUnitFactor16788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnitExponent_in_entryRuleUnitExponent16827 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnitExponent16838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_ruleUnitExponent16877 = new BitSet(new long[]{0x0000000000000C00L});
-    public static final BitSet FOLLOW_ruleValidInt_in_ruleUnitExponent16901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName16947 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName16958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName17005 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_ruleQualifiedName17024 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName17046 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
-    public static final BitSet FOLLOW_ruleValidInt_in_entryRuleValidInt17094 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleValidInt17105 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ONE_in_ruleValidInt17145 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleValidInt17171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_entryRuleValidID17217 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleValidID17228 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_N_in_ruleValidID17268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_IJ_in_ruleValidID17294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_E_in_ruleValidID17320 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_EXPIJ_in_ruleValidID17346 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleValidID17372 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_ruleFunctionKind17431 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_ruleFunctionKind17448 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_90_in_ruleAssertionStatusKind17493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_ruleAssertionStatusKind17510 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_92_in_ruleAssertionStatusKind17527 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_ruleAssertionStatusKind17544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_ruleEqualityOperator17589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_95_in_ruleEqualityOperator17606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleRelationalOperator17651 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_ruleRelationalOperator17668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleRelationalOperator17685 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_ruleRelationalOperator17702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_ruleAdditiveOperator17747 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_ruleAdditiveOperator17764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_85_in_ruleMultiplicativeOperator17809 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_84_in_ruleMultiplicativeOperator17826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_ruleMultiplicativeOperator17843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_ruleMultiplicativeOperator17860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_86_in_rulePowerOperator17905 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_rulePowerOperator17922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_ruleUnaryOperator17967 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_101_in_ruleUnaryOperator17984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_102_in_rulePostfixOperator18028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleForStatement15205 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleForStatement15226 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_ruleForStatement15238 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement15259 = new BitSet(new long[]{0x0000000800000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_ruleForStatement15272 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement15293 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleForStatement15307 = new BitSet(new long[]{0x02000204008003E0L,0x00000000000F8800L});
+    public static final BitSet FOLLOW_ruleStatement_in_ruleForStatement15328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDoWhileStatement_in_entryRuleDoWhileStatement15364 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDoWhileStatement15374 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_80_in_ruleDoWhileStatement15411 = new BitSet(new long[]{0x02000204008003E0L,0x00000000000F8800L});
+    public static final BitSet FOLLOW_ruleStatement_in_ruleDoWhileStatement15432 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_ruleDoWhileStatement15444 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleDoWhileStatement15456 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleDoWhileStatement15477 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleDoWhileStatement15489 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_ruleDoWhileStatement15501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleContinueStatement_in_entryRuleContinueStatement15537 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleContinueStatement15547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_81_in_ruleContinueStatement15593 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_ruleContinueStatement15605 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBreakStatement_in_entryRuleBreakStatement15641 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBreakStatement15651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_ruleBreakStatement15697 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_ruleBreakStatement15709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleReturnStatement_in_entryRuleReturnStatement15745 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleReturnStatement15755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_83_in_ruleReturnStatement15792 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleReturnStatement15813 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_ruleReturnStatement15825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnit_in_entryRuleUnit15861 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnit15871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleUnit15919 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleUnit15931 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleUnit15951 = new BitSet(new long[]{0x00000000000007E0L});
+    public static final BitSet FOLLOW_ruleUnitNumerator_in_ruleUnit15972 = new BitSet(new long[]{0x0000000800000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_ruleUnit15985 = new BitSet(new long[]{0x00000004000007E0L});
+    public static final BitSet FOLLOW_ruleUnitDenominator_in_ruleUnit16006 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleUnit16020 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImplicitUnitNumerator_in_ruleUnit16048 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExplicitUnit_in_entryRuleExplicitUnit16085 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleExplicitUnit16095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleExplicitUnit16132 = new BitSet(new long[]{0x00000000000007E0L});
+    public static final BitSet FOLLOW_ruleUnitNumerator_in_ruleExplicitUnit16153 = new BitSet(new long[]{0x0000000800000000L,0x0000000000100000L});
+    public static final BitSet FOLLOW_84_in_ruleExplicitUnit16166 = new BitSet(new long[]{0x00000004000007E0L});
+    public static final BitSet FOLLOW_ruleUnitDenominator_in_ruleExplicitUnit16187 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_ruleExplicitUnit16201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitNumerator_in_entryRuleUnitNumerator16237 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnitNumerator16247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ONE_in_ruleUnitNumerator16293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16321 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+    public static final BitSet FOLLOW_85_in_ruleUnitNumerator16334 = new BitSet(new long[]{0x00000000000007E0L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitNumerator16355 = new BitSet(new long[]{0x0000000000000002L,0x0000000000200000L});
+    public static final BitSet FOLLOW_ruleImplicitUnitNumerator_in_entryRuleImplicitUnitNumerator16394 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleImplicitUnitNumerator16404 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitDenominator_in_entryRuleUnitDenominator16472 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnitDenominator16482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16528 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleUnitDenominator16547 = new BitSet(new long[]{0x00000000000007E0L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16568 = new BitSet(new long[]{0x0000000800000000L,0x0000000000200000L});
+    public static final BitSet FOLLOW_85_in_ruleUnitDenominator16581 = new BitSet(new long[]{0x00000000000007E0L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_ruleUnitDenominator16602 = new BitSet(new long[]{0x0000000800000000L,0x0000000000200000L});
+    public static final BitSet FOLLOW_35_in_ruleUnitDenominator16616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitFactor_in_entryRuleUnitFactor16653 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnitFactor16663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleUnitFactor16709 = new BitSet(new long[]{0x0000000000000002L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_ruleUnitFactor16722 = new BitSet(new long[]{0x0000000000000C00L,0x0000000000000080L});
+    public static final BitSet FOLLOW_ruleUnitExponent_in_ruleUnitFactor16743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnitExponent_in_entryRuleUnitExponent16782 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnitExponent16793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_ruleUnitExponent16832 = new BitSet(new long[]{0x0000000000000C00L});
+    public static final BitSet FOLLOW_ruleValidInt_in_ruleUnitExponent16856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_entryRuleQualifiedName16902 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleQualifiedName16913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName16960 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+    public static final BitSet FOLLOW_87_in_ruleQualifiedName16979 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleQualifiedName17001 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+    public static final BitSet FOLLOW_ruleValidInt_in_entryRuleValidInt17049 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleValidInt17060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ONE_in_ruleValidInt17100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INT_in_ruleValidInt17126 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_entryRuleValidID17172 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleValidID17183 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_N_in_ruleValidID17223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_IJ_in_ruleValidID17249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_E_in_ruleValidID17275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_EXPIJ_in_ruleValidID17301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleValidID17327 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_88_in_ruleFunctionKind17386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_ruleFunctionKind17403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_90_in_ruleAssertionStatusKind17448 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_91_in_ruleAssertionStatusKind17465 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_ruleAssertionStatusKind17482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_93_in_ruleAssertionStatusKind17499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_94_in_ruleEqualityOperator17544 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_95_in_ruleEqualityOperator17561 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleRelationalOperator17606 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_ruleRelationalOperator17623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleRelationalOperator17640 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_ruleRelationalOperator17657 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_ruleAdditiveOperator17702 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_ruleAdditiveOperator17719 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_85_in_ruleMultiplicativeOperator17764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_84_in_ruleMultiplicativeOperator17781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_ruleMultiplicativeOperator17798 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_ruleMultiplicativeOperator17815 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_86_in_rulePowerOperator17860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_100_in_rulePowerOperator17877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_ruleUnaryOperator17922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_101_in_ruleUnaryOperator17939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_102_in_rulePostfixOperator17983 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanType_in_synpred1_InternalCGenModel5407 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStringType_in_synpred1_InternalCGenModel5414 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_synpred1_InternalCGenModel5433 = new BitSet(new long[]{0x0000000000000002L});

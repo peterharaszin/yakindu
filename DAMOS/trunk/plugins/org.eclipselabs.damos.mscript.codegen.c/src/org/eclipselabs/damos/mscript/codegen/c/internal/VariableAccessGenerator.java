@@ -4,8 +4,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
-import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
@@ -83,8 +83,8 @@ public class VariableAccessGenerator extends ILSwitch<String> {
 	 */
 	@Override
 	public String defaultCase(EObject object) {
-		if (object instanceof LocalVariableDeclaration) {
-			return ((LocalVariableDeclaration) object).getName();
+		if (object instanceof VariableDeclaration) {
+			return ((VariableDeclaration) object).getName();
 		}
 		return super.defaultCase(object);
 	}

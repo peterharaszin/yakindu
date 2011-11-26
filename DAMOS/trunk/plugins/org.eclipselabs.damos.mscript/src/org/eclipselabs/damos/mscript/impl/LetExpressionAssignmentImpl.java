@@ -6,39 +6,46 @@
  */
 package org.eclipselabs.damos.mscript.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.Assignment;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.LetExpressionAssignment;
+import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Assignment</b></em>'.
+ * An implementation of the model object '<em><b>Let Expression Variable Declaration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.AssignmentImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.AssignmentImpl#getAssignedExpression <em>Assigned Expression</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.LetExpressionAssignmentImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.LetExpressionAssignmentImpl#getAssignedExpression <em>Assigned Expression</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AssignmentImpl extends StatementImpl implements Assignment {
+public class LetExpressionAssignmentImpl extends MinimalEObjectImpl.Container implements LetExpressionAssignment {
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
+	 * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTarget()
+	 * @see #getVariables()
 	 * @generated
 	 * @ordered
 	 */
-	protected Expression target;
+	protected EList<LetExpressionVariableDeclaration> variables;
 
 	/**
 	 * The cached value of the '{@link #getAssignedExpression() <em>Assigned Expression</em>}' containment reference.
@@ -55,7 +62,7 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AssignmentImpl() {
+	protected LetExpressionAssignmentImpl() {
 		super();
 	}
 
@@ -66,7 +73,7 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.ASSIGNMENT;
+		return MscriptPackage.Literals.LET_EXPRESSION_ASSIGNMENT;
 	}
 
 	/**
@@ -74,42 +81,11 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getTarget() {
-		return target;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTarget(Expression newTarget, NotificationChain msgs) {
-		Expression oldTarget = target;
-		target = newTarget;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ASSIGNMENT__TARGET, oldTarget, newTarget);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+	public EList<LetExpressionVariableDeclaration> getVariables() {
+		if (variables == null) {
+			variables = new EObjectContainmentEList<LetExpressionVariableDeclaration>(LetExpressionVariableDeclaration.class, this, MscriptPackage.LET_EXPRESSION_ASSIGNMENT__VARIABLES);
 		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTarget(Expression newTarget) {
-		if (newTarget != target) {
-			NotificationChain msgs = null;
-			if (target != null)
-				msgs = ((InternalEObject)target).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ASSIGNMENT__TARGET, null, msgs);
-			if (newTarget != null)
-				msgs = ((InternalEObject)newTarget).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ASSIGNMENT__TARGET, null, msgs);
-			msgs = basicSetTarget(newTarget, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ASSIGNMENT__TARGET, newTarget, newTarget));
+		return variables;
 	}
 
 	/**
@@ -130,7 +106,7 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 		Expression oldAssignedExpression = assignedExpression;
 		assignedExpression = newAssignedExpression;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION, oldAssignedExpression, newAssignedExpression);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION, oldAssignedExpression, newAssignedExpression);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -145,14 +121,14 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 		if (newAssignedExpression != assignedExpression) {
 			NotificationChain msgs = null;
 			if (assignedExpression != null)
-				msgs = ((InternalEObject)assignedExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)assignedExpression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION, null, msgs);
 			if (newAssignedExpression != null)
-				msgs = ((InternalEObject)newAssignedExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION, null, msgs);
+				msgs = ((InternalEObject)newAssignedExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION, null, msgs);
 			msgs = basicSetAssignedExpression(newAssignedExpression, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION, newAssignedExpression, newAssignedExpression));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION, newAssignedExpression, newAssignedExpression));
 	}
 
 	/**
@@ -163,9 +139,9 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.ASSIGNMENT__TARGET:
-				return basicSetTarget(null, msgs);
-			case MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION:
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__VARIABLES:
+				return ((InternalEList<?>)getVariables()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION:
 				return basicSetAssignedExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -179,9 +155,9 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.ASSIGNMENT__TARGET:
-				return getTarget();
-			case MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION:
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__VARIABLES:
+				return getVariables();
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION:
 				return getAssignedExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -192,13 +168,15 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.ASSIGNMENT__TARGET:
-				setTarget((Expression)newValue);
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__VARIABLES:
+				getVariables().clear();
+				getVariables().addAll((Collection<? extends LetExpressionVariableDeclaration>)newValue);
 				return;
-			case MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION:
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION:
 				setAssignedExpression((Expression)newValue);
 				return;
 		}
@@ -213,10 +191,10 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.ASSIGNMENT__TARGET:
-				setTarget((Expression)null);
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__VARIABLES:
+				getVariables().clear();
 				return;
-			case MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION:
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION:
 				setAssignedExpression((Expression)null);
 				return;
 		}
@@ -231,12 +209,12 @@ public class AssignmentImpl extends StatementImpl implements Assignment {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.ASSIGNMENT__TARGET:
-				return target != null;
-			case MscriptPackage.ASSIGNMENT__ASSIGNED_EXPRESSION:
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__VARIABLES:
+				return variables != null && !variables.isEmpty();
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION:
 				return assignedExpression != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //AssignmentImpl
+} //LetExpressionVariableDeclarationImpl

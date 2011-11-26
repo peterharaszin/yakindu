@@ -16,14 +16,13 @@ import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.IterationCall;
-import org.eclipselabs.damos.mscript.IterationVariable;
 import org.eclipselabs.damos.mscript.LetExpression;
-import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
-import org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart;
+import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 
@@ -35,15 +34,15 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 		while (container != null) {
 			if (container instanceof LetExpression) {
 				LetExpression letExpression = (LetExpression) container;
-				for (LetExpressionVariableDeclaration variableDeclaration : letExpression.getVariableDeclarations()) {
-					for (LetExpressionVariableDeclarationPart part : variableDeclaration.getParts()) {
-						elements.add(part);
+				for (LetExpressionAssignment assignment : letExpression.getAssignments()) {
+					for (VariableDeclaration variable : assignment.getVariables()) {
+						elements.add(variable);
 					}
 				}
 			} else if (container instanceof IterationCall) {
 				IterationCall iterationCall = (IterationCall) container;
 				elements.add(iterationCall.getAccumulator());
-				elements.addAll(iterationCall.getVariables());
+				elements.addAll(iterationCall.getIterationVariables());
 			} else if (container instanceof FunctionDefinition) {
 				FunctionDefinition functionDefinition = (FunctionDefinition) container;
 
@@ -70,9 +69,9 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 				elements.add(functionDefinition);
 			} else if (container instanceof ForStatement) {
 				ForStatement forStatement = (ForStatement) container;
-				IterationVariable declaredIterationVariable = forStatement.getDeclaredIterationVariable();
-				if (declaredIterationVariable != null) {
-					elements.add(declaredIterationVariable);
+				VariableDeclaration iterationVariable = forStatement.getIterationVariable();
+				if (iterationVariable != null) {
+					elements.add(iterationVariable);
 				}
 			} else if (container instanceof Compound) {
 				Compound compound = (Compound) container;

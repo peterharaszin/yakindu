@@ -161,12 +161,12 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createLetExpressionAdapter();
 			}
 			@Override
-			public Adapter caseLetExpressionVariableDeclaration(LetExpressionVariableDeclaration object) {
-				return createLetExpressionVariableDeclarationAdapter();
+			public Adapter caseLetExpressionAssignment(LetExpressionAssignment object) {
+				return createLetExpressionAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseLetExpressionVariableDeclarationPart(LetExpressionVariableDeclarationPart object) {
-				return createLetExpressionVariableDeclarationPartAdapter();
+			public Adapter caseLetExpressionVariableDeclaration(LetExpressionVariableDeclaration object) {
+				return createLetExpressionVariableDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseIfExpression(IfExpression object) {
@@ -193,8 +193,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createIterationCallAdapter();
 			}
 			@Override
-			public Adapter caseIterationVariable(IterationVariable object) {
-				return createIterationVariableAdapter();
+			public Adapter caseIterationVariableDeclaration(IterationVariableDeclaration object) {
+				return createIterationVariableDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseIterationAccumulator(IterationAccumulator object) {
@@ -831,6 +831,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.LetExpressionAssignment <em>Let Expression Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.LetExpressionAssignment
+	 * @generated
+	 */
+	public Adapter createLetExpressionAssignmentAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration <em>Let Expression Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -841,20 +855,6 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createLetExpressionVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart <em>Let Expression Variable Declaration Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart
-	 * @generated
-	 */
-	public Adapter createLetExpressionVariableDeclarationPartAdapter() {
 		return null;
 	}
 
@@ -943,16 +943,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.IterationVariable <em>Iteration Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.IterationVariableDeclaration <em>Iteration Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.IterationVariable
+	 * @see org.eclipselabs.damos.mscript.IterationVariableDeclaration
 	 * @generated
 	 */
-	public Adapter createIterationVariableAdapter() {
+	public Adapter createIterationVariableDeclarationAdapter() {
 		return null;
 	}
 

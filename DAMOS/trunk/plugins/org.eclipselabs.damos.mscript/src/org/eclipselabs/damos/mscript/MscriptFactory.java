@@ -188,6 +188,15 @@ public interface MscriptFactory extends EFactory {
 	LetExpression createLetExpression();
 
 	/**
+	 * Returns a new object of class '<em>Let Expression Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Let Expression Assignment</em>'.
+	 * @generated
+	 */
+	LetExpressionAssignment createLetExpressionAssignment();
+
+	/**
 	 * Returns a new object of class '<em>Let Expression Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,15 +204,6 @@ public interface MscriptFactory extends EFactory {
 	 * @generated
 	 */
 	LetExpressionVariableDeclaration createLetExpressionVariableDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Let Expression Variable Declaration Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Let Expression Variable Declaration Part</em>'.
-	 * @generated
-	 */
-	LetExpressionVariableDeclarationPart createLetExpressionVariableDeclarationPart();
 
 	/**
 	 * Returns a new object of class '<em>If Expression</em>'.
@@ -260,13 +260,13 @@ public interface MscriptFactory extends EFactory {
 	IterationCall createIterationCall();
 
 	/**
-	 * Returns a new object of class '<em>Iteration Variable</em>'.
+	 * Returns a new object of class '<em>Iteration Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Iteration Variable</em>'.
+	 * @return a new object of class '<em>Iteration Variable Declaration</em>'.
 	 * @generated
 	 */
-	IterationVariable createIterationVariable();
+	IterationVariableDeclaration createIterationVariableDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Iteration Accumulator</em>'.

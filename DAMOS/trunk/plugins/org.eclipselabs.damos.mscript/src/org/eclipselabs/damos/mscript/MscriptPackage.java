@@ -725,7 +725,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_VARIABLE_DECLARATION__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
+	int STATE_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
 
 	/**
 	 * The number of structural features of the '<em>State Variable Declaration</em>' class.
@@ -734,7 +734,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_VARIABLE_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
+	int STATE_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ConstantDeclarationImpl <em>Constant Declaration</em>}' class.
@@ -932,22 +932,22 @@ public interface MscriptPackage extends EPackage {
 	int LET_EXPRESSION = 22;
 
 	/**
-	 * The feature id for the '<em><b>Variable Declarations</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXPRESSION__VARIABLE_DECLARATIONS = EXPRESSION_FEATURE_COUNT + 0;
+	int LET_EXPRESSION__ASSIGNMENTS = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Target Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXPRESSION__TARGET_EXPRESSION = EXPRESSION_FEATURE_COUNT + 1;
+	int LET_EXPRESSION__TARGET = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Let Expression</em>' class.
@@ -959,23 +959,23 @@ public interface MscriptPackage extends EPackage {
 	int LET_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationImpl <em>Let Expression Variable Declaration</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionAssignmentImpl <em>Let Expression Assignment</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionVariableDeclaration()
+	 * @see org.eclipselabs.damos.mscript.impl.LetExpressionAssignmentImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionAssignment()
 	 * @generated
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION = 23;
+	int LET_EXPRESSION_ASSIGNMENT = 23;
 
 	/**
-	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION__PARTS = 0;
+	int LET_EXPRESSION_ASSIGNMENT__VARIABLES = 0;
 
 	/**
 	 * The feature id for the '<em><b>Assigned Expression</b></em>' containment reference.
@@ -984,26 +984,26 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION__ASSIGNED_EXPRESSION = 1;
+	int LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION = 1;
 
 	/**
-	 * The number of structural features of the '<em>Let Expression Variable Declaration</em>' class.
+	 * The number of structural features of the '<em>Let Expression Assignment</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION_FEATURE_COUNT = 2;
+	int LET_EXPRESSION_ASSIGNMENT_FEATURE_COUNT = 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationPartImpl <em>Let Expression Variable Declaration Part</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationImpl <em>Let Expression Variable Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationPartImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionVariableDeclarationPart()
+	 * @see org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionVariableDeclaration()
 	 * @generated
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION_PART = 24;
+	int LET_EXPRESSION_VARIABLE_DECLARATION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1012,16 +1012,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION_PART__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
+	int LET_EXPRESSION_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
 
 	/**
-	 * The number of structural features of the '<em>Let Expression Variable Declaration Part</em>' class.
+	 * The number of structural features of the '<em>Let Expression Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LET_EXPRESSION_VARIABLE_DECLARATION_PART_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
+	int LET_EXPRESSION_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.IfExpressionImpl <em>If Expression</em>}' class.
@@ -1273,13 +1273,13 @@ public interface MscriptPackage extends EPackage {
 	int ITERATION_CALL__IDENTIFIER = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Iteration Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_CALL__VARIABLES = EXPRESSION_FEATURE_COUNT + 2;
+	int ITERATION_CALL__ITERATION_VARIABLES = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Accumulator</b></em>' containment reference.
@@ -1318,14 +1318,14 @@ public interface MscriptPackage extends EPackage {
 	int ITERATION_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 6;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.IterationVariableImpl <em>Iteration Variable</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.IterationVariableDeclarationImpl <em>Iteration Variable Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.IterationVariableImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIterationVariable()
+	 * @see org.eclipselabs.damos.mscript.impl.IterationVariableDeclarationImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIterationVariableDeclaration()
 	 * @generated
 	 */
-	int ITERATION_VARIABLE = 31;
+	int ITERATION_VARIABLE_DECLARATION = 31;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1334,16 +1334,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_VARIABLE__NAME = VARIABLE_DECLARATION__NAME;
+	int ITERATION_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
 
 	/**
-	 * The number of structural features of the '<em>Iteration Variable</em>' class.
+	 * The number of structural features of the '<em>Iteration Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_VARIABLE_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int ITERATION_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.IterationAccumulatorImpl <em>Iteration Accumulator</em>}' class.
@@ -1362,7 +1362,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_ACCUMULATOR__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
+	int ITERATION_ACCUMULATOR__NAME = VARIABLE_DECLARATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Initializer</b></em>' containment reference.
@@ -1371,7 +1371,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_ACCUMULATOR__INITIALIZER = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
+	int ITERATION_ACCUMULATOR__INITIALIZER = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Iteration Accumulator</em>' class.
@@ -1380,7 +1380,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATION_ACCUMULATOR_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 2;
+	int ITERATION_ACCUMULATOR_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ArrayConstructionOperatorImpl <em>Array Construction Operator</em>}' class.
@@ -2497,13 +2497,13 @@ public interface MscriptPackage extends EPackage {
 	int ASSIGNMENT__TARGET = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * The feature id for the '<em><b>Assigned Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__EXPRESSION = STATEMENT_FEATURE_COUNT + 1;
+	int ASSIGNMENT__ASSIGNED_EXPRESSION = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Assignment</em>' class.
@@ -2682,22 +2682,13 @@ public interface MscriptPackage extends EPackage {
 	int FOR_STATEMENT = 71;
 
 	/**
-	 * The feature id for the '<em><b>Declared Iteration Variable</b></em>' containment reference.
+	 * The feature id for the '<em><b>Iteration Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT__DECLARED_ITERATION_VARIABLE = STATEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Iteration Variable</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOR_STATEMENT__ITERATION_VARIABLE = STATEMENT_FEATURE_COUNT + 1;
+	int FOR_STATEMENT__ITERATION_VARIABLE = STATEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Collection Expression</b></em>' containment reference.
@@ -2706,7 +2697,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT__COLLECTION_EXPRESSION = STATEMENT_FEATURE_COUNT + 2;
+	int FOR_STATEMENT__COLLECTION_EXPRESSION = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -2715,7 +2706,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT__CONDITION = STATEMENT_FEATURE_COUNT + 3;
+	int FOR_STATEMENT__CONDITION = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -2724,7 +2715,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT__BODY = STATEMENT_FEATURE_COUNT + 4;
+	int FOR_STATEMENT__BODY = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>For Statement</em>' class.
@@ -2733,7 +2724,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 5;
+	int FOR_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ContinueStatementImpl <em>Continue Statement</em>}' class.
@@ -4332,17 +4323,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getStateVariableDeclaration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.StateVariableDeclaration#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.StateVariableDeclaration#getName()
-	 * @see #getStateVariableDeclaration()
-	 * @generated
-	 */
-	EAttribute getStateVariableDeclaration_Name();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.ConstantDeclaration <em>Constant Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -4503,26 +4483,58 @@ public interface MscriptPackage extends EPackage {
 	EClass getLetExpression();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.LetExpression#getVariableDeclarations <em>Variable Declarations</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.LetExpression#getAssignments <em>Assignments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Variable Declarations</em>'.
-	 * @see org.eclipselabs.damos.mscript.LetExpression#getVariableDeclarations()
+	 * @return the meta object for the containment reference list '<em>Assignments</em>'.
+	 * @see org.eclipselabs.damos.mscript.LetExpression#getAssignments()
 	 * @see #getLetExpression()
 	 * @generated
 	 */
-	EReference getLetExpression_VariableDeclarations();
+	EReference getLetExpression_Assignments();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LetExpression#getTargetExpression <em>Target Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LetExpression#getTarget <em>Target</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Target Expression</em>'.
-	 * @see org.eclipselabs.damos.mscript.LetExpression#getTargetExpression()
+	 * @return the meta object for the containment reference '<em>Target</em>'.
+	 * @see org.eclipselabs.damos.mscript.LetExpression#getTarget()
 	 * @see #getLetExpression()
 	 * @generated
 	 */
-	EReference getLetExpression_TargetExpression();
+	EReference getLetExpression_Target();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LetExpressionAssignment <em>Let Expression Assignment</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Let Expression Assignment</em>'.
+	 * @see org.eclipselabs.damos.mscript.LetExpressionAssignment
+	 * @generated
+	 */
+	EClass getLetExpressionAssignment();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.LetExpressionAssignment#getVariables <em>Variables</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Variables</em>'.
+	 * @see org.eclipselabs.damos.mscript.LetExpressionAssignment#getVariables()
+	 * @see #getLetExpressionAssignment()
+	 * @generated
+	 */
+	EReference getLetExpressionAssignment_Variables();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LetExpressionAssignment#getAssignedExpression <em>Assigned Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Assigned Expression</em>'.
+	 * @see org.eclipselabs.damos.mscript.LetExpressionAssignment#getAssignedExpression()
+	 * @see #getLetExpressionAssignment()
+	 * @generated
+	 */
+	EReference getLetExpressionAssignment_AssignedExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration <em>Let Expression Variable Declaration</em>}'.
@@ -4533,49 +4545,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLetExpressionVariableDeclaration();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration#getParts <em>Parts</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Parts</em>'.
-	 * @see org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration#getParts()
-	 * @see #getLetExpressionVariableDeclaration()
-	 * @generated
-	 */
-	EReference getLetExpressionVariableDeclaration_Parts();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration#getAssignedExpression <em>Assigned Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Assigned Expression</em>'.
-	 * @see org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration#getAssignedExpression()
-	 * @see #getLetExpressionVariableDeclaration()
-	 * @generated
-	 */
-	EReference getLetExpressionVariableDeclaration_AssignedExpression();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart <em>Let Expression Variable Declaration Part</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Let Expression Variable Declaration Part</em>'.
-	 * @see org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart
-	 * @generated
-	 */
-	EClass getLetExpressionVariableDeclarationPart();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart#getName()
-	 * @see #getLetExpressionVariableDeclarationPart()
-	 * @generated
-	 */
-	EAttribute getLetExpressionVariableDeclarationPart_Name();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.IfExpression <em>If Expression</em>}'.
@@ -4814,15 +4783,15 @@ public interface MscriptPackage extends EPackage {
 	EAttribute getIterationCall_Identifier();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.IterationCall#getVariables <em>Variables</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.IterationCall#getIterationVariables <em>Iteration Variables</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Variables</em>'.
-	 * @see org.eclipselabs.damos.mscript.IterationCall#getVariables()
+	 * @return the meta object for the containment reference list '<em>Iteration Variables</em>'.
+	 * @see org.eclipselabs.damos.mscript.IterationCall#getIterationVariables()
 	 * @see #getIterationCall()
 	 * @generated
 	 */
-	EReference getIterationCall_Variables();
+	EReference getIterationCall_IterationVariables();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.IterationCall#getAccumulator <em>Accumulator</em>}'.
@@ -4858,14 +4827,14 @@ public interface MscriptPackage extends EPackage {
 	EReference getIterationCall_Expression();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.IterationVariable <em>Iteration Variable</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.IterationVariableDeclaration <em>Iteration Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Iteration Variable</em>'.
-	 * @see org.eclipselabs.damos.mscript.IterationVariable
+	 * @return the meta object for class '<em>Iteration Variable Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.IterationVariableDeclaration
 	 * @generated
 	 */
-	EClass getIterationVariable();
+	EClass getIterationVariableDeclaration();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.IterationAccumulator <em>Iteration Accumulator</em>}'.
@@ -4876,17 +4845,6 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getIterationAccumulator();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.IterationAccumulator#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.IterationAccumulator#getName()
-	 * @see #getIterationAccumulator()
-	 * @generated
-	 */
-	EAttribute getIterationAccumulator_Name();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.IterationAccumulator#getInitializer <em>Initializer</em>}'.
@@ -5801,15 +5759,15 @@ public interface MscriptPackage extends EPackage {
 	EReference getAssignment_Target();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.Assignment#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.Assignment#getAssignedExpression <em>Assigned Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Expression</em>'.
-	 * @see org.eclipselabs.damos.mscript.Assignment#getExpression()
+	 * @return the meta object for the containment reference '<em>Assigned Expression</em>'.
+	 * @see org.eclipselabs.damos.mscript.Assignment#getAssignedExpression()
 	 * @see #getAssignment()
 	 * @generated
 	 */
-	EReference getAssignment_Expression();
+	EReference getAssignment_AssignedExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.LocalVariableDeclaration <em>Local Variable Declaration</em>}'.
@@ -5950,21 +5908,10 @@ public interface MscriptPackage extends EPackage {
 	EClass getForStatement();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ForStatement#getDeclaredIterationVariable <em>Declared Iteration Variable</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ForStatement#getIterationVariable <em>Iteration Variable</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Declared Iteration Variable</em>'.
-	 * @see org.eclipselabs.damos.mscript.ForStatement#getDeclaredIterationVariable()
-	 * @see #getForStatement()
-	 * @generated
-	 */
-	EReference getForStatement_DeclaredIterationVariable();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.ForStatement#getIterationVariable <em>Iteration Variable</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Iteration Variable</em>'.
+	 * @return the meta object for the containment reference '<em>Iteration Variable</em>'.
 	 * @see org.eclipselabs.damos.mscript.ForStatement#getIterationVariable()
 	 * @see #getForStatement()
 	 * @generated
@@ -7158,14 +7105,6 @@ public interface MscriptPackage extends EPackage {
 		EClass STATE_VARIABLE_DECLARATION = eINSTANCE.getStateVariableDeclaration();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STATE_VARIABLE_DECLARATION__NAME = eINSTANCE.getStateVariableDeclaration_Name();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.ConstantDeclarationImpl <em>Constant Declaration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -7296,20 +7235,46 @@ public interface MscriptPackage extends EPackage {
 		EClass LET_EXPRESSION = eINSTANCE.getLetExpression();
 
 		/**
-		 * The meta object literal for the '<em><b>Variable Declarations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Assignments</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LET_EXPRESSION__VARIABLE_DECLARATIONS = eINSTANCE.getLetExpression_VariableDeclarations();
+		EReference LET_EXPRESSION__ASSIGNMENTS = eINSTANCE.getLetExpression_Assignments();
 
 		/**
-		 * The meta object literal for the '<em><b>Target Expression</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LET_EXPRESSION__TARGET_EXPRESSION = eINSTANCE.getLetExpression_TargetExpression();
+		EReference LET_EXPRESSION__TARGET = eINSTANCE.getLetExpression_Target();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionAssignmentImpl <em>Let Expression Assignment</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.impl.LetExpressionAssignmentImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionAssignment()
+		 * @generated
+		 */
+		EClass LET_EXPRESSION_ASSIGNMENT = eINSTANCE.getLetExpressionAssignment();
+
+		/**
+		 * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LET_EXPRESSION_ASSIGNMENT__VARIABLES = eINSTANCE.getLetExpressionAssignment_Variables();
+
+		/**
+		 * The meta object literal for the '<em><b>Assigned Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LET_EXPRESSION_ASSIGNMENT__ASSIGNED_EXPRESSION = eINSTANCE.getLetExpressionAssignment_AssignedExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationImpl <em>Let Expression Variable Declaration</em>}' class.
@@ -7320,40 +7285,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LET_EXPRESSION_VARIABLE_DECLARATION = eINSTANCE.getLetExpressionVariableDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LET_EXPRESSION_VARIABLE_DECLARATION__PARTS = eINSTANCE.getLetExpressionVariableDeclaration_Parts();
-
-		/**
-		 * The meta object literal for the '<em><b>Assigned Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LET_EXPRESSION_VARIABLE_DECLARATION__ASSIGNED_EXPRESSION = eINSTANCE.getLetExpressionVariableDeclaration_AssignedExpression();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationPartImpl <em>Let Expression Variable Declaration Part</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.LetExpressionVariableDeclarationPartImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getLetExpressionVariableDeclarationPart()
-		 * @generated
-		 */
-		EClass LET_EXPRESSION_VARIABLE_DECLARATION_PART = eINSTANCE.getLetExpressionVariableDeclarationPart();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LET_EXPRESSION_VARIABLE_DECLARATION_PART__NAME = eINSTANCE.getLetExpressionVariableDeclarationPart_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.IfExpressionImpl <em>If Expression</em>}' class.
@@ -7544,12 +7475,12 @@ public interface MscriptPackage extends EPackage {
 		EAttribute ITERATION_CALL__IDENTIFIER = eINSTANCE.getIterationCall_Identifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Iteration Variables</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ITERATION_CALL__VARIABLES = eINSTANCE.getIterationCall_Variables();
+		EReference ITERATION_CALL__ITERATION_VARIABLES = eINSTANCE.getIterationCall_IterationVariables();
 
 		/**
 		 * The meta object literal for the '<em><b>Accumulator</b></em>' containment reference feature.
@@ -7576,14 +7507,14 @@ public interface MscriptPackage extends EPackage {
 		EReference ITERATION_CALL__EXPRESSION = eINSTANCE.getIterationCall_Expression();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.IterationVariableImpl <em>Iteration Variable</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.IterationVariableDeclarationImpl <em>Iteration Variable Declaration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.IterationVariableImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIterationVariable()
+		 * @see org.eclipselabs.damos.mscript.impl.IterationVariableDeclarationImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getIterationVariableDeclaration()
 		 * @generated
 		 */
-		EClass ITERATION_VARIABLE = eINSTANCE.getIterationVariable();
+		EClass ITERATION_VARIABLE_DECLARATION = eINSTANCE.getIterationVariableDeclaration();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.IterationAccumulatorImpl <em>Iteration Accumulator</em>}' class.
@@ -7594,14 +7525,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ITERATION_ACCUMULATOR = eINSTANCE.getIterationAccumulator();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute ITERATION_ACCUMULATOR__NAME = eINSTANCE.getIterationAccumulator_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Initializer</b></em>' containment reference feature.
@@ -8360,12 +8283,12 @@ public interface MscriptPackage extends EPackage {
 		EReference ASSIGNMENT__TARGET = eINSTANCE.getAssignment_Target();
 
 		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Assigned Expression</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ASSIGNMENT__EXPRESSION = eINSTANCE.getAssignment_Expression();
+		EReference ASSIGNMENT__ASSIGNED_EXPRESSION = eINSTANCE.getAssignment_AssignedExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.LocalVariableDeclarationImpl <em>Local Variable Declaration</em>}' class.
@@ -8482,15 +8405,7 @@ public interface MscriptPackage extends EPackage {
 		EClass FOR_STATEMENT = eINSTANCE.getForStatement();
 
 		/**
-		 * The meta object literal for the '<em><b>Declared Iteration Variable</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOR_STATEMENT__DECLARED_ITERATION_VARIABLE = eINSTANCE.getForStatement_DeclaredIterationVariable();
-
-		/**
-		 * The meta object literal for the '<em><b>Iteration Variable</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Iteration Variable</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

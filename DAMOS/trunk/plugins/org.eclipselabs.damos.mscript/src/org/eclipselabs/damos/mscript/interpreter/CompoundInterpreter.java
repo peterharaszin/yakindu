@@ -111,7 +111,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 				
 				int size = TypeUtil.getArraySize(arrayType);
 				
-				VariableDeclaration iterationVariableDeclaration = forStatement.getDeclaredIterationVariable();
+				VariableDeclaration iterationVariableDeclaration = forStatement.getIterationVariable();
 				for (int i = 0; i < size; ++i) {
 					context.enterScope();
 					IVariable variable = new Variable(context, iterationVariableDeclaration);

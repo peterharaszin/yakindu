@@ -33,8 +33,7 @@ import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LetExpression;
-import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
-import org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart;
+import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.Literal;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
@@ -155,20 +154,20 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		context.setCompound(compoundStatement);
 		context.addVariableDeclaration(localVariableDeclaration);
 
-		for (LetExpressionVariableDeclaration letExpressionVariableDeclaration : letExpression.getVariableDeclarations()) {
-			LocalVariableDeclaration letVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-			LetExpressionVariableDeclarationPart part = letExpressionVariableDeclaration.getParts().get(0);
-			IValue partValue = context.getStaticEvaluationContext().getValue(part);
-			context.getStaticEvaluationContext().setValue(letVariableDeclaration, partValue);
-			letVariableDeclaration.setName(part.getName());
-			Expression assignedExpression = doSwitch(letExpressionVariableDeclaration.getAssignedExpression());
-			letVariableDeclaration.setInitializer(assignedExpression);
-			compoundStatement.getStatements().add(letVariableDeclaration);
-			context.addVariableDeclaration(letVariableDeclaration);
+		for (LetExpressionAssignment assignment : letExpression.getAssignments()) {
+			LocalVariableDeclaration localVariable = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
+			VariableDeclaration variable = assignment.getVariables().get(0);
+			IValue partValue = context.getStaticEvaluationContext().getValue(variable);
+			context.getStaticEvaluationContext().setValue(localVariable, partValue);
+			localVariable.setName(variable.getName());
+			Expression assignedExpression = doSwitch(assignment.getAssignedExpression());
+			localVariable.setInitializer(assignedExpression);
+			compoundStatement.getStatements().add(localVariable);
+			context.addVariableDeclaration(localVariable);
 		}
 
 		transform(
-				letExpression.getTargetExpression(),
+				letExpression.getTarget(),
 				Collections.singletonList(new ExpressionTarget(localVariableDeclaration, 0)));
 		
 		context.leaveScope();

@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IterationCall;
-import org.eclipselabs.damos.mscript.IterationVariable;
+import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.il.CompoundStatement;
@@ -46,24 +46,24 @@ public class IterateTransformer implements IIterationCallTransformer {
 		context.getCompound().getStatements().add(accumulatorDeclaration);
 		ForStatement forStatement = MscriptFactory.eINSTANCE.createForStatement();
 		
-		LocalVariableDeclaration iterationVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
-		IterationVariable iterationVariable = iterationCall.getVariables().get(0);
+		IterationVariableDeclaration iterationVariable = iterationCall.getIterationVariables().get(0);
+		IterationVariableDeclaration transformedIterationVariable = MscriptFactory.eINSTANCE.createIterationVariableDeclaration();
 		IValue iterationVariableValue = context.getStaticEvaluationContext().getValue(iterationVariable);
-		context.getStaticEvaluationContext().setValue(iterationVariableDeclaration, iterationVariableValue);
-		iterationVariableDeclaration.setName(iterationVariable.getName());
-
+		context.getStaticEvaluationContext().setValue(transformedIterationVariable, iterationVariableValue);
+		transformedIterationVariable.setName(iterationVariable.getName());
+		
 		StatusUtil.merge(status, new ExpressionTransformer(context).transform(
 				iterationCall.getAccumulator().getInitializer(),
 				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));
 
-		forStatement.setIterationVariable(iterationVariableDeclaration);
+		forStatement.setIterationVariable(transformedIterationVariable);
 		forStatement.setCollectionExpression(collectionExpression);
 
 		CompoundStatement body = ILFactory.eINSTANCE.createCompoundStatement();
 		context.enterScope();
 		context.setCompound(body);
 		context.addVariableDeclaration(accumulatorDeclaration);
-		context.addVariableDeclaration(iterationVariableDeclaration);
+		context.addVariableDeclaration(transformedIterationVariable);
 		StatusUtil.merge(status, new ExpressionTransformer(context).transform(
 				iterationCall.getExpression(),
 				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));

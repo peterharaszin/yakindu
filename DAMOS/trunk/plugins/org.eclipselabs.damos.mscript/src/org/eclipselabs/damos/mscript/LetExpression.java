@@ -16,8 +16,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.LetExpression#getVariableDeclarations <em>Variable Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.LetExpression#getTargetExpression <em>Target Expression</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.LetExpression#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.LetExpression#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,45 +27,45 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface LetExpression extends Expression {
 	/**
-	 * Returns the value of the '<em><b>Variable Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration}.
+	 * Returns the value of the '<em><b>Assignments</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.LetExpressionAssignment}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Variable Declarations</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Assignments</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Variable Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getLetExpression_VariableDeclarations()
+	 * @return the value of the '<em>Assignments</em>' containment reference list.
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getLetExpression_Assignments()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<LetExpressionVariableDeclaration> getVariableDeclarations();
+	EList<LetExpressionAssignment> getAssignments();
 
 	/**
-	 * Returns the value of the '<em><b>Target Expression</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Target Expression</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Target</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Target Expression</em>' containment reference.
-	 * @see #setTargetExpression(Expression)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getLetExpression_TargetExpression()
+	 * @return the value of the '<em>Target</em>' containment reference.
+	 * @see #setTarget(Expression)
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getLetExpression_Target()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Expression getTargetExpression();
+	Expression getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.LetExpression#getTargetExpression <em>Target Expression</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.LetExpression#getTarget <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Target Expression</em>' containment reference.
-	 * @see #getTargetExpression()
+	 * @param value the new value of the '<em>Target</em>' containment reference.
+	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTargetExpression(Expression value);
+	void setTarget(Expression value);
 
 } // LetExpression

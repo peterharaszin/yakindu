@@ -190,6 +190,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.STATE_VARIABLE_DECLARATION: {
 				StateVariableDeclaration stateVariableDeclaration = (StateVariableDeclaration)theEObject;
 				T result = caseStateVariableDeclaration(stateVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(stateVariableDeclaration);
 				if (result == null) result = caseCallableElement(stateVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -227,16 +228,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.LET_EXPRESSION_VARIABLE_DECLARATION: {
-				LetExpressionVariableDeclaration letExpressionVariableDeclaration = (LetExpressionVariableDeclaration)theEObject;
-				T result = caseLetExpressionVariableDeclaration(letExpressionVariableDeclaration);
+			case MscriptPackage.LET_EXPRESSION_ASSIGNMENT: {
+				LetExpressionAssignment letExpressionAssignment = (LetExpressionAssignment)theEObject;
+				T result = caseLetExpressionAssignment(letExpressionAssignment);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.LET_EXPRESSION_VARIABLE_DECLARATION_PART: {
-				LetExpressionVariableDeclarationPart letExpressionVariableDeclarationPart = (LetExpressionVariableDeclarationPart)theEObject;
-				T result = caseLetExpressionVariableDeclarationPart(letExpressionVariableDeclarationPart);
-				if (result == null) result = caseCallableElement(letExpressionVariableDeclarationPart);
+			case MscriptPackage.LET_EXPRESSION_VARIABLE_DECLARATION: {
+				LetExpressionVariableDeclaration letExpressionVariableDeclaration = (LetExpressionVariableDeclaration)theEObject;
+				T result = caseLetExpressionVariableDeclaration(letExpressionVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(letExpressionVariableDeclaration);
+				if (result == null) result = caseCallableElement(letExpressionVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -280,17 +282,18 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.ITERATION_VARIABLE: {
-				IterationVariable iterationVariable = (IterationVariable)theEObject;
-				T result = caseIterationVariable(iterationVariable);
-				if (result == null) result = caseVariableDeclaration(iterationVariable);
-				if (result == null) result = caseCallableElement(iterationVariable);
+			case MscriptPackage.ITERATION_VARIABLE_DECLARATION: {
+				IterationVariableDeclaration iterationVariableDeclaration = (IterationVariableDeclaration)theEObject;
+				T result = caseIterationVariableDeclaration(iterationVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(iterationVariableDeclaration);
+				if (result == null) result = caseCallableElement(iterationVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case MscriptPackage.ITERATION_ACCUMULATOR: {
 				IterationAccumulator iterationAccumulator = (IterationAccumulator)theEObject;
 				T result = caseIterationAccumulator(iterationAccumulator);
+				if (result == null) result = caseVariableDeclaration(iterationAccumulator);
 				if (result == null) result = caseCallableElement(iterationAccumulator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -1169,6 +1172,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Let Expression Assignment</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Let Expression Assignment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLetExpressionAssignment(LetExpressionAssignment object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Let Expression Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -1180,21 +1198,6 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseLetExpressionVariableDeclaration(LetExpressionVariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Let Expression Variable Declaration Part</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Let Expression Variable Declaration Part</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLetExpressionVariableDeclarationPart(LetExpressionVariableDeclarationPart object) {
 		return null;
 	}
 
@@ -1289,17 +1292,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Iteration Variable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Iteration Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Iteration Variable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Iteration Variable Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIterationVariable(IterationVariable object) {
+	public T caseIterationVariableDeclaration(IterationVariableDeclaration object) {
 		return null;
 	}
 

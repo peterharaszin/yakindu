@@ -19,6 +19,7 @@ import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILPackage;
 import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
+import org.eclipselabs.damos.mscript.impl.CompoundImpl;
 
 /**
  * <!-- begin-user-doc -->

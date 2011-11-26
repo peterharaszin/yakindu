@@ -41,4 +41,12 @@ public interface Compound extends Statement {
 	 */
 	EList<Statement> getStatements();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	EList<LocalVariableDeclaration> getLocalVariableDeclarations();
+
 } // Compound

@@ -10,12 +10,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.Assignment;
-import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.CompoundStatement;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
@@ -91,16 +90,11 @@ public class ILSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ILPackage.COMPOUND: {
-				Compound compound = (Compound)theEObject;
-				T result = caseCompound(compound);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ILPackage.COMPUTATION_COMPOUND: {
 				ComputationCompound computationCompound = (ComputationCompound)theEObject;
 				T result = caseComputationCompound(computationCompound);
 				if (result == null) result = caseCompound(computationCompound);
+				if (result == null) result = caseStatement(computationCompound);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -144,14 +138,6 @@ public class ILSwitch<T> extends Switch<T> {
 				if (result == null) result = caseStatefulVariableDeclaration(instanceVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(instanceVariableDeclaration);
 				if (result == null) result = caseCallableElement(instanceVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ILPackage.COMPOUND_STATEMENT: {
-				CompoundStatement compoundStatement = (CompoundStatement)theEObject;
-				T result = caseCompoundStatement(compoundStatement);
-				if (result == null) result = caseCompound(compoundStatement);
-				if (result == null) result = caseStatement(compoundStatement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -320,21 +306,6 @@ public class ILSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInstanceVariableDeclaration(InstanceVariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Compound Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Compound Statement</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCompoundStatement(CompoundStatement object) {
 		return null;
 	}
 

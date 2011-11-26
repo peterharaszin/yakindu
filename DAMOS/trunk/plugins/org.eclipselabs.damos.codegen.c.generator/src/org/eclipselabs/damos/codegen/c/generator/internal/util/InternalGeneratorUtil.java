@@ -25,8 +25,8 @@ import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
-import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
+import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 
 /**
  * @author Andreas Unger

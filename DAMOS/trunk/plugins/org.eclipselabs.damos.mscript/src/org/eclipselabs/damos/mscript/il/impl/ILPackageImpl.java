@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.il.Assignment;
-import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.CompoundStatement;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
@@ -41,13 +39,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * @generated
 	 */
 	private EClass ilFunctionDefinitionEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compoundEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -90,13 +81,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * @generated
 	 */
 	private EClass instanceVariableDeclarationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass compoundStatementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -276,33 +260,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getCompound() {
-		return compoundEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompound_Statements() {
-		return (EReference)compoundEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getCompound_LocalVariableDeclarations() {
-		return (EReference)compoundEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getComputationCompound() {
 		return computationCompoundEClass;
 	}
@@ -395,15 +352,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 */
 	public EClass getInstanceVariableDeclaration() {
 		return instanceVariableDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getCompoundStatement() {
-		return compoundStatementEClass;
 	}
 
 	/**
@@ -516,10 +464,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		createEReference(ilFunctionDefinitionEClass, IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND);
 		createEReference(ilFunctionDefinitionEClass, IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS);
 
-		compoundEClass = createEClass(COMPOUND);
-		createEReference(compoundEClass, COMPOUND__STATEMENTS);
-		createEReference(compoundEClass, COMPOUND__LOCAL_VARIABLE_DECLARATIONS);
-
 		computationCompoundEClass = createEClass(COMPUTATION_COMPOUND);
 		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__INPUTS);
 		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__OUTPUTS);
@@ -536,8 +480,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		outputVariableDeclarationEClass = createEClass(OUTPUT_VARIABLE_DECLARATION);
 
 		instanceVariableDeclarationEClass = createEClass(INSTANCE_VARIABLE_DECLARATION);
-
-		compoundStatementEClass = createEClass(COMPOUND_STATEMENT);
 
 		variableAccessEClass = createEClass(VARIABLE_ACCESS);
 		createEReference(variableAccessEClass, VARIABLE_ACCESS__TARGET);
@@ -583,14 +525,12 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		computationCompoundEClass.getESuperTypes().add(this.getCompound());
+		computationCompoundEClass.getESuperTypes().add(theMscriptPackage.getCompound());
 		statefulVariableDeclarationEClass.getESuperTypes().add(theMscriptPackage.getVariableDeclaration());
 		templateVariableDeclarationEClass.getESuperTypes().add(theMscriptPackage.getVariableDeclaration());
 		inputVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
 		outputVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
 		instanceVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
-		compoundStatementEClass.getESuperTypes().add(this.getCompound());
-		compoundStatementEClass.getESuperTypes().add(theMscriptPackage.getStatement());
 		assignmentEClass.getESuperTypes().add(this.getVariableAccess());
 		assignmentEClass.getESuperTypes().add(theMscriptPackage.getStatement());
 		variableReferenceEClass.getESuperTypes().add(this.getVariableAccess());
@@ -605,12 +545,8 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		initEReference(getILFunctionDefinition_InputVariableDeclarations(), this.getInputVariableDeclaration(), null, "inputVariableDeclarations", null, 0, -1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getILFunctionDefinition_OutputVariableDeclarations(), this.getOutputVariableDeclaration(), null, "outputVariableDeclarations", null, 0, -1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getILFunctionDefinition_InstanceVariableDeclarations(), this.getInstanceVariableDeclaration(), null, "instanceVariableDeclarations", null, 0, -1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getILFunctionDefinition_InitializationCompound(), this.getCompound(), null, "initializationCompound", null, 0, 1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getILFunctionDefinition_InitializationCompound(), theMscriptPackage.getCompound(), null, "initializationCompound", null, 0, 1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getILFunctionDefinition_ComputationCompounds(), this.getComputationCompound(), null, "computationCompounds", null, 0, -1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(compoundEClass, Compound.class, "Compound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompound_Statements(), theMscriptPackage.getStatement(), null, "statements", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCompound_LocalVariableDeclarations(), theMscriptPackage.getLocalVariableDeclaration(), null, "localVariableDeclarations", null, 0, -1, Compound.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(computationCompoundEClass, ComputationCompound.class, "ComputationCompound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getComputationCompound_Inputs(), this.getInputVariableDeclaration(), this.getInputVariableDeclaration_FeedingCompounds(), "inputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -628,8 +564,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		initEClass(outputVariableDeclarationEClass, OutputVariableDeclaration.class, "OutputVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(instanceVariableDeclarationEClass, InstanceVariableDeclaration.class, "InstanceVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(compoundStatementEClass, CompoundStatement.class, "CompoundStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(variableAccessEClass, VariableAccess.class, "VariableAccess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVariableAccess_Target(), theMscriptPackage.getVariableDeclaration(), null, "target", null, 0, 1, VariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

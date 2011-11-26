@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.il.Compound;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;

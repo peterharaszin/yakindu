@@ -11,12 +11,11 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.Assignment;
-import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.CompoundStatement;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
@@ -90,10 +89,6 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 				return createILFunctionDefinitionAdapter();
 			}
 			@Override
-			public Adapter caseCompound(Compound object) {
-				return createCompoundAdapter();
-			}
-			@Override
 			public Adapter caseComputationCompound(ComputationCompound object) {
 				return createComputationCompoundAdapter();
 			}
@@ -118,10 +113,6 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 				return createInstanceVariableDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseCompoundStatement(CompoundStatement object) {
-				return createCompoundStatementAdapter();
-			}
-			@Override
 			public Adapter caseVariableAccess(VariableAccess object) {
 				return createVariableAccessAdapter();
 			}
@@ -138,16 +129,20 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 				return createInvalidExpressionAdapter();
 			}
 			@Override
+			public Adapter caseStatement(Statement object) {
+				return createStatementAdapter();
+			}
+			@Override
+			public Adapter caseCompound(Compound object) {
+				return createCompoundAdapter();
+			}
+			@Override
 			public Adapter caseCallableElement(CallableElement object) {
 				return createCallableElementAdapter();
 			}
 			@Override
 			public Adapter caseVariableDeclaration(VariableDeclaration object) {
 				return createVariableDeclarationAdapter();
-			}
-			@Override
-			public Adapter caseStatement(Statement object) {
-				return createStatementAdapter();
 			}
 			@Override
 			public Adapter caseExpression(Expression object) {
@@ -188,13 +183,13 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.Compound <em>Compound</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Compound <em>Compound</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.Compound
+	 * @see org.eclipselabs.damos.mscript.Compound
 	 * @generated
 	 */
 	public Adapter createCompoundAdapter() {
@@ -296,20 +291,6 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInstanceVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.CompoundStatement <em>Compound Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.CompoundStatement
-	 * @generated
-	 */
-	public Adapter createCompoundStatementAdapter() {
 		return null;
 	}
 

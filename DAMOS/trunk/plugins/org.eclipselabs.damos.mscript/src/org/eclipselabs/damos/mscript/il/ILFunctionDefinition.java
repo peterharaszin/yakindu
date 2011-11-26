@@ -8,6 +8,7 @@ package org.eclipselabs.damos.mscript.il;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.mscript.Compound;
 
 /**
  * <!-- begin-user-doc -->

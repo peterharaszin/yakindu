@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ForStatement;
@@ -25,7 +26,6 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.il.Assignment;
-import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
@@ -43,7 +43,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 	 * @see org.eclipselabs.mscript.codegen.c.ICompoundGenerator#generate(org.eclipselabs.mscript.codegen.c.IMscriptGeneratorContext, org.eclipselabs.mscript.language.il.Compound, org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy)
 	 */
 	public void generate(IMscriptGeneratorContext context, Compound compound) {
-		new CompoundGeneratorSwitch(context).doSwitch(compound);
+		new CompoundGeneratorSwitch(context).writeCompoundStatements(compound);
 	}
 	
 	private class CompoundGeneratorSwitch extends ILSwitch<Boolean> {
@@ -62,15 +62,10 @@ public class CompoundGenerator implements ICompoundGenerator {
 			out = new PrintAppendable(context.getAppendable());
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
+		/**
+		 * @param compound
 		 */
-		@Override
-		public Boolean caseCompound(Compound compound) {
-			boolean block = compound instanceof Statement;
-			if (block) {
-				out.print("{\n");
-			}
+		protected void writeCompoundStatements(Compound compound) {
 			for (LocalVariableDeclaration localVariableDeclaration : compound.getLocalVariableDeclarations()) {
 				out.print(MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(localVariableDeclaration), localVariableDeclaration.getName(), false));
 				out.print(";\n");
@@ -78,10 +73,6 @@ public class CompoundGenerator implements ICompoundGenerator {
 			for (Statement statement : compound.getStatements()) {
 				doSwitch(statement);
 			}
-			if (block) {
-				out.print("}\n");
-			}
-			return true;
 		}
 		
 		/* (non-Javadoc)
@@ -146,6 +137,19 @@ public class CompoundGenerator implements ICompoundGenerator {
 
 		private class AstCompoundGeneratorSwitch extends MscriptSwitch<Boolean> {
 			
+			@Override
+			public Boolean caseCompound(Compound compound) {
+				boolean block = compound instanceof Statement;
+				if (block) {
+					out.print("{\n");
+				}
+				writeCompoundStatements(compound);
+				if (block) {
+					out.print("}\n");
+				}
+				return true;
+			}
+
 			@Override
 			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
 				if (localVariableDeclaration.getInitializer() != null) {

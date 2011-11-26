@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
-import org.eclipselabs.damos.mscript.il.Compound;
+import org.eclipselabs.damos.mscript.Compound;
 
 
 /**

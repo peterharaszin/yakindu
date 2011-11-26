@@ -24,8 +24,10 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.FunctionKind;
+import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
@@ -35,7 +37,6 @@ import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
-import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
@@ -167,7 +168,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	private IStatus constructInitializationCompound(IFunctionDefinitionTransformerContext context, Collection<List<EquationDescriptor>> equationCompounds, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Initialization compound construction", null);
 		
-		Compound compound = ILFactory.eINSTANCE.createCompound();
+		Compound compound = MscriptFactory.eINSTANCE.createCompound();
 		for (Iterator<List<EquationDescriptor>> it = equationCompounds.iterator(); it.hasNext();) {
 			List<EquationDescriptor> equationDescriptors = it.next();
 			boolean processed = false;

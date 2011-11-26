@@ -15,8 +15,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.internal.operations.CompoundOperations;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,6 +73,15 @@ public class CompoundImpl extends StatementImpl implements Compound {
 			statements = new EObjectContainmentEList<Statement>(Statement.class, this, MscriptPackage.COMPOUND__STATEMENTS);
 		}
 		return statements;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<LocalVariableDeclaration> getLocalVariableDeclarations() {
+		return CompoundOperations.getLocalVariableDeclarations(this);
 	}
 
 	/**

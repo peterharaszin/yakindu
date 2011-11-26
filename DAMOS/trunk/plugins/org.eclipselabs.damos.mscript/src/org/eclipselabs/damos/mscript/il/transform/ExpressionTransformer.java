@@ -23,6 +23,7 @@ import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.EqualityExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
@@ -52,7 +53,6 @@ import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.Assignment;
-import org.eclipselabs.damos.mscript.il.CompoundStatement;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
 import org.eclipselabs.damos.mscript.il.VariableReference;
@@ -149,7 +149,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		context.getStaticEvaluationContext().setValue(localVariableDeclaration, expressionValue);
 		context.getCompound().getStatements().add(localVariableDeclaration);
 
-		CompoundStatement compoundStatement = ILFactory.eINSTANCE.createCompoundStatement();
+		Compound compoundStatement = MscriptFactory.eINSTANCE.createCompound();
 		context.enterScope();
 		context.setCompound(compoundStatement);
 		context.addVariableDeclaration(localVariableDeclaration);
@@ -201,7 +201,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		Expression conditionExpression = doSwitch(ifExpression.getCondition());
 		ifStatement.setCondition(conditionExpression);
 		
-		CompoundStatement thenStatement = ILFactory.eINSTANCE.createCompoundStatement();
+		Compound thenStatement = MscriptFactory.eINSTANCE.createCompound();
 		context.enterScope();
 		context.setCompound(thenStatement);
 		context.addVariableDeclaration(localVariableDeclaration);
@@ -211,7 +211,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		context.leaveScope();
 		ifStatement.setThenStatement(thenStatement);
 		
-		CompoundStatement elseStatement = ILFactory.eINSTANCE.createCompoundStatement();
+		Compound elseStatement = MscriptFactory.eINSTANCE.createCompound();
 		context.enterScope();
 		context.setCompound(elseStatement);
 		context.addVariableDeclaration(localVariableDeclaration);

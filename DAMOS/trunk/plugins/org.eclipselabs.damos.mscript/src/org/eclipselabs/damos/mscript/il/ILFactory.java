@@ -35,15 +35,6 @@ public interface ILFactory extends EFactory {
 	ILFunctionDefinition createILFunctionDefinition();
 
 	/**
-	 * Returns a new object of class '<em>Compound</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Compound</em>'.
-	 * @generated
-	 */
-	Compound createCompound();
-
-	/**
 	 * Returns a new object of class '<em>Computation Compound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -87,15 +78,6 @@ public interface ILFactory extends EFactory {
 	 * @generated
 	 */
 	InstanceVariableDeclaration createInstanceVariableDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Compound Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Compound Statement</em>'.
-	 * @generated
-	 */
-	CompoundStatement createCompoundStatement();
 
 	/**
 	 * Returns a new object of class '<em>Assignment</em>'.

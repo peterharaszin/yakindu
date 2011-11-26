@@ -152,43 +152,6 @@ public interface ILPackage extends EPackage {
 	int IL_FUNCTION_DEFINITION_FEATURE_COUNT = 8;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.CompoundImpl <em>Compound</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.il.impl.CompoundImpl
-	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getCompound()
-	 * @generated
-	 */
-	int COMPOUND = 1;
-
-	/**
-	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOUND__STATEMENTS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Local Variable Declarations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOUND__LOCAL_VARIABLE_DECLARATIONS = 1;
-
-	/**
-	 * The number of structural features of the '<em>Compound</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOUND_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.ComputationCompoundImpl <em>Computation Compound</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,7 +159,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getComputationCompound()
 	 * @generated
 	 */
-	int COMPUTATION_COMPOUND = 2;
+	int COMPUTATION_COMPOUND = 1;
 
 	/**
 	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -205,16 +168,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND__STATEMENTS = COMPOUND__STATEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Local Variable Declarations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTATION_COMPOUND__LOCAL_VARIABLE_DECLARATIONS = COMPOUND__LOCAL_VARIABLE_DECLARATIONS;
+	int COMPUTATION_COMPOUND__STATEMENTS = MscriptPackage.COMPOUND__STATEMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Inputs</b></em>' reference list.
@@ -223,7 +177,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND__INPUTS = COMPOUND_FEATURE_COUNT + 0;
+	int COMPUTATION_COMPOUND__INPUTS = MscriptPackage.COMPOUND_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Outputs</b></em>' reference list.
@@ -232,7 +186,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND__OUTPUTS = COMPOUND_FEATURE_COUNT + 1;
+	int COMPUTATION_COMPOUND__OUTPUTS = MscriptPackage.COMPOUND_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Computation Compound</em>' class.
@@ -241,7 +195,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPUTATION_COMPOUND_FEATURE_COUNT = COMPOUND_FEATURE_COUNT + 2;
+	int COMPUTATION_COMPOUND_FEATURE_COUNT = MscriptPackage.COMPOUND_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.StatefulVariableDeclarationImpl <em>Stateful Variable Declaration</em>}' class.
@@ -251,7 +205,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getStatefulVariableDeclaration()
 	 * @generated
 	 */
-	int STATEFUL_VARIABLE_DECLARATION = 3;
+	int STATEFUL_VARIABLE_DECLARATION = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -288,7 +242,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getTemplateVariableDeclaration()
 	 * @generated
 	 */
-	int TEMPLATE_VARIABLE_DECLARATION = 4;
+	int TEMPLATE_VARIABLE_DECLARATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -316,7 +270,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInputVariableDeclaration()
 	 * @generated
 	 */
-	int INPUT_VARIABLE_DECLARATION = 5;
+	int INPUT_VARIABLE_DECLARATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -371,7 +325,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getOutputVariableDeclaration()
 	 * @generated
 	 */
-	int OUTPUT_VARIABLE_DECLARATION = 6;
+	int OUTPUT_VARIABLE_DECLARATION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -408,7 +362,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInstanceVariableDeclaration()
 	 * @generated
 	 */
-	int INSTANCE_VARIABLE_DECLARATION = 7;
+	int INSTANCE_VARIABLE_DECLARATION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -438,43 +392,6 @@ public interface ILPackage extends EPackage {
 	int INSTANCE_VARIABLE_DECLARATION_FEATURE_COUNT = STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.CompoundStatementImpl <em>Compound Statement</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.il.impl.CompoundStatementImpl
-	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getCompoundStatement()
-	 * @generated
-	 */
-	int COMPOUND_STATEMENT = 8;
-
-	/**
-	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOUND_STATEMENT__STATEMENTS = COMPOUND__STATEMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Local Variable Declarations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOUND_STATEMENT__LOCAL_VARIABLE_DECLARATIONS = COMPOUND__LOCAL_VARIABLE_DECLARATIONS;
-
-	/**
-	 * The number of structural features of the '<em>Compound Statement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOUND_STATEMENT_FEATURE_COUNT = COMPOUND_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableAccessImpl <em>Variable Access</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -482,7 +399,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableAccess()
 	 * @generated
 	 */
-	int VARIABLE_ACCESS = 9;
+	int VARIABLE_ACCESS = 7;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -519,7 +436,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getAssignment()
 	 * @generated
 	 */
-	int ASSIGNMENT = 10;
+	int ASSIGNMENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -565,7 +482,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableReference()
 	 * @generated
 	 */
-	int VARIABLE_REFERENCE = 11;
+	int VARIABLE_REFERENCE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -611,7 +528,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInvalidExpression()
 	 * @generated
 	 */
-	int INVALID_EXPRESSION = 12;
+	int INVALID_EXPRESSION = 10;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Expression</em>' class.
@@ -720,38 +637,6 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getILFunctionDefinition_ComputationCompounds();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.Compound <em>Compound</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Compound</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.Compound
-	 * @generated
-	 */
-	EClass getCompound();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.il.Compound#getStatements <em>Statements</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Statements</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.Compound#getStatements()
-	 * @see #getCompound()
-	 * @generated
-	 */
-	EReference getCompound_Statements();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.mscript.il.Compound#getLocalVariableDeclarations <em>Local Variable Declarations</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Local Variable Declarations</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.Compound#getLocalVariableDeclarations()
-	 * @see #getCompound()
-	 * @generated
-	 */
-	EReference getCompound_LocalVariableDeclarations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.ComputationCompound <em>Computation Compound</em>}'.
@@ -867,16 +752,6 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInstanceVariableDeclaration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.CompoundStatement <em>Compound Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Compound Statement</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.CompoundStatement
-	 * @generated
-	 */
-	EClass getCompoundStatement();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.VariableAccess <em>Variable Access</em>}'.
@@ -1059,32 +934,6 @@ public interface ILPackage extends EPackage {
 		EReference IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS = eINSTANCE.getILFunctionDefinition_ComputationCompounds();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.CompoundImpl <em>Compound</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.il.impl.CompoundImpl
-		 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getCompound()
-		 * @generated
-		 */
-		EClass COMPOUND = eINSTANCE.getCompound();
-
-		/**
-		 * The meta object literal for the '<em><b>Statements</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOUND__STATEMENTS = eINSTANCE.getCompound_Statements();
-
-		/**
-		 * The meta object literal for the '<em><b>Local Variable Declarations</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPOUND__LOCAL_VARIABLE_DECLARATIONS = eINSTANCE.getCompound_LocalVariableDeclarations();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.ComputationCompoundImpl <em>Computation Compound</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1183,16 +1032,6 @@ public interface ILPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INSTANCE_VARIABLE_DECLARATION = eINSTANCE.getInstanceVariableDeclaration();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.CompoundStatementImpl <em>Compound Statement</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.il.impl.CompoundStatementImpl
-		 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getCompoundStatement()
-		 * @generated
-		 */
-		EClass COMPOUND_STATEMENT = eINSTANCE.getCompoundStatement();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableAccessImpl <em>Variable Access</em>}' class.

@@ -16,10 +16,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.ILPackage;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->

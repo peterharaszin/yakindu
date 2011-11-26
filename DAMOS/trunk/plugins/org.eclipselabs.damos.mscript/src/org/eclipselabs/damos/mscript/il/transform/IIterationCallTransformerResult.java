@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.il.transform;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 
 /**
  * @author Andreas Unger

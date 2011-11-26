@@ -89,15 +89,6 @@ public interface ILFactory extends EFactory {
 	InstanceVariableDeclaration createInstanceVariableDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Local Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Local Variable Declaration</em>'.
-	 * @generated
-	 */
-	LocalVariableDeclaration createLocalVariableDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Compound Statement</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,15 +105,6 @@ public interface ILFactory extends EFactory {
 	 * @generated
 	 */
 	Assignment createAssignment();
-
-	/**
-	 * Returns a new object of class '<em>Foreach Statement</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Foreach Statement</em>'.
-	 * @generated
-	 */
-	ForeachStatement createForeachStatement();
 
 	/**
 	 * Returns a new object of class '<em>Variable Reference</em>'.

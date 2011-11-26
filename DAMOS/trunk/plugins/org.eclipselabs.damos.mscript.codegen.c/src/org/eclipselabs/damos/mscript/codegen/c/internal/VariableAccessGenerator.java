@@ -1,12 +1,13 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.VariableAccess;
@@ -76,13 +77,16 @@ public class VariableAccessGenerator extends ILSwitch<String> {
 	public String caseStatefulVariableDeclaration(StatefulVariableDeclaration statefulVariableDeclaration) {
 		return context.getVariableAccessStrategy().getVariableAccessString(variableAccess);
 	}
-	
+
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.il.LocalVariableDeclaration)
+	 * @see org.eclipselabs.damos.mscript.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
-	public String caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
-		return localVariableDeclaration.getName();
+	public String defaultCase(EObject object) {
+		if (object instanceof LocalVariableDeclaration) {
+			return ((LocalVariableDeclaration) object).getName();
+		}
+		return super.defaultCase(object);
 	}
 	
 }

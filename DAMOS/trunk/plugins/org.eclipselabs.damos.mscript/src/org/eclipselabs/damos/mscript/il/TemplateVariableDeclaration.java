@@ -6,6 +6,8 @@
  */
 package org.eclipselabs.damos.mscript.il;
 
+import org.eclipselabs.damos.mscript.VariableDeclaration;
+
 
 /**
  * <!-- begin-user-doc -->

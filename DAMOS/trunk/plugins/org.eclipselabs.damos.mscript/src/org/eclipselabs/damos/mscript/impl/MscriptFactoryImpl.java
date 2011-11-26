@@ -116,7 +116,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.ALGORITHM_EXPRESSION: return createAlgorithmExpression();
 			case MscriptPackage.COMPOUND: return createCompound();
 			case MscriptPackage.ASSIGNMENT: return createAssignment();
-			case MscriptPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
+			case MscriptPackage.LOCAL_VARIABLE_DECLARATION: return createLocalVariableDeclaration();
 			case MscriptPackage.IF_STATEMENT: return createIfStatement();
 			case MscriptPackage.WHILE_STATEMENT: return createWhileStatement();
 			case MscriptPackage.DO_WHILE_STATEMENT: return createDoWhileStatement();
@@ -816,9 +816,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableDeclaration createVariableDeclaration() {
-		VariableDeclarationImpl variableDeclaration = new VariableDeclarationImpl();
-		return variableDeclaration;
+	public LocalVariableDeclaration createLocalVariableDeclaration() {
+		LocalVariableDeclarationImpl localVariableDeclaration = new LocalVariableDeclarationImpl();
+		return localVariableDeclaration;
 	}
 
 	/**

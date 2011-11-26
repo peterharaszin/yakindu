@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.il.ILPackage;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
+import org.eclipselabs.damos.mscript.impl.VariableDeclarationImpl;
 
 /**
  * <!-- begin-user-doc -->

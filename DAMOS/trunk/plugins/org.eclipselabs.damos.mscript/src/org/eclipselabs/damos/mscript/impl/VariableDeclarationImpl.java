@@ -7,11 +7,8 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 
@@ -23,13 +20,12 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.VariableDeclarationImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.VariableDeclarationImpl#getInitializer <em>Initializer</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class VariableDeclarationImpl extends StatementImpl implements VariableDeclaration {
+public abstract class VariableDeclarationImpl extends CallableElementImpl implements VariableDeclaration {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,16 +45,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getInitializer() <em>Initializer</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInitializer()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression initializer;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,79 +91,11 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getInitializer() {
-		return initializer;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetInitializer(Expression newInitializer, NotificationChain msgs) {
-		Expression oldInitializer = initializer;
-		initializer = newInitializer;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.VARIABLE_DECLARATION__INITIALIZER, oldInitializer, newInitializer);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInitializer(Expression newInitializer) {
-		if (newInitializer != initializer) {
-			NotificationChain msgs = null;
-			if (initializer != null)
-				msgs = ((InternalEObject)initializer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.VARIABLE_DECLARATION__INITIALIZER, null, msgs);
-			if (newInitializer != null)
-				msgs = ((InternalEObject)newInitializer).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.VARIABLE_DECLARATION__INITIALIZER, null, msgs);
-			msgs = basicSetInitializer(newInitializer, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.VARIABLE_DECLARATION__INITIALIZER, newInitializer, newInitializer));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public String getQualifiedName() {
-		return getName();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case MscriptPackage.VARIABLE_DECLARATION__INITIALIZER:
-				return basicSetInitializer(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case MscriptPackage.VARIABLE_DECLARATION__NAME:
 				return getName();
-			case MscriptPackage.VARIABLE_DECLARATION__INITIALIZER:
-				return getInitializer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,9 +110,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
 		switch (featureID) {
 			case MscriptPackage.VARIABLE_DECLARATION__NAME:
 				setName((String)newValue);
-				return;
-			case MscriptPackage.VARIABLE_DECLARATION__INITIALIZER:
-				setInitializer((Expression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -211,9 +126,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
 			case MscriptPackage.VARIABLE_DECLARATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case MscriptPackage.VARIABLE_DECLARATION__INITIALIZER:
-				setInitializer((Expression)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -228,8 +140,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
 		switch (featureID) {
 			case MscriptPackage.VARIABLE_DECLARATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case MscriptPackage.VARIABLE_DECLARATION__INITIALIZER:
-				return initializer != null;
 		}
 		return super.eIsSet(featureID);
 	}

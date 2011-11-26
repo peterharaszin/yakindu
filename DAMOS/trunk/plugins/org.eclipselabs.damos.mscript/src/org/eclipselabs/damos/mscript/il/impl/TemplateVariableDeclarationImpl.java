@@ -9,6 +9,7 @@ package org.eclipselabs.damos.mscript.il.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipselabs.damos.mscript.il.ILPackage;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
+import org.eclipselabs.damos.mscript.impl.VariableDeclarationImpl;
 
 /**
  * <!-- begin-user-doc -->

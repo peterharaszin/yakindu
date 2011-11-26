@@ -232,7 +232,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getAlgorithmExpressionAccess().getGroup(), "rule__AlgorithmExpression__Group__0");
 					put(grammarAccess.getCompoundAccess().getGroup(), "rule__Compound__Group__0");
 					put(grammarAccess.getAssignmentAccess().getGroup(), "rule__Assignment__Group__0");
-					put(grammarAccess.getVariableDeclarationAccess().getGroup(), "rule__VariableDeclaration__Group__0");
+					put(grammarAccess.getLocalVariableDeclarationAccess().getGroup(), "rule__LocalVariableDeclaration__Group__0");
 					put(grammarAccess.getIfStatementAccess().getGroup(), "rule__IfStatement__Group__0");
 					put(grammarAccess.getIfStatementAccess().getGroup_5(), "rule__IfStatement__Group_5__0");
 					put(grammarAccess.getWhileStatementAccess().getGroup(), "rule__WhileStatement__Group__0");
@@ -460,8 +460,8 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCompoundAccess().getStatementsAssignment_2(), "rule__Compound__StatementsAssignment_2");
 					put(grammarAccess.getAssignmentAccess().getTargetAssignment_0(), "rule__Assignment__TargetAssignment_0");
 					put(grammarAccess.getAssignmentAccess().getExpressionAssignment_2(), "rule__Assignment__ExpressionAssignment_2");
-					put(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1(), "rule__VariableDeclaration__NameAssignment_1");
-					put(grammarAccess.getVariableDeclarationAccess().getInitializerAssignment_3(), "rule__VariableDeclaration__InitializerAssignment_3");
+					put(grammarAccess.getLocalVariableDeclarationAccess().getNameAssignment_1(), "rule__LocalVariableDeclaration__NameAssignment_1");
+					put(grammarAccess.getLocalVariableDeclarationAccess().getInitializerAssignment_3(), "rule__LocalVariableDeclaration__InitializerAssignment_3");
 					put(grammarAccess.getIfStatementAccess().getConditionAssignment_2(), "rule__IfStatement__ConditionAssignment_2");
 					put(grammarAccess.getIfStatementAccess().getThenStatementAssignment_4(), "rule__IfStatement__ThenStatementAssignment_4");
 					put(grammarAccess.getIfStatementAccess().getElseStatementAssignment_5_1(), "rule__IfStatement__ElseStatementAssignment_5_1");

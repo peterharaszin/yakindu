@@ -25,9 +25,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IL.ecore#//ComputationCompound/inputs"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IL.ecore#//ComputationCompound/outputs"/>
     </genClasses>
-    <genClasses ecoreClass="IL.ecore#//VariableDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//VariableDeclaration/name"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="IL.ecore#//StatefulVariableDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//StatefulVariableDeclaration/circularBufferSize"/>
     </genClasses>
@@ -38,9 +35,6 @@
     </genClasses>
     <genClasses ecoreClass="IL.ecore#//OutputVariableDeclaration"/>
     <genClasses ecoreClass="IL.ecore#//InstanceVariableDeclaration"/>
-    <genClasses ecoreClass="IL.ecore#//LocalVariableDeclaration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//LocalVariableDeclaration/initializer"/>
-    </genClasses>
     <genClasses ecoreClass="IL.ecore#//CompoundStatement"/>
     <genClasses image="false" ecoreClass="IL.ecore#//VariableAccess">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IL.ecore#//VariableAccess/target"/>
@@ -48,11 +42,6 @@
     </genClasses>
     <genClasses ecoreClass="IL.ecore#//Assignment">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//Assignment/assignedExpression"/>
-    </genClasses>
-    <genClasses ecoreClass="IL.ecore#//ForeachStatement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//ForeachStatement/iterationVariableDeclaration"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//ForeachStatement/collectionExpression"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//ForeachStatement/body"/>
     </genClasses>
     <genClasses ecoreClass="IL.ecore#//VariableReference">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//VariableReference/arrayIndices"/>

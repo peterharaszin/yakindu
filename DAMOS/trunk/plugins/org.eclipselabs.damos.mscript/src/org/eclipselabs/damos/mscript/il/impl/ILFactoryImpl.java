@@ -15,14 +15,12 @@ import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.CompoundStatement;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.ForeachStatement;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
 import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.VariableReference;
@@ -78,10 +76,8 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 			case ILPackage.INPUT_VARIABLE_DECLARATION: return createInputVariableDeclaration();
 			case ILPackage.OUTPUT_VARIABLE_DECLARATION: return createOutputVariableDeclaration();
 			case ILPackage.INSTANCE_VARIABLE_DECLARATION: return createInstanceVariableDeclaration();
-			case ILPackage.LOCAL_VARIABLE_DECLARATION: return createLocalVariableDeclaration();
 			case ILPackage.COMPOUND_STATEMENT: return createCompoundStatement();
 			case ILPackage.ASSIGNMENT: return createAssignment();
-			case ILPackage.FOREACH_STATEMENT: return createForeachStatement();
 			case ILPackage.VARIABLE_REFERENCE: return createVariableReference();
 			case ILPackage.INVALID_EXPRESSION: return createInvalidExpression();
 			default:
@@ -164,16 +160,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LocalVariableDeclaration createLocalVariableDeclaration() {
-		LocalVariableDeclarationImpl localVariableDeclaration = new LocalVariableDeclarationImpl();
-		return localVariableDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public CompoundStatement createCompoundStatement() {
 		CompoundStatementImpl compoundStatement = new CompoundStatementImpl();
 		return compoundStatement;
@@ -187,16 +173,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	public Assignment createAssignment() {
 		AssignmentImpl assignment = new AssignmentImpl();
 		return assignment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ForeachStatement createForeachStatement() {
-		ForeachStatementImpl foreachStatement = new ForeachStatementImpl();
-		return foreachStatement;
 	}
 
 	/**

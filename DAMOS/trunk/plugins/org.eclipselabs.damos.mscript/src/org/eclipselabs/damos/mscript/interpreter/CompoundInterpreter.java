@@ -13,13 +13,13 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.ForeachStatement;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -81,60 +81,6 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		}
 	
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseForeachStatement(org.eclipselabs.mscript.language.imperativemodel.ForeachStatement)
-		 */
-		@Override
-		public Boolean caseForeachStatement(ForeachStatement foreachStatement) {
-			IValue value = expressionValueEvaluator.evaluate(context, foreachStatement.getCollectionExpression());
-	
-			if (!(value.getDataType() instanceof ArrayType)) {
-				throw new RuntimeException("Collection type must be array type");
-			}
-			
-			ArrayType arrayType = (ArrayType) value.getDataType();
-			if (arrayType.getDimensionality() != 1) {
-				throw new RuntimeException("Array dimensionality must be 1");
-			}
-			
-			if (!(value instanceof IArrayValue)) {
-				throw new RuntimeException("Value must be array value");
-			}
-			
-			IArrayValue arrayValue = (IArrayValue) value;
-			
-			int size = TypeUtil.getArraySize(arrayType);
-			
-			VariableDeclaration iterationVariableDeclaration = foreachStatement.getIterationVariableDeclaration();
-			for (int i = 0; i < size; ++i) {
-				context.enterScope();
-				IVariable variable = new Variable(context, iterationVariableDeclaration);
-				variable.setValue(0, arrayValue.get(i));
-				context.addVariable(variable);
-				doSwitch(foreachStatement.getBody());
-				context.leaveScope();
-			}
-	
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.imperativemodel.LocalVariableDeclaration)
-		 */
-		@Override
-		public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
-			IValue value;
-			if (localVariableDeclaration.getInitializer() != null) {
-				value = expressionValueEvaluator.evaluate(context, localVariableDeclaration.getInitializer());
-			} else {
-				value = new UninitializedValue(context.getComputationContext());
-			}
-			IVariable variable = new Variable(context, localVariableDeclaration);
-			variable.setValue(0, value);
-			context.addVariable(variable);
-			return true;
-		}
-		
-		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 		 */
 		@Override
@@ -144,6 +90,57 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		
 		private class AstCompoundInterpreterSwitch extends MscriptSwitch<Boolean> {
 			
+			@Override
+			public Boolean caseForStatement(ForStatement forStatement) {
+				IValue value = expressionValueEvaluator.evaluate(context, forStatement.getCollectionExpression());
+		
+				if (!(value.getDataType() instanceof ArrayType)) {
+					throw new RuntimeException("Collection type must be array type");
+				}
+				
+				ArrayType arrayType = (ArrayType) value.getDataType();
+				if (arrayType.getDimensionality() != 1) {
+					throw new RuntimeException("Array dimensionality must be 1");
+				}
+				
+				if (!(value instanceof IArrayValue)) {
+					throw new RuntimeException("Value must be array value");
+				}
+				
+				IArrayValue arrayValue = (IArrayValue) value;
+				
+				int size = TypeUtil.getArraySize(arrayType);
+				
+				VariableDeclaration iterationVariableDeclaration = forStatement.getDeclaredIterationVariable();
+				for (int i = 0; i < size; ++i) {
+					context.enterScope();
+					IVariable variable = new Variable(context, iterationVariableDeclaration);
+					variable.setValue(0, arrayValue.get(i));
+					context.addVariable(variable);
+					CompoundInterpreterSwitch.this.doSwitch(forStatement.getBody());
+					context.leaveScope();
+				}
+		
+				return true;
+			}
+			
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.imperativemodel.LocalVariableDeclaration)
+			 */
+			@Override
+			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
+				IValue value;
+				if (localVariableDeclaration.getInitializer() != null) {
+					value = expressionValueEvaluator.evaluate(context, localVariableDeclaration.getInitializer());
+				} else {
+					value = new UninitializedValue(context.getComputationContext());
+				}
+				IVariable variable = new Variable(context, localVariableDeclaration);
+				variable.setValue(0, value);
+				context.addVariable(variable);
+				return true;
+			}
+
 			@Override
 			public Boolean caseIfStatement(IfStatement ifStatement) {
 				IValue conditionValue = expressionValueEvaluator.evaluate(context, ifStatement.getCondition());

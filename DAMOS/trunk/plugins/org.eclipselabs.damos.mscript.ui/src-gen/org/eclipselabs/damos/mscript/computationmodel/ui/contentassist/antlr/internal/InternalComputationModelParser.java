@@ -7914,25 +7914,25 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     // $ANTLR end "ruleAssignment"
 
 
-    // $ANTLR start "entryRuleVariableDeclaration"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2627:1: entryRuleVariableDeclaration : ruleVariableDeclaration EOF ;
-    public final void entryRuleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "entryRuleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2627:1: entryRuleLocalVariableDeclaration : ruleLocalVariableDeclaration EOF ;
+    public final void entryRuleLocalVariableDeclaration() throws RecognitionException {
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2628:1: ( ruleVariableDeclaration EOF )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2629:1: ruleVariableDeclaration EOF
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2628:1: ( ruleLocalVariableDeclaration EOF )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2629:1: ruleLocalVariableDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationRule()); 
+               before(grammarAccess.getLocalVariableDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration5545);
-            ruleVariableDeclaration();
+            pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration5545);
+            ruleLocalVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationRule()); 
+               after(grammarAccess.getLocalVariableDeclarationRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration5552); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLocalVariableDeclaration5552); if (state.failed) return ;
 
             }
 
@@ -7945,30 +7945,30 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "entryRuleVariableDeclaration"
+    // $ANTLR end "entryRuleLocalVariableDeclaration"
 
 
-    // $ANTLR start "ruleVariableDeclaration"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2636:1: ruleVariableDeclaration : ( ( rule__VariableDeclaration__Group__0 ) ) ;
-    public final void ruleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "ruleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2636:1: ruleLocalVariableDeclaration : ( ( rule__LocalVariableDeclaration__Group__0 ) ) ;
+    public final void ruleLocalVariableDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2640:2: ( ( ( rule__VariableDeclaration__Group__0 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2641:1: ( ( rule__VariableDeclaration__Group__0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2640:2: ( ( ( rule__LocalVariableDeclaration__Group__0 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2641:1: ( ( rule__LocalVariableDeclaration__Group__0 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2641:1: ( ( rule__VariableDeclaration__Group__0 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2642:1: ( rule__VariableDeclaration__Group__0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2641:1: ( ( rule__LocalVariableDeclaration__Group__0 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2642:1: ( rule__LocalVariableDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getGroup()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getGroup()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2643:1: ( rule__VariableDeclaration__Group__0 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2643:2: rule__VariableDeclaration__Group__0
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2643:1: ( rule__LocalVariableDeclaration__Group__0 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:2643:2: rule__LocalVariableDeclaration__Group__0
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__0_in_ruleVariableDeclaration5578);
-            rule__VariableDeclaration__Group__0();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__0_in_ruleLocalVariableDeclaration5578);
+            rule__LocalVariableDeclaration__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -7976,7 +7976,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getGroup()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getGroup()); 
             }
 
             }
@@ -7996,7 +7996,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "ruleVariableDeclaration"
+    // $ANTLR end "ruleLocalVariableDeclaration"
 
 
     // $ANTLR start "entryRuleIfStatement"
@@ -10753,7 +10753,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                 {
                 int LA7_2 = input.LA(2);
 
-                if ( (LA7_2==EOF||(LA7_2>=RULE_IJ && LA7_2<=RULE_EXPIJ)||(LA7_2>=RULE_N && LA7_2<=RULE_ID)||(LA7_2>=39 && LA7_2<=40)||LA7_2==43||(LA7_2>=58 && LA7_2<=59)||LA7_2==62||LA7_2==64||LA7_2==69||(LA7_2>=71 && LA7_2<=77)||LA7_2==85||LA7_2==87||(LA7_2>=89 && LA7_2<=90)||(LA7_2>=92 && LA7_2<=96)||(LA7_2>=98 && LA7_2<=99)||LA7_2==101||LA7_2==105||LA7_2==110||(LA7_2>=112 && LA7_2<=113)) ) {
+                if ( (LA7_2==EOF||(LA7_2>=RULE_IJ && LA7_2<=RULE_EXPIJ)||(LA7_2>=RULE_N && LA7_2<=RULE_ID)||(LA7_2>=39 && LA7_2<=40)||LA7_2==43||(LA7_2>=58 && LA7_2<=59)||LA7_2==62||LA7_2==64||LA7_2==69||(LA7_2>=71 && LA7_2<=77)||LA7_2==85||LA7_2==87||(LA7_2>=89 && LA7_2<=90)||(LA7_2>=92 && LA7_2<=96)||(LA7_2>=98 && LA7_2<=99)||LA7_2==101||LA7_2==110||(LA7_2>=112 && LA7_2<=113)) ) {
                     alt7=2;
                 }
                 else if ( (LA7_2==84) ) {
@@ -12866,7 +12866,6 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                 case 98:
                 case 99:
                 case 101:
-                case 105:
                 case 112:
                 case 113:
                     {
@@ -12927,7 +12926,6 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                 case 98:
                 case 99:
                 case 101:
-                case 105:
                 case 112:
                 case 113:
                     {
@@ -13972,13 +13970,13 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__Statement__Alternatives"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4193:1: rule__Statement__Alternatives : ( ( ruleCompound ) | ( ruleAssignment ) | ( ruleVariableDeclaration ) | ( ruleIfStatement ) | ( ruleWhileStatement ) | ( ruleDoWhileStatement ) | ( ruleForStatement ) | ( ruleContinueStatement ) | ( ruleBreakStatement ) | ( ruleReturnStatement ) );
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4193:1: rule__Statement__Alternatives : ( ( ruleCompound ) | ( ruleAssignment ) | ( ruleLocalVariableDeclaration ) | ( ruleIfStatement ) | ( ruleWhileStatement ) | ( ruleDoWhileStatement ) | ( ruleForStatement ) | ( ruleContinueStatement ) | ( ruleBreakStatement ) | ( ruleReturnStatement ) );
     public final void rule__Statement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4197:1: ( ( ruleCompound ) | ( ruleAssignment ) | ( ruleVariableDeclaration ) | ( ruleIfStatement ) | ( ruleWhileStatement ) | ( ruleDoWhileStatement ) | ( ruleForStatement ) | ( ruleContinueStatement ) | ( ruleBreakStatement ) | ( ruleReturnStatement ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4197:1: ( ( ruleCompound ) | ( ruleAssignment ) | ( ruleLocalVariableDeclaration ) | ( ruleIfStatement ) | ( ruleWhileStatement ) | ( ruleDoWhileStatement ) | ( ruleForStatement ) | ( ruleContinueStatement ) | ( ruleBreakStatement ) | ( ruleReturnStatement ) )
             int alt35=10;
             switch ( input.LA(1) ) {
             case 57:
@@ -14092,21 +14090,21 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4210:6: ( ruleVariableDeclaration )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4210:6: ( ruleLocalVariableDeclaration )
                     {
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4210:6: ( ruleVariableDeclaration )
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4211:1: ruleVariableDeclaration
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4210:6: ( ruleLocalVariableDeclaration )
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:4211:1: ruleLocalVariableDeclaration
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getStatementAccess().getVariableDeclarationParserRuleCall_2()); 
+                       before(grammarAccess.getStatementAccess().getLocalVariableDeclarationParserRuleCall_2()); 
                     }
-                    pushFollow(FOLLOW_ruleVariableDeclaration_in_rule__Statement__Alternatives9057);
-                    ruleVariableDeclaration();
+                    pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_rule__Statement__Alternatives9057);
+                    ruleLocalVariableDeclaration();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getStatementAccess().getVariableDeclarationParserRuleCall_2()); 
+                       after(grammarAccess.getStatementAccess().getLocalVariableDeclarationParserRuleCall_2()); 
                     }
 
                     }
@@ -14420,7 +14418,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
                     throw nvae;
                 }
             }
-            else if ( (LA37_0==EOF||(LA37_0>=RULE_IJ && LA37_0<=RULE_EXPIJ)||(LA37_0>=RULE_N && LA37_0<=RULE_ID)||(LA37_0>=16 && LA37_0<=18)||(LA37_0>=39 && LA37_0<=50)||LA37_0==55||(LA37_0>=58 && LA37_0<=59)||LA37_0==62||LA37_0==64||LA37_0==69||(LA37_0>=71 && LA37_0<=77)||(LA37_0>=84 && LA37_0<=85)||LA37_0==87||(LA37_0>=89 && LA37_0<=90)||(LA37_0>=92 && LA37_0<=99)||LA37_0==101||LA37_0==105||(LA37_0>=112 && LA37_0<=113)) ) {
+            else if ( (LA37_0==EOF||(LA37_0>=RULE_IJ && LA37_0<=RULE_EXPIJ)||(LA37_0>=RULE_N && LA37_0<=RULE_ID)||(LA37_0>=16 && LA37_0<=18)||(LA37_0>=39 && LA37_0<=50)||LA37_0==55||(LA37_0>=58 && LA37_0<=59)||LA37_0==62||LA37_0==64||LA37_0==69||(LA37_0>=71 && LA37_0<=77)||(LA37_0>=84 && LA37_0<=85)||LA37_0==87||(LA37_0>=89 && LA37_0<=90)||(LA37_0>=92 && LA37_0<=99)||LA37_0==101||(LA37_0>=112 && LA37_0<=113)) ) {
                 alt37=3;
             }
             else {
@@ -49735,23 +49733,23 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__Assignment__Group__3__Impl"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__0"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17065:1: rule__VariableDeclaration__Group__0 : rule__VariableDeclaration__Group__0__Impl rule__VariableDeclaration__Group__1 ;
-    public final void rule__VariableDeclaration__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__0"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17065:1: rule__LocalVariableDeclaration__Group__0 : rule__LocalVariableDeclaration__Group__0__Impl rule__LocalVariableDeclaration__Group__1 ;
+    public final void rule__LocalVariableDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17069:1: ( rule__VariableDeclaration__Group__0__Impl rule__VariableDeclaration__Group__1 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17070:2: rule__VariableDeclaration__Group__0__Impl rule__VariableDeclaration__Group__1
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17069:1: ( rule__LocalVariableDeclaration__Group__0__Impl rule__LocalVariableDeclaration__Group__1 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17070:2: rule__LocalVariableDeclaration__Group__0__Impl rule__LocalVariableDeclaration__Group__1
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__034624);
-            rule__VariableDeclaration__Group__0__Impl();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__0__Impl_in_rule__LocalVariableDeclaration__Group__034624);
+            rule__LocalVariableDeclaration__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__1_in_rule__VariableDeclaration__Group__034627);
-            rule__VariableDeclaration__Group__1();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__1_in_rule__LocalVariableDeclaration__Group__034627);
+            rule__LocalVariableDeclaration__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -49770,12 +49768,12 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__0"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__0"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__0__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17077:1: rule__VariableDeclaration__Group__0__Impl : ( 'var' ) ;
-    public final void rule__VariableDeclaration__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__0__Impl"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17077:1: rule__LocalVariableDeclaration__Group__0__Impl : ( 'var' ) ;
+    public final void rule__LocalVariableDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -49787,11 +49785,11 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17083:1: 'var'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getVarKeyword_0()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getVarKeyword_0()); 
             }
-            match(input,73,FOLLOW_73_in_rule__VariableDeclaration__Group__0__Impl34655); if (state.failed) return ;
+            match(input,73,FOLLOW_73_in_rule__LocalVariableDeclaration__Group__0__Impl34655); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getVarKeyword_0()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getVarKeyword_0()); 
             }
 
             }
@@ -49811,26 +49809,26 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__0__Impl"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__0__Impl"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__1"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17096:1: rule__VariableDeclaration__Group__1 : rule__VariableDeclaration__Group__1__Impl rule__VariableDeclaration__Group__2 ;
-    public final void rule__VariableDeclaration__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__1"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17096:1: rule__LocalVariableDeclaration__Group__1 : rule__LocalVariableDeclaration__Group__1__Impl rule__LocalVariableDeclaration__Group__2 ;
+    public final void rule__LocalVariableDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17100:1: ( rule__VariableDeclaration__Group__1__Impl rule__VariableDeclaration__Group__2 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17101:2: rule__VariableDeclaration__Group__1__Impl rule__VariableDeclaration__Group__2
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17100:1: ( rule__LocalVariableDeclaration__Group__1__Impl rule__LocalVariableDeclaration__Group__2 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17101:2: rule__LocalVariableDeclaration__Group__1__Impl rule__LocalVariableDeclaration__Group__2
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__1__Impl_in_rule__VariableDeclaration__Group__134686);
-            rule__VariableDeclaration__Group__1__Impl();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__1__Impl_in_rule__LocalVariableDeclaration__Group__134686);
+            rule__LocalVariableDeclaration__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__2_in_rule__VariableDeclaration__Group__134689);
-            rule__VariableDeclaration__Group__2();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__2_in_rule__LocalVariableDeclaration__Group__134689);
+            rule__LocalVariableDeclaration__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -49849,30 +49847,30 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__1"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__1"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__1__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17108:1: rule__VariableDeclaration__Group__1__Impl : ( ( rule__VariableDeclaration__NameAssignment_1 ) ) ;
-    public final void rule__VariableDeclaration__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__1__Impl"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17108:1: rule__LocalVariableDeclaration__Group__1__Impl : ( ( rule__LocalVariableDeclaration__NameAssignment_1 ) ) ;
+    public final void rule__LocalVariableDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17112:1: ( ( ( rule__VariableDeclaration__NameAssignment_1 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17113:1: ( ( rule__VariableDeclaration__NameAssignment_1 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17112:1: ( ( ( rule__LocalVariableDeclaration__NameAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17113:1: ( ( rule__LocalVariableDeclaration__NameAssignment_1 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17113:1: ( ( rule__VariableDeclaration__NameAssignment_1 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17114:1: ( rule__VariableDeclaration__NameAssignment_1 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17113:1: ( ( rule__LocalVariableDeclaration__NameAssignment_1 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17114:1: ( rule__LocalVariableDeclaration__NameAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getNameAssignment_1()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17115:1: ( rule__VariableDeclaration__NameAssignment_1 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17115:2: rule__VariableDeclaration__NameAssignment_1
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17115:1: ( rule__LocalVariableDeclaration__NameAssignment_1 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17115:2: rule__LocalVariableDeclaration__NameAssignment_1
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__NameAssignment_1_in_rule__VariableDeclaration__Group__1__Impl34716);
-            rule__VariableDeclaration__NameAssignment_1();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__NameAssignment_1_in_rule__LocalVariableDeclaration__Group__1__Impl34716);
+            rule__LocalVariableDeclaration__NameAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -49880,7 +49878,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getNameAssignment_1()); 
             }
 
             }
@@ -49900,26 +49898,26 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__1__Impl"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__1__Impl"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__2"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17125:1: rule__VariableDeclaration__Group__2 : rule__VariableDeclaration__Group__2__Impl rule__VariableDeclaration__Group__3 ;
-    public final void rule__VariableDeclaration__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__2"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17125:1: rule__LocalVariableDeclaration__Group__2 : rule__LocalVariableDeclaration__Group__2__Impl rule__LocalVariableDeclaration__Group__3 ;
+    public final void rule__LocalVariableDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17129:1: ( rule__VariableDeclaration__Group__2__Impl rule__VariableDeclaration__Group__3 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17130:2: rule__VariableDeclaration__Group__2__Impl rule__VariableDeclaration__Group__3
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17129:1: ( rule__LocalVariableDeclaration__Group__2__Impl rule__LocalVariableDeclaration__Group__3 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17130:2: rule__LocalVariableDeclaration__Group__2__Impl rule__LocalVariableDeclaration__Group__3
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__2__Impl_in_rule__VariableDeclaration__Group__234746);
-            rule__VariableDeclaration__Group__2__Impl();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__2__Impl_in_rule__LocalVariableDeclaration__Group__234746);
+            rule__LocalVariableDeclaration__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__3_in_rule__VariableDeclaration__Group__234749);
-            rule__VariableDeclaration__Group__3();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__3_in_rule__LocalVariableDeclaration__Group__234749);
+            rule__LocalVariableDeclaration__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -49938,12 +49936,12 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__2"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__2"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__2__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17137:1: rule__VariableDeclaration__Group__2__Impl : ( '=' ) ;
-    public final void rule__VariableDeclaration__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__2__Impl"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17137:1: rule__LocalVariableDeclaration__Group__2__Impl : ( '=' ) ;
+    public final void rule__LocalVariableDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -49955,11 +49953,11 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17143:1: '='
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getEqualsSignKeyword_2()); 
             }
-            match(input,75,FOLLOW_75_in_rule__VariableDeclaration__Group__2__Impl34777); if (state.failed) return ;
+            match(input,75,FOLLOW_75_in_rule__LocalVariableDeclaration__Group__2__Impl34777); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getEqualsSignKeyword_2()); 
             }
 
             }
@@ -49979,26 +49977,26 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__2__Impl"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__2__Impl"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__3"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17156:1: rule__VariableDeclaration__Group__3 : rule__VariableDeclaration__Group__3__Impl rule__VariableDeclaration__Group__4 ;
-    public final void rule__VariableDeclaration__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__3"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17156:1: rule__LocalVariableDeclaration__Group__3 : rule__LocalVariableDeclaration__Group__3__Impl rule__LocalVariableDeclaration__Group__4 ;
+    public final void rule__LocalVariableDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17160:1: ( rule__VariableDeclaration__Group__3__Impl rule__VariableDeclaration__Group__4 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17161:2: rule__VariableDeclaration__Group__3__Impl rule__VariableDeclaration__Group__4
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17160:1: ( rule__LocalVariableDeclaration__Group__3__Impl rule__LocalVariableDeclaration__Group__4 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17161:2: rule__LocalVariableDeclaration__Group__3__Impl rule__LocalVariableDeclaration__Group__4
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__3__Impl_in_rule__VariableDeclaration__Group__334808);
-            rule__VariableDeclaration__Group__3__Impl();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__3__Impl_in_rule__LocalVariableDeclaration__Group__334808);
+            rule__LocalVariableDeclaration__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__4_in_rule__VariableDeclaration__Group__334811);
-            rule__VariableDeclaration__Group__4();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__4_in_rule__LocalVariableDeclaration__Group__334811);
+            rule__LocalVariableDeclaration__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50017,30 +50015,30 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__3"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__3"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__3__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17168:1: rule__VariableDeclaration__Group__3__Impl : ( ( rule__VariableDeclaration__InitializerAssignment_3 ) ) ;
-    public final void rule__VariableDeclaration__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__3__Impl"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17168:1: rule__LocalVariableDeclaration__Group__3__Impl : ( ( rule__LocalVariableDeclaration__InitializerAssignment_3 ) ) ;
+    public final void rule__LocalVariableDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17172:1: ( ( ( rule__VariableDeclaration__InitializerAssignment_3 ) ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17173:1: ( ( rule__VariableDeclaration__InitializerAssignment_3 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17172:1: ( ( ( rule__LocalVariableDeclaration__InitializerAssignment_3 ) ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17173:1: ( ( rule__LocalVariableDeclaration__InitializerAssignment_3 ) )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17173:1: ( ( rule__VariableDeclaration__InitializerAssignment_3 ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17174:1: ( rule__VariableDeclaration__InitializerAssignment_3 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17173:1: ( ( rule__LocalVariableDeclaration__InitializerAssignment_3 ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17174:1: ( rule__LocalVariableDeclaration__InitializerAssignment_3 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getInitializerAssignment_3()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getInitializerAssignment_3()); 
             }
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17175:1: ( rule__VariableDeclaration__InitializerAssignment_3 )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17175:2: rule__VariableDeclaration__InitializerAssignment_3
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17175:1: ( rule__LocalVariableDeclaration__InitializerAssignment_3 )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17175:2: rule__LocalVariableDeclaration__InitializerAssignment_3
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__InitializerAssignment_3_in_rule__VariableDeclaration__Group__3__Impl34838);
-            rule__VariableDeclaration__InitializerAssignment_3();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__InitializerAssignment_3_in_rule__LocalVariableDeclaration__Group__3__Impl34838);
+            rule__LocalVariableDeclaration__InitializerAssignment_3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50048,7 +50046,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getInitializerAssignment_3()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getInitializerAssignment_3()); 
             }
 
             }
@@ -50068,21 +50066,21 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__3__Impl"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__3__Impl"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__4"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17185:1: rule__VariableDeclaration__Group__4 : rule__VariableDeclaration__Group__4__Impl ;
-    public final void rule__VariableDeclaration__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__4"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17185:1: rule__LocalVariableDeclaration__Group__4 : rule__LocalVariableDeclaration__Group__4__Impl ;
+    public final void rule__LocalVariableDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17189:1: ( rule__VariableDeclaration__Group__4__Impl )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17190:2: rule__VariableDeclaration__Group__4__Impl
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17189:1: ( rule__LocalVariableDeclaration__Group__4__Impl )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17190:2: rule__LocalVariableDeclaration__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__VariableDeclaration__Group__4__Impl_in_rule__VariableDeclaration__Group__434868);
-            rule__VariableDeclaration__Group__4__Impl();
+            pushFollow(FOLLOW_rule__LocalVariableDeclaration__Group__4__Impl_in_rule__LocalVariableDeclaration__Group__434868);
+            rule__LocalVariableDeclaration__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -50101,12 +50099,12 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__4"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__4"
 
 
-    // $ANTLR start "rule__VariableDeclaration__Group__4__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17196:1: rule__VariableDeclaration__Group__4__Impl : ( ';' ) ;
-    public final void rule__VariableDeclaration__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__Group__4__Impl"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17196:1: rule__LocalVariableDeclaration__Group__4__Impl : ( ';' ) ;
+    public final void rule__LocalVariableDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -50118,11 +50116,11 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17202:1: ';'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getSemicolonKeyword_4()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getSemicolonKeyword_4()); 
             }
-            match(input,99,FOLLOW_99_in_rule__VariableDeclaration__Group__4__Impl34896); if (state.failed) return ;
+            match(input,99,FOLLOW_99_in_rule__LocalVariableDeclaration__Group__4__Impl34896); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getSemicolonKeyword_4()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getSemicolonKeyword_4()); 
             }
 
             }
@@ -50142,7 +50140,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__Group__4__Impl"
+    // $ANTLR end "rule__LocalVariableDeclaration__Group__4__Impl"
 
 
     // $ANTLR start "rule__IfStatement__Group__0"
@@ -51711,7 +51709,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             int alt120=2;
             int LA120_0 = input.LA(1);
 
-            if ( (LA120_0==105) ) {
+            if ( (LA120_0==99) ) {
                 alt120=1;
             }
             switch (alt120) {
@@ -52118,24 +52116,24 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
 
 
     // $ANTLR start "rule__ForStatement__Group_5__0__Impl"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17969:1: rule__ForStatement__Group_5__0__Impl : ( 'while' ) ;
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17969:1: rule__ForStatement__Group_5__0__Impl : ( ';' ) ;
     public final void rule__ForStatement__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17973:1: ( ( 'while' ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17974:1: ( 'while' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17973:1: ( ( ';' ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17974:1: ( ';' )
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17974:1: ( 'while' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17975:1: 'while'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17974:1: ( ';' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:17975:1: ';'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getForStatementAccess().getWhileKeyword_5_0()); 
+               before(grammarAccess.getForStatementAccess().getSemicolonKeyword_5_0()); 
             }
-            match(input,105,FOLLOW_105_in_rule__ForStatement__Group_5__0__Impl36407); if (state.failed) return ;
+            match(input,99,FOLLOW_99_in_rule__ForStatement__Group_5__0__Impl36407); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getForStatementAccess().getWhileKeyword_5_0()); 
+               after(grammarAccess.getForStatementAccess().getSemicolonKeyword_5_0()); 
             }
 
             }
@@ -64544,9 +64542,9 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     // $ANTLR end "rule__Assignment__ExpressionAssignment_2"
 
 
-    // $ANTLR start "rule__VariableDeclaration__NameAssignment_1"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22387:1: rule__VariableDeclaration__NameAssignment_1 : ( ruleValidID ) ;
-    public final void rule__VariableDeclaration__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__NameAssignment_1"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22387:1: rule__LocalVariableDeclaration__NameAssignment_1 : ( ruleValidID ) ;
+    public final void rule__LocalVariableDeclaration__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -64558,15 +64556,15 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22393:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__VariableDeclaration__NameAssignment_145400);
+            pushFollow(FOLLOW_ruleValidID_in_rule__LocalVariableDeclaration__NameAssignment_145400);
             ruleValidID();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
 
             }
@@ -64586,12 +64584,12 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__NameAssignment_1"
+    // $ANTLR end "rule__LocalVariableDeclaration__NameAssignment_1"
 
 
-    // $ANTLR start "rule__VariableDeclaration__InitializerAssignment_3"
-    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22402:1: rule__VariableDeclaration__InitializerAssignment_3 : ( ruleExpression ) ;
-    public final void rule__VariableDeclaration__InitializerAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__LocalVariableDeclaration__InitializerAssignment_3"
+    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22402:1: rule__LocalVariableDeclaration__InitializerAssignment_3 : ( ruleExpression ) ;
+    public final void rule__LocalVariableDeclaration__InitializerAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -64603,15 +64601,15 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22408:1: ruleExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
+               before(grammarAccess.getLocalVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleExpression_in_rule__VariableDeclaration__InitializerAssignment_345431);
+            pushFollow(FOLLOW_ruleExpression_in_rule__LocalVariableDeclaration__InitializerAssignment_345431);
             ruleExpression();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
+               after(grammarAccess.getLocalVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
             }
 
             }
@@ -64631,7 +64629,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
         return ;
     }
-    // $ANTLR end "rule__VariableDeclaration__InitializerAssignment_3"
+    // $ANTLR end "rule__LocalVariableDeclaration__InitializerAssignment_3"
 
 
     // $ANTLR start "rule__IfStatement__ConditionAssignment_2"
@@ -65980,19 +65978,19 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             "\1\3\1\5\2\uffff\1\2\1\4\1\6",
             "\3\7\24\uffff\14\7\4\uffff\1\7\2\uffff\2\7\4\uffff\1\7\3\uffff"+
             "\1\10\1\7\1\uffff\7\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1"+
-            "\uffff\10\7\1\uffff\1\7\3\uffff\1\7\6\uffff\2\7",
+            "\uffff\10\7\1\uffff\1\7\12\uffff\2\7",
             "\3\7\24\uffff\14\7\4\uffff\1\7\2\uffff\2\7\4\uffff\1\7\3\uffff"+
             "\1\10\1\7\1\uffff\7\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1"+
-            "\uffff\10\7\1\uffff\1\7\3\uffff\1\7\6\uffff\2\7",
+            "\uffff\10\7\1\uffff\1\7\12\uffff\2\7",
             "\3\7\24\uffff\14\7\4\uffff\1\7\2\uffff\2\7\4\uffff\1\7\3\uffff"+
             "\1\10\1\7\1\uffff\7\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1"+
-            "\uffff\10\7\1\uffff\1\7\3\uffff\1\7\6\uffff\2\7",
+            "\uffff\10\7\1\uffff\1\7\12\uffff\2\7",
             "\3\7\24\uffff\14\7\4\uffff\1\7\2\uffff\2\7\4\uffff\1\7\3\uffff"+
             "\1\10\1\7\1\uffff\7\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1"+
-            "\uffff\10\7\1\uffff\1\7\3\uffff\1\7\6\uffff\2\7",
+            "\uffff\10\7\1\uffff\1\7\12\uffff\2\7",
             "\3\7\24\uffff\14\7\4\uffff\1\7\2\uffff\2\7\4\uffff\1\7\3\uffff"+
             "\1\10\1\7\1\uffff\7\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1"+
-            "\uffff\10\7\1\uffff\1\7\3\uffff\1\7\6\uffff\2\7",
+            "\uffff\10\7\1\uffff\1\7\12\uffff\2\7",
             "",
             "\1\13\1\15\2\11\1\12\1\14\1\16\1\11\6\uffff\2\11\37\uffff\1"+
             "\11\5\uffff\1\11\12\uffff\2\11\16\uffff\1\11\1\uffff\1\11\1"+
@@ -66085,47 +66083,37 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
             "\1\2\1\4\2\uffff\1\1\1\3\1\5",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\1\12\1\14\2\uffff\1\11\1\13\1\15",
             "",
             "",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10",
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10",
             "\3\10\24\uffff\14\10\4\uffff\1\10\1\uffff\3\10\4\uffff\1\10"+
             "\3\uffff\1\7\1\10\1\uffff\7\10\6\uffff\2\10\1\uffff\1\10\1\uffff"+
-            "\2\10\1\uffff\10\10\1\uffff\1\10\3\uffff\1\10\4\uffff\1\6\1"+
-            "\uffff\2\10"
+            "\2\10\1\uffff\10\10\1\uffff\1\10\10\uffff\1\6\1\uffff\2\10"
     };
 
     static final short[] DFA30_eot = DFA.unpackEncodedString(DFA30_eotS);
@@ -66162,25 +66150,24 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
         }
     }
     static final String DFA91_eotS =
-        "\43\uffff";
+        "\42\uffff";
     static final String DFA91_eofS =
-        "\1\6\42\uffff";
+        "\1\6\41\uffff";
     static final String DFA91_minS =
-        "\1\47\2\uffff\1\0\37\uffff";
+        "\1\47\2\uffff\1\0\36\uffff";
     static final String DFA91_maxS =
-        "\1\161\2\uffff\1\0\37\uffff";
+        "\1\161\2\uffff\1\0\36\uffff";
     static final String DFA91_acceptS =
-        "\1\uffff\1\1\4\uffff\1\2\34\uffff";
+        "\1\uffff\1\1\4\uffff\1\2\33\uffff";
     static final String DFA91_specialS =
-        "\3\uffff\1\0\37\uffff}>";
+        "\3\uffff\1\0\36\uffff}>";
     static final String[] DFA91_transitionS = {
             "\2\6\2\1\1\3\1\1\15\uffff\2\6\4\uffff\1\6\4\uffff\1\6\1\uffff"+
             "\7\6\7\uffff\1\6\1\uffff\1\6\1\uffff\2\6\1\uffff\5\6\1\1\2\6"+
-            "\1\uffff\1\6\3\uffff\1\6\6\uffff\2\6",
+            "\1\uffff\1\6\12\uffff\2\6",
             "",
             "",
             "\1\uffff",
-            "",
             "",
             "",
             "",
@@ -66547,9 +66534,9 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     public static final BitSet FOLLOW_ruleAssignment_in_entryRuleAssignment5485 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignment5492 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Assignment__Group__0_in_ruleAssignment5518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration5545 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration5552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__0_in_ruleVariableDeclaration5578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration5545 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLocalVariableDeclaration5552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__0_in_ruleLocalVariableDeclaration5578 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement5605 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfStatement5612 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__IfStatement__Group__0_in_ruleIfStatement5638 = new BitSet(new long[]{0x0000000000000002L});
@@ -66698,7 +66685,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     public static final BitSet FOLLOW_rule__ArrayConstructionOperator__Group_2_1__0_in_rule__ArrayConstructionOperator__Alternatives_28990 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCompound_in_rule__Statement__Alternatives9023 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignment_in_rule__Statement__Alternatives9040 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_rule__Statement__Alternatives9057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_rule__Statement__Alternatives9057 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_rule__Statement__Alternatives9074 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleWhileStatement_in_rule__Statement__Alternatives9091 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDoWhileStatement_in_rule__Statement__Alternatives9108 = new BitSet(new long[]{0x0000000000000002L});
@@ -67766,20 +67753,20 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     public static final BitSet FOLLOW_rule__Assignment__ExpressionAssignment_2_in_rule__Assignment__Group__2__Impl34527 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Assignment__Group__3__Impl_in_rule__Assignment__Group__334557 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_99_in_rule__Assignment__Group__3__Impl34585 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__0__Impl_in_rule__VariableDeclaration__Group__034624 = new BitSet(new long[]{0x0000000000000730L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__1_in_rule__VariableDeclaration__Group__034627 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_rule__VariableDeclaration__Group__0__Impl34655 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__1__Impl_in_rule__VariableDeclaration__Group__134686 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__2_in_rule__VariableDeclaration__Group__134689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__NameAssignment_1_in_rule__VariableDeclaration__Group__1__Impl34716 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__2__Impl_in_rule__VariableDeclaration__Group__234746 = new BitSet(new long[]{0x02080000000C0FF0L,0x000501C009500010L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__3_in_rule__VariableDeclaration__Group__234749 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_rule__VariableDeclaration__Group__2__Impl34777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__3__Impl_in_rule__VariableDeclaration__Group__334808 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__4_in_rule__VariableDeclaration__Group__334811 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__InitializerAssignment_3_in_rule__VariableDeclaration__Group__3__Impl34838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableDeclaration__Group__4__Impl_in_rule__VariableDeclaration__Group__434868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_99_in_rule__VariableDeclaration__Group__4__Impl34896 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__0__Impl_in_rule__LocalVariableDeclaration__Group__034624 = new BitSet(new long[]{0x0000000000000730L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__1_in_rule__LocalVariableDeclaration__Group__034627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_rule__LocalVariableDeclaration__Group__0__Impl34655 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__1__Impl_in_rule__LocalVariableDeclaration__Group__134686 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__2_in_rule__LocalVariableDeclaration__Group__134689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__NameAssignment_1_in_rule__LocalVariableDeclaration__Group__1__Impl34716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__2__Impl_in_rule__LocalVariableDeclaration__Group__234746 = new BitSet(new long[]{0x02080000000C0FF0L,0x000501C009500010L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__3_in_rule__LocalVariableDeclaration__Group__234749 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_rule__LocalVariableDeclaration__Group__2__Impl34777 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__3__Impl_in_rule__LocalVariableDeclaration__Group__334808 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__4_in_rule__LocalVariableDeclaration__Group__334811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__InitializerAssignment_3_in_rule__LocalVariableDeclaration__Group__3__Impl34838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__LocalVariableDeclaration__Group__4__Impl_in_rule__LocalVariableDeclaration__Group__434868 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_rule__LocalVariableDeclaration__Group__4__Impl34896 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__IfStatement__Group__0__Impl_in_rule__IfStatement__Group__034937 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
     public static final BitSet FOLLOW_rule__IfStatement__Group__1_in_rule__IfStatement__Group__034940 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_88_in_rule__IfStatement__Group__0__Impl34968 = new BitSet(new long[]{0x0000000000000002L});
@@ -67828,10 +67815,10 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     public static final BitSet FOLLOW_rule__ForStatement__Group__3__Impl_in_rule__ForStatement__Group__335935 = new BitSet(new long[]{0x02080000000C0FF0L,0x000501C009500010L});
     public static final BitSet FOLLOW_rule__ForStatement__Group__4_in_rule__ForStatement__Group__335938 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_87_in_rule__ForStatement__Group__3__Impl35966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__4__Impl_in_rule__ForStatement__Group__435997 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000020L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__4__Impl_in_rule__ForStatement__Group__435997 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000020L});
     public static final BitSet FOLLOW_rule__ForStatement__Group__5_in_rule__ForStatement__Group__436000 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ForStatement__CollectionExpressionAssignment_4_in_rule__ForStatement__Group__4__Impl36027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ForStatement__Group__5__Impl_in_rule__ForStatement__Group__536057 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000020L});
+    public static final BitSet FOLLOW_rule__ForStatement__Group__5__Impl_in_rule__ForStatement__Group__536057 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000020L});
     public static final BitSet FOLLOW_rule__ForStatement__Group__6_in_rule__ForStatement__Group__536060 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ForStatement__Group_5__0_in_rule__ForStatement__Group__5__Impl36087 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ForStatement__Group__6__Impl_in_rule__ForStatement__Group__636118 = new BitSet(new long[]{0x0200000000000730L,0x00003E2001000210L});
@@ -67846,7 +67833,7 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     public static final BitSet FOLLOW_rule__ForStatement__DeclaredIterationVariableAssignment_2_0_1_in_rule__ForStatement__Group_2_0__1__Impl36342 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ForStatement__Group_5__0__Impl_in_rule__ForStatement__Group_5__036376 = new BitSet(new long[]{0x02080000000C0FF0L,0x000501C009500010L});
     public static final BitSet FOLLOW_rule__ForStatement__Group_5__1_in_rule__ForStatement__Group_5__036379 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_105_in_rule__ForStatement__Group_5__0__Impl36407 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_rule__ForStatement__Group_5__0__Impl36407 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ForStatement__Group_5__1__Impl_in_rule__ForStatement__Group_5__136438 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ForStatement__ConditionAssignment_5_1_in_rule__ForStatement__Group_5__1__Impl36465 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DoWhileStatement__Group__0__Impl_in_rule__DoWhileStatement__Group__036499 = new BitSet(new long[]{0x0200000000000730L,0x00003E2001000210L});
@@ -68157,8 +68144,8 @@ public class InternalComputationModelParser extends AbstractInternalContentAssis
     public static final BitSet FOLLOW_ruleStatement_in_rule__Compound__StatementsAssignment_245307 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignableMemberFeatureCall_in_rule__Assignment__TargetAssignment_045338 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__Assignment__ExpressionAssignment_245369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__VariableDeclaration__NameAssignment_145400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpression_in_rule__VariableDeclaration__InitializerAssignment_345431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__LocalVariableDeclaration__NameAssignment_145400 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpression_in_rule__LocalVariableDeclaration__InitializerAssignment_345431 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__IfStatement__ConditionAssignment_245462 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStatement_in_rule__IfStatement__ThenStatementAssignment_445493 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStatement_in_rule__IfStatement__ElseStatementAssignment_5_145524 = new BitSet(new long[]{0x0000000000000002L});

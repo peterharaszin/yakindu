@@ -16,14 +16,14 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.Scope;
 import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.ForeachStatement;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
@@ -147,37 +147,6 @@ public class NameNormalizer {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.il.LocalVariableDeclaration)
-		 */
-		@Override
-		public Boolean caseVariableDeclaration(VariableDeclaration variableDeclaration) {
-			String preferredName = variableDeclaration.getName();
-			if (preferredName == null) {
-				preferredName = "temp";
-			}
-			String name = preferredName;
-			if (isReserved(name)) {
-				name += "1";
-			}
-			int n = 1;
-			while (scope.findInEnclosingScopes(name) != null) {
-				name = preferredName + ++n;
-			}
-			variableDeclaration.setName(name);
-			scope.add(name, variableDeclaration);
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseForeachStatement(org.eclipselabs.mscript.language.il.ForeachStatement)
-		 */
-		@Override
-		public Boolean caseForeachStatement(ForeachStatement foreachStatement) {
-			doSwitch(foreachStatement.getIterationVariableDeclaration());
-			return true;
-		}
-		
-		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 		 */
 		@Override
@@ -186,6 +155,31 @@ public class NameNormalizer {
 		}
 		
 		private class AstCompoundNormalizer extends MscriptSwitch<Boolean> {
+			
+			@Override
+			public Boolean caseVariableDeclaration(VariableDeclaration variableDeclaration) {
+				String preferredName = variableDeclaration.getName();
+				if (preferredName == null) {
+					preferredName = "temp";
+				}
+				String name = preferredName;
+				if (isReserved(name)) {
+					name += "1";
+				}
+				int n = 1;
+				while (scope.findInEnclosingScopes(name) != null) {
+					name = preferredName + ++n;
+				}
+				variableDeclaration.setName(name);
+				scope.add(name, variableDeclaration);
+				return true;
+			}
+			
+			@Override
+			public Boolean caseForStatement(ForStatement forStatement) {
+				CompoundNormalizer.this.doSwitch(forStatement.getDeclaredIterationVariable());
+				return true;
+			}
 			
 			@Override
 			public Boolean caseIfStatement(IfStatement ifStatement) {

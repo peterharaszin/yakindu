@@ -1293,7 +1293,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Statement:
-	//	Compound | Assignment | VariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
+	//	Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
 	//	ContinueStatement | BreakStatement | ReturnStatement;
 	public MscriptGrammarAccess.StatementElements getStatementAccess() {
 		return gaMscript.getStatementAccess();
@@ -1313,14 +1313,14 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignmentAccess().getRule();
 	}
 
-	//VariableDeclaration:
+	//LocalVariableDeclaration:
 	//	"var" name=ValidID "=" initializer=Expression ";";
-	public MscriptGrammarAccess.VariableDeclarationElements getVariableDeclarationAccess() {
-		return gaMscript.getVariableDeclarationAccess();
+	public MscriptGrammarAccess.LocalVariableDeclarationElements getLocalVariableDeclarationAccess() {
+		return gaMscript.getLocalVariableDeclarationAccess();
 	}
 	
-	public ParserRule getVariableDeclarationRule() {
-		return getVariableDeclarationAccess().getRule();
+	public ParserRule getLocalVariableDeclarationRule() {
+		return getLocalVariableDeclarationAccess().getRule();
 	}
 
 	//IfStatement:
@@ -1345,7 +1345,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ForStatement:
 	//	"for" "(" ("var" declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) "in"
-	//	collectionExpression=Expression ("while" condition=Expression)? ")" body=Statement;
+	//	collectionExpression=Expression (";" condition=Expression)? ")" body=Statement;
 	public MscriptGrammarAccess.ForStatementElements getForStatementAccess() {
 		return gaMscript.getForStatementAccess();
 	}

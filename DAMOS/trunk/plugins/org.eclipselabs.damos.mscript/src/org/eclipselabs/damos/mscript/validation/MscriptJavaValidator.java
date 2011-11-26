@@ -23,6 +23,7 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IterationAccumulator;
 import org.eclipselabs.damos.mscript.IterationVariable;
 import org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -31,7 +32,6 @@ import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableAccess;
-import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
@@ -70,7 +70,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 				|| ce instanceof IterationVariable
 				|| ce instanceof IterationAccumulator
 				|| ce instanceof BuiltinVariable
-				|| ce instanceof VariableDeclaration)) {
+				|| ce instanceof LocalVariableDeclaration)) {
 			error("Invalid variable reference " + variableAccess.getFeature().getName(), null);
 		}
 	}

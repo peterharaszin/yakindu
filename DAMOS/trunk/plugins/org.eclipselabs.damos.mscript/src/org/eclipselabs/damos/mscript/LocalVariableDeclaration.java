@@ -4,28 +4,26 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.mscript.il;
+package org.eclipselabs.damos.mscript;
 
-import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.Statement;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Local Variable Declaration</b></em>'.
+ * A representation of the model object '<em><b>Variable Declaration</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.il.LocalVariableDeclaration#getInitializer <em>Initializer</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.LocalVariableDeclaration#getInitializer <em>Initializer</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.il.ILPackage#getLocalVariableDeclaration()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getLocalVariableDeclaration()
  * @model
  * @generated
  */
-public interface LocalVariableDeclaration extends VariableDeclaration, Statement {
+public interface LocalVariableDeclaration extends Statement, VariableDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Initializer</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -36,14 +34,14 @@ public interface LocalVariableDeclaration extends VariableDeclaration, Statement
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initializer</em>' containment reference.
 	 * @see #setInitializer(Expression)
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getLocalVariableDeclaration_Initializer()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getLocalVariableDeclaration_Initializer()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Expression getInitializer();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.il.LocalVariableDeclaration#getInitializer <em>Initializer</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.LocalVariableDeclaration#getInitializer <em>Initializer</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initializer</em>' containment reference.
@@ -52,4 +50,4 @@ public interface LocalVariableDeclaration extends VariableDeclaration, Statement
 	 */
 	void setInitializer(Expression value);
 
-} // LocalVariableDeclaration
+} // VariableDeclaration

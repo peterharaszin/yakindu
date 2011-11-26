@@ -310,47 +310,43 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			return true;
 		}
 		
-		private MscriptSwitch<Boolean> typeSystemSwitch = new MscriptSwitch<Boolean>() {
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
+		 */
+		@Override
+		public Boolean caseRealLiteral(RealLiteral realLiteral) {
+			DataType dataType = getDataType(realLiteral);
+			out.print(MscriptGeneratorUtil.getLiteralString(context.getComputationModel(), dataType, realLiteral.getValue()));
+			return true;
+		}
+	
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
+		 */
+		@Override
+		public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
+			DataType dataType = getDataType(integerLiteral);
+			out.print(MscriptGeneratorUtil.getLiteralString(context.getComputationModel(), dataType, integerLiteral.getValue()));
+			return true;
+		}
 		
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
-			 */
-			@Override
-			public Boolean caseRealLiteral(RealLiteral realLiteral) {
-				DataType dataType = getDataType(realLiteral);
-				out.print(MscriptGeneratorUtil.getLiteralString(context.getComputationModel(), dataType, realLiteral.getValue()));
-				return true;
-			}
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
+		 */
+		@Override
+		public Boolean caseBooleanLiteral(BooleanLiteral booleanLiteral) {
+			out.print(booleanLiteral.isTrue() ? "1" : "0");
+			return true;
+		}
 		
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
-			 */
-			@Override
-			public Boolean caseIntegerLiteral(IntegerLiteral integerLiteral) {
-				DataType dataType = getDataType(integerLiteral);
-				out.print(MscriptGeneratorUtil.getLiteralString(context.getComputationModel(), dataType, integerLiteral.getValue()));
-				return true;
-			}
-			
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
-			 */
-			@Override
-			public Boolean caseBooleanLiteral(BooleanLiteral booleanLiteral) {
-				out.print(booleanLiteral.isTrue() ? "1" : "0");
-				return true;
-			}
-			
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
-			 */
-			@Override
-			public Boolean caseStringLiteral(StringLiteral stringLiteral) {
-				out.print("\"" + stringLiteral.getValue() + "\"");
-				return true;
-			}
-		
-		};
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
+		 */
+		@Override
+		public Boolean caseStringLiteral(StringLiteral stringLiteral) {
+			out.print("\"" + stringLiteral.getValue() + "\"");
+			return true;
+		}
 				
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseFunctionCall(org.eclipselabs.mscript.language.il.FunctionCall)
@@ -379,10 +375,6 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		 */
 		@Override
 		public Boolean defaultCase(EObject object) {
-			Boolean result = typeSystemSwitch.doSwitch(object);
-			if (result != null) {
-				return result;
-			}
 			if (object instanceof Expression) {
 				return new ILExpressionGenerator().doSwitch(object);
 			}

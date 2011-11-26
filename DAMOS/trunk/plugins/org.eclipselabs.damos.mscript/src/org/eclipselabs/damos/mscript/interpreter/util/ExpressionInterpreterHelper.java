@@ -16,11 +16,10 @@ import java.util.Collections;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.transform.ExpressionTarget;
 import org.eclipselabs.damos.mscript.il.transform.ExpressionTransformer;
 import org.eclipselabs.damos.mscript.il.transform.ITransformerContext;
@@ -60,7 +59,7 @@ public class ExpressionInterpreterHelper {
 		
 		LocalVariableDeclaration resultVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		
-		compound = ILFactory.eINSTANCE.createCompound();
+		compound = MscriptFactory.eINSTANCE.createCompound();
 
 		transformerContext.enterScope();
 		transformerContext.setCompound(compound);

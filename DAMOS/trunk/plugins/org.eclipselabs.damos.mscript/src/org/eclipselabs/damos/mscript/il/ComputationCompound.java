@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.mscript.il;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipselabs.damos.mscript.Compound;
 
 /**
  * <!-- begin-user-doc -->

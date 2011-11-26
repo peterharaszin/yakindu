@@ -15,14 +15,13 @@ import java.util.Collections;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.IterationVariableDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
-import org.eclipselabs.damos.mscript.il.CompoundStatement;
-import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -59,7 +58,7 @@ public class IterateTransformer implements IIterationCallTransformer {
 		forStatement.setIterationVariable(transformedIterationVariable);
 		forStatement.setCollectionExpression(collectionExpression);
 
-		CompoundStatement body = ILFactory.eINSTANCE.createCompoundStatement();
+		Compound body = MscriptFactory.eINSTANCE.createCompound();
 		context.enterScope();
 		context.setCompound(body);
 		context.addVariableDeclaration(accumulatorDeclaration);

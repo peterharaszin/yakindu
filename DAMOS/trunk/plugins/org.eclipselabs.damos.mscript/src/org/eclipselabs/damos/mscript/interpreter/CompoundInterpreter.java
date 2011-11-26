@@ -13,13 +13,13 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.Assignment;
-import org.eclipselabs.damos.mscript.il.Compound;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -57,19 +57,6 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
-		 */
-		@Override
-		public Boolean caseCompound(Compound compound) {
-			context.enterScope();
-			for (Statement statement : compound.getStatements()) {
-				doSwitch(statement);
-			}
-			context.leaveScope();
-			return true;
-		}
-		
-		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
 		 */
 		@Override
@@ -89,6 +76,19 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		}
 		
 		private class AstCompoundInterpreterSwitch extends MscriptSwitch<Boolean> {
+			
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
+			 */
+			@Override
+			public Boolean caseCompound(Compound compound) {
+				context.enterScope();
+				for (Statement statement : compound.getStatements()) {
+					CompoundInterpreterSwitch.this.doSwitch(statement);
+				}
+				context.leaveScope();
+				return true;
+			}
 			
 			@Override
 			public Boolean caseForStatement(ForStatement forStatement) {

@@ -12,8 +12,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipselabs.damos.mscript.il.Assignment;
-import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.CompoundStatement;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
@@ -70,13 +68,11 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ILPackage.IL_FUNCTION_DEFINITION: return createILFunctionDefinition();
-			case ILPackage.COMPOUND: return createCompound();
 			case ILPackage.COMPUTATION_COMPOUND: return createComputationCompound();
 			case ILPackage.TEMPLATE_VARIABLE_DECLARATION: return createTemplateVariableDeclaration();
 			case ILPackage.INPUT_VARIABLE_DECLARATION: return createInputVariableDeclaration();
 			case ILPackage.OUTPUT_VARIABLE_DECLARATION: return createOutputVariableDeclaration();
 			case ILPackage.INSTANCE_VARIABLE_DECLARATION: return createInstanceVariableDeclaration();
-			case ILPackage.COMPOUND_STATEMENT: return createCompoundStatement();
 			case ILPackage.ASSIGNMENT: return createAssignment();
 			case ILPackage.VARIABLE_REFERENCE: return createVariableReference();
 			case ILPackage.INVALID_EXPRESSION: return createInvalidExpression();
@@ -93,16 +89,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	public ILFunctionDefinition createILFunctionDefinition() {
 		ILFunctionDefinitionImpl ilFunctionDefinition = new ILFunctionDefinitionImpl();
 		return ilFunctionDefinition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Compound createCompound() {
-		CompoundImpl compound = new CompoundImpl();
-		return compound;
 	}
 
 	/**
@@ -153,16 +139,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	public InstanceVariableDeclaration createInstanceVariableDeclaration() {
 		InstanceVariableDeclarationImpl instanceVariableDeclaration = new InstanceVariableDeclarationImpl();
 		return instanceVariableDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public CompoundStatement createCompoundStatement() {
-		CompoundStatementImpl compoundStatement = new CompoundStatementImpl();
-		return compoundStatement;
 	}
 
 	/**

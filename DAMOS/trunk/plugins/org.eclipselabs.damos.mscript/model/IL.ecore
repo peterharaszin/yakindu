@@ -16,18 +16,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instanceVariableDeclarations"
         upperBound="-1" eType="#//InstanceVariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializationCompound"
-        eType="#//Compound" containment="true"/>
+        eType="ecore:EClass Mscript.ecore#//Compound" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="computationCompounds" upperBound="-1"
         eType="#//ComputationCompound" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Compound">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
-        eType="ecore:EClass Mscript.ecore#//Statement" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="localVariableDeclarations"
-        upperBound="-1" eType="ecore:EClass Mscript.ecore#//LocalVariableDeclaration"
-        changeable="false" volatile="true" transient="true" derived="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ComputationCompound" eSuperTypes="#//Compound">
+  <eClassifiers xsi:type="ecore:EClass" name="ComputationCompound" eSuperTypes="Mscript.ecore#//Compound">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
         eType="#//InputVariableDeclaration" eOpposite="#//InputVariableDeclaration/feedingCompounds"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
@@ -48,7 +41,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="CompoundStatement" eSuperTypes="#//Compound Mscript.ecore#//Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="VariableAccess" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass Mscript.ecore#//VariableDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

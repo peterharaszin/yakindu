@@ -143,6 +143,13 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.VARIABLE_DECLARATION: {
+				VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
+				T result = caseVariableDeclaration(variableDeclaration);
+				if (result == null) result = caseCallableElement(variableDeclaration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.PARAMETER_DECLARATION: {
 				ParameterDeclaration parameterDeclaration = (ParameterDeclaration)theEObject;
 				T result = caseParameterDeclaration(parameterDeclaration);
@@ -276,6 +283,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.ITERATION_VARIABLE: {
 				IterationVariable iterationVariable = (IterationVariable)theEObject;
 				T result = caseIterationVariable(iterationVariable);
+				if (result == null) result = caseVariableDeclaration(iterationVariable);
 				if (result == null) result = caseCallableElement(iterationVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -525,11 +533,12 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.VARIABLE_DECLARATION: {
-				VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
-				T result = caseVariableDeclaration(variableDeclaration);
-				if (result == null) result = caseStatement(variableDeclaration);
-				if (result == null) result = caseCallableElement(variableDeclaration);
+			case MscriptPackage.LOCAL_VARIABLE_DECLARATION: {
+				LocalVariableDeclaration localVariableDeclaration = (LocalVariableDeclaration)theEObject;
+				T result = caseLocalVariableDeclaration(localVariableDeclaration);
+				if (result == null) result = caseStatement(localVariableDeclaration);
+				if (result == null) result = caseVariableDeclaration(localVariableDeclaration);
+				if (result == null) result = caseCallableElement(localVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -976,6 +985,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCallableElement(CallableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVariableDeclaration(VariableDeclaration object) {
 		return null;
 	}
 
@@ -1805,17 +1829,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Local Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Local Variable Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVariableDeclaration(VariableDeclaration object) {
+	public T caseLocalVariableDeclaration(LocalVariableDeclaration object) {
 		return null;
 	}
 

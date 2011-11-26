@@ -548,13 +548,13 @@ public interface MscriptFactory extends EFactory {
 	Assignment createAssignment();
 
 	/**
-	 * Returns a new object of class '<em>Variable Declaration</em>'.
+	 * Returns a new object of class '<em>Local Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Declaration</em>'.
+	 * @return a new object of class '<em>Local Variable Declaration</em>'.
 	 * @generated
 	 */
-	VariableDeclaration createVariableDeclaration();
+	LocalVariableDeclaration createLocalVariableDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>If Statement</em>'.

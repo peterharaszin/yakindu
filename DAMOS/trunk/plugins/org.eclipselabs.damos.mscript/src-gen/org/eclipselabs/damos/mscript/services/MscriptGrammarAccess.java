@@ -3469,7 +3469,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cCompoundParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cAssignmentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cVariableDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cLocalVariableDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cIfStatementParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cWhileStatementParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cDoWhileStatementParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
@@ -3479,11 +3479,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReturnStatementParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//Statement:
-		//	Compound | Assignment | VariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
+		//	Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
 		//	ContinueStatement | BreakStatement | ReturnStatement;
 		public ParserRule getRule() { return rule; }
 
-		//Compound | Assignment | VariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
+		//Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
 		//ContinueStatement | BreakStatement | ReturnStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -3493,8 +3493,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//Assignment
 		public RuleCall getAssignmentParserRuleCall_1() { return cAssignmentParserRuleCall_1; }
 
-		//VariableDeclaration
-		public RuleCall getVariableDeclarationParserRuleCall_2() { return cVariableDeclarationParserRuleCall_2; }
+		//LocalVariableDeclaration
+		public RuleCall getLocalVariableDeclarationParserRuleCall_2() { return cLocalVariableDeclarationParserRuleCall_2; }
 
 		//IfStatement
 		public RuleCall getIfStatementParserRuleCall_3() { return cIfStatementParserRuleCall_3; }
@@ -3554,8 +3554,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 
-	public class VariableDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VariableDeclaration");
+	public class LocalVariableDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LocalVariableDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -3565,7 +3565,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cInitializerExpressionParserRuleCall_3_0 = (RuleCall)cInitializerAssignment_3.eContents().get(0);
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
-		//VariableDeclaration:
+		//LocalVariableDeclaration:
 		//	"var" name=ValidID "=" initializer=Expression ";";
 		public ParserRule getRule() { return rule; }
 
@@ -3707,7 +3707,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCollectionExpressionAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cCollectionExpressionExpressionParserRuleCall_4_0 = (RuleCall)cCollectionExpressionAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cWhileKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cSemicolonKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cConditionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final RuleCall cConditionExpressionParserRuleCall_5_1_0 = (RuleCall)cConditionAssignment_5_1.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
@@ -3716,11 +3716,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ForStatement:
 		//	"for" "(" ("var" declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) "in"
-		//	collectionExpression=Expression ("while" condition=Expression)? ")" body=Statement;
+		//	collectionExpression=Expression (";" condition=Expression)? ")" body=Statement;
 		public ParserRule getRule() { return rule; }
 
 		//"for" "(" ("var" declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) "in"
-		//collectionExpression=Expression ("while" condition=Expression)? ")" body=Statement
+		//collectionExpression=Expression (";" condition=Expression)? ")" body=Statement
 		public Group getGroup() { return cGroup; }
 
 		//"for"
@@ -3762,11 +3762,11 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getCollectionExpressionExpressionParserRuleCall_4_0() { return cCollectionExpressionExpressionParserRuleCall_4_0; }
 
-		//("while" condition=Expression)?
+		//(";" condition=Expression)?
 		public Group getGroup_5() { return cGroup_5; }
 
-		//"while"
-		public Keyword getWhileKeyword_5_0() { return cWhileKeyword_5_0; }
+		//";"
+		public Keyword getSemicolonKeyword_5_0() { return cSemicolonKeyword_5_0; }
 
 		//condition=Expression
 		public Assignment getConditionAssignment_5_1() { return cConditionAssignment_5_1; }
@@ -4670,7 +4670,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private CompoundElements pCompound;
 	private StatementElements pStatement;
 	private AssignmentElements pAssignment;
-	private VariableDeclarationElements pVariableDeclaration;
+	private LocalVariableDeclarationElements pLocalVariableDeclaration;
 	private IfStatementElements pIfStatement;
 	private WhileStatementElements pWhileStatement;
 	private ForStatementElements pForStatement;
@@ -5675,7 +5675,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Statement:
-	//	Compound | Assignment | VariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
+	//	Compound | Assignment | LocalVariableDeclaration | IfStatement | WhileStatement | DoWhileStatement | ForStatement |
 	//	ContinueStatement | BreakStatement | ReturnStatement;
 	public StatementElements getStatementAccess() {
 		return (pStatement != null) ? pStatement : (pStatement = new StatementElements());
@@ -5695,14 +5695,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getAssignmentAccess().getRule();
 	}
 
-	//VariableDeclaration:
+	//LocalVariableDeclaration:
 	//	"var" name=ValidID "=" initializer=Expression ";";
-	public VariableDeclarationElements getVariableDeclarationAccess() {
-		return (pVariableDeclaration != null) ? pVariableDeclaration : (pVariableDeclaration = new VariableDeclarationElements());
+	public LocalVariableDeclarationElements getLocalVariableDeclarationAccess() {
+		return (pLocalVariableDeclaration != null) ? pLocalVariableDeclaration : (pLocalVariableDeclaration = new LocalVariableDeclarationElements());
 	}
 	
-	public ParserRule getVariableDeclarationRule() {
-		return getVariableDeclarationAccess().getRule();
+	public ParserRule getLocalVariableDeclarationRule() {
+		return getLocalVariableDeclarationAccess().getRule();
 	}
 
 	//IfStatement:
@@ -5727,7 +5727,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	//ForStatement:
 	//	"for" "(" ("var" declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) "in"
-	//	collectionExpression=Expression ("while" condition=Expression)? ")" body=Statement;
+	//	collectionExpression=Expression (";" condition=Expression)? ")" body=Statement;
 	public ForStatementElements getForStatementAccess() {
 		return (pForStatement != null) ? pForStatement : (pForStatement = new ForStatementElements());
 	}

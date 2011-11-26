@@ -13,8 +13,8 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import java.util.Collection;
 
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 
 /**
  * @author Andreas Unger

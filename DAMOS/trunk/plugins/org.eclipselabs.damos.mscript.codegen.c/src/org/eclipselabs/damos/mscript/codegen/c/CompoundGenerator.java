@@ -17,15 +17,15 @@ import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.ForeachStatement;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
@@ -85,55 +85,12 @@ public class CompoundGenerator implements ICompoundGenerator {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.imperativemodel.LocalVariableDeclaration)
-		 */
-		@Override
-		public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
-			if (localVariableDeclaration.getInitializer() != null) {
-				writeAssignment(getDataType(localVariableDeclaration), localVariableDeclaration.getName(), localVariableDeclaration.getInitializer());
-			}
-			return true;
-		}
-		
-		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
 		 */
 		@Override
 		public Boolean caseAssignment(Assignment assignment) {
 			VariableDeclaration target = assignment.getTarget();
 			writeAssignment(getDataType(target), new VariableAccessGenerator(context, assignment).generate(), assignment.getAssignedExpression());
-			return true;
-		}
-
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseForeachStatement(org.eclipselabs.mscript.language.imperativemodel.ForeachStatement)
-		 */
-		@Override
-		public Boolean caseForeachStatement(ForeachStatement foreachStatement) {
-			VariableDeclaration iterationVariableDeclaration = foreachStatement.getIterationVariableDeclaration();
-			DataType collectionDataType = getDataType(foreachStatement.getCollectionExpression());
-			if (!(collectionDataType instanceof ArrayType)) {
-				throw new RuntimeException("Collection type must be array type");
-			}
-			ArrayType collectionArrayType = (ArrayType) collectionDataType;
-			if (collectionArrayType.getDimensionality() != 1) {
-				throw new RuntimeException("Array dimensionality must be 1");
-			}
-			
-			String itVarName = iterationVariableDeclaration.getName();
-			String itVarDecl = MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(iterationVariableDeclaration), itVarName, false);
-			int size = TypeUtil.getArraySize(collectionArrayType);
-			
-			out.println("{");
-			out.printf("%s %s_i;\n", MscriptGeneratorUtil.getIndexCDataType(context.getComputationModel(), size), itVarName);
-			out.printf("for (%s_i = 0; %s_i < %d; ++%s_i) {\n", itVarName, itVarName, size, itVarName);
-			out.printf("%s = (", itVarDecl);
-			doSwitch(foreachStatement.getCollectionExpression());
-			out.printf(")[%s_i];\n", itVarName);
-			doSwitch(foreachStatement.getBody());
-			out.println("}");
-			out.println("}");
-			
 			return true;
 		}
 		
@@ -189,6 +146,43 @@ public class CompoundGenerator implements ICompoundGenerator {
 
 		private class AstCompoundGeneratorSwitch extends MscriptSwitch<Boolean> {
 			
+			@Override
+			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
+				if (localVariableDeclaration.getInitializer() != null) {
+					writeAssignment(getDataType(localVariableDeclaration), localVariableDeclaration.getName(), localVariableDeclaration.getInitializer());
+				}
+				return true;
+			}
+			
+			@Override
+			public Boolean caseForStatement(ForStatement forStatement) {
+				VariableDeclaration iterationVariableDeclaration = forStatement.getDeclaredIterationVariable();
+				DataType collectionDataType = getDataType(forStatement.getCollectionExpression());
+				if (!(collectionDataType instanceof ArrayType)) {
+					throw new RuntimeException("Collection type must be array type");
+				}
+				ArrayType collectionArrayType = (ArrayType) collectionDataType;
+				if (collectionArrayType.getDimensionality() != 1) {
+					throw new RuntimeException("Array dimensionality must be 1");
+				}
+				
+				String itVarName = iterationVariableDeclaration.getName();
+				String itVarDecl = MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(iterationVariableDeclaration), itVarName, false);
+				int size = TypeUtil.getArraySize(collectionArrayType);
+				
+				out.println("{");
+				out.printf("%s %s_i;\n", MscriptGeneratorUtil.getIndexCDataType(context.getComputationModel(), size), itVarName);
+				out.printf("for (%s_i = 0; %s_i < %d; ++%s_i) {\n", itVarName, itVarName, size, itVarName);
+				out.printf("%s = (", itVarDecl);
+				CompoundGeneratorSwitch.this.doSwitch(forStatement.getCollectionExpression());
+				out.printf(")[%s_i];\n", itVarName);
+				CompoundGeneratorSwitch.this.doSwitch(forStatement.getBody());
+				out.println("}");
+				out.println("}");
+				
+				return true;
+			}
+
 			@Override
 			public Boolean caseIfStatement(IfStatement ifStatement) {
 				out.print("if (");

@@ -11,9 +11,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.ILPackage;
 import org.eclipselabs.damos.mscript.il.VariableAccess;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->

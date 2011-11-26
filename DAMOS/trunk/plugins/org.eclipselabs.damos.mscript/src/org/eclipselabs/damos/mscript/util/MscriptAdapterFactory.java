@@ -113,6 +113,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createCallableElementAdapter();
 			}
 			@Override
+			public Adapter caseVariableDeclaration(VariableDeclaration object) {
+				return createVariableDeclarationAdapter();
+			}
+			@Override
 			public Adapter caseParameterDeclaration(ParameterDeclaration object) {
 				return createParameterDeclarationAdapter();
 			}
@@ -333,8 +337,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createAssignmentAdapter();
 			}
 			@Override
-			public Adapter caseVariableDeclaration(VariableDeclaration object) {
-				return createVariableDeclarationAdapter();
+			public Adapter caseLocalVariableDeclaration(LocalVariableDeclaration object) {
+				return createLocalVariableDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseIfStatement(IfStatement object) {
@@ -655,6 +659,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCallableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.VariableDeclaration <em>Variable Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.VariableDeclaration
+	 * @generated
+	 */
+	public Adapter createVariableDeclarationAdapter() {
 		return null;
 	}
 
@@ -1429,16 +1447,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.VariableDeclaration <em>Variable Declaration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.LocalVariableDeclaration <em>Local Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.VariableDeclaration
+	 * @see org.eclipselabs.damos.mscript.LocalVariableDeclaration
 	 * @generated
 	 */
-	public Adapter createVariableDeclarationAdapter() {
+	public Adapter createLocalVariableDeclarationAdapter() {
 		return null;
 	}
 

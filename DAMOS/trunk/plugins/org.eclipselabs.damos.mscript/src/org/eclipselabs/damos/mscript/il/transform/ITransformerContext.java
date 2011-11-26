@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.mscript.il.transform;
 
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.Compound;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 
 /**

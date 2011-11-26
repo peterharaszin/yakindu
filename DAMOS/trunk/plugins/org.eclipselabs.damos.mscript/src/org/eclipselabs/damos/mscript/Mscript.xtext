@@ -367,7 +367,7 @@ Compound:
 Statement:
 	Compound |
 	Assignment |
-	VariableDeclaration |
+	LocalVariableDeclaration |
 	IfStatement |
 	WhileStatement |
 	DoWhileStatement |
@@ -379,7 +379,7 @@ Statement:
 Assignment:
 	target=AssignableMemberFeatureCall '=' expression=Expression ';';
 	
-VariableDeclaration:
+LocalVariableDeclaration:
 	'var' name=ValidID '=' initializer=Expression ';';
 
 IfStatement:
@@ -389,7 +389,7 @@ WhileStatement:
 	'while' '(' condition=Expression ')' body=Statement;
 
 ForStatement:
-	'for' '(' ('var' declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) 'in' collectionExpression=Expression ('while' condition=Expression)? ')' body=Statement;
+	'for' '(' ('var' declaredIterationVariable=IterationVariable | iterationVariable=[CallableElement|ValidID]) 'in' collectionExpression=Expression (';' condition=Expression)? ')' body=Statement;
 
 DoWhileStatement:
 	'do' body=Statement 'while' '(' condition=Expression ')' ';';

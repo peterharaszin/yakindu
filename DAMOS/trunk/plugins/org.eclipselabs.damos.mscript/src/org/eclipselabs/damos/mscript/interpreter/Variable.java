@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.interpreter;
 import java.util.ArrayList;
 
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.UninitializedValue;
 

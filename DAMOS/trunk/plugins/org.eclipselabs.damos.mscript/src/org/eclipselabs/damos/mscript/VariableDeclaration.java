@@ -16,15 +16,14 @@ package org.eclipselabs.damos.mscript;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.VariableDeclaration#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.VariableDeclaration#getInitializer <em>Initializer</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipselabs.damos.mscript.MscriptPackage#getVariableDeclaration()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface VariableDeclaration extends Statement, CallableElement {
+public interface VariableDeclaration extends CallableElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -50,31 +49,5 @@ public interface VariableDeclaration extends Statement, CallableElement {
 	 * @generated
 	 */
 	void setName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Initializer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Initializer</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Initializer</em>' containment reference.
-	 * @see #setInitializer(Expression)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getVariableDeclaration_Initializer()
-	 * @model containment="true"
-	 * @generated
-	 */
-	Expression getInitializer();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.VariableDeclaration#getInitializer <em>Initializer</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Initializer</em>' containment reference.
-	 * @see #getInitializer()
-	 * @generated
-	 */
-	void setInitializer(Expression value);
 
 } // VariableDeclaration

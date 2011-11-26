@@ -244,34 +244,6 @@ public interface ILPackage extends EPackage {
 	int COMPUTATION_COMPOUND_FEATURE_COUNT = COMPOUND_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.il.impl.VariableDeclarationImpl
-	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableDeclaration()
-	 * @generated
-	 */
-	int VARIABLE_DECLARATION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Variable Declaration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VARIABLE_DECLARATION_FEATURE_COUNT = 1;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.StatefulVariableDeclarationImpl <em>Stateful Variable Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -279,7 +251,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getStatefulVariableDeclaration()
 	 * @generated
 	 */
-	int STATEFUL_VARIABLE_DECLARATION = 4;
+	int STATEFUL_VARIABLE_DECLARATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -288,7 +260,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATEFUL_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+	int STATEFUL_VARIABLE_DECLARATION__NAME = MscriptPackage.VARIABLE_DECLARATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
@@ -297,7 +269,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = MscriptPackage.VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Stateful Variable Declaration</em>' class.
@@ -306,7 +278,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+	int STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT = MscriptPackage.VARIABLE_DECLARATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.TemplateVariableDeclarationImpl <em>Template Variable Declaration</em>}' class.
@@ -316,7 +288,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getTemplateVariableDeclaration()
 	 * @generated
 	 */
-	int TEMPLATE_VARIABLE_DECLARATION = 5;
+	int TEMPLATE_VARIABLE_DECLARATION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -325,7 +297,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+	int TEMPLATE_VARIABLE_DECLARATION__NAME = MscriptPackage.VARIABLE_DECLARATION__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Template Variable Declaration</em>' class.
@@ -334,7 +306,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int TEMPLATE_VARIABLE_DECLARATION_FEATURE_COUNT = MscriptPackage.VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.InputVariableDeclarationImpl <em>Input Variable Declaration</em>}' class.
@@ -344,7 +316,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInputVariableDeclaration()
 	 * @generated
 	 */
-	int INPUT_VARIABLE_DECLARATION = 6;
+	int INPUT_VARIABLE_DECLARATION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -399,7 +371,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getOutputVariableDeclaration()
 	 * @generated
 	 */
-	int OUTPUT_VARIABLE_DECLARATION = 7;
+	int OUTPUT_VARIABLE_DECLARATION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -436,7 +408,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInstanceVariableDeclaration()
 	 * @generated
 	 */
-	int INSTANCE_VARIABLE_DECLARATION = 8;
+	int INSTANCE_VARIABLE_DECLARATION = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -466,43 +438,6 @@ public interface ILPackage extends EPackage {
 	int INSTANCE_VARIABLE_DECLARATION_FEATURE_COUNT = STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.LocalVariableDeclarationImpl <em>Local Variable Declaration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.il.impl.LocalVariableDeclarationImpl
-	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getLocalVariableDeclaration()
-	 * @generated
-	 */
-	int LOCAL_VARIABLE_DECLARATION = 9;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Initializer</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_VARIABLE_DECLARATION__INITIALIZER = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Local Variable Declaration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.CompoundStatementImpl <em>Compound Statement</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -510,7 +445,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getCompoundStatement()
 	 * @generated
 	 */
-	int COMPOUND_STATEMENT = 10;
+	int COMPOUND_STATEMENT = 8;
 
 	/**
 	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
@@ -547,7 +482,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableAccess()
 	 * @generated
 	 */
-	int VARIABLE_ACCESS = 11;
+	int VARIABLE_ACCESS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -584,7 +519,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getAssignment()
 	 * @generated
 	 */
-	int ASSIGNMENT = 12;
+	int ASSIGNMENT = 10;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -623,52 +558,6 @@ public interface ILPackage extends EPackage {
 	int ASSIGNMENT_FEATURE_COUNT = VARIABLE_ACCESS_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.ForeachStatementImpl <em>Foreach Statement</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.il.impl.ForeachStatementImpl
-	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getForeachStatement()
-	 * @generated
-	 */
-	int FOREACH_STATEMENT = 13;
-
-	/**
-	 * The feature id for the '<em><b>Iteration Variable Declaration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREACH_STATEMENT__ITERATION_VARIABLE_DECLARATION = MscriptPackage.STATEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Collection Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREACH_STATEMENT__COLLECTION_EXPRESSION = MscriptPackage.STATEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Body</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREACH_STATEMENT__BODY = MscriptPackage.STATEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Foreach Statement</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOREACH_STATEMENT_FEATURE_COUNT = MscriptPackage.STATEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableReferenceImpl <em>Variable Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -676,7 +565,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableReference()
 	 * @generated
 	 */
-	int VARIABLE_REFERENCE = 14;
+	int VARIABLE_REFERENCE = 11;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference.
@@ -722,7 +611,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInvalidExpression()
 	 * @generated
 	 */
-	int INVALID_EXPRESSION = 15;
+	int INVALID_EXPRESSION = 12;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Expression</em>' class.
@@ -897,27 +786,6 @@ public interface ILPackage extends EPackage {
 	EReference getComputationCompound_Outputs();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.VariableDeclaration <em>Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable Declaration</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.VariableDeclaration
-	 * @generated
-	 */
-	EClass getVariableDeclaration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.il.VariableDeclaration#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.VariableDeclaration#getName()
-	 * @see #getVariableDeclaration()
-	 * @generated
-	 */
-	EAttribute getVariableDeclaration_Name();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration <em>Stateful Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1001,27 +869,6 @@ public interface ILPackage extends EPackage {
 	EClass getInstanceVariableDeclaration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.LocalVariableDeclaration <em>Local Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Local Variable Declaration</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.LocalVariableDeclaration
-	 * @generated
-	 */
-	EClass getLocalVariableDeclaration();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.il.LocalVariableDeclaration#getInitializer <em>Initializer</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Initializer</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.LocalVariableDeclaration#getInitializer()
-	 * @see #getLocalVariableDeclaration()
-	 * @generated
-	 */
-	EReference getLocalVariableDeclaration_Initializer();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.CompoundStatement <em>Compound Statement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1083,49 +930,6 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAssignment_AssignedExpression();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.ForeachStatement <em>Foreach Statement</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Foreach Statement</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.ForeachStatement
-	 * @generated
-	 */
-	EClass getForeachStatement();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.il.ForeachStatement#getIterationVariableDeclaration <em>Iteration Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Iteration Variable Declaration</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.ForeachStatement#getIterationVariableDeclaration()
-	 * @see #getForeachStatement()
-	 * @generated
-	 */
-	EReference getForeachStatement_IterationVariableDeclaration();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.il.ForeachStatement#getCollectionExpression <em>Collection Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Collection Expression</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.ForeachStatement#getCollectionExpression()
-	 * @see #getForeachStatement()
-	 * @generated
-	 */
-	EReference getForeachStatement_CollectionExpression();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.il.ForeachStatement#getBody <em>Body</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Body</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.ForeachStatement#getBody()
-	 * @see #getForeachStatement()
-	 * @generated
-	 */
-	EReference getForeachStatement_Body();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.VariableReference <em>Variable Reference</em>}'.
@@ -1307,24 +1111,6 @@ public interface ILPackage extends EPackage {
 		EReference COMPUTATION_COMPOUND__OUTPUTS = eINSTANCE.getComputationCompound_Outputs();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.il.impl.VariableDeclarationImpl
-		 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableDeclaration()
-		 * @generated
-		 */
-		EClass VARIABLE_DECLARATION = eINSTANCE.getVariableDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute VARIABLE_DECLARATION__NAME = eINSTANCE.getVariableDeclaration_Name();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.StatefulVariableDeclarationImpl <em>Stateful Variable Declaration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1399,24 +1185,6 @@ public interface ILPackage extends EPackage {
 		EClass INSTANCE_VARIABLE_DECLARATION = eINSTANCE.getInstanceVariableDeclaration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.LocalVariableDeclarationImpl <em>Local Variable Declaration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.il.impl.LocalVariableDeclarationImpl
-		 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getLocalVariableDeclaration()
-		 * @generated
-		 */
-		EClass LOCAL_VARIABLE_DECLARATION = eINSTANCE.getLocalVariableDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Initializer</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOCAL_VARIABLE_DECLARATION__INITIALIZER = eINSTANCE.getLocalVariableDeclaration_Initializer();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.CompoundStatementImpl <em>Compound Statement</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1469,40 +1237,6 @@ public interface ILPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ASSIGNMENT__ASSIGNED_EXPRESSION = eINSTANCE.getAssignment_AssignedExpression();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.ForeachStatementImpl <em>Foreach Statement</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.il.impl.ForeachStatementImpl
-		 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getForeachStatement()
-		 * @generated
-		 */
-		EClass FOREACH_STATEMENT = eINSTANCE.getForeachStatement();
-
-		/**
-		 * The meta object literal for the '<em><b>Iteration Variable Declaration</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOREACH_STATEMENT__ITERATION_VARIABLE_DECLARATION = eINSTANCE.getForeachStatement_IterationVariableDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Collection Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOREACH_STATEMENT__COLLECTION_EXPRESSION = eINSTANCE.getForeachStatement_CollectionExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOREACH_STATEMENT__BODY = eINSTANCE.getForeachStatement_Body();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableReferenceImpl <em>Variable Reference</em>}' class.

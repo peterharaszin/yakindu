@@ -9257,7 +9257,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
                 if ( (LA55_2==20) ) {
                     alt55=1;
                 }
-                else if ( (LA55_2==EOF||(LA55_2>=RULE_ID && LA55_2<=RULE_N)||(LA55_2>=16 && LA55_2<=19)||(LA55_2>=22 && LA55_2<=23)||(LA55_2>=25 && LA55_2<=26)||(LA55_2>=29 && LA55_2<=36)||LA55_2==45||LA55_2==47||(LA55_2>=49 && LA55_2<=57)||LA55_2==65||(LA55_2>=67 && LA55_2<=68)||(LA55_2>=70 && LA55_2<=74)||LA55_2==77||LA55_2==82||LA55_2==86||(LA55_2>=93 && LA55_2<=100)||(LA55_2>=106 && LA55_2<=107)) ) {
+                else if ( (LA55_2==EOF||(LA55_2>=RULE_ID && LA55_2<=RULE_N)||(LA55_2>=16 && LA55_2<=19)||(LA55_2>=22 && LA55_2<=23)||(LA55_2>=25 && LA55_2<=26)||(LA55_2>=29 && LA55_2<=36)||LA55_2==45||LA55_2==47||(LA55_2>=49 && LA55_2<=57)||LA55_2==65||(LA55_2>=67 && LA55_2<=68)||(LA55_2>=70 && LA55_2<=74)||LA55_2==77||LA55_2==82||(LA55_2>=93 && LA55_2<=100)||(LA55_2>=106 && LA55_2<=107)) ) {
                     alt55=2;
                 }
                 else {
@@ -17559,7 +17559,6 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
                 case 78:
                 case 79:
                 case 82:
-                case 86:
                 case 91:
                 case 92:
                 case 94:
@@ -17638,7 +17637,6 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
                 case 78:
                 case 79:
                 case 82:
-                case 86:
                 case 91:
                 case 92:
                 case 94:
@@ -22191,7 +22189,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStatement"
-    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7617:1: ruleStatement returns [EObject current=null] : (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) ;
+    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7617:1: ruleStatement returns [EObject current=null] : (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) ;
     public final EObject ruleStatement() throws RecognitionException {
         EObject current = null;
 
@@ -22199,7 +22197,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
         EObject this_Assignment_1 = null;
 
-        EObject this_VariableDeclaration_2 = null;
+        EObject this_LocalVariableDeclaration_2 = null;
 
         EObject this_IfStatement_3 = null;
 
@@ -22219,10 +22217,10 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7620:28: ( (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) )
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7621:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7620:28: ( (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7621:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
             {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7621:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7621:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
             int alt122=10;
             switch ( input.LA(1) ) {
             case 24:
@@ -22334,21 +22332,21 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7642:5: this_VariableDeclaration_2= ruleVariableDeclaration
+                    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7642:5: this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getStatementAccess().getVariableDeclarationParserRuleCall_2()); 
+                              newCompositeNode(grammarAccess.getStatementAccess().getLocalVariableDeclarationParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleVariableDeclaration_in_ruleStatement17085);
-                    this_VariableDeclaration_2=ruleVariableDeclaration();
+                    pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_ruleStatement17085);
+                    this_LocalVariableDeclaration_2=ruleLocalVariableDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_VariableDeclaration_2; 
+                              current = this_LocalVariableDeclaration_2; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -22696,30 +22694,30 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleAssignment"
 
 
-    // $ANTLR start "entryRuleVariableDeclaration"
-    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7793:1: entryRuleVariableDeclaration returns [EObject current=null] : iv_ruleVariableDeclaration= ruleVariableDeclaration EOF ;
-    public final EObject entryRuleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "entryRuleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7793:1: entryRuleLocalVariableDeclaration returns [EObject current=null] : iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF ;
+    public final EObject entryRuleLocalVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleVariableDeclaration = null;
+        EObject iv_ruleLocalVariableDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7794:2: (iv_ruleVariableDeclaration= ruleVariableDeclaration EOF )
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7795:2: iv_ruleVariableDeclaration= ruleVariableDeclaration EOF
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7794:2: (iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7795:2: iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getVariableDeclarationRule()); 
+               newCompositeNode(grammarAccess.getLocalVariableDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration17446);
-            iv_ruleVariableDeclaration=ruleVariableDeclaration();
+            pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration17446);
+            iv_ruleLocalVariableDeclaration=ruleLocalVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleVariableDeclaration; 
+               current =iv_ruleLocalVariableDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration17456); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLocalVariableDeclaration17456); if (state.failed) return current;
 
             }
 
@@ -22733,12 +22731,12 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleVariableDeclaration"
+    // $ANTLR end "entryRuleLocalVariableDeclaration"
 
 
-    // $ANTLR start "ruleVariableDeclaration"
-    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7802:1: ruleVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' ) ;
-    public final EObject ruleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "ruleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7802:1: ruleLocalVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' ) ;
+    public final EObject ruleLocalVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -22758,10 +22756,10 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7806:1: (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' )
             // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7806:3: otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';'
             {
-            otherlv_0=(Token)match(input,53,FOLLOW_53_in_ruleVariableDeclaration17493); if (state.failed) return current;
+            otherlv_0=(Token)match(input,53,FOLLOW_53_in_ruleLocalVariableDeclaration17493); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getVariableDeclarationAccess().getVarKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getLocalVariableDeclarationAccess().getVarKeyword_0());
                   
             }
             // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7810:1: ( (lv_name_1_0= ruleValidID ) )
@@ -22772,10 +22770,10 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getLocalVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleVariableDeclaration17514);
+            pushFollow(FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration17514);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -22783,7 +22781,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
+              	            current = createModelElementForParent(grammarAccess.getLocalVariableDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -22799,10 +22797,10 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,31,FOLLOW_31_in_ruleVariableDeclaration17526); if (state.failed) return current;
+            otherlv_2=(Token)match(input,31,FOLLOW_31_in_ruleLocalVariableDeclaration17526); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_2, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2());
+                  	newLeafNode(otherlv_2, grammarAccess.getLocalVariableDeclarationAccess().getEqualsSignKeyword_2());
                   
             }
             // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:7832:1: ( (lv_initializer_3_0= ruleExpression ) )
@@ -22813,10 +22811,10 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
+              	        newCompositeNode(grammarAccess.getLocalVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration17547);
+            pushFollow(FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration17547);
             lv_initializer_3_0=ruleExpression();
 
             state._fsp--;
@@ -22824,7 +22822,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
+              	            current = createModelElementForParent(grammarAccess.getLocalVariableDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -22840,10 +22838,10 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,77,FOLLOW_77_in_ruleVariableDeclaration17559); if (state.failed) return current;
+            otherlv_4=(Token)match(input,77,FOLLOW_77_in_ruleLocalVariableDeclaration17559); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_4, grammarAccess.getVariableDeclarationAccess().getSemicolonKeyword_4());
+                  	newLeafNode(otherlv_4, grammarAccess.getLocalVariableDeclarationAccess().getSemicolonKeyword_4());
                   
             }
 
@@ -22865,7 +22863,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleVariableDeclaration"
+    // $ANTLR end "ruleLocalVariableDeclaration"
 
 
     // $ANTLR start "entryRuleIfStatement"
@@ -23324,7 +23322,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleForStatement"
-    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8032:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) ;
+    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8032:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) ;
     public final EObject ruleForStatement() throws RecognitionException {
         EObject current = null;
 
@@ -23346,11 +23344,11 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8035:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) )
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8036:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8035:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8036:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
             {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8036:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8036:3: otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8036:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8036:3: otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) )
             {
             otherlv_0=(Token)match(input,82,FOLLOW_82_in_ruleForStatement17985); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -23519,21 +23517,21 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8104:2: (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )?
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8104:2: (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )?
             int alt125=2;
             int LA125_0 = input.LA(1);
 
-            if ( (LA125_0==86) ) {
+            if ( (LA125_0==77) ) {
                 alt125=1;
             }
             switch (alt125) {
                 case 1 :
-                    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8104:4: otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) )
+                    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8104:4: otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) )
                     {
-                    otherlv_7=(Token)match(input,86,FOLLOW_86_in_ruleForStatement18109); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,77,FOLLOW_77_in_ruleForStatement18109); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getWhileKeyword_5_0());
+                          	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getSemicolonKeyword_5_0());
                           
                     }
                     // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:8108:1: ( (lv_condition_8_0= ruleExpression ) )
@@ -24262,7 +24260,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
                     throw nvae;
                 }
             }
-            else if ( (LA127_0==EOF||(LA127_0>=RULE_ID && LA127_0<=RULE_N)||(LA127_0>=16 && LA127_0<=20)||(LA127_0>=22 && LA127_0<=23)||(LA127_0>=25 && LA127_0<=26)||(LA127_0>=29 && LA127_0<=36)||LA127_0==39||(LA127_0>=44 && LA127_0<=45)||LA127_0==47||(LA127_0>=49 && LA127_0<=57)||LA127_0==65||(LA127_0>=67 && LA127_0<=68)||(LA127_0>=70 && LA127_0<=79)||LA127_0==82||LA127_0==86||(LA127_0>=91 && LA127_0<=92)||(LA127_0>=94 && LA127_0<=100)||(LA127_0>=106 && LA127_0<=112)||LA127_0==114) ) {
+            else if ( (LA127_0==EOF||(LA127_0>=RULE_ID && LA127_0<=RULE_N)||(LA127_0>=16 && LA127_0<=20)||(LA127_0>=22 && LA127_0<=23)||(LA127_0>=25 && LA127_0<=26)||(LA127_0>=29 && LA127_0<=36)||LA127_0==39||(LA127_0>=44 && LA127_0<=45)||LA127_0==47||(LA127_0>=49 && LA127_0<=57)||LA127_0==65||(LA127_0>=67 && LA127_0<=68)||(LA127_0>=70 && LA127_0<=79)||LA127_0==82||(LA127_0>=91 && LA127_0<=92)||(LA127_0>=94 && LA127_0<=100)||(LA127_0>=106 && LA127_0<=112)||LA127_0==114) ) {
                 alt127=3;
             }
             else {
@@ -27701,28 +27699,28 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             "\1\7\64\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\10\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1\11\7"+
-            "\uffff\7\11\5\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff\7\11\5"+
+            "\uffff\2\11",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\12\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1\11\7"+
-            "\uffff\7\11\5\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff\7\11\5"+
+            "\uffff\2\11",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\13\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1\11\7"+
-            "\uffff\7\11\5\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff\7\11\5"+
+            "\uffff\2\11",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\14\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1\11\7"+
-            "\uffff\7\11\5\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff\7\11\5"+
+            "\uffff\2\11",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "",
             "\1\22\1\17\1\21\1\20\1\16\1\15\44\uffff\1\23",
             "",
@@ -27737,12 +27735,12 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             "\1\54\7\uffff\1\52\53\uffff\1\51\1\53",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\1\56\53\uffff\1\55",
             "\1\60\7\uffff\1\56\53\uffff\1\55\1\57",
             "\1\60\7\uffff\1\56\53\uffff\1\55\1\57",
@@ -27757,8 +27755,8 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             "\1\64\7\uffff\1\62\53\uffff\1\61\1\63",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\1\66\53\uffff\1\65",
             "\1\70\7\uffff\1\66\53\uffff\1\65\1\67",
             "\1\70\7\uffff\1\66\53\uffff\1\65\1\67",
@@ -27767,34 +27765,34 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             "\1\70\7\uffff\1\66\53\uffff\1\65\1\67",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\1\75\1\72\1\74\1\73\1\71\44\uffff\1\76",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\1\100\1\101\103\uffff\1\77",
             "\1\106\1\103\1\105\1\104\1\102",
             "\1\113\1\110\1\112\1\111\1\107\44\uffff\1\114",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\1\116\1\117\103\uffff\1\115",
             "\1\124\1\121\1\123\1\122\1\120",
             "\1\131\1\126\1\130\1\127\1\125\44\uffff\1\132",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\1\134\1\135\103\uffff\1\133",
             "\1\142\1\137\1\141\1\140\1\136",
             "\1\147\1\144\1\146\1\145\1\143\44\uffff\1\150",
             "\5\11\6\uffff\4\11\1\7\1\uffff\2\11\1\uffff\2\11\2\uffff\10"+
             "\11\10\uffff\1\11\1\uffff\1\11\1\uffff\11\11\7\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\3\uffff\1"+
-            "\11\7\uffff\7\11\5\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\1\11\4\uffff\1\11\13\uffff"+
+            "\7\11\5\uffff\2\11",
             "\1\152\1\153\103\uffff\1\151",
             "\1\160\1\155\1\157\1\156\1\154",
             "\1\52\54\uffff\1\161",
@@ -28001,26 +27999,25 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
         }
     }
     static final String DFA78_eotS =
-        "\65\uffff";
+        "\64\uffff";
     static final String DFA78_eofS =
-        "\1\6\64\uffff";
+        "\1\6\63\uffff";
     static final String DFA78_minS =
-        "\1\20\2\uffff\1\0\61\uffff";
+        "\1\20\2\uffff\1\0\60\uffff";
     static final String DFA78_maxS =
-        "\1\155\2\uffff\1\0\61\uffff";
+        "\1\155\2\uffff\1\0\60\uffff";
     static final String DFA78_acceptS =
-        "\1\uffff\2\1\1\uffff\2\1\1\2\56\uffff";
+        "\1\uffff\2\1\1\uffff\2\1\1\2\55\uffff";
     static final String DFA78_specialS =
-        "\1\0\2\uffff\1\1\61\uffff}>";
+        "\1\0\2\uffff\1\1\60\uffff}>";
     static final String[] DFA78_transitionS = {
             "\4\6\2\uffff\2\6\1\uffff\2\6\2\uffff\10\6\7\uffff\1\1\1\3\1"+
             "\uffff\1\6\1\uffff\11\6\7\uffff\1\6\1\uffff\2\6\1\uffff\5\6"+
-            "\1\5\1\uffff\1\6\4\uffff\1\6\3\uffff\1\6\7\uffff\7\6\5\uffff"+
-            "\2\6\1\2\1\4",
+            "\1\5\1\uffff\1\6\4\uffff\1\6\13\uffff\7\6\5\uffff\2\6\1\2\1"+
+            "\4",
             "",
             "",
             "\1\uffff",
-            "",
             "",
             "",
             "",
@@ -28124,7 +28121,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
 
                         else if ( (LA78_0==75) && (synpred2_InternalDMLText())) {s = 5;}
 
-                        else if ( (LA78_0==EOF||(LA78_0>=16 && LA78_0<=19)||(LA78_0>=22 && LA78_0<=23)||(LA78_0>=25 && LA78_0<=26)||(LA78_0>=29 && LA78_0<=36)||LA78_0==47||(LA78_0>=49 && LA78_0<=57)||LA78_0==65||(LA78_0>=67 && LA78_0<=68)||(LA78_0>=70 && LA78_0<=74)||LA78_0==77||LA78_0==82||LA78_0==86||(LA78_0>=94 && LA78_0<=100)||(LA78_0>=106 && LA78_0<=107)) ) {s = 6;}
+                        else if ( (LA78_0==EOF||(LA78_0>=16 && LA78_0<=19)||(LA78_0>=22 && LA78_0<=23)||(LA78_0>=25 && LA78_0<=26)||(LA78_0>=29 && LA78_0<=36)||LA78_0==47||(LA78_0>=49 && LA78_0<=57)||LA78_0==65||(LA78_0>=67 && LA78_0<=68)||(LA78_0>=70 && LA78_0<=74)||LA78_0==77||LA78_0==82||(LA78_0>=94 && LA78_0<=100)||(LA78_0>=106 && LA78_0<=107)) ) {s = 6;}
 
                          
                         input.seek(index78_0);
@@ -28169,30 +28166,30 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
     static final String[] DFA91_transitionS = {
             "\5\1\1\uffff\2\1\1\uffff\2\1\2\uffff\10\1\2\uffff\1\1\4\uffff"+
             "\2\1\1\uffff\1\1\1\uffff\11\1\7\uffff\1\1\1\uffff\2\1\1\uffff"+
-            "\6\1\1\2\3\1\2\uffff\1\1\3\uffff\1\1\4\uffff\2\1\1\uffff\7\1"+
-            "\5\uffff\7\1\1\uffff\1\1",
+            "\6\1\1\2\3\1\2\uffff\1\1\10\uffff\2\1\1\uffff\7\1\5\uffff\7"+
+            "\1\1\uffff\1\1",
             "",
             "\1\7\1\4\1\6\1\5\1\3",
             "\5\11\1\uffff\2\11\1\uffff\2\11\2\uffff\10\11\2\uffff\1\11"+
             "\4\uffff\2\11\1\10\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff\2"+
-            "\11\1\uffff\12\11\2\uffff\1\11\3\uffff\1\11\4\uffff\2\11\1\uffff"+
-            "\7\11\5\uffff\7\11\1\uffff\1\11",
+            "\11\1\uffff\12\11\2\uffff\1\11\10\uffff\2\11\1\uffff\7\11\5"+
+            "\uffff\7\11\1\uffff\1\11",
             "\5\11\1\uffff\2\11\1\uffff\2\11\2\uffff\10\11\2\uffff\1\11"+
             "\4\uffff\2\11\1\10\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff\2"+
-            "\11\1\uffff\12\11\2\uffff\1\11\3\uffff\1\11\4\uffff\2\11\1\uffff"+
-            "\7\11\5\uffff\7\11\1\uffff\1\11",
+            "\11\1\uffff\12\11\2\uffff\1\11\10\uffff\2\11\1\uffff\7\11\5"+
+            "\uffff\7\11\1\uffff\1\11",
             "\5\11\1\uffff\2\11\1\uffff\2\11\2\uffff\10\11\2\uffff\1\11"+
             "\4\uffff\2\11\1\10\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff\2"+
-            "\11\1\uffff\12\11\2\uffff\1\11\3\uffff\1\11\4\uffff\2\11\1\uffff"+
-            "\7\11\5\uffff\7\11\1\uffff\1\11",
+            "\11\1\uffff\12\11\2\uffff\1\11\10\uffff\2\11\1\uffff\7\11\5"+
+            "\uffff\7\11\1\uffff\1\11",
             "\5\11\1\uffff\2\11\1\uffff\2\11\2\uffff\10\11\2\uffff\1\11"+
             "\4\uffff\2\11\1\10\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff\2"+
-            "\11\1\uffff\12\11\2\uffff\1\11\3\uffff\1\11\4\uffff\2\11\1\uffff"+
-            "\7\11\5\uffff\7\11\1\uffff\1\11",
+            "\11\1\uffff\12\11\2\uffff\1\11\10\uffff\2\11\1\uffff\7\11\5"+
+            "\uffff\7\11\1\uffff\1\11",
             "\5\11\1\uffff\2\11\1\uffff\2\11\2\uffff\10\11\2\uffff\1\11"+
             "\4\uffff\2\11\1\10\1\11\1\uffff\11\11\7\uffff\1\11\1\uffff\2"+
-            "\11\1\uffff\12\11\2\uffff\1\11\3\uffff\1\11\4\uffff\2\11\1\uffff"+
-            "\7\11\5\uffff\7\11\1\uffff\1\11",
+            "\11\1\uffff\12\11\2\uffff\1\11\10\uffff\2\11\1\uffff\7\11\5"+
+            "\uffff\7\11\1\uffff\1\11",
             "\1\17\1\16\1\13\1\15\1\14\1\12\2\17\10\uffff\1\17\3\uffff\1"+
             "\17\25\uffff\2\17\2\uffff\1\17\15\uffff\1\17\1\uffff\1\17\2"+
             "\uffff\1\17\11\uffff\3\17\1\uffff\3\17\33\uffff\1\17",
@@ -28283,47 +28280,47 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
             "\1\5\1\2\1\4\1\3\1\1",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\1\15\1\12\1\14\1\13\1\11",
             "",
             "",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10",
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10",
             "\5\10\1\uffff\5\10\2\uffff\10\10\2\uffff\1\10\4\uffff\2\10"+
             "\1\7\1\10\1\uffff\11\10\7\uffff\1\10\1\uffff\2\10\1\uffff\12"+
-            "\10\2\uffff\1\10\3\uffff\1\10\4\uffff\2\10\1\6\7\10\5\uffff"+
-            "\7\10\1\uffff\1\10"
+            "\10\2\uffff\1\10\10\uffff\2\10\1\6\7\10\5\uffff\7\10\1\uffff"+
+            "\1\10"
     };
 
     static final short[] DFA107_eot = DFA.unpackEncodedString(DFA107_eotS);
@@ -29002,7 +28999,7 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleStatement16984 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCompound_in_ruleStatement17031 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignment_in_ruleStatement17058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_ruleStatement17085 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_ruleStatement17085 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_ruleStatement17112 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleWhileStatement_in_ruleStatement17139 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDoWhileStatement_in_ruleStatement17166 = new BitSet(new long[]{0x0000000000000002L});
@@ -29016,13 +29013,13 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_31_in_ruleAssignment17377 = new BitSet(new long[]{0x0004400001100FF0L,0x00020000003B8025L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssignment17398 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
     public static final BitSet FOLLOW_77_in_ruleAssignment17410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration17446 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration17456 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_ruleVariableDeclaration17493 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleVariableDeclaration17514 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleVariableDeclaration17526 = new BitSet(new long[]{0x0004400001100FF0L,0x00020000003B8025L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration17547 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_ruleVariableDeclaration17559 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration17446 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLocalVariableDeclaration17456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_ruleLocalVariableDeclaration17493 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration17514 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_ruleLocalVariableDeclaration17526 = new BitSet(new long[]{0x0004400001100FF0L,0x00020000003B8025L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration17547 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_ruleLocalVariableDeclaration17559 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement17595 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfStatement17605 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_66_in_ruleIfStatement17642 = new BitSet(new long[]{0x0000400000000000L});
@@ -29047,8 +29044,8 @@ public class InternalDMLTextParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIterationVariable_in_ruleForStatement18032 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleForStatement18062 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
     public static final BitSet FOLLOW_65_in_ruleForStatement18075 = new BitSet(new long[]{0x0004400001100FF0L,0x00020000003B8025L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement18096 = new BitSet(new long[]{0x0000800000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_ruleForStatement18109 = new BitSet(new long[]{0x0004400001100FF0L,0x00020000003B8025L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement18096 = new BitSet(new long[]{0x0000800000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_ruleForStatement18109 = new BitSet(new long[]{0x0004400001100FF0L,0x00020000003B8025L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement18130 = new BitSet(new long[]{0x0000800000000000L});
     public static final BitSet FOLLOW_47_in_ruleForStatement18144 = new BitSet(new long[]{0x00204000010003E0L,0x0000000007C40004L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleForStatement18165 = new BitSet(new long[]{0x0000000000000002L});

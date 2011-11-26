@@ -14,12 +14,12 @@ package org.eclipselabs.damos.mscript.il.transform;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 
 /**

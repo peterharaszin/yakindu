@@ -36,6 +36,7 @@ import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
 import org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart;
 import org.eclipselabs.damos.mscript.Literal;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -50,12 +51,11 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.CompoundStatement;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -145,7 +145,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	 */
 	@Override
 	public Expression caseLetExpression(LetExpression letExpression) {
-		LocalVariableDeclaration localVariableDeclaration = ILFactory.eINSTANCE.createLocalVariableDeclaration();
+		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		IValue expressionValue = context.getStaticEvaluationContext().getValue(letExpression);
 		context.getStaticEvaluationContext().setValue(localVariableDeclaration, expressionValue);
 		context.getCompound().getStatements().add(localVariableDeclaration);
@@ -156,7 +156,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		context.addVariableDeclaration(localVariableDeclaration);
 
 		for (LetExpressionVariableDeclaration letExpressionVariableDeclaration : letExpression.getVariableDeclarations()) {
-			LocalVariableDeclaration letVariableDeclaration = ILFactory.eINSTANCE.createLocalVariableDeclaration();
+			LocalVariableDeclaration letVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 			LetExpressionVariableDeclarationPart part = letExpressionVariableDeclaration.getParts().get(0);
 			IValue partValue = context.getStaticEvaluationContext().getValue(part);
 			context.getStaticEvaluationContext().setValue(letVariableDeclaration, partValue);
@@ -193,7 +193,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			return doSwitch(expression);
 		}
 		
-		LocalVariableDeclaration localVariableDeclaration = ILFactory.eINSTANCE.createLocalVariableDeclaration();
+		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		IValue ifExpressionValue = context.getStaticEvaluationContext().getValue(ifExpression);
 		context.getStaticEvaluationContext().setValue(localVariableDeclaration, ifExpressionValue);
 		
@@ -435,54 +435,46 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		return transformedExpression;
 	}
 	
-	private final MscriptSwitch<Expression> typeSystemSwitch = new MscriptSwitch<Expression>() {
-	
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
-		 */
-		@Override
-		public Expression caseRealLiteral(RealLiteral realLiteral) {
-			RealType realType = MscriptFactory.eINSTANCE.createRealType();
-			realType.setUnit(EcoreUtil.copy(realLiteral.getUnit()));
-			
-			RealLiteral transformedRealLiteral = EcoreUtil.copy(realLiteral);
-			return transformedRealLiteral;
-		}
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
+	 */
+	@Override
+	public Expression caseRealLiteral(RealLiteral realLiteral) {
+		RealType realType = MscriptFactory.eINSTANCE.createRealType();
+		realType.setUnit(EcoreUtil.copy(realLiteral.getUnit()));
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
-		 */
-		@Override
-		public Expression caseIntegerLiteral(IntegerLiteral integerLiteral) {
-			IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
-			integerType.setUnit(EcoreUtil.copy(integerLiteral.getUnit()));
+		RealLiteral transformedRealLiteral = EcoreUtil.copy(realLiteral);
+		return transformedRealLiteral;
+	}
 	
-			IntegerLiteral transformedIntegerLiteral = EcoreUtil.copy(integerLiteral);
-			return transformedIntegerLiteral;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
-		 */
-		@Override
-		public Expression caseBooleanLiteral(BooleanLiteral booleanLiteral) {
-			BooleanLiteral transformedBooleanLiteral = EcoreUtil.copy(booleanLiteral);
-			return transformedBooleanLiteral;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
-		 */
-		@Override
-		public Expression caseStringLiteral(StringLiteral stringLiteral) {
-			StringLiteral transformedStringLiteral = EcoreUtil.copy(stringLiteral);
-			return transformedStringLiteral;
-		}
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
+	 */
+	@Override
+	public Expression caseIntegerLiteral(IntegerLiteral integerLiteral) {
+		IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
+		integerType.setUnit(EcoreUtil.copy(integerLiteral.getUnit()));
+
+		IntegerLiteral transformedIntegerLiteral = EcoreUtil.copy(integerLiteral);
+		return transformedIntegerLiteral;
+	}
 	
-	};
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
+	 */
+	@Override
+	public Expression caseBooleanLiteral(BooleanLiteral booleanLiteral) {
+		BooleanLiteral transformedBooleanLiteral = EcoreUtil.copy(booleanLiteral);
+		return transformedBooleanLiteral;
+	}
 	
-	public Expression defaultCase(EObject object) {
-		return typeSystemSwitch.doSwitch(object);
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
+	 */
+	@Override
+	public Expression caseStringLiteral(StringLiteral stringLiteral) {
+		StringLiteral transformedStringLiteral = EcoreUtil.copy(stringLiteral);
+		return transformedStringLiteral;
 	}
 	
 	/* (non-Javadoc)

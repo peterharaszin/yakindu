@@ -16,12 +16,13 @@ import java.util.Collections;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.IterationVariable;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
+import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.il.CompoundStatement;
-import org.eclipselabs.damos.mscript.il.ForeachStatement;
 import org.eclipselabs.damos.mscript.il.ILFactory;
-import org.eclipselabs.damos.mscript.il.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.util.StatusUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -38,14 +39,14 @@ public class IterateTransformer implements IIterationCallTransformer {
 	public IIterationCallTransformerResult transform(ITransformerContext context, IterationCall iterationCall, Expression collectionExpression) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Iterate transformation", null);
 		
-		LocalVariableDeclaration accumulatorDeclaration = ILFactory.eINSTANCE.createLocalVariableDeclaration();
+		LocalVariableDeclaration accumulatorDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		IValue accumulatorValue = context.getStaticEvaluationContext().getValue(iterationCall.getAccumulator());
 		context.getStaticEvaluationContext().setValue(accumulatorDeclaration, accumulatorValue);
 		accumulatorDeclaration.setName(iterationCall.getAccumulator().getName());
 		context.getCompound().getStatements().add(accumulatorDeclaration);
-		ForeachStatement foreachStatement = ILFactory.eINSTANCE.createForeachStatement();
+		ForStatement forStatement = MscriptFactory.eINSTANCE.createForStatement();
 		
-		LocalVariableDeclaration iterationVariableDeclaration = ILFactory.eINSTANCE.createLocalVariableDeclaration();
+		LocalVariableDeclaration iterationVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
 		IterationVariable iterationVariable = iterationCall.getVariables().get(0);
 		IValue iterationVariableValue = context.getStaticEvaluationContext().getValue(iterationVariable);
 		context.getStaticEvaluationContext().setValue(iterationVariableDeclaration, iterationVariableValue);
@@ -55,8 +56,8 @@ public class IterateTransformer implements IIterationCallTransformer {
 				iterationCall.getAccumulator().getInitializer(),
 				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));
 
-		foreachStatement.setIterationVariableDeclaration(iterationVariableDeclaration);
-		foreachStatement.setCollectionExpression(collectionExpression);
+		forStatement.setIterationVariable(iterationVariableDeclaration);
+		forStatement.setCollectionExpression(collectionExpression);
 
 		CompoundStatement body = ILFactory.eINSTANCE.createCompoundStatement();
 		context.enterScope();
@@ -67,9 +68,9 @@ public class IterateTransformer implements IIterationCallTransformer {
 				iterationCall.getExpression(),
 				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));
 		context.leaveScope();
-		foreachStatement.setBody(body);
+		forStatement.setBody(body);
 
-		context.getCompound().getStatements().add(foreachStatement);
+		context.getCompound().getStatements().add(forStatement);
 		
 		if (status.getSeverity() > IStatus.WARNING) {
 			return new IterationCallTransformerResult(accumulatorDeclaration, status);

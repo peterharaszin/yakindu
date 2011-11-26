@@ -5441,7 +5441,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 {
                 int LA30_2 = input.LA(2);
 
-                if ( (LA30_2==EOF||(LA30_2>=RULE_ID && LA30_2<=RULE_N)||LA30_2==25||LA30_2==28||LA30_2==33||LA30_2==35||(LA30_2>=37 && LA30_2<=46)||LA30_2==54||LA30_2==56||(LA30_2>=58 && LA30_2<=59)||(LA30_2>=61 && LA30_2<=65)||(LA30_2>=68 && LA30_2<=69)||LA30_2==75||LA30_2==79||LA30_2==87||(LA30_2>=94 && LA30_2<=95)) ) {
+                if ( (LA30_2==EOF||(LA30_2>=RULE_ID && LA30_2<=RULE_N)||LA30_2==25||LA30_2==28||LA30_2==33||LA30_2==35||(LA30_2>=37 && LA30_2<=46)||LA30_2==54||LA30_2==56||(LA30_2>=58 && LA30_2<=59)||(LA30_2>=61 && LA30_2<=65)||(LA30_2>=68 && LA30_2<=69)||LA30_2==75||LA30_2==87||(LA30_2>=94 && LA30_2<=95)) ) {
                     alt30=2;
                 }
                 else if ( (LA30_2==53) ) {
@@ -13709,7 +13709,6 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 case 70:
                 case 71:
                 case 75:
-                case 79:
                 case 84:
                 case 85:
                 case 86:
@@ -13820,7 +13819,6 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 case 70:
                 case 71:
                 case 75:
-                case 79:
                 case 84:
                 case 85:
                 case 86:
@@ -18342,7 +18340,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6332:1: ruleStatement returns [EObject current=null] : (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6332:1: ruleStatement returns [EObject current=null] : (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) ;
     public final EObject ruleStatement() throws RecognitionException {
         EObject current = null;
 
@@ -18350,7 +18348,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
         EObject this_Assignment_1 = null;
 
-        EObject this_VariableDeclaration_2 = null;
+        EObject this_LocalVariableDeclaration_2 = null;
 
         EObject this_IfStatement_3 = null;
 
@@ -18370,10 +18368,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6335:28: ( (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6336:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6335:28: ( (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6336:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6336:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6336:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
             int alt97=10;
             switch ( input.LA(1) ) {
             case 23:
@@ -18485,21 +18483,21 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6357:5: this_VariableDeclaration_2= ruleVariableDeclaration
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6357:5: this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getStatementAccess().getVariableDeclarationParserRuleCall_2()); 
+                              newCompositeNode(grammarAccess.getStatementAccess().getLocalVariableDeclarationParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleVariableDeclaration_in_ruleStatement14293);
-                    this_VariableDeclaration_2=ruleVariableDeclaration();
+                    pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_ruleStatement14293);
+                    this_LocalVariableDeclaration_2=ruleLocalVariableDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_VariableDeclaration_2; 
+                              current = this_LocalVariableDeclaration_2; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -18847,30 +18845,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleAssignment"
 
 
-    // $ANTLR start "entryRuleVariableDeclaration"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6508:1: entryRuleVariableDeclaration returns [EObject current=null] : iv_ruleVariableDeclaration= ruleVariableDeclaration EOF ;
-    public final EObject entryRuleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "entryRuleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6508:1: entryRuleLocalVariableDeclaration returns [EObject current=null] : iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF ;
+    public final EObject entryRuleLocalVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleVariableDeclaration = null;
+        EObject iv_ruleLocalVariableDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6509:2: (iv_ruleVariableDeclaration= ruleVariableDeclaration EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6510:2: iv_ruleVariableDeclaration= ruleVariableDeclaration EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6509:2: (iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6510:2: iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getVariableDeclarationRule()); 
+               newCompositeNode(grammarAccess.getLocalVariableDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration14654);
-            iv_ruleVariableDeclaration=ruleVariableDeclaration();
+            pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration14654);
+            iv_ruleLocalVariableDeclaration=ruleLocalVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleVariableDeclaration; 
+               current =iv_ruleLocalVariableDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration14664); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLocalVariableDeclaration14664); if (state.failed) return current;
 
             }
 
@@ -18884,12 +18882,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleVariableDeclaration"
+    // $ANTLR end "entryRuleLocalVariableDeclaration"
 
 
-    // $ANTLR start "ruleVariableDeclaration"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6517:1: ruleVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' ) ;
-    public final EObject ruleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "ruleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6517:1: ruleLocalVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' ) ;
+    public final EObject ruleLocalVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -18909,10 +18907,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6521:1: (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' )
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6521:3: otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';'
             {
-            otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleVariableDeclaration14701); if (state.failed) return current;
+            otherlv_0=(Token)match(input,41,FOLLOW_41_in_ruleLocalVariableDeclaration14701); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getVariableDeclarationAccess().getVarKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getLocalVariableDeclarationAccess().getVarKeyword_0());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6525:1: ( (lv_name_1_0= ruleValidID ) )
@@ -18923,10 +18921,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getLocalVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleVariableDeclaration14722);
+            pushFollow(FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration14722);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -18934,7 +18932,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
+              	            current = createModelElementForParent(grammarAccess.getLocalVariableDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -18950,10 +18948,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,43,FOLLOW_43_in_ruleVariableDeclaration14734); if (state.failed) return current;
+            otherlv_2=(Token)match(input,43,FOLLOW_43_in_ruleLocalVariableDeclaration14734); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_2, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2());
+                  	newLeafNode(otherlv_2, grammarAccess.getLocalVariableDeclarationAccess().getEqualsSignKeyword_2());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6547:1: ( (lv_initializer_3_0= ruleExpression ) )
@@ -18964,10 +18962,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
+              	        newCompositeNode(grammarAccess.getLocalVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration14755);
+            pushFollow(FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration14755);
             lv_initializer_3_0=ruleExpression();
 
             state._fsp--;
@@ -18975,7 +18973,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
+              	            current = createModelElementForParent(grammarAccess.getLocalVariableDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -18991,10 +18989,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,68,FOLLOW_68_in_ruleVariableDeclaration14767); if (state.failed) return current;
+            otherlv_4=(Token)match(input,68,FOLLOW_68_in_ruleLocalVariableDeclaration14767); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_4, grammarAccess.getVariableDeclarationAccess().getSemicolonKeyword_4());
+                  	newLeafNode(otherlv_4, grammarAccess.getLocalVariableDeclarationAccess().getSemicolonKeyword_4());
                   
             }
 
@@ -19016,7 +19014,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleVariableDeclaration"
+    // $ANTLR end "ruleLocalVariableDeclaration"
 
 
     // $ANTLR start "entryRuleIfStatement"
@@ -19475,7 +19473,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleForStatement"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6747:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) ;
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6747:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) ;
     public final EObject ruleForStatement() throws RecognitionException {
         EObject current = null;
 
@@ -19497,11 +19495,11 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6750:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6750:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:3: otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6751:3: otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) )
             {
             otherlv_0=(Token)match(input,75,FOLLOW_75_in_ruleForStatement15193); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -19670,21 +19668,21 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6819:2: (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )?
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6819:2: (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )?
             int alt100=2;
             int LA100_0 = input.LA(1);
 
-            if ( (LA100_0==79) ) {
+            if ( (LA100_0==68) ) {
                 alt100=1;
             }
             switch (alt100) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6819:4: otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) )
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6819:4: otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) )
                     {
-                    otherlv_7=(Token)match(input,79,FOLLOW_79_in_ruleForStatement15317); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,68,FOLLOW_68_in_ruleForStatement15317); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getWhileKeyword_5_0());
+                          	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getSemicolonKeyword_5_0());
                           
                     }
                     // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:6823:1: ( (lv_condition_8_0= ruleExpression ) )
@@ -20413,7 +20411,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     throw nvae;
                 }
             }
-            else if ( (LA102_0==EOF||(LA102_0>=RULE_ID && LA102_0<=RULE_N)||LA102_0==25||LA102_0==28||(LA102_0>=32 && LA102_0<=33)||LA102_0==35||(LA102_0>=37 && LA102_0<=46)||(LA102_0>=53 && LA102_0<=54)||LA102_0==56||(LA102_0>=58 && LA102_0<=59)||(LA102_0>=61 && LA102_0<=71)||LA102_0==75||LA102_0==79||(LA102_0>=84 && LA102_0<=86)||(LA102_0>=94 && LA102_0<=100)||LA102_0==102) ) {
+            else if ( (LA102_0==EOF||(LA102_0>=RULE_ID && LA102_0<=RULE_N)||LA102_0==25||LA102_0==28||(LA102_0>=32 && LA102_0<=33)||LA102_0==35||(LA102_0>=37 && LA102_0<=46)||(LA102_0>=53 && LA102_0<=54)||LA102_0==56||(LA102_0>=58 && LA102_0<=59)||(LA102_0>=61 && LA102_0<=71)||LA102_0==75||(LA102_0>=84 && LA102_0<=86)||(LA102_0>=94 && LA102_0<=100)||LA102_0==102) ) {
                 alt102=3;
             }
             else {
@@ -23440,24 +23438,22 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\7\51\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\10\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\12\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\13\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\14\1\11\1\uffff"+
             "\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5"+
-            "\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff\2\11",
+            "\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "",
             "\1\22\1\17\1\21\1\20\1\16\1\15\30\uffff\1\23",
             "",
@@ -23472,12 +23468,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\52\60\uffff\1\51\1\54\1\53",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\56\60\uffff\1\55",
             "\1\56\60\uffff\1\55\1\60\1\57",
             "\1\56\60\uffff\1\55\1\60\1\57",
@@ -23486,8 +23480,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\56\60\uffff\1\55\1\60\1\57",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\62\60\uffff\1\61",
             "\1\62\60\uffff\1\61\1\64\1\63",
             "\1\62\60\uffff\1\61\1\64\1\63",
@@ -23502,34 +23495,29 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\66\60\uffff\1\65\1\70\1\67",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\75\1\72\1\74\1\73\1\71\30\uffff\1\76",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\100\1\101\73\uffff\1\77",
             "\1\106\1\103\1\105\1\104\1\102",
             "\1\113\1\110\1\112\1\111\1\107\30\uffff\1\114",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\116\1\117\73\uffff\1\115",
             "\1\124\1\121\1\123\1\122\1\120",
             "\1\131\1\126\1\130\1\127\1\125\30\uffff\1\132",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\134\1\135\73\uffff\1\133",
             "\1\142\1\137\1\141\1\140\1\136",
             "\1\147\1\144\1\146\1\145\1\143\30\uffff\1\150",
             "\5\11\17\uffff\1\11\2\uffff\1\11\4\uffff\1\11\1\uffff\1\11"+
             "\1\uffff\12\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff\2\11\1"+
-            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16\uffff"+
-            "\2\11",
+            "\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\1\152\1\153\73\uffff\1\151",
             "\1\160\1\155\1\157\1\156\1\154",
             "\1\52\62\uffff\1\161",
@@ -23736,25 +23724,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
     }
     static final String DFA53_eotS =
-        "\43\uffff";
+        "\42\uffff";
     static final String DFA53_eofS =
-        "\1\6\42\uffff";
+        "\1\6\41\uffff";
     static final String DFA53_minS =
-        "\1\31\2\uffff\1\0\37\uffff";
+        "\1\31\2\uffff\1\0\36\uffff";
     static final String DFA53_maxS =
-        "\1\141\2\uffff\1\0\37\uffff";
+        "\1\141\2\uffff\1\0\36\uffff";
     static final String DFA53_acceptS =
-        "\1\uffff\2\1\1\uffff\2\1\1\2\34\uffff";
+        "\1\uffff\2\1\1\uffff\2\1\1\2\33\uffff";
     static final String DFA53_specialS =
-        "\1\0\2\uffff\1\1\37\uffff}>";
+        "\1\0\2\uffff\1\1\36\uffff}>";
     static final String[] DFA53_transitionS = {
             "\1\6\2\uffff\1\6\3\uffff\1\1\1\3\1\uffff\1\6\1\uffff\12\6\7"+
             "\uffff\1\6\1\uffff\1\6\1\uffff\2\6\1\uffff\5\6\1\5\1\uffff\2"+
-            "\6\5\uffff\1\6\3\uffff\1\6\16\uffff\2\6\1\2\1\4",
+            "\6\5\uffff\1\6\22\uffff\2\6\1\2\1\4",
             "",
             "",
             "\1\uffff",
-            "",
             "",
             "",
             "",
@@ -23840,7 +23827,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
                         else if ( (LA53_0==66) && (synpred2_InternalCGenModel())) {s = 5;}
 
-                        else if ( (LA53_0==EOF||LA53_0==25||LA53_0==28||LA53_0==35||(LA53_0>=37 && LA53_0<=46)||LA53_0==54||LA53_0==56||(LA53_0>=58 && LA53_0<=59)||(LA53_0>=61 && LA53_0<=65)||(LA53_0>=68 && LA53_0<=69)||LA53_0==75||LA53_0==79||(LA53_0>=94 && LA53_0<=95)) ) {s = 6;}
+                        else if ( (LA53_0==EOF||LA53_0==25||LA53_0==28||LA53_0==35||(LA53_0>=37 && LA53_0<=46)||LA53_0==54||LA53_0==56||(LA53_0>=58 && LA53_0<=59)||(LA53_0>=61 && LA53_0<=65)||(LA53_0>=68 && LA53_0<=69)||LA53_0==75||(LA53_0>=94 && LA53_0<=95)) ) {s = 6;}
 
                          
                         input.seek(index53_0);
@@ -23885,24 +23872,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     static final String[] DFA66_transitionS = {
             "\1\1\2\uffff\1\1\3\uffff\2\1\1\uffff\1\1\1\uffff\12\1\6\uffff"+
             "\2\1\1\uffff\1\1\1\uffff\2\1\1\uffff\6\1\1\2\4\1\3\uffff\1\1"+
-            "\3\uffff\1\1\4\uffff\3\1\7\uffff\7\1\1\uffff\1\1",
+            "\10\uffff\3\1\7\uffff\7\1\1\uffff\1\1",
             "",
             "\1\7\1\4\1\6\1\5\1\3",
             "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\3"+
-            "\uffff\1\10\4\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
+            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
+            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
             "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\3"+
-            "\uffff\1\10\4\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
+            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
+            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
             "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\3"+
-            "\uffff\1\10\4\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
+            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
+            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
             "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\3"+
-            "\uffff\1\10\4\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
+            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
+            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
             "\1\10\2\uffff\1\10\3\uffff\2\10\1\11\1\10\1\uffff\12\10\6\uffff"+
-            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\3"+
-            "\uffff\1\10\4\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
+            "\2\10\1\uffff\1\10\1\uffff\2\10\1\uffff\13\10\3\uffff\1\10\10"+
+            "\uffff\3\10\7\uffff\7\10\1\uffff\1\10",
             "",
             "\1\12\1\17\1\14\1\16\1\15\1\13\2\12\13\uffff\1\12\12\uffff"+
             "\2\12\2\uffff\1\12\16\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2"+
@@ -23993,37 +23980,37 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             "\1\5\1\2\1\4\1\3\1\1",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\15\1\12\1\14\1\13\1\11",
             "",
             "",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\7\1\uffff\1\7\2\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\12"+
             "\7\6\uffff\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff"+
-            "\1\7\3\uffff\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7"
+            "\1\7\10\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7"
     };
 
     static final short[] DFA82_eot = DFA.unpackEncodedString(DFA82_eotS);
@@ -24599,7 +24586,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleStatement14192 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCompound_in_ruleStatement14239 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignment_in_ruleStatement14266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_ruleStatement14293 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_ruleStatement14293 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_ruleStatement14320 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleWhileStatement_in_ruleStatement14347 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDoWhileStatement_in_ruleStatement14374 = new BitSet(new long[]{0x0000000000000002L});
@@ -24613,13 +24600,13 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_43_in_ruleAssignment14585 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssignment14606 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
     public static final BitSet FOLLOW_68_in_ruleAssignment14618 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration14654 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration14664 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_ruleVariableDeclaration14701 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleVariableDeclaration14722 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_43_in_ruleVariableDeclaration14734 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration14755 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_68_in_ruleVariableDeclaration14767 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration14654 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLocalVariableDeclaration14664 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_ruleLocalVariableDeclaration14701 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration14722 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_43_in_ruleLocalVariableDeclaration14734 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration14755 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_ruleLocalVariableDeclaration14767 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement14803 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfStatement14813 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_57_in_ruleIfStatement14850 = new BitSet(new long[]{0x0000000400000000L});
@@ -24644,8 +24631,8 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIterationVariable_in_ruleForStatement15240 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleForStatement15270 = new BitSet(new long[]{0x0100000000000000L});
     public static final BitSet FOLLOW_56_in_ruleForStatement15283 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement15304 = new BitSet(new long[]{0x0000000800000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_ruleForStatement15317 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement15304 = new BitSet(new long[]{0x0000000800000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_68_in_ruleForStatement15317 = new BitSet(new long[]{0x12A0004400800FF0L,0x0000002000007380L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement15338 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_35_in_ruleForStatement15352 = new BitSet(new long[]{0x02000204008003E0L,0x00000000000F8800L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleForStatement15373 = new BitSet(new long[]{0x0000000000000002L});

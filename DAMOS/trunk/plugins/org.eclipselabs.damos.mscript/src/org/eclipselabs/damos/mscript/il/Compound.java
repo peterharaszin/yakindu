@@ -8,6 +8,7 @@ package org.eclipselabs.damos.mscript.il;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
 
 /**
@@ -46,7 +47,7 @@ public interface Compound extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Local Variable Declarations</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.il.LocalVariableDeclaration}.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.LocalVariableDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Local Variable Declarations</em>' reference list isn't clear,

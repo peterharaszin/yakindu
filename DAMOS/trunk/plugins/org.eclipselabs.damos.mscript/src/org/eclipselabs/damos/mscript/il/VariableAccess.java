@@ -7,6 +7,7 @@
 package org.eclipselabs.damos.mscript.il;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->

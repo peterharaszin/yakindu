@@ -5066,7 +5066,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                 {
                 int LA27_2 = input.LA(2);
 
-                if ( (LA27_2==EOF||(LA27_2>=RULE_N && LA27_2<=RULE_EXPIJ)||(LA27_2>=18 && LA27_2<=20)||(LA27_2>=22 && LA27_2<=23)||LA27_2==25||LA27_2==30||LA27_2==32||(LA27_2>=34 && LA27_2<=42)||LA27_2==50||LA27_2==52||(LA27_2>=54 && LA27_2<=55)||(LA27_2>=57 && LA27_2<=61)||(LA27_2>=64 && LA27_2<=65)||LA27_2==71||LA27_2==75||LA27_2==83||(LA27_2>=90 && LA27_2<=91)) ) {
+                if ( (LA27_2==EOF||(LA27_2>=RULE_N && LA27_2<=RULE_EXPIJ)||(LA27_2>=18 && LA27_2<=20)||(LA27_2>=22 && LA27_2<=23)||LA27_2==25||LA27_2==30||LA27_2==32||(LA27_2>=34 && LA27_2<=42)||LA27_2==50||LA27_2==52||(LA27_2>=54 && LA27_2<=55)||(LA27_2>=57 && LA27_2<=61)||(LA27_2>=64 && LA27_2<=65)||LA27_2==71||LA27_2==83||(LA27_2>=90 && LA27_2<=91)) ) {
                     alt27=2;
                 }
                 else if ( (LA27_2==49) ) {
@@ -13382,7 +13382,6 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                 case 66:
                 case 67:
                 case 71:
-                case 75:
                 case 80:
                 case 81:
                 case 82:
@@ -13448,7 +13447,6 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                 case 66:
                 case 67:
                 case 71:
-                case 75:
                 case 80:
                 case 81:
                 case 82:
@@ -18017,7 +18015,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStatement"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6173:1: ruleStatement returns [EObject current=null] : (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6173:1: ruleStatement returns [EObject current=null] : (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) ;
     public final EObject ruleStatement() throws RecognitionException {
         EObject current = null;
 
@@ -18025,7 +18023,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
         EObject this_Assignment_1 = null;
 
-        EObject this_VariableDeclaration_2 = null;
+        EObject this_LocalVariableDeclaration_2 = null;
 
         EObject this_IfStatement_3 = null;
 
@@ -18045,10 +18043,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6176:28: ( (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6177:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6176:28: ( (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6177:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6177:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_VariableDeclaration_2= ruleVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6177:1: (this_Compound_0= ruleCompound | this_Assignment_1= ruleAssignment | this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration | this_IfStatement_3= ruleIfStatement | this_WhileStatement_4= ruleWhileStatement | this_DoWhileStatement_5= ruleDoWhileStatement | this_ForStatement_6= ruleForStatement | this_ContinueStatement_7= ruleContinueStatement | this_BreakStatement_8= ruleBreakStatement | this_ReturnStatement_9= ruleReturnStatement )
             int alt94=10;
             switch ( input.LA(1) ) {
             case 21:
@@ -18160,21 +18158,21 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6198:5: this_VariableDeclaration_2= ruleVariableDeclaration
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6198:5: this_LocalVariableDeclaration_2= ruleLocalVariableDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getStatementAccess().getVariableDeclarationParserRuleCall_2()); 
+                              newCompositeNode(grammarAccess.getStatementAccess().getLocalVariableDeclarationParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleVariableDeclaration_in_ruleStatement13884);
-                    this_VariableDeclaration_2=ruleVariableDeclaration();
+                    pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_ruleStatement13884);
+                    this_LocalVariableDeclaration_2=ruleLocalVariableDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_VariableDeclaration_2; 
+                              current = this_LocalVariableDeclaration_2; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -18522,30 +18520,30 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleAssignment"
 
 
-    // $ANTLR start "entryRuleVariableDeclaration"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6349:1: entryRuleVariableDeclaration returns [EObject current=null] : iv_ruleVariableDeclaration= ruleVariableDeclaration EOF ;
-    public final EObject entryRuleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "entryRuleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6349:1: entryRuleLocalVariableDeclaration returns [EObject current=null] : iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF ;
+    public final EObject entryRuleLocalVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleVariableDeclaration = null;
+        EObject iv_ruleLocalVariableDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6350:2: (iv_ruleVariableDeclaration= ruleVariableDeclaration EOF )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6351:2: iv_ruleVariableDeclaration= ruleVariableDeclaration EOF
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6350:2: (iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6351:2: iv_ruleLocalVariableDeclaration= ruleLocalVariableDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getVariableDeclarationRule()); 
+               newCompositeNode(grammarAccess.getLocalVariableDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration14245);
-            iv_ruleVariableDeclaration=ruleVariableDeclaration();
+            pushFollow(FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration14245);
+            iv_ruleLocalVariableDeclaration=ruleLocalVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleVariableDeclaration; 
+               current =iv_ruleLocalVariableDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableDeclaration14255); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLocalVariableDeclaration14255); if (state.failed) return current;
 
             }
 
@@ -18559,12 +18557,12 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleVariableDeclaration"
+    // $ANTLR end "entryRuleLocalVariableDeclaration"
 
 
-    // $ANTLR start "ruleVariableDeclaration"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6358:1: ruleVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' ) ;
-    public final EObject ruleVariableDeclaration() throws RecognitionException {
+    // $ANTLR start "ruleLocalVariableDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6358:1: ruleLocalVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' ) ;
+    public final EObject ruleLocalVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -18584,10 +18582,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6362:1: (otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';' )
             // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6362:3: otherlv_0= 'var' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '=' ( (lv_initializer_3_0= ruleExpression ) ) otherlv_4= ';'
             {
-            otherlv_0=(Token)match(input,38,FOLLOW_38_in_ruleVariableDeclaration14292); if (state.failed) return current;
+            otherlv_0=(Token)match(input,38,FOLLOW_38_in_ruleLocalVariableDeclaration14292); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getVariableDeclarationAccess().getVarKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getLocalVariableDeclarationAccess().getVarKeyword_0());
                   
             }
             // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6366:1: ( (lv_name_1_0= ruleValidID ) )
@@ -18598,10 +18596,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getLocalVariableDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleVariableDeclaration14313);
+            pushFollow(FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration14313);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -18609,7 +18607,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
+              	            current = createModelElementForParent(grammarAccess.getLocalVariableDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -18625,10 +18623,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleVariableDeclaration14325); if (state.failed) return current;
+            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleLocalVariableDeclaration14325); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_2, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2());
+                  	newLeafNode(otherlv_2, grammarAccess.getLocalVariableDeclarationAccess().getEqualsSignKeyword_2());
                   
             }
             // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6388:1: ( (lv_initializer_3_0= ruleExpression ) )
@@ -18639,10 +18637,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
+              	        newCompositeNode(grammarAccess.getLocalVariableDeclarationAccess().getInitializerExpressionParserRuleCall_3_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleExpression_in_ruleVariableDeclaration14346);
+            pushFollow(FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration14346);
             lv_initializer_3_0=ruleExpression();
 
             state._fsp--;
@@ -18650,7 +18648,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
+              	            current = createModelElementForParent(grammarAccess.getLocalVariableDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -18666,10 +18664,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_4=(Token)match(input,64,FOLLOW_64_in_ruleVariableDeclaration14358); if (state.failed) return current;
+            otherlv_4=(Token)match(input,64,FOLLOW_64_in_ruleLocalVariableDeclaration14358); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_4, grammarAccess.getVariableDeclarationAccess().getSemicolonKeyword_4());
+                  	newLeafNode(otherlv_4, grammarAccess.getLocalVariableDeclarationAccess().getSemicolonKeyword_4());
                   
             }
 
@@ -18691,7 +18689,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleVariableDeclaration"
+    // $ANTLR end "ruleLocalVariableDeclaration"
 
 
     // $ANTLR start "entryRuleIfStatement"
@@ -19150,7 +19148,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleForStatement"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6588:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6588:1: ruleForStatement returns [EObject current=null] : (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) ;
     public final EObject ruleForStatement() throws RecognitionException {
         EObject current = null;
 
@@ -19172,11 +19170,11 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6591:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6592:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6591:28: ( (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6592:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6592:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6592:3: otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6592:1: (otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6592:3: otherlv_0= 'for' otherlv_1= '(' ( (otherlv_2= 'var' ( (lv_declaredIterationVariable_3_0= ruleIterationVariable ) ) ) | ( ( ruleValidID ) ) ) otherlv_5= 'in' ( (lv_collectionExpression_6_0= ruleExpression ) ) (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )? otherlv_9= ')' ( (lv_body_10_0= ruleStatement ) )
             {
             otherlv_0=(Token)match(input,71,FOLLOW_71_in_ruleForStatement14784); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -19345,21 +19343,21 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6660:2: (otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) ) )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6660:2: (otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) ) )?
             int alt97=2;
             int LA97_0 = input.LA(1);
 
-            if ( (LA97_0==75) ) {
+            if ( (LA97_0==64) ) {
                 alt97=1;
             }
             switch (alt97) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6660:4: otherlv_7= 'while' ( (lv_condition_8_0= ruleExpression ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6660:4: otherlv_7= ';' ( (lv_condition_8_0= ruleExpression ) )
                     {
-                    otherlv_7=(Token)match(input,75,FOLLOW_75_in_ruleForStatement14908); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,64,FOLLOW_64_in_ruleForStatement14908); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getWhileKeyword_5_0());
+                          	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getSemicolonKeyword_5_0());
                           
                     }
                     // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:6664:1: ( (lv_condition_8_0= ruleExpression ) )
@@ -20088,7 +20086,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     throw nvae;
                 }
             }
-            else if ( (LA99_0==EOF||(LA99_0>=RULE_N && LA99_0<=RULE_EXPIJ)||(LA99_0>=18 && LA99_0<=20)||(LA99_0>=22 && LA99_0<=23)||LA99_0==25||(LA99_0>=29 && LA99_0<=30)||LA99_0==32||(LA99_0>=34 && LA99_0<=42)||(LA99_0>=49 && LA99_0<=50)||LA99_0==52||(LA99_0>=54 && LA99_0<=55)||(LA99_0>=57 && LA99_0<=67)||LA99_0==71||LA99_0==75||(LA99_0>=80 && LA99_0<=82)||(LA99_0>=90 && LA99_0<=96)||LA99_0==98) ) {
+            else if ( (LA99_0==EOF||(LA99_0>=RULE_N && LA99_0<=RULE_EXPIJ)||(LA99_0>=18 && LA99_0<=20)||(LA99_0>=22 && LA99_0<=23)||LA99_0==25||(LA99_0>=29 && LA99_0<=30)||LA99_0==32||(LA99_0>=34 && LA99_0<=42)||(LA99_0>=49 && LA99_0<=50)||LA99_0==52||(LA99_0>=54 && LA99_0<=55)||(LA99_0>=57 && LA99_0<=67)||LA99_0==71||(LA99_0>=80 && LA99_0<=82)||(LA99_0>=90 && LA99_0<=96)||LA99_0==98) ) {
                 alt99=3;
             }
             else {
@@ -23115,28 +23113,24 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             "\1\7\44\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\10\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16"+
-            "\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\12\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16"+
-            "\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\13\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16"+
-            "\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\14\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1\uffff"+
-            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1\11\16"+
-            "\uffff\2\11",
+            "\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff\2\11",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "",
             "\1\17\1\21\1\23\1\20\1\22\1\uffff\1\16\25\uffff\1\15",
             "",
@@ -23145,8 +23139,8 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             "\1\43\1\45\1\47\1\44\1\46\1\uffff\1\42\25\uffff\1\50",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\52\57\uffff\1\51",
             "\1\52\57\uffff\1\51\1\54\1\53",
             "\1\52\57\uffff\1\51\1\54\1\53",
@@ -23155,8 +23149,8 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             "\1\52\57\uffff\1\51\1\54\1\53",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\56\57\uffff\1\55",
             "\1\56\57\uffff\1\55\1\60\1\57",
             "\1\56\57\uffff\1\55\1\60\1\57",
@@ -23165,8 +23159,8 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             "\1\56\57\uffff\1\55\1\60\1\57",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\62\57\uffff\1\61",
             "\1\62\57\uffff\1\61\1\64\1\63",
             "\1\62\57\uffff\1\61\1\64\1\63",
@@ -23181,34 +23175,34 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             "\1\66\57\uffff\1\65\1\70\1\67",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\71\1\73\1\75\1\72\1\74\26\uffff\1\76",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\100\1\101\67\uffff\1\77",
             "\1\102\1\104\1\106\1\103\1\105",
             "\1\107\1\111\1\113\1\110\1\112\26\uffff\1\114",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\116\1\117\67\uffff\1\115",
             "\1\120\1\122\1\124\1\121\1\123",
             "\1\125\1\127\1\131\1\126\1\130\26\uffff\1\132",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\134\1\135\67\uffff\1\133",
             "\1\136\1\140\1\142\1\137\1\141",
             "\1\143\1\145\1\147\1\144\1\146\26\uffff\1\150",
             "\5\11\11\uffff\3\11\1\uffff\2\11\1\uffff\1\11\4\uffff\1\11"+
             "\1\uffff\1\11\1\uffff\11\11\6\uffff\1\7\1\11\1\uffff\1\11\1"+
-            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\3\uffff\1"+
-            "\11\16\uffff\2\11",
+            "\uffff\2\11\1\uffff\5\11\2\uffff\2\11\5\uffff\1\11\22\uffff"+
+            "\2\11",
             "\1\152\1\153\67\uffff\1\151",
             "\1\154\1\156\1\160\1\155\1\157",
             "\1\52\61\uffff\1\161",
@@ -23415,25 +23409,24 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
         }
     }
     static final String DFA50_eotS =
-        "\46\uffff";
+        "\45\uffff";
     static final String DFA50_eofS =
-        "\1\6\45\uffff";
+        "\1\6\44\uffff";
     static final String DFA50_minS =
-        "\1\22\2\uffff\1\0\42\uffff";
+        "\1\22\2\uffff\1\0\41\uffff";
     static final String DFA50_maxS =
-        "\1\135\2\uffff\1\0\42\uffff";
+        "\1\135\2\uffff\1\0\41\uffff";
     static final String DFA50_acceptS =
-        "\1\uffff\2\1\1\uffff\2\1\1\2\37\uffff";
+        "\1\uffff\2\1\1\uffff\2\1\1\2\36\uffff";
     static final String DFA50_specialS =
-        "\1\0\2\uffff\1\1\42\uffff}>";
+        "\1\0\2\uffff\1\1\41\uffff}>";
     static final String[] DFA50_transitionS = {
             "\3\6\1\uffff\2\6\1\uffff\1\6\3\uffff\1\1\1\3\1\uffff\1\6\1\uffff"+
             "\11\6\7\uffff\1\6\1\uffff\1\6\1\uffff\2\6\1\uffff\5\6\1\5\1"+
-            "\uffff\2\6\5\uffff\1\6\3\uffff\1\6\16\uffff\2\6\1\2\1\4",
+            "\uffff\2\6\5\uffff\1\6\22\uffff\2\6\1\2\1\4",
             "",
             "",
             "\1\uffff",
-            "",
             "",
             "",
             "",
@@ -23522,7 +23515,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
                         else if ( (LA50_0==62) && (synpred2_InternalSimulationModel())) {s = 5;}
 
-                        else if ( (LA50_0==EOF||(LA50_0>=18 && LA50_0<=20)||(LA50_0>=22 && LA50_0<=23)||LA50_0==25||LA50_0==32||(LA50_0>=34 && LA50_0<=42)||LA50_0==50||LA50_0==52||(LA50_0>=54 && LA50_0<=55)||(LA50_0>=57 && LA50_0<=61)||(LA50_0>=64 && LA50_0<=65)||LA50_0==71||LA50_0==75||(LA50_0>=90 && LA50_0<=91)) ) {s = 6;}
+                        else if ( (LA50_0==EOF||(LA50_0>=18 && LA50_0<=20)||(LA50_0>=22 && LA50_0<=23)||LA50_0==25||LA50_0==32||(LA50_0>=34 && LA50_0<=42)||LA50_0==50||LA50_0==52||(LA50_0>=54 && LA50_0<=55)||(LA50_0>=57 && LA50_0<=61)||(LA50_0>=64 && LA50_0<=65)||LA50_0==71||(LA50_0>=90 && LA50_0<=91)) ) {s = 6;}
 
                          
                         input.seek(index50_0);
@@ -23566,30 +23559,24 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     static final String[] DFA63_transitionS = {
             "\3\1\1\uffff\2\1\1\uffff\1\1\3\uffff\2\1\1\uffff\1\1\1\uffff"+
             "\11\1\6\uffff\2\1\1\uffff\1\1\1\uffff\2\1\1\uffff\6\1\1\2\4"+
-            "\1\3\uffff\1\1\3\uffff\1\1\4\uffff\3\1\7\uffff\7\1\1\uffff\1"+
-            "\1",
+            "\1\3\uffff\1\1\10\uffff\3\1\7\uffff\7\1\1\uffff\1\1",
             "",
             "\1\3\1\5\1\7\1\4\1\6",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\3\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff"+
-            "\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\3\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff"+
-            "\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\3\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff"+
-            "\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\3\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff"+
-            "\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\3\uffff\1\11\4\uffff\3\11\7\uffff\7\11\1\uffff"+
-            "\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
             "\1\13\1\15\1\17\1\14\1\16\3\12\11\uffff\1\12\11\uffff\2\12"+
             "\2\uffff\1\12\15\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2\uffff"+
             "\1\12\12\uffff\3\12\2\uffff\3\12\26\uffff\1\12",
@@ -23679,38 +23666,38 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     static final String[] DFA79_transitionS = {
             "\1\1\1\3\1\5\1\2\1\4",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\1\11\1\13\1\15\1\12\1\14",
             "",
             "",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
-            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\3\uffff"+
-            "\1\7\4\uffff\3\7\1\6\6\uffff\7\7\1\uffff\1\7"
+            "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
+            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7"
     };
 
     static final short[] DFA79_eot = DFA.unpackEncodedString(DFA79_eotS);
@@ -24281,7 +24268,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleStatement13783 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCompound_in_ruleStatement13830 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignment_in_ruleStatement13857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_ruleStatement13884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_ruleStatement13884 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_ruleStatement13911 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleWhileStatement_in_ruleStatement13938 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDoWhileStatement_in_ruleStatement13965 = new BitSet(new long[]{0x0000000000000002L});
@@ -24295,13 +24282,13 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_23_in_ruleAssignment14176 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssignment14197 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_64_in_ruleAssignment14209 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableDeclaration_in_entryRuleVariableDeclaration14245 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableDeclaration14255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_ruleVariableDeclaration14292 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleVariableDeclaration14313 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleVariableDeclaration14325 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleVariableDeclaration14346 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_ruleVariableDeclaration14358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration14245 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLocalVariableDeclaration14255 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleLocalVariableDeclaration14292 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration14313 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleLocalVariableDeclaration14325 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration14346 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_ruleLocalVariableDeclaration14358 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement14394 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfStatement14404 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_53_in_ruleIfStatement14441 = new BitSet(new long[]{0x0000000080000000L});
@@ -24326,8 +24313,8 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIterationVariable_in_ruleForStatement14831 = new BitSet(new long[]{0x0010000000000000L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleForStatement14861 = new BitSet(new long[]{0x0010000000000000L});
     public static final BitSet FOLLOW_52_in_ruleForStatement14874 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
-    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement14895 = new BitSet(new long[]{0x0000000100000000L,0x0000000000000800L});
-    public static final BitSet FOLLOW_75_in_ruleForStatement14908 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement14895 = new BitSet(new long[]{0x0000000100000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_ruleForStatement14908 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement14929 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_ruleForStatement14943 = new BitSet(new long[]{0x00200040802001F0L,0x000000000000F880L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleForStatement14964 = new BitSet(new long[]{0x0000000000000002L});

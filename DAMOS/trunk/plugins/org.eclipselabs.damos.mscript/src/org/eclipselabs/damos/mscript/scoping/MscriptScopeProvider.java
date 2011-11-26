@@ -20,10 +20,10 @@ import org.eclipselabs.damos.mscript.IterationVariable;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionVariableDeclaration;
 import org.eclipselabs.damos.mscript.LetExpressionVariableDeclarationPart;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 
@@ -80,7 +80,7 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 					if (statement == element) {
 						break;
 					}
-					if (statement instanceof VariableDeclaration) {
+					if (statement instanceof LocalVariableDeclaration) {
 						elements.add(statement);
 					}
 				}

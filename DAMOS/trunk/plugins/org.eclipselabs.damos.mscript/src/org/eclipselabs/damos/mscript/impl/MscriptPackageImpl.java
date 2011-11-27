@@ -98,6 +98,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass evaluableEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass callableElementEClass = null;
 
 	/**
@@ -1189,6 +1196,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 */
 	public EReference getCheck_OutputParameterTypes() {
 		return (EReference)checkEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEvaluable() {
+		return evaluableEClass;
 	}
 
 	/**
@@ -3394,6 +3410,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEReference(checkEClass, CHECK__INPUT_PARAMETER_TYPES);
 		createEReference(checkEClass, CHECK__OUTPUT_PARAMETER_TYPES);
 
+		evaluableEClass = createEClass(EVALUABLE);
+
 		callableElementEClass = createEClass(CALLABLE_ELEMENT);
 
 		variableDeclarationEClass = createEClass(VARIABLE_DECLARATION);
@@ -3765,6 +3783,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		structDefinitionEClass.getESuperTypes().add(this.getDataTypeDefinition());
 		functionDefinitionEClass.getESuperTypes().add(this.getDefinition());
 		functionDefinitionEClass.getESuperTypes().add(this.getCallableElement());
+		callableElementEClass.getESuperTypes().add(this.getEvaluable());
 		variableDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		parameterDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		templateParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
@@ -3837,6 +3856,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		stringTypeEClass.getESuperTypes().add(this.getPrimitiveType());
 		arrayTypeEClass.getESuperTypes().add(this.getDataType());
 		tensorTypeEClass.getESuperTypes().add(this.getArrayType());
+		expressionEClass.getESuperTypes().add(this.getEvaluable());
 		unitNumeratorEClass.getESuperTypes().add(this.getUnitProduct());
 		unitDenominatorEClass.getESuperTypes().add(this.getUnitProduct());
 		literalEClass.getESuperTypes().add(this.getExpression());
@@ -3888,6 +3908,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEReference(getCheck_TemplateArguments(), this.getExpression(), null, "templateArguments", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_InputParameterTypes(), this.getDataTypeSpecifier(), null, "inputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_OutputParameterTypes(), this.getDataTypeSpecifier(), null, "outputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(evaluableEClass, Evaluable.class, "Evaluable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(callableElementEClass, CallableElement.class, "CallableElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

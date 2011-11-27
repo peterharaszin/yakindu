@@ -68,7 +68,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameterTypes" upperBound="-1"
         eType="#//DataTypeSpecifier" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CallableElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Evaluable" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CallableElement" abstract="true" eSuperTypes="#//Evaluable">
     <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getQualifiedName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -499,7 +500,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="size" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" eSuperTypes="#//Evaluable"/>
   <eClassifiers xsi:type="ecore:EClass" name="Unit">
     <eOperations name="getNormalized" lowerBound="1" eType="#//Unit"/>
     <eOperations name="evaluate" eType="#//Unit">

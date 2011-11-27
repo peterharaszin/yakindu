@@ -14,6 +14,7 @@ package org.eclipselabs.damos.mscript.interpreter;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
@@ -27,7 +28,7 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 
 	private final IComputationContext computationContext = new ComputationContext();
 	
-	private Map<Object, IValue> values = new HashMap<Object, IValue>();
+	private Map<Evaluable, IValue> values = new HashMap<Evaluable, IValue>();
 	
 	private Map<VariableAccess, Integer> stepIndices = new HashMap<VariableAccess, Integer>();
 	
@@ -40,18 +41,12 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 		return computationContext;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IEvaluationContext#getValue(java.lang.Object)
-	 */
-	public IValue getValue(Object key) {
-		return values.get(key);
+	public IValue getValue(Evaluable evaluable) {
+		return values.get(evaluable);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.interpreter.IEvaluationContext#setValue(java.lang.Object, org.eclipselabs.mscript.computation.core.value.IValue)
-	 */
-	public void setValue(Object key, IValue value) {
-		values.put(key, value);
+	public void setValue(Evaluable evaluable, IValue value) {
+		values.put(evaluable, value);
 	}
 	
 	/* (non-Javadoc)

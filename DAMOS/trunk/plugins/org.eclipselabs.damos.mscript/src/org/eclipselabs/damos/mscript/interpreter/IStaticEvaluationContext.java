@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.interpreter;
 
+import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
@@ -24,8 +25,8 @@ public interface IStaticEvaluationContext {
 
 	IComputationContext getComputationContext();
 	
-	IValue getValue(Object key);
-	void setValue(Object key, IValue value);
+	IValue getValue(Evaluable evaluable);
+	void setValue(Evaluable evaluable, IValue value);
 	
 	int getStepIndex(VariableAccess variableAccess);
 	void setStepIndex(VariableAccess variableAccess, int stepIndex);

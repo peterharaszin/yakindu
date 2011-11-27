@@ -128,6 +128,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseFunctionDefinition(functionDefinition);
 				if (result == null) result = caseDefinition(functionDefinition);
 				if (result == null) result = caseCallableElement(functionDefinition);
+				if (result == null) result = caseEvaluable(functionDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -137,9 +138,16 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MscriptPackage.EVALUABLE: {
+				Evaluable evaluable = (Evaluable)theEObject;
+				T result = caseEvaluable(evaluable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MscriptPackage.CALLABLE_ELEMENT: {
 				CallableElement callableElement = (CallableElement)theEObject;
 				T result = caseCallableElement(callableElement);
+				if (result == null) result = caseEvaluable(callableElement);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,6 +155,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
 				T result = caseVariableDeclaration(variableDeclaration);
 				if (result == null) result = caseCallableElement(variableDeclaration);
+				if (result == null) result = caseEvaluable(variableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -154,6 +163,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ParameterDeclaration parameterDeclaration = (ParameterDeclaration)theEObject;
 				T result = caseParameterDeclaration(parameterDeclaration);
 				if (result == null) result = caseCallableElement(parameterDeclaration);
+				if (result == null) result = caseEvaluable(parameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -162,6 +172,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseTemplateParameterDeclaration(templateParameterDeclaration);
 				if (result == null) result = caseParameterDeclaration(templateParameterDeclaration);
 				if (result == null) result = caseCallableElement(templateParameterDeclaration);
+				if (result == null) result = caseEvaluable(templateParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -170,6 +181,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseInputParameterDeclaration(inputParameterDeclaration);
 				if (result == null) result = caseParameterDeclaration(inputParameterDeclaration);
 				if (result == null) result = caseCallableElement(inputParameterDeclaration);
+				if (result == null) result = caseEvaluable(inputParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -178,6 +190,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseOutputParameterDeclaration(outputParameterDeclaration);
 				if (result == null) result = caseParameterDeclaration(outputParameterDeclaration);
 				if (result == null) result = caseCallableElement(outputParameterDeclaration);
+				if (result == null) result = caseEvaluable(outputParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -192,6 +205,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseStateVariableDeclaration(stateVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(stateVariableDeclaration);
 				if (result == null) result = caseCallableElement(stateVariableDeclaration);
+				if (result == null) result = caseEvaluable(stateVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -199,6 +213,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ConstantDeclaration constantDeclaration = (ConstantDeclaration)theEObject;
 				T result = caseConstantDeclaration(constantDeclaration);
 				if (result == null) result = caseCallableElement(constantDeclaration);
+				if (result == null) result = caseEvaluable(constantDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -206,6 +221,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				FunctionObjectDeclaration functionObjectDeclaration = (FunctionObjectDeclaration)theEObject;
 				T result = caseFunctionObjectDeclaration(functionObjectDeclaration);
 				if (result == null) result = caseCallableElement(functionObjectDeclaration);
+				if (result == null) result = caseEvaluable(functionObjectDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -225,6 +241,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				LetExpression letExpression = (LetExpression)theEObject;
 				T result = caseLetExpression(letExpression);
 				if (result == null) result = caseExpression(letExpression);
+				if (result == null) result = caseEvaluable(letExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -239,6 +256,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseLetExpressionVariableDeclaration(letExpressionVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(letExpressionVariableDeclaration);
 				if (result == null) result = caseCallableElement(letExpressionVariableDeclaration);
+				if (result == null) result = caseEvaluable(letExpressionVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -246,6 +264,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				IfExpression ifExpression = (IfExpression)theEObject;
 				T result = caseIfExpression(ifExpression);
 				if (result == null) result = caseExpression(ifExpression);
+				if (result == null) result = caseEvaluable(ifExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -253,6 +272,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				SwitchExpression switchExpression = (SwitchExpression)theEObject;
 				T result = caseSwitchExpression(switchExpression);
 				if (result == null) result = caseExpression(switchExpression);
+				if (result == null) result = caseEvaluable(switchExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -266,6 +286,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ArrayElementAccess arrayElementAccess = (ArrayElementAccess)theEObject;
 				T result = caseArrayElementAccess(arrayElementAccess);
 				if (result == null) result = caseExpression(arrayElementAccess);
+				if (result == null) result = caseEvaluable(arrayElementAccess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -279,6 +300,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				IterationCall iterationCall = (IterationCall)theEObject;
 				T result = caseIterationCall(iterationCall);
 				if (result == null) result = caseExpression(iterationCall);
+				if (result == null) result = caseEvaluable(iterationCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -287,6 +309,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseIterationVariableDeclaration(iterationVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(iterationVariableDeclaration);
 				if (result == null) result = caseCallableElement(iterationVariableDeclaration);
+				if (result == null) result = caseEvaluable(iterationVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -295,6 +318,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseIterationAccumulator(iterationAccumulator);
 				if (result == null) result = caseVariableDeclaration(iterationAccumulator);
 				if (result == null) result = caseCallableElement(iterationAccumulator);
+				if (result == null) result = caseEvaluable(iterationAccumulator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -302,6 +326,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ArrayConstructionOperator arrayConstructionOperator = (ArrayConstructionOperator)theEObject;
 				T result = caseArrayConstructionOperator(arrayConstructionOperator);
 				if (result == null) result = caseExpression(arrayConstructionOperator);
+				if (result == null) result = caseEvaluable(arrayConstructionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -315,6 +340,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ArrayConcatenationOperator arrayConcatenationOperator = (ArrayConcatenationOperator)theEObject;
 				T result = caseArrayConcatenationOperator(arrayConcatenationOperator);
 				if (result == null) result = caseExpression(arrayConcatenationOperator);
+				if (result == null) result = caseEvaluable(arrayConcatenationOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -328,6 +354,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				UnitConstructionOperator unitConstructionOperator = (UnitConstructionOperator)theEObject;
 				T result = caseUnitConstructionOperator(unitConstructionOperator);
 				if (result == null) result = caseExpression(unitConstructionOperator);
+				if (result == null) result = caseEvaluable(unitConstructionOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -335,6 +362,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ParenthesizedExpression parenthesizedExpression = (ParenthesizedExpression)theEObject;
 				T result = caseParenthesizedExpression(parenthesizedExpression);
 				if (result == null) result = caseExpression(parenthesizedExpression);
+				if (result == null) result = caseEvaluable(parenthesizedExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -342,6 +370,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				EndExpression endExpression = (EndExpression)theEObject;
 				T result = caseEndExpression(endExpression);
 				if (result == null) result = caseExpression(endExpression);
+				if (result == null) result = caseEvaluable(endExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -349,6 +378,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				RangeExpression rangeExpression = (RangeExpression)theEObject;
 				T result = caseRangeExpression(rangeExpression);
 				if (result == null) result = caseExpression(rangeExpression);
+				if (result == null) result = caseEvaluable(rangeExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -356,6 +386,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				ImpliesExpression impliesExpression = (ImpliesExpression)theEObject;
 				T result = caseImpliesExpression(impliesExpression);
 				if (result == null) result = caseExpression(impliesExpression);
+				if (result == null) result = caseEvaluable(impliesExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -363,6 +394,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				LogicalOrExpression logicalOrExpression = (LogicalOrExpression)theEObject;
 				T result = caseLogicalOrExpression(logicalOrExpression);
 				if (result == null) result = caseExpression(logicalOrExpression);
+				if (result == null) result = caseEvaluable(logicalOrExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -370,6 +402,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				LogicalAndExpression logicalAndExpression = (LogicalAndExpression)theEObject;
 				T result = caseLogicalAndExpression(logicalAndExpression);
 				if (result == null) result = caseExpression(logicalAndExpression);
+				if (result == null) result = caseEvaluable(logicalAndExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -377,6 +410,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				EqualityExpression equalityExpression = (EqualityExpression)theEObject;
 				T result = caseEqualityExpression(equalityExpression);
 				if (result == null) result = caseExpression(equalityExpression);
+				if (result == null) result = caseEvaluable(equalityExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -384,6 +418,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				RelationalExpression relationalExpression = (RelationalExpression)theEObject;
 				T result = caseRelationalExpression(relationalExpression);
 				if (result == null) result = caseExpression(relationalExpression);
+				if (result == null) result = caseEvaluable(relationalExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -391,6 +426,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				TypeTestExpression typeTestExpression = (TypeTestExpression)theEObject;
 				T result = caseTypeTestExpression(typeTestExpression);
 				if (result == null) result = caseExpression(typeTestExpression);
+				if (result == null) result = caseEvaluable(typeTestExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -398,6 +434,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				AdditiveExpression additiveExpression = (AdditiveExpression)theEObject;
 				T result = caseAdditiveExpression(additiveExpression);
 				if (result == null) result = caseExpression(additiveExpression);
+				if (result == null) result = caseEvaluable(additiveExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -405,6 +442,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				MultiplicativeExpression multiplicativeExpression = (MultiplicativeExpression)theEObject;
 				T result = caseMultiplicativeExpression(multiplicativeExpression);
 				if (result == null) result = caseExpression(multiplicativeExpression);
+				if (result == null) result = caseEvaluable(multiplicativeExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -412,6 +450,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				PowerExpression powerExpression = (PowerExpression)theEObject;
 				T result = casePowerExpression(powerExpression);
 				if (result == null) result = caseExpression(powerExpression);
+				if (result == null) result = caseEvaluable(powerExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -419,6 +458,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				UnaryExpression unaryExpression = (UnaryExpression)theEObject;
 				T result = caseUnaryExpression(unaryExpression);
 				if (result == null) result = caseExpression(unaryExpression);
+				if (result == null) result = caseEvaluable(unaryExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -426,6 +466,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				PostfixExpression postfixExpression = (PostfixExpression)theEObject;
 				T result = casePostfixExpression(postfixExpression);
 				if (result == null) result = caseExpression(postfixExpression);
+				if (result == null) result = caseEvaluable(postfixExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -433,6 +474,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				FeatureCall featureCall = (FeatureCall)theEObject;
 				T result = caseFeatureCall(featureCall);
 				if (result == null) result = caseExpression(featureCall);
+				if (result == null) result = caseEvaluable(featureCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -441,6 +483,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseVariableAccess(variableAccess);
 				if (result == null) result = caseFeatureCall(variableAccess);
 				if (result == null) result = caseExpression(variableAccess);
+				if (result == null) result = caseEvaluable(variableAccess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -499,6 +542,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseFunctionCall(functionCall);
 				if (result == null) result = caseFeatureCall(functionCall);
 				if (result == null) result = caseExpression(functionCall);
+				if (result == null) result = caseEvaluable(functionCall);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -506,6 +550,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				MemberVariableAccess memberVariableAccess = (MemberVariableAccess)theEObject;
 				T result = caseMemberVariableAccess(memberVariableAccess);
 				if (result == null) result = caseExpression(memberVariableAccess);
+				if (result == null) result = caseEvaluable(memberVariableAccess);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -513,6 +558,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				AlgorithmExpression algorithmExpression = (AlgorithmExpression)theEObject;
 				T result = caseAlgorithmExpression(algorithmExpression);
 				if (result == null) result = caseExpression(algorithmExpression);
+				if (result == null) result = caseEvaluable(algorithmExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -542,6 +588,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseStatement(localVariableDeclaration);
 				if (result == null) result = caseVariableDeclaration(localVariableDeclaration);
 				if (result == null) result = caseCallableElement(localVariableDeclaration);
+				if (result == null) result = caseEvaluable(localVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -599,6 +646,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseBuiltinDefinition(builtinDefinition);
 				if (result == null) result = caseDefinition(builtinDefinition);
 				if (result == null) result = caseCallableElement(builtinDefinition);
+				if (result == null) result = caseEvaluable(builtinDefinition);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -608,6 +656,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseBuiltinDefinition(builtinFunction);
 				if (result == null) result = caseDefinition(builtinFunction);
 				if (result == null) result = caseCallableElement(builtinFunction);
+				if (result == null) result = caseEvaluable(builtinFunction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -617,6 +666,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseBuiltinDefinition(builtinVariable);
 				if (result == null) result = caseDefinition(builtinVariable);
 				if (result == null) result = caseCallableElement(builtinVariable);
+				if (result == null) result = caseEvaluable(builtinVariable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -738,6 +788,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.EXPRESSION: {
 				Expression expression = (Expression)theEObject;
 				T result = caseExpression(expression);
+				if (result == null) result = caseEvaluable(expression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -777,6 +828,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				Literal literal = (Literal)theEObject;
 				T result = caseLiteral(literal);
 				if (result == null) result = caseExpression(literal);
+				if (result == null) result = caseEvaluable(literal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -785,6 +837,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseNumericLiteral(numericLiteral);
 				if (result == null) result = caseLiteral(numericLiteral);
 				if (result == null) result = caseExpression(numericLiteral);
+				if (result == null) result = caseEvaluable(numericLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -794,6 +847,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNumericLiteral(realLiteral);
 				if (result == null) result = caseLiteral(realLiteral);
 				if (result == null) result = caseExpression(realLiteral);
+				if (result == null) result = caseEvaluable(realLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -803,6 +857,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = caseNumericLiteral(integerLiteral);
 				if (result == null) result = caseLiteral(integerLiteral);
 				if (result == null) result = caseExpression(integerLiteral);
+				if (result == null) result = caseEvaluable(integerLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -811,6 +866,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseBooleanLiteral(booleanLiteral);
 				if (result == null) result = caseLiteral(booleanLiteral);
 				if (result == null) result = caseExpression(booleanLiteral);
+				if (result == null) result = caseEvaluable(booleanLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -819,6 +875,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				T result = caseStringLiteral(stringLiteral);
 				if (result == null) result = caseLiteral(stringLiteral);
 				if (result == null) result = caseExpression(stringLiteral);
+				if (result == null) result = caseEvaluable(stringLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -973,6 +1030,21 @@ public class MscriptSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCheck(Check object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Evaluable</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Evaluable</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEvaluable(Evaluable object) {
 		return null;
 	}
 

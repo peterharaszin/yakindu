@@ -17,7 +17,6 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
@@ -83,22 +82,6 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Expression transformation", null);
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.ecore.util.Switch#doSwitch(org.eclipse.emf.ecore.EObject)
-	 */
-	@Override
-	public Expression doSwitch(EObject eObject) {
-		Expression newExpression = super.doSwitch(eObject);
-		IValue value = context.getStaticEvaluationContext().getValue(eObject);
-		if (value != null) {
-			if (!(eObject instanceof Literal)) {
-				newExpression = condenseExpression(value, newExpression);
-			}
-			context.getStaticEvaluationContext().setValue(newExpression, value);
-		}
-		return newExpression;
-	}
-
 	/**
 	 * @param value
 	 * @param expression
@@ -127,7 +110,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformer#transform(org.eclipselabs.mscript.language.ast.Expression, java.util.List)
 	 */
 	public IStatus transform(Expression expression, List<? extends IExpressionTarget> targets) {
-		Expression result = doSwitch(expression);
+		Expression result = doTransform(expression);
 		IExpressionTarget target = targets.get(0);
 
 		Assignment assignment = ILFactory.eINSTANCE.createAssignment();
@@ -139,6 +122,18 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		return status.isOK() ? Status.OK_STATUS : status;
 	}
 	
+	private Expression doTransform(Expression expression) {
+		Expression newExpression = doSwitch(expression);
+		IValue value = context.getStaticEvaluationContext().getValue(expression);
+		if (value != null) {
+			if (!(expression instanceof Literal)) {
+				newExpression = condenseExpression(value, newExpression);
+			}
+			context.getStaticEvaluationContext().setValue(newExpression, value);
+		}
+		return newExpression;
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseLetExpression(org.eclipselabs.mscript.language.ast.LetExpression)
 	 */
@@ -160,7 +155,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			IValue partValue = context.getStaticEvaluationContext().getValue(variable);
 			context.getStaticEvaluationContext().setValue(localVariable, partValue);
 			localVariable.setName(variable.getName());
-			Expression assignedExpression = doSwitch(assignment.getAssignedExpression());
+			Expression assignedExpression = doTransform(assignment.getAssignedExpression());
 			localVariable.setInitializer(assignedExpression);
 			compoundStatement.getStatements().add(localVariable);
 			context.addVariableDeclaration(localVariable);
@@ -189,7 +184,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		if (ifConditionValue instanceof IBooleanValue) {
 			boolean condition = ((IBooleanValue) ifConditionValue).booleanValue();
 			Expression expression = condition ? ifExpression.getThenExpression() : ifExpression.getElseExpression();
-			return doSwitch(expression);
+			return doTransform(expression);
 		}
 		
 		LocalVariableDeclaration localVariableDeclaration = MscriptFactory.eINSTANCE.createLocalVariableDeclaration();
@@ -198,7 +193,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		
 		context.getCompound().getStatements().add(localVariableDeclaration);
 		IfStatement ifStatement = MscriptFactory.eINSTANCE.createIfStatement();
-		Expression conditionExpression = doSwitch(ifExpression.getCondition());
+		Expression conditionExpression = doTransform(ifExpression.getCondition());
 		ifStatement.setCondition(conditionExpression);
 		
 		Compound thenStatement = MscriptFactory.eINSTANCE.createCompound();
@@ -252,7 +247,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		FunctionCall transformedFunctionCall = MscriptFactory.eINSTANCE.createFunctionCall();
 		transformedFunctionCall.setFeature(functionCall.getFeature());
 		for (Expression expression : functionCall.getArguments()) {
-			Expression transformedExpression = doSwitch(expression);
+			Expression transformedExpression = doTransform(expression);
 			if (transformedExpression instanceof InvalidExpression) {
 				return transformedExpression;
 			}
@@ -272,7 +267,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 			return createInvalidExpression();
 		}
 		
-		IIterationCallTransformerResult result = transformer.transform(context, iterationCall, doSwitch(iterationCall.getTarget()));
+		IIterationCallTransformerResult result = transformer.transform(context, iterationCall, doTransform(iterationCall.getTarget()));
 		
 		VariableReference variableReference = ILFactory.eINSTANCE.createVariableReference();
 		variableReference.setTarget(result.getLocalVariableDeclaration());
@@ -292,8 +287,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseImpliesExpression(ImpliesExpression impliesExpression) {
 		ImpliesExpression transformedImpliesExpression = MscriptFactory.eINSTANCE.createImpliesExpression();
 		
-		Expression leftTransformedExpression = doSwitch(impliesExpression.getLeftOperand());
-		Expression rightTransformedExpression = doSwitch(impliesExpression.getRightOperand());
+		Expression leftTransformedExpression = doTransform(impliesExpression.getLeftOperand());
+		Expression rightTransformedExpression = doTransform(impliesExpression.getRightOperand());
 		
 		transformedImpliesExpression.setLeftOperand(leftTransformedExpression);
 		transformedImpliesExpression.setRightOperand(rightTransformedExpression);
@@ -307,8 +302,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	@Override
 	public Expression caseLogicalOrExpression(LogicalOrExpression logicalOrExpression) {
 		LogicalOrExpression transformedExpression = MscriptFactory.eINSTANCE.createLogicalOrExpression();
-		transformedExpression.setLeftOperand(doSwitch(logicalOrExpression.getLeftOperand()));
-		transformedExpression.setRightOperand(doSwitch(logicalOrExpression.getRightOperand()));
+		transformedExpression.setLeftOperand(doTransform(logicalOrExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(doTransform(logicalOrExpression.getRightOperand()));
 		return transformedExpression;
 	}
 	
@@ -318,8 +313,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	@Override
 	public Expression caseLogicalAndExpression(LogicalAndExpression logicalAndExpression) {
 		LogicalAndExpression transformedExpression = MscriptFactory.eINSTANCE.createLogicalAndExpression();
-		transformedExpression.setLeftOperand(doSwitch(logicalAndExpression.getLeftOperand()));
-		transformedExpression.setRightOperand(doSwitch(logicalAndExpression.getRightOperand()));
+		transformedExpression.setLeftOperand(doTransform(logicalAndExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(doTransform(logicalAndExpression.getRightOperand()));
 		return transformedExpression;
 	}
 	
@@ -331,9 +326,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		EqualityExpression transformedExpression = MscriptFactory.eINSTANCE.createEqualityExpression();
 		transformedExpression.setOperator(equalityExpression.getOperator());
 		
-		Expression leftExpression = doSwitch(equalityExpression.getLeftOperand());
+		Expression leftExpression = doTransform(equalityExpression.getLeftOperand());
 		transformedExpression.setLeftOperand(leftExpression);
-		Expression rightExpression = doSwitch(equalityExpression.getRightOperand());		
+		Expression rightExpression = doTransform(equalityExpression.getRightOperand());		
 		transformedExpression.setRightOperand(rightExpression);
 		
 		return transformedExpression;
@@ -347,9 +342,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		RelationalExpression transformedExpression = MscriptFactory.eINSTANCE.createRelationalExpression();
 		transformedExpression.setOperator(relationalExpression.getOperator());
 		
-		Expression leftExpression = doSwitch(relationalExpression.getLeftOperand());
+		Expression leftExpression = doTransform(relationalExpression.getLeftOperand());
 		transformedExpression.setLeftOperand(leftExpression);
-		Expression rightExpression = doSwitch(relationalExpression.getRightOperand());
+		Expression rightExpression = doTransform(relationalExpression.getRightOperand());
 		transformedExpression.setRightOperand(rightExpression);
 		
 		return transformedExpression;
@@ -362,8 +357,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseAdditiveExpression(AdditiveExpression additiveExpression) {
 		AdditiveExpression transformedExpression = MscriptFactory.eINSTANCE.createAdditiveExpression();
 		transformedExpression.setOperator(additiveExpression.getOperator());
-		transformedExpression.setLeftOperand(doSwitch(additiveExpression.getLeftOperand()));
-		transformedExpression.setRightOperand(doSwitch(additiveExpression.getRightOperand()));
+		transformedExpression.setLeftOperand(doTransform(additiveExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(doTransform(additiveExpression.getRightOperand()));
 		return transformedExpression;
 	}
 	
@@ -374,8 +369,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseMultiplicativeExpression(MultiplicativeExpression multiplicativeExpression) {
 		MultiplicativeExpression transformedExpression = MscriptFactory.eINSTANCE.createMultiplicativeExpression();
 		transformedExpression.setOperator(multiplicativeExpression.getOperator());
-		transformedExpression.setLeftOperand(doSwitch(multiplicativeExpression.getLeftOperand()));
-		transformedExpression.setRightOperand(doSwitch(multiplicativeExpression.getRightOperand()));
+		transformedExpression.setLeftOperand(doTransform(multiplicativeExpression.getLeftOperand()));
+		transformedExpression.setRightOperand(doTransform(multiplicativeExpression.getRightOperand()));
 		return transformedExpression;
 	}
 	
@@ -385,7 +380,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	@Override
 	public Expression caseTypeTestExpression(TypeTestExpression typeTestExpression) {
 		TypeTestExpression transformedTypeTestExpression = MscriptFactory.eINSTANCE.createTypeTestExpression();
-		Expression expression = doSwitch(typeTestExpression.getExpression());
+		Expression expression = doTransform(typeTestExpression.getExpression());
 		transformedTypeTestExpression.setExpression(expression);
 		transformedTypeTestExpression.setTypeSpecifier(EcoreUtil.copy(typeTestExpression.getTypeSpecifier()));
 		return transformedTypeTestExpression;
@@ -398,7 +393,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseUnaryExpression(UnaryExpression unaryExpression) {
 		UnaryExpression transformedExpression = MscriptFactory.eINSTANCE.createUnaryExpression();
 		transformedExpression.setOperator(unaryExpression.getOperator());
-		Expression expression = doSwitch(unaryExpression.getOperand());
+		Expression expression = doTransform(unaryExpression.getOperand());
 		transformedExpression.setOperand(expression);
 		return transformedExpression;
 	}
@@ -410,10 +405,10 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseArrayConstructionOperator(ArrayConstructionOperator arrayConstructionOperator) {
 		ArrayConstructionOperator transformedExpression = MscriptFactory.eINSTANCE.createArrayConstructionOperator();
 		for (Expression expression : arrayConstructionOperator.getExpressions()) {
-			transformedExpression.getExpressions().add(doSwitch(expression));
+			transformedExpression.getExpressions().add(doTransform(expression));
 		}
 		for (ArrayConstructionIterationClause iterationClause : arrayConstructionOperator.getIterationClauses()) {
-			Expression transformedCollectionExpression = doSwitch(iterationClause.getCollectionExpression());
+			Expression transformedCollectionExpression = doTransform(iterationClause.getCollectionExpression());
 			ArrayConstructionIterationClause transformedIterationClause = MscriptFactory.eINSTANCE.createArrayConstructionIterationClause();
 			transformedIterationClause.setVariableName(iterationClause.getVariableName());
 			transformedIterationClause.setCollectionExpression(transformedCollectionExpression);
@@ -429,7 +424,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseParenthesizedExpression(ParenthesizedExpression parenthesizedExpression) {
 		ParenthesizedExpression transformedExpression = MscriptFactory.eINSTANCE.createParenthesizedExpression();
 		Expression firstParenthesizedExpression = parenthesizedExpression.getExpressions().get(0);
-		Expression transformedFirstParenthesizedExpression = doSwitch(firstParenthesizedExpression);
+		Expression transformedFirstParenthesizedExpression = doTransform(firstParenthesizedExpression);
 		transformedExpression.getExpressions().add(transformedFirstParenthesizedExpression);
 		return transformedExpression;
 	}

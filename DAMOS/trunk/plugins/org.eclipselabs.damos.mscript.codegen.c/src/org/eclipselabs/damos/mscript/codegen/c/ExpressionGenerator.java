@@ -14,9 +14,10 @@ package org.eclipselabs.damos.mscript.codegen.c;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
+import org.eclipselabs.damos.mscript.ArrayElementAccess;
+import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.EqualityExpression;
@@ -34,6 +35,7 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.UnaryExpression;
+import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFloatingPointHelper;
@@ -44,10 +46,7 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
-import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableReference;
 import org.eclipselabs.damos.mscript.il.builtin.BuiltinFunctionDescriptor;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -369,40 +368,31 @@ public class ExpressionGenerator implements IExpressionGenerator {
 
 			return true;
 		}
-
+		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseExpression(org.eclipselabs.mscript.language.ast.Expression)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseArrayElementAccess(org.eclipselabs.damos.mscript.ArrayElementAccess)
 		 */
 		@Override
-		public Boolean defaultCase(EObject object) {
-			if (object instanceof Expression) {
-				return new ILExpressionGenerator().doSwitch(object);
+		public Boolean caseArrayElementAccess(ArrayElementAccess arrayElementAccess) {
+			doSwitch(arrayElementAccess.getArray());
+			for (ArraySubscript subscript : arrayElementAccess.getSubscripts()) {
+				out.print("[");
+				doSwitch(subscript.getExpression());
+				out.print("]");
 			}
-			return super.defaultCase(object);
+			return true;
 		}
-		
+
+		public Boolean caseVariableAccess(VariableAccess variableAccess) {
+			String variableAccessString = new VariableAccessGenerator(context, variableAccess).generate();
+			out.print(variableAccessString);
+			return true;
+		}
+
 		private DataType getDataType(Expression expression) {
 			return context.getStaticEvaluationContext().getValue(expression).getDataType();
 		}
 	
-		private class ILExpressionGenerator extends ILSwitch<Boolean> {
-			
-			public Boolean caseVariableReference(VariableReference variableReference) {
-				// TODO: redesign is needed here
-				String variableAccessString = new VariableAccessGenerator(context, variableReference).generate();
-				out.print(variableAccessString);
-				if (!(variableReference.getTarget() instanceof TemplateVariableDeclaration)) {
-					for (Expression expression : variableReference.getArrayIndices()) {
-						out.print("[");
-						ExpressionGeneratorSwitch.this.doSwitch(expression);
-						out.print("]");
-					}
-				}
-				return true;
-			}
-			
-		}
-
 	}
 	
 }

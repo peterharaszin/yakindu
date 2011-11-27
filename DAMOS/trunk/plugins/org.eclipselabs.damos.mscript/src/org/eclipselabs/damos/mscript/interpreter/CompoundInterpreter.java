@@ -13,13 +13,14 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -57,17 +58,6 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
-		 */
-		@Override
-		public Boolean caseAssignment(Assignment assignment) {
-			IValue value = expressionValueEvaluator.evaluate(context, assignment.getAssignedExpression());
-			IVariable variable = context.getVariable(assignment.getTarget());
-			variable.setValue(assignment.getStepIndex(), value);
-			return true;
-		}
-	
-		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 		 */
 		@Override
@@ -77,6 +67,25 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		
 		private class AstCompoundInterpreterSwitch extends MscriptSwitch<Boolean> {
 			
+			@Override
+			public Boolean caseAssignment(Assignment assignment) {
+				if (!(assignment.getTarget() instanceof VariableAccess)) {
+					throw new IllegalArgumentException();
+				}
+				VariableAccess variableAccess = (VariableAccess) assignment.getTarget();
+
+				if (!(variableAccess.getFeature() instanceof VariableDeclaration)) {
+					throw new IllegalArgumentException();
+				}
+				VariableDeclaration variableDeclaration = (VariableDeclaration) variableAccess.getFeature();
+				
+				IValue value = expressionValueEvaluator.evaluate(context, assignment.getAssignedExpression());
+				IVariable variable = context.getVariable(variableDeclaration);
+				variable.setValue(context.getStaticEvaluationContext().getStepIndex(variableAccess), value);
+				return true;
+			}
+		
+
 			/* (non-Javadoc)
 			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
 			 */

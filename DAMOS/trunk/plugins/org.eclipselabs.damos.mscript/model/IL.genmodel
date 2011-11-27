@@ -31,16 +31,6 @@
     </genClasses>
     <genClasses ecoreClass="IL.ecore#//OutputVariableDeclaration"/>
     <genClasses ecoreClass="IL.ecore#//InstanceVariableDeclaration"/>
-    <genClasses image="false" ecoreClass="IL.ecore#//VariableAccess">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IL.ecore#//VariableAccess/target"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//VariableAccess/stepIndex"/>
-    </genClasses>
-    <genClasses ecoreClass="IL.ecore#//Assignment">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//Assignment/assignedExpression"/>
-    </genClasses>
-    <genClasses ecoreClass="IL.ecore#//VariableReference">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//VariableReference/arrayIndices"/>
-    </genClasses>
     <genClasses ecoreClass="IL.ecore#//InvalidExpression"/>
   </genPackages>
 </genmodel:GenModel>

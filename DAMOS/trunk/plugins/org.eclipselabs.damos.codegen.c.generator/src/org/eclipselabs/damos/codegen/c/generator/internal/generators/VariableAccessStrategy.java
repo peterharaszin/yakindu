@@ -20,12 +20,12 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableAccess;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 
@@ -54,7 +54,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	 * @see org.eclipselabs.mscript.codegen.c.IVariableAccessStrategy#getVariableAccessString(org.eclipselabs.mscript.language.il.VariableAccess)
 	 */
 	public String getVariableAccessString(VariableAccess variableAccess) {
-		return new VariableAccessSwitch(variableAccess).doSwitch(variableAccess.getTarget());
+		return new VariableAccessSwitch(variableAccess).doSwitch(variableAccess.getFeature());
 	}
 
 	/**
@@ -108,7 +108,8 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		 */
 		@Override
 		public String caseInputVariableDeclaration(InputVariableDeclaration inputVariableDeclaration) {
-			if (variableAccess.getStepIndex() == 0) {
+			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
+			if (stepIndex == 0) {
 				return getInputVariableAccessString(staticEvaluationContext, block, signature, variableAccessor, inputVariableDeclaration);
 			}
 			return getContextAccess();
@@ -119,7 +120,8 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		 */
 		@Override
 		public String caseOutputVariableDeclaration(OutputVariableDeclaration outputVariableDeclaration) {
-			if (variableAccess.getStepIndex() == 0) {
+			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
+			if (stepIndex == 0) {
 				return getOutputVariableAccessString(block, signature, variableAccessor, outputVariableDeclaration);
 			}
 			return getContextAccess();
@@ -134,8 +136,8 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		}
 		
 		private String getContextAccess() {
-			StatefulVariableDeclaration target = (StatefulVariableDeclaration) variableAccess.getTarget();
-			int stepIndex = variableAccess.getStepIndex();
+			StatefulVariableDeclaration target = (StatefulVariableDeclaration) variableAccess.getFeature();
+			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
 
 			String contextVariable = variableAccessor.getContextVariable(false);
 			String targetName = target.getName();

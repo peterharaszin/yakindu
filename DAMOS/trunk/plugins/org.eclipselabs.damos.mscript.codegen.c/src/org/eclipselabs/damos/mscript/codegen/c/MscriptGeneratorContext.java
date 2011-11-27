@@ -30,7 +30,7 @@ public class MscriptGeneratorContext implements IMscriptGeneratorContext {
 	 * 
 	 */
 	public MscriptGeneratorContext(Appendable appendable, ComputationModel computationModel, IStaticEvaluationContext staticEvaluationContext) {
-		this(appendable, computationModel, staticEvaluationContext, new DefaultVariableAccessStrategy());
+		this(appendable, computationModel, staticEvaluationContext, new DefaultVariableAccessStrategy(staticEvaluationContext));
 	}
 	
 	/**

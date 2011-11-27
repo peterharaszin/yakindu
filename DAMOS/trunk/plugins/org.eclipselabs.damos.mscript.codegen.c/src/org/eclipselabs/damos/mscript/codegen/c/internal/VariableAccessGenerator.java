@@ -1,19 +1,15 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableAccess;
-import org.eclipselabs.damos.mscript.il.VariableReference;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
-import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -29,7 +25,7 @@ public class VariableAccessGenerator extends ILSwitch<String> {
 	}
 
 	public String generate() {
-		return doSwitch(variableAccess.getTarget());
+		return doSwitch(variableAccess.getFeature());
 	}
 	
 	/* (non-Javadoc)
@@ -49,23 +45,9 @@ public class VariableAccessGenerator extends ILSwitch<String> {
 			} else if (value.getDataType() instanceof IntegerType) {
 				return MscriptGeneratorUtil.getLiteralString(context.getComputationModel(), numericTemplateArgument.getDataType(), numericTemplateArgument.longValue());
 			}
-		} else if (value instanceof IBooleanValue){
+		} else if (value instanceof IBooleanValue) {
 			IBooleanValue booleanTemplateArgument = (IBooleanValue) value;
 			return booleanTemplateArgument.booleanValue() ? "1" : "0";
-		} else if (value instanceof IArrayValue && variableAccess instanceof VariableReference) {
-			VariableReference variableReference = (VariableReference) variableAccess;
-			IArrayValue arrayValue = (IArrayValue) value;
-			int[] indices = new int[variableReference.getArrayIndices().size()];
-			for (int i = 0; i < indices.length; ++i) {
-				Expression indexExpression = variableReference.getArrayIndices().get(i);
-				if (indexExpression instanceof IntegerLiteral) {
-					indices[i] = (int) ((IntegerLiteral) indexExpression).getValue();
-				} else {
-					throw new RuntimeException("indexExpression must be IntegerLiteral");
-				}
-			}
-			IValue elementValue = arrayValue.get(indices);
-			return writeLiteral(elementValue);
 		}
 		throw new IllegalArgumentException();
 	}

@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
@@ -23,8 +22,6 @@ import org.eclipselabs.damos.mscript.il.InvalidExpression;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableAccess;
-import org.eclipselabs.damos.mscript.il.VariableReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,27 +78,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * @generated
 	 */
 	private EClass instanceVariableDeclarationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass variableAccessEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass assignmentEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass variableReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -359,69 +335,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariableAccess() {
-		return variableAccessEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariableAccess_Target() {
-		return (EReference)variableAccessEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getVariableAccess_StepIndex() {
-		return (EAttribute)variableAccessEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getAssignment() {
-		return assignmentEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getAssignment_AssignedExpression() {
-		return (EReference)assignmentEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getVariableReference() {
-		return variableReferenceEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getVariableReference_ArrayIndices() {
-		return (EReference)variableReferenceEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getInvalidExpression() {
 		return invalidExpressionEClass;
 	}
@@ -481,16 +394,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 
 		instanceVariableDeclarationEClass = createEClass(INSTANCE_VARIABLE_DECLARATION);
 
-		variableAccessEClass = createEClass(VARIABLE_ACCESS);
-		createEReference(variableAccessEClass, VARIABLE_ACCESS__TARGET);
-		createEAttribute(variableAccessEClass, VARIABLE_ACCESS__STEP_INDEX);
-
-		assignmentEClass = createEClass(ASSIGNMENT);
-		createEReference(assignmentEClass, ASSIGNMENT__ASSIGNED_EXPRESSION);
-
-		variableReferenceEClass = createEClass(VARIABLE_REFERENCE);
-		createEReference(variableReferenceEClass, VARIABLE_REFERENCE__ARRAY_INDICES);
-
 		invalidExpressionEClass = createEClass(INVALID_EXPRESSION);
 	}
 
@@ -531,10 +434,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		inputVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
 		outputVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
 		instanceVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
-		assignmentEClass.getESuperTypes().add(this.getVariableAccess());
-		assignmentEClass.getESuperTypes().add(theMscriptPackage.getStatement());
-		variableReferenceEClass.getESuperTypes().add(this.getVariableAccess());
-		variableReferenceEClass.getESuperTypes().add(theMscriptPackage.getExpression());
 		invalidExpressionEClass.getESuperTypes().add(theMscriptPackage.getExpression());
 
 		// Initialize classes and features; add operations and parameters
@@ -564,16 +463,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		initEClass(outputVariableDeclarationEClass, OutputVariableDeclaration.class, "OutputVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(instanceVariableDeclarationEClass, InstanceVariableDeclaration.class, "InstanceVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(variableAccessEClass, VariableAccess.class, "VariableAccess", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableAccess_Target(), theMscriptPackage.getVariableDeclaration(), null, "target", null, 0, 1, VariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getVariableAccess_StepIndex(), ecorePackage.getEInt(), "stepIndex", null, 0, 1, VariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssignment_AssignedExpression(), theMscriptPackage.getExpression(), null, "assignedExpression", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(variableReferenceEClass, VariableReference.class, "VariableReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableReference_ArrayIndices(), theMscriptPackage.getExpression(), null, "arrayIndices", null, 0, -1, VariableReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(invalidExpressionEClass, InvalidExpression.class, "InvalidExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

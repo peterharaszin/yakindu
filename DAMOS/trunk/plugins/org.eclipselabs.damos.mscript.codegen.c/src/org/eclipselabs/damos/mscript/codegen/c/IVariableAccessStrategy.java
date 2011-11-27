@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.il.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableAccess;
 
 
 /**

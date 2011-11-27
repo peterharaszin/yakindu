@@ -80,24 +80,6 @@ public interface ILFactory extends EFactory {
 	InstanceVariableDeclaration createInstanceVariableDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Assignment</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Assignment</em>'.
-	 * @generated
-	 */
-	Assignment createAssignment();
-
-	/**
-	 * Returns a new object of class '<em>Variable Reference</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Reference</em>'.
-	 * @generated
-	 */
-	VariableReference createVariableReference();
-
-	/**
 	 * Returns a new object of class '<em>Invalid Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

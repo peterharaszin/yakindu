@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
@@ -21,7 +20,6 @@ import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,8 +71,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 			case ILPackage.INPUT_VARIABLE_DECLARATION: return createInputVariableDeclaration();
 			case ILPackage.OUTPUT_VARIABLE_DECLARATION: return createOutputVariableDeclaration();
 			case ILPackage.INSTANCE_VARIABLE_DECLARATION: return createInstanceVariableDeclaration();
-			case ILPackage.ASSIGNMENT: return createAssignment();
-			case ILPackage.VARIABLE_REFERENCE: return createVariableReference();
 			case ILPackage.INVALID_EXPRESSION: return createInvalidExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -139,26 +135,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	public InstanceVariableDeclaration createInstanceVariableDeclaration() {
 		InstanceVariableDeclarationImpl instanceVariableDeclaration = new InstanceVariableDeclarationImpl();
 		return instanceVariableDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Assignment createAssignment() {
-		AssignmentImpl assignment = new AssignmentImpl();
-		return assignment;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VariableReference createVariableReference() {
-		VariableReferenceImpl variableReference = new VariableReferenceImpl();
-		return variableReference;
 	}
 
 	/**

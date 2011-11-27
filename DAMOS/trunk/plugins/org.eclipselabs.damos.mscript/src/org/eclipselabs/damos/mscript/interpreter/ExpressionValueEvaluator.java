@@ -44,9 +44,9 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
-import org.eclipselabs.damos.mscript.il.VariableReference;
+import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.builtin.BuiltinFunctionDescriptor;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.builtin.BuiltinFunctionLookupTable;
 import org.eclipselabs.damos.mscript.interpreter.builtin.IBuiltinFunctionLookupTable;
 import org.eclipselabs.damos.mscript.interpreter.builtin.IFunction;
@@ -79,8 +79,6 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 		
 		private IInterpreterContext context;
 
-		private ILExpressionValueEvaluatorSwitch ilExpressionValueEvaluatorSwitch = new ILExpressionValueEvaluatorSwitch();
-		
 		private IBuiltinFunctionLookupTable builtinFunctionLookupTable = new BuiltinFunctionLookupTable();
 
 		/**
@@ -487,32 +485,30 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 			
 			return super.caseFunctionCall(functionCall);
 		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseVariableAccess(org.eclipselabs.damos.mscript.VariableAccess)
+		 */
+		@Override
+		public IValue caseVariableAccess(VariableAccess variableAccess) {
+			if (!(variableAccess.getFeature() instanceof VariableDeclaration)) {
+				throw new IllegalArgumentException();
+			}
+			VariableDeclaration variableDeclaration = (VariableDeclaration) variableAccess.getFeature();
+			
+			variableAccess.getFeature();
+			IVariable variable = context.getVariable(variableDeclaration);
+			return variable.getValue(context.getStaticEvaluationContext().getStepIndex(variableAccess));
+		}
 
 		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 		 */
 		@Override
 		public IValue defaultCase(EObject object) {
-			IValue value = ilExpressionValueEvaluatorSwitch.doSwitch(object);
-			if (value != null) {
-				return value;
-			}
-			throw new RuntimeException("Invalid expression");
+			return InvalidValue.SINGLETON;
 		}
 	
-		private class ILExpressionValueEvaluatorSwitch extends ILSwitch<IValue> {
-			
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseVariableReference(org.eclipselabs.mscript.language.imperativemodel.VariableReference)
-			 */
-			@Override
-			public IValue caseVariableReference(VariableReference variableReference) {
-				IVariable variable = context.getVariable(variableReference.getTarget());
-				return variable.getValue(variableReference.getStepIndex());
-			}
-			
-		}
-
 	}
 	
 }

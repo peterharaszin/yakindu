@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
 import org.eclipselabs.damos.mscript.ArrayConstructionIterationClause;
 import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
+import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.BooleanLiteral;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.EqualityExpression;
@@ -51,15 +52,14 @@ import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
-import org.eclipselabs.damos.mscript.il.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
+import org.eclipselabs.damos.mscript.util.MscriptUtil;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 
 /**
@@ -113,10 +113,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		Expression result = doTransform(expression);
 		IExpressionTarget target = targets.get(0);
 
-		Assignment assignment = ILFactory.eINSTANCE.createAssignment();
+		Assignment assignment = MscriptFactory.eINSTANCE.createAssignment();
 		assignment.setAssignedExpression(result);
-		assignment.setTarget(target.getVariableDeclaration());
-		assignment.setStepIndex(target.getStepIndex());
+		assignment.setTarget(MscriptUtil.createVariableAccess(context.getStaticEvaluationContext(), target.getVariableDeclaration(), target.getStepIndex(), false));
 		context.getCompound().getStatements().add(assignment);
 		
 		return status.isOK() ? Status.OK_STATUS : status;
@@ -169,10 +168,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		
 		context.getCompound().getStatements().add(compoundStatement);
 		
-		VariableReference variableReference = ILFactory.eINSTANCE.createVariableReference();
-		variableReference.setTarget(localVariableDeclaration);
-		variableReference.setStepIndex(0);
-		return variableReference;
+		VariableAccess variableAccess = MscriptFactory.eINSTANCE.createVariableAccess();
+		variableAccess.setFeature(localVariableDeclaration);
+		return variableAccess;
 	}
 	
 	/* (non-Javadoc)
@@ -218,10 +216,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		
 		context.getCompound().getStatements().add(ifStatement);
 		
-		VariableReference variableReference = ILFactory.eINSTANCE.createVariableReference();
-		variableReference.setTarget(localVariableDeclaration);
-		variableReference.setStepIndex(0);
-		return variableReference;
+		VariableAccess variableAccess = MscriptFactory.eINSTANCE.createVariableAccess();
+		variableAccess.setFeature(localVariableDeclaration);
+		return variableAccess;
 	}
 	
 	/* (non-Javadoc)
@@ -231,10 +228,8 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	public Expression caseVariableAccess(VariableAccess variableAccess) {
 		VariableDeclaration variableDeclaration = context.getVariableDeclaration(variableAccess.getFeature().getName());
 		if (variableDeclaration != null) {
-			VariableReference variableReference = ILFactory.eINSTANCE.createVariableReference();
-			variableReference.setTarget(variableDeclaration);
-			variableReference.setStepIndex(context.getStaticEvaluationContext().getStepIndex(variableAccess));
-			return variableReference;
+			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableAccess);
+			return MscriptUtil.createVariableAccess(context.getStaticEvaluationContext(), variableDeclaration, stepIndex, false);
 		}
 		return null;
 	}
@@ -269,10 +264,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		
 		IIterationCallTransformerResult result = transformer.transform(context, iterationCall, doTransform(iterationCall.getTarget()));
 		
-		VariableReference variableReference = ILFactory.eINSTANCE.createVariableReference();
-		variableReference.setTarget(result.getLocalVariableDeclaration());
-		variableReference.setStepIndex(0);
-		return variableReference;
+		VariableAccess variableAccess = MscriptFactory.eINSTANCE.createVariableAccess();
+		variableAccess.setFeature(result.getLocalVariableDeclaration());
+		return variableAccess;
 	}
 			
 	private InvalidExpression createInvalidExpression() {

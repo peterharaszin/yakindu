@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
+import org.eclipselabs.damos.mscript.Assignment;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Evaluable;
@@ -23,10 +24,10 @@ import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.damos.mscript.il.Assignment;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
@@ -74,16 +75,6 @@ public class CompoundGenerator implements ICompoundGenerator {
 			for (Statement statement : compound.getStatements()) {
 				doSwitch(statement);
 			}
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
-		 */
-		@Override
-		public Boolean caseAssignment(Assignment assignment) {
-			VariableDeclaration target = assignment.getTarget();
-			writeAssignment(getDataType(target), new VariableAccessGenerator(context, assignment).generate(), assignment.getAssignedExpression());
-			return true;
 		}
 		
 		/* (non-Javadoc)
@@ -151,6 +142,25 @@ public class CompoundGenerator implements ICompoundGenerator {
 				return true;
 			}
 
+			/* (non-Javadoc)
+			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
+			 */
+			@Override
+			public Boolean caseAssignment(Assignment assignment) {
+				if (!(assignment.getTarget() instanceof VariableAccess)) {
+					throw new IllegalArgumentException();
+				}
+				VariableAccess variableAccess = (VariableAccess) assignment.getTarget();
+				
+				if (!(variableAccess.getFeature() instanceof VariableDeclaration)) {
+					throw new IllegalArgumentException();
+				}
+				VariableDeclaration target = (VariableDeclaration) variableAccess.getFeature();
+				
+				writeAssignment(getDataType(target), new VariableAccessGenerator(context, variableAccess).generate(), assignment.getAssignedExpression());
+				return true;
+			}
+			
 			@Override
 			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
 				if (localVariableDeclaration.getInitializer() != null) {

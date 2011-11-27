@@ -14,6 +14,8 @@ package org.eclipselabs.damos.mscript.il.transform;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.AdditiveExpression;
+import org.eclipselabs.damos.mscript.ArrayElementAccess;
+import org.eclipselabs.damos.mscript.ArraySubscript;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
@@ -24,12 +26,17 @@ import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
+import org.eclipselabs.damos.mscript.RealLiteral;
+import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.TensorType;
-import org.eclipselabs.damos.mscript.il.VariableReference;
+import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -85,14 +92,14 @@ public class ArrayOperationDecomposer extends ILSwitch<Boolean> implements IArra
 			if (multiplicativeExpression.getOperator() == MultiplicativeOperator.MULTIPLY) {
 				Expression leftOperand = multiplicativeExpression.getLeftOperand();
 				Expression rightOperand = multiplicativeExpression.getRightOperand();
-				if (leftOperand instanceof VariableReference && rightOperand instanceof VariableReference) {
+				if (leftOperand instanceof VariableAccess && rightOperand instanceof VariableAccess) {
 					DataType leftDataType = getDataType(leftOperand);
 					DataType rightDataType = getDataType(rightOperand);
 					if (leftDataType instanceof TensorType && rightDataType instanceof TensorType) {
 						TensorType leftTensorType = (TensorType) leftDataType;
 						TensorType rightTensorType = (TensorType) rightDataType;
 						if (leftTensorType.isVector() && rightTensorType.isVector()) {
-							Expression transformedExpression = createVectorMultiplicationExpression((VariableReference) leftOperand, (VariableReference) rightOperand);
+							Expression transformedExpression = createVectorMultiplicationExpression((VariableAccess) leftOperand, (VariableAccess) rightOperand);
 							EcoreUtil.replace(multiplicativeExpression, transformedExpression);
 						}
 					}
@@ -101,7 +108,7 @@ public class ArrayOperationDecomposer extends ILSwitch<Boolean> implements IArra
 			return super.caseMultiplicativeExpression(multiplicativeExpression);
 		}
 		
-		private Expression createVectorMultiplicationExpression(VariableReference leftOperand, VariableReference rightOperand) {			
+		private Expression createVectorMultiplicationExpression(VariableAccess leftOperand, VariableAccess rightOperand) {			
 			ParenthesizedExpression parenthesizedExpression = MscriptFactory.eINSTANCE.createParenthesizedExpression();
 
 			TensorType leftTensorType = (TensorType) getDataType(leftOperand);
@@ -114,29 +121,12 @@ public class ArrayOperationDecomposer extends ILSwitch<Boolean> implements IArra
 				MultiplicativeExpression multiplicativeExpression = MscriptFactory.eINSTANCE.createMultiplicativeExpression();
 				setDataType(multiplicativeExpression, EcoreUtil.copy(resultDataType));
 				
-				VariableReference leftVariableReference = EcoreUtil.copy(leftOperand);
-				setDataType(leftVariableReference, EcoreUtil.copy(leftTensorType.getElementType()));
-				IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
-				integerLiteral.setUnit(TypeUtil.createUnit());
-				integerLiteral.setValue(i);
-				IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
-				integerType.setUnit(TypeUtil.createUnit());
-				setDataType(integerLiteral, integerType);
-				leftVariableReference.getArrayIndices().add(integerLiteral);
-				
-				VariableReference rightVariableReference = EcoreUtil.copy(rightOperand);
-				setDataType(rightVariableReference, EcoreUtil.copy(rightTensorType.getElementType()));
-				integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
-				integerLiteral.setUnit(TypeUtil.createUnit());
-				integerLiteral.setValue(i);
-				integerType = MscriptFactory.eINSTANCE.createIntegerType();
-				integerType.setUnit(TypeUtil.createUnit());
-				setDataType(integerLiteral, integerType);
-				rightVariableReference.getArrayIndices().add(integerLiteral);
+				Expression leftMultiplicationOperand = createArrayElementAccess(leftOperand, leftTensorType, i);
+				Expression rightMultiplicationOperand = createArrayElementAccess(rightOperand, rightTensorType, i);
 
 				multiplicativeExpression.setOperator(MultiplicativeOperator.MULTIPLY);
-				multiplicativeExpression.setLeftOperand(leftVariableReference);
-				multiplicativeExpression.setRightOperand(rightVariableReference);
+				multiplicativeExpression.setLeftOperand(leftMultiplicationOperand);
+				multiplicativeExpression.setRightOperand(rightMultiplicationOperand);
 				
 				if (rootExpression == null) {
 					rootExpression = multiplicativeExpression;
@@ -155,6 +145,51 @@ public class ArrayOperationDecomposer extends ILSwitch<Boolean> implements IArra
 			setDataType(parenthesizedExpression, EcoreUtil.copy(resultDataType));
 			
 			return parenthesizedExpression;
+		}
+
+		/**
+		 * @param operand
+		 * @param tensorType
+		 * @param index
+		 * @return
+		 */
+		private Expression createArrayElementAccess(VariableAccess operand, TensorType tensorType, int index) {
+			IValue value = context.getValue(operand);
+			if (value instanceof IArrayValue) {
+				IValue elementValue = ((IArrayValue) value).get(index);
+				if (elementValue instanceof ISimpleNumericValue) {
+					ISimpleNumericValue numericValue = (ISimpleNumericValue) elementValue;
+					if (tensorType.getElementType() instanceof RealType) {
+						RealLiteral realLiteral = MscriptFactory.eINSTANCE.createRealLiteral();
+						realLiteral.setUnit(EcoreUtil.copy(tensorType.getElementType().getUnit()));
+						realLiteral.setValue(numericValue.doubleValue());
+						context.setValue(realLiteral, numericValue);
+						return realLiteral;
+					} else if (tensorType.getElementType() instanceof IntegerType) {
+						IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
+						integerLiteral.setUnit(EcoreUtil.copy(tensorType.getElementType().getUnit()));
+						integerLiteral.setValue(numericValue.longValue());
+						context.setValue(integerLiteral, numericValue);
+						return integerLiteral;
+					}
+				}
+			}
+			
+			VariableAccess variableAccess = EcoreUtil.copy(operand);
+			setDataType(variableAccess, EcoreUtil.copy(tensorType));
+			IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
+			integerLiteral.setUnit(TypeUtil.createUnit());
+			integerLiteral.setValue(index);
+			IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
+			integerType.setUnit(TypeUtil.createUnit());
+			setDataType(integerLiteral, integerType);
+			ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
+			arrayElementAccess.setArray(variableAccess);
+			ArraySubscript subscript = MscriptFactory.eINSTANCE.createArraySubscript();
+			subscript.setExpression(integerLiteral);
+			arrayElementAccess.getSubscripts().add(subscript);
+			setDataType(arrayElementAccess, EcoreUtil.copy(tensorType.getElementType()));
+			return arrayElementAccess;
 		}
 
 		/* (non-Javadoc)

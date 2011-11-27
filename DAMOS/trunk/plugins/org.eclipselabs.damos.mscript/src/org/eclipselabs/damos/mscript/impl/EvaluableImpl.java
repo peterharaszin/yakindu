@@ -7,25 +7,26 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipselabs.damos.mscript.Expression;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expression</b></em>'.
+ * An implementation of the model object '<em><b>Evaluable</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class ExpressionImpl extends EvaluableImpl implements Expression {
+public abstract class EvaluableImpl extends MinimalEObjectImpl.Container implements Evaluable {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExpressionImpl() {
+	protected EvaluableImpl() {
 		super();
 	}
 
@@ -36,7 +37,7 @@ public class ExpressionImpl extends EvaluableImpl implements Expression {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.EXPRESSION;
+		return MscriptPackage.Literals.EVALUABLE;
 	}
 
-} //ExpressionImpl
+} //EvaluableImpl

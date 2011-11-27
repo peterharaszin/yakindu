@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.CallableElement;
+import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -243,6 +244,11 @@ public class LocalVariableDeclarationImpl extends StatementImpl implements Local
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Evaluable.class) {
+			switch (derivedFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == CallableElement.class) {
 			switch (derivedFeatureID) {
 				default: return -1;
@@ -264,6 +270,11 @@ public class LocalVariableDeclarationImpl extends StatementImpl implements Local
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Evaluable.class) {
+			switch (baseFeatureID) {
+				default: return -1;
+			}
+		}
 		if (baseClass == CallableElement.class) {
 			switch (baseFeatureID) {
 				default: return -1;

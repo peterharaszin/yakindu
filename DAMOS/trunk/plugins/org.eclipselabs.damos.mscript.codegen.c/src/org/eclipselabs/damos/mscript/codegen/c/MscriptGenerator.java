@@ -14,9 +14,9 @@ package org.eclipselabs.damos.mscript.codegen.c;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
@@ -311,11 +311,11 @@ public class MscriptGenerator {
 	}
 
 	/**
-	 * @param eObject
+	 * @param evaluable
 	 * @return
 	 */
-	private DataType getDataType(EObject eObject) {
-		IValue value = context.getStaticEvaluationContext().getValue(eObject);
+	private DataType getDataType(Evaluable evaluable) {
+		IValue value = context.getStaticEvaluationContext().getValue(evaluable);
 		return value != null ? value.getDataType() : null;
 	}
 

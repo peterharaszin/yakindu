@@ -17,6 +17,7 @@ import org.eclipselabs.damos.mscript.ArrayDimension;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
@@ -127,11 +128,11 @@ public class CompoundGenerator implements ICompoundGenerator {
 		}
 		
 		/**
-		 * @param eObject
+		 * @param evaluable
 		 * @return
 		 */
-		private DataType getDataType(EObject eObject) {
-			IValue value = context.getStaticEvaluationContext().getValue(eObject);
+		private DataType getDataType(Evaluable evaluable) {
+			IValue value = context.getStaticEvaluationContext().getValue(evaluable);
 			return value != null ? value.getDataType() : null;
 		}
 

@@ -123,9 +123,9 @@ public class StaticExpressionEvaluator {
 			return status;
 		}
 		
-		public IValue evaluate(EObject eObject) {
-			IValue value = doSwitch(eObject);
-			context.setValue(eObject, value);
+		public IValue evaluate(Expression expression) {
+			IValue value = doSwitch(expression);
+			context.setValue(expression, value);
 			return value;
 		}
 		
@@ -809,9 +809,11 @@ public class StaticExpressionEvaluator {
 		 */
 		@Override
 		public IValue defaultCase(EObject object) {
-			IValue value = typeSystemSwitch.evaluate(object);
-			if (value != null) {
-				return value;
+			if (object instanceof Expression) {
+				IValue value = typeSystemSwitch.evaluate((Expression) object);
+				if (value != null) {
+					return value;
+				}
 			}
 			status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid expression", object));
 			return InvalidValue.SINGLETON;
@@ -819,9 +821,9 @@ public class StaticExpressionEvaluator {
 		
 		private class ExpressionMscriptSwitch extends MscriptSwitch<IValue> {
 			
-			public IValue evaluate(EObject eObject) {
-				IValue value = doSwitch(eObject);
-				context.setValue(eObject, value);
+			public IValue evaluate(Expression expression) {
+				IValue value = doSwitch(expression);
+				context.setValue(expression, value);
 				return value;
 			}
 

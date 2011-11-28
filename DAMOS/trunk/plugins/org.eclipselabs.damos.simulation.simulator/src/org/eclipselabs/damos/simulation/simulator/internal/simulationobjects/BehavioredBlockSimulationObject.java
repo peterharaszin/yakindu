@@ -172,14 +172,14 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		
 		int i = 0;
 		for (InputVariableDeclaration inputVariableDeclaration : functionObject.getFunctionDefinition().getInputVariableDeclarations()) {
-			IVariable variable = functionObject.getVariable(inputVariableDeclaration);
+			IVariable variable = functionObject.getVariable(inputVariableDeclaration.getVariableDeclaration());
 			
 			int inputIndex = hasInputSockets ? i - 1 : i;
 			if (inputIndex >= 0) {
 				BlockInput input = (BlockInput) getComponent().getInputs().get(inputIndex);
 				
 				if (input.getDefinition().isManyPorts() || input.getDefinition().getMinimumPortCount() == 0) {
-					initializeArrayVariable(inputVariableDeclaration, variable);
+					initializeArrayVariable(inputVariableDeclaration.getVariableDeclaration(), variable);
 					multiPortInput[i] = true;
 				}
 			}
@@ -195,12 +195,12 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 
 		int i = 0;
 		for (OutputVariableDeclaration outputVariableDeclaration : functionObject.getFunctionDefinition().getOutputVariableDeclarations()) {
-			IVariable variable = functionObject.getVariable(outputVariableDeclaration);
+			IVariable variable = functionObject.getVariable(outputVariableDeclaration.getVariableDeclaration());
 			
 			BlockOutput output = (BlockOutput) getComponent().getOutputs().get(i);
 			
 			if (output.getDefinition().isManyPorts() || output.getDefinition().getMinimumPortCount() == 0) {
-				initializeArrayVariable(outputVariableDeclaration, variable);
+				initializeArrayVariable(outputVariableDeclaration.getVariableDeclaration(), variable);
 				multiPortOutput[i] = true;
 			}
 			

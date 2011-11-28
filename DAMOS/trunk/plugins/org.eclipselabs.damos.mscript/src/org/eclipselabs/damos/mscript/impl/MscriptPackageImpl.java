@@ -1248,15 +1248,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameterDeclaration_Name() {
-		return (EAttribute)parameterDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTemplateParameterDeclaration() {
 		return templateParameterDeclarationEClass;
 	}
@@ -3418,7 +3409,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__NAME);
 
 		parameterDeclarationEClass = createEClass(PARAMETER_DECLARATION);
-		createEAttribute(parameterDeclarationEClass, PARAMETER_DECLARATION__NAME);
 
 		templateParameterDeclarationEClass = createEClass(TEMPLATE_PARAMETER_DECLARATION);
 
@@ -3785,7 +3775,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		functionDefinitionEClass.getESuperTypes().add(this.getCallableElement());
 		callableElementEClass.getESuperTypes().add(this.getEvaluable());
 		variableDeclarationEClass.getESuperTypes().add(this.getCallableElement());
-		parameterDeclarationEClass.getESuperTypes().add(this.getCallableElement());
+		parameterDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
 		templateParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		inputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
 		outputParameterDeclarationEClass.getESuperTypes().add(this.getParameterDeclaration());
@@ -3921,7 +3911,6 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEAttribute(getVariableDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterDeclarationEClass, ParameterDeclaration.class, "ParameterDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getParameterDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, ParameterDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(templateParameterDeclarationEClass, TemplateParameterDeclaration.class, "TemplateParameterDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

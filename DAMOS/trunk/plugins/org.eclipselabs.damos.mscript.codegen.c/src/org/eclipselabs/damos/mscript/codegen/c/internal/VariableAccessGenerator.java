@@ -1,20 +1,20 @@
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
+import org.eclipselabs.damos.mscript.StateVariableDeclaration;
+import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
-public class VariableAccessGenerator extends ILSwitch<String> {
+public class VariableAccessGenerator extends MscriptSwitch<String> {
 
 	private IMscriptGeneratorContext context;
 	private VariableAccess variableAccess;
@@ -28,12 +28,9 @@ public class VariableAccessGenerator extends ILSwitch<String> {
 		return doSwitch(variableAccess.getFeature());
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseTemplateVariableDeclaration(org.eclipselabs.mscript.language.il.TemplateVariableDeclaration)
-	 */
 	@Override
-	public String caseTemplateVariableDeclaration(TemplateVariableDeclaration templateVariableDeclaration) {
-		IValue templateArgument = context.getStaticEvaluationContext().getValue(templateVariableDeclaration);
+	public String caseTemplateParameterDeclaration(TemplateParameterDeclaration templateParameterDeclaration) {
+		IValue templateArgument = context.getStaticEvaluationContext().getValue(templateParameterDeclaration);
 		return writeLiteral(templateArgument);
 	}
 	
@@ -52,23 +49,25 @@ public class VariableAccessGenerator extends ILSwitch<String> {
 		throw new IllegalArgumentException();
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseStatefulVariableDeclaration(org.eclipselabs.mscript.language.il.StatefulVariableDeclaration)
-	 */
 	@Override
-	public String caseStatefulVariableDeclaration(StatefulVariableDeclaration statefulVariableDeclaration) {
+	public String caseParameterDeclaration(ParameterDeclaration parameterDeclaration) {
 		return context.getVariableAccessStrategy().getVariableAccessString(variableAccess);
 	}
-
+	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.mscript.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseStateVariableDeclaration(org.eclipselabs.damos.mscript.StateVariableDeclaration)
 	 */
 	@Override
-	public String defaultCase(EObject object) {
-		if (object instanceof VariableDeclaration) {
-			return ((VariableDeclaration) object).getName();
-		}
-		return super.defaultCase(object);
+	public String caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
+		return context.getVariableAccessStrategy().getVariableAccessString(variableAccess);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseVariableDeclaration(org.eclipselabs.damos.mscript.VariableDeclaration)
+	 */
+	@Override
+	public String caseVariableDeclaration(VariableDeclaration variableDeclaration) {
+		return variableDeclaration.getName();
+	}
+
 }

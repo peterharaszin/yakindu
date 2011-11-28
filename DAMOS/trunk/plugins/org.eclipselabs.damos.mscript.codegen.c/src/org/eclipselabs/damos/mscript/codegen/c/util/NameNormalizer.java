@@ -12,21 +12,9 @@
 package org.eclipselabs.damos.mscript.codegen.c.util;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.ForStatement;
-import org.eclipselabs.damos.mscript.IfStatement;
-import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
-import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.codegen.c.internal.util.Scope;
-import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
-import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
 /**
  * @author Andreas Unger
@@ -84,124 +72,124 @@ public class NameNormalizer {
 	}
 	
 	public void normalize(ILFunctionDefinition functionDefinition) {
-		NormalizerScope scope = new NormalizerScope(null);
-		
-		normalize(functionDefinition.getInputVariableDeclarations(), scope);
-		normalize(functionDefinition.getOutputVariableDeclarations(), scope);
-		normalize(functionDefinition.getInstanceVariableDeclarations(), scope);
-
-		CompoundNormalizer compoundNormalizer = new CompoundNormalizer(scope);
-		compoundNormalizer.doSwitch(functionDefinition.getInitializationCompound());
-		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
-			compoundNormalizer.doSwitch(compound);
-		}
+//		NormalizerScope scope = new NormalizerScope(null);
+//		
+//		normalize(functionDefinition.getInputVariableDeclarations(), scope);
+//		normalize(functionDefinition.getOutputVariableDeclarations(), scope);
+//		normalize(functionDefinition.getInstanceVariableDeclarations(), scope);
+//
+//		CompoundNormalizer compoundNormalizer = new CompoundNormalizer(scope);
+//		compoundNormalizer.doSwitch(functionDefinition.getInitializationCompound());
+//		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
+//			compoundNormalizer.doSwitch(compound);
+//		}
 	}
 	
-	private void normalize(List<? extends VariableDeclaration> variableDeclarations, NormalizerScope scope) {
-		for (VariableDeclaration variableDeclaration : variableDeclarations) {
-			String name = variableDeclaration.getName();
-			if (isReserved(name)) {
-				name += "1";
-			}
-			variableDeclaration.setName(name);
-			scope.add(name, variableDeclaration);
-		}
-	}
-	
-	private static boolean isReserved(String name) {
-		if (RESERVED_WORDS.contains(name)) {
-			return true;
-		}
-		if (name.endsWith("_i")) {
-			return true;
-		}
-		if (name.endsWith("_index")) {
-			return true;
-		}
-		return false;
-	}
-	
-	private static class CompoundNormalizer extends ILSwitch<Boolean> {
-		
-		private NormalizerScope scope;
-		
-		private AstCompoundNormalizer astCompoundNormalizer = new AstCompoundNormalizer();
-		
-		/**
-		 * 
-		 */
-		public CompoundNormalizer(NormalizerScope scope) {
-			this.scope = scope;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.il.Compound)
-		 */
-		@Override
-		public Boolean caseCompound(Compound compound) {
-			scope = new NormalizerScope(scope);
-			for (Statement statement : compound.getStatements()) {
-				doSwitch(statement);
-			}
-			scope = scope.getOuterScope();
-			return true;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
-		 */
-		@Override
-		public Boolean defaultCase(EObject object) {
-			return astCompoundNormalizer.doSwitch(object);
-		}
-		
-		private class AstCompoundNormalizer extends MscriptSwitch<Boolean> {
-			
-			@Override
-			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
-				String preferredName = localVariableDeclaration.getName();
-				if (preferredName == null) {
-					preferredName = "temp";
-				}
-				String name = preferredName;
-				if (isReserved(name)) {
-					name += "1";
-				}
-				int n = 1;
-				while (scope.findInEnclosingScopes(name) != null) {
-					name = preferredName + ++n;
-				}
-				localVariableDeclaration.setName(name);
-				scope.add(name, localVariableDeclaration);
-				return true;
-			}
-			
-			@Override
-			public Boolean caseForStatement(ForStatement forStatement) {
-				CompoundNormalizer.this.doSwitch(forStatement.getIterationVariable());
-				return true;
-			}
-			
-			@Override
-			public Boolean caseIfStatement(IfStatement ifStatement) {
-				CompoundNormalizer.this.doSwitch(ifStatement.getThenStatement());
-				CompoundNormalizer.this.doSwitch(ifStatement.getElseStatement());
-				return true;
-			}
-			
-		}
-		
-	}
-	
-	private static class NormalizerScope extends Scope<NormalizerScope, String, VariableDeclaration> {
-
-		/**
-		 * @param outerScope
-		 */
-		public NormalizerScope(NormalizerScope outerScope) {
-			super(outerScope);
-		}
-		
-	}
+//	private void normalize(List<? extends VariableDeclaration> variableDeclarations, NormalizerScope scope) {
+//		for (VariableDeclaration variableDeclaration : variableDeclarations) {
+//			String name = variableDeclaration.getName();
+//			if (isReserved(name)) {
+//				name += "1";
+//			}
+//			variableDeclaration.setName(name);
+//			scope.add(name, variableDeclaration);
+//		}
+//	}
+//	
+//	private static boolean isReserved(String name) {
+//		if (RESERVED_WORDS.contains(name)) {
+//			return true;
+//		}
+//		if (name.endsWith("_i")) {
+//			return true;
+//		}
+//		if (name.endsWith("_index")) {
+//			return true;
+//		}
+//		return false;
+//	}
+//	
+//	private static class CompoundNormalizer extends ILSwitch<Boolean> {
+//		
+//		private NormalizerScope scope;
+//		
+//		private AstCompoundNormalizer astCompoundNormalizer = new AstCompoundNormalizer();
+//		
+//		/**
+//		 * 
+//		 */
+//		public CompoundNormalizer(NormalizerScope scope) {
+//			this.scope = scope;
+//		}
+//		
+//		/* (non-Javadoc)
+//		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.il.Compound)
+//		 */
+//		@Override
+//		public Boolean caseCompound(Compound compound) {
+//			scope = new NormalizerScope(scope);
+//			for (Statement statement : compound.getStatements()) {
+//				doSwitch(statement);
+//			}
+//			scope = scope.getOuterScope();
+//			return true;
+//		}
+//		
+//		/* (non-Javadoc)
+//		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+//		 */
+//		@Override
+//		public Boolean defaultCase(EObject object) {
+//			return astCompoundNormalizer.doSwitch(object);
+//		}
+//		
+//		private class AstCompoundNormalizer extends MscriptSwitch<Boolean> {
+//			
+//			@Override
+//			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {
+//				String preferredName = localVariableDeclaration.getName();
+//				if (preferredName == null) {
+//					preferredName = "temp";
+//				}
+//				String name = preferredName;
+//				if (isReserved(name)) {
+//					name += "1";
+//				}
+//				int n = 1;
+//				while (scope.findInEnclosingScopes(name) != null) {
+//					name = preferredName + ++n;
+//				}
+//				localVariableDeclaration.setName(name);
+//				scope.add(name, localVariableDeclaration);
+//				return true;
+//			}
+//			
+//			@Override
+//			public Boolean caseForStatement(ForStatement forStatement) {
+//				CompoundNormalizer.this.doSwitch(forStatement.getIterationVariable());
+//				return true;
+//			}
+//			
+//			@Override
+//			public Boolean caseIfStatement(IfStatement ifStatement) {
+//				CompoundNormalizer.this.doSwitch(ifStatement.getThenStatement());
+//				CompoundNormalizer.this.doSwitch(ifStatement.getElseStatement());
+//				return true;
+//			}
+//			
+//		}
+//		
+//	}
+//	
+//	private static class NormalizerScope extends Scope<NormalizerScope, String, VariableDeclaration> {
+//
+//		/**
+//		 * @param outerScope
+//		 */
+//		public NormalizerScope(NormalizerScope outerScope) {
+//			super(outerScope);
+//		}
+//		
+//	}
 
 }

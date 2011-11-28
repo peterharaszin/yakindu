@@ -13,13 +13,6 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Input Variable Declaration</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.il.InputVariableDeclaration#getFeedingCompounds <em>Feeding Compounds</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.InputVariableDeclaration#isDirectFeedthrough <em>Direct Feedthrough</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipselabs.damos.mscript.il.ILPackage#getInputVariableDeclaration()
  * @model
@@ -27,34 +20,25 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface InputVariableDeclaration extends StatefulVariableDeclaration {
 	/**
-	 * Returns the value of the '<em><b>Feeding Compounds</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.il.ComputationCompound}.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.il.ComputationCompound#getInputs <em>Inputs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Feeding Compounds</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feeding Compounds</em>' reference list.
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getInputVariableDeclaration_FeedingCompounds()
-	 * @see org.eclipselabs.damos.mscript.il.ComputationCompound#getInputs
-	 * @model opposite="inputs"
+	 * @model kind="operation"
 	 * @generated
 	 */
 	EList<ComputationCompound> getFeedingCompounds();
 
 	/**
-	 * Returns the value of the '<em><b>Direct Feedthrough</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Direct Feedthrough</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Direct Feedthrough</em>' attribute.
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getInputVariableDeclaration_DirectFeedthrough()
-	 * @model required="true" transient="true" changeable="false" volatile="true" derived="true"
+	 * @model kind="operation" required="true"
 	 * @generated
 	 */
 	boolean isDirectFeedthrough();

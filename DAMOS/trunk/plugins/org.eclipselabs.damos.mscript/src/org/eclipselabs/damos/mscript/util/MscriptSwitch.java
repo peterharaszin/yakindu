@@ -162,6 +162,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.PARAMETER_DECLARATION: {
 				ParameterDeclaration parameterDeclaration = (ParameterDeclaration)theEObject;
 				T result = caseParameterDeclaration(parameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(parameterDeclaration);
 				if (result == null) result = caseCallableElement(parameterDeclaration);
 				if (result == null) result = caseEvaluable(parameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
@@ -171,6 +172,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				TemplateParameterDeclaration templateParameterDeclaration = (TemplateParameterDeclaration)theEObject;
 				T result = caseTemplateParameterDeclaration(templateParameterDeclaration);
 				if (result == null) result = caseParameterDeclaration(templateParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(templateParameterDeclaration);
 				if (result == null) result = caseCallableElement(templateParameterDeclaration);
 				if (result == null) result = caseEvaluable(templateParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
@@ -180,6 +182,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				InputParameterDeclaration inputParameterDeclaration = (InputParameterDeclaration)theEObject;
 				T result = caseInputParameterDeclaration(inputParameterDeclaration);
 				if (result == null) result = caseParameterDeclaration(inputParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(inputParameterDeclaration);
 				if (result == null) result = caseCallableElement(inputParameterDeclaration);
 				if (result == null) result = caseEvaluable(inputParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);
@@ -189,6 +192,7 @@ public class MscriptSwitch<T> extends Switch<T> {
 				OutputParameterDeclaration outputParameterDeclaration = (OutputParameterDeclaration)theEObject;
 				T result = caseOutputParameterDeclaration(outputParameterDeclaration);
 				if (result == null) result = caseParameterDeclaration(outputParameterDeclaration);
+				if (result == null) result = caseVariableDeclaration(outputParameterDeclaration);
 				if (result == null) result = caseCallableElement(outputParameterDeclaration);
 				if (result == null) result = caseEvaluable(outputParameterDeclaration);
 				if (result == null) result = defaultCase(theEObject);

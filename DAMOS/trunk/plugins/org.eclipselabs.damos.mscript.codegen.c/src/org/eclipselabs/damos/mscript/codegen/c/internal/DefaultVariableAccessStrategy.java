@@ -11,14 +11,14 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
 /**
  * @author Andreas Unger
@@ -42,7 +42,7 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 		return new VariableAccessSwitch(variableAccess).doSwitch(variableAccess.getFeature());
 	}
 
-	public class VariableAccessSwitch extends ILSwitch<String> {
+	public class VariableAccessSwitch extends MscriptSwitch<String> {
 
 		private VariableAccess variableAccess;
 		
@@ -50,44 +50,35 @@ public class DefaultVariableAccessStrategy implements IVariableAccessStrategy {
 			this.variableAccess = variableAccess;
 		}
 
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseInputVariableDeclaration(org.eclipselabs.mscript.language.il.InputVariableDeclaration)
-		 */
 		@Override
-		public String caseInputVariableDeclaration(InputVariableDeclaration inputVariableDeclaration) {
+		public String caseInputParameterDeclaration(InputParameterDeclaration inputParameterDeclaration) {
 			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
 			if (stepIndex == 0) {
-				return inputVariableDeclaration.getName();
+				return inputParameterDeclaration.getName();
 			}
 			return getContextAccess();
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseOutputVariableDeclaration(org.eclipselabs.mscript.language.il.OutputVariableDeclaration)
-		 */
 		@Override
-		public String caseOutputVariableDeclaration(OutputVariableDeclaration outputVariableDeclaration) {
+		public String caseOutputParameterDeclaration(OutputParameterDeclaration outputParameterDeclaration) {
 			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
 			if (stepIndex == 0) {
-				return String.format("*%s", outputVariableDeclaration.getName());
+				return String.format("*%s", outputParameterDeclaration.getName());
 			}
 			return getContextAccess();
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseInstanceVariableDeclaration(org.eclipselabs.mscript.language.il.InstanceVariableDeclaration)
-		 */
 		@Override
-		public String caseInstanceVariableDeclaration(InstanceVariableDeclaration instanceVariableDeclaration) {
+		public String caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
 			return getContextAccess();
 		}
 		
 		private String getContextAccess() {
-			StatefulVariableDeclaration target = (StatefulVariableDeclaration) variableAccess.getFeature();
+			VariableDeclaration target = (VariableDeclaration) variableAccess.getFeature();
 			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
 
 			String name = target.getName();
-			int circularBufferSize = ((StatefulVariableDeclaration) target).getCircularBufferSize();
+			int circularBufferSize = staticEvaluationContext.getCircularBufferSize(target);
 			if (circularBufferSize > 1) {
 				if (stepIndex < 0) {
 					stepIndex = (stepIndex + circularBufferSize) % circularBufferSize;

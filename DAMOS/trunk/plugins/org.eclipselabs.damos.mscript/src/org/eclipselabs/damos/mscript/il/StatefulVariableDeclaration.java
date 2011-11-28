@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.mscript.il;
 
-import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 
 /**
@@ -25,7 +24,7 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
  * @model abstract="true"
  * @generated
  */
-public interface StatefulVariableDeclaration extends VariableDeclaration {
+public interface StatefulVariableDeclaration extends VariableDeclarationInfo {
 	/**
 	 * Returns the value of the '<em><b>Circular Buffer Size</b></em>' attribute.
 	 * The default value is <code>"1"</code>.

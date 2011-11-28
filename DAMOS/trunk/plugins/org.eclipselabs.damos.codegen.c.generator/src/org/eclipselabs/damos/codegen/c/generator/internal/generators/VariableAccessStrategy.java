@@ -20,14 +20,14 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 
 /**
  * @author Andreas Unger
@@ -61,8 +61,8 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	 * @param inputVariableDeclaration
 	 * @return
 	 */
-	static String getInputVariableAccessString(IStaticEvaluationContext staticEvaluationContext, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputVariableDeclaration inputVariableDeclaration) {
-		int index = DMLUtil.indexOf(inputVariableDeclaration);
+	static String getInputParameterAccessString(IStaticEvaluationContext staticEvaluationContext, Block block, IComponentSignature signature, IVariableAccessor variableAccessor, InputParameterDeclaration inputParameterDeclaration) {
+		int index = DMLUtil.indexOf(inputParameterDeclaration);
 		
 		if (!block.getInputSockets().isEmpty()) {
 			if (index == 0) {
@@ -77,7 +77,7 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 		} else {
 			InputPort inputPort = blockInput.getPorts().get(0);
 			DataType inputDataType = signature.getInputDataType(inputPort);
-			DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
+			DataType targetDataType = staticEvaluationContext.getValue(inputParameterDeclaration).getDataType();
 			if (!inputDataType.isEquivalentTo(targetDataType)) {
 				return String.format("%s_%s", InternalGeneratorUtil.uncapitalize(block.getName()), blockInput.getDefinition().getName());
 			}
@@ -86,16 +86,16 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 	}
 
 	/**
-	 * @param outputVariableDeclaration
+	 * @param outputParameterDeclaration
 	 * @return
 	 */
-	static String getOutputVariableAccessString(Block block, IComponentSignature signature, IVariableAccessor variableAccessor, OutputVariableDeclaration outputVariableDeclaration) {
-		int index = DMLUtil.indexOf(outputVariableDeclaration);
+	static String getOutputParameterAccessString(Block block, IComponentSignature signature, IVariableAccessor variableAccessor, OutputParameterDeclaration outputParameterDeclaration) {
+		int index = DMLUtil.indexOf(outputParameterDeclaration);
 		Output output = block.getOutputs().get(index);
 		return variableAccessor.getOutputVariable(output.getPorts().get(0), false);
 	}
 
-	public class VariableAccessSwitch extends ILSwitch<String> {
+	public class VariableAccessSwitch extends MscriptSwitch<String> {
 
 		private VariableAccess variableAccess;
 		
@@ -103,45 +103,36 @@ public class VariableAccessStrategy implements IVariableAccessStrategy {
 			this.variableAccess = variableAccess;
 		}
 
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseInputVariableDeclaration(org.eclipselabs.mscript.language.il.InputVariableDeclaration)
-		 */
 		@Override
-		public String caseInputVariableDeclaration(InputVariableDeclaration inputVariableDeclaration) {
+		public String caseInputParameterDeclaration(InputParameterDeclaration inputParameterDeclaration) {
 			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
 			if (stepIndex == 0) {
-				return getInputVariableAccessString(staticEvaluationContext, block, signature, variableAccessor, inputVariableDeclaration);
+				return getInputParameterAccessString(staticEvaluationContext, block, signature, variableAccessor, inputParameterDeclaration);
 			}
 			return getContextAccess();
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseOutputVariableDeclaration(org.eclipselabs.mscript.language.il.OutputVariableDeclaration)
-		 */
 		@Override
-		public String caseOutputVariableDeclaration(OutputVariableDeclaration outputVariableDeclaration) {
+		public String caseOutputParameterDeclaration(OutputParameterDeclaration outputParameterDeclaration) {
 			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
 			if (stepIndex == 0) {
-				return getOutputVariableAccessString(block, signature, variableAccessor, outputVariableDeclaration);
+				return getOutputParameterAccessString(block, signature, variableAccessor, outputParameterDeclaration);
 			}
 			return getContextAccess();
 		}
 		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseInstanceVariableDeclaration(org.eclipselabs.mscript.language.il.InstanceVariableDeclaration)
-		 */
 		@Override
-		public String caseInstanceVariableDeclaration(InstanceVariableDeclaration instanceVariableDeclaration) {
+		public String caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
 			return getContextAccess();
 		}
 		
 		private String getContextAccess() {
-			StatefulVariableDeclaration target = (StatefulVariableDeclaration) variableAccess.getFeature();
+			VariableDeclaration target = (VariableDeclaration) variableAccess.getFeature();
 			int stepIndex = staticEvaluationContext.getStepIndex(variableAccess);
 
 			String contextVariable = variableAccessor.getContextVariable(false);
 			String targetName = target.getName();
-			int circularBufferSize = ((StatefulVariableDeclaration) target).getCircularBufferSize();
+			int circularBufferSize = staticEvaluationContext.getCircularBufferSize(target);
 			if (circularBufferSize > 1) {
 				if (stepIndex < 0) {
 					stepIndex = (stepIndex + circularBufferSize) % circularBufferSize;

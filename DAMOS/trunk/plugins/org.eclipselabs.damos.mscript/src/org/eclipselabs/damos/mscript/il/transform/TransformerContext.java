@@ -11,6 +11,9 @@
 
 package org.eclipselabs.damos.mscript.il.transform;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.internal.util.Scope;
@@ -25,6 +28,8 @@ public class TransformerContext implements ITransformerContext {
 	private IStaticEvaluationContext staticEvaluationContext;
 	
 	private TransformerScope scope = new TransformerScope(null);
+	
+	private Map<VariableDeclaration, VariableDeclaration> variableDeclarationMappings = new HashMap<VariableDeclaration, VariableDeclaration>();
 	
 	/**
 	 * 
@@ -69,21 +74,23 @@ public class TransformerContext implements ITransformerContext {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerContext#getVariableDeclaration(java.lang.String)
+	 * @see org.eclipselabs.damos.mscript.il.transform.ITransformerContext#addVariableDeclarationMapping(org.eclipselabs.damos.mscript.VariableDeclaration, org.eclipselabs.damos.mscript.VariableDeclaration)
 	 */
-	public VariableDeclaration getVariableDeclaration(String name) {
-		return scope.findInEnclosingScopes(name);
+	public void addVariableDeclarationMapping(VariableDeclaration oldVariableDeclaration,
+			VariableDeclaration newVariableDeclaration) {
+		variableDeclarationMappings.put(oldVariableDeclaration, newVariableDeclaration);
 	}
-	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerContext#addVariableDeclaration(org.eclipselabs.mscript.language.il.VariableDeclaration)
-	 */
-	public void addVariableDeclaration(VariableDeclaration variableDeclaration) {
-		scope.add(variableDeclaration);
-	}
-	
-	private static class TransformerScope extends Scope<TransformerScope, String, VariableDeclaration> {
 
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.il.transform.ITransformerContext#mapVariableDeclaration(org.eclipselabs.damos.mscript.VariableDeclaration)
+	 */
+	public VariableDeclaration mapVariableDeclaration(VariableDeclaration variableDeclaration) {
+		VariableDeclaration newVariableDeclaration = variableDeclarationMappings.get(variableDeclaration);
+		return newVariableDeclaration != null ? newVariableDeclaration : variableDeclaration;
+	}
+
+	private static class TransformerScope extends Scope<TransformerScope, String, VariableDeclaration> {
+	
 		private Compound compound;
 		
 		/**
@@ -105,13 +112,6 @@ public class TransformerContext implements ITransformerContext {
 		 */
 		public void setCompound(Compound compound) {
 			this.compound = compound;
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.transform.IExpressionTransformerScope#add(org.eclipselabs.mscript.language.il.VariableDeclaration)
-		 */
-		public void add(VariableDeclaration element) {
-			super.add(element.getName(), element);
 		}
 		
 	}

@@ -8,6 +8,8 @@ package org.eclipselabs.damos.mscript.il;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,8 +31,7 @@ import org.eclipselabs.damos.mscript.Compound;
 public interface ComputationCompound extends Compound {
 	/**
 	 * Returns the value of the '<em><b>Inputs</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.il.InputVariableDeclaration}.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.il.InputVariableDeclaration#getFeedingCompounds <em>Feeding Compounds</em>}'.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.InputParameterDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Inputs</em>' reference list isn't clear,
@@ -39,15 +40,14 @@ public interface ComputationCompound extends Compound {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inputs</em>' reference list.
 	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getComputationCompound_Inputs()
-	 * @see org.eclipselabs.damos.mscript.il.InputVariableDeclaration#getFeedingCompounds
-	 * @model opposite="feedingCompounds"
+	 * @model
 	 * @generated
 	 */
-	EList<InputVariableDeclaration> getInputs();
+	EList<InputParameterDeclaration> getInputs();
 
 	/**
 	 * Returns the value of the '<em><b>Outputs</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.il.OutputVariableDeclaration}.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.OutputParameterDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outputs</em>' reference list isn't clear,
@@ -59,6 +59,6 @@ public interface ComputationCompound extends Compound {
 	 * @model
 	 * @generated
 	 */
-	EList<OutputVariableDeclaration> getOutputs();
+	EList<OutputParameterDeclaration> getOutputs();
 
 } // ComputationCompound

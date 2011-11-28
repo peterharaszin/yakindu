@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.mscript.il;
 
-import org.eclipselabs.damos.mscript.VariableDeclaration;
 
 
 /**
@@ -19,5 +18,5 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
  * @model
  * @generated
  */
-public interface TemplateVariableDeclaration extends VariableDeclaration {
+public interface TemplateVariableDeclaration extends VariableDeclarationInfo {
 } // TemplateVariableDeclaration

@@ -153,6 +153,11 @@ public class StaticExpressionEvaluator {
 			if (conditionValue instanceof InvalidValue) {
 				return InvalidValue.SINGLETON;
 			}
+			
+			if (!(conditionValue.getDataType() instanceof BooleanType)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "If expression condition must evaluate to boolean type", ifExpression.getCondition()));
+				return InvalidValue.SINGLETON;
+			}
 
 			if (ifExpression.isStatic()) {
 				if (conditionValue instanceof IBooleanValue) {
@@ -162,7 +167,7 @@ public class StaticExpressionEvaluator {
 					}
 					return evaluate(ifExpression.getElseExpression());
 				}
-				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Static if expression condition cannot be evaluated", ifExpression));
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Static if expression condition cannot be evaluated", ifExpression.getCondition()));
 				return InvalidValue.SINGLETON;
 			}
 
@@ -630,7 +635,11 @@ public class StaticExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseParenthesizedExpression(ParenthesizedExpression parenthesizedExpression) {
-			return evaluate(parenthesizedExpression.getExpressions().get(0));
+			EList<Expression> expressions = parenthesizedExpression.getExpressions();
+			if (expressions.isEmpty()) {
+				return InvalidValue.SINGLETON;
+			}
+			return evaluate(expressions.get(0));
 		}
 		
 		/* (non-Javadoc)

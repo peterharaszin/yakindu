@@ -10,12 +10,11 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.il.*;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
@@ -91,6 +90,10 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 				return createComputationCompoundAdapter();
 			}
 			@Override
+			public Adapter caseVariableDeclarationInfo(VariableDeclarationInfo object) {
+				return createVariableDeclarationInfoAdapter();
+			}
+			@Override
 			public Adapter caseStatefulVariableDeclaration(StatefulVariableDeclaration object) {
 				return createStatefulVariableDeclarationAdapter();
 			}
@@ -125,14 +128,6 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseEvaluable(Evaluable object) {
 				return createEvaluableAdapter();
-			}
-			@Override
-			public Adapter caseCallableElement(CallableElement object) {
-				return createCallableElementAdapter();
-			}
-			@Override
-			public Adapter caseVariableDeclaration(VariableDeclaration object) {
-				return createVariableDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseExpression(Expression object) {
@@ -215,16 +210,16 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.VariableDeclaration <em>Variable Declaration</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.VariableDeclarationInfo <em>Variable Declaration Info</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.VariableDeclaration
+	 * @see org.eclipselabs.damos.mscript.il.VariableDeclarationInfo
 	 * @generated
 	 */
-	public Adapter createVariableDeclarationAdapter() {
+	public Adapter createVariableDeclarationInfoAdapter() {
 		return null;
 	}
 
@@ -309,20 +304,6 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createInvalidExpressionAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.CallableElement <em>Callable Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.CallableElement
-	 * @generated
-	 */
-	public Adapter createCallableElementAdapter() {
 		return null;
 	}
 

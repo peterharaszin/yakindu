@@ -78,9 +78,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ParameterDeclaration" abstract="true"
-      eSuperTypes="#//CallableElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+      eSuperTypes="#//VariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="InputParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="OutputParameterDeclaration" eSuperTypes="#//ParameterDeclaration"/>

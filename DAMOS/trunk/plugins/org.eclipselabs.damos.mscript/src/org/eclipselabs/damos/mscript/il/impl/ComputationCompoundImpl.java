@@ -8,17 +8,13 @@ package org.eclipselabs.damos.mscript.il.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILPackage;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.impl.CompoundImpl;
 
 /**
@@ -44,7 +40,7 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InputVariableDeclaration> inputs;
+	protected EList<InputParameterDeclaration> inputs;
 
 	/**
 	 * The cached value of the '{@link #getOutputs() <em>Outputs</em>}' reference list.
@@ -54,7 +50,7 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OutputVariableDeclaration> outputs;
+	protected EList<OutputParameterDeclaration> outputs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,9 +76,9 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InputVariableDeclaration> getInputs() {
+	public EList<InputParameterDeclaration> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectWithInverseResolvingEList.ManyInverse<InputVariableDeclaration>(InputVariableDeclaration.class, this, ILPackage.COMPUTATION_COMPOUND__INPUTS, ILPackage.INPUT_VARIABLE_DECLARATION__FEEDING_COMPOUNDS);
+			inputs = new EObjectResolvingEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, ILPackage.COMPUTATION_COMPOUND__INPUTS);
 		}
 		return inputs;
 	}
@@ -92,40 +88,11 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OutputVariableDeclaration> getOutputs() {
+	public EList<OutputParameterDeclaration> getOutputs() {
 		if (outputs == null) {
-			outputs = new EObjectResolvingEList<OutputVariableDeclaration>(OutputVariableDeclaration.class, this, ILPackage.COMPUTATION_COMPOUND__OUTPUTS);
+			outputs = new EObjectResolvingEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, ILPackage.COMPUTATION_COMPOUND__OUTPUTS);
 		}
 		return outputs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ILPackage.COMPUTATION_COMPOUND__INPUTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInputs()).basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ILPackage.COMPUTATION_COMPOUND__INPUTS:
-				return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -155,11 +122,11 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 		switch (featureID) {
 			case ILPackage.COMPUTATION_COMPOUND__INPUTS:
 				getInputs().clear();
-				getInputs().addAll((Collection<? extends InputVariableDeclaration>)newValue);
+				getInputs().addAll((Collection<? extends InputParameterDeclaration>)newValue);
 				return;
 			case ILPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				getOutputs().clear();
-				getOutputs().addAll((Collection<? extends OutputVariableDeclaration>)newValue);
+				getOutputs().addAll((Collection<? extends OutputParameterDeclaration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

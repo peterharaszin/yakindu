@@ -17,6 +17,7 @@ import java.util.Map;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
@@ -31,6 +32,7 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	private Map<Evaluable, IValue> values = new HashMap<Evaluable, IValue>();
 	
 	private Map<VariableAccess, Integer> stepIndices = new HashMap<VariableAccess, Integer>();
+	private Map<VariableDeclaration, Integer> circularBufferSizes = new HashMap<VariableDeclaration, Integer>();
 	
 	private Map<FunctionDefinition, FunctionDescriptor> functionDescriptors = new HashMap<FunctionDefinition, FunctionDescriptor>();
 
@@ -65,6 +67,21 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	 */
 	public void setStepIndex(VariableAccess variableAccess, int stepIndex) {
 		stepIndices.put(variableAccess, stepIndex);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext#getCircularBufferSize(org.eclipselabs.damos.mscript.VariableDeclaration)
+	 */
+	public int getCircularBufferSize(VariableDeclaration variableDeclaration) {
+		Integer size = circularBufferSizes.get(variableDeclaration);
+		return size != null ? size : 0;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext#setCircularBufferSize(org.eclipselabs.damos.mscript.VariableDeclaration, int)
+	 */
+	public void setCircularBufferSize(VariableDeclaration variableDeclaration, int size) {
+		circularBufferSizes.put(variableDeclaration, size);
 	}
 	
 	/* (non-Javadoc)

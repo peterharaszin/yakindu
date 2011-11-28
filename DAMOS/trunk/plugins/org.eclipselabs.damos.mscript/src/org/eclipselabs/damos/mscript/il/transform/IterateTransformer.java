@@ -51,6 +51,9 @@ public class IterateTransformer implements IIterationCallTransformer {
 		context.getStaticEvaluationContext().setValue(transformedIterationVariable, iterationVariableValue);
 		transformedIterationVariable.setName(iterationVariable.getName());
 		
+		context.addVariableDeclarationMapping(iterationCall.getAccumulator(), accumulatorDeclaration);
+		context.addVariableDeclarationMapping(iterationVariable, transformedIterationVariable);
+		
 		StatusUtil.merge(status, new ExpressionTransformer(context).transform(
 				iterationCall.getAccumulator().getInitializer(),
 				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));
@@ -61,8 +64,6 @@ public class IterateTransformer implements IIterationCallTransformer {
 		Compound body = MscriptFactory.eINSTANCE.createCompound();
 		context.enterScope();
 		context.setCompound(body);
-		context.addVariableDeclaration(accumulatorDeclaration);
-		context.addVariableDeclaration(transformedIterationVariable);
 		StatusUtil.merge(status, new ExpressionTransformer(context).transform(
 				iterationCall.getExpression(),
 				Collections.singletonList(new ExpressionTarget(accumulatorDeclaration, 0))));

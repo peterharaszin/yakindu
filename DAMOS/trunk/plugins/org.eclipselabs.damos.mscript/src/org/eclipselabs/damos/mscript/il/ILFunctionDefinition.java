@@ -9,6 +9,7 @@ package org.eclipselabs.damos.mscript.il;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.FunctionDefinition;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +19,7 @@ import org.eclipselabs.damos.mscript.Compound;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getFunctionDefinition <em>Function Definition</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getTemplateVariableDeclarations <em>Template Variable Declarations</em>}</li>
@@ -34,6 +36,32 @@ import org.eclipselabs.damos.mscript.Compound;
  * @generated
  */
 public interface ILFunctionDefinition extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Function Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Function Definition</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Function Definition</em>' reference.
+	 * @see #setFunctionDefinition(FunctionDefinition)
+	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getILFunctionDefinition_FunctionDefinition()
+	 * @model required="true"
+	 * @generated
+	 */
+	FunctionDefinition getFunctionDefinition();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getFunctionDefinition <em>Function Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Function Definition</em>' reference.
+	 * @see #getFunctionDefinition()
+	 * @generated
+	 */
+	void setFunctionDefinition(FunctionDefinition value);
+
 	/**
 	 * Returns the value of the '<em><b>Stateful</b></em>' attribute.
 	 * <!-- begin-user-doc -->

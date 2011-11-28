@@ -12,8 +12,12 @@
 package org.eclipselabs.damos.mscript.il.util;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
 
@@ -23,14 +27,36 @@ import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
  */
 public class ILUtil {
 
-	public static List<InputVariableDeclaration> getDirectFeedthroughInputs(ILFunctionDefinition functionDefinition) {
-		List<InputVariableDeclaration> inputs = new ArrayList<InputVariableDeclaration>();
+	public static List<InputParameterDeclaration> getDirectFeedthroughInputs(ILFunctionDefinition functionDefinition) {
+		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>();
 		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
-			if (inputVariableDeclaration.isDirectFeedthrough()) {
-				inputs.add(inputVariableDeclaration);
+			if (isDirectFeedthrough(functionDefinition, inputVariableDeclaration.getVariableDeclaration())) {
+				inputs.add((InputParameterDeclaration) inputVariableDeclaration.getVariableDeclaration());
 			}
 		}
 		return inputs;
+	}
+
+	public static boolean isDirectFeedthrough(ILFunctionDefinition functionDefinition, VariableDeclaration variableDeclaration) {
+		for (ComputationCompound compound : getFeedingCompounds(functionDefinition, variableDeclaration)) {
+			if (!compound.getOutputs().isEmpty()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static List<ComputationCompound> getFeedingCompounds(ILFunctionDefinition functionDefinition, VariableDeclaration variableDeclaration) {
+		if (functionDefinition == null) {
+			return Collections.emptyList();
+		}
+		List<ComputationCompound> feedingCompounds = new ArrayList<ComputationCompound>();
+		for (ComputationCompound computationCompound : functionDefinition.getComputationCompounds()) {
+			if (computationCompound.getInputs().contains(variableDeclaration)) {
+				feedingCompounds.add(computationCompound);
+			}
+		}
+		return feedingCompounds;
 	}
 
 }

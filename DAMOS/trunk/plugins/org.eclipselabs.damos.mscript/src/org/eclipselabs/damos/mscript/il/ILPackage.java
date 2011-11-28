@@ -71,13 +71,22 @@ public interface ILPackage extends EPackage {
 	int IL_FUNCTION_DEFINITION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Function Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION = 0;
+
+	/**
 	 * The feature id for the '<em><b>Stateful</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__STATEFUL = 0;
+	int IL_FUNCTION_DEFINITION__STATEFUL = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -86,7 +95,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__NAME = 1;
+	int IL_FUNCTION_DEFINITION__NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Template Variable Declarations</b></em>' containment reference list.
@@ -95,7 +104,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__TEMPLATE_VARIABLE_DECLARATIONS = 2;
+	int IL_FUNCTION_DEFINITION__TEMPLATE_VARIABLE_DECLARATIONS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Input Variable Declarations</b></em>' containment reference list.
@@ -104,7 +113,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__INPUT_VARIABLE_DECLARATIONS = 3;
+	int IL_FUNCTION_DEFINITION__INPUT_VARIABLE_DECLARATIONS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Output Variable Declarations</b></em>' containment reference list.
@@ -113,7 +122,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__OUTPUT_VARIABLE_DECLARATIONS = 4;
+	int IL_FUNCTION_DEFINITION__OUTPUT_VARIABLE_DECLARATIONS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Instance Variable Declarations</b></em>' containment reference list.
@@ -122,7 +131,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__INSTANCE_VARIABLE_DECLARATIONS = 5;
+	int IL_FUNCTION_DEFINITION__INSTANCE_VARIABLE_DECLARATIONS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Initialization Compound</b></em>' containment reference.
@@ -131,7 +140,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND = 6;
+	int IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND = 7;
 
 	/**
 	 * The feature id for the '<em><b>Computation Compounds</b></em>' containment reference list.
@@ -140,7 +149,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS = 7;
+	int IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS = 8;
 
 	/**
 	 * The number of structural features of the '<em>Function Definition</em>' class.
@@ -149,7 +158,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION_FEATURE_COUNT = 8;
+	int IL_FUNCTION_DEFINITION_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.ComputationCompoundImpl <em>Computation Compound</em>}' class.
@@ -432,6 +441,17 @@ public interface ILPackage extends EPackage {
 	EClass getILFunctionDefinition();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getFunctionDefinition <em>Function Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Function Definition</em>'.
+	 * @see org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getFunctionDefinition()
+	 * @see #getILFunctionDefinition()
+	 * @generated
+	 */
+	EReference getILFunctionDefinition_FunctionDefinition();
+
+	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#isStateful <em>Stateful</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -674,6 +694,14 @@ public interface ILPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IL_FUNCTION_DEFINITION = eINSTANCE.getILFunctionDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Function Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION = eINSTANCE.getILFunctionDefinition_FunctionDefinition();
 
 		/**
 		 * The meta object literal for the '<em><b>Stateful</b></em>' attribute feature.

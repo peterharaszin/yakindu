@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
@@ -33,6 +34,7 @@ import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#getFunctionDefinition <em>Function Definition</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#isStateful <em>Stateful</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#getTemplateVariableDeclarations <em>Template Variable Declarations</em>}</li>
@@ -47,6 +49,16 @@ import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
  * @generated
  */
 public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionDefinition {
+	/**
+	 * The cached value of the '{@link #getFunctionDefinition() <em>Function Definition</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFunctionDefinition()
+	 * @generated
+	 * @ordered
+	 */
+	protected FunctionDefinition functionDefinition;
+
 	/**
 	 * The default value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -164,6 +176,44 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 	@Override
 	protected EClass eStaticClass() {
 		return ILPackage.Literals.IL_FUNCTION_DEFINITION;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FunctionDefinition getFunctionDefinition() {
+		if (functionDefinition != null && functionDefinition.eIsProxy()) {
+			InternalEObject oldFunctionDefinition = (InternalEObject)functionDefinition;
+			functionDefinition = (FunctionDefinition)eResolveProxy(oldFunctionDefinition);
+			if (functionDefinition != oldFunctionDefinition) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION, oldFunctionDefinition, functionDefinition));
+			}
+		}
+		return functionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FunctionDefinition basicGetFunctionDefinition() {
+		return functionDefinition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFunctionDefinition(FunctionDefinition newFunctionDefinition) {
+		FunctionDefinition oldFunctionDefinition = functionDefinition;
+		functionDefinition = newFunctionDefinition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION, oldFunctionDefinition, functionDefinition));
 	}
 
 	/**
@@ -343,6 +393,9 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
+				if (resolve) return getFunctionDefinition();
+				return basicGetFunctionDefinition();
 			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
 				return isStateful();
 			case ILPackage.IL_FUNCTION_DEFINITION__NAME:
@@ -372,6 +425,9 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
+				setFunctionDefinition((FunctionDefinition)newValue);
+				return;
 			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
 				setStateful((Boolean)newValue);
 				return;
@@ -413,6 +469,9 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
+				setFunctionDefinition((FunctionDefinition)null);
+				return;
 			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
 				setStateful(STATEFUL_EDEFAULT);
 				return;
@@ -449,6 +508,8 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
+				return functionDefinition != null;
 			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
 				return stateful != STATEFUL_EDEFAULT;
 			case ILPackage.IL_FUNCTION_DEFINITION__NAME:

@@ -32,10 +32,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="variableDeclaration" eType="ecore:EClass Mscript.ecore#//VariableDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatefulVariableDeclaration" abstract="true"
-      eSuperTypes="#//VariableDeclarationInfo">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="circularBufferSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
-        defaultValueLiteral="1"/>
-  </eClassifiers>
+      eSuperTypes="#//VariableDeclarationInfo"/>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateVariableDeclaration" eSuperTypes="#//VariableDeclarationInfo"/>
   <eClassifiers xsi:type="ecore:EClass" name="InputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="OutputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>

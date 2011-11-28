@@ -254,22 +254,13 @@ public interface ILPackage extends EPackage {
 	int STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION = VARIABLE_DECLARATION_INFO__VARIABLE_DECLARATION;
 
 	/**
-	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = VARIABLE_DECLARATION_INFO_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Stateful Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_INFO_FEATURE_COUNT + 1;
+	int STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_INFO_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.TemplateVariableDeclarationImpl <em>Template Variable Declaration</em>}' class.
@@ -319,15 +310,6 @@ public interface ILPackage extends EPackage {
 	int INPUT_VARIABLE_DECLARATION__VARIABLE_DECLARATION = STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION;
 
 	/**
-	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INPUT_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE;
-
-	/**
 	 * The number of structural features of the '<em>Input Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -356,15 +338,6 @@ public interface ILPackage extends EPackage {
 	int OUTPUT_VARIABLE_DECLARATION__VARIABLE_DECLARATION = STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION;
 
 	/**
-	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OUTPUT_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE;
-
-	/**
 	 * The number of structural features of the '<em>Output Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -391,15 +364,6 @@ public interface ILPackage extends EPackage {
 	 * @ordered
 	 */
 	int INSTANCE_VARIABLE_DECLARATION__VARIABLE_DECLARATION = STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION;
-
-	/**
-	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE;
 
 	/**
 	 * The number of structural features of the '<em>Instance Variable Declaration</em>' class.
@@ -601,17 +565,6 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getStatefulVariableDeclaration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration#getCircularBufferSize <em>Circular Buffer Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Circular Buffer Size</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration#getCircularBufferSize()
-	 * @see #getStatefulVariableDeclaration()
-	 * @generated
-	 */
-	EAttribute getStatefulVariableDeclaration_CircularBufferSize();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration <em>Template Variable Declaration</em>}'.
@@ -820,14 +773,6 @@ public interface ILPackage extends EPackage {
 		 * @generated
 		 */
 		EClass STATEFUL_VARIABLE_DECLARATION = eINSTANCE.getStatefulVariableDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Circular Buffer Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = eINSTANCE.getStatefulVariableDeclaration_CircularBufferSize();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.TemplateVariableDeclarationImpl <em>Template Variable Declaration</em>}' class.

@@ -307,15 +307,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getStatefulVariableDeclaration_CircularBufferSize() {
-		return (EAttribute)statefulVariableDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getTemplateVariableDeclaration() {
 		return templateVariableDeclarationEClass;
 	}
@@ -403,7 +394,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		createEReference(variableDeclarationInfoEClass, VARIABLE_DECLARATION_INFO__VARIABLE_DECLARATION);
 
 		statefulVariableDeclarationEClass = createEClass(STATEFUL_VARIABLE_DECLARATION);
-		createEAttribute(statefulVariableDeclarationEClass, STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE);
 
 		templateVariableDeclarationEClass = createEClass(TEMPLATE_VARIABLE_DECLARATION);
 
@@ -475,7 +465,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		initEReference(getVariableDeclarationInfo_VariableDeclaration(), theMscriptPackage.getVariableDeclaration(), null, "variableDeclaration", null, 0, 1, VariableDeclarationInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statefulVariableDeclarationEClass, StatefulVariableDeclaration.class, "StatefulVariableDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getStatefulVariableDeclaration_CircularBufferSize(), ecorePackage.getEInt(), "circularBufferSize", "1", 0, 1, StatefulVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(templateVariableDeclarationEClass, TemplateVariableDeclaration.class, "TemplateVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

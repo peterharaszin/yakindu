@@ -44,51 +44,6 @@ public interface ILFactory extends EFactory {
 	ComputationCompound createComputationCompound();
 
 	/**
-	 * Returns a new object of class '<em>Variable Declaration Info</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Declaration Info</em>'.
-	 * @generated
-	 */
-	VariableDeclarationInfo createVariableDeclarationInfo();
-
-	/**
-	 * Returns a new object of class '<em>Template Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Template Variable Declaration</em>'.
-	 * @generated
-	 */
-	TemplateVariableDeclaration createTemplateVariableDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Input Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Input Variable Declaration</em>'.
-	 * @generated
-	 */
-	InputVariableDeclaration createInputVariableDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Output Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Output Variable Declaration</em>'.
-	 * @generated
-	 */
-	OutputVariableDeclaration createOutputVariableDeclaration();
-
-	/**
-	 * Returns a new object of class '<em>Instance Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Instance Variable Declaration</em>'.
-	 * @generated
-	 */
-	InstanceVariableDeclaration createInstanceVariableDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Invalid Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

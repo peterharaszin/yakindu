@@ -29,8 +29,10 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
@@ -39,8 +41,6 @@ import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.damos.mscript.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.damos.mscript.interpreter.CompoundInterpreter;
@@ -167,19 +167,19 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeInputVariables() throws CoreException {
-		inputVariables = new IVariable[functionObject.getFunctionDefinition().getInputVariableDeclarations().size()];
+		inputVariables = new IVariable[functionObject.getFunctionDefinition().getFunctionDefinition().getInputParameterDeclarations().size()];
 		multiPortInput = new boolean[inputVariables.length];
 		
 		int i = 0;
-		for (InputVariableDeclaration inputVariableDeclaration : functionObject.getFunctionDefinition().getInputVariableDeclarations()) {
-			IVariable variable = functionObject.getVariable(inputVariableDeclaration.getVariableDeclaration());
+		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getInputParameterDeclarations()) {
+			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			
 			int inputIndex = hasInputSockets ? i - 1 : i;
 			if (inputIndex >= 0) {
 				BlockInput input = (BlockInput) getComponent().getInputs().get(inputIndex);
 				
 				if (input.getDefinition().isManyPorts() || input.getDefinition().getMinimumPortCount() == 0) {
-					initializeArrayVariable(inputVariableDeclaration.getVariableDeclaration(), variable);
+					initializeArrayVariable(inputParameterDeclaration, variable);
 					multiPortInput[i] = true;
 				}
 			}
@@ -190,17 +190,17 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeOutputVariables() throws CoreException {
-		outputVariables = new IVariable[functionObject.getFunctionDefinition().getOutputVariableDeclarations().size()];
+		outputVariables = new IVariable[functionObject.getFunctionDefinition().getFunctionDefinition().getOutputParameterDeclarations().size()];
 		multiPortOutput = new boolean[outputVariables.length];
 
 		int i = 0;
-		for (OutputVariableDeclaration outputVariableDeclaration : functionObject.getFunctionDefinition().getOutputVariableDeclarations()) {
-			IVariable variable = functionObject.getVariable(outputVariableDeclaration.getVariableDeclaration());
+		for (OutputParameterDeclaration outputParameterDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getOutputParameterDeclarations()) {
+			IVariable variable = functionObject.getVariable(outputParameterDeclaration);
 			
 			BlockOutput output = (BlockOutput) getComponent().getOutputs().get(i);
 			
 			if (output.getDefinition().isManyPorts() || output.getDefinition().getMinimumPortCount() == 0) {
-				initializeArrayVariable(outputVariableDeclaration.getVariableDeclaration(), variable);
+				initializeArrayVariable(outputParameterDeclaration, variable);
 				multiPortOutput[i] = true;
 			}
 			

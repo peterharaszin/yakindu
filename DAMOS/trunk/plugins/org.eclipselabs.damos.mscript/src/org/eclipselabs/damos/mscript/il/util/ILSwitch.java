@@ -13,16 +13,10 @@ import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.il.*;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -95,50 +89,6 @@ public class ILSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ILPackage.VARIABLE_DECLARATION_INFO: {
-				VariableDeclarationInfo variableDeclarationInfo = (VariableDeclarationInfo)theEObject;
-				T result = caseVariableDeclarationInfo(variableDeclarationInfo);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ILPackage.STATEFUL_VARIABLE_DECLARATION: {
-				StatefulVariableDeclaration statefulVariableDeclaration = (StatefulVariableDeclaration)theEObject;
-				T result = caseStatefulVariableDeclaration(statefulVariableDeclaration);
-				if (result == null) result = caseVariableDeclarationInfo(statefulVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ILPackage.TEMPLATE_VARIABLE_DECLARATION: {
-				TemplateVariableDeclaration templateVariableDeclaration = (TemplateVariableDeclaration)theEObject;
-				T result = caseTemplateVariableDeclaration(templateVariableDeclaration);
-				if (result == null) result = caseVariableDeclarationInfo(templateVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ILPackage.INPUT_VARIABLE_DECLARATION: {
-				InputVariableDeclaration inputVariableDeclaration = (InputVariableDeclaration)theEObject;
-				T result = caseInputVariableDeclaration(inputVariableDeclaration);
-				if (result == null) result = caseStatefulVariableDeclaration(inputVariableDeclaration);
-				if (result == null) result = caseVariableDeclarationInfo(inputVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ILPackage.OUTPUT_VARIABLE_DECLARATION: {
-				OutputVariableDeclaration outputVariableDeclaration = (OutputVariableDeclaration)theEObject;
-				T result = caseOutputVariableDeclaration(outputVariableDeclaration);
-				if (result == null) result = caseStatefulVariableDeclaration(outputVariableDeclaration);
-				if (result == null) result = caseVariableDeclarationInfo(outputVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ILPackage.INSTANCE_VARIABLE_DECLARATION: {
-				InstanceVariableDeclaration instanceVariableDeclaration = (InstanceVariableDeclaration)theEObject;
-				T result = caseInstanceVariableDeclaration(instanceVariableDeclaration);
-				if (result == null) result = caseStatefulVariableDeclaration(instanceVariableDeclaration);
-				if (result == null) result = caseVariableDeclarationInfo(instanceVariableDeclaration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ILPackage.INVALID_EXPRESSION: {
 				InvalidExpression invalidExpression = (InvalidExpression)theEObject;
 				T result = caseInvalidExpression(invalidExpression);
@@ -208,96 +158,6 @@ public class ILSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseComputationCompound(ComputationCompound object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration Info</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration Info</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseVariableDeclarationInfo(VariableDeclarationInfo object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Stateful Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Stateful Variable Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseStatefulVariableDeclaration(StatefulVariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Template Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Template Variable Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseTemplateVariableDeclaration(TemplateVariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Input Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Input Variable Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInputVariableDeclaration(InputVariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Output Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Output Variable Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOutputVariableDeclaration(OutputVariableDeclaration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Instance Variable Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Instance Variable Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInstanceVariableDeclaration(InstanceVariableDeclaration object) {
 		return null;
 	}
 

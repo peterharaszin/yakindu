@@ -16,9 +16,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -42,8 +42,8 @@ public class Interpreter implements IInterpreter {
 	 */
 	public List<IValue> execute(IInterpreterContext context, IFunctionObject functionObject, List<IValue> inputValues) {
 		Iterator<IValue> inputValueIterator = inputValues.iterator();
-		for (InputVariableDeclaration inputVariableDeclaration : functionObject.getFunctionDefinition().getInputVariableDeclarations()) {
-			IVariable variable = functionObject.getVariable(inputVariableDeclaration.getVariableDeclaration());
+		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getInputParameterDeclarations()) {
+			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			variable.setValue(0, inputValueIterator.next());
 		}
 		
@@ -54,8 +54,8 @@ public class Interpreter implements IInterpreter {
 		}
 		
 		List<IValue> outputValues = new ArrayList<IValue>();
-		for (OutputVariableDeclaration outputVariableDeclaration : functionObject.getFunctionDefinition().getOutputVariableDeclarations()) {
-			outputValues.add(functionObject.getVariable(outputVariableDeclaration.getVariableDeclaration()).getValue(0));
+		for (OutputParameterDeclaration outputVariableDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getOutputParameterDeclarations()) {
+			outputValues.add(functionObject.getVariable(outputVariableDeclaration).getValue(0));
 		}
 		
 		return outputValues;

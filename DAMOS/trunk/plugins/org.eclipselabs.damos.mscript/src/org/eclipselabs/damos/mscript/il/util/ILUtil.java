@@ -19,7 +19,6 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
 
 /**
  * @author Andreas Unger
@@ -29,9 +28,9 @@ public class ILUtil {
 
 	public static List<InputParameterDeclaration> getDirectFeedthroughInputs(ILFunctionDefinition functionDefinition) {
 		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>();
-		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
-			if (isDirectFeedthrough(functionDefinition, inputVariableDeclaration.getVariableDeclaration())) {
-				inputs.add((InputParameterDeclaration) inputVariableDeclaration.getVariableDeclaration());
+		for (InputParameterDeclaration inputParameterDeclaration : functionDefinition.getFunctionDefinition().getInputParameterDeclarations()) {
+			if (isDirectFeedthrough(functionDefinition, inputParameterDeclaration)) {
+				inputs.add((InputParameterDeclaration) inputParameterDeclaration);
 			}
 		}
 		return inputs;

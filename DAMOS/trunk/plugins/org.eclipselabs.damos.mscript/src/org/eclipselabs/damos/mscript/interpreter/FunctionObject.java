@@ -16,12 +16,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
+import org.eclipselabs.damos.mscript.StateVariableDeclaration;
+import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.interpreter.value.Values;
 
@@ -44,23 +44,23 @@ public class FunctionObject implements IFunctionObject {
 		FunctionObject functionObject = new FunctionObject();
 		functionObject.functionDefinition = functionDefinition;
 		
-		for (TemplateVariableDeclaration declaration : functionDefinition.getTemplateVariableDeclarations()) {
-			IVariable variable = new Variable(context, declaration.getVariableDeclaration());
-			IValue value = context.getStaticEvaluationContext().getValue(declaration.getVariableDeclaration());
+		for (TemplateParameterDeclaration declaration : functionDefinition.getFunctionDefinition().getTemplateParameterDeclarations()) {
+			IVariable variable = new Variable(context, declaration);
+			IValue value = context.getStaticEvaluationContext().getValue(declaration);
 			variable.setValue(0, Values.transform(context.getComputationContext(), value));
-			functionObject.variables.put(declaration.getVariableDeclaration(), variable);
+			functionObject.variables.put(declaration, variable);
 		}
 		
-		for (InputVariableDeclaration declaration : functionDefinition.getInputVariableDeclarations()) {
-			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), context.getStaticEvaluationContext().getCircularBufferSize(declaration.getVariableDeclaration())));
+		for (InputParameterDeclaration declaration : functionDefinition.getFunctionDefinition().getInputParameterDeclarations()) {
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationContext().getCircularBufferSize(declaration)));
 		}
 		
-		for (OutputVariableDeclaration declaration : functionDefinition.getOutputVariableDeclarations()) {
-			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), context.getStaticEvaluationContext().getCircularBufferSize(declaration.getVariableDeclaration())));
+		for (OutputParameterDeclaration declaration : functionDefinition.getFunctionDefinition().getOutputParameterDeclarations()) {
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationContext().getCircularBufferSize(declaration)));
 		}
 		
-		for (InstanceVariableDeclaration declaration : functionDefinition.getInstanceVariableDeclarations()) {
-			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), context.getStaticEvaluationContext().getCircularBufferSize(declaration.getVariableDeclaration())));
+		for (StateVariableDeclaration declaration : functionDefinition.getFunctionDefinition().getStateVariableDeclarations()) {
+			functionObject.variables.put(declaration, new Variable(context, declaration, context.getStaticEvaluationContext().getCircularBufferSize(declaration)));
 		}
 		
 		return functionObject;

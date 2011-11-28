@@ -9,14 +9,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateful" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="templateVariableDeclarations"
-        upperBound="-1" eType="#//TemplateVariableDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inputVariableDeclarations"
-        upperBound="-1" eType="#//InputVariableDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="outputVariableDeclarations"
-        upperBound="-1" eType="#//OutputVariableDeclaration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceVariableDeclarations"
-        upperBound="-1" eType="#//InstanceVariableDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializationCompound"
         eType="ecore:EClass Mscript.ecore#//Compound" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="computationCompounds" upperBound="-1"
@@ -28,14 +20,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
         eType="ecore:EClass Mscript.ecore#//OutputParameterDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclarationInfo">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="variableDeclaration" eType="ecore:EClass Mscript.ecore#//VariableDeclaration"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StatefulVariableDeclaration" abstract="true"
-      eSuperTypes="#//VariableDeclarationInfo"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateVariableDeclaration" eSuperTypes="#//VariableDeclarationInfo"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OutputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InstanceVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidExpression" eSuperTypes="Mscript.ecore#//Expression"/>
 </ecore:EPackage>

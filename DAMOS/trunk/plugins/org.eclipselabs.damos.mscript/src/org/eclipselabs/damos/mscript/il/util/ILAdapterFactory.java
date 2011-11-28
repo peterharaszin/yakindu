@@ -14,16 +14,10 @@ import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.il.*;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,30 +82,6 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseComputationCompound(ComputationCompound object) {
 				return createComputationCompoundAdapter();
-			}
-			@Override
-			public Adapter caseVariableDeclarationInfo(VariableDeclarationInfo object) {
-				return createVariableDeclarationInfoAdapter();
-			}
-			@Override
-			public Adapter caseStatefulVariableDeclaration(StatefulVariableDeclaration object) {
-				return createStatefulVariableDeclarationAdapter();
-			}
-			@Override
-			public Adapter caseTemplateVariableDeclaration(TemplateVariableDeclaration object) {
-				return createTemplateVariableDeclarationAdapter();
-			}
-			@Override
-			public Adapter caseInputVariableDeclaration(InputVariableDeclaration object) {
-				return createInputVariableDeclarationAdapter();
-			}
-			@Override
-			public Adapter caseOutputVariableDeclaration(OutputVariableDeclaration object) {
-				return createOutputVariableDeclarationAdapter();
-			}
-			@Override
-			public Adapter caseInstanceVariableDeclaration(InstanceVariableDeclaration object) {
-				return createInstanceVariableDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseInvalidExpression(InvalidExpression object) {
@@ -206,90 +176,6 @@ public class ILAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComputationCompoundAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.VariableDeclarationInfo <em>Variable Declaration Info</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.VariableDeclarationInfo
-	 * @generated
-	 */
-	public Adapter createVariableDeclarationInfoAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration <em>Stateful Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration
-	 * @generated
-	 */
-	public Adapter createStatefulVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration <em>Template Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration
-	 * @generated
-	 */
-	public Adapter createTemplateVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.InputVariableDeclaration <em>Input Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.InputVariableDeclaration
-	 * @generated
-	 */
-	public Adapter createInputVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.OutputVariableDeclaration <em>Output Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.OutputVariableDeclaration
-	 * @generated
-	 */
-	public Adapter createOutputVariableDeclarationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration <em>Instance Variable Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration
-	 * @generated
-	 */
-	public Adapter createInstanceVariableDeclarationAdapter() {
 		return null;
 	}
 

@@ -15,12 +15,7 @@ import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFactory;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
-import org.eclipselabs.damos.mscript.il.InputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
-import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
-import org.eclipselabs.damos.mscript.il.VariableDeclarationInfo;
 
 /**
  * <!-- begin-user-doc -->
@@ -68,11 +63,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 		switch (eClass.getClassifierID()) {
 			case ILPackage.IL_FUNCTION_DEFINITION: return createILFunctionDefinition();
 			case ILPackage.COMPUTATION_COMPOUND: return createComputationCompound();
-			case ILPackage.VARIABLE_DECLARATION_INFO: return createVariableDeclarationInfo();
-			case ILPackage.TEMPLATE_VARIABLE_DECLARATION: return createTemplateVariableDeclaration();
-			case ILPackage.INPUT_VARIABLE_DECLARATION: return createInputVariableDeclaration();
-			case ILPackage.OUTPUT_VARIABLE_DECLARATION: return createOutputVariableDeclaration();
-			case ILPackage.INSTANCE_VARIABLE_DECLARATION: return createInstanceVariableDeclaration();
 			case ILPackage.INVALID_EXPRESSION: return createInvalidExpression();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -97,56 +87,6 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	public ComputationCompound createComputationCompound() {
 		ComputationCompoundImpl computationCompound = new ComputationCompoundImpl();
 		return computationCompound;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public VariableDeclarationInfo createVariableDeclarationInfo() {
-		VariableDeclarationInfoImpl variableDeclarationInfo = new VariableDeclarationInfoImpl();
-		return variableDeclarationInfo;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TemplateVariableDeclaration createTemplateVariableDeclaration() {
-		TemplateVariableDeclarationImpl templateVariableDeclaration = new TemplateVariableDeclarationImpl();
-		return templateVariableDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InputVariableDeclaration createInputVariableDeclaration() {
-		InputVariableDeclarationImpl inputVariableDeclaration = new InputVariableDeclarationImpl();
-		return inputVariableDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OutputVariableDeclaration createOutputVariableDeclaration() {
-		OutputVariableDeclarationImpl outputVariableDeclaration = new OutputVariableDeclarationImpl();
-		return outputVariableDeclaration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public InstanceVariableDeclaration createInstanceVariableDeclaration() {
-		InstanceVariableDeclarationImpl instanceVariableDeclaration = new InstanceVariableDeclarationImpl();
-		return instanceVariableDeclaration;
 	}
 
 	/**

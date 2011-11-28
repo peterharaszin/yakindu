@@ -84,12 +84,12 @@ public class MscriptGenerator {
 	public void generateContextStructure() {
 		out.printf("typedef struct {\n");
 		for (InputVariableDeclaration inputVariableDeclaration : functionDefinition.getInputVariableDeclarations()) {
-			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
+			if (context.getStaticEvaluationContext().getCircularBufferSize(inputVariableDeclaration.getVariableDeclaration()) > 1) {
 				writeContextStructureMember(inputVariableDeclaration);
 			}
 		}
 		for (OutputVariableDeclaration outputVariableDeclaration : functionDefinition.getOutputVariableDeclarations()) {
-			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
+			if (context.getStaticEvaluationContext().getCircularBufferSize(outputVariableDeclaration.getVariableDeclaration()) > 1) {
 				writeContextStructureMember(outputVariableDeclaration);
 			}
 		}
@@ -102,8 +102,8 @@ public class MscriptGenerator {
 	private void writeContextStructureMember(StatefulVariableDeclaration variableDeclaration) {
 		String name = variableDeclaration.getVariableDeclaration().getName();
 		DataType dataType = getDataType(variableDeclaration.getVariableDeclaration());
-		if (variableDeclaration.getCircularBufferSize() > 1) {
-			int bufferSize = variableDeclaration.getCircularBufferSize();
+		if (context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration.getVariableDeclaration()) > 1) {
+			int bufferSize = context.getStaticEvaluationContext().getCircularBufferSize(variableDeclaration.getVariableDeclaration());
 			out.printf("%s[%d];\n",
 					MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), dataType, name, false),
 					bufferSize);
@@ -183,7 +183,7 @@ public class MscriptGenerator {
 
 	private void generateInitializeIndexStatements(List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
-			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
+			if (context.getStaticEvaluationContext().getCircularBufferSize(statefulVariableDeclaration.getVariableDeclaration()) > 1) {
 				out.printf("context->%s_index = 0;\n", statefulVariableDeclaration.getVariableDeclaration().getName());
 			}
 		}
@@ -222,7 +222,7 @@ public class MscriptGenerator {
 		}
 		
 		for (OutputVariableDeclaration outputVariableDeclaration : functionDefinition.getOutputVariableDeclarations()) {
-			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
+			if (context.getStaticEvaluationContext().getCircularBufferSize(outputVariableDeclaration.getVariableDeclaration()) > 1) {
 				String name = outputVariableDeclaration.getVariableDeclaration().getName();
 				out.printf("context->%s[context->%s_index] = *%s;\n", name, name, name);
 			}
@@ -279,9 +279,9 @@ public class MscriptGenerator {
 	 */
 	private void generateUpdateIndexStatements(List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
-			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
+			if (context.getStaticEvaluationContext().getCircularBufferSize(statefulVariableDeclaration.getVariableDeclaration()) > 1) {
 				String name = statefulVariableDeclaration.getVariableDeclaration().getName();
-				out.printf("context->%s_index = (context->%s_index + 1) %% %d;\n", name, name, statefulVariableDeclaration.getCircularBufferSize());
+				out.printf("context->%s_index = (context->%s_index + 1) %% %d;\n", name, name, context.getStaticEvaluationContext().getCircularBufferSize(statefulVariableDeclaration.getVariableDeclaration()));
 			}
 		}
 	}

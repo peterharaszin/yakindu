@@ -52,15 +52,15 @@ public class FunctionObject implements IFunctionObject {
 		}
 		
 		for (InputVariableDeclaration declaration : functionDefinition.getInputVariableDeclarations()) {
-			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), declaration.getCircularBufferSize()));
+			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), context.getStaticEvaluationContext().getCircularBufferSize(declaration.getVariableDeclaration())));
 		}
 		
 		for (OutputVariableDeclaration declaration : functionDefinition.getOutputVariableDeclarations()) {
-			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), declaration.getCircularBufferSize()));
+			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), context.getStaticEvaluationContext().getCircularBufferSize(declaration.getVariableDeclaration())));
 		}
 		
 		for (InstanceVariableDeclaration declaration : functionDefinition.getInstanceVariableDeclarations()) {
-			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), declaration.getCircularBufferSize()));
+			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), context.getStaticEvaluationContext().getCircularBufferSize(declaration.getVariableDeclaration())));
 		}
 		
 		return functionObject;

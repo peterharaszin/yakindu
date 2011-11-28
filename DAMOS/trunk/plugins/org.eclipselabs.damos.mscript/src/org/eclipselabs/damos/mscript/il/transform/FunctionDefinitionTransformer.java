@@ -120,7 +120,6 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
-				inputVariableDeclaration.setCircularBufferSize(circularBufferSize);
 				staticEvaluationContext.setCircularBufferSize(parameterDeclaration, circularBufferSize);
 				variableDeclarations.put(variableDescriptor, parameterDeclaration);
 			}
@@ -133,7 +132,6 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
-				outputVariableDeclaration.setCircularBufferSize(circularBufferSize);
 				staticEvaluationContext.setCircularBufferSize(parameterDeclaration, circularBufferSize);
 				IValue value = staticEvaluationContext.getValue(parameterDeclaration);
 				if (value != null) {
@@ -150,7 +148,6 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(stateVariableDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = variableDescriptor.getMaximumStep().getIndex() - variableDescriptor.getMinimumStep().getIndex() + 1;
-				instanceVariableDeclaration.setCircularBufferSize(circularBufferSize);
 				staticEvaluationContext.setCircularBufferSize(stateVariableDeclaration, circularBufferSize);
 				IValue value = staticEvaluationContext.getValue(stateVariableDeclaration);
 				if (value != null) {

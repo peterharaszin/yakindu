@@ -138,12 +138,12 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		PrintAppendable out = new PrintAppendable(appendable);
 		out.println("typedef struct {");
 		for (InputVariableDeclaration inputVariableDeclaration: ilFunctionDefinition.getInputVariableDeclarations()) {
-			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
+			if (staticEvaluationContext.getCircularBufferSize(inputVariableDeclaration.getVariableDeclaration()) > 1) {
 				writeContextStructureMember(out, monitor, inputVariableDeclaration);
 			}
 		}
 		for (OutputVariableDeclaration outputVariableDeclaration: ilFunctionDefinition.getOutputVariableDeclarations()) {
-			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
+			if (staticEvaluationContext.getCircularBufferSize(outputVariableDeclaration.getVariableDeclaration()) > 1) {
 				writeContextStructureMember(out, monitor, outputVariableDeclaration);
 			}
 		}
@@ -160,8 +160,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private void writeContextStructureMember(PrintAppendable out, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
 		String name = variableDeclaration.getVariableDeclaration().getName();
 		DataType dataType = staticEvaluationContext.getValue(variableDeclaration.getVariableDeclaration()).getDataType();
-		if (variableDeclaration.getCircularBufferSize() > 1) {
-			int bufferSize = variableDeclaration.getCircularBufferSize();
+		if (staticEvaluationContext.getCircularBufferSize(variableDeclaration.getVariableDeclaration()) > 1) {
+			int bufferSize = staticEvaluationContext.getCircularBufferSize(variableDeclaration.getVariableDeclaration());
 			out.printf("%s[%d];\n",
 					MscriptGeneratorUtil.getCVariableDeclaration(getComputationModel(), dataType, name, false),
 					bufferSize);
@@ -197,7 +197,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private void writeInitializeIndexStatements(PrintAppendable out, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
-			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
+			if (staticEvaluationContext.getCircularBufferSize(statefulVariableDeclaration.getVariableDeclaration()) > 1) {
 				out.printf("%s.%s_index = 0;\n", contextVariable, statefulVariableDeclaration.getVariableDeclaration().getName());
 			}
 		}
@@ -240,7 +240,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (OutputVariableDeclaration outputVariableDeclaration : ilFunctionDefinition.getOutputVariableDeclarations()) {
-			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
+			if (staticEvaluationContext.getCircularBufferSize(outputVariableDeclaration.getVariableDeclaration()) > 1) {
 				String name = outputVariableDeclaration.getVariableDeclaration().getName();
 				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputParameterAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), (OutputParameterDeclaration) outputVariableDeclaration.getVariableDeclaration()));
 			}
@@ -273,7 +273,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		List<InputParameterDeclaration> computeOutputsCodeInputs = ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition);
 		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
-			if (inputVariableDeclaration.getCircularBufferSize() > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration.getVariableDeclaration())) {
+			if (staticEvaluationContext.getCircularBufferSize(inputVariableDeclaration.getVariableDeclaration()) > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration.getVariableDeclaration())) {
 				writeUpdateInputContextStatement(out, (InputParameterDeclaration) inputVariableDeclaration.getVariableDeclaration());
 			}
 		}
@@ -286,9 +286,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	private void writeUpdateIndexStatements(PrintAppendable out, List<? extends StatefulVariableDeclaration> statefulVariableDeclarations) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
-			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
+			if (staticEvaluationContext.getCircularBufferSize(statefulVariableDeclaration.getVariableDeclaration()) > 1) {
 				String name = statefulVariableDeclaration.getVariableDeclaration().getName();
-				out.printf("%s.%s_index = (%s.%s_index + 1) %% %d;\n", contextVariable, name, contextVariable, name, statefulVariableDeclaration.getCircularBufferSize());
+				out.printf("%s.%s_index = (%s.%s_index + 1) %% %d;\n", contextVariable, name, contextVariable, name, staticEvaluationContext.getCircularBufferSize(statefulVariableDeclaration.getVariableDeclaration()));
 			}
 		}
 	}

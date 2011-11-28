@@ -44,6 +44,15 @@ public interface ILFactory extends EFactory {
 	ComputationCompound createComputationCompound();
 
 	/**
+	 * Returns a new object of class '<em>Variable Declaration Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Variable Declaration Info</em>'.
+	 * @generated
+	 */
+	VariableDeclarationInfo createVariableDeclarationInfo();
+
+	/**
 	 * Returns a new object of class '<em>Template Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

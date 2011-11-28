@@ -577,7 +577,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DECLARATION__NAME = CALLABLE_ELEMENT_FEATURE_COUNT + 0;
+	int PARAMETER_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
 
 	/**
 	 * The number of structural features of the '<em>Parameter Declaration</em>' class.
@@ -586,7 +586,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_DECLARATION_FEATURE_COUNT = CALLABLE_ELEMENT_FEATURE_COUNT + 1;
+	int PARAMETER_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.TemplateParameterDeclarationImpl <em>Template Parameter Declaration</em>}' class.
@@ -4247,17 +4247,6 @@ public interface MscriptPackage extends EPackage {
 	EClass getParameterDeclaration();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.ParameterDeclaration#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.ParameterDeclaration#getName()
-	 * @see #getParameterDeclaration()
-	 * @generated
-	 */
-	EAttribute getParameterDeclaration_Name();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.TemplateParameterDeclaration <em>Template Parameter Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -7052,14 +7041,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PARAMETER_DECLARATION = eINSTANCE.getParameterDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PARAMETER_DECLARATION__NAME = eINSTANCE.getParameterDeclaration_Name();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.TemplateParameterDeclarationImpl <em>Template Parameter Declaration</em>}' class.

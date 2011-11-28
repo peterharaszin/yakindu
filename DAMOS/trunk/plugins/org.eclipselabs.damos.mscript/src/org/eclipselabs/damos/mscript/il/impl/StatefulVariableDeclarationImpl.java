@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.mscript.il.ILPackage;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
-import org.eclipselabs.damos.mscript.impl.VariableDeclarationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,7 @@ import org.eclipselabs.damos.mscript.impl.VariableDeclarationImpl;
  *
  * @generated
  */
-public abstract class StatefulVariableDeclarationImpl extends VariableDeclarationImpl implements StatefulVariableDeclaration {
+public abstract class StatefulVariableDeclarationImpl extends VariableDeclarationInfoImpl implements StatefulVariableDeclaration {
 	/**
 	 * The default value of the '{@link #getCircularBufferSize() <em>Circular Buffer Size</em>}' attribute.
 	 * <!-- begin-user-doc -->

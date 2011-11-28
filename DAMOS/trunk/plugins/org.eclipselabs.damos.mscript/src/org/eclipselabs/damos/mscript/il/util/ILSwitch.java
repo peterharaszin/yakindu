@@ -9,12 +9,11 @@ package org.eclipselabs.damos.mscript.il.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.il.*;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.ILPackage;
@@ -96,21 +95,23 @@ public class ILSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ILPackage.VARIABLE_DECLARATION_INFO: {
+				VariableDeclarationInfo variableDeclarationInfo = (VariableDeclarationInfo)theEObject;
+				T result = caseVariableDeclarationInfo(variableDeclarationInfo);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case ILPackage.STATEFUL_VARIABLE_DECLARATION: {
 				StatefulVariableDeclaration statefulVariableDeclaration = (StatefulVariableDeclaration)theEObject;
 				T result = caseStatefulVariableDeclaration(statefulVariableDeclaration);
-				if (result == null) result = caseVariableDeclaration(statefulVariableDeclaration);
-				if (result == null) result = caseCallableElement(statefulVariableDeclaration);
-				if (result == null) result = caseEvaluable(statefulVariableDeclaration);
+				if (result == null) result = caseVariableDeclarationInfo(statefulVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ILPackage.TEMPLATE_VARIABLE_DECLARATION: {
 				TemplateVariableDeclaration templateVariableDeclaration = (TemplateVariableDeclaration)theEObject;
 				T result = caseTemplateVariableDeclaration(templateVariableDeclaration);
-				if (result == null) result = caseVariableDeclaration(templateVariableDeclaration);
-				if (result == null) result = caseCallableElement(templateVariableDeclaration);
-				if (result == null) result = caseEvaluable(templateVariableDeclaration);
+				if (result == null) result = caseVariableDeclarationInfo(templateVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -118,9 +119,7 @@ public class ILSwitch<T> extends Switch<T> {
 				InputVariableDeclaration inputVariableDeclaration = (InputVariableDeclaration)theEObject;
 				T result = caseInputVariableDeclaration(inputVariableDeclaration);
 				if (result == null) result = caseStatefulVariableDeclaration(inputVariableDeclaration);
-				if (result == null) result = caseVariableDeclaration(inputVariableDeclaration);
-				if (result == null) result = caseCallableElement(inputVariableDeclaration);
-				if (result == null) result = caseEvaluable(inputVariableDeclaration);
+				if (result == null) result = caseVariableDeclarationInfo(inputVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,9 +127,7 @@ public class ILSwitch<T> extends Switch<T> {
 				OutputVariableDeclaration outputVariableDeclaration = (OutputVariableDeclaration)theEObject;
 				T result = caseOutputVariableDeclaration(outputVariableDeclaration);
 				if (result == null) result = caseStatefulVariableDeclaration(outputVariableDeclaration);
-				if (result == null) result = caseVariableDeclaration(outputVariableDeclaration);
-				if (result == null) result = caseCallableElement(outputVariableDeclaration);
-				if (result == null) result = caseEvaluable(outputVariableDeclaration);
+				if (result == null) result = caseVariableDeclarationInfo(outputVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -138,9 +135,7 @@ public class ILSwitch<T> extends Switch<T> {
 				InstanceVariableDeclaration instanceVariableDeclaration = (InstanceVariableDeclaration)theEObject;
 				T result = caseInstanceVariableDeclaration(instanceVariableDeclaration);
 				if (result == null) result = caseStatefulVariableDeclaration(instanceVariableDeclaration);
-				if (result == null) result = caseVariableDeclaration(instanceVariableDeclaration);
-				if (result == null) result = caseCallableElement(instanceVariableDeclaration);
-				if (result == null) result = caseEvaluable(instanceVariableDeclaration);
+				if (result == null) result = caseVariableDeclarationInfo(instanceVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -217,17 +212,17 @@ public class ILSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Variable Declaration Info</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Variable Declaration Info</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseVariableDeclaration(VariableDeclaration object) {
+	public T caseVariableDeclarationInfo(VariableDeclarationInfo object) {
 		return null;
 	}
 
@@ -318,21 +313,6 @@ public class ILSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseInvalidExpression(InvalidExpression object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Callable Element</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Callable Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseCallableElement(CallableElement object) {
 		return null;
 	}
 

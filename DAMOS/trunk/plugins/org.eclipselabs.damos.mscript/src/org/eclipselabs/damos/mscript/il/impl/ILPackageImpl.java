@@ -22,6 +22,7 @@ import org.eclipselabs.damos.mscript.il.InvalidExpression;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.VariableDeclarationInfo;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,6 +44,13 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * @generated
 	 */
 	private EClass computationCompoundEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass variableDeclarationInfoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -263,6 +271,24 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVariableDeclarationInfo() {
+		return variableDeclarationInfoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVariableDeclarationInfo_VariableDeclaration() {
+		return (EReference)variableDeclarationInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getStatefulVariableDeclaration() {
 		return statefulVariableDeclarationEClass;
 	}
@@ -292,24 +318,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 */
 	public EClass getInputVariableDeclaration() {
 		return inputVariableDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getInputVariableDeclaration_FeedingCompounds() {
-		return (EReference)inputVariableDeclarationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getInputVariableDeclaration_DirectFeedthrough() {
-		return (EAttribute)inputVariableDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -381,14 +389,15 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__INPUTS);
 		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__OUTPUTS);
 
+		variableDeclarationInfoEClass = createEClass(VARIABLE_DECLARATION_INFO);
+		createEReference(variableDeclarationInfoEClass, VARIABLE_DECLARATION_INFO__VARIABLE_DECLARATION);
+
 		statefulVariableDeclarationEClass = createEClass(STATEFUL_VARIABLE_DECLARATION);
 		createEAttribute(statefulVariableDeclarationEClass, STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE);
 
 		templateVariableDeclarationEClass = createEClass(TEMPLATE_VARIABLE_DECLARATION);
 
 		inputVariableDeclarationEClass = createEClass(INPUT_VARIABLE_DECLARATION);
-		createEReference(inputVariableDeclarationEClass, INPUT_VARIABLE_DECLARATION__FEEDING_COMPOUNDS);
-		createEAttribute(inputVariableDeclarationEClass, INPUT_VARIABLE_DECLARATION__DIRECT_FEEDTHROUGH);
 
 		outputVariableDeclarationEClass = createEClass(OUTPUT_VARIABLE_DECLARATION);
 
@@ -429,8 +438,8 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 
 		// Add supertypes to classes
 		computationCompoundEClass.getESuperTypes().add(theMscriptPackage.getCompound());
-		statefulVariableDeclarationEClass.getESuperTypes().add(theMscriptPackage.getVariableDeclaration());
-		templateVariableDeclarationEClass.getESuperTypes().add(theMscriptPackage.getVariableDeclaration());
+		statefulVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclarationInfo());
+		templateVariableDeclarationEClass.getESuperTypes().add(this.getVariableDeclarationInfo());
 		inputVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
 		outputVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
 		instanceVariableDeclarationEClass.getESuperTypes().add(this.getStatefulVariableDeclaration());
@@ -448,8 +457,11 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		initEReference(getILFunctionDefinition_ComputationCompounds(), this.getComputationCompound(), null, "computationCompounds", null, 0, -1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computationCompoundEClass, ComputationCompound.class, "ComputationCompound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputationCompound_Inputs(), this.getInputVariableDeclaration(), this.getInputVariableDeclaration_FeedingCompounds(), "inputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComputationCompound_Outputs(), this.getOutputVariableDeclaration(), null, "outputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputationCompound_Inputs(), theMscriptPackage.getInputParameterDeclaration(), null, "inputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputationCompound_Outputs(), theMscriptPackage.getOutputParameterDeclaration(), null, "outputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(variableDeclarationInfoEClass, VariableDeclarationInfo.class, "VariableDeclarationInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariableDeclarationInfo_VariableDeclaration(), theMscriptPackage.getVariableDeclaration(), null, "variableDeclaration", null, 0, 1, VariableDeclarationInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(statefulVariableDeclarationEClass, StatefulVariableDeclaration.class, "StatefulVariableDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStatefulVariableDeclaration_CircularBufferSize(), ecorePackage.getEInt(), "circularBufferSize", "1", 0, 1, StatefulVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -457,8 +469,10 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		initEClass(templateVariableDeclarationEClass, TemplateVariableDeclaration.class, "TemplateVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(inputVariableDeclarationEClass, InputVariableDeclaration.class, "InputVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInputVariableDeclaration_FeedingCompounds(), this.getComputationCompound(), this.getComputationCompound_Inputs(), "feedingCompounds", null, 0, -1, InputVariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getInputVariableDeclaration_DirectFeedthrough(), ecorePackage.getEBoolean(), "directFeedthrough", null, 1, 1, InputVariableDeclaration.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+
+		addEOperation(inputVariableDeclarationEClass, this.getComputationCompound(), "getFeedingCompounds", 0, -1, IS_UNIQUE, IS_ORDERED);
+
+		addEOperation(inputVariableDeclarationEClass, ecorePackage.getEBoolean(), "isDirectFeedthrough", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(outputVariableDeclarationEClass, OutputVariableDeclaration.class, "OutputVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

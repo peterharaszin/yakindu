@@ -27,7 +27,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.FunctionKind;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
@@ -93,14 +95,14 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		Iterator<IValue> templateArgumentIterator = templateArguments.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDefinition().getTemplateParameterDeclarations()) {
 			TemplateVariableDeclaration templateVariableDeclaration = ILFactory.eINSTANCE.createTemplateVariableDeclaration();
-			templateVariableDeclaration.setName(parameterDeclaration.getName());
+			templateVariableDeclaration.setVariableDeclaration(parameterDeclaration);
 			if (templateArgumentIterator.hasNext()) {
 				IValue value = templateArgumentIterator.next();
-				staticEvaluationContext.setValue(templateVariableDeclaration, value);
+				staticEvaluationContext.setValue(parameterDeclaration, value);
 			}
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
-				variableDeclarations.put(variableDescriptor, templateVariableDeclaration);
+				variableDeclarations.put(variableDescriptor, parameterDeclaration);
 			}
 			ilFunctionDefinition.getTemplateVariableDeclarations().add(templateVariableDeclaration);
 		}
@@ -108,46 +110,52 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		Iterator<DataType> inputParameterDataTypesIterator = inputParameterDataTypes.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDefinition().getInputParameterDeclarations()) {
 			InputVariableDeclaration inputVariableDeclaration = ILFactory.eINSTANCE.createInputVariableDeclaration();
-			inputVariableDeclaration.setName(parameterDeclaration.getName());
+			inputVariableDeclaration.setVariableDeclaration(parameterDeclaration);
 			if (inputParameterDataTypesIterator.hasNext()) {
 				DataType dataType = EcoreUtil.copy(inputParameterDataTypesIterator.next());
 				IValue value = new AnyValue(staticEvaluationContext.getComputationContext(), dataType);
-				staticEvaluationContext.setValue(inputVariableDeclaration, value);
+				staticEvaluationContext.setValue(parameterDeclaration, value);
 			}
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
-				inputVariableDeclaration.setCircularBufferSize(getInoutputCircularBufferSize(variableDescriptor));
-				variableDeclarations.put(variableDescriptor, inputVariableDeclaration);
+				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
+				inputVariableDeclaration.setCircularBufferSize(circularBufferSize);
+				staticEvaluationContext.setCircularBufferSize(parameterDeclaration, circularBufferSize);
+				variableDeclarations.put(variableDescriptor, parameterDeclaration);
 			}
 			ilFunctionDefinition.getInputVariableDeclarations().add(inputVariableDeclaration);
 		}
 		
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDefinition().getOutputParameterDeclarations()) {
 			OutputVariableDeclaration outputVariableDeclaration = ILFactory.eINSTANCE.createOutputVariableDeclaration();
-			outputVariableDeclaration.setName(parameterDeclaration.getName());
+			outputVariableDeclaration.setVariableDeclaration(parameterDeclaration);
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
-				outputVariableDeclaration.setCircularBufferSize(getInoutputCircularBufferSize(variableDescriptor));
+				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
+				outputVariableDeclaration.setCircularBufferSize(circularBufferSize);
+				staticEvaluationContext.setCircularBufferSize(parameterDeclaration, circularBufferSize);
 				IValue value = staticEvaluationContext.getValue(parameterDeclaration);
 				if (value != null) {
-					staticEvaluationContext.setValue(outputVariableDeclaration, value);
+					staticEvaluationContext.setValue(parameterDeclaration, value);
 				}
-				variableDeclarations.put(variableDescriptor, outputVariableDeclaration);
+				variableDeclarations.put(variableDescriptor, parameterDeclaration);
 			}
 			ilFunctionDefinition.getOutputVariableDeclarations().add(outputVariableDeclaration);
 		}
 
 		for (StateVariableDeclaration stateVariableDeclaration : functionDescriptor.getDefinition().getStateVariableDeclarations()) {
 			InstanceVariableDeclaration instanceVariableDeclaration = ILFactory.eINSTANCE.createInstanceVariableDeclaration();
-			instanceVariableDeclaration.setName(stateVariableDeclaration.getName());
+			instanceVariableDeclaration.setVariableDeclaration(stateVariableDeclaration);
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(stateVariableDeclaration.getName());
 			if (variableDescriptor != null) {
-				instanceVariableDeclaration.setCircularBufferSize(variableDescriptor.getMaximumStep().getIndex() - variableDescriptor.getMinimumStep().getIndex() + 1);
+				int circularBufferSize = variableDescriptor.getMaximumStep().getIndex() - variableDescriptor.getMinimumStep().getIndex() + 1;
+				instanceVariableDeclaration.setCircularBufferSize(circularBufferSize);
+				staticEvaluationContext.setCircularBufferSize(stateVariableDeclaration, circularBufferSize);
 				IValue value = staticEvaluationContext.getValue(stateVariableDeclaration);
 				if (value != null) {
-					staticEvaluationContext.setValue(instanceVariableDeclaration, value);
+					staticEvaluationContext.setValue(stateVariableDeclaration, value);
 				}
-				variableDeclarations.put(variableDescriptor, instanceVariableDeclaration);
+				variableDeclarations.put(variableDescriptor, stateVariableDeclaration);
 			}
 			ilFunctionDefinition.getInstanceVariableDeclarations().add(instanceVariableDeclaration);
 		}
@@ -201,7 +209,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 
 		for (List<EquationDescriptor> equationDescriptors : equationCompounds) {
 			ComputationCompound compound = ILFactory.eINSTANCE.createComputationCompound();
-			Set<InputVariableDeclaration> inputs = new HashSet<InputVariableDeclaration>();
+			Set<InputParameterDeclaration> inputs = new HashSet<InputParameterDeclaration>();
 			for (EquationDescriptor equationDescriptor : equationDescriptors) {
 				VariableStep lhsVariableStep = FunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescriptor);
 				if (lhsVariableStep != null) {
@@ -218,17 +226,17 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 						VariableStep rhsVariableStep = equationPart.getVariableStep();
 						if (rhsVariableStep.getDescriptor().getKind() == VariableKind.INPUT_PARAMETER
 								&& rhsVariableStep.getIndex() == 0) {
-							inputs.add((InputVariableDeclaration) variableDeclarations.get(rhsVariableStep.getDescriptor()));
+							inputs.add((InputParameterDeclaration) variableDeclarations.get(rhsVariableStep.getDescriptor()));
 						}
 					}
 
 					if (lhsVariableStep.getDescriptor().getKind() == VariableKind.OUTPUT_PARAMETER
 							&& lhsVariableStep.getIndex() == 0) {
-						compound.getOutputs().add((OutputVariableDeclaration) variableDeclarations.get(lhsVariableStep.getDescriptor()));
+						compound.getOutputs().add((OutputParameterDeclaration) variableDeclarations.get(lhsVariableStep.getDescriptor()));
 					}
 				}
 			}
-			for (InputVariableDeclaration input : inputs) {
+			for (InputParameterDeclaration input : inputs) {
 				compound.getInputs().add(input);
 			}
 			context.getFunctionDefinition().getComputationCompounds().add(compound);

@@ -128,9 +128,7 @@
     <genClasses ecoreClass="Mscript.ecore#//VariableDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//VariableDeclaration/name"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//ParameterDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ParameterDeclaration/name"/>
-    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//ParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//TemplateParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//InputParameterDeclaration"/>
     <genClasses ecoreClass="Mscript.ecore#//OutputParameterDeclaration"/>

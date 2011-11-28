@@ -22,22 +22,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ComputationCompound" eSuperTypes="Mscript.ecore#//Compound">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
-        eType="#//InputVariableDeclaration" eOpposite="#//InputVariableDeclaration/feedingCompounds"/>
+        eType="ecore:EClass Mscript.ecore#//InputParameterDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
-        eType="#//OutputVariableDeclaration"/>
+        eType="ecore:EClass Mscript.ecore#//OutputParameterDeclaration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableDeclarationInfo">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variableDeclaration" eType="ecore:EClass Mscript.ecore#//VariableDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatefulVariableDeclaration" abstract="true"
-      eSuperTypes="Mscript.ecore#//VariableDeclaration">
+      eSuperTypes="#//VariableDeclarationInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="circularBufferSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         defaultValueLiteral="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TemplateVariableDeclaration" eSuperTypes="Mscript.ecore#//VariableDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateVariableDeclaration" eSuperTypes="#//VariableDeclarationInfo"/>
   <eClassifiers xsi:type="ecore:EClass" name="InputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="feedingCompounds" upperBound="-1"
-        eType="#//ComputationCompound" eOpposite="#//ComputationCompound/inputs"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directFeedthrough" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
-        volatile="true" transient="true" derived="true"/>
+    <eOperations name="getFeedingCompounds" upperBound="-1" eType="#//ComputationCompound"/>
+    <eOperations name="isDirectFeedthrough" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OutputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>

@@ -20,6 +20,7 @@ import org.eclipselabs.damos.mscript.il.InstanceVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.InvalidExpression;
 import org.eclipselabs.damos.mscript.il.OutputVariableDeclaration;
 import org.eclipselabs.damos.mscript.il.TemplateVariableDeclaration;
+import org.eclipselabs.damos.mscript.il.VariableDeclarationInfo;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,6 +68,7 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 		switch (eClass.getClassifierID()) {
 			case ILPackage.IL_FUNCTION_DEFINITION: return createILFunctionDefinition();
 			case ILPackage.COMPUTATION_COMPOUND: return createComputationCompound();
+			case ILPackage.VARIABLE_DECLARATION_INFO: return createVariableDeclarationInfo();
 			case ILPackage.TEMPLATE_VARIABLE_DECLARATION: return createTemplateVariableDeclaration();
 			case ILPackage.INPUT_VARIABLE_DECLARATION: return createInputVariableDeclaration();
 			case ILPackage.OUTPUT_VARIABLE_DECLARATION: return createOutputVariableDeclaration();
@@ -95,6 +97,16 @@ public class ILFactoryImpl extends EFactoryImpl implements ILFactory {
 	public ComputationCompound createComputationCompound() {
 		ComputationCompoundImpl computationCompound = new ComputationCompoundImpl();
 		return computationCompound;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VariableDeclarationInfo createVariableDeclarationInfo() {
+		VariableDeclarationInfoImpl variableDeclarationInfo = new VariableDeclarationInfoImpl();
+		return variableDeclarationInfo;
 	}
 
 	/**

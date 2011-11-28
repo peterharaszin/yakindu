@@ -14,6 +14,7 @@ package org.eclipselabs.damos.mscript.interpreter;
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
 import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
@@ -30,6 +31,9 @@ public interface IStaticEvaluationContext {
 	
 	int getStepIndex(VariableAccess variableAccess);
 	void setStepIndex(VariableAccess variableAccess, int stepIndex);
+	
+	int getCircularBufferSize(VariableDeclaration variableDeclaration);
+	void setCircularBufferSize(VariableDeclaration variableDeclaration, int size);
 	
 	FunctionDescriptor getFunctionDescriptor(FunctionDefinition functionDefinition);
 	void setFunctionDescriptor(FunctionDefinition functionDefinition, FunctionDescriptor functionDescriptor);

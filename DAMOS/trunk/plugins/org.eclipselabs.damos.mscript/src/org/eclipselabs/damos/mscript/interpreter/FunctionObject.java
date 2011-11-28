@@ -45,22 +45,22 @@ public class FunctionObject implements IFunctionObject {
 		functionObject.functionDefinition = functionDefinition;
 		
 		for (TemplateVariableDeclaration declaration : functionDefinition.getTemplateVariableDeclarations()) {
-			IVariable variable = new Variable(context, declaration);
-			IValue value = context.getStaticEvaluationContext().getValue(declaration);
+			IVariable variable = new Variable(context, declaration.getVariableDeclaration());
+			IValue value = context.getStaticEvaluationContext().getValue(declaration.getVariableDeclaration());
 			variable.setValue(0, Values.transform(context.getComputationContext(), value));
-			functionObject.variables.put(declaration, variable);
+			functionObject.variables.put(declaration.getVariableDeclaration(), variable);
 		}
 		
 		for (InputVariableDeclaration declaration : functionDefinition.getInputVariableDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, declaration.getCircularBufferSize()));
+			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), declaration.getCircularBufferSize()));
 		}
 		
 		for (OutputVariableDeclaration declaration : functionDefinition.getOutputVariableDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, declaration.getCircularBufferSize()));
+			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), declaration.getCircularBufferSize()));
 		}
 		
 		for (InstanceVariableDeclaration declaration : functionDefinition.getInstanceVariableDeclarations()) {
-			functionObject.variables.put(declaration, new Variable(context, declaration, declaration.getCircularBufferSize()));
+			functionObject.variables.put(declaration.getVariableDeclaration(), new Variable(context, declaration.getVariableDeclaration(), declaration.getCircularBufferSize()));
 		}
 		
 		return functionObject;

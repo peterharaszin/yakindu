@@ -32,7 +32,9 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
+import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
@@ -156,8 +158,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	}
 
 	private void writeContextStructureMember(PrintAppendable out, IProgressMonitor monitor, StatefulVariableDeclaration variableDeclaration) {
-		String name = variableDeclaration.getName();
-		DataType dataType = staticEvaluationContext.getValue(variableDeclaration).getDataType();
+		String name = variableDeclaration.getVariableDeclaration().getName();
+		DataType dataType = staticEvaluationContext.getValue(variableDeclaration.getVariableDeclaration()).getDataType();
 		if (variableDeclaration.getCircularBufferSize() > 1) {
 			int bufferSize = variableDeclaration.getCircularBufferSize();
 			out.printf("%s[%d];\n",
@@ -196,7 +198,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
 			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
-				out.printf("%s.%s_index = 0;\n", contextVariable, statefulVariableDeclaration.getName());
+				out.printf("%s.%s_index = 0;\n", contextVariable, statefulVariableDeclaration.getVariableDeclaration().getName());
 			}
 		}
 	}
@@ -239,8 +241,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (OutputVariableDeclaration outputVariableDeclaration : ilFunctionDefinition.getOutputVariableDeclarations()) {
 			if (outputVariableDeclaration.getCircularBufferSize() > 1) {
-				String name = outputVariableDeclaration.getName();
-				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputVariableAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), outputVariableDeclaration));
+				String name = outputVariableDeclaration.getVariableDeclaration().getName();
+				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputParameterAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), (OutputParameterDeclaration) outputVariableDeclaration.getVariableDeclaration()));
 			}
 		}
 	}
@@ -285,7 +287,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
 		for (StatefulVariableDeclaration statefulVariableDeclaration : statefulVariableDeclarations) {
 			if (statefulVariableDeclaration.getCircularBufferSize() > 1) {
-				String name = statefulVariableDeclaration.getName();
+				String name = statefulVariableDeclaration.getVariableDeclaration().getName();
 				out.printf("%s.%s_index = (%s.%s_index + 1) %% %d;\n", contextVariable, name, contextVariable, name, statefulVariableDeclaration.getCircularBufferSize());
 			}
 		}
@@ -305,7 +307,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			
 			BlockInput blockInput = (BlockInput) inputIterator.next();
 			if (blockInput.getDefinition().isManyPorts() || blockInput.getDefinition().getMinimumPortCount() == 0) {
-				ArrayType arrayType = (ArrayType) staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
+				ArrayType arrayType = (ArrayType) staticEvaluationContext.getValue(inputVariableDeclaration.getVariableDeclaration()).getDataType();
 				out.printf("%s %s_%s[%d] = { ", MscriptGeneratorUtil.getCDataType(getComputationModel(), arrayType.getElementType()), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName(), blockInput.getPorts().size());
 				boolean first = true;
 				for (InputPort inputPort : blockInput.getPorts()) {
@@ -320,7 +322,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			} else {
 				InputPort inputPort = blockInput.getPorts().get(0);
 				DataType inputDataType = getComponentSignature().getInputDataType(inputPort);
-				DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration).getDataType();
+				DataType targetDataType = staticEvaluationContext.getValue(inputVariableDeclaration.getVariableDeclaration()).getDataType();
 				if (!inputDataType.isEquivalentTo(targetDataType)) {
 					out.printf("%s %s_%s = ", MscriptGeneratorUtil.getCDataType(getComputationModel(), targetDataType), InternalGeneratorUtil.uncapitalize(getComponent().getName()), blockInput.getDefinition().getName());
 					MscriptGeneratorUtil.cast(mscriptGeneratorContext, getVariableAccessor().getInputVariable(inputPort, false), inputDataType, targetDataType);
@@ -332,8 +334,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 
 	private void writeUpdateInputContextStatement(PrintAppendable out, InputVariableDeclaration inputVariableDeclaration) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
-		String name = inputVariableDeclaration.getName();
-		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputVariableAccessString(staticEvaluationContext, getComponent(), getComponentSignature(), getVariableAccessor(), inputVariableDeclaration));
+		String name = inputVariableDeclaration.getVariableDeclaration().getName();
+		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputParameterAccessString(staticEvaluationContext, getComponent(), getComponentSignature(), getVariableAccessor(), (InputParameterDeclaration) inputVariableDeclaration.getVariableDeclaration()));
 	}
 	
 	/**

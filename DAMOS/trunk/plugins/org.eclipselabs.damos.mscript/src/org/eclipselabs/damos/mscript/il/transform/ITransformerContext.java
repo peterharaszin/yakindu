@@ -31,7 +31,7 @@ public interface ITransformerContext {
 	Compound getCompound();
 	void setCompound(Compound compound);
 	
-	VariableDeclaration getVariableDeclaration(String name);
-	void addVariableDeclaration(VariableDeclaration variableDeclaration);
-
+	void addVariableDeclarationMapping(VariableDeclaration oldVariableDeclaration, VariableDeclaration newVariableDeclaration);
+	VariableDeclaration mapVariableDeclaration(VariableDeclaration variableDeclaration);
+	
 }

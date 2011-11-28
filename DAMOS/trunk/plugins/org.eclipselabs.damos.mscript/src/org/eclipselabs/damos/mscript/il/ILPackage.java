@@ -198,6 +198,34 @@ public interface ILPackage extends EPackage {
 	int COMPUTATION_COMPOUND_FEATURE_COUNT = MscriptPackage.COMPOUND_FEATURE_COUNT + 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableDeclarationInfoImpl <em>Variable Declaration Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.il.impl.VariableDeclarationInfoImpl
+	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableDeclarationInfo()
+	 * @generated
+	 */
+	int VARIABLE_DECLARATION_INFO = 2;
+
+	/**
+	 * The feature id for the '<em><b>Variable Declaration</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION_INFO__VARIABLE_DECLARATION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Variable Declaration Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_DECLARATION_INFO_FEATURE_COUNT = 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.StatefulVariableDeclarationImpl <em>Stateful Variable Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -205,16 +233,16 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getStatefulVariableDeclaration()
 	 * @generated
 	 */
-	int STATEFUL_VARIABLE_DECLARATION = 2;
+	int STATEFUL_VARIABLE_DECLARATION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Variable Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STATEFUL_VARIABLE_DECLARATION__NAME = MscriptPackage.VARIABLE_DECLARATION__NAME;
+	int STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION = VARIABLE_DECLARATION_INFO__VARIABLE_DECLARATION;
 
 	/**
 	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
@@ -223,7 +251,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = MscriptPackage.VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = VARIABLE_DECLARATION_INFO_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Stateful Variable Declaration</em>' class.
@@ -232,7 +260,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT = MscriptPackage.VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+	int STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_INFO_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.TemplateVariableDeclarationImpl <em>Template Variable Declaration</em>}' class.
@@ -242,16 +270,16 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getTemplateVariableDeclaration()
 	 * @generated
 	 */
-	int TEMPLATE_VARIABLE_DECLARATION = 3;
+	int TEMPLATE_VARIABLE_DECLARATION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Variable Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_VARIABLE_DECLARATION__NAME = MscriptPackage.VARIABLE_DECLARATION__NAME;
+	int TEMPLATE_VARIABLE_DECLARATION__VARIABLE_DECLARATION = VARIABLE_DECLARATION_INFO__VARIABLE_DECLARATION;
 
 	/**
 	 * The number of structural features of the '<em>Template Variable Declaration</em>' class.
@@ -260,7 +288,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_VARIABLE_DECLARATION_FEATURE_COUNT = MscriptPackage.VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+	int TEMPLATE_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_INFO_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.InputVariableDeclarationImpl <em>Input Variable Declaration</em>}' class.
@@ -270,16 +298,16 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInputVariableDeclaration()
 	 * @generated
 	 */
-	int INPUT_VARIABLE_DECLARATION = 4;
+	int INPUT_VARIABLE_DECLARATION = 5;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Variable Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_VARIABLE_DECLARATION__NAME = STATEFUL_VARIABLE_DECLARATION__NAME;
+	int INPUT_VARIABLE_DECLARATION__VARIABLE_DECLARATION = STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION;
 
 	/**
 	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
@@ -291,31 +319,13 @@ public interface ILPackage extends EPackage {
 	int INPUT_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE = STATEFUL_VARIABLE_DECLARATION__CIRCULAR_BUFFER_SIZE;
 
 	/**
-	 * The feature id for the '<em><b>Feeding Compounds</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INPUT_VARIABLE_DECLARATION__FEEDING_COMPOUNDS = STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Direct Feedthrough</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INPUT_VARIABLE_DECLARATION__DIRECT_FEEDTHROUGH = STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Input Variable Declaration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INPUT_VARIABLE_DECLARATION_FEATURE_COUNT = STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT + 2;
+	int INPUT_VARIABLE_DECLARATION_FEATURE_COUNT = STATEFUL_VARIABLE_DECLARATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.OutputVariableDeclarationImpl <em>Output Variable Declaration</em>}' class.
@@ -325,16 +335,16 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getOutputVariableDeclaration()
 	 * @generated
 	 */
-	int OUTPUT_VARIABLE_DECLARATION = 5;
+	int OUTPUT_VARIABLE_DECLARATION = 6;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Variable Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OUTPUT_VARIABLE_DECLARATION__NAME = STATEFUL_VARIABLE_DECLARATION__NAME;
+	int OUTPUT_VARIABLE_DECLARATION__VARIABLE_DECLARATION = STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION;
 
 	/**
 	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
@@ -362,16 +372,16 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInstanceVariableDeclaration()
 	 * @generated
 	 */
-	int INSTANCE_VARIABLE_DECLARATION = 6;
+	int INSTANCE_VARIABLE_DECLARATION = 7;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Variable Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_VARIABLE_DECLARATION__NAME = STATEFUL_VARIABLE_DECLARATION__NAME;
+	int INSTANCE_VARIABLE_DECLARATION__VARIABLE_DECLARATION = STATEFUL_VARIABLE_DECLARATION__VARIABLE_DECLARATION;
 
 	/**
 	 * The feature id for the '<em><b>Circular Buffer Size</b></em>' attribute.
@@ -399,7 +409,7 @@ public interface ILPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getInvalidExpression()
 	 * @generated
 	 */
-	int INVALID_EXPRESSION = 7;
+	int INVALID_EXPRESSION = 8;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Expression</em>' class.
@@ -542,6 +552,27 @@ public interface ILPackage extends EPackage {
 	EReference getComputationCompound_Outputs();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.VariableDeclarationInfo <em>Variable Declaration Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Variable Declaration Info</em>'.
+	 * @see org.eclipselabs.damos.mscript.il.VariableDeclarationInfo
+	 * @generated
+	 */
+	EClass getVariableDeclarationInfo();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.il.VariableDeclarationInfo#getVariableDeclaration <em>Variable Declaration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Variable Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.il.VariableDeclarationInfo#getVariableDeclaration()
+	 * @see #getVariableDeclarationInfo()
+	 * @generated
+	 */
+	EReference getVariableDeclarationInfo_VariableDeclaration();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.StatefulVariableDeclaration <em>Stateful Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -581,28 +612,6 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getInputVariableDeclaration();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.mscript.il.InputVariableDeclaration#getFeedingCompounds <em>Feeding Compounds</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Feeding Compounds</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.InputVariableDeclaration#getFeedingCompounds()
-	 * @see #getInputVariableDeclaration()
-	 * @generated
-	 */
-	EReference getInputVariableDeclaration_FeedingCompounds();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.il.InputVariableDeclaration#isDirectFeedthrough <em>Direct Feedthrough</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Direct Feedthrough</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.InputVariableDeclaration#isDirectFeedthrough()
-	 * @see #getInputVariableDeclaration()
-	 * @generated
-	 */
-	EAttribute getInputVariableDeclaration_DirectFeedthrough();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.il.OutputVariableDeclaration <em>Output Variable Declaration</em>}'.
@@ -757,6 +766,24 @@ public interface ILPackage extends EPackage {
 		EReference COMPUTATION_COMPOUND__OUTPUTS = eINSTANCE.getComputationCompound_Outputs();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.VariableDeclarationInfoImpl <em>Variable Declaration Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.il.impl.VariableDeclarationInfoImpl
+		 * @see org.eclipselabs.damos.mscript.il.impl.ILPackageImpl#getVariableDeclarationInfo()
+		 * @generated
+		 */
+		EClass VARIABLE_DECLARATION_INFO = eINSTANCE.getVariableDeclarationInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Variable Declaration</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VARIABLE_DECLARATION_INFO__VARIABLE_DECLARATION = eINSTANCE.getVariableDeclarationInfo_VariableDeclaration();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.StatefulVariableDeclarationImpl <em>Stateful Variable Declaration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -793,22 +820,6 @@ public interface ILPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INPUT_VARIABLE_DECLARATION = eINSTANCE.getInputVariableDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Feeding Compounds</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference INPUT_VARIABLE_DECLARATION__FEEDING_COMPOUNDS = eINSTANCE.getInputVariableDeclaration_FeedingCompounds();
-
-		/**
-		 * The meta object literal for the '<em><b>Direct Feedthrough</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute INPUT_VARIABLE_DECLARATION__DIRECT_FEEDTHROUGH = eINSTANCE.getInputVariableDeclaration_DirectFeedthrough();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.il.impl.OutputVariableDeclarationImpl <em>Output Variable Declaration</em>}' class.

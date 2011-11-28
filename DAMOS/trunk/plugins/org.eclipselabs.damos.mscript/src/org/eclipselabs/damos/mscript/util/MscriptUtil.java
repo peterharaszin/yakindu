@@ -11,10 +11,13 @@
 
 package org.eclipselabs.damos.mscript.util;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
+import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.Definition;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.StepLiteral;
@@ -63,5 +66,29 @@ public class MscriptUtil {
 		context.setStepIndex(variableAccess, stepIndex);
 		return variableAccess;
 	}
-		
+	
+	public static String findAvailableLocalVariableName(Compound compound, String preferredName) {
+		String name = preferredName;
+		int i = 2;
+		while (!isLocalVariableNameAvailable(compound, name)) {
+			name = preferredName + i++;
+		}
+		return name;
+	}
+	
+	private static boolean isLocalVariableNameAvailable(Compound compound, String name) {
+		EObject container = compound;
+		while (container != null) {
+			if (container instanceof Compound) {
+				for (LocalVariableDeclaration localVariableDeclaration : ((Compound) container).getLocalVariableDeclarations()) {
+					if (name.equals(localVariableDeclaration.getName())) {
+						return false;
+					}
+				}
+			}
+			container = container.eContainer();
+		}
+		return true;
+	}
+	
 }

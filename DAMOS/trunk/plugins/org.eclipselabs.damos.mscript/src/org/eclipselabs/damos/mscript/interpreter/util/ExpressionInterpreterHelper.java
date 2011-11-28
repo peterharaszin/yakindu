@@ -63,7 +63,6 @@ public class ExpressionInterpreterHelper {
 
 		transformerContext.enterScope();
 		transformerContext.setCompound(compound);
-		transformerContext.addVariableDeclaration(resultVariableDeclaration);
 		
 		try {
 			ExpressionTarget target = new ExpressionTarget(resultVariableDeclaration, 0);

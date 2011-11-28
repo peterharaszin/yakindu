@@ -67,6 +67,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
 		ILFunctionDefinition ilFunctionDefinition = ILFactory.eINSTANCE.createILFunctionDefinition();
+		ilFunctionDefinition.setFunctionDefinition(functionDescriptor.getDefinition());
 		ilFunctionDefinition.setStateful(functionDescriptor.getDefinition().getKind() == FunctionKind.STATEFUL);
 		ilFunctionDefinition.setName(functionName != null ? functionName : functionDescriptor.getDefinition().getName());
 		

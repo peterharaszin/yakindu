@@ -232,9 +232,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			}
 		}
 		
-		for (InputVariableDeclaration inputVariableDeclaration : ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition)) {
-			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
-				writeUpdateInputContextStatement(out, inputVariableDeclaration);
+		for (InputParameterDeclaration inputParameterDeclaration : ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition)) {
+			if (staticEvaluationContext.getCircularBufferSize(inputParameterDeclaration) > 1) {
+				writeUpdateInputContextStatement(out, inputParameterDeclaration);
 			}
 		}
 
@@ -271,10 +271,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			}
 		}
 		
-		List<InputVariableDeclaration> computeOutputsCodeInputs = ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition);
+		List<InputParameterDeclaration> computeOutputsCodeInputs = ILUtil.getDirectFeedthroughInputs(ilFunctionDefinition);
 		for (InputVariableDeclaration inputVariableDeclaration : ilFunctionDefinition.getInputVariableDeclarations()) {
-			if (inputVariableDeclaration.getCircularBufferSize() > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration)) {
-				writeUpdateInputContextStatement(out, inputVariableDeclaration);
+			if (inputVariableDeclaration.getCircularBufferSize() > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration.getVariableDeclaration())) {
+				writeUpdateInputContextStatement(out, (InputParameterDeclaration) inputVariableDeclaration.getVariableDeclaration());
 			}
 		}
 		
@@ -332,10 +332,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 	}
 
-	private void writeUpdateInputContextStatement(PrintAppendable out, InputVariableDeclaration inputVariableDeclaration) {
+	private void writeUpdateInputContextStatement(PrintAppendable out, InputParameterDeclaration inputParameterDeclaration) {
 		String contextVariable = getVariableAccessor().getContextVariable(false);
-		String name = inputVariableDeclaration.getVariableDeclaration().getName();
-		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputParameterAccessString(staticEvaluationContext, getComponent(), getComponentSignature(), getVariableAccessor(), (InputParameterDeclaration) inputVariableDeclaration.getVariableDeclaration()));
+		String name = inputParameterDeclaration.getName();
+		out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getInputParameterAccessString(staticEvaluationContext, getComponent(), getComponentSignature(), getVariableAccessor(), inputParameterDeclaration));
 	}
 	
 	/**

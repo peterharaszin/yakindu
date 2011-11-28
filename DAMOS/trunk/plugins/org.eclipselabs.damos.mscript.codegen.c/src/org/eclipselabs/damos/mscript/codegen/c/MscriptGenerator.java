@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Evaluable;
+import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.il.ComputationCompound;
 import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
@@ -193,8 +194,8 @@ public class MscriptGenerator {
 	 */
 	private void generateComputeOutputsFunctionHeader() {
 		out.printf("void %s(%s_Context *context", functionDefinition.getName(), functionDefinition.getName());
-		for (InputVariableDeclaration inputVariableDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
-			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputVariableDeclaration.getVariableDeclaration()), inputVariableDeclaration.getVariableDeclaration().getName(), false));
+		for (InputParameterDeclaration inputParameterDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
+			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false));
 		}
 		for (OutputVariableDeclaration outputVariableDeclaration: functionDefinition.getOutputVariableDeclarations()) {
 			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(outputVariableDeclaration.getVariableDeclaration()), outputVariableDeclaration.getVariableDeclaration().getName(), true));
@@ -214,9 +215,9 @@ public class MscriptGenerator {
 			}
 		}
 		
-		for (InputVariableDeclaration inputVariableDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
-			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
-				generateUpdateInputContextStatement(inputVariableDeclaration);
+		for (InputParameterDeclaration inputParameterDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
+			if (context.getStaticEvaluationContext().getCircularBufferSize(inputParameterDeclaration) > 1) {
+				generateUpdateInputContextStatement(inputParameterDeclaration);
 			}
 		}
 		
@@ -234,8 +235,8 @@ public class MscriptGenerator {
 	 */
 	private void generateUpdateFunctionHeader() {
 		out.printf("void %s_update(%s_Context *context", functionDefinition.getName(), functionDefinition.getName());
-		for (InputVariableDeclaration inputVariableDeclaration : getUpdateCodeInputs()) {
-			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputVariableDeclaration.getVariableDeclaration()), inputVariableDeclaration.getVariableDeclaration().getName(), false));
+		for (InputParameterDeclaration inputParameterDeclaration : getUpdateCodeInputs()) {
+			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false));
 		}
 		out.print(")");
 	}
@@ -251,9 +252,9 @@ public class MscriptGenerator {
 				compoundGenerator.generate(context, compound);
 			}
 		}
-		for (InputVariableDeclaration inputVariableDeclaration : getUpdateCodeInputs()) {
-			if (inputVariableDeclaration.getCircularBufferSize() > 1) {
-				generateUpdateInputContextStatement(inputVariableDeclaration);
+		for (InputParameterDeclaration inputParameterDeclaration : getUpdateCodeInputs()) {
+			if (context.getStaticEvaluationContext().getCircularBufferSize(inputParameterDeclaration) > 1) {
+				generateUpdateInputContextStatement(inputParameterDeclaration);
 			}
 		}
 		generateUpdateIndexStatements(functionDefinition.getInputVariableDeclarations());
@@ -262,14 +263,14 @@ public class MscriptGenerator {
 		out.println("}");
 	}
 	
-	private List<InputVariableDeclaration> getUpdateCodeInputs() {
-		List<InputVariableDeclaration> inputs = new ArrayList<InputVariableDeclaration>(functionDefinition.getInputVariableDeclarations());
+	private List<InputParameterDeclaration> getUpdateCodeInputs() {
+		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>(functionDefinition.getFunctionDefinition().getInputParameterDeclarations());
 		inputs.removeAll(ILUtil.getDirectFeedthroughInputs(functionDefinition));
 		return inputs;
 	}
 
-	private void generateUpdateInputContextStatement(InputVariableDeclaration inputVariableDeclaration) {
-		String name = inputVariableDeclaration.getVariableDeclaration().getName();
+	private void generateUpdateInputContextStatement(InputParameterDeclaration inputParameterDeclaration) {
+		String name = inputParameterDeclaration.getName();
 		out.printf("context->%s[context->%s_index] = %s;\n", name, name, name);
 	}
 

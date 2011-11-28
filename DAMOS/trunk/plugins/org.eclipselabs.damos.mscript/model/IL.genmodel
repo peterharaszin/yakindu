@@ -8,6 +8,7 @@
   <genPackages prefix="IL" basePackage="org.eclipselabs.damos.mscript" disposableProviderFactory="true"
       ecorePackage="IL.ecore#/">
     <genClasses ecoreClass="IL.ecore#//ILFunctionDefinition">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IL.ecore#//ILFunctionDefinition/functionDefinition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//ILFunctionDefinition/stateful"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//ILFunctionDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//ILFunctionDefinition/templateVariableDeclarations"/>
@@ -28,10 +29,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//StatefulVariableDeclaration/circularBufferSize"/>
     </genClasses>
     <genClasses ecoreClass="IL.ecore#//TemplateVariableDeclaration"/>
-    <genClasses ecoreClass="IL.ecore#//InputVariableDeclaration">
-      <genOperations ecoreOperation="IL.ecore#//InputVariableDeclaration/getFeedingCompounds"/>
-      <genOperations ecoreOperation="IL.ecore#//InputVariableDeclaration/isDirectFeedthrough"/>
-    </genClasses>
+    <genClasses ecoreClass="IL.ecore#//InputVariableDeclaration"/>
     <genClasses ecoreClass="IL.ecore#//OutputVariableDeclaration"/>
     <genClasses ecoreClass="IL.ecore#//InstanceVariableDeclaration"/>
     <genClasses ecoreClass="IL.ecore#//InvalidExpression"/>

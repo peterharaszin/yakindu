@@ -4,6 +4,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="il"
     nsURI="http://www.eclipselabs.org/damos/mscript/2011/IL" nsPrefix="il">
   <eClassifiers xsi:type="ecore:EClass" name="ILFunctionDefinition">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionDefinition" lowerBound="1"
+        eType="ecore:EClass Mscript.ecore#//FunctionDefinition"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="stateful" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -35,10 +37,7 @@
         defaultValueLiteral="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TemplateVariableDeclaration" eSuperTypes="#//VariableDeclarationInfo"/>
-  <eClassifiers xsi:type="ecore:EClass" name="InputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration">
-    <eOperations name="getFeedingCompounds" upperBound="-1" eType="#//ComputationCompound"/>
-    <eOperations name="isDirectFeedthrough" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="OutputVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceVariableDeclaration" eSuperTypes="#//StatefulVariableDeclaration"/>
   <eClassifiers xsi:type="ecore:EClass" name="InvalidExpression" eSuperTypes="Mscript.ecore#//Expression"/>

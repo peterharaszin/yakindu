@@ -74,7 +74,7 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	 */
 	public int getCircularBufferSize(VariableDeclaration variableDeclaration) {
 		Integer size = circularBufferSizes.get(variableDeclaration);
-		return size != null ? size : 0;
+		return size != null ? size : 1;
 	}
 	
 	/* (non-Javadoc)

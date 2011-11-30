@@ -43,7 +43,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		this.rawValue = rawValue;
 	}
 
-	protected long getRawValue() {
+	public long getRawValue() {
 		return rawValue;
 	}
 

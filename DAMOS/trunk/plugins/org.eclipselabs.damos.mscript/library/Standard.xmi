@@ -4,4 +4,5 @@
   <definitions xsi:type="mscript:BuiltinFunction" name="size"/>
   <definitions xsi:type="mscript:BuiltinFunction" name="round"/>
   <definitions xsi:type="mscript:BuiltinFunction" name="num"/>
+  <definitions xsi:type="mscript:BuiltinFunction" name="lb"/>
 </mscript:Module>

@@ -1,0 +1,63 @@
+«REM»
+Copyright (c) 2011 committers of YAKINDU and others.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+Contributors:
+	committers of YAKINDU - initial API and implementation
+ 	
+@author Markus Muehlbrandt - Initial contribution and API
+«ENDREM»
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+«IMPORT sgen»
+
+«IMPORT org::yakindu::sct::generator::java::templates»
+
+«DEFINE main(sgen::GeneratorEntry entry) FOR ExecutionFlow»
+	
+	«REM» base package files «ENDREM»
+	«EXPAND IStatemachine::file(entry) FOR this»
+	
+	«EXPAND ITimedStatemachine::file(entry) FOR this»
+	
+	«EXPAND ITimerHandler::file(entry) FOR this»
+	
+	«EXPAND TimerHandler::file(entry) FOR this»
+	
+	«EXPAND Event::file(entry) FOR this»
+	
+	«EXPAND ValuedEvent::file(entry) FOR this»
+	
+	«EXPAND TimeEvent::file(entry) FOR this»
+	
+	«EXPAND EventNotification::file(entry) FOR this»
+	
+	«EXPAND INotificationListener::file(entry) FOR this»
+	
+	«EXPAND INotificationSender::file(entry) FOR this»
+	
+	«EXPAND Notification::file(entry) FOR this»
+	
+	«EXPAND NotificationSender::file(entry) FOR this»
+	
+	«EXPAND NotificationType::file(entry) FOR this»
+	
+	«REM» concrete files «ENDREM»
+	«FOREACH this.scopes.typeSelect(InterfaceScope) AS scope»
+	«EXPAND CustomInterface::file(entry) FOR scope»
+	«EXPAND CustomInterfaceImpl::file(entry) FOR scope»
+	«ENDFOREACH»
+	
+	«EXPAND CustomCycleBasedStatemachine::file(entry) FOR this»
+	
+	«REM»Exclude event based statemachines from generation
+	«EXPAND CustomEventBasedStatemachine::file(entry) FOR this»
+	«ENDREM»
+
+«ENDDEFINE»
+
+
+

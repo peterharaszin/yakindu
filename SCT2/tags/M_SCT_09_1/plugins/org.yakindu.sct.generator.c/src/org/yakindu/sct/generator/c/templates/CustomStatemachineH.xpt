@@ -1,0 +1,81 @@
+«REM»
+
+Templates for the main statechart cpp file.
+
+@auther joern seger
+
+«ENDREM»
+
+«IMPORT sexec»
+«IMPORT stext»
+«IMPORT sgraph»
+
+«EXTENSION org::yakindu::sct::generator::c::templates::Expression»
+«EXTENSION org::yakindu::sct::generator::c::templates::Naming»
+
+«DEFINE file FOR ExecutionFlow»
+
+«FILE StName()+'.h'»
+#ifndef «STNAME()»_H_
+#define «STNAME()»_H_
+
+«FOREACH this.scopes.getUsableScopes() AS interface -»
+#include "«interface.interfaceClassName()».h"
+«ENDFOREACH»
+#include "Statemachine_cy.h"
+#include "«EvName()».h"
+#include "EventPool.h"
+
+typedef enum {
+    «FOREACH this.states AS exState-»
+      _«exState.simpleName», 
+    «ENDFOREACH»
+	last_state
+} States;
+
+#define MAX_PARALLEL_STATES «this.stateVector.size»
+
+
+typedef void(*raiseEventFPtr)(_Event* evPtr);
+
+typedef struct {
+
+	Statemachine_cy  base;
+«FOREACH this.scopes.getUsableScopes() AS interface»
+	«interface.interfaceClassName()» «interface.interfaceObjectName().toFirstLower()»;
+«ENDFOREACH»
+	raiseEventFPtr raiseEvent;
+	
+«REM» no plain variables in structure
+«FOREACH this.declaredEvents() AS ev»
+  «IF (((EventDefinition)ev).direction != Direction::OUT) && (((EventDefinition)ev).type != Type::void) -»
+  «eventTypeToString(((EventDefinition)ev).type)» «ev.name»_value;    
+  «ENDIF -»
+«ENDFOREACH -»
+«ENDREM»		
+} «StName()»;
+
+/* Explicit Constructor & Destructor */
+extern void «stName()»_init(«StName()»* handle, Timer* timer, EventPool* eventPool);
+extern void «stName()»_exit(«StName()»* handle);
+
+extern void «stName()»_setEvent(«StName()»* handle, _Event* ev);
+extern void «stName()»_runCycle(«StName()»* handle);
+
+extern boolean «stName()»_eventWaiting(«StName()»* handle);
+
+«FOREACH this.scopes.typeSelect(InterfaceScope) AS interface»
+extern «interface.interfaceClassName()»* «stName()»_get_«interface.interfaceObjectName()»(«StName()»* handle);
+«ENDFOREACH»
+
+	/* virtual function form state machine must be implemented here */
+extern void statemachine_cy__runCycle(Statemachine_cy* handle);
+
+#define «scName()»_eventPool_init_heap(handle, maxElemPerEvent) eventPool_init_heap(handle, event_last, maxElemPerEvent, &«scName()»_getSizeofEvent )
+
+#endif /* «STNAME()»_H_ */
+
+«ENDFILE»
+
+«ENDDEFINE»
+

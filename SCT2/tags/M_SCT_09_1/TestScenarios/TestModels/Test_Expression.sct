@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:sgraph="http://www.yakindu.org/sct/2.0.0" xmlns:stext="http://www.yakindu.org/sct/statechart/SText">
+  <sgraph:Statechart xmi:id="_wXk3MAuIEeGVgpgRVT1uXw" name="Test_Expression" expression="interface:&#xA;in event event1 : integer&#xA;out event event2 : real&#xA;var var1 : integer = 6&#xA;var var2 : integer = 123&#xA;var var3 : real = 19.4&#xA;var var4 : real = 43.3&#xA;var var5 : boolean = false&#xA;&#xA;interface other:&#xA;var var1 : boolean&#xA;var var2 : real&#xA;var var3 : integer&#xA;&#xA;&#xA;">
+    <scopes xsi:type="stext:InterfaceScope" xmi:id="_0CkKIBy-EeGM3fgW4NKLkw">
+      <declarations xsi:type="stext:EventDefinition" xmi:id="_0CkKIRy-EeGM3fgW4NKLkw" name="event1" direction="in" type="integer"/>
+      <declarations xsi:type="stext:EventDefinition" xmi:id="_0CkKIhy-EeGM3fgW4NKLkw" name="event2" direction="out" type="real"/>
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKIxy-EeGM3fgW4NKLkw" name="var1" type="integer">
+        <initialValue xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CkKJBy-EeGM3fgW4NKLkw">
+          <value xsi:type="stext:IntLiteral" xmi:id="_0CkKJRy-EeGM3fgW4NKLkw" value="6"/>
+        </initialValue>
+      </declarations>
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKJhy-EeGM3fgW4NKLkw" name="var2" type="integer">
+        <initialValue xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CkKJxy-EeGM3fgW4NKLkw">
+          <value xsi:type="stext:IntLiteral" xmi:id="_0CkKKBy-EeGM3fgW4NKLkw" value="123"/>
+        </initialValue>
+      </declarations>
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKKRy-EeGM3fgW4NKLkw" name="var3" type="real">
+        <initialValue xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CkKKhy-EeGM3fgW4NKLkw">
+          <value xsi:type="stext:RealLiteral" xmi:id="_0CkKKxy-EeGM3fgW4NKLkw" value="19.4"/>
+        </initialValue>
+      </declarations>
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKLBy-EeGM3fgW4NKLkw" name="var4" type="real">
+        <initialValue xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CkKLRy-EeGM3fgW4NKLkw">
+          <value xsi:type="stext:RealLiteral" xmi:id="_0CkKLhy-EeGM3fgW4NKLkw" value="43.3"/>
+        </initialValue>
+      </declarations>
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKLxy-EeGM3fgW4NKLkw" name="var5" type="boolean">
+        <initialValue xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CkKMBy-EeGM3fgW4NKLkw">
+          <value xsi:type="stext:BoolLiteral" xmi:id="_0CkKMRy-EeGM3fgW4NKLkw"/>
+        </initialValue>
+      </declarations>
+    </scopes>
+    <scopes xsi:type="stext:InterfaceScope" xmi:id="_0CkKMhy-EeGM3fgW4NKLkw" name="other">
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKMxy-EeGM3fgW4NKLkw" name="var1" type="boolean"/>
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKNBy-EeGM3fgW4NKLkw" name="var2" type="real"/>
+      <declarations xsi:type="stext:VariableDefinition" xmi:id="_0CkKNRy-EeGM3fgW4NKLkw" name="var3" type="integer"/>
+    </scopes>
+    <regions xmi:id="_wXmFUguIEeGVgpgRVT1uXw" name="main region">
+      <vertices xsi:type="sgraph:Entry" xmi:id="_wXpIoQuIEeGVgpgRVT1uXw">
+        <outgoingTransitions xmi:id="_wXrk4wuIEeGVgpgRVT1uXw" target="_wXqWwAuIEeGVgpgRVT1uXw"/>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_wXqWwAuIEeGVgpgRVT1uXw" expression="entry / var3 += var2 * var3;&#xA;exit / var2 = 1;&#xA;exit / var4 = 22.3;" name="state1" incomingTransitions="_wXrk4wuIEeGVgpgRVT1uXw _foN2kAuLEeGVgpgRVT1uXw">
+        <scopes xmi:id="_0CkxMBy-EeGM3fgW4NKLkw">
+          <declarations xsi:type="stext:LocalReaction" xmi:id="_0CkxMRy-EeGM3fgW4NKLkw">
+            <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CkxMhy-EeGM3fgW4NKLkw">
+              <triggers xsi:type="stext:EntryEvent" xmi:id="_0CkxMxy-EeGM3fgW4NKLkw"/>
+            </trigger>
+            <effect xsi:type="stext:ReactionEffect" xmi:id="_0CkxNBy-EeGM3fgW4NKLkw">
+              <actions xsi:type="stext:Assignment" xmi:id="_0CkxNRy-EeGM3fgW4NKLkw" varRef="_0CkKKRy-EeGM3fgW4NKLkw" operator="+=">
+                <expression xsi:type="stext:NumericalMultiplyDivideExpression" xmi:id="_0CkxNhy-EeGM3fgW4NKLkw">
+                  <leftOperand xsi:type="stext:ElementReferenceExpression" xmi:id="_0CkxNxy-EeGM3fgW4NKLkw" value="_0CkKJhy-EeGM3fgW4NKLkw"/>
+                  <rightOperand xsi:type="stext:ElementReferenceExpression" xmi:id="_0CkxOBy-EeGM3fgW4NKLkw" value="_0CkKKRy-EeGM3fgW4NKLkw"/>
+                </expression>
+              </actions>
+            </effect>
+          </declarations>
+          <declarations xsi:type="stext:LocalReaction" xmi:id="_0CkxORy-EeGM3fgW4NKLkw">
+            <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CkxOhy-EeGM3fgW4NKLkw">
+              <triggers xsi:type="stext:ExitEvent" xmi:id="_0CkxOxy-EeGM3fgW4NKLkw"/>
+            </trigger>
+            <effect xsi:type="stext:ReactionEffect" xmi:id="_0CkxPBy-EeGM3fgW4NKLkw">
+              <actions xsi:type="stext:Assignment" xmi:id="_0CkxPRy-EeGM3fgW4NKLkw" varRef="_0CkKJhy-EeGM3fgW4NKLkw">
+                <expression xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CkxPhy-EeGM3fgW4NKLkw">
+                  <value xsi:type="stext:IntLiteral" xmi:id="_0CkxPxy-EeGM3fgW4NKLkw" value="1"/>
+                </expression>
+              </actions>
+            </effect>
+          </declarations>
+          <declarations xsi:type="stext:LocalReaction" xmi:id="_0CkxQBy-EeGM3fgW4NKLkw">
+            <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CkxQRy-EeGM3fgW4NKLkw">
+              <triggers xsi:type="stext:ExitEvent" xmi:id="_0CkxQhy-EeGM3fgW4NKLkw"/>
+            </trigger>
+            <effect xsi:type="stext:ReactionEffect" xmi:id="_0CkxQxy-EeGM3fgW4NKLkw">
+              <actions xsi:type="stext:Assignment" xmi:id="_0CkxRBy-EeGM3fgW4NKLkw" varRef="_0CkKLBy-EeGM3fgW4NKLkw">
+                <expression xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CkxRRy-EeGM3fgW4NKLkw">
+                  <value xsi:type="stext:RealLiteral" xmi:id="_0CkxRhy-EeGM3fgW4NKLkw" value="22.3"/>
+                </expression>
+              </actions>
+            </effect>
+          </declarations>
+        </scopes>
+        <outgoingTransitions xmi:id="_ep-FoAuLEeGVgpgRVT1uXw" expression="event1[ (other.var1 == true ) || (var5 == false) ] / other.var1 = false;" target="_dUv_IAuLEeGVgpgRVT1uXw">
+          <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CpCoBy-EeGM3fgW4NKLkw">
+            <triggers xsi:type="stext:RegularEventSpec" xmi:id="_0CpCoRy-EeGM3fgW4NKLkw" event="_0CkKIRy-EeGM3fgW4NKLkw"/>
+            <guardExpression xsi:type="stext:LogicalOrExpression" xmi:id="_0CpCohy-EeGM3fgW4NKLkw">
+              <leftOperand xsi:type="stext:LogicalRelationExpression" xmi:id="_0CpCoxy-EeGM3fgW4NKLkw" operator="==">
+                <leftOperand xsi:type="stext:ElementReferenceExpression" xmi:id="_0CpCpBy-EeGM3fgW4NKLkw" value="_0CkKMxy-EeGM3fgW4NKLkw"/>
+                <rightOperand xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CpCpRy-EeGM3fgW4NKLkw">
+                  <value xsi:type="stext:BoolLiteral" xmi:id="_0CpCphy-EeGM3fgW4NKLkw" value="true"/>
+                </rightOperand>
+              </leftOperand>
+              <rightOperand xsi:type="stext:LogicalRelationExpression" xmi:id="_0CpCpxy-EeGM3fgW4NKLkw" operator="==">
+                <leftOperand xsi:type="stext:ElementReferenceExpression" xmi:id="_0CpCqBy-EeGM3fgW4NKLkw" value="_0CkKLxy-EeGM3fgW4NKLkw"/>
+                <rightOperand xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CpCqRy-EeGM3fgW4NKLkw">
+                  <value xsi:type="stext:BoolLiteral" xmi:id="_0CpCqhy-EeGM3fgW4NKLkw"/>
+                </rightOperand>
+              </rightOperand>
+            </guardExpression>
+          </trigger>
+          <effect xsi:type="stext:ReactionEffect" xmi:id="_0CpCqxy-EeGM3fgW4NKLkw">
+            <actions xsi:type="stext:Assignment" xmi:id="_0CpCrBy-EeGM3fgW4NKLkw" varRef="_0CkKMxy-EeGM3fgW4NKLkw">
+              <expression xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CpCrRy-EeGM3fgW4NKLkw">
+                <value xsi:type="stext:BoolLiteral" xmi:id="_0CpCrhy-EeGM3fgW4NKLkw"/>
+              </expression>
+            </actions>
+          </effect>
+        </outgoingTransitions>
+      </vertices>
+      <vertices xsi:type="sgraph:State" xmi:id="_dUv_IAuLEeGVgpgRVT1uXw" expression="entry / var3 /= 5;&#xA;entry / var1 += 1;&#xA;oncycle / var1 += 1;" name="state2" incomingTransitions="_ep-FoAuLEeGVgpgRVT1uXw">
+        <scopes xmi:id="_0CstABy-EeGM3fgW4NKLkw">
+          <declarations xsi:type="stext:LocalReaction" xmi:id="_0CstARy-EeGM3fgW4NKLkw">
+            <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CstAhy-EeGM3fgW4NKLkw">
+              <triggers xsi:type="stext:EntryEvent" xmi:id="_0CstAxy-EeGM3fgW4NKLkw"/>
+            </trigger>
+            <effect xsi:type="stext:ReactionEffect" xmi:id="_0CstBBy-EeGM3fgW4NKLkw">
+              <actions xsi:type="stext:Assignment" xmi:id="_0CstBRy-EeGM3fgW4NKLkw" varRef="_0CkKKRy-EeGM3fgW4NKLkw" operator="/=">
+                <expression xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CstBhy-EeGM3fgW4NKLkw">
+                  <value xsi:type="stext:IntLiteral" xmi:id="_0CstBxy-EeGM3fgW4NKLkw" value="5"/>
+                </expression>
+              </actions>
+            </effect>
+          </declarations>
+          <declarations xsi:type="stext:LocalReaction" xmi:id="_0CstCBy-EeGM3fgW4NKLkw">
+            <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CstCRy-EeGM3fgW4NKLkw">
+              <triggers xsi:type="stext:EntryEvent" xmi:id="_0CstChy-EeGM3fgW4NKLkw"/>
+            </trigger>
+            <effect xsi:type="stext:ReactionEffect" xmi:id="_0CstCxy-EeGM3fgW4NKLkw">
+              <actions xsi:type="stext:Assignment" xmi:id="_0CstDBy-EeGM3fgW4NKLkw" varRef="_0CkKIxy-EeGM3fgW4NKLkw" operator="+=">
+                <expression xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CstDRy-EeGM3fgW4NKLkw">
+                  <value xsi:type="stext:IntLiteral" xmi:id="_0CstDhy-EeGM3fgW4NKLkw" value="1"/>
+                </expression>
+              </actions>
+            </effect>
+          </declarations>
+          <declarations xsi:type="stext:LocalReaction" xmi:id="_0CstDxy-EeGM3fgW4NKLkw">
+            <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CstEBy-EeGM3fgW4NKLkw">
+              <triggers xsi:type="stext:OnCycleEvent" xmi:id="_0CstERy-EeGM3fgW4NKLkw"/>
+            </trigger>
+            <effect xsi:type="stext:ReactionEffect" xmi:id="_0CstEhy-EeGM3fgW4NKLkw">
+              <actions xsi:type="stext:Assignment" xmi:id="_0CstExy-EeGM3fgW4NKLkw" varRef="_0CkKIxy-EeGM3fgW4NKLkw" operator="+=">
+                <expression xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CstFBy-EeGM3fgW4NKLkw">
+                  <value xsi:type="stext:IntLiteral" xmi:id="_0CstFRy-EeGM3fgW4NKLkw" value="1"/>
+                </expression>
+              </actions>
+            </effect>
+          </declarations>
+        </scopes>
+        <outgoingTransitions xmi:id="_foN2kAuLEeGVgpgRVT1uXw" expression="event1[var3 > 0] / var5 = true;" target="_wXqWwAuIEeGVgpgRVT1uXw">
+          <trigger xsi:type="stext:ReactionTrigger" xmi:id="_0CvwUBy-EeGM3fgW4NKLkw">
+            <triggers xsi:type="stext:RegularEventSpec" xmi:id="_0CvwURy-EeGM3fgW4NKLkw" event="_0CkKIRy-EeGM3fgW4NKLkw"/>
+            <guardExpression xsi:type="stext:LogicalRelationExpression" xmi:id="_0CvwUhy-EeGM3fgW4NKLkw" operator=">">
+              <leftOperand xsi:type="stext:ElementReferenceExpression" xmi:id="_0CvwUxy-EeGM3fgW4NKLkw" value="_0CkKKRy-EeGM3fgW4NKLkw"/>
+              <rightOperand xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CvwVBy-EeGM3fgW4NKLkw">
+                <value xsi:type="stext:IntLiteral" xmi:id="_0CvwVRy-EeGM3fgW4NKLkw"/>
+              </rightOperand>
+            </guardExpression>
+          </trigger>
+          <effect xsi:type="stext:ReactionEffect" xmi:id="_0CvwVhy-EeGM3fgW4NKLkw">
+            <actions xsi:type="stext:Assignment" xmi:id="_0CvwVxy-EeGM3fgW4NKLkw" varRef="_0CkKLxy-EeGM3fgW4NKLkw">
+              <expression xsi:type="stext:PrimitiveValueExpression" xmi:id="_0CvwWBy-EeGM3fgW4NKLkw">
+                <value xsi:type="stext:BoolLiteral" xmi:id="_0CvwWRy-EeGM3fgW4NKLkw" value="true"/>
+              </expression>
+            </actions>
+          </effect>
+        </outgoingTransitions>
+      </vertices>
+    </regions>
+  </sgraph:Statechart>
+  <notation:Diagram xmi:id="_wXmFUAuIEeGVgpgRVT1uXw" type="org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor" element="_wXk3MAuIEeGVgpgRVT1uXw" measurementUnit="Pixel">
+    <children xmi:id="_wXnTcAuIEeGVgpgRVT1uXw" type="Region" element="_wXmFUguIEeGVgpgRVT1uXw">
+      <children xsi:type="notation:DecorationNode" xmi:id="_wXohkAuIEeGVgpgRVT1uXw" type="RegionName">
+        <styles xsi:type="notation:ShapeStyle" xmi:id="_wXohkQuIEeGVgpgRVT1uXw"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_wXohkguIEeGVgpgRVT1uXw"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_wXohkwuIEeGVgpgRVT1uXw" type="RegionCompartment" fontName="Verdana" lineColor="4210752">
+        <children xmi:id="_wXpIoguIEeGVgpgRVT1uXw" type="Entry" element="_wXpIoQuIEeGVgpgRVT1uXw">
+          <children xmi:id="_wXpvsAuIEeGVgpgRVT1uXw" type="BorderItemLabelContainer">
+            <children xsi:type="notation:DecorationNode" xmi:id="_wXpvswuIEeGVgpgRVT1uXw" type="BorderItemLabel">
+              <styles xsi:type="notation:ShapeStyle" xmi:id="_wXpvtAuIEeGVgpgRVT1uXw"/>
+              <layoutConstraint xsi:type="notation:Location" xmi:id="_wXpvtQuIEeGVgpgRVT1uXw"/>
+            </children>
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_wXpvsQuIEeGVgpgRVT1uXw" fontName="Verdana" lineColor="4210752"/>
+            <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXpvsguIEeGVgpgRVT1uXw"/>
+          </children>
+          <styles xsi:type="notation:ShapeStyle" xmi:id="_wXpIowuIEeGVgpgRVT1uXw" fontName="Verdana" lineColor="4210752"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXpvtguIEeGVgpgRVT1uXw" x="213" y="9"/>
+        </children>
+        <children xmi:id="_wXqWwguIEeGVgpgRVT1uXw" type="State" element="_wXqWwAuIEeGVgpgRVT1uXw">
+          <children xsi:type="notation:DecorationNode" xmi:id="_wXq90AuIEeGVgpgRVT1uXw" type="StateName">
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_wXq90QuIEeGVgpgRVT1uXw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_wXq90guIEeGVgpgRVT1uXw"/>
+          </children>
+          <children xsi:type="notation:Compartment" xmi:id="_wXq90wuIEeGVgpgRVT1uXw" type="StateTextCompartment">
+            <children xsi:type="notation:Shape" xmi:id="_wXq91AuIEeGVgpgRVT1uXw" type="StateTextCompartmentExpression" fontName="Verdana" lineColor="4210752">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXq91QuIEeGVgpgRVT1uXw"/>
+            </children>
+          </children>
+          <children xsi:type="notation:Compartment" xmi:id="_wXrk4AuIEeGVgpgRVT1uXw" type="StateFigureCompartment" collapsed="true"/>
+          <styles xsi:type="notation:ShapeStyle" xmi:id="_wXqWwwuIEeGVgpgRVT1uXw" fontName="Verdana" fillColor="15981773" lineColor="12632256"/>
+          <styles xsi:type="notation:FontStyle" xmi:id="_wXqWxAuIEeGVgpgRVT1uXw"/>
+          <styles xsi:type="notation:BooleanValueStyle" xmi:id="_wXrk4QuIEeGVgpgRVT1uXw"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXrk4guIEeGVgpgRVT1uXw" x="121" y="49"/>
+        </children>
+        <children xmi:id="_dU-ooAuLEeGVgpgRVT1uXw" type="State" element="_dUv_IAuLEeGVgpgRVT1uXw">
+          <children xsi:type="notation:DecorationNode" xmi:id="_dU_PsAuLEeGVgpgRVT1uXw" type="StateName">
+            <styles xsi:type="notation:ShapeStyle" xmi:id="_dU_PsQuLEeGVgpgRVT1uXw"/>
+            <layoutConstraint xsi:type="notation:Location" xmi:id="_dU_PsguLEeGVgpgRVT1uXw"/>
+          </children>
+          <children xsi:type="notation:Compartment" xmi:id="_dU_PswuLEeGVgpgRVT1uXw" type="StateTextCompartment">
+            <children xsi:type="notation:Shape" xmi:id="_dU_PtAuLEeGVgpgRVT1uXw" type="StateTextCompartmentExpression" fontName="Verdana" lineColor="4210752">
+              <layoutConstraint xsi:type="notation:Bounds" xmi:id="_dU_PtQuLEeGVgpgRVT1uXw"/>
+            </children>
+          </children>
+          <children xsi:type="notation:Compartment" xmi:id="_dU_PtguLEeGVgpgRVT1uXw" type="StateFigureCompartment"/>
+          <styles xsi:type="notation:ShapeStyle" xmi:id="_dU-ooQuLEeGVgpgRVT1uXw" fontName="Verdana" fillColor="15981773" lineColor="12632256"/>
+          <styles xsi:type="notation:FontStyle" xmi:id="_dU-ooguLEeGVgpgRVT1uXw"/>
+          <styles xsi:type="notation:BooleanValueStyle" xmi:id="_dU_2wAuLEeGVgpgRVT1uXw"/>
+          <layoutConstraint xsi:type="notation:Bounds" xmi:id="_dU-oowuLEeGVgpgRVT1uXw" x="147" y="209"/>
+        </children>
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXohlAuIEeGVgpgRVT1uXw"/>
+      </children>
+      <styles xsi:type="notation:ShapeStyle" xmi:id="_wXnTcQuIEeGVgpgRVT1uXw" fontName="Verdana" fillColor="15790320" lineColor="12632256"/>
+      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXpIoAuIEeGVgpgRVT1uXw" x="220" y="5" width="706" height="405"/>
+    </children>
+    <children xsi:type="notation:Shape" xmi:id="_wXtaEwuIEeGVgpgRVT1uXw" type="StatechartText" fontName="Verdana" lineColor="4210752">
+      <children xsi:type="notation:DecorationNode" xmi:id="_wXuBIAuIEeGVgpgRVT1uXw" type="StatechartName">
+        <styles xsi:type="notation:ShapeStyle" xmi:id="_wXuBIQuIEeGVgpgRVT1uXw"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_wXuBIguIEeGVgpgRVT1uXw"/>
+      </children>
+      <children xsi:type="notation:Shape" xmi:id="_wXuBIwuIEeGVgpgRVT1uXw" type="StatechartTextExpression" fontName="Verdana" lineColor="4210752">
+        <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXuBJAuIEeGVgpgRVT1uXw"/>
+      </children>
+      <layoutConstraint xsi:type="notation:Bounds" xmi:id="_wXuBJQuIEeGVgpgRVT1uXw" x="10" y="10" width="200" height="400"/>
+    </children>
+    <styles xsi:type="notation:DiagramStyle" xmi:id="_wXmFUQuIEeGVgpgRVT1uXw"/>
+    <edges xmi:id="_wXszAAuIEeGVgpgRVT1uXw" type="Transition" element="_wXrk4wuIEeGVgpgRVT1uXw" source="_wXpIoguIEeGVgpgRVT1uXw" target="_wXqWwguIEeGVgpgRVT1uXw">
+      <children xsi:type="notation:DecorationNode" xmi:id="_wXtaEAuIEeGVgpgRVT1uXw" type="TransitionExpression">
+        <styles xsi:type="notation:ShapeStyle" xmi:id="_wXtaEQuIEeGVgpgRVT1uXw"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_wXtaEguIEeGVgpgRVT1uXw" y="40"/>
+      </children>
+      <styles xsi:type="notation:ConnectorStyle" xmi:id="_wXszAQuIEeGVgpgRVT1uXw" lineColor="4210752"/>
+      <styles xsi:type="notation:FontStyle" xmi:id="_wXszAwuIEeGVgpgRVT1uXw" fontName="Verdana"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_wXszAguIEeGVgpgRVT1uXw" points="[7, 3, -136, -63]$[47, 22, -96, -44]"/>
+    </edges>
+    <edges xmi:id="_eqGogAuLEeGVgpgRVT1uXw" type="Transition" element="_ep-FoAuLEeGVgpgRVT1uXw" source="_wXqWwguIEeGVgpgRVT1uXw" target="_dU-ooAuLEeGVgpgRVT1uXw">
+      <children xsi:type="notation:DecorationNode" xmi:id="_eqHPkAuLEeGVgpgRVT1uXw" type="TransitionExpression">
+        <styles xsi:type="notation:ShapeStyle" xmi:id="_eqHPkQuLEeGVgpgRVT1uXw"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_eqHPkguLEeGVgpgRVT1uXw" x="32" y="-222"/>
+      </children>
+      <styles xsi:type="notation:ConnectorStyle" xmi:id="_eqGogQuLEeGVgpgRVT1uXw" lineColor="4210752"/>
+      <styles xsi:type="notation:FontStyle" xmi:id="_eqGogwuLEeGVgpgRVT1uXw" fontName="Verdana"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_eqGogguLEeGVgpgRVT1uXw" points="[3, 32, -13, -123]$[5, 160, -11, 5]"/>
+      <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="_-CuLgBQuEeGt3dzsSIW24Q" id="(0.5477386934673367,0.9662921348314607)"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_erE44AuLEeGVgpgRVT1uXw" id="(0.6216216216216216,0.19101123595505617)"/>
+    </edges>
+    <edges xmi:id="_foWZcAuLEeGVgpgRVT1uXw" type="Transition" element="_foN2kAuLEeGVgpgRVT1uXw" source="_dU-ooAuLEeGVgpgRVT1uXw" target="_wXqWwguIEeGVgpgRVT1uXw">
+      <children xsi:type="notation:DecorationNode" xmi:id="_foXAgAuLEeGVgpgRVT1uXw" type="TransitionExpression">
+        <styles xsi:type="notation:ShapeStyle" xmi:id="_foXAgQuLEeGVgpgRVT1uXw"/>
+        <layoutConstraint xsi:type="notation:Location" xmi:id="_foXAgguLEeGVgpgRVT1uXw" y="-106"/>
+      </children>
+      <styles xsi:type="notation:ConnectorStyle" xmi:id="_foWZcQuLEeGVgpgRVT1uXw" lineColor="4210752"/>
+      <styles xsi:type="notation:FontStyle" xmi:id="_foWZcwuLEeGVgpgRVT1uXw" fontName="Verdana"/>
+      <bendpoints xsi:type="notation:RelativeBendpoints" xmi:id="_foWZcguLEeGVgpgRVT1uXw" points="[-20, -39, 53, 108]$[-72, -144, 1, 3]"/>
+      <sourceAnchor xsi:type="notation:IdentityAnchor" xmi:id="__1U0QAusEeGwaYhzcwLTXw" id="(0.4594594594594595,0.07865168539325842)"/>
+      <targetAnchor xsi:type="notation:IdentityAnchor" xmi:id="_fpTbsAuLEeGVgpgRVT1uXw" id="(0.4371859296482412,0.9438202247191011)"/>
+    </edges>
+  </notation:Diagram>
+</xmi:XMI>

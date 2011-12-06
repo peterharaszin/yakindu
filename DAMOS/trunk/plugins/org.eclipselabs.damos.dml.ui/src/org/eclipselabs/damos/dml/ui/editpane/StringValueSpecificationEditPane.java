@@ -45,15 +45,20 @@ public class StringValueSpecificationEditPane implements IValueSpecificationEdit
 	private Text text;
 
 	public void createControl(Composite parent, IWidgetFactory widgetFactory) {
-		text = widgetFactory.createText(parent, "");
-		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
-		text.setLayoutData(gridData);
+		text = createText(parent, widgetFactory);
 	}
 	
 	public Control getControl() {
 		return getText();
 	}
 	
+	protected Text createText(Composite parent, IWidgetFactory widgetFactory) {
+		Text text = widgetFactory.createText(parent, "");
+		GridData gridData = new GridData(SWT.FILL, SWT.CENTER, true, false);
+		text.setLayoutData(gridData);
+		return text;
+	}
+
 	/**
 	 * @return the text
 	 */

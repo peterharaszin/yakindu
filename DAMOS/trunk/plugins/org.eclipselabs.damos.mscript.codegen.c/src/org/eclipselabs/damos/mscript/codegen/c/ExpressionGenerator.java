@@ -31,6 +31,7 @@ import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.MultiplicativeOperator;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
+import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
@@ -310,6 +311,36 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 		
 		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#casePowerExpression(org.eclipselabs.damos.mscript.PowerExpression)
+		 */
+		@Override
+		public Boolean casePowerExpression(PowerExpression powerExpression) {
+			DataType dataType = getDataType(powerExpression);
+			NumberFormat numberFormat = context.getComputationModel().getNumberFormat(dataType);
+	
+			if (numberFormat instanceof FixedPointFormat) {
+				FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
+				if (fixedPointFormat.getWordSize() > 32) {
+					out.print("DamosMath_powfix32(");
+				} else {
+					out.print("DamosMath_powfix64(");
+				}
+				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
+				out.print(", ");
+				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
+				out.printf(", %d)", fixedPointFormat.getFractionLength());
+			} else if (numberFormat instanceof FloatingPointFormat) {
+				out.print("pow(");
+				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getOperand());
+				out.print(", ");
+				MscriptGeneratorUtil.castNumericType(context, numberFormat, powerExpression.getExponent());
+				out.print(")");
+			}
+
+			return true;
+		}
+		
+		/* (non-Javadoc)
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
 		 */
 		@Override
@@ -362,7 +393,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			if (descriptor != null) {
 				IFunctionGenerator generator = builtinFunctionGeneratorLookupTable.getFunctionGenerator(descriptor);
 				if (generator != null) {
-					generator.generate(context, functionCall.getArguments());
+					generator.generate(context, functionCall);
 				}
 			}
 

@@ -27,12 +27,10 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
- *
+ * 
  */
-public class LbFunction implements IFunction {
-
-	private static final double LOG_2 = Math.log(2);
-
+public class ExpFunction implements IFunction {
+	
 	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
 		RealType dataType = TypeUtil.createRealType();
 
@@ -46,7 +44,7 @@ public class LbFunction implements IFunction {
 		if (argument instanceof Binary64Value) {
 			Binary64Value binary64Value = (Binary64Value) argument;
 			return Collections.<IValue> singletonList(Values.valueOf(context, dataType,
-					Math.log(binary64Value.doubleValue()) / LOG_2));
+					Math.exp(binary64Value.doubleValue())));
 		}
 
 		if (argument instanceof FixedPointValue) {
@@ -55,9 +53,9 @@ public class LbFunction implements IFunction {
 
 			FixedPointFormat numberFormat = (FixedPointFormat) context.getComputationModel().getNumberFormat(dataType);
 			if (numberFormat.getWordSize() > 32) {
-				rawValue = FixMath.lbfix64(fixedPointValue.getRawValue(), numberFormat.getFractionLength(), context.getOverflowMonitor());
+				rawValue = FixMath.expfix64(fixedPointValue.getRawValue(), numberFormat.getFractionLength(), context.getOverflowMonitor());
 			} else {
-				rawValue = FixMath.lbfix32((int) fixedPointValue.getRawValue(), numberFormat.getFractionLength(), context.getOverflowMonitor());
+				rawValue = FixMath.expfix32((int) fixedPointValue.getRawValue(), numberFormat.getFractionLength(), context.getOverflowMonitor());
 			}
 			IValue result = new FixedPointValue(context, dataType, numberFormat, rawValue);
 	
@@ -66,5 +64,5 @@ public class LbFunction implements IFunction {
 		
 		throw new IllegalArgumentException();
 	}
-
+	
 }

@@ -432,8 +432,9 @@ public class Generator {
 	 */
 	private void generateIncludes(GenModel genModel, ExecutionFlow executionFlow, PrintWriter writer)
 			throws IOException {
-		writer.println("#include <math.h>");
 		writer.println("#include <string.h>");
+		writer.println("#include <math.h>");
+		writer.println("#include <damos/math.h>");
 		
 		if (executionFlow.getAsynchronousZoneCount() > 0) {
 			IRuntimeEnvironmentAPI runtimeEnvironmentAPI = getRuntimeEnvironmentAPI(genModel);

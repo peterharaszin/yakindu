@@ -11,11 +11,10 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
-import java.util.List;
-
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
@@ -31,13 +30,10 @@ public class SumFunctionGenerator implements IFunctionGenerator {
 
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.codegen.c.IFunctionGenerator#generate(java.util.List)
-	 */
-	public void generate(IMscriptGeneratorContext context, List<? extends Expression> arguments) {
+	public void generate(IMscriptGeneratorContext context, FunctionCall functionCall) {
 		PrintAppendable out = new PrintAppendable(context.getAppendable());
 		
-		Expression argument = arguments.get(0);
+		Expression argument = functionCall.getArguments().get(0);
 		
 		DataType dataType = context.getStaticEvaluationContext().getValue(argument).getDataType();
 		if (!(dataType instanceof TensorType)) {

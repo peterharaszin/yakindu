@@ -30,8 +30,14 @@ public class BuiltinFunctionLookupTable implements IBuiltinFunctionLookupTable {
 			return new RoundFunction();
 		case NUM:
 			return new NumFunction();
+		case LN:
+			return new LnFunction();
+		case LG:
+			return new LgFunction();
 		case LB:
 			return new LbFunction();
+		case EXP:
+			return new ExpFunction();
 		}
 		return null;
 	}

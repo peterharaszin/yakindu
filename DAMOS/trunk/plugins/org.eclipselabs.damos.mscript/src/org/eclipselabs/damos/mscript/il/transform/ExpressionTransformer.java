@@ -43,6 +43,7 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
+import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
@@ -391,6 +392,18 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		transformedExpression.setOperator(unaryExpression.getOperator());
 		Expression expression = doTransform(unaryExpression.getOperand());
 		transformedExpression.setOperand(expression);
+		return transformedExpression;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#casePowerExpression(org.eclipselabs.damos.mscript.PowerExpression)
+	 */
+	@Override
+	public Expression casePowerExpression(PowerExpression powerExpression) {
+		PowerExpression transformedExpression = MscriptFactory.eINSTANCE.createPowerExpression();
+		transformedExpression.setOperand(doTransform(powerExpression.getOperand()));
+		transformedExpression.setExponent(doTransform(powerExpression.getExponent()));
+		transformedExpression.setOperator(powerExpression.getOperator());
 		return transformedExpression;
 	}
 	

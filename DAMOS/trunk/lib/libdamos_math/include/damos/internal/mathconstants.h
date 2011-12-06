@@ -9,16 +9,10 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+#ifndef DAMOS_MATHCONSTANTS_H_
+#define DAMOS_MATHCONSTANTS_H_
 
-import org.eclipselabs.damos.mscript.FunctionCall;
+#define DAMOS_MATH_LOG_TABLE_FRACTION_LENGTH_32 26
+#define DAMOS_MATH_LOG_TABLE_FRACTION_LENGTH_64 57
 
-/**
- * @author Andreas Unger
- *
- */
-public interface IFunctionGenerator {
-
-	void generate(IMscriptGeneratorContext context, FunctionCall functionCall);
-	
-}
+#endif /* DAMOS_MATHCONSTANTS_H_ */

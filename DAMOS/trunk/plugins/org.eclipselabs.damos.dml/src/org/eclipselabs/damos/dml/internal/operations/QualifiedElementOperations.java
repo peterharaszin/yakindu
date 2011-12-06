@@ -35,7 +35,10 @@ public class QualifiedElementOperations {
 	public static String getQualifier(QualifiedElement qualifiedElement) {
 		String qualifiedName = qualifiedElement.getQualifiedName();
 		if (qualifiedName != null) {
-			int index = qualifiedName.lastIndexOf(".");
+			int index = qualifiedName.lastIndexOf("::");
+			if (index == -1) {
+				index = qualifiedName.lastIndexOf(".");
+			}
 			if (index >= 0) {
 				return qualifiedName.substring(0, index);
 			}

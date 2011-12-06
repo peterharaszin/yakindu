@@ -14,7 +14,10 @@ package org.eclipselabs.damos.mscript.il.builtin;
 import java.util.List;
 
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.internal.il.builtin.ExpSignature;
 import org.eclipselabs.damos.mscript.internal.il.builtin.LbSignature;
+import org.eclipselabs.damos.mscript.internal.il.builtin.LgSignature;
+import org.eclipselabs.damos.mscript.internal.il.builtin.LnSignature;
 import org.eclipselabs.damos.mscript.internal.il.builtin.NumSignature;
 import org.eclipselabs.damos.mscript.internal.il.builtin.RoundSignature;
 import org.eclipselabs.damos.mscript.internal.il.builtin.UnitSignature;
@@ -28,7 +31,10 @@ public enum BuiltinFunctionDescriptor {
 	UNIT("unit", new UnitSignature()),
 	ROUND("round", new RoundSignature()),
 	NUM("num", new NumSignature()),
-	LB("lb", new LbSignature());
+	LN("ln", new LnSignature()),
+	LG("lg", new LgSignature()),
+	LB("lb", new LbSignature()),
+	EXP("exp", new ExpSignature());
 	
 	private String name;
 	private ISignature signature;

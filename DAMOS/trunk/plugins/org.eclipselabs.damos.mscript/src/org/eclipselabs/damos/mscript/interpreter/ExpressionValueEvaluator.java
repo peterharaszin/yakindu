@@ -35,6 +35,7 @@ import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
+import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
@@ -401,6 +402,23 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 	
 		public IValue processMatrix(IValue[][] matrix, int rowSize, int columnSize) {
 			return InvalidValue.SINGLETON;
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#casePowerExpression(org.eclipselabs.damos.mscript.PowerExpression)
+		 */
+		@Override
+		public IValue casePowerExpression(PowerExpression powerExpression) {
+			IValue operandValue = doSwitch(powerExpression.getOperand());
+			IValue exponentValue = doSwitch(powerExpression.getExponent());
+			
+			IValue result = operandValue.power(exponentValue);
+
+			if (result instanceof InvalidValue) {
+				throw new RuntimeException("Power operation cannot not be performed on provided operands");
+			}
+			
+			return result;
 		}
 	
 		/* (non-Javadoc)

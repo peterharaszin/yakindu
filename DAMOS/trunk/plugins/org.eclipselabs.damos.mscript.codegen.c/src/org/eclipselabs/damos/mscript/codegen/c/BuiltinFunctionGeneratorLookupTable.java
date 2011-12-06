@@ -11,6 +11,10 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import org.eclipselabs.damos.mscript.codegen.c.internal.ExpFunctionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.internal.LbFunctionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.internal.LgFunctionGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.internal.LnFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.RoundFunctionGenerator;
 import org.eclipselabs.damos.mscript.il.builtin.BuiltinFunctionDescriptor;
 
@@ -27,6 +31,14 @@ public class BuiltinFunctionGeneratorLookupTable implements IBuiltinFunctionGene
 		switch (builtinFunctionDescriptor) {
 		case ROUND:
 			return new RoundFunctionGenerator();
+		case EXP:
+			return new ExpFunctionGenerator();
+		case LN:
+			return new LnFunctionGenerator();
+		case LG:
+			return new LgFunctionGenerator();
+		case LB:
+			return new LbFunctionGenerator();
 		}
 		return null;
 	}

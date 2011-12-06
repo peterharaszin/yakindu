@@ -88,8 +88,14 @@ public class Binary64Value extends AbstractNumericValue implements ISimpleNumeri
 	}
 	
 	@Override
-	protected AbstractNumericValue basicUnaryMinus(NumericType resultDataType) {
+	protected AbstractNumericValue basicNegate(NumericType resultDataType) {
 		return new Binary64Value(getContext(), resultDataType, getNumberFormat(), -value);
+	}
+	
+	@Override
+	protected AbstractNumericValue basicPower(AbstractNumericValue other, NumericType resultDataType) {
+		Binary64Value otherBinary64Value = (Binary64Value) other;
+		return new Binary64Value(getContext(), resultDataType, getNumberFormat(), Math.pow(value, otherBinary64Value.value));
 	}
 
 	@Override

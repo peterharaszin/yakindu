@@ -15,6 +15,10 @@
 #include <pthread.h>
 #include <semaphore.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
 	pthread_mutex_t mutex;
 	sem_t fillCount;
@@ -36,5 +40,9 @@ void DamosPosixMessageQueue_init(DamosPosixMessageQueue *mq, int capacity, int e
 void DamosPosixMessageQueue_send(DamosPosixMessageQueue *mq, const void *data);
 
 void DamosPosixMessageQueue_receive(DamosPosixMessageQueue *mq, void *data);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* DAMOS_POSIX_MQ_H_ */

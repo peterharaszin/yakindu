@@ -26,6 +26,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.OverflowInfo;
+import org.eclipselabs.damos.mscript.interpreter.util.FixMath;
 
 /**
  * @author Andreas Unger
@@ -152,8 +153,20 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 	}
 	
 	@Override
-	protected AbstractNumericValue basicUnaryMinus(NumericType resultDataType) {
+	protected AbstractNumericValue basicNegate(NumericType resultDataType) {
 		return new FixedPointValue(getContext(), getDataType(), getNumberFormat(), -rawValue);
+	}
+	
+	@Override
+	protected AbstractNumericValue basicPower(AbstractNumericValue other, NumericType resultDataType) {
+		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
+		long result;
+		if (getNumberFormat().getWordSize() > 32) {
+			result = FixMath.powfix64(rawValue, otherFixedPointValue.rawValue, getNumberFormat().getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.powfix32((int) rawValue, (int) otherFixedPointValue.rawValue, getNumberFormat().getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), resultDataType, getNumberFormat(), result);
 	}
 	
 	@Override

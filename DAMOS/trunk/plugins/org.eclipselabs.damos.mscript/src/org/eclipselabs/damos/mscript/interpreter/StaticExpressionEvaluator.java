@@ -45,7 +45,10 @@ import org.eclipselabs.damos.mscript.LogicalAndExpression;
 import org.eclipselabs.damos.mscript.LogicalOrExpression;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.MultiplicativeExpression;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.OperatorKind;
 import org.eclipselabs.damos.mscript.ParenthesizedExpression;
+import org.eclipselabs.damos.mscript.PowerExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.RelationalExpression;
@@ -628,6 +631,76 @@ public class StaticExpressionEvaluator {
 				unit = EcoreUtil.copy(unitConstructionOperator.getUnit());
 			}
 			return new UnitValue(context.getComputationContext(), unit);
+		}
+		
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#casePowerExpression(org.eclipselabs.damos.mscript.PowerExpression)
+		 */
+		@Override
+		public IValue casePowerExpression(PowerExpression powerExpression) {
+			IValue operandValue = evaluate(powerExpression.getOperand());
+			IValue exponentValue = evaluate(powerExpression.getExponent());
+			
+			if (operandValue instanceof InvalidValue || exponentValue instanceof InvalidValue) {
+				return InvalidValue.SINGLETON;
+			}
+			
+			boolean failed = false;
+			
+			if (!(operandValue.getDataType() instanceof NumericType)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power operand must be numeric", powerExpression.getOperand()));
+				failed = true;
+			}
+
+			if (!(exponentValue.getDataType() instanceof NumericType)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be numeric", powerExpression.getExponent()));
+				failed = true;
+			}
+			
+			if (failed) {
+				return InvalidValue.SINGLETON;
+			}
+
+			NumericType operandType = (NumericType) operandValue.getDataType();
+			NumericType exponentType = (NumericType) exponentValue.getDataType();
+			
+			boolean constantIntegerExponent = exponentType instanceof IntegerType && exponentValue instanceof ISimpleNumericValue;
+
+			Unit dimensionlessUnit = TypeUtil.createUnit();
+			
+			if (!dimensionlessUnit.isEquivalentTo(operandType.getUnit(), true) && !constantIntegerExponent) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be integer constant if operand is dimensional", powerExpression.getExponent()));
+				failed = true;
+			}
+			
+			if (!dimensionlessUnit.isEquivalentTo(exponentType.getUnit(), true)) {
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Power exponent must be dimensionless", powerExpression.getExponent()));
+				failed = true;
+			}
+
+			if (failed) {
+				return InvalidValue.SINGLETON;
+			}
+
+			DataType dataType;
+			if (constantIntegerExponent) {
+				dataType = operandType.evaluate(OperatorKind.POWER, (int) ((ISimpleNumericValue) exponentValue).longValue());
+			} else {
+				RealType realType = MscriptFactory.eINSTANCE.createRealType();
+				realType.setUnit(EcoreUtil.copy(operandType.getUnit()));
+				dataType = realType;
+			}
+			
+			IValue result = null;
+			if (operandValue instanceof ISimpleNumericValue && exponentValue instanceof ISimpleNumericValue) {
+				result = Values.valueOf(context.getComputationContext(), (NumericType) dataType, Math.pow(
+						((ISimpleNumericValue) operandValue).doubleValue(),
+						((ISimpleNumericValue) exponentValue).doubleValue()));
+			} else {
+				result = new AnyValue(context.getComputationContext(), dataType);
+			}
+
+			return result;
 		}
 		
 		/* (non-Javadoc)

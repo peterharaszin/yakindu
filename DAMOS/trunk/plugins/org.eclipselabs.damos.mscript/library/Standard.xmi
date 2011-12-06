@@ -5,4 +5,7 @@
   <definitions xsi:type="mscript:BuiltinFunction" name="round"/>
   <definitions xsi:type="mscript:BuiltinFunction" name="num"/>
   <definitions xsi:type="mscript:BuiltinFunction" name="lb"/>
+  <definitions xsi:type="mscript:BuiltinFunction" name="ln"/>
+  <definitions xsi:type="mscript:BuiltinFunction" name="lg"/>
+  <definitions xsi:type="mscript:BuiltinFunction" name="exp"/>
 </mscript:Module>

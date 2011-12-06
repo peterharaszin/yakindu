@@ -12,9 +12,17 @@
 #ifndef DAMOS_POSIX_TASK_H_
 #define DAMOS_POSIX_TASK_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
 	void *(*function)(void *context);
 	int priority;
 } DamosPosixTaskInfo;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* DAMOS_POSIX_TASK_H_ */

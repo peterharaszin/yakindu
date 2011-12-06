@@ -11,12 +11,11 @@
 
 package org.eclipselabs.damos.mscript.codegen.c.internal;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
@@ -38,13 +37,10 @@ public class RoundFunctionGenerator implements IFunctionGenerator {
 
 	private final IExpressionGenerator expressionGenerator = new ExpressionGenerator();
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.codegen.c.IFunctionGenerator#generate(java.util.List)
-	 */
-	public void generate(final IMscriptGeneratorContext context, List<? extends Expression> arguments) {
+	public void generate(final IMscriptGeneratorContext context, FunctionCall functionCall) {
 		final PrintAppendable out = new PrintAppendable(context.getAppendable());
 		
-		final Expression argument = arguments.get(0);
+		final Expression argument = functionCall.getArguments().get(0);
 		
 		final DataType argumentDataType = context.getStaticEvaluationContext().getValue(argument).getDataType();
 		if (!(argumentDataType instanceof NumericType)) {

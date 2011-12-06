@@ -17,6 +17,7 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.OperatorKind;
+import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.Unit;
 
 public class IntegerTypeOperations extends PrimitiveTypeOperations {
@@ -61,7 +62,7 @@ public class IntegerTypeOperations extends PrimitiveTypeOperations {
 	}
 
 	public static DataType evaluate(IntegerType integerType, OperatorKind operator, int n) {
-		IntegerType result = MscriptFactory.eINSTANCE.createIntegerType();
+		RealType result = MscriptFactory.eINSTANCE.createRealType();
 		result.setUnit(integerType.getUnit().evaluate(operator, n));
 		return result;
 	}

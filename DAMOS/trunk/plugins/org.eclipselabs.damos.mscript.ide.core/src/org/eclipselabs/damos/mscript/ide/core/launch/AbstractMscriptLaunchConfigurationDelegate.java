@@ -142,7 +142,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 
 		inputParameterDataTypes = computeInputParameterDataTypes(configuration, mode, monitor);
 
-		ilFunctionDefinition = createILFunctionDefinition(functionDefinition, getTargetFunctionName(), templateArguments, inputParameterDataTypes, monitor);
+		ilFunctionDefinition = createILFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes, monitor);
 
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
@@ -213,14 +213,14 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return functionDefinition;
 	}
 
-	private ILFunctionDefinition createILFunctionDefinition(FunctionDefinition functionDefinition, String functionName, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
+	private ILFunctionDefinition createILFunctionDefinition(FunctionDefinition functionDefinition, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
 		staticEvaluationContext = new StaticEvaluationContext();
 		IStatus status = new StaticFunctionEvaluator().evaluate(staticEvaluationContext, functionDefinition);
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
 		}
 		
-		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationContext, staticEvaluationContext.getFunctionDescriptor(functionDefinition), functionName, templateArguments, inputParameterDataTypes);
+		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationContext, staticEvaluationContext.getFunctionDescriptor(functionDefinition), templateArguments, inputParameterDataTypes);
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			throw new CoreException(functionDefinitionTransformerResult.getStatus());
 		}

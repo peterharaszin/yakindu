@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Evaluable;
+import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
@@ -39,20 +40,25 @@ public class MscriptGenerator {
 	
 	private IMscriptGeneratorContext context;
 	
+	private String functionName;
 	private PrintAppendable out;
 	
 	/**
 	 * 
 	 */
-	public MscriptGenerator(ILFunctionDefinition functionDefinition, IMscriptGeneratorContext context) {
+	public MscriptGenerator(ILFunctionDefinition functionDefinition, IMscriptGeneratorContext context, String functionName) {
 		this.functionDefinition = functionDefinition;
 		this.context = context;
+		this.functionName = functionName;
+		if (this.functionName == null) {
+			this.functionName = functionDefinition.getFunctionDefinition().getName();
+		}
 		out = new PrintAppendable(context.getAppendable());
 	}
 	
 	public void generateHeaderCode() {
-		out.printf("#ifndef %s_H_\n", functionDefinition.getName().toUpperCase());
-		out.printf("#define %s_H_\n", functionDefinition.getName().toUpperCase());
+		out.printf("#ifndef %s_H_\n", functionName.toUpperCase());
+		out.printf("#define %s_H_\n", functionName.toUpperCase());
 		out.println();
 		generateHeaderIncludes();
 		out.println();
@@ -61,7 +67,7 @@ public class MscriptGenerator {
 		out.println("#endif /* __cplusplus */");
 		out.println();
 		
-		if (functionDefinition.isStateful()) {
+		if (functionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
 			generateContextStructure();
 		}
 
@@ -73,7 +79,7 @@ public class MscriptGenerator {
 		out.println("}");
 		out.println("#endif /* __cplusplus */");
 		out.println();
-		out.printf("#endif /* %s_H_ */\n", functionDefinition.getName().toUpperCase());
+		out.printf("#endif /* %s_H_ */\n", functionName.toUpperCase());
 	}
 	
 	public void generateHeaderIncludes() {
@@ -95,7 +101,7 @@ public class MscriptGenerator {
 		for (StateVariableDeclaration stateVariableDeclaration : functionDefinition.getFunctionDefinition().getStateVariableDeclarations()) {
 			writeContextStructureMember(stateVariableDeclaration);
 		}
-		out.printf("} %s_Context;\n", functionDefinition.getName());
+		out.printf("} %s_Context;\n", functionName);
 	}
 	
 	private void writeContextStructureMember(VariableDeclaration variableDeclaration) {
@@ -115,7 +121,7 @@ public class MscriptGenerator {
 	}
 	
 	public void generateFunctionPrototypes() {
-		if (functionDefinition.isStateful()) {
+		if (functionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
 			generateInitializeFunctionHeader();
 			out.println(";");
 			generateComputeOutputsFunctionHeader();
@@ -137,11 +143,11 @@ public class MscriptGenerator {
 	public void generateImplementationIncludes() {
 		out.println("#include <math.h>");
 		out.println("#include <string.h>");
-		out.printf("#include \"%s.h\"\n", functionDefinition.getName());
+		out.printf("#include \"%s.h\"\n", functionName);
 	}
 	
 	public void generateFunctionImplementations() {
-		if (functionDefinition.isStateful()) {
+		if (functionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
 			generateInitializeFunctionImplementation();
 
 			out.println();
@@ -165,7 +171,7 @@ public class MscriptGenerator {
 	 * 
 	 */
 	private void generateInitializeFunctionHeader() {
-		out.printf("void %s_initialize(%s_Context *context)", functionDefinition.getName(), functionDefinition.getName());
+		out.printf("void %s_initialize(%s_Context *context)", functionName, functionName);
 	}
 
 	/**
@@ -193,7 +199,7 @@ public class MscriptGenerator {
 	 * 
 	 */
 	private void generateComputeOutputsFunctionHeader() {
-		out.printf("void %s(%s_Context *context", functionDefinition.getName(), functionDefinition.getName());
+		out.printf("void %s(%s_Context *context", functionName, functionName);
 		for (InputParameterDeclaration inputParameterDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
 			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false));
 		}
@@ -234,7 +240,7 @@ public class MscriptGenerator {
 	 * 
 	 */
 	private void generateUpdateFunctionHeader() {
-		out.printf("void %s_update(%s_Context *context", functionDefinition.getName(), functionDefinition.getName());
+		out.printf("void %s_update(%s_Context *context", functionName, functionName);
 		for (InputParameterDeclaration inputParameterDeclaration : getUpdateCodeInputs()) {
 			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false));
 		}
@@ -290,7 +296,7 @@ public class MscriptGenerator {
 	 * 
 	 */
 	private void generateStatelessFunctionHeader() {
-		out.printf("void %s(", functionDefinition.getName(), functionDefinition.getName());
+		out.printf("void %s(", functionName, functionName);
 		boolean first = true;
 		for (InputParameterDeclaration inputParameterDeclaration: functionDefinition.getFunctionDefinition().getInputParameterDeclarations()) {
 			if (first) {

@@ -1995,33 +1995,26 @@ public class InternalExecutionModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:9: ( ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:11: ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:11: ( '_' )*
-            loop4:
-            do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:11: ( '_' )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-                if ( (LA4_0=='_') ) {
-                    alt4=1;
-                }
+            if ( (LA4_0=='_') ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:11: '_'
+                    {
+                    match('_'); 
 
+                    }
+                    break;
 
-                switch (alt4) {
-            	case 1 :
-            	    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:21418:11: '_'
-            	    {
-            	    match('_'); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop4;
-                }
-            } while (true);
+            }
 
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3033,16 +3026,16 @@ public class InternalExecutionModelLexer extends Lexer {
 
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
-        "\3\uffff\1\64\3\70\1\101\1\70\1\112\1\115\1\117\1\121\1\123\1\uffff"+
+        "\3\uffff\1\64\3\70\1\101\1\70\1\111\1\115\1\117\1\121\1\123\1\uffff"+
         "\1\127\1\134\1\uffff\1\70\3\uffff\1\70\2\uffff\1\70\1\152\4\70\2"+
-        "\uffff\2\70\1\166\1\60\2\uffff\1\172\1\101\1\112\1\173\1\uffff\1"+
+        "\uffff\2\70\1\166\1\60\2\uffff\1\172\1\101\1\111\1\173\1\uffff\1"+
         "\60\1\uffff\1\60\6\uffff\3\70\1\uffff\5\70\1\u008e\1\u008f\1\u0090"+
-        "\1\uffff\5\70\1\u0097\1\70\1\u009a\24\uffff\1\70\3\uffff\3\70\2"+
-        "\uffff\2\70\2\uffff\5\70\2\uffff\2\70\1\u00a9\12\uffff\2\70\1\u00ac"+
-        "\1\u00ad\11\70\1\u00b9\1\70\3\uffff\5\70\1\u00c0\1\uffff\1\70\1"+
-        "\u009a\1\uffff\1\u00c2\5\70\1\u00c8\5\70\1\u00ce\1\70\1\uffff\2"+
-        "\70\2\uffff\1\u00d2\10\70\1\u00dc\1\u00dd\1\uffff\5\70\1\u00e3\1"+
-        "\uffff\1\u00e4\1\uffff\1\70\1\u00e6\1\u00e7\1\70\1\u00e9\1\uffff"+
+        "\1\uffff\5\70\1\u0097\1\70\1\uffff\1\u009a\23\uffff\1\70\3\uffff"+
+        "\3\70\2\uffff\2\70\2\uffff\5\70\2\uffff\2\70\1\u00a9\12\uffff\2"+
+        "\70\1\u00ac\1\u00ad\11\70\1\u00b9\1\70\3\uffff\5\70\1\u00c0\1\uffff"+
+        "\1\70\1\u009a\1\uffff\1\u00c2\5\70\1\u00c8\5\70\1\u00ce\1\70\1\uffff"+
+        "\2\70\2\uffff\1\u00d2\10\70\1\u00dc\1\u00dd\1\uffff\5\70\1\u00e3"+
+        "\1\uffff\1\u00e4\1\uffff\1\70\1\u00e6\1\u00e7\1\70\1\u00e9\1\uffff"+
         "\1\u00ea\2\70\1\u00ed\1\70\1\uffff\1\70\1\u00f0\1\u00f1\1\uffff"+
         "\6\70\1\u00f8\1\70\1\u00fa\2\uffff\2\70\1\u00fd\1\u00fe\1\70\2\uffff"+
         "\1\70\2\uffff\1\70\2\uffff\1\70\1\u0103\1\uffff\1\u0104\1\70\2\uffff"+
@@ -3058,15 +3051,15 @@ public class InternalExecutionModelLexer extends Lexer {
         "\1\141\1\157\2\uffff\2\145\1\174\1\46\2\uffff\4\60\1\uffff\1\101"+
         "\1\uffff\1\0\6\uffff\1\154\1\142\1\156\1\uffff\1\141\1\151\1\155"+
         "\1\145\1\163\3\60\1\uffff\1\162\1\151\1\162\1\145\1\144\1\60\1\163"+
-        "\1\60\24\uffff\1\145\3\uffff\1\160\1\145\1\165\2\uffff\1\163\1\147"+
-        "\2\uffff\1\162\1\141\1\165\1\157\1\145\2\uffff\1\164\1\146\1\60"+
-        "\12\uffff\1\163\1\141\2\60\1\143\1\164\1\151\1\164\1\163\1\160\1"+
-        "\143\1\145\1\157\1\60\1\164\3\uffff\1\156\1\154\1\157\1\143\1\155"+
-        "\1\60\1\uffff\1\145\1\60\1\uffff\1\60\1\145\1\156\2\145\1\157\1"+
-        "\60\1\154\1\165\1\163\1\154\1\141\1\60\1\141\1\uffff\1\145\1\154"+
-        "\2\uffff\1\60\1\145\1\143\1\156\1\143\1\151\1\164\1\154\1\153\2"+
-        "\60\1\uffff\2\151\1\145\1\162\1\165\1\60\1\uffff\1\60\1\uffff\1"+
-        "\144\2\60\1\162\1\60\1\uffff\1\60\1\162\1\163\1\60\1\153\1\uffff"+
+        "\1\uffff\1\60\23\uffff\1\145\3\uffff\1\160\1\145\1\165\2\uffff\1"+
+        "\163\1\147\2\uffff\1\162\1\141\1\165\1\157\1\145\2\uffff\1\164\1"+
+        "\146\1\60\12\uffff\1\163\1\141\2\60\1\143\1\164\1\151\1\164\1\163"+
+        "\1\160\1\143\1\145\1\157\1\60\1\164\3\uffff\1\156\1\154\1\157\1"+
+        "\143\1\155\1\60\1\uffff\1\145\1\60\1\uffff\1\60\1\145\1\156\2\145"+
+        "\1\157\1\60\1\154\1\165\1\163\1\154\1\141\1\60\1\141\1\uffff\1\145"+
+        "\1\154\2\uffff\1\60\1\145\1\143\1\156\1\143\1\151\1\164\1\154\1"+
+        "\153\2\60\1\uffff\2\151\1\145\1\162\1\165\1\60\1\uffff\1\60\1\uffff"+
+        "\1\144\2\60\1\162\1\60\1\uffff\1\60\1\162\1\163\1\60\1\153\1\uffff"+
         "\1\165\2\60\1\uffff\1\146\1\143\1\164\1\147\1\150\1\156\1\60\1\145"+
         "\1\60\2\uffff\1\141\1\156\2\60\1\164\2\uffff\1\145\2\uffff\1\164"+
         "\2\uffff\1\156\1\60\1\uffff\1\60\1\154\2\uffff\1\165\4\60\1\165"+
@@ -3079,38 +3072,38 @@ public class InternalExecutionModelLexer extends Lexer {
         "\1\72\1\141\1\145\1\141\1\162\2\uffff\1\145\1\157\1\174\1\46\2\uffff"+
         "\3\172\1\71\1\uffff\1\172\1\uffff\1\uffff\6\uffff\1\164\1\162\1"+
         "\156\1\uffff\1\162\1\151\1\156\1\145\1\163\3\172\1\uffff\1\162\1"+
-        "\151\1\162\1\145\1\165\1\172\1\163\1\172\24\uffff\1\145\3\uffff"+
-        "\1\160\1\145\1\165\2\uffff\1\163\1\147\2\uffff\1\162\1\164\1\165"+
-        "\1\157\1\145\2\uffff\1\164\1\146\1\172\12\uffff\1\163\1\141\2\172"+
-        "\1\143\1\164\1\165\2\164\1\160\1\143\1\145\1\157\1\172\1\164\3\uffff"+
-        "\1\156\1\154\1\157\1\143\1\155\1\172\1\uffff\1\145\1\172\1\uffff"+
-        "\1\172\1\145\1\156\2\145\1\157\1\172\1\154\1\165\1\163\1\154\1\141"+
-        "\1\172\1\141\1\uffff\1\145\1\154\2\uffff\1\172\1\151\1\143\1\156"+
-        "\1\143\1\151\1\164\1\154\1\153\2\172\1\uffff\2\151\1\145\1\162\1"+
-        "\165\1\172\1\uffff\1\172\1\uffff\1\144\2\172\1\162\1\172\1\uffff"+
-        "\1\172\1\162\1\163\1\172\1\153\1\uffff\1\165\2\172\1\uffff\1\146"+
-        "\1\143\1\164\1\147\1\150\1\156\1\172\1\145\1\172\2\uffff\1\141\1"+
-        "\156\2\172\1\164\2\uffff\1\145\2\uffff\1\164\2\uffff\1\156\1\172"+
-        "\1\uffff\1\172\1\154\2\uffff\1\165\4\172\1\165\1\uffff\1\170\1\uffff"+
-        "\1\154\1\147\2\uffff\1\151\1\146\2\172\2\uffff\1\164\1\154\4\uffff"+
-        "\1\157\3\172\1\157\1\172\2\uffff\2\172\1\165\1\172\3\uffff\1\156"+
-        "\3\uffff\1\163\1\uffff\2\172\2\uffff";
+        "\151\1\162\1\145\1\165\1\172\1\163\1\uffff\1\172\23\uffff\1\145"+
+        "\3\uffff\1\160\1\145\1\165\2\uffff\1\163\1\147\2\uffff\1\162\1\164"+
+        "\1\165\1\157\1\145\2\uffff\1\164\1\146\1\172\12\uffff\1\163\1\141"+
+        "\2\172\1\143\1\164\1\165\2\164\1\160\1\143\1\145\1\157\1\172\1\164"+
+        "\3\uffff\1\156\1\154\1\157\1\143\1\155\1\172\1\uffff\1\145\1\172"+
+        "\1\uffff\1\172\1\145\1\156\2\145\1\157\1\172\1\154\1\165\1\163\1"+
+        "\154\1\141\1\172\1\141\1\uffff\1\145\1\154\2\uffff\1\172\1\151\1"+
+        "\143\1\156\1\143\1\151\1\164\1\154\1\153\2\172\1\uffff\2\151\1\145"+
+        "\1\162\1\165\1\172\1\uffff\1\172\1\uffff\1\144\2\172\1\162\1\172"+
+        "\1\uffff\1\172\1\162\1\163\1\172\1\153\1\uffff\1\165\2\172\1\uffff"+
+        "\1\146\1\143\1\164\1\147\1\150\1\156\1\172\1\145\1\172\2\uffff\1"+
+        "\141\1\156\2\172\1\164\2\uffff\1\145\2\uffff\1\164\2\uffff\1\156"+
+        "\1\172\1\uffff\1\172\1\154\2\uffff\1\165\4\172\1\165\1\uffff\1\170"+
+        "\1\uffff\1\154\1\147\2\uffff\1\151\1\146\2\172\2\uffff\1\164\1\154"+
+        "\4\uffff\1\157\3\172\1\157\1\172\2\uffff\2\172\1\165\1\172\3\uffff"+
+        "\1\156\3\uffff\1\163\1\uffff\2\172\2\uffff";
     static final String DFA12_acceptS =
         "\1\uffff\1\1\1\2\13\uffff\1\21\2\uffff\1\25\1\uffff\1\34\1\35\1"+
         "\36\1\uffff\1\42\1\43\6\uffff\1\63\1\64\4\uffff\1\103\1\105\4\uffff"+
         "\1\126\1\uffff\1\127\1\uffff\1\133\1\134\1\1\1\2\1\44\1\3\3\uffff"+
-        "\1\127\10\uffff\1\122\10\uffff\1\123\1\13\1\75\1\52\1\14\1\27\1"+
-        "\16\1\15\1\20\1\17\1\21\1\131\1\132\1\22\1\23\1\24\1\26\1\104\1"+
-        "\101\1\25\1\uffff\1\34\1\35\1\36\3\uffff\1\42\1\43\2\uffff\1\115"+
-        "\1\47\5\uffff\1\63\1\64\3\uffff\1\76\1\102\1\77\1\103\1\105\1\121"+
-        "\1\125\1\126\1\130\1\133\17\uffff\1\66\1\67\1\100\6\uffff\1\54\2"+
-        "\uffff\1\124\16\uffff\1\111\2\uffff\1\32\1\53\13\uffff\1\56\6\uffff"+
-        "\1\106\1\uffff\1\31\5\uffff\1\50\5\uffff\1\65\3\uffff\1\41\11\uffff"+
-        "\1\74\1\7\5\uffff\1\33\1\71\1\uffff\1\70\1\120\1\uffff\1\107\1\55"+
-        "\2\uffff\1\61\2\uffff\1\4\1\12\6\uffff\1\51\1\uffff\1\45\2\uffff"+
-        "\1\110\1\11\4\uffff\1\60\1\113\2\uffff\1\116\1\40\1\62\1\72\6\uffff"+
-        "\1\46\1\114\4\uffff\1\57\1\117\1\10\1\uffff\1\37\1\73\1\5\1\uffff"+
-        "\1\112\2\uffff\1\30\1\6";
+        "\1\127\10\uffff\1\122\7\uffff\1\123\1\uffff\1\13\1\75\1\52\1\14"+
+        "\1\27\1\16\1\15\1\20\1\17\1\21\1\131\1\132\1\22\1\23\1\24\1\26\1"+
+        "\104\1\101\1\25\1\uffff\1\34\1\35\1\36\3\uffff\1\42\1\43\2\uffff"+
+        "\1\115\1\47\5\uffff\1\63\1\64\3\uffff\1\76\1\102\1\77\1\103\1\105"+
+        "\1\121\1\125\1\126\1\130\1\133\17\uffff\1\66\1\67\1\100\6\uffff"+
+        "\1\54\2\uffff\1\124\16\uffff\1\111\2\uffff\1\32\1\53\13\uffff\1"+
+        "\56\6\uffff\1\106\1\uffff\1\31\5\uffff\1\50\5\uffff\1\65\3\uffff"+
+        "\1\41\11\uffff\1\74\1\7\5\uffff\1\33\1\71\1\uffff\1\70\1\120\1\uffff"+
+        "\1\107\1\55\2\uffff\1\61\2\uffff\1\4\1\12\6\uffff\1\51\1\uffff\1"+
+        "\45\2\uffff\1\110\1\11\4\uffff\1\60\1\113\2\uffff\1\116\1\40\1\62"+
+        "\1\72\6\uffff\1\46\1\114\4\uffff\1\57\1\117\1\10\1\uffff\1\37\1"+
+        "\73\1\5\1\uffff\1\112\2\uffff\1\30\1\6";
     static final String DFA12_specialS =
         "\1\0\55\uffff\1\1\u00f5\uffff}>";
     static final String[] DFA12_transitionS = {
@@ -3129,7 +3122,7 @@ public class InternalExecutionModelLexer extends Lexer {
             "\12\70\7\uffff\32\70\4\uffff\1\70\1\uffff\5\70\1\77\7\70\1"+
             "\76\4\70\1\100\7\70",
             "\1\102\6\uffff\1\103",
-            "\12\111\7\uffff\32\70\4\uffff\1\70\1\uffff\13\70\1\110\1\70"+
+            "\12\112\7\uffff\32\70\4\uffff\1\70\1\uffff\13\70\1\110\1\70"+
             "\1\106\2\70\1\107\1\104\5\70\1\105\2\70",
             "\1\113\1\114",
             "\1\116",
@@ -3162,10 +3155,10 @@ public class InternalExecutionModelLexer extends Lexer {
             "",
             "\12\70\7\uffff\32\70\4\uffff\1\70\1\uffff\32\70",
             "\12\70\7\uffff\32\70\4\uffff\1\70\1\uffff\32\70",
-            "\12\111\7\uffff\32\70\4\uffff\1\70\1\uffff\32\70",
+            "\12\112\7\uffff\32\70\4\uffff\1\70\1\uffff\32\70",
             "\12\174",
             "",
-            "\32\70\4\uffff\1\70\1\uffff\32\70",
+            "\32\70\6\uffff\32\70",
             "",
             "\0\175",
             "",
@@ -3195,9 +3188,9 @@ public class InternalExecutionModelLexer extends Lexer {
             "\1\u0096\20\uffff\1\u0095",
             "\12\70\7\uffff\32\70\4\uffff\1\70\1\uffff\32\70",
             "\1\u0098",
-            "\12\111\7\uffff\32\70\4\uffff\1\70\1\uffff\10\70\2\u0099\20"+
-            "\70",
             "",
+            "\12\112\7\uffff\32\70\4\uffff\1\70\1\uffff\10\70\2\u0099\20"+
+            "\70",
             "",
             "",
             "",

@@ -51,6 +51,7 @@ public class CodegenProcess implements IProcess {
 	private String name;
 	
 	private IFolder targetFolder;
+	private String functionName;
 	private ILFunctionDefinition functionDefinition;
 	private IStaticEvaluationContext staticEvaluationContext;
 	private ComputationModel computationModel;
@@ -60,10 +61,11 @@ public class CodegenProcess implements IProcess {
 	/**
 	 * 
 	 */
-	public CodegenProcess(ILaunch launch, String name, IFolder targetFolder, ILFunctionDefinition functionDefinition, IStaticEvaluationContext staticEvaluationContext, ComputationModel computationModel) {
+	public CodegenProcess(ILaunch launch, String name, IFolder targetFolder, String functionName, ILFunctionDefinition functionDefinition, IStaticEvaluationContext staticEvaluationContext, ComputationModel computationModel) {
 		this.launch = launch;
 		this.name = name;
 		this.targetFolder = targetFolder;
+		this.functionName = functionName;
 		this.functionDefinition = functionDefinition;
 		this.staticEvaluationContext = staticEvaluationContext;
 		this.computationModel = computationModel;
@@ -87,10 +89,10 @@ public class CodegenProcess implements IProcess {
 				new NameNormalizer().normalize(functionDefinition);
 				
 				GeneratorThread thread = new HeaderGeneratorThread();
-				executeGenerator(thread, functionDefinition.getName() + ".h", monitor);
+				executeGenerator(thread, functionName + ".h", monitor);
 				
 				thread = new ImplementationGeneratorThread();
-				executeGenerator(thread, functionDefinition.getName() + ".c", monitor);
+				executeGenerator(thread, functionName + ".c", monitor);
 
 				return Status.OK_STATUS;
 			}
@@ -226,7 +228,7 @@ public class CodegenProcess implements IProcess {
 	private class HeaderGeneratorThread extends GeneratorThread {
 		
 		public void generate() {
-			MscriptGenerator generator = new MscriptGenerator(functionDefinition, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext));
+			MscriptGenerator generator = new MscriptGenerator(functionDefinition, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext), functionName);
 			generator.generateHeaderCode();
 		}
 		
@@ -235,7 +237,7 @@ public class CodegenProcess implements IProcess {
 	private class ImplementationGeneratorThread extends GeneratorThread {
 		
 		public void generate() {
-			MscriptGenerator generator = new MscriptGenerator(functionDefinition, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext));
+			MscriptGenerator generator = new MscriptGenerator(functionDefinition, new MscriptGeneratorContext(writer, computationModel, staticEvaluationContext), functionName);
 			generator.generateImplementationCode();
 		}
 		

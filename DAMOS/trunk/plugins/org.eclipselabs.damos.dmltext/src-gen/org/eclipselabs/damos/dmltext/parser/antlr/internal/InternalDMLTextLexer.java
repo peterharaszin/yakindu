@@ -2413,33 +2413,26 @@ public class InternalDMLTextLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:9: ( ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:11: ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:11: ( '_' )*
-            loop4:
-            do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+            // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:11: ( '_' )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-                if ( (LA4_0=='_') ) {
-                    alt4=1;
-                }
+            if ( (LA4_0=='_') ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:11: '_'
+                    {
+                    match('_'); 
 
+                    }
+                    break;
 
-                switch (alt4) {
-            	case 1 :
-            	    // ../org.eclipselabs.damos.dmltext/src-gen/org/eclipselabs/damos/dmltext/parser/antlr/internal/InternalDMLText.g:9208:11: '_'
-            	    {
-            	    match('_'); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop4;
-                }
-            } while (true);
+            }
 
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3585,11 +3578,11 @@ public class InternalDMLTextLexer extends Lexer {
     protected DFA12 dfa12 = new DFA12(this);
     static final String DFA12_eotS =
         "\1\uffff\3\66\1\102\1\uffff\1\110\1\112\2\uffff\1\66\1\uffff\1\66"+
-        "\1\124\2\66\1\134\2\uffff\1\143\1\66\1\151\1\153\2\uffff\1\157\1"+
+        "\1\124\2\66\1\134\2\uffff\1\144\1\66\1\151\1\153\2\uffff\1\157\1"+
         "\66\1\164\4\66\1\61\3\uffff\1\66\1\u0081\1\uffff\1\u0084\1\uffff"+
-        "\1\102\1\143\1\u0086\1\uffff\1\61\1\uffff\1\61\2\uffff\4\66\1\uffff"+
+        "\1\102\1\144\1\u0086\1\uffff\1\61\1\uffff\1\61\2\uffff\4\66\1\uffff"+
         "\10\66\1\u009d\1\u009e\1\u009f\13\uffff\2\66\1\u00a3\1\uffff\1\66"+
-        "\1\u00a8\1\66\1\uffff\5\66\5\uffff\1\66\1\u00b2\2\66\1\uffff\1\u00b6"+
+        "\1\u00a8\1\66\1\uffff\5\66\5\uffff\1\66\1\u00b2\2\66\1\u00b6\1\uffff"+
         "\3\66\10\uffff\3\66\2\uffff\4\66\4\uffff\2\66\13\uffff\21\66\1\u00d9"+
         "\1\66\3\uffff\3\66\1\uffff\4\66\1\uffff\10\66\1\u00eb\1\uffff\2"+
         "\66\1\u00b6\1\uffff\1\66\1\u00ef\1\u00f0\6\66\1\u00f8\3\66\1\u00fc"+
@@ -3619,7 +3612,7 @@ public class InternalDMLTextLexer extends Lexer {
         "\1\157\1\145\1\uffff\1\143\1\156\1\141\1\151\1\163\1\160\1\145\1"+
         "\165\3\60\13\uffff\1\162\1\146\1\60\1\uffff\1\147\1\60\1\166\1\uffff"+
         "\1\164\1\141\1\162\1\145\1\142\5\uffff\1\144\1\60\1\163\1\162\1"+
-        "\uffff\1\60\1\156\1\142\1\154\10\uffff\1\145\1\155\1\163\2\uffff"+
+        "\60\1\uffff\1\156\1\142\1\154\10\uffff\1\145\1\155\1\163\2\uffff"+
         "\1\162\1\141\1\165\1\164\4\uffff\1\151\1\162\13\uffff\1\143\1\141"+
         "\1\154\1\141\1\153\1\164\1\143\1\151\3\164\1\145\1\156\1\145\1\165"+
         "\1\145\1\164\1\60\1\157\3\uffff\1\145\1\143\1\141\1\uffff\1\141"+
@@ -3654,7 +3647,7 @@ public class InternalDMLTextLexer extends Lexer {
         "\157\1\150\1\157\1\145\1\uffff\1\143\1\163\1\162\1\151\1\163\1\160"+
         "\1\145\1\165\3\172\13\uffff\1\163\1\146\1\172\1\uffff\1\167\1\172"+
         "\1\166\1\uffff\1\164\1\141\1\162\1\151\1\142\5\uffff\1\165\1\172"+
-        "\1\163\1\162\1\uffff\1\172\1\156\1\162\1\164\10\uffff\1\145\1\156"+
+        "\1\163\1\162\1\172\1\uffff\1\156\1\162\1\164\10\uffff\1\145\1\156"+
         "\1\163\2\uffff\1\162\1\164\1\165\1\164\4\uffff\1\151\1\162\13\uffff"+
         "\1\143\1\141\1\154\1\141\1\153\1\164\1\143\1\165\3\164\1\145\1\156"+
         "\1\145\1\165\1\145\1\164\1\172\1\157\3\uffff\1\145\1\143\1\141\1"+
@@ -3688,7 +3681,7 @@ public class InternalDMLTextLexer extends Lexer {
         "\1\143\3\uffff\1\151\1\uffff\1\152\1\uffff\1\156\1\157\4\uffff\1"+
         "\152\13\uffff\1\145\1\5\1\6\1\137\1\140\1\141\1\75\1\72\1\7\1\10"+
         "\1\11\3\uffff\1\13\3\uffff\1\144\5\uffff\1\71\1\133\1\20\1\22\1"+
-        "\30\4\uffff\1\146\4\uffff\1\135\1\35\1\136\1\36\1\37\1\40\1\41\1"+
+        "\30\5\uffff\1\146\3\uffff\1\135\1\35\1\136\1\36\1\37\1\40\1\41\1"+
         "\100\3\uffff\1\116\1\45\4\uffff\1\73\1\76\1\77\1\104\2\uffff\1\154"+
         "\1\155\1\114\1\115\1\134\1\142\1\143\1\150\1\151\1\153\1\156\23"+
         "\uffff\1\62\1\63\1\74\3\uffff\1\110\4\uffff\1\23\11\uffff\1\52\3"+
@@ -3730,7 +3723,7 @@ public class InternalDMLTextLexer extends Lexer {
             "\1\133\1\132",
             "",
             "",
-            "\12\144\7\uffff\32\66\4\uffff\1\66\1\uffff\13\66\1\141\1\66"+
+            "\12\143\7\uffff\32\66\4\uffff\1\66\1\uffff\13\66\1\141\1\66"+
             "\1\137\2\66\1\140\1\142\10\66",
             "\1\147\15\uffff\1\146\5\uffff\1\145",
             "\1\150",
@@ -3754,10 +3747,10 @@ public class InternalDMLTextLexer extends Lexer {
             "\1\u0083",
             "",
             "\12\66\7\uffff\32\66\4\uffff\1\66\1\uffff\32\66",
-            "\12\144\7\uffff\32\66\4\uffff\1\66\1\uffff\32\66",
+            "\12\143\7\uffff\32\66\4\uffff\1\66\1\uffff\32\66",
             "\12\u0087",
             "",
-            "\32\66\4\uffff\1\66\1\uffff\32\66",
+            "\32\66\6\uffff\32\66",
             "",
             "\0\u0088",
             "",
@@ -3813,9 +3806,9 @@ public class InternalDMLTextLexer extends Lexer {
             "\12\66\7\uffff\32\66\4\uffff\1\66\1\uffff\32\66",
             "\1\u00b3",
             "\1\u00b4",
-            "",
-            "\12\144\7\uffff\32\66\4\uffff\1\66\1\uffff\10\66\2\u00b5\20"+
+            "\12\143\7\uffff\32\66\4\uffff\1\66\1\uffff\10\66\2\u00b5\20"+
             "\66",
+            "",
             "\1\u00b7",
             "\1\u00b8\17\uffff\1\u00b9",
             "\1\u00ba\7\uffff\1\u00bb",

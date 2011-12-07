@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.mscript.il.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -133,26 +132,8 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getILFunctionDefinition_Stateful() {
-		return (EAttribute)ilFunctionDefinitionEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getILFunctionDefinition_Name() {
-		return (EAttribute)ilFunctionDefinitionEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getILFunctionDefinition_InitializationCompound() {
-		return (EReference)ilFunctionDefinitionEClass.getEStructuralFeatures().get(3);
+		return (EReference)ilFunctionDefinitionEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -161,7 +142,7 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 	 * @generated
 	 */
 	public EReference getILFunctionDefinition_ComputationCompounds() {
-		return (EReference)ilFunctionDefinitionEClass.getEStructuralFeatures().get(4);
+		return (EReference)ilFunctionDefinitionEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -230,8 +211,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		// Create classes and their features
 		ilFunctionDefinitionEClass = createEClass(IL_FUNCTION_DEFINITION);
 		createEReference(ilFunctionDefinitionEClass, IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION);
-		createEAttribute(ilFunctionDefinitionEClass, IL_FUNCTION_DEFINITION__STATEFUL);
-		createEAttribute(ilFunctionDefinitionEClass, IL_FUNCTION_DEFINITION__NAME);
 		createEReference(ilFunctionDefinitionEClass, IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND);
 		createEReference(ilFunctionDefinitionEClass, IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS);
 
@@ -279,8 +258,6 @@ public class ILPackageImpl extends EPackageImpl implements ILPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(ilFunctionDefinitionEClass, ILFunctionDefinition.class, "ILFunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getILFunctionDefinition_FunctionDefinition(), theMscriptPackage.getFunctionDefinition(), null, "functionDefinition", null, 1, 1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getILFunctionDefinition_Stateful(), ecorePackage.getEBoolean(), "stateful", null, 1, 1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getILFunctionDefinition_Name(), ecorePackage.getEString(), "name", null, 1, 1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getILFunctionDefinition_InitializationCompound(), theMscriptPackage.getCompound(), null, "initializationCompound", null, 0, 1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getILFunctionDefinition_ComputationCompounds(), this.getComputationCompound(), null, "computationCompounds", null, 0, -1, ILFunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

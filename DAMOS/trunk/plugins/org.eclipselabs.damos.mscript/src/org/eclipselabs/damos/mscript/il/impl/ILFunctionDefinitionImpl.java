@@ -31,8 +31,6 @@ import org.eclipselabs.damos.mscript.il.ILPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#getFunctionDefinition <em>Function Definition</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#isStateful <em>Stateful</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#getInitializationCompound <em>Initialization Compound</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ILFunctionDefinitionImpl#getComputationCompounds <em>Computation Compounds</em>}</li>
  * </ul>
@@ -50,46 +48,6 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 	 * @ordered
 	 */
 	protected FunctionDefinition functionDefinition;
-
-	/**
-	 * The default value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isStateful()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean STATEFUL_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isStateful() <em>Stateful</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isStateful()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean stateful = STATEFUL_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getInitializationCompound() <em>Initialization Compound</em>}' containment reference.
@@ -166,48 +124,6 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 		functionDefinition = newFunctionDefinition;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION, oldFunctionDefinition, functionDefinition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isStateful() {
-		return stateful;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStateful(boolean newStateful) {
-		boolean oldStateful = stateful;
-		stateful = newStateful;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ILPackage.IL_FUNCTION_DEFINITION__STATEFUL, oldStateful, stateful));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ILPackage.IL_FUNCTION_DEFINITION__NAME, oldName, name));
 	}
 
 	/**
@@ -292,10 +208,6 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
 				if (resolve) return getFunctionDefinition();
 				return basicGetFunctionDefinition();
-			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
-				return isStateful();
-			case ILPackage.IL_FUNCTION_DEFINITION__NAME:
-				return getName();
 			case ILPackage.IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND:
 				return getInitializationCompound();
 			case ILPackage.IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS:
@@ -315,12 +227,6 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 		switch (featureID) {
 			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
 				setFunctionDefinition((FunctionDefinition)newValue);
-				return;
-			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
-				setStateful((Boolean)newValue);
-				return;
-			case ILPackage.IL_FUNCTION_DEFINITION__NAME:
-				setName((String)newValue);
 				return;
 			case ILPackage.IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND:
 				setInitializationCompound((Compound)newValue);
@@ -344,12 +250,6 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
 				setFunctionDefinition((FunctionDefinition)null);
 				return;
-			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
-				setStateful(STATEFUL_EDEFAULT);
-				return;
-			case ILPackage.IL_FUNCTION_DEFINITION__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ILPackage.IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND:
 				setInitializationCompound((Compound)null);
 				return;
@@ -370,34 +270,12 @@ public class ILFunctionDefinitionImpl extends EObjectImpl implements ILFunctionD
 		switch (featureID) {
 			case ILPackage.IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION:
 				return functionDefinition != null;
-			case ILPackage.IL_FUNCTION_DEFINITION__STATEFUL:
-				return stateful != STATEFUL_EDEFAULT;
-			case ILPackage.IL_FUNCTION_DEFINITION__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ILPackage.IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND:
 				return initializationCompound != null;
 			case ILPackage.IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS:
 				return computationCompounds != null && !computationCompounds.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (stateful: ");
-		result.append(stateful);
-		result.append(", name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ILFunctionDefinitionImpl

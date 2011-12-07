@@ -2149,33 +2149,26 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:9: ( ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: ( '_' )*
-            loop4:
-            do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: ( '_' )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-                if ( (LA4_0=='_') ) {
-                    alt4=1;
-                }
+            if ( (LA4_0=='_') ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: '_'
+                    {
+                    match('_'); 
 
+                    }
+                    break;
 
-                switch (alt4) {
-            	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:22675:11: '_'
-            	    {
-            	    match('_'); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop4;
-                }
-            } while (true);
+            }
 
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3333,7 +3326,7 @@ public class InternalCGenModelLexer extends Lexer {
         "\1\5\3\uffff\1\121\4\uffff\1\42\5\uffff\1\6\21\uffff\1\34\1\35\1"+
         "\32\1\33";
     static final String DFA12_specialS =
-        "\1\1\60\uffff\1\0\u0140\uffff}>";
+        "\1\0\60\uffff\1\1\u0140\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\63\2\62\2\63\1\62\22\63\1\62\1\13\1\61\1\63\1\51\1\63\1"+
             "\47\1\1\1\32\1\33\1\16\1\2\1\30\1\3\1\20\1\17\1\56\1\55\10\56"+
@@ -3389,7 +3382,7 @@ public class InternalCGenModelLexer extends Lexer {
             "\12\120\7\uffff\32\74\4\uffff\1\74\1\uffff\32\74",
             "\12\u0085",
             "",
-            "\32\74\4\uffff\1\74\1\uffff\32\74",
+            "\32\74\6\uffff\32\74",
             "",
             "\0\u0086",
             "",
@@ -3753,16 +3746,6 @@ public class InternalCGenModelLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA12_49 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_49>='\u0000' && LA12_49<='\uFFFF')) ) {s = 134;}
-
-                        else s = 51;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -3867,6 +3850,16 @@ public class InternalCGenModelLexer extends Lexer {
                         else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 50;}
 
                         else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='#'||LA12_0=='%'||(LA12_0>='?' && LA12_0<='@')||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 51;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA12_49 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_49>='\u0000' && LA12_49<='\uFFFF')) ) {s = 134;}
+
+                        else s = 51;
 
                         if ( s>=0 ) return s;
                         break;

@@ -1535,7 +1535,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ID:
-	//	"_"* ("a".."z" | "A".."Z") ("0".."9" | "_" | "a".."z" | "A".."Z")*;
+	//	"_"? ("a".."z" | "A".."Z") ("0".."9" | "_" | "a".."z" | "A".."Z")*;
 	public TerminalRule getIDRule() {
 		return gaMscript.getIDRule();
 	} 

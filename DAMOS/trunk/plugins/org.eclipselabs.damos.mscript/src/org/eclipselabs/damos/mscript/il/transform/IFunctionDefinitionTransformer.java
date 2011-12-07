@@ -20,11 +20,12 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
- *
+ * 
  */
 public interface IFunctionDefinitionTransformer {
 
-	IFunctionDefinitionTransformerResult transform(IStaticEvaluationContext staticEvaluationContext, FunctionDescriptor functionDescriptor, String functionName,
-			List<IValue> templateArguments, List<DataType> inputParameterDataTypes);
+	IFunctionDefinitionTransformerResult transform(IStaticEvaluationContext staticEvaluationContext,
+			FunctionDescriptor functionDescriptor, List<IValue> templateArguments,
+			List<DataType> inputParameterDataTypes);
 
 }

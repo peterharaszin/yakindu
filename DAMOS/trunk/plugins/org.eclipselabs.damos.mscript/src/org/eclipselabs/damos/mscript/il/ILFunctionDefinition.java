@@ -20,8 +20,6 @@ import org.eclipselabs.damos.mscript.FunctionDefinition;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getFunctionDefinition <em>Function Definition</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#isStateful <em>Stateful</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getInitializationCompound <em>Initialization Compound</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getComputationCompounds <em>Computation Compounds</em>}</li>
  * </ul>
@@ -57,58 +55,6 @@ public interface ILFunctionDefinition extends EObject {
 	 * @generated
 	 */
 	void setFunctionDefinition(FunctionDefinition value);
-
-	/**
-	 * Returns the value of the '<em><b>Stateful</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Stateful</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Stateful</em>' attribute.
-	 * @see #setStateful(boolean)
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getILFunctionDefinition_Stateful()
-	 * @model required="true"
-	 * @generated
-	 */
-	boolean isStateful();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#isStateful <em>Stateful</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Stateful</em>' attribute.
-	 * @see #isStateful()
-	 * @generated
-	 */
-	void setStateful(boolean value);
-
-	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getILFunctionDefinition_Name()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getName();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getName <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
-	 * @generated
-	 */
-	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Initialization Compound</b></em>' containment reference.

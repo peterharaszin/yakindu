@@ -59,7 +59,7 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 		}
 		
 		IFolder targetFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(targetFolderPathString));
-		CodegenProcess process = new CodegenProcess(launch, "C Code Generator", targetFolder, getILFunctionDefinition(), getStaticEvaluationContext(), getComputationModel());
+		CodegenProcess process = new CodegenProcess(launch, "C Code Generator", targetFolder, getTargetFunctionName(), getILFunctionDefinition(), getStaticEvaluationContext(), getComputationModel());
 		process.run();
 	}
 
@@ -87,7 +87,7 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 	 */
 	@Override
 	protected String getTargetFunctionName() throws CoreException {
-		return targetFunctionName;
+		return targetFunctionName != null ? targetFunctionName : getFunctionDefinition().getName();
 	}
 	
 	/* (non-Javadoc)

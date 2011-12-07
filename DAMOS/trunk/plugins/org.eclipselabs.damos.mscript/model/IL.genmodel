@@ -9,8 +9,6 @@
       ecorePackage="IL.ecore#/">
     <genClasses ecoreClass="IL.ecore#//ILFunctionDefinition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference IL.ecore#//ILFunctionDefinition/functionDefinition"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//ILFunctionDefinition/stateful"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute IL.ecore#//ILFunctionDefinition/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//ILFunctionDefinition/initializationCompound"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference IL.ecore#//ILFunctionDefinition/computationCompounds"/>
     </genClasses>

@@ -10133,7 +10133,134 @@ public class InternalCGenModelParser extends AbstractInternalContentAssistParser
         try {
             // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:3315:1: ( ( rulePrimitiveType ) | ( ruleArrayType ) )
             int alt5=2;
-            alt5 = dfa5.predict(input);
+            switch ( input.LA(1) ) {
+            case 66:
+                {
+                int LA5_1 = input.LA(2);
+
+                if ( (synpred10_InternalCGenModel()) ) {
+                    alt5=1;
+                }
+                else if ( (true) ) {
+                    alt5=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 5, 1, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 67:
+                {
+                int LA5_2 = input.LA(2);
+
+                if ( (synpred10_InternalCGenModel()) ) {
+                    alt5=1;
+                }
+                else if ( (true) ) {
+                    alt5=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 5, 2, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 68:
+                {
+                int LA5_3 = input.LA(2);
+
+                if ( (synpred10_InternalCGenModel()) ) {
+                    alt5=1;
+                }
+                else if ( (true) ) {
+                    alt5=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 5, 3, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 69:
+                {
+                int LA5_4 = input.LA(2);
+
+                if ( (synpred10_InternalCGenModel()) ) {
+                    alt5=1;
+                }
+                else if ( (true) ) {
+                    alt5=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 5, 4, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 70:
+                {
+                int LA5_5 = input.LA(2);
+
+                if ( (synpred10_InternalCGenModel()) ) {
+                    alt5=1;
+                }
+                else if ( (true) ) {
+                    alt5=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 5, 5, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 71:
+                {
+                int LA5_6 = input.LA(2);
+
+                if ( (synpred10_InternalCGenModel()) ) {
+                    alt5=1;
+                }
+                else if ( (true) ) {
+                    alt5=2;
+                }
+                else {
+                    if (state.backtracking>0) {state.failed=true; return ;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("", 5, 6, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case RULE_ID:
+                {
+                alt5=2;
+                }
+                break;
+            default:
+                if (state.backtracking>0) {state.failed=true; return ;}
+                NoViableAltException nvae =
+                    new NoViableAltException("", 5, 0, input);
+
+                throw nvae;
+            }
+
             switch (alt5) {
                 case 1 :
                     // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:3316:1: ( rulePrimitiveType )
@@ -65152,6 +65279,30 @@ public class InternalCGenModelParser extends AbstractInternalContentAssistParser
     }
     // $ANTLR end "rule__UnitFactor__ExponentAssignment_1_1"
 
+    // $ANTLR start synpred10_InternalCGenModel
+    public final void synpred10_InternalCGenModel_fragment() throws RecognitionException {   
+        // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:3316:1: ( ( rulePrimitiveType ) )
+        // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:3316:1: ( rulePrimitiveType )
+        {
+        // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:3316:1: ( rulePrimitiveType )
+        // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:3317:1: rulePrimitiveType
+        {
+        if ( state.backtracking==0 ) {
+           before(grammarAccess.getDataTypeSpecifierAccess().getDefinedTypePrimitiveTypeParserRuleCall_0_0_0()); 
+        }
+        pushFollow(FOLLOW_rulePrimitiveType_in_synpred10_InternalCGenModel7012);
+        rulePrimitiveType();
+
+        state._fsp--;
+        if (state.failed) return ;
+
+        }
+
+
+        }
+    }
+    // $ANTLR end synpred10_InternalCGenModel
+
     // $ANTLR start synpred118_InternalCGenModel
     public final void synpred118_InternalCGenModel_fragment() throws RecognitionException {   
         // ../org.eclipselabs.damos.codegen.c.cgenmodel.ui/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/ui/contentassist/antlr/internal/InternalCGenModel.g:11263:2: ( rule__RelationalExpression__Group_1__0 )
@@ -65868,341 +66019,25 @@ public class InternalCGenModelParser extends AbstractInternalContentAssistParser
         state.failed=false;
         return success;
     }
+    public final boolean synpred10_InternalCGenModel() {
+        state.backtracking++;
+        int start = input.mark();
+        try {
+            synpred10_InternalCGenModel_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !state.failed;
+        input.rewind(start);
+        state.backtracking--;
+        state.failed=false;
+        return success;
+    }
 
 
-    protected DFA5 dfa5 = new DFA5(this);
     protected DFA15 dfa15 = new DFA15(this);
     protected DFA27 dfa27 = new DFA27(this);
     protected DFA81 dfa81 = new DFA81(this);
-    static final String DFA5_eotS =
-        "\u00e1\uffff";
-    static final String DFA5_eofS =
-        "\1\uffff\6\11\6\uffff\1\11\14\uffff\1\11\6\uffff\1\11\6\uffff\1"+
-        "\11\1\uffff\1\11\3\uffff\1\11\3\uffff\1\11\3\uffff\1\11\u00aa\uffff";
-    static final String DFA5_minS =
-        "\1\12\6\4\1\uffff\1\4\1\uffff\4\4\1\41\5\40\1\41\5\40\1\4\1\41\5"+
-        "\40\1\4\1\41\5\40\3\4\1\6\3\4\1\6\3\4\1\6\3\4\1\6\1\4\5\44\1\4\1"+
-        "\6\7\40\5\44\1\4\1\6\7\40\5\44\1\4\1\6\7\40\5\44\1\4\1\6\7\40\1"+
-        "\6\5\40\2\6\5\40\2\6\5\40\2\6\5\40\2\6\2\70\1\6\1\4\1\70\1\6\2\40"+
-        "\1\6\2\70\1\6\1\4\1\70\1\6\2\40\1\6\2\70\1\6\1\4\1\70\1\6\2\40\1"+
-        "\6\2\70\1\6\1\4\1\70\1\6\2\40\1\6\7\40\1\6\7\40\1\6\7\40\1\6\7\40"+
-        "\5\6\2\40\1\6\2\40\1\6\2\40\1\6\2\40";
-    static final String DFA5_maxS =
-        "\1\107\6\145\1\uffff\1\70\1\uffff\3\70\1\145\14\70\1\145\6\70\1"+
-        "\145\6\70\1\145\1\67\1\145\1\22\1\12\1\67\1\145\1\22\1\12\1\67\1"+
-        "\145\1\22\1\12\1\67\1\145\1\22\1\12\5\70\1\12\1\7\14\70\1\12\1\7"+
-        "\14\70\1\12\1\7\14\70\1\12\1\7\7\70\1\22\5\70\2\22\5\70\2\22\5\70"+
-        "\2\22\5\70\1\22\1\7\2\70\1\22\1\12\1\70\1\7\2\70\1\7\2\70\1\22\1"+
-        "\12\1\70\1\7\2\70\1\7\2\70\1\22\1\12\1\70\1\7\2\70\1\7\2\70\1\22"+
-        "\1\12\1\70\1\7\2\70\1\7\7\70\1\7\7\70\1\7\7\70\1\7\7\70\4\22\1\7"+
-        "\2\70\1\7\2\70\1\7\2\70\1\7\2\70";
-    static final String DFA5_acceptS =
-        "\7\uffff\1\2\1\uffff\1\1\u00d7\uffff";
-    static final String DFA5_specialS =
-        "\u00e1\uffff}>";
-    static final String[] DFA5_transitionS = {
-            "\1\7\67\uffff\1\1\1\2\1\3\1\4\1\5\1\6",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\3\uffff\1\10\1\11\1\uffff\10\11\6\uffff\1\7\1"+
-            "\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff"+
-            "\1\11\3\uffff\1\11\5\uffff\2\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\3\uffff\1\12\1\11\1\uffff\10\11\6\uffff\1\7\1"+
-            "\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff"+
-            "\1\11\3\uffff\1\11\5\uffff\2\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\3\uffff\1\13\1\11\1\uffff\10\11\6\uffff\1\7\1"+
-            "\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff"+
-            "\1\11\3\uffff\1\11\5\uffff\2\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\3\uffff\1\14\1\11\1\uffff\10\11\6\uffff\1\7\1"+
-            "\11\1\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff"+
-            "\1\11\3\uffff\1\11\5\uffff\2\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "",
-            "\1\20\1\22\1\16\1\uffff\1\17\1\21\1\23\55\uffff\1\15",
-            "",
-            "\1\26\1\30\1\24\1\uffff\1\25\1\27\1\31\55\uffff\1\32",
-            "\1\35\1\37\1\33\1\uffff\1\34\1\36\1\40\55\uffff\1\41",
-            "\1\44\1\46\1\42\1\uffff\1\43\1\45\1\47\55\uffff\1\50",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\51\26\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\53\23\uffff\1\52",
-            "\1\55\26\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\57\23\uffff\1\56",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\61\26\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\63\23\uffff\1\62",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\65\26\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\67\23\uffff\1\66",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\72\1\74\2\uffff\1\71\1\73\1\75\54\uffff\1\76",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\100\1\101\12\uffff\1\77",
-            "\1\103\1\105\2\uffff\1\102\1\104\1\106",
-            "\1\110\1\112\2\uffff\1\107\1\111\1\113\54\uffff\1\114",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\116\1\117\12\uffff\1\115",
-            "\1\121\1\123\2\uffff\1\120\1\122\1\124",
-            "\1\126\1\130\2\uffff\1\125\1\127\1\131\54\uffff\1\132",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\134\1\135\12\uffff\1\133",
-            "\1\137\1\141\2\uffff\1\136\1\140\1\142",
-            "\1\144\1\146\2\uffff\1\143\1\145\1\147\54\uffff\1\150",
-            "\2\11\2\uffff\3\11\17\uffff\2\11\2\uffff\1\11\20\uffff\1\11"+
-            "\3\uffff\1\11\4\uffff\1\11\1\uffff\10\11\6\uffff\1\7\1\11\1"+
-            "\uffff\1\11\1\uffff\2\11\1\uffff\5\11\2\uffff\2\11\1\uffff\1"+
-            "\11\3\uffff\1\11\5\uffff\2\11",
-            "\1\152\1\153\12\uffff\1\151",
-            "\1\155\1\157\2\uffff\1\154\1\156\1\160",
-            "\1\161\23\uffff\1\52",
-            "\1\161\23\uffff\1\52",
-            "\1\161\23\uffff\1\52",
-            "\1\161\23\uffff\1\52",
-            "\1\161\23\uffff\1\52",
-            "\1\163\1\165\2\uffff\1\162\1\164\1\166",
-            "\1\100\1\101",
-            "\1\54\1\51\26\uffff\1\52",
-            "\1\54\1\51\26\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\23\uffff\1\52",
-            "\1\54\1\51\2\uffff\1\167\23\uffff\1\52",
-            "\1\170\23\uffff\1\56",
-            "\1\170\23\uffff\1\56",
-            "\1\170\23\uffff\1\56",
-            "\1\170\23\uffff\1\56",
-            "\1\170\23\uffff\1\56",
-            "\1\172\1\174\2\uffff\1\171\1\173\1\175",
-            "\1\116\1\117",
-            "\1\60\1\55\26\uffff\1\56",
-            "\1\60\1\55\26\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\23\uffff\1\56",
-            "\1\60\1\55\2\uffff\1\176\23\uffff\1\56",
-            "\1\177\23\uffff\1\62",
-            "\1\177\23\uffff\1\62",
-            "\1\177\23\uffff\1\62",
-            "\1\177\23\uffff\1\62",
-            "\1\177\23\uffff\1\62",
-            "\1\u0081\1\u0083\2\uffff\1\u0080\1\u0082\1\u0084",
-            "\1\134\1\135",
-            "\1\64\1\61\26\uffff\1\62",
-            "\1\64\1\61\26\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\23\uffff\1\62",
-            "\1\64\1\61\2\uffff\1\u0085\23\uffff\1\62",
-            "\1\u0086\23\uffff\1\66",
-            "\1\u0086\23\uffff\1\66",
-            "\1\u0086\23\uffff\1\66",
-            "\1\u0086\23\uffff\1\66",
-            "\1\u0086\23\uffff\1\66",
-            "\1\u0088\1\u008a\2\uffff\1\u0087\1\u0089\1\u008b",
-            "\1\152\1\153",
-            "\1\70\1\65\26\uffff\1\66",
-            "\1\70\1\65\26\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\23\uffff\1\66",
-            "\1\70\1\65\2\uffff\1\u008c\23\uffff\1\66",
-            "\1\u008e\1\u008f\12\uffff\1\u008d",
-            "\1\u0091\3\uffff\1\u0090\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u0090\23\uffff\1\u0092",
-            "\1\u0094\1\u0095\12\uffff\1\u0093",
-            "\1\u0097\1\u0098\12\uffff\1\u0096",
-            "\1\u009a\3\uffff\1\u0099\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u0099\23\uffff\1\u009b",
-            "\1\u009d\1\u009e\12\uffff\1\u009c",
-            "\1\u00a0\1\u00a1\12\uffff\1\u009f",
-            "\1\u00a3\3\uffff\1\u00a2\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00a2\23\uffff\1\u00a4",
-            "\1\u00a6\1\u00a7\12\uffff\1\u00a5",
-            "\1\u00a9\1\u00aa\12\uffff\1\u00a8",
-            "\1\u00ac\3\uffff\1\u00ab\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00ab\23\uffff\1\u00ad",
-            "\1\u00af\1\u00b0\12\uffff\1\u00ae",
-            "\1\u008e\1\u008f",
-            "\1\52",
-            "\1\52",
-            "\1\u00b2\1\u00b3\12\uffff\1\u00b1",
-            "\1\u00b5\1\u00b7\2\uffff\1\u00b4\1\u00b6\1\u00b8",
-            "\1\52",
-            "\1\u0094\1\u0095",
-            "\1\54\1\51\26\uffff\1\52",
-            "\1\54\1\51\26\uffff\1\52",
-            "\1\u0097\1\u0098",
-            "\1\56",
-            "\1\56",
-            "\1\u00ba\1\u00bb\12\uffff\1\u00b9",
-            "\1\u00bd\1\u00bf\2\uffff\1\u00bc\1\u00be\1\u00c0",
-            "\1\56",
-            "\1\u009d\1\u009e",
-            "\1\60\1\55\26\uffff\1\56",
-            "\1\60\1\55\26\uffff\1\56",
-            "\1\u00a0\1\u00a1",
-            "\1\62",
-            "\1\62",
-            "\1\u00c2\1\u00c3\12\uffff\1\u00c1",
-            "\1\u00c5\1\u00c7\2\uffff\1\u00c4\1\u00c6\1\u00c8",
-            "\1\62",
-            "\1\u00a6\1\u00a7",
-            "\1\64\1\61\26\uffff\1\62",
-            "\1\64\1\61\26\uffff\1\62",
-            "\1\u00a9\1\u00aa",
-            "\1\66",
-            "\1\66",
-            "\1\u00ca\1\u00cb\12\uffff\1\u00c9",
-            "\1\u00cd\1\u00cf\2\uffff\1\u00cc\1\u00ce\1\u00d0",
-            "\1\66",
-            "\1\u00af\1\u00b0",
-            "\1\70\1\65\26\uffff\1\66",
-            "\1\70\1\65\26\uffff\1\66",
-            "\1\u00b2\1\u00b3",
-            "\1\u0091\27\uffff\1\u0092",
-            "\1\u0091\27\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\23\uffff\1\u0092",
-            "\1\u0091\3\uffff\1\u00d1\23\uffff\1\u0092",
-            "\1\u00ba\1\u00bb",
-            "\1\u009a\27\uffff\1\u009b",
-            "\1\u009a\27\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\23\uffff\1\u009b",
-            "\1\u009a\3\uffff\1\u00d2\23\uffff\1\u009b",
-            "\1\u00c2\1\u00c3",
-            "\1\u00a3\27\uffff\1\u00a4",
-            "\1\u00a3\27\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\23\uffff\1\u00a4",
-            "\1\u00a3\3\uffff\1\u00d3\23\uffff\1\u00a4",
-            "\1\u00ca\1\u00cb",
-            "\1\u00ac\27\uffff\1\u00ad",
-            "\1\u00ac\27\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\23\uffff\1\u00ad",
-            "\1\u00ac\3\uffff\1\u00d4\23\uffff\1\u00ad",
-            "\1\u00d6\1\u00d7\12\uffff\1\u00d5",
-            "\1\u00d9\1\u00da\12\uffff\1\u00d8",
-            "\1\u00dc\1\u00dd\12\uffff\1\u00db",
-            "\1\u00df\1\u00e0\12\uffff\1\u00de",
-            "\1\u00d6\1\u00d7",
-            "\1\u0091\27\uffff\1\u0092",
-            "\1\u0091\27\uffff\1\u0092",
-            "\1\u00d9\1\u00da",
-            "\1\u009a\27\uffff\1\u009b",
-            "\1\u009a\27\uffff\1\u009b",
-            "\1\u00dc\1\u00dd",
-            "\1\u00a3\27\uffff\1\u00a4",
-            "\1\u00a3\27\uffff\1\u00a4",
-            "\1\u00df\1\u00e0",
-            "\1\u00ac\27\uffff\1\u00ad",
-            "\1\u00ac\27\uffff\1\u00ad"
-    };
-
-    static final short[] DFA5_eot = DFA.unpackEncodedString(DFA5_eotS);
-    static final short[] DFA5_eof = DFA.unpackEncodedString(DFA5_eofS);
-    static final char[] DFA5_min = DFA.unpackEncodedStringToUnsignedChars(DFA5_minS);
-    static final char[] DFA5_max = DFA.unpackEncodedStringToUnsignedChars(DFA5_maxS);
-    static final short[] DFA5_accept = DFA.unpackEncodedString(DFA5_acceptS);
-    static final short[] DFA5_special = DFA.unpackEncodedString(DFA5_specialS);
-    static final short[][] DFA5_transition;
-
-    static {
-        int numStates = DFA5_transitionS.length;
-        DFA5_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA5_transition[i] = DFA.unpackEncodedString(DFA5_transitionS[i]);
-        }
-    }
-
-    class DFA5 extends DFA {
-
-        public DFA5(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 5;
-            this.eot = DFA5_eot;
-            this.eof = DFA5_eof;
-            this.min = DFA5_min;
-            this.max = DFA5_max;
-            this.accept = DFA5_accept;
-            this.special = DFA5_special;
-            this.transition = DFA5_transition;
-        }
-        public String getDescription() {
-            return "3311:1: rule__DataTypeSpecifier__DefinedTypeAlternatives_0_0 : ( ( rulePrimitiveType ) | ( ruleArrayType ) );";
-        }
-    }
     static final String DFA15_eotS =
         "\26\uffff";
     static final String DFA15_eofS =
@@ -68385,6 +68220,7 @@ public class InternalCGenModelParser extends AbstractInternalContentAssistParser
     public static final BitSet FOLLOW_ruleUnitFactor_in_rule__UnitDenominator__FactorsAssignment_1_2_146213 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__UnitFactor__SymbolAssignment_046244 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnitExponent_in_rule__UnitFactor__ExponentAssignment_1_146275 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePrimitiveType_in_synpred10_InternalCGenModel7012 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__RelationalExpression__Group_1__0_in_synpred118_InternalCGenModel23089 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__IfStatement__Group_5__0_in_synpred146_InternalCGenModel34499 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__GenModel__GenTopLevelSystemAssignment_4_0_in_synpred155_InternalCGenModel39044 = new BitSet(new long[]{0x0000000000000002L});

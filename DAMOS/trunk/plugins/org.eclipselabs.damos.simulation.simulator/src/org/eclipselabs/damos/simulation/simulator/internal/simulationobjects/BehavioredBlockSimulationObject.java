@@ -133,7 +133,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
 
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(staticEvaluationContext, functionDescriptor, null, templateArguments, inputParameterDataTypes);
+				.transform(staticEvaluationContext, functionDescriptor, templateArguments, inputParameterDataTypes);
 
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			status.add(functionDefinitionTransformerResult.getStatus());

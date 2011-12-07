@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.mscript.il;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -80,31 +79,13 @@ public interface ILPackage extends EPackage {
 	int IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION = 0;
 
 	/**
-	 * The feature id for the '<em><b>Stateful</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IL_FUNCTION_DEFINITION__STATEFUL = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int IL_FUNCTION_DEFINITION__NAME = 2;
-
-	/**
 	 * The feature id for the '<em><b>Initialization Compound</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND = 3;
+	int IL_FUNCTION_DEFINITION__INITIALIZATION_COMPOUND = 1;
 
 	/**
 	 * The feature id for the '<em><b>Computation Compounds</b></em>' containment reference list.
@@ -113,7 +94,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS = 4;
+	int IL_FUNCTION_DEFINITION__COMPUTATION_COMPOUNDS = 2;
 
 	/**
 	 * The number of structural features of the '<em>Function Definition</em>' class.
@@ -122,7 +103,7 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IL_FUNCTION_DEFINITION_FEATURE_COUNT = 5;
+	int IL_FUNCTION_DEFINITION_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.il.impl.ComputationCompoundImpl <em>Computation Compound</em>}' class.
@@ -210,28 +191,6 @@ public interface ILPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getILFunctionDefinition_FunctionDefinition();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#isStateful <em>Stateful</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Stateful</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.ILFunctionDefinition#isStateful()
-	 * @see #getILFunctionDefinition()
-	 * @generated
-	 */
-	EAttribute getILFunctionDefinition_Stateful();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getName()
-	 * @see #getILFunctionDefinition()
-	 * @generated
-	 */
-	EAttribute getILFunctionDefinition_Name();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getInitializationCompound <em>Initialization Compound</em>}'.
@@ -336,22 +295,6 @@ public interface ILPackage extends EPackage {
 		 * @generated
 		 */
 		EReference IL_FUNCTION_DEFINITION__FUNCTION_DEFINITION = eINSTANCE.getILFunctionDefinition_FunctionDefinition();
-
-		/**
-		 * The meta object literal for the '<em><b>Stateful</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IL_FUNCTION_DEFINITION__STATEFUL = eINSTANCE.getILFunctionDefinition_Stateful();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IL_FUNCTION_DEFINITION__NAME = eINSTANCE.getILFunctionDefinition_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Initialization Compound</b></em>' containment reference feature.

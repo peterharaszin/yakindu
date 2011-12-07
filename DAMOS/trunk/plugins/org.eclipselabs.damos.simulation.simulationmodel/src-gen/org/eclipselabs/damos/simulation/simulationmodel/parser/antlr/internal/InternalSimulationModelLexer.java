@@ -2061,33 +2061,26 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:9: ( ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:11: ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:11: ( '_' )*
-            loop4:
-            do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:11: ( '_' )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-                if ( (LA4_0=='_') ) {
-                    alt4=1;
-                }
+            if ( (LA4_0=='_') ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:11: '_'
+                    {
+                    match('_'); 
 
+                    }
+                    break;
 
-                switch (alt4) {
-            	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7701:11: '_'
-            	    {
-            	    match('_'); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop4;
-                }
-            } while (true);
+            }
 
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3208,7 +3201,7 @@ public class InternalSimulationModelLexer extends Lexer {
         "\1\13\2\uffff\1\36\1\32\1\52\1\110\1\uffff\1\105\1\3\1\76\4\uffff"+
         "\1\1\1\106\3\uffff\1\4";
     static final String DFA12_specialS =
-        "\1\0\55\uffff\1\1\u010b\uffff}>";
+        "\1\1\55\uffff\1\0\u010b\uffff}>";
     static final String[] DFA12_transitionS = {
             "\11\60\2\57\2\60\1\57\22\60\1\57\1\45\1\56\1\60\1\40\1\60\1"+
             "\34\1\46\1\14\1\15\1\43\1\37\1\10\1\16\1\35\1\42\1\53\1\52\10"+
@@ -3261,7 +3254,7 @@ public class InternalSimulationModelLexer extends Lexer {
             "\12\105\7\uffff\32\65\4\uffff\1\65\1\uffff\32\65",
             "\12\176",
             "",
-            "\32\65\4\uffff\1\65\1\uffff\32\65",
+            "\32\65\6\uffff\32\65",
             "",
             "\0\177",
             "",
@@ -3572,6 +3565,16 @@ public class InternalSimulationModelLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA12_46 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA12_46>='\u0000' && LA12_46<='\uFFFF')) ) {s = 127;}
+
+                        else s = 48;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
                         int LA12_0 = input.LA(1);
 
                         s = -1;
@@ -3670,16 +3673,6 @@ public class InternalSimulationModelLexer extends Lexer {
                         else if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {s = 47;}
 
                         else if ( ((LA12_0>='\u0000' && LA12_0<='\b')||(LA12_0>='\u000B' && LA12_0<='\f')||(LA12_0>='\u000E' && LA12_0<='\u001F')||LA12_0=='#'||LA12_0=='%'||(LA12_0>='?' && LA12_0<='@')||LA12_0=='\\'||LA12_0=='`'||(LA12_0>='~' && LA12_0<='\uFFFF')) ) {s = 48;}
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA12_46 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA12_46>='\u0000' && LA12_46<='\uFFFF')) ) {s = 127;}
-
-                        else s = 48;
 
                         if ( s>=0 ) return s;
                         break;

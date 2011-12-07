@@ -32,6 +32,7 @@ import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
@@ -102,7 +103,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
 
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
-				.transform(staticEvaluationContext, functionDescriptor, null, templateArguments, inputParameterDataTypes);
+				.transform(staticEvaluationContext, functionDescriptor, templateArguments, inputParameterDataTypes);
 
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			status.add(functionDefinitionTransformerResult.getStatus());
@@ -125,7 +126,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesContextCode() {
-		return ilFunctionDefinition.isStateful();
+		return ilFunctionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL;
 	}
 	
 	/* (non-Javadoc)
@@ -175,7 +176,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
-		return ilFunctionDefinition.isStateful();
+		return ilFunctionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL;
 	}
 		
 	/* (non-Javadoc)
@@ -250,7 +251,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesUpdateCode() {
-		return ilFunctionDefinition.isStateful();
+		return ilFunctionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL;
 	}
 	
 	/* (non-Javadoc)

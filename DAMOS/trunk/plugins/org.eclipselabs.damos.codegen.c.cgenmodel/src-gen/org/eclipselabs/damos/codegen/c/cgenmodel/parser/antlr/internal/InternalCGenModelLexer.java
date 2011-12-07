@@ -2149,33 +2149,26 @@ public class InternalCGenModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:9: ( ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:11: ( '_' )* ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:11: ( '_' )*
-            loop4:
-            do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:11: ( '_' )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
 
-                if ( (LA4_0=='_') ) {
-                    alt4=1;
-                }
+            if ( (LA4_0=='_') ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:11: '_'
+                    {
+                    match('_'); 
 
+                    }
+                    break;
 
-                switch (alt4) {
-            	case 1 :
-            	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:7860:11: '_'
-            	    {
-            	    match('_'); 
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop4;
-                }
-            } while (true);
+            }
 
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -3392,7 +3385,7 @@ public class InternalCGenModelLexer extends Lexer {
             "\12\114\7\uffff\32\70\4\uffff\1\70\1\uffff\32\70",
             "\12\u0085",
             "",
-            "\32\70\4\uffff\1\70\1\uffff\32\70",
+            "\32\70\6\uffff\32\70",
             "",
             "\0\u0086",
             "",

@@ -624,7 +624,7 @@ public class FixMath {
 		result += (resultHi & mask) << fractionLength;
 		result += resultLo >>> fractionLength;
 		
-		if (b != 0 && a < Integer.MAX_VALUE / b) {
+		if (((a ^ result) & (b ^ result)) < 0) {
 			overflowMonitor.handleOverflow(new OverflowInfo());
 		}
 		
@@ -640,10 +640,11 @@ public class FixMath {
 //	}
 
 	private static long mulfix64(long a, long b, int fractionLength, IOverflowMonitor overflowMonitor) {
-		if (b != 0 && a < Long.MAX_VALUE / b) {
+		long result = a * b >> fractionLength;
+		if (((a ^ result) & (b ^ result)) < 0) {
 			overflowMonitor.handleOverflow(new OverflowInfo());
 		}
-		return a * b >> fractionLength;
+		return result;
 	}
 
 	public static boolean isLessThanUnsigned(int n1, int n2) {

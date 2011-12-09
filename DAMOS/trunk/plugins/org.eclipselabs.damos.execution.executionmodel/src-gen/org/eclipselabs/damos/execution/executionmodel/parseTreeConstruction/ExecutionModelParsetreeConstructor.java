@@ -18856,13 +18856,11 @@ protected class WhileStatement_BodyAssignment_4 extends AssignmentToken  {
 /************ begin Rule ForStatement ****************
  *
  * ForStatement:
- * 	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ("while"
- * 	condition=Expression)? ")" body=Statement;
+ * 	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ")" body=Statement;
  *
  **/
 
-// "for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ("while"
-// condition=Expression)? ")" body=Statement
+// "for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ")" body=Statement
 protected class ForStatement_Group extends GroupToken {
 	
 	public ForStatement_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -18877,7 +18875,7 @@ protected class ForStatement_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ForStatement_BodyAssignment_7(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ForStatement_BodyAssignment_6(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -19048,38 +19046,16 @@ protected class ForStatement_CollectionExpressionAssignment_4 extends Assignment
 	}	
 }
 
-// ("while" condition=Expression)?
-protected class ForStatement_Group_5 extends GroupToken {
+// ")"
+protected class ForStatement_RightParenthesisKeyword_5 extends KeywordToken  {
 	
-	public ForStatement_Group_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getForStatementAccess().getGroup_5();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ForStatement_ConditionAssignment_5_1(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// "while"
-protected class ForStatement_WhileKeyword_5_0 extends KeywordToken  {
-	
-	public ForStatement_WhileKeyword_5_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ForStatement_RightParenthesisKeyword_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getForStatementAccess().getWhileKeyword_5_0();
+		return grammarAccess.getForStatementAccess().getRightParenthesisKeyword_5();
 	}
 
     @Override
@@ -19092,86 +19068,16 @@ protected class ForStatement_WhileKeyword_5_0 extends KeywordToken  {
 
 }
 
-// condition=Expression
-protected class ForStatement_ConditionAssignment_5_1 extends AssignmentToken  {
-	
-	public ForStatement_ConditionAssignment_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getForStatementAccess().getConditionAssignment_5_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new Expression_Alternatives(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("condition",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("condition");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getExpressionRule().getType().getClassifier())) {
-				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getForStatementAccess().getConditionExpressionParserRuleCall_5_1_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		if(value == inst.getEObject() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new ForStatement_WhileKeyword_5_0(lastRuleCallOrigin, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
-
-// ")"
-protected class ForStatement_RightParenthesisKeyword_6 extends KeywordToken  {
-	
-	public ForStatement_RightParenthesisKeyword_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getForStatementAccess().getRightParenthesisKeyword_6();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new ForStatement_Group_5(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new ForStatement_CollectionExpressionAssignment_4(lastRuleCallOrigin, this, 1, inst);
-			default: return null;
-		}	
-	}
-
-}
-
 // body=Statement
-protected class ForStatement_BodyAssignment_7 extends AssignmentToken  {
+protected class ForStatement_BodyAssignment_6 extends AssignmentToken  {
 	
-	public ForStatement_BodyAssignment_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ForStatement_BodyAssignment_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getForStatementAccess().getBodyAssignment_7();
+		return grammarAccess.getForStatementAccess().getBodyAssignment_6();
 	}
 
     @Override
@@ -19190,7 +19096,7 @@ protected class ForStatement_BodyAssignment_7 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStatementRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getForStatementAccess().getBodyStatementParserRuleCall_7_0(); 
+				element = grammarAccess.getForStatementAccess().getBodyStatementParserRuleCall_6_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -19202,7 +19108,7 @@ protected class ForStatement_BodyAssignment_7 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new ForStatement_RightParenthesisKeyword_6(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new ForStatement_RightParenthesisKeyword_5(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

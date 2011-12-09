@@ -1868,12 +1868,6 @@
         <elements xsi:type="xtext:Assignment" feature="collectionExpression" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.32"/>
         </elements>
-        <elements xsi:type="xtext:Group" cardinality="?">
-          <elements xsi:type="xtext:Keyword" value="while"/>
-          <elements xsi:type="xtext:Assignment" feature="condition" operator="=">
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.32"/>
-          </elements>
-        </elements>
         <elements xsi:type="xtext:Keyword" value=")"/>
         <elements xsi:type="xtext:Assignment" feature="body" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.92"/>

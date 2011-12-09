@@ -1343,8 +1343,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ForStatement:
-	//	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ("while"
-	//	condition=Expression)? ")" body=Statement;
+	//	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ")" body=Statement;
 	public MscriptGrammarAccess.ForStatementElements getForStatementAccess() {
 		return gaMscript.getForStatementAccess();
 	}

@@ -2719,22 +2719,13 @@ public interface MscriptPackage extends EPackage {
 	int FOR_STATEMENT__COLLECTION_EXPRESSION = STATEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FOR_STATEMENT__CONDITION = STATEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT__BODY = STATEMENT_FEATURE_COUNT + 3;
+	int FOR_STATEMENT__BODY = STATEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>For Statement</em>' class.
@@ -2743,7 +2734,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FOR_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 4;
+	int FOR_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.ContinueStatementImpl <em>Continue Statement</em>}' class.
@@ -5948,17 +5939,6 @@ public interface MscriptPackage extends EPackage {
 	EReference getForStatement_CollectionExpression();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ForStatement#getCondition <em>Condition</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see org.eclipselabs.damos.mscript.ForStatement#getCondition()
-	 * @see #getForStatement()
-	 * @generated
-	 */
-	EReference getForStatement_Condition();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.ForStatement#getBody <em>Body</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8439,14 +8419,6 @@ public interface MscriptPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FOR_STATEMENT__COLLECTION_EXPRESSION = eINSTANCE.getForStatement_CollectionExpression();
-
-		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference FOR_STATEMENT__CONDITION = eINSTANCE.getForStatement_Condition();
 
 		/**
 		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.

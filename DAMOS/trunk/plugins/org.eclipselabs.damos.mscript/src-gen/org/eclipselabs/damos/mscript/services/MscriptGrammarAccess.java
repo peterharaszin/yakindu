@@ -3698,21 +3698,15 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cInKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cCollectionExpressionAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cCollectionExpressionExpressionParserRuleCall_4_0 = (RuleCall)cCollectionExpressionAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cWhileKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cConditionAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cConditionExpressionParserRuleCall_5_1_0 = (RuleCall)cConditionAssignment_5_1.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cBodyAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cBodyStatementParserRuleCall_7_0 = (RuleCall)cBodyAssignment_7.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cBodyAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cBodyStatementParserRuleCall_6_0 = (RuleCall)cBodyAssignment_6.eContents().get(0);
 		
 		//ForStatement:
-		//	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ("while"
-		//	condition=Expression)? ")" body=Statement;
+		//	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ")" body=Statement;
 		public ParserRule getRule() { return rule; }
 
-		//"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ("while"
-		//condition=Expression)? ")" body=Statement
+		//"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ")" body=Statement
 		public Group getGroup() { return cGroup; }
 
 		//"for"
@@ -3736,26 +3730,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//Expression
 		public RuleCall getCollectionExpressionExpressionParserRuleCall_4_0() { return cCollectionExpressionExpressionParserRuleCall_4_0; }
 
-		//("while" condition=Expression)?
-		public Group getGroup_5() { return cGroup_5; }
-
-		//"while"
-		public Keyword getWhileKeyword_5_0() { return cWhileKeyword_5_0; }
-
-		//condition=Expression
-		public Assignment getConditionAssignment_5_1() { return cConditionAssignment_5_1; }
-
-		//Expression
-		public RuleCall getConditionExpressionParserRuleCall_5_1_0() { return cConditionExpressionParserRuleCall_5_1_0; }
-
 		//")"
-		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 
 		//body=Statement
-		public Assignment getBodyAssignment_7() { return cBodyAssignment_7; }
+		public Assignment getBodyAssignment_6() { return cBodyAssignment_6; }
 
 		//Statement
-		public RuleCall getBodyStatementParserRuleCall_7_0() { return cBodyStatementParserRuleCall_7_0; }
+		public RuleCall getBodyStatementParserRuleCall_6_0() { return cBodyStatementParserRuleCall_6_0; }
 	}
 
 	public class DoWhileStatementElements extends AbstractParserRuleElementFinder {
@@ -5699,8 +5681,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ForStatement:
-	//	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ("while"
-	//	condition=Expression)? ")" body=Statement;
+	//	"for" "(" iterationVariable=IterationVariableDeclaration "in" collectionExpression=Expression ")" body=Statement;
 	public ForStatementElements getForStatementAccess() {
 		return (pForStatement != null) ? pForStatement : (pForStatement = new ForStatementElements());
 	}

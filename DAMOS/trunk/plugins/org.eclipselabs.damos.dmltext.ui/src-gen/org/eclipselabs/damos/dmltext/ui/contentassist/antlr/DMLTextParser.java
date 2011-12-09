@@ -236,7 +236,6 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIfStatementAccess().getGroup_5(), "rule__IfStatement__Group_5__0");
 					put(grammarAccess.getWhileStatementAccess().getGroup(), "rule__WhileStatement__Group__0");
 					put(grammarAccess.getForStatementAccess().getGroup(), "rule__ForStatement__Group__0");
-					put(grammarAccess.getForStatementAccess().getGroup_5(), "rule__ForStatement__Group_5__0");
 					put(grammarAccess.getDoWhileStatementAccess().getGroup(), "rule__DoWhileStatement__Group__0");
 					put(grammarAccess.getContinueStatementAccess().getGroup(), "rule__ContinueStatement__Group__0");
 					put(grammarAccess.getBreakStatementAccess().getGroup(), "rule__BreakStatement__Group__0");
@@ -467,8 +466,7 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getWhileStatementAccess().getBodyAssignment_4(), "rule__WhileStatement__BodyAssignment_4");
 					put(grammarAccess.getForStatementAccess().getIterationVariableAssignment_2(), "rule__ForStatement__IterationVariableAssignment_2");
 					put(grammarAccess.getForStatementAccess().getCollectionExpressionAssignment_4(), "rule__ForStatement__CollectionExpressionAssignment_4");
-					put(grammarAccess.getForStatementAccess().getConditionAssignment_5_1(), "rule__ForStatement__ConditionAssignment_5_1");
-					put(grammarAccess.getForStatementAccess().getBodyAssignment_7(), "rule__ForStatement__BodyAssignment_7");
+					put(grammarAccess.getForStatementAccess().getBodyAssignment_6(), "rule__ForStatement__BodyAssignment_6");
 					put(grammarAccess.getDoWhileStatementAccess().getBodyAssignment_1(), "rule__DoWhileStatement__BodyAssignment_1");
 					put(grammarAccess.getDoWhileStatementAccess().getConditionAssignment_4(), "rule__DoWhileStatement__ConditionAssignment_4");
 					put(grammarAccess.getReturnStatementAccess().getExpressionAssignment_1(), "rule__ReturnStatement__ExpressionAssignment_1");

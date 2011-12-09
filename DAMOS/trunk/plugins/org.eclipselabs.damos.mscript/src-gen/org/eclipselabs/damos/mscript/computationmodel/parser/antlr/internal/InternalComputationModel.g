@@ -6821,45 +6821,23 @@ ruleForStatement returns [EObject current=null]
 	    }
 
 )
-)(	otherlv_5='while' 
+)	otherlv_5=')' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getForStatementAccess().getWhileKeyword_5_0());
+    	newLeafNode(otherlv_5, grammarAccess.getForStatementAccess().getRightParenthesisKeyword_5());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getForStatementAccess().getConditionExpressionParserRuleCall_5_1_0()); 
+	        newCompositeNode(grammarAccess.getForStatementAccess().getBodyStatementParserRuleCall_6_0()); 
 	    }
-		lv_condition_6_0=ruleExpression		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getForStatementRule());
-	        }
-       		set(
-       			$current, 
-       			"condition",
-        		lv_condition_6_0, 
-        		"Expression");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))?	otherlv_7=')' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getForStatementAccess().getRightParenthesisKeyword_6());
-    }
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getForStatementAccess().getBodyStatementParserRuleCall_7_0()); 
-	    }
-		lv_body_8_0=ruleStatement		{
+		lv_body_6_0=ruleStatement		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getForStatementRule());
 	        }
        		set(
        			$current, 
        			"body",
-        		lv_body_8_0, 
+        		lv_body_6_0, 
         		"Statement");
 	        afterParserOrEnumRuleCall();
 	    }

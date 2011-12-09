@@ -17,6 +17,8 @@ import org.eclipselabs.damos.mscript.Unit;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface INumericValue extends IValue {
 

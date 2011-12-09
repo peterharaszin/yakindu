@@ -30,6 +30,8 @@ import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
  */
 public class Binary64Value extends AbstractNumericValue implements ISimpleNumericValue {
 
+	private static final double LOG_2 = Math.log(2);
+
 	private double value;
 	
 	public Binary64Value(IComputationContext context, NumericType dataType, FloatingPointFormat numberFormat, double value) {
@@ -143,6 +145,34 @@ public class Binary64Value extends AbstractNumericValue implements ISimpleNumeri
 		
 		NumberFormat numberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		return new Binary64Value(getContext(), resultDataType, getNumberFormat(), Math.round(value)).cast(numberFormat);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#exp()
+	 */
+	public IValue exp() {
+		return new Binary64Value(getContext(), getDataType(), getNumberFormat(), Math.exp(value));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#ln()
+	 */
+	public IValue ln() {
+		return new Binary64Value(getContext(), getDataType(), getNumberFormat(), Math.log(value));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#lg()
+	 */
+	public IValue lg() {
+		return new Binary64Value(getContext(), getDataType(), getNumberFormat(), Math.log10(value));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#lb()
+	 */
+	public IValue lb() {
+		return new Binary64Value(getContext(), getDataType(), getNumberFormat(), Math.log(value) / LOG_2);
 	}
 	
 	protected AbstractNumericValue cast(NumberFormat numberFormat) {

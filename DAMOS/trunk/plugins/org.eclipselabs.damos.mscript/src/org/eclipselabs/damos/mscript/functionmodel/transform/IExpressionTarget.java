@@ -9,16 +9,25 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import org.eclipselabs.damos.mscript.VariableDeclaration;
+
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IBuiltinFunctionGeneratorLookupTable {
+public interface IExpressionTarget {
 
-	IFunctionGenerator getFunctionGenerator(BuiltinFunctionDescriptor builtinFunctionDescriptor);
+	/**
+	 * @return the variableDeclaration
+	 */
+	VariableDeclaration getVariableDeclaration();
+
+	/**
+	 * @return the stepIndex
+	 */
+	int getStepIndex();
 
 }

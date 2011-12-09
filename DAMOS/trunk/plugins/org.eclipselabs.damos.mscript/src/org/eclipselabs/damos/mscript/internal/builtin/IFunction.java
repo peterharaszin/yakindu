@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,21 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript.internal.builtin;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import java.util.List;
+
+import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
-public interface IBuiltinFunctionGeneratorLookupTable {
+public interface IFunction {
 
-	IFunctionGenerator getFunctionGenerator(BuiltinFunctionDescriptor builtinFunctionDescriptor);
-
+	List<IValue> call(IComputationContext context, List<? extends IValue> arguments);
+	
 }

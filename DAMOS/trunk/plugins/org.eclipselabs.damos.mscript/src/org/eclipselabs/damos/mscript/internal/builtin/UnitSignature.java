@@ -9,16 +9,28 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript.internal.builtin;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import java.util.List;
+
+import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.NumericType;
+import org.eclipselabs.damos.mscript.builtin.ISignature;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IBuiltinFunctionGeneratorLookupTable {
+public class UnitSignature implements ISignature {
 
-	IFunctionGenerator getFunctionGenerator(BuiltinFunctionDescriptor builtinFunctionDescriptor);
+	public boolean accepts(List<? extends DataType> inputParameterDataTypes) {
+		if (inputParameterDataTypes.size() != 1) {
+			return false;
+		}
+		
+		DataType dataType = inputParameterDataTypes.get(0);
+		
+		return dataType instanceof NumericType;
+	}
 
 }

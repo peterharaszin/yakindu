@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,25 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IBuiltinFunctionGeneratorLookupTable {
+public class IterationCallTransformerLookupTable {
 
-	IFunctionGenerator getFunctionGenerator(BuiltinFunctionDescriptor builtinFunctionDescriptor);
-
+	private Map<String, IIterationCallTransformer> transformers = new HashMap<String, IIterationCallTransformer>();
+	
+	{
+		transformers.put("iterate", new IterateTransformer());
+	}
+	
+	public IIterationCallTransformer getTransformer(String name) {
+		return transformers.get(name);
+	}
+	
 }

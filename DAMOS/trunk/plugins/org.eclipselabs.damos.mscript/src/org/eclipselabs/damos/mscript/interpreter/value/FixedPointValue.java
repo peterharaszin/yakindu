@@ -305,8 +305,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
 			switch (floatingPointFormat.getKind()) {
 			case BINARY32:
-				// TODO;
-				break;
+				return castToBinary32(numericType, floatingPointFormat);
 			case BINARY64:
 				return castToBinary64(numericType, floatingPointFormat);
 			}
@@ -318,6 +317,11 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		}
 
 		return null;
+	}
+
+	private AbstractNumericValue castToBinary32(NumericType numericType, FloatingPointFormat floatingPointFormat) {
+		float value = rawValue * (float) Math.pow(2, -getNumberFormat().getFractionLength());
+		return new Binary32Value(getContext(), numericType, floatingPointFormat, value);
 	}
 
 	private AbstractNumericValue castToBinary64(NumericType numericType, FloatingPointFormat floatingPointFormat) {

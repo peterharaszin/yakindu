@@ -58,6 +58,8 @@ public class Values {
 		if (numberFormat instanceof FloatingPointFormat) {
 			FloatingPointFormat floatingPointFormat = (FloatingPointFormat) numberFormat;
 			switch (floatingPointFormat.getKind()) {
+			case BINARY32:
+				return new Binary32Value(context, realType, floatingPointFormat, (float) value);
 			case BINARY64:
 				return new Binary64Value(context, realType, floatingPointFormat, value);
 			default:

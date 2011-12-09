@@ -24,7 +24,7 @@ import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.execution.core.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
+import org.eclipselabs.damos.execution.core.ExecutionCorePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.mscript.DataType;
 
@@ -38,7 +38,7 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
 		Inoutport inport = (Inoutport) component;
 		
-		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
 		ComponentSignature signature = null;
 		
 		DataType dataType = getDataType(status, inport);
@@ -46,7 +46,7 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 			DataType incomingDataType = incomingDataTypes.get(component.getFirstInputPort());
 			if (incomingDataType != null) {
 				if (!dataType.isAssignableFrom(incomingDataType)) {
-					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Specified data type incompatible with input value data type"));
+					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Specified data type incompatible with input value data type"));
 				}
 			}
 			signature = new ComponentSignature(incomingDataTypes);
@@ -68,7 +68,7 @@ public class InoutportSignaturePolicy extends AbstractComponentSignaturePolicy {
 		if (inoutport.getDataType() instanceof MscriptDataTypeSpecification) {
 			return ((MscriptDataTypeSpecification) inoutport.getDataType()).getType();
 		} else {
-			status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Invalid model"));
+			status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid model"));
 		}
 		return null;
 	}

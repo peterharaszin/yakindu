@@ -11,25 +11,19 @@
 
 package org.eclipselabs.damos.library.base.ui.editparts.continuous;
 
-import java.io.StringReader;
-import java.util.List;
-
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.Block;
-import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
+import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.util.continuous.TransferFunctionConstants;
 import org.eclipselabs.damos.library.common.ui.editparts.FractionBlockEditPart;
 import org.eclipselabs.damos.library.common.util.PolynomialExpressionUtil;
-import org.eclipselabs.damos.mscript.ArrayConstructionOperator;
-import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.IntegerLiteral;
-import org.eclipselabs.damos.mscript.RealLiteral;
-import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.UnaryOperator;
-import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
+import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 
 /**
  * @author Andreas Unger
@@ -63,36 +57,22 @@ public class TransferFunctionEditPart extends FractionBlockEditPart {
 	private String createPolynomialExpression(String parameterName) {
 		Block block = (Block) resolveSemanticElement();
 		if (block != null) {
-			String argument = block.getArgumentStringValue(parameterName);
-			if (argument != null) {
-				MscriptParser parser = ExecutionEnginePlugin.getDefault().getMscriptParser();
-				IParseResult result = parser.parse(
-						parser.getGrammarAccess().getArrayConstructionOperatorRule(),
-						new StringReader(argument));
-				if (!result.hasSyntaxErrors()) {
-					List<Expression> expressions = ((ArrayConstructionOperator) result.getRootASTElement()).getExpressions();
-					double[] coefficients = new double[expressions.size()];
-					int i = 0;
-					for (Expression expression : expressions) {
-						double factor = 1;
-						if (expression instanceof UnaryExpression) {
-							UnaryExpression unaryExpression = (UnaryExpression) expression;
-							if (unaryExpression.getOperator() == UnaryOperator.NEGATE) {
-								expression = unaryExpression.getOperand();
-								factor = -1;
-							}
-						}
-						if (expression instanceof RealLiteral) {
-							coefficients[i] = factor * ((RealLiteral) expression).getValue();
-						} else if (expression instanceof IntegerLiteral) {
-							coefficients[i] = factor * ((IntegerLiteral) expression).getValue();
-						} else {
+			try {
+				IValue value = ExpressionUtil.evaluateArgumentExpression(block, parameterName);
+				if (value instanceof VectorValue) {
+					VectorValue vectorValue = (VectorValue) value;
+					double[] coefficients = new double[vectorValue.getSize()];
+					for (int i = 0; i < coefficients.length; ++i) {
+						INumericValue elementValue = vectorValue.get(i);
+						if (!(elementValue instanceof ISimpleNumericValue)) {
 							return null;
 						}
-						++i;
+						coefficients[i] = ((ISimpleNumericValue) elementValue).doubleValue();
 					}
 					return PolynomialExpressionUtil.createPolynomialExpression(coefficients, "s", false);
 				}
+			} catch (CoreException e) {
+				// Ignore invalid expression
 			}
 		}
 		return null;

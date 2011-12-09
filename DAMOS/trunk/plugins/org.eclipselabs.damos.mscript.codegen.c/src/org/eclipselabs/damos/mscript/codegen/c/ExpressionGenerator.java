@@ -37,6 +37,7 @@ import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFloatingPointHelper;
@@ -47,7 +48,6 @@ import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
-import org.eclipselabs.damos.mscript.il.builtin.BuiltinFunctionDescriptor;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 

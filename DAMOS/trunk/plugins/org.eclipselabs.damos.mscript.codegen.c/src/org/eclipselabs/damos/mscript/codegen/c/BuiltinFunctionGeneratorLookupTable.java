@@ -11,12 +11,12 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
+import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
 import org.eclipselabs.damos.mscript.codegen.c.internal.ExpFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.LbFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.LgFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.LnFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.RoundFunctionGenerator;
-import org.eclipselabs.damos.mscript.il.builtin.BuiltinFunctionDescriptor;
 
 /**
  * @author Andreas Unger

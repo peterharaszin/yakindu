@@ -9,16 +9,19 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript.functionmodel.transform;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import java.util.List;
+
+import org.eclipse.core.runtime.IStatus;
+import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * @author Andreas Unger
  *
  */
-public interface IBuiltinFunctionGeneratorLookupTable {
+public interface IExpressionTransformer {
 
-	IFunctionGenerator getFunctionGenerator(BuiltinFunctionDescriptor builtinFunctionDescriptor);
+	IStatus transform(Expression expression, List<? extends IExpressionTarget> targets);
 
 }

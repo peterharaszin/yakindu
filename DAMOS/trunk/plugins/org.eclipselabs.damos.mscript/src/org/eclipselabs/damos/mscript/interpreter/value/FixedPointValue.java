@@ -233,6 +233,66 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		return value.cast(getContext().getComputationModel().getNumberFormat(resultDataType));
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#exp()
+	 */
+	public IValue exp() {
+		long result;
+
+		FixedPointFormat numberFormat = getNumberFormat();
+		if (numberFormat.getWordSize() > 32) {
+			result = FixMath.expfix64(rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.expfix32((int) rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#ln()
+	 */
+	public IValue ln() {
+		long result;
+
+		FixedPointFormat numberFormat = getNumberFormat();
+		if (numberFormat.getWordSize() > 32) {
+			result = FixMath.lnfix64(rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.lnfix32((int) rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#lg()
+	 */
+	public IValue lg() {
+		long result;
+
+		FixedPointFormat numberFormat = getNumberFormat();
+		if (numberFormat.getWordSize() > 32) {
+			result = FixMath.lgfix64(rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.lgfix32((int) rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#lb()
+	 */
+	public IValue lb() {
+		long result;
+
+		FixedPointFormat numberFormat = getNumberFormat();
+		if (numberFormat.getWordSize() > 32) {
+			result = FixMath.lbfix64(rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.lbfix32((int) rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
+	}
+
 	protected AbstractNumericValue cast(NumberFormat numberFormat) {
 		if (getNumberFormat().isEquivalentTo(numberFormat)) {
 			return this;

@@ -11,58 +11,21 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
-import org.eclipselabs.damos.mscript.interpreter.util.FixMath;
-import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
-import org.eclipselabs.damos.mscript.interpreter.value.Binary64Value;
-import org.eclipselabs.damos.mscript.interpreter.value.FixedPointValue;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
-import org.eclipselabs.damos.mscript.interpreter.value.Values;
-import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
  *
  */
-public class LgFunction implements IFunction {
+public class LgFunction extends AbstractExpLogFunction {
 
-	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
-		RealType dataType = TypeUtil.createRealType();
-
-		IValue argument = arguments.get(0);
-		if (argument instanceof AnyValue) {
-			return Collections.<IValue> singletonList(new AnyValue(context, dataType));
-		}
-
-		argument = argument.convert(dataType);
-
-		if (argument instanceof Binary64Value) {
-			Binary64Value binary64Value = (Binary64Value) argument;
-			return Collections.<IValue> singletonList(Values.valueOf(context, dataType,
-					Math.log10(binary64Value.doubleValue())));
-		}
-
-		if (argument instanceof FixedPointValue) {
-			FixedPointValue fixedPointValue = (FixedPointValue) argument;
-			long rawValue;
-
-			FixedPointFormat numberFormat = (FixedPointFormat) context.getComputationModel().getNumberFormat(dataType);
-			if (numberFormat.getWordSize() > 32) {
-				rawValue = FixMath.lgfix64(fixedPointValue.getRawValue(), numberFormat.getFractionLength(), context.getOverflowMonitor());
-			} else {
-				rawValue = FixMath.lgfix32((int) fixedPointValue.getRawValue(), numberFormat.getFractionLength(), context.getOverflowMonitor());
-			}
-			IValue result = new FixedPointValue(context, dataType, numberFormat, rawValue);
-	
-			return Collections.singletonList(result);
-		}
-		
-		throw new IllegalArgumentException();
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.internal.builtin.AbstractExpLogFunction#compute(org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue)
+	 */
+	@Override
+	protected IValue compute(ISimpleNumericValue x) {
+		return x.lg();
 	}
 
 }

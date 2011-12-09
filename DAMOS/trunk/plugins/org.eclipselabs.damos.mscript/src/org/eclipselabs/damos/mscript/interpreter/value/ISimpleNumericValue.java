@@ -14,13 +14,19 @@ package org.eclipselabs.damos.mscript.interpreter.value;
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
 public interface ISimpleNumericValue extends INumericValue {
 
-	IValue round();
-	
 	double doubleValue();
 	
 	long longValue();
 
+	IValue round();
+	IValue exp();
+	IValue ln();
+	IValue lg();
+	IValue lb();
+	
 }

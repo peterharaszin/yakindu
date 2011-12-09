@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.mscript.il.impl;
+package org.eclipselabs.damos.mscript.functionmodel.impl;
 
 import java.util.Collection;
 
@@ -13,8 +13,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
-import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.ILPackage;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.impl.CompoundImpl;
 
 /**
@@ -24,8 +24,8 @@ import org.eclipselabs.damos.mscript.impl.CompoundImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ComputationCompoundImpl#getInputs <em>Inputs</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.impl.ComputationCompoundImpl#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl#getOutputs <em>Outputs</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,7 +68,7 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ILPackage.Literals.COMPUTATION_COMPOUND;
+		return FunctionModelPackage.Literals.COMPUTATION_COMPOUND;
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 */
 	public EList<InputParameterDeclaration> getInputs() {
 		if (inputs == null) {
-			inputs = new EObjectResolvingEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, ILPackage.COMPUTATION_COMPOUND__INPUTS);
+			inputs = new EObjectResolvingEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS);
 		}
 		return inputs;
 	}
@@ -90,7 +90,7 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	 */
 	public EList<OutputParameterDeclaration> getOutputs() {
 		if (outputs == null) {
-			outputs = new EObjectResolvingEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, ILPackage.COMPUTATION_COMPOUND__OUTPUTS);
+			outputs = new EObjectResolvingEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS);
 		}
 		return outputs;
 	}
@@ -103,9 +103,9 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ILPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
 				return getInputs();
-			case ILPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				return getOutputs();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -120,11 +120,11 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ILPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
 				getInputs().clear();
 				getInputs().addAll((Collection<? extends InputParameterDeclaration>)newValue);
 				return;
-			case ILPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				getOutputs().clear();
 				getOutputs().addAll((Collection<? extends OutputParameterDeclaration>)newValue);
 				return;
@@ -140,10 +140,10 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ILPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
 				getInputs().clear();
 				return;
-			case ILPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				getOutputs().clear();
 				return;
 		}
@@ -158,9 +158,9 @@ public class ComputationCompoundImpl extends CompoundImpl implements Computation
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ILPackage.COMPUTATION_COMPOUND__INPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__INPUTS:
 				return inputs != null && !inputs.isEmpty();
-			case ILPackage.COMPUTATION_COMPOUND__OUTPUTS:
+			case FunctionModelPackage.COMPUTATION_COMPOUND__OUTPUTS:
 				return outputs != null && !outputs.isEmpty();
 		}
 		return super.eIsSet(featureID);

@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
+import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -42,7 +42,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		new CompoundInterpreterSwitch(context).doSwitch(compound);
 	}
 	
-	private static class CompoundInterpreterSwitch extends ILSwitch<Boolean> {
+	private static class CompoundInterpreterSwitch extends FunctionModelSwitch<Boolean> {
 		
 		private IInterpreterContext context;
 		
@@ -58,7 +58,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+		 * @see org.eclipselabs.mscript.language.il.util.FunctionModelSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 		 */
 		@Override
 		public Boolean defaultCase(EObject object) {
@@ -87,7 +87,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 		
 
 			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
+			 * @see org.eclipselabs.mscript.language.imperativemodel.util.FunctionModelSwitch#caseCompound(org.eclipselabs.mscript.language.imperativemodel.Compound)
 			 */
 			@Override
 			public Boolean caseCompound(Compound compound) {
@@ -134,7 +134,7 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			}
 			
 			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.imperativemodel.LocalVariableDeclaration)
+			 * @see org.eclipselabs.mscript.language.imperativemodel.util.FunctionModelSwitch#caseLocalVariableDeclaration(org.eclipselabs.mscript.language.imperativemodel.LocalVariableDeclaration)
 			 */
 			@Override
 			public Boolean caseLocalVariableDeclaration(LocalVariableDeclaration localVariableDeclaration) {

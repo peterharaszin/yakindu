@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -382,6 +383,98 @@ public interface FunctionModelPackage extends EPackage {
 	int VARIABLE_STEP_FEATURE_COUNT = 5;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl <em>Function Instance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getFunctionInstance()
+	 * @generated
+	 */
+	int FUNCTION_INSTANCE = 6;
+
+	/**
+	 * The feature id for the '<em><b>Function Definition</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_INSTANCE__FUNCTION_DEFINITION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Initialization Compound</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_INSTANCE__INITIALIZATION_COMPOUND = 1;
+
+	/**
+	 * The feature id for the '<em><b>Computation Compounds</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Function Instance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTION_INSTANCE_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl <em>Computation Compound</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl
+	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getComputationCompound()
+	 * @generated
+	 */
+	int COMPUTATION_COMPOUND = 7;
+
+	/**
+	 * The feature id for the '<em><b>Statements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_COMPOUND__STATEMENTS = MscriptPackage.COMPOUND__STATEMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Inputs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_COMPOUND__INPUTS = MscriptPackage.COMPOUND_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Outputs</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_COMPOUND__OUTPUTS = MscriptPackage.COMPOUND_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Computation Compound</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_COMPOUND_FEATURE_COUNT = MscriptPackage.COMPOUND_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableKind <em>Variable Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -389,7 +482,7 @@ public interface FunctionModelPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getVariableKind()
 	 * @generated
 	 */
-	int VARIABLE_KIND = 6;
+	int VARIABLE_KIND = 8;
 
 
 	/**
@@ -706,6 +799,81 @@ public interface FunctionModelPackage extends EPackage {
 	EReference getVariableStep_UsingEquationParts();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance <em>Function Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Function Instance</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance
+	 * @generated
+	 */
+	EClass getFunctionInstance();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDefinition <em>Function Definition</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Function Definition</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDefinition()
+	 * @see #getFunctionInstance()
+	 * @generated
+	 */
+	EReference getFunctionInstance_FunctionDefinition();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getInitializationCompound <em>Initialization Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Initialization Compound</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getInitializationCompound()
+	 * @see #getFunctionInstance()
+	 * @generated
+	 */
+	EReference getFunctionInstance_InitializationCompound();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getComputationCompounds <em>Computation Compounds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Computation Compounds</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getComputationCompounds()
+	 * @see #getFunctionInstance()
+	 * @generated
+	 */
+	EReference getFunctionInstance_ComputationCompounds();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound <em>Computation Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Computation Compound</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.ComputationCompound
+	 * @generated
+	 */
+	EClass getComputationCompound();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getInputs <em>Inputs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Inputs</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getInputs()
+	 * @see #getComputationCompound()
+	 * @generated
+	 */
+	EReference getComputationCompound_Inputs();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getOutputs <em>Outputs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Outputs</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getOutputs()
+	 * @see #getComputationCompound()
+	 * @generated
+	 */
+	EReference getComputationCompound_Outputs();
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.functionmodel.VariableKind <em>Variable Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -980,6 +1148,66 @@ public interface FunctionModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VARIABLE_STEP__USING_EQUATION_PARTS = eINSTANCE.getVariableStep_UsingEquationParts();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl <em>Function Instance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getFunctionInstance()
+		 * @generated
+		 */
+		EClass FUNCTION_INSTANCE = eINSTANCE.getFunctionInstance();
+
+		/**
+		 * The meta object literal for the '<em><b>Function Definition</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_INSTANCE__FUNCTION_DEFINITION = eINSTANCE.getFunctionInstance_FunctionDefinition();
+
+		/**
+		 * The meta object literal for the '<em><b>Initialization Compound</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_INSTANCE__INITIALIZATION_COMPOUND = eINSTANCE.getFunctionInstance_InitializationCompound();
+
+		/**
+		 * The meta object literal for the '<em><b>Computation Compounds</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS = eINSTANCE.getFunctionInstance_ComputationCompounds();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl <em>Computation Compound</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.ComputationCompoundImpl
+		 * @see org.eclipselabs.damos.mscript.functionmodel.impl.FunctionModelPackageImpl#getComputationCompound()
+		 * @generated
+		 */
+		EClass COMPUTATION_COMPOUND = eINSTANCE.getComputationCompound();
+
+		/**
+		 * The meta object literal for the '<em><b>Inputs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTATION_COMPOUND__INPUTS = eINSTANCE.getComputationCompound_Inputs();
+
+		/**
+		 * The meta object literal for the '<em><b>Outputs</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPUTATION_COMPOUND__OUTPUTS = eINSTANCE.getComputationCompound_Outputs();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.functionmodel.VariableKind <em>Variable Kind</em>}' enum.

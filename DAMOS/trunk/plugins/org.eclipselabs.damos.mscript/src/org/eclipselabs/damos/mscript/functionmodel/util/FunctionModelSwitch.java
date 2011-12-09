@@ -9,10 +9,14 @@ package org.eclipselabs.damos.mscript.functionmodel.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
+import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
@@ -110,6 +114,20 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case FunctionModelPackage.FUNCTION_INSTANCE: {
+				FunctionInstance functionInstance = (FunctionInstance)theEObject;
+				T result = caseFunctionInstance(functionInstance);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case FunctionModelPackage.COMPUTATION_COMPOUND: {
+				ComputationCompound computationCompound = (ComputationCompound)theEObject;
+				T result = caseComputationCompound(computationCompound);
+				if (result == null) result = caseCompound(computationCompound);
+				if (result == null) result = caseStatement(computationCompound);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -201,6 +219,66 @@ public class FunctionModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseVariableStep(VariableStep object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Function Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Function Instance</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFunctionInstance(FunctionInstance object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Computation Compound</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Computation Compound</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseComputationCompound(ComputationCompound object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Statement</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Statement</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStatement(Statement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Compound</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCompound(Compound object) {
 		return null;
 	}
 

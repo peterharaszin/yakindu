@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
+import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -48,7 +48,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 		new CompoundGeneratorSwitch(context).writeCompoundStatements(compound);
 	}
 	
-	private class CompoundGeneratorSwitch extends ILSwitch<Boolean> {
+	private class CompoundGeneratorSwitch extends FunctionModelSwitch<Boolean> {
 
 		private IMscriptGeneratorContext context;
 
@@ -78,7 +78,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 		}
 		
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+		 * @see org.eclipselabs.mscript.language.imperativemodel.util.FunctionModelSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 		 */
 		@Override
 		public Boolean defaultCase(EObject object) {
@@ -143,7 +143,7 @@ public class CompoundGenerator implements ICompoundGenerator {
 			}
 
 			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.imperativemodel.util.ILSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
+			 * @see org.eclipselabs.mscript.language.imperativemodel.util.FunctionModelSwitch#caseAssignment(org.eclipselabs.mscript.language.imperativemodel.Assignment)
 			 */
 			@Override
 			public Boolean caseAssignment(Assignment assignment) {

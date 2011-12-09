@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.il.transform;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 
 /**
  * @author Andreas Unger
@@ -21,26 +21,23 @@ import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
  */
 public class FunctionDefinitionTransformerResult implements IFunctionDefinitionTransformerResult {
 
-	private ILFunctionDefinition ilFunctionDefinition;
+	private FunctionInstance functionInstance;
 	private IStatus status;
 	
-	public FunctionDefinitionTransformerResult(ILFunctionDefinition ilFunctionDefinition) {
-		this(ilFunctionDefinition, Status.OK_STATUS);
+	public FunctionDefinitionTransformerResult(FunctionInstance functionInstance) {
+		this(functionInstance, Status.OK_STATUS);
 	}
 	
 	/**
 	 * 
 	 */
-	public FunctionDefinitionTransformerResult(ILFunctionDefinition ilFunctionDefinition, IStatus status) {
-		this.ilFunctionDefinition = ilFunctionDefinition;
+	public FunctionDefinitionTransformerResult(FunctionInstance functionInstance, IStatus status) {
+		this.functionInstance = functionInstance;
 		this.status = status;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerResult#getILFunctionDefinition()
-	 */
-	public ILFunctionDefinition getILFunctionDefinition() {
-		return ilFunctionDefinition;
+	public FunctionInstance getFunctionInstance() {
+		return functionInstance;
 	}
 	
 	/* (non-Javadoc)

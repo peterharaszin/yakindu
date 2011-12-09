@@ -4,9 +4,8 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.mscript.il;
+package org.eclipselabs.damos.mscript;
 
-import org.eclipselabs.damos.mscript.Expression;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +13,7 @@ import org.eclipselabs.damos.mscript.Expression;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipselabs.damos.mscript.il.ILPackage#getInvalidExpression()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getInvalidExpression()
  * @model
  * @generated
  */

@@ -11,7 +11,8 @@
 
 package org.eclipselabs.damos.mscript.il.transform;
 
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
+
 
 /**
  * @author Andreas Unger
@@ -19,9 +20,6 @@ import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
  */
 public interface IFunctionDefinitionTransformerContext extends ITransformerContext {
 
-	/**
-	 * @return the functionDefinition
-	 */
-	ILFunctionDefinition getFunctionDefinition();
+	FunctionInstance getFunctionInstance();
 
 }

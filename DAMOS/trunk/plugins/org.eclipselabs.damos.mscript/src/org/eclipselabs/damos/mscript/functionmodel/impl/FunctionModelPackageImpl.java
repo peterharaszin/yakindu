@@ -16,10 +16,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.mscript.MscriptPackage;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelFactory;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
@@ -75,6 +77,20 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * @generated
 	 */
 	private EClass variableStepEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass functionInstanceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass computationCompoundEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -422,6 +438,69 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getFunctionInstance() {
+		return functionInstanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionInstance_FunctionDefinition() {
+		return (EReference)functionInstanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionInstance_InitializationCompound() {
+		return (EReference)functionInstanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionInstance_ComputationCompounds() {
+		return (EReference)functionInstanceEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getComputationCompound() {
+		return computationCompoundEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComputationCompound_Inputs() {
+		return (EReference)computationCompoundEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComputationCompound_Outputs() {
+		return (EReference)computationCompoundEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getVariableKind() {
 		return variableKindEEnum;
 	}
@@ -489,6 +568,15 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		createEAttribute(variableStepEClass, VARIABLE_STEP__DERIVATIVE);
 		createEReference(variableStepEClass, VARIABLE_STEP__USING_EQUATION_PARTS);
 
+		functionInstanceEClass = createEClass(FUNCTION_INSTANCE);
+		createEReference(functionInstanceEClass, FUNCTION_INSTANCE__FUNCTION_DEFINITION);
+		createEReference(functionInstanceEClass, FUNCTION_INSTANCE__INITIALIZATION_COMPOUND);
+		createEReference(functionInstanceEClass, FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS);
+
+		computationCompoundEClass = createEClass(COMPUTATION_COMPOUND);
+		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__INPUTS);
+		createEReference(computationCompoundEClass, COMPUTATION_COMPOUND__OUTPUTS);
+
 		// Create enums
 		variableKindEEnum = createEEnum(VARIABLE_KIND);
 	}
@@ -524,6 +612,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		computationCompoundEClass.getESuperTypes().add(theMscriptPackage.getCompound());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(functionDescriptorEClass, FunctionDescriptor.class, "FunctionDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -628,6 +717,15 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		initEAttribute(getVariableStep_Initial(), ecorePackage.getEBoolean(), "initial", null, 0, 1, VariableStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVariableStep_Derivative(), ecorePackage.getEBoolean(), "derivative", null, 0, 1, VariableStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVariableStep_UsingEquationParts(), this.getEquationPart(), this.getEquationPart_VariableStep(), "usingEquationParts", null, 0, -1, VariableStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(functionInstanceEClass, FunctionInstance.class, "FunctionInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFunctionInstance_FunctionDefinition(), theMscriptPackage.getFunctionDefinition(), null, "functionDefinition", null, 1, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionInstance_InitializationCompound(), theMscriptPackage.getCompound(), null, "initializationCompound", null, 0, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionInstance_ComputationCompounds(), this.getComputationCompound(), null, "computationCompounds", null, 0, -1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(computationCompoundEClass, ComputationCompound.class, "ComputationCompound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getComputationCompound_Inputs(), theMscriptPackage.getInputParameterDeclaration(), null, "inputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputationCompound_Outputs(), theMscriptPackage.getOutputParameterDeclaration(), null, "outputs", null, 0, -1, ComputationCompound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(variableKindEEnum, VariableKind.class, "VariableKind");

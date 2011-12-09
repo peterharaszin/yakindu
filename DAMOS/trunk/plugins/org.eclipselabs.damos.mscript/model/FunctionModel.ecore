@@ -132,4 +132,18 @@
     <eLiterals name="Constant" value="4"/>
     <eLiterals name="FunctionObject" value="5"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionInstance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionDefinition" lowerBound="1"
+        eType="ecore:EClass Mscript.ecore#//FunctionDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initializationCompound"
+        eType="ecore:EClass Mscript.ecore#//Compound" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="computationCompounds" upperBound="-1"
+        eType="#//ComputationCompound" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputationCompound" eSuperTypes="Mscript.ecore#//Compound">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" upperBound="-1"
+        eType="ecore:EClass Mscript.ecore#//InputParameterDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputs" upperBound="-1"
+        eType="ecore:EClass Mscript.ecore#//OutputParameterDeclaration"/>
+  </eClassifiers>
 </ecore:EPackage>

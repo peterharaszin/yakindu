@@ -73,7 +73,7 @@ public class MscriptLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 			throws CoreException {
 		IInterpreterContext context = new InterpreterContext(getStaticEvaluationContext(), new ComputationContext(getComputationModel()));
 
-		IFunctionObject functionObject = FunctionObject.create(context, getILFunctionDefinition());
+		IFunctionObject functionObject = FunctionObject.create(context, getFunctionInstance());
 
 		for (IVariable variable : functionObject.getVariables()) {
 			context.addVariable(variable);

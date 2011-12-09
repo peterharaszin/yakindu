@@ -30,7 +30,7 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.VariableAccess;
-import org.eclipselabs.damos.mscript.il.util.ILSwitch;
+import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
@@ -44,7 +44,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class ArrayOperationDecomposer extends ILSwitch<Boolean> implements IArrayOperationDecomposer {
+public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> implements IArrayOperationDecomposer {
 
 	private IStaticEvaluationContext context;
 	
@@ -59,7 +59,7 @@ public class ArrayOperationDecomposer extends ILSwitch<Boolean> implements IArra
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+	 * @see org.eclipselabs.mscript.language.il.util.FunctionModelSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 	 */
 	@Override
 	public Boolean defaultCase(EObject object) {

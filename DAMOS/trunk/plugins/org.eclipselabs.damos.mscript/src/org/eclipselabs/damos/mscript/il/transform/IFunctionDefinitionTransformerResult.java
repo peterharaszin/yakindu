@@ -12,7 +12,7 @@
 package org.eclipselabs.damos.mscript.il.transform;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 
 /**
  * @author Andreas Unger
@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
  */
 public interface IFunctionDefinitionTransformerResult {
 
-	ILFunctionDefinition getILFunctionDefinition();
+	FunctionInstance getFunctionInstance();
 
 	IStatus getStatus();
 

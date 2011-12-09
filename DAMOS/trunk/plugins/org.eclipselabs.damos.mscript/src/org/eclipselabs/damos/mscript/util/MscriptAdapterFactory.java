@@ -329,6 +329,10 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createAlgorithmExpressionAdapter();
 			}
 			@Override
+			public Adapter caseInvalidExpression(InvalidExpression object) {
+				return createInvalidExpressionAdapter();
+			}
+			@Override
 			public Adapter caseCompound(Compound object) {
 				return createCompoundAdapter();
 			}
@@ -1419,6 +1423,20 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAlgorithmExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.InvalidExpression <em>Invalid Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.InvalidExpression
+	 * @generated
+	 */
+	public Adapter createInvalidExpressionAdapter() {
 		return null;
 	}
 

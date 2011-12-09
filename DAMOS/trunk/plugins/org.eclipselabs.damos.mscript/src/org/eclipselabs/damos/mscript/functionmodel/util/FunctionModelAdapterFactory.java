@@ -10,10 +10,14 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipselabs.damos.mscript.Compound;
+import org.eclipselabs.damos.mscript.Statement;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
@@ -97,6 +101,22 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseVariableStep(VariableStep object) {
 				return createVariableStepAdapter();
+			}
+			@Override
+			public Adapter caseFunctionInstance(FunctionInstance object) {
+				return createFunctionInstanceAdapter();
+			}
+			@Override
+			public Adapter caseComputationCompound(ComputationCompound object) {
+				return createComputationCompoundAdapter();
+			}
+			@Override
+			public Adapter caseStatement(Statement object) {
+				return createStatementAdapter();
+			}
+			@Override
+			public Adapter caseCompound(Compound object) {
+				return createCompoundAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -199,6 +219,62 @@ public class FunctionModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVariableStepAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance <em>Function Instance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance
+	 * @generated
+	 */
+	public Adapter createFunctionInstanceAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound <em>Computation Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.ComputationCompound
+	 * @generated
+	 */
+	public Adapter createComputationCompoundAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Statement <em>Statement</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.Statement
+	 * @generated
+	 */
+	public Adapter createStatementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Compound <em>Compound</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.mscript.Compound
+	 * @generated
+	 */
+	public Adapter createCompoundAdapter() {
 		return null;
 	}
 

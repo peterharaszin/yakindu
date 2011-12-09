@@ -362,6 +362,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="body" eType="#//Compound"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidExpression" eSuperTypes="#//Expression"/>
   <eClassifiers xsi:type="ecore:EClass" name="Compound" eSuperTypes="#//Statement">
     <eOperations name="getLocalVariableDeclarations" upperBound="-1" eType="#//LocalVariableDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"

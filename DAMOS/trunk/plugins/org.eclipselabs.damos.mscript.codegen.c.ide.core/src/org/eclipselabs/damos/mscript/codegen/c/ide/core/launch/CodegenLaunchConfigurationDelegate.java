@@ -44,7 +44,7 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.ide.core.launch.MscriptLaunchConfigurationDelegate#doLaunch(java.lang.String, org.eclipse.debug.core.ILaunch, org.eclipselabs.mscript.language.il.ILFunctionDefinition, org.eclipselabs.mscript.computation.computationmodel.ComputationModel, org.eclipse.core.runtime.IProgressMonitor)
+	 * @see org.eclipselabs.mscript.ide.core.launch.MscriptLaunchConfigurationDelegate#doLaunch(java.lang.String, org.eclipse.debug.core.ILaunch, org.eclipselabs.mscript.language.il.FunctionInstance, org.eclipselabs.mscript.computation.computationmodel.ComputationModel, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor) throws CoreException {
 		String targetFolderPathString = configuration.getAttribute(ATTRIBUTE__TARGET_FOLDER_PATH, "");
@@ -53,13 +53,13 @@ public class CodegenLaunchConfigurationDelegate extends AbstractMscriptLaunchCon
 		}
 
 		IArrayOperationDecomposer arrayOperationDecomposer = new ArrayOperationDecomposer();
-		arrayOperationDecomposer.decompose(getStaticEvaluationContext(), getILFunctionDefinition().getInitializationCompound());
-		for (Compound compound : getILFunctionDefinition().getComputationCompounds()) {
+		arrayOperationDecomposer.decompose(getStaticEvaluationContext(), getFunctionInstance().getInitializationCompound());
+		for (Compound compound : getFunctionInstance().getComputationCompounds()) {
 			arrayOperationDecomposer.decompose(getStaticEvaluationContext(), compound);
 		}
 		
 		IFolder targetFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(targetFolderPathString));
-		CodegenProcess process = new CodegenProcess(launch, "C Code Generator", targetFolder, getTargetFunctionName(), getILFunctionDefinition(), getStaticEvaluationContext(), getComputationModel());
+		CodegenProcess process = new CodegenProcess(launch, "C Code Generator", targetFolder, getTargetFunctionName(), getFunctionInstance(), getStaticEvaluationContext(), getComputationModel());
 		process.run();
 	}
 

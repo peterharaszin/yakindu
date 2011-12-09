@@ -478,7 +478,7 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 		}
 
 		/* (non-Javadoc)
-		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseFunctionCall(org.eclipselabs.mscript.language.il.FunctionCall)
+		 * @see org.eclipselabs.mscript.language.il.util.FunctionModelSwitch#caseFunctionCall(org.eclipselabs.mscript.language.il.FunctionCall)
 		 */
 		@Override
 		public IValue caseFunctionCall(FunctionCall functionCall) {

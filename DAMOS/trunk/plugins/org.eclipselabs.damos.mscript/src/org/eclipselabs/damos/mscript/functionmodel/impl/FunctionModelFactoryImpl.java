@@ -12,10 +12,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelFactory;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
@@ -72,6 +74,8 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 			case FunctionModelPackage.EQUATION_PART: return createEquationPart();
 			case FunctionModelPackage.VARIABLE_DESCRIPTOR: return createVariableDescriptor();
 			case FunctionModelPackage.VARIABLE_STEP: return createVariableStep();
+			case FunctionModelPackage.FUNCTION_INSTANCE: return createFunctionInstance();
+			case FunctionModelPackage.COMPUTATION_COMPOUND: return createComputationCompound();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -165,6 +169,26 @@ public class FunctionModelFactoryImpl extends EFactoryImpl implements FunctionMo
 	public VariableStep createVariableStep() {
 		VariableStepImpl variableStep = new VariableStepImpl();
 		return variableStep;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FunctionInstance createFunctionInstance() {
+		FunctionInstanceImpl functionInstance = new FunctionInstanceImpl();
+		return functionInstance;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ComputationCompound createComputationCompound() {
+		ComputationCompoundImpl computationCompound = new ComputationCompoundImpl();
+		return computationCompound;
 	}
 
 	/**

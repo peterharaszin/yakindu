@@ -109,8 +109,6 @@ public class StaticExpressionEvaluator {
 		
 		private IBuiltinFunctionLookupTable builtinFunctionLookupTable = new BuiltinFunctionLookupTable();
 
-		private ExpressionMscriptSwitch typeSystemSwitch = new ExpressionMscriptSwitch();
-
 		/**
 		 * 
 		 */
@@ -891,61 +889,45 @@ public class StaticExpressionEvaluator {
 		 */
 		@Override
 		public IValue defaultCase(EObject object) {
-			if (object instanceof Expression) {
-				IValue value = typeSystemSwitch.evaluate((Expression) object);
-				if (value != null) {
-					return value;
-				}
-			}
 			status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "Invalid expression", object));
 			return InvalidValue.SINGLETON;
 		}
 		
-		private class ExpressionMscriptSwitch extends MscriptSwitch<IValue> {
-			
-			public IValue evaluate(Expression expression) {
-				IValue value = doSwitch(expression);
-				context.setValue(expression, value);
-				return value;
-			}
-
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
-			 */
-			@Override
-			public IValue caseRealLiteral(RealLiteral realLiteral) {
-				RealType realType = MscriptFactory.eINSTANCE.createRealType();
-				realType.setUnit(EcoreUtil.copy(realLiteral.getUnit()));
-				return Values.valueOf(context.getComputationContext(), realType, realLiteral.getValue());
-			}
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseRealLiteral(org.eclipselabs.mscript.language.ast.RealLiteral)
+		 */
+		@Override
+		public IValue caseRealLiteral(RealLiteral realLiteral) {
+			RealType realType = MscriptFactory.eINSTANCE.createRealType();
+			realType.setUnit(EcoreUtil.copy(realLiteral.getUnit()));
+			return Values.valueOf(context.getComputationContext(), realType, realLiteral.getValue());
+		}
+	
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
+		 */
+		@Override
+		public IValue caseIntegerLiteral(IntegerLiteral integerLiteral) {
+			IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
+			integerType.setUnit(EcoreUtil.copy(integerLiteral.getUnit()));
+			return Values.valueOf(context.getComputationContext(), integerType, integerLiteral.getValue());
+		}
 		
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseIntegerLiteral(org.eclipselabs.mscript.language.ast.IntegerLiteral)
-			 */
-			@Override
-			public IValue caseIntegerLiteral(IntegerLiteral integerLiteral) {
-				IntegerType integerType = MscriptFactory.eINSTANCE.createIntegerType();
-				integerType.setUnit(EcoreUtil.copy(integerLiteral.getUnit()));
-				return Values.valueOf(context.getComputationContext(), integerType, integerLiteral.getValue());
-			}
-			
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
-			 */
-			@Override
-			public IValue caseBooleanLiteral(BooleanLiteral booleanLiteral) {
-				return Values.valueOf(context.getComputationContext(), booleanLiteral.isTrue());
-			}
-		
-			/* (non-Javadoc)
-			 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
-			 */
-			@Override
-			public IValue caseStringLiteral(StringLiteral stringLiteral) {
-				return new StringValue(context.getComputationContext(), stringLiteral.getValue());
-			}
-		
-		};
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseBooleanLiteral(org.eclipselabs.mscript.language.ast.BooleanLiteral)
+		 */
+		@Override
+		public IValue caseBooleanLiteral(BooleanLiteral booleanLiteral) {
+			return Values.valueOf(context.getComputationContext(), booleanLiteral.isTrue());
+		}
+	
+		/* (non-Javadoc)
+		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseStringLiteral(org.eclipselabs.mscript.language.ast.StringLiteral)
+		 */
+		@Override
+		public IValue caseStringLiteral(StringLiteral stringLiteral) {
+			return new StringValue(context.getComputationContext(), stringLiteral.getValue());
+		}
 		
 	}
 	

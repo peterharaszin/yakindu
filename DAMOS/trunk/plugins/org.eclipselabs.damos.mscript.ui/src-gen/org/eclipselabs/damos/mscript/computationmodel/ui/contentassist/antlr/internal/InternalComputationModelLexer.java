@@ -2200,8 +2200,8 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_N;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22693:8: ( 'n' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22693:10: 'n'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22584:8: ( 'n' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22584:10: 'n'
             {
             match('n'); 
 
@@ -2220,8 +2220,8 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_IJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22695:9: ( ( 'i' | 'j' ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22695:11: ( 'i' | 'j' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22586:9: ( ( 'i' | 'j' ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22586:11: ( 'i' | 'j' )
             {
             if ( (input.LA(1)>='i' && input.LA(1)<='j') ) {
                 input.consume();
@@ -2248,8 +2248,8 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_E;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22697:8: ( ( 'e' | 'E' ) )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22697:10: ( 'e' | 'E' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22588:8: ( ( 'e' | 'E' ) )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22588:10: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -2276,11 +2276,11 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_EXPIJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22699:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22699:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22590:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22590:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
             {
             mRULE_E(); 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22699:21: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22590:21: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -2294,7 +2294,7 @@ public class InternalComputationModelLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22699:22: '0' .. '9'
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22590:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2310,7 +2310,7 @@ public class InternalComputationModelLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22699:33: ( RULE_IJ )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22590:33: ( RULE_IJ )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -2319,7 +2319,7 @@ public class InternalComputationModelLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22699:33: RULE_IJ
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22590:33: RULE_IJ
                     {
                     mRULE_IJ(); 
 
@@ -2344,8 +2344,8 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_ONE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22701:10: ( '1' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22701:12: '1'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22592:10: ( '1' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22592:12: '1'
             {
             match('1'); 
 
@@ -2364,10 +2364,10 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22703:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22703:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22594:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22594:12: ( '0' .. '9' )+
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22703:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22594:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -2381,7 +2381,7 @@ public class InternalComputationModelLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22703:13: '0' .. '9'
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22594:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2413,10 +2413,10 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22705:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22705:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22596:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22596:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22705:11: ( '_' )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22596:11: ( '_' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -2425,7 +2425,7 @@ public class InternalComputationModelLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22705:11: '_'
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22596:11: '_'
                     {
                     match('_'); 
 
@@ -2443,7 +2443,7 @@ public class InternalComputationModelLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22705:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22596:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             loop5:
             do {
                 int alt5=2;
@@ -2492,11 +2492,11 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22707:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22707:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22598:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22598:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22707:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22598:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
             loop6:
             do {
                 int alt6=3;
@@ -2512,7 +2512,7 @@ public class InternalComputationModelLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22707:20: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22598:20: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2527,7 +2527,7 @@ public class InternalComputationModelLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22707:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22598:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='?'||input.LA(1)=='\\'||(input.LA(1)>='a' && input.LA(1)<='b')||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v' ) {
@@ -2565,12 +2565,12 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22709:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22709:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22600:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22600:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22709:24: ( options {greedy=false; } : . )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22600:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -2595,7 +2595,7 @@ public class InternalComputationModelLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22709:52: .
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22600:52: .
             	    {
             	    matchAny(); 
 
@@ -2625,12 +2625,12 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -2643,7 +2643,7 @@ public class InternalComputationModelLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2663,7 +2663,7 @@ public class InternalComputationModelLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2672,9 +2672,9 @@ public class InternalComputationModelLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:41: ( '\\r' )? '\\n'
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:41: ( '\\r' )?
+                    // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -2683,7 +2683,7 @@ public class InternalComputationModelLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22711:41: '\\r'
+                            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22602:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2715,10 +2715,10 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22713:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22713:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22604:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22604:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22713:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22604:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -2772,8 +2772,8 @@ public class InternalComputationModelLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22715:16: ( . )
-            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22715:18: .
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22606:16: ( . )
+            // ../org.eclipselabs.damos.mscript.ui/src-gen/org/eclipselabs/damos/mscript/computationmodel/ui/contentassist/antlr/internal/InternalComputationModel.g:22606:18: .
             {
             matchAny(); 
 

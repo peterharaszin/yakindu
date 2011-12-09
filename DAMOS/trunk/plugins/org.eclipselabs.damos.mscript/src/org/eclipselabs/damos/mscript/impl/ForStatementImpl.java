@@ -26,7 +26,6 @@ import org.eclipselabs.damos.mscript.Statement;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getIterationVariable <em>Iteration Variable</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getCollectionExpression <em>Collection Expression</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getCondition <em>Condition</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.impl.ForStatementImpl#getBody <em>Body</em>}</li>
  * </ul>
  * </p>
@@ -53,16 +52,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * @ordered
 	 */
 	protected Expression collectionExpression;
-
-	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCondition()
-	 * @generated
-	 * @ordered
-	 */
-	protected Expression condition;
 
 	/**
 	 * The cached value of the '{@link #getBody() <em>Body</em>}' containment reference.
@@ -184,49 +173,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression getCondition() {
-		return condition;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetCondition(Expression newCondition, NotificationChain msgs) {
-		Expression oldCondition = condition;
-		condition = newCondition;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, MscriptPackage.FOR_STATEMENT__CONDITION, oldCondition, newCondition);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCondition(Expression newCondition) {
-		if (newCondition != condition) {
-			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.FOR_STATEMENT__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - MscriptPackage.FOR_STATEMENT__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FOR_STATEMENT__CONDITION, newCondition, newCondition));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Statement getBody() {
 		return body;
 	}
@@ -277,8 +223,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return basicSetIterationVariable(null, msgs);
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				return basicSetCollectionExpression(null, msgs);
-			case MscriptPackage.FOR_STATEMENT__CONDITION:
-				return basicSetCondition(null, msgs);
 			case MscriptPackage.FOR_STATEMENT__BODY:
 				return basicSetBody(null, msgs);
 		}
@@ -297,8 +241,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return getIterationVariable();
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				return getCollectionExpression();
-			case MscriptPackage.FOR_STATEMENT__CONDITION:
-				return getCondition();
 			case MscriptPackage.FOR_STATEMENT__BODY:
 				return getBody();
 		}
@@ -318,9 +260,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return;
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				setCollectionExpression((Expression)newValue);
-				return;
-			case MscriptPackage.FOR_STATEMENT__CONDITION:
-				setCondition((Expression)newValue);
 				return;
 			case MscriptPackage.FOR_STATEMENT__BODY:
 				setBody((Statement)newValue);
@@ -343,9 +282,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				setCollectionExpression((Expression)null);
 				return;
-			case MscriptPackage.FOR_STATEMENT__CONDITION:
-				setCondition((Expression)null);
-				return;
 			case MscriptPackage.FOR_STATEMENT__BODY:
 				setBody((Statement)null);
 				return;
@@ -365,8 +301,6 @@ public class ForStatementImpl extends StatementImpl implements ForStatement {
 				return iterationVariable != null;
 			case MscriptPackage.FOR_STATEMENT__COLLECTION_EXPRESSION:
 				return collectionExpression != null;
-			case MscriptPackage.FOR_STATEMENT__CONDITION:
-				return condition != null;
 			case MscriptPackage.FOR_STATEMENT__BODY:
 				return body != null;
 		}

@@ -1848,8 +1848,8 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_N;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22056:8: ( 'n' )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22056:10: 'n'
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21947:8: ( 'n' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21947:10: 'n'
             {
             match('n'); 
 
@@ -1868,8 +1868,8 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_IJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22058:9: ( ( 'i' | 'j' ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22058:11: ( 'i' | 'j' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21949:9: ( ( 'i' | 'j' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21949:11: ( 'i' | 'j' )
             {
             if ( (input.LA(1)>='i' && input.LA(1)<='j') ) {
                 input.consume();
@@ -1896,8 +1896,8 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_E;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22060:8: ( ( 'e' | 'E' ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22060:10: ( 'e' | 'E' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21951:8: ( ( 'e' | 'E' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21951:10: ( 'e' | 'E' )
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -1924,11 +1924,11 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_EXPIJ;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22062:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22062:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21953:12: ( RULE_E ( '0' .. '9' )+ ( RULE_IJ )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21953:14: RULE_E ( '0' .. '9' )+ ( RULE_IJ )?
             {
             mRULE_E(); 
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22062:21: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21953:21: ( '0' .. '9' )+
             int cnt1=0;
             loop1:
             do {
@@ -1942,7 +1942,7 @@ public class InternalSimulationModelLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22062:22: '0' .. '9'
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21953:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1958,7 +1958,7 @@ public class InternalSimulationModelLexer extends Lexer {
                 cnt1++;
             } while (true);
 
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22062:33: ( RULE_IJ )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21953:33: ( RULE_IJ )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1967,7 +1967,7 @@ public class InternalSimulationModelLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22062:33: RULE_IJ
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21953:33: RULE_IJ
                     {
                     mRULE_IJ(); 
 
@@ -1992,8 +1992,8 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_ONE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22064:10: ( '1' )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22064:12: '1'
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21955:10: ( '1' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21955:12: '1'
             {
             match('1'); 
 
@@ -2012,10 +2012,10 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22066:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22066:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21957:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21957:12: ( '0' .. '9' )+
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22066:12: ( '0' .. '9' )+
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21957:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -2029,7 +2029,7 @@ public class InternalSimulationModelLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22066:13: '0' .. '9'
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21957:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -2061,10 +2061,10 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22068:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22068:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21959:9: ( ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21959:11: ( '_' )? ( 'a' .. 'z' | 'A' .. 'Z' ) ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22068:11: ( '_' )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21959:11: ( '_' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -2073,7 +2073,7 @@ public class InternalSimulationModelLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22068:11: '_'
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21959:11: '_'
                     {
                     match('_'); 
 
@@ -2091,7 +2091,7 @@ public class InternalSimulationModelLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22068:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21959:36: ( '0' .. '9' | '_' | 'a' .. 'z' | 'A' .. 'Z' )*
             loop5:
             do {
                 int alt5=2;
@@ -2140,11 +2140,11 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22070:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22070:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21961:13: ( '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21961:15: '\"' (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )* '\"'
             {
             match('\"'); 
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22070:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21961:19: (~ ( ( '\\\\' | '\"' ) ) | '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' ) )*
             loop6:
             do {
                 int alt6=3;
@@ -2160,7 +2160,7 @@ public class InternalSimulationModelLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22070:20: ~ ( ( '\\\\' | '\"' ) )
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21961:20: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2175,7 +2175,7 @@ public class InternalSimulationModelLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22070:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21961:34: '\\\\' ( '\\'' | '\"' | '?' | '\\\\' | 'a' | 'b' | 'f' | 'n' | 'r' | 't' | 'v' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='?'||input.LA(1)=='\\'||(input.LA(1)>='a' && input.LA(1)<='b')||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v' ) {
@@ -2213,12 +2213,12 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22072:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22072:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21963:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21963:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22072:24: ( options {greedy=false; } : . )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21963:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -2243,7 +2243,7 @@ public class InternalSimulationModelLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22072:52: .
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21963:52: .
             	    {
             	    matchAny(); 
 
@@ -2273,12 +2273,12 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -2291,7 +2291,7 @@ public class InternalSimulationModelLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2311,7 +2311,7 @@ public class InternalSimulationModelLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2320,9 +2320,9 @@ public class InternalSimulationModelLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:41: ( '\\r' )? '\\n'
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:41: ( '\\r' )?
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -2331,7 +2331,7 @@ public class InternalSimulationModelLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22074:41: '\\r'
+                            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21965:41: '\\r'
                             {
                             match('\r'); 
 
@@ -2363,10 +2363,10 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22076:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22076:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21967:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21967:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22076:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21967:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -2420,8 +2420,8 @@ public class InternalSimulationModelLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22078:16: ( . )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:22078:18: .
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21969:16: ( . )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:21969:18: .
             {
             matchAny(); 
 

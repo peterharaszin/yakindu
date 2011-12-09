@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.mscript.il;
+package org.eclipselabs.damos.mscript.functionmodel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -13,23 +13,23 @@ import org.eclipselabs.damos.mscript.FunctionDefinition;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Function Definition</b></em>'.
+ * A representation of the model object '<em><b>Function Instance</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getFunctionDefinition <em>Function Definition</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getInitializationCompound <em>Initialization Compound</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getComputationCompounds <em>Computation Compounds</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDefinition <em>Function Definition</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getInitializationCompound <em>Initialization Compound</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getComputationCompounds <em>Computation Compounds</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.il.ILPackage#getILFunctionDefinition()
+ * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionInstance()
  * @model
  * @generated
  */
-public interface ILFunctionDefinition extends EObject {
+public interface FunctionInstance extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Function Definition</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -40,14 +40,14 @@ public interface ILFunctionDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function Definition</em>' reference.
 	 * @see #setFunctionDefinition(FunctionDefinition)
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getILFunctionDefinition_FunctionDefinition()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionInstance_FunctionDefinition()
 	 * @model required="true"
 	 * @generated
 	 */
 	FunctionDefinition getFunctionDefinition();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getFunctionDefinition <em>Function Definition</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDefinition <em>Function Definition</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Function Definition</em>' reference.
@@ -66,14 +66,14 @@ public interface ILFunctionDefinition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Initialization Compound</em>' containment reference.
 	 * @see #setInitializationCompound(Compound)
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getILFunctionDefinition_InitializationCompound()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionInstance_InitializationCompound()
 	 * @model containment="true"
 	 * @generated
 	 */
 	Compound getInitializationCompound();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.il.ILFunctionDefinition#getInitializationCompound <em>Initialization Compound</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getInitializationCompound <em>Initialization Compound</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initialization Compound</em>' containment reference.
@@ -84,7 +84,7 @@ public interface ILFunctionDefinition extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Computation Compounds</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.il.ComputationCompound}.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Computation Compounds</em>' containment reference list isn't clear,
@@ -92,10 +92,10 @@ public interface ILFunctionDefinition extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Computation Compounds</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getILFunctionDefinition_ComputationCompounds()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionInstance_ComputationCompounds()
 	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ComputationCompound> getComputationCompounds();
 
-} // ILFunctionDefinition
+} // FunctionInstance

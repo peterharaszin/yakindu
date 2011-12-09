@@ -483,6 +483,13 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass invalidExpressionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass compoundEClass = null;
 
 	/**
@@ -2499,6 +2506,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getInvalidExpression() {
+		return invalidExpressionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCompound() {
 		return compoundEClass;
 	}
@@ -3591,6 +3607,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		algorithmExpressionEClass = createEClass(ALGORITHM_EXPRESSION);
 		createEReference(algorithmExpressionEClass, ALGORITHM_EXPRESSION__BODY);
 
+		invalidExpressionEClass = createEClass(INVALID_EXPRESSION);
+
 		compoundEClass = createEClass(COMPOUND);
 		createEReference(compoundEClass, COMPOUND__STATEMENTS);
 
@@ -3808,6 +3826,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		functionCallEClass.getESuperTypes().add(this.getFeatureCall());
 		memberVariableAccessEClass.getESuperTypes().add(this.getExpression());
 		algorithmExpressionEClass.getESuperTypes().add(this.getExpression());
+		invalidExpressionEClass.getESuperTypes().add(this.getExpression());
 		compoundEClass.getESuperTypes().add(this.getStatement());
 		assignmentEClass.getESuperTypes().add(this.getStatement());
 		localVariableDeclarationEClass.getESuperTypes().add(this.getStatement());
@@ -4093,6 +4112,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(algorithmExpressionEClass, AlgorithmExpression.class, "AlgorithmExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAlgorithmExpression_Body(), this.getCompound(), null, "body", null, 0, 1, AlgorithmExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(invalidExpressionEClass, InvalidExpression.class, "InvalidExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(compoundEClass, Compound.class, "Compound", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompound_Statements(), this.getStatement(), null, "statements", null, 0, -1, Compound.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -38,9 +38,9 @@ import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitSymbol;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
-import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.damos.mscript.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.damos.mscript.interpreter.CompoundInterpreter;
@@ -140,10 +140,10 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			throw new CoreException(status);
 		}
 		
-		ILFunctionDefinition ilFunctionDefinition = functionDefinitionTransformerResult.getILFunctionDefinition();
+		FunctionInstance functionInstance = functionDefinitionTransformerResult.getFunctionInstance();
 		
 		interpreterContext = new InterpreterContext(staticEvaluationContext, getComputationContext());
-		functionObject = FunctionObject.create(interpreterContext, ilFunctionDefinition);
+		functionObject = FunctionObject.create(interpreterContext, functionInstance);
 
 		for (IVariable variable : functionObject.getVariables()) {
 			interpreterContext.addVariable(variable);
@@ -152,12 +152,12 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		initializeInputVariables();
 		initializeOutputVariables();
 
-		Compound initializationCompound = functionObject.getFunctionDefinition().getInitializationCompound();
+		Compound initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
 		if (initializationCompound != null) {
 			compoundInterpreter.execute(interpreterContext, initializationCompound);
 		}
 		
-		for (ComputationCompound compound : functionObject.getFunctionDefinition().getComputationCompounds()) {
+		for (ComputationCompound compound : functionObject.getFunctionInstance().getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
 				computeOutputsCompounds.add(compound);
 			} else {
@@ -167,11 +167,11 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeInputVariables() throws CoreException {
-		inputVariables = new IVariable[functionObject.getFunctionDefinition().getFunctionDefinition().getInputParameterDeclarations().size()];
+		inputVariables = new IVariable[functionObject.getFunctionInstance().getFunctionDefinition().getInputParameterDeclarations().size()];
 		multiPortInput = new boolean[inputVariables.length];
 		
 		int i = 0;
-		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDefinition().getInputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			
 			int inputIndex = hasInputSockets ? i - 1 : i;
@@ -190,11 +190,11 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeOutputVariables() throws CoreException {
-		outputVariables = new IVariable[functionObject.getFunctionDefinition().getFunctionDefinition().getOutputParameterDeclarations().size()];
+		outputVariables = new IVariable[functionObject.getFunctionInstance().getFunctionDefinition().getOutputParameterDeclarations().size()];
 		multiPortOutput = new boolean[outputVariables.length];
 
 		int i = 0;
-		for (OutputParameterDeclaration outputParameterDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDefinition().getOutputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(outputParameterDeclaration);
 			
 			BlockOutput output = (BlockOutput) getComponent().getOutputs().get(i);

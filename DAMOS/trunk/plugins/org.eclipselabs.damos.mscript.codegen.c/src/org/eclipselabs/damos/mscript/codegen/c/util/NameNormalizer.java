@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.codegen.c.util;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 
 /**
  * @author Andreas Unger
@@ -71,7 +71,7 @@ public class NameNormalizer {
 		RESERVED_WORDS.add("bool");		
 	}
 	
-	public void normalize(ILFunctionDefinition functionDefinition) {
+	public void normalize(FunctionInstance functionInstance) {
 //		NormalizerScope scope = new NormalizerScope(null);
 //		
 //		normalize(functionDefinition.getInputVariableDeclarations(), scope);
@@ -109,7 +109,7 @@ public class NameNormalizer {
 //		return false;
 //	}
 //	
-//	private static class CompoundNormalizer extends ILSwitch<Boolean> {
+//	private static class CompoundNormalizer extends FunctionModelSwitch<Boolean> {
 //		
 //		private NormalizerScope scope;
 //		
@@ -123,7 +123,7 @@ public class NameNormalizer {
 //		}
 //		
 //		/* (non-Javadoc)
-//		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#caseCompound(org.eclipselabs.mscript.language.il.Compound)
+//		 * @see org.eclipselabs.mscript.language.il.util.FunctionModelSwitch#caseCompound(org.eclipselabs.mscript.language.il.Compound)
 //		 */
 //		@Override
 //		public Boolean caseCompound(Compound compound) {
@@ -136,7 +136,7 @@ public class NameNormalizer {
 //		}
 //		
 //		/* (non-Javadoc)
-//		 * @see org.eclipselabs.mscript.language.il.util.ILSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
+//		 * @see org.eclipselabs.mscript.language.il.util.FunctionModelSwitch#defaultCase(org.eclipse.emf.ecore.EObject)
 //		 */
 //		@Override
 //		public Boolean defaultCase(EObject object) {

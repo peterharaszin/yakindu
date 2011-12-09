@@ -310,6 +310,7 @@
     <genClasses ecoreClass="Mscript.ecore#//AlgorithmExpression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//AlgorithmExpression/body"/>
     </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//InvalidExpression"/>
     <genClasses ecoreClass="Mscript.ecore#//Compound">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Compound/statements"/>
       <genOperations ecoreOperation="Mscript.ecore#//Compound/getLocalVariableDeclarations"/>

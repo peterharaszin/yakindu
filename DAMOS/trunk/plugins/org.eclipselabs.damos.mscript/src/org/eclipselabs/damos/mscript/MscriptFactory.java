@@ -530,6 +530,15 @@ public interface MscriptFactory extends EFactory {
 	AlgorithmExpression createAlgorithmExpression();
 
 	/**
+	 * Returns a new object of class '<em>Invalid Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invalid Expression</em>'.
+	 * @generated
+	 */
+	InvalidExpression createInvalidExpression();
+
+	/**
 	 * Returns a new object of class '<em>Compound</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

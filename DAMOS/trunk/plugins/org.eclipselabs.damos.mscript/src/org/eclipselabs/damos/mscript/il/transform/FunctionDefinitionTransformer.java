@@ -32,15 +32,15 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionModelFactory;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
-import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.ILFactory;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.functionmodel.util.FunctionModelUtil;
 import org.eclipselabs.damos.mscript.internal.il.util.EquationCompoundHelper;
@@ -61,31 +61,31 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	public IFunctionDefinitionTransformerResult transform(IStaticEvaluationContext staticEvaluationContext, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
-		ILFunctionDefinition ilFunctionDefinition = ILFactory.eINSTANCE.createILFunctionDefinition();
-		ilFunctionDefinition.setFunctionDefinition(functionDescriptor.getDefinition());
+		FunctionInstance functionInstance = FunctionModelFactory.eINSTANCE.createFunctionInstance();
+		functionInstance.setFunctionDefinition(functionDescriptor.getDefinition());
 		
 		Map<VariableDescriptor, VariableDeclaration> variableDeclarations = new HashMap<VariableDescriptor, VariableDeclaration>();
 		
-		initializeVariableDeclarations(staticEvaluationContext, ilFunctionDefinition, functionDescriptor, templateArguments, inputParameterDataTypes, variableDeclarations);
+		initializeVariableDeclarations(staticEvaluationContext, functionInstance, functionDescriptor, templateArguments, inputParameterDataTypes, variableDeclarations);
 
 		Collection<List<EquationDescriptor>> equationCompounds = new EquationCompoundHelper().getEquationCompounds(functionDescriptor);
 		
-		IFunctionDefinitionTransformerContext context = new FunctionDefinitionTransformerContext(staticEvaluationContext, ilFunctionDefinition);
+		IFunctionDefinitionTransformerContext context = new FunctionDefinitionTransformerContext(staticEvaluationContext, functionInstance);
 		StatusUtil.merge(status, constructInitializationCompound(context, equationCompounds, variableDeclarations));
 		StatusUtil.merge(status, constructComputationCompounds(context, equationCompounds, variableDeclarations));
 		
 		if (status.getSeverity() > IStatus.WARNING) {
-			return new FunctionDefinitionTransformerResult(ilFunctionDefinition, status);
+			return new FunctionDefinitionTransformerResult(functionInstance, status);
 		}
 		
 		if (status.getSeverity() > IStatus.WARNING) {
-			return new FunctionDefinitionTransformerResult(ilFunctionDefinition, status);
+			return new FunctionDefinitionTransformerResult(functionInstance, status);
 		}
 
-		return new FunctionDefinitionTransformerResult(ilFunctionDefinition);
+		return new FunctionDefinitionTransformerResult(functionInstance);
 	}
 	
-	private void initializeVariableDeclarations(IStaticEvaluationContext staticEvaluationContext, ILFunctionDefinition ilFunctionDefinition, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
+	private void initializeVariableDeclarations(IStaticEvaluationContext staticEvaluationContext, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
 		Iterator<IValue> templateArgumentIterator = templateArguments.iterator();
 		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDefinition().getTemplateParameterDeclarations()) {
 			if (templateArgumentIterator.hasNext()) {
@@ -178,7 +178,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 				it.remove();
 			}
 		}
-		context.getFunctionDefinition().setInitializationCompound(compound);
+		context.getFunctionInstance().setInitializationCompound(compound);
 		
 		return status.isOK() ? Status.OK_STATUS : status;
 	}
@@ -187,7 +187,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Computation compound construction", null);
 
 		for (List<EquationDescriptor> equationDescriptors : equationCompounds) {
-			ComputationCompound compound = ILFactory.eINSTANCE.createComputationCompound();
+			ComputationCompound compound = FunctionModelFactory.eINSTANCE.createComputationCompound();
 			Set<InputParameterDeclaration> inputs = new HashSet<InputParameterDeclaration>();
 			for (EquationDescriptor equationDescriptor : equationDescriptors) {
 				VariableStep lhsVariableStep = FunctionModelUtil.getFirstLeftHandSideVariableStep(equationDescriptor);
@@ -218,7 +218,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			for (InputParameterDeclaration input : inputs) {
 				compound.getInputs().add(input);
 			}
-			context.getFunctionDefinition().getComputationCompounds().add(compound);
+			context.getFunctionInstance().getComputationCompounds().add(compound);
 		}
 
 		return status.isOK() ? Status.OK_STATUS : status;

@@ -23,9 +23,9 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
-import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
-import org.eclipselabs.damos.mscript.il.util.ILUtil;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
+import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -36,7 +36,7 @@ public class MscriptGenerator {
 	
 	private final ICompoundGenerator compoundGenerator = new CompoundGenerator();
 	
-	private ILFunctionDefinition functionDefinition;
+	private FunctionInstance functionInstance;
 	
 	private IMscriptGeneratorContext context;
 	
@@ -46,12 +46,12 @@ public class MscriptGenerator {
 	/**
 	 * 
 	 */
-	public MscriptGenerator(ILFunctionDefinition functionDefinition, IMscriptGeneratorContext context, String functionName) {
-		this.functionDefinition = functionDefinition;
+	public MscriptGenerator(FunctionInstance functionInstance, IMscriptGeneratorContext context, String functionName) {
+		this.functionInstance = functionInstance;
 		this.context = context;
 		this.functionName = functionName;
 		if (this.functionName == null) {
-			this.functionName = functionDefinition.getFunctionDefinition().getName();
+			this.functionName = functionInstance.getFunctionDefinition().getName();
 		}
 		out = new PrintAppendable(context.getAppendable());
 	}
@@ -67,7 +67,7 @@ public class MscriptGenerator {
 		out.println("#endif /* __cplusplus */");
 		out.println();
 		
-		if (functionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
+		if (functionInstance.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
 			generateContextStructure();
 		}
 
@@ -88,17 +88,17 @@ public class MscriptGenerator {
 	
 	public void generateContextStructure() {
 		out.printf("typedef struct {\n");
-		for (InputParameterDeclaration inputParameterDeclaration : functionDefinition.getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionInstance.getFunctionDefinition().getInputParameterDeclarations()) {
 			if (context.getStaticEvaluationContext().getCircularBufferSize(inputParameterDeclaration) > 1) {
 				writeContextStructureMember(inputParameterDeclaration);
 			}
 		}
-		for (OutputParameterDeclaration outputParameterDeclaration : functionDefinition.getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputParameterDeclaration : functionInstance.getFunctionDefinition().getOutputParameterDeclarations()) {
 			if (context.getStaticEvaluationContext().getCircularBufferSize(outputParameterDeclaration) > 1) {
 				writeContextStructureMember(outputParameterDeclaration);
 			}
 		}
-		for (StateVariableDeclaration stateVariableDeclaration : functionDefinition.getFunctionDefinition().getStateVariableDeclarations()) {
+		for (StateVariableDeclaration stateVariableDeclaration : functionInstance.getFunctionDefinition().getStateVariableDeclarations()) {
 			writeContextStructureMember(stateVariableDeclaration);
 		}
 		out.printf("} %s_Context;\n", functionName);
@@ -121,7 +121,7 @@ public class MscriptGenerator {
 	}
 	
 	public void generateFunctionPrototypes() {
-		if (functionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
+		if (functionInstance.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
 			generateInitializeFunctionHeader();
 			out.println(";");
 			generateComputeOutputsFunctionHeader();
@@ -147,7 +147,7 @@ public class MscriptGenerator {
 	}
 	
 	public void generateFunctionImplementations() {
-		if (functionDefinition.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
+		if (functionInstance.getFunctionDefinition().getKind() == FunctionKind.STATEFUL) {
 			generateInitializeFunctionImplementation();
 
 			out.println();
@@ -160,7 +160,7 @@ public class MscriptGenerator {
 		} else {
 			generateStatelessFunctionHeader();
 			out.println(" {");
-			for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
+			for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 				compoundGenerator.generate(context, compound);
 			}
 			out.println("}");
@@ -180,10 +180,10 @@ public class MscriptGenerator {
 	private void generateInitializeFunctionImplementation() {
 		generateInitializeFunctionHeader();
 		out.println(" {");
-		generateInitializeIndexStatements(functionDefinition.getFunctionDefinition().getInputParameterDeclarations());
-		generateInitializeIndexStatements(functionDefinition.getFunctionDefinition().getOutputParameterDeclarations());
-		generateInitializeIndexStatements(functionDefinition.getFunctionDefinition().getStateVariableDeclarations());
-		compoundGenerator.generate(context, functionDefinition.getInitializationCompound());
+		generateInitializeIndexStatements(functionInstance.getFunctionDefinition().getInputParameterDeclarations());
+		generateInitializeIndexStatements(functionInstance.getFunctionDefinition().getOutputParameterDeclarations());
+		generateInitializeIndexStatements(functionInstance.getFunctionDefinition().getStateVariableDeclarations());
+		compoundGenerator.generate(context, functionInstance.getInitializationCompound());
 		out.println("}");
 	}
 
@@ -200,10 +200,10 @@ public class MscriptGenerator {
 	 */
 	private void generateComputeOutputsFunctionHeader() {
 		out.printf("void %s(%s_Context *context", functionName, functionName);
-		for (InputParameterDeclaration inputParameterDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
+		for (InputParameterDeclaration inputParameterDeclaration : FunctionModelUtil.getDirectFeedthroughInputs(functionInstance)) {
 			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false));
 		}
-		for (OutputParameterDeclaration outputParameterDeclaration: functionDefinition.getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputParameterDeclaration: functionInstance.getFunctionDefinition().getOutputParameterDeclarations()) {
 			out.printf(", %s", MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(outputParameterDeclaration), outputParameterDeclaration.getName(), true));
 		}
 		out.print(")");
@@ -215,19 +215,19 @@ public class MscriptGenerator {
 	private void generateComputeOutputsImplementation() {
 		generateComputeOutputsFunctionHeader();
 		out.println(" {");
-		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
+		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (!compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(context, compound);
 			}
 		}
 		
-		for (InputParameterDeclaration inputParameterDeclaration : ILUtil.getDirectFeedthroughInputs(functionDefinition)) {
+		for (InputParameterDeclaration inputParameterDeclaration : FunctionModelUtil.getDirectFeedthroughInputs(functionInstance)) {
 			if (context.getStaticEvaluationContext().getCircularBufferSize(inputParameterDeclaration) > 1) {
 				generateUpdateInputContextStatement(inputParameterDeclaration);
 			}
 		}
 		
-		for (OutputParameterDeclaration outputVariableDeclaration : functionDefinition.getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputVariableDeclaration : functionInstance.getFunctionDefinition().getOutputParameterDeclarations()) {
 			if (context.getStaticEvaluationContext().getCircularBufferSize(outputVariableDeclaration) > 1) {
 				String name = outputVariableDeclaration.getName();
 				out.printf("context->%s[context->%s_index] = *%s;\n", name, name, name);
@@ -253,7 +253,7 @@ public class MscriptGenerator {
 	private void generateUpdateFunctionImplementation() {
 		generateUpdateFunctionHeader();
 		out.println(" {");
-		for (ComputationCompound compound : functionDefinition.getComputationCompounds()) {
+		for (ComputationCompound compound : functionInstance.getComputationCompounds()) {
 			if (compound.getOutputs().isEmpty()) {
 				compoundGenerator.generate(context, compound);
 			}
@@ -263,15 +263,15 @@ public class MscriptGenerator {
 				generateUpdateInputContextStatement(inputParameterDeclaration);
 			}
 		}
-		generateUpdateIndexStatements(functionDefinition.getFunctionDefinition().getInputParameterDeclarations());
-		generateUpdateIndexStatements(functionDefinition.getFunctionDefinition().getOutputParameterDeclarations());
-		generateUpdateIndexStatements(functionDefinition.getFunctionDefinition().getStateVariableDeclarations());
+		generateUpdateIndexStatements(functionInstance.getFunctionDefinition().getInputParameterDeclarations());
+		generateUpdateIndexStatements(functionInstance.getFunctionDefinition().getOutputParameterDeclarations());
+		generateUpdateIndexStatements(functionInstance.getFunctionDefinition().getStateVariableDeclarations());
 		out.println("}");
 	}
 	
 	private List<InputParameterDeclaration> getUpdateCodeInputs() {
-		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>(functionDefinition.getFunctionDefinition().getInputParameterDeclarations());
-		inputs.removeAll(ILUtil.getDirectFeedthroughInputs(functionDefinition));
+		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>(functionInstance.getFunctionDefinition().getInputParameterDeclarations());
+		inputs.removeAll(FunctionModelUtil.getDirectFeedthroughInputs(functionInstance));
 		return inputs;
 	}
 
@@ -298,7 +298,7 @@ public class MscriptGenerator {
 	private void generateStatelessFunctionHeader() {
 		out.printf("void %s(", functionName, functionName);
 		boolean first = true;
-		for (InputParameterDeclaration inputParameterDeclaration: functionDefinition.getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration: functionInstance.getFunctionDefinition().getInputParameterDeclarations()) {
 			if (first) {
 				first = false;
 			} else {
@@ -306,7 +306,7 @@ public class MscriptGenerator {
 			}
 			out.print(MscriptGeneratorUtil.getCVariableDeclaration(context.getComputationModel(), getDataType(inputParameterDeclaration), inputParameterDeclaration.getName(), false));
 		}
-		for (OutputParameterDeclaration outputParameterDeclaration: functionDefinition.getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputParameterDeclaration: functionInstance.getFunctionDefinition().getOutputParameterDeclarations()) {
 			if (first) {
 				first = false;
 			} else {

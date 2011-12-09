@@ -27,9 +27,9 @@ import org.eclipselabs.damos.mscript.InvalidDataType;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.ide.core.IDECorePlugin;
 import org.eclipselabs.damos.mscript.ide.core.internal.launch.util.ParseUtil;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
 import org.eclipselabs.damos.mscript.il.transform.FunctionDefinitionTransformer;
 import org.eclipselabs.damos.mscript.il.transform.IFunctionDefinitionTransformerResult;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
@@ -57,7 +57,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	
 	private FunctionDefinition functionDefinition;
 	
-	private ILFunctionDefinition ilFunctionDefinition;
+	private FunctionInstance functionInstance;
 	
 	private List<IValue> templateArguments;
 	
@@ -85,10 +85,10 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	}
 	
 	/**
-	 * @return the ilFunctionDefinition
+	 * @return the functionInstance
 	 */
-	public ILFunctionDefinition getILFunctionDefinition() {
-		return ilFunctionDefinition;
+	public FunctionInstance getFunctionInstance() {
+		return functionInstance;
 	}
 	
 	/**
@@ -142,7 +142,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 
 		inputParameterDataTypes = computeInputParameterDataTypes(configuration, mode, monitor);
 
-		ilFunctionDefinition = createILFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes, monitor);
+		functionInstance = createFunctionInstance(functionDefinition, templateArguments, inputParameterDataTypes, monitor);
 
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
@@ -213,7 +213,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return functionDefinition;
 	}
 
-	private ILFunctionDefinition createILFunctionDefinition(FunctionDefinition functionDefinition, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
+	private FunctionInstance createFunctionInstance(FunctionDefinition functionDefinition, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
 		staticEvaluationContext = new StaticEvaluationContext();
 		IStatus status = new StaticFunctionEvaluator().evaluate(staticEvaluationContext, functionDefinition);
 		if (status.getSeverity() > IStatus.WARNING) {
@@ -225,7 +225,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 			throw new CoreException(functionDefinitionTransformerResult.getStatus());
 		}
 
-		return functionDefinitionTransformerResult.getILFunctionDefinition();
+		return functionDefinitionTransformerResult.getFunctionInstance();
 	}
 	
 	private List<IValue> computeTemplateArguments(IInterpreterContext interpreterContext, FunctionDefinition functionDefinition, String templateArgumentsString) throws CoreException {

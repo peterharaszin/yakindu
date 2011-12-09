@@ -14,7 +14,7 @@ package org.eclipselabs.damos.mscript.interpreter;
 import java.util.Collection;
 
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 
 /**
  * @author Andreas Unger
@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
  */
 public interface IFunctionObject {
 
-	ILFunctionDefinition getFunctionDefinition();
+	FunctionInstance getFunctionInstance();
 	
 	Collection<IVariable> getVariables();
 	

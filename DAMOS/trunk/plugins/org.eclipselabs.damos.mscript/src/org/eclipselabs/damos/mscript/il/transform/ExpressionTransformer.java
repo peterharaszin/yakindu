@@ -32,6 +32,7 @@ import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.ImpliesExpression;
 import org.eclipselabs.damos.mscript.IntegerLiteral;
 import org.eclipselabs.damos.mscript.IntegerType;
+import org.eclipselabs.damos.mscript.InvalidExpression;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
@@ -53,8 +54,6 @@ import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.il.ILFactory;
-import org.eclipselabs.damos.mscript.il.InvalidExpression;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
@@ -273,7 +272,7 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 	}
 			
 	private InvalidExpression createInvalidExpression() {
-		InvalidExpression invalidExpression = ILFactory.eINSTANCE.createInvalidExpression();
+		InvalidExpression invalidExpression = MscriptFactory.eINSTANCE.createInvalidExpression();
 		return invalidExpression;
 	}
 	

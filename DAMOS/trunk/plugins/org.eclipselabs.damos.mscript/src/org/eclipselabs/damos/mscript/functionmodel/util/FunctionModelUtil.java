@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.il.util;
+package org.eclipselabs.damos.mscript.functionmodel.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,27 +17,27 @@ import java.util.List;
 
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.il.ComputationCompound;
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ILUtil {
+public class FunctionModelUtil {
 
-	public static List<InputParameterDeclaration> getDirectFeedthroughInputs(ILFunctionDefinition functionDefinition) {
+	public static List<InputParameterDeclaration> getDirectFeedthroughInputs(FunctionInstance functionInstance) {
 		List<InputParameterDeclaration> inputs = new ArrayList<InputParameterDeclaration>();
-		for (InputParameterDeclaration inputParameterDeclaration : functionDefinition.getFunctionDefinition().getInputParameterDeclarations()) {
-			if (isDirectFeedthrough(functionDefinition, inputParameterDeclaration)) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionInstance.getFunctionDefinition().getInputParameterDeclarations()) {
+			if (isDirectFeedthrough(functionInstance, inputParameterDeclaration)) {
 				inputs.add((InputParameterDeclaration) inputParameterDeclaration);
 			}
 		}
 		return inputs;
 	}
 
-	public static boolean isDirectFeedthrough(ILFunctionDefinition functionDefinition, VariableDeclaration variableDeclaration) {
-		for (ComputationCompound compound : getFeedingCompounds(functionDefinition, variableDeclaration)) {
+	public static boolean isDirectFeedthrough(FunctionInstance functionInstance, VariableDeclaration variableDeclaration) {
+		for (ComputationCompound compound : getFeedingCompounds(functionInstance, variableDeclaration)) {
 			if (!compound.getOutputs().isEmpty()) {
 				return true;
 			}
@@ -45,12 +45,12 @@ public class ILUtil {
 		return false;
 	}
 
-	public static List<ComputationCompound> getFeedingCompounds(ILFunctionDefinition functionDefinition, VariableDeclaration variableDeclaration) {
-		if (functionDefinition == null) {
+	public static List<ComputationCompound> getFeedingCompounds(FunctionInstance functionInstance, VariableDeclaration variableDeclaration) {
+		if (functionInstance == null) {
 			return Collections.emptyList();
 		}
 		List<ComputationCompound> feedingCompounds = new ArrayList<ComputationCompound>();
-		for (ComputationCompound computationCompound : functionDefinition.getComputationCompounds()) {
+		for (ComputationCompound computationCompound : functionInstance.getComputationCompounds()) {
 			if (computationCompound.getInputs().contains(variableDeclaration)) {
 				feedingCompounds.add(computationCompound);
 			}

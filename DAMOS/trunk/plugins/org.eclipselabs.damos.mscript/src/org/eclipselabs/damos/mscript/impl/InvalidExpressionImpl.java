@@ -4,12 +4,11 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.mscript.il.impl;
+package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipselabs.damos.mscript.il.ILPackage;
-import org.eclipselabs.damos.mscript.il.InvalidExpression;
-import org.eclipselabs.damos.mscript.impl.ExpressionImpl;
+import org.eclipselabs.damos.mscript.InvalidExpression;
+import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,7 +36,7 @@ public class InvalidExpressionImpl extends ExpressionImpl implements InvalidExpr
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ILPackage.Literals.INVALID_EXPRESSION;
+		return MscriptPackage.Literals.INVALID_EXPRESSION;
 	}
 
 } //InvalidExpressionImpl

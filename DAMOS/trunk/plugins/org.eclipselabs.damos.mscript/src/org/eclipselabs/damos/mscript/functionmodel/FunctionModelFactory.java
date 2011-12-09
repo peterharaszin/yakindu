@@ -80,6 +80,24 @@ public interface FunctionModelFactory extends EFactory {
 	VariableStep createVariableStep();
 
 	/**
+	 * Returns a new object of class '<em>Function Instance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Function Instance</em>'.
+	 * @generated
+	 */
+	FunctionInstance createFunctionInstance();
+
+	/**
+	 * Returns a new object of class '<em>Computation Compound</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Computation Compound</em>'.
+	 * @generated
+	 */
+	ComputationCompound createComputationCompound();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

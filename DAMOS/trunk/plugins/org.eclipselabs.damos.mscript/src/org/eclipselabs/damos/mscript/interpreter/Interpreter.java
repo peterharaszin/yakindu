@@ -18,7 +18,7 @@ import java.util.List;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
-import org.eclipselabs.damos.mscript.il.ComputationCompound;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
@@ -31,7 +31,7 @@ public class Interpreter implements IInterpreter {
 	 * @see org.eclipselabs.mscript.language.interpreter.IInterpreter#initialize(org.eclipselabs.mscript.language.interpreter.IInterpreterContext, org.eclipselabs.mscript.language.interpreter.IFunctionObject)
 	 */
 	public void initialize(IInterpreterContext context, IFunctionObject functionObject) {
-		Compound initializationCompound = functionObject.getFunctionDefinition().getInitializationCompound();
+		Compound initializationCompound = functionObject.getFunctionInstance().getInitializationCompound();
 		if (initializationCompound != null) {
 			new CompoundInterpreter().execute(context, initializationCompound);
 		}
@@ -42,19 +42,19 @@ public class Interpreter implements IInterpreter {
 	 */
 	public List<IValue> execute(IInterpreterContext context, IFunctionObject functionObject, List<IValue> inputValues) {
 		Iterator<IValue> inputValueIterator = inputValues.iterator();
-		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDefinition().getInputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			variable.setValue(0, inputValueIterator.next());
 		}
 		
 		ICompoundInterpreter compoundInterpreter = new CompoundInterpreter();
 		
-		for (ComputationCompound compound : functionObject.getFunctionDefinition().getComputationCompounds()) {
+		for (ComputationCompound compound : functionObject.getFunctionInstance().getComputationCompounds()) {
 			compoundInterpreter.execute(context, compound);
 		}
 		
 		List<IValue> outputValues = new ArrayList<IValue>();
-		for (OutputParameterDeclaration outputVariableDeclaration : functionObject.getFunctionDefinition().getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputVariableDeclaration : functionObject.getFunctionInstance().getFunctionDefinition().getOutputParameterDeclarations()) {
 			outputValues.add(functionObject.getVariable(outputVariableDeclaration).getValue(0));
 		}
 		

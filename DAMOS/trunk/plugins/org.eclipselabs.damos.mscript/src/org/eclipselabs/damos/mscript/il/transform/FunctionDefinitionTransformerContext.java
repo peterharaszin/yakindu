@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.il.transform;
 
-import org.eclipselabs.damos.mscript.il.ILFunctionDefinition;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 
 /**
@@ -20,21 +20,18 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public class FunctionDefinitionTransformerContext extends TransformerContext implements IFunctionDefinitionTransformerContext {
 
-	private ILFunctionDefinition functionDefinition;
+	private FunctionInstance functionInstance;
 	
 	/**
 	 * 
 	 */
-	public FunctionDefinitionTransformerContext(IStaticEvaluationContext staticEvaluationContext, ILFunctionDefinition functionDefinition) {
+	public FunctionDefinitionTransformerContext(IStaticEvaluationContext staticEvaluationContext, FunctionInstance functionInstance) {
 		super(staticEvaluationContext);
-		this.functionDefinition = functionDefinition;
+		this.functionInstance = functionInstance;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.il.transform.IFunctionDefinitionTransformerContext#getFunctionDefinition()
-	 */
-	public ILFunctionDefinition getFunctionDefinition() {
-		return functionDefinition;
+	public FunctionInstance getFunctionInstance() {
+		return functionInstance;
 	}
 	
 }

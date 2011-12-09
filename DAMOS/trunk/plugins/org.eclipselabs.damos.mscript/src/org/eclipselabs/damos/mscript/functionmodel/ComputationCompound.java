@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.mscript.il;
+package org.eclipselabs.damos.mscript.functionmodel;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.mscript.Compound;
@@ -19,12 +19,12 @@ import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.il.ComputationCompound#getInputs <em>Inputs</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.il.ComputationCompound#getOutputs <em>Outputs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.ComputationCompound#getOutputs <em>Outputs</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.il.ILPackage#getComputationCompound()
+ * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getComputationCompound()
  * @model
  * @generated
  */
@@ -39,7 +39,7 @@ public interface ComputationCompound extends Compound {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Inputs</em>' reference list.
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getComputationCompound_Inputs()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getComputationCompound_Inputs()
 	 * @model
 	 * @generated
 	 */
@@ -55,7 +55,7 @@ public interface ComputationCompound extends Compound {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Outputs</em>' reference list.
-	 * @see org.eclipselabs.damos.mscript.il.ILPackage#getComputationCompound_Outputs()
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getComputationCompound_Outputs()
 	 * @model
 	 * @generated
 	 */

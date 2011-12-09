@@ -12,10 +12,12 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
+import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
 import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableKind;
@@ -153,6 +155,10 @@ public class FunctionModelValidator extends EObjectValidator {
 				return validateVariableDescriptor((VariableDescriptor)value, diagnostics, context);
 			case FunctionModelPackage.VARIABLE_STEP:
 				return validateVariableStep((VariableStep)value, diagnostics, context);
+			case FunctionModelPackage.FUNCTION_INSTANCE:
+				return validateFunctionInstance((FunctionInstance)value, diagnostics, context);
+			case FunctionModelPackage.COMPUTATION_COMPOUND:
+				return validateComputationCompound((ComputationCompound)value, diagnostics, context);
 			case FunctionModelPackage.VARIABLE_KIND:
 				return validateVariableKind((VariableKind)value, diagnostics, context);
 			default:
@@ -296,6 +302,24 @@ public class FunctionModelValidator extends EObjectValidator {
 	 */
 	public boolean validateVariableStep(VariableStep variableStep, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(variableStep, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateFunctionInstance(FunctionInstance functionInstance, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(functionInstance, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateComputationCompound(ComputationCompound computationCompound, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(computationCompound, diagnostics, context);
 	}
 
 	/**

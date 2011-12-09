@@ -21,7 +21,7 @@ import org.eclipselabs.damos.dml.InputPort;
 import org.eclipselabs.damos.execution.core.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
+import org.eclipselabs.damos.execution.core.ExecutionCorePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
@@ -44,8 +44,8 @@ public class JoinSignaturePolicy extends AbstractComponentSignaturePolicy {
 			if (dataType != null) {
 				dataType = TypeUtil.getLeftHandDataType(dataType, incomingDataType);
 				if (dataType == null) {
-					MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
-					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Incompatible input values"));
+					MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
+					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Incompatible input values"));
 					return new ComponentSignatureEvaluationResult(status);
 				}
 			} else {

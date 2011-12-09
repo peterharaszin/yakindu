@@ -21,10 +21,11 @@ import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.InputPort;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.AbstractComponentSignaturePolicy;
 import org.eclipselabs.damos.execution.core.ComponentSignature;
 import org.eclipselabs.damos.execution.core.ComponentSignatureEvaluationResult;
-import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
+import org.eclipselabs.damos.execution.core.ExecutionCorePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.mscript.DataType;
@@ -40,7 +41,7 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 
 	@Override
 	public IComponentSignatureEvaluationResult evaluateSignature(Component component, Map<InputPort, DataType> incomingDataTypes) {
-		MultiStatus status = new MultiStatus(ExecutionEnginePlugin.PLUGIN_ID, 0, "", null);
+		MultiStatus status = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
 
 		Choice choice = (Choice) component;
 		
@@ -54,10 +55,14 @@ public class ChoiceSignaturePolicy extends AbstractComponentSignaturePolicy {
 				continue;
 			}
 			try {
-				String condition = actionLink.getCondition().stringValue();
-				IValue value = ExpressionUtil.evaluateExpression(condition);
-				if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidDataType) {
-					status.add(new Status(IStatus.ERROR, ExecutionEnginePlugin.PLUGIN_ID, "Action link condition '" + condition + "' is incompatible with choice input value"));
+				if (actionLink.getCondition() instanceof MscriptValueSpecification) {
+					MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
+					IValue value = ExpressionUtil.evaluateExpression(condition.getExpression());
+					if (incomingDataType.evaluate(OperatorKind.EQUAL_TO, value.getDataType()) instanceof InvalidDataType) {
+						status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Action link condition '" + condition.stringValue() + "' is incompatible with choice input value"));
+					}
+				} else {
+					status.add(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Invalid initial value"));
 				}
 			} catch (CoreException e) {
 				status.add(e.getStatus());

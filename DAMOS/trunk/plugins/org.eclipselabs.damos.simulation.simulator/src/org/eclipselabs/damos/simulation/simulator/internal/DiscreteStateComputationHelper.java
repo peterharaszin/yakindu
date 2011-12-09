@@ -12,12 +12,15 @@
 package org.eclipselabs.damos.simulation.simulator.internal;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Choice;
 import org.eclipselabs.damos.dml.WhileLoop;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
@@ -211,7 +214,10 @@ public class DiscreteStateComputationHelper {
 		for (ActionLink actionLink : choice.getActionLinks()) {
 			Action action = actionLink.getAction();
 			if (actionLink.getCondition() != null) {
-				IValue conditionValue = ExpressionUtil.evaluateExpression(actionLink.getCondition().stringValue());
+				if (!(actionLink.getCondition() instanceof MscriptValueSpecification)) {
+					throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid action link condition"));
+				}
+				IValue conditionValue = ExpressionUtil.evaluateExpression(((MscriptValueSpecification) actionLink.getCondition()).getExpression());
 				IValue result = value.equalTo(conditionValue);
 				if (result instanceof IBooleanValue) {
 					IBooleanValue booleanResult = (IBooleanValue) result;

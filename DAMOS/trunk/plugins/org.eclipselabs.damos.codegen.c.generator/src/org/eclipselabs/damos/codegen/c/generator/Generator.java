@@ -59,10 +59,10 @@ import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.WhileLoop;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.DataTypeResolver;
 import org.eclipselabs.damos.execution.core.DataTypeResolverResult;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
-import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -76,7 +76,6 @@ import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
@@ -600,17 +599,19 @@ public class Generator {
 				int i = 0;
 				for (ActionLink actionLink : choice.getActionLinks()) {
 					if (actionLink.getCondition() != null) {
-						String condition = actionLink.getCondition().stringValue();
 						if (i > 0) {
 							writer.print("} else ");
 						}
 						writer.printf("if (%s == (", incomingVariableName);
 						
-						Expression conditionExpression = ExpressionUtil.parseExpression(condition);
-						
-						ComputationModel computationModel = getComputationModel(genModel, componentNode);
-						ActionLinkConditionVariableAccessStrategy variableAccessStrategy = new ActionLinkConditionVariableAccessStrategy();
-						new ExpressionGenerator().generate(new MscriptGeneratorContext(writer, computationModel, new StaticEvaluationContext(), variableAccessStrategy), conditionExpression);
+						if (actionLink.getCondition() instanceof MscriptValueSpecification) {
+							MscriptValueSpecification condition = (MscriptValueSpecification) actionLink.getCondition();
+							ComputationModel computationModel = getComputationModel(genModel, componentNode);
+							ActionLinkConditionVariableAccessStrategy variableAccessStrategy = new ActionLinkConditionVariableAccessStrategy();
+							new ExpressionGenerator().generate(new MscriptGeneratorContext(writer, computationModel, new StaticEvaluationContext(), variableAccessStrategy), condition.getExpression());
+						} else {
+							// TODO: Handle error
+						}
 
 						writer.println(")) {");
 						writer.printf("%s = %d;\n", choiceResult, i);

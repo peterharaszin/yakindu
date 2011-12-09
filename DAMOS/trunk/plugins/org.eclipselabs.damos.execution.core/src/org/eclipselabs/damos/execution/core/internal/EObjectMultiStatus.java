@@ -14,7 +14,7 @@ package org.eclipselabs.damos.execution.core.internal;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.execution.core.ExecutionEnginePlugin;
+import org.eclipselabs.damos.execution.core.ExecutionCorePlugin;
 import org.eclipselabs.damos.execution.core.IEObjectStatus;
 
 /**
@@ -29,7 +29,7 @@ public class EObjectMultiStatus extends MultiStatus implements IEObjectStatus {
 	 * 
 	 */
 	public EObjectMultiStatus(EObject eObject, IStatus[] newChildren, String message) {
-		super(ExecutionEnginePlugin.PLUGIN_ID, 0, newChildren, message, null);
+		super(ExecutionCorePlugin.PLUGIN_ID, 0, newChildren, message, null);
 		this.eObject = eObject;
 	}
 

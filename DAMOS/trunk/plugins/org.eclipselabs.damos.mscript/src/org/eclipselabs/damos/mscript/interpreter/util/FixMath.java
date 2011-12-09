@@ -624,7 +624,7 @@ public class FixMath {
 		result += (resultHi & mask) << fractionLength;
 		result += resultLo >>> fractionLength;
 		
-		if (a < Integer.MAX_VALUE / b) {
+		if (b != 0 && a < Integer.MAX_VALUE / b) {
 			overflowMonitor.handleOverflow(new OverflowInfo());
 		}
 		
@@ -640,7 +640,7 @@ public class FixMath {
 //	}
 
 	private static long mulfix64(long a, long b, int fractionLength, IOverflowMonitor overflowMonitor) {
-		if (a < Long.MAX_VALUE / b) {
+		if (b != 0 && a < Long.MAX_VALUE / b) {
 			overflowMonitor.handleOverflow(new OverflowInfo());
 		}
 		return a * b >> fractionLength;

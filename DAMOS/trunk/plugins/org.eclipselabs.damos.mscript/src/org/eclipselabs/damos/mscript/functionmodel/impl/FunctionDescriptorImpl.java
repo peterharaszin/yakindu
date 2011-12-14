@@ -382,7 +382,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 			if (!hasEquationForStep(variableDescriptor, i, initialOnly)) {
 				if (diagnostics != null) {
 					String message;
-					if (initialOnly) {
+					if (initialOnly || i < 0) {
 						message = String.format(
 								"No '%s{%d} = ...' equation specified",
 								variableDescriptor.getName(),

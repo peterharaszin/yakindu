@@ -45,25 +45,33 @@ public class EquationCompoundHelper {
 	
 	private List<EquationDescriptor> getNextEquationBlock(List<EquationDescriptor> backlog) {
 		List<EquationDescriptor> equationCompound = new LinkedList<EquationDescriptor>();
-		for (Iterator<EquationDescriptor> backlogIt = backlog.iterator(); backlogIt.hasNext();) {
-			EquationDescriptor backlogEquationDescriptor = backlogIt.next();
-			int compareResult = 1;
-			for (ListIterator<EquationDescriptor> it = equationCompound.listIterator(); it.hasNext();) {
-				EquationDescriptor next = it.next();
-				compareResult = EQUATION_COMPARATOR.compare(backlogEquationDescriptor, next);
-				if (compareResult < 0) {
-					it.previous();
-					it.add(backlogEquationDescriptor);
-					it.next();
+		
+		boolean changed;
+		do {
+			changed = false;
+			for (Iterator<EquationDescriptor> backlogIt = backlog.iterator(); backlogIt.hasNext();) {
+				EquationDescriptor backlogEquationDescriptor = backlogIt.next();
+				int compareResult = 1;
+				for (ListIterator<EquationDescriptor> it = equationCompound.listIterator(); it.hasNext();) {
+					EquationDescriptor next = it.next();
+					compareResult = EQUATION_COMPARATOR.compare(backlogEquationDescriptor, next);
+					if (compareResult < 0) {
+						it.previous();
+						it.add(backlogEquationDescriptor);
+						it.next();
+						backlogIt.remove();
+						changed = true;
+						break;
+					}
+				}
+				if (compareResult > 0) {
+					equationCompound.add(backlogEquationDescriptor);
 					backlogIt.remove();
-					break;
+					changed = true;
 				}
 			}
-			if (compareResult > 0) {
-				equationCompound.add(backlogEquationDescriptor);
-				backlogIt.remove();
-			}
-		}
+		} while (changed);
+		
 		return equationCompound;
 	}
 	

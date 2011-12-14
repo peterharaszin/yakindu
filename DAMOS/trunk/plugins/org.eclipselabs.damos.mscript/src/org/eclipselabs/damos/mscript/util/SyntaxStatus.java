@@ -87,7 +87,14 @@ public class SyntaxStatus extends Status implements ISyntaxStatus {
 		for (Diagnostic child : diagnostic.getChildren()) {
 			List<?> data = child.getData();
 			if (data != null && !data.isEmpty() && data.get(0) instanceof EObject) {
-				multiStatus.add(new SyntaxStatus(diagnostic.getSeverity(), MscriptPlugin.PLUGIN_ID, 0, child.getMessage(), (EObject) data.get(0)));
+				EObject syntaxElement = (EObject) data.get(0);
+				
+				EStructuralFeature syntaxFeature = null;
+				if (data.size() > 1 && data.get(1) instanceof EStructuralFeature) {
+					syntaxFeature = (EStructuralFeature) data.get(1);
+				}
+				
+				multiStatus.add(new SyntaxStatus(diagnostic.getSeverity(), MscriptPlugin.PLUGIN_ID, 0, child.getMessage(), syntaxElement, syntaxFeature));
 			}
 		}
 		return multiStatus;

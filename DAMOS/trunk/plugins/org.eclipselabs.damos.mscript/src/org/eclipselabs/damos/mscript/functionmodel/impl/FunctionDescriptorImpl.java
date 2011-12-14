@@ -366,7 +366,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 					FunctionModelValidator.DIAGNOSTIC_SOURCE,
 					FunctionModelValidator.FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 					message,
-					new Object[] { getDefinition(), MscriptPackage.FUNCTION_DEFINITION__NAME }));
+					new Object[] { getDefinition(), MscriptPackage.eINSTANCE.getDefinition_Name() }));
 		}
 		return ok;
 	}
@@ -382,7 +382,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 			if (!hasEquationForStep(variableDescriptor, i, initialOnly)) {
 				if (diagnostics != null) {
 					String message;
-					if (initialOnly || i < 0) {
+					if (initialOnly) {
 						message = String.format(
 								"No '%s{%d} = ...' equation specified",
 								variableDescriptor.getName(),
@@ -400,7 +400,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 							FunctionModelValidator.DIAGNOSTIC_SOURCE,
 							FunctionModelValidator.FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 							message,
-							new Object[] { getDefinition(), MscriptPackage.FUNCTION_DEFINITION__NAME }));
+							new Object[] { getDefinition(), MscriptPackage.eINSTANCE.getDefinition_Name() }));
 				}
 				result = false;
 			}

@@ -516,7 +516,12 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 			
 			variableAccess.getFeature();
 			IVariable variable = context.getVariable(variableDeclaration);
-			return variable.getValue(context.getStaticEvaluationContext().getStepIndex(variableAccess));
+			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableAccess);
+			IValue result = variable.getValue(stepIndex);
+			if (result == null) {
+				return InvalidValue.SINGLETON;
+			}
+			return result;
 		}
 
 		/* (non-Javadoc)

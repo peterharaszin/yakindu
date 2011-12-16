@@ -278,9 +278,9 @@
     <genClasses image="false" ecoreClass="Mscript.ecore#//FeatureCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mscript.ecore#//FeatureCall/feature"/>
     </genClasses>
-    <genClasses ecoreClass="Mscript.ecore#//VariableAccess">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//VariableAccess/stepExpression"/>
-      <genOperations ecoreOperation="Mscript.ecore#//VariableAccess/isInitial"/>
+    <genClasses ecoreClass="Mscript.ecore#//VariableReference">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//VariableReference/stepExpression"/>
+      <genOperations ecoreOperation="Mscript.ecore#//VariableReference/isInitial"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//StepExpression"/>
     <genClasses ecoreClass="Mscript.ecore#//RangeStepExpression">

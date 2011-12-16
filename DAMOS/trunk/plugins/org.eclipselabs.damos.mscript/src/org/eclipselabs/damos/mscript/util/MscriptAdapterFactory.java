@@ -285,8 +285,8 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createFeatureCallAdapter();
 			}
 			@Override
-			public Adapter caseVariableAccess(VariableAccess object) {
-				return createVariableAccessAdapter();
+			public Adapter caseVariableReference(VariableReference object) {
+				return createVariableReferenceAdapter();
 			}
 			@Override
 			public Adapter caseStepExpression(StepExpression object) {
@@ -1273,16 +1273,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.VariableAccess <em>Variable Access</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.VariableReference <em>Variable Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.VariableAccess
+	 * @see org.eclipselabs.damos.mscript.VariableReference
 	 * @generated
 	 */
-	public Adapter createVariableAccessAdapter() {
+	public Adapter createVariableReferenceAdapter() {
 		return null;
 	}
 

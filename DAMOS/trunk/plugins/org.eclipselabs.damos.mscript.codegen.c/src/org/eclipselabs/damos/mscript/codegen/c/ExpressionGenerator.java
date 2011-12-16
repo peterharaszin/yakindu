@@ -36,7 +36,7 @@ import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.UnaryExpression;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
@@ -414,8 +414,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			return true;
 		}
 
-		public Boolean caseVariableAccess(VariableAccess variableAccess) {
-			String variableAccessString = new VariableAccessGenerator(context, variableAccess).generate();
+		public Boolean caseVariableReference(VariableReference variableReference) {
+			String variableAccessString = new VariableAccessGenerator(context, variableReference).generate();
 			out.print(variableAccessString);
 			return true;
 		}

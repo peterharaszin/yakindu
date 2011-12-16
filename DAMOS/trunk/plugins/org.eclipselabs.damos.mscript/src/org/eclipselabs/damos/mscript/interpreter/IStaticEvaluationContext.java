@@ -13,7 +13,7 @@ package org.eclipselabs.damos.mscript.interpreter;
 
 import org.eclipselabs.damos.mscript.Evaluable;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
@@ -29,8 +29,8 @@ public interface IStaticEvaluationContext {
 	IValue getValue(Evaluable evaluable);
 	void setValue(Evaluable evaluable, IValue value);
 	
-	int getStepIndex(VariableAccess variableAccess);
-	void setStepIndex(VariableAccess variableAccess, int stepIndex);
+	int getStepIndex(VariableReference variableReference);
+	void setStepIndex(VariableReference variableReference, int stepIndex);
 	
 	int getCircularBufferSize(VariableDeclaration variableDeclaration);
 	void setCircularBufferSize(VariableDeclaration variableDeclaration, int size);

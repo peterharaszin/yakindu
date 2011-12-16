@@ -449,13 +449,13 @@ public interface MscriptFactory extends EFactory {
 	PostfixExpression createPostfixExpression();
 
 	/**
-	 * Returns a new object of class '<em>Variable Access</em>'.
+	 * Returns a new object of class '<em>Variable Reference</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Variable Access</em>'.
+	 * @return a new object of class '<em>Variable Reference</em>'.
 	 * @generated
 	 */
-	VariableAccess createVariableAccess();
+	VariableReference createVariableReference();
 
 	/**
 	 * Returns a new object of class '<em>Range Step Expression</em>'.

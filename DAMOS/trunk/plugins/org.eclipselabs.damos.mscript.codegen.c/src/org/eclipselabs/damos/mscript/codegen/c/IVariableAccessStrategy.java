@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.codegen.c;
 
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 
 
 /**
@@ -20,6 +20,6 @@ import org.eclipselabs.damos.mscript.VariableAccess;
  */
 public interface IVariableAccessStrategy {
 
-	String getVariableAccessString(VariableAccess variableAccess);
+	String getVariableAccessString(VariableReference variableReference);
 	
 }

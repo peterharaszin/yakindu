@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
@@ -147,17 +147,17 @@ public class CompoundGenerator implements ICompoundGenerator {
 			 */
 			@Override
 			public Boolean caseAssignment(Assignment assignment) {
-				if (!(assignment.getTarget() instanceof VariableAccess)) {
+				if (!(assignment.getTarget() instanceof VariableReference)) {
 					throw new IllegalArgumentException();
 				}
-				VariableAccess variableAccess = (VariableAccess) assignment.getTarget();
+				VariableReference variableReference = (VariableReference) assignment.getTarget();
 				
-				if (!(variableAccess.getFeature() instanceof VariableDeclaration)) {
+				if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
 					throw new IllegalArgumentException();
 				}
-				VariableDeclaration target = (VariableDeclaration) variableAccess.getFeature();
+				VariableDeclaration target = (VariableDeclaration) variableReference.getFeature();
 				
-				writeAssignment(getDataType(target), new VariableAccessGenerator(context, variableAccess).generate(), assignment.getAssignedExpression());
+				writeAssignment(getDataType(target), new VariableAccessGenerator(context, variableReference).generate(), assignment.getAssignedExpression());
 				return true;
 			}
 			

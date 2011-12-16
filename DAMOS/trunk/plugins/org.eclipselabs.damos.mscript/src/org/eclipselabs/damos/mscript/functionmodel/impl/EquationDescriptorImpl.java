@@ -27,7 +27,7 @@ import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.PostfixExpression;
 import org.eclipselabs.damos.mscript.PostfixOperator;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
@@ -231,7 +231,7 @@ public class EquationDescriptorImpl extends EObjectImpl implements EquationDescr
 	public boolean isLeftHandSideValid(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		Expression lhsExpression = getEquation().getLeftHandSide();
 		String message = null;
-		if (getLeftHandSide().getParts().size() == 1 && lhsExpression instanceof VariableAccess) {
+		if (getLeftHandSide().getParts().size() == 1 && lhsExpression instanceof VariableReference) {
 			EquationPart part = getLeftHandSide().getParts().get(0);
 			switch (part.getVariableStep().getDescriptor().getKind()) {
 			case TEMPLATE_PARAMETER:

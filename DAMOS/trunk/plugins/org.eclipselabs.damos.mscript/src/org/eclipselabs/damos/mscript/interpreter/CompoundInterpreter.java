@@ -19,7 +19,7 @@ import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.IfStatement;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
@@ -69,19 +69,19 @@ public class CompoundInterpreter implements ICompoundInterpreter {
 			
 			@Override
 			public Boolean caseAssignment(Assignment assignment) {
-				if (!(assignment.getTarget() instanceof VariableAccess)) {
+				if (!(assignment.getTarget() instanceof VariableReference)) {
 					throw new IllegalArgumentException();
 				}
-				VariableAccess variableAccess = (VariableAccess) assignment.getTarget();
+				VariableReference variableReference = (VariableReference) assignment.getTarget();
 
-				if (!(variableAccess.getFeature() instanceof VariableDeclaration)) {
+				if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
 					throw new IllegalArgumentException();
 				}
-				VariableDeclaration variableDeclaration = (VariableDeclaration) variableAccess.getFeature();
+				VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 				
 				IValue value = expressionValueEvaluator.evaluate(context, assignment.getAssignedExpression());
 				IVariable variable = context.getVariable(variableDeclaration);
-				variable.setValue(context.getStaticEvaluationContext().getStepIndex(variableAccess), value);
+				variable.setValue(context.getStaticEvaluationContext().getStepIndex(variableReference), value);
 				return true;
 			}
 		

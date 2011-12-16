@@ -5782,25 +5782,25 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
     // $ANTLR end "ruleFeatureCall"
 
 
-    // $ANTLR start "entryRuleVariableAccess"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1927:1: entryRuleVariableAccess : ruleVariableAccess EOF ;
-    public final void entryRuleVariableAccess() throws RecognitionException {
+    // $ANTLR start "entryRuleVariableReference"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1927:1: entryRuleVariableReference : ruleVariableReference EOF ;
+    public final void entryRuleVariableReference() throws RecognitionException {
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1928:1: ( ruleVariableAccess EOF )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1929:1: ruleVariableAccess EOF
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1928:1: ( ruleVariableReference EOF )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1929:1: ruleVariableReference EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessRule()); 
+               before(grammarAccess.getVariableReferenceRule()); 
             }
-            pushFollow(FOLLOW_ruleVariableAccess_in_entryRuleVariableAccess4047);
-            ruleVariableAccess();
+            pushFollow(FOLLOW_ruleVariableReference_in_entryRuleVariableReference4047);
+            ruleVariableReference();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessRule()); 
+               after(grammarAccess.getVariableReferenceRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableAccess4054); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableReference4054); if (state.failed) return ;
 
             }
 
@@ -5813,30 +5813,30 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "entryRuleVariableAccess"
+    // $ANTLR end "entryRuleVariableReference"
 
 
-    // $ANTLR start "ruleVariableAccess"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1936:1: ruleVariableAccess : ( ( rule__VariableAccess__Group__0 ) ) ;
-    public final void ruleVariableAccess() throws RecognitionException {
+    // $ANTLR start "ruleVariableReference"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1936:1: ruleVariableReference : ( ( rule__VariableReference__Group__0 ) ) ;
+    public final void ruleVariableReference() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1940:2: ( ( ( rule__VariableAccess__Group__0 ) ) )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1941:1: ( ( rule__VariableAccess__Group__0 ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1940:2: ( ( ( rule__VariableReference__Group__0 ) ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1941:1: ( ( rule__VariableReference__Group__0 ) )
             {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1941:1: ( ( rule__VariableAccess__Group__0 ) )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1942:1: ( rule__VariableAccess__Group__0 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1941:1: ( ( rule__VariableReference__Group__0 ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1942:1: ( rule__VariableReference__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getGroup()); 
+               before(grammarAccess.getVariableReferenceAccess().getGroup()); 
             }
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1943:1: ( rule__VariableAccess__Group__0 )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1943:2: rule__VariableAccess__Group__0
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1943:1: ( rule__VariableReference__Group__0 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:1943:2: rule__VariableReference__Group__0
             {
-            pushFollow(FOLLOW_rule__VariableAccess__Group__0_in_ruleVariableAccess4080);
-            rule__VariableAccess__Group__0();
+            pushFollow(FOLLOW_rule__VariableReference__Group__0_in_ruleVariableReference4080);
+            rule__VariableReference__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -5844,7 +5844,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getGroup()); 
+               after(grammarAccess.getVariableReferenceAccess().getGroup()); 
             }
 
             }
@@ -5864,7 +5864,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "ruleVariableAccess"
+    // $ANTLR end "ruleVariableReference"
 
 
     // $ANTLR start "entryRuleFunctionCall"
@@ -12768,32 +12768,32 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
 
 
     // $ANTLR start "rule__FeatureCall__Alternatives"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3861:1: rule__FeatureCall__Alternatives : ( ( ruleVariableAccess ) | ( ruleFunctionCall ) );
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3861:1: rule__FeatureCall__Alternatives : ( ( ruleVariableReference ) | ( ruleFunctionCall ) );
     public final void rule__FeatureCall__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3865:1: ( ( ruleVariableAccess ) | ( ruleFunctionCall ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3865:1: ( ( ruleVariableReference ) | ( ruleFunctionCall ) )
             int alt27=2;
             alt27 = dfa27.predict(input);
             switch (alt27) {
                 case 1 :
-                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3866:1: ( ruleVariableAccess )
+                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3866:1: ( ruleVariableReference )
                     {
-                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3866:1: ( ruleVariableAccess )
-                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3867:1: ruleVariableAccess
+                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3866:1: ( ruleVariableReference )
+                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:3867:1: ruleVariableReference
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFeatureCallAccess().getVariableAccessParserRuleCall_0()); 
+                       before(grammarAccess.getFeatureCallAccess().getVariableReferenceParserRuleCall_0()); 
                     }
-                    pushFollow(FOLLOW_ruleVariableAccess_in_rule__FeatureCall__Alternatives8301);
-                    ruleVariableAccess();
+                    pushFollow(FOLLOW_ruleVariableReference_in_rule__FeatureCall__Alternatives8301);
+                    ruleVariableReference();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFeatureCallAccess().getVariableAccessParserRuleCall_0()); 
+                       after(grammarAccess.getFeatureCallAccess().getVariableReferenceParserRuleCall_0()); 
                     }
 
                     }
@@ -40186,23 +40186,23 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
     // $ANTLR end "rule__BooleanLiteral__Group__1__Impl"
 
 
-    // $ANTLR start "rule__VariableAccess__Group__0"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13652:1: rule__VariableAccess__Group__0 : rule__VariableAccess__Group__0__Impl rule__VariableAccess__Group__1 ;
-    public final void rule__VariableAccess__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group__0"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13652:1: rule__VariableReference__Group__0 : rule__VariableReference__Group__0__Impl rule__VariableReference__Group__1 ;
+    public final void rule__VariableReference__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13656:1: ( rule__VariableAccess__Group__0__Impl rule__VariableAccess__Group__1 )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13657:2: rule__VariableAccess__Group__0__Impl rule__VariableAccess__Group__1
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13656:1: ( rule__VariableReference__Group__0__Impl rule__VariableReference__Group__1 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13657:2: rule__VariableReference__Group__0__Impl rule__VariableReference__Group__1
             {
-            pushFollow(FOLLOW_rule__VariableAccess__Group__0__Impl_in_rule__VariableAccess__Group__027794);
-            rule__VariableAccess__Group__0__Impl();
+            pushFollow(FOLLOW_rule__VariableReference__Group__0__Impl_in_rule__VariableReference__Group__027794);
+            rule__VariableReference__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableAccess__Group__1_in_rule__VariableAccess__Group__027797);
-            rule__VariableAccess__Group__1();
+            pushFollow(FOLLOW_rule__VariableReference__Group__1_in_rule__VariableReference__Group__027797);
+            rule__VariableReference__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40221,12 +40221,12 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group__0"
+    // $ANTLR end "rule__VariableReference__Group__0"
 
 
-    // $ANTLR start "rule__VariableAccess__Group__0__Impl"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13664:1: rule__VariableAccess__Group__0__Impl : ( () ) ;
-    public final void rule__VariableAccess__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group__0__Impl"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13664:1: rule__VariableReference__Group__0__Impl : ( () ) ;
+    public final void rule__VariableReference__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -40238,7 +40238,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13670:1: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getVariableAccessAction_0()); 
+               before(grammarAccess.getVariableReferenceAccess().getVariableReferenceAction_0()); 
             }
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13671:1: ()
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13673:1: 
@@ -40246,7 +40246,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getVariableAccessAction_0()); 
+               after(grammarAccess.getVariableReferenceAccess().getVariableReferenceAction_0()); 
             }
 
             }
@@ -40262,110 +40262,26 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group__0__Impl"
+    // $ANTLR end "rule__VariableReference__Group__0__Impl"
 
 
-    // $ANTLR start "rule__VariableAccess__Group__1"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13683:1: rule__VariableAccess__Group__1 : rule__VariableAccess__Group__1__Impl rule__VariableAccess__Group__2 ;
-    public final void rule__VariableAccess__Group__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13687:1: ( rule__VariableAccess__Group__1__Impl rule__VariableAccess__Group__2 )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13688:2: rule__VariableAccess__Group__1__Impl rule__VariableAccess__Group__2
-            {
-            pushFollow(FOLLOW_rule__VariableAccess__Group__1__Impl_in_rule__VariableAccess__Group__127855);
-            rule__VariableAccess__Group__1__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableAccess__Group__2_in_rule__VariableAccess__Group__127858);
-            rule__VariableAccess__Group__2();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__VariableAccess__Group__1"
-
-
-    // $ANTLR start "rule__VariableAccess__Group__1__Impl"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13695:1: rule__VariableAccess__Group__1__Impl : ( ( rule__VariableAccess__FeatureAssignment_1 ) ) ;
-    public final void rule__VariableAccess__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group__1"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13683:1: rule__VariableReference__Group__1 : rule__VariableReference__Group__1__Impl rule__VariableReference__Group__2 ;
+    public final void rule__VariableReference__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13699:1: ( ( ( rule__VariableAccess__FeatureAssignment_1 ) ) )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13700:1: ( ( rule__VariableAccess__FeatureAssignment_1 ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13687:1: ( rule__VariableReference__Group__1__Impl rule__VariableReference__Group__2 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13688:2: rule__VariableReference__Group__1__Impl rule__VariableReference__Group__2
             {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13700:1: ( ( rule__VariableAccess__FeatureAssignment_1 ) )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13701:1: ( rule__VariableAccess__FeatureAssignment_1 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getFeatureAssignment_1()); 
-            }
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13702:1: ( rule__VariableAccess__FeatureAssignment_1 )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13702:2: rule__VariableAccess__FeatureAssignment_1
-            {
-            pushFollow(FOLLOW_rule__VariableAccess__FeatureAssignment_1_in_rule__VariableAccess__Group__1__Impl27885);
-            rule__VariableAccess__FeatureAssignment_1();
+            pushFollow(FOLLOW_rule__VariableReference__Group__1__Impl_in_rule__VariableReference__Group__127855);
+            rule__VariableReference__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getFeatureAssignment_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__VariableAccess__Group__1__Impl"
-
-
-    // $ANTLR start "rule__VariableAccess__Group__2"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13712:1: rule__VariableAccess__Group__2 : rule__VariableAccess__Group__2__Impl ;
-    public final void rule__VariableAccess__Group__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13716:1: ( rule__VariableAccess__Group__2__Impl )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13717:2: rule__VariableAccess__Group__2__Impl
-            {
-            pushFollow(FOLLOW_rule__VariableAccess__Group__2__Impl_in_rule__VariableAccess__Group__227915);
-            rule__VariableAccess__Group__2__Impl();
+            pushFollow(FOLLOW_rule__VariableReference__Group__2_in_rule__VariableReference__Group__127858);
+            rule__VariableReference__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40384,26 +40300,110 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group__2"
+    // $ANTLR end "rule__VariableReference__Group__1"
 
 
-    // $ANTLR start "rule__VariableAccess__Group__2__Impl"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13723:1: rule__VariableAccess__Group__2__Impl : ( ( rule__VariableAccess__Group_2__0 )? ) ;
-    public final void rule__VariableAccess__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group__1__Impl"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13695:1: rule__VariableReference__Group__1__Impl : ( ( rule__VariableReference__FeatureAssignment_1 ) ) ;
+    public final void rule__VariableReference__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13727:1: ( ( ( rule__VariableAccess__Group_2__0 )? ) )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13728:1: ( ( rule__VariableAccess__Group_2__0 )? )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13699:1: ( ( ( rule__VariableReference__FeatureAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13700:1: ( ( rule__VariableReference__FeatureAssignment_1 ) )
             {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13728:1: ( ( rule__VariableAccess__Group_2__0 )? )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13729:1: ( rule__VariableAccess__Group_2__0 )?
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13700:1: ( ( rule__VariableReference__FeatureAssignment_1 ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13701:1: ( rule__VariableReference__FeatureAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getGroup_2()); 
+               before(grammarAccess.getVariableReferenceAccess().getFeatureAssignment_1()); 
             }
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13730:1: ( rule__VariableAccess__Group_2__0 )?
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13702:1: ( rule__VariableReference__FeatureAssignment_1 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13702:2: rule__VariableReference__FeatureAssignment_1
+            {
+            pushFollow(FOLLOW_rule__VariableReference__FeatureAssignment_1_in_rule__VariableReference__Group__1__Impl27885);
+            rule__VariableReference__FeatureAssignment_1();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getVariableReferenceAccess().getFeatureAssignment_1()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableReference__Group__1__Impl"
+
+
+    // $ANTLR start "rule__VariableReference__Group__2"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13712:1: rule__VariableReference__Group__2 : rule__VariableReference__Group__2__Impl ;
+    public final void rule__VariableReference__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13716:1: ( rule__VariableReference__Group__2__Impl )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13717:2: rule__VariableReference__Group__2__Impl
+            {
+            pushFollow(FOLLOW_rule__VariableReference__Group__2__Impl_in_rule__VariableReference__Group__227915);
+            rule__VariableReference__Group__2__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__VariableReference__Group__2"
+
+
+    // $ANTLR start "rule__VariableReference__Group__2__Impl"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13723:1: rule__VariableReference__Group__2__Impl : ( ( rule__VariableReference__Group_2__0 )? ) ;
+    public final void rule__VariableReference__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13727:1: ( ( ( rule__VariableReference__Group_2__0 )? ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13728:1: ( ( rule__VariableReference__Group_2__0 )? )
+            {
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13728:1: ( ( rule__VariableReference__Group_2__0 )? )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13729:1: ( rule__VariableReference__Group_2__0 )?
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getVariableReferenceAccess().getGroup_2()); 
+            }
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13730:1: ( rule__VariableReference__Group_2__0 )?
             int alt98=2;
             int LA98_0 = input.LA(1);
 
@@ -40412,10 +40412,10 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             }
             switch (alt98) {
                 case 1 :
-                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13730:2: rule__VariableAccess__Group_2__0
+                    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13730:2: rule__VariableReference__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__VariableAccess__Group_2__0_in_rule__VariableAccess__Group__2__Impl27942);
-                    rule__VariableAccess__Group_2__0();
+                    pushFollow(FOLLOW_rule__VariableReference__Group_2__0_in_rule__VariableReference__Group__2__Impl27942);
+                    rule__VariableReference__Group_2__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -40426,7 +40426,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getGroup_2()); 
+               after(grammarAccess.getVariableReferenceAccess().getGroup_2()); 
             }
 
             }
@@ -40446,26 +40446,26 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group__2__Impl"
+    // $ANTLR end "rule__VariableReference__Group__2__Impl"
 
 
-    // $ANTLR start "rule__VariableAccess__Group_2__0"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13746:1: rule__VariableAccess__Group_2__0 : rule__VariableAccess__Group_2__0__Impl rule__VariableAccess__Group_2__1 ;
-    public final void rule__VariableAccess__Group_2__0() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group_2__0"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13746:1: rule__VariableReference__Group_2__0 : rule__VariableReference__Group_2__0__Impl rule__VariableReference__Group_2__1 ;
+    public final void rule__VariableReference__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13750:1: ( rule__VariableAccess__Group_2__0__Impl rule__VariableAccess__Group_2__1 )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13751:2: rule__VariableAccess__Group_2__0__Impl rule__VariableAccess__Group_2__1
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13750:1: ( rule__VariableReference__Group_2__0__Impl rule__VariableReference__Group_2__1 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13751:2: rule__VariableReference__Group_2__0__Impl rule__VariableReference__Group_2__1
             {
-            pushFollow(FOLLOW_rule__VariableAccess__Group_2__0__Impl_in_rule__VariableAccess__Group_2__027979);
-            rule__VariableAccess__Group_2__0__Impl();
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__0__Impl_in_rule__VariableReference__Group_2__027979);
+            rule__VariableReference__Group_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableAccess__Group_2__1_in_rule__VariableAccess__Group_2__027982);
-            rule__VariableAccess__Group_2__1();
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__1_in_rule__VariableReference__Group_2__027982);
+            rule__VariableReference__Group_2__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40484,12 +40484,12 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group_2__0"
+    // $ANTLR end "rule__VariableReference__Group_2__0"
 
 
-    // $ANTLR start "rule__VariableAccess__Group_2__0__Impl"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13758:1: rule__VariableAccess__Group_2__0__Impl : ( '{' ) ;
-    public final void rule__VariableAccess__Group_2__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group_2__0__Impl"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13758:1: rule__VariableReference__Group_2__0__Impl : ( '{' ) ;
+    public final void rule__VariableReference__Group_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -40501,11 +40501,11 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13764:1: '{'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getLeftCurlyBracketKeyword_2_0()); 
+               before(grammarAccess.getVariableReferenceAccess().getLeftCurlyBracketKeyword_2_0()); 
             }
-            match(input,43,FOLLOW_43_in_rule__VariableAccess__Group_2__0__Impl28010); if (state.failed) return ;
+            match(input,43,FOLLOW_43_in_rule__VariableReference__Group_2__0__Impl28010); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getLeftCurlyBracketKeyword_2_0()); 
+               after(grammarAccess.getVariableReferenceAccess().getLeftCurlyBracketKeyword_2_0()); 
             }
 
             }
@@ -40525,26 +40525,26 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group_2__0__Impl"
+    // $ANTLR end "rule__VariableReference__Group_2__0__Impl"
 
 
-    // $ANTLR start "rule__VariableAccess__Group_2__1"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13777:1: rule__VariableAccess__Group_2__1 : rule__VariableAccess__Group_2__1__Impl rule__VariableAccess__Group_2__2 ;
-    public final void rule__VariableAccess__Group_2__1() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group_2__1"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13777:1: rule__VariableReference__Group_2__1 : rule__VariableReference__Group_2__1__Impl rule__VariableReference__Group_2__2 ;
+    public final void rule__VariableReference__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13781:1: ( rule__VariableAccess__Group_2__1__Impl rule__VariableAccess__Group_2__2 )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13782:2: rule__VariableAccess__Group_2__1__Impl rule__VariableAccess__Group_2__2
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13781:1: ( rule__VariableReference__Group_2__1__Impl rule__VariableReference__Group_2__2 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13782:2: rule__VariableReference__Group_2__1__Impl rule__VariableReference__Group_2__2
             {
-            pushFollow(FOLLOW_rule__VariableAccess__Group_2__1__Impl_in_rule__VariableAccess__Group_2__128041);
-            rule__VariableAccess__Group_2__1__Impl();
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__1__Impl_in_rule__VariableReference__Group_2__128041);
+            rule__VariableReference__Group_2__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__VariableAccess__Group_2__2_in_rule__VariableAccess__Group_2__128044);
-            rule__VariableAccess__Group_2__2();
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__2_in_rule__VariableReference__Group_2__128044);
+            rule__VariableReference__Group_2__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40563,30 +40563,30 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group_2__1"
+    // $ANTLR end "rule__VariableReference__Group_2__1"
 
 
-    // $ANTLR start "rule__VariableAccess__Group_2__1__Impl"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13789:1: rule__VariableAccess__Group_2__1__Impl : ( ( rule__VariableAccess__StepExpressionAssignment_2_1 ) ) ;
-    public final void rule__VariableAccess__Group_2__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group_2__1__Impl"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13789:1: rule__VariableReference__Group_2__1__Impl : ( ( rule__VariableReference__StepExpressionAssignment_2_1 ) ) ;
+    public final void rule__VariableReference__Group_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13793:1: ( ( ( rule__VariableAccess__StepExpressionAssignment_2_1 ) ) )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13794:1: ( ( rule__VariableAccess__StepExpressionAssignment_2_1 ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13793:1: ( ( ( rule__VariableReference__StepExpressionAssignment_2_1 ) ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13794:1: ( ( rule__VariableReference__StepExpressionAssignment_2_1 ) )
             {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13794:1: ( ( rule__VariableAccess__StepExpressionAssignment_2_1 ) )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13795:1: ( rule__VariableAccess__StepExpressionAssignment_2_1 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13794:1: ( ( rule__VariableReference__StepExpressionAssignment_2_1 ) )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13795:1: ( rule__VariableReference__StepExpressionAssignment_2_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getStepExpressionAssignment_2_1()); 
+               before(grammarAccess.getVariableReferenceAccess().getStepExpressionAssignment_2_1()); 
             }
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13796:1: ( rule__VariableAccess__StepExpressionAssignment_2_1 )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13796:2: rule__VariableAccess__StepExpressionAssignment_2_1
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13796:1: ( rule__VariableReference__StepExpressionAssignment_2_1 )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13796:2: rule__VariableReference__StepExpressionAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__VariableAccess__StepExpressionAssignment_2_1_in_rule__VariableAccess__Group_2__1__Impl28071);
-            rule__VariableAccess__StepExpressionAssignment_2_1();
+            pushFollow(FOLLOW_rule__VariableReference__StepExpressionAssignment_2_1_in_rule__VariableReference__Group_2__1__Impl28071);
+            rule__VariableReference__StepExpressionAssignment_2_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40594,7 +40594,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getStepExpressionAssignment_2_1()); 
+               after(grammarAccess.getVariableReferenceAccess().getStepExpressionAssignment_2_1()); 
             }
 
             }
@@ -40614,21 +40614,21 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group_2__1__Impl"
+    // $ANTLR end "rule__VariableReference__Group_2__1__Impl"
 
 
-    // $ANTLR start "rule__VariableAccess__Group_2__2"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13806:1: rule__VariableAccess__Group_2__2 : rule__VariableAccess__Group_2__2__Impl ;
-    public final void rule__VariableAccess__Group_2__2() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group_2__2"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13806:1: rule__VariableReference__Group_2__2 : rule__VariableReference__Group_2__2__Impl ;
+    public final void rule__VariableReference__Group_2__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13810:1: ( rule__VariableAccess__Group_2__2__Impl )
-            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13811:2: rule__VariableAccess__Group_2__2__Impl
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13810:1: ( rule__VariableReference__Group_2__2__Impl )
+            // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13811:2: rule__VariableReference__Group_2__2__Impl
             {
-            pushFollow(FOLLOW_rule__VariableAccess__Group_2__2__Impl_in_rule__VariableAccess__Group_2__228101);
-            rule__VariableAccess__Group_2__2__Impl();
+            pushFollow(FOLLOW_rule__VariableReference__Group_2__2__Impl_in_rule__VariableReference__Group_2__228101);
+            rule__VariableReference__Group_2__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -40647,12 +40647,12 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group_2__2"
+    // $ANTLR end "rule__VariableReference__Group_2__2"
 
 
-    // $ANTLR start "rule__VariableAccess__Group_2__2__Impl"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13817:1: rule__VariableAccess__Group_2__2__Impl : ( '}' ) ;
-    public final void rule__VariableAccess__Group_2__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__Group_2__2__Impl"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13817:1: rule__VariableReference__Group_2__2__Impl : ( '}' ) ;
+    public final void rule__VariableReference__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -40664,11 +40664,11 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:13823:1: '}'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getRightCurlyBracketKeyword_2_2()); 
+               before(grammarAccess.getVariableReferenceAccess().getRightCurlyBracketKeyword_2_2()); 
             }
-            match(input,44,FOLLOW_44_in_rule__VariableAccess__Group_2__2__Impl28129); if (state.failed) return ;
+            match(input,44,FOLLOW_44_in_rule__VariableReference__Group_2__2__Impl28129); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getRightCurlyBracketKeyword_2_2()); 
+               after(grammarAccess.getVariableReferenceAccess().getRightCurlyBracketKeyword_2_2()); 
             }
 
             }
@@ -40688,7 +40688,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__Group_2__2__Impl"
+    // $ANTLR end "rule__VariableReference__Group_2__2__Impl"
 
 
     // $ANTLR start "rule__FunctionCall__Group__0"
@@ -58884,9 +58884,9 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
     // $ANTLR end "rule__StringLiteral__ValueAssignment"
 
 
-    // $ANTLR start "rule__VariableAccess__FeatureAssignment_1"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20508:1: rule__VariableAccess__FeatureAssignment_1 : ( ( ruleQualifiedName ) ) ;
-    public final void rule__VariableAccess__FeatureAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__FeatureAssignment_1"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20508:1: rule__VariableReference__FeatureAssignment_1 : ( ( ruleQualifiedName ) ) ;
+    public final void rule__VariableReference__FeatureAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -58898,27 +58898,27 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20514:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getFeatureCallableElementCrossReference_1_0()); 
+               before(grammarAccess.getVariableReferenceAccess().getFeatureCallableElementCrossReference_1_0()); 
             }
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20515:1: ( ruleQualifiedName )
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20516:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getFeatureCallableElementQualifiedNameParserRuleCall_1_0_1()); 
+               before(grammarAccess.getVariableReferenceAccess().getFeatureCallableElementQualifiedNameParserRuleCall_1_0_1()); 
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_rule__VariableAccess__FeatureAssignment_141410);
+            pushFollow(FOLLOW_ruleQualifiedName_in_rule__VariableReference__FeatureAssignment_141410);
             ruleQualifiedName();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getFeatureCallableElementQualifiedNameParserRuleCall_1_0_1()); 
+               after(grammarAccess.getVariableReferenceAccess().getFeatureCallableElementQualifiedNameParserRuleCall_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getFeatureCallableElementCrossReference_1_0()); 
+               after(grammarAccess.getVariableReferenceAccess().getFeatureCallableElementCrossReference_1_0()); 
             }
 
             }
@@ -58938,12 +58938,12 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__FeatureAssignment_1"
+    // $ANTLR end "rule__VariableReference__FeatureAssignment_1"
 
 
-    // $ANTLR start "rule__VariableAccess__StepExpressionAssignment_2_1"
-    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20527:1: rule__VariableAccess__StepExpressionAssignment_2_1 : ( ruleStepExpression ) ;
-    public final void rule__VariableAccess__StepExpressionAssignment_2_1() throws RecognitionException {
+    // $ANTLR start "rule__VariableReference__StepExpressionAssignment_2_1"
+    // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20527:1: rule__VariableReference__StepExpressionAssignment_2_1 : ( ruleStepExpression ) ;
+    public final void rule__VariableReference__StepExpressionAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -58955,15 +58955,15 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             // ../org.eclipselabs.damos.execution.executionmodel.ui/src-gen/org/eclipselabs/damos/execution/executionmodel/ui/contentassist/antlr/internal/InternalExecutionModel.g:20533:1: ruleStepExpression
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getVariableAccessAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
+               before(grammarAccess.getVariableReferenceAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleStepExpression_in_rule__VariableAccess__StepExpressionAssignment_2_141445);
+            pushFollow(FOLLOW_ruleStepExpression_in_rule__VariableReference__StepExpressionAssignment_2_141445);
             ruleStepExpression();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getVariableAccessAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
+               after(grammarAccess.getVariableReferenceAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
             }
 
             }
@@ -58983,7 +58983,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
         }
         return ;
     }
-    // $ANTLR end "rule__VariableAccess__StepExpressionAssignment_2_1"
+    // $ANTLR end "rule__VariableReference__StepExpressionAssignment_2_1"
 
 
     // $ANTLR start "rule__FunctionCall__FeatureAssignment_1"
@@ -61523,7 +61523,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
             this.transition = DFA27_transition;
         }
         public String getDescription() {
-            return "3861:1: rule__FeatureCall__Alternatives : ( ( ruleVariableAccess ) | ( ruleFunctionCall ) );";
+            return "3861:1: rule__FeatureCall__Alternatives : ( ( ruleVariableReference ) | ( ruleFunctionCall ) );";
         }
     }
     static final String DFA80_eotS =
@@ -61836,9 +61836,9 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
     public static final BitSet FOLLOW_ruleFeatureCall_in_entryRuleFeatureCall3987 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFeatureCall3994 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FeatureCall__Alternatives_in_ruleFeatureCall4020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableAccess_in_entryRuleVariableAccess4047 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableAccess4054 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group__0_in_ruleVariableAccess4080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_entryRuleVariableReference4047 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariableReference4054 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__0_in_ruleVariableReference4080 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall4107 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionCall4114 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FunctionCall__Group__0_in_ruleFunctionCall4140 = new BitSet(new long[]{0x0000000000000002L});
@@ -62029,7 +62029,7 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
     public static final BitSet FOLLOW_18_in_rule__RealData__Alternatives_1_1_1_18214 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__BooleanLiteral__TrueAssignment_1_0_in_rule__BooleanLiteral__Alternatives_18248 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_19_in_rule__BooleanLiteral__Alternatives_18267 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableAccess_in_rule__FeatureCall__Alternatives8301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_rule__FeatureCall__Alternatives8301 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionCall_in_rule__FeatureCall__Alternatives8318 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePrimitiveStepExpression_in_rule__NegateStepExpression__Alternatives8350 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__NegateStepExpression__Group_1__0_in_rule__NegateStepExpression__Alternatives8367 = new BitSet(new long[]{0x0000000000000002L});
@@ -62847,21 +62847,21 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
     public static final BitSet FOLLOW_rule__BooleanLiteral__Group__1_in_rule__BooleanLiteral__Group__027675 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__BooleanLiteral__Group__1__Impl_in_rule__BooleanLiteral__Group__127733 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__BooleanLiteral__Alternatives_1_in_rule__BooleanLiteral__Group__1__Impl27760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group__0__Impl_in_rule__VariableAccess__Group__027794 = new BitSet(new long[]{0x0000000000000730L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group__1_in_rule__VariableAccess__Group__027797 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group__1__Impl_in_rule__VariableAccess__Group__127855 = new BitSet(new long[]{0x0000080000000000L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group__2_in_rule__VariableAccess__Group__127858 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__FeatureAssignment_1_in_rule__VariableAccess__Group__1__Impl27885 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group__2__Impl_in_rule__VariableAccess__Group__227915 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group_2__0_in_rule__VariableAccess__Group__2__Impl27942 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group_2__0__Impl_in_rule__VariableAccess__Group_2__027979 = new BitSet(new long[]{0x00000000000401C0L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group_2__1_in_rule__VariableAccess__Group_2__027982 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_43_in_rule__VariableAccess__Group_2__0__Impl28010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group_2__1__Impl_in_rule__VariableAccess__Group_2__128041 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group_2__2_in_rule__VariableAccess__Group_2__128044 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__StepExpressionAssignment_2_1_in_rule__VariableAccess__Group_2__1__Impl28071 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__VariableAccess__Group_2__2__Impl_in_rule__VariableAccess__Group_2__228101 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rule__VariableAccess__Group_2__2__Impl28129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__0__Impl_in_rule__VariableReference__Group__027794 = new BitSet(new long[]{0x0000000000000730L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__1_in_rule__VariableReference__Group__027797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__1__Impl_in_rule__VariableReference__Group__127855 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__2_in_rule__VariableReference__Group__127858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__FeatureAssignment_1_in_rule__VariableReference__Group__1__Impl27885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group__2__Impl_in_rule__VariableReference__Group__227915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__0_in_rule__VariableReference__Group__2__Impl27942 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__0__Impl_in_rule__VariableReference__Group_2__027979 = new BitSet(new long[]{0x00000000000401C0L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__1_in_rule__VariableReference__Group_2__027982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_43_in_rule__VariableReference__Group_2__0__Impl28010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__1__Impl_in_rule__VariableReference__Group_2__128041 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__2_in_rule__VariableReference__Group_2__128044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__StepExpressionAssignment_2_1_in_rule__VariableReference__Group_2__1__Impl28071 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__VariableReference__Group_2__2__Impl_in_rule__VariableReference__Group_2__228101 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rule__VariableReference__Group_2__2__Impl28129 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FunctionCall__Group__0__Impl_in_rule__FunctionCall__Group__028166 = new BitSet(new long[]{0x0000000000000730L});
     public static final BitSet FOLLOW_rule__FunctionCall__Group__1_in_rule__FunctionCall__Group__028169 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__FunctionCall__Group__1__Impl_in_rule__FunctionCall__Group__128227 = new BitSet(new long[]{0x0002000000000000L});
@@ -63370,8 +63370,8 @@ public class InternalExecutionModelParser extends AbstractInternalContentAssistP
     public static final BitSet FOLLOW_ruleUnit_in_rule__IntegerLiteral__UnitAssignment_141300 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_95_in_rule__BooleanLiteral__TrueAssignment_1_041336 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__StringLiteral__ValueAssignment41375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__VariableAccess__FeatureAssignment_141410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStepExpression_in_rule__VariableAccess__StepExpressionAssignment_2_141445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_rule__VariableReference__FeatureAssignment_141410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStepExpression_in_rule__VariableReference__StepExpressionAssignment_2_141445 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_rule__FunctionCall__FeatureAssignment_141480 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_041515 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_rule__FunctionCall__ArgumentsAssignment_3_1_141546 = new BitSet(new long[]{0x0000000000000002L});

@@ -52,7 +52,7 @@ import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
@@ -170,9 +170,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		
 		context.leaveScope();
 		
-		VariableAccess variableAccess = MscriptFactory.eINSTANCE.createVariableAccess();
-		variableAccess.setFeature(localVariableDeclaration);
-		return variableAccess;
+		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
+		variableReference.setFeature(localVariableDeclaration);
+		return variableReference;
 	}
 	
 	/* (non-Javadoc)
@@ -218,19 +218,19 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 				Collections.singletonList(new ExpressionTarget(localVariableDeclaration, 0)));
 		context.leaveScope();
 		
-		VariableAccess variableAccess = MscriptFactory.eINSTANCE.createVariableAccess();
-		variableAccess.setFeature(localVariableDeclaration);
-		return variableAccess;
+		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
+		variableReference.setFeature(localVariableDeclaration);
+		return variableReference;
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseVariableAccess(org.eclipselabs.mscript.language.ast.VariableAccess)
 	 */
 	@Override
-	public Expression caseVariableAccess(VariableAccess variableAccess) {
-		VariableDeclaration variableDeclaration = (VariableDeclaration) variableAccess.getFeature();
+	public Expression caseVariableReference(VariableReference variableReference) {
+		VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 		if (variableDeclaration != null) {
-			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableAccess);
+			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableReference);
 			return MscriptUtil.createVariableAccess(context.getStaticEvaluationContext(), context.mapVariableDeclaration(variableDeclaration), stepIndex, false);
 		}
 		return null;
@@ -266,9 +266,9 @@ public class ExpressionTransformer extends MscriptSwitch<Expression> implements 
 		
 		IIterationCallTransformerResult result = transformer.transform(context, iterationCall, doTransform(iterationCall.getTarget()));
 		
-		VariableAccess variableAccess = MscriptFactory.eINSTANCE.createVariableAccess();
-		variableAccess.setFeature(result.getLocalVariableDeclaration());
-		return variableAccess;
+		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
+		variableReference.setFeature(result.getLocalVariableDeclaration());
+		return variableReference;
 	}
 			
 	private InvalidExpression createInvalidExpression() {

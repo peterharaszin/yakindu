@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.StepLiteral;
 import org.eclipselabs.damos.mscript.StepN;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 import org.eclipselabs.damos.mscript.util.SyntaxStatus;
@@ -41,11 +41,11 @@ public class StaticStepExpressionEvaluator {
 		for (Equation equation : functionDeclaration.getEquations()) {
 			for (Iterator<EObject> it = equation.eAllContents(); it.hasNext();) {
 				EObject next = it.next();
-				if (next instanceof VariableAccess) {
-					VariableAccess variableAccess = (VariableAccess) next;
-					if (variableAccess.getStepExpression() != null) {
-						Integer stepIndex = evaluator.doSwitch(variableAccess.getStepExpression());
-						context.setStepIndex(variableAccess, stepIndex);
+				if (next instanceof VariableReference) {
+					VariableReference variableReference = (VariableReference) next;
+					if (variableReference.getStepExpression() != null) {
+						Integer stepIndex = evaluator.doSwitch(variableReference.getStepExpression());
+						context.setStepIndex(variableReference, stepIndex);
 					}
 				}
 			}

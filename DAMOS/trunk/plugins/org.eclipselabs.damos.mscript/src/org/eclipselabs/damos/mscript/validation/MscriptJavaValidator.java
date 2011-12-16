@@ -27,7 +27,7 @@ import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
@@ -58,23 +58,23 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	}
 	
 	@Check
-	public void checkVariableAccessReferencesVariable(VariableAccess variableAccess) {
-		CallableElement ce = variableAccess.getFeature();
+	public void checkVariableAccessReferencesVariable(VariableReference variableReference) {
+		CallableElement ce = variableReference.getFeature();
 		if (!(ce instanceof ParameterDeclaration
 				|| ce instanceof VariableDeclaration
 				|| ce instanceof BuiltinVariableDeclaration)) {
-			error("Invalid variable reference " + variableAccess.getFeature().getName(), null);
+			error("Invalid variable reference " + variableReference.getFeature().getName(), null);
 		}
 	}
 
 	@Check
-	public void checkVariableAccessStepExpressionApplication(VariableAccess variableAccess) {
-		if (variableAccess.getStepExpression() != null) {
-			CallableElement ce = variableAccess.getFeature();
+	public void checkVariableAccessStepExpressionApplication(VariableReference variableReference) {
+		if (variableReference.getStepExpression() != null) {
+			CallableElement ce = variableReference.getFeature();
 			if (!(ce instanceof InputParameterDeclaration
 					|| ce instanceof OutputParameterDeclaration
 					|| ce instanceof StateVariableDeclaration)) {
-				error("Step expression cannot be specified on " + variableAccess.getFeature().getName(), null);
+				error("Step expression cannot be specified on " + variableReference.getFeature().getName(), null);
 			}
 		}
 	}

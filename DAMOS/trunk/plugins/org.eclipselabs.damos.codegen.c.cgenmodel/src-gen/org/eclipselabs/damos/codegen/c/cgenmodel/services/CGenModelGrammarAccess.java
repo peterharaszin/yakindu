@@ -1100,7 +1100,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FeatureCall returns Expression:
-	//	VariableAccess | FunctionCall;
+	//	VariableReference | FunctionCall;
 	public MscriptGrammarAccess.FeatureCallElements getFeatureCallAccess() {
 		return gaMscript.getFeatureCallAccess();
 	}
@@ -1109,14 +1109,14 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getFeatureCallAccess().getRule();
 	}
 
-	//VariableAccess returns Expression:
-	//	{VariableAccess} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
-	public MscriptGrammarAccess.VariableAccessElements getVariableAccessAccess() {
-		return gaMscript.getVariableAccessAccess();
+	//VariableReference returns Expression:
+	//	{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
+	public MscriptGrammarAccess.VariableReferenceElements getVariableReferenceAccess() {
+		return gaMscript.getVariableReferenceAccess();
 	}
 	
-	public ParserRule getVariableAccessRule() {
-		return getVariableAccessAccess().getRule();
+	public ParserRule getVariableReferenceRule() {
+		return getVariableReferenceAccess().getRule();
 	}
 
 	//FunctionCall returns Expression:

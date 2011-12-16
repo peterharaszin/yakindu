@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.EquationSide;
@@ -97,13 +97,13 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		}
 		
 		@Override
-		public Boolean caseVariableAccess(VariableAccess variableAccess) {
-			String name = variableAccess.getFeature().getName();
+		public Boolean caseVariableReference(VariableReference variableReference) {
+			String name = variableReference.getFeature().getName();
 			
 			FunctionDescriptor functionDescriptor = equationSide.getDescriptor().getFunctionDescriptor();
-			VariableKind variableKind = getVariableKind(variableAccess.getFeature());
+			VariableKind variableKind = getVariableKind(variableReference.getFeature());
 			
-			checkFeatureCall(variableAccess, variableKind);
+			checkFeatureCall(variableReference, variableKind);
 			
 			if (variableKind != VariableKind.UNKNOWN) {
 				int stepIndex = 0;
@@ -112,8 +112,8 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 				if (variableKind == VariableKind.INPUT_PARAMETER
 						|| variableKind == VariableKind.OUTPUT_PARAMETER
 						|| variableKind == VariableKind.STATE_VARIABLE) {
-					stepIndex = context.getStepIndex(variableAccess);
-					initial = variableAccess.isInitial();
+					stepIndex = context.getStepIndex(variableReference);
+					initial = variableReference.isInitial();
 				}
 				
 				if (!initial) {
@@ -125,7 +125,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 
 				EquationPart part = FunctionModelFactory.eINSTANCE.createEquationPart();
 				part.setSide(equationSide);
-				part.setVariableAccess(variableAccess);
+				part.setVariableAccess(variableReference);
 				VariableDescriptor variableDescriptor = getVariableDescriptor(functionDescriptor, name, variableKind);
 				
 				VariableStep variableStep = variableDescriptor.getStep(stepIndex, initial, false);
@@ -144,13 +144,13 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 		 * @param featureCall
 		 * @param variableKind
 		 */
-		private void checkFeatureCall(VariableAccess variableAccess, VariableKind variableKind) {
+		private void checkFeatureCall(VariableReference variableReference, VariableKind variableKind) {
 			String message = null;
 			switch (variableKind) {
 			case INPUT_PARAMETER:
 			case OUTPUT_PARAMETER:
 			case STATE_VARIABLE:
-				if (variableAccess.getStepExpression() != null) {
+				if (variableReference.getStepExpression() != null) {
 					switch (equationSide.getDescriptor().getFunctionDescriptor().getDeclaration().getKind()) {
 					case STATELESS:
 						message = "Variable references of stateless functions must not specify step expressions";
@@ -164,7 +164,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			}
 			
 			if (message != null) {
-				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, message, variableAccess));
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, message, variableReference));
 			}
 		}
 

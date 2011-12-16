@@ -308,10 +308,10 @@ StringLiteral:
 	value=STRING;
 		
 FeatureCall returns Expression:
-	VariableAccess | FunctionCall;
+	VariableReference | FunctionCall;
 	
-VariableAccess returns Expression:
-	{VariableAccess} feature=[CallableElement|QualifiedName] ('{' stepExpression=StepExpression '}')?;
+VariableReference returns Expression:
+	{VariableReference} feature=[CallableElement|QualifiedName] ('{' stepExpression=StepExpression '}')?;
 
 FunctionCall returns Expression:
 	{FunctionCall} feature=[CallableElement|QualifiedName] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';

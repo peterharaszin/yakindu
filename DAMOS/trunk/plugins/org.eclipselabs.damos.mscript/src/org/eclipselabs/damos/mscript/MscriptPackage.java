@@ -2115,14 +2115,14 @@ public interface MscriptPackage extends EPackage {
 	int FEATURE_CALL_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.VariableAccessImpl <em>Variable Access</em>}' class.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.VariableReferenceImpl <em>Variable Reference</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.impl.VariableAccessImpl
-	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getVariableAccess()
+	 * @see org.eclipselabs.damos.mscript.impl.VariableReferenceImpl
+	 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getVariableReference()
 	 * @generated
 	 */
-	int VARIABLE_ACCESS = 54;
+	int VARIABLE_REFERENCE = 54;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -2131,7 +2131,7 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_ACCESS__FEATURE = FEATURE_CALL__FEATURE;
+	int VARIABLE_REFERENCE__FEATURE = FEATURE_CALL__FEATURE;
 
 	/**
 	 * The feature id for the '<em><b>Step Expression</b></em>' containment reference.
@@ -2140,16 +2140,16 @@ public interface MscriptPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_ACCESS__STEP_EXPRESSION = FEATURE_CALL_FEATURE_COUNT + 0;
+	int VARIABLE_REFERENCE__STEP_EXPRESSION = FEATURE_CALL_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Variable Access</em>' class.
+	 * The number of structural features of the '<em>Variable Reference</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_ACCESS_FEATURE_COUNT = FEATURE_CALL_FEATURE_COUNT + 1;
+	int VARIABLE_REFERENCE_FEATURE_COUNT = FEATURE_CALL_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.impl.StepExpressionImpl <em>Step Expression</em>}' class.
@@ -5493,25 +5493,25 @@ public interface MscriptPackage extends EPackage {
 	EReference getFeatureCall_Feature();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.VariableAccess <em>Variable Access</em>}'.
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.VariableReference <em>Variable Reference</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Variable Access</em>'.
-	 * @see org.eclipselabs.damos.mscript.VariableAccess
+	 * @return the meta object for class '<em>Variable Reference</em>'.
+	 * @see org.eclipselabs.damos.mscript.VariableReference
 	 * @generated
 	 */
-	EClass getVariableAccess();
+	EClass getVariableReference();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.VariableAccess#getStepExpression <em>Step Expression</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.VariableReference#getStepExpression <em>Step Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Step Expression</em>'.
-	 * @see org.eclipselabs.damos.mscript.VariableAccess#getStepExpression()
-	 * @see #getVariableAccess()
+	 * @see org.eclipselabs.damos.mscript.VariableReference#getStepExpression()
+	 * @see #getVariableReference()
 	 * @generated
 	 */
-	EReference getVariableAccess_StepExpression();
+	EReference getVariableReference_StepExpression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.StepExpression <em>Step Expression</em>}'.
@@ -8060,14 +8060,14 @@ public interface MscriptPackage extends EPackage {
 		EReference FEATURE_CALL__FEATURE = eINSTANCE.getFeatureCall_Feature();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.VariableAccessImpl <em>Variable Access</em>}' class.
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.VariableReferenceImpl <em>Variable Reference</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.impl.VariableAccessImpl
-		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getVariableAccess()
+		 * @see org.eclipselabs.damos.mscript.impl.VariableReferenceImpl
+		 * @see org.eclipselabs.damos.mscript.impl.MscriptPackageImpl#getVariableReference()
 		 * @generated
 		 */
-		EClass VARIABLE_ACCESS = eINSTANCE.getVariableAccess();
+		EClass VARIABLE_REFERENCE = eINSTANCE.getVariableReference();
 
 		/**
 		 * The meta object literal for the '<em><b>Step Expression</b></em>' containment reference feature.
@@ -8075,7 +8075,7 @@ public interface MscriptPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference VARIABLE_ACCESS__STEP_EXPRESSION = eINSTANCE.getVariableAccess_StepExpression();
+		EReference VARIABLE_REFERENCE__STEP_EXPRESSION = eINSTANCE.getVariableReference_StepExpression();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.impl.StepExpressionImpl <em>Step Expression</em>}' class.

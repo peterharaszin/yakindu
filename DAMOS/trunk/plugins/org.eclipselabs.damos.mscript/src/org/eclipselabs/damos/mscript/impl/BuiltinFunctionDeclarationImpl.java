@@ -7,25 +7,25 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipselabs.damos.mscript.BuiltinVariable;
+import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Builtin Variable</b></em>'.
+ * An implementation of the model object '<em><b>Builtin Function</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class BuiltinVariableImpl extends BuiltinDefinitionImpl implements BuiltinVariable {
+public class BuiltinFunctionDeclarationImpl extends BuiltinDeclarationImpl implements BuiltinFunctionDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected BuiltinVariableImpl() {
+	protected BuiltinFunctionDeclarationImpl() {
 		super();
 	}
 
@@ -36,7 +36,7 @@ public class BuiltinVariableImpl extends BuiltinDefinitionImpl implements Builti
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.BUILTIN_VARIABLE;
+		return MscriptPackage.Literals.BUILTIN_FUNCTION_DECLARATION;
 	}
 
-} //BuiltinVariableImpl
+} //BuiltinFunctionImpl

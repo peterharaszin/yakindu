@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.AssertionStatusKind;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StringLiteral;
@@ -57,14 +57,14 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  */
 public class StaticFunctionEvaluator {
 	
-	public IStatus evaluate(IStaticEvaluationContext context, FunctionDefinition functionDefinition) {
+	public IStatus evaluate(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration) {
 		MultiStatus multiStatus = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Static function evaluation", null);
-		StatusUtil.merge(multiStatus, new StaticStepExpressionEvaluator().evaluate(context, functionDefinition));
+		StatusUtil.merge(multiStatus, new StaticStepExpressionEvaluator().evaluate(context, functionDeclaration));
 
-		IFunctionDescriptorBuilderResult functionDescriptorBuilderResult = new FunctionDescriptorBuilder().build(context, functionDefinition);
+		IFunctionDescriptorBuilderResult functionDescriptorBuilderResult = new FunctionDescriptorBuilder().build(context, functionDeclaration);
 		StatusUtil.merge(multiStatus, functionDescriptorBuilderResult.getStatus());
 		FunctionDescriptor functionDescriptor = functionDescriptorBuilderResult.getFunctionDescriptor();
-		context.setFunctionDescriptor(functionDefinition, functionDescriptor);
+		context.setFunctionDescriptor(functionDeclaration, functionDescriptor);
 
 		FunctionModelValidator validator = new FunctionModelValidator();
 		BasicDiagnostic diagnostics = new BasicDiagnostic();
@@ -84,7 +84,7 @@ public class StaticFunctionEvaluator {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Static function evaluation", null);
 		StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
 		
-		for (Assertion assertion : functionDescriptor.getDefinition().getAssertions()) {
+		for (Assertion assertion : functionDescriptor.getDeclaration().getAssertions()) {
 			if (assertion.isStatic()) {
 				staticExpressionEvaluator.evaluate(context, assertion.getCondition(), true);
 				IValue value = context.getValue(assertion.getCondition());
@@ -108,7 +108,7 @@ public class StaticFunctionEvaluator {
 							severity = IStatus.ERROR;
 							break;
 						}
-						status.add(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, stringMessage.getValue(), functionDescriptor.getDefinition(), MscriptPackage.eINSTANCE.getDefinition_Name()));
+						status.add(new SyntaxStatus(severity, MscriptPlugin.PLUGIN_ID, 0, stringMessage.getValue(), functionDescriptor.getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name()));
 						if (assertion.getStatusKind() == AssertionStatusKind.FATAL) {
 							return status;
 						}
@@ -121,7 +121,7 @@ public class StaticFunctionEvaluator {
 			return status;
 		}
 		
-		for (Assertion assertion : functionDescriptor.getDefinition().getAssertions()) {
+		for (Assertion assertion : functionDescriptor.getDeclaration().getAssertions()) {
 			if (!assertion.isStatic()) {
 				staticExpressionEvaluator.evaluate(context, assertion.getCondition());
 			}

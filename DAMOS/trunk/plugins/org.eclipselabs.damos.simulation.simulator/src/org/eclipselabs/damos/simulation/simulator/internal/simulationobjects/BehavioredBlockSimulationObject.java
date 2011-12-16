@@ -28,7 +28,7 @@ import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -116,10 +116,10 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			}
 		}
 
-		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
+		FunctionDeclaration functionDeclaration = helper.createFunctionDefinition();
 		
-		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getComponentSignature(), status);
+		List<IValue> templateArguments = helper.getTemplateArguments(functionDeclaration, status);
+		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
 
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
@@ -129,8 +129,8 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
-		helper.evaluateFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes);
-		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
+		helper.evaluateFunctionDefinition(functionDeclaration, templateArguments, inputParameterDataTypes);
+		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDeclaration);
 
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
 				.transform(staticEvaluationContext, functionDescriptor, templateArguments, inputParameterDataTypes);
@@ -167,11 +167,11 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeInputVariables() throws CoreException {
-		inputVariables = new IVariable[functionObject.getFunctionInstance().getFunctionDefinition().getInputParameterDeclarations().size()];
+		inputVariables = new IVariable[functionObject.getFunctionInstance().getFunctionDeclaration().getInputParameterDeclarations().size()];
 		multiPortInput = new boolean[inputVariables.length];
 		
 		int i = 0;
-		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDeclaration().getInputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(inputParameterDeclaration);
 			
 			int inputIndex = hasInputSockets ? i - 1 : i;
@@ -190,11 +190,11 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	}
 	
 	private void initializeOutputVariables() throws CoreException {
-		outputVariables = new IVariable[functionObject.getFunctionInstance().getFunctionDefinition().getOutputParameterDeclarations().size()];
+		outputVariables = new IVariable[functionObject.getFunctionInstance().getFunctionDeclaration().getOutputParameterDeclarations().size()];
 		multiPortOutput = new boolean[outputVariables.length];
 
 		int i = 0;
-		for (OutputParameterDeclaration outputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputParameterDeclaration : functionObject.getFunctionInstance().getFunctionDeclaration().getOutputParameterDeclarations()) {
 			IVariable variable = functionObject.getVariable(outputParameterDeclaration);
 			
 			BlockOutput output = (BlockOutput) getComponent().getOutputs().get(i);

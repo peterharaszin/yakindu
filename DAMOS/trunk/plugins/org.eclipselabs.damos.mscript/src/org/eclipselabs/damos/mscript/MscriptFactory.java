@@ -35,13 +35,13 @@ public interface MscriptFactory extends EFactory {
 	Module createModule();
 
 	/**
-	 * Returns a new object of class '<em>Enumeration Definition</em>'.
+	 * Returns a new object of class '<em>Enumeration Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Enumeration Definition</em>'.
+	 * @return a new object of class '<em>Enumeration Declaration</em>'.
 	 * @generated
 	 */
-	EnumerationDefinition createEnumerationDefinition();
+	EnumerationDeclaration createEnumerationDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Enumeration Literal Declaration</em>'.
@@ -62,13 +62,13 @@ public interface MscriptFactory extends EFactory {
 	TypedefDeclaration createTypedefDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Struct Definition</em>'.
+	 * Returns a new object of class '<em>Struct Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Struct Definition</em>'.
+	 * @return a new object of class '<em>Struct Declaration</em>'.
 	 * @generated
 	 */
-	StructDefinition createStructDefinition();
+	StructDeclaration createStructDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Struct Member Declaration</em>'.
@@ -80,13 +80,13 @@ public interface MscriptFactory extends EFactory {
 	StructMemberDeclaration createStructMemberDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Function Definition</em>'.
+	 * Returns a new object of class '<em>Function Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Function Definition</em>'.
+	 * @return a new object of class '<em>Function Declaration</em>'.
 	 * @generated
 	 */
-	FunctionDefinition createFunctionDefinition();
+	FunctionDeclaration createFunctionDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Check</em>'.
@@ -629,31 +629,31 @@ public interface MscriptFactory extends EFactory {
 	ReturnStatement createReturnStatement();
 
 	/**
-	 * Returns a new object of class '<em>Builtin Definition</em>'.
+	 * Returns a new object of class '<em>Builtin Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Builtin Definition</em>'.
+	 * @return a new object of class '<em>Builtin Declaration</em>'.
 	 * @generated
 	 */
-	BuiltinDefinition createBuiltinDefinition();
+	BuiltinDeclaration createBuiltinDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Builtin Function</em>'.
+	 * Returns a new object of class '<em>Builtin Function Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Builtin Function</em>'.
+	 * @return a new object of class '<em>Builtin Function Declaration</em>'.
 	 * @generated
 	 */
-	BuiltinFunction createBuiltinFunction();
+	BuiltinFunctionDeclaration createBuiltinFunctionDeclaration();
 
 	/**
-	 * Returns a new object of class '<em>Builtin Variable</em>'.
+	 * Returns a new object of class '<em>Builtin Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Builtin Variable</em>'.
+	 * @return a new object of class '<em>Builtin Variable Declaration</em>'.
 	 * @generated
 	 */
-	BuiltinVariable createBuiltinVariable();
+	BuiltinVariableDeclaration createBuiltinVariableDeclaration();
 
 	/**
 	 * Returns a new object of class '<em>Invalid Data Type</em>'.

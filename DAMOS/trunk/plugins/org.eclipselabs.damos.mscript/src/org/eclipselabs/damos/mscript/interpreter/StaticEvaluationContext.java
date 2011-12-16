@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipselabs.damos.mscript.Evaluable;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.VariableAccess;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
@@ -34,7 +34,7 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	private Map<VariableAccess, Integer> stepIndices = new HashMap<VariableAccess, Integer>();
 	private Map<VariableDeclaration, Integer> circularBufferSizes = new HashMap<VariableDeclaration, Integer>();
 	
-	private Map<FunctionDefinition, FunctionDescriptor> functionDescriptors = new HashMap<FunctionDefinition, FunctionDescriptor>();
+	private Map<FunctionDeclaration, FunctionDescriptor> functionDescriptors = new HashMap<FunctionDeclaration, FunctionDescriptor>();
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.IEvaluationContext#getComputationContext()
@@ -87,15 +87,15 @@ public class StaticEvaluationContext implements IStaticEvaluationContext {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext#getFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition)
 	 */
-	public FunctionDescriptor getFunctionDescriptor(FunctionDefinition functionDefinition) {
-		return functionDescriptors.get(functionDefinition);
+	public FunctionDescriptor getFunctionDescriptor(FunctionDeclaration functionDeclaration) {
+		return functionDescriptors.get(functionDeclaration);
 	}
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.IStaticEvaluationContext#setFunctionDescriptor(org.eclipselabs.mscript.language.ast.FunctionDefinition, org.eclipselabs.mscript.language.functionmodel.FunctionDescriptor)
 	 */
-	public void setFunctionDescriptor(FunctionDefinition functionDefinition, FunctionDescriptor functionDescriptor) {
-		functionDescriptors.put(functionDefinition, functionDescriptor);
+	public void setFunctionDescriptor(FunctionDeclaration functionDeclaration, FunctionDescriptor functionDescriptor) {
+		functionDescriptors.put(functionDeclaration, functionDescriptor);
 	}
 	
 }

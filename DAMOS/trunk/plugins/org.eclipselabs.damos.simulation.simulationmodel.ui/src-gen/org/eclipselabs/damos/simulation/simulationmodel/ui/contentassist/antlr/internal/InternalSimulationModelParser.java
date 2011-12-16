@@ -499,25 +499,25 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "ruleValidParameterName"
 
 
-    // $ANTLR start "entryRuleDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:175:1: entryRuleDefinition : ruleDefinition EOF ;
-    public final void entryRuleDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:175:1: entryRuleDeclaration : ruleDeclaration EOF ;
+    public final void entryRuleDeclaration() throws RecognitionException {
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:176:1: ( ruleDefinition EOF )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:177:1: ruleDefinition EOF
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:176:1: ( ruleDeclaration EOF )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:177:1: ruleDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getDefinitionRule()); 
+               before(grammarAccess.getDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleDefinition_in_entryRuleDefinition309);
-            ruleDefinition();
+            pushFollow(FOLLOW_ruleDeclaration_in_entryRuleDeclaration309);
+            ruleDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getDefinitionRule()); 
+               after(grammarAccess.getDeclarationRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDefinition316); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDeclaration316); if (state.failed) return ;
 
             }
 
@@ -530,30 +530,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "entryRuleDefinition"
+    // $ANTLR end "entryRuleDeclaration"
 
 
-    // $ANTLR start "ruleDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:184:1: ruleDefinition : ( ( rule__Definition__Alternatives ) ) ;
-    public final void ruleDefinition() throws RecognitionException {
+    // $ANTLR start "ruleDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:184:1: ruleDeclaration : ( ( rule__Declaration__Alternatives ) ) ;
+    public final void ruleDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:188:2: ( ( ( rule__Definition__Alternatives ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:189:1: ( ( rule__Definition__Alternatives ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:188:2: ( ( ( rule__Declaration__Alternatives ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:189:1: ( ( rule__Declaration__Alternatives ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:189:1: ( ( rule__Definition__Alternatives ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:190:1: ( rule__Definition__Alternatives )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:189:1: ( ( rule__Declaration__Alternatives ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:190:1: ( rule__Declaration__Alternatives )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getDefinitionAccess().getAlternatives()); 
+               before(grammarAccess.getDeclarationAccess().getAlternatives()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:191:1: ( rule__Definition__Alternatives )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:191:2: rule__Definition__Alternatives
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:191:1: ( rule__Declaration__Alternatives )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:191:2: rule__Declaration__Alternatives
             {
-            pushFollow(FOLLOW_rule__Definition__Alternatives_in_ruleDefinition342);
-            rule__Definition__Alternatives();
+            pushFollow(FOLLOW_rule__Declaration__Alternatives_in_ruleDeclaration342);
+            rule__Declaration__Alternatives();
 
             state._fsp--;
             if (state.failed) return ;
@@ -561,7 +561,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getDefinitionAccess().getAlternatives()); 
+               after(grammarAccess.getDeclarationAccess().getAlternatives()); 
             }
 
             }
@@ -581,28 +581,28 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "ruleDefinition"
+    // $ANTLR end "ruleDeclaration"
 
 
-    // $ANTLR start "entryRuleDataTypeDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:203:1: entryRuleDataTypeDefinition : ruleDataTypeDefinition EOF ;
-    public final void entryRuleDataTypeDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleDataTypeDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:203:1: entryRuleDataTypeDeclaration : ruleDataTypeDeclaration EOF ;
+    public final void entryRuleDataTypeDeclaration() throws RecognitionException {
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:204:1: ( ruleDataTypeDefinition EOF )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:205:1: ruleDataTypeDefinition EOF
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:204:1: ( ruleDataTypeDeclaration EOF )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:205:1: ruleDataTypeDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getDataTypeDefinitionRule()); 
+               before(grammarAccess.getDataTypeDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeDefinition_in_entryRuleDataTypeDefinition369);
-            ruleDataTypeDefinition();
+            pushFollow(FOLLOW_ruleDataTypeDeclaration_in_entryRuleDataTypeDeclaration369);
+            ruleDataTypeDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getDataTypeDefinitionRule()); 
+               after(grammarAccess.getDataTypeDeclarationRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeDefinition376); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeDeclaration376); if (state.failed) return ;
 
             }
 
@@ -615,30 +615,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "entryRuleDataTypeDefinition"
+    // $ANTLR end "entryRuleDataTypeDeclaration"
 
 
-    // $ANTLR start "ruleDataTypeDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:212:1: ruleDataTypeDefinition : ( ( rule__DataTypeDefinition__Alternatives ) ) ;
-    public final void ruleDataTypeDefinition() throws RecognitionException {
+    // $ANTLR start "ruleDataTypeDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:212:1: ruleDataTypeDeclaration : ( ( rule__DataTypeDeclaration__Alternatives ) ) ;
+    public final void ruleDataTypeDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:216:2: ( ( ( rule__DataTypeDefinition__Alternatives ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:217:1: ( ( rule__DataTypeDefinition__Alternatives ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:216:2: ( ( ( rule__DataTypeDeclaration__Alternatives ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:217:1: ( ( rule__DataTypeDeclaration__Alternatives ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:217:1: ( ( rule__DataTypeDefinition__Alternatives ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:218:1: ( rule__DataTypeDefinition__Alternatives )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:217:1: ( ( rule__DataTypeDeclaration__Alternatives ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:218:1: ( rule__DataTypeDeclaration__Alternatives )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getDataTypeDefinitionAccess().getAlternatives()); 
+               before(grammarAccess.getDataTypeDeclarationAccess().getAlternatives()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:219:1: ( rule__DataTypeDefinition__Alternatives )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:219:2: rule__DataTypeDefinition__Alternatives
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:219:1: ( rule__DataTypeDeclaration__Alternatives )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:219:2: rule__DataTypeDeclaration__Alternatives
             {
-            pushFollow(FOLLOW_rule__DataTypeDefinition__Alternatives_in_ruleDataTypeDefinition402);
-            rule__DataTypeDefinition__Alternatives();
+            pushFollow(FOLLOW_rule__DataTypeDeclaration__Alternatives_in_ruleDataTypeDeclaration402);
+            rule__DataTypeDeclaration__Alternatives();
 
             state._fsp--;
             if (state.failed) return ;
@@ -646,7 +646,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getDataTypeDefinitionAccess().getAlternatives()); 
+               after(grammarAccess.getDataTypeDeclarationAccess().getAlternatives()); 
             }
 
             }
@@ -666,28 +666,28 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "ruleDataTypeDefinition"
+    // $ANTLR end "ruleDataTypeDeclaration"
 
 
-    // $ANTLR start "entryRuleEnumerationDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:231:1: entryRuleEnumerationDefinition : ruleEnumerationDefinition EOF ;
-    public final void entryRuleEnumerationDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleEnumerationDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:231:1: entryRuleEnumerationDeclaration : ruleEnumerationDeclaration EOF ;
+    public final void entryRuleEnumerationDeclaration() throws RecognitionException {
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:232:1: ( ruleEnumerationDefinition EOF )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:233:1: ruleEnumerationDefinition EOF
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:232:1: ( ruleEnumerationDeclaration EOF )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:233:1: ruleEnumerationDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionRule()); 
+               before(grammarAccess.getEnumerationDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleEnumerationDefinition_in_entryRuleEnumerationDefinition429);
-            ruleEnumerationDefinition();
+            pushFollow(FOLLOW_ruleEnumerationDeclaration_in_entryRuleEnumerationDeclaration429);
+            ruleEnumerationDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionRule()); 
+               after(grammarAccess.getEnumerationDeclarationRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEnumerationDefinition436); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEnumerationDeclaration436); if (state.failed) return ;
 
             }
 
@@ -700,30 +700,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "entryRuleEnumerationDefinition"
+    // $ANTLR end "entryRuleEnumerationDeclaration"
 
 
-    // $ANTLR start "ruleEnumerationDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:240:1: ruleEnumerationDefinition : ( ( rule__EnumerationDefinition__Group__0 ) ) ;
-    public final void ruleEnumerationDefinition() throws RecognitionException {
+    // $ANTLR start "ruleEnumerationDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:240:1: ruleEnumerationDeclaration : ( ( rule__EnumerationDeclaration__Group__0 ) ) ;
+    public final void ruleEnumerationDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:244:2: ( ( ( rule__EnumerationDefinition__Group__0 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:245:1: ( ( rule__EnumerationDefinition__Group__0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:244:2: ( ( ( rule__EnumerationDeclaration__Group__0 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:245:1: ( ( rule__EnumerationDeclaration__Group__0 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:245:1: ( ( rule__EnumerationDefinition__Group__0 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:246:1: ( rule__EnumerationDefinition__Group__0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:245:1: ( ( rule__EnumerationDeclaration__Group__0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:246:1: ( rule__EnumerationDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getGroup()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getGroup()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:247:1: ( rule__EnumerationDefinition__Group__0 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:247:2: rule__EnumerationDefinition__Group__0
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:247:1: ( rule__EnumerationDeclaration__Group__0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:247:2: rule__EnumerationDeclaration__Group__0
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__0_in_ruleEnumerationDefinition462);
-            rule__EnumerationDefinition__Group__0();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__0_in_ruleEnumerationDeclaration462);
+            rule__EnumerationDeclaration__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -731,7 +731,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getGroup()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getGroup()); 
             }
 
             }
@@ -751,7 +751,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "ruleEnumerationDefinition"
+    // $ANTLR end "ruleEnumerationDeclaration"
 
 
     // $ANTLR start "entryRuleEnumerationLiteralDeclaration"
@@ -924,25 +924,25 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "ruleTypedefDeclaration"
 
 
-    // $ANTLR start "entryRuleStructDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:315:1: entryRuleStructDefinition : ruleStructDefinition EOF ;
-    public final void entryRuleStructDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleStructDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:315:1: entryRuleStructDeclaration : ruleStructDeclaration EOF ;
+    public final void entryRuleStructDeclaration() throws RecognitionException {
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:316:1: ( ruleStructDefinition EOF )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:317:1: ruleStructDefinition EOF
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:316:1: ( ruleStructDeclaration EOF )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:317:1: ruleStructDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionRule()); 
+               before(grammarAccess.getStructDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleStructDefinition_in_entryRuleStructDefinition609);
-            ruleStructDefinition();
+            pushFollow(FOLLOW_ruleStructDeclaration_in_entryRuleStructDeclaration609);
+            ruleStructDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionRule()); 
+               after(grammarAccess.getStructDeclarationRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructDefinition616); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructDeclaration616); if (state.failed) return ;
 
             }
 
@@ -955,30 +955,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "entryRuleStructDefinition"
+    // $ANTLR end "entryRuleStructDeclaration"
 
 
-    // $ANTLR start "ruleStructDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:324:1: ruleStructDefinition : ( ( rule__StructDefinition__Group__0 ) ) ;
-    public final void ruleStructDefinition() throws RecognitionException {
+    // $ANTLR start "ruleStructDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:324:1: ruleStructDeclaration : ( ( rule__StructDeclaration__Group__0 ) ) ;
+    public final void ruleStructDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:328:2: ( ( ( rule__StructDefinition__Group__0 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:329:1: ( ( rule__StructDefinition__Group__0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:328:2: ( ( ( rule__StructDeclaration__Group__0 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:329:1: ( ( rule__StructDeclaration__Group__0 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:329:1: ( ( rule__StructDefinition__Group__0 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:330:1: ( rule__StructDefinition__Group__0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:329:1: ( ( rule__StructDeclaration__Group__0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:330:1: ( rule__StructDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getGroup()); 
+               before(grammarAccess.getStructDeclarationAccess().getGroup()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:331:1: ( rule__StructDefinition__Group__0 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:331:2: rule__StructDefinition__Group__0
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:331:1: ( rule__StructDeclaration__Group__0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:331:2: rule__StructDeclaration__Group__0
             {
-            pushFollow(FOLLOW_rule__StructDefinition__Group__0_in_ruleStructDefinition642);
-            rule__StructDefinition__Group__0();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__0_in_ruleStructDeclaration642);
+            rule__StructDeclaration__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -986,7 +986,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getGroup()); 
+               after(grammarAccess.getStructDeclarationAccess().getGroup()); 
             }
 
             }
@@ -1006,7 +1006,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "ruleStructDefinition"
+    // $ANTLR end "ruleStructDeclaration"
 
 
     // $ANTLR start "entryRuleStructMemberDeclaration"
@@ -1094,25 +1094,25 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "ruleStructMemberDeclaration"
 
 
-    // $ANTLR start "entryRuleFunctionDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:371:1: entryRuleFunctionDefinition : ruleFunctionDefinition EOF ;
-    public final void entryRuleFunctionDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleFunctionDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:371:1: entryRuleFunctionDeclaration : ruleFunctionDeclaration EOF ;
+    public final void entryRuleFunctionDeclaration() throws RecognitionException {
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:372:1: ( ruleFunctionDefinition EOF )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:373:1: ruleFunctionDefinition EOF
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:372:1: ( ruleFunctionDeclaration EOF )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:373:1: ruleFunctionDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionRule()); 
+               before(grammarAccess.getFunctionDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleFunctionDefinition_in_entryRuleFunctionDefinition729);
-            ruleFunctionDefinition();
+            pushFollow(FOLLOW_ruleFunctionDeclaration_in_entryRuleFunctionDeclaration729);
+            ruleFunctionDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionRule()); 
+               after(grammarAccess.getFunctionDeclarationRule()); 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionDefinition736); if (state.failed) return ;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionDeclaration736); if (state.failed) return ;
 
             }
 
@@ -1125,30 +1125,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "entryRuleFunctionDefinition"
+    // $ANTLR end "entryRuleFunctionDeclaration"
 
 
-    // $ANTLR start "ruleFunctionDefinition"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:380:1: ruleFunctionDefinition : ( ( rule__FunctionDefinition__Group__0 ) ) ;
-    public final void ruleFunctionDefinition() throws RecognitionException {
+    // $ANTLR start "ruleFunctionDeclaration"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:380:1: ruleFunctionDeclaration : ( ( rule__FunctionDeclaration__Group__0 ) ) ;
+    public final void ruleFunctionDeclaration() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:384:2: ( ( ( rule__FunctionDefinition__Group__0 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:385:1: ( ( rule__FunctionDefinition__Group__0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:384:2: ( ( ( rule__FunctionDeclaration__Group__0 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:385:1: ( ( rule__FunctionDeclaration__Group__0 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:385:1: ( ( rule__FunctionDefinition__Group__0 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:386:1: ( rule__FunctionDefinition__Group__0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:385:1: ( ( rule__FunctionDeclaration__Group__0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:386:1: ( rule__FunctionDeclaration__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getGroup()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getGroup()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:387:1: ( rule__FunctionDefinition__Group__0 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:387:2: rule__FunctionDefinition__Group__0
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:387:1: ( rule__FunctionDeclaration__Group__0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:387:2: rule__FunctionDeclaration__Group__0
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__0_in_ruleFunctionDefinition762);
-            rule__FunctionDefinition__Group__0();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__0_in_ruleFunctionDeclaration762);
+            rule__FunctionDeclaration__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -1156,7 +1156,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getGroup()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getGroup()); 
             }
 
             }
@@ -1176,7 +1176,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "ruleFunctionDefinition"
+    // $ANTLR end "ruleFunctionDeclaration"
 
 
     // $ANTLR start "entryRuleTemplateParameterDeclaration"
@@ -9732,14 +9732,14 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__ValidParameterName__Alternatives"
 
 
-    // $ANTLR start "rule__Definition__Alternatives"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3249:1: rule__Definition__Alternatives : ( ( ruleDataTypeDefinition ) | ( ruleFunctionDefinition ) );
-    public final void rule__Definition__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__Declaration__Alternatives"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3249:1: rule__Declaration__Alternatives : ( ( ruleDataTypeDeclaration ) | ( ruleFunctionDeclaration ) );
+    public final void rule__Declaration__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3253:1: ( ( ruleDataTypeDefinition ) | ( ruleFunctionDefinition ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3253:1: ( ( ruleDataTypeDeclaration ) | ( ruleFunctionDeclaration ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -9758,21 +9758,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3254:1: ( ruleDataTypeDefinition )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3254:1: ( ruleDataTypeDeclaration )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3254:1: ( ruleDataTypeDefinition )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3255:1: ruleDataTypeDefinition
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3254:1: ( ruleDataTypeDeclaration )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3255:1: ruleDataTypeDeclaration
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDefinitionAccess().getDataTypeDefinitionParserRuleCall_0()); 
+                       before(grammarAccess.getDeclarationAccess().getDataTypeDeclarationParserRuleCall_0()); 
                     }
-                    pushFollow(FOLLOW_ruleDataTypeDefinition_in_rule__Definition__Alternatives6849);
-                    ruleDataTypeDefinition();
+                    pushFollow(FOLLOW_ruleDataTypeDeclaration_in_rule__Declaration__Alternatives6849);
+                    ruleDataTypeDeclaration();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDefinitionAccess().getDataTypeDefinitionParserRuleCall_0()); 
+                       after(grammarAccess.getDeclarationAccess().getDataTypeDeclarationParserRuleCall_0()); 
                     }
 
                     }
@@ -9781,21 +9781,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3260:6: ( ruleFunctionDefinition )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3260:6: ( ruleFunctionDeclaration )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3260:6: ( ruleFunctionDefinition )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3261:1: ruleFunctionDefinition
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3260:6: ( ruleFunctionDeclaration )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3261:1: ruleFunctionDeclaration
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDefinitionAccess().getFunctionDefinitionParserRuleCall_1()); 
+                       before(grammarAccess.getDeclarationAccess().getFunctionDeclarationParserRuleCall_1()); 
                     }
-                    pushFollow(FOLLOW_ruleFunctionDefinition_in_rule__Definition__Alternatives6866);
-                    ruleFunctionDefinition();
+                    pushFollow(FOLLOW_ruleFunctionDeclaration_in_rule__Declaration__Alternatives6866);
+                    ruleFunctionDeclaration();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDefinitionAccess().getFunctionDefinitionParserRuleCall_1()); 
+                       after(grammarAccess.getDeclarationAccess().getFunctionDeclarationParserRuleCall_1()); 
                     }
 
                     }
@@ -9817,17 +9817,17 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__Definition__Alternatives"
+    // $ANTLR end "rule__Declaration__Alternatives"
 
 
-    // $ANTLR start "rule__DataTypeDefinition__Alternatives"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3271:1: rule__DataTypeDefinition__Alternatives : ( ( ruleEnumerationDefinition ) | ( ruleStructDefinition ) | ( ruleTypedefDeclaration ) );
-    public final void rule__DataTypeDefinition__Alternatives() throws RecognitionException {
+    // $ANTLR start "rule__DataTypeDeclaration__Alternatives"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3271:1: rule__DataTypeDeclaration__Alternatives : ( ( ruleEnumerationDeclaration ) | ( ruleStructDeclaration ) | ( ruleTypedefDeclaration ) );
+    public final void rule__DataTypeDeclaration__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3275:1: ( ( ruleEnumerationDefinition ) | ( ruleStructDefinition ) | ( ruleTypedefDeclaration ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3275:1: ( ( ruleEnumerationDeclaration ) | ( ruleStructDeclaration ) | ( ruleTypedefDeclaration ) )
             int alt3=3;
             switch ( input.LA(1) ) {
             case 47:
@@ -9855,21 +9855,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3276:1: ( ruleEnumerationDefinition )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3276:1: ( ruleEnumerationDeclaration )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3276:1: ( ruleEnumerationDefinition )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3277:1: ruleEnumerationDefinition
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3276:1: ( ruleEnumerationDeclaration )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3277:1: ruleEnumerationDeclaration
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeDefinitionAccess().getEnumerationDefinitionParserRuleCall_0()); 
+                       before(grammarAccess.getDataTypeDeclarationAccess().getEnumerationDeclarationParserRuleCall_0()); 
                     }
-                    pushFollow(FOLLOW_ruleEnumerationDefinition_in_rule__DataTypeDefinition__Alternatives6898);
-                    ruleEnumerationDefinition();
+                    pushFollow(FOLLOW_ruleEnumerationDeclaration_in_rule__DataTypeDeclaration__Alternatives6898);
+                    ruleEnumerationDeclaration();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeDefinitionAccess().getEnumerationDefinitionParserRuleCall_0()); 
+                       after(grammarAccess.getDataTypeDeclarationAccess().getEnumerationDeclarationParserRuleCall_0()); 
                     }
 
                     }
@@ -9878,21 +9878,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3282:6: ( ruleStructDefinition )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3282:6: ( ruleStructDeclaration )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3282:6: ( ruleStructDefinition )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3283:1: ruleStructDefinition
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3282:6: ( ruleStructDeclaration )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3283:1: ruleStructDeclaration
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeDefinitionAccess().getStructDefinitionParserRuleCall_1()); 
+                       before(grammarAccess.getDataTypeDeclarationAccess().getStructDeclarationParserRuleCall_1()); 
                     }
-                    pushFollow(FOLLOW_ruleStructDefinition_in_rule__DataTypeDefinition__Alternatives6915);
-                    ruleStructDefinition();
+                    pushFollow(FOLLOW_ruleStructDeclaration_in_rule__DataTypeDeclaration__Alternatives6915);
+                    ruleStructDeclaration();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeDefinitionAccess().getStructDefinitionParserRuleCall_1()); 
+                       after(grammarAccess.getDataTypeDeclarationAccess().getStructDeclarationParserRuleCall_1()); 
                     }
 
                     }
@@ -9907,15 +9907,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3289:1: ruleTypedefDeclaration
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getDataTypeDefinitionAccess().getTypedefDeclarationParserRuleCall_2()); 
+                       before(grammarAccess.getDataTypeDeclarationAccess().getTypedefDeclarationParserRuleCall_2()); 
                     }
-                    pushFollow(FOLLOW_ruleTypedefDeclaration_in_rule__DataTypeDefinition__Alternatives6932);
+                    pushFollow(FOLLOW_ruleTypedefDeclaration_in_rule__DataTypeDeclaration__Alternatives6932);
                     ruleTypedefDeclaration();
 
                     state._fsp--;
                     if (state.failed) return ;
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getDataTypeDefinitionAccess().getTypedefDeclarationParserRuleCall_2()); 
+                       after(grammarAccess.getDataTypeDeclarationAccess().getTypedefDeclarationParserRuleCall_2()); 
                     }
 
                     }
@@ -9937,17 +9937,17 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__DataTypeDefinition__Alternatives"
+    // $ANTLR end "rule__DataTypeDeclaration__Alternatives"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Alternatives_11"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3299:1: rule__FunctionDefinition__Alternatives_11 : ( ( ( rule__FunctionDefinition__ChecksAssignment_11_0 ) ) | ( ( rule__FunctionDefinition__AssertionsAssignment_11_1 ) ) | ( ( rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2 ) ) | ( ( rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3 ) ) | ( ( rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4 ) ) | ( ( rule__FunctionDefinition__EquationsAssignment_11_5 ) ) );
-    public final void rule__FunctionDefinition__Alternatives_11() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Alternatives_11"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3299:1: rule__FunctionDeclaration__Alternatives_11 : ( ( ( rule__FunctionDeclaration__ChecksAssignment_11_0 ) ) | ( ( rule__FunctionDeclaration__AssertionsAssignment_11_1 ) ) | ( ( rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2 ) ) | ( ( rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3 ) ) | ( ( rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4 ) ) | ( ( rule__FunctionDeclaration__EquationsAssignment_11_5 ) ) );
+    public final void rule__FunctionDeclaration__Alternatives_11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3303:1: ( ( ( rule__FunctionDefinition__ChecksAssignment_11_0 ) ) | ( ( rule__FunctionDefinition__AssertionsAssignment_11_1 ) ) | ( ( rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2 ) ) | ( ( rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3 ) ) | ( ( rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4 ) ) | ( ( rule__FunctionDefinition__EquationsAssignment_11_5 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3303:1: ( ( ( rule__FunctionDeclaration__ChecksAssignment_11_0 ) ) | ( ( rule__FunctionDeclaration__AssertionsAssignment_11_1 ) ) | ( ( rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2 ) ) | ( ( rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3 ) ) | ( ( rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4 ) ) | ( ( rule__FunctionDeclaration__EquationsAssignment_11_5 ) ) )
             int alt4=6;
             switch ( input.LA(1) ) {
             case 55:
@@ -9992,19 +9992,19 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3304:1: ( ( rule__FunctionDefinition__ChecksAssignment_11_0 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3304:1: ( ( rule__FunctionDeclaration__ChecksAssignment_11_0 ) )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3304:1: ( ( rule__FunctionDefinition__ChecksAssignment_11_0 ) )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3305:1: ( rule__FunctionDefinition__ChecksAssignment_11_0 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3304:1: ( ( rule__FunctionDeclaration__ChecksAssignment_11_0 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3305:1: ( rule__FunctionDeclaration__ChecksAssignment_11_0 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionDefinitionAccess().getChecksAssignment_11_0()); 
+                       before(grammarAccess.getFunctionDeclarationAccess().getChecksAssignment_11_0()); 
                     }
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3306:1: ( rule__FunctionDefinition__ChecksAssignment_11_0 )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3306:2: rule__FunctionDefinition__ChecksAssignment_11_0
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3306:1: ( rule__FunctionDeclaration__ChecksAssignment_11_0 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3306:2: rule__FunctionDeclaration__ChecksAssignment_11_0
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__ChecksAssignment_11_0_in_rule__FunctionDefinition__Alternatives_116964);
-                    rule__FunctionDefinition__ChecksAssignment_11_0();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__ChecksAssignment_11_0_in_rule__FunctionDeclaration__Alternatives_116964);
+                    rule__FunctionDeclaration__ChecksAssignment_11_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -10012,7 +10012,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionDefinitionAccess().getChecksAssignment_11_0()); 
+                       after(grammarAccess.getFunctionDeclarationAccess().getChecksAssignment_11_0()); 
                     }
 
                     }
@@ -10021,19 +10021,19 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3310:6: ( ( rule__FunctionDefinition__AssertionsAssignment_11_1 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3310:6: ( ( rule__FunctionDeclaration__AssertionsAssignment_11_1 ) )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3310:6: ( ( rule__FunctionDefinition__AssertionsAssignment_11_1 ) )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3311:1: ( rule__FunctionDefinition__AssertionsAssignment_11_1 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3310:6: ( ( rule__FunctionDeclaration__AssertionsAssignment_11_1 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3311:1: ( rule__FunctionDeclaration__AssertionsAssignment_11_1 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionDefinitionAccess().getAssertionsAssignment_11_1()); 
+                       before(grammarAccess.getFunctionDeclarationAccess().getAssertionsAssignment_11_1()); 
                     }
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3312:1: ( rule__FunctionDefinition__AssertionsAssignment_11_1 )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3312:2: rule__FunctionDefinition__AssertionsAssignment_11_1
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3312:1: ( rule__FunctionDeclaration__AssertionsAssignment_11_1 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3312:2: rule__FunctionDeclaration__AssertionsAssignment_11_1
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__AssertionsAssignment_11_1_in_rule__FunctionDefinition__Alternatives_116982);
-                    rule__FunctionDefinition__AssertionsAssignment_11_1();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__AssertionsAssignment_11_1_in_rule__FunctionDeclaration__Alternatives_116982);
+                    rule__FunctionDeclaration__AssertionsAssignment_11_1();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -10041,7 +10041,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionDefinitionAccess().getAssertionsAssignment_11_1()); 
+                       after(grammarAccess.getFunctionDeclarationAccess().getAssertionsAssignment_11_1()); 
                     }
 
                     }
@@ -10050,19 +10050,19 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
                     break;
                 case 3 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3316:6: ( ( rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3316:6: ( ( rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2 ) )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3316:6: ( ( rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2 ) )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3317:1: ( rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3316:6: ( ( rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3317:1: ( rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionDefinitionAccess().getFunctionObjectDeclarationsAssignment_11_2()); 
+                       before(grammarAccess.getFunctionDeclarationAccess().getFunctionObjectDeclarationsAssignment_11_2()); 
                     }
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3318:1: ( rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2 )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3318:2: rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3318:1: ( rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3318:2: rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2_in_rule__FunctionDefinition__Alternatives_117000);
-                    rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2_in_rule__FunctionDeclaration__Alternatives_117000);
+                    rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -10070,7 +10070,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionDefinitionAccess().getFunctionObjectDeclarationsAssignment_11_2()); 
+                       after(grammarAccess.getFunctionDeclarationAccess().getFunctionObjectDeclarationsAssignment_11_2()); 
                     }
 
                     }
@@ -10079,19 +10079,19 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
                     break;
                 case 4 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3322:6: ( ( rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3322:6: ( ( rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3 ) )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3322:6: ( ( rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3 ) )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3323:1: ( rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3322:6: ( ( rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3323:1: ( rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionDefinitionAccess().getStateVariableDeclarationsAssignment_11_3()); 
+                       before(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsAssignment_11_3()); 
                     }
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3324:1: ( rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3 )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3324:2: rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3324:1: ( rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3324:2: rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3_in_rule__FunctionDefinition__Alternatives_117018);
-                    rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3_in_rule__FunctionDeclaration__Alternatives_117018);
+                    rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -10099,7 +10099,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionDefinitionAccess().getStateVariableDeclarationsAssignment_11_3()); 
+                       after(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsAssignment_11_3()); 
                     }
 
                     }
@@ -10108,19 +10108,19 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
                     break;
                 case 5 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3328:6: ( ( rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3328:6: ( ( rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4 ) )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3328:6: ( ( rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4 ) )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3329:1: ( rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3328:6: ( ( rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3329:1: ( rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionDefinitionAccess().getConstantDeclarationsAssignment_11_4()); 
+                       before(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsAssignment_11_4()); 
                     }
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3330:1: ( rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4 )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3330:2: rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3330:1: ( rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3330:2: rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4_in_rule__FunctionDefinition__Alternatives_117036);
-                    rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4_in_rule__FunctionDeclaration__Alternatives_117036);
+                    rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -10128,7 +10128,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionDefinitionAccess().getConstantDeclarationsAssignment_11_4()); 
+                       after(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsAssignment_11_4()); 
                     }
 
                     }
@@ -10137,19 +10137,19 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
                     break;
                 case 6 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3334:6: ( ( rule__FunctionDefinition__EquationsAssignment_11_5 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3334:6: ( ( rule__FunctionDeclaration__EquationsAssignment_11_5 ) )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3334:6: ( ( rule__FunctionDefinition__EquationsAssignment_11_5 ) )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3335:1: ( rule__FunctionDefinition__EquationsAssignment_11_5 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3334:6: ( ( rule__FunctionDeclaration__EquationsAssignment_11_5 ) )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3335:1: ( rule__FunctionDeclaration__EquationsAssignment_11_5 )
                     {
                     if ( state.backtracking==0 ) {
-                       before(grammarAccess.getFunctionDefinitionAccess().getEquationsAssignment_11_5()); 
+                       before(grammarAccess.getFunctionDeclarationAccess().getEquationsAssignment_11_5()); 
                     }
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3336:1: ( rule__FunctionDefinition__EquationsAssignment_11_5 )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3336:2: rule__FunctionDefinition__EquationsAssignment_11_5
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3336:1: ( rule__FunctionDeclaration__EquationsAssignment_11_5 )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:3336:2: rule__FunctionDeclaration__EquationsAssignment_11_5
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__EquationsAssignment_11_5_in_rule__FunctionDefinition__Alternatives_117054);
-                    rule__FunctionDefinition__EquationsAssignment_11_5();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__EquationsAssignment_11_5_in_rule__FunctionDeclaration__Alternatives_117054);
+                    rule__FunctionDeclaration__EquationsAssignment_11_5();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -10157,7 +10157,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
                     }
 
                     if ( state.backtracking==0 ) {
-                       after(grammarAccess.getFunctionDefinitionAccess().getEquationsAssignment_11_5()); 
+                       after(grammarAccess.getFunctionDeclarationAccess().getEquationsAssignment_11_5()); 
                     }
 
                     }
@@ -10179,7 +10179,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Alternatives_11"
+    // $ANTLR end "rule__FunctionDeclaration__Alternatives_11"
 
 
     // $ANTLR start "rule__DataTypeSpecifier__Alternatives"
@@ -16719,23 +16719,23 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__SolverArgument__Group__2__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5048:1: rule__EnumerationDefinition__Group__0 : rule__EnumerationDefinition__Group__0__Impl rule__EnumerationDefinition__Group__1 ;
-    public final void rule__EnumerationDefinition__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5048:1: rule__EnumerationDeclaration__Group__0 : rule__EnumerationDeclaration__Group__0__Impl rule__EnumerationDeclaration__Group__1 ;
+    public final void rule__EnumerationDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5052:1: ( rule__EnumerationDefinition__Group__0__Impl rule__EnumerationDefinition__Group__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5053:2: rule__EnumerationDefinition__Group__0__Impl rule__EnumerationDefinition__Group__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5052:1: ( rule__EnumerationDeclaration__Group__0__Impl rule__EnumerationDeclaration__Group__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5053:2: rule__EnumerationDeclaration__Group__0__Impl rule__EnumerationDeclaration__Group__1
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__0__Impl_in_rule__EnumerationDefinition__Group__010904);
-            rule__EnumerationDefinition__Group__0__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__0__Impl_in_rule__EnumerationDeclaration__Group__010904);
+            rule__EnumerationDeclaration__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__1_in_rule__EnumerationDefinition__Group__010907);
-            rule__EnumerationDefinition__Group__1();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__1_in_rule__EnumerationDeclaration__Group__010907);
+            rule__EnumerationDeclaration__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16754,12 +16754,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__0"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__0"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5060:1: rule__EnumerationDefinition__Group__0__Impl : ( 'enum' ) ;
-    public final void rule__EnumerationDefinition__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5060:1: rule__EnumerationDeclaration__Group__0__Impl : ( 'enum' ) ;
+    public final void rule__EnumerationDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -16771,11 +16771,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5066:1: 'enum'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getEnumKeyword_0()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getEnumKeyword_0()); 
             }
-            match(input,47,FOLLOW_47_in_rule__EnumerationDefinition__Group__0__Impl10935); if (state.failed) return ;
+            match(input,47,FOLLOW_47_in_rule__EnumerationDeclaration__Group__0__Impl10935); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getEnumKeyword_0()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getEnumKeyword_0()); 
             }
 
             }
@@ -16795,26 +16795,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__0__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__0__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5079:1: rule__EnumerationDefinition__Group__1 : rule__EnumerationDefinition__Group__1__Impl rule__EnumerationDefinition__Group__2 ;
-    public final void rule__EnumerationDefinition__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5079:1: rule__EnumerationDeclaration__Group__1 : rule__EnumerationDeclaration__Group__1__Impl rule__EnumerationDeclaration__Group__2 ;
+    public final void rule__EnumerationDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5083:1: ( rule__EnumerationDefinition__Group__1__Impl rule__EnumerationDefinition__Group__2 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5084:2: rule__EnumerationDefinition__Group__1__Impl rule__EnumerationDefinition__Group__2
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5083:1: ( rule__EnumerationDeclaration__Group__1__Impl rule__EnumerationDeclaration__Group__2 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5084:2: rule__EnumerationDeclaration__Group__1__Impl rule__EnumerationDeclaration__Group__2
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__1__Impl_in_rule__EnumerationDefinition__Group__110966);
-            rule__EnumerationDefinition__Group__1__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__1__Impl_in_rule__EnumerationDeclaration__Group__110966);
+            rule__EnumerationDeclaration__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__2_in_rule__EnumerationDefinition__Group__110969);
-            rule__EnumerationDefinition__Group__2();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__2_in_rule__EnumerationDeclaration__Group__110969);
+            rule__EnumerationDeclaration__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16833,30 +16833,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__1"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__1"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5091:1: rule__EnumerationDefinition__Group__1__Impl : ( ( rule__EnumerationDefinition__NameAssignment_1 ) ) ;
-    public final void rule__EnumerationDefinition__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5091:1: rule__EnumerationDeclaration__Group__1__Impl : ( ( rule__EnumerationDeclaration__NameAssignment_1 ) ) ;
+    public final void rule__EnumerationDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5095:1: ( ( ( rule__EnumerationDefinition__NameAssignment_1 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5096:1: ( ( rule__EnumerationDefinition__NameAssignment_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5095:1: ( ( ( rule__EnumerationDeclaration__NameAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5096:1: ( ( rule__EnumerationDeclaration__NameAssignment_1 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5096:1: ( ( rule__EnumerationDefinition__NameAssignment_1 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5097:1: ( rule__EnumerationDefinition__NameAssignment_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5096:1: ( ( rule__EnumerationDeclaration__NameAssignment_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5097:1: ( rule__EnumerationDeclaration__NameAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getNameAssignment_1()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getNameAssignment_1()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5098:1: ( rule__EnumerationDefinition__NameAssignment_1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5098:2: rule__EnumerationDefinition__NameAssignment_1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5098:1: ( rule__EnumerationDeclaration__NameAssignment_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5098:2: rule__EnumerationDeclaration__NameAssignment_1
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__NameAssignment_1_in_rule__EnumerationDefinition__Group__1__Impl10996);
-            rule__EnumerationDefinition__NameAssignment_1();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__NameAssignment_1_in_rule__EnumerationDeclaration__Group__1__Impl10996);
+            rule__EnumerationDeclaration__NameAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16864,7 +16864,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getNameAssignment_1()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getNameAssignment_1()); 
             }
 
             }
@@ -16884,26 +16884,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__1__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__1__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__2"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5108:1: rule__EnumerationDefinition__Group__2 : rule__EnumerationDefinition__Group__2__Impl rule__EnumerationDefinition__Group__3 ;
-    public final void rule__EnumerationDefinition__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__2"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5108:1: rule__EnumerationDeclaration__Group__2 : rule__EnumerationDeclaration__Group__2__Impl rule__EnumerationDeclaration__Group__3 ;
+    public final void rule__EnumerationDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5112:1: ( rule__EnumerationDefinition__Group__2__Impl rule__EnumerationDefinition__Group__3 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5113:2: rule__EnumerationDefinition__Group__2__Impl rule__EnumerationDefinition__Group__3
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5112:1: ( rule__EnumerationDeclaration__Group__2__Impl rule__EnumerationDeclaration__Group__3 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5113:2: rule__EnumerationDeclaration__Group__2__Impl rule__EnumerationDeclaration__Group__3
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__2__Impl_in_rule__EnumerationDefinition__Group__211026);
-            rule__EnumerationDefinition__Group__2__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__2__Impl_in_rule__EnumerationDeclaration__Group__211026);
+            rule__EnumerationDeclaration__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__3_in_rule__EnumerationDefinition__Group__211029);
-            rule__EnumerationDefinition__Group__3();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__3_in_rule__EnumerationDeclaration__Group__211029);
+            rule__EnumerationDeclaration__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -16922,12 +16922,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__2"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__2"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__2__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5120:1: rule__EnumerationDefinition__Group__2__Impl : ( '{' ) ;
-    public final void rule__EnumerationDefinition__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__2__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5120:1: rule__EnumerationDeclaration__Group__2__Impl : ( '{' ) ;
+    public final void rule__EnumerationDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -16939,11 +16939,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5126:1: '{'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getLeftCurlyBracketKeyword_2()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getLeftCurlyBracketKeyword_2()); 
             }
-            match(input,44,FOLLOW_44_in_rule__EnumerationDefinition__Group__2__Impl11057); if (state.failed) return ;
+            match(input,44,FOLLOW_44_in_rule__EnumerationDeclaration__Group__2__Impl11057); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getLeftCurlyBracketKeyword_2()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getLeftCurlyBracketKeyword_2()); 
             }
 
             }
@@ -16963,26 +16963,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__2__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__2__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__3"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5139:1: rule__EnumerationDefinition__Group__3 : rule__EnumerationDefinition__Group__3__Impl rule__EnumerationDefinition__Group__4 ;
-    public final void rule__EnumerationDefinition__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__3"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5139:1: rule__EnumerationDeclaration__Group__3 : rule__EnumerationDeclaration__Group__3__Impl rule__EnumerationDeclaration__Group__4 ;
+    public final void rule__EnumerationDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5143:1: ( rule__EnumerationDefinition__Group__3__Impl rule__EnumerationDefinition__Group__4 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5144:2: rule__EnumerationDefinition__Group__3__Impl rule__EnumerationDefinition__Group__4
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5143:1: ( rule__EnumerationDeclaration__Group__3__Impl rule__EnumerationDeclaration__Group__4 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5144:2: rule__EnumerationDeclaration__Group__3__Impl rule__EnumerationDeclaration__Group__4
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__3__Impl_in_rule__EnumerationDefinition__Group__311088);
-            rule__EnumerationDefinition__Group__3__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__3__Impl_in_rule__EnumerationDeclaration__Group__311088);
+            rule__EnumerationDeclaration__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__4_in_rule__EnumerationDefinition__Group__311091);
-            rule__EnumerationDefinition__Group__4();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__4_in_rule__EnumerationDeclaration__Group__311091);
+            rule__EnumerationDeclaration__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17001,26 +17001,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__3"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__3"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__3__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5151:1: rule__EnumerationDefinition__Group__3__Impl : ( ( rule__EnumerationDefinition__Group_3__0 )? ) ;
-    public final void rule__EnumerationDefinition__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__3__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5151:1: rule__EnumerationDeclaration__Group__3__Impl : ( ( rule__EnumerationDeclaration__Group_3__0 )? ) ;
+    public final void rule__EnumerationDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5155:1: ( ( ( rule__EnumerationDefinition__Group_3__0 )? ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5156:1: ( ( rule__EnumerationDefinition__Group_3__0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5155:1: ( ( ( rule__EnumerationDeclaration__Group_3__0 )? ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5156:1: ( ( rule__EnumerationDeclaration__Group_3__0 )? )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5156:1: ( ( rule__EnumerationDefinition__Group_3__0 )? )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5157:1: ( rule__EnumerationDefinition__Group_3__0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5156:1: ( ( rule__EnumerationDeclaration__Group_3__0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5157:1: ( rule__EnumerationDeclaration__Group_3__0 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getGroup_3()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getGroup_3()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5158:1: ( rule__EnumerationDefinition__Group_3__0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5158:1: ( rule__EnumerationDeclaration__Group_3__0 )?
             int alt49=2;
             int LA49_0 = input.LA(1);
 
@@ -17029,10 +17029,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
             switch (alt49) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5158:2: rule__EnumerationDefinition__Group_3__0
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5158:2: rule__EnumerationDeclaration__Group_3__0
                     {
-                    pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3__0_in_rule__EnumerationDefinition__Group__3__Impl11118);
-                    rule__EnumerationDefinition__Group_3__0();
+                    pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3__0_in_rule__EnumerationDeclaration__Group__3__Impl11118);
+                    rule__EnumerationDeclaration__Group_3__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -17043,7 +17043,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getGroup_3()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getGroup_3()); 
             }
 
             }
@@ -17063,21 +17063,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__3__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__3__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__4"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5168:1: rule__EnumerationDefinition__Group__4 : rule__EnumerationDefinition__Group__4__Impl ;
-    public final void rule__EnumerationDefinition__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__4"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5168:1: rule__EnumerationDeclaration__Group__4 : rule__EnumerationDeclaration__Group__4__Impl ;
+    public final void rule__EnumerationDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5172:1: ( rule__EnumerationDefinition__Group__4__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5173:2: rule__EnumerationDefinition__Group__4__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5172:1: ( rule__EnumerationDeclaration__Group__4__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5173:2: rule__EnumerationDeclaration__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group__4__Impl_in_rule__EnumerationDefinition__Group__411149);
-            rule__EnumerationDefinition__Group__4__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group__4__Impl_in_rule__EnumerationDeclaration__Group__411149);
+            rule__EnumerationDeclaration__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17096,12 +17096,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__4"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__4"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group__4__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5179:1: rule__EnumerationDefinition__Group__4__Impl : ( '}' ) ;
-    public final void rule__EnumerationDefinition__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group__4__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5179:1: rule__EnumerationDeclaration__Group__4__Impl : ( '}' ) ;
+    public final void rule__EnumerationDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -17113,11 +17113,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5185:1: '}'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getRightCurlyBracketKeyword_4()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getRightCurlyBracketKeyword_4()); 
             }
-            match(input,45,FOLLOW_45_in_rule__EnumerationDefinition__Group__4__Impl11177); if (state.failed) return ;
+            match(input,45,FOLLOW_45_in_rule__EnumerationDeclaration__Group__4__Impl11177); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getRightCurlyBracketKeyword_4()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getRightCurlyBracketKeyword_4()); 
             }
 
             }
@@ -17137,110 +17137,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group__4__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group__4__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group_3__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5208:1: rule__EnumerationDefinition__Group_3__0 : rule__EnumerationDefinition__Group_3__0__Impl rule__EnumerationDefinition__Group_3__1 ;
-    public final void rule__EnumerationDefinition__Group_3__0() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5212:1: ( rule__EnumerationDefinition__Group_3__0__Impl rule__EnumerationDefinition__Group_3__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5213:2: rule__EnumerationDefinition__Group_3__0__Impl rule__EnumerationDefinition__Group_3__1
-            {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3__0__Impl_in_rule__EnumerationDefinition__Group_3__011218);
-            rule__EnumerationDefinition__Group_3__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3__1_in_rule__EnumerationDefinition__Group_3__011221);
-            rule__EnumerationDefinition__Group_3__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3__0"
-
-
-    // $ANTLR start "rule__EnumerationDefinition__Group_3__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5220:1: rule__EnumerationDefinition__Group_3__0__Impl : ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0 ) ) ;
-    public final void rule__EnumerationDefinition__Group_3__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5208:1: rule__EnumerationDeclaration__Group_3__0 : rule__EnumerationDeclaration__Group_3__0__Impl rule__EnumerationDeclaration__Group_3__1 ;
+    public final void rule__EnumerationDeclaration__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5224:1: ( ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5225:1: ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5212:1: ( rule__EnumerationDeclaration__Group_3__0__Impl rule__EnumerationDeclaration__Group_3__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5213:2: rule__EnumerationDeclaration__Group_3__0__Impl rule__EnumerationDeclaration__Group_3__1
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5225:1: ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5226:1: ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_0()); 
-            }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5227:1: ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5227:2: rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0
-            {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0_in_rule__EnumerationDefinition__Group_3__0__Impl11248);
-            rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3__0__Impl_in_rule__EnumerationDeclaration__Group_3__011218);
+            rule__EnumerationDeclaration__Group_3__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_0()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3__0__Impl"
-
-
-    // $ANTLR start "rule__EnumerationDefinition__Group_3__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5237:1: rule__EnumerationDefinition__Group_3__1 : rule__EnumerationDefinition__Group_3__1__Impl ;
-    public final void rule__EnumerationDefinition__Group_3__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5241:1: ( rule__EnumerationDefinition__Group_3__1__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5242:2: rule__EnumerationDefinition__Group_3__1__Impl
-            {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3__1__Impl_in_rule__EnumerationDefinition__Group_3__111278);
-            rule__EnumerationDefinition__Group_3__1__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3__1_in_rule__EnumerationDeclaration__Group_3__011221);
+            rule__EnumerationDeclaration__Group_3__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17259,26 +17175,110 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3__1"
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3__0"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group_3__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5248:1: rule__EnumerationDefinition__Group_3__1__Impl : ( ( rule__EnumerationDefinition__Group_3_1__0 )* ) ;
-    public final void rule__EnumerationDefinition__Group_3__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5220:1: rule__EnumerationDeclaration__Group_3__0__Impl : ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0 ) ) ;
+    public final void rule__EnumerationDeclaration__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5252:1: ( ( ( rule__EnumerationDefinition__Group_3_1__0 )* ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5253:1: ( ( rule__EnumerationDefinition__Group_3_1__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5224:1: ( ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5225:1: ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5253:1: ( ( rule__EnumerationDefinition__Group_3_1__0 )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5254:1: ( rule__EnumerationDefinition__Group_3_1__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5225:1: ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5226:1: ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getGroup_3_1()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_0()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5255:1: ( rule__EnumerationDefinition__Group_3_1__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5227:1: ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5227:2: rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0
+            {
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0_in_rule__EnumerationDeclaration__Group_3__0__Impl11248);
+            rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3__0__Impl"
+
+
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5237:1: rule__EnumerationDeclaration__Group_3__1 : rule__EnumerationDeclaration__Group_3__1__Impl ;
+    public final void rule__EnumerationDeclaration__Group_3__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5241:1: ( rule__EnumerationDeclaration__Group_3__1__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5242:2: rule__EnumerationDeclaration__Group_3__1__Impl
+            {
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3__1__Impl_in_rule__EnumerationDeclaration__Group_3__111278);
+            rule__EnumerationDeclaration__Group_3__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3__1"
+
+
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5248:1: rule__EnumerationDeclaration__Group_3__1__Impl : ( ( rule__EnumerationDeclaration__Group_3_1__0 )* ) ;
+    public final void rule__EnumerationDeclaration__Group_3__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5252:1: ( ( ( rule__EnumerationDeclaration__Group_3_1__0 )* ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5253:1: ( ( rule__EnumerationDeclaration__Group_3_1__0 )* )
+            {
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5253:1: ( ( rule__EnumerationDeclaration__Group_3_1__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5254:1: ( rule__EnumerationDeclaration__Group_3_1__0 )*
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getEnumerationDeclarationAccess().getGroup_3_1()); 
+            }
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5255:1: ( rule__EnumerationDeclaration__Group_3_1__0 )*
             loop50:
             do {
                 int alt50=2;
@@ -17291,10 +17291,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
                 switch (alt50) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5255:2: rule__EnumerationDefinition__Group_3_1__0
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5255:2: rule__EnumerationDeclaration__Group_3_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3_1__0_in_rule__EnumerationDefinition__Group_3__1__Impl11305);
-            	    rule__EnumerationDefinition__Group_3_1__0();
+            	    pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3_1__0_in_rule__EnumerationDeclaration__Group_3__1__Impl11305);
+            	    rule__EnumerationDeclaration__Group_3_1__0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -17308,7 +17308,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getGroup_3_1()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getGroup_3_1()); 
             }
 
             }
@@ -17328,26 +17328,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3__1__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3__1__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group_3_1__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5269:1: rule__EnumerationDefinition__Group_3_1__0 : rule__EnumerationDefinition__Group_3_1__0__Impl rule__EnumerationDefinition__Group_3_1__1 ;
-    public final void rule__EnumerationDefinition__Group_3_1__0() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3_1__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5269:1: rule__EnumerationDeclaration__Group_3_1__0 : rule__EnumerationDeclaration__Group_3_1__0__Impl rule__EnumerationDeclaration__Group_3_1__1 ;
+    public final void rule__EnumerationDeclaration__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5273:1: ( rule__EnumerationDefinition__Group_3_1__0__Impl rule__EnumerationDefinition__Group_3_1__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5274:2: rule__EnumerationDefinition__Group_3_1__0__Impl rule__EnumerationDefinition__Group_3_1__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5273:1: ( rule__EnumerationDeclaration__Group_3_1__0__Impl rule__EnumerationDeclaration__Group_3_1__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5274:2: rule__EnumerationDeclaration__Group_3_1__0__Impl rule__EnumerationDeclaration__Group_3_1__1
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3_1__0__Impl_in_rule__EnumerationDefinition__Group_3_1__011340);
-            rule__EnumerationDefinition__Group_3_1__0__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3_1__0__Impl_in_rule__EnumerationDeclaration__Group_3_1__011340);
+            rule__EnumerationDeclaration__Group_3_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3_1__1_in_rule__EnumerationDefinition__Group_3_1__011343);
-            rule__EnumerationDefinition__Group_3_1__1();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3_1__1_in_rule__EnumerationDeclaration__Group_3_1__011343);
+            rule__EnumerationDeclaration__Group_3_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17366,12 +17366,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3_1__0"
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3_1__0"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group_3_1__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5281:1: rule__EnumerationDefinition__Group_3_1__0__Impl : ( ',' ) ;
-    public final void rule__EnumerationDefinition__Group_3_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3_1__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5281:1: rule__EnumerationDeclaration__Group_3_1__0__Impl : ( ',' ) ;
+    public final void rule__EnumerationDeclaration__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -17383,11 +17383,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5287:1: ','
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getCommaKeyword_3_1_0()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getCommaKeyword_3_1_0()); 
             }
-            match(input,48,FOLLOW_48_in_rule__EnumerationDefinition__Group_3_1__0__Impl11371); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__EnumerationDeclaration__Group_3_1__0__Impl11371); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getCommaKeyword_3_1_0()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getCommaKeyword_3_1_0()); 
             }
 
             }
@@ -17407,21 +17407,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3_1__0__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3_1__0__Impl"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group_3_1__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5300:1: rule__EnumerationDefinition__Group_3_1__1 : rule__EnumerationDefinition__Group_3_1__1__Impl ;
-    public final void rule__EnumerationDefinition__Group_3_1__1() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3_1__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5300:1: rule__EnumerationDeclaration__Group_3_1__1 : rule__EnumerationDeclaration__Group_3_1__1__Impl ;
+    public final void rule__EnumerationDeclaration__Group_3_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5304:1: ( rule__EnumerationDefinition__Group_3_1__1__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5305:2: rule__EnumerationDefinition__Group_3_1__1__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5304:1: ( rule__EnumerationDeclaration__Group_3_1__1__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5305:2: rule__EnumerationDeclaration__Group_3_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__Group_3_1__1__Impl_in_rule__EnumerationDefinition__Group_3_1__111402);
-            rule__EnumerationDefinition__Group_3_1__1__Impl();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__Group_3_1__1__Impl_in_rule__EnumerationDeclaration__Group_3_1__111402);
+            rule__EnumerationDeclaration__Group_3_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17440,30 +17440,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3_1__1"
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3_1__1"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__Group_3_1__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5311:1: rule__EnumerationDefinition__Group_3_1__1__Impl : ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1 ) ) ;
-    public final void rule__EnumerationDefinition__Group_3_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__Group_3_1__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5311:1: rule__EnumerationDeclaration__Group_3_1__1__Impl : ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1 ) ) ;
+    public final void rule__EnumerationDeclaration__Group_3_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5315:1: ( ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5316:1: ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5315:1: ( ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5316:1: ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5316:1: ( ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5317:1: ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5316:1: ( ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5317:1: ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_1_1()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_1_1()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5318:1: ( rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5318:2: rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5318:1: ( rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5318:2: rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1
             {
-            pushFollow(FOLLOW_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1_in_rule__EnumerationDefinition__Group_3_1__1__Impl11429);
-            rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1();
+            pushFollow(FOLLOW_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1_in_rule__EnumerationDeclaration__Group_3_1__1__Impl11429);
+            rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17471,7 +17471,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsAssignment_3_1_1()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_1_1()); 
             }
 
             }
@@ -17491,7 +17491,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__Group_3_1__1__Impl"
+    // $ANTLR end "rule__EnumerationDeclaration__Group_3_1__1__Impl"
 
 
     // $ANTLR start "rule__TypedefDeclaration__Group__0"
@@ -17746,23 +17746,23 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__TypedefDeclaration__Group__2__Impl"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5426:1: rule__StructDefinition__Group__0 : rule__StructDefinition__Group__0__Impl rule__StructDefinition__Group__1 ;
-    public final void rule__StructDefinition__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5426:1: rule__StructDeclaration__Group__0 : rule__StructDeclaration__Group__0__Impl rule__StructDeclaration__Group__1 ;
+    public final void rule__StructDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5430:1: ( rule__StructDefinition__Group__0__Impl rule__StructDefinition__Group__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5431:2: rule__StructDefinition__Group__0__Impl rule__StructDefinition__Group__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5430:1: ( rule__StructDeclaration__Group__0__Impl rule__StructDeclaration__Group__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5431:2: rule__StructDeclaration__Group__0__Impl rule__StructDeclaration__Group__1
             {
-            pushFollow(FOLLOW_rule__StructDefinition__Group__0__Impl_in_rule__StructDefinition__Group__011648);
-            rule__StructDefinition__Group__0__Impl();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__0__Impl_in_rule__StructDeclaration__Group__011648);
+            rule__StructDeclaration__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructDefinition__Group__1_in_rule__StructDefinition__Group__011651);
-            rule__StructDefinition__Group__1();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__1_in_rule__StructDeclaration__Group__011651);
+            rule__StructDeclaration__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17781,12 +17781,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__0"
+    // $ANTLR end "rule__StructDeclaration__Group__0"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5438:1: rule__StructDefinition__Group__0__Impl : ( 'struct' ) ;
-    public final void rule__StructDefinition__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5438:1: rule__StructDeclaration__Group__0__Impl : ( 'struct' ) ;
+    public final void rule__StructDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -17798,11 +17798,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5444:1: 'struct'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getStructKeyword_0()); 
+               before(grammarAccess.getStructDeclarationAccess().getStructKeyword_0()); 
             }
-            match(input,50,FOLLOW_50_in_rule__StructDefinition__Group__0__Impl11679); if (state.failed) return ;
+            match(input,50,FOLLOW_50_in_rule__StructDeclaration__Group__0__Impl11679); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getStructKeyword_0()); 
+               after(grammarAccess.getStructDeclarationAccess().getStructKeyword_0()); 
             }
 
             }
@@ -17822,26 +17822,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__0__Impl"
+    // $ANTLR end "rule__StructDeclaration__Group__0__Impl"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5457:1: rule__StructDefinition__Group__1 : rule__StructDefinition__Group__1__Impl rule__StructDefinition__Group__2 ;
-    public final void rule__StructDefinition__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5457:1: rule__StructDeclaration__Group__1 : rule__StructDeclaration__Group__1__Impl rule__StructDeclaration__Group__2 ;
+    public final void rule__StructDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5461:1: ( rule__StructDefinition__Group__1__Impl rule__StructDefinition__Group__2 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5462:2: rule__StructDefinition__Group__1__Impl rule__StructDefinition__Group__2
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5461:1: ( rule__StructDeclaration__Group__1__Impl rule__StructDeclaration__Group__2 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5462:2: rule__StructDeclaration__Group__1__Impl rule__StructDeclaration__Group__2
             {
-            pushFollow(FOLLOW_rule__StructDefinition__Group__1__Impl_in_rule__StructDefinition__Group__111710);
-            rule__StructDefinition__Group__1__Impl();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__1__Impl_in_rule__StructDeclaration__Group__111710);
+            rule__StructDeclaration__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructDefinition__Group__2_in_rule__StructDefinition__Group__111713);
-            rule__StructDefinition__Group__2();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__2_in_rule__StructDeclaration__Group__111713);
+            rule__StructDeclaration__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17860,30 +17860,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__1"
+    // $ANTLR end "rule__StructDeclaration__Group__1"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5469:1: rule__StructDefinition__Group__1__Impl : ( ( rule__StructDefinition__NameAssignment_1 ) ) ;
-    public final void rule__StructDefinition__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5469:1: rule__StructDeclaration__Group__1__Impl : ( ( rule__StructDeclaration__NameAssignment_1 ) ) ;
+    public final void rule__StructDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5473:1: ( ( ( rule__StructDefinition__NameAssignment_1 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5474:1: ( ( rule__StructDefinition__NameAssignment_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5473:1: ( ( ( rule__StructDeclaration__NameAssignment_1 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5474:1: ( ( rule__StructDeclaration__NameAssignment_1 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5474:1: ( ( rule__StructDefinition__NameAssignment_1 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5475:1: ( rule__StructDefinition__NameAssignment_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5474:1: ( ( rule__StructDeclaration__NameAssignment_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5475:1: ( rule__StructDeclaration__NameAssignment_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getNameAssignment_1()); 
+               before(grammarAccess.getStructDeclarationAccess().getNameAssignment_1()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5476:1: ( rule__StructDefinition__NameAssignment_1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5476:2: rule__StructDefinition__NameAssignment_1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5476:1: ( rule__StructDeclaration__NameAssignment_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5476:2: rule__StructDeclaration__NameAssignment_1
             {
-            pushFollow(FOLLOW_rule__StructDefinition__NameAssignment_1_in_rule__StructDefinition__Group__1__Impl11740);
-            rule__StructDefinition__NameAssignment_1();
+            pushFollow(FOLLOW_rule__StructDeclaration__NameAssignment_1_in_rule__StructDeclaration__Group__1__Impl11740);
+            rule__StructDeclaration__NameAssignment_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17891,7 +17891,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getNameAssignment_1()); 
+               after(grammarAccess.getStructDeclarationAccess().getNameAssignment_1()); 
             }
 
             }
@@ -17911,26 +17911,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__1__Impl"
+    // $ANTLR end "rule__StructDeclaration__Group__1__Impl"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__2"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5486:1: rule__StructDefinition__Group__2 : rule__StructDefinition__Group__2__Impl rule__StructDefinition__Group__3 ;
-    public final void rule__StructDefinition__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__2"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5486:1: rule__StructDeclaration__Group__2 : rule__StructDeclaration__Group__2__Impl rule__StructDeclaration__Group__3 ;
+    public final void rule__StructDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5490:1: ( rule__StructDefinition__Group__2__Impl rule__StructDefinition__Group__3 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5491:2: rule__StructDefinition__Group__2__Impl rule__StructDefinition__Group__3
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5490:1: ( rule__StructDeclaration__Group__2__Impl rule__StructDeclaration__Group__3 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5491:2: rule__StructDeclaration__Group__2__Impl rule__StructDeclaration__Group__3
             {
-            pushFollow(FOLLOW_rule__StructDefinition__Group__2__Impl_in_rule__StructDefinition__Group__211770);
-            rule__StructDefinition__Group__2__Impl();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__2__Impl_in_rule__StructDeclaration__Group__211770);
+            rule__StructDeclaration__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructDefinition__Group__3_in_rule__StructDefinition__Group__211773);
-            rule__StructDefinition__Group__3();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__3_in_rule__StructDeclaration__Group__211773);
+            rule__StructDeclaration__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -17949,12 +17949,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__2"
+    // $ANTLR end "rule__StructDeclaration__Group__2"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__2__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5498:1: rule__StructDefinition__Group__2__Impl : ( '{' ) ;
-    public final void rule__StructDefinition__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__2__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5498:1: rule__StructDeclaration__Group__2__Impl : ( '{' ) ;
+    public final void rule__StructDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -17966,11 +17966,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5504:1: '{'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getLeftCurlyBracketKeyword_2()); 
+               before(grammarAccess.getStructDeclarationAccess().getLeftCurlyBracketKeyword_2()); 
             }
-            match(input,44,FOLLOW_44_in_rule__StructDefinition__Group__2__Impl11801); if (state.failed) return ;
+            match(input,44,FOLLOW_44_in_rule__StructDeclaration__Group__2__Impl11801); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getLeftCurlyBracketKeyword_2()); 
+               after(grammarAccess.getStructDeclarationAccess().getLeftCurlyBracketKeyword_2()); 
             }
 
             }
@@ -17990,26 +17990,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__2__Impl"
+    // $ANTLR end "rule__StructDeclaration__Group__2__Impl"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__3"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5517:1: rule__StructDefinition__Group__3 : rule__StructDefinition__Group__3__Impl rule__StructDefinition__Group__4 ;
-    public final void rule__StructDefinition__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__3"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5517:1: rule__StructDeclaration__Group__3 : rule__StructDeclaration__Group__3__Impl rule__StructDeclaration__Group__4 ;
+    public final void rule__StructDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5521:1: ( rule__StructDefinition__Group__3__Impl rule__StructDefinition__Group__4 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5522:2: rule__StructDefinition__Group__3__Impl rule__StructDefinition__Group__4
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5521:1: ( rule__StructDeclaration__Group__3__Impl rule__StructDeclaration__Group__4 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5522:2: rule__StructDeclaration__Group__3__Impl rule__StructDeclaration__Group__4
             {
-            pushFollow(FOLLOW_rule__StructDefinition__Group__3__Impl_in_rule__StructDefinition__Group__311832);
-            rule__StructDefinition__Group__3__Impl();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__3__Impl_in_rule__StructDeclaration__Group__311832);
+            rule__StructDeclaration__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__StructDefinition__Group__4_in_rule__StructDefinition__Group__311835);
-            rule__StructDefinition__Group__4();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__4_in_rule__StructDeclaration__Group__311835);
+            rule__StructDeclaration__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18028,26 +18028,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__3"
+    // $ANTLR end "rule__StructDeclaration__Group__3"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__3__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5529:1: rule__StructDefinition__Group__3__Impl : ( ( rule__StructDefinition__MemberDeclarationsAssignment_3 )* ) ;
-    public final void rule__StructDefinition__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__3__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5529:1: rule__StructDeclaration__Group__3__Impl : ( ( rule__StructDeclaration__MemberDeclarationsAssignment_3 )* ) ;
+    public final void rule__StructDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5533:1: ( ( ( rule__StructDefinition__MemberDeclarationsAssignment_3 )* ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5534:1: ( ( rule__StructDefinition__MemberDeclarationsAssignment_3 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5533:1: ( ( ( rule__StructDeclaration__MemberDeclarationsAssignment_3 )* ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5534:1: ( ( rule__StructDeclaration__MemberDeclarationsAssignment_3 )* )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5534:1: ( ( rule__StructDefinition__MemberDeclarationsAssignment_3 )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5535:1: ( rule__StructDefinition__MemberDeclarationsAssignment_3 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5534:1: ( ( rule__StructDeclaration__MemberDeclarationsAssignment_3 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5535:1: ( rule__StructDeclaration__MemberDeclarationsAssignment_3 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getMemberDeclarationsAssignment_3()); 
+               before(grammarAccess.getStructDeclarationAccess().getMemberDeclarationsAssignment_3()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5536:1: ( rule__StructDefinition__MemberDeclarationsAssignment_3 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5536:1: ( rule__StructDeclaration__MemberDeclarationsAssignment_3 )*
             loop51:
             do {
                 int alt51=2;
@@ -18060,10 +18060,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
                 switch (alt51) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5536:2: rule__StructDefinition__MemberDeclarationsAssignment_3
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5536:2: rule__StructDeclaration__MemberDeclarationsAssignment_3
             	    {
-            	    pushFollow(FOLLOW_rule__StructDefinition__MemberDeclarationsAssignment_3_in_rule__StructDefinition__Group__3__Impl11862);
-            	    rule__StructDefinition__MemberDeclarationsAssignment_3();
+            	    pushFollow(FOLLOW_rule__StructDeclaration__MemberDeclarationsAssignment_3_in_rule__StructDeclaration__Group__3__Impl11862);
+            	    rule__StructDeclaration__MemberDeclarationsAssignment_3();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -18077,7 +18077,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getMemberDeclarationsAssignment_3()); 
+               after(grammarAccess.getStructDeclarationAccess().getMemberDeclarationsAssignment_3()); 
             }
 
             }
@@ -18097,21 +18097,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__3__Impl"
+    // $ANTLR end "rule__StructDeclaration__Group__3__Impl"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__4"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5546:1: rule__StructDefinition__Group__4 : rule__StructDefinition__Group__4__Impl ;
-    public final void rule__StructDefinition__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__4"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5546:1: rule__StructDeclaration__Group__4 : rule__StructDeclaration__Group__4__Impl ;
+    public final void rule__StructDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5550:1: ( rule__StructDefinition__Group__4__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5551:2: rule__StructDefinition__Group__4__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5550:1: ( rule__StructDeclaration__Group__4__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5551:2: rule__StructDeclaration__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__StructDefinition__Group__4__Impl_in_rule__StructDefinition__Group__411893);
-            rule__StructDefinition__Group__4__Impl();
+            pushFollow(FOLLOW_rule__StructDeclaration__Group__4__Impl_in_rule__StructDeclaration__Group__411893);
+            rule__StructDeclaration__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18130,12 +18130,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__4"
+    // $ANTLR end "rule__StructDeclaration__Group__4"
 
 
-    // $ANTLR start "rule__StructDefinition__Group__4__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5557:1: rule__StructDefinition__Group__4__Impl : ( '}' ) ;
-    public final void rule__StructDefinition__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__Group__4__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5557:1: rule__StructDeclaration__Group__4__Impl : ( '}' ) ;
+    public final void rule__StructDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -18147,11 +18147,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5563:1: '}'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getRightCurlyBracketKeyword_4()); 
+               before(grammarAccess.getStructDeclarationAccess().getRightCurlyBracketKeyword_4()); 
             }
-            match(input,45,FOLLOW_45_in_rule__StructDefinition__Group__4__Impl11921); if (state.failed) return ;
+            match(input,45,FOLLOW_45_in_rule__StructDeclaration__Group__4__Impl11921); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getRightCurlyBracketKeyword_4()); 
+               after(grammarAccess.getStructDeclarationAccess().getRightCurlyBracketKeyword_4()); 
             }
 
             }
@@ -18171,7 +18171,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__Group__4__Impl"
+    // $ANTLR end "rule__StructDeclaration__Group__4__Impl"
 
 
     // $ANTLR start "rule__StructMemberDeclaration__Group__0"
@@ -18347,23 +18347,23 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__StructMemberDeclaration__Group__1__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5647:1: rule__FunctionDefinition__Group__0 : rule__FunctionDefinition__Group__0__Impl rule__FunctionDefinition__Group__1 ;
-    public final void rule__FunctionDefinition__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5647:1: rule__FunctionDeclaration__Group__0 : rule__FunctionDeclaration__Group__0__Impl rule__FunctionDeclaration__Group__1 ;
+    public final void rule__FunctionDeclaration__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5651:1: ( rule__FunctionDefinition__Group__0__Impl rule__FunctionDefinition__Group__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5652:2: rule__FunctionDefinition__Group__0__Impl rule__FunctionDefinition__Group__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5651:1: ( rule__FunctionDeclaration__Group__0__Impl rule__FunctionDeclaration__Group__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5652:2: rule__FunctionDeclaration__Group__0__Impl rule__FunctionDeclaration__Group__1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__0__Impl_in_rule__FunctionDefinition__Group__012083);
-            rule__FunctionDefinition__Group__0__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__0__Impl_in_rule__FunctionDeclaration__Group__012083);
+            rule__FunctionDeclaration__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__1_in_rule__FunctionDefinition__Group__012086);
-            rule__FunctionDefinition__Group__1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__1_in_rule__FunctionDeclaration__Group__012086);
+            rule__FunctionDeclaration__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18382,26 +18382,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__0"
+    // $ANTLR end "rule__FunctionDeclaration__Group__0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5659:1: rule__FunctionDefinition__Group__0__Impl : ( ( rule__FunctionDefinition__KindAssignment_0 )? ) ;
-    public final void rule__FunctionDefinition__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5659:1: rule__FunctionDeclaration__Group__0__Impl : ( ( rule__FunctionDeclaration__KindAssignment_0 )? ) ;
+    public final void rule__FunctionDeclaration__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5663:1: ( ( ( rule__FunctionDefinition__KindAssignment_0 )? ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5664:1: ( ( rule__FunctionDefinition__KindAssignment_0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5663:1: ( ( ( rule__FunctionDeclaration__KindAssignment_0 )? ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5664:1: ( ( rule__FunctionDeclaration__KindAssignment_0 )? )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5664:1: ( ( rule__FunctionDefinition__KindAssignment_0 )? )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5665:1: ( rule__FunctionDefinition__KindAssignment_0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5664:1: ( ( rule__FunctionDeclaration__KindAssignment_0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5665:1: ( rule__FunctionDeclaration__KindAssignment_0 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getKindAssignment_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getKindAssignment_0()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5666:1: ( rule__FunctionDefinition__KindAssignment_0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5666:1: ( rule__FunctionDeclaration__KindAssignment_0 )?
             int alt52=2;
             int LA52_0 = input.LA(1);
 
@@ -18410,10 +18410,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
             switch (alt52) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5666:2: rule__FunctionDefinition__KindAssignment_0
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5666:2: rule__FunctionDeclaration__KindAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__KindAssignment_0_in_rule__FunctionDefinition__Group__0__Impl12113);
-                    rule__FunctionDefinition__KindAssignment_0();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__KindAssignment_0_in_rule__FunctionDeclaration__Group__0__Impl12113);
+                    rule__FunctionDeclaration__KindAssignment_0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -18424,7 +18424,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getKindAssignment_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getKindAssignment_0()); 
             }
 
             }
@@ -18444,26 +18444,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__0__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__0__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5676:1: rule__FunctionDefinition__Group__1 : rule__FunctionDefinition__Group__1__Impl rule__FunctionDefinition__Group__2 ;
-    public final void rule__FunctionDefinition__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5676:1: rule__FunctionDeclaration__Group__1 : rule__FunctionDeclaration__Group__1__Impl rule__FunctionDeclaration__Group__2 ;
+    public final void rule__FunctionDeclaration__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5680:1: ( rule__FunctionDefinition__Group__1__Impl rule__FunctionDefinition__Group__2 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5681:2: rule__FunctionDefinition__Group__1__Impl rule__FunctionDefinition__Group__2
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5680:1: ( rule__FunctionDeclaration__Group__1__Impl rule__FunctionDeclaration__Group__2 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5681:2: rule__FunctionDeclaration__Group__1__Impl rule__FunctionDeclaration__Group__2
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__1__Impl_in_rule__FunctionDefinition__Group__112144);
-            rule__FunctionDefinition__Group__1__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__1__Impl_in_rule__FunctionDeclaration__Group__112144);
+            rule__FunctionDeclaration__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__2_in_rule__FunctionDefinition__Group__112147);
-            rule__FunctionDefinition__Group__2();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__2_in_rule__FunctionDeclaration__Group__112147);
+            rule__FunctionDeclaration__Group__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18482,12 +18482,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__1"
+    // $ANTLR end "rule__FunctionDeclaration__Group__1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5688:1: rule__FunctionDefinition__Group__1__Impl : ( 'func' ) ;
-    public final void rule__FunctionDefinition__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5688:1: rule__FunctionDeclaration__Group__1__Impl : ( 'func' ) ;
+    public final void rule__FunctionDeclaration__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -18499,11 +18499,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5694:1: 'func'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getFuncKeyword_1()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getFuncKeyword_1()); 
             }
-            match(input,51,FOLLOW_51_in_rule__FunctionDefinition__Group__1__Impl12175); if (state.failed) return ;
+            match(input,51,FOLLOW_51_in_rule__FunctionDeclaration__Group__1__Impl12175); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getFuncKeyword_1()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getFuncKeyword_1()); 
             }
 
             }
@@ -18523,26 +18523,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__1__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__1__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__2"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5707:1: rule__FunctionDefinition__Group__2 : rule__FunctionDefinition__Group__2__Impl rule__FunctionDefinition__Group__3 ;
-    public final void rule__FunctionDefinition__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__2"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5707:1: rule__FunctionDeclaration__Group__2 : rule__FunctionDeclaration__Group__2__Impl rule__FunctionDeclaration__Group__3 ;
+    public final void rule__FunctionDeclaration__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5711:1: ( rule__FunctionDefinition__Group__2__Impl rule__FunctionDefinition__Group__3 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5712:2: rule__FunctionDefinition__Group__2__Impl rule__FunctionDefinition__Group__3
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5711:1: ( rule__FunctionDeclaration__Group__2__Impl rule__FunctionDeclaration__Group__3 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5712:2: rule__FunctionDeclaration__Group__2__Impl rule__FunctionDeclaration__Group__3
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__2__Impl_in_rule__FunctionDefinition__Group__212206);
-            rule__FunctionDefinition__Group__2__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__2__Impl_in_rule__FunctionDeclaration__Group__212206);
+            rule__FunctionDeclaration__Group__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__3_in_rule__FunctionDefinition__Group__212209);
-            rule__FunctionDefinition__Group__3();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__3_in_rule__FunctionDeclaration__Group__212209);
+            rule__FunctionDeclaration__Group__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18561,30 +18561,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__2"
+    // $ANTLR end "rule__FunctionDeclaration__Group__2"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__2__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5719:1: rule__FunctionDefinition__Group__2__Impl : ( ( rule__FunctionDefinition__NameAssignment_2 ) ) ;
-    public final void rule__FunctionDefinition__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__2__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5719:1: rule__FunctionDeclaration__Group__2__Impl : ( ( rule__FunctionDeclaration__NameAssignment_2 ) ) ;
+    public final void rule__FunctionDeclaration__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5723:1: ( ( ( rule__FunctionDefinition__NameAssignment_2 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5724:1: ( ( rule__FunctionDefinition__NameAssignment_2 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5723:1: ( ( ( rule__FunctionDeclaration__NameAssignment_2 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5724:1: ( ( rule__FunctionDeclaration__NameAssignment_2 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5724:1: ( ( rule__FunctionDefinition__NameAssignment_2 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5725:1: ( rule__FunctionDefinition__NameAssignment_2 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5724:1: ( ( rule__FunctionDeclaration__NameAssignment_2 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5725:1: ( rule__FunctionDeclaration__NameAssignment_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getNameAssignment_2()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getNameAssignment_2()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5726:1: ( rule__FunctionDefinition__NameAssignment_2 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5726:2: rule__FunctionDefinition__NameAssignment_2
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5726:1: ( rule__FunctionDeclaration__NameAssignment_2 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5726:2: rule__FunctionDeclaration__NameAssignment_2
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__NameAssignment_2_in_rule__FunctionDefinition__Group__2__Impl12236);
-            rule__FunctionDefinition__NameAssignment_2();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__NameAssignment_2_in_rule__FunctionDeclaration__Group__2__Impl12236);
+            rule__FunctionDeclaration__NameAssignment_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18592,7 +18592,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getNameAssignment_2()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getNameAssignment_2()); 
             }
 
             }
@@ -18612,26 +18612,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__2__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__2__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__3"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5736:1: rule__FunctionDefinition__Group__3 : rule__FunctionDefinition__Group__3__Impl rule__FunctionDefinition__Group__4 ;
-    public final void rule__FunctionDefinition__Group__3() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__3"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5736:1: rule__FunctionDeclaration__Group__3 : rule__FunctionDeclaration__Group__3__Impl rule__FunctionDeclaration__Group__4 ;
+    public final void rule__FunctionDeclaration__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5740:1: ( rule__FunctionDefinition__Group__3__Impl rule__FunctionDefinition__Group__4 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5741:2: rule__FunctionDefinition__Group__3__Impl rule__FunctionDefinition__Group__4
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5740:1: ( rule__FunctionDeclaration__Group__3__Impl rule__FunctionDeclaration__Group__4 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5741:2: rule__FunctionDeclaration__Group__3__Impl rule__FunctionDeclaration__Group__4
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__3__Impl_in_rule__FunctionDefinition__Group__312266);
-            rule__FunctionDefinition__Group__3__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__3__Impl_in_rule__FunctionDeclaration__Group__312266);
+            rule__FunctionDeclaration__Group__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__4_in_rule__FunctionDefinition__Group__312269);
-            rule__FunctionDefinition__Group__4();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__4_in_rule__FunctionDeclaration__Group__312269);
+            rule__FunctionDeclaration__Group__4();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18650,26 +18650,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__3"
+    // $ANTLR end "rule__FunctionDeclaration__Group__3"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__3__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5748:1: rule__FunctionDefinition__Group__3__Impl : ( ( rule__FunctionDefinition__Group_3__0 )? ) ;
-    public final void rule__FunctionDefinition__Group__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__3__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5748:1: rule__FunctionDeclaration__Group__3__Impl : ( ( rule__FunctionDeclaration__Group_3__0 )? ) ;
+    public final void rule__FunctionDeclaration__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5752:1: ( ( ( rule__FunctionDefinition__Group_3__0 )? ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5753:1: ( ( rule__FunctionDefinition__Group_3__0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5752:1: ( ( ( rule__FunctionDeclaration__Group_3__0 )? ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5753:1: ( ( rule__FunctionDeclaration__Group_3__0 )? )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5753:1: ( ( rule__FunctionDefinition__Group_3__0 )? )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5754:1: ( rule__FunctionDefinition__Group_3__0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5753:1: ( ( rule__FunctionDeclaration__Group_3__0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5754:1: ( rule__FunctionDeclaration__Group_3__0 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getGroup_3()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getGroup_3()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5755:1: ( rule__FunctionDefinition__Group_3__0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5755:1: ( rule__FunctionDeclaration__Group_3__0 )?
             int alt53=2;
             int LA53_0 = input.LA(1);
 
@@ -18678,10 +18678,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
             switch (alt53) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5755:2: rule__FunctionDefinition__Group_3__0
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5755:2: rule__FunctionDeclaration__Group_3__0
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__0_in_rule__FunctionDefinition__Group__3__Impl12296);
-                    rule__FunctionDefinition__Group_3__0();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__0_in_rule__FunctionDeclaration__Group__3__Impl12296);
+                    rule__FunctionDeclaration__Group_3__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -18692,7 +18692,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getGroup_3()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getGroup_3()); 
             }
 
             }
@@ -18712,26 +18712,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__3__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__3__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__4"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5765:1: rule__FunctionDefinition__Group__4 : rule__FunctionDefinition__Group__4__Impl rule__FunctionDefinition__Group__5 ;
-    public final void rule__FunctionDefinition__Group__4() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__4"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5765:1: rule__FunctionDeclaration__Group__4 : rule__FunctionDeclaration__Group__4__Impl rule__FunctionDeclaration__Group__5 ;
+    public final void rule__FunctionDeclaration__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5769:1: ( rule__FunctionDefinition__Group__4__Impl rule__FunctionDefinition__Group__5 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5770:2: rule__FunctionDefinition__Group__4__Impl rule__FunctionDefinition__Group__5
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5769:1: ( rule__FunctionDeclaration__Group__4__Impl rule__FunctionDeclaration__Group__5 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5770:2: rule__FunctionDeclaration__Group__4__Impl rule__FunctionDeclaration__Group__5
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__4__Impl_in_rule__FunctionDefinition__Group__412327);
-            rule__FunctionDefinition__Group__4__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__4__Impl_in_rule__FunctionDeclaration__Group__412327);
+            rule__FunctionDeclaration__Group__4__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__5_in_rule__FunctionDefinition__Group__412330);
-            rule__FunctionDefinition__Group__5();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__5_in_rule__FunctionDeclaration__Group__412330);
+            rule__FunctionDeclaration__Group__5();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18750,12 +18750,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__4"
+    // $ANTLR end "rule__FunctionDeclaration__Group__4"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__4__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5777:1: rule__FunctionDefinition__Group__4__Impl : ( '(' ) ;
-    public final void rule__FunctionDefinition__Group__4__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__4__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5777:1: rule__FunctionDeclaration__Group__4__Impl : ( '(' ) ;
+    public final void rule__FunctionDeclaration__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -18767,11 +18767,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5783:1: '('
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getLeftParenthesisKeyword_4()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getLeftParenthesisKeyword_4()); 
             }
-            match(input,52,FOLLOW_52_in_rule__FunctionDefinition__Group__4__Impl12358); if (state.failed) return ;
+            match(input,52,FOLLOW_52_in_rule__FunctionDeclaration__Group__4__Impl12358); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getLeftParenthesisKeyword_4()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getLeftParenthesisKeyword_4()); 
             }
 
             }
@@ -18791,26 +18791,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__4__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__4__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__5"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5796:1: rule__FunctionDefinition__Group__5 : rule__FunctionDefinition__Group__5__Impl rule__FunctionDefinition__Group__6 ;
-    public final void rule__FunctionDefinition__Group__5() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__5"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5796:1: rule__FunctionDeclaration__Group__5 : rule__FunctionDeclaration__Group__5__Impl rule__FunctionDeclaration__Group__6 ;
+    public final void rule__FunctionDeclaration__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5800:1: ( rule__FunctionDefinition__Group__5__Impl rule__FunctionDefinition__Group__6 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5801:2: rule__FunctionDefinition__Group__5__Impl rule__FunctionDefinition__Group__6
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5800:1: ( rule__FunctionDeclaration__Group__5__Impl rule__FunctionDeclaration__Group__6 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5801:2: rule__FunctionDeclaration__Group__5__Impl rule__FunctionDeclaration__Group__6
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__5__Impl_in_rule__FunctionDefinition__Group__512389);
-            rule__FunctionDefinition__Group__5__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__5__Impl_in_rule__FunctionDeclaration__Group__512389);
+            rule__FunctionDeclaration__Group__5__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__6_in_rule__FunctionDefinition__Group__512392);
-            rule__FunctionDefinition__Group__6();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__6_in_rule__FunctionDeclaration__Group__512392);
+            rule__FunctionDeclaration__Group__6();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18829,26 +18829,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__5"
+    // $ANTLR end "rule__FunctionDeclaration__Group__5"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__5__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5808:1: rule__FunctionDefinition__Group__5__Impl : ( ( rule__FunctionDefinition__Group_5__0 )? ) ;
-    public final void rule__FunctionDefinition__Group__5__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__5__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5808:1: rule__FunctionDeclaration__Group__5__Impl : ( ( rule__FunctionDeclaration__Group_5__0 )? ) ;
+    public final void rule__FunctionDeclaration__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5812:1: ( ( ( rule__FunctionDefinition__Group_5__0 )? ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5813:1: ( ( rule__FunctionDefinition__Group_5__0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5812:1: ( ( ( rule__FunctionDeclaration__Group_5__0 )? ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5813:1: ( ( rule__FunctionDeclaration__Group_5__0 )? )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5813:1: ( ( rule__FunctionDefinition__Group_5__0 )? )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5814:1: ( rule__FunctionDefinition__Group_5__0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5813:1: ( ( rule__FunctionDeclaration__Group_5__0 )? )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5814:1: ( rule__FunctionDeclaration__Group_5__0 )?
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getGroup_5()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getGroup_5()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5815:1: ( rule__FunctionDefinition__Group_5__0 )?
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5815:1: ( rule__FunctionDeclaration__Group_5__0 )?
             int alt54=2;
             int LA54_0 = input.LA(1);
 
@@ -18857,10 +18857,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
             switch (alt54) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5815:2: rule__FunctionDefinition__Group_5__0
+                    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5815:2: rule__FunctionDeclaration__Group_5__0
                     {
-                    pushFollow(FOLLOW_rule__FunctionDefinition__Group_5__0_in_rule__FunctionDefinition__Group__5__Impl12419);
-                    rule__FunctionDefinition__Group_5__0();
+                    pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5__0_in_rule__FunctionDeclaration__Group__5__Impl12419);
+                    rule__FunctionDeclaration__Group_5__0();
 
                     state._fsp--;
                     if (state.failed) return ;
@@ -18871,7 +18871,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getGroup_5()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getGroup_5()); 
             }
 
             }
@@ -18891,26 +18891,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__5__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__5__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__6"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5825:1: rule__FunctionDefinition__Group__6 : rule__FunctionDefinition__Group__6__Impl rule__FunctionDefinition__Group__7 ;
-    public final void rule__FunctionDefinition__Group__6() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__6"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5825:1: rule__FunctionDeclaration__Group__6 : rule__FunctionDeclaration__Group__6__Impl rule__FunctionDeclaration__Group__7 ;
+    public final void rule__FunctionDeclaration__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5829:1: ( rule__FunctionDefinition__Group__6__Impl rule__FunctionDefinition__Group__7 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5830:2: rule__FunctionDefinition__Group__6__Impl rule__FunctionDefinition__Group__7
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5829:1: ( rule__FunctionDeclaration__Group__6__Impl rule__FunctionDeclaration__Group__7 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5830:2: rule__FunctionDeclaration__Group__6__Impl rule__FunctionDeclaration__Group__7
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__6__Impl_in_rule__FunctionDefinition__Group__612450);
-            rule__FunctionDefinition__Group__6__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__6__Impl_in_rule__FunctionDeclaration__Group__612450);
+            rule__FunctionDeclaration__Group__6__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__7_in_rule__FunctionDefinition__Group__612453);
-            rule__FunctionDefinition__Group__7();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__7_in_rule__FunctionDeclaration__Group__612453);
+            rule__FunctionDeclaration__Group__7();
 
             state._fsp--;
             if (state.failed) return ;
@@ -18929,12 +18929,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__6"
+    // $ANTLR end "rule__FunctionDeclaration__Group__6"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__6__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5837:1: rule__FunctionDefinition__Group__6__Impl : ( ')' ) ;
-    public final void rule__FunctionDefinition__Group__6__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__6__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5837:1: rule__FunctionDeclaration__Group__6__Impl : ( ')' ) ;
+    public final void rule__FunctionDeclaration__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -18946,11 +18946,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5843:1: ')'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getRightParenthesisKeyword_6()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getRightParenthesisKeyword_6()); 
             }
-            match(input,53,FOLLOW_53_in_rule__FunctionDefinition__Group__6__Impl12481); if (state.failed) return ;
+            match(input,53,FOLLOW_53_in_rule__FunctionDeclaration__Group__6__Impl12481); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getRightParenthesisKeyword_6()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getRightParenthesisKeyword_6()); 
             }
 
             }
@@ -18970,26 +18970,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__6__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__6__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__7"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5856:1: rule__FunctionDefinition__Group__7 : rule__FunctionDefinition__Group__7__Impl rule__FunctionDefinition__Group__8 ;
-    public final void rule__FunctionDefinition__Group__7() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__7"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5856:1: rule__FunctionDeclaration__Group__7 : rule__FunctionDeclaration__Group__7__Impl rule__FunctionDeclaration__Group__8 ;
+    public final void rule__FunctionDeclaration__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5860:1: ( rule__FunctionDefinition__Group__7__Impl rule__FunctionDefinition__Group__8 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5861:2: rule__FunctionDefinition__Group__7__Impl rule__FunctionDefinition__Group__8
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5860:1: ( rule__FunctionDeclaration__Group__7__Impl rule__FunctionDeclaration__Group__8 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5861:2: rule__FunctionDeclaration__Group__7__Impl rule__FunctionDeclaration__Group__8
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__7__Impl_in_rule__FunctionDefinition__Group__712512);
-            rule__FunctionDefinition__Group__7__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__7__Impl_in_rule__FunctionDeclaration__Group__712512);
+            rule__FunctionDeclaration__Group__7__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__8_in_rule__FunctionDefinition__Group__712515);
-            rule__FunctionDefinition__Group__8();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__8_in_rule__FunctionDeclaration__Group__712515);
+            rule__FunctionDeclaration__Group__8();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19008,12 +19008,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__7"
+    // $ANTLR end "rule__FunctionDeclaration__Group__7"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__7__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5868:1: rule__FunctionDefinition__Group__7__Impl : ( '->' ) ;
-    public final void rule__FunctionDefinition__Group__7__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__7__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5868:1: rule__FunctionDeclaration__Group__7__Impl : ( '->' ) ;
+    public final void rule__FunctionDeclaration__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -19025,11 +19025,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5874:1: '->'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getHyphenMinusGreaterThanSignKeyword_7()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getHyphenMinusGreaterThanSignKeyword_7()); 
             }
-            match(input,54,FOLLOW_54_in_rule__FunctionDefinition__Group__7__Impl12543); if (state.failed) return ;
+            match(input,54,FOLLOW_54_in_rule__FunctionDeclaration__Group__7__Impl12543); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getHyphenMinusGreaterThanSignKeyword_7()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getHyphenMinusGreaterThanSignKeyword_7()); 
             }
 
             }
@@ -19049,26 +19049,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__7__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__7__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__8"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5887:1: rule__FunctionDefinition__Group__8 : rule__FunctionDefinition__Group__8__Impl rule__FunctionDefinition__Group__9 ;
-    public final void rule__FunctionDefinition__Group__8() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__8"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5887:1: rule__FunctionDeclaration__Group__8 : rule__FunctionDeclaration__Group__8__Impl rule__FunctionDeclaration__Group__9 ;
+    public final void rule__FunctionDeclaration__Group__8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5891:1: ( rule__FunctionDefinition__Group__8__Impl rule__FunctionDefinition__Group__9 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5892:2: rule__FunctionDefinition__Group__8__Impl rule__FunctionDefinition__Group__9
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5891:1: ( rule__FunctionDeclaration__Group__8__Impl rule__FunctionDeclaration__Group__9 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5892:2: rule__FunctionDeclaration__Group__8__Impl rule__FunctionDeclaration__Group__9
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__8__Impl_in_rule__FunctionDefinition__Group__812574);
-            rule__FunctionDefinition__Group__8__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__8__Impl_in_rule__FunctionDeclaration__Group__812574);
+            rule__FunctionDeclaration__Group__8__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__9_in_rule__FunctionDefinition__Group__812577);
-            rule__FunctionDefinition__Group__9();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__9_in_rule__FunctionDeclaration__Group__812577);
+            rule__FunctionDeclaration__Group__9();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19087,30 +19087,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__8"
+    // $ANTLR end "rule__FunctionDeclaration__Group__8"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__8__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5899:1: rule__FunctionDefinition__Group__8__Impl : ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8 ) ) ;
-    public final void rule__FunctionDefinition__Group__8__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__8__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5899:1: rule__FunctionDeclaration__Group__8__Impl : ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8 ) ) ;
+    public final void rule__FunctionDeclaration__Group__8__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5903:1: ( ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5904:1: ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5903:1: ( ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5904:1: ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5904:1: ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5905:1: ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5904:1: ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5905:1: ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsAssignment_8()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsAssignment_8()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5906:1: ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5906:2: rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5906:1: ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5906:2: rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8_in_rule__FunctionDefinition__Group__8__Impl12604);
-            rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8_in_rule__FunctionDeclaration__Group__8__Impl12604);
+            rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19118,7 +19118,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsAssignment_8()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsAssignment_8()); 
             }
 
             }
@@ -19138,26 +19138,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__8__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__8__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__9"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5916:1: rule__FunctionDefinition__Group__9 : rule__FunctionDefinition__Group__9__Impl rule__FunctionDefinition__Group__10 ;
-    public final void rule__FunctionDefinition__Group__9() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__9"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5916:1: rule__FunctionDeclaration__Group__9 : rule__FunctionDeclaration__Group__9__Impl rule__FunctionDeclaration__Group__10 ;
+    public final void rule__FunctionDeclaration__Group__9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5920:1: ( rule__FunctionDefinition__Group__9__Impl rule__FunctionDefinition__Group__10 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5921:2: rule__FunctionDefinition__Group__9__Impl rule__FunctionDefinition__Group__10
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5920:1: ( rule__FunctionDeclaration__Group__9__Impl rule__FunctionDeclaration__Group__10 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5921:2: rule__FunctionDeclaration__Group__9__Impl rule__FunctionDeclaration__Group__10
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__9__Impl_in_rule__FunctionDefinition__Group__912634);
-            rule__FunctionDefinition__Group__9__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__9__Impl_in_rule__FunctionDeclaration__Group__912634);
+            rule__FunctionDeclaration__Group__9__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__10_in_rule__FunctionDefinition__Group__912637);
-            rule__FunctionDefinition__Group__10();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__10_in_rule__FunctionDeclaration__Group__912637);
+            rule__FunctionDeclaration__Group__10();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19176,26 +19176,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__9"
+    // $ANTLR end "rule__FunctionDeclaration__Group__9"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__9__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5928:1: rule__FunctionDefinition__Group__9__Impl : ( ( rule__FunctionDefinition__Group_9__0 )* ) ;
-    public final void rule__FunctionDefinition__Group__9__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__9__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5928:1: rule__FunctionDeclaration__Group__9__Impl : ( ( rule__FunctionDeclaration__Group_9__0 )* ) ;
+    public final void rule__FunctionDeclaration__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5932:1: ( ( ( rule__FunctionDefinition__Group_9__0 )* ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5933:1: ( ( rule__FunctionDefinition__Group_9__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5932:1: ( ( ( rule__FunctionDeclaration__Group_9__0 )* ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5933:1: ( ( rule__FunctionDeclaration__Group_9__0 )* )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5933:1: ( ( rule__FunctionDefinition__Group_9__0 )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5934:1: ( rule__FunctionDefinition__Group_9__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5933:1: ( ( rule__FunctionDeclaration__Group_9__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5934:1: ( rule__FunctionDeclaration__Group_9__0 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getGroup_9()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getGroup_9()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5935:1: ( rule__FunctionDefinition__Group_9__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5935:1: ( rule__FunctionDeclaration__Group_9__0 )*
             loop55:
             do {
                 int alt55=2;
@@ -19208,10 +19208,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
                 switch (alt55) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5935:2: rule__FunctionDefinition__Group_9__0
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5935:2: rule__FunctionDeclaration__Group_9__0
             	    {
-            	    pushFollow(FOLLOW_rule__FunctionDefinition__Group_9__0_in_rule__FunctionDefinition__Group__9__Impl12664);
-            	    rule__FunctionDefinition__Group_9__0();
+            	    pushFollow(FOLLOW_rule__FunctionDeclaration__Group_9__0_in_rule__FunctionDeclaration__Group__9__Impl12664);
+            	    rule__FunctionDeclaration__Group_9__0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -19225,7 +19225,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getGroup_9()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getGroup_9()); 
             }
 
             }
@@ -19245,26 +19245,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__9__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__9__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__10"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5945:1: rule__FunctionDefinition__Group__10 : rule__FunctionDefinition__Group__10__Impl rule__FunctionDefinition__Group__11 ;
-    public final void rule__FunctionDefinition__Group__10() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__10"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5945:1: rule__FunctionDeclaration__Group__10 : rule__FunctionDeclaration__Group__10__Impl rule__FunctionDeclaration__Group__11 ;
+    public final void rule__FunctionDeclaration__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5949:1: ( rule__FunctionDefinition__Group__10__Impl rule__FunctionDefinition__Group__11 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5950:2: rule__FunctionDefinition__Group__10__Impl rule__FunctionDefinition__Group__11
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5949:1: ( rule__FunctionDeclaration__Group__10__Impl rule__FunctionDeclaration__Group__11 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5950:2: rule__FunctionDeclaration__Group__10__Impl rule__FunctionDeclaration__Group__11
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__10__Impl_in_rule__FunctionDefinition__Group__1012695);
-            rule__FunctionDefinition__Group__10__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__10__Impl_in_rule__FunctionDeclaration__Group__1012695);
+            rule__FunctionDeclaration__Group__10__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__11_in_rule__FunctionDefinition__Group__1012698);
-            rule__FunctionDefinition__Group__11();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__11_in_rule__FunctionDeclaration__Group__1012698);
+            rule__FunctionDeclaration__Group__11();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19283,12 +19283,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__10"
+    // $ANTLR end "rule__FunctionDeclaration__Group__10"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__10__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5957:1: rule__FunctionDefinition__Group__10__Impl : ( '{' ) ;
-    public final void rule__FunctionDefinition__Group__10__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__10__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5957:1: rule__FunctionDeclaration__Group__10__Impl : ( '{' ) ;
+    public final void rule__FunctionDeclaration__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -19300,11 +19300,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5963:1: '{'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getLeftCurlyBracketKeyword_10()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getLeftCurlyBracketKeyword_10()); 
             }
-            match(input,44,FOLLOW_44_in_rule__FunctionDefinition__Group__10__Impl12726); if (state.failed) return ;
+            match(input,44,FOLLOW_44_in_rule__FunctionDeclaration__Group__10__Impl12726); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getLeftCurlyBracketKeyword_10()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getLeftCurlyBracketKeyword_10()); 
             }
 
             }
@@ -19324,26 +19324,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__10__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__10__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__11"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5976:1: rule__FunctionDefinition__Group__11 : rule__FunctionDefinition__Group__11__Impl rule__FunctionDefinition__Group__12 ;
-    public final void rule__FunctionDefinition__Group__11() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__11"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5976:1: rule__FunctionDeclaration__Group__11 : rule__FunctionDeclaration__Group__11__Impl rule__FunctionDeclaration__Group__12 ;
+    public final void rule__FunctionDeclaration__Group__11() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5980:1: ( rule__FunctionDefinition__Group__11__Impl rule__FunctionDefinition__Group__12 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5981:2: rule__FunctionDefinition__Group__11__Impl rule__FunctionDefinition__Group__12
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5980:1: ( rule__FunctionDeclaration__Group__11__Impl rule__FunctionDeclaration__Group__12 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5981:2: rule__FunctionDeclaration__Group__11__Impl rule__FunctionDeclaration__Group__12
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__11__Impl_in_rule__FunctionDefinition__Group__1112757);
-            rule__FunctionDefinition__Group__11__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__11__Impl_in_rule__FunctionDeclaration__Group__1112757);
+            rule__FunctionDeclaration__Group__11__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__12_in_rule__FunctionDefinition__Group__1112760);
-            rule__FunctionDefinition__Group__12();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__12_in_rule__FunctionDeclaration__Group__1112760);
+            rule__FunctionDeclaration__Group__12();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19362,26 +19362,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__11"
+    // $ANTLR end "rule__FunctionDeclaration__Group__11"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__11__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5988:1: rule__FunctionDefinition__Group__11__Impl : ( ( rule__FunctionDefinition__Alternatives_11 )* ) ;
-    public final void rule__FunctionDefinition__Group__11__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__11__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5988:1: rule__FunctionDeclaration__Group__11__Impl : ( ( rule__FunctionDeclaration__Alternatives_11 )* ) ;
+    public final void rule__FunctionDeclaration__Group__11__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5992:1: ( ( ( rule__FunctionDefinition__Alternatives_11 )* ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5993:1: ( ( rule__FunctionDefinition__Alternatives_11 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5992:1: ( ( ( rule__FunctionDeclaration__Alternatives_11 )* ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5993:1: ( ( rule__FunctionDeclaration__Alternatives_11 )* )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5993:1: ( ( rule__FunctionDefinition__Alternatives_11 )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5994:1: ( rule__FunctionDefinition__Alternatives_11 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5993:1: ( ( rule__FunctionDeclaration__Alternatives_11 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5994:1: ( rule__FunctionDeclaration__Alternatives_11 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getAlternatives_11()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getAlternatives_11()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5995:1: ( rule__FunctionDefinition__Alternatives_11 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5995:1: ( rule__FunctionDeclaration__Alternatives_11 )*
             loop56:
             do {
                 int alt56=2;
@@ -19394,10 +19394,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
                 switch (alt56) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5995:2: rule__FunctionDefinition__Alternatives_11
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:5995:2: rule__FunctionDeclaration__Alternatives_11
             	    {
-            	    pushFollow(FOLLOW_rule__FunctionDefinition__Alternatives_11_in_rule__FunctionDefinition__Group__11__Impl12787);
-            	    rule__FunctionDefinition__Alternatives_11();
+            	    pushFollow(FOLLOW_rule__FunctionDeclaration__Alternatives_11_in_rule__FunctionDeclaration__Group__11__Impl12787);
+            	    rule__FunctionDeclaration__Alternatives_11();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -19411,7 +19411,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getAlternatives_11()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getAlternatives_11()); 
             }
 
             }
@@ -19431,21 +19431,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__11__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__11__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__12"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6005:1: rule__FunctionDefinition__Group__12 : rule__FunctionDefinition__Group__12__Impl ;
-    public final void rule__FunctionDefinition__Group__12() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__12"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6005:1: rule__FunctionDeclaration__Group__12 : rule__FunctionDeclaration__Group__12__Impl ;
+    public final void rule__FunctionDeclaration__Group__12() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6009:1: ( rule__FunctionDefinition__Group__12__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6010:2: rule__FunctionDefinition__Group__12__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6009:1: ( rule__FunctionDeclaration__Group__12__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6010:2: rule__FunctionDeclaration__Group__12__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group__12__Impl_in_rule__FunctionDefinition__Group__1212818);
-            rule__FunctionDefinition__Group__12__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group__12__Impl_in_rule__FunctionDeclaration__Group__1212818);
+            rule__FunctionDeclaration__Group__12__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19464,12 +19464,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__12"
+    // $ANTLR end "rule__FunctionDeclaration__Group__12"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group__12__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6016:1: rule__FunctionDefinition__Group__12__Impl : ( '}' ) ;
-    public final void rule__FunctionDefinition__Group__12__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group__12__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6016:1: rule__FunctionDeclaration__Group__12__Impl : ( '}' ) ;
+    public final void rule__FunctionDeclaration__Group__12__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -19481,11 +19481,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6022:1: '}'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getRightCurlyBracketKeyword_12()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getRightCurlyBracketKeyword_12()); 
             }
-            match(input,45,FOLLOW_45_in_rule__FunctionDefinition__Group__12__Impl12846); if (state.failed) return ;
+            match(input,45,FOLLOW_45_in_rule__FunctionDeclaration__Group__12__Impl12846); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getRightCurlyBracketKeyword_12()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getRightCurlyBracketKeyword_12()); 
             }
 
             }
@@ -19505,26 +19505,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group__12__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group__12__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6061:1: rule__FunctionDefinition__Group_3__0 : rule__FunctionDefinition__Group_3__0__Impl rule__FunctionDefinition__Group_3__1 ;
-    public final void rule__FunctionDefinition__Group_3__0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6061:1: rule__FunctionDeclaration__Group_3__0 : rule__FunctionDeclaration__Group_3__0__Impl rule__FunctionDeclaration__Group_3__1 ;
+    public final void rule__FunctionDeclaration__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6065:1: ( rule__FunctionDefinition__Group_3__0__Impl rule__FunctionDefinition__Group_3__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6066:2: rule__FunctionDefinition__Group_3__0__Impl rule__FunctionDefinition__Group_3__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6065:1: ( rule__FunctionDeclaration__Group_3__0__Impl rule__FunctionDeclaration__Group_3__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6066:2: rule__FunctionDeclaration__Group_3__0__Impl rule__FunctionDeclaration__Group_3__1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__0__Impl_in_rule__FunctionDefinition__Group_3__012903);
-            rule__FunctionDefinition__Group_3__0__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__0__Impl_in_rule__FunctionDeclaration__Group_3__012903);
+            rule__FunctionDeclaration__Group_3__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__1_in_rule__FunctionDefinition__Group_3__012906);
-            rule__FunctionDefinition__Group_3__1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__1_in_rule__FunctionDeclaration__Group_3__012906);
+            rule__FunctionDeclaration__Group_3__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19543,12 +19543,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__0"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6073:1: rule__FunctionDefinition__Group_3__0__Impl : ( '<' ) ;
-    public final void rule__FunctionDefinition__Group_3__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6073:1: rule__FunctionDeclaration__Group_3__0__Impl : ( '<' ) ;
+    public final void rule__FunctionDeclaration__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -19560,11 +19560,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6079:1: '<'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getLessThanSignKeyword_3_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getLessThanSignKeyword_3_0()); 
             }
-            match(input,28,FOLLOW_28_in_rule__FunctionDefinition__Group_3__0__Impl12934); if (state.failed) return ;
+            match(input,28,FOLLOW_28_in_rule__FunctionDeclaration__Group_3__0__Impl12934); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getLessThanSignKeyword_3_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getLessThanSignKeyword_3_0()); 
             }
 
             }
@@ -19584,26 +19584,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__0__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__0__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6092:1: rule__FunctionDefinition__Group_3__1 : rule__FunctionDefinition__Group_3__1__Impl rule__FunctionDefinition__Group_3__2 ;
-    public final void rule__FunctionDefinition__Group_3__1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6092:1: rule__FunctionDeclaration__Group_3__1 : rule__FunctionDeclaration__Group_3__1__Impl rule__FunctionDeclaration__Group_3__2 ;
+    public final void rule__FunctionDeclaration__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6096:1: ( rule__FunctionDefinition__Group_3__1__Impl rule__FunctionDefinition__Group_3__2 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6097:2: rule__FunctionDefinition__Group_3__1__Impl rule__FunctionDefinition__Group_3__2
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6096:1: ( rule__FunctionDeclaration__Group_3__1__Impl rule__FunctionDeclaration__Group_3__2 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6097:2: rule__FunctionDeclaration__Group_3__1__Impl rule__FunctionDeclaration__Group_3__2
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__1__Impl_in_rule__FunctionDefinition__Group_3__112965);
-            rule__FunctionDefinition__Group_3__1__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__1__Impl_in_rule__FunctionDeclaration__Group_3__112965);
+            rule__FunctionDeclaration__Group_3__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__2_in_rule__FunctionDefinition__Group_3__112968);
-            rule__FunctionDefinition__Group_3__2();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__2_in_rule__FunctionDeclaration__Group_3__112968);
+            rule__FunctionDeclaration__Group_3__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19622,30 +19622,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__1"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6104:1: rule__FunctionDefinition__Group_3__1__Impl : ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1 ) ) ;
-    public final void rule__FunctionDefinition__Group_3__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6104:1: rule__FunctionDeclaration__Group_3__1__Impl : ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1 ) ) ;
+    public final void rule__FunctionDeclaration__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6108:1: ( ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6109:1: ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6108:1: ( ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6109:1: ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6109:1: ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6110:1: ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6109:1: ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6110:1: ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsAssignment_3_1()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsAssignment_3_1()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6111:1: ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6111:2: rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6111:1: ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6111:2: rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1_in_rule__FunctionDefinition__Group_3__1__Impl12995);
-            rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1_in_rule__FunctionDeclaration__Group_3__1__Impl12995);
+            rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19653,7 +19653,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsAssignment_3_1()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsAssignment_3_1()); 
             }
 
             }
@@ -19673,26 +19673,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__1__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__1__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__2"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6121:1: rule__FunctionDefinition__Group_3__2 : rule__FunctionDefinition__Group_3__2__Impl rule__FunctionDefinition__Group_3__3 ;
-    public final void rule__FunctionDefinition__Group_3__2() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__2"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6121:1: rule__FunctionDeclaration__Group_3__2 : rule__FunctionDeclaration__Group_3__2__Impl rule__FunctionDeclaration__Group_3__3 ;
+    public final void rule__FunctionDeclaration__Group_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6125:1: ( rule__FunctionDefinition__Group_3__2__Impl rule__FunctionDefinition__Group_3__3 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6126:2: rule__FunctionDefinition__Group_3__2__Impl rule__FunctionDefinition__Group_3__3
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6125:1: ( rule__FunctionDeclaration__Group_3__2__Impl rule__FunctionDeclaration__Group_3__3 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6126:2: rule__FunctionDeclaration__Group_3__2__Impl rule__FunctionDeclaration__Group_3__3
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__2__Impl_in_rule__FunctionDefinition__Group_3__213025);
-            rule__FunctionDefinition__Group_3__2__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__2__Impl_in_rule__FunctionDeclaration__Group_3__213025);
+            rule__FunctionDeclaration__Group_3__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__3_in_rule__FunctionDefinition__Group_3__213028);
-            rule__FunctionDefinition__Group_3__3();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__3_in_rule__FunctionDeclaration__Group_3__213028);
+            rule__FunctionDeclaration__Group_3__3();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19711,26 +19711,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__2"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__2"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__2__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6133:1: rule__FunctionDefinition__Group_3__2__Impl : ( ( rule__FunctionDefinition__Group_3_2__0 )* ) ;
-    public final void rule__FunctionDefinition__Group_3__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__2__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6133:1: rule__FunctionDeclaration__Group_3__2__Impl : ( ( rule__FunctionDeclaration__Group_3_2__0 )* ) ;
+    public final void rule__FunctionDeclaration__Group_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6137:1: ( ( ( rule__FunctionDefinition__Group_3_2__0 )* ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6138:1: ( ( rule__FunctionDefinition__Group_3_2__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6137:1: ( ( ( rule__FunctionDeclaration__Group_3_2__0 )* ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6138:1: ( ( rule__FunctionDeclaration__Group_3_2__0 )* )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6138:1: ( ( rule__FunctionDefinition__Group_3_2__0 )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6139:1: ( rule__FunctionDefinition__Group_3_2__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6138:1: ( ( rule__FunctionDeclaration__Group_3_2__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6139:1: ( rule__FunctionDeclaration__Group_3_2__0 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getGroup_3_2()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getGroup_3_2()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6140:1: ( rule__FunctionDefinition__Group_3_2__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6140:1: ( rule__FunctionDeclaration__Group_3_2__0 )*
             loop57:
             do {
                 int alt57=2;
@@ -19743,10 +19743,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
                 switch (alt57) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6140:2: rule__FunctionDefinition__Group_3_2__0
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6140:2: rule__FunctionDeclaration__Group_3_2__0
             	    {
-            	    pushFollow(FOLLOW_rule__FunctionDefinition__Group_3_2__0_in_rule__FunctionDefinition__Group_3__2__Impl13055);
-            	    rule__FunctionDefinition__Group_3_2__0();
+            	    pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3_2__0_in_rule__FunctionDeclaration__Group_3__2__Impl13055);
+            	    rule__FunctionDeclaration__Group_3_2__0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -19760,7 +19760,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getGroup_3_2()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getGroup_3_2()); 
             }
 
             }
@@ -19780,21 +19780,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__2__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__2__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__3"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6150:1: rule__FunctionDefinition__Group_3__3 : rule__FunctionDefinition__Group_3__3__Impl ;
-    public final void rule__FunctionDefinition__Group_3__3() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__3"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6150:1: rule__FunctionDeclaration__Group_3__3 : rule__FunctionDeclaration__Group_3__3__Impl ;
+    public final void rule__FunctionDeclaration__Group_3__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6154:1: ( rule__FunctionDefinition__Group_3__3__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6155:2: rule__FunctionDefinition__Group_3__3__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6154:1: ( rule__FunctionDeclaration__Group_3__3__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6155:2: rule__FunctionDeclaration__Group_3__3__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3__3__Impl_in_rule__FunctionDefinition__Group_3__313086);
-            rule__FunctionDefinition__Group_3__3__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3__3__Impl_in_rule__FunctionDeclaration__Group_3__313086);
+            rule__FunctionDeclaration__Group_3__3__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19813,12 +19813,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__3"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__3"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3__3__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6161:1: rule__FunctionDefinition__Group_3__3__Impl : ( '>' ) ;
-    public final void rule__FunctionDefinition__Group_3__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3__3__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6161:1: rule__FunctionDeclaration__Group_3__3__Impl : ( '>' ) ;
+    public final void rule__FunctionDeclaration__Group_3__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -19830,11 +19830,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6167:1: '>'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getGreaterThanSignKeyword_3_3()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getGreaterThanSignKeyword_3_3()); 
             }
-            match(input,30,FOLLOW_30_in_rule__FunctionDefinition__Group_3__3__Impl13114); if (state.failed) return ;
+            match(input,30,FOLLOW_30_in_rule__FunctionDeclaration__Group_3__3__Impl13114); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getGreaterThanSignKeyword_3_3()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getGreaterThanSignKeyword_3_3()); 
             }
 
             }
@@ -19854,26 +19854,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3__3__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3__3__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3_2__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6188:1: rule__FunctionDefinition__Group_3_2__0 : rule__FunctionDefinition__Group_3_2__0__Impl rule__FunctionDefinition__Group_3_2__1 ;
-    public final void rule__FunctionDefinition__Group_3_2__0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3_2__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6188:1: rule__FunctionDeclaration__Group_3_2__0 : rule__FunctionDeclaration__Group_3_2__0__Impl rule__FunctionDeclaration__Group_3_2__1 ;
+    public final void rule__FunctionDeclaration__Group_3_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6192:1: ( rule__FunctionDefinition__Group_3_2__0__Impl rule__FunctionDefinition__Group_3_2__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6193:2: rule__FunctionDefinition__Group_3_2__0__Impl rule__FunctionDefinition__Group_3_2__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6192:1: ( rule__FunctionDeclaration__Group_3_2__0__Impl rule__FunctionDeclaration__Group_3_2__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6193:2: rule__FunctionDeclaration__Group_3_2__0__Impl rule__FunctionDeclaration__Group_3_2__1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3_2__0__Impl_in_rule__FunctionDefinition__Group_3_2__013153);
-            rule__FunctionDefinition__Group_3_2__0__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3_2__0__Impl_in_rule__FunctionDeclaration__Group_3_2__013153);
+            rule__FunctionDeclaration__Group_3_2__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3_2__1_in_rule__FunctionDefinition__Group_3_2__013156);
-            rule__FunctionDefinition__Group_3_2__1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3_2__1_in_rule__FunctionDeclaration__Group_3_2__013156);
+            rule__FunctionDeclaration__Group_3_2__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19892,12 +19892,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3_2__0"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3_2__0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3_2__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6200:1: rule__FunctionDefinition__Group_3_2__0__Impl : ( ',' ) ;
-    public final void rule__FunctionDefinition__Group_3_2__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3_2__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6200:1: rule__FunctionDeclaration__Group_3_2__0__Impl : ( ',' ) ;
+    public final void rule__FunctionDeclaration__Group_3_2__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -19909,11 +19909,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6206:1: ','
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_3_2_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_3_2_0()); 
             }
-            match(input,48,FOLLOW_48_in_rule__FunctionDefinition__Group_3_2__0__Impl13184); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__FunctionDeclaration__Group_3_2__0__Impl13184); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_3_2_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_3_2_0()); 
             }
 
             }
@@ -19933,21 +19933,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3_2__0__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3_2__0__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3_2__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6219:1: rule__FunctionDefinition__Group_3_2__1 : rule__FunctionDefinition__Group_3_2__1__Impl ;
-    public final void rule__FunctionDefinition__Group_3_2__1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3_2__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6219:1: rule__FunctionDeclaration__Group_3_2__1 : rule__FunctionDeclaration__Group_3_2__1__Impl ;
+    public final void rule__FunctionDeclaration__Group_3_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6223:1: ( rule__FunctionDefinition__Group_3_2__1__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6224:2: rule__FunctionDefinition__Group_3_2__1__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6223:1: ( rule__FunctionDeclaration__Group_3_2__1__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6224:2: rule__FunctionDeclaration__Group_3_2__1__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_3_2__1__Impl_in_rule__FunctionDefinition__Group_3_2__113215);
-            rule__FunctionDefinition__Group_3_2__1__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_3_2__1__Impl_in_rule__FunctionDeclaration__Group_3_2__113215);
+            rule__FunctionDeclaration__Group_3_2__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -19966,119 +19966,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_3_2__1"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3_2__1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_3_2__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6230:1: rule__FunctionDefinition__Group_3_2__1__Impl : ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1 ) ) ;
-    public final void rule__FunctionDefinition__Group_3_2__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6234:1: ( ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6235:1: ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1 ) )
-            {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6235:1: ( ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6236:1: ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1 )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsAssignment_3_2_1()); 
-            }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6237:1: ( rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6237:2: rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1
-            {
-            pushFollow(FOLLOW_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1_in_rule__FunctionDefinition__Group_3_2__1__Impl13242);
-            rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-            if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsAssignment_3_2_1()); 
-            }
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FunctionDefinition__Group_3_2__1__Impl"
-
-
-    // $ANTLR start "rule__FunctionDefinition__Group_5__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6251:1: rule__FunctionDefinition__Group_5__0 : rule__FunctionDefinition__Group_5__0__Impl rule__FunctionDefinition__Group_5__1 ;
-    public final void rule__FunctionDefinition__Group_5__0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_3_2__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6230:1: rule__FunctionDeclaration__Group_3_2__1__Impl : ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1 ) ) ;
+    public final void rule__FunctionDeclaration__Group_3_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6255:1: ( rule__FunctionDefinition__Group_5__0__Impl rule__FunctionDefinition__Group_5__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6256:2: rule__FunctionDefinition__Group_5__0__Impl rule__FunctionDefinition__Group_5__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6234:1: ( ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6235:1: ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1 ) )
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_5__0__Impl_in_rule__FunctionDefinition__Group_5__013276);
-            rule__FunctionDefinition__Group_5__0__Impl();
-
-            state._fsp--;
-            if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_5__1_in_rule__FunctionDefinition__Group_5__013279);
-            rule__FunctionDefinition__Group_5__1();
-
-            state._fsp--;
-            if (state.failed) return ;
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__FunctionDefinition__Group_5__0"
-
-
-    // $ANTLR start "rule__FunctionDefinition__Group_5__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6263:1: rule__FunctionDefinition__Group_5__0__Impl : ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0 ) ) ;
-    public final void rule__FunctionDefinition__Group_5__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6267:1: ( ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6268:1: ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0 ) )
-            {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6268:1: ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6269:1: ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6235:1: ( ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6236:1: ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsAssignment_5_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsAssignment_3_2_1()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6270:1: ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6270:2: rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6237:1: ( rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6237:2: rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0_in_rule__FunctionDefinition__Group_5__0__Impl13306);
-            rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1_in_rule__FunctionDeclaration__Group_3_2__1__Impl13242);
+            rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20086,7 +19997,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsAssignment_5_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsAssignment_3_2_1()); 
             }
 
             }
@@ -20106,21 +20017,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_5__0__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_3_2__1__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_5__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6280:1: rule__FunctionDefinition__Group_5__1 : rule__FunctionDefinition__Group_5__1__Impl ;
-    public final void rule__FunctionDefinition__Group_5__1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_5__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6251:1: rule__FunctionDeclaration__Group_5__0 : rule__FunctionDeclaration__Group_5__0__Impl rule__FunctionDeclaration__Group_5__1 ;
+    public final void rule__FunctionDeclaration__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6284:1: ( rule__FunctionDefinition__Group_5__1__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6285:2: rule__FunctionDefinition__Group_5__1__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6255:1: ( rule__FunctionDeclaration__Group_5__0__Impl rule__FunctionDeclaration__Group_5__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6256:2: rule__FunctionDeclaration__Group_5__0__Impl rule__FunctionDeclaration__Group_5__1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_5__1__Impl_in_rule__FunctionDefinition__Group_5__113336);
-            rule__FunctionDefinition__Group_5__1__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5__0__Impl_in_rule__FunctionDeclaration__Group_5__013276);
+            rule__FunctionDeclaration__Group_5__0__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5__1_in_rule__FunctionDeclaration__Group_5__013279);
+            rule__FunctionDeclaration__Group_5__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20139,26 +20055,110 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_5__1"
+    // $ANTLR end "rule__FunctionDeclaration__Group_5__0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_5__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6291:1: rule__FunctionDefinition__Group_5__1__Impl : ( ( rule__FunctionDefinition__Group_5_1__0 )* ) ;
-    public final void rule__FunctionDefinition__Group_5__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_5__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6263:1: rule__FunctionDeclaration__Group_5__0__Impl : ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0 ) ) ;
+    public final void rule__FunctionDeclaration__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6295:1: ( ( ( rule__FunctionDefinition__Group_5_1__0 )* ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6296:1: ( ( rule__FunctionDefinition__Group_5_1__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6267:1: ( ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6268:1: ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6296:1: ( ( rule__FunctionDefinition__Group_5_1__0 )* )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6297:1: ( rule__FunctionDefinition__Group_5_1__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6268:1: ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6269:1: ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getGroup_5_1()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsAssignment_5_0()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6298:1: ( rule__FunctionDefinition__Group_5_1__0 )*
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6270:1: ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6270:2: rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0
+            {
+            pushFollow(FOLLOW_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0_in_rule__FunctionDeclaration__Group_5__0__Impl13306);
+            rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsAssignment_5_0()); 
+            }
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionDeclaration__Group_5__0__Impl"
+
+
+    // $ANTLR start "rule__FunctionDeclaration__Group_5__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6280:1: rule__FunctionDeclaration__Group_5__1 : rule__FunctionDeclaration__Group_5__1__Impl ;
+    public final void rule__FunctionDeclaration__Group_5__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6284:1: ( rule__FunctionDeclaration__Group_5__1__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6285:2: rule__FunctionDeclaration__Group_5__1__Impl
+            {
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5__1__Impl_in_rule__FunctionDeclaration__Group_5__113336);
+            rule__FunctionDeclaration__Group_5__1__Impl();
+
+            state._fsp--;
+            if (state.failed) return ;
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__FunctionDeclaration__Group_5__1"
+
+
+    // $ANTLR start "rule__FunctionDeclaration__Group_5__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6291:1: rule__FunctionDeclaration__Group_5__1__Impl : ( ( rule__FunctionDeclaration__Group_5_1__0 )* ) ;
+    public final void rule__FunctionDeclaration__Group_5__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6295:1: ( ( ( rule__FunctionDeclaration__Group_5_1__0 )* ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6296:1: ( ( rule__FunctionDeclaration__Group_5_1__0 )* )
+            {
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6296:1: ( ( rule__FunctionDeclaration__Group_5_1__0 )* )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6297:1: ( rule__FunctionDeclaration__Group_5_1__0 )*
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getFunctionDeclarationAccess().getGroup_5_1()); 
+            }
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6298:1: ( rule__FunctionDeclaration__Group_5_1__0 )*
             loop58:
             do {
                 int alt58=2;
@@ -20171,10 +20171,10 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
                 switch (alt58) {
             	case 1 :
-            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6298:2: rule__FunctionDefinition__Group_5_1__0
+            	    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6298:2: rule__FunctionDeclaration__Group_5_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__FunctionDefinition__Group_5_1__0_in_rule__FunctionDefinition__Group_5__1__Impl13363);
-            	    rule__FunctionDefinition__Group_5_1__0();
+            	    pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5_1__0_in_rule__FunctionDeclaration__Group_5__1__Impl13363);
+            	    rule__FunctionDeclaration__Group_5_1__0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -20188,7 +20188,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getGroup_5_1()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getGroup_5_1()); 
             }
 
             }
@@ -20208,26 +20208,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_5__1__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_5__1__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_5_1__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6312:1: rule__FunctionDefinition__Group_5_1__0 : rule__FunctionDefinition__Group_5_1__0__Impl rule__FunctionDefinition__Group_5_1__1 ;
-    public final void rule__FunctionDefinition__Group_5_1__0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_5_1__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6312:1: rule__FunctionDeclaration__Group_5_1__0 : rule__FunctionDeclaration__Group_5_1__0__Impl rule__FunctionDeclaration__Group_5_1__1 ;
+    public final void rule__FunctionDeclaration__Group_5_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6316:1: ( rule__FunctionDefinition__Group_5_1__0__Impl rule__FunctionDefinition__Group_5_1__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6317:2: rule__FunctionDefinition__Group_5_1__0__Impl rule__FunctionDefinition__Group_5_1__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6316:1: ( rule__FunctionDeclaration__Group_5_1__0__Impl rule__FunctionDeclaration__Group_5_1__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6317:2: rule__FunctionDeclaration__Group_5_1__0__Impl rule__FunctionDeclaration__Group_5_1__1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_5_1__0__Impl_in_rule__FunctionDefinition__Group_5_1__013398);
-            rule__FunctionDefinition__Group_5_1__0__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5_1__0__Impl_in_rule__FunctionDeclaration__Group_5_1__013398);
+            rule__FunctionDeclaration__Group_5_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_5_1__1_in_rule__FunctionDefinition__Group_5_1__013401);
-            rule__FunctionDefinition__Group_5_1__1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5_1__1_in_rule__FunctionDeclaration__Group_5_1__013401);
+            rule__FunctionDeclaration__Group_5_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20246,12 +20246,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_5_1__0"
+    // $ANTLR end "rule__FunctionDeclaration__Group_5_1__0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_5_1__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6324:1: rule__FunctionDefinition__Group_5_1__0__Impl : ( ',' ) ;
-    public final void rule__FunctionDefinition__Group_5_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_5_1__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6324:1: rule__FunctionDeclaration__Group_5_1__0__Impl : ( ',' ) ;
+    public final void rule__FunctionDeclaration__Group_5_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -20263,11 +20263,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6330:1: ','
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_5_1_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_5_1_0()); 
             }
-            match(input,48,FOLLOW_48_in_rule__FunctionDefinition__Group_5_1__0__Impl13429); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__FunctionDeclaration__Group_5_1__0__Impl13429); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_5_1_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_5_1_0()); 
             }
 
             }
@@ -20287,21 +20287,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_5_1__0__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_5_1__0__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_5_1__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6343:1: rule__FunctionDefinition__Group_5_1__1 : rule__FunctionDefinition__Group_5_1__1__Impl ;
-    public final void rule__FunctionDefinition__Group_5_1__1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_5_1__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6343:1: rule__FunctionDeclaration__Group_5_1__1 : rule__FunctionDeclaration__Group_5_1__1__Impl ;
+    public final void rule__FunctionDeclaration__Group_5_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6347:1: ( rule__FunctionDefinition__Group_5_1__1__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6348:2: rule__FunctionDefinition__Group_5_1__1__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6347:1: ( rule__FunctionDeclaration__Group_5_1__1__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6348:2: rule__FunctionDeclaration__Group_5_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_5_1__1__Impl_in_rule__FunctionDefinition__Group_5_1__113460);
-            rule__FunctionDefinition__Group_5_1__1__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_5_1__1__Impl_in_rule__FunctionDeclaration__Group_5_1__113460);
+            rule__FunctionDeclaration__Group_5_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20320,30 +20320,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_5_1__1"
+    // $ANTLR end "rule__FunctionDeclaration__Group_5_1__1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_5_1__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6354:1: rule__FunctionDefinition__Group_5_1__1__Impl : ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1 ) ) ;
-    public final void rule__FunctionDefinition__Group_5_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_5_1__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6354:1: rule__FunctionDeclaration__Group_5_1__1__Impl : ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1 ) ) ;
+    public final void rule__FunctionDeclaration__Group_5_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6358:1: ( ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6359:1: ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6358:1: ( ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6359:1: ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6359:1: ( ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6360:1: ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6359:1: ( ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6360:1: ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsAssignment_5_1_1()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsAssignment_5_1_1()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6361:1: ( rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6361:2: rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6361:1: ( rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6361:2: rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1_in_rule__FunctionDefinition__Group_5_1__1__Impl13487);
-            rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1_in_rule__FunctionDeclaration__Group_5_1__1__Impl13487);
+            rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20351,7 +20351,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsAssignment_5_1_1()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsAssignment_5_1_1()); 
             }
 
             }
@@ -20371,26 +20371,26 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_5_1__1__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_5_1__1__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_9__0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6375:1: rule__FunctionDefinition__Group_9__0 : rule__FunctionDefinition__Group_9__0__Impl rule__FunctionDefinition__Group_9__1 ;
-    public final void rule__FunctionDefinition__Group_9__0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_9__0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6375:1: rule__FunctionDeclaration__Group_9__0 : rule__FunctionDeclaration__Group_9__0__Impl rule__FunctionDeclaration__Group_9__1 ;
+    public final void rule__FunctionDeclaration__Group_9__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6379:1: ( rule__FunctionDefinition__Group_9__0__Impl rule__FunctionDefinition__Group_9__1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6380:2: rule__FunctionDefinition__Group_9__0__Impl rule__FunctionDefinition__Group_9__1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6379:1: ( rule__FunctionDeclaration__Group_9__0__Impl rule__FunctionDeclaration__Group_9__1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6380:2: rule__FunctionDeclaration__Group_9__0__Impl rule__FunctionDeclaration__Group_9__1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_9__0__Impl_in_rule__FunctionDefinition__Group_9__013521);
-            rule__FunctionDefinition__Group_9__0__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_9__0__Impl_in_rule__FunctionDeclaration__Group_9__013521);
+            rule__FunctionDeclaration__Group_9__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_9__1_in_rule__FunctionDefinition__Group_9__013524);
-            rule__FunctionDefinition__Group_9__1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_9__1_in_rule__FunctionDeclaration__Group_9__013524);
+            rule__FunctionDeclaration__Group_9__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20409,12 +20409,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_9__0"
+    // $ANTLR end "rule__FunctionDeclaration__Group_9__0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_9__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6387:1: rule__FunctionDefinition__Group_9__0__Impl : ( ',' ) ;
-    public final void rule__FunctionDefinition__Group_9__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_9__0__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6387:1: rule__FunctionDeclaration__Group_9__0__Impl : ( ',' ) ;
+    public final void rule__FunctionDeclaration__Group_9__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -20426,11 +20426,11 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6393:1: ','
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_9_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_9_0()); 
             }
-            match(input,48,FOLLOW_48_in_rule__FunctionDefinition__Group_9__0__Impl13552); if (state.failed) return ;
+            match(input,48,FOLLOW_48_in_rule__FunctionDeclaration__Group_9__0__Impl13552); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_9_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_9_0()); 
             }
 
             }
@@ -20450,21 +20450,21 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_9__0__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_9__0__Impl"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_9__1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6406:1: rule__FunctionDefinition__Group_9__1 : rule__FunctionDefinition__Group_9__1__Impl ;
-    public final void rule__FunctionDefinition__Group_9__1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_9__1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6406:1: rule__FunctionDeclaration__Group_9__1 : rule__FunctionDeclaration__Group_9__1__Impl ;
+    public final void rule__FunctionDeclaration__Group_9__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6410:1: ( rule__FunctionDefinition__Group_9__1__Impl )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6411:2: rule__FunctionDefinition__Group_9__1__Impl
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6410:1: ( rule__FunctionDeclaration__Group_9__1__Impl )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6411:2: rule__FunctionDeclaration__Group_9__1__Impl
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__Group_9__1__Impl_in_rule__FunctionDefinition__Group_9__113583);
-            rule__FunctionDefinition__Group_9__1__Impl();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__Group_9__1__Impl_in_rule__FunctionDeclaration__Group_9__113583);
+            rule__FunctionDeclaration__Group_9__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20483,30 +20483,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_9__1"
+    // $ANTLR end "rule__FunctionDeclaration__Group_9__1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__Group_9__1__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6417:1: rule__FunctionDefinition__Group_9__1__Impl : ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1 ) ) ;
-    public final void rule__FunctionDefinition__Group_9__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__Group_9__1__Impl"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6417:1: rule__FunctionDeclaration__Group_9__1__Impl : ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1 ) ) ;
+    public final void rule__FunctionDeclaration__Group_9__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6421:1: ( ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1 ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6422:1: ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6421:1: ( ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1 ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6422:1: ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1 ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6422:1: ( ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1 ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6423:1: ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6422:1: ( ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1 ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6423:1: ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsAssignment_9_1()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsAssignment_9_1()); 
             }
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6424:1: ( rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1 )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6424:2: rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6424:1: ( rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1 )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:6424:2: rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1
             {
-            pushFollow(FOLLOW_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1_in_rule__FunctionDefinition__Group_9__1__Impl13610);
-            rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1();
+            pushFollow(FOLLOW_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1_in_rule__FunctionDeclaration__Group_9__1__Impl13610);
+            rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -20514,7 +20514,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsAssignment_9_1()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsAssignment_9_1()); 
             }
 
             }
@@ -20534,7 +20534,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__Group_9__1__Impl"
+    // $ANTLR end "rule__FunctionDeclaration__Group_9__1__Impl"
 
 
     // $ANTLR start "rule__Check__Group__0"
@@ -55065,9 +55065,9 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__SolverArgument__ValueAssignment_2"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__NameAssignment_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19254:1: rule__EnumerationDefinition__NameAssignment_1 : ( ruleValidID ) ;
-    public final void rule__EnumerationDefinition__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__NameAssignment_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19254:1: rule__EnumerationDeclaration__NameAssignment_1 : ( ruleValidID ) ;
+    public final void rule__EnumerationDeclaration__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55079,15 +55079,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19260:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__EnumerationDefinition__NameAssignment_138964);
+            pushFollow(FOLLOW_ruleValidID_in_rule__EnumerationDeclaration__NameAssignment_138964);
             ruleValidID();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
 
             }
@@ -55107,12 +55107,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__NameAssignment_1"
+    // $ANTLR end "rule__EnumerationDeclaration__NameAssignment_1"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19269:1: rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0 : ( ruleEnumerationLiteralDeclaration ) ;
-    public final void rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19269:1: rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0 : ( ruleEnumerationLiteralDeclaration ) ;
+    public final void rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55124,15 +55124,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19275:1: ruleEnumerationLiteralDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_0_0()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_0_0()); 
             }
-            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_038995);
+            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_038995);
             ruleEnumerationLiteralDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_0_0()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_0_0()); 
             }
 
             }
@@ -55152,12 +55152,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0"
+    // $ANTLR end "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0"
 
 
-    // $ANTLR start "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19284:1: rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1 : ( ruleEnumerationLiteralDeclaration ) ;
-    public final void rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1() throws RecognitionException {
+    // $ANTLR start "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19284:1: rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1 : ( ruleEnumerationLiteralDeclaration ) ;
+    public final void rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55169,15 +55169,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19290:1: ruleEnumerationLiteralDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0()); 
+               before(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_139026);
+            pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_139026);
             ruleEnumerationLiteralDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0()); 
+               after(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0()); 
             }
 
             }
@@ -55197,7 +55197,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1"
+    // $ANTLR end "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1"
 
 
     // $ANTLR start "rule__EnumerationLiteralDeclaration__NameAssignment"
@@ -55335,9 +55335,9 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__TypedefDeclaration__NameAssignment_2"
 
 
-    // $ANTLR start "rule__StructDefinition__NameAssignment_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19344:1: rule__StructDefinition__NameAssignment_1 : ( ruleValidID ) ;
-    public final void rule__StructDefinition__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__NameAssignment_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19344:1: rule__StructDeclaration__NameAssignment_1 : ( ruleValidID ) ;
+    public final void rule__StructDeclaration__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55349,15 +55349,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19350:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+               before(grammarAccess.getStructDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__StructDefinition__NameAssignment_139150);
+            pushFollow(FOLLOW_ruleValidID_in_rule__StructDeclaration__NameAssignment_139150);
             ruleValidID();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+               after(grammarAccess.getStructDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
             }
 
             }
@@ -55377,12 +55377,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__NameAssignment_1"
+    // $ANTLR end "rule__StructDeclaration__NameAssignment_1"
 
 
-    // $ANTLR start "rule__StructDefinition__MemberDeclarationsAssignment_3"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19359:1: rule__StructDefinition__MemberDeclarationsAssignment_3 : ( ruleStructMemberDeclaration ) ;
-    public final void rule__StructDefinition__MemberDeclarationsAssignment_3() throws RecognitionException {
+    // $ANTLR start "rule__StructDeclaration__MemberDeclarationsAssignment_3"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19359:1: rule__StructDeclaration__MemberDeclarationsAssignment_3 : ( ruleStructMemberDeclaration ) ;
+    public final void rule__StructDeclaration__MemberDeclarationsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55394,15 +55394,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19365:1: ruleStructMemberDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getStructDefinitionAccess().getMemberDeclarationsStructMemberDeclarationParserRuleCall_3_0()); 
+               before(grammarAccess.getStructDeclarationAccess().getMemberDeclarationsStructMemberDeclarationParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleStructMemberDeclaration_in_rule__StructDefinition__MemberDeclarationsAssignment_339181);
+            pushFollow(FOLLOW_ruleStructMemberDeclaration_in_rule__StructDeclaration__MemberDeclarationsAssignment_339181);
             ruleStructMemberDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getStructDefinitionAccess().getMemberDeclarationsStructMemberDeclarationParserRuleCall_3_0()); 
+               after(grammarAccess.getStructDeclarationAccess().getMemberDeclarationsStructMemberDeclarationParserRuleCall_3_0()); 
             }
 
             }
@@ -55422,7 +55422,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__StructDefinition__MemberDeclarationsAssignment_3"
+    // $ANTLR end "rule__StructDeclaration__MemberDeclarationsAssignment_3"
 
 
     // $ANTLR start "rule__StructMemberDeclaration__TypeSpecifierAssignment_0"
@@ -55515,9 +55515,9 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     // $ANTLR end "rule__StructMemberDeclaration__NameAssignment_1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__KindAssignment_0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19404:1: rule__FunctionDefinition__KindAssignment_0 : ( ruleFunctionKind ) ;
-    public final void rule__FunctionDefinition__KindAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__KindAssignment_0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19404:1: rule__FunctionDeclaration__KindAssignment_0 : ( ruleFunctionKind ) ;
+    public final void rule__FunctionDeclaration__KindAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55529,15 +55529,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19410:1: ruleFunctionKind
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getKindFunctionKindEnumRuleCall_0_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getKindFunctionKindEnumRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleFunctionKind_in_rule__FunctionDefinition__KindAssignment_039274);
+            pushFollow(FOLLOW_ruleFunctionKind_in_rule__FunctionDeclaration__KindAssignment_039274);
             ruleFunctionKind();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getKindFunctionKindEnumRuleCall_0_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getKindFunctionKindEnumRuleCall_0_0()); 
             }
 
             }
@@ -55557,12 +55557,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__KindAssignment_0"
+    // $ANTLR end "rule__FunctionDeclaration__KindAssignment_0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__NameAssignment_2"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19419:1: rule__FunctionDefinition__NameAssignment_2 : ( ruleValidID ) ;
-    public final void rule__FunctionDefinition__NameAssignment_2() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__NameAssignment_2"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19419:1: rule__FunctionDeclaration__NameAssignment_2 : ( ruleValidID ) ;
+    public final void rule__FunctionDeclaration__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55574,15 +55574,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19425:1: ruleValidID
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getNameValidIDParserRuleCall_2_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getNameValidIDParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionDefinition__NameAssignment_239305);
+            pushFollow(FOLLOW_ruleValidID_in_rule__FunctionDeclaration__NameAssignment_239305);
             ruleValidID();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getNameValidIDParserRuleCall_2_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getNameValidIDParserRuleCall_2_0()); 
             }
 
             }
@@ -55602,12 +55602,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__NameAssignment_2"
+    // $ANTLR end "rule__FunctionDeclaration__NameAssignment_2"
 
 
-    // $ANTLR start "rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19434:1: rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1 : ( ruleTemplateParameterDeclaration ) ;
-    public final void rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19434:1: rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1 : ( ruleTemplateParameterDeclaration ) ;
+    public final void rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55619,15 +55619,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19440:1: ruleTemplateParameterDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_1_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_1_0()); 
             }
-            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_139336);
+            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_139336);
             ruleTemplateParameterDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_1_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_1_0()); 
             }
 
             }
@@ -55647,12 +55647,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1"
+    // $ANTLR end "rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19449:1: rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1 : ( ruleTemplateParameterDeclaration ) ;
-    public final void rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19449:1: rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1 : ( ruleTemplateParameterDeclaration ) ;
+    public final void rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55664,15 +55664,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19455:1: ruleTemplateParameterDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_2_1_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_2_1_0()); 
             }
-            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_139367);
+            pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_139367);
             ruleTemplateParameterDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_2_1_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_2_1_0()); 
             }
 
             }
@@ -55692,12 +55692,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1"
+    // $ANTLR end "rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19464:1: rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0 : ( ruleInputParameterDeclaration ) ;
-    public final void rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19464:1: rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0 : ( ruleInputParameterDeclaration ) ;
+    public final void rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55709,15 +55709,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19470:1: ruleInputParameterDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_0_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_0_0()); 
             }
-            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_039398);
+            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_039398);
             ruleInputParameterDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_0_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_0_0()); 
             }
 
             }
@@ -55737,12 +55737,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0"
+    // $ANTLR end "rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19479:1: rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1 : ( ruleInputParameterDeclaration ) ;
-    public final void rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19479:1: rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1 : ( ruleInputParameterDeclaration ) ;
+    public final void rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55754,15 +55754,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19485:1: ruleInputParameterDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_1_1_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_139429);
+            pushFollow(FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_139429);
             ruleInputParameterDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_1_1_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_1_1_0()); 
             }
 
             }
@@ -55782,12 +55782,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1"
+    // $ANTLR end "rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19494:1: rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8 : ( ruleOutputParameterDeclaration ) ;
-    public final void rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19494:1: rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8 : ( ruleOutputParameterDeclaration ) ;
+    public final void rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55799,15 +55799,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19500:1: ruleOutputParameterDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_8_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_8_0()); 
             }
-            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_839460);
+            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_839460);
             ruleOutputParameterDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_8_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_8_0()); 
             }
 
             }
@@ -55827,12 +55827,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8"
+    // $ANTLR end "rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8"
 
 
-    // $ANTLR start "rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19509:1: rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1 : ( ruleOutputParameterDeclaration ) ;
-    public final void rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19509:1: rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1 : ( ruleOutputParameterDeclaration ) ;
+    public final void rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55844,15 +55844,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19515:1: ruleOutputParameterDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_9_1_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_9_1_0()); 
             }
-            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_139491);
+            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_139491);
             ruleOutputParameterDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_9_1_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_9_1_0()); 
             }
 
             }
@@ -55872,12 +55872,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1"
+    // $ANTLR end "rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__ChecksAssignment_11_0"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19524:1: rule__FunctionDefinition__ChecksAssignment_11_0 : ( ruleCheck ) ;
-    public final void rule__FunctionDefinition__ChecksAssignment_11_0() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__ChecksAssignment_11_0"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19524:1: rule__FunctionDeclaration__ChecksAssignment_11_0 : ( ruleCheck ) ;
+    public final void rule__FunctionDeclaration__ChecksAssignment_11_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55889,15 +55889,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19530:1: ruleCheck
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getChecksCheckParserRuleCall_11_0_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getChecksCheckParserRuleCall_11_0_0()); 
             }
-            pushFollow(FOLLOW_ruleCheck_in_rule__FunctionDefinition__ChecksAssignment_11_039522);
+            pushFollow(FOLLOW_ruleCheck_in_rule__FunctionDeclaration__ChecksAssignment_11_039522);
             ruleCheck();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getChecksCheckParserRuleCall_11_0_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getChecksCheckParserRuleCall_11_0_0()); 
             }
 
             }
@@ -55917,12 +55917,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__ChecksAssignment_11_0"
+    // $ANTLR end "rule__FunctionDeclaration__ChecksAssignment_11_0"
 
 
-    // $ANTLR start "rule__FunctionDefinition__AssertionsAssignment_11_1"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19539:1: rule__FunctionDefinition__AssertionsAssignment_11_1 : ( ruleAssertion ) ;
-    public final void rule__FunctionDefinition__AssertionsAssignment_11_1() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__AssertionsAssignment_11_1"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19539:1: rule__FunctionDeclaration__AssertionsAssignment_11_1 : ( ruleAssertion ) ;
+    public final void rule__FunctionDeclaration__AssertionsAssignment_11_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55934,15 +55934,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19545:1: ruleAssertion
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getAssertionsAssertionParserRuleCall_11_1_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getAssertionsAssertionParserRuleCall_11_1_0()); 
             }
-            pushFollow(FOLLOW_ruleAssertion_in_rule__FunctionDefinition__AssertionsAssignment_11_139553);
+            pushFollow(FOLLOW_ruleAssertion_in_rule__FunctionDeclaration__AssertionsAssignment_11_139553);
             ruleAssertion();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getAssertionsAssertionParserRuleCall_11_1_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getAssertionsAssertionParserRuleCall_11_1_0()); 
             }
 
             }
@@ -55962,12 +55962,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__AssertionsAssignment_11_1"
+    // $ANTLR end "rule__FunctionDeclaration__AssertionsAssignment_11_1"
 
 
-    // $ANTLR start "rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19554:1: rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2 : ( ruleFunctionObjectDeclaration ) ;
-    public final void rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19554:1: rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2 : ( ruleFunctionObjectDeclaration ) ;
+    public final void rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -55979,15 +55979,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19560:1: ruleFunctionObjectDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getFunctionObjectDeclarationsFunctionObjectDeclarationParserRuleCall_11_2_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getFunctionObjectDeclarationsFunctionObjectDeclarationParserRuleCall_11_2_0()); 
             }
-            pushFollow(FOLLOW_ruleFunctionObjectDeclaration_in_rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_239584);
+            pushFollow(FOLLOW_ruleFunctionObjectDeclaration_in_rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_239584);
             ruleFunctionObjectDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getFunctionObjectDeclarationsFunctionObjectDeclarationParserRuleCall_11_2_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getFunctionObjectDeclarationsFunctionObjectDeclarationParserRuleCall_11_2_0()); 
             }
 
             }
@@ -56007,12 +56007,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2"
+    // $ANTLR end "rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2"
 
 
-    // $ANTLR start "rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19569:1: rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3 : ( ruleStateVariableDeclaration ) ;
-    public final void rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19569:1: rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3 : ( ruleStateVariableDeclaration ) ;
+    public final void rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -56024,15 +56024,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19575:1: ruleStateVariableDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_11_3_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_11_3_0()); 
             }
-            pushFollow(FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_339615);
+            pushFollow(FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_339615);
             ruleStateVariableDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_11_3_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_11_3_0()); 
             }
 
             }
@@ -56052,12 +56052,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3"
+    // $ANTLR end "rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3"
 
 
-    // $ANTLR start "rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19584:1: rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4 : ( ruleConstantDeclaration ) ;
-    public final void rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19584:1: rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4 : ( ruleConstantDeclaration ) ;
+    public final void rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -56069,15 +56069,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19590:1: ruleConstantDeclaration
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_11_4_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_11_4_0()); 
             }
-            pushFollow(FOLLOW_ruleConstantDeclaration_in_rule__FunctionDefinition__ConstantDeclarationsAssignment_11_439646);
+            pushFollow(FOLLOW_ruleConstantDeclaration_in_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_439646);
             ruleConstantDeclaration();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_11_4_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_11_4_0()); 
             }
 
             }
@@ -56097,12 +56097,12 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4"
+    // $ANTLR end "rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4"
 
 
-    // $ANTLR start "rule__FunctionDefinition__EquationsAssignment_11_5"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19599:1: rule__FunctionDefinition__EquationsAssignment_11_5 : ( ruleEquation ) ;
-    public final void rule__FunctionDefinition__EquationsAssignment_11_5() throws RecognitionException {
+    // $ANTLR start "rule__FunctionDeclaration__EquationsAssignment_11_5"
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19599:1: rule__FunctionDeclaration__EquationsAssignment_11_5 : ( ruleEquation ) ;
+    public final void rule__FunctionDeclaration__EquationsAssignment_11_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -56114,15 +56114,15 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19605:1: ruleEquation
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionDefinitionAccess().getEquationsEquationParserRuleCall_11_5_0()); 
+               before(grammarAccess.getFunctionDeclarationAccess().getEquationsEquationParserRuleCall_11_5_0()); 
             }
-            pushFollow(FOLLOW_ruleEquation_in_rule__FunctionDefinition__EquationsAssignment_11_539677);
+            pushFollow(FOLLOW_ruleEquation_in_rule__FunctionDeclaration__EquationsAssignment_11_539677);
             ruleEquation();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionDefinitionAccess().getEquationsEquationParserRuleCall_11_5_0()); 
+               after(grammarAccess.getFunctionDeclarationAccess().getEquationsEquationParserRuleCall_11_5_0()); 
             }
 
             }
@@ -56142,7 +56142,7 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
         }
         return ;
     }
-    // $ANTLR end "rule__FunctionDefinition__EquationsAssignment_11_5"
+    // $ANTLR end "rule__FunctionDeclaration__EquationsAssignment_11_5"
 
 
     // $ANTLR start "rule__TemplateParameterDeclaration__NameAssignment"
@@ -56887,13 +56887,13 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19868:1: ( ruleQualifiedName )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDefinitionCrossReference_1_0()); 
+               before(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDeclarationCrossReference_1_0()); 
             }
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19869:1: ( ruleQualifiedName )
             // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:19870:1: ruleQualifiedName
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDefinitionQualifiedNameParserRuleCall_1_0_1()); 
+               before(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDeclarationQualifiedNameParserRuleCall_1_0_1()); 
             }
             pushFollow(FOLLOW_ruleQualifiedName_in_rule__FunctionObjectDeclaration__FunctionNameAssignment_140221);
             ruleQualifiedName();
@@ -56901,13 +56901,13 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDefinitionQualifiedNameParserRuleCall_1_0_1()); 
+               after(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDeclarationQualifiedNameParserRuleCall_1_0_1()); 
             }
 
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDefinitionCrossReference_1_0()); 
+               after(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDeclarationCrossReference_1_0()); 
             }
 
             }
@@ -63921,30 +63921,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     public static final BitSet FOLLOW_ruleValidParameterName_in_entryRuleValidParameterName247 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleValidParameterName254 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ValidParameterName__Alternatives_in_ruleValidParameterName280 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefinition_in_entryRuleDefinition309 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDefinition316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Definition__Alternatives_in_ruleDefinition342 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeDefinition_in_entryRuleDataTypeDefinition369 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeDefinition376 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DataTypeDefinition__Alternatives_in_ruleDataTypeDefinition402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationDefinition_in_entryRuleEnumerationDefinition429 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEnumerationDefinition436 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__0_in_ruleEnumerationDefinition462 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDeclaration_in_entryRuleDeclaration309 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDeclaration316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Declaration__Alternatives_in_ruleDeclaration342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeDeclaration_in_entryRuleDataTypeDeclaration369 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeDeclaration376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DataTypeDeclaration__Alternatives_in_ruleDataTypeDeclaration402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationDeclaration_in_entryRuleEnumerationDeclaration429 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEnumerationDeclaration436 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__0_in_ruleEnumerationDeclaration462 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_entryRuleEnumerationLiteralDeclaration489 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEnumerationLiteralDeclaration496 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__EnumerationLiteralDeclaration__NameAssignment_in_ruleEnumerationLiteralDeclaration522 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTypedefDeclaration_in_entryRuleTypedefDeclaration549 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTypedefDeclaration556 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__0_in_ruleTypedefDeclaration582 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructDefinition_in_entryRuleStructDefinition609 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructDefinition616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__0_in_ruleStructDefinition642 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructDeclaration_in_entryRuleStructDeclaration609 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructDeclaration616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__0_in_ruleStructDeclaration642 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_entryRuleStructMemberDeclaration669 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleStructMemberDeclaration676 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__0_in_ruleStructMemberDeclaration702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionDefinition_in_entryRuleFunctionDefinition729 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionDefinition736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__0_in_ruleFunctionDefinition762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionDeclaration_in_entryRuleFunctionDeclaration729 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionDeclaration736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__0_in_ruleFunctionDeclaration762 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_entryRuleTemplateParameterDeclaration789 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTemplateParameterDeclaration796 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TemplateParameterDeclaration__NameAssignment_in_ruleTemplateParameterDeclaration822 = new BitSet(new long[]{0x0000000000000002L});
@@ -64238,17 +64238,17 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     public static final BitSet FOLLOW_RULE_N_in_rule__ValidParameterName__Alternatives6783 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_E_in_rule__ValidParameterName__Alternatives6800 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__ValidParameterName__Alternatives6817 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeDefinition_in_rule__Definition__Alternatives6849 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionDefinition_in_rule__Definition__Alternatives6866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationDefinition_in_rule__DataTypeDefinition__Alternatives6898 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructDefinition_in_rule__DataTypeDefinition__Alternatives6915 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTypedefDeclaration_in_rule__DataTypeDefinition__Alternatives6932 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__ChecksAssignment_11_0_in_rule__FunctionDefinition__Alternatives_116964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__AssertionsAssignment_11_1_in_rule__FunctionDefinition__Alternatives_116982 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_2_in_rule__FunctionDefinition__Alternatives_117000 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_3_in_rule__FunctionDefinition__Alternatives_117018 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__ConstantDeclarationsAssignment_11_4_in_rule__FunctionDefinition__Alternatives_117036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__EquationsAssignment_11_5_in_rule__FunctionDefinition__Alternatives_117054 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeDeclaration_in_rule__Declaration__Alternatives6849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionDeclaration_in_rule__Declaration__Alternatives6866 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationDeclaration_in_rule__DataTypeDeclaration__Alternatives6898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructDeclaration_in_rule__DataTypeDeclaration__Alternatives6915 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTypedefDeclaration_in_rule__DataTypeDeclaration__Alternatives6932 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__ChecksAssignment_11_0_in_rule__FunctionDeclaration__Alternatives_116964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__AssertionsAssignment_11_1_in_rule__FunctionDeclaration__Alternatives_116982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_2_in_rule__FunctionDeclaration__Alternatives_117000 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_3_in_rule__FunctionDeclaration__Alternatives_117018 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_4_in_rule__FunctionDeclaration__Alternatives_117036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__EquationsAssignment_11_5_in_rule__FunctionDeclaration__Alternatives_117054 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataTypeSpecifier__DefinedTypeAssignment_0_in_rule__DataTypeSpecifier__Alternatives7087 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__DataTypeSpecifier__TypeAssignment_1_in_rule__DataTypeSpecifier__Alternatives7105 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePrimitiveType_in_rule__DataTypeSpecifier__DefinedTypeAlternatives_0_07138 = new BitSet(new long[]{0x0000000000000002L});
@@ -64412,30 +64412,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     public static final BitSet FOLLOW_46_in_rule__SolverArgument__Group__1__Impl10810 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SolverArgument__Group__2__Impl_in_rule__SolverArgument__Group__210841 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SolverArgument__ValueAssignment_2_in_rule__SolverArgument__Group__2__Impl10868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__0__Impl_in_rule__EnumerationDefinition__Group__010904 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__1_in_rule__EnumerationDefinition__Group__010907 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_rule__EnumerationDefinition__Group__0__Impl10935 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__1__Impl_in_rule__EnumerationDefinition__Group__110966 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__2_in_rule__EnumerationDefinition__Group__110969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__NameAssignment_1_in_rule__EnumerationDefinition__Group__1__Impl10996 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__2__Impl_in_rule__EnumerationDefinition__Group__211026 = new BitSet(new long[]{0x00002000000001F0L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__3_in_rule__EnumerationDefinition__Group__211029 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rule__EnumerationDefinition__Group__2__Impl11057 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__3__Impl_in_rule__EnumerationDefinition__Group__311088 = new BitSet(new long[]{0x00002000000001F0L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__4_in_rule__EnumerationDefinition__Group__311091 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3__0_in_rule__EnumerationDefinition__Group__3__Impl11118 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group__4__Impl_in_rule__EnumerationDefinition__Group__411149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__EnumerationDefinition__Group__4__Impl11177 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3__0__Impl_in_rule__EnumerationDefinition__Group_3__011218 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3__1_in_rule__EnumerationDefinition__Group_3__011221 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_0_in_rule__EnumerationDefinition__Group_3__0__Impl11248 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3__1__Impl_in_rule__EnumerationDefinition__Group_3__111278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3_1__0_in_rule__EnumerationDefinition__Group_3__1__Impl11305 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3_1__0__Impl_in_rule__EnumerationDefinition__Group_3_1__011340 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3_1__1_in_rule__EnumerationDefinition__Group_3_1__011343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__EnumerationDefinition__Group_3_1__0__Impl11371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__Group_3_1__1__Impl_in_rule__EnumerationDefinition__Group_3_1__111402 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_1_in_rule__EnumerationDefinition__Group_3_1__1__Impl11429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__0__Impl_in_rule__EnumerationDeclaration__Group__010904 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__1_in_rule__EnumerationDeclaration__Group__010907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_rule__EnumerationDeclaration__Group__0__Impl10935 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__1__Impl_in_rule__EnumerationDeclaration__Group__110966 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__2_in_rule__EnumerationDeclaration__Group__110969 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__NameAssignment_1_in_rule__EnumerationDeclaration__Group__1__Impl10996 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__2__Impl_in_rule__EnumerationDeclaration__Group__211026 = new BitSet(new long[]{0x00002000000001F0L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__3_in_rule__EnumerationDeclaration__Group__211029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rule__EnumerationDeclaration__Group__2__Impl11057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__3__Impl_in_rule__EnumerationDeclaration__Group__311088 = new BitSet(new long[]{0x00002000000001F0L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__4_in_rule__EnumerationDeclaration__Group__311091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3__0_in_rule__EnumerationDeclaration__Group__3__Impl11118 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group__4__Impl_in_rule__EnumerationDeclaration__Group__411149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__EnumerationDeclaration__Group__4__Impl11177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3__0__Impl_in_rule__EnumerationDeclaration__Group_3__011218 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3__1_in_rule__EnumerationDeclaration__Group_3__011221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0_in_rule__EnumerationDeclaration__Group_3__0__Impl11248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3__1__Impl_in_rule__EnumerationDeclaration__Group_3__111278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3_1__0_in_rule__EnumerationDeclaration__Group_3__1__Impl11305 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3_1__0__Impl_in_rule__EnumerationDeclaration__Group_3_1__011340 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3_1__1_in_rule__EnumerationDeclaration__Group_3_1__011343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__EnumerationDeclaration__Group_3_1__0__Impl11371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__Group_3_1__1__Impl_in_rule__EnumerationDeclaration__Group_3_1__111402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1_in_rule__EnumerationDeclaration__Group_3_1__1__Impl11429 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__0__Impl_in_rule__TypedefDeclaration__Group__011463 = new BitSet(new long[]{0xC0000000000001F0L,0x000000000000000FL});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__1_in_rule__TypedefDeclaration__Group__011466 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_49_in_rule__TypedefDeclaration__Group__0__Impl11494 = new BitSet(new long[]{0x0000000000000002L});
@@ -64444,94 +64444,94 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     public static final BitSet FOLLOW_rule__TypedefDeclaration__TypeSpecifierAssignment_1_in_rule__TypedefDeclaration__Group__1__Impl11555 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__Group__2__Impl_in_rule__TypedefDeclaration__Group__211585 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__TypedefDeclaration__NameAssignment_2_in_rule__TypedefDeclaration__Group__2__Impl11612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__0__Impl_in_rule__StructDefinition__Group__011648 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__1_in_rule__StructDefinition__Group__011651 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_50_in_rule__StructDefinition__Group__0__Impl11679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__1__Impl_in_rule__StructDefinition__Group__111710 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__2_in_rule__StructDefinition__Group__111713 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructDefinition__NameAssignment_1_in_rule__StructDefinition__Group__1__Impl11740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__2__Impl_in_rule__StructDefinition__Group__211770 = new BitSet(new long[]{0xC0002000000001F0L,0x000000000000000FL});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__3_in_rule__StructDefinition__Group__211773 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rule__StructDefinition__Group__2__Impl11801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__3__Impl_in_rule__StructDefinition__Group__311832 = new BitSet(new long[]{0xC0002000000001F0L,0x000000000000000FL});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__4_in_rule__StructDefinition__Group__311835 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StructDefinition__MemberDeclarationsAssignment_3_in_rule__StructDefinition__Group__3__Impl11862 = new BitSet(new long[]{0xC0000000000001F2L,0x000000000000000FL});
-    public static final BitSet FOLLOW_rule__StructDefinition__Group__4__Impl_in_rule__StructDefinition__Group__411893 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__StructDefinition__Group__4__Impl11921 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__0__Impl_in_rule__StructDeclaration__Group__011648 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__1_in_rule__StructDeclaration__Group__011651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_50_in_rule__StructDeclaration__Group__0__Impl11679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__1__Impl_in_rule__StructDeclaration__Group__111710 = new BitSet(new long[]{0x0000100000000000L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__2_in_rule__StructDeclaration__Group__111713 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__NameAssignment_1_in_rule__StructDeclaration__Group__1__Impl11740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__2__Impl_in_rule__StructDeclaration__Group__211770 = new BitSet(new long[]{0xC0002000000001F0L,0x000000000000000FL});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__3_in_rule__StructDeclaration__Group__211773 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rule__StructDeclaration__Group__2__Impl11801 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__3__Impl_in_rule__StructDeclaration__Group__311832 = new BitSet(new long[]{0xC0002000000001F0L,0x000000000000000FL});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__4_in_rule__StructDeclaration__Group__311835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StructDeclaration__MemberDeclarationsAssignment_3_in_rule__StructDeclaration__Group__3__Impl11862 = new BitSet(new long[]{0xC0000000000001F2L,0x000000000000000FL});
+    public static final BitSet FOLLOW_rule__StructDeclaration__Group__4__Impl_in_rule__StructDeclaration__Group__411893 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__StructDeclaration__Group__4__Impl11921 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__0__Impl_in_rule__StructMemberDeclaration__Group__011962 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__1_in_rule__StructMemberDeclaration__Group__011965 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__TypeSpecifierAssignment_0_in_rule__StructMemberDeclaration__Group__0__Impl11992 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__Group__1__Impl_in_rule__StructMemberDeclaration__Group__112022 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__StructMemberDeclaration__NameAssignment_1_in_rule__StructMemberDeclaration__Group__1__Impl12049 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__0__Impl_in_rule__FunctionDefinition__Group__012083 = new BitSet(new long[]{0x0008000000000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__1_in_rule__FunctionDefinition__Group__012086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__KindAssignment_0_in_rule__FunctionDefinition__Group__0__Impl12113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__1__Impl_in_rule__FunctionDefinition__Group__112144 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__2_in_rule__FunctionDefinition__Group__112147 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_rule__FunctionDefinition__Group__1__Impl12175 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__2__Impl_in_rule__FunctionDefinition__Group__212206 = new BitSet(new long[]{0x0010000010000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__3_in_rule__FunctionDefinition__Group__212209 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__NameAssignment_2_in_rule__FunctionDefinition__Group__2__Impl12236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__3__Impl_in_rule__FunctionDefinition__Group__312266 = new BitSet(new long[]{0x0010000010000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__4_in_rule__FunctionDefinition__Group__312269 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__0_in_rule__FunctionDefinition__Group__3__Impl12296 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__4__Impl_in_rule__FunctionDefinition__Group__412327 = new BitSet(new long[]{0x00200000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__5_in_rule__FunctionDefinition__Group__412330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_52_in_rule__FunctionDefinition__Group__4__Impl12358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__5__Impl_in_rule__FunctionDefinition__Group__512389 = new BitSet(new long[]{0x00200000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__6_in_rule__FunctionDefinition__Group__512392 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5__0_in_rule__FunctionDefinition__Group__5__Impl12419 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__6__Impl_in_rule__FunctionDefinition__Group__612450 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__7_in_rule__FunctionDefinition__Group__612453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_rule__FunctionDefinition__Group__6__Impl12481 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__7__Impl_in_rule__FunctionDefinition__Group__712512 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__8_in_rule__FunctionDefinition__Group__712515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_rule__FunctionDefinition__Group__7__Impl12543 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__8__Impl_in_rule__FunctionDefinition__Group__812574 = new BitSet(new long[]{0x0001100000000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__9_in_rule__FunctionDefinition__Group__812577 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_8_in_rule__FunctionDefinition__Group__8__Impl12604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__9__Impl_in_rule__FunctionDefinition__Group__912634 = new BitSet(new long[]{0x0001100000000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__10_in_rule__FunctionDefinition__Group__912637 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_9__0_in_rule__FunctionDefinition__Group__9__Impl12664 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__10__Impl_in_rule__FunctionDefinition__Group__1012695 = new BitSet(new long[]{0x3D80200000000000L,0x0000000300000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__11_in_rule__FunctionDefinition__Group__1012698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_44_in_rule__FunctionDefinition__Group__10__Impl12726 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__11__Impl_in_rule__FunctionDefinition__Group__1112757 = new BitSet(new long[]{0x3D80200000000000L,0x0000000300000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__12_in_rule__FunctionDefinition__Group__1112760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Alternatives_11_in_rule__FunctionDefinition__Group__11__Impl12787 = new BitSet(new long[]{0x3D80000000000002L,0x0000000300000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group__12__Impl_in_rule__FunctionDefinition__Group__1212818 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_rule__FunctionDefinition__Group__12__Impl12846 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__0__Impl_in_rule__FunctionDefinition__Group_3__012903 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__1_in_rule__FunctionDefinition__Group_3__012906 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__FunctionDefinition__Group_3__0__Impl12934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__1__Impl_in_rule__FunctionDefinition__Group_3__112965 = new BitSet(new long[]{0x0001000040000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__2_in_rule__FunctionDefinition__Group_3__112968 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_1_in_rule__FunctionDefinition__Group_3__1__Impl12995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__2__Impl_in_rule__FunctionDefinition__Group_3__213025 = new BitSet(new long[]{0x0001000040000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__3_in_rule__FunctionDefinition__Group_3__213028 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3_2__0_in_rule__FunctionDefinition__Group_3__2__Impl13055 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3__3__Impl_in_rule__FunctionDefinition__Group_3__313086 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rule__FunctionDefinition__Group_3__3__Impl13114 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3_2__0__Impl_in_rule__FunctionDefinition__Group_3_2__013153 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3_2__1_in_rule__FunctionDefinition__Group_3_2__013156 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__FunctionDefinition__Group_3_2__0__Impl13184 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_3_2__1__Impl_in_rule__FunctionDefinition__Group_3_2__113215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_1_in_rule__FunctionDefinition__Group_3_2__1__Impl13242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5__0__Impl_in_rule__FunctionDefinition__Group_5__013276 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5__1_in_rule__FunctionDefinition__Group_5__013279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_0_in_rule__FunctionDefinition__Group_5__0__Impl13306 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5__1__Impl_in_rule__FunctionDefinition__Group_5__113336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5_1__0_in_rule__FunctionDefinition__Group_5__1__Impl13363 = new BitSet(new long[]{0x0001000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5_1__0__Impl_in_rule__FunctionDefinition__Group_5_1__013398 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5_1__1_in_rule__FunctionDefinition__Group_5_1__013401 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__FunctionDefinition__Group_5_1__0__Impl13429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_5_1__1__Impl_in_rule__FunctionDefinition__Group_5_1__113460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_1_in_rule__FunctionDefinition__Group_5_1__1__Impl13487 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_9__0__Impl_in_rule__FunctionDefinition__Group_9__013521 = new BitSet(new long[]{0x00000000000001F0L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_9__1_in_rule__FunctionDefinition__Group_9__013524 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_48_in_rule__FunctionDefinition__Group_9__0__Impl13552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__Group_9__1__Impl_in_rule__FunctionDefinition__Group_9__113583 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_1_in_rule__FunctionDefinition__Group_9__1__Impl13610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__0__Impl_in_rule__FunctionDeclaration__Group__012083 = new BitSet(new long[]{0x0008000000000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__1_in_rule__FunctionDeclaration__Group__012086 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__KindAssignment_0_in_rule__FunctionDeclaration__Group__0__Impl12113 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__1__Impl_in_rule__FunctionDeclaration__Group__112144 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__2_in_rule__FunctionDeclaration__Group__112147 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_rule__FunctionDeclaration__Group__1__Impl12175 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__2__Impl_in_rule__FunctionDeclaration__Group__212206 = new BitSet(new long[]{0x0010000010000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__3_in_rule__FunctionDeclaration__Group__212209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__NameAssignment_2_in_rule__FunctionDeclaration__Group__2__Impl12236 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__3__Impl_in_rule__FunctionDeclaration__Group__312266 = new BitSet(new long[]{0x0010000010000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__4_in_rule__FunctionDeclaration__Group__312269 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__0_in_rule__FunctionDeclaration__Group__3__Impl12296 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__4__Impl_in_rule__FunctionDeclaration__Group__412327 = new BitSet(new long[]{0x00200000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__5_in_rule__FunctionDeclaration__Group__412330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_rule__FunctionDeclaration__Group__4__Impl12358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__5__Impl_in_rule__FunctionDeclaration__Group__512389 = new BitSet(new long[]{0x00200000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__6_in_rule__FunctionDeclaration__Group__512392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5__0_in_rule__FunctionDeclaration__Group__5__Impl12419 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__6__Impl_in_rule__FunctionDeclaration__Group__612450 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__7_in_rule__FunctionDeclaration__Group__612453 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_rule__FunctionDeclaration__Group__6__Impl12481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__7__Impl_in_rule__FunctionDeclaration__Group__712512 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__8_in_rule__FunctionDeclaration__Group__712515 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_rule__FunctionDeclaration__Group__7__Impl12543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__8__Impl_in_rule__FunctionDeclaration__Group__812574 = new BitSet(new long[]{0x0001100000000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__9_in_rule__FunctionDeclaration__Group__812577 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_8_in_rule__FunctionDeclaration__Group__8__Impl12604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__9__Impl_in_rule__FunctionDeclaration__Group__912634 = new BitSet(new long[]{0x0001100000000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__10_in_rule__FunctionDeclaration__Group__912637 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_9__0_in_rule__FunctionDeclaration__Group__9__Impl12664 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__10__Impl_in_rule__FunctionDeclaration__Group__1012695 = new BitSet(new long[]{0x3D80200000000000L,0x0000000300000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__11_in_rule__FunctionDeclaration__Group__1012698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_44_in_rule__FunctionDeclaration__Group__10__Impl12726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__11__Impl_in_rule__FunctionDeclaration__Group__1112757 = new BitSet(new long[]{0x3D80200000000000L,0x0000000300000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__12_in_rule__FunctionDeclaration__Group__1112760 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Alternatives_11_in_rule__FunctionDeclaration__Group__11__Impl12787 = new BitSet(new long[]{0x3D80000000000002L,0x0000000300000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group__12__Impl_in_rule__FunctionDeclaration__Group__1212818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_rule__FunctionDeclaration__Group__12__Impl12846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__0__Impl_in_rule__FunctionDeclaration__Group_3__012903 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__1_in_rule__FunctionDeclaration__Group_3__012906 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__FunctionDeclaration__Group_3__0__Impl12934 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__1__Impl_in_rule__FunctionDeclaration__Group_3__112965 = new BitSet(new long[]{0x0001000040000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__2_in_rule__FunctionDeclaration__Group_3__112968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_1_in_rule__FunctionDeclaration__Group_3__1__Impl12995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__2__Impl_in_rule__FunctionDeclaration__Group_3__213025 = new BitSet(new long[]{0x0001000040000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__3_in_rule__FunctionDeclaration__Group_3__213028 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3_2__0_in_rule__FunctionDeclaration__Group_3__2__Impl13055 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3__3__Impl_in_rule__FunctionDeclaration__Group_3__313086 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rule__FunctionDeclaration__Group_3__3__Impl13114 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3_2__0__Impl_in_rule__FunctionDeclaration__Group_3_2__013153 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3_2__1_in_rule__FunctionDeclaration__Group_3_2__013156 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__FunctionDeclaration__Group_3_2__0__Impl13184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_3_2__1__Impl_in_rule__FunctionDeclaration__Group_3_2__113215 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_1_in_rule__FunctionDeclaration__Group_3_2__1__Impl13242 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5__0__Impl_in_rule__FunctionDeclaration__Group_5__013276 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5__1_in_rule__FunctionDeclaration__Group_5__013279 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_0_in_rule__FunctionDeclaration__Group_5__0__Impl13306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5__1__Impl_in_rule__FunctionDeclaration__Group_5__113336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5_1__0_in_rule__FunctionDeclaration__Group_5__1__Impl13363 = new BitSet(new long[]{0x0001000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5_1__0__Impl_in_rule__FunctionDeclaration__Group_5_1__013398 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5_1__1_in_rule__FunctionDeclaration__Group_5_1__013401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__FunctionDeclaration__Group_5_1__0__Impl13429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_5_1__1__Impl_in_rule__FunctionDeclaration__Group_5_1__113460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_1_in_rule__FunctionDeclaration__Group_5_1__1__Impl13487 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_9__0__Impl_in_rule__FunctionDeclaration__Group_9__013521 = new BitSet(new long[]{0x00000000000001F0L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_9__1_in_rule__FunctionDeclaration__Group_9__013524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_48_in_rule__FunctionDeclaration__Group_9__0__Impl13552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__Group_9__1__Impl_in_rule__FunctionDeclaration__Group_9__113583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_1_in_rule__FunctionDeclaration__Group_9__1__Impl13610 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Check__Group__0__Impl_in_rule__Check__Group__013644 = new BitSet(new long[]{0x0010000010000000L});
     public static final BitSet FOLLOW_rule__Check__Group__1_in_rule__Check__Group__013647 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_55_in_rule__Check__Group__0__Impl13675 = new BitSet(new long[]{0x0000000000000002L});
@@ -65572,30 +65572,30 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
     public static final BitSet FOLLOW_ruleSolverArgument_in_rule__SolverConfiguration__ArgumentsAssignment_2_138862 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidParameterName_in_rule__SolverArgument__ParameterAssignment_038897 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLiteral_in_rule__SolverArgument__ValueAssignment_238932 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationDefinition__NameAssignment_138964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_038995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDefinition__LiteralDeclarationsAssignment_3_1_139026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationDeclaration__NameAssignment_138964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_038995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_139026 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__EnumerationLiteralDeclaration__NameAssignment39057 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__TypedefDeclaration__TypeSpecifierAssignment_139088 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__TypedefDeclaration__NameAssignment_239119 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__StructDefinition__NameAssignment_139150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_rule__StructDefinition__MemberDeclarationsAssignment_339181 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__StructDeclaration__NameAssignment_139150 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_rule__StructDeclaration__MemberDeclarationsAssignment_339181 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_rule__StructMemberDeclaration__TypeSpecifierAssignment_039212 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__StructMemberDeclaration__NameAssignment_139243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionKind_in_rule__FunctionDefinition__KindAssignment_039274 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionDefinition__NameAssignment_239305 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_139336 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDefinition__TemplateParameterDeclarationsAssignment_3_2_139367 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_039398 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDefinition__InputParameterDeclarationsAssignment_5_1_139429 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_839460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDefinition__OutputParameterDeclarationsAssignment_9_139491 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCheck_in_rule__FunctionDefinition__ChecksAssignment_11_039522 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssertion_in_rule__FunctionDefinition__AssertionsAssignment_11_139553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionObjectDeclaration_in_rule__FunctionDefinition__FunctionObjectDeclarationsAssignment_11_239584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDefinition__StateVariableDeclarationsAssignment_11_339615 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantDeclaration_in_rule__FunctionDefinition__ConstantDeclarationsAssignment_11_439646 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEquation_in_rule__FunctionDefinition__EquationsAssignment_11_539677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionKind_in_rule__FunctionDeclaration__KindAssignment_039274 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValidID_in_rule__FunctionDeclaration__NameAssignment_239305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_139336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_rule__FunctionDeclaration__TemplateParameterDeclarationsAssignment_3_2_139367 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_039398 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_rule__FunctionDeclaration__InputParameterDeclarationsAssignment_5_1_139429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_839460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_rule__FunctionDeclaration__OutputParameterDeclarationsAssignment_9_139491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCheck_in_rule__FunctionDeclaration__ChecksAssignment_11_039522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssertion_in_rule__FunctionDeclaration__AssertionsAssignment_11_139553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionObjectDeclaration_in_rule__FunctionDeclaration__FunctionObjectDeclarationsAssignment_11_239584 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_rule__FunctionDeclaration__StateVariableDeclarationsAssignment_11_339615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantDeclaration_in_rule__FunctionDeclaration__ConstantDeclarationsAssignment_11_439646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEquation_in_rule__FunctionDeclaration__EquationsAssignment_11_539677 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__TemplateParameterDeclaration__NameAssignment39708 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__InputParameterDeclaration__NameAssignment39739 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_rule__OutputParameterDeclaration__NameAssignment39770 = new BitSet(new long[]{0x0000000000000002L});

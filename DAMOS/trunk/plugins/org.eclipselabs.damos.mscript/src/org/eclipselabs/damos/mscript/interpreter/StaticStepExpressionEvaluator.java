@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.Equation;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.NegateStepExpression;
 import org.eclipselabs.damos.mscript.StepLiteral;
 import org.eclipselabs.damos.mscript.StepN;
@@ -36,9 +36,9 @@ public class StaticStepExpressionEvaluator {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.IExpressionValueEvaluator#evaluate(org.eclipselabs.mscript.language.interpreter.IEvaluationContext, org.eclipselabs.mscript.language.ast.Expression)
 	 */
-	public IStatus evaluate(IStaticEvaluationContext context, FunctionDefinition functionDefinition) {
+	public IStatus evaluate(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration) {
 		Evaluator evaluator = new Evaluator(context);
-		for (Equation equation : functionDefinition.getEquations()) {
+		for (Equation equation : functionDeclaration.getEquations()) {
 			for (Iterator<EObject> it = equation.eAllContents(); it.hasNext();) {
 				EObject next = it.next();
 				if (next instanceof VariableAccess) {

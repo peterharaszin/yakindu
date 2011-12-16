@@ -16,24 +16,24 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getTemplateParameterDeclarations <em>Template Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getChecks <em>Checks</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getAssertions <em>Assertions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getFunctionObjectDeclarations <em>Function Object Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getConstantDeclarations <em>Constant Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.FunctionDefinition#getEquations <em>Equations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getTemplateParameterDeclarations <em>Template Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getChecks <em>Checks</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getAssertions <em>Assertions</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getFunctionObjectDeclarations <em>Function Object Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getConstantDeclarations <em>Constant Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getEquations <em>Equations</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration()
  * @model
  * @generated
  */
-public interface FunctionDefinition extends Definition, CallableElement {
+public interface FunctionDeclaration extends Declaration, CallableElement {
 	/**
 	 * Returns the value of the '<em><b>Kind</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.eclipselabs.damos.mscript.FunctionKind}.
@@ -46,14 +46,14 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * @return the value of the '<em>Kind</em>' attribute.
 	 * @see org.eclipselabs.damos.mscript.FunctionKind
 	 * @see #setKind(FunctionKind)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_Kind()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_Kind()
 	 * @model
 	 * @generated
 	 */
 	FunctionKind getKind();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionDefinition#getKind <em>Kind</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getKind <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Kind</em>' attribute.
@@ -73,7 +73,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Template Parameter Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_TemplateParameterDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_TemplateParameterDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -89,7 +89,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Input Parameter Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_InputParameterDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_InputParameterDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -105,7 +105,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Output Parameter Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_OutputParameterDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_OutputParameterDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -122,7 +122,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Checks</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_Checks()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_Checks()
 	 * @see org.eclipselabs.damos.mscript.Check#getFunction
 	 * @model opposite="function" containment="true"
 	 * @generated
@@ -139,7 +139,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assertions</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_Assertions()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_Assertions()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -155,7 +155,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function Object Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_FunctionObjectDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_FunctionObjectDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -171,7 +171,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>State Variable Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_StateVariableDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_StateVariableDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -187,7 +187,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Constant Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_ConstantDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_ConstantDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */
@@ -203,7 +203,7 @@ public interface FunctionDefinition extends Definition, CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Equations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDefinition_Equations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionDeclaration_Equations()
 	 * @model containment="true"
 	 * @generated
 	 */

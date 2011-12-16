@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
@@ -65,7 +65,7 @@ public class FunctionObjectDeclarationImpl extends CallableElementImpl implement
 	 * @generated
 	 * @ordered
 	 */
-	protected FunctionDefinition functionName;
+	protected FunctionDeclaration functionName;
 
 	/**
 	 * The cached value of the '{@link #getTemplateArguments() <em>Template Arguments</em>}' containment reference list.
@@ -122,10 +122,10 @@ public class FunctionObjectDeclarationImpl extends CallableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition getFunctionName() {
+	public FunctionDeclaration getFunctionName() {
 		if (functionName != null && functionName.eIsProxy()) {
 			InternalEObject oldFunctionName = (InternalEObject)functionName;
-			functionName = (FunctionDefinition)eResolveProxy(oldFunctionName);
+			functionName = (FunctionDeclaration)eResolveProxy(oldFunctionName);
 			if (functionName != oldFunctionName) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MscriptPackage.FUNCTION_OBJECT_DECLARATION__FUNCTION_NAME, oldFunctionName, functionName));
@@ -139,7 +139,7 @@ public class FunctionObjectDeclarationImpl extends CallableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition basicGetFunctionName() {
+	public FunctionDeclaration basicGetFunctionName() {
 		return functionName;
 	}
 
@@ -148,8 +148,8 @@ public class FunctionObjectDeclarationImpl extends CallableElementImpl implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFunctionName(FunctionDefinition newFunctionName) {
-		FunctionDefinition oldFunctionName = functionName;
+	public void setFunctionName(FunctionDeclaration newFunctionName) {
+		FunctionDeclaration oldFunctionName = functionName;
 		functionName = newFunctionName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FUNCTION_OBJECT_DECLARATION__FUNCTION_NAME, oldFunctionName, functionName));
@@ -213,7 +213,7 @@ public class FunctionObjectDeclarationImpl extends CallableElementImpl implement
 				setName((String)newValue);
 				return;
 			case MscriptPackage.FUNCTION_OBJECT_DECLARATION__FUNCTION_NAME:
-				setFunctionName((FunctionDefinition)newValue);
+				setFunctionName((FunctionDeclaration)newValue);
 				return;
 			case MscriptPackage.FUNCTION_OBJECT_DECLARATION__TEMPLATE_ARGUMENTS:
 				getTemplateArguments().clear();
@@ -235,7 +235,7 @@ public class FunctionObjectDeclarationImpl extends CallableElementImpl implement
 				setName(NAME_EDEFAULT);
 				return;
 			case MscriptPackage.FUNCTION_OBJECT_DECLARATION__FUNCTION_NAME:
-				setFunctionName((FunctionDefinition)null);
+				setFunctionName((FunctionDeclaration)null);
 				return;
 			case MscriptPackage.FUNCTION_OBJECT_DECLARATION__TEMPLATE_ARGUMENTS:
 				getTemplateArguments().clear();

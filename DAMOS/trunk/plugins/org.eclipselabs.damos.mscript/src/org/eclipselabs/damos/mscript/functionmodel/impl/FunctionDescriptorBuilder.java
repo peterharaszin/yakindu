@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.Equation;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
@@ -45,16 +45,13 @@ import org.eclipselabs.damos.mscript.util.SyntaxStatus;
  */
 public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.mscript.language.functionmodel.construct.IFunctionDescriptorConstructor#construct(org.eclipselabs.mscript.language.ast.FunctionDefinition)
-	 */
-	public IFunctionDescriptorBuilderResult build(IStaticEvaluationContext context, FunctionDefinition functionDefinition) {
+	public IFunctionDescriptorBuilderResult build(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration) {
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function descriptor construction", null);
 
 		FunctionDescriptor functionDescriptor = FunctionModelFactory.eINSTANCE.createFunctionDescriptor();
-		functionDescriptor.setDefinition(functionDefinition);
+		functionDescriptor.setDeclaration(functionDeclaration);
 
-		for (Equation equation : functionDefinition.getEquations()) {
+		for (Equation equation : functionDeclaration.getEquations()) {
 			EquationDescriptor equationDescriptor = FunctionModelFactory.eINSTANCE.createEquationDescriptor();
 			equationDescriptor.setFunctionDescriptor(functionDescriptor);
 			equationDescriptor.setEquation(equation);
@@ -154,7 +151,7 @@ public class FunctionDescriptorBuilder implements IFunctionDescriptorBuilder {
 			case OUTPUT_PARAMETER:
 			case STATE_VARIABLE:
 				if (variableAccess.getStepExpression() != null) {
-					switch (equationSide.getDescriptor().getFunctionDescriptor().getDefinition().getKind()) {
+					switch (equationSide.getDescriptor().getFunctionDescriptor().getDeclaration().getKind()) {
 					case STATELESS:
 						message = "Variable references of stateless functions must not specify step expressions";
 						break;

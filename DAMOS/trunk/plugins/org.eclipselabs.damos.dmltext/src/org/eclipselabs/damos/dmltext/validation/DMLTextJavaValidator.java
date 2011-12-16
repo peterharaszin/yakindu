@@ -16,8 +16,8 @@ import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
-import org.eclipselabs.damos.mscript.Definition;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
  
@@ -38,10 +38,10 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 
 	@Check
 	public void checkMainFunction(MscriptBehaviorSpecification behaviorSpecification) {
-		for (Definition definition : behaviorSpecification.getModule().getDefinitions()) {
-			if (definition instanceof FunctionDefinition) {
-				FunctionDefinition functionDefinition = (FunctionDefinition) definition;
-				if (MAIN_FUNCTION_NAME.equals(functionDefinition.getName())) {
+		for (Declaration declaration : behaviorSpecification.getModule().getDeclarations()) {
+			if (declaration instanceof FunctionDeclaration) {
+				FunctionDeclaration functionDeclaration = (FunctionDeclaration) declaration;
+				if (MAIN_FUNCTION_NAME.equals(functionDeclaration.getName())) {
 					return;
 				}
 			}
@@ -50,29 +50,29 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 	}
 
 	@Check
-	public void checkMainFunctionParameters(FunctionDefinition functionDefinition) {
-		if (!MAIN_FUNCTION_NAME.equals(functionDefinition.getName())) {
+	public void checkMainFunctionParameters(FunctionDeclaration functionDeclaration) {
+		if (!MAIN_FUNCTION_NAME.equals(functionDeclaration.getName())) {
 			return;
 		}
 		
-		BlockType blockType = DMLUtil.getOwner(functionDefinition, BlockType.class);
+		BlockType blockType = DMLUtil.getOwner(functionDeclaration, BlockType.class);
 		if (blockType == null) {
 			return;
 		}
 		
 		int inputParameterCount = computeInoutputParameterCount(blockType.getInputDefinitions());
-		if (inputParameterCount != functionDefinition.getInputParameterDeclarations().size()) {
-			error("Expecting " + inputParameterCount + " input parameter" + (inputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getDefinition_Name());
+		if (inputParameterCount != functionDeclaration.getInputParameterDeclarations().size()) {
+			error("Expecting " + inputParameterCount + " input parameter" + (inputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getDeclaration_Name());
 		}
 
 		int outputParameterCount = computeInoutputParameterCount(blockType.getOutputDefinitions());
-		if (outputParameterCount != functionDefinition.getOutputParameterDeclarations().size()) {
-			error("Expecting " + outputParameterCount + " output parameter" + (outputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getDefinition_Name());
+		if (outputParameterCount != functionDeclaration.getOutputParameterDeclarations().size()) {
+			error("Expecting " + outputParameterCount + " output parameter" + (outputParameterCount > 1 ? "s" : ""), MscriptPackage.eINSTANCE.getDeclaration_Name());
 		}
 		
 		Map<String, Parameter> blockTypeParameters = getBlockTypeParameters(blockType);
 		Set<String> templateParameterNames = new HashSet<String>();
-		for (TemplateParameterDeclaration templateParameterDeclaration : functionDefinition.getTemplateParameterDeclarations()) {
+		for (TemplateParameterDeclaration templateParameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
 			String name = templateParameterDeclaration.getName();
 			if (!blockTypeParameters.containsKey(name) && !GLOBAL_TEMPLATE_PARAMETERS.contains(name)) {
 				error("No block type parameter found for template parameter " + name, templateParameterDeclaration, null, -1);

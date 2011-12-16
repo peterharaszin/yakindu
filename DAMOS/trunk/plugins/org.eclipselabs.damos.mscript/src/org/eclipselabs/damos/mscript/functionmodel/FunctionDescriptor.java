@@ -11,7 +11,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.FunctionDefinition;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getEquationDescriptors <em>Equation Descriptors</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getVariableDescriptors <em>Variable Descriptors</em>}</li>
  * </ul>
@@ -33,30 +33,30 @@ import org.eclipselabs.damos.mscript.FunctionDefinition;
  */
 public interface FunctionDescriptor extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Definition</b></em>' reference.
+	 * Returns the value of the '<em><b>Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Definition</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Definition</em>' reference.
-	 * @see #setDefinition(FunctionDefinition)
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescriptor_Definition()
+	 * @return the value of the '<em>Declaration</em>' reference.
+	 * @see #setDeclaration(FunctionDeclaration)
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage#getFunctionDescriptor_Declaration()
 	 * @model required="true"
 	 * @generated
 	 */
-	FunctionDefinition getDefinition();
+	FunctionDeclaration getDeclaration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDefinition <em>Definition</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration <em>Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Definition</em>' reference.
-	 * @see #getDefinition()
+	 * @param value the new value of the '<em>Declaration</em>' reference.
+	 * @see #getDeclaration()
 	 * @generated
 	 */
-	void setDefinition(FunctionDefinition value);
+	void setDeclaration(FunctionDeclaration value);
 
 	/**
 	 * Returns the value of the '<em><b>Equation Descriptors</b></em>' containment reference list.

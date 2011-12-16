@@ -9,14 +9,14 @@ import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.ArrayElementAccess;
 import org.eclipselabs.damos.mscript.ArraySubscript;
-import org.eclipselabs.damos.mscript.BuiltinFunction;
-import org.eclipselabs.damos.mscript.BuiltinVariable;
+import org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration;
+import org.eclipselabs.damos.mscript.BuiltinVariableDeclaration;
 import org.eclipselabs.damos.mscript.CallableElement;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.EndExpression;
 import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionCall;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -42,18 +42,18 @@ import org.eclipselabs.damos.mscript.util.SyntaxStatus;
 public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 
 	@Check
-	public void checkStatelessFunction(FunctionDefinition functionDefinition) {
-		if (functionDefinition.getKind() == FunctionKind.STATELESS) {
-			for (StateVariableDeclaration stateVariableDeclaration : functionDefinition.getStateVariableDeclarations()) {
+	public void checkStatelessFunction(FunctionDeclaration functionDeclaration) {
+		if (functionDeclaration.getKind() == FunctionKind.STATELESS) {
+			for (StateVariableDeclaration stateVariableDeclaration : functionDeclaration.getStateVariableDeclarations()) {
 				error("The state variable " + stateVariableDeclaration.getName() + " can only be declared in stateful or continuous functions", stateVariableDeclaration, null, -1);
 			}
 		}
 	}
 
 	@Check
-	public void checkFunctionHasChecks(FunctionDefinition functionDefinition) {
-		if (functionDefinition.getChecks().isEmpty()) {
-			warning("No static checking can be performed for function " + functionDefinition.getName() + " since no checks have been defined", functionDefinition, MscriptPackage.eINSTANCE.getDefinition_Name(), -1);
+	public void checkFunctionHasChecks(FunctionDeclaration functionDeclaration) {
+		if (functionDeclaration.getChecks().isEmpty()) {
+			warning("No static checking can be performed for function " + functionDeclaration.getName() + " since no checks have been defined", functionDeclaration, MscriptPackage.eINSTANCE.getDeclaration_Name(), -1);
 		}
 	}
 	
@@ -62,7 +62,7 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 		CallableElement ce = variableAccess.getFeature();
 		if (!(ce instanceof ParameterDeclaration
 				|| ce instanceof VariableDeclaration
-				|| ce instanceof BuiltinVariable)) {
+				|| ce instanceof BuiltinVariableDeclaration)) {
 			error("Invalid variable reference " + variableAccess.getFeature().getName(), null);
 		}
 	}
@@ -82,9 +82,9 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	@Check
 	public void checkFunctionCallReferencesVariable(FunctionCall variableAccess) {
 		CallableElement ce = variableAccess.getFeature();
-		if (!(ce instanceof FunctionDefinition
+		if (!(ce instanceof FunctionDeclaration
 				|| ce instanceof FunctionObjectDeclaration
-				|| ce instanceof BuiltinFunction)) {
+				|| ce instanceof BuiltinFunctionDeclaration)) {
 			error("Invalid function call " + variableAccess.getFeature().getName(), null);
 		}
 	}
@@ -121,30 +121,30 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	}
 	
 	@Check
-	public void checkTypes(FunctionDefinition functionDefinition) {
+	public void checkTypes(FunctionDeclaration functionDeclaration) {
 		StaticExpressionEvaluator staticExpressionEvaluator = new StaticExpressionEvaluator();
-		for (org.eclipselabs.damos.mscript.Check check : functionDefinition.getChecks()) {
+		for (org.eclipselabs.damos.mscript.Check check : functionDeclaration.getChecks()) {
 			if (!checkFunctionCheckSignatures(check)) {
 				continue;
 			}
 				
 			IStaticEvaluationContext context = new StaticEvaluationContext();
 
-			Iterator<TemplateParameterDeclaration> templateParameterIt = functionDefinition.getTemplateParameterDeclarations().iterator();
+			Iterator<TemplateParameterDeclaration> templateParameterIt = functionDeclaration.getTemplateParameterDeclarations().iterator();
 			for (Expression argument : check.getTemplateArguments()) {
 				staticExpressionEvaluator.evaluate(context, argument);
 				context.setValue(templateParameterIt.next(), context.getValue(argument));
 			}
 			
-			Iterator<InputParameterDeclaration> inputParameterIt = functionDefinition.getInputParameterDeclarations().iterator();
+			Iterator<InputParameterDeclaration> inputParameterIt = functionDeclaration.getInputParameterDeclarations().iterator();
 			for (DataTypeSpecifier dataTypeSpecifier : check.getInputParameterTypes()) {
 				context.setValue(inputParameterIt.next(), new AnyValue(new ComputationContext(), dataTypeSpecifier.getType()));
 			}
 
-			IStatus status = new StaticFunctionEvaluator().evaluate(context, functionDefinition);
+			IStatus status = new StaticFunctionEvaluator().evaluate(context, functionDeclaration);
 			
 			if (status.isOK()) {
-				Iterator<OutputParameterDeclaration> outputParameterIt = functionDefinition.getOutputParameterDeclarations().iterator();
+				Iterator<OutputParameterDeclaration> outputParameterIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 				for (DataTypeSpecifier dataTypeSpecifier : check.getOutputParameterTypes()) {
 					IValue value = context.getValue(outputParameterIt.next());
 					if (!(value instanceof InvalidValue) && !dataTypeSpecifier.getType().isEquivalentTo(value.getDataType())) {

@@ -35,21 +35,21 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass definitionEClass = null;
+	private EClass declarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass dataTypeDefinitionEClass = null;
+	private EClass dataTypeDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass enumerationDefinitionEClass = null;
+	private EClass enumerationDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass structDefinitionEClass = null;
+	private EClass structDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,7 +84,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass functionDefinitionEClass = null;
+	private EClass functionDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -567,21 +567,21 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass builtinDefinitionEClass = null;
+	private EClass builtinDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass builtinFunctionEClass = null;
+	private EClass builtinFunctionDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass builtinVariableEClass = null;
+	private EClass builtinVariableDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -931,7 +931,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getModule_Definitions() {
+	public EReference getModule_Declarations() {
 		return (EReference)moduleEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -940,8 +940,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDefinition() {
-		return definitionEClass;
+	public EClass getDeclaration() {
+		return declarationEClass;
 	}
 
 	/**
@@ -949,8 +949,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getDefinition_Name() {
-		return (EAttribute)definitionEClass.getEStructuralFeatures().get(0);
+	public EAttribute getDeclaration_Name() {
+		return (EAttribute)declarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -958,8 +958,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getDataTypeDefinition() {
-		return dataTypeDefinitionEClass;
+	public EClass getDataTypeDeclaration() {
+		return dataTypeDeclarationEClass;
 	}
 
 	/**
@@ -967,8 +967,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getEnumerationDefinition() {
-		return enumerationDefinitionEClass;
+	public EClass getEnumerationDeclaration() {
+		return enumerationDeclarationEClass;
 	}
 
 	/**
@@ -976,8 +976,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEnumerationDefinition_LiteralDeclarations() {
-		return (EReference)enumerationDefinitionEClass.getEStructuralFeatures().get(0);
+	public EReference getEnumerationDeclaration_LiteralDeclarations() {
+		return (EReference)enumerationDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1021,8 +1021,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getStructDefinition() {
-		return structDefinitionEClass;
+	public EClass getStructDeclaration() {
+		return structDeclarationEClass;
 	}
 
 	/**
@@ -1030,8 +1030,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getStructDefinition_MemberDeclarations() {
-		return (EReference)structDefinitionEClass.getEStructuralFeatures().get(0);
+	public EReference getStructDeclaration_MemberDeclarations() {
+		return (EReference)structDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1066,8 +1066,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFunctionDefinition() {
-		return functionDefinitionEClass;
+	public EClass getFunctionDeclaration() {
+		return functionDeclarationEClass;
 	}
 
 	/**
@@ -1075,8 +1075,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFunctionDefinition_Kind() {
-		return (EAttribute)functionDefinitionEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFunctionDeclaration_Kind() {
+		return (EAttribute)functionDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1084,8 +1084,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_TemplateParameterDeclarations() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(1);
+	public EReference getFunctionDeclaration_TemplateParameterDeclarations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1093,8 +1093,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_InputParameterDeclarations() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(2);
+	public EReference getFunctionDeclaration_InputParameterDeclarations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1102,8 +1102,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_OutputParameterDeclarations() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(3);
+	public EReference getFunctionDeclaration_OutputParameterDeclarations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -1111,8 +1111,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_Checks() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(4);
+	public EReference getFunctionDeclaration_Checks() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1120,8 +1120,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_Assertions() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(5);
+	public EReference getFunctionDeclaration_Assertions() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1129,8 +1129,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_FunctionObjectDeclarations() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(6);
+	public EReference getFunctionDeclaration_FunctionObjectDeclarations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -1138,8 +1138,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_StateVariableDeclarations() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(7);
+	public EReference getFunctionDeclaration_StateVariableDeclarations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -1147,8 +1147,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_ConstantDeclarations() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(8);
+	public EReference getFunctionDeclaration_ConstantDeclarations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -1156,8 +1156,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDefinition_Equations() {
-		return (EReference)functionDefinitionEClass.getEStructuralFeatures().get(9);
+	public EReference getFunctionDeclaration_Equations() {
+		return (EReference)functionDeclarationEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -2749,8 +2749,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBuiltinDefinition() {
-		return builtinDefinitionEClass;
+	public EClass getBuiltinDeclaration() {
+		return builtinDeclarationEClass;
 	}
 
 	/**
@@ -2758,8 +2758,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBuiltinFunction() {
-		return builtinFunctionEClass;
+	public EClass getBuiltinFunctionDeclaration() {
+		return builtinFunctionDeclarationEClass;
 	}
 
 	/**
@@ -2767,8 +2767,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getBuiltinVariable() {
-		return builtinVariableEClass;
+	public EClass getBuiltinVariableDeclaration() {
+		return builtinVariableDeclarationEClass;
 	}
 
 	/**
@@ -3367,15 +3367,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		// Create classes and their features
 		moduleEClass = createEClass(MODULE);
-		createEReference(moduleEClass, MODULE__DEFINITIONS);
+		createEReference(moduleEClass, MODULE__DECLARATIONS);
 
-		definitionEClass = createEClass(DEFINITION);
-		createEAttribute(definitionEClass, DEFINITION__NAME);
+		declarationEClass = createEClass(DECLARATION);
+		createEAttribute(declarationEClass, DECLARATION__NAME);
 
-		dataTypeDefinitionEClass = createEClass(DATA_TYPE_DEFINITION);
+		dataTypeDeclarationEClass = createEClass(DATA_TYPE_DECLARATION);
 
-		enumerationDefinitionEClass = createEClass(ENUMERATION_DEFINITION);
-		createEReference(enumerationDefinitionEClass, ENUMERATION_DEFINITION__LITERAL_DECLARATIONS);
+		enumerationDeclarationEClass = createEClass(ENUMERATION_DECLARATION);
+		createEReference(enumerationDeclarationEClass, ENUMERATION_DECLARATION__LITERAL_DECLARATIONS);
 
 		enumerationLiteralDeclarationEClass = createEClass(ENUMERATION_LITERAL_DECLARATION);
 		createEAttribute(enumerationLiteralDeclarationEClass, ENUMERATION_LITERAL_DECLARATION__NAME);
@@ -3383,24 +3383,24 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		typedefDeclarationEClass = createEClass(TYPEDEF_DECLARATION);
 		createEReference(typedefDeclarationEClass, TYPEDEF_DECLARATION__TYPE_SPECIFIER);
 
-		structDefinitionEClass = createEClass(STRUCT_DEFINITION);
-		createEReference(structDefinitionEClass, STRUCT_DEFINITION__MEMBER_DECLARATIONS);
+		structDeclarationEClass = createEClass(STRUCT_DECLARATION);
+		createEReference(structDeclarationEClass, STRUCT_DECLARATION__MEMBER_DECLARATIONS);
 
 		structMemberDeclarationEClass = createEClass(STRUCT_MEMBER_DECLARATION);
 		createEAttribute(structMemberDeclarationEClass, STRUCT_MEMBER_DECLARATION__NAME);
 		createEReference(structMemberDeclarationEClass, STRUCT_MEMBER_DECLARATION__TYPE_SPECIFIER);
 
-		functionDefinitionEClass = createEClass(FUNCTION_DEFINITION);
-		createEAttribute(functionDefinitionEClass, FUNCTION_DEFINITION__KIND);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__TEMPLATE_PARAMETER_DECLARATIONS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__INPUT_PARAMETER_DECLARATIONS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__OUTPUT_PARAMETER_DECLARATIONS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__CHECKS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__ASSERTIONS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__CONSTANT_DECLARATIONS);
-		createEReference(functionDefinitionEClass, FUNCTION_DEFINITION__EQUATIONS);
+		functionDeclarationEClass = createEClass(FUNCTION_DECLARATION);
+		createEAttribute(functionDeclarationEClass, FUNCTION_DECLARATION__KIND);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__CHECKS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__ASSERTIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__CONSTANT_DECLARATIONS);
+		createEReference(functionDeclarationEClass, FUNCTION_DECLARATION__EQUATIONS);
 
 		checkEClass = createEClass(CHECK);
 		createEReference(checkEClass, CHECK__FUNCTION);
@@ -3646,11 +3646,11 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		returnStatementEClass = createEClass(RETURN_STATEMENT);
 		createEReference(returnStatementEClass, RETURN_STATEMENT__EXPRESSION);
 
-		builtinDefinitionEClass = createEClass(BUILTIN_DEFINITION);
+		builtinDeclarationEClass = createEClass(BUILTIN_DECLARATION);
 
-		builtinFunctionEClass = createEClass(BUILTIN_FUNCTION);
+		builtinFunctionDeclarationEClass = createEClass(BUILTIN_FUNCTION_DECLARATION);
 
-		builtinVariableEClass = createEClass(BUILTIN_VARIABLE);
+		builtinVariableDeclarationEClass = createEClass(BUILTIN_VARIABLE_DECLARATION);
 
 		dataTypeEClass = createEClass(DATA_TYPE);
 
@@ -3775,12 +3775,12 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		dataTypeDefinitionEClass.getESuperTypes().add(this.getDefinition());
-		enumerationDefinitionEClass.getESuperTypes().add(this.getDataTypeDefinition());
-		typedefDeclarationEClass.getESuperTypes().add(this.getDataTypeDefinition());
-		structDefinitionEClass.getESuperTypes().add(this.getDataTypeDefinition());
-		functionDefinitionEClass.getESuperTypes().add(this.getDefinition());
-		functionDefinitionEClass.getESuperTypes().add(this.getCallableElement());
+		dataTypeDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		enumerationDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
+		typedefDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
+		structDeclarationEClass.getESuperTypes().add(this.getDataTypeDeclaration());
+		functionDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		functionDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		callableElementEClass.getESuperTypes().add(this.getEvaluable());
 		variableDeclarationEClass.getESuperTypes().add(this.getCallableElement());
 		parameterDeclarationEClass.getESuperTypes().add(this.getVariableDeclaration());
@@ -3838,10 +3838,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		continueStatementEClass.getESuperTypes().add(this.getStatement());
 		breakStatementEClass.getESuperTypes().add(this.getStatement());
 		returnStatementEClass.getESuperTypes().add(this.getStatement());
-		builtinDefinitionEClass.getESuperTypes().add(this.getDefinition());
-		builtinDefinitionEClass.getESuperTypes().add(this.getCallableElement());
-		builtinFunctionEClass.getESuperTypes().add(this.getBuiltinDefinition());
-		builtinVariableEClass.getESuperTypes().add(this.getBuiltinDefinition());
+		builtinDeclarationEClass.getESuperTypes().add(this.getDeclaration());
+		builtinDeclarationEClass.getESuperTypes().add(this.getCallableElement());
+		builtinFunctionDeclarationEClass.getESuperTypes().add(this.getBuiltinDeclaration());
+		builtinVariableDeclarationEClass.getESuperTypes().add(this.getBuiltinDeclaration());
 		invalidDataTypeEClass.getESuperTypes().add(this.getDataType());
 		anyDataTypeEClass.getESuperTypes().add(this.getDataType());
 		unitTypeEClass.getESuperTypes().add(this.getDataType());
@@ -3867,15 +3867,15 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(moduleEClass, Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModule_Definitions(), this.getDefinition(), null, "definitions", null, 0, -1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_Declarations(), this.getDeclaration(), null, "declarations", null, 0, -1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(definitionEClass, Definition.class, "Definition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getDefinition_Name(), ecorePackage.getEString(), "name", null, 0, 1, Definition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(declarationEClass, Declaration.class, "Declaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Declaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(dataTypeDefinitionEClass, DataTypeDefinition.class, "DataTypeDefinition", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(dataTypeDeclarationEClass, DataTypeDeclaration.class, "DataTypeDeclaration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(enumerationDefinitionEClass, EnumerationDefinition.class, "EnumerationDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEnumerationDefinition_LiteralDeclarations(), this.getEnumerationLiteralDeclaration(), null, "literalDeclarations", null, 0, -1, EnumerationDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(enumerationDeclarationEClass, EnumerationDeclaration.class, "EnumerationDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEnumerationDeclaration_LiteralDeclarations(), this.getEnumerationLiteralDeclaration(), null, "literalDeclarations", null, 0, -1, EnumerationDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(enumerationLiteralDeclarationEClass, EnumerationLiteralDeclaration.class, "EnumerationLiteralDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEnumerationLiteralDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, EnumerationLiteralDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3883,27 +3883,27 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(typedefDeclarationEClass, TypedefDeclaration.class, "TypedefDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTypedefDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, TypedefDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(structDefinitionEClass, StructDefinition.class, "StructDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getStructDefinition_MemberDeclarations(), this.getStructMemberDeclaration(), null, "memberDeclarations", null, 0, -1, StructDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(structDeclarationEClass, StructDeclaration.class, "StructDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStructDeclaration_MemberDeclarations(), this.getStructMemberDeclaration(), null, "memberDeclarations", null, 0, -1, StructDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(structMemberDeclarationEClass, StructMemberDeclaration.class, "StructMemberDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStructMemberDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, StructMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getStructMemberDeclaration_TypeSpecifier(), this.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, StructMemberDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(functionDefinitionEClass, FunctionDefinition.class, "FunctionDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFunctionDefinition_Kind(), this.getFunctionKind(), "kind", null, 0, 1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_TemplateParameterDeclarations(), this.getTemplateParameterDeclaration(), null, "templateParameterDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_InputParameterDeclarations(), this.getInputParameterDeclaration(), null, "inputParameterDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_OutputParameterDeclarations(), this.getOutputParameterDeclaration(), null, "outputParameterDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_Checks(), this.getCheck(), this.getCheck_Function(), "checks", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_Assertions(), this.getAssertion(), null, "assertions", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_FunctionObjectDeclarations(), this.getFunctionObjectDeclaration(), null, "functionObjectDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_StateVariableDeclarations(), this.getStateVariableDeclaration(), null, "stateVariableDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_ConstantDeclarations(), this.getConstantDeclaration(), null, "constantDeclarations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionDefinition_Equations(), this.getEquation(), null, "equations", null, 0, -1, FunctionDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(functionDeclarationEClass, FunctionDeclaration.class, "FunctionDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFunctionDeclaration_Kind(), this.getFunctionKind(), "kind", null, 0, 1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_TemplateParameterDeclarations(), this.getTemplateParameterDeclaration(), null, "templateParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_InputParameterDeclarations(), this.getInputParameterDeclaration(), null, "inputParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_OutputParameterDeclarations(), this.getOutputParameterDeclaration(), null, "outputParameterDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_Checks(), this.getCheck(), this.getCheck_Function(), "checks", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_Assertions(), this.getAssertion(), null, "assertions", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_FunctionObjectDeclarations(), this.getFunctionObjectDeclaration(), null, "functionObjectDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_StateVariableDeclarations(), this.getStateVariableDeclaration(), null, "stateVariableDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_ConstantDeclarations(), this.getConstantDeclaration(), null, "constantDeclarations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDeclaration_Equations(), this.getEquation(), null, "equations", null, 0, -1, FunctionDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(checkEClass, Check.class, "Check", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCheck_Function(), this.getFunctionDefinition(), this.getFunctionDefinition_Checks(), "function", null, 1, 1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCheck_Function(), this.getFunctionDeclaration(), this.getFunctionDeclaration_Checks(), "function", null, 1, 1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_TemplateArguments(), this.getExpression(), null, "templateArguments", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_InputParameterTypes(), this.getDataTypeSpecifier(), null, "inputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCheck_OutputParameterTypes(), this.getDataTypeSpecifier(), null, "outputParameterTypes", null, 0, -1, Check.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3941,7 +3941,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 
 		initEClass(functionObjectDeclarationEClass, FunctionObjectDeclaration.class, "FunctionObjectDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFunctionObjectDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFunctionObjectDeclaration_FunctionName(), this.getFunctionDefinition(), null, "functionName", null, 0, 1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionObjectDeclaration_FunctionName(), this.getFunctionDeclaration(), null, "functionName", null, 0, 1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionObjectDeclaration_TemplateArguments(), this.getExpression(), null, "templateArguments", null, 0, -1, FunctionObjectDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(equationEClass, Equation.class, "Equation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -4154,11 +4154,11 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(returnStatementEClass, ReturnStatement.class, "ReturnStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReturnStatement_Expression(), this.getExpression(), null, "expression", null, 0, 1, ReturnStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(builtinDefinitionEClass, BuiltinDefinition.class, "BuiltinDefinition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(builtinDeclarationEClass, BuiltinDeclaration.class, "BuiltinDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(builtinFunctionEClass, BuiltinFunction.class, "BuiltinFunction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(builtinFunctionDeclarationEClass, BuiltinFunctionDeclaration.class, "BuiltinFunctionDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(builtinVariableEClass, BuiltinVariable.class, "BuiltinVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(builtinVariableDeclarationEClass, BuiltinVariableDeclaration.class, "BuiltinVariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(dataTypeEClass, DataType.class, "DataType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

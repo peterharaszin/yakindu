@@ -333,7 +333,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Module:
-	//	definitions+=Definition*;
+	//	declarations+=Declaration*;
 	public MscriptGrammarAccess.ModuleElements getModuleAccess() {
 		return gaMscript.getModuleAccess();
 	}
@@ -342,39 +342,39 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 		return getModuleAccess().getRule();
 	}
 
-	//Definition:
-	//	DataTypeDefinition | FunctionDefinition;
-	public MscriptGrammarAccess.DefinitionElements getDefinitionAccess() {
-		return gaMscript.getDefinitionAccess();
+	//Declaration:
+	//	DataTypeDeclaration | FunctionDeclaration;
+	public MscriptGrammarAccess.DeclarationElements getDeclarationAccess() {
+		return gaMscript.getDeclarationAccess();
 	}
 	
-	public ParserRule getDefinitionRule() {
-		return getDefinitionAccess().getRule();
+	public ParserRule getDeclarationRule() {
+		return getDeclarationAccess().getRule();
 	}
 
 	/// *
-	// * DataTypeDefinition
-	// * / DataTypeDefinition:
-	//	EnumerationDefinition | StructDefinition | TypedefDeclaration;
-	public MscriptGrammarAccess.DataTypeDefinitionElements getDataTypeDefinitionAccess() {
-		return gaMscript.getDataTypeDefinitionAccess();
+	// * DataTypeDeclaration
+	// * / DataTypeDeclaration:
+	//	EnumerationDeclaration | StructDeclaration | TypedefDeclaration;
+	public MscriptGrammarAccess.DataTypeDeclarationElements getDataTypeDeclarationAccess() {
+		return gaMscript.getDataTypeDeclarationAccess();
 	}
 	
-	public ParserRule getDataTypeDefinitionRule() {
-		return getDataTypeDefinitionAccess().getRule();
+	public ParserRule getDataTypeDeclarationRule() {
+		return getDataTypeDeclarationAccess().getRule();
 	}
 
 	/// *
 	// * Enumeration
-	// * / EnumerationDefinition:
+	// * / EnumerationDeclaration:
 	//	"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
 	//	literalDeclarations+=EnumerationLiteralDeclaration)*)? "}";
-	public MscriptGrammarAccess.EnumerationDefinitionElements getEnumerationDefinitionAccess() {
-		return gaMscript.getEnumerationDefinitionAccess();
+	public MscriptGrammarAccess.EnumerationDeclarationElements getEnumerationDeclarationAccess() {
+		return gaMscript.getEnumerationDeclarationAccess();
 	}
 	
-	public ParserRule getEnumerationDefinitionRule() {
-		return getEnumerationDefinitionAccess().getRule();
+	public ParserRule getEnumerationDeclarationRule() {
+		return getEnumerationDeclarationAccess().getRule();
 	}
 
 	//EnumerationLiteralDeclaration:
@@ -401,14 +401,14 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Struct
-	// * / StructDefinition:
+	// * / StructDeclaration:
 	//	"struct" name=ValidID "{" memberDeclarations+=StructMemberDeclaration* "}";
-	public MscriptGrammarAccess.StructDefinitionElements getStructDefinitionAccess() {
-		return gaMscript.getStructDefinitionAccess();
+	public MscriptGrammarAccess.StructDeclarationElements getStructDeclarationAccess() {
+		return gaMscript.getStructDeclarationAccess();
 	}
 	
-	public ParserRule getStructDefinitionRule() {
-		return getStructDefinitionAccess().getRule();
+	public ParserRule getStructDeclarationRule() {
+		return getStructDeclarationAccess().getRule();
 	}
 
 	//StructMemberDeclaration:
@@ -423,7 +423,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Function
-	// * / FunctionDefinition:
+	// * / FunctionDeclaration:
 	//	kind=FunctionKind? "func" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
 	//	templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
 	//	(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
@@ -431,12 +431,12 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	//	outputParameterDeclarations+=OutputParameterDeclaration)* "{" (checks+=Check | assertions+=Assertion |
 	//	functionObjectDeclarations+=FunctionObjectDeclaration | stateVariableDeclarations+=StateVariableDeclaration |
 	//	constantDeclarations+=ConstantDeclaration | equations+=Equation)* "}";
-	public MscriptGrammarAccess.FunctionDefinitionElements getFunctionDefinitionAccess() {
-		return gaMscript.getFunctionDefinitionAccess();
+	public MscriptGrammarAccess.FunctionDeclarationElements getFunctionDeclarationAccess() {
+		return gaMscript.getFunctionDeclarationAccess();
 	}
 	
-	public ParserRule getFunctionDefinitionRule() {
-		return getFunctionDefinitionAccess().getRule();
+	public ParserRule getFunctionDeclarationRule() {
+		return getFunctionDeclarationAccess().getRule();
 	}
 
 	//enum FunctionKind:
@@ -532,7 +532,7 @@ public class CGenModelGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionObjectDeclaration:
-	//	"fob" functionName=[FunctionDefinition|QualifiedName] ("<" templateArguments+=Expression (","
+	//	"fob" functionName=[FunctionDeclaration|QualifiedName] ("<" templateArguments+=Expression (","
 	//	templateArguments+=Expression)* ">")? name=ValidID;
 	public MscriptGrammarAccess.FunctionObjectDeclarationElements getFunctionObjectDeclarationAccess() {
 		return gaMscript.getFunctionObjectDeclarationAccess();

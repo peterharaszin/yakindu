@@ -43,8 +43,8 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" lowerBound="1"
-        eType="ecore:EClass Mscript.ecore#//FunctionDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" lowerBound="1"
+        eType="ecore:EClass Mscript.ecore#//FunctionDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="equationDescriptors" upperBound="-1"
         eType="#//EquationDescriptor" containment="true" eOpposite="#//EquationDescriptor/functionDescriptor"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="variableDescriptors" upperBound="-1"
@@ -133,8 +133,8 @@
     <eLiterals name="FunctionObject" value="5"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FunctionInstance">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="functionDefinition" lowerBound="1"
-        eType="ecore:EClass Mscript.ecore#//FunctionDefinition"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionDeclaration" lowerBound="1"
+        eType="ecore:EClass Mscript.ecore#//FunctionDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initializationCompound"
         eType="ecore:EClass Mscript.ecore#//Compound" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="computationCompounds" upperBound="-1"

@@ -14,40 +14,40 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipselabs.damos.mscript.EnumerationDeclaration;
+import org.eclipselabs.damos.mscript.EnumerationLiteralDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
-import org.eclipselabs.damos.mscript.StructDefinition;
-import org.eclipselabs.damos.mscript.StructMemberDeclaration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Struct Definition</b></em>'.
+ * An implementation of the model object '<em><b>Enumeration Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.StructDefinitionImpl#getMemberDeclarations <em>Member Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.EnumerationDeclarationImpl#getLiteralDeclarations <em>Literal Declarations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class StructDefinitionImpl extends DataTypeDefinitionImpl implements StructDefinition {
+public class EnumerationDeclarationImpl extends DataTypeDeclarationImpl implements EnumerationDeclaration {
 	/**
-	 * The cached value of the '{@link #getMemberDeclarations() <em>Member Declarations</em>}' containment reference list.
+	 * The cached value of the '{@link #getLiteralDeclarations() <em>Literal Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMemberDeclarations()
+	 * @see #getLiteralDeclarations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<StructMemberDeclaration> memberDeclarations;
+	protected EList<EnumerationLiteralDeclaration> literalDeclarations;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StructDefinitionImpl() {
+	protected EnumerationDeclarationImpl() {
 		super();
 	}
 
@@ -58,7 +58,7 @@ public class StructDefinitionImpl extends DataTypeDefinitionImpl implements Stru
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.STRUCT_DEFINITION;
+		return MscriptPackage.Literals.ENUMERATION_DECLARATION;
 	}
 
 	/**
@@ -66,11 +66,11 @@ public class StructDefinitionImpl extends DataTypeDefinitionImpl implements Stru
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<StructMemberDeclaration> getMemberDeclarations() {
-		if (memberDeclarations == null) {
-			memberDeclarations = new EObjectContainmentEList<StructMemberDeclaration>(StructMemberDeclaration.class, this, MscriptPackage.STRUCT_DEFINITION__MEMBER_DECLARATIONS);
+	public EList<EnumerationLiteralDeclaration> getLiteralDeclarations() {
+		if (literalDeclarations == null) {
+			literalDeclarations = new EObjectContainmentEList<EnumerationLiteralDeclaration>(EnumerationLiteralDeclaration.class, this, MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS);
 		}
-		return memberDeclarations;
+		return literalDeclarations;
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class StructDefinitionImpl extends DataTypeDefinitionImpl implements Stru
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DEFINITION__MEMBER_DECLARATIONS:
-				return ((InternalEList<?>)getMemberDeclarations()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
+				return ((InternalEList<?>)getLiteralDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +95,8 @@ public class StructDefinitionImpl extends DataTypeDefinitionImpl implements Stru
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DEFINITION__MEMBER_DECLARATIONS:
-				return getMemberDeclarations();
+			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
+				return getLiteralDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +110,9 @@ public class StructDefinitionImpl extends DataTypeDefinitionImpl implements Stru
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DEFINITION__MEMBER_DECLARATIONS:
-				getMemberDeclarations().clear();
-				getMemberDeclarations().addAll((Collection<? extends StructMemberDeclaration>)newValue);
+			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
+				getLiteralDeclarations().clear();
+				getLiteralDeclarations().addAll((Collection<? extends EnumerationLiteralDeclaration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +126,8 @@ public class StructDefinitionImpl extends DataTypeDefinitionImpl implements Stru
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DEFINITION__MEMBER_DECLARATIONS:
-				getMemberDeclarations().clear();
+			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
+				getLiteralDeclarations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,10 +141,10 @@ public class StructDefinitionImpl extends DataTypeDefinitionImpl implements Stru
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.STRUCT_DEFINITION__MEMBER_DECLARATIONS:
-				return memberDeclarations != null && !memberDeclarations.isEmpty();
+			case MscriptPackage.ENUMERATION_DECLARATION__LITERAL_DECLARATIONS:
+				return literalDeclarations != null && !literalDeclarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //StructDefinitionImpl
+} //EnumerationDefinitionImpl

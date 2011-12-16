@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.Assertion;
 import org.eclipselabs.damos.mscript.Check;
 import org.eclipselabs.damos.mscript.ConstantDeclaration;
 import org.eclipselabs.damos.mscript.Equation;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
@@ -37,22 +37,22 @@ import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getTemplateParameterDeclarations <em>Template Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getChecks <em>Checks</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getAssertions <em>Assertions</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getFunctionObjectDeclarations <em>Function Object Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getConstantDeclarations <em>Constant Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDefinitionImpl#getEquations <em>Equations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getTemplateParameterDeclarations <em>Template Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getInputParameterDeclarations <em>Input Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getOutputParameterDeclarations <em>Output Parameter Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getChecks <em>Checks</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getAssertions <em>Assertions</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getFunctionObjectDeclarations <em>Function Object Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getStateVariableDeclarations <em>State Variable Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getConstantDeclarations <em>Constant Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.FunctionDeclarationImpl#getEquations <em>Equations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDefinition {
+public class FunctionDeclarationImpl extends DeclarationImpl implements FunctionDeclaration {
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -168,7 +168,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FunctionDefinitionImpl() {
+	protected FunctionDeclarationImpl() {
 		super();
 	}
 
@@ -179,7 +179,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.FUNCTION_DEFINITION;
+		return MscriptPackage.Literals.FUNCTION_DECLARATION;
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 		FunctionKind oldKind = kind;
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FUNCTION_DEFINITION__KIND, oldKind, kind));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.FUNCTION_DECLARATION__KIND, oldKind, kind));
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<TemplateParameterDeclaration> getTemplateParameterDeclarations() {
 		if (templateParameterDeclarations == null) {
-			templateParameterDeclarations = new EObjectContainmentEList<TemplateParameterDeclaration>(TemplateParameterDeclaration.class, this, MscriptPackage.FUNCTION_DEFINITION__TEMPLATE_PARAMETER_DECLARATIONS);
+			templateParameterDeclarations = new EObjectContainmentEList<TemplateParameterDeclaration>(TemplateParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS);
 		}
 		return templateParameterDeclarations;
 	}
@@ -222,7 +222,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<InputParameterDeclaration> getInputParameterDeclarations() {
 		if (inputParameterDeclarations == null) {
-			inputParameterDeclarations = new EObjectContainmentEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, MscriptPackage.FUNCTION_DEFINITION__INPUT_PARAMETER_DECLARATIONS);
+			inputParameterDeclarations = new EObjectContainmentEList<InputParameterDeclaration>(InputParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS);
 		}
 		return inputParameterDeclarations;
 	}
@@ -234,7 +234,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<OutputParameterDeclaration> getOutputParameterDeclarations() {
 		if (outputParameterDeclarations == null) {
-			outputParameterDeclarations = new EObjectContainmentEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, MscriptPackage.FUNCTION_DEFINITION__OUTPUT_PARAMETER_DECLARATIONS);
+			outputParameterDeclarations = new EObjectContainmentEList<OutputParameterDeclaration>(OutputParameterDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS);
 		}
 		return outputParameterDeclarations;
 	}
@@ -246,7 +246,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<Check> getChecks() {
 		if (checks == null) {
-			checks = new EObjectContainmentWithInverseEList<Check>(Check.class, this, MscriptPackage.FUNCTION_DEFINITION__CHECKS, MscriptPackage.CHECK__FUNCTION);
+			checks = new EObjectContainmentWithInverseEList<Check>(Check.class, this, MscriptPackage.FUNCTION_DECLARATION__CHECKS, MscriptPackage.CHECK__FUNCTION);
 		}
 		return checks;
 	}
@@ -258,7 +258,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<Assertion> getAssertions() {
 		if (assertions == null) {
-			assertions = new EObjectContainmentEList<Assertion>(Assertion.class, this, MscriptPackage.FUNCTION_DEFINITION__ASSERTIONS);
+			assertions = new EObjectContainmentEList<Assertion>(Assertion.class, this, MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS);
 		}
 		return assertions;
 	}
@@ -270,7 +270,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<FunctionObjectDeclaration> getFunctionObjectDeclarations() {
 		if (functionObjectDeclarations == null) {
-			functionObjectDeclarations = new EObjectContainmentEList<FunctionObjectDeclaration>(FunctionObjectDeclaration.class, this, MscriptPackage.FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS);
+			functionObjectDeclarations = new EObjectContainmentEList<FunctionObjectDeclaration>(FunctionObjectDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS);
 		}
 		return functionObjectDeclarations;
 	}
@@ -282,7 +282,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<StateVariableDeclaration> getStateVariableDeclarations() {
 		if (stateVariableDeclarations == null) {
-			stateVariableDeclarations = new EObjectContainmentEList<StateVariableDeclaration>(StateVariableDeclaration.class, this, MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS);
+			stateVariableDeclarations = new EObjectContainmentEList<StateVariableDeclaration>(StateVariableDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS);
 		}
 		return stateVariableDeclarations;
 	}
@@ -294,7 +294,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<ConstantDeclaration> getConstantDeclarations() {
 		if (constantDeclarations == null) {
-			constantDeclarations = new EObjectContainmentEList<ConstantDeclaration>(ConstantDeclaration.class, this, MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS);
+			constantDeclarations = new EObjectContainmentEList<ConstantDeclaration>(ConstantDeclaration.class, this, MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS);
 		}
 		return constantDeclarations;
 	}
@@ -306,7 +306,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	 */
 	public EList<Equation> getEquations() {
 		if (equations == null) {
-			equations = new EObjectContainmentEList<Equation>(Equation.class, this, MscriptPackage.FUNCTION_DEFINITION__EQUATIONS);
+			equations = new EObjectContainmentEList<Equation>(Equation.class, this, MscriptPackage.FUNCTION_DECLARATION__EQUATIONS);
 		}
 		return equations;
 	}
@@ -329,7 +329,7 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DEFINITION__CHECKS:
+			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getChecks()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -343,23 +343,23 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DEFINITION__TEMPLATE_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
 				return ((InternalEList<?>)getTemplateParameterDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__INPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return ((InternalEList<?>)getInputParameterDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__OUTPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
 				return ((InternalEList<?>)getOutputParameterDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__CHECKS:
+			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				return ((InternalEList<?>)getChecks()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__ASSERTIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				return ((InternalEList<?>)getAssertions()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
 				return ((InternalEList<?>)getFunctionObjectDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				return ((InternalEList<?>)getStateVariableDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:
 				return ((InternalEList<?>)getConstantDeclarations()).basicRemove(otherEnd, msgs);
-			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				return ((InternalEList<?>)getEquations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -373,25 +373,25 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DEFINITION__KIND:
+			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return getKind();
-			case MscriptPackage.FUNCTION_DEFINITION__TEMPLATE_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
 				return getTemplateParameterDeclarations();
-			case MscriptPackage.FUNCTION_DEFINITION__INPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return getInputParameterDeclarations();
-			case MscriptPackage.FUNCTION_DEFINITION__OUTPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
 				return getOutputParameterDeclarations();
-			case MscriptPackage.FUNCTION_DEFINITION__CHECKS:
+			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				return getChecks();
-			case MscriptPackage.FUNCTION_DEFINITION__ASSERTIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				return getAssertions();
-			case MscriptPackage.FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
 				return getFunctionObjectDeclarations();
-			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				return getStateVariableDeclarations();
-			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:
 				return getConstantDeclarations();
-			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				return getEquations();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -406,42 +406,42 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DEFINITION__KIND:
+			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind((FunctionKind)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__TEMPLATE_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
 				getTemplateParameterDeclarations().clear();
 				getTemplateParameterDeclarations().addAll((Collection<? extends TemplateParameterDeclaration>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__INPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				getInputParameterDeclarations().clear();
 				getInputParameterDeclarations().addAll((Collection<? extends InputParameterDeclaration>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__OUTPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
 				getOutputParameterDeclarations().clear();
 				getOutputParameterDeclarations().addAll((Collection<? extends OutputParameterDeclaration>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__CHECKS:
+			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				getChecks().clear();
 				getChecks().addAll((Collection<? extends Check>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__ASSERTIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				getAssertions().clear();
 				getAssertions().addAll((Collection<? extends Assertion>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
 				getFunctionObjectDeclarations().clear();
 				getFunctionObjectDeclarations().addAll((Collection<? extends FunctionObjectDeclaration>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				getStateVariableDeclarations().clear();
 				getStateVariableDeclarations().addAll((Collection<? extends StateVariableDeclaration>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:
 				getConstantDeclarations().clear();
 				getConstantDeclarations().addAll((Collection<? extends ConstantDeclaration>)newValue);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				getEquations().clear();
 				getEquations().addAll((Collection<? extends Equation>)newValue);
 				return;
@@ -457,34 +457,34 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DEFINITION__KIND:
+			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				setKind(KIND_EDEFAULT);
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__TEMPLATE_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
 				getTemplateParameterDeclarations().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__INPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				getInputParameterDeclarations().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__OUTPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
 				getOutputParameterDeclarations().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__CHECKS:
+			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				getChecks().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__ASSERTIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				getAssertions().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
 				getFunctionObjectDeclarations().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				getStateVariableDeclarations().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:
 				getConstantDeclarations().clear();
 				return;
-			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				getEquations().clear();
 				return;
 		}
@@ -499,25 +499,25 @@ public class FunctionDefinitionImpl extends DefinitionImpl implements FunctionDe
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.FUNCTION_DEFINITION__KIND:
+			case MscriptPackage.FUNCTION_DECLARATION__KIND:
 				return kind != KIND_EDEFAULT;
-			case MscriptPackage.FUNCTION_DEFINITION__TEMPLATE_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__TEMPLATE_PARAMETER_DECLARATIONS:
 				return templateParameterDeclarations != null && !templateParameterDeclarations.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__INPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__INPUT_PARAMETER_DECLARATIONS:
 				return inputParameterDeclarations != null && !inputParameterDeclarations.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__OUTPUT_PARAMETER_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__OUTPUT_PARAMETER_DECLARATIONS:
 				return outputParameterDeclarations != null && !outputParameterDeclarations.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__CHECKS:
+			case MscriptPackage.FUNCTION_DECLARATION__CHECKS:
 				return checks != null && !checks.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__ASSERTIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__ASSERTIONS:
 				return assertions != null && !assertions.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__FUNCTION_OBJECT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__FUNCTION_OBJECT_DECLARATIONS:
 				return functionObjectDeclarations != null && !functionObjectDeclarations.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__STATE_VARIABLE_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__STATE_VARIABLE_DECLARATIONS:
 				return stateVariableDeclarations != null && !stateVariableDeclarations.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__CONSTANT_DECLARATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__CONSTANT_DECLARATIONS:
 				return constantDeclarations != null && !constantDeclarations.isEmpty();
-			case MscriptPackage.FUNCTION_DEFINITION__EQUATIONS:
+			case MscriptPackage.FUNCTION_DECLARATION__EQUATIONS:
 				return equations != null && !equations.isEmpty();
 		}
 		return super.eIsSet(featureID);

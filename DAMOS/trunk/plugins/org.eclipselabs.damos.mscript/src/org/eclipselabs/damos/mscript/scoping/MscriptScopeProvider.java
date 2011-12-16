@@ -13,7 +13,7 @@ import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.ForStatement;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionObjectDeclaration;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LetExpression;
@@ -43,30 +43,30 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 				IterationCall iterationCall = (IterationCall) container;
 				elements.add(iterationCall.getAccumulator());
 				elements.addAll(iterationCall.getIterationVariables());
-			} else if (container instanceof FunctionDefinition) {
-				FunctionDefinition functionDefinition = (FunctionDefinition) container;
+			} else if (container instanceof FunctionDeclaration) {
+				FunctionDeclaration functionDeclaration = (FunctionDeclaration) container;
 
-				for (StateVariableDeclaration stateVariableDeclaration : functionDefinition.getStateVariableDeclarations()) {
+				for (StateVariableDeclaration stateVariableDeclaration : functionDeclaration.getStateVariableDeclarations()) {
 					elements.add(stateVariableDeclaration);
 				}
 
-				for (FunctionObjectDeclaration functionObjectDeclaration : functionDefinition.getFunctionObjectDeclarations()) {
+				for (FunctionObjectDeclaration functionObjectDeclaration : functionDeclaration.getFunctionObjectDeclarations()) {
 					elements.add(functionObjectDeclaration);
 				}
 
-				for (ParameterDeclaration parameterDeclaration : functionDefinition.getTemplateParameterDeclarations()) {
+				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
 					elements.add(parameterDeclaration);
 				}
 				
-				for (ParameterDeclaration parameterDeclaration : functionDefinition.getInputParameterDeclarations()) {
+				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getInputParameterDeclarations()) {
 					elements.add(parameterDeclaration);
 				}
 				
-				for (ParameterDeclaration parameterDeclaration : functionDefinition.getOutputParameterDeclarations()) {
+				for (ParameterDeclaration parameterDeclaration : functionDeclaration.getOutputParameterDeclarations()) {
 					elements.add(parameterDeclaration);
 				}
 
-				elements.add(functionDefinition);
+				elements.add(functionDeclaration);
 			} else if (container instanceof ForStatement) {
 				ForStatement forStatement = (ForStatement) container;
 				VariableDeclaration iterationVariable = forStatement.getIterationVariable();

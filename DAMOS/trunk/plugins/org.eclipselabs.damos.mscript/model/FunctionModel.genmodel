@@ -17,7 +17,7 @@
       <genEnumLiterals ecoreEnumLiteral="FunctionModel.ecore#//VariableKind/FunctionObject"/>
     </genEnums>
     <genClasses ecoreClass="FunctionModel.ecore#//FunctionDescriptor">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionDescriptor/definition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionDescriptor/declaration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionDescriptor/equationDescriptors"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionDescriptor/variableDescriptors"/>
       <genOperations ecoreOperation="FunctionModel.ecore#//FunctionDescriptor/getVariableDescriptor">
@@ -87,7 +87,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//VariableStep/usingEquationParts"/>
     </genClasses>
     <genClasses ecoreClass="FunctionModel.ecore#//FunctionInstance">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionInstance/functionDefinition"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionInstance/functionDeclaration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionInstance/initializationCompound"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FunctionModel.ecore#//FunctionInstance/computationCompounds"/>
     </genClasses>

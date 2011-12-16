@@ -16,15 +16,15 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.EnumerationDefinition#getLiteralDeclarations <em>Literal Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.EnumerationDeclaration#getLiteralDeclarations <em>Literal Declarations</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getEnumerationDefinition()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getEnumerationDeclaration()
  * @model
  * @generated
  */
-public interface EnumerationDefinition extends DataTypeDefinition {
+public interface EnumerationDeclaration extends DataTypeDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Literal Declarations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.EnumerationLiteralDeclaration}.
@@ -35,7 +35,7 @@ public interface EnumerationDefinition extends DataTypeDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Literal Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getEnumerationDefinition_LiteralDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getEnumerationDeclaration_LiteralDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */

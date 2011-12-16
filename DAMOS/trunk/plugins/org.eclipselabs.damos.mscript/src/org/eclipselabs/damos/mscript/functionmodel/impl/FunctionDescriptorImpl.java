@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
@@ -43,7 +43,7 @@ import org.eclipselabs.damos.mscript.internal.functionmodel.util.VariableDescrip
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl#getDeclaration <em>Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl#getEquationDescriptors <em>Equation Descriptors</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionDescriptorImpl#getVariableDescriptors <em>Variable Descriptors</em>}</li>
  * </ul>
@@ -53,14 +53,14 @@ import org.eclipselabs.damos.mscript.internal.functionmodel.util.VariableDescrip
  */
 public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescriptor {
 	/**
-	 * The cached value of the '{@link #getDefinition() <em>Definition</em>}' reference.
+	 * The cached value of the '{@link #getDeclaration() <em>Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefinition()
+	 * @see #getDeclaration()
 	 * @generated
 	 * @ordered
 	 */
-	protected FunctionDefinition definition;
+	protected FunctionDeclaration declaration;
 
 	/**
 	 * The cached value of the '{@link #getEquationDescriptors() <em>Equation Descriptors</em>}' containment reference list.
@@ -106,16 +106,16 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition getDefinition() {
-		if (definition != null && definition.eIsProxy()) {
-			InternalEObject oldDefinition = (InternalEObject)definition;
-			definition = (FunctionDefinition)eResolveProxy(oldDefinition);
-			if (definition != oldDefinition) {
+	public FunctionDeclaration getDeclaration() {
+		if (declaration != null && declaration.eIsProxy()) {
+			InternalEObject oldDeclaration = (InternalEObject)declaration;
+			declaration = (FunctionDeclaration)eResolveProxy(oldDeclaration);
+			if (declaration != oldDeclaration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_DESCRIPTOR__DEFINITION, oldDefinition, definition));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_DESCRIPTOR__DECLARATION, oldDeclaration, declaration));
 			}
 		}
-		return definition;
+		return declaration;
 	}
 
 	/**
@@ -123,8 +123,8 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition basicGetDefinition() {
-		return definition;
+	public FunctionDeclaration basicGetDeclaration() {
+		return declaration;
 	}
 
 	/**
@@ -132,11 +132,11 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefinition(FunctionDefinition newDefinition) {
-		FunctionDefinition oldDefinition = definition;
-		definition = newDefinition;
+	public void setDeclaration(FunctionDeclaration newDeclaration) {
+		FunctionDeclaration oldDeclaration = declaration;
+		declaration = newDeclaration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_DESCRIPTOR__DEFINITION, oldDefinition, definition));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_DESCRIPTOR__DECLARATION, oldDeclaration, declaration));
 	}
 
 	/**
@@ -281,7 +281,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	 */
 	public boolean hasEquationsForEachOutput(DiagnosticChain diagnostics, Map<Object, Object> context) {
 		boolean result = true;
-		for (ParameterDeclaration parameterDeclaration : getDefinition().getOutputParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : getDeclaration().getOutputParameterDeclarations()) {
 			VariableDescriptor variableDescriptor = getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
 				hasPrecedentEquationsFor(variableDescriptor, 0, diagnostics);
@@ -366,7 +366,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 					FunctionModelValidator.DIAGNOSTIC_SOURCE,
 					FunctionModelValidator.FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 					message,
-					new Object[] { getDefinition(), MscriptPackage.eINSTANCE.getDefinition_Name() }));
+					new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name() }));
 		}
 		return ok;
 	}
@@ -400,7 +400,7 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 							FunctionModelValidator.DIAGNOSTIC_SOURCE,
 							FunctionModelValidator.FUNCTION_DESCRIPTOR__HAS_EQUATIONS_FOR_EACH_VARIABLE_STEP,
 							message,
-							new Object[] { getDefinition(), MscriptPackage.eINSTANCE.getDefinition_Name() }));
+							new Object[] { getDeclaration(), MscriptPackage.eINSTANCE.getDeclaration_Name() }));
 				}
 				result = false;
 			}
@@ -462,9 +462,9 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DEFINITION:
-				if (resolve) return getDefinition();
-				return basicGetDefinition();
+			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DECLARATION:
+				if (resolve) return getDeclaration();
+				return basicGetDeclaration();
 			case FunctionModelPackage.FUNCTION_DESCRIPTOR__EQUATION_DESCRIPTORS:
 				return getEquationDescriptors();
 			case FunctionModelPackage.FUNCTION_DESCRIPTOR__VARIABLE_DESCRIPTORS:
@@ -482,8 +482,8 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DEFINITION:
-				setDefinition((FunctionDefinition)newValue);
+			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DECLARATION:
+				setDeclaration((FunctionDeclaration)newValue);
 				return;
 			case FunctionModelPackage.FUNCTION_DESCRIPTOR__EQUATION_DESCRIPTORS:
 				getEquationDescriptors().clear();
@@ -505,8 +505,8 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DEFINITION:
-				setDefinition((FunctionDefinition)null);
+			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DECLARATION:
+				setDeclaration((FunctionDeclaration)null);
 				return;
 			case FunctionModelPackage.FUNCTION_DESCRIPTOR__EQUATION_DESCRIPTORS:
 				getEquationDescriptors().clear();
@@ -526,8 +526,8 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DEFINITION:
-				return definition != null;
+			case FunctionModelPackage.FUNCTION_DESCRIPTOR__DECLARATION:
+				return declaration != null;
 			case FunctionModelPackage.FUNCTION_DESCRIPTOR__EQUATION_DESCRIPTORS:
 				return equationDescriptors != null && !equationDescriptors.isEmpty();
 			case FunctionModelPackage.FUNCTION_DESCRIPTOR__VARIABLE_DESCRIPTORS:

@@ -73,16 +73,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createModuleAdapter();
 			}
 			@Override
-			public Adapter caseDefinition(Definition object) {
-				return createDefinitionAdapter();
+			public Adapter caseDeclaration(Declaration object) {
+				return createDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseDataTypeDefinition(DataTypeDefinition object) {
-				return createDataTypeDefinitionAdapter();
+			public Adapter caseDataTypeDeclaration(DataTypeDeclaration object) {
+				return createDataTypeDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseEnumerationDefinition(EnumerationDefinition object) {
-				return createEnumerationDefinitionAdapter();
+			public Adapter caseEnumerationDeclaration(EnumerationDeclaration object) {
+				return createEnumerationDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseEnumerationLiteralDeclaration(EnumerationLiteralDeclaration object) {
@@ -93,16 +93,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createTypedefDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseStructDefinition(StructDefinition object) {
-				return createStructDefinitionAdapter();
+			public Adapter caseStructDeclaration(StructDeclaration object) {
+				return createStructDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseStructMemberDeclaration(StructMemberDeclaration object) {
 				return createStructMemberDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseFunctionDefinition(FunctionDefinition object) {
-				return createFunctionDefinitionAdapter();
+			public Adapter caseFunctionDeclaration(FunctionDeclaration object) {
+				return createFunctionDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseCheck(Check object) {
@@ -377,16 +377,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 				return createReturnStatementAdapter();
 			}
 			@Override
-			public Adapter caseBuiltinDefinition(BuiltinDefinition object) {
-				return createBuiltinDefinitionAdapter();
+			public Adapter caseBuiltinDeclaration(BuiltinDeclaration object) {
+				return createBuiltinDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseBuiltinFunction(BuiltinFunction object) {
-				return createBuiltinFunctionAdapter();
+			public Adapter caseBuiltinFunctionDeclaration(BuiltinFunctionDeclaration object) {
+				return createBuiltinFunctionDeclarationAdapter();
 			}
 			@Override
-			public Adapter caseBuiltinVariable(BuiltinVariable object) {
-				return createBuiltinVariableAdapter();
+			public Adapter caseBuiltinVariableDeclaration(BuiltinVariableDeclaration object) {
+				return createBuiltinVariableDeclarationAdapter();
 			}
 			@Override
 			public Adapter caseDataType(DataType object) {
@@ -531,44 +531,44 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Definition <em>Definition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.Declaration <em>Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.Definition
+	 * @see org.eclipselabs.damos.mscript.Declaration
 	 * @generated
 	 */
-	public Adapter createDefinitionAdapter() {
+	public Adapter createDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DataTypeDefinition <em>Data Type Definition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.DataTypeDeclaration <em>Data Type Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.DataTypeDefinition
+	 * @see org.eclipselabs.damos.mscript.DataTypeDeclaration
 	 * @generated
 	 */
-	public Adapter createDataTypeDefinitionAdapter() {
+	public Adapter createDataTypeDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.EnumerationDefinition <em>Enumeration Definition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.EnumerationDeclaration <em>Enumeration Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.EnumerationDefinition
+	 * @see org.eclipselabs.damos.mscript.EnumerationDeclaration
 	 * @generated
 	 */
-	public Adapter createEnumerationDefinitionAdapter() {
+	public Adapter createEnumerationDeclarationAdapter() {
 		return null;
 	}
 
@@ -601,16 +601,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructDefinition <em>Struct Definition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.StructDeclaration <em>Struct Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.StructDefinition
+	 * @see org.eclipselabs.damos.mscript.StructDeclaration
 	 * @generated
 	 */
-	public Adapter createStructDefinitionAdapter() {
+	public Adapter createStructDeclarationAdapter() {
 		return null;
 	}
 
@@ -629,16 +629,16 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.FunctionDefinition <em>Function Definition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.FunctionDeclaration <em>Function Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.FunctionDefinition
+	 * @see org.eclipselabs.damos.mscript.FunctionDeclaration
 	 * @generated
 	 */
-	public Adapter createFunctionDefinitionAdapter() {
+	public Adapter createFunctionDeclarationAdapter() {
 		return null;
 	}
 
@@ -1595,44 +1595,44 @@ public class MscriptAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BuiltinDefinition <em>Builtin Definition</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BuiltinDeclaration <em>Builtin Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.BuiltinDefinition
+	 * @see org.eclipselabs.damos.mscript.BuiltinDeclaration
 	 * @generated
 	 */
-	public Adapter createBuiltinDefinitionAdapter() {
+	public Adapter createBuiltinDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BuiltinFunction <em>Builtin Function</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration <em>Builtin Function Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.BuiltinFunction
+	 * @see org.eclipselabs.damos.mscript.BuiltinFunctionDeclaration
 	 * @generated
 	 */
-	public Adapter createBuiltinFunctionAdapter() {
+	public Adapter createBuiltinFunctionDeclarationAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BuiltinVariable <em>Builtin Variable</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.BuiltinVariableDeclaration <em>Builtin Variable Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.BuiltinVariable
+	 * @see org.eclipselabs.damos.mscript.BuiltinVariableDeclaration
 	 * @generated
 	 */
-	public Adapter createBuiltinVariableAdapter() {
+	public Adapter createBuiltinVariableDeclarationAdapter() {
 		return null;
 	}
 

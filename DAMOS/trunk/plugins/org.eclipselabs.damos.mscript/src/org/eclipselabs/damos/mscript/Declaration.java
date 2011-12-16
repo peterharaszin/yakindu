@@ -16,15 +16,15 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.Definition#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.Declaration#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getDefinition()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getDeclaration()
  * @model abstract="true"
  * @generated
  */
-public interface Definition extends EObject {
+public interface Declaration extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -35,14 +35,14 @@ public interface Definition extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getDefinition_Name()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getDeclaration_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.Definition#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.Declaration#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.

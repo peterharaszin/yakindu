@@ -1507,30 +1507,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleGenSubsystem"
 
 
-    // $ANTLR start "entryRuleDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:571:1: entryRuleDefinition returns [EObject current=null] : iv_ruleDefinition= ruleDefinition EOF ;
-    public final EObject entryRuleDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:571:1: entryRuleDeclaration returns [EObject current=null] : iv_ruleDeclaration= ruleDeclaration EOF ;
+    public final EObject entryRuleDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleDefinition = null;
+        EObject iv_ruleDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:572:2: (iv_ruleDefinition= ruleDefinition EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:573:2: iv_ruleDefinition= ruleDefinition EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:572:2: (iv_ruleDeclaration= ruleDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:573:2: iv_ruleDeclaration= ruleDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getDefinitionRule()); 
+               newCompositeNode(grammarAccess.getDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleDefinition_in_entryRuleDefinition1348);
-            iv_ruleDefinition=ruleDefinition();
+            pushFollow(FOLLOW_ruleDeclaration_in_entryRuleDeclaration1348);
+            iv_ruleDeclaration=ruleDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleDefinition; 
+               current =iv_ruleDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDefinition1358); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDeclaration1358); if (state.failed) return current;
 
             }
 
@@ -1544,26 +1544,26 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleDefinition"
+    // $ANTLR end "entryRuleDeclaration"
 
 
-    // $ANTLR start "ruleDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:580:1: ruleDefinition returns [EObject current=null] : (this_DataTypeDefinition_0= ruleDataTypeDefinition | this_FunctionDefinition_1= ruleFunctionDefinition ) ;
-    public final EObject ruleDefinition() throws RecognitionException {
+    // $ANTLR start "ruleDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:580:1: ruleDeclaration returns [EObject current=null] : (this_DataTypeDeclaration_0= ruleDataTypeDeclaration | this_FunctionDeclaration_1= ruleFunctionDeclaration ) ;
+    public final EObject ruleDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject this_DataTypeDefinition_0 = null;
+        EObject this_DataTypeDeclaration_0 = null;
 
-        EObject this_FunctionDefinition_1 = null;
+        EObject this_FunctionDeclaration_1 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:583:28: ( (this_DataTypeDefinition_0= ruleDataTypeDefinition | this_FunctionDefinition_1= ruleFunctionDefinition ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:584:1: (this_DataTypeDefinition_0= ruleDataTypeDefinition | this_FunctionDefinition_1= ruleFunctionDefinition )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:583:28: ( (this_DataTypeDeclaration_0= ruleDataTypeDeclaration | this_FunctionDeclaration_1= ruleFunctionDeclaration ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:584:1: (this_DataTypeDeclaration_0= ruleDataTypeDeclaration | this_FunctionDeclaration_1= ruleFunctionDeclaration )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:584:1: (this_DataTypeDefinition_0= ruleDataTypeDefinition | this_FunctionDefinition_1= ruleFunctionDefinition )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:584:1: (this_DataTypeDeclaration_0= ruleDataTypeDeclaration | this_FunctionDeclaration_1= ruleFunctionDeclaration )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1582,21 +1582,21 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:585:5: this_DataTypeDefinition_0= ruleDataTypeDefinition
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:585:5: this_DataTypeDeclaration_0= ruleDataTypeDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getDefinitionAccess().getDataTypeDefinitionParserRuleCall_0()); 
+                              newCompositeNode(grammarAccess.getDeclarationAccess().getDataTypeDeclarationParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleDataTypeDefinition_in_ruleDefinition1405);
-                    this_DataTypeDefinition_0=ruleDataTypeDefinition();
+                    pushFollow(FOLLOW_ruleDataTypeDeclaration_in_ruleDeclaration1405);
+                    this_DataTypeDeclaration_0=ruleDataTypeDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_DataTypeDefinition_0; 
+                              current = this_DataTypeDeclaration_0; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -1604,21 +1604,21 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:595:5: this_FunctionDefinition_1= ruleFunctionDefinition
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:595:5: this_FunctionDeclaration_1= ruleFunctionDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getDefinitionAccess().getFunctionDefinitionParserRuleCall_1()); 
+                              newCompositeNode(grammarAccess.getDeclarationAccess().getFunctionDeclarationParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleFunctionDefinition_in_ruleDefinition1432);
-                    this_FunctionDefinition_1=ruleFunctionDefinition();
+                    pushFollow(FOLLOW_ruleFunctionDeclaration_in_ruleDeclaration1432);
+                    this_FunctionDeclaration_1=ruleFunctionDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_FunctionDefinition_1; 
+                              current = this_FunctionDeclaration_1; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -1644,33 +1644,33 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleDefinition"
+    // $ANTLR end "ruleDeclaration"
 
 
-    // $ANTLR start "entryRuleDataTypeDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:611:1: entryRuleDataTypeDefinition returns [EObject current=null] : iv_ruleDataTypeDefinition= ruleDataTypeDefinition EOF ;
-    public final EObject entryRuleDataTypeDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleDataTypeDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:611:1: entryRuleDataTypeDeclaration returns [EObject current=null] : iv_ruleDataTypeDeclaration= ruleDataTypeDeclaration EOF ;
+    public final EObject entryRuleDataTypeDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleDataTypeDefinition = null;
+        EObject iv_ruleDataTypeDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:612:2: (iv_ruleDataTypeDefinition= ruleDataTypeDefinition EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:613:2: iv_ruleDataTypeDefinition= ruleDataTypeDefinition EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:612:2: (iv_ruleDataTypeDeclaration= ruleDataTypeDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:613:2: iv_ruleDataTypeDeclaration= ruleDataTypeDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getDataTypeDefinitionRule()); 
+               newCompositeNode(grammarAccess.getDataTypeDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleDataTypeDefinition_in_entryRuleDataTypeDefinition1467);
-            iv_ruleDataTypeDefinition=ruleDataTypeDefinition();
+            pushFollow(FOLLOW_ruleDataTypeDeclaration_in_entryRuleDataTypeDeclaration1467);
+            iv_ruleDataTypeDeclaration=ruleDataTypeDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleDataTypeDefinition; 
+               current =iv_ruleDataTypeDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeDefinition1477); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDataTypeDeclaration1477); if (state.failed) return current;
 
             }
 
@@ -1684,17 +1684,17 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleDataTypeDefinition"
+    // $ANTLR end "entryRuleDataTypeDeclaration"
 
 
-    // $ANTLR start "ruleDataTypeDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:620:1: ruleDataTypeDefinition returns [EObject current=null] : (this_EnumerationDefinition_0= ruleEnumerationDefinition | this_StructDefinition_1= ruleStructDefinition | this_TypedefDeclaration_2= ruleTypedefDeclaration ) ;
-    public final EObject ruleDataTypeDefinition() throws RecognitionException {
+    // $ANTLR start "ruleDataTypeDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:620:1: ruleDataTypeDeclaration returns [EObject current=null] : (this_EnumerationDeclaration_0= ruleEnumerationDeclaration | this_StructDeclaration_1= ruleStructDeclaration | this_TypedefDeclaration_2= ruleTypedefDeclaration ) ;
+    public final EObject ruleDataTypeDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject this_EnumerationDefinition_0 = null;
+        EObject this_EnumerationDeclaration_0 = null;
 
-        EObject this_StructDefinition_1 = null;
+        EObject this_StructDeclaration_1 = null;
 
         EObject this_TypedefDeclaration_2 = null;
 
@@ -1702,10 +1702,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:623:28: ( (this_EnumerationDefinition_0= ruleEnumerationDefinition | this_StructDefinition_1= ruleStructDefinition | this_TypedefDeclaration_2= ruleTypedefDeclaration ) )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:624:1: (this_EnumerationDefinition_0= ruleEnumerationDefinition | this_StructDefinition_1= ruleStructDefinition | this_TypedefDeclaration_2= ruleTypedefDeclaration )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:623:28: ( (this_EnumerationDeclaration_0= ruleEnumerationDeclaration | this_StructDeclaration_1= ruleStructDeclaration | this_TypedefDeclaration_2= ruleTypedefDeclaration ) )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:624:1: (this_EnumerationDeclaration_0= ruleEnumerationDeclaration | this_StructDeclaration_1= ruleStructDeclaration | this_TypedefDeclaration_2= ruleTypedefDeclaration )
             {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:624:1: (this_EnumerationDefinition_0= ruleEnumerationDefinition | this_StructDefinition_1= ruleStructDefinition | this_TypedefDeclaration_2= ruleTypedefDeclaration )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:624:1: (this_EnumerationDeclaration_0= ruleEnumerationDeclaration | this_StructDeclaration_1= ruleStructDeclaration | this_TypedefDeclaration_2= ruleTypedefDeclaration )
             int alt9=3;
             switch ( input.LA(1) ) {
             case 27:
@@ -1733,21 +1733,21 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             switch (alt9) {
                 case 1 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:625:5: this_EnumerationDefinition_0= ruleEnumerationDefinition
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:625:5: this_EnumerationDeclaration_0= ruleEnumerationDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getDataTypeDefinitionAccess().getEnumerationDefinitionParserRuleCall_0()); 
+                              newCompositeNode(grammarAccess.getDataTypeDeclarationAccess().getEnumerationDeclarationParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleEnumerationDefinition_in_ruleDataTypeDefinition1524);
-                    this_EnumerationDefinition_0=ruleEnumerationDefinition();
+                    pushFollow(FOLLOW_ruleEnumerationDeclaration_in_ruleDataTypeDeclaration1524);
+                    this_EnumerationDeclaration_0=ruleEnumerationDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_EnumerationDefinition_0; 
+                              current = this_EnumerationDeclaration_0; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -1755,21 +1755,21 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:635:5: this_StructDefinition_1= ruleStructDefinition
+                    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:635:5: this_StructDeclaration_1= ruleStructDeclaration
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getDataTypeDefinitionAccess().getStructDefinitionParserRuleCall_1()); 
+                              newCompositeNode(grammarAccess.getDataTypeDeclarationAccess().getStructDeclarationParserRuleCall_1()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleStructDefinition_in_ruleDataTypeDefinition1551);
-                    this_StructDefinition_1=ruleStructDefinition();
+                    pushFollow(FOLLOW_ruleStructDeclaration_in_ruleDataTypeDeclaration1551);
+                    this_StructDeclaration_1=ruleStructDeclaration();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_StructDefinition_1; 
+                              current = this_StructDeclaration_1; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -1781,10 +1781,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getDataTypeDefinitionAccess().getTypedefDeclarationParserRuleCall_2()); 
+                              newCompositeNode(grammarAccess.getDataTypeDeclarationAccess().getTypedefDeclarationParserRuleCall_2()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleTypedefDeclaration_in_ruleDataTypeDefinition1578);
+                    pushFollow(FOLLOW_ruleTypedefDeclaration_in_ruleDataTypeDeclaration1578);
                     this_TypedefDeclaration_2=ruleTypedefDeclaration();
 
                     state._fsp--;
@@ -1817,33 +1817,33 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleDataTypeDefinition"
+    // $ANTLR end "ruleDataTypeDeclaration"
 
 
-    // $ANTLR start "entryRuleEnumerationDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:661:1: entryRuleEnumerationDefinition returns [EObject current=null] : iv_ruleEnumerationDefinition= ruleEnumerationDefinition EOF ;
-    public final EObject entryRuleEnumerationDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleEnumerationDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:661:1: entryRuleEnumerationDeclaration returns [EObject current=null] : iv_ruleEnumerationDeclaration= ruleEnumerationDeclaration EOF ;
+    public final EObject entryRuleEnumerationDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleEnumerationDefinition = null;
+        EObject iv_ruleEnumerationDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:662:2: (iv_ruleEnumerationDefinition= ruleEnumerationDefinition EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:663:2: iv_ruleEnumerationDefinition= ruleEnumerationDefinition EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:662:2: (iv_ruleEnumerationDeclaration= ruleEnumerationDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:663:2: iv_ruleEnumerationDeclaration= ruleEnumerationDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getEnumerationDefinitionRule()); 
+               newCompositeNode(grammarAccess.getEnumerationDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleEnumerationDefinition_in_entryRuleEnumerationDefinition1613);
-            iv_ruleEnumerationDefinition=ruleEnumerationDefinition();
+            pushFollow(FOLLOW_ruleEnumerationDeclaration_in_entryRuleEnumerationDeclaration1613);
+            iv_ruleEnumerationDeclaration=ruleEnumerationDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleEnumerationDefinition; 
+               current =iv_ruleEnumerationDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEnumerationDefinition1623); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEnumerationDeclaration1623); if (state.failed) return current;
 
             }
 
@@ -1857,12 +1857,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleEnumerationDefinition"
+    // $ANTLR end "entryRuleEnumerationDeclaration"
 
 
-    // $ANTLR start "ruleEnumerationDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:670:1: ruleEnumerationDefinition returns [EObject current=null] : (otherlv_0= 'enum' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( ( (lv_literalDeclarations_3_0= ruleEnumerationLiteralDeclaration ) ) (otherlv_4= ',' ( (lv_literalDeclarations_5_0= ruleEnumerationLiteralDeclaration ) ) )* )? otherlv_6= '}' ) ;
-    public final EObject ruleEnumerationDefinition() throws RecognitionException {
+    // $ANTLR start "ruleEnumerationDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:670:1: ruleEnumerationDeclaration returns [EObject current=null] : (otherlv_0= 'enum' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( ( (lv_literalDeclarations_3_0= ruleEnumerationLiteralDeclaration ) ) (otherlv_4= ',' ( (lv_literalDeclarations_5_0= ruleEnumerationLiteralDeclaration ) ) )* )? otherlv_6= '}' ) ;
+    public final EObject ruleEnumerationDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -1885,10 +1885,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:674:1: (otherlv_0= 'enum' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( ( (lv_literalDeclarations_3_0= ruleEnumerationLiteralDeclaration ) ) (otherlv_4= ',' ( (lv_literalDeclarations_5_0= ruleEnumerationLiteralDeclaration ) ) )* )? otherlv_6= '}' )
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:674:3: otherlv_0= 'enum' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( ( (lv_literalDeclarations_3_0= ruleEnumerationLiteralDeclaration ) ) (otherlv_4= ',' ( (lv_literalDeclarations_5_0= ruleEnumerationLiteralDeclaration ) ) )* )? otherlv_6= '}'
             {
-            otherlv_0=(Token)match(input,27,FOLLOW_27_in_ruleEnumerationDefinition1660); if (state.failed) return current;
+            otherlv_0=(Token)match(input,27,FOLLOW_27_in_ruleEnumerationDeclaration1660); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getEnumerationDefinitionAccess().getEnumKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getEnumerationDeclarationAccess().getEnumKeyword_0());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:678:1: ( (lv_name_1_0= ruleValidID ) )
@@ -1899,10 +1899,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getEnumerationDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleEnumerationDefinition1681);
+            pushFollow(FOLLOW_ruleValidID_in_ruleEnumerationDeclaration1681);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -1910,7 +1910,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getEnumerationDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getEnumerationDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -1926,10 +1926,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleEnumerationDefinition1693); if (state.failed) return current;
+            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleEnumerationDeclaration1693); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_2, grammarAccess.getEnumerationDefinitionAccess().getLeftCurlyBracketKeyword_2());
+                  	newLeafNode(otherlv_2, grammarAccess.getEnumerationDeclarationAccess().getLeftCurlyBracketKeyword_2());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:700:1: ( ( (lv_literalDeclarations_3_0= ruleEnumerationLiteralDeclaration ) ) (otherlv_4= ',' ( (lv_literalDeclarations_5_0= ruleEnumerationLiteralDeclaration ) ) )* )?
@@ -1951,10 +1951,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_0_0()); 
+                      	        newCompositeNode(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDefinition1715);
+                    pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDeclaration1715);
                     lv_literalDeclarations_3_0=ruleEnumerationLiteralDeclaration();
 
                     state._fsp--;
@@ -1962,7 +1962,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getEnumerationDefinitionRule());
+                      	            current = createModelElementForParent(grammarAccess.getEnumerationDeclarationRule());
                       	        }
                              		add(
                              			current, 
@@ -1993,10 +1993,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	case 1 :
                     	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:718:4: otherlv_4= ',' ( (lv_literalDeclarations_5_0= ruleEnumerationLiteralDeclaration ) )
                     	    {
-                    	    otherlv_4=(Token)match(input,28,FOLLOW_28_in_ruleEnumerationDefinition1728); if (state.failed) return current;
+                    	    otherlv_4=(Token)match(input,28,FOLLOW_28_in_ruleEnumerationDeclaration1728); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
-                    	          	newLeafNode(otherlv_4, grammarAccess.getEnumerationDefinitionAccess().getCommaKeyword_3_1_0());
+                    	          	newLeafNode(otherlv_4, grammarAccess.getEnumerationDeclarationAccess().getCommaKeyword_3_1_0());
                     	          
                     	    }
                     	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:722:1: ( (lv_literalDeclarations_5_0= ruleEnumerationLiteralDeclaration ) )
@@ -2007,10 +2007,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
-                    	      	        newCompositeNode(grammarAccess.getEnumerationDefinitionAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0()); 
+                    	      	        newCompositeNode(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsEnumerationLiteralDeclarationParserRuleCall_3_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDefinition1749);
+                    	    pushFollow(FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDeclaration1749);
                     	    lv_literalDeclarations_5_0=ruleEnumerationLiteralDeclaration();
 
                     	    state._fsp--;
@@ -2018,7 +2018,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    if ( state.backtracking==0 ) {
 
                     	      	        if (current==null) {
-                    	      	            current = createModelElementForParent(grammarAccess.getEnumerationDefinitionRule());
+                    	      	            current = createModelElementForParent(grammarAccess.getEnumerationDeclarationRule());
                     	      	        }
                     	             		add(
                     	             			current, 
@@ -2049,10 +2049,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,25,FOLLOW_25_in_ruleEnumerationDefinition1765); if (state.failed) return current;
+            otherlv_6=(Token)match(input,25,FOLLOW_25_in_ruleEnumerationDeclaration1765); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_6, grammarAccess.getEnumerationDefinitionAccess().getRightCurlyBracketKeyword_4());
+                  	newLeafNode(otherlv_6, grammarAccess.getEnumerationDeclarationAccess().getRightCurlyBracketKeyword_4());
                   
             }
 
@@ -2074,7 +2074,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleEnumerationDefinition"
+    // $ANTLR end "ruleEnumerationDeclaration"
 
 
     // $ANTLR start "entryRuleEnumerationLiteralDeclaration"
@@ -2343,30 +2343,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleTypedefDeclaration"
 
 
-    // $ANTLR start "entryRuleStructDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:852:1: entryRuleStructDefinition returns [EObject current=null] : iv_ruleStructDefinition= ruleStructDefinition EOF ;
-    public final EObject entryRuleStructDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleStructDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:852:1: entryRuleStructDeclaration returns [EObject current=null] : iv_ruleStructDeclaration= ruleStructDeclaration EOF ;
+    public final EObject entryRuleStructDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleStructDefinition = null;
+        EObject iv_ruleStructDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:853:2: (iv_ruleStructDefinition= ruleStructDefinition EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:854:2: iv_ruleStructDefinition= ruleStructDefinition EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:853:2: (iv_ruleStructDeclaration= ruleStructDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:854:2: iv_ruleStructDeclaration= ruleStructDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getStructDefinitionRule()); 
+               newCompositeNode(grammarAccess.getStructDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleStructDefinition_in_entryRuleStructDefinition2016);
-            iv_ruleStructDefinition=ruleStructDefinition();
+            pushFollow(FOLLOW_ruleStructDeclaration_in_entryRuleStructDeclaration2016);
+            iv_ruleStructDeclaration=ruleStructDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleStructDefinition; 
+               current =iv_ruleStructDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStructDefinition2026); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStructDeclaration2026); if (state.failed) return current;
 
             }
 
@@ -2380,12 +2380,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleStructDefinition"
+    // $ANTLR end "entryRuleStructDeclaration"
 
 
-    // $ANTLR start "ruleStructDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:861:1: ruleStructDefinition returns [EObject current=null] : (otherlv_0= 'struct' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( (lv_memberDeclarations_3_0= ruleStructMemberDeclaration ) )* otherlv_4= '}' ) ;
-    public final EObject ruleStructDefinition() throws RecognitionException {
+    // $ANTLR start "ruleStructDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:861:1: ruleStructDeclaration returns [EObject current=null] : (otherlv_0= 'struct' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( (lv_memberDeclarations_3_0= ruleStructMemberDeclaration ) )* otherlv_4= '}' ) ;
+    public final EObject ruleStructDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
@@ -2405,10 +2405,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:865:1: (otherlv_0= 'struct' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( (lv_memberDeclarations_3_0= ruleStructMemberDeclaration ) )* otherlv_4= '}' )
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:865:3: otherlv_0= 'struct' ( (lv_name_1_0= ruleValidID ) ) otherlv_2= '{' ( (lv_memberDeclarations_3_0= ruleStructMemberDeclaration ) )* otherlv_4= '}'
             {
-            otherlv_0=(Token)match(input,30,FOLLOW_30_in_ruleStructDefinition2063); if (state.failed) return current;
+            otherlv_0=(Token)match(input,30,FOLLOW_30_in_ruleStructDeclaration2063); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getStructDefinitionAccess().getStructKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getStructDeclarationAccess().getStructKeyword_0());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:869:1: ( (lv_name_1_0= ruleValidID ) )
@@ -2419,10 +2419,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getStructDefinitionAccess().getNameValidIDParserRuleCall_1_0()); 
+              	        newCompositeNode(grammarAccess.getStructDeclarationAccess().getNameValidIDParserRuleCall_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleStructDefinition2084);
+            pushFollow(FOLLOW_ruleValidID_in_ruleStructDeclaration2084);
             lv_name_1_0=ruleValidID();
 
             state._fsp--;
@@ -2430,7 +2430,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getStructDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getStructDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -2446,10 +2446,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleStructDefinition2096); if (state.failed) return current;
+            otherlv_2=(Token)match(input,23,FOLLOW_23_in_ruleStructDeclaration2096); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_2, grammarAccess.getStructDefinitionAccess().getLeftCurlyBracketKeyword_2());
+                  	newLeafNode(otherlv_2, grammarAccess.getStructDeclarationAccess().getLeftCurlyBracketKeyword_2());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:891:1: ( (lv_memberDeclarations_3_0= ruleStructMemberDeclaration ) )*
@@ -2472,10 +2472,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getStructDefinitionAccess().getMemberDeclarationsStructMemberDeclarationParserRuleCall_3_0()); 
+            	      	        newCompositeNode(grammarAccess.getStructDeclarationAccess().getMemberDeclarationsStructMemberDeclarationParserRuleCall_3_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleStructMemberDeclaration_in_ruleStructDefinition2117);
+            	    pushFollow(FOLLOW_ruleStructMemberDeclaration_in_ruleStructDeclaration2117);
             	    lv_memberDeclarations_3_0=ruleStructMemberDeclaration();
 
             	    state._fsp--;
@@ -2483,7 +2483,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getStructDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getStructDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -2505,10 +2505,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_4=(Token)match(input,25,FOLLOW_25_in_ruleStructDefinition2130); if (state.failed) return current;
+            otherlv_4=(Token)match(input,25,FOLLOW_25_in_ruleStructDeclaration2130); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_4, grammarAccess.getStructDefinitionAccess().getRightCurlyBracketKeyword_4());
+                  	newLeafNode(otherlv_4, grammarAccess.getStructDeclarationAccess().getRightCurlyBracketKeyword_4());
                   
             }
 
@@ -2530,7 +2530,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleStructDefinition"
+    // $ANTLR end "ruleStructDeclaration"
 
 
     // $ANTLR start "entryRuleStructMemberDeclaration"
@@ -2684,30 +2684,30 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleStructMemberDeclaration"
 
 
-    // $ANTLR start "entryRuleFunctionDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:978:1: entryRuleFunctionDefinition returns [EObject current=null] : iv_ruleFunctionDefinition= ruleFunctionDefinition EOF ;
-    public final EObject entryRuleFunctionDefinition() throws RecognitionException {
+    // $ANTLR start "entryRuleFunctionDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:978:1: entryRuleFunctionDeclaration returns [EObject current=null] : iv_ruleFunctionDeclaration= ruleFunctionDeclaration EOF ;
+    public final EObject entryRuleFunctionDeclaration() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleFunctionDefinition = null;
+        EObject iv_ruleFunctionDeclaration = null;
 
 
         try {
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:979:2: (iv_ruleFunctionDefinition= ruleFunctionDefinition EOF )
-            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:980:2: iv_ruleFunctionDefinition= ruleFunctionDefinition EOF
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:979:2: (iv_ruleFunctionDeclaration= ruleFunctionDeclaration EOF )
+            // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:980:2: iv_ruleFunctionDeclaration= ruleFunctionDeclaration EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getFunctionDefinitionRule()); 
+               newCompositeNode(grammarAccess.getFunctionDeclarationRule()); 
             }
-            pushFollow(FOLLOW_ruleFunctionDefinition_in_entryRuleFunctionDefinition2279);
-            iv_ruleFunctionDefinition=ruleFunctionDefinition();
+            pushFollow(FOLLOW_ruleFunctionDeclaration_in_entryRuleFunctionDeclaration2279);
+            iv_ruleFunctionDeclaration=ruleFunctionDeclaration();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleFunctionDefinition; 
+               current =iv_ruleFunctionDeclaration; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionDefinition2289); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFunctionDeclaration2289); if (state.failed) return current;
 
             }
 
@@ -2721,12 +2721,12 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleFunctionDefinition"
+    // $ANTLR end "entryRuleFunctionDeclaration"
 
 
-    // $ANTLR start "ruleFunctionDefinition"
-    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:987:1: ruleFunctionDefinition returns [EObject current=null] : ( ( (lv_kind_0_0= ruleFunctionKind ) )? otherlv_1= 'func' ( (lv_name_2_0= ruleValidID ) ) (otherlv_3= '<' ( (lv_templateParameterDeclarations_4_0= ruleTemplateParameterDeclaration ) ) (otherlv_5= ',' ( (lv_templateParameterDeclarations_6_0= ruleTemplateParameterDeclaration ) ) )* otherlv_7= '>' )? otherlv_8= '(' ( ( (lv_inputParameterDeclarations_9_0= ruleInputParameterDeclaration ) ) (otherlv_10= ',' ( (lv_inputParameterDeclarations_11_0= ruleInputParameterDeclaration ) ) )* )? otherlv_12= ')' otherlv_13= '->' ( (lv_outputParameterDeclarations_14_0= ruleOutputParameterDeclaration ) ) (otherlv_15= ',' ( (lv_outputParameterDeclarations_16_0= ruleOutputParameterDeclaration ) ) )* otherlv_17= '{' ( ( (lv_checks_18_0= ruleCheck ) ) | ( (lv_assertions_19_0= ruleAssertion ) ) | ( (lv_functionObjectDeclarations_20_0= ruleFunctionObjectDeclaration ) ) | ( (lv_stateVariableDeclarations_21_0= ruleStateVariableDeclaration ) ) | ( (lv_constantDeclarations_22_0= ruleConstantDeclaration ) ) | ( (lv_equations_23_0= ruleEquation ) ) )* otherlv_24= '}' ) ;
-    public final EObject ruleFunctionDefinition() throws RecognitionException {
+    // $ANTLR start "ruleFunctionDeclaration"
+    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:987:1: ruleFunctionDeclaration returns [EObject current=null] : ( ( (lv_kind_0_0= ruleFunctionKind ) )? otherlv_1= 'func' ( (lv_name_2_0= ruleValidID ) ) (otherlv_3= '<' ( (lv_templateParameterDeclarations_4_0= ruleTemplateParameterDeclaration ) ) (otherlv_5= ',' ( (lv_templateParameterDeclarations_6_0= ruleTemplateParameterDeclaration ) ) )* otherlv_7= '>' )? otherlv_8= '(' ( ( (lv_inputParameterDeclarations_9_0= ruleInputParameterDeclaration ) ) (otherlv_10= ',' ( (lv_inputParameterDeclarations_11_0= ruleInputParameterDeclaration ) ) )* )? otherlv_12= ')' otherlv_13= '->' ( (lv_outputParameterDeclarations_14_0= ruleOutputParameterDeclaration ) ) (otherlv_15= ',' ( (lv_outputParameterDeclarations_16_0= ruleOutputParameterDeclaration ) ) )* otherlv_17= '{' ( ( (lv_checks_18_0= ruleCheck ) ) | ( (lv_assertions_19_0= ruleAssertion ) ) | ( (lv_functionObjectDeclarations_20_0= ruleFunctionObjectDeclaration ) ) | ( (lv_stateVariableDeclarations_21_0= ruleStateVariableDeclaration ) ) | ( (lv_constantDeclarations_22_0= ruleConstantDeclaration ) ) | ( (lv_equations_23_0= ruleEquation ) ) )* otherlv_24= '}' ) ;
+    public final EObject ruleFunctionDeclaration() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_1=null;
@@ -2794,10 +2794,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getKindFunctionKindEnumRuleCall_0_0()); 
+                      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getKindFunctionKindEnumRuleCall_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleFunctionKind_in_ruleFunctionDefinition2335);
+                    pushFollow(FOLLOW_ruleFunctionKind_in_ruleFunctionDeclaration2335);
                     lv_kind_0_0=ruleFunctionKind();
 
                     state._fsp--;
@@ -2805,7 +2805,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+                      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
                       	        }
                              		set(
                              			current, 
@@ -2824,10 +2824,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,31,FOLLOW_31_in_ruleFunctionDefinition2348); if (state.failed) return current;
+            otherlv_1=(Token)match(input,31,FOLLOW_31_in_ruleFunctionDeclaration2348); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_1, grammarAccess.getFunctionDefinitionAccess().getFuncKeyword_1());
+                  	newLeafNode(otherlv_1, grammarAccess.getFunctionDeclarationAccess().getFuncKeyword_1());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1013:1: ( (lv_name_2_0= ruleValidID ) )
@@ -2838,10 +2838,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getNameValidIDParserRuleCall_2_0()); 
+              	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getNameValidIDParserRuleCall_2_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleValidID_in_ruleFunctionDefinition2369);
+            pushFollow(FOLLOW_ruleValidID_in_ruleFunctionDeclaration2369);
             lv_name_2_0=ruleValidID();
 
             state._fsp--;
@@ -2849,7 +2849,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
               	        }
                      		set(
                      			current, 
@@ -2876,10 +2876,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1031:4: otherlv_3= '<' ( (lv_templateParameterDeclarations_4_0= ruleTemplateParameterDeclaration ) ) (otherlv_5= ',' ( (lv_templateParameterDeclarations_6_0= ruleTemplateParameterDeclaration ) ) )* otherlv_7= '>'
                     {
-                    otherlv_3=(Token)match(input,32,FOLLOW_32_in_ruleFunctionDefinition2382); if (state.failed) return current;
+                    otherlv_3=(Token)match(input,32,FOLLOW_32_in_ruleFunctionDeclaration2382); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_3, grammarAccess.getFunctionDefinitionAccess().getLessThanSignKeyword_3_0());
+                          	newLeafNode(otherlv_3, grammarAccess.getFunctionDeclarationAccess().getLessThanSignKeyword_3_0());
                           
                     }
                     // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1035:1: ( (lv_templateParameterDeclarations_4_0= ruleTemplateParameterDeclaration ) )
@@ -2890,10 +2890,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_1_0()); 
+                      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDefinition2403);
+                    pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDeclaration2403);
                     lv_templateParameterDeclarations_4_0=ruleTemplateParameterDeclaration();
 
                     state._fsp--;
@@ -2901,7 +2901,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+                      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
                       	        }
                              		add(
                              			current, 
@@ -2932,10 +2932,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	case 1 :
                     	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1053:4: otherlv_5= ',' ( (lv_templateParameterDeclarations_6_0= ruleTemplateParameterDeclaration ) )
                     	    {
-                    	    otherlv_5=(Token)match(input,28,FOLLOW_28_in_ruleFunctionDefinition2416); if (state.failed) return current;
+                    	    otherlv_5=(Token)match(input,28,FOLLOW_28_in_ruleFunctionDeclaration2416); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
-                    	          	newLeafNode(otherlv_5, grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_3_2_0());
+                    	          	newLeafNode(otherlv_5, grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_3_2_0());
                     	          
                     	    }
                     	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1057:1: ( (lv_templateParameterDeclarations_6_0= ruleTemplateParameterDeclaration ) )
@@ -2946,10 +2946,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
-                    	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_2_1_0()); 
+                    	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getTemplateParameterDeclarationsTemplateParameterDeclarationParserRuleCall_3_2_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDefinition2437);
+                    	    pushFollow(FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDeclaration2437);
                     	    lv_templateParameterDeclarations_6_0=ruleTemplateParameterDeclaration();
 
                     	    state._fsp--;
@@ -2957,7 +2957,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    if ( state.backtracking==0 ) {
 
                     	      	        if (current==null) {
-                    	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+                    	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
                     	      	        }
                     	             		add(
                     	             			current, 
@@ -2982,10 +2982,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    otherlv_7=(Token)match(input,33,FOLLOW_33_in_ruleFunctionDefinition2451); if (state.failed) return current;
+                    otherlv_7=(Token)match(input,33,FOLLOW_33_in_ruleFunctionDeclaration2451); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_7, grammarAccess.getFunctionDefinitionAccess().getGreaterThanSignKeyword_3_3());
+                          	newLeafNode(otherlv_7, grammarAccess.getFunctionDeclarationAccess().getGreaterThanSignKeyword_3_3());
                           
                     }
 
@@ -2994,10 +2994,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_8=(Token)match(input,34,FOLLOW_34_in_ruleFunctionDefinition2465); if (state.failed) return current;
+            otherlv_8=(Token)match(input,34,FOLLOW_34_in_ruleFunctionDeclaration2465); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_8, grammarAccess.getFunctionDefinitionAccess().getLeftParenthesisKeyword_4());
+                  	newLeafNode(otherlv_8, grammarAccess.getFunctionDeclarationAccess().getLeftParenthesisKeyword_4());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1083:1: ( ( (lv_inputParameterDeclarations_9_0= ruleInputParameterDeclaration ) ) (otherlv_10= ',' ( (lv_inputParameterDeclarations_11_0= ruleInputParameterDeclaration ) ) )* )?
@@ -3019,10 +3019,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_0_0()); 
+                      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_0_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDefinition2487);
+                    pushFollow(FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDeclaration2487);
                     lv_inputParameterDeclarations_9_0=ruleInputParameterDeclaration();
 
                     state._fsp--;
@@ -3030,7 +3030,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+                      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
                       	        }
                              		add(
                              			current, 
@@ -3061,10 +3061,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	case 1 :
                     	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1101:4: otherlv_10= ',' ( (lv_inputParameterDeclarations_11_0= ruleInputParameterDeclaration ) )
                     	    {
-                    	    otherlv_10=(Token)match(input,28,FOLLOW_28_in_ruleFunctionDefinition2500); if (state.failed) return current;
+                    	    otherlv_10=(Token)match(input,28,FOLLOW_28_in_ruleFunctionDeclaration2500); if (state.failed) return current;
                     	    if ( state.backtracking==0 ) {
 
-                    	          	newLeafNode(otherlv_10, grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_5_1_0());
+                    	          	newLeafNode(otherlv_10, grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_5_1_0());
                     	          
                     	    }
                     	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1105:1: ( (lv_inputParameterDeclarations_11_0= ruleInputParameterDeclaration ) )
@@ -3075,10 +3075,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    {
                     	    if ( state.backtracking==0 ) {
                     	       
-                    	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_1_1_0()); 
+                    	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getInputParameterDeclarationsInputParameterDeclarationParserRuleCall_5_1_1_0()); 
                     	      	    
                     	    }
-                    	    pushFollow(FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDefinition2521);
+                    	    pushFollow(FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDeclaration2521);
                     	    lv_inputParameterDeclarations_11_0=ruleInputParameterDeclaration();
 
                     	    state._fsp--;
@@ -3086,7 +3086,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                     	    if ( state.backtracking==0 ) {
 
                     	      	        if (current==null) {
-                    	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+                    	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
                     	      	        }
                     	             		add(
                     	             			current, 
@@ -3117,16 +3117,16 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_12=(Token)match(input,35,FOLLOW_35_in_ruleFunctionDefinition2537); if (state.failed) return current;
+            otherlv_12=(Token)match(input,35,FOLLOW_35_in_ruleFunctionDeclaration2537); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_12, grammarAccess.getFunctionDefinitionAccess().getRightParenthesisKeyword_6());
+                  	newLeafNode(otherlv_12, grammarAccess.getFunctionDeclarationAccess().getRightParenthesisKeyword_6());
                   
             }
-            otherlv_13=(Token)match(input,36,FOLLOW_36_in_ruleFunctionDefinition2549); if (state.failed) return current;
+            otherlv_13=(Token)match(input,36,FOLLOW_36_in_ruleFunctionDeclaration2549); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_13, grammarAccess.getFunctionDefinitionAccess().getHyphenMinusGreaterThanSignKeyword_7());
+                  	newLeafNode(otherlv_13, grammarAccess.getFunctionDeclarationAccess().getHyphenMinusGreaterThanSignKeyword_7());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1131:1: ( (lv_outputParameterDeclarations_14_0= ruleOutputParameterDeclaration ) )
@@ -3137,10 +3137,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             {
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_8_0()); 
+              	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_8_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDefinition2570);
+            pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDeclaration2570);
             lv_outputParameterDeclarations_14_0=ruleOutputParameterDeclaration();
 
             state._fsp--;
@@ -3148,7 +3148,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+              	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
               	        }
                      		add(
                      			current, 
@@ -3179,10 +3179,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1149:4: otherlv_15= ',' ( (lv_outputParameterDeclarations_16_0= ruleOutputParameterDeclaration ) )
             	    {
-            	    otherlv_15=(Token)match(input,28,FOLLOW_28_in_ruleFunctionDefinition2583); if (state.failed) return current;
+            	    otherlv_15=(Token)match(input,28,FOLLOW_28_in_ruleFunctionDeclaration2583); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	          	newLeafNode(otherlv_15, grammarAccess.getFunctionDefinitionAccess().getCommaKeyword_9_0());
+            	          	newLeafNode(otherlv_15, grammarAccess.getFunctionDeclarationAccess().getCommaKeyword_9_0());
             	          
             	    }
             	    // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1153:1: ( (lv_outputParameterDeclarations_16_0= ruleOutputParameterDeclaration ) )
@@ -3193,10 +3193,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_9_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getOutputParameterDeclarationsOutputParameterDeclarationParserRuleCall_9_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDefinition2604);
+            	    pushFollow(FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDeclaration2604);
             	    lv_outputParameterDeclarations_16_0=ruleOutputParameterDeclaration();
 
             	    state._fsp--;
@@ -3204,7 +3204,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -3229,10 +3229,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_17=(Token)match(input,23,FOLLOW_23_in_ruleFunctionDefinition2618); if (state.failed) return current;
+            otherlv_17=(Token)match(input,23,FOLLOW_23_in_ruleFunctionDeclaration2618); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_17, grammarAccess.getFunctionDefinitionAccess().getLeftCurlyBracketKeyword_10());
+                  	newLeafNode(otherlv_17, grammarAccess.getFunctionDeclarationAccess().getLeftCurlyBracketKeyword_10());
                   
             }
             // ../org.eclipselabs.damos.codegen.c.cgenmodel/src-gen/org/eclipselabs/damos/codegen/c/cgenmodel/parser/antlr/internal/InternalCGenModel.g:1175:1: ( ( (lv_checks_18_0= ruleCheck ) ) | ( (lv_assertions_19_0= ruleAssertion ) ) | ( (lv_functionObjectDeclarations_20_0= ruleFunctionObjectDeclaration ) ) | ( (lv_stateVariableDeclarations_21_0= ruleStateVariableDeclaration ) ) | ( (lv_constantDeclarations_22_0= ruleConstantDeclaration ) ) | ( (lv_equations_23_0= ruleEquation ) ) )*
@@ -3287,10 +3287,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getChecksCheckParserRuleCall_11_0_0()); 
+            	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getChecksCheckParserRuleCall_11_0_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleCheck_in_ruleFunctionDefinition2640);
+            	    pushFollow(FOLLOW_ruleCheck_in_ruleFunctionDeclaration2640);
             	    lv_checks_18_0=ruleCheck();
 
             	    state._fsp--;
@@ -3298,7 +3298,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -3328,10 +3328,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getAssertionsAssertionParserRuleCall_11_1_0()); 
+            	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getAssertionsAssertionParserRuleCall_11_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleAssertion_in_ruleFunctionDefinition2667);
+            	    pushFollow(FOLLOW_ruleAssertion_in_ruleFunctionDeclaration2667);
             	    lv_assertions_19_0=ruleAssertion();
 
             	    state._fsp--;
@@ -3339,7 +3339,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -3369,10 +3369,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getFunctionObjectDeclarationsFunctionObjectDeclarationParserRuleCall_11_2_0()); 
+            	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getFunctionObjectDeclarationsFunctionObjectDeclarationParserRuleCall_11_2_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleFunctionObjectDeclaration_in_ruleFunctionDefinition2694);
+            	    pushFollow(FOLLOW_ruleFunctionObjectDeclaration_in_ruleFunctionDeclaration2694);
             	    lv_functionObjectDeclarations_20_0=ruleFunctionObjectDeclaration();
 
             	    state._fsp--;
@@ -3380,7 +3380,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -3410,10 +3410,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_11_3_0()); 
+            	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getStateVariableDeclarationsStateVariableDeclarationParserRuleCall_11_3_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleStateVariableDeclaration_in_ruleFunctionDefinition2721);
+            	    pushFollow(FOLLOW_ruleStateVariableDeclaration_in_ruleFunctionDeclaration2721);
             	    lv_stateVariableDeclarations_21_0=ruleStateVariableDeclaration();
 
             	    state._fsp--;
@@ -3421,7 +3421,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -3451,10 +3451,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_11_4_0()); 
+            	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getConstantDeclarationsConstantDeclarationParserRuleCall_11_4_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleConstantDeclaration_in_ruleFunctionDefinition2748);
+            	    pushFollow(FOLLOW_ruleConstantDeclaration_in_ruleFunctionDeclaration2748);
             	    lv_constantDeclarations_22_0=ruleConstantDeclaration();
 
             	    state._fsp--;
@@ -3462,7 +3462,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -3492,10 +3492,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getFunctionDefinitionAccess().getEquationsEquationParserRuleCall_11_5_0()); 
+            	      	        newCompositeNode(grammarAccess.getFunctionDeclarationAccess().getEquationsEquationParserRuleCall_11_5_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleEquation_in_ruleFunctionDefinition2775);
+            	    pushFollow(FOLLOW_ruleEquation_in_ruleFunctionDeclaration2775);
             	    lv_equations_23_0=ruleEquation();
 
             	    state._fsp--;
@@ -3503,7 +3503,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getFunctionDefinitionRule());
+            	      	            current = createModelElementForParent(grammarAccess.getFunctionDeclarationRule());
             	      	        }
             	             		add(
             	             			current, 
@@ -3528,10 +3528,10 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
                 }
             } while (true);
 
-            otherlv_24=(Token)match(input,25,FOLLOW_25_in_ruleFunctionDefinition2789); if (state.failed) return current;
+            otherlv_24=(Token)match(input,25,FOLLOW_25_in_ruleFunctionDeclaration2789); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_24, grammarAccess.getFunctionDefinitionAccess().getRightCurlyBracketKeyword_12());
+                  	newLeafNode(otherlv_24, grammarAccess.getFunctionDeclarationAccess().getRightCurlyBracketKeyword_12());
                   
             }
 
@@ -3553,7 +3553,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleFunctionDefinition"
+    // $ANTLR end "ruleFunctionDeclaration"
 
 
     // $ANTLR start "entryRuleTemplateParameterDeclaration"
@@ -4960,7 +4960,7 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDefinitionCrossReference_1_0()); 
+              	        newCompositeNode(grammarAccess.getFunctionObjectDeclarationAccess().getFunctionNameFunctionDeclarationCrossReference_1_0()); 
               	    
             }
             pushFollow(FOLLOW_ruleQualifiedName_in_ruleFunctionObjectDeclaration3916);
@@ -23940,24 +23940,24 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_STRING_in_ruleGenSubsystem1174 = new BitSet(new long[]{0x0000000007000000L});
     public static final BitSet FOLLOW_ruleGenSubsystem_in_ruleGenSubsystem1255 = new BitSet(new long[]{0x0000000007000000L});
     public static final BitSet FOLLOW_25_in_ruleGenSubsystem1308 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefinition_in_entryRuleDefinition1348 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDefinition1358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeDefinition_in_ruleDefinition1405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionDefinition_in_ruleDefinition1432 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDataTypeDefinition_in_entryRuleDataTypeDefinition1467 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeDefinition1477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationDefinition_in_ruleDataTypeDefinition1524 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructDefinition_in_ruleDataTypeDefinition1551 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTypedefDeclaration_in_ruleDataTypeDefinition1578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEnumerationDefinition_in_entryRuleEnumerationDefinition1613 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEnumerationDefinition1623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleEnumerationDefinition1660 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleEnumerationDefinition1681 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleEnumerationDefinition1693 = new BitSet(new long[]{0x00000000020003E0L});
-    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDefinition1715 = new BitSet(new long[]{0x0000000012000000L});
-    public static final BitSet FOLLOW_28_in_ruleEnumerationDefinition1728 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDefinition1749 = new BitSet(new long[]{0x0000000012000000L});
-    public static final BitSet FOLLOW_25_in_ruleEnumerationDefinition1765 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDeclaration_in_entryRuleDeclaration1348 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDeclaration1358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeDeclaration_in_ruleDeclaration1405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionDeclaration_in_ruleDeclaration1432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDataTypeDeclaration_in_entryRuleDataTypeDeclaration1467 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeDeclaration1477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationDeclaration_in_ruleDataTypeDeclaration1524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructDeclaration_in_ruleDataTypeDeclaration1551 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTypedefDeclaration_in_ruleDataTypeDeclaration1578 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEnumerationDeclaration_in_entryRuleEnumerationDeclaration1613 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEnumerationDeclaration1623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleEnumerationDeclaration1660 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleEnumerationDeclaration1681 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleEnumerationDeclaration1693 = new BitSet(new long[]{0x00000000020003E0L});
+    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDeclaration1715 = new BitSet(new long[]{0x0000000012000000L});
+    public static final BitSet FOLLOW_28_in_ruleEnumerationDeclaration1728 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_ruleEnumerationDeclaration1749 = new BitSet(new long[]{0x0000000012000000L});
+    public static final BitSet FOLLOW_25_in_ruleEnumerationDeclaration1765 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEnumerationLiteralDeclaration_in_entryRuleEnumerationLiteralDeclaration1801 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEnumerationLiteralDeclaration1811 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleEnumerationLiteralDeclaration1856 = new BitSet(new long[]{0x0000000000000002L});
@@ -23966,44 +23966,44 @@ public class InternalCGenModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_29_in_ruleTypedefDeclaration1938 = new BitSet(new long[]{0x001F8000000003E0L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_ruleTypedefDeclaration1959 = new BitSet(new long[]{0x00000000000003E0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleTypedefDeclaration1980 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStructDefinition_in_entryRuleStructDefinition2016 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStructDefinition2026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleStructDefinition2063 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleStructDefinition2084 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleStructDefinition2096 = new BitSet(new long[]{0x001F8000020003E0L});
-    public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_ruleStructDefinition2117 = new BitSet(new long[]{0x001F8000020003E0L});
-    public static final BitSet FOLLOW_25_in_ruleStructDefinition2130 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStructDeclaration_in_entryRuleStructDeclaration2016 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStructDeclaration2026 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleStructDeclaration2063 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleStructDeclaration2084 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_ruleStructDeclaration2096 = new BitSet(new long[]{0x001F8000020003E0L});
+    public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_ruleStructDeclaration2117 = new BitSet(new long[]{0x001F8000020003E0L});
+    public static final BitSet FOLLOW_25_in_ruleStructDeclaration2130 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStructMemberDeclaration_in_entryRuleStructMemberDeclaration2166 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleStructMemberDeclaration2176 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_ruleStructMemberDeclaration2222 = new BitSet(new long[]{0x00000000000003E0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleStructMemberDeclaration2243 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionDefinition_in_entryRuleFunctionDefinition2279 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionDefinition2289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFunctionKind_in_ruleFunctionDefinition2335 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleFunctionDefinition2348 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionDefinition2369 = new BitSet(new long[]{0x0000000500000000L});
-    public static final BitSet FOLLOW_32_in_ruleFunctionDefinition2382 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDefinition2403 = new BitSet(new long[]{0x0000000210000000L});
-    public static final BitSet FOLLOW_28_in_ruleFunctionDefinition2416 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDefinition2437 = new BitSet(new long[]{0x0000000210000000L});
-    public static final BitSet FOLLOW_33_in_ruleFunctionDefinition2451 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_34_in_ruleFunctionDefinition2465 = new BitSet(new long[]{0x00000008000003E0L});
-    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDefinition2487 = new BitSet(new long[]{0x0000000810000000L});
-    public static final BitSet FOLLOW_28_in_ruleFunctionDefinition2500 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDefinition2521 = new BitSet(new long[]{0x0000000810000000L});
-    public static final BitSet FOLLOW_35_in_ruleFunctionDefinition2537 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_ruleFunctionDefinition2549 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDefinition2570 = new BitSet(new long[]{0x0000000010800000L});
-    public static final BitSet FOLLOW_28_in_ruleFunctionDefinition2583 = new BitSet(new long[]{0x00000000000003E0L});
-    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDefinition2604 = new BitSet(new long[]{0x0000000010800000L});
-    public static final BitSet FOLLOW_23_in_ruleFunctionDefinition2618 = new BitSet(new long[]{0x000076E002000000L});
-    public static final BitSet FOLLOW_ruleCheck_in_ruleFunctionDefinition2640 = new BitSet(new long[]{0x000076E002000000L});
-    public static final BitSet FOLLOW_ruleAssertion_in_ruleFunctionDefinition2667 = new BitSet(new long[]{0x000076E002000000L});
-    public static final BitSet FOLLOW_ruleFunctionObjectDeclaration_in_ruleFunctionDefinition2694 = new BitSet(new long[]{0x000076E002000000L});
-    public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_ruleFunctionDefinition2721 = new BitSet(new long[]{0x000076E002000000L});
-    public static final BitSet FOLLOW_ruleConstantDeclaration_in_ruleFunctionDefinition2748 = new BitSet(new long[]{0x000076E002000000L});
-    public static final BitSet FOLLOW_ruleEquation_in_ruleFunctionDefinition2775 = new BitSet(new long[]{0x000076E002000000L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionDefinition2789 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionDeclaration_in_entryRuleFunctionDeclaration2279 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFunctionDeclaration2289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFunctionKind_in_ruleFunctionDeclaration2335 = new BitSet(new long[]{0x0000000080000000L});
+    public static final BitSet FOLLOW_31_in_ruleFunctionDeclaration2348 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionDeclaration2369 = new BitSet(new long[]{0x0000000500000000L});
+    public static final BitSet FOLLOW_32_in_ruleFunctionDeclaration2382 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDeclaration2403 = new BitSet(new long[]{0x0000000210000000L});
+    public static final BitSet FOLLOW_28_in_ruleFunctionDeclaration2416 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_ruleFunctionDeclaration2437 = new BitSet(new long[]{0x0000000210000000L});
+    public static final BitSet FOLLOW_33_in_ruleFunctionDeclaration2451 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_ruleFunctionDeclaration2465 = new BitSet(new long[]{0x00000008000003E0L});
+    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDeclaration2487 = new BitSet(new long[]{0x0000000810000000L});
+    public static final BitSet FOLLOW_28_in_ruleFunctionDeclaration2500 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleInputParameterDeclaration_in_ruleFunctionDeclaration2521 = new BitSet(new long[]{0x0000000810000000L});
+    public static final BitSet FOLLOW_35_in_ruleFunctionDeclaration2537 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_ruleFunctionDeclaration2549 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDeclaration2570 = new BitSet(new long[]{0x0000000010800000L});
+    public static final BitSet FOLLOW_28_in_ruleFunctionDeclaration2583 = new BitSet(new long[]{0x00000000000003E0L});
+    public static final BitSet FOLLOW_ruleOutputParameterDeclaration_in_ruleFunctionDeclaration2604 = new BitSet(new long[]{0x0000000010800000L});
+    public static final BitSet FOLLOW_23_in_ruleFunctionDeclaration2618 = new BitSet(new long[]{0x000076E002000000L});
+    public static final BitSet FOLLOW_ruleCheck_in_ruleFunctionDeclaration2640 = new BitSet(new long[]{0x000076E002000000L});
+    public static final BitSet FOLLOW_ruleAssertion_in_ruleFunctionDeclaration2667 = new BitSet(new long[]{0x000076E002000000L});
+    public static final BitSet FOLLOW_ruleFunctionObjectDeclaration_in_ruleFunctionDeclaration2694 = new BitSet(new long[]{0x000076E002000000L});
+    public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_ruleFunctionDeclaration2721 = new BitSet(new long[]{0x000076E002000000L});
+    public static final BitSet FOLLOW_ruleConstantDeclaration_in_ruleFunctionDeclaration2748 = new BitSet(new long[]{0x000076E002000000L});
+    public static final BitSet FOLLOW_ruleEquation_in_ruleFunctionDeclaration2775 = new BitSet(new long[]{0x000076E002000000L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionDeclaration2789 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTemplateParameterDeclaration_in_entryRuleTemplateParameterDeclaration2825 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTemplateParameterDeclaration2835 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleTemplateParameterDeclaration2880 = new BitSet(new long[]{0x0000000000000002L});

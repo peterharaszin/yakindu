@@ -18,68 +18,68 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Module");
-		private final Assignment cDefinitionsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDefinitionsDefinitionParserRuleCall_0 = (RuleCall)cDefinitionsAssignment.eContents().get(0);
+		private final Assignment cDeclarationsAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cDeclarationsDeclarationParserRuleCall_0 = (RuleCall)cDeclarationsAssignment.eContents().get(0);
 		
 		//Module:
-		//	definitions+=Definition*;
+		//	declarations+=Declaration*;
 		public ParserRule getRule() { return rule; }
 
-		//definitions+=Definition*
-		public Assignment getDefinitionsAssignment() { return cDefinitionsAssignment; }
+		//declarations+=Declaration*
+		public Assignment getDeclarationsAssignment() { return cDeclarationsAssignment; }
 
-		//Definition
-		public RuleCall getDefinitionsDefinitionParserRuleCall_0() { return cDefinitionsDefinitionParserRuleCall_0; }
+		//Declaration
+		public RuleCall getDeclarationsDeclarationParserRuleCall_0() { return cDeclarationsDeclarationParserRuleCall_0; }
 	}
 
-	public class DefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Definition");
+	public class DeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Declaration");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cDataTypeDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cFunctionDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cDataTypeDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFunctionDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//Definition:
-		//	DataTypeDefinition | FunctionDefinition;
+		//Declaration:
+		//	DataTypeDeclaration | FunctionDeclaration;
 		public ParserRule getRule() { return rule; }
 
-		//DataTypeDefinition | FunctionDefinition
+		//DataTypeDeclaration | FunctionDeclaration
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//DataTypeDefinition
-		public RuleCall getDataTypeDefinitionParserRuleCall_0() { return cDataTypeDefinitionParserRuleCall_0; }
+		//DataTypeDeclaration
+		public RuleCall getDataTypeDeclarationParserRuleCall_0() { return cDataTypeDeclarationParserRuleCall_0; }
 
-		//FunctionDefinition
-		public RuleCall getFunctionDefinitionParserRuleCall_1() { return cFunctionDefinitionParserRuleCall_1; }
+		//FunctionDeclaration
+		public RuleCall getFunctionDeclarationParserRuleCall_1() { return cFunctionDeclarationParserRuleCall_1; }
 	}
 
-	public class DataTypeDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeDefinition");
+	public class DataTypeDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DataTypeDeclaration");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cEnumerationDefinitionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cStructDefinitionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cEnumerationDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cStructDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cTypedefDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		/// *
-		// * DataTypeDefinition
-		// * / DataTypeDefinition:
-		//	EnumerationDefinition | StructDefinition | TypedefDeclaration;
+		// * DataTypeDeclaration
+		// * / DataTypeDeclaration:
+		//	EnumerationDeclaration | StructDeclaration | TypedefDeclaration;
 		public ParserRule getRule() { return rule; }
 
-		//EnumerationDefinition | StructDefinition | TypedefDeclaration
+		//EnumerationDeclaration | StructDeclaration | TypedefDeclaration
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//EnumerationDefinition
-		public RuleCall getEnumerationDefinitionParserRuleCall_0() { return cEnumerationDefinitionParserRuleCall_0; }
+		//EnumerationDeclaration
+		public RuleCall getEnumerationDeclarationParserRuleCall_0() { return cEnumerationDeclarationParserRuleCall_0; }
 
-		//StructDefinition
-		public RuleCall getStructDefinitionParserRuleCall_1() { return cStructDefinitionParserRuleCall_1; }
+		//StructDeclaration
+		public RuleCall getStructDeclarationParserRuleCall_1() { return cStructDeclarationParserRuleCall_1; }
 
 		//TypedefDeclaration
 		public RuleCall getTypedefDeclarationParserRuleCall_2() { return cTypedefDeclarationParserRuleCall_2; }
 	}
 
-	public class EnumerationDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumerationDefinition");
+	public class EnumerationDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EnumerationDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cEnumKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -96,7 +96,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		
 		/// *
 		// * Enumeration
-		// * / EnumerationDefinition:
+		// * / EnumerationDeclaration:
 		//	"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
 		//	literalDeclarations+=EnumerationLiteralDeclaration)*)? "}";
 		public ParserRule getRule() { return rule; }
@@ -192,8 +192,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNameValidIDParserRuleCall_2_0() { return cNameValidIDParserRuleCall_2_0; }
 	}
 
-	public class StructDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructDefinition");
+	public class StructDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StructDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cStructKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -205,7 +205,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		
 		/// *
 		// * Struct
-		// * / StructDefinition:
+		// * / StructDeclaration:
 		//	"struct" name=ValidID "{" memberDeclarations+=StructMemberDeclaration* "}";
 		public ParserRule getRule() { return rule; }
 
@@ -262,8 +262,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getNameValidIDParserRuleCall_1_0() { return cNameValidIDParserRuleCall_1_0; }
 	}
 
-	public class FunctionDefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FunctionDefinition");
+	public class FunctionDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FunctionDeclaration");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cKindAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cKindFunctionKindEnumRuleCall_0_0 = (RuleCall)cKindAssignment_0.eContents().get(0);
@@ -313,7 +313,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		
 		/// *
 		// * Function
-		// * / FunctionDefinition:
+		// * / FunctionDeclaration:
 		//	kind=FunctionKind? "func" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
 		//	templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
 		//	(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
@@ -755,8 +755,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cFobKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cFunctionNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cFunctionNameFunctionDefinitionCrossReference_1_0 = (CrossReference)cFunctionNameAssignment_1.eContents().get(0);
-		private final RuleCall cFunctionNameFunctionDefinitionQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cFunctionNameFunctionDefinitionCrossReference_1_0.eContents().get(1);
+		private final CrossReference cFunctionNameFunctionDeclarationCrossReference_1_0 = (CrossReference)cFunctionNameAssignment_1.eContents().get(0);
+		private final RuleCall cFunctionNameFunctionDeclarationQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cFunctionNameFunctionDeclarationCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cLessThanSignKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cTemplateArgumentsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -770,25 +770,25 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameValidIDParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
 		
 		//FunctionObjectDeclaration:
-		//	"fob" functionName=[FunctionDefinition|QualifiedName] ("<" templateArguments+=Expression (","
+		//	"fob" functionName=[FunctionDeclaration|QualifiedName] ("<" templateArguments+=Expression (","
 		//	templateArguments+=Expression)* ">")? name=ValidID;
 		public ParserRule getRule() { return rule; }
 
-		//"fob" functionName=[FunctionDefinition|QualifiedName] ("<" templateArguments+=Expression (","
+		//"fob" functionName=[FunctionDeclaration|QualifiedName] ("<" templateArguments+=Expression (","
 		//templateArguments+=Expression)* ">")? name=ValidID
 		public Group getGroup() { return cGroup; }
 
 		//"fob"
 		public Keyword getFobKeyword_0() { return cFobKeyword_0; }
 
-		//functionName=[FunctionDefinition|QualifiedName]
+		//functionName=[FunctionDeclaration|QualifiedName]
 		public Assignment getFunctionNameAssignment_1() { return cFunctionNameAssignment_1; }
 
-		//[FunctionDefinition|QualifiedName]
-		public CrossReference getFunctionNameFunctionDefinitionCrossReference_1_0() { return cFunctionNameFunctionDefinitionCrossReference_1_0; }
+		//[FunctionDeclaration|QualifiedName]
+		public CrossReference getFunctionNameFunctionDeclarationCrossReference_1_0() { return cFunctionNameFunctionDeclarationCrossReference_1_0; }
 
 		//QualifiedName
-		public RuleCall getFunctionNameFunctionDefinitionQualifiedNameParserRuleCall_1_0_1() { return cFunctionNameFunctionDefinitionQualifiedNameParserRuleCall_1_0_1; }
+		public RuleCall getFunctionNameFunctionDeclarationQualifiedNameParserRuleCall_1_0_1() { return cFunctionNameFunctionDeclarationQualifiedNameParserRuleCall_1_0_1; }
 
 		//("<" templateArguments+=Expression ("," templateArguments+=Expression)* ">")?
 		public Group getGroup_2() { return cGroup_2; }
@@ -4533,14 +4533,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private ModuleElements pModule;
-	private DefinitionElements pDefinition;
-	private DataTypeDefinitionElements pDataTypeDefinition;
-	private EnumerationDefinitionElements pEnumerationDefinition;
+	private DeclarationElements pDeclaration;
+	private DataTypeDeclarationElements pDataTypeDeclaration;
+	private EnumerationDeclarationElements pEnumerationDeclaration;
 	private EnumerationLiteralDeclarationElements pEnumerationLiteralDeclaration;
 	private TypedefDeclarationElements pTypedefDeclaration;
-	private StructDefinitionElements pStructDefinition;
+	private StructDeclarationElements pStructDeclaration;
 	private StructMemberDeclarationElements pStructMemberDeclaration;
-	private FunctionDefinitionElements pFunctionDefinition;
+	private FunctionDeclarationElements pFunctionDeclaration;
 	private FunctionKindElements unknownRuleFunctionKind;
 	private TemplateParameterDeclarationElements pTemplateParameterDeclaration;
 	private InputParameterDeclarationElements pInputParameterDeclaration;
@@ -4671,7 +4671,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Module:
-	//	definitions+=Definition*;
+	//	declarations+=Declaration*;
 	public ModuleElements getModuleAccess() {
 		return (pModule != null) ? pModule : (pModule = new ModuleElements());
 	}
@@ -4680,39 +4680,39 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getModuleAccess().getRule();
 	}
 
-	//Definition:
-	//	DataTypeDefinition | FunctionDefinition;
-	public DefinitionElements getDefinitionAccess() {
-		return (pDefinition != null) ? pDefinition : (pDefinition = new DefinitionElements());
+	//Declaration:
+	//	DataTypeDeclaration | FunctionDeclaration;
+	public DeclarationElements getDeclarationAccess() {
+		return (pDeclaration != null) ? pDeclaration : (pDeclaration = new DeclarationElements());
 	}
 	
-	public ParserRule getDefinitionRule() {
-		return getDefinitionAccess().getRule();
+	public ParserRule getDeclarationRule() {
+		return getDeclarationAccess().getRule();
 	}
 
 	/// *
-	// * DataTypeDefinition
-	// * / DataTypeDefinition:
-	//	EnumerationDefinition | StructDefinition | TypedefDeclaration;
-	public DataTypeDefinitionElements getDataTypeDefinitionAccess() {
-		return (pDataTypeDefinition != null) ? pDataTypeDefinition : (pDataTypeDefinition = new DataTypeDefinitionElements());
+	// * DataTypeDeclaration
+	// * / DataTypeDeclaration:
+	//	EnumerationDeclaration | StructDeclaration | TypedefDeclaration;
+	public DataTypeDeclarationElements getDataTypeDeclarationAccess() {
+		return (pDataTypeDeclaration != null) ? pDataTypeDeclaration : (pDataTypeDeclaration = new DataTypeDeclarationElements());
 	}
 	
-	public ParserRule getDataTypeDefinitionRule() {
-		return getDataTypeDefinitionAccess().getRule();
+	public ParserRule getDataTypeDeclarationRule() {
+		return getDataTypeDeclarationAccess().getRule();
 	}
 
 	/// *
 	// * Enumeration
-	// * / EnumerationDefinition:
+	// * / EnumerationDeclaration:
 	//	"enum" name=ValidID "{" (literalDeclarations+=EnumerationLiteralDeclaration (","
 	//	literalDeclarations+=EnumerationLiteralDeclaration)*)? "}";
-	public EnumerationDefinitionElements getEnumerationDefinitionAccess() {
-		return (pEnumerationDefinition != null) ? pEnumerationDefinition : (pEnumerationDefinition = new EnumerationDefinitionElements());
+	public EnumerationDeclarationElements getEnumerationDeclarationAccess() {
+		return (pEnumerationDeclaration != null) ? pEnumerationDeclaration : (pEnumerationDeclaration = new EnumerationDeclarationElements());
 	}
 	
-	public ParserRule getEnumerationDefinitionRule() {
-		return getEnumerationDefinitionAccess().getRule();
+	public ParserRule getEnumerationDeclarationRule() {
+		return getEnumerationDeclarationAccess().getRule();
 	}
 
 	//EnumerationLiteralDeclaration:
@@ -4739,14 +4739,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Struct
-	// * / StructDefinition:
+	// * / StructDeclaration:
 	//	"struct" name=ValidID "{" memberDeclarations+=StructMemberDeclaration* "}";
-	public StructDefinitionElements getStructDefinitionAccess() {
-		return (pStructDefinition != null) ? pStructDefinition : (pStructDefinition = new StructDefinitionElements());
+	public StructDeclarationElements getStructDeclarationAccess() {
+		return (pStructDeclaration != null) ? pStructDeclaration : (pStructDeclaration = new StructDeclarationElements());
 	}
 	
-	public ParserRule getStructDefinitionRule() {
-		return getStructDefinitionAccess().getRule();
+	public ParserRule getStructDeclarationRule() {
+		return getStructDeclarationAccess().getRule();
 	}
 
 	//StructMemberDeclaration:
@@ -4761,7 +4761,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	/// *
 	// * Function
-	// * / FunctionDefinition:
+	// * / FunctionDeclaration:
 	//	kind=FunctionKind? "func" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
 	//	templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
 	//	(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
@@ -4769,12 +4769,12 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	//	outputParameterDeclarations+=OutputParameterDeclaration)* "{" (checks+=Check | assertions+=Assertion |
 	//	functionObjectDeclarations+=FunctionObjectDeclaration | stateVariableDeclarations+=StateVariableDeclaration |
 	//	constantDeclarations+=ConstantDeclaration | equations+=Equation)* "}";
-	public FunctionDefinitionElements getFunctionDefinitionAccess() {
-		return (pFunctionDefinition != null) ? pFunctionDefinition : (pFunctionDefinition = new FunctionDefinitionElements());
+	public FunctionDeclarationElements getFunctionDeclarationAccess() {
+		return (pFunctionDeclaration != null) ? pFunctionDeclaration : (pFunctionDeclaration = new FunctionDeclarationElements());
 	}
 	
-	public ParserRule getFunctionDefinitionRule() {
-		return getFunctionDefinitionAccess().getRule();
+	public ParserRule getFunctionDeclarationRule() {
+		return getFunctionDeclarationAccess().getRule();
 	}
 
 	//enum FunctionKind:
@@ -4870,7 +4870,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionObjectDeclaration:
-	//	"fob" functionName=[FunctionDefinition|QualifiedName] ("<" templateArguments+=Expression (","
+	//	"fob" functionName=[FunctionDeclaration|QualifiedName] ("<" templateArguments+=Expression (","
 	//	templateArguments+=Expression)* ">")? name=ValidID;
 	public FunctionObjectDeclarationElements getFunctionObjectDeclarationAccess() {
 		return (pFunctionObjectDeclaration != null) ? pFunctionObjectDeclaration : (pFunctionObjectDeclaration = new FunctionObjectDeclarationElements());

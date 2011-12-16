@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-import org.eclipselabs.damos.mscript.Definition;
+import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
@@ -20,13 +20,13 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.DefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.DeclarationImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implements Definition {
+public abstract class DeclarationImpl extends MinimalEObjectImpl.Container implements Declaration {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DefinitionImpl() {
+	protected DeclarationImpl() {
 		super();
 	}
 
@@ -63,7 +63,7 @@ public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implem
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.DEFINITION;
+		return MscriptPackage.Literals.DECLARATION;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implem
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.DEFINITION__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.DECLARATION__NAME, oldName, name));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.DEFINITION__NAME:
+			case MscriptPackage.DECLARATION__NAME:
 				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +109,7 @@ public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.DEFINITION__NAME:
+			case MscriptPackage.DECLARATION__NAME:
 				setName((String)newValue);
 				return;
 		}
@@ -124,7 +124,7 @@ public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.DEFINITION__NAME:
+			case MscriptPackage.DECLARATION__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 		}
@@ -139,7 +139,7 @@ public abstract class DefinitionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.DEFINITION__NAME:
+			case MscriptPackage.DECLARATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);

@@ -23,7 +23,7 @@ package org.eclipselabs.damos.mscript;
  * @model
  * @generated
  */
-public interface TypedefDeclaration extends DataTypeDefinition {
+public interface TypedefDeclaration extends DataTypeDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Type Specifier</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -72,13 +72,13 @@ public interface FunctionModelPackage extends EPackage {
 	int FUNCTION_DESCRIPTOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Definition</b></em>' reference.
+	 * The feature id for the '<em><b>Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_DESCRIPTOR__DEFINITION = 0;
+	int FUNCTION_DESCRIPTOR__DECLARATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Equation Descriptors</b></em>' containment reference list.
@@ -393,13 +393,13 @@ public interface FunctionModelPackage extends EPackage {
 	int FUNCTION_INSTANCE = 6;
 
 	/**
-	 * The feature id for the '<em><b>Function Definition</b></em>' reference.
+	 * The feature id for the '<em><b>Function Declaration</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTION_INSTANCE__FUNCTION_DEFINITION = 0;
+	int FUNCTION_INSTANCE__FUNCTION_DECLARATION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Initialization Compound</b></em>' containment reference.
@@ -496,15 +496,15 @@ public interface FunctionModelPackage extends EPackage {
 	EClass getFunctionDescriptor();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDefinition <em>Definition</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration <em>Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Definition</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDefinition()
+	 * @return the meta object for the reference '<em>Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getDeclaration()
 	 * @see #getFunctionDescriptor()
 	 * @generated
 	 */
-	EReference getFunctionDescriptor_Definition();
+	EReference getFunctionDescriptor_Declaration();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor#getEquationDescriptors <em>Equation Descriptors</em>}'.
@@ -809,15 +809,15 @@ public interface FunctionModelPackage extends EPackage {
 	EClass getFunctionInstance();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDefinition <em>Function Definition</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDeclaration <em>Function Declaration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Function Definition</em>'.
-	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDefinition()
+	 * @return the meta object for the reference '<em>Function Declaration</em>'.
+	 * @see org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getFunctionDeclaration()
 	 * @see #getFunctionInstance()
 	 * @generated
 	 */
-	EReference getFunctionInstance_FunctionDefinition();
+	EReference getFunctionInstance_FunctionDeclaration();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.functionmodel.FunctionInstance#getInitializationCompound <em>Initialization Compound</em>}'.
@@ -916,12 +916,12 @@ public interface FunctionModelPackage extends EPackage {
 		EClass FUNCTION_DESCRIPTOR = eINSTANCE.getFunctionDescriptor();
 
 		/**
-		 * The meta object literal for the '<em><b>Definition</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Declaration</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_DESCRIPTOR__DEFINITION = eINSTANCE.getFunctionDescriptor_Definition();
+		EReference FUNCTION_DESCRIPTOR__DECLARATION = eINSTANCE.getFunctionDescriptor_Declaration();
 
 		/**
 		 * The meta object literal for the '<em><b>Equation Descriptors</b></em>' containment reference list feature.
@@ -1160,12 +1160,12 @@ public interface FunctionModelPackage extends EPackage {
 		EClass FUNCTION_INSTANCE = eINSTANCE.getFunctionInstance();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Definition</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Function Declaration</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FUNCTION_INSTANCE__FUNCTION_DEFINITION = eINSTANCE.getFunctionInstance_FunctionDefinition();
+		EReference FUNCTION_INSTANCE__FUNCTION_DECLARATION = eINSTANCE.getFunctionInstance_FunctionDeclaration();
 
 		/**
 		 * The meta object literal for the '<em><b>Initialization Compound</b></em>' containment reference feature.

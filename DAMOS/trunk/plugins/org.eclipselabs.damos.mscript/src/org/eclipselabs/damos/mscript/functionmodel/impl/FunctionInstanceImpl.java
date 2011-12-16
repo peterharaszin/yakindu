@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.functionmodel.ComputationCompound;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionInstance;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
@@ -30,7 +30,7 @@ import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getFunctionDefinition <em>Function Definition</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getFunctionDeclaration <em>Function Declaration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getInitializationCompound <em>Initialization Compound</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.functionmodel.impl.FunctionInstanceImpl#getComputationCompounds <em>Computation Compounds</em>}</li>
  * </ul>
@@ -40,14 +40,14 @@ import org.eclipselabs.damos.mscript.functionmodel.FunctionModelPackage;
  */
 public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstance {
 	/**
-	 * The cached value of the '{@link #getFunctionDefinition() <em>Function Definition</em>}' reference.
+	 * The cached value of the '{@link #getFunctionDeclaration() <em>Function Declaration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFunctionDefinition()
+	 * @see #getFunctionDeclaration()
 	 * @generated
 	 * @ordered
 	 */
-	protected FunctionDefinition functionDefinition;
+	protected FunctionDeclaration functionDeclaration;
 
 	/**
 	 * The cached value of the '{@link #getInitializationCompound() <em>Initialization Compound</em>}' containment reference.
@@ -93,16 +93,16 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition getFunctionDefinition() {
-		if (functionDefinition != null && functionDefinition.eIsProxy()) {
-			InternalEObject oldFunctionDefinition = (InternalEObject)functionDefinition;
-			functionDefinition = (FunctionDefinition)eResolveProxy(oldFunctionDefinition);
-			if (functionDefinition != oldFunctionDefinition) {
+	public FunctionDeclaration getFunctionDeclaration() {
+		if (functionDeclaration != null && functionDeclaration.eIsProxy()) {
+			InternalEObject oldFunctionDeclaration = (InternalEObject)functionDeclaration;
+			functionDeclaration = (FunctionDeclaration)eResolveProxy(oldFunctionDeclaration);
+			if (functionDeclaration != oldFunctionDeclaration) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DEFINITION, oldFunctionDefinition, functionDefinition));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION, oldFunctionDeclaration, functionDeclaration));
 			}
 		}
-		return functionDefinition;
+		return functionDeclaration;
 	}
 
 	/**
@@ -110,8 +110,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition basicGetFunctionDefinition() {
-		return functionDefinition;
+	public FunctionDeclaration basicGetFunctionDeclaration() {
+		return functionDeclaration;
 	}
 
 	/**
@@ -119,11 +119,11 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFunctionDefinition(FunctionDefinition newFunctionDefinition) {
-		FunctionDefinition oldFunctionDefinition = functionDefinition;
-		functionDefinition = newFunctionDefinition;
+	public void setFunctionDeclaration(FunctionDeclaration newFunctionDeclaration) {
+		FunctionDeclaration oldFunctionDeclaration = functionDeclaration;
+		functionDeclaration = newFunctionDeclaration;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DEFINITION, oldFunctionDefinition, functionDefinition));
+			eNotify(new ENotificationImpl(this, Notification.SET, FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION, oldFunctionDeclaration, functionDeclaration));
 	}
 
 	/**
@@ -205,9 +205,9 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DEFINITION:
-				if (resolve) return getFunctionDefinition();
-				return basicGetFunctionDefinition();
+			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
+				if (resolve) return getFunctionDeclaration();
+				return basicGetFunctionDeclaration();
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				return getInitializationCompound();
 			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:
@@ -225,8 +225,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DEFINITION:
-				setFunctionDefinition((FunctionDefinition)newValue);
+			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
+				setFunctionDeclaration((FunctionDeclaration)newValue);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				setInitializationCompound((Compound)newValue);
@@ -247,8 +247,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DEFINITION:
-				setFunctionDefinition((FunctionDefinition)null);
+			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
+				setFunctionDeclaration((FunctionDeclaration)null);
 				return;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				setInitializationCompound((Compound)null);
@@ -268,8 +268,8 @@ public class FunctionInstanceImpl extends EObjectImpl implements FunctionInstanc
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DEFINITION:
-				return functionDefinition != null;
+			case FunctionModelPackage.FUNCTION_INSTANCE__FUNCTION_DECLARATION:
+				return functionDeclaration != null;
 			case FunctionModelPackage.FUNCTION_INSTANCE__INITIALIZATION_COMPOUND:
 				return initializationCompound != null;
 			case FunctionModelPackage.FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS:

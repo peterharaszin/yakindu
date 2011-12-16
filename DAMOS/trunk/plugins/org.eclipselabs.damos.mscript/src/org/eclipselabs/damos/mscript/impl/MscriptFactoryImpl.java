@@ -59,12 +59,12 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MscriptPackage.MODULE: return createModule();
-			case MscriptPackage.ENUMERATION_DEFINITION: return createEnumerationDefinition();
+			case MscriptPackage.ENUMERATION_DECLARATION: return createEnumerationDeclaration();
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
 			case MscriptPackage.TYPEDEF_DECLARATION: return createTypedefDeclaration();
-			case MscriptPackage.STRUCT_DEFINITION: return createStructDefinition();
+			case MscriptPackage.STRUCT_DECLARATION: return createStructDeclaration();
 			case MscriptPackage.STRUCT_MEMBER_DECLARATION: return createStructMemberDeclaration();
-			case MscriptPackage.FUNCTION_DEFINITION: return createFunctionDefinition();
+			case MscriptPackage.FUNCTION_DECLARATION: return createFunctionDeclaration();
 			case MscriptPackage.CHECK: return createCheck();
 			case MscriptPackage.TEMPLATE_PARAMETER_DECLARATION: return createTemplateParameterDeclaration();
 			case MscriptPackage.INPUT_PARAMETER_DECLARATION: return createInputParameterDeclaration();
@@ -125,9 +125,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.CONTINUE_STATEMENT: return createContinueStatement();
 			case MscriptPackage.BREAK_STATEMENT: return createBreakStatement();
 			case MscriptPackage.RETURN_STATEMENT: return createReturnStatement();
-			case MscriptPackage.BUILTIN_DEFINITION: return createBuiltinDefinition();
-			case MscriptPackage.BUILTIN_FUNCTION: return createBuiltinFunction();
-			case MscriptPackage.BUILTIN_VARIABLE: return createBuiltinVariable();
+			case MscriptPackage.BUILTIN_DECLARATION: return createBuiltinDeclaration();
+			case MscriptPackage.BUILTIN_FUNCTION_DECLARATION: return createBuiltinFunctionDeclaration();
+			case MscriptPackage.BUILTIN_VARIABLE_DECLARATION: return createBuiltinVariableDeclaration();
 			case MscriptPackage.INVALID_DATA_TYPE: return createInvalidDataType();
 			case MscriptPackage.ANY_DATA_TYPE: return createAnyDataType();
 			case MscriptPackage.UNIT_TYPE: return createUnitType();
@@ -247,9 +247,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnumerationDefinition createEnumerationDefinition() {
-		EnumerationDefinitionImpl enumerationDefinition = new EnumerationDefinitionImpl();
-		return enumerationDefinition;
+	public EnumerationDeclaration createEnumerationDeclaration() {
+		EnumerationDeclarationImpl enumerationDeclaration = new EnumerationDeclarationImpl();
+		return enumerationDeclaration;
 	}
 
 	/**
@@ -277,9 +277,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructDefinition createStructDefinition() {
-		StructDefinitionImpl structDefinition = new StructDefinitionImpl();
-		return structDefinition;
+	public StructDeclaration createStructDeclaration() {
+		StructDeclarationImpl structDeclaration = new StructDeclarationImpl();
+		return structDeclaration;
 	}
 
 	/**
@@ -297,9 +297,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition createFunctionDefinition() {
-		FunctionDefinitionImpl functionDefinition = new FunctionDefinitionImpl();
-		return functionDefinition;
+	public FunctionDeclaration createFunctionDeclaration() {
+		FunctionDeclarationImpl functionDeclaration = new FunctionDeclarationImpl();
+		return functionDeclaration;
 	}
 
 	/**
@@ -907,9 +907,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BuiltinDefinition createBuiltinDefinition() {
-		BuiltinDefinitionImpl builtinDefinition = new BuiltinDefinitionImpl();
-		return builtinDefinition;
+	public BuiltinDeclaration createBuiltinDeclaration() {
+		BuiltinDeclarationImpl builtinDeclaration = new BuiltinDeclarationImpl();
+		return builtinDeclaration;
 	}
 
 	/**
@@ -917,9 +917,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BuiltinFunction createBuiltinFunction() {
-		BuiltinFunctionImpl builtinFunction = new BuiltinFunctionImpl();
-		return builtinFunction;
+	public BuiltinFunctionDeclaration createBuiltinFunctionDeclaration() {
+		BuiltinFunctionDeclarationImpl builtinFunctionDeclaration = new BuiltinFunctionDeclarationImpl();
+		return builtinFunctionDeclaration;
 	}
 
 	/**
@@ -927,9 +927,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BuiltinVariable createBuiltinVariable() {
-		BuiltinVariableImpl builtinVariable = new BuiltinVariableImpl();
-		return builtinVariable;
+	public BuiltinVariableDeclaration createBuiltinVariableDeclaration() {
+		BuiltinVariableDeclarationImpl builtinVariableDeclaration = new BuiltinVariableDeclarationImpl();
+		return builtinVariableDeclaration;
 	}
 
 	/**

@@ -31,7 +31,7 @@ import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.FunctionKind;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -86,10 +86,10 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		staticEvaluationContext = new StaticEvaluationContext();
 		Helper helper = new Helper(staticEvaluationContext, block);
 		
-		FunctionDefinition functionDefinition = helper.createFunctionDefinition();
+		FunctionDeclaration functionDeclaration = helper.createFunctionDefinition();
 		
-		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
-		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDefinition, getComponentSignature(), status);
+		List<IValue> templateArguments = helper.getTemplateArguments(functionDeclaration, status);
+		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(functionDeclaration, getComponentSignature(), status);
 
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
@@ -99,8 +99,8 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
-		helper.evaluateFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes);
-		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDefinition);
+		helper.evaluateFunctionDefinition(functionDeclaration, templateArguments, inputParameterDataTypes);
+		FunctionDescriptor functionDescriptor = staticEvaluationContext.getFunctionDescriptor(functionDeclaration);
 
 		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer()
 				.transform(staticEvaluationContext, functionDescriptor, templateArguments, inputParameterDataTypes);
@@ -126,7 +126,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesContextCode() {
-		return functionInstance.getFunctionDefinition().getKind() == FunctionKind.STATEFUL;
+		return functionInstance.getFunctionDeclaration().getKind() == FunctionKind.STATEFUL;
 	}
 	
 	/* (non-Javadoc)
@@ -136,17 +136,17 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	public void writeContextCode(Appendable appendable, String typeName, IProgressMonitor monitor) {
 		PrintAppendable out = new PrintAppendable(appendable);
 		out.println("typedef struct {");
-		for (InputParameterDeclaration inputParameterDeclaration: functionInstance.getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputParameterDeclaration: functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
 			if (staticEvaluationContext.getCircularBufferSize(inputParameterDeclaration) > 1) {
 				writeContextStructureMember(out, monitor, inputParameterDeclaration);
 			}
 		}
-		for (OutputParameterDeclaration outputParameterDeclaration: functionInstance.getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputParameterDeclaration: functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
 			if (staticEvaluationContext.getCircularBufferSize(outputParameterDeclaration) > 1) {
 				writeContextStructureMember(out, monitor, outputParameterDeclaration);
 			}
 		}
-		for (StateVariableDeclaration instanceVariableDeclaration: functionInstance.getFunctionDefinition().getStateVariableDeclarations()) {
+		for (StateVariableDeclaration instanceVariableDeclaration: functionInstance.getFunctionDeclaration().getStateVariableDeclarations()) {
 			writeContextStructureMember(out, monitor, instanceVariableDeclaration);
 		}
 		String prefix = getGenModel().getGenTopLevelSystem().getPrefix();
@@ -176,7 +176,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesInitializationCode() {
-		return functionInstance.getFunctionDefinition().getKind() == FunctionKind.STATEFUL;
+		return functionInstance.getFunctionDeclaration().getKind() == FunctionKind.STATEFUL;
 	}
 		
 	/* (non-Javadoc)
@@ -185,9 +185,9 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	@Override
 	public void writeInitializationCode(Appendable appendable, IProgressMonitor monitor) {
 		PrintAppendable out = new PrintAppendable(appendable);
-		writeInitializeIndexStatements(out, functionInstance.getFunctionDefinition().getInputParameterDeclarations());
-		writeInitializeIndexStatements(out, functionInstance.getFunctionDefinition().getOutputParameterDeclarations());
-		writeInitializeIndexStatements(out, functionInstance.getFunctionDefinition().getStateVariableDeclarations());
+		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getInputParameterDeclarations());
+		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getOutputParameterDeclarations());
+		writeInitializeIndexStatements(out, functionInstance.getFunctionDeclaration().getStateVariableDeclarations());
 
 		IMscriptGeneratorContext mscriptGeneratorContext = new MscriptGeneratorContext(appendable, getComputationModel(), staticEvaluationContext, getVariableAccessStrategy());
 		compoundGenerator.generate(mscriptGeneratorContext, functionInstance.getInitializationCompound());
@@ -238,7 +238,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 
 		String contextVariable = getVariableAccessor().getContextVariable(false);
-		for (OutputParameterDeclaration outputParameterDeclaration : functionInstance.getFunctionDefinition().getOutputParameterDeclarations()) {
+		for (OutputParameterDeclaration outputParameterDeclaration : functionInstance.getFunctionDeclaration().getOutputParameterDeclarations()) {
 			if (staticEvaluationContext.getCircularBufferSize(outputParameterDeclaration) > 1) {
 				String name = outputParameterDeclaration.getName();
 				out.printf("%s.%s[%s.%s_index] = %s;\n", contextVariable, name, contextVariable, name, VariableAccessStrategy.getOutputParameterAccessString(getComponent(), getComponentSignature(), getVariableAccessor(), (OutputParameterDeclaration) outputParameterDeclaration));
@@ -251,7 +251,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 	 */
 	@Override
 	public boolean contributesUpdateCode() {
-		return functionInstance.getFunctionDefinition().getKind() == FunctionKind.STATEFUL;
+		return functionInstance.getFunctionDeclaration().getKind() == FunctionKind.STATEFUL;
 	}
 	
 	/* (non-Javadoc)
@@ -271,15 +271,15 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		}
 		
 		List<InputParameterDeclaration> computeOutputsCodeInputs = FunctionModelUtil.getDirectFeedthroughInputs(functionInstance);
-		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
 			if (staticEvaluationContext.getCircularBufferSize(inputVariableDeclaration) > 1 && !computeOutputsCodeInputs.contains(inputVariableDeclaration)) {
 				writeUpdateInputContextStatement(out, inputVariableDeclaration);
 			}
 		}
 		
-		writeUpdateIndexStatements(out, functionInstance.getFunctionDefinition().getInputParameterDeclarations());
-		writeUpdateIndexStatements(out, functionInstance.getFunctionDefinition().getOutputParameterDeclarations());
-		writeUpdateIndexStatements(out, functionInstance.getFunctionDefinition().getStateVariableDeclarations());
+		writeUpdateIndexStatements(out, functionInstance.getFunctionDeclaration().getInputParameterDeclarations());
+		writeUpdateIndexStatements(out, functionInstance.getFunctionDeclaration().getOutputParameterDeclarations());
+		writeUpdateIndexStatements(out, functionInstance.getFunctionDeclaration().getStateVariableDeclarations());
 	}
 	
 	private void writeUpdateIndexStatements(PrintAppendable out, List<? extends VariableDeclaration> variableDeclarations) {
@@ -298,7 +298,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		
 		boolean skip = !getComponent().getInputSockets().isEmpty();
 		
-		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getFunctionDefinition().getInputParameterDeclarations()) {
+		for (InputParameterDeclaration inputVariableDeclaration : functionInstance.getFunctionDeclaration().getInputParameterDeclarations()) {
 			if (skip) {
 				skip = false;
 				continue;

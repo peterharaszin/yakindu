@@ -13,9 +13,9 @@ package org.eclipselabs.damos.mscript;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getBuiltinVariable()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getBuiltinVariableDeclaration()
  * @model
  * @generated
  */
-public interface BuiltinVariable extends BuiltinDefinition {
+public interface BuiltinVariableDeclaration extends BuiltinDeclaration {
 } // BuiltinVariable

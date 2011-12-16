@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.Check;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
@@ -95,9 +95,9 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FunctionDefinition getFunction() {
+	public FunctionDeclaration getFunction() {
 		if (eContainerFeatureID() != MscriptPackage.CHECK__FUNCTION) return null;
-		return (FunctionDefinition)eContainer();
+		return (FunctionDeclaration)eContainer();
 	}
 
 	/**
@@ -105,7 +105,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetFunction(FunctionDefinition newFunction, NotificationChain msgs) {
+	public NotificationChain basicSetFunction(FunctionDeclaration newFunction, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject)newFunction, MscriptPackage.CHECK__FUNCTION, msgs);
 		return msgs;
 	}
@@ -115,7 +115,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFunction(FunctionDefinition newFunction) {
+	public void setFunction(FunctionDeclaration newFunction) {
 		if (newFunction != eInternalContainer() || (eContainerFeatureID() != MscriptPackage.CHECK__FUNCTION && newFunction != null)) {
 			if (EcoreUtil.isAncestor(this, newFunction))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
@@ -123,7 +123,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newFunction != null)
-				msgs = ((InternalEObject)newFunction).eInverseAdd(this, MscriptPackage.FUNCTION_DEFINITION__CHECKS, FunctionDefinition.class, msgs);
+				msgs = ((InternalEObject)newFunction).eInverseAdd(this, MscriptPackage.FUNCTION_DECLARATION__CHECKS, FunctionDeclaration.class, msgs);
 			msgs = basicSetFunction(newFunction, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -178,7 +178,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 			case MscriptPackage.CHECK__FUNCTION:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetFunction((FunctionDefinition)otherEnd, msgs);
+				return basicSetFunction((FunctionDeclaration)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -212,7 +212,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 			case MscriptPackage.CHECK__FUNCTION:
-				return eInternalContainer().eInverseRemove(this, MscriptPackage.FUNCTION_DEFINITION__CHECKS, FunctionDefinition.class, msgs);
+				return eInternalContainer().eInverseRemove(this, MscriptPackage.FUNCTION_DECLARATION__CHECKS, FunctionDeclaration.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -247,7 +247,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
-				setFunction((FunctionDefinition)newValue);
+				setFunction((FunctionDeclaration)newValue);
 				return;
 			case MscriptPackage.CHECK__TEMPLATE_ARGUMENTS:
 				getTemplateArguments().clear();
@@ -274,7 +274,7 @@ public class CheckImpl extends MinimalEObjectImpl.Container implements Check {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case MscriptPackage.CHECK__FUNCTION:
-				setFunction((FunctionDefinition)null);
+				setFunction((FunctionDeclaration)null);
 				return;
 			case MscriptPackage.CHECK__TEMPLATE_ARGUMENTS:
 				getTemplateArguments().clear();

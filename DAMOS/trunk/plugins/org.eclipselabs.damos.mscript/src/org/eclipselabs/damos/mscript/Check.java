@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface Check extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Function</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.FunctionDefinition#getChecks <em>Checks</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.mscript.FunctionDeclaration#getChecks <em>Checks</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Function</em>' container reference isn't clear,
@@ -39,13 +39,13 @@ public interface Check extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function</em>' container reference.
-	 * @see #setFunction(FunctionDefinition)
+	 * @see #setFunction(FunctionDeclaration)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getCheck_Function()
-	 * @see org.eclipselabs.damos.mscript.FunctionDefinition#getChecks
+	 * @see org.eclipselabs.damos.mscript.FunctionDeclaration#getChecks
 	 * @model opposite="checks" required="true" transient="false"
 	 * @generated
 	 */
-	FunctionDefinition getFunction();
+	FunctionDeclaration getFunction();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.Check#getFunction <em>Function</em>}' container reference.
@@ -55,7 +55,7 @@ public interface Check extends EObject {
 	 * @see #getFunction()
 	 * @generated
 	 */
-	void setFunction(FunctionDefinition value);
+	void setFunction(FunctionDeclaration value);
 
 	/**
 	 * Returns the value of the '<em><b>Template Arguments</b></em>' containment reference list.

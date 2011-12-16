@@ -74,24 +74,24 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.DEFINITION: {
-				Definition definition = (Definition)theEObject;
-				T result = caseDefinition(definition);
+			case MscriptPackage.DECLARATION: {
+				Declaration declaration = (Declaration)theEObject;
+				T result = caseDeclaration(declaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.DATA_TYPE_DEFINITION: {
-				DataTypeDefinition dataTypeDefinition = (DataTypeDefinition)theEObject;
-				T result = caseDataTypeDefinition(dataTypeDefinition);
-				if (result == null) result = caseDefinition(dataTypeDefinition);
+			case MscriptPackage.DATA_TYPE_DECLARATION: {
+				DataTypeDeclaration dataTypeDeclaration = (DataTypeDeclaration)theEObject;
+				T result = caseDataTypeDeclaration(dataTypeDeclaration);
+				if (result == null) result = caseDeclaration(dataTypeDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.ENUMERATION_DEFINITION: {
-				EnumerationDefinition enumerationDefinition = (EnumerationDefinition)theEObject;
-				T result = caseEnumerationDefinition(enumerationDefinition);
-				if (result == null) result = caseDataTypeDefinition(enumerationDefinition);
-				if (result == null) result = caseDefinition(enumerationDefinition);
+			case MscriptPackage.ENUMERATION_DECLARATION: {
+				EnumerationDeclaration enumerationDeclaration = (EnumerationDeclaration)theEObject;
+				T result = caseEnumerationDeclaration(enumerationDeclaration);
+				if (result == null) result = caseDataTypeDeclaration(enumerationDeclaration);
+				if (result == null) result = caseDeclaration(enumerationDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -104,16 +104,16 @@ public class MscriptSwitch<T> extends Switch<T> {
 			case MscriptPackage.TYPEDEF_DECLARATION: {
 				TypedefDeclaration typedefDeclaration = (TypedefDeclaration)theEObject;
 				T result = caseTypedefDeclaration(typedefDeclaration);
-				if (result == null) result = caseDataTypeDefinition(typedefDeclaration);
-				if (result == null) result = caseDefinition(typedefDeclaration);
+				if (result == null) result = caseDataTypeDeclaration(typedefDeclaration);
+				if (result == null) result = caseDeclaration(typedefDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.STRUCT_DEFINITION: {
-				StructDefinition structDefinition = (StructDefinition)theEObject;
-				T result = caseStructDefinition(structDefinition);
-				if (result == null) result = caseDataTypeDefinition(structDefinition);
-				if (result == null) result = caseDefinition(structDefinition);
+			case MscriptPackage.STRUCT_DECLARATION: {
+				StructDeclaration structDeclaration = (StructDeclaration)theEObject;
+				T result = caseStructDeclaration(structDeclaration);
+				if (result == null) result = caseDataTypeDeclaration(structDeclaration);
+				if (result == null) result = caseDeclaration(structDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -123,12 +123,12 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.FUNCTION_DEFINITION: {
-				FunctionDefinition functionDefinition = (FunctionDefinition)theEObject;
-				T result = caseFunctionDefinition(functionDefinition);
-				if (result == null) result = caseDefinition(functionDefinition);
-				if (result == null) result = caseCallableElement(functionDefinition);
-				if (result == null) result = caseEvaluable(functionDefinition);
+			case MscriptPackage.FUNCTION_DECLARATION: {
+				FunctionDeclaration functionDeclaration = (FunctionDeclaration)theEObject;
+				T result = caseFunctionDeclaration(functionDeclaration);
+				if (result == null) result = caseDeclaration(functionDeclaration);
+				if (result == null) result = caseCallableElement(functionDeclaration);
+				if (result == null) result = caseEvaluable(functionDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -653,32 +653,32 @@ public class MscriptSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.BUILTIN_DEFINITION: {
-				BuiltinDefinition builtinDefinition = (BuiltinDefinition)theEObject;
-				T result = caseBuiltinDefinition(builtinDefinition);
-				if (result == null) result = caseDefinition(builtinDefinition);
-				if (result == null) result = caseCallableElement(builtinDefinition);
-				if (result == null) result = caseEvaluable(builtinDefinition);
+			case MscriptPackage.BUILTIN_DECLARATION: {
+				BuiltinDeclaration builtinDeclaration = (BuiltinDeclaration)theEObject;
+				T result = caseBuiltinDeclaration(builtinDeclaration);
+				if (result == null) result = caseDeclaration(builtinDeclaration);
+				if (result == null) result = caseCallableElement(builtinDeclaration);
+				if (result == null) result = caseEvaluable(builtinDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.BUILTIN_FUNCTION: {
-				BuiltinFunction builtinFunction = (BuiltinFunction)theEObject;
-				T result = caseBuiltinFunction(builtinFunction);
-				if (result == null) result = caseBuiltinDefinition(builtinFunction);
-				if (result == null) result = caseDefinition(builtinFunction);
-				if (result == null) result = caseCallableElement(builtinFunction);
-				if (result == null) result = caseEvaluable(builtinFunction);
+			case MscriptPackage.BUILTIN_FUNCTION_DECLARATION: {
+				BuiltinFunctionDeclaration builtinFunctionDeclaration = (BuiltinFunctionDeclaration)theEObject;
+				T result = caseBuiltinFunctionDeclaration(builtinFunctionDeclaration);
+				if (result == null) result = caseBuiltinDeclaration(builtinFunctionDeclaration);
+				if (result == null) result = caseDeclaration(builtinFunctionDeclaration);
+				if (result == null) result = caseCallableElement(builtinFunctionDeclaration);
+				if (result == null) result = caseEvaluable(builtinFunctionDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MscriptPackage.BUILTIN_VARIABLE: {
-				BuiltinVariable builtinVariable = (BuiltinVariable)theEObject;
-				T result = caseBuiltinVariable(builtinVariable);
-				if (result == null) result = caseBuiltinDefinition(builtinVariable);
-				if (result == null) result = caseDefinition(builtinVariable);
-				if (result == null) result = caseCallableElement(builtinVariable);
-				if (result == null) result = caseEvaluable(builtinVariable);
+			case MscriptPackage.BUILTIN_VARIABLE_DECLARATION: {
+				BuiltinVariableDeclaration builtinVariableDeclaration = (BuiltinVariableDeclaration)theEObject;
+				T result = caseBuiltinVariableDeclaration(builtinVariableDeclaration);
+				if (result == null) result = caseBuiltinDeclaration(builtinVariableDeclaration);
+				if (result == null) result = caseDeclaration(builtinVariableDeclaration);
+				if (result == null) result = caseCallableElement(builtinVariableDeclaration);
+				if (result == null) result = caseEvaluable(builtinVariableDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -911,47 +911,47 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDefinition(Definition object) {
+	public T caseDeclaration(Declaration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Data Type Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Data Type Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Data Type Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Data Type Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseDataTypeDefinition(DataTypeDefinition object) {
+	public T caseDataTypeDeclaration(DataTypeDeclaration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Enumeration Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Enumeration Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Enumeration Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Enumeration Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEnumerationDefinition(EnumerationDefinition object) {
+	public T caseEnumerationDeclaration(EnumerationDeclaration object) {
 		return null;
 	}
 
@@ -986,17 +986,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Struct Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Struct Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Struct Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Struct Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseStructDefinition(StructDefinition object) {
+	public T caseStructDeclaration(StructDeclaration object) {
 		return null;
 	}
 
@@ -1016,17 +1016,17 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Function Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Function Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Function Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Function Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFunctionDefinition(FunctionDefinition object) {
+	public T caseFunctionDeclaration(FunctionDeclaration object) {
 		return null;
 	}
 
@@ -2051,47 +2051,47 @@ public class MscriptSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Builtin Definition</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Builtin Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Builtin Definition</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Builtin Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBuiltinDefinition(BuiltinDefinition object) {
+	public T caseBuiltinDeclaration(BuiltinDeclaration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Builtin Function</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Builtin Function Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Builtin Function</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Builtin Function Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBuiltinFunction(BuiltinFunction object) {
+	public T caseBuiltinFunctionDeclaration(BuiltinFunctionDeclaration object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Builtin Variable</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Builtin Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Builtin Variable</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Builtin Variable Declaration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBuiltinVariable(BuiltinVariable object) {
+	public T caseBuiltinVariableDeclaration(BuiltinVariableDeclaration object) {
 		return null;
 	}
 

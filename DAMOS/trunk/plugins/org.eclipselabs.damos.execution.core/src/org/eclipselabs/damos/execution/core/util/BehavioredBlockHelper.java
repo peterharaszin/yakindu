@@ -32,7 +32,7 @@ import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.Expression;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.Module;
@@ -87,18 +87,18 @@ public class BehavioredBlockHelper {
 		return multiStatus;
 	}
 	
-	public FunctionDefinition createFunctionDefinition() throws CoreException {
+	public FunctionDeclaration createFunctionDefinition() throws CoreException {
 		Module module = ((MscriptBehaviorSpecification) block.getType().getBehavior()).getModule();
 
-		FunctionDefinition functionDefinition = MscriptUtil.getFunctionDefinition(module, "main");
-		if (functionDefinition == null) {
+		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(module, "main");
+		if (functionDeclaration == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Mscript function 'main' not found"));
 		}
 		
-		return functionDefinition;
+		return functionDeclaration;
 	}
 
-	public void evaluateFunctionDefinition(FunctionDefinition functionDefinition, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) throws CoreException {
+	public void evaluateFunctionDefinition(FunctionDeclaration functionDeclaration, List<IValue> templateArguments, List<DataType> inputParameterDataTypes) throws CoreException {
 		multiStatus = new MultiStatus(ExecutionCorePlugin.PLUGIN_ID, 0, "", null);
 		
 		if (multiStatus.getSeverity() > IStatus.WARNING) {
@@ -106,16 +106,16 @@ public class BehavioredBlockHelper {
 		}
 		
 		Iterator<IValue> templateArgumentIt = templateArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDefinition.getTemplateParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
 			staticEvaluationContext.setValue(parameterDeclaration, templateArgumentIt.next());
 		}
 
 		Iterator<DataType> inputParameterDataTypeIt = inputParameterDataTypes.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDefinition.getInputParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getInputParameterDeclarations()) {
 			staticEvaluationContext.setValue(parameterDeclaration, new AnyValue(new ComputationContext(), inputParameterDataTypeIt.next()));
 		}
 
-		IStatus status = staticFunctionEvaluator.evaluate(staticEvaluationContext, functionDefinition);
+		IStatus status = staticFunctionEvaluator.evaluate(staticEvaluationContext, functionDeclaration);
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
 		}
@@ -125,9 +125,9 @@ public class BehavioredBlockHelper {
 		}
 	}
 
-	public List<IValue> getTemplateArguments(FunctionDefinition functionDefinition, MultiStatus status) {
+	public List<IValue> getTemplateArguments(FunctionDeclaration functionDeclaration, MultiStatus status) {
 		List<IValue> templateArguments = new ArrayList<IValue>();
-		for (ParameterDeclaration parameterDeclaration : functionDefinition.getTemplateParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDeclaration.getTemplateParameterDeclarations()) {
 			String parameterName = parameterDeclaration.getName();
 			Argument argument = block.getArgument(parameterName);
 			if (argument == null) {
@@ -157,7 +157,7 @@ public class BehavioredBlockHelper {
 		return templateArguments;
 	}
 
-	public List<DataType> getInputParameterDataTypes(FunctionDefinition functionDefinition, IComponentSignature signature, MultiStatus status) {
+	public List<DataType> getInputParameterDataTypes(FunctionDeclaration functionDeclaration, IComponentSignature signature, MultiStatus status) {
 		List<DataType> dataTypes = new ArrayList<DataType>();
 
 		if (!block.getInputSockets().isEmpty()) {
@@ -166,7 +166,7 @@ public class BehavioredBlockHelper {
 			dataTypes.add(messageKindDataType);
 		}
 		
-		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDefinition.getInputParameterDeclarations().iterator();
+		Iterator<InputParameterDeclaration> parameterDeclarationIterator = functionDeclaration.getInputParameterDeclarations().iterator();
 		for (Input input : block.getInputs()) {
 			BlockInput blockInput = (BlockInput) input;
 			

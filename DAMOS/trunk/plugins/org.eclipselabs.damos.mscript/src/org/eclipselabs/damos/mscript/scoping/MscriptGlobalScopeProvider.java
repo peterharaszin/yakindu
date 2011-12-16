@@ -24,7 +24,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
 import org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider;
-import org.eclipselabs.damos.mscript.Definition;
+import org.eclipselabs.damos.mscript.Declaration;
 
 import com.google.common.base.Predicate;
 import com.google.inject.Inject;
@@ -70,7 +70,7 @@ public class MscriptGlobalScopeProvider extends ImportUriGlobalScopeProvider {
 				URI uri = URI.createURI(LIBRARY_URI, true);
 				Resource resource = resourceSet.getResource(uri, true);
 				for (EObject eObject : resource.getContents().get(0).eContents()) {
-					eObjectDescriptions.add(EObjectDescription.create(((Definition) eObject).getName(), eObject));
+					eObjectDescriptions.add(EObjectDescription.create(((Declaration) eObject).getName(), eObject));
 				}
 				resource.unload();
 			}

@@ -186,7 +186,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionDescriptor_Definition() {
+	public EReference getFunctionDescriptor_Declaration() {
 		return (EReference)functionDescriptorEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -447,7 +447,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFunctionInstance_FunctionDefinition() {
+	public EReference getFunctionInstance_FunctionDeclaration() {
 		return (EReference)functionInstanceEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -534,7 +534,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 
 		// Create classes and their features
 		functionDescriptorEClass = createEClass(FUNCTION_DESCRIPTOR);
-		createEReference(functionDescriptorEClass, FUNCTION_DESCRIPTOR__DEFINITION);
+		createEReference(functionDescriptorEClass, FUNCTION_DESCRIPTOR__DECLARATION);
 		createEReference(functionDescriptorEClass, FUNCTION_DESCRIPTOR__EQUATION_DESCRIPTORS);
 		createEReference(functionDescriptorEClass, FUNCTION_DESCRIPTOR__VARIABLE_DESCRIPTORS);
 
@@ -569,7 +569,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		createEReference(variableStepEClass, VARIABLE_STEP__USING_EQUATION_PARTS);
 
 		functionInstanceEClass = createEClass(FUNCTION_INSTANCE);
-		createEReference(functionInstanceEClass, FUNCTION_INSTANCE__FUNCTION_DEFINITION);
+		createEReference(functionInstanceEClass, FUNCTION_INSTANCE__FUNCTION_DECLARATION);
 		createEReference(functionInstanceEClass, FUNCTION_INSTANCE__INITIALIZATION_COMPOUND);
 		createEReference(functionInstanceEClass, FUNCTION_INSTANCE__COMPUTATION_COMPOUNDS);
 
@@ -616,7 +616,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(functionDescriptorEClass, FunctionDescriptor.class, "FunctionDescriptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionDescriptor_Definition(), theMscriptPackage.getFunctionDefinition(), null, "definition", null, 1, 1, FunctionDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionDescriptor_Declaration(), theMscriptPackage.getFunctionDeclaration(), null, "declaration", null, 1, 1, FunctionDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDescriptor_EquationDescriptors(), this.getEquationDescriptor(), this.getEquationDescriptor_FunctionDescriptor(), "equationDescriptors", null, 0, -1, FunctionDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionDescriptor_VariableDescriptors(), this.getVariableDescriptor(), this.getVariableDescriptor_FunctionDescriptor(), "variableDescriptors", null, 0, -1, FunctionDescriptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -719,7 +719,7 @@ public class FunctionModelPackageImpl extends EPackageImpl implements FunctionMo
 		initEReference(getVariableStep_UsingEquationParts(), this.getEquationPart(), this.getEquationPart_VariableStep(), "usingEquationParts", null, 0, -1, VariableStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(functionInstanceEClass, FunctionInstance.class, "FunctionInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFunctionInstance_FunctionDefinition(), theMscriptPackage.getFunctionDefinition(), null, "functionDefinition", null, 1, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFunctionInstance_FunctionDeclaration(), theMscriptPackage.getFunctionDeclaration(), null, "functionDeclaration", null, 1, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionInstance_InitializationCompound(), theMscriptPackage.getCompound(), null, "initializationCompound", null, 0, 1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionInstance_ComputationCompounds(), this.getComputationCompound(), null, "computationCompounds", null, 0, -1, FunctionInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

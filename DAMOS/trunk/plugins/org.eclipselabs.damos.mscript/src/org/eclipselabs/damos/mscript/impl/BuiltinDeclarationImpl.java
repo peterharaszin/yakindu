@@ -7,25 +7,25 @@
 package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipselabs.damos.mscript.DataTypeDefinition;
+import org.eclipselabs.damos.mscript.BuiltinDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Data Type Definition</b></em>'.
+ * An implementation of the model object '<em><b>Builtin Definition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class DataTypeDefinitionImpl extends DefinitionImpl implements DataTypeDefinition {
+public class BuiltinDeclarationImpl extends DeclarationImpl implements BuiltinDeclaration {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DataTypeDefinitionImpl() {
+	protected BuiltinDeclarationImpl() {
 		super();
 	}
 
@@ -36,7 +36,16 @@ public abstract class DataTypeDefinitionImpl extends DefinitionImpl implements D
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MscriptPackage.Literals.DATA_TYPE_DEFINITION;
+		return MscriptPackage.Literals.BUILTIN_DECLARATION;
 	}
 
-} //DataTypeDefinitionImpl
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String getQualifiedName() {
+		return getName();
+	}
+
+} //BuiltinDefinitionImpl

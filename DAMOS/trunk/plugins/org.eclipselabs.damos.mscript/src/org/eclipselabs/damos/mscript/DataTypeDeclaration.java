@@ -13,9 +13,9 @@ package org.eclipselabs.damos.mscript;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getDataTypeDefinition()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getDataTypeDeclaration()
  * @model abstract="true"
  * @generated
  */
-public interface DataTypeDefinition extends Definition {
+public interface DataTypeDeclaration extends Declaration {
 } // DataTypeDefinition

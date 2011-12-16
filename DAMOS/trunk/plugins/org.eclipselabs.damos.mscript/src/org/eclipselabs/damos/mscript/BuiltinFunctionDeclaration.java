@@ -13,9 +13,9 @@ package org.eclipselabs.damos.mscript;
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getBuiltinFunction()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getBuiltinFunctionDeclaration()
  * @model
  * @generated
  */
-public interface BuiltinFunction extends BuiltinDefinition {
+public interface BuiltinFunctionDeclaration extends BuiltinDeclaration {
 } // BuiltinFunction

@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
 import org.eclipselabs.damos.mscript.Compound;
-import org.eclipselabs.damos.mscript.Definition;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
@@ -31,12 +31,12 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public class MscriptUtil {
 
-	public static FunctionDefinition getFunctionDefinition(Module module, String qualifiedName) {
-		for (Definition definition : module.getDefinitions()) {
-			if (definition instanceof FunctionDefinition) {
-				FunctionDefinition functionDefinition = (FunctionDefinition) definition;
-				if (qualifiedName.equals(functionDefinition.getName())) {
-					return functionDefinition;
+	public static FunctionDeclaration getFunctionDefinition(Module module, String qualifiedName) {
+		for (Declaration declaration : module.getDeclarations()) {
+			if (declaration instanceof FunctionDeclaration) {
+				FunctionDeclaration functionDeclaration = (FunctionDeclaration) declaration;
+				if (qualifiedName.equals(functionDeclaration.getName())) {
+					return functionDeclaration;
 				}
 			}
 		}

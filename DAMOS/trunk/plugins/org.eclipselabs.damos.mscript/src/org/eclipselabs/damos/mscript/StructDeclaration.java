@@ -16,15 +16,15 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.StructDefinition#getMemberDeclarations <em>Member Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.StructDeclaration#getMemberDeclarations <em>Member Declarations</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructDefinition()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructDeclaration()
  * @model
  * @generated
  */
-public interface StructDefinition extends DataTypeDefinition {
+public interface StructDeclaration extends DataTypeDeclaration {
 	/**
 	 * Returns the value of the '<em><b>Member Declarations</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.StructMemberDeclaration}.
@@ -35,7 +35,7 @@ public interface StructDefinition extends DataTypeDefinition {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Member Declarations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructDefinition_MemberDeclarations()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getStructDeclaration_MemberDeclarations()
 	 * @model containment="true"
 	 * @generated
 	 */

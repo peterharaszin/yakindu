@@ -34,7 +34,7 @@ import org.eclipselabs.damos.execution.core.IComponentSignatureEvaluationResult;
 import org.eclipselabs.damos.execution.core.util.BehavioredBlockHelper;
 import org.eclipselabs.damos.mscript.ArrayType;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.OutputParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
@@ -61,17 +61,17 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 
 		ComponentSignature signature = new ComponentSignature(incomingDataTypes);
 		
-		FunctionDefinition functionDefinition;
+		FunctionDeclaration functionDeclaration;
 		try {
-			functionDefinition = helper.createFunctionDefinition();
+			functionDeclaration = helper.createFunctionDefinition();
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 			return new ComponentSignatureEvaluationResult(status);
 		}
 
-		List<IValue> templateArguments = helper.getTemplateArguments(functionDefinition, status);
+		List<IValue> templateArguments = helper.getTemplateArguments(functionDeclaration, status);
 		List<DataType> inputParameterDataTypes = helper.getInputParameterDataTypes(
-				functionDefinition, signature, status);
+				functionDeclaration, signature, status);
 		
 		if (status.getSeverity() > IStatus.WARNING) {
 			return new ComponentSignatureEvaluationResult(status);
@@ -82,7 +82,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 		}
 
 		try {
-			helper.evaluateFunctionDefinition(functionDefinition, templateArguments, inputParameterDataTypes);
+			helper.evaluateFunctionDefinition(functionDeclaration, templateArguments, inputParameterDataTypes);
 		} catch (CoreException e) {
 			status.add(e.getStatus());
 			return new ComponentSignatureEvaluationResult(status);
@@ -92,7 +92,7 @@ public class BehavioredBlockSignaturePolicy extends AbstractComponentSignaturePo
 			status.merge(helper.getStatus());
 		}
 
-		Iterator<OutputParameterDeclaration> outputParameterDeclarationIt = functionDefinition.getOutputParameterDeclarations().iterator();
+		Iterator<OutputParameterDeclaration> outputParameterDeclarationIt = functionDeclaration.getOutputParameterDeclarations().iterator();
 		for (Output output : block.getOutputs()) {
 			BlockOutput blockOutput = (BlockOutput) output;
 			

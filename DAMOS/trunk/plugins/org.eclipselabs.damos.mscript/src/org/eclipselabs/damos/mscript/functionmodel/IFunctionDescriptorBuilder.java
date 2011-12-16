@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.functionmodel;
 
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 
 /**
@@ -20,6 +20,6 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
  */
 public interface IFunctionDescriptorBuilder {
 
-	IFunctionDescriptorBuilderResult build(IStaticEvaluationContext context, FunctionDefinition functionDefinition);
+	IFunctionDescriptorBuilderResult build(IStaticEvaluationContext context, FunctionDeclaration functionDeclaration);
 
 }

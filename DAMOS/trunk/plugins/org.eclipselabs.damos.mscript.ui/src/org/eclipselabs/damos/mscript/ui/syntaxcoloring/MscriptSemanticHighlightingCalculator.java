@@ -20,9 +20,9 @@ import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
-import org.eclipselabs.damos.mscript.BuiltinDefinition;
+import org.eclipselabs.damos.mscript.BuiltinDeclaration;
 import org.eclipselabs.damos.mscript.FeatureCall;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StepExpression;
@@ -49,14 +49,14 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 		
 		for (TreeIterator<EObject> it = root.eAllContents(); it.hasNext();) {
 			EObject next = it.next();
-			if (next instanceof FunctionDefinition) {
-				List<INode> nodes = NodeModelUtils.findNodesForFeature(next, MscriptPackage.eINSTANCE.getDefinition_Name());
+			if (next instanceof FunctionDeclaration) {
+				List<INode> nodes = NodeModelUtils.findNodesForFeature(next, MscriptPackage.eINSTANCE.getDeclaration_Name());
 				for (INode node : nodes) {
 					acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.FUNCTION_ID);
 				}
 			} else if (next instanceof FeatureCall) {
 				FeatureCall featureCall = (FeatureCall) next;
-				if (featureCall.getFeature() instanceof BuiltinDefinition) {
+				if (featureCall.getFeature() instanceof BuiltinDeclaration) {
 					List<INode> nodes = NodeModelUtils.findNodesForFeature(featureCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature());
 					for (INode node : nodes) {
 						acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.BUILTIN_ID);

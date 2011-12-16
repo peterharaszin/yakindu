@@ -62,7 +62,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		MultiStatus status = new MultiStatus(MscriptPlugin.PLUGIN_ID, 0, "Function definition transformation", null);
 
 		FunctionInstance functionInstance = FunctionModelFactory.eINSTANCE.createFunctionInstance();
-		functionInstance.setFunctionDefinition(functionDescriptor.getDefinition());
+		functionInstance.setFunctionDeclaration(functionDescriptor.getDeclaration());
 		
 		Map<VariableDescriptor, VariableDeclaration> variableDeclarations = new HashMap<VariableDescriptor, VariableDeclaration>();
 		
@@ -87,7 +87,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 	
 	private void initializeVariableDeclarations(IStaticEvaluationContext staticEvaluationContext, FunctionInstance functionInstance, FunctionDescriptor functionDescriptor, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, Map<VariableDescriptor, VariableDeclaration> variableDeclarations) {
 		Iterator<IValue> templateArgumentIterator = templateArguments.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDefinition().getTemplateParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getTemplateParameterDeclarations()) {
 			if (templateArgumentIterator.hasNext()) {
 				IValue value = templateArgumentIterator.next();
 				staticEvaluationContext.setValue(parameterDeclaration, value);
@@ -99,7 +99,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 		}
 
 		Iterator<DataType> inputParameterDataTypesIterator = inputParameterDataTypes.iterator();
-		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDefinition().getInputParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getInputParameterDeclarations()) {
 			if (inputParameterDataTypesIterator.hasNext()) {
 				DataType dataType = EcoreUtil.copy(inputParameterDataTypesIterator.next());
 				IValue value = new AnyValue(staticEvaluationContext.getComputationContext(), dataType);
@@ -113,7 +113,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			}
 		}
 		
-		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDefinition().getOutputParameterDeclarations()) {
+		for (ParameterDeclaration parameterDeclaration : functionDescriptor.getDeclaration().getOutputParameterDeclarations()) {
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(parameterDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = getInoutputCircularBufferSize(variableDescriptor);
@@ -126,7 +126,7 @@ public class FunctionDefinitionTransformer implements IFunctionDefinitionTransfo
 			}
 		}
 
-		for (StateVariableDeclaration stateVariableDeclaration : functionDescriptor.getDefinition().getStateVariableDeclarations()) {
+		for (StateVariableDeclaration stateVariableDeclaration : functionDescriptor.getDeclaration().getStateVariableDeclarations()) {
 			VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(stateVariableDeclaration.getName());
 			if (variableDescriptor != null) {
 				int circularBufferSize = variableDescriptor.getMaximumStep().getIndex() - variableDescriptor.getMinimumStep().getIndex() + 1;

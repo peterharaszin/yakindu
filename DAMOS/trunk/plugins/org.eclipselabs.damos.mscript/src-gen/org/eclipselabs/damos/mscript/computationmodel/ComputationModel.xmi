@@ -212,22 +212,22 @@
       <type metamodel="/1/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Module"/>
       </type>
-      <alternatives xsi:type="xtext:Assignment" cardinality="*" feature="definitions" operator="+=">
+      <alternatives xsi:type="xtext:Assignment" cardinality="*" feature="declarations" operator="+=">
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="Definition">
+    <rules xsi:type="xtext:ParserRule" name="Declaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Definition"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Declaration"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.8"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="DataTypeDefinition">
+    <rules xsi:type="xtext:ParserRule" name="DataTypeDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeDefinition"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataTypeDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.3"/>
@@ -235,9 +235,9 @@
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.5"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="EnumerationDefinition">
+    <rules xsi:type="xtext:ParserRule" name="EnumerationDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EnumerationDefinition"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//EnumerationDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="enum"/>
@@ -281,9 +281,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="StructDefinition">
+    <rules xsi:type="xtext:ParserRule" name="StructDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructDefinition"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StructDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="struct"/>
@@ -310,9 +310,9 @@
         </elements>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="FunctionDefinition">
+    <rules xsi:type="xtext:ParserRule" name="FunctionDeclaration">
       <type metamodel="/1/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionDefinition"/>
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionDeclaration"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Assignment" cardinality="?" feature="kind" operator="=">
@@ -544,7 +544,7 @@
         <elements xsi:type="xtext:Assignment" feature="functionName" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/1/@metamodelDeclarations.1">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionDefinition"/>
+              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//FunctionDeclaration"/>
             </type>
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.109"/>
           </terminal>

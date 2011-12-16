@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.DataTypeSpecifier;
-import org.eclipselabs.damos.mscript.FunctionDefinition;
+import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InvalidDataType;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
@@ -55,7 +55,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 
 	private ComputationModel computationModel;
 	
-	private FunctionDefinition functionDefinition;
+	private FunctionDeclaration functionDeclaration;
 	
 	private FunctionInstance functionInstance;
 	
@@ -80,8 +80,8 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 	/**
 	 * @return the functionDefinition
 	 */
-	public FunctionDefinition getFunctionDefinition() {
-		return functionDefinition;
+	public FunctionDeclaration getFunctionDefinition() {
+		return functionDeclaration;
 	}
 	
 	/**
@@ -127,7 +127,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Mscript file '" + file.getName() + "' does not exist"));
 		}
 
-		functionDefinition = createFunctionDefinition(file, functionName);
+		functionDeclaration = createFunctionDefinition(file, functionName);
 		
 		String computationModelString = configuration.getAttribute(ATTRIBUTE__COMPUTATION_MODEL, "");
 		if (computationModelString.length() == 0) {
@@ -138,11 +138,11 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		
 		String templateArgumentsString = configuration.getAttribute(ATTRIBUTE__TEMPLATE_ARGUMENTS, "");
 
-		templateArguments = computeTemplateArguments(createTemplateArgumentsInterpreterContext(), functionDefinition, templateArgumentsString);
+		templateArguments = computeTemplateArguments(createTemplateArgumentsInterpreterContext(), functionDeclaration, templateArgumentsString);
 
 		inputParameterDataTypes = computeInputParameterDataTypes(configuration, mode, monitor);
 
-		functionInstance = createFunctionInstance(functionDefinition, templateArguments, inputParameterDataTypes, monitor);
+		functionInstance = createFunctionInstance(functionDeclaration, templateArguments, inputParameterDataTypes, monitor);
 
 		return super.preLaunchCheck(configuration, mode, monitor);
 	}
@@ -195,7 +195,7 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		}
 	}
 
-	private FunctionDefinition createFunctionDefinition(IFile file, String functionName) throws CoreException {
+	private FunctionDeclaration createFunctionDefinition(IFile file, String functionName) throws CoreException {
 		IParseResult parseResult = IDECorePlugin.getDefault().getMscriptParser().parse(new InputStreamReader(file.getContents()));
 		if (parseResult.hasSyntaxErrors()) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Parse errors"));
@@ -206,21 +206,21 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		}
 
 		Module module = (Module) parseResult.getRootASTElement();
-		FunctionDefinition functionDefinition = MscriptUtil.getFunctionDefinition(module, functionName);
-		if (functionDefinition == null) {
+		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(module, functionName);
+		if (functionDeclaration == null) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Function '" + functionName + "' not found"));
 		}
-		return functionDefinition;
+		return functionDeclaration;
 	}
 
-	private FunctionInstance createFunctionInstance(FunctionDefinition functionDefinition, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
+	private FunctionInstance createFunctionInstance(FunctionDeclaration functionDeclaration, List<IValue> templateArguments, List<DataType> inputParameterDataTypes, IProgressMonitor monitor) throws CoreException {
 		staticEvaluationContext = new StaticEvaluationContext();
-		IStatus status = new StaticFunctionEvaluator().evaluate(staticEvaluationContext, functionDefinition);
+		IStatus status = new StaticFunctionEvaluator().evaluate(staticEvaluationContext, functionDeclaration);
 		if (status.getSeverity() > IStatus.WARNING) {
 			throw new CoreException(status);
 		}
 		
-		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationContext, staticEvaluationContext.getFunctionDescriptor(functionDefinition), templateArguments, inputParameterDataTypes);
+		IFunctionDefinitionTransformerResult functionDefinitionTransformerResult = new FunctionDefinitionTransformer().transform(staticEvaluationContext, staticEvaluationContext.getFunctionDescriptor(functionDeclaration), templateArguments, inputParameterDataTypes);
 		if (!functionDefinitionTransformerResult.getStatus().isOK()) {
 			throw new CoreException(functionDefinitionTransformerResult.getStatus());
 		}
@@ -228,13 +228,13 @@ public abstract class AbstractMscriptLaunchConfigurationDelegate extends LaunchC
 		return functionDefinitionTransformerResult.getFunctionInstance();
 	}
 	
-	private List<IValue> computeTemplateArguments(IInterpreterContext interpreterContext, FunctionDefinition functionDefinition, String templateArgumentsString) throws CoreException {
+	private List<IValue> computeTemplateArguments(IInterpreterContext interpreterContext, FunctionDeclaration functionDeclaration, String templateArgumentsString) throws CoreException {
 		List<IValue> templateArguments = ParseUtil.parseValues(interpreterContext, templateArgumentsString);
 		if (templateArguments == null) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Invalid template arguments specified"));
 		}
 		
-		if (templateArguments.size() != functionDefinition.getTemplateParameterDeclarations().size()) {
+		if (templateArguments.size() != functionDeclaration.getTemplateParameterDeclarations().size()) {
 			throw new CoreException(new Status(IStatus.ERROR, IDECorePlugin.PLUGIN_ID, "Number of template parameter data types does not correspond to the number of template parameter in function definition"));
 		}
 		

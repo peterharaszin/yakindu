@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.mscript.Definition;
+import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 
@@ -26,7 +26,7 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.mscript.impl.ModuleImpl#getDefinitions <em>Definitions</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ModuleImpl#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,14 +34,14 @@ import org.eclipselabs.damos.mscript.MscriptPackage;
  */
 public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	/**
-	 * The cached value of the '{@link #getDefinitions() <em>Definitions</em>}' containment reference list.
+	 * The cached value of the '{@link #getDeclarations() <em>Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefinitions()
+	 * @see #getDeclarations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Definition> definitions;
+	protected EList<Declaration> declarations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -67,11 +67,11 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Definition> getDefinitions() {
-		if (definitions == null) {
-			definitions = new EObjectContainmentEList<Definition>(Definition.class, this, MscriptPackage.MODULE__DEFINITIONS);
+	public EList<Declaration> getDeclarations() {
+		if (declarations == null) {
+			declarations = new EObjectContainmentEList<Declaration>(Declaration.class, this, MscriptPackage.MODULE__DECLARATIONS);
 		}
-		return definitions;
+		return declarations;
 	}
 
 	/**
@@ -82,8 +82,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MscriptPackage.MODULE__DEFINITIONS:
-				return ((InternalEList<?>)getDefinitions()).basicRemove(otherEnd, msgs);
+			case MscriptPackage.MODULE__DECLARATIONS:
+				return ((InternalEList<?>)getDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -96,8 +96,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MscriptPackage.MODULE__DEFINITIONS:
-				return getDefinitions();
+			case MscriptPackage.MODULE__DECLARATIONS:
+				return getDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -111,9 +111,9 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MscriptPackage.MODULE__DEFINITIONS:
-				getDefinitions().clear();
-				getDefinitions().addAll((Collection<? extends Definition>)newValue);
+			case MscriptPackage.MODULE__DECLARATIONS:
+				getDeclarations().clear();
+				getDeclarations().addAll((Collection<? extends Declaration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -127,8 +127,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.MODULE__DEFINITIONS:
-				getDefinitions().clear();
+			case MscriptPackage.MODULE__DECLARATIONS:
+				getDeclarations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -142,8 +142,8 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MscriptPackage.MODULE__DEFINITIONS:
-				return definitions != null && !definitions.isEmpty();
+			case MscriptPackage.MODULE__DECLARATIONS:
+				return declarations != null && !declarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

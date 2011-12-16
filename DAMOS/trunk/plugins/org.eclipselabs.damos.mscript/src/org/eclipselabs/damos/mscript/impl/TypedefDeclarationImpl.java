@@ -28,7 +28,7 @@ import org.eclipselabs.damos.mscript.TypedefDeclaration;
  *
  * @generated
  */
-public class TypedefDeclarationImpl extends DataTypeDefinitionImpl implements TypedefDeclaration {
+public class TypedefDeclarationImpl extends DataTypeDeclarationImpl implements TypedefDeclaration {
 	/**
 	 * The cached value of the '{@link #getTypeSpecifier() <em>Type Specifier</em>}' containment reference.
 	 * <!-- begin-user-doc -->

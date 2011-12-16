@@ -62,12 +62,12 @@ public interface FunctionObjectDeclaration extends CallableElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Function Name</em>' reference.
-	 * @see #setFunctionName(FunctionDefinition)
+	 * @see #setFunctionName(FunctionDeclaration)
 	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getFunctionObjectDeclaration_FunctionName()
 	 * @model
 	 * @generated
 	 */
-	FunctionDefinition getFunctionName();
+	FunctionDeclaration getFunctionName();
 
 	/**
 	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.FunctionObjectDeclaration#getFunctionName <em>Function Name</em>}' reference.
@@ -77,7 +77,7 @@ public interface FunctionObjectDeclaration extends CallableElement {
 	 * @see #getFunctionName()
 	 * @generated
 	 */
-	void setFunctionName(FunctionDefinition value);
+	void setFunctionName(FunctionDeclaration value);
 
 	/**
 	 * Returns the value of the '<em><b>Template Arguments</b></em>' containment reference list.

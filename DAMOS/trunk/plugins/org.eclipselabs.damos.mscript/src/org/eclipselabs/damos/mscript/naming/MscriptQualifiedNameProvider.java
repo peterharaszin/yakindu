@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipselabs.damos.mscript.Definition;
+import org.eclipselabs.damos.mscript.Declaration;
 
 import com.google.inject.Inject;
 
@@ -32,8 +32,8 @@ public class MscriptQualifiedNameProvider extends IQualifiedNameProvider.Abstrac
 	 * @see org.eclipse.xtext.naming.IQualifiedNameProvider#getFullyQualifiedName(org.eclipse.emf.ecore.EObject)
 	 */
 	public QualifiedName getFullyQualifiedName(EObject obj) {
-		if (obj instanceof Definition) {
-			final String qualifiedName = ((Definition) obj).getName();
+		if (obj instanceof Declaration) {
+			final String qualifiedName = ((Declaration) obj).getName();
 			if (qualifiedName == null) {
 				return null;
 			}

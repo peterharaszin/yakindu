@@ -108,6 +108,8 @@ it is most commonly used in control systems engineering and digital signal proce
 	of hosting at Eclipse Labs?
  -->
 
+ 
+
 <h2>Initial Contribution</h2>
 
 <!-- 
@@ -135,6 +137,16 @@ and diagram editing components, and without being required to ship unneeded comp
 
 <p><img src="architecture.png"/></p>
 
+<p>The Eclipse extension mechanism can be used to customize and extend various aspects of the tooling, e.g:
+<ul>
+<li>Registering block libraries</li>
+<li>Contributing the visual representation for blocks</li>
+<li>Providing simulation behavior</li>
+<li>Providing additional solvers</li>
+<li>Providing code generators</li>
+</ul>
+</p>
+
 <h3>Main Components</h3>
 
 <h4>Models</h4>
@@ -161,28 +173,57 @@ For all other models, textual model editors based on Xtext are provided.</p>
 <h4>Block Diagram Editor</h4>
 
 <p>The graphical block diagram editor is used for editing system models.
-It can also be used to visualize real-time simulation results using virtual instruments.</p>
+It can also be used to visualize real-time simulation results using virtual instruments.
+Block diagram files contain two model types: the semantic model of the system model and
+the notation model containing the graphical information of the block diagram.
+When processing block diagrams, the notation model is usually ignored.</p>
+
+<p>The architecture of Damos facilitates the derivation of new data flow-based
+languages. Such languages can reuse the semantic metamodel (DML) and the block diagram editor.
+Language-specific aspects can be configured using Google Guice.</p>
 
 <p><a href="block-diagram-editor.png"><img src="block-diagram-editor-small.png"/></a></p>
 
-<h4>Simulation Environment</h4>
+<h4>Simulator</h4>
 
-<p>The simulation environment utilizes adaptive and fixed step size solvers to simulate continuous systems.
-It also provides asynchronous and real-time simulation capabilities.</p>
+<p>The simulator utilizes adaptive and fixed step size solvers to simulate continuous, synchronous, and asynchronous systems.
+Additional solvers can be provided using the Eclipse extension mechanism.
+When real-time simulation is performed, simulation results can be displayed in real-time using virtual instrument blocks.
+The simulation engine incorporates a target-specific computation model,
+so that&mdash;for instance&mdash;overflows can be detected when using fixed-point arithmetic.
+Simulation aspects (e.g. solver configuration) can be configured using a simulation model.</p>
 
 <h4>Code Generator</h4>
 
-<p>The code generation tooling initially includes a standard compliant C code generator.</p>
+<p>The code generation tooling initially includes a standards-compliant C code generator.
+Other languages may be added in the future.
+Each system component can provide its own code generator.
+When using Mscript to describe the block behavior, an Mscript-specific code generator is used that
+transforms the Mscript functions into C code.
+The code generators incorporate a target-specific computation model containing information on how arithmetic operations should be handled.
+The code generation process can be configured using a generator model (e.g. target directories).</p>
 
 <h4>Block Library</h4>
 
 <p>The standard block library contains commonly used blocks.
-If required, the user is able to define his/her own blocks.
-This can be done using the declarative programming language Mscript, which is part of this project.</p>
+If required, the user is can create his/her own block libraries.
+The block behavior can be specified using the declarative programming language Mscript, which is part of this project.</p>
 
-<h4>Extension Mechanisms</h4>
+<h4>Mscript</h4>
 
-<p>Extension mechanisms can be used to customize and extend various aspects of the tooling.</p>
+<p>Mscript is a declarative programming language where one defines the relationship between the inputs and outputs
+of a function using a set of equations.
+In contrast to a functional language, Mscript functions can be stateful.
+Consequently, such functions must be instantiated (function objects).
+Stateful function equations can reference previous input and output values,
+which enable the specification of difference equations.
+Difference equations are widely used to specify discrete transfer functions,
+for instance in the field of digital signal processing (e.g. FIR and IIR filters).
+In future versions, differential equations may be supported as well to
+allow for specifying time-continuous blocks.
+
+</p>
+<p><img src="mscript.png"/></p>
 
 <h2>Legal Issues</h2>
 

@@ -14853,11 +14853,11 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureCall"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5096:1: ruleFeatureCall returns [EObject current=null] : (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5096:1: ruleFeatureCall returns [EObject current=null] : (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall ) ;
     public final EObject ruleFeatureCall() throws RecognitionException {
         EObject current = null;
 
-        EObject this_VariableAccess_0 = null;
+        EObject this_VariableReference_0 = null;
 
         EObject this_FunctionCall_1 = null;
 
@@ -14865,29 +14865,29 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5099:28: ( (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5100:1: (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5099:28: ( (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5100:1: (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5100:1: (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5100:1: (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall )
             int alt79=2;
             alt79 = dfa79.predict(input);
             switch (alt79) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5101:5: this_VariableAccess_0= ruleVariableAccess
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5101:5: this_VariableReference_0= ruleVariableReference
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getFeatureCallAccess().getVariableAccessParserRuleCall_0()); 
+                              newCompositeNode(grammarAccess.getFeatureCallAccess().getVariableReferenceParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleVariableAccess_in_ruleFeatureCall11336);
-                    this_VariableAccess_0=ruleVariableAccess();
+                    pushFollow(FOLLOW_ruleVariableReference_in_ruleFeatureCall11336);
+                    this_VariableReference_0=ruleVariableReference();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_VariableAccess_0; 
+                              current = this_VariableReference_0; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -14938,30 +14938,30 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleFeatureCall"
 
 
-    // $ANTLR start "entryRuleVariableAccess"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5127:1: entryRuleVariableAccess returns [EObject current=null] : iv_ruleVariableAccess= ruleVariableAccess EOF ;
-    public final EObject entryRuleVariableAccess() throws RecognitionException {
+    // $ANTLR start "entryRuleVariableReference"
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5127:1: entryRuleVariableReference returns [EObject current=null] : iv_ruleVariableReference= ruleVariableReference EOF ;
+    public final EObject entryRuleVariableReference() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleVariableAccess = null;
+        EObject iv_ruleVariableReference = null;
 
 
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5128:2: (iv_ruleVariableAccess= ruleVariableAccess EOF )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5129:2: iv_ruleVariableAccess= ruleVariableAccess EOF
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5128:2: (iv_ruleVariableReference= ruleVariableReference EOF )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5129:2: iv_ruleVariableReference= ruleVariableReference EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getVariableAccessRule()); 
+               newCompositeNode(grammarAccess.getVariableReferenceRule()); 
             }
-            pushFollow(FOLLOW_ruleVariableAccess_in_entryRuleVariableAccess11398);
-            iv_ruleVariableAccess=ruleVariableAccess();
+            pushFollow(FOLLOW_ruleVariableReference_in_entryRuleVariableReference11398);
+            iv_ruleVariableReference=ruleVariableReference();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleVariableAccess; 
+               current =iv_ruleVariableReference; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableAccess11408); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableReference11408); if (state.failed) return current;
 
             }
 
@@ -14975,12 +14975,12 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleVariableAccess"
+    // $ANTLR end "entryRuleVariableReference"
 
 
-    // $ANTLR start "ruleVariableAccess"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5136:1: ruleVariableAccess returns [EObject current=null] : ( () ( ( ruleQualifiedName ) ) (otherlv_2= '{' ( (lv_stepExpression_3_0= ruleStepExpression ) ) otherlv_4= '}' )? ) ;
-    public final EObject ruleVariableAccess() throws RecognitionException {
+    // $ANTLR start "ruleVariableReference"
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5136:1: ruleVariableReference returns [EObject current=null] : ( () ( ( ruleQualifiedName ) ) (otherlv_2= '{' ( (lv_stepExpression_3_0= ruleStepExpression ) ) otherlv_4= '}' )? ) ;
+    public final EObject ruleVariableReference() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
@@ -15003,7 +15003,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getVariableAccessAccess().getVariableAccessAction_0(),
+                          grammarAccess.getVariableReferenceAccess().getVariableReferenceAction_0(),
                           current);
                   
             }
@@ -15019,16 +15019,16 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               			if (current==null) {
-              	            current = createModelElement(grammarAccess.getVariableAccessRule());
+              	            current = createModelElement(grammarAccess.getVariableReferenceRule());
               	        }
                       
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableAccessAccess().getFeatureCallableElementCrossReference_1_0()); 
+              	        newCompositeNode(grammarAccess.getVariableReferenceAccess().getFeatureCallableElementCrossReference_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleVariableAccess11465);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleVariableReference11465);
             ruleQualifiedName();
 
             state._fsp--;
@@ -15055,10 +15055,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5161:4: otherlv_2= '{' ( (lv_stepExpression_3_0= ruleStepExpression ) ) otherlv_4= '}'
                     {
-                    otherlv_2=(Token)match(input,21,FOLLOW_21_in_ruleVariableAccess11478); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,21,FOLLOW_21_in_ruleVariableReference11478); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_2, grammarAccess.getVariableAccessAccess().getLeftCurlyBracketKeyword_2_0());
+                          	newLeafNode(otherlv_2, grammarAccess.getVariableReferenceAccess().getLeftCurlyBracketKeyword_2_0());
                           
                     }
                     // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5165:1: ( (lv_stepExpression_3_0= ruleStepExpression ) )
@@ -15069,10 +15069,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getVariableAccessAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
+                      	        newCompositeNode(grammarAccess.getVariableReferenceAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleStepExpression_in_ruleVariableAccess11499);
+                    pushFollow(FOLLOW_ruleStepExpression_in_ruleVariableReference11499);
                     lv_stepExpression_3_0=ruleStepExpression();
 
                     state._fsp--;
@@ -15080,7 +15080,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getVariableAccessRule());
+                      	            current = createModelElementForParent(grammarAccess.getVariableReferenceRule());
                       	        }
                              		set(
                              			current, 
@@ -15096,10 +15096,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_4=(Token)match(input,22,FOLLOW_22_in_ruleVariableAccess11511); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,22,FOLLOW_22_in_ruleVariableReference11511); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_4, grammarAccess.getVariableAccessAccess().getRightCurlyBracketKeyword_2_2());
+                          	newLeafNode(otherlv_4, grammarAccess.getVariableReferenceAccess().getRightCurlyBracketKeyword_2_2());
                           
                     }
 
@@ -15127,7 +15127,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleVariableAccess"
+    // $ANTLR end "ruleVariableReference"
 
 
     // $ANTLR start "entryRuleFunctionCall"
@@ -23589,7 +23589,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             this.transition = DFA79_transition;
         }
         public String getDescription() {
-            return "5100:1: (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall )";
+            return "5100:1: (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall )";
         }
     }
  
@@ -24028,14 +24028,14 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteral11239 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFeatureCall_in_entryRuleFeatureCall11279 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFeatureCall11289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableAccess_in_ruleFeatureCall11336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_ruleFeatureCall11336 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionCall_in_ruleFeatureCall11363 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableAccess_in_entryRuleVariableAccess11398 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableAccess11408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleVariableAccess11465 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_ruleVariableAccess11478 = new BitSet(new long[]{0x0000000000000C10L,0x0000000000000008L});
-    public static final BitSet FOLLOW_ruleStepExpression_in_ruleVariableAccess11499 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_ruleVariableAccess11511 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_entryRuleVariableReference11398 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariableReference11408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleVariableReference11465 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_21_in_ruleVariableReference11478 = new BitSet(new long[]{0x0000000000000C10L,0x0000000000000008L});
+    public static final BitSet FOLLOW_ruleStepExpression_in_ruleVariableReference11499 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_ruleVariableReference11511 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall11549 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionCall11559 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleFunctionCall11616 = new BitSet(new long[]{0x0000000080000000L});

@@ -2808,27 +2808,27 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class FeatureCallElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FeatureCall");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cVariableAccessParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cVariableReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cFunctionCallParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
 		//FeatureCall returns Expression:
-		//	VariableAccess | FunctionCall;
+		//	VariableReference | FunctionCall;
 		public ParserRule getRule() { return rule; }
 
-		//VariableAccess | FunctionCall
+		//VariableReference | FunctionCall
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//VariableAccess
-		public RuleCall getVariableAccessParserRuleCall_0() { return cVariableAccessParserRuleCall_0; }
+		//VariableReference
+		public RuleCall getVariableReferenceParserRuleCall_0() { return cVariableReferenceParserRuleCall_0; }
 
 		//FunctionCall
 		public RuleCall getFunctionCallParserRuleCall_1() { return cFunctionCallParserRuleCall_1; }
 	}
 
-	public class VariableAccessElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VariableAccess");
+	public class VariableReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "VariableReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cVariableAccessAction_0 = (Action)cGroup.eContents().get(0);
+		private final Action cVariableReferenceAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cFeatureAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cFeatureCallableElementCrossReference_1_0 = (CrossReference)cFeatureAssignment_1.eContents().get(0);
 		private final RuleCall cFeatureCallableElementQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cFeatureCallableElementCrossReference_1_0.eContents().get(1);
@@ -2838,15 +2838,15 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStepExpressionStepExpressionParserRuleCall_2_1_0 = (RuleCall)cStepExpressionAssignment_2_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		
-		//VariableAccess returns Expression:
-		//	{VariableAccess} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
+		//VariableReference returns Expression:
+		//	{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//{VariableAccess} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?
+		//{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?
 		public Group getGroup() { return cGroup; }
 
-		//{VariableAccess}
-		public Action getVariableAccessAction_0() { return cVariableAccessAction_0; }
+		//{VariableReference}
+		public Action getVariableReferenceAction_0() { return cVariableReferenceAction_0; }
 
 		//feature=[CallableElement|QualifiedName]
 		public Assignment getFeatureAssignment_1() { return cFeatureAssignment_1; }
@@ -4606,7 +4606,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private BooleanLiteralElements pBooleanLiteral;
 	private StringLiteralElements pStringLiteral;
 	private FeatureCallElements pFeatureCall;
-	private VariableAccessElements pVariableAccess;
+	private VariableReferenceElements pVariableReference;
 	private FunctionCallElements pFunctionCall;
 	private StepExpressionElements pStepExpression;
 	private RangeStepExpressionElements pRangeStepExpression;
@@ -5438,7 +5438,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FeatureCall returns Expression:
-	//	VariableAccess | FunctionCall;
+	//	VariableReference | FunctionCall;
 	public FeatureCallElements getFeatureCallAccess() {
 		return (pFeatureCall != null) ? pFeatureCall : (pFeatureCall = new FeatureCallElements());
 	}
@@ -5447,14 +5447,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getFeatureCallAccess().getRule();
 	}
 
-	//VariableAccess returns Expression:
-	//	{VariableAccess} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
-	public VariableAccessElements getVariableAccessAccess() {
-		return (pVariableAccess != null) ? pVariableAccess : (pVariableAccess = new VariableAccessElements());
+	//VariableReference returns Expression:
+	//	{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
+	public VariableReferenceElements getVariableReferenceAccess() {
+		return (pVariableReference != null) ? pVariableReference : (pVariableReference = new VariableReferenceElements());
 	}
 	
-	public ParserRule getVariableAccessRule() {
-		return getVariableAccessAccess().getRule();
+	public ParserRule getVariableReferenceRule() {
+		return getVariableReferenceAccess().getRule();
 	}
 
 	//FunctionCall returns Expression:

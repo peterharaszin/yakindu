@@ -406,7 +406,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass variableAccessEClass = null;
+	private EClass variableReferenceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2299,8 +2299,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getVariableAccess() {
-		return variableAccessEClass;
+	public EClass getVariableReference() {
+		return variableReferenceEClass;
 	}
 
 	/**
@@ -2308,8 +2308,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getVariableAccess_StepExpression() {
-		return (EReference)variableAccessEClass.getEStructuralFeatures().get(0);
+	public EReference getVariableReference_StepExpression() {
+		return (EReference)variableReferenceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -3573,8 +3573,8 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		featureCallEClass = createEClass(FEATURE_CALL);
 		createEReference(featureCallEClass, FEATURE_CALL__FEATURE);
 
-		variableAccessEClass = createEClass(VARIABLE_ACCESS);
-		createEReference(variableAccessEClass, VARIABLE_ACCESS__STEP_EXPRESSION);
+		variableReferenceEClass = createEClass(VARIABLE_REFERENCE);
+		createEReference(variableReferenceEClass, VARIABLE_REFERENCE__STEP_EXPRESSION);
 
 		stepExpressionEClass = createEClass(STEP_EXPRESSION);
 
@@ -3816,7 +3816,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		unaryExpressionEClass.getESuperTypes().add(this.getExpression());
 		postfixExpressionEClass.getESuperTypes().add(this.getExpression());
 		featureCallEClass.getESuperTypes().add(this.getExpression());
-		variableAccessEClass.getESuperTypes().add(this.getFeatureCall());
+		variableReferenceEClass.getESuperTypes().add(this.getFeatureCall());
 		rangeStepExpressionEClass.getESuperTypes().add(this.getStepExpression());
 		additiveStepExpressionEClass.getESuperTypes().add(this.getStepExpression());
 		negateStepExpressionEClass.getESuperTypes().add(this.getStepExpression());
@@ -4077,10 +4077,10 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		initEClass(featureCallEClass, FeatureCall.class, "FeatureCall", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFeatureCall_Feature(), this.getCallableElement(), null, "feature", null, 0, 1, FeatureCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(variableAccessEClass, VariableAccess.class, "VariableAccess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getVariableAccess_StepExpression(), this.getStepExpression(), null, "stepExpression", null, 0, 1, VariableAccess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(variableReferenceEClass, VariableReference.class, "VariableReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVariableReference_StepExpression(), this.getStepExpression(), null, "stepExpression", null, 0, 1, VariableReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(variableAccessEClass, ecorePackage.getEBoolean(), "isInitial", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(variableReferenceEClass, ecorePackage.getEBoolean(), "isInitial", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(stepExpressionEClass, StepExpression.class, "StepExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

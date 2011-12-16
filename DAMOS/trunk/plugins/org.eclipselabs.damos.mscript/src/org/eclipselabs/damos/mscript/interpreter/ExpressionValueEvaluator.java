@@ -45,7 +45,7 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookupTable;
@@ -508,15 +508,15 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 		 * @see org.eclipselabs.damos.mscript.util.MscriptSwitch#caseVariableAccess(org.eclipselabs.damos.mscript.VariableAccess)
 		 */
 		@Override
-		public IValue caseVariableAccess(VariableAccess variableAccess) {
-			if (!(variableAccess.getFeature() instanceof VariableDeclaration)) {
+		public IValue caseVariableReference(VariableReference variableReference) {
+			if (!(variableReference.getFeature() instanceof VariableDeclaration)) {
 				throw new IllegalArgumentException();
 			}
-			VariableDeclaration variableDeclaration = (VariableDeclaration) variableAccess.getFeature();
+			VariableDeclaration variableDeclaration = (VariableDeclaration) variableReference.getFeature();
 			
-			variableAccess.getFeature();
+			variableReference.getFeature();
 			IVariable variable = context.getVariable(variableDeclaration);
-			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableAccess);
+			int stepIndex = context.getStaticEvaluationContext().getStepIndex(variableReference);
 			IValue result = variable.getValue(stepIndex);
 			if (result == null) {
 				return InvalidValue.SINGLETON;

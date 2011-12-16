@@ -13952,11 +13952,11 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleFeatureCall"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4791:1: ruleFeatureCall returns [EObject current=null] : (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall ) ;
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4791:1: ruleFeatureCall returns [EObject current=null] : (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall ) ;
     public final EObject ruleFeatureCall() throws RecognitionException {
         EObject current = null;
 
-        EObject this_VariableAccess_0 = null;
+        EObject this_VariableReference_0 = null;
 
         EObject this_FunctionCall_1 = null;
 
@@ -13964,29 +13964,29 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4794:28: ( (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall ) )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4795:1: (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4794:28: ( (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall ) )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4795:1: (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall )
             {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4795:1: (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4795:1: (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall )
             int alt76=2;
             alt76 = dfa76.predict(input);
             switch (alt76) {
                 case 1 :
-                    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4796:5: this_VariableAccess_0= ruleVariableAccess
+                    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4796:5: this_VariableReference_0= ruleVariableReference
                     {
                     if ( state.backtracking==0 ) {
                        
-                              newCompositeNode(grammarAccess.getFeatureCallAccess().getVariableAccessParserRuleCall_0()); 
+                              newCompositeNode(grammarAccess.getFeatureCallAccess().getVariableReferenceParserRuleCall_0()); 
                           
                     }
-                    pushFollow(FOLLOW_ruleVariableAccess_in_ruleFeatureCall10563);
-                    this_VariableAccess_0=ruleVariableAccess();
+                    pushFollow(FOLLOW_ruleVariableReference_in_ruleFeatureCall10563);
+                    this_VariableReference_0=ruleVariableReference();
 
                     state._fsp--;
                     if (state.failed) return current;
                     if ( state.backtracking==0 ) {
                        
-                              current = this_VariableAccess_0; 
+                              current = this_VariableReference_0; 
                               afterParserOrEnumRuleCall();
                           
                     }
@@ -14037,30 +14037,30 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleFeatureCall"
 
 
-    // $ANTLR start "entryRuleVariableAccess"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4822:1: entryRuleVariableAccess returns [EObject current=null] : iv_ruleVariableAccess= ruleVariableAccess EOF ;
-    public final EObject entryRuleVariableAccess() throws RecognitionException {
+    // $ANTLR start "entryRuleVariableReference"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4822:1: entryRuleVariableReference returns [EObject current=null] : iv_ruleVariableReference= ruleVariableReference EOF ;
+    public final EObject entryRuleVariableReference() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleVariableAccess = null;
+        EObject iv_ruleVariableReference = null;
 
 
         try {
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4823:2: (iv_ruleVariableAccess= ruleVariableAccess EOF )
-            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4824:2: iv_ruleVariableAccess= ruleVariableAccess EOF
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4823:2: (iv_ruleVariableReference= ruleVariableReference EOF )
+            // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4824:2: iv_ruleVariableReference= ruleVariableReference EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getVariableAccessRule()); 
+               newCompositeNode(grammarAccess.getVariableReferenceRule()); 
             }
-            pushFollow(FOLLOW_ruleVariableAccess_in_entryRuleVariableAccess10625);
-            iv_ruleVariableAccess=ruleVariableAccess();
+            pushFollow(FOLLOW_ruleVariableReference_in_entryRuleVariableReference10625);
+            iv_ruleVariableReference=ruleVariableReference();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleVariableAccess; 
+               current =iv_ruleVariableReference; 
             }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableAccess10635); if (state.failed) return current;
+            match(input,EOF,FOLLOW_EOF_in_entryRuleVariableReference10635); if (state.failed) return current;
 
             }
 
@@ -14074,12 +14074,12 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleVariableAccess"
+    // $ANTLR end "entryRuleVariableReference"
 
 
-    // $ANTLR start "ruleVariableAccess"
-    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4831:1: ruleVariableAccess returns [EObject current=null] : ( () ( ( ruleQualifiedName ) ) (otherlv_2= '{' ( (lv_stepExpression_3_0= ruleStepExpression ) ) otherlv_4= '}' )? ) ;
-    public final EObject ruleVariableAccess() throws RecognitionException {
+    // $ANTLR start "ruleVariableReference"
+    // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4831:1: ruleVariableReference returns [EObject current=null] : ( () ( ( ruleQualifiedName ) ) (otherlv_2= '{' ( (lv_stepExpression_3_0= ruleStepExpression ) ) otherlv_4= '}' )? ) ;
+    public final EObject ruleVariableReference() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
@@ -14102,7 +14102,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
                       current = forceCreateModelElement(
-                          grammarAccess.getVariableAccessAccess().getVariableAccessAction_0(),
+                          grammarAccess.getVariableReferenceAccess().getVariableReferenceAction_0(),
                           current);
                   
             }
@@ -14118,16 +14118,16 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             if ( state.backtracking==0 ) {
 
               			if (current==null) {
-              	            current = createModelElement(grammarAccess.getVariableAccessRule());
+              	            current = createModelElement(grammarAccess.getVariableReferenceRule());
               	        }
                       
             }
             if ( state.backtracking==0 ) {
                
-              	        newCompositeNode(grammarAccess.getVariableAccessAccess().getFeatureCallableElementCrossReference_1_0()); 
+              	        newCompositeNode(grammarAccess.getVariableReferenceAccess().getFeatureCallableElementCrossReference_1_0()); 
               	    
             }
-            pushFollow(FOLLOW_ruleQualifiedName_in_ruleVariableAccess10692);
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleVariableReference10692);
             ruleQualifiedName();
 
             state._fsp--;
@@ -14154,10 +14154,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4856:4: otherlv_2= '{' ( (lv_stepExpression_3_0= ruleStepExpression ) ) otherlv_4= '}'
                     {
-                    otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleVariableAccess10705); if (state.failed) return current;
+                    otherlv_2=(Token)match(input,17,FOLLOW_17_in_ruleVariableReference10705); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_2, grammarAccess.getVariableAccessAccess().getLeftCurlyBracketKeyword_2_0());
+                          	newLeafNode(otherlv_2, grammarAccess.getVariableReferenceAccess().getLeftCurlyBracketKeyword_2_0());
                           
                     }
                     // ../org.eclipselabs.damos.mscript/src-gen/org/eclipselabs/damos/mscript/parser/antlr/internal/InternalMscript.g:4860:1: ( (lv_stepExpression_3_0= ruleStepExpression ) )
@@ -14168,10 +14168,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     {
                     if ( state.backtracking==0 ) {
                        
-                      	        newCompositeNode(grammarAccess.getVariableAccessAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
+                      	        newCompositeNode(grammarAccess.getVariableReferenceAccess().getStepExpressionStepExpressionParserRuleCall_2_1_0()); 
                       	    
                     }
-                    pushFollow(FOLLOW_ruleStepExpression_in_ruleVariableAccess10726);
+                    pushFollow(FOLLOW_ruleStepExpression_in_ruleVariableReference10726);
                     lv_stepExpression_3_0=ruleStepExpression();
 
                     state._fsp--;
@@ -14179,7 +14179,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
                     if ( state.backtracking==0 ) {
 
                       	        if (current==null) {
-                      	            current = createModelElementForParent(grammarAccess.getVariableAccessRule());
+                      	            current = createModelElementForParent(grammarAccess.getVariableReferenceRule());
                       	        }
                              		set(
                              			current, 
@@ -14195,10 +14195,10 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_4=(Token)match(input,19,FOLLOW_19_in_ruleVariableAccess10738); if (state.failed) return current;
+                    otherlv_4=(Token)match(input,19,FOLLOW_19_in_ruleVariableReference10738); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
-                          	newLeafNode(otherlv_4, grammarAccess.getVariableAccessAccess().getRightCurlyBracketKeyword_2_2());
+                          	newLeafNode(otherlv_4, grammarAccess.getVariableReferenceAccess().getRightCurlyBracketKeyword_2_2());
                           
                     }
 
@@ -14226,7 +14226,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleVariableAccess"
+    // $ANTLR end "ruleVariableReference"
 
 
     // $ANTLR start "entryRuleFunctionCall"
@@ -22666,7 +22666,7 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
             this.transition = DFA76_transition;
         }
         public String getDescription() {
-            return "4795:1: (this_VariableAccess_0= ruleVariableAccess | this_FunctionCall_1= ruleFunctionCall )";
+            return "4795:1: (this_VariableReference_0= ruleVariableReference | this_FunctionCall_1= ruleFunctionCall )";
         }
     }
  
@@ -23080,14 +23080,14 @@ public class InternalMscriptParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_STRING_in_ruleStringLiteral10466 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFeatureCall_in_entryRuleFeatureCall10506 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFeatureCall10516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableAccess_in_ruleFeatureCall10563 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_ruleFeatureCall10563 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionCall_in_ruleFeatureCall10590 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVariableAccess_in_entryRuleVariableAccess10625 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleVariableAccess10635 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleVariableAccess10692 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_17_in_ruleVariableAccess10705 = new BitSet(new long[]{0x4000000000000E00L});
-    public static final BitSet FOLLOW_ruleStepExpression_in_ruleVariableAccess10726 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleVariableAccess10738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVariableReference_in_entryRuleVariableReference10625 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleVariableReference10635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleVariableReference10692 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_17_in_ruleVariableReference10705 = new BitSet(new long[]{0x4000000000000E00L});
+    public static final BitSet FOLLOW_ruleStepExpression_in_ruleVariableReference10726 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_19_in_ruleVariableReference10738 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall10776 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionCall10786 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleFunctionCall10843 = new BitSet(new long[]{0x0000000002000000L});

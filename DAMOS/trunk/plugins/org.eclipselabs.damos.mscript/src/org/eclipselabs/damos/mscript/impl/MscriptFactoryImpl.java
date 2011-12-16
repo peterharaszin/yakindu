@@ -105,7 +105,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 			case MscriptPackage.POWER_EXPRESSION: return createPowerExpression();
 			case MscriptPackage.UNARY_EXPRESSION: return createUnaryExpression();
 			case MscriptPackage.POSTFIX_EXPRESSION: return createPostfixExpression();
-			case MscriptPackage.VARIABLE_ACCESS: return createVariableAccess();
+			case MscriptPackage.VARIABLE_REFERENCE: return createVariableReference();
 			case MscriptPackage.RANGE_STEP_EXPRESSION: return createRangeStepExpression();
 			case MscriptPackage.ADDITIVE_STEP_EXPRESSION: return createAdditiveStepExpression();
 			case MscriptPackage.NEGATE_STEP_EXPRESSION: return createNegateStepExpression();
@@ -707,9 +707,9 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VariableAccess createVariableAccess() {
-		VariableAccessImpl variableAccess = new VariableAccessImpl();
-		return variableAccess;
+	public VariableReference createVariableReference() {
+		VariableReferenceImpl variableReference = new VariableReferenceImpl();
+		return variableReference;
 	}
 
 	/**

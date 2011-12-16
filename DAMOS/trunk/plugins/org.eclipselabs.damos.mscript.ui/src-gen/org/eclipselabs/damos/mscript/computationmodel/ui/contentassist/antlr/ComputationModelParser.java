@@ -188,8 +188,8 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIntegerLiteralAccess().getGroup(), "rule__IntegerLiteral__Group__0");
 					put(grammarAccess.getIntegerDataAccess().getGroup(), "rule__IntegerData__Group__0");
 					put(grammarAccess.getBooleanLiteralAccess().getGroup(), "rule__BooleanLiteral__Group__0");
-					put(grammarAccess.getVariableAccessAccess().getGroup(), "rule__VariableAccess__Group__0");
-					put(grammarAccess.getVariableAccessAccess().getGroup_2(), "rule__VariableAccess__Group_2__0");
+					put(grammarAccess.getVariableReferenceAccess().getGroup(), "rule__VariableReference__Group__0");
+					put(grammarAccess.getVariableReferenceAccess().getGroup_2(), "rule__VariableReference__Group_2__0");
 					put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
 					put(grammarAccess.getFunctionCallAccess().getGroup_3(), "rule__FunctionCall__Group_3__0");
 					put(grammarAccess.getFunctionCallAccess().getGroup_3_1(), "rule__FunctionCall__Group_3_1__0");
@@ -378,8 +378,8 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getIntegerLiteralAccess().getUnitAssignment_1(), "rule__IntegerLiteral__UnitAssignment_1");
 					put(grammarAccess.getBooleanLiteralAccess().getTrueAssignment_1_0(), "rule__BooleanLiteral__TrueAssignment_1_0");
 					put(grammarAccess.getStringLiteralAccess().getValueAssignment(), "rule__StringLiteral__ValueAssignment");
-					put(grammarAccess.getVariableAccessAccess().getFeatureAssignment_1(), "rule__VariableAccess__FeatureAssignment_1");
-					put(grammarAccess.getVariableAccessAccess().getStepExpressionAssignment_2_1(), "rule__VariableAccess__StepExpressionAssignment_2_1");
+					put(grammarAccess.getVariableReferenceAccess().getFeatureAssignment_1(), "rule__VariableReference__FeatureAssignment_1");
+					put(grammarAccess.getVariableReferenceAccess().getStepExpressionAssignment_2_1(), "rule__VariableReference__StepExpressionAssignment_2_1");
 					put(grammarAccess.getFunctionCallAccess().getFeatureAssignment_1(), "rule__FunctionCall__FeatureAssignment_1");
 					put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_3_0(), "rule__FunctionCall__ArgumentsAssignment_3_0");
 					put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_3_1_1(), "rule__FunctionCall__ArgumentsAssignment_3_1_1");

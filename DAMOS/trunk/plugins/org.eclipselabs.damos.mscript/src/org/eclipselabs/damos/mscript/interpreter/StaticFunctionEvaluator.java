@@ -34,7 +34,7 @@ import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
 import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
@@ -134,8 +134,8 @@ public class StaticFunctionEvaluator {
 			changed = false;
 			for (EquationDescriptor equationDescriptor : sortedEquations) {
 				StatusUtil.merge(status, staticExpressionEvaluator.evaluate(context, equationDescriptor.getRightHandSide().getExpression()));
-				VariableAccess variableAccess = (VariableAccess) equationDescriptor.getLeftHandSide().getExpression();
-				IValue leftHandSideValue = context.getValue(variableAccess.getFeature());
+				VariableReference variableReference = (VariableReference) equationDescriptor.getLeftHandSide().getExpression();
+				IValue leftHandSideValue = context.getValue(variableReference.getFeature());
 				IValue rightHandSideValue = context.getValue(equationDescriptor.getRightHandSide().getExpression());
 				if (!(leftHandSideValue instanceof InvalidValue) && !(rightHandSideValue instanceof InvalidValue)) {
 					DataType dataType;
@@ -146,7 +146,7 @@ public class StaticFunctionEvaluator {
 					}
 					if (dataType != null) {
 						DataType previousDataType = null;
-						IValue previousValue = context.getValue(variableAccess.getFeature());
+						IValue previousValue = context.getValue(variableReference.getFeature());
 						if (previousValue != null) {
 							previousDataType = previousValue.getDataType();
 						}
@@ -154,13 +154,13 @@ public class StaticFunctionEvaluator {
 							changed = true;
 						}
 						AnyValue value = new AnyValue(context.getComputationContext(), dataType);
-						context.setValue(variableAccess, value);
-						context.setValue(variableAccess.getFeature(), value);
+						context.setValue(variableReference, value);
+						context.setValue(variableReference.getFeature(), value);
 					} else {
 						status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
-								"The data type of the variable " + variableAccess.getFeature().getName()
+								"The data type of the variable " + variableReference.getFeature().getName()
 										+ " could not be determined",
-								variableAccess.getFeature()));
+								variableReference.getFeature()));
 					}
 				}
 			}
@@ -181,20 +181,20 @@ public class StaticFunctionEvaluator {
 				EquationDescriptor equationDescriptor = it.next();
 				boolean defined = true;
 				for (EquationPart part : equationDescriptor.getRightHandSide().getParts()) {
-					VariableAccess variableAccess = (VariableAccess) part.getVariableAccess();
-					if (variableAccess.getFeature() instanceof TemplateParameterDeclaration || variableAccess.getFeature() instanceof InputParameterDeclaration) {
+					VariableReference variableReference = (VariableReference) part.getVariableAccess();
+					if (variableReference.getFeature() instanceof TemplateParameterDeclaration || variableReference.getFeature() instanceof InputParameterDeclaration) {
 						continue;
 					}
-					if (!definedFeatures.contains(variableAccess.getFeature())) {
+					if (!definedFeatures.contains(variableReference.getFeature())) {
 						defined = false;
 						break;
 					}
 				}
 				if (defined) {
 					Expression expression = equationDescriptor.getLeftHandSide().getExpression();
-					if (expression instanceof VariableAccess) {
-						VariableAccess variableAccess = (VariableAccess) expression;
-						definedFeatures.add(variableAccess.getFeature());
+					if (expression instanceof VariableReference) {
+						VariableReference variableReference = (VariableReference) expression;
+						definedFeatures.add(variableReference.getFeature());
 						sortedEquations.add(equationDescriptor);
 						it.remove();
 						changed = true;
@@ -205,12 +205,12 @@ public class StaticFunctionEvaluator {
 		
 		for (EquationDescriptor equationDescriptor : backlog) {
 			for (EquationPart part : equationDescriptor.getRightHandSide().getParts()) {
-				VariableAccess variableAccess = (VariableAccess) part.getVariableAccess();
-				if (!definedFeatures.contains(variableAccess.getFeature())) {
+				VariableReference variableReference = (VariableReference) part.getVariableAccess();
+				if (!definedFeatures.contains(variableReference.getFeature())) {
 					status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0,
-							"The data type of the variable " + variableAccess.getFeature().getName()
+							"The data type of the variable " + variableReference.getFeature().getName()
 									+ " could not be determined",
-							variableAccess));
+							variableReference));
 				}
 			}
 		}

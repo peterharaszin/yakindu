@@ -76,7 +76,7 @@ import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
 import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IVariableAccessStrategy;
 import org.eclipselabs.damos.mscript.codegen.c.MscriptGeneratorContext;
@@ -927,7 +927,7 @@ public class Generator {
 	 */
 	private static final class ActionLinkConditionVariableAccessStrategy implements IVariableAccessStrategy {
 		
-		public String getVariableAccessString(VariableAccess variableAccess) {
+		public String getVariableAccessString(VariableReference variableReference) {
 			return "";
 		}
 		

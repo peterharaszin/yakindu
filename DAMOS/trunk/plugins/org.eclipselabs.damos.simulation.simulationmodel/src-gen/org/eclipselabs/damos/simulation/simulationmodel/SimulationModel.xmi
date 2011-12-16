@@ -1516,14 +1516,14 @@
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.75"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:ParserRule" name="VariableAccess">
+    <rules xsi:type="xtext:ParserRule" name="VariableReference">
       <type metamodel="/1/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//Expression"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Action">
           <type metamodel="/1/@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//VariableAccess"/>
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//VariableReference"/>
           </type>
         </elements>
         <elements xsi:type="xtext:Assignment" feature="feature" operator="=">

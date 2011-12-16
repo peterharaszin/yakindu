@@ -58,7 +58,7 @@ import org.eclipselabs.damos.mscript.TypeTestExpression;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookupTable;
@@ -784,10 +784,10 @@ public class StaticExpressionEvaluator {
 		 * @see org.eclipselabs.mscript.language.ast.util.AstSwitch#caseVariableAccess(org.eclipselabs.mscript.language.ast.VariableAccess)
 		 */
 		@Override
-		public IValue caseVariableAccess(VariableAccess variableAccess) {
-			IValue value = context.getValue(variableAccess.getFeature());
+		public IValue caseVariableReference(VariableReference variableReference) {
+			IValue value = context.getValue(variableReference.getFeature());
 			if (value == null) {
-				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for " + variableAccess.getFeature().getName(), variableAccess));
+				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for " + variableReference.getFeature().getName(), variableReference));
 				value = InvalidValue.SINGLETON;
 			}
 			return value;

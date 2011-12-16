@@ -21,7 +21,7 @@ import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
 import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.StepLiteral;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 
@@ -43,13 +43,13 @@ public class MscriptUtil {
 		return null;
 	}
 	
-	public static VariableAccess createVariableAccess(IStaticEvaluationContext context, VariableDeclaration variableDeclaration, int stepIndex, boolean initial) {
-		VariableAccess variableAccess = MscriptFactory.eINSTANCE.createVariableAccess();
-		variableAccess.setFeature(variableDeclaration);
+	public static VariableReference createVariableAccess(IStaticEvaluationContext context, VariableDeclaration variableDeclaration, int stepIndex, boolean initial) {
+		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
+		variableReference.setFeature(variableDeclaration);
 		if (initial) {
 			StepLiteral stepLiteral = MscriptFactory.eINSTANCE.createStepLiteral();
 			stepLiteral.setValue(stepIndex);
-			variableAccess.setStepExpression(stepLiteral);
+			variableReference.setStepExpression(stepLiteral);
 		} else {
 			AdditiveStepExpression stepExpression = MscriptFactory.eINSTANCE.createAdditiveStepExpression();
 			stepExpression.setLeftOperand(MscriptFactory.eINSTANCE.createStepN());
@@ -61,10 +61,10 @@ public class MscriptUtil {
 			StepLiteral stepLiteral = MscriptFactory.eINSTANCE.createStepLiteral();
 			stepLiteral.setValue(Math.abs(stepIndex));
 			stepExpression.setRightOperand(stepLiteral);
-			variableAccess.setStepExpression(stepLiteral);
+			variableReference.setStepExpression(stepLiteral);
 		}
-		context.setStepIndex(variableAccess, stepIndex);
-		return variableAccess;
+		context.setStepIndex(variableReference, stepIndex);
+		return variableReference;
 	}
 	
 	public static String findAvailableLocalVariableName(Compound compound, String preferredName) {

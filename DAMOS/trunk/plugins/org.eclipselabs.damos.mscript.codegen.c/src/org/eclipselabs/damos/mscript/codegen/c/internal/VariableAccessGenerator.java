@@ -5,7 +5,7 @@ import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
@@ -17,15 +17,15 @@ import org.eclipselabs.damos.mscript.util.MscriptSwitch;
 public class VariableAccessGenerator extends MscriptSwitch<String> {
 
 	private IMscriptGeneratorContext context;
-	private VariableAccess variableAccess;
+	private VariableReference variableReference;
 	
-	public VariableAccessGenerator(IMscriptGeneratorContext context, VariableAccess variableAccess) {
+	public VariableAccessGenerator(IMscriptGeneratorContext context, VariableReference variableReference) {
 		this.context = context;
-		this.variableAccess = variableAccess;
+		this.variableReference = variableReference;
 	}
 
 	public String generate() {
-		return doSwitch(variableAccess.getFeature());
+		return doSwitch(variableReference.getFeature());
 	}
 	
 	@Override
@@ -51,7 +51,7 @@ public class VariableAccessGenerator extends MscriptSwitch<String> {
 	
 	@Override
 	public String caseParameterDeclaration(ParameterDeclaration parameterDeclaration) {
-		return context.getVariableAccessStrategy().getVariableAccessString(variableAccess);
+		return context.getVariableAccessStrategy().getVariableAccessString(variableReference);
 	}
 	
 	/* (non-Javadoc)
@@ -59,7 +59,7 @@ public class VariableAccessGenerator extends MscriptSwitch<String> {
 	 */
 	@Override
 	public String caseStateVariableDeclaration(StateVariableDeclaration stateVariableDeclaration) {
-		return context.getVariableAccessStrategy().getVariableAccessString(variableAccess);
+		return context.getVariableAccessStrategy().getVariableAccessString(variableReference);
 	}
 	
 	/* (non-Javadoc)

@@ -29,7 +29,7 @@ import org.eclipselabs.damos.mscript.ParenthesizedExpression;
 import org.eclipselabs.damos.mscript.RealLiteral;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.TensorType;
-import org.eclipselabs.damos.mscript.VariableAccess;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.functionmodel.util.FunctionModelSwitch;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
@@ -92,14 +92,14 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 			if (multiplicativeExpression.getOperator() == MultiplicativeOperator.MULTIPLY) {
 				Expression leftOperand = multiplicativeExpression.getLeftOperand();
 				Expression rightOperand = multiplicativeExpression.getRightOperand();
-				if (leftOperand instanceof VariableAccess && rightOperand instanceof VariableAccess) {
+				if (leftOperand instanceof VariableReference && rightOperand instanceof VariableReference) {
 					DataType leftDataType = getDataType(leftOperand);
 					DataType rightDataType = getDataType(rightOperand);
 					if (leftDataType instanceof TensorType && rightDataType instanceof TensorType) {
 						TensorType leftTensorType = (TensorType) leftDataType;
 						TensorType rightTensorType = (TensorType) rightDataType;
 						if (leftTensorType.isVector() && rightTensorType.isVector()) {
-							Expression transformedExpression = createVectorMultiplicationExpression((VariableAccess) leftOperand, (VariableAccess) rightOperand);
+							Expression transformedExpression = createVectorMultiplicationExpression((VariableReference) leftOperand, (VariableReference) rightOperand);
 							EcoreUtil.replace(multiplicativeExpression, transformedExpression);
 						}
 					}
@@ -108,7 +108,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 			return super.caseMultiplicativeExpression(multiplicativeExpression);
 		}
 		
-		private Expression createVectorMultiplicationExpression(VariableAccess leftOperand, VariableAccess rightOperand) {			
+		private Expression createVectorMultiplicationExpression(VariableReference leftOperand, VariableReference rightOperand) {			
 			ParenthesizedExpression parenthesizedExpression = MscriptFactory.eINSTANCE.createParenthesizedExpression();
 
 			TensorType leftTensorType = (TensorType) getDataType(leftOperand);
@@ -153,7 +153,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 		 * @param index
 		 * @return
 		 */
-		private Expression createArrayElementAccess(VariableAccess operand, TensorType tensorType, int index) {
+		private Expression createArrayElementAccess(VariableReference operand, TensorType tensorType, int index) {
 			IValue value = context.getValue(operand);
 			if (value instanceof IArrayValue) {
 				IValue elementValue = ((IArrayValue) value).get(index);
@@ -175,8 +175,8 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 				}
 			}
 			
-			VariableAccess variableAccess = EcoreUtil.copy(operand);
-			setDataType(variableAccess, EcoreUtil.copy(tensorType));
+			VariableReference variableReference = EcoreUtil.copy(operand);
+			setDataType(variableReference, EcoreUtil.copy(tensorType));
 			IntegerLiteral integerLiteral = MscriptFactory.eINSTANCE.createIntegerLiteral();
 			integerLiteral.setUnit(TypeUtil.createUnit());
 			integerLiteral.setValue(index);
@@ -184,7 +184,7 @@ public class ArrayOperationDecomposer extends FunctionModelSwitch<Boolean> imple
 			integerType.setUnit(TypeUtil.createUnit());
 			setDataType(integerLiteral, integerType);
 			ArrayElementAccess arrayElementAccess = MscriptFactory.eINSTANCE.createArrayElementAccess();
-			arrayElementAccess.setArray(variableAccess);
+			arrayElementAccess.setArray(variableReference);
 			ArraySubscript subscript = MscriptFactory.eINSTANCE.createArraySubscript();
 			subscript.setExpression(integerLiteral);
 			arrayElementAccess.getSubscripts().add(subscript);

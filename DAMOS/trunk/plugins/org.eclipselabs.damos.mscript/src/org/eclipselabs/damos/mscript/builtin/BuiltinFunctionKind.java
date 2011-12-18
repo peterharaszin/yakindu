@@ -14,19 +14,22 @@ package org.eclipselabs.damos.mscript.builtin;
 import java.util.List;
 
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.internal.builtin.CosSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.ExpSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.LbSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.LgSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.LnSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.NumSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.RoundSignature;
+import org.eclipselabs.damos.mscript.internal.builtin.SinSignature;
+import org.eclipselabs.damos.mscript.internal.builtin.TanSignature;
 import org.eclipselabs.damos.mscript.internal.builtin.UnitSignature;
 
 /**
  * @author Andreas Unger
  *
  */
-public enum BuiltinFunctionDescriptor {
+public enum BuiltinFunctionKind {
 	
 	UNIT("unit", new UnitSignature()),
 	ROUND("round", new RoundSignature()),
@@ -34,14 +37,17 @@ public enum BuiltinFunctionDescriptor {
 	LN("ln", new LnSignature()),
 	LG("lg", new LgSignature()),
 	LB("lb", new LbSignature()),
-	EXP("exp", new ExpSignature());
+	EXP("exp", new ExpSignature()),
+	SIN("sin", new SinSignature()),
+	COS("cos", new CosSignature()),
+	TAN("tan", new TanSignature());
 	
 	private String name;
-	private ISignature signature;
+	private IBuiltinFunctionSignature builtinFunctionSignature;
 
-	BuiltinFunctionDescriptor(String name, ISignature signature) {
+	BuiltinFunctionKind(String name, IBuiltinFunctionSignature builtinFunctionSignature) {
 		this.name = name;
-		this.signature = signature;
+		this.builtinFunctionSignature = builtinFunctionSignature;
 	}
 	
 	/**
@@ -54,17 +60,17 @@ public enum BuiltinFunctionDescriptor {
 	/**
 	 * @return the signature
 	 */
-	public ISignature getSignature() {
-		return signature;
+	public IBuiltinFunctionSignature getSignature() {
+		return builtinFunctionSignature;
 	}
 	
 	/**
 	 * 
 	 */
-	public static BuiltinFunctionDescriptor get(String name, List<DataType> inputParameterDataTypes) {
-		for (BuiltinFunctionDescriptor descriptor : values()) {
-			if (descriptor.name.equals(name) && descriptor.signature.accepts(inputParameterDataTypes)) {
-				return descriptor;
+	public static BuiltinFunctionKind get(String name, List<DataType> inputParameterDataTypes) {
+		for (BuiltinFunctionKind kind : values()) {
+			if (kind.name.equals(name) && kind.builtinFunctionSignature.accepts(inputParameterDataTypes)) {
+				return kind;
 			}
 		}
 		return null;

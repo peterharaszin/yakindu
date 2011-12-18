@@ -16,13 +16,13 @@ import java.util.List;
 import org.eclipselabs.damos.mscript.DataType;
 import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.RealType;
-import org.eclipselabs.damos.mscript.builtin.ISignature;
+import org.eclipselabs.damos.mscript.builtin.IBuiltinFunctionSignature;
 
 /**
  * @author Andreas Unger
  *
  */
-public class RoundSignature implements ISignature {
+public class RoundSignature implements IBuiltinFunctionSignature {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.il.builtin.ISignature#evaluateOutputParameterDataTypes(java.util.List)

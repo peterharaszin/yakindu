@@ -1,5 +1,5 @@
 /****************************************************************************
- * Copyright (c) 2008, 2011 Andreas Unger and others.
+ * Copyright (c) 2008, 2010 Andreas Unger and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,24 +13,17 @@ package org.eclipselabs.damos.mscript.internal.builtin;
 
 import java.util.List;
 
-import org.eclipselabs.damos.mscript.DataType;
-import org.eclipselabs.damos.mscript.NumericType;
-import org.eclipselabs.damos.mscript.builtin.IBuiltinFunctionSignature;
+import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
  *
+ * @noextend
+ * @noimplement
  */
-public class UnitSignature implements IBuiltinFunctionSignature {
+public interface IBuiltinFunction {
 
-	public boolean accepts(List<? extends DataType> inputParameterDataTypes) {
-		if (inputParameterDataTypes.size() != 1) {
-			return false;
-		}
-		
-		DataType dataType = inputParameterDataTypes.get(0);
-		
-		return dataType instanceof NumericType;
-	}
-
+	List<IValue> call(IComputationContext context, List<? extends IValue> arguments);
+	
 }

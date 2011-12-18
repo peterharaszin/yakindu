@@ -292,6 +292,51 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		}
 		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#sin()
+	 */
+	public IValue sin() {
+		long result;
+
+		FixedPointFormat numberFormat = getNumberFormat();
+		if (numberFormat.getWordSize() > 32) {
+			result = FixMath.sinfix64(rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.sinfix32((int) rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#cos()
+	 */
+	public IValue cos() {
+		long result;
+
+		FixedPointFormat numberFormat = getNumberFormat();
+		if (numberFormat.getWordSize() > 32) {
+			result = FixMath.cosfix64(rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.cosfix32((int) rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#tan()
+	 */
+	public IValue tan() {
+		long result;
+
+		FixedPointFormat numberFormat = getNumberFormat();
+		if (numberFormat.getWordSize() > 32) {
+			result = FixMath.tanfix64(rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		} else {
+			result = FixMath.tanfix32((int) rawValue, numberFormat.getFractionLength(), getContext().getOverflowMonitor());
+		}
+		return new FixedPointValue(getContext(), getDataType(), numberFormat, result);
+	}
 
 	protected AbstractNumericValue cast(NumberFormat numberFormat) {
 		if (getNumberFormat().isEquivalentTo(numberFormat)) {

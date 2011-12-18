@@ -8,4 +8,7 @@
   <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="ln"/>
   <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="lg"/>
   <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="exp"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="sin"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="cos"/>
+  <declarations xsi:type="mscript:BuiltinFunctionDeclaration" name="tan"/>
 </mscript:Module>

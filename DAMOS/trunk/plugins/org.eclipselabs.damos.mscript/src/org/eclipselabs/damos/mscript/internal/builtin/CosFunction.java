@@ -9,18 +9,23 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.builtin;
+package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.List;
-
-import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
- *
+ * 
  */
-public interface ISignature {
-
-	boolean accepts(List<? extends DataType> inputParameterDataTypes);
+public class CosFunction extends AbstractMathFunction {
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.internal.builtin.AbstractExpLogFunction#compute(org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue)
+	 */
+	@Override
+	protected IValue compute(ISimpleNumericValue x) {
+		return x.cos();
+	}
 	
 }

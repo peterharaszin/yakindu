@@ -18,7 +18,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  * @author Andreas Unger
  * 
  */
-public class ExpFunction extends AbstractExpLogFunction {
+public class ExpFunction extends AbstractMathFunction {
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.internal.builtin.AbstractExpLogFunction#compute(org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue)

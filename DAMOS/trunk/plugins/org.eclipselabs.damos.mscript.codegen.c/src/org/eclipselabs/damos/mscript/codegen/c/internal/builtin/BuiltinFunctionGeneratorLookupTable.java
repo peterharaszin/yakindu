@@ -9,14 +9,9 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c;
+package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
-import org.eclipselabs.damos.mscript.codegen.c.internal.ExpFunctionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.internal.LbFunctionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.internal.LgFunctionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.internal.LnFunctionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.internal.RoundFunctionGenerator;
+import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 
 /**
  * @author Andreas Unger
@@ -27,8 +22,8 @@ public class BuiltinFunctionGeneratorLookupTable implements IBuiltinFunctionGene
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.codegen.c.IBuiltinFunctionGeneratorLookupTable#getFunctionGenerator(org.eclipselabs.mscript.language.il.builtin.BuiltinFunctionDescriptor)
 	 */
-	public IFunctionGenerator getFunctionGenerator(BuiltinFunctionDescriptor builtinFunctionDescriptor) {
-		switch (builtinFunctionDescriptor) {
+	public IFunctionGenerator getFunctionGenerator(BuiltinFunctionKind builtinFunctionKind) {
+		switch (builtinFunctionKind) {
 		case ROUND:
 			return new RoundFunctionGenerator();
 		case EXP:
@@ -39,6 +34,12 @@ public class BuiltinFunctionGeneratorLookupTable implements IBuiltinFunctionGene
 			return new LgFunctionGenerator();
 		case LB:
 			return new LbFunctionGenerator();
+		case SIN:
+			return new SinFunctionGenerator();
+		case COS:
+			return new CosFunctionGenerator();
+		case TAN:
+			return new TanFunctionGenerator();
 		}
 		return null;
 	}

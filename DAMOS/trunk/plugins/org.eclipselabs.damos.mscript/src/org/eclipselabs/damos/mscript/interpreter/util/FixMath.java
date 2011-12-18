@@ -20,6 +20,13 @@ import org.eclipselabs.damos.mscript.interpreter.OverflowInfo;
  */
 public class FixMath {
 
+	private static final int DAMOS_MATH_PI = 0x3243f6a9;
+	private static final int DAMOS_MATH_TWO_PI = 0x6487ed51;
+	private static final int DAMOS_MATH_HALF_PI = 0x1921fb54;
+//	private static final int DAMOS_MATH_QUARTER_PI = 0x0c90fdaa;
+
+	private static final int DAMOS_MATH_TRIG_FRACTION_LENGTH = 28;
+
 	private static final int DAMOS_MATH_LOG_TABLE_FRACTION_LENGTH_32 = 26;
 	private static final int DAMOS_MATH_LOG_TABLE_FRACTION_LENGTH_64 = 57;
 
@@ -324,6 +331,41 @@ public class FixMath {
 		0x0000000000000000L, /* ln(1/(1-2^-62)) = 0.000000e+00 */
 		0x0000000000000000L  /* ln(1/(1-2^-63)) = 0.000000e+00 */
 	};
+
+	private static final int arctanTwoPowerMinusN[] = {
+		0x11b6e193, /* atan(2^1) = 1.107149e+00 */
+		0x0c90fdaa, /* atan(2^0) = 7.853982e-01 */
+		0x076b19c1, /* atan(2^-1) = 4.636476e-01 */
+		0x03eb6ebf, /* atan(2^-2) = 2.449787e-01 */
+		0x01fd5baa, /* atan(2^-3) = 1.243550e-01 */
+		0x00ffaade, /* atan(2^-4) = 6.241881e-02 */
+		0x007ff557, /* atan(2^-5) = 3.123983e-02 */
+		0x003ffeab, /* atan(2^-6) = 1.562373e-02 */
+		0x001fffd5, /* atan(2^-7) = 7.812341e-03 */
+		0x000ffffb, /* atan(2^-8) = 3.906230e-03 */
+		0x0007ffff, /* atan(2^-9) = 1.953123e-03 */
+		0x00040000, /* atan(2^-10) = 9.765622e-04 */
+		0x00020000, /* atan(2^-11) = 4.882812e-04 */
+		0x00010000, /* atan(2^-12) = 2.441406e-04 */
+		0x00008000, /* atan(2^-13) = 1.220703e-04 */
+		0x00004000, /* atan(2^-14) = 6.103516e-05 */
+		0x00002000, /* atan(2^-15) = 3.051758e-05 */
+		0x00001000, /* atan(2^-16) = 1.525879e-05 */
+		0x00000800, /* atan(2^-17) = 7.629395e-06 */
+		0x00000400, /* atan(2^-18) = 3.814697e-06 */
+		0x00000200, /* atan(2^-19) = 1.907349e-06 */
+		0x00000100, /* atan(2^-20) = 9.536743e-07 */
+		0x00000080, /* atan(2^-21) = 4.768372e-07 */
+		0x00000040, /* atan(2^-22) = 2.384186e-07 */
+		0x00000020, /* atan(2^-23) = 1.192093e-07 */
+		0x00000010, /* atan(2^-24) = 5.960464e-08 */
+		0x00000008, /* atan(2^-25) = 2.980232e-08 */
+		0x00000004, /* atan(2^-26) = 1.490116e-08 */
+		0x00000002, /* atan(2^-27) = 7.450581e-09 */
+		0x00000001, /* atan(2^-28) = 3.725290e-09 */
+		0x00000001, /* atan(2^-29) = 1.862645e-09 */
+		0x00000000  /* atan(2^-30) = 9.313226e-10 */
+};
 
 	public static int expfix32(int x, int fractionLength, IOverflowMonitor overflowMonitor) {
 		final int one = 1 << fractionLength;
@@ -661,6 +703,144 @@ public class FixMath {
 			comp = !comp;
 		}
 		return comp;
+	}
+
+	private static int rightShift32(int x, int shift) {
+		return shift < 0 ? x << -shift : x >> shift;
+	}
+
+	private static long rightShift64(long x, int shift) {
+		return shift < 0 ? x << -shift : x >> shift;
+	}
+
+	private static int scaleCordicResult32(int x) {
+		final int scaleFactor = 0x22C2DD1C; /* 0.271572 * 2^31*/
+		return (int) ((long) x * scaleFactor >> 31);
+	}
+
+	private static void performCordicRotation32(int[] px, int[] py, int theta) {
+		int x = px[0], y = py[0];
+		int arctanIndex = 0;
+		int i;
+		for (i = -1; i <= DAMOS_MATH_TRIG_FRACTION_LENGTH; ++i) {
+			final int yShift = rightShift32(y, i);
+			final int xShift = rightShift32(x, i);
+
+			if (theta < 0) {
+				x += yShift;
+				y -= xShift;
+				theta += arctanTwoPowerMinusN[arctanIndex++];
+			} else {
+				x -= yShift;
+				y += xShift;
+				theta -= arctanTwoPowerMinusN[arctanIndex++];
+			}
+		}
+		px[0] = scaleCordicResult32(x);
+		py[0] = scaleCordicResult32(y);
+	}
+
+	private static void sincos32(int theta, int[] s, int[] c) {
+		int x = theta;
+
+		if (x < 0) {
+			x += DAMOS_MATH_TWO_PI;
+		}
+
+		boolean negateCos = false;
+		boolean negateSin = false;
+
+		if (x > DAMOS_MATH_PI) {
+			x = DAMOS_MATH_TWO_PI - x;
+			negateSin = true;
+		}
+		if (x > DAMOS_MATH_HALF_PI) {
+			x = DAMOS_MATH_PI - x;
+			negateCos = true;
+		}
+		int[] xCos = { 1 << DAMOS_MATH_TRIG_FRACTION_LENGTH };
+		int[] xSin = { 0 };
+
+		performCordicRotation32(xCos, xSin, x);
+
+		if (s != null) {
+			s[0] = negateSin ? -xSin[0] : xSin[0];
+		}
+		if (c != null) {
+			c[0] = negateCos ? -xCos[0] : xCos[0];
+		}
+	}
+
+	private static int reduceTheta32(int theta, int fractionLength) {
+		final int mask = 1 << DAMOS_MATH_TRIG_FRACTION_LENGTH;
+		int n;
+		for (n = fractionLength; n < DAMOS_MATH_TRIG_FRACTION_LENGTH && (theta & mask) == 0; ++n) {
+			theta <<= 1;
+		}
+		int shiftedPi = rightShift32(DAMOS_MATH_TWO_PI, DAMOS_MATH_TRIG_FRACTION_LENGTH - n);
+		if (theta < shiftedPi || theta > shiftedPi) {
+			theta %= shiftedPi;
+		}
+		return rightShift32(theta, n - DAMOS_MATH_TRIG_FRACTION_LENGTH);
+	}
+
+	private static long reduceTheta64(long theta, int fractionLength) {
+		long shiftedPi = rightShift64(DAMOS_MATH_TWO_PI, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+		if (theta < shiftedPi || theta > shiftedPi) {
+			theta %= shiftedPi;
+		}
+		return rightShift64(theta, fractionLength - DAMOS_MATH_TRIG_FRACTION_LENGTH);
+	}
+
+	public static int sinfix32(int x, int fractionLength, IOverflowMonitor overflowMonitor) {
+		int[] result = { 0 };
+		sincos32(reduceTheta32(x, fractionLength), result, null);
+		return rightShift32(result[0], DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+	}
+
+	public static long sinfix64(long x, int fractionLength, IOverflowMonitor overflowMonitor) {
+		int[] result = { 0 };
+		sincos32((int) reduceTheta64(x, fractionLength), result, null);
+		return rightShift64(result[0], DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+	}
+
+	public static int cosfix32(int x, int fractionLength, IOverflowMonitor overflowMonitor) {
+		int[] result = { 0 };
+		sincos32(reduceTheta32(x, fractionLength), null, result);
+		return rightShift32(result[0], DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+	}
+
+	public static long cosfix64(long x, int fractionLength, IOverflowMonitor overflowMonitor) {
+		int[] result = { 0 };
+		sincos32((int) reduceTheta64(x, fractionLength), null, result);
+		return rightShift64(result[0], DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+	}
+
+	public static int tanfix32(int x, int fractionLength, IOverflowMonitor overflowMonitor) {
+		int[] s = { 0 };
+		int[] c = { 0 };
+		sincos32(reduceTheta32(x, fractionLength), s, c);
+		if (c[0] == 0) {
+			overflowMonitor.handleOverflow(new OverflowInfo());
+			return 0x7fffffff;
+		}
+		long result = ((long) s[0] << DAMOS_MATH_TRIG_FRACTION_LENGTH) / c[0];
+		if (result > 0x7fffffff) {
+			overflowMonitor.handleOverflow(new OverflowInfo());
+			return 0x7fffffff;
+		}
+		return rightShift32((int) result, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+	}
+
+	public static long tanfix64(long x, int fractionLength, IOverflowMonitor overflowMonitor) {
+		int[] s = { 0 };
+		int[] c = { 0 };
+		sincos32((int) reduceTheta64(x, fractionLength), s, c);
+		if (c[0] == 0) {
+			overflowMonitor.handleOverflow(new OverflowInfo());
+			return 0x7fffffffffffffffL;
+		}
+		return rightShift64(((long) s[0] << DAMOS_MATH_TRIG_FRACTION_LENGTH) / c[0], DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
 	}
 
 }

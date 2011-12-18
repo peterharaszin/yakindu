@@ -23,7 +23,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public class SumFunction implements IFunction {
+public class SumFunction implements IBuiltinFunction {
 
 	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
 		IValue argument = arguments.get(0);

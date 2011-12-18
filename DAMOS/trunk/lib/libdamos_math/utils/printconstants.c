@@ -62,5 +62,24 @@ int main() {
 		printf("INT64_C(0x%016lx), /* ln(1/(1-2^-%d)) = %e */\n", value, i, doubleValue);
 	}
 
+	/*
+	 * Arctan
+	 */
+
+	for (i = -1; i < 31 ; ++i) {
+		double doubleValue = atan(pow(2, -i));
+		int64_t value = (int64_t) round(doubleValue * pow(2, DAMOS_MATH_TRIG_FRACTION_LENGTH));
+		printf("INT32_C(0x%08lx), /* atan(2^%d) = %e */\n", value, -i, doubleValue);
+	}
+
+	/*
+	 * PI
+	 */
+
+	printf("#define DAMOS_MATH_PI INT32_C(0x%08lx)\n", (int64_t) round(M_PI * pow(2, DAMOS_MATH_TRIG_FRACTION_LENGTH)));
+	printf("#define DAMOS_MATH_TWO_PI INT32_C(0x%08lx)\n", (int64_t) round(M_PI * 2 * pow(2, DAMOS_MATH_TRIG_FRACTION_LENGTH)));
+	printf("#define DAMOS_MATH_HALF_PI INT32_C(0x%08lx)\n", (int64_t) round(M_PI / 2 * pow(2, DAMOS_MATH_TRIG_FRACTION_LENGTH)));
+	printf("#define DAMOS_MATH_QUARTER_PI INT32_C(0x%08lx)\n", (int64_t) round(M_PI / 4 * pow(2, DAMOS_MATH_TRIG_FRACTION_LENGTH)));
+
 	return 0;
 }

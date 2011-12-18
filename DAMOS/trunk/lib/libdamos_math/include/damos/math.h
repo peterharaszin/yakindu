@@ -19,8 +19,10 @@ extern "C" {
 #endif
 
 int32_t DamosMath_mulfix32(int32_t a, int32_t b, int fractionLength);
+
 int32_t DamosMath_expfix32(int32_t x, int fractionLength);
 int64_t DamosMath_expfix64(int64_t x, int fractionLength);
+
 int32_t DamosMath_lnfix32(int32_t x, int fractionLength);
 int64_t DamosMath_lnfix64(int64_t x, int fractionLength);
 int32_t DamosMath_lgfix32(int32_t x, int fractionLength);
@@ -29,9 +31,17 @@ int64_t DamosMath_lgfix64(int64_t x, int fractionLength);
 int32_t DamosMath_lbfix32(int32_t x, int fractionLength);
 int32_t DamosMath_lbfix3264(int32_t x, int fractionLength);
 int64_t DamosMath_lbfix64(int64_t x, int fractionLength);
+
 int32_t DamosMath_powfix32(int32_t base, int32_t exponent, int fractionLength);
 int32_t DamosMath_powfix3264(int32_t base, int32_t exponent, int fractionLength);
 int64_t DamosMath_powfix64(int64_t base, int64_t exponent, int fractionLength);
+
+int32_t DamosMath_sinfix32(int32_t x, int fractionLength);
+int64_t DamosMath_sinfix64(int64_t x, int fractionLength);
+int32_t DamosMath_cosfix32(int32_t x, int fractionLength);
+int64_t DamosMath_cosfix64(int64_t x, int fractionLength);
+int32_t DamosMath_tanfix32(int32_t x, int fractionLength);
+int64_t DamosMath_tanfix64(int64_t x, int fractionLength);
 
 #ifdef __cplusplus
 }

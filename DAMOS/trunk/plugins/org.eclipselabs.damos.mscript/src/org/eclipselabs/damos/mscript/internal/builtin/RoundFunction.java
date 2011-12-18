@@ -27,7 +27,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.IValue;
  * @author Andreas Unger
  *
  */
-public class RoundFunction implements IFunction {
+public class RoundFunction implements IBuiltinFunction {
 
 	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
 		IValue argument = arguments.get(0);

@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 
 /**
  * @author Andreas Unger
@@ -22,7 +22,7 @@ public class BuiltinFunctionLookupTable implements IBuiltinFunctionLookupTable {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.interpreter.builtin.IBuiltinFunctionLookupTable#getFunction(org.eclipselabs.mscript.language.il.builtin.BuiltinFunctionDescriptor)
 	 */
-	public IFunction getFunction(BuiltinFunctionDescriptor descriptor) {
+	public IBuiltinFunction getFunction(BuiltinFunctionKind descriptor) {
 		switch (descriptor) {
 		case UNIT:
 			return new UnitFunction();
@@ -38,6 +38,12 @@ public class BuiltinFunctionLookupTable implements IBuiltinFunctionLookupTable {
 			return new LbFunction();
 		case EXP:
 			return new ExpFunction();
+		case SIN:
+			return new SinFunction();
+		case COS:
+			return new CosFunction();
+		case TAN:
+			return new TanFunction();
 		}
 		return null;
 	}

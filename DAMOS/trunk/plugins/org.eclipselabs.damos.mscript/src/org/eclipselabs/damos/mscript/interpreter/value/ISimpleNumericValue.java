@@ -28,5 +28,8 @@ public interface ISimpleNumericValue extends INumericValue {
 	IValue ln();
 	IValue lg();
 	IValue lb();
+	IValue sin();
+	IValue cos();
+	IValue tan();
 	
 }

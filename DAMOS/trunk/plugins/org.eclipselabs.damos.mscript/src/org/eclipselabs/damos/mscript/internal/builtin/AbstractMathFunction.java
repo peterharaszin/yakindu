@@ -25,7 +25,7 @@ import org.eclipselabs.damos.mscript.util.TypeUtil;
  * @author Andreas Unger
  *
  */
-public abstract class AbstractExpLogFunction implements IFunction {
+public abstract class AbstractMathFunction implements IBuiltinFunction {
 
 	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
 		RealType dataType = TypeUtil.createRealType();

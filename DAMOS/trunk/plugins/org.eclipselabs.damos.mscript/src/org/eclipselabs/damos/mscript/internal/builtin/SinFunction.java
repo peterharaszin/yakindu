@@ -11,19 +11,21 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import java.util.List;
-
-import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
+import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 
 /**
  * @author Andreas Unger
- *
- * @noextend
- * @noimplement
+ * 
  */
-public interface IFunction {
-
-	List<IValue> call(IComputationContext context, List<? extends IValue> arguments);
+public class SinFunction extends AbstractMathFunction {
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.internal.builtin.AbstractExpLogFunction#compute(org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue)
+	 */
+	@Override
+	protected IValue compute(ISimpleNumericValue x) {
+		return x.sin();
+	}
 	
 }

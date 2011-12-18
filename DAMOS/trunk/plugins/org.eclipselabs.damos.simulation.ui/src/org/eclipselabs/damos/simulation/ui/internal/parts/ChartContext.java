@@ -15,9 +15,11 @@ import org.eclipse.birt.chart.factory.GeneratedChartState;
 import org.eclipse.birt.chart.model.ChartWithAxes;
 import org.eclipse.birt.chart.model.attribute.AxisType;
 import org.eclipse.birt.chart.model.attribute.ColorDefinition;
+import org.eclipse.birt.chart.model.attribute.FormatSpecifier;
 import org.eclipse.birt.chart.model.attribute.LineAttributes;
 import org.eclipse.birt.chart.model.attribute.LineStyle;
 import org.eclipse.birt.chart.model.attribute.impl.ColorDefinitionImpl;
+import org.eclipse.birt.chart.model.attribute.impl.JavaNumberFormatSpecifierImpl;
 import org.eclipse.birt.chart.model.attribute.impl.LineAttributesImpl;
 import org.eclipse.birt.chart.model.component.Axis;
 import org.eclipse.birt.chart.model.component.Series;
@@ -101,6 +103,12 @@ public class ChartContext {
 		for (int i = 0; i < m; ++i) {
 			System.arraycopy(yValues[i], 0, reducedYValues[i], 0, length);
 		}
+		
+		Axis xAxis = chart.getPrimaryBaseAxes()[0];
+		xAxis.setFormatSpecifier(createNumberFormatSpecifier(reducedXValues));
+
+		Axis yAxis = chart.getPrimaryOrthogonalAxis(xAxis);
+		yAxis.setFormatSpecifier(createNumberFormatSpecifier(reducedYValues));
 		
 		xSeries.setDataSet(NumberDataSetImpl.create(reducedXValues));
 		ySeriesDefinition.getSeries().clear();
@@ -189,6 +197,35 @@ public class ChartContext {
 			n -= 4;
 		}
 		return c;
+	}
+	
+	private FormatSpecifier createNumberFormatSpecifier(double[] values) {
+		return createNumberFormatSpecifier(requiresExponentNumberFormatFor(values));
+	}
+
+	private FormatSpecifier createNumberFormatSpecifier(double[][] values) {
+		for (int i = 0; i < values.length; ++i) {
+			if (requiresExponentNumberFormatFor(values[i])) {
+				return createNumberFormatSpecifier(true);
+			}
+		}
+		return createNumberFormatSpecifier(false);
+	}
+	
+	private FormatSpecifier createNumberFormatSpecifier(boolean exponentNumberFormat) {
+		if (exponentNumberFormat) {
+			return JavaNumberFormatSpecifierImpl.create("0.####E0");
+		}
+		return JavaNumberFormatSpecifierImpl.create("0.########");
+	}
+
+	private boolean requiresExponentNumberFormatFor(double[] values) {
+		for (int i = 0; i < values.length; ++i) {
+			if (Math.abs(values[i]) >= 100000.0) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

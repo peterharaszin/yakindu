@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c.internal;
+package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
 import org.eclipselabs.damos.common.util.PrintAppendable;
 import org.eclipselabs.damos.mscript.DataType;
@@ -18,7 +18,6 @@ import org.eclipselabs.damos.mscript.FunctionCall;
 import org.eclipselabs.damos.mscript.TensorType;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.IFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 

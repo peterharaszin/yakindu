@@ -37,8 +37,11 @@ import org.eclipselabs.damos.mscript.RelationalExpression;
 import org.eclipselabs.damos.mscript.StringLiteral;
 import org.eclipselabs.damos.mscript.UnaryExpression;
 import org.eclipselabs.damos.mscript.VariableReference;
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 import org.eclipselabs.damos.mscript.codegen.c.internal.VariableAccessGenerator;
+import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.BuiltinFunctionGeneratorLookupTable;
+import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IBuiltinFunctionGeneratorLookupTable;
+import org.eclipselabs.damos.mscript.codegen.c.internal.builtin.IFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHelper;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFloatingPointHelper;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
@@ -389,7 +392,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 			for (Expression argument : functionCall.getArguments()) {
 				inputParameterDataTypes.add(getDataType(argument));
 			}
-			BuiltinFunctionDescriptor descriptor = BuiltinFunctionDescriptor.get(name, inputParameterDataTypes);
+			BuiltinFunctionKind descriptor = BuiltinFunctionKind.get(name, inputParameterDataTypes);
 			if (descriptor != null) {
 				IFunctionGenerator generator = builtinFunctionGeneratorLookupTable.getFunctionGenerator(descriptor);
 				if (generator != null) {

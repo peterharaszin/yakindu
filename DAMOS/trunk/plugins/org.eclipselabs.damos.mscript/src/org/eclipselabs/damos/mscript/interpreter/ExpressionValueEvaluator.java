@@ -47,10 +47,10 @@ import org.eclipselabs.damos.mscript.Unit;
 import org.eclipselabs.damos.mscript.UnitConstructionOperator;
 import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookupTable;
 import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunctionLookupTable;
-import org.eclipselabs.damos.mscript.internal.builtin.IFunction;
+import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IBooleanValue;
 import org.eclipselabs.damos.mscript.interpreter.value.INumericValue;
@@ -493,9 +493,9 @@ public class ExpressionValueEvaluator implements IExpressionValueEvaluator {
 			for (IValue argumentValue : argumentValues) {
 				inputParameterDataTypes.add(argumentValue.getDataType());
 			}
-			BuiltinFunctionDescriptor descriptor = BuiltinFunctionDescriptor.get(name, inputParameterDataTypes);
+			BuiltinFunctionKind descriptor = BuiltinFunctionKind.get(name, inputParameterDataTypes);
 			if (descriptor != null) {
-				IFunction behavior = builtinFunctionLookupTable.getFunction(descriptor);
+				IBuiltinFunction behavior = builtinFunctionLookupTable.getFunction(descriptor);
 				if (behavior != null) {
 					return behavior.call(context.getComputationContext(), argumentValues).get(0);
 				}

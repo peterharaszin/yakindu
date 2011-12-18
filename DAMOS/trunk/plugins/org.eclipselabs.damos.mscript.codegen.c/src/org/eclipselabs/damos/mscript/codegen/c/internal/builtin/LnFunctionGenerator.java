@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c.internal;
+package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
@@ -18,14 +18,14 @@ import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
  * @author Andreas Unger
  *
  */
-public class LbFunctionGenerator extends AbstractSingleParameterFunctionGenerator {
+public class LnFunctionGenerator extends AbstractSingleParameterFunctionGenerator {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.codegen.c.internal.AbstractSingleParameterFunctionGenerator#getFixedPointFunctionName(org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat)
 	 */
 	@Override
 	protected String getFixedPointFunctionName(FixedPointFormat fixedPointFormat) {
-		return fixedPointFormat.getWordSize() > 32 ? "DamosMath_lbfix64" : "DamosMath_lbfix32";
+		return fixedPointFormat.getWordSize() > 32 ? "DamosMath_lnfix64" : "DamosMath_lnfix32";
 	}
 
 	/* (non-Javadoc)
@@ -33,7 +33,7 @@ public class LbFunctionGenerator extends AbstractSingleParameterFunctionGenerato
 	 */
 	@Override
 	protected String getFloatingPointFunctionName(FloatingPointFormat floatingPointFormat) {
-		return "log2";
+		return "log";
 	}
 
 }

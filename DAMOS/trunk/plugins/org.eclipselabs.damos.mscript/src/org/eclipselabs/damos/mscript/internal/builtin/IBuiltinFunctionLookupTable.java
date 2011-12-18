@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.mscript.internal.builtin;
 
-import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
+import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 
 /**
  * @author Andreas Unger
@@ -19,6 +19,6 @@ import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionDescriptor;
  */
 public interface IBuiltinFunctionLookupTable {
 
-	IFunction getFunction(BuiltinFunctionDescriptor descriptor);
+	IBuiltinFunction getFunction(BuiltinFunctionKind descriptor);
 
 }

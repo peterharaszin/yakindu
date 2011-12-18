@@ -14,28 +14,33 @@ package org.eclipselabs.damos.mscript.internal.builtin;
 import java.util.List;
 
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.NumericType;
-import org.eclipselabs.damos.mscript.UnitType;
+import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.builtin.IBuiltinFunctionSignature;
+import org.eclipselabs.damos.mscript.util.TypeUtil;
 
 /**
  * @author Andreas Unger
  *
  */
-public class NumSignature implements IBuiltinFunctionSignature {
+public class SinSignature implements IBuiltinFunctionSignature {
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.language.il.builtin.ISignature#evaluateOutputParameterDataTypes(java.util.List)
 	 */
 	public boolean accepts(List<? extends DataType> inputParameterDataTypes) {
-		if (inputParameterDataTypes.size() != 2) {
+		if (inputParameterDataTypes.size() != 1) {
 			return false;
 		}
 		
-		DataType dataType1 = inputParameterDataTypes.get(0);
-		DataType dataType2 = inputParameterDataTypes.get(1);
+		DataType inputDataType = inputParameterDataTypes.get(0);
 		
-		return dataType1 instanceof NumericType && dataType2 instanceof UnitType;
+		if (!(inputDataType instanceof RealType || inputDataType instanceof IntegerType)) {
+			return false;
+		}
+		
+		return ((NumericType) inputDataType).getUnit().isEquivalentTo(TypeUtil.createUnit(), true);
 	}
 
 }

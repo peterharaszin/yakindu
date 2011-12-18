@@ -24,7 +24,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.UnitValue;
  * @author Andreas Unger
  *
  */
-public class UnitFunction implements IFunction {
+public class UnitFunction implements IBuiltinFunction {
 
 	public List<IValue> call(IComputationContext context, List<? extends IValue> arguments) {
 		IValue argument = arguments.get(0);

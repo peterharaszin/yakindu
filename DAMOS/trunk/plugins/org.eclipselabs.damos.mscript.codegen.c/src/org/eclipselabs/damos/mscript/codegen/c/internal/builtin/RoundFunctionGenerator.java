@@ -9,7 +9,7 @@
  *    Andreas Unger - initial API and implementation 
  ****************************************************************************/
 
-package org.eclipselabs.damos.mscript.codegen.c.internal;
+package org.eclipselabs.damos.mscript.codegen.c.internal.builtin;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.common.util.PrintAppendable;
@@ -21,7 +21,6 @@ import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.codegen.c.ExpressionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IExpressionGenerator;
-import org.eclipselabs.damos.mscript.codegen.c.IFunctionGenerator;
 import org.eclipselabs.damos.mscript.codegen.c.IMscriptGeneratorContext;
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.Caster;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;

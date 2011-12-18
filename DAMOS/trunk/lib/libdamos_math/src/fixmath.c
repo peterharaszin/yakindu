@@ -12,6 +12,11 @@
 #include "damos/math.h"
 #include "damos/internal/mathconstants.h"
 
+#define DAMOS_MATH_PI INT32_C(0x3243f6a9)
+#define DAMOS_MATH_TWO_PI INT32_C(0x6487ed51)
+#define DAMOS_MATH_HALF_PI INT32_C(0x1921fb54)
+#define DAMOS_MATH_QUARTER_PI INT32_C(0x0c90fdaa)
+
 static const int32_t logTwoPowerNReversed32[] = {
 	INT32_C(0x55f3439c), /* ln(2^31) = 21.487563 */
 	INT32_C(0x532d7b3c), /* ln(2^30) = 20.794415 */
@@ -313,6 +318,49 @@ static const int64_t logOneOverOneMinusTwoPowerMinusN64[] = {
 	INT64_C(0x0000000000000000), /* ln(1/(1-2^-62)) = 0.000000e+00 */
 	INT64_C(0x0000000000000000)  /* ln(1/(1-2^-63)) = 0.000000e+00 */
 };
+
+static const int32_t arctanTwoPowerMinusN[] = {
+		INT32_C(0x11b6e193), /* atan(2^1) = 1.107149e+00 */
+		INT32_C(0x0c90fdaa), /* atan(2^0) = 7.853982e-01 */
+		INT32_C(0x076b19c1), /* atan(2^-1) = 4.636476e-01 */
+		INT32_C(0x03eb6ebf), /* atan(2^-2) = 2.449787e-01 */
+		INT32_C(0x01fd5baa), /* atan(2^-3) = 1.243550e-01 */
+		INT32_C(0x00ffaade), /* atan(2^-4) = 6.241881e-02 */
+		INT32_C(0x007ff557), /* atan(2^-5) = 3.123983e-02 */
+		INT32_C(0x003ffeab), /* atan(2^-6) = 1.562373e-02 */
+		INT32_C(0x001fffd5), /* atan(2^-7) = 7.812341e-03 */
+		INT32_C(0x000ffffb), /* atan(2^-8) = 3.906230e-03 */
+		INT32_C(0x0007ffff), /* atan(2^-9) = 1.953123e-03 */
+		INT32_C(0x00040000), /* atan(2^-10) = 9.765622e-04 */
+		INT32_C(0x00020000), /* atan(2^-11) = 4.882812e-04 */
+		INT32_C(0x00010000), /* atan(2^-12) = 2.441406e-04 */
+		INT32_C(0x00008000), /* atan(2^-13) = 1.220703e-04 */
+		INT32_C(0x00004000), /* atan(2^-14) = 6.103516e-05 */
+		INT32_C(0x00002000), /* atan(2^-15) = 3.051758e-05 */
+		INT32_C(0x00001000), /* atan(2^-16) = 1.525879e-05 */
+		INT32_C(0x00000800), /* atan(2^-17) = 7.629395e-06 */
+		INT32_C(0x00000400), /* atan(2^-18) = 3.814697e-06 */
+		INT32_C(0x00000200), /* atan(2^-19) = 1.907349e-06 */
+		INT32_C(0x00000100), /* atan(2^-20) = 9.536743e-07 */
+		INT32_C(0x00000080), /* atan(2^-21) = 4.768372e-07 */
+		INT32_C(0x00000040), /* atan(2^-22) = 2.384186e-07 */
+		INT32_C(0x00000020), /* atan(2^-23) = 1.192093e-07 */
+		INT32_C(0x00000010), /* atan(2^-24) = 5.960464e-08 */
+		INT32_C(0x00000008), /* atan(2^-25) = 2.980232e-08 */
+		INT32_C(0x00000004), /* atan(2^-26) = 1.490116e-08 */
+		INT32_C(0x00000002), /* atan(2^-27) = 7.450581e-09 */
+		INT32_C(0x00000001), /* atan(2^-28) = 3.725290e-09 */
+		INT32_C(0x00000001), /* atan(2^-29) = 1.862645e-09 */
+		INT32_C(0x00000000), /* atan(2^-30) = 9.313226e-10 */
+};
+
+static int32_t rightShift32(int32_t x, int shift) {
+	return shift < 0 ? x << -shift : x >> shift;
+}
+
+static int64_t rightShift64(int64_t x, int shift) {
+	return shift < 0 ? x << -shift : x >> shift;
+}
 
 int32_t DamosMath_mulfix32(int32_t a, int32_t b, int fractionLength) {
 	const uint32_t mask = (INT32_C(1) << fractionLength) - 1;
@@ -621,4 +669,133 @@ int32_t DamosMath_powfix3264(int32_t base, int32_t exponent, int fractionLength)
 
 int64_t DamosMath_powfix64(int64_t base, int64_t exponent, int fractionLength) {
 	return DamosMath_expfix64(exponent * DamosMath_lnfix64(base, fractionLength) >> fractionLength, fractionLength);
+}
+
+static int32_t scaleCordicResult32(int32_t x) {
+	const int32_t scaleFactor = 0x22C2DD1C; /* 0.271572 * 2^31*/
+	return (int32_t) ((int64_t) x * scaleFactor >> 31);
+}
+
+static void performCordicRotation32(int32_t *px, int32_t *py, int32_t theta) {
+	int32_t x = *px, y = *py;
+	const int32_t *arctan = arctanTwoPowerMinusN;
+	int i;
+	for (i = -1; i <= DAMOS_MATH_TRIG_FRACTION_LENGTH; ++i) {
+		const int32_t yShift = rightShift32(y, i);
+		const int32_t xShift = rightShift32(x, i);
+
+		if (theta < 0) {
+			x += yShift;
+			y -= xShift;
+			theta += *arctan++;
+		} else {
+			x -= yShift;
+			y += xShift;
+			theta -= *arctan++;
+		}
+	}
+	*px = scaleCordicResult32(x);
+	*py = scaleCordicResult32(y);
+}
+
+static void sincos32(int32_t theta, int32_t *s, int32_t *c) {
+	int x = theta;
+
+	if (x < 0) {
+		x += DAMOS_MATH_TWO_PI;
+	}
+
+	/* bool */
+	int negateCos = 0;
+	/* bool */
+	int negateSin = 0;
+
+	if (x > DAMOS_MATH_PI) {
+		x = DAMOS_MATH_TWO_PI - x;
+		negateSin = 1;
+	}
+	if (x > DAMOS_MATH_HALF_PI) {
+		x = DAMOS_MATH_PI - x;
+		negateCos = 1;
+	}
+	int32_t xCos = 1 << DAMOS_MATH_TRIG_FRACTION_LENGTH;
+	int32_t xSin = 0;
+
+	performCordicRotation32(&xCos, &xSin, x);
+
+	if (s) {
+		*s = negateSin ? -xSin : xSin;
+	}
+	if (c) {
+		*c = negateCos ? -xCos : xCos;
+	}
+}
+
+static int32_t reduceTheta32(int32_t theta, int fractionLength) {
+	const int32_t mask = INT32_C(1) << DAMOS_MATH_TRIG_FRACTION_LENGTH;
+	int n;
+	for (n = fractionLength; n < DAMOS_MATH_TRIG_FRACTION_LENGTH && (theta & mask) == 0; ++n) {
+		theta <<= 1;
+	}
+	int32_t shiftedPi = rightShift32(DAMOS_MATH_TWO_PI, DAMOS_MATH_TRIG_FRACTION_LENGTH - n);
+	if (theta < shiftedPi || theta > shiftedPi) {
+		theta %= shiftedPi;
+	}
+	return rightShift32(theta, n - DAMOS_MATH_TRIG_FRACTION_LENGTH);
+}
+
+static int64_t reduceTheta64(int64_t theta, int fractionLength) {
+	int64_t shiftedPi = rightShift64(DAMOS_MATH_TWO_PI, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+	if (theta < shiftedPi || theta > shiftedPi) {
+		theta %= shiftedPi;
+	}
+	return rightShift64(theta, fractionLength - DAMOS_MATH_TRIG_FRACTION_LENGTH);
+}
+
+int32_t DamosMath_sinfix32(int32_t x, int fractionLength) {
+	int32_t result;
+	sincos32(reduceTheta32(x, fractionLength), &result, 0);
+	return rightShift32(result, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+}
+
+int64_t DamosMath_sinfix64(int64_t x, int fractionLength) {
+	int32_t result;
+	sincos32(reduceTheta64(x, fractionLength), &result, 0);
+	return rightShift64(result, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+}
+
+int32_t DamosMath_cosfix32(int32_t x, int fractionLength) {
+	int32_t result;
+	sincos32(reduceTheta32(x, fractionLength), 0, &result);
+	return rightShift32(result, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+}
+
+int64_t DamosMath_cosfix64(int64_t x, int fractionLength) {
+	int32_t result;
+	sincos32(reduceTheta64(x, fractionLength), 0, &result);
+	return rightShift64(result, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+}
+
+int32_t DamosMath_tanfix32(int32_t x, int fractionLength) {
+	int32_t s;
+	int32_t c;
+	sincos32(reduceTheta32(x, fractionLength), &s, &c);
+	if (c == 0) {
+		return INT32_C(0x7fffffff);
+	}
+	int64_t result = ((int64_t) s << DAMOS_MATH_TRIG_FRACTION_LENGTH) / c;
+	if (result > INT32_C(0x7fffffff)) {
+		return INT32_C(0x7fffffff);
+	}
+	return rightShift32(result, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
+}
+
+int64_t DamosMath_tanfix64(int64_t x, int fractionLength) {
+	int32_t s;
+	int32_t c;
+	sincos32(reduceTheta64(x, fractionLength), &s, &c);
+	if (c == 0) {
+		return INT64_C(0x7fffffffffffffff);
+	}
+	return rightShift64(((int64_t) s << DAMOS_MATH_TRIG_FRACTION_LENGTH) / c, DAMOS_MATH_TRIG_FRACTION_LENGTH - fractionLength);
 }

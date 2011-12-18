@@ -179,6 +179,27 @@ public class Binary32Value extends AbstractNumericValue implements ISimpleNumeri
 		return new Binary32Value(getContext(), getDataType(), getNumberFormat(), (float) Math.log(value) / LOG_2);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#sin()
+	 */
+	public IValue sin() {
+		return new Binary32Value(getContext(), getDataType(), getNumberFormat(), (float) Math.sin(value));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#cos()
+	 */
+	public IValue cos() {
+		return new Binary32Value(getContext(), getDataType(), getNumberFormat(), (float) Math.cos(value));
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue#tan()
+	 */
+	public IValue tan() {
+		return new Binary32Value(getContext(), getDataType(), getNumberFormat(), (float) Math.tan(value));
+	}
+	
 	protected AbstractNumericValue cast(NumberFormat numberFormat) {
 		if (getNumberFormat().isEquivalentTo(numberFormat)) {
 			return this;

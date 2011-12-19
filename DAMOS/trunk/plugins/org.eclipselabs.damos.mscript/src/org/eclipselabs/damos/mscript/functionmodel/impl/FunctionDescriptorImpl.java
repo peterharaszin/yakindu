@@ -263,8 +263,11 @@ public class FunctionDescriptorImpl extends EObjectImpl implements FunctionDescr
 				if (!dependents.add(variableStep)) {
 					return true;
 				}
+				// We need to memorize previous variable steps of the same equation side, so that we can ignore duplicates
+				Set<VariableStep> rhsVariableSteps = new HashSet<VariableStep>();
 				for (EquationPart rhsEquationPart : usingEquationPart.getSide().getDescriptor().getRightHandSide().getParts()) {
-					if (hasCyclicEquations(dependents, rhsEquationPart.getVariableStep())) {
+					VariableStep rhsVariableStep = rhsEquationPart.getVariableStep();
+					if (rhsVariableSteps.add(rhsVariableStep) && hasCyclicEquations(dependents, rhsVariableStep)) {
 						return true;
 					}
 				}

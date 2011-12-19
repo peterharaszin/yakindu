@@ -39,6 +39,11 @@
             name="Scope">
       </simulationObject>
       <simulationObject
+            blockType="damos::library::base::sinks::XYScope"
+            class="org.eclipselabs.damos.library.base.simulation.sinks.XYScopeSimulationObject"
+            name="X-Y Scope">
+      </simulationObject>
+      <simulationObject
             blockType="damos::library::base::sources::AudioFileSource"
             class="org.eclipselabs.damos.library.base.simulation.sources.AudioFileSourceSimulationObject"
             name="Audio File Source">

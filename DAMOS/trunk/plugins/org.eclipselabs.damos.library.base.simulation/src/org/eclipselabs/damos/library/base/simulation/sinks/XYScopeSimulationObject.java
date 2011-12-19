@@ -13,25 +13,39 @@ package org.eclipselabs.damos.library.base.simulation.sinks;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.EList;
+import org.eclipselabs.damos.dml.Input;
+import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
 
 /**
  * @author Andreas Unger
  *
  */
-public class ScopeSimulationObject extends AbstractScopeSimulationObject {
+public class XYScopeSimulationObject extends AbstractScopeSimulationObject {
 
-	private double[] inputValues;
+	private double xValue;
+	private double[] yValues;
 	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
 		super.initialize(monitor);
-		int portCount = getComponent().getPrimaryInputPorts().size();
-		inputValues = new double[portCount];
+		EList<Input> inputs = getComponent().getInputs();
+		if (inputs.size() < 2) {
+			throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Invalid X-Y scope"));
+		}
+		int portCount = inputs.get(1).getPorts().size();
+		yValues = new double[portCount];
 	}
 	
 	@Override
 	public void setInputValue(int inputIndex, int portIndex, double value) {
-		inputValues[portIndex] = value;
+		if (inputIndex == 0) {
+			xValue = value;
+		} else {
+			yValues[portIndex] = value;
+		}
 	}
 	
 	/* (non-Javadoc)
@@ -39,7 +53,7 @@ public class ScopeSimulationObject extends AbstractScopeSimulationObject {
 	 */
 	@Override
 	protected double getXValue(double t) {
-		return t;
+		return xValue;
 	}
 	
 	/* (non-Javadoc)
@@ -47,7 +61,7 @@ public class ScopeSimulationObject extends AbstractScopeSimulationObject {
 	 */
 	@Override
 	protected double getYValue(double t, int index) {
-		return inputValues[index];
+		return yValues[index];
 	}
 	
 }

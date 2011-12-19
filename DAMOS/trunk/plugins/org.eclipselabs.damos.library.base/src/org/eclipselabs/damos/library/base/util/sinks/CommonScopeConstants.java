@@ -16,6 +16,8 @@ package org.eclipselabs.damos.library.base.util.sinks;
  * @author Andreas Unger
  *
  */
-public interface ScopeConstants extends CommonScopeConstants {
+public interface CommonScopeConstants {
 
+	String PARAMETER__DATA_POINT_LIMIT = "dataPointLimit";
+	
 }

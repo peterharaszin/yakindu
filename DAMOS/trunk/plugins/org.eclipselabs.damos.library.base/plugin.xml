@@ -175,6 +175,12 @@
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sinks"
+            name="X-Y Scope"
+            qualifiedName="damos::library::base::sinks::XYScope"
+            uri="http://www.eclipselabs.org/damos/library/sinks/XYScope.blocktype#/">
+      </blockType>
+      <blockType
+            group="org.eclipselabs.damos.library.base.sinks"
             name="Audio File Sink"
             qualifiedName="damos::library::base::sinks::AudioFileSink"
             uri="http://www.eclipselabs.org/damos/library/sinks/AudioFileSink.blocktype#/">
@@ -231,6 +237,11 @@
             blockType="damos::library::base::sinks::Scope"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sinks.ScopeSignaturePolicy"
             name="Scope">
+      </policy>
+      <policy
+            blockType="damos::library::base::sinks::XYScope"
+            class="org.eclipselabs.damos.library.base.signaturepolicies.sinks.XYScopeSignaturePolicy"
+            name="X-Y Scope">
       </policy>
       <policy
             blockType="damos::library::base::sinks::AudioFileSink"

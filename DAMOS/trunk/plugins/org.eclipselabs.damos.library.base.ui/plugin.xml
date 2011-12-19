@@ -169,6 +169,11 @@
             name="Scope">
       </editPart>
       <editPart
+            blockType="damos::library::base::sinks::XYScope"
+            class="org.eclipselabs.damos.library.base.ui.editparts.sinks.XYScopeEditPart"
+            name="X-Y Scope">
+      </editPart>
+      <editPart
             blockType="damos::library::base::sinks::AudioFileSink"
             class="org.eclipselabs.damos.library.base.ui.editparts.sinks.AudioFileSinkEditPart"
             name="Audio File Sink">
@@ -290,6 +295,11 @@
             blockType="damos::library::base::sinks::Scope"
             icon16="icons/sinks/Scope16.png"
             icon24="icons/sinks/Scope24.png">
+      </image>
+      <image
+            blockType="damos::library::base::sinks::XYScope"
+            icon16="icons/sinks/XYScope16.png"
+            icon24="icons/sinks/XYScope24.png">
       </image>
       <image
             blockType="damos::library::base::sources::Constant"

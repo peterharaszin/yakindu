@@ -16,6 +16,6 @@ package org.eclipselabs.damos.library.base.util.sinks;
  * @author Andreas Unger
  *
  */
-public interface ScopeConstants extends CommonScopeConstants {
+public interface XYScopeConstants extends CommonScopeConstants {
 
 }

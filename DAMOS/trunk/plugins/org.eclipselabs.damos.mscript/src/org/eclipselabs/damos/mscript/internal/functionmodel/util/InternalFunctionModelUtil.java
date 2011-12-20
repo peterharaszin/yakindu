@@ -11,18 +11,12 @@
 
 package org.eclipselabs.damos.mscript.internal.functionmodel.util;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.emf.common.util.AbstractTreeIterator;
-import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.functionmodel.EquationDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.EquationPart;
-import org.eclipselabs.damos.mscript.functionmodel.FunctionDescriptor;
-import org.eclipselabs.damos.mscript.functionmodel.VariableDescriptor;
 import org.eclipselabs.damos.mscript.functionmodel.VariableStep;
 
 /**
@@ -50,71 +44,25 @@ public class InternalFunctionModelUtil {
 		}
 		return null;
 	}
+	
+	public static boolean isDefinedBy(EquationDescriptor equationDescriptor, EquationDescriptor otherEquationDescriptor) {
+		return isDefinedBy(equationDescriptor, otherEquationDescriptor, new HashSet<EquationDescriptor>());
+	}
 
-	public static EquationDescriptor getDefiningEquation(FunctionDescriptor functionDescriptor, String variableName, int stepIndex, boolean initial, boolean derivative) {
-		VariableDescriptor variableDescriptor = functionDescriptor.getVariableDescriptor(variableName);
-		if (variableDescriptor != null) {
-			VariableStep variableStep = variableDescriptor.getStep(stepIndex, initial, derivative);
-			if (variableStep != null) {
-				return getDefiningEquation(variableStep);
+	private static boolean isDefinedBy(EquationDescriptor equationDescriptor, EquationDescriptor otherEquationDescriptor, Set<EquationDescriptor> visitedEquationDescriptors) {
+		if (!visitedEquationDescriptors.add(equationDescriptor)) {
+			return false;
+		}
+		for (EquationPart equationPart : equationDescriptor.getRightHandSide().getParts()) {
+			EquationDescriptor definingEquationDescriptor = getDefiningEquation(equationPart.getVariableStep());
+			if (definingEquationDescriptor == otherEquationDescriptor) {
+				return true;
+			}
+			if (definingEquationDescriptor != null && isDefinedBy(definingEquationDescriptor, otherEquationDescriptor)) {
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 
-	public static TreeIterator<EquationDescriptor> getDefiningEquations(FunctionDescriptor functionDescriptor, String variableName, int stepIndex, boolean initial, boolean derivative) {
-		EquationDescriptor root = getDefiningEquation(functionDescriptor, variableName, stepIndex, initial, derivative);
-		if (root != null) {
-			return new EquationIterator(root);
-		}
-		return EcoreUtil.getAllContents(ECollections.emptyEList());
-	}
-	
-	public static TreeIterator<EquationDescriptor> getDefiningEquations(VariableStep variableStep) {
-		EquationDescriptor root = getDefiningEquation(variableStep);
-		if (root != null) {
-			return new EquationIterator(root);
-		}
-		return EcoreUtil.getAllContents(ECollections.emptyEList());
-	}
-		
-	public static class EquationIterator extends AbstractTreeIterator<EquationDescriptor> {
-
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
-		/**
-		 * 
-		 */
-		private static final Iterator<EquationDescriptor> EMPTY_ITERATOR = ECollections.<EquationDescriptor>emptyEList().iterator();
-		
-		/**
-		 * 
-		 */
-		public EquationIterator(EquationDescriptor equationDescriptor) {
-			super(equationDescriptor, true);
-		}
-		
-		/* (non-Javadoc)
-		 * @see org.eclipse.emf.common.util.AbstractTreeIterator#getChildren(java.lang.Object)
-		 */
-		@Override
-		protected Iterator<? extends EquationDescriptor> getChildren(Object object) {
-			if (object instanceof EquationDescriptor) {
-				List<EquationDescriptor> equations = new ArrayList<EquationDescriptor>();
-				for (EquationPart equationPart : ((EquationDescriptor) object).getRightHandSide().getParts()) {
-					EquationDescriptor equationDescriptor = getDefiningEquation(equationPart.getVariableStep());
-					if (equationDescriptor != null) {
-						equations.add(equationDescriptor);
-					}
-				}
-				return equations.iterator();
-			}
-			return EMPTY_ITERATOR;
-		}
-
-	}
-	
 }

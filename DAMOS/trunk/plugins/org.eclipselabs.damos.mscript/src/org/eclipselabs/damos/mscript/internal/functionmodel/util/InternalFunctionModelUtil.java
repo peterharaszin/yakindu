@@ -58,7 +58,7 @@ public class InternalFunctionModelUtil {
 			if (definingEquationDescriptor == otherEquationDescriptor) {
 				return true;
 			}
-			if (definingEquationDescriptor != null && isDefinedBy(definingEquationDescriptor, otherEquationDescriptor)) {
+			if (definingEquationDescriptor != null && isDefinedBy(definingEquationDescriptor, otherEquationDescriptor, new HashSet<EquationDescriptor>(visitedEquationDescriptors))) {
 				return true;
 			}
 		}

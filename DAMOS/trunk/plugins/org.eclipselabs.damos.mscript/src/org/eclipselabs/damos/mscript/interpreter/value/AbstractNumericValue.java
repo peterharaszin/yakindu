@@ -139,7 +139,7 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 		DataType resultDataType;
 		if (constantIntegerExponent) {
-			resultDataType = exponentType.evaluate(OperatorKind.POWER, (int) ((ISimpleNumericValue) other).longValue());
+			resultDataType = operandType.evaluate(OperatorKind.POWER, (int) ((ISimpleNumericValue) other).longValue());
 		} else {
 			RealType realType = MscriptFactory.eINSTANCE.createRealType();
 			realType.setUnit(EcoreUtil.copy(operandType.getUnit()));

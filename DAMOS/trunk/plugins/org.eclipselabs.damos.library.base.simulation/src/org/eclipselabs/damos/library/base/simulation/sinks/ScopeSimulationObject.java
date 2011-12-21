@@ -24,9 +24,8 @@ public class ScopeSimulationObject extends AbstractScopeSimulationObject {
 	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
+		inputValues = new double[getComponent().getPrimaryInputPorts().size()];
 		super.initialize(monitor);
-		int portCount = getComponent().getPrimaryInputPorts().size();
-		inputValues = new double[portCount];
 	}
 	
 	@Override
@@ -40,6 +39,14 @@ public class ScopeSimulationObject extends AbstractScopeSimulationObject {
 	@Override
 	protected double getXValue(double t) {
 		return t;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.library.base.simulation.sinks.AbstractScopeSimulationObject#getYValueCount()
+	 */
+	@Override
+	protected int getYValueCount() {
+		return inputValues.length;
 	}
 	
 	/* (non-Javadoc)

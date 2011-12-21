@@ -30,13 +30,12 @@ public class XYScopeSimulationObject extends AbstractScopeSimulationObject {
 	
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
-		super.initialize(monitor);
 		EList<Input> inputs = getComponent().getInputs();
 		if (inputs.size() < 2) {
 			throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Invalid X-Y scope"));
 		}
-		int portCount = inputs.get(1).getPorts().size();
-		yValues = new double[portCount];
+		yValues = new double[inputs.get(1).getPorts().size()];
+		super.initialize(monitor);
 	}
 	
 	@Override
@@ -54,6 +53,14 @@ public class XYScopeSimulationObject extends AbstractScopeSimulationObject {
 	@Override
 	protected double getXValue(double t) {
 		return xValue;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.library.base.simulation.sinks.AbstractScopeSimulationObject#getYValueCount()
+	 */
+	@Override
+	protected int getYValueCount() {
+		return yValues.length;
 	}
 	
 	/* (non-Javadoc)

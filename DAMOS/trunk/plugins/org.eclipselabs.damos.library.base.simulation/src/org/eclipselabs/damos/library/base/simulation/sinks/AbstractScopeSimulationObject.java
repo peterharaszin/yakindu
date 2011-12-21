@@ -31,8 +31,6 @@ import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
  */
 abstract class AbstractScopeSimulationObject extends AbstractBlockSimulationObject {
 
-	private int portCount;
-
 	private String title;
 	
 	private int j;
@@ -53,13 +51,11 @@ abstract class AbstractScopeSimulationObject extends AbstractBlockSimulationObje
 			}
 		}
 		
-		portCount = getComponent().getPrimaryInputPorts().size();
-
 		title = getComponent().getName();
 		j = 0;
 
 		xValues = new double[limit];
-		yValues = new double[portCount][limit];
+		yValues = new double[getYValueCount()][limit];
 	}
 	
 	@Override
@@ -82,13 +78,16 @@ abstract class AbstractScopeSimulationObject extends AbstractBlockSimulationObje
 			full = true;
 		}
 		xValues[j] = getXValue(t);
-		for (int i = 0; i < portCount; ++i) {
+		for (int i = 0; i < getYValueCount(); ++i) {
 			yValues[i][j] = getYValue(t, i);
 		}
 		++j;
 	}
 	
 	protected abstract double getXValue(double t);
+
+	protected abstract int getYValueCount();
+	
 	protected abstract double getYValue(double t, int index);
 	
 	/* (non-Javadoc)
@@ -144,19 +143,19 @@ abstract class AbstractScopeSimulationObject extends AbstractBlockSimulationObje
 			}
 		
 			public String[] getYAxisTitles() {
-				return new String[portCount];
+				return new String[getYValueCount()];
 			}
 		
 			public double[][] getYValues() {
 				if (resultYValues == null) {
 					int firstPartLength = full ? limit - j : 0;
-					resultYValues = new double[portCount][firstPartLength + j];
+					resultYValues = new double[getYValueCount()][firstPartLength + j];
 					if (firstPartLength > 0) {
-						for (int i = 0; i < portCount; ++i) {
+						for (int i = 0; i < getYValueCount(); ++i) {
 							System.arraycopy(yValues[i], j, resultYValues[i], 0, firstPartLength);
 						}
 					}
-					for (int i = 0; i < portCount; ++i) {
+					for (int i = 0; i < getYValueCount(); ++i) {
 						System.arraycopy(yValues[i], 0, resultYValues[i], firstPartLength, j);
 					}
 				}

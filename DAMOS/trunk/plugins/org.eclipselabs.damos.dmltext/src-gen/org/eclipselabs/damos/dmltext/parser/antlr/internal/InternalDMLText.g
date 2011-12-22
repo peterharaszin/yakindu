@@ -9116,6 +9116,12 @@ ruleMultiplicativeOperator returns [Enumerator current=null]
         $current = grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
         newLeafNode(enumLiteral_3, grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_3()); 
     }
+)
+    |(	enumLiteral_4='%' 
+	{
+        $current = grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+        newLeafNode(enumLiteral_4, grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4()); 
+    }
 ));
 
 

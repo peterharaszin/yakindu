@@ -60,7 +60,15 @@ public enum MultiplicativeOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	ELEMENT_WISE_DIVIDE(3, "ElementWiseDivide", "./");
+	ELEMENT_WISE_DIVIDE(3, "ElementWiseDivide", "./"), /**
+	 * The '<em><b>Modulo</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #MODULO_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	MODULO(4, "Modulo", "Modulo");
 
 	/**
 	 * The '<em><b>Multiply</b></em>' literal value.
@@ -123,6 +131,21 @@ public enum MultiplicativeOperator implements Enumerator {
 	public static final int ELEMENT_WISE_DIVIDE_VALUE = 3;
 
 	/**
+	 * The '<em><b>Modulo</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Modulo</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #MODULO
+	 * @model name="Modulo"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int MODULO_VALUE = 4;
+
+	/**
 	 * An array of all the '<em><b>Multiplicative Operator</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,6 +157,7 @@ public enum MultiplicativeOperator implements Enumerator {
 			DIVIDE,
 			ELEMENT_WISE_MULTIPLY,
 			ELEMENT_WISE_DIVIDE,
+			MODULO,
 		};
 
 	/**
@@ -188,6 +212,7 @@ public enum MultiplicativeOperator implements Enumerator {
 			case DIVIDE_VALUE: return DIVIDE;
 			case ELEMENT_WISE_MULTIPLY_VALUE: return ELEMENT_WISE_MULTIPLY;
 			case ELEMENT_WISE_DIVIDE_VALUE: return ELEMENT_WISE_DIVIDE;
+			case MODULO_VALUE: return MODULO;
 		}
 		return null;
 	}

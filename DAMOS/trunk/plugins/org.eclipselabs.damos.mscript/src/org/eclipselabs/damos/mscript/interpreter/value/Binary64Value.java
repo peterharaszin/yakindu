@@ -88,6 +88,16 @@ public class Binary64Value extends AbstractNumericValue implements ISimpleNumeri
 		double result = value / otherBinary64Value.value;
 		return new Binary64Value(getContext(), resultDataType, getNumberFormat(), result);
 	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue#basicModulo(org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue, org.eclipselabs.damos.mscript.NumericType)
+	 */
+	@Override
+	protected AbstractNumericValue basicModulo(AbstractNumericValue other, NumericType resultDataType) {
+		Binary64Value otherBinary64Value = (Binary64Value) other;
+		double result = value % otherBinary64Value.value;
+		return new Binary64Value(getContext(), resultDataType, getNumberFormat(), result);
+	}
 	
 	@Override
 	protected AbstractNumericValue basicNegate(NumericType resultDataType) {

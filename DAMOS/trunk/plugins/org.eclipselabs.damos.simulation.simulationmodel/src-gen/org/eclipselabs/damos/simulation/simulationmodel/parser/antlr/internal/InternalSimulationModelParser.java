@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_STRING", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'simulation'", "'using'", "'fragment'", "'simulationTime'", "'solver'", "'{'", "'}'", "'='", "'enum'", "','", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'|'", "'+'", "'-'", "'true'", "'false'", "'..'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'*'", "'^'", "'::'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'.^'", "'!'", "'\\''"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_STRING", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'simulation'", "'using'", "'fragment'", "'simulationTime'", "'solver'", "'{'", "'}'", "'='", "'enum'", "','", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'|'", "'+'", "'-'", "'true'", "'false'", "'..'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'*'", "'^'", "'::'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'%'", "'.^'", "'!'", "'\\''"
     };
     public static final int RULE_ID=6;
     public static final int T__29=29;
@@ -50,6 +50,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final int T__18=18;
     public static final int T__17=17;
     public static final int RULE_N=4;
+    public static final int T__99=99;
     public static final int T__98=98;
     public static final int T__97=97;
     public static final int T__96=96;
@@ -7071,7 +7072,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             int alt35=2;
             int LA35_0 = input.LA(1);
 
-            if ( ((LA35_0>=RULE_N && LA35_0<=RULE_INT)||LA35_0==21||LA35_0==31||LA35_0==35||LA35_0==49||LA35_0==51||LA35_0==53||LA35_0==56||(LA35_0>=67 && LA35_0<=69)||(LA35_0>=72 && LA35_0<=74)||LA35_0==97) ) {
+            if ( ((LA35_0>=RULE_N && LA35_0<=RULE_INT)||LA35_0==21||LA35_0==31||LA35_0==35||LA35_0==49||LA35_0==51||LA35_0==53||LA35_0==56||(LA35_0>=67 && LA35_0<=69)||(LA35_0>=72 && LA35_0<=74)||LA35_0==98) ) {
                 alt35=1;
             }
             switch (alt35) {
@@ -7249,7 +7250,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             case 72:
             case 73:
             case 74:
-            case 97:
+            case 98:
                 {
                 alt36=4;
                 }
@@ -8799,7 +8800,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             if ( (LA44_0==37) ) {
                 int LA44_1 = input.LA(2);
 
-                if ( ((LA44_1>=RULE_N && LA44_1<=RULE_INT)||LA44_1==21||LA44_1==31||LA44_1==49||(LA44_1>=67 && LA44_1<=69)||(LA44_1>=72 && LA44_1<=74)||LA44_1==97) ) {
+                if ( ((LA44_1>=RULE_N && LA44_1<=RULE_INT)||LA44_1==21||LA44_1==31||LA44_1==49||(LA44_1>=67 && LA44_1<=69)||(LA44_1>=72 && LA44_1<=74)||LA44_1==98) ) {
                     alt44=1;
                 }
             }
@@ -8868,7 +8869,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     if ( (LA43_0==37) ) {
                         int LA43_1 = input.LA(2);
 
-                        if ( ((LA43_1>=RULE_N && LA43_1<=RULE_INT)||LA43_1==21||LA43_1==31||LA43_1==49||(LA43_1>=67 && LA43_1<=69)||(LA43_1>=72 && LA43_1<=74)||LA43_1==97) ) {
+                        if ( ((LA43_1>=RULE_N && LA43_1<=RULE_INT)||LA43_1==21||LA43_1==31||LA43_1==49||(LA43_1>=67 && LA43_1<=69)||(LA43_1>=72 && LA43_1<=74)||LA43_1==98) ) {
                             alt43=1;
                         }
                     }
@@ -10264,7 +10265,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                 int alt52=2;
                 int LA52_0 = input.LA(1);
 
-                if ( ((LA52_0>=80 && LA52_0<=81)||(LA52_0>=94 && LA52_0<=95)) ) {
+                if ( ((LA52_0>=80 && LA52_0<=81)||(LA52_0>=94 && LA52_0<=96)) ) {
                     alt52=1;
                 }
 
@@ -10468,7 +10469,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             int alt53=2;
             int LA53_0 = input.LA(1);
 
-            if ( (LA53_0==82||LA53_0==96) ) {
+            if ( (LA53_0==82||LA53_0==97) ) {
                 alt53=1;
             }
             switch (alt53) {
@@ -10651,7 +10652,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             if ( ((LA54_0>=RULE_N && LA54_0<=RULE_INT)||LA54_0==21||LA54_0==31||LA54_0==49||(LA54_0>=68 && LA54_0<=69)||(LA54_0>=72 && LA54_0<=74)) ) {
                 alt54=1;
             }
-            else if ( (LA54_0==67||LA54_0==97) ) {
+            else if ( (LA54_0==67||LA54_0==98) ) {
                 alt54=2;
             }
             else {
@@ -10880,7 +10881,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             int alt55=2;
             int LA55_0 = input.LA(1);
 
-            if ( (LA55_0==98) ) {
+            if ( (LA55_0==99) ) {
                 alt55=1;
             }
             switch (alt55) {
@@ -11455,7 +11456,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             	    int alt59=2;
             	    int LA59_0 = input.LA(1);
 
-            	    if ( ((LA59_0>=RULE_N && LA59_0<=RULE_INT)||LA59_0==21||LA59_0==31||LA59_0==35||LA59_0==49||LA59_0==51||LA59_0==53||LA59_0==56||(LA59_0>=67 && LA59_0<=69)||(LA59_0>=72 && LA59_0<=74)||LA59_0==97) ) {
+            	    if ( ((LA59_0>=RULE_N && LA59_0<=RULE_INT)||LA59_0==21||LA59_0==31||LA59_0==35||LA59_0==49||LA59_0==51||LA59_0==53||LA59_0==56||(LA59_0>=67 && LA59_0<=69)||(LA59_0>=72 && LA59_0<=74)||LA59_0==98) ) {
             	        alt59=1;
             	    }
             	    switch (alt59) {
@@ -12491,7 +12492,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             if ( (LA65_0==37) ) {
                 alt65=1;
             }
-            else if ( ((LA65_0>=RULE_N && LA65_0<=RULE_INT)||LA65_0==21||LA65_0==31||LA65_0==35||LA65_0==49||LA65_0==51||LA65_0==53||LA65_0==56||(LA65_0>=67 && LA65_0<=69)||(LA65_0>=72 && LA65_0<=74)||LA65_0==97) ) {
+            else if ( ((LA65_0>=RULE_N && LA65_0<=RULE_INT)||LA65_0==21||LA65_0==31||LA65_0==35||LA65_0==49||LA65_0==51||LA65_0==53||LA65_0==56||(LA65_0>=67 && LA65_0<=69)||(LA65_0>=72 && LA65_0<=74)||LA65_0==98) ) {
                 alt65=2;
             }
             else {
@@ -13392,7 +13393,8 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                 case 94:
                 case 95:
                 case 96:
-                case 98:
+                case 97:
+                case 99:
                     {
                     alt69=1;
                     }
@@ -13500,7 +13502,8 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                 case 94:
                 case 95:
                 case 96:
-                case 98:
+                case 97:
+                case 99:
                     {
                     alt69=1;
                     }
@@ -15249,7 +15252,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             int alt82=2;
             int LA82_0 = input.LA(1);
 
-            if ( ((LA82_0>=RULE_N && LA82_0<=RULE_INT)||LA82_0==21||LA82_0==31||LA82_0==35||LA82_0==49||LA82_0==51||LA82_0==53||LA82_0==56||(LA82_0>=67 && LA82_0<=69)||(LA82_0>=72 && LA82_0<=74)||LA82_0==97) ) {
+            if ( ((LA82_0>=RULE_N && LA82_0<=RULE_INT)||LA82_0==21||LA82_0==31||LA82_0==35||LA82_0==49||LA82_0==51||LA82_0==53||LA82_0==56||(LA82_0>=67 && LA82_0<=69)||(LA82_0>=72 && LA82_0<=74)||LA82_0==98) ) {
                 alt82=1;
             }
             switch (alt82) {
@@ -19945,7 +19948,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     throw nvae;
                 }
             }
-            else if ( (LA97_0==EOF||(LA97_0>=RULE_N && LA97_0<=RULE_EXPIJ)||(LA97_0>=18 && LA97_0<=20)||(LA97_0>=22 && LA97_0<=23)||LA97_0==25||(LA97_0>=29 && LA97_0<=30)||LA97_0==32||(LA97_0>=34 && LA97_0<=42)||(LA97_0>=49 && LA97_0<=50)||LA97_0==52||(LA97_0>=54 && LA97_0<=55)||(LA97_0>=57 && LA97_0<=67)||LA97_0==71||(LA97_0>=80 && LA97_0<=82)||(LA97_0>=90 && LA97_0<=96)||LA97_0==98) ) {
+            else if ( (LA97_0==EOF||(LA97_0>=RULE_N && LA97_0<=RULE_EXPIJ)||(LA97_0>=18 && LA97_0<=20)||(LA97_0>=22 && LA97_0<=23)||LA97_0==25||(LA97_0>=29 && LA97_0<=30)||LA97_0==32||(LA97_0>=34 && LA97_0<=42)||(LA97_0>=49 && LA97_0<=50)||LA97_0==52||(LA97_0>=54 && LA97_0<=55)||(LA97_0>=57 && LA97_0<=67)||LA97_0==71||(LA97_0>=80 && LA97_0<=82)||(LA97_0>=90 && LA97_0<=97)||LA97_0==99) ) {
                 alt97=3;
             }
             else {
@@ -22282,7 +22285,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplicativeOperator"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7586:1: ruleMultiplicativeOperator returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7586:1: ruleMultiplicativeOperator returns [Enumerator current=null] : ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) | (enumLiteral_4= '%' ) ) ;
     public final Enumerator ruleMultiplicativeOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22290,14 +22293,15 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
         Token enumLiteral_1=null;
         Token enumLiteral_2=null;
         Token enumLiteral_3=null;
+        Token enumLiteral_4=null;
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7588:28: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7589:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7588:28: ( ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) | (enumLiteral_4= '%' ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7589:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) | (enumLiteral_4= '%' ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7589:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) )
-            int alt113=4;
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7589:1: ( (enumLiteral_0= '*' ) | (enumLiteral_1= '/' ) | (enumLiteral_2= '.*' ) | (enumLiteral_3= './' ) | (enumLiteral_4= '%' ) )
+            int alt113=5;
             switch ( input.LA(1) ) {
             case 81:
                 {
@@ -22317,6 +22321,11 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             case 95:
                 {
                 alt113=4;
+                }
+                break;
+            case 96:
+                {
+                alt113=5;
                 }
                 break;
             default:
@@ -22404,6 +22413,25 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
                     }
                     break;
+                case 5 :
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7613:6: (enumLiteral_4= '%' )
+                    {
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7613:6: (enumLiteral_4= '%' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7613:8: enumLiteral_4= '%'
+                    {
+                    enumLiteral_4=(Token)match(input,96,FOLLOW_96_in_ruleMultiplicativeOperator17387); if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                              current = grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+                              newLeafNode(enumLiteral_4, grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4()); 
+                          
+                    }
+
+                    }
+
+
+                    }
+                    break;
 
             }
 
@@ -22427,7 +22455,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePowerOperator"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7617:1: rulePowerOperator returns [Enumerator current=null] : ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7623:1: rulePowerOperator returns [Enumerator current=null] : ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) ;
     public final Enumerator rulePowerOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22436,17 +22464,17 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7619:28: ( ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7620:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7625:28: ( ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7620:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:1: ( (enumLiteral_0= '^' ) | (enumLiteral_1= '.^' ) )
             int alt114=2;
             int LA114_0 = input.LA(1);
 
             if ( (LA114_0==82) ) {
                 alt114=1;
             }
-            else if ( (LA114_0==96) ) {
+            else if ( (LA114_0==97) ) {
                 alt114=2;
             }
             else {
@@ -22458,12 +22486,12 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             }
             switch (alt114) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7620:2: (enumLiteral_0= '^' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:2: (enumLiteral_0= '^' )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7620:2: (enumLiteral_0= '^' )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7620:4: enumLiteral_0= '^'
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:2: (enumLiteral_0= '^' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:4: enumLiteral_0= '^'
                     {
-                    enumLiteral_0=(Token)match(input,82,FOLLOW_82_in_rulePowerOperator17415); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,82,FOLLOW_82_in_rulePowerOperator17432); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getPowerOperatorAccess().getPowerEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22477,12 +22505,12 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:6: (enumLiteral_1= '.^' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7632:6: (enumLiteral_1= '.^' )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:6: (enumLiteral_1= '.^' )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7626:8: enumLiteral_1= '.^'
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7632:6: (enumLiteral_1= '.^' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7632:8: enumLiteral_1= '.^'
                     {
-                    enumLiteral_1=(Token)match(input,96,FOLLOW_96_in_rulePowerOperator17432); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,97,FOLLOW_97_in_rulePowerOperator17449); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getPowerOperatorAccess().getElementWisePowerEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22518,7 +22546,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnaryOperator"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7636:1: ruleUnaryOperator returns [Enumerator current=null] : ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7642:1: ruleUnaryOperator returns [Enumerator current=null] : ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) ;
     public final Enumerator ruleUnaryOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22527,17 +22555,17 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7638:28: ( ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7639:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7644:28: ( ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7639:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:1: ( (enumLiteral_0= '-' ) | (enumLiteral_1= '!' ) )
             int alt115=2;
             int LA115_0 = input.LA(1);
 
             if ( (LA115_0==67) ) {
                 alt115=1;
             }
-            else if ( (LA115_0==97) ) {
+            else if ( (LA115_0==98) ) {
                 alt115=2;
             }
             else {
@@ -22549,12 +22577,12 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             }
             switch (alt115) {
                 case 1 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7639:2: (enumLiteral_0= '-' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:2: (enumLiteral_0= '-' )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7639:2: (enumLiteral_0= '-' )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7639:4: enumLiteral_0= '-'
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:2: (enumLiteral_0= '-' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:4: enumLiteral_0= '-'
                     {
-                    enumLiteral_0=(Token)match(input,67,FOLLOW_67_in_ruleUnaryOperator17477); if (state.failed) return current;
+                    enumLiteral_0=(Token)match(input,67,FOLLOW_67_in_ruleUnaryOperator17494); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getUnaryOperatorAccess().getNegateEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
@@ -22568,12 +22596,12 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:6: (enumLiteral_1= '!' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7651:6: (enumLiteral_1= '!' )
                     {
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:6: (enumLiteral_1= '!' )
-                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7645:8: enumLiteral_1= '!'
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7651:6: (enumLiteral_1= '!' )
+                    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7651:8: enumLiteral_1= '!'
                     {
-                    enumLiteral_1=(Token)match(input,97,FOLLOW_97_in_ruleUnaryOperator17494); if (state.failed) return current;
+                    enumLiteral_1=(Token)match(input,98,FOLLOW_98_in_ruleUnaryOperator17511); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                               current = grammarAccess.getUnaryOperatorAccess().getLogicalNotEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
@@ -22609,7 +22637,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePostfixOperator"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7655:1: rulePostfixOperator returns [Enumerator current=null] : (enumLiteral_0= '\\'' ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7661:1: rulePostfixOperator returns [Enumerator current=null] : (enumLiteral_0= '\\'' ) ;
     public final Enumerator rulePostfixOperator() throws RecognitionException {
         Enumerator current = null;
 
@@ -22617,13 +22645,13 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
          enterRule(); 
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7657:28: ( (enumLiteral_0= '\\'' ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7658:1: (enumLiteral_0= '\\'' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7663:28: ( (enumLiteral_0= '\\'' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7664:1: (enumLiteral_0= '\\'' )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7658:1: (enumLiteral_0= '\\'' )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7658:3: enumLiteral_0= '\\''
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7664:1: (enumLiteral_0= '\\'' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:7664:3: enumLiteral_0= '\\''
             {
-            enumLiteral_0=(Token)match(input,98,FOLLOW_98_in_rulePostfixOperator17538); if (state.failed) return current;
+            enumLiteral_0=(Token)match(input,99,FOLLOW_99_in_rulePostfixOperator17555); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
                       current = grammarAccess.getPostfixOperatorAccess().getDerivativeEnumLiteralDeclaration().getEnumLiteral().getInstance();
@@ -23410,7 +23438,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     static final String DFA63_minS =
         "\1\22\1\uffff\1\4\5\22\1\4\2\uffff\5\25\1\4\1\uffff\5\25";
     static final String DFA63_maxS =
-        "\1\142\1\uffff\1\10\5\142\1\141\2\uffff\5\142\1\141\1\uffff\5\142";
+        "\1\143\1\uffff\1\10\5\143\1\142\2\uffff\5\143\1\142\1\uffff\5\143";
     static final String DFA63_acceptS =
         "\1\uffff\1\4\7\uffff\1\1\1\2\6\uffff\1\3\5\uffff";
     static final String DFA63_specialS =
@@ -23418,62 +23446,62 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     static final String[] DFA63_transitionS = {
             "\3\1\1\uffff\2\1\1\uffff\1\1\3\uffff\2\1\1\uffff\1\1\1\uffff"+
             "\11\1\6\uffff\2\1\1\uffff\1\1\1\uffff\2\1\1\uffff\6\1\1\2\4"+
-            "\1\3\uffff\1\1\10\uffff\3\1\7\uffff\7\1\1\uffff\1\1",
+            "\1\3\uffff\1\1\10\uffff\3\1\7\uffff\10\1\1\uffff\1\1",
             "",
             "\1\3\1\5\1\7\1\4\1\6",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\10\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\10\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\10\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\10\11\1\uffff\1\11",
             "\3\11\1\uffff\2\11\1\uffff\1\11\3\uffff\2\11\1\10\1\11\1\uffff"+
             "\11\11\6\uffff\2\11\1\uffff\1\11\1\uffff\2\11\1\uffff\13\11"+
-            "\3\uffff\1\11\10\uffff\3\11\7\uffff\7\11\1\uffff\1\11",
+            "\3\uffff\1\11\10\uffff\3\11\7\uffff\10\11\1\uffff\1\11",
             "\1\13\1\15\1\17\1\14\1\16\3\12\11\uffff\1\12\11\uffff\2\12"+
             "\2\uffff\1\12\15\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2\uffff"+
-            "\1\12\12\uffff\3\12\2\uffff\3\12\26\uffff\1\12",
+            "\1\12\12\uffff\3\12\2\uffff\3\12\27\uffff\1\12",
             "",
             "",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\22\1\24\1\26\1\23\1\25\3\12\11\uffff\1\12\11\uffff\1\12"+
             "\3\uffff\1\12\15\uffff\1\12\1\uffff\1\12\1\uffff\1\12\2\uffff"+
-            "\1\12\12\uffff\3\12\2\uffff\3\12\26\uffff\1\12",
+            "\1\12\12\uffff\3\12\2\uffff\3\12\27\uffff\1\12",
             "",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12",
             "\1\12\3\uffff\1\20\3\uffff\4\12\4\uffff\1\12\13\uffff\1\12"+
-            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\7\12\1\uffff"+
+            "\11\uffff\5\12\2\21\2\12\14\uffff\4\12\6\uffff\10\12\1\uffff"+
             "\1\12"
     };
 
@@ -23517,7 +23545,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     static final String DFA79_minS =
         "\1\4\5\22\1\4\2\uffff\5\22";
     static final String DFA79_maxS =
-        "\1\10\5\142\1\10\2\uffff\5\142";
+        "\1\10\5\143\1\10\2\uffff\5\143";
     static final String DFA79_acceptS =
         "\7\uffff\1\1\1\2\5\uffff";
     static final String DFA79_specialS =
@@ -23526,37 +23554,37 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
             "\1\1\1\3\1\5\1\2\1\4",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\1\11\1\13\1\15\1\12\1\14",
             "",
             "",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7",
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7",
             "\6\7\1\uffff\1\7\3\uffff\2\7\1\10\1\7\1\uffff\11\7\6\uffff"+
             "\2\7\1\uffff\1\7\1\uffff\2\7\1\uffff\13\7\3\uffff\1\7\10\uffff"+
-            "\3\7\1\6\6\uffff\7\7\1\uffff\1\7"
+            "\3\7\1\6\6\uffff\10\7\1\uffff\1\7"
     };
 
     static final short[] DFA79_eot = DFA.unpackEncodedString(DFA79_eotS);
@@ -23602,7 +23630,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleSimulationModel178 = new BitSet(new long[]{0x00000000001C0000L});
     public static final BitSet FOLLOW_18_in_ruleSimulationModel236 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleSimulationModel259 = new BitSet(new long[]{0x00000000001C0002L});
-    public static final BitSet FOLLOW_19_in_ruleSimulationModel327 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_19_in_ruleSimulationModel327 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSimulationModel348 = new BitSet(new long[]{0x00000000001C0002L});
     public static final BitSet FOLLOW_ruleSolverConfiguration_in_ruleSimulationModel424 = new BitSet(new long[]{0x00000000001C0002L});
     public static final BitSet FOLLOW_ruleSolverConfiguration_in_entryRuleSolverConfiguration506 = new BitSet(new long[]{0x0000000000000000L});
@@ -23698,9 +23726,9 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleCheck_in_entryRuleCheck2686 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCheck2696 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_34_in_ruleCheck2733 = new BitSet(new long[]{0x00000000A0000000L});
-    public static final BitSet FOLLOW_29_in_ruleCheck2746 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_29_in_ruleCheck2746 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleCheck2767 = new BitSet(new long[]{0x0000000042000000L});
-    public static final BitSet FOLLOW_25_in_ruleCheck2780 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleCheck2780 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleCheck2801 = new BitSet(new long[]{0x0000000042000000L});
     public static final BitSet FOLLOW_30_in_ruleCheck2815 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31_in_ruleCheck2829 = new BitSet(new long[]{0x0001F801000001F0L});
@@ -23715,10 +23743,10 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAssertion_in_entryRuleAssertion3006 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssertion3016 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_35_in_ruleAssertion3059 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_ruleAssertion3085 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_36_in_ruleAssertion3085 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssertion3106 = new BitSet(new long[]{0x0000002000000000L});
     public static final BitSet FOLLOW_37_in_ruleAssertion3118 = new BitSet(new long[]{0x0000000000000000L,0x0000000003C00000L});
-    public static final BitSet FOLLOW_ruleAssertionStatusKind_in_ruleAssertion3139 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleAssertionStatusKind_in_ruleAssertion3139 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssertion3160 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStateVariableDeclaration_in_entryRuleStateVariableDeclaration3196 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleStateVariableDeclaration3206 = new BitSet(new long[]{0x0000000000000002L});
@@ -23728,24 +23756,24 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_EOF_in_entryRuleConstantDeclaration3310 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_39_in_ruleConstantDeclaration3347 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleConstantDeclaration3368 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleConstantDeclaration3380 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_23_in_ruleConstantDeclaration3380 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleConstantDeclaration3401 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFunctionObjectDeclaration_in_entryRuleFunctionObjectDeclaration3437 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionObjectDeclaration3447 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_40_in_ruleFunctionObjectDeclaration3484 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleFunctionObjectDeclaration3507 = new BitSet(new long[]{0x00000000200001F0L});
-    public static final BitSet FOLLOW_29_in_ruleFunctionObjectDeclaration3520 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_29_in_ruleFunctionObjectDeclaration3520 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionObjectDeclaration3541 = new BitSet(new long[]{0x0000000042000000L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionObjectDeclaration3554 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionObjectDeclaration3554 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionObjectDeclaration3575 = new BitSet(new long[]{0x0000000042000000L});
     public static final BitSet FOLLOW_30_in_ruleFunctionObjectDeclaration3589 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleFunctionObjectDeclaration3612 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEquation_in_entryRuleEquation3648 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEquation3658 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_41_in_ruleEquation3701 = new BitSet(new long[]{0x0000040000000000L});
-    public static final BitSet FOLLOW_42_in_ruleEquation3727 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_42_in_ruleEquation3727 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleEquation3748 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleEquation3760 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_23_in_ruleEquation3760 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleEquation3781 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_entryRuleDataTypeSpecifier3817 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleDataTypeSpecifier3827 = new BitSet(new long[]{0x0000000000000002L});
@@ -23791,17 +23819,17 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleBooleanType_in_ruleArrayType5048 = new BitSet(new long[]{0x0002000000000000L});
     public static final BitSet FOLLOW_ruleStringType_in_ruleArrayType5067 = new BitSet(new long[]{0x0002000000000000L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleArrayType5096 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_ruleArrayType5110 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_49_in_ruleArrayType5110 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_ruleArrayType5131 = new BitSet(new long[]{0x0004000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleArrayType5144 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleArrayType5144 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_ruleArrayType5165 = new BitSet(new long[]{0x0004000002000000L});
     public static final BitSet FOLLOW_50_in_ruleArrayType5179 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleTensorType_in_entryRuleTensorType5216 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleTensorType5226 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleNumericType_in_ruleTensorType5272 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_ruleTensorType5284 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_49_in_ruleTensorType5284 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_ruleTensorType5305 = new BitSet(new long[]{0x0004000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleTensorType5318 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleTensorType5318 = new BitSet(new long[]{0x012E000882200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_ruleTensorType5339 = new BitSet(new long[]{0x0004000002000000L});
     public static final BitSet FOLLOW_50_in_ruleTensorType5353 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayDimension_in_entryRuleArrayDimension5389 = new BitSet(new long[]{0x0000000000000000L});
@@ -23819,7 +23847,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression5732 = new BitSet(new long[]{0x0010000002000000L});
     public static final BitSet FOLLOW_25_in_ruleLetExpression5745 = new BitSet(new long[]{0x00000000800001F0L});
     public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_ruleLetExpression5766 = new BitSet(new long[]{0x0010000002000000L});
-    public static final BitSet FOLLOW_52_in_ruleLetExpression5780 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_52_in_ruleLetExpression5780 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleLetExpression5801 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLetExpressionAssignment_in_entryRuleLetExpressionAssignment5837 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionAssignment5847 = new BitSet(new long[]{0x0000000000000002L});
@@ -23829,7 +23857,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_25_in_ruleLetExpressionAssignment5947 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_ruleLetExpressionAssignment5968 = new BitSet(new long[]{0x0000000102000000L});
     public static final BitSet FOLLOW_32_in_ruleLetExpressionAssignment5982 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleLetExpressionAssignment5996 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_23_in_ruleLetExpressionAssignment5996 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleLetExpressionAssignment6017 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLetExpressionVariableDeclaration_in_entryRuleLetExpressionVariableDeclaration6053 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLetExpressionVariableDeclaration6063 = new BitSet(new long[]{0x0000000000000002L});
@@ -23837,75 +23865,75 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIfExpression_in_entryRuleIfExpression6143 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfExpression6153 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_35_in_ruleIfExpression6196 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_53_in_ruleIfExpression6222 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_53_in_ruleIfExpression6222 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfExpression6243 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_ruleIfExpression6255 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_54_in_ruleIfExpression6255 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfExpression6276 = new BitSet(new long[]{0x0080000000000000L});
-    public static final BitSet FOLLOW_55_in_ruleIfExpression6288 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_55_in_ruleIfExpression6288 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfExpression6309 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSwitchExpression_in_entryRuleSwitchExpression6345 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSwitchExpression6355 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_35_in_ruleSwitchExpression6398 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ruleSwitchExpression6424 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_56_in_ruleSwitchExpression6424 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSwitchExpression6445 = new BitSet(new long[]{0x0600000000000000L});
     public static final BitSet FOLLOW_ruleSwitchCase_in_ruleSwitchExpression6466 = new BitSet(new long[]{0x0600000000000000L});
     public static final BitSet FOLLOW_57_in_ruleSwitchExpression6479 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleSwitchExpression6491 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_37_in_ruleSwitchExpression6491 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSwitchExpression6512 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleSwitchCase_in_entryRuleSwitchCase6548 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleSwitchCase6558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_58_in_ruleSwitchCase6595 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_58_in_ruleSwitchCase6595 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleSwitchCase6616 = new BitSet(new long[]{0x0000002000000000L});
-    public static final BitSet FOLLOW_37_in_ruleSwitchCase6628 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_37_in_ruleSwitchCase6628 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleSwitchCase6649 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRangeExpression_in_entryRuleRangeExpression6685 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRangeExpression6695 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleRangeExpression6742 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleRangeExpression6763 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_37_in_ruleRangeExpression6763 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleRangeExpression6784 = new BitSet(new long[]{0x0000002000000002L});
-    public static final BitSet FOLLOW_37_in_ruleRangeExpression6797 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_37_in_ruleRangeExpression6797 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_ruleRangeExpression6818 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleImpliesExpression_in_entryRuleImpliesExpression6858 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleImpliesExpression6868 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLogicalOrExpression_in_ruleImpliesExpression6915 = new BitSet(new long[]{0x0800000000000002L});
-    public static final BitSet FOLLOW_59_in_ruleImpliesExpression6936 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_59_in_ruleImpliesExpression6936 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleLogicalOrExpression_in_ruleImpliesExpression6957 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLogicalOrExpression_in_entryRuleLogicalOrExpression6995 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLogicalOrExpression7005 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLogicalAndExpression_in_ruleLogicalOrExpression7052 = new BitSet(new long[]{0x1000000000000002L});
-    public static final BitSet FOLLOW_60_in_ruleLogicalOrExpression7073 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_60_in_ruleLogicalOrExpression7073 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleLogicalAndExpression_in_ruleLogicalOrExpression7094 = new BitSet(new long[]{0x1000000000000002L});
     public static final BitSet FOLLOW_ruleLogicalAndExpression_in_entryRuleLogicalAndExpression7132 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLogicalAndExpression7142 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleLogicalAndExpression7189 = new BitSet(new long[]{0x2000000000000002L});
-    public static final BitSet FOLLOW_61_in_ruleLogicalAndExpression7210 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_61_in_ruleLogicalAndExpression7210 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleEqualityExpression_in_ruleLogicalAndExpression7231 = new BitSet(new long[]{0x2000000000000002L});
     public static final BitSet FOLLOW_ruleEqualityExpression_in_entryRuleEqualityExpression7269 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleEqualityExpression7279 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression7326 = new BitSet(new long[]{0x0000000000000002L,0x000000000C000000L});
-    public static final BitSet FOLLOW_ruleEqualityOperator_in_ruleEqualityExpression7356 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleEqualityOperator_in_ruleEqualityExpression7356 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleRelationalExpression_in_ruleEqualityExpression7377 = new BitSet(new long[]{0x0000000000000002L,0x000000000C000000L});
     public static final BitSet FOLLOW_ruleRelationalExpression_in_entryRuleRelationalExpression7415 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRelationalExpression7425 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleRelationalExpression7472 = new BitSet(new long[]{0x4000000060000002L,0x0000000030000000L});
-    public static final BitSet FOLLOW_ruleRelationalOperator_in_ruleRelationalExpression7556 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleRelationalOperator_in_ruleRelationalExpression7556 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_ruleRelationalExpression7577 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_62_in_ruleRelationalExpression7606 = new BitSet(new long[]{0x0001F800000001F0L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_ruleRelationalExpression7627 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_entryRuleAdditiveExpression7667 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAdditiveExpression7677 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression7724 = new BitSet(new long[]{0x0000000000000002L,0x000000000000000CL});
-    public static final BitSet FOLLOW_ruleAdditiveOperator_in_ruleAdditiveExpression7754 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleAdditiveOperator_in_ruleAdditiveExpression7754 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_ruleAdditiveExpression7775 = new BitSet(new long[]{0x0000000000000002L,0x000000000000000CL});
     public static final BitSet FOLLOW_ruleMultiplicativeExpression_in_entryRuleMultiplicativeExpression7813 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleMultiplicativeExpression7823 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePowerExpression_in_ruleMultiplicativeExpression7870 = new BitSet(new long[]{0x0000000000000002L,0x00000000C0030000L});
-    public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_ruleMultiplicativeExpression7900 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
-    public static final BitSet FOLLOW_rulePowerExpression_in_ruleMultiplicativeExpression7921 = new BitSet(new long[]{0x0000000000000002L,0x00000000C0030000L});
+    public static final BitSet FOLLOW_rulePowerExpression_in_ruleMultiplicativeExpression7870 = new BitSet(new long[]{0x0000000000000002L,0x00000001C0030000L});
+    public static final BitSet FOLLOW_ruleMultiplicativeOperator_in_ruleMultiplicativeExpression7900 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
+    public static final BitSet FOLLOW_rulePowerExpression_in_ruleMultiplicativeExpression7921 = new BitSet(new long[]{0x0000000000000002L,0x00000001C0030000L});
     public static final BitSet FOLLOW_rulePowerExpression_in_entryRulePowerExpression7959 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePowerExpression7969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnaryExpression_in_rulePowerExpression8016 = new BitSet(new long[]{0x0000000000000002L,0x0000000100040000L});
-    public static final BitSet FOLLOW_rulePowerOperator_in_rulePowerExpression8046 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleUnaryExpression_in_rulePowerExpression8016 = new BitSet(new long[]{0x0000000000000002L,0x0000000200040000L});
+    public static final BitSet FOLLOW_rulePowerOperator_in_rulePowerExpression8046 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleUnaryExpression_in_rulePowerExpression8067 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnaryExpression_in_entryRuleUnaryExpression8105 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnaryExpression8115 = new BitSet(new long[]{0x0000000000000002L});
@@ -23914,14 +23942,14 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_rulePostfixExpression_in_ruleUnaryExpression8219 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePostfixExpression_in_entryRulePostfixExpression8256 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRulePostfixExpression8266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleArrayElementAccess_in_rulePostfixExpression8313 = new BitSet(new long[]{0x0000000000000002L,0x0000000400000000L});
+    public static final BitSet FOLLOW_ruleArrayElementAccess_in_rulePostfixExpression8313 = new BitSet(new long[]{0x0000000000000002L,0x0000000800000000L});
     public static final BitSet FOLLOW_rulePostfixOperator_in_rulePostfixExpression8343 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayElementAccess_in_entryRuleArrayElementAccess8381 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayElementAccess8391 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMemberFeatureCall_in_ruleArrayElementAccess8438 = new BitSet(new long[]{0x0002000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleArrayElementAccess8459 = new BitSet(new long[]{0x012A002880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_49_in_ruleArrayElementAccess8459 = new BitSet(new long[]{0x012A002880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleArraySubscript_in_ruleArrayElementAccess8480 = new BitSet(new long[]{0x0004000002000000L});
-    public static final BitSet FOLLOW_25_in_ruleArrayElementAccess8493 = new BitSet(new long[]{0x012A002880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleArrayElementAccess8493 = new BitSet(new long[]{0x012A002880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleArraySubscript_in_ruleArrayElementAccess8514 = new BitSet(new long[]{0x0004000002000000L});
     public static final BitSet FOLLOW_50_in_ruleArrayElementAccess8528 = new BitSet(new long[]{0x0002000000000002L});
     public static final BitSet FOLLOW_ruleMemberFeatureCall_in_entryRuleMemberFeatureCall8566 = new BitSet(new long[]{0x0000000000000000L});
@@ -23931,9 +23959,9 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleValidID_in_ruleMemberFeatureCall8668 = new BitSet(new long[]{0x8000000000000002L});
     public static final BitSet FOLLOW_63_in_ruleMemberFeatureCall8697 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleMemberFeatureCall8720 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleMemberFeatureCall8732 = new BitSet(new long[]{0x012A000980200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_31_in_ruleMemberFeatureCall8732 = new BitSet(new long[]{0x012A000980200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall8754 = new BitSet(new long[]{0x0000000102000000L});
-    public static final BitSet FOLLOW_25_in_ruleMemberFeatureCall8767 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleMemberFeatureCall8767 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall8788 = new BitSet(new long[]{0x0000000102000000L});
     public static final BitSet FOLLOW_32_in_ruleMemberFeatureCall8804 = new BitSet(new long[]{0x8000000000000002L});
     public static final BitSet FOLLOW_63_in_ruleMemberFeatureCall8833 = new BitSet(new long[]{0x00000000000001F0L});
@@ -23944,9 +23972,9 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleMemberFeatureCall8921 = new BitSet(new long[]{0x0000000002000000L,0x0000000000000003L});
     public static final BitSet FOLLOW_64_in_ruleMemberFeatureCall8936 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleIterationAccumulator_in_ruleMemberFeatureCall8957 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000003L});
-    public static final BitSet FOLLOW_64_in_ruleMemberFeatureCall8972 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_64_in_ruleMemberFeatureCall8972 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall8993 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_ruleMemberFeatureCall9007 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_65_in_ruleMemberFeatureCall9007 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleMemberFeatureCall9028 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_ruleMemberFeatureCall9040 = new BitSet(new long[]{0x8000000000000002L});
     public static final BitSet FOLLOW_ruleAssignableMemberFeatureCall_in_entryRuleAssignableMemberFeatureCall9079 = new BitSet(new long[]{0x0000000000000000L});
@@ -23957,7 +23985,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleIterationAccumulator_in_entryRuleIterationAccumulator9218 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIterationAccumulator9228 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleIterationAccumulator9274 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleIterationAccumulator9286 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_23_in_ruleIterationAccumulator9286 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIterationAccumulator9307 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_entryRuleIterationVariableDeclaration9343 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIterationVariableDeclaration9353 = new BitSet(new long[]{0x0000000000000002L});
@@ -24039,9 +24067,9 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleFunctionCall_in_entryRuleFunctionCall11549 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleFunctionCall11559 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleQualifiedName_in_ruleFunctionCall11616 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleFunctionCall11628 = new BitSet(new long[]{0x012A000980200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_31_in_ruleFunctionCall11628 = new BitSet(new long[]{0x012A000980200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionCall11650 = new BitSet(new long[]{0x0000000102000000L});
-    public static final BitSet FOLLOW_25_in_ruleFunctionCall11663 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleFunctionCall11663 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleFunctionCall11684 = new BitSet(new long[]{0x0000000102000000L});
     public static final BitSet FOLLOW_32_in_ruleFunctionCall11700 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStepExpression_in_entryRuleStepExpression11736 = new BitSet(new long[]{0x0000000000000000L});
@@ -24074,9 +24102,9 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_N_in_ruleStepN12515 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConstructionOperator_in_entryRuleArrayConstructionOperator12550 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayConstructionOperator12560 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleArrayConstructionOperator12597 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_21_in_ruleArrayConstructionOperator12597 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayConstructionOperator12618 = new BitSet(new long[]{0x0000000002400000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_25_in_ruleArrayConstructionOperator12632 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleArrayConstructionOperator12632 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayConstructionOperator12653 = new BitSet(new long[]{0x0000000002400000L});
     public static final BitSet FOLLOW_71_in_ruleArrayConstructionOperator12674 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_ruleArrayConstructionOperator12695 = new BitSet(new long[]{0x0000000002400000L});
@@ -24086,19 +24114,19 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleArrayConstructionIterationClause_in_entryRuleArrayConstructionIterationClause12781 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayConstructionIterationClause12791 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleArrayConstructionIterationClause12837 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_ruleArrayConstructionIterationClause12849 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_52_in_ruleArrayConstructionIterationClause12849 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleArrayConstructionIterationClause12870 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleArrayConcatenationOperator_in_entryRuleArrayConcatenationOperator12906 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleArrayConcatenationOperator12916 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_49_in_ruleArrayConcatenationOperator12953 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_49_in_ruleArrayConcatenationOperator12953 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpressionList_in_ruleArrayConcatenationOperator12974 = new BitSet(new long[]{0x0004000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_ruleArrayConcatenationOperator12987 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_64_in_ruleArrayConcatenationOperator12987 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpressionList_in_ruleArrayConcatenationOperator13008 = new BitSet(new long[]{0x0004000000000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_50_in_ruleArrayConcatenationOperator13022 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpressionList_in_entryRuleExpressionList13058 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleExpressionList13068 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionList13114 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_25_in_ruleExpressionList13127 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleExpressionList13127 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleExpressionList13148 = new BitSet(new long[]{0x0000000002000002L});
     public static final BitSet FOLLOW_ruleUnitConstructionOperator_in_entryRuleUnitConstructionOperator13186 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleUnitConstructionOperator13196 = new BitSet(new long[]{0x0000000000000002L});
@@ -24106,9 +24134,9 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleExplicitUnit_in_ruleUnitConstructionOperator13254 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleParenthesizedExpression_in_entryRuleParenthesizedExpression13290 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleParenthesizedExpression13300 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleParenthesizedExpression13337 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_31_in_ruleParenthesizedExpression13337 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleParenthesizedExpression13358 = new BitSet(new long[]{0x0000000102000000L});
-    public static final BitSet FOLLOW_25_in_ruleParenthesizedExpression13371 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_25_in_ruleParenthesizedExpression13371 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleParenthesizedExpression13392 = new BitSet(new long[]{0x0000000102000000L});
     public static final BitSet FOLLOW_32_in_ruleParenthesizedExpression13406 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleEndExpression_in_entryRuleEndExpression13442 = new BitSet(new long[]{0x0000000000000000L});
@@ -24138,20 +24166,20 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleAssignment_in_entryRuleAssignment14108 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleAssignment14118 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleAssignableMemberFeatureCall_in_ruleAssignment14164 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleAssignment14176 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_23_in_ruleAssignment14176 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleAssignment14197 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_64_in_ruleAssignment14209 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLocalVariableDeclaration_in_entryRuleLocalVariableDeclaration14245 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleLocalVariableDeclaration14255 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_38_in_ruleLocalVariableDeclaration14292 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleValidID_in_ruleLocalVariableDeclaration14313 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_ruleLocalVariableDeclaration14325 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_23_in_ruleLocalVariableDeclaration14325 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleLocalVariableDeclaration14346 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_64_in_ruleLocalVariableDeclaration14358 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIfStatement_in_entryRuleIfStatement14394 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIfStatement14404 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_53_in_ruleIfStatement14441 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleIfStatement14453 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_31_in_ruleIfStatement14453 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleIfStatement14474 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_ruleIfStatement14486 = new BitSet(new long[]{0x00200040802001F0L,0x000000000000F880L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleIfStatement14507 = new BitSet(new long[]{0x0080000000000002L});
@@ -24160,7 +24188,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleWhileStatement_in_entryRuleWhileStatement14588 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleWhileStatement14598 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_75_in_ruleWhileStatement14635 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleWhileStatement14647 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_31_in_ruleWhileStatement14647 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleWhileStatement14668 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_ruleWhileStatement14680 = new BitSet(new long[]{0x00200040802001F0L,0x000000000000F880L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleWhileStatement14701 = new BitSet(new long[]{0x0000000000000002L});
@@ -24169,7 +24197,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_71_in_ruleForStatement14784 = new BitSet(new long[]{0x0000000080000000L});
     public static final BitSet FOLLOW_31_in_ruleForStatement14796 = new BitSet(new long[]{0x00000000000001F0L});
     public static final BitSet FOLLOW_ruleIterationVariableDeclaration_in_ruleForStatement14817 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_ruleForStatement14829 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_52_in_ruleForStatement14829 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleForStatement14850 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_ruleForStatement14862 = new BitSet(new long[]{0x00200040802001F0L,0x000000000000F880L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleForStatement14883 = new BitSet(new long[]{0x0000000000000002L});
@@ -24178,7 +24206,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_76_in_ruleDoWhileStatement14966 = new BitSet(new long[]{0x00200040802001F0L,0x000000000000F880L});
     public static final BitSet FOLLOW_ruleStatement_in_ruleDoWhileStatement14987 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000800L});
     public static final BitSet FOLLOW_75_in_ruleDoWhileStatement14999 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_31_in_ruleDoWhileStatement15011 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_31_in_ruleDoWhileStatement15011 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleDoWhileStatement15032 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_32_in_ruleDoWhileStatement15044 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_64_in_ruleDoWhileStatement15056 = new BitSet(new long[]{0x0000000000000002L});
@@ -24192,7 +24220,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_64_in_ruleBreakStatement15264 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleReturnStatement_in_entryRuleReturnStatement15300 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleReturnStatement15310 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_79_in_ruleReturnStatement15347 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_79_in_ruleReturnStatement15347 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleExpression_in_ruleReturnStatement15368 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
     public static final BitSet FOLLOW_64_in_ruleReturnStatement15380 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUnit_in_entryRuleUnit15416 = new BitSet(new long[]{0x0000000000000000L});
@@ -24271,15 +24299,16 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_80_in_ruleMultiplicativeOperator17336 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_94_in_ruleMultiplicativeOperator17353 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_95_in_ruleMultiplicativeOperator17370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_rulePowerOperator17415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_96_in_rulePowerOperator17432 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_ruleUnaryOperator17477 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_97_in_ruleUnaryOperator17494 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_98_in_rulePostfixOperator17538 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_96_in_ruleMultiplicativeOperator17387 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_rulePowerOperator17432 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_97_in_rulePowerOperator17449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_ruleUnaryOperator17494 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_98_in_ruleUnaryOperator17511 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_99_in_rulePostfixOperator17555 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanType_in_synpred1_InternalSimulationModel4998 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStringType_in_synpred1_InternalSimulationModel5005 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_synpred1_InternalSimulationModel5024 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRelationalOperator_in_synpred2_InternalSimulationModel7491 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000200000738L});
+    public static final BitSet FOLLOW_ruleRelationalOperator_in_synpred2_InternalSimulationModel7491 = new BitSet(new long[]{0x012A000880200FF0L,0x0000000400000738L});
     public static final BitSet FOLLOW_ruleAdditiveExpression_in_synpred2_InternalSimulationModel7500 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_62_in_synpred2_InternalSimulationModel7517 = new BitSet(new long[]{0x0001F800000001F0L});
     public static final BitSet FOLLOW_ruleDataTypeSpecifier_in_synpred2_InternalSimulationModel7524 = new BitSet(new long[]{0x0000000000000002L});

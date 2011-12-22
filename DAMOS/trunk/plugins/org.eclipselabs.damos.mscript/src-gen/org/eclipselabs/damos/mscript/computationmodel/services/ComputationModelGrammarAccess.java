@@ -1097,7 +1097,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//enum MultiplicativeOperator:
-	//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./";
+	//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%";
 	public MscriptGrammarAccess.MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return gaMscript.getMultiplicativeOperatorAccess();
 	}

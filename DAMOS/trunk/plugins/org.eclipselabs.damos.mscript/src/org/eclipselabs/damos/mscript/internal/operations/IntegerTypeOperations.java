@@ -44,6 +44,7 @@ public class IntegerTypeOperations extends PrimitiveTypeOperations {
 		case SUBTRACT:
 		case MULTIPLY:
 		case DIVIDE:
+		case MODULO:
 			Unit unit = integerType.getUnit().evaluate(operator, otherNumericType.getUnit());
 			if (unit != null) {
 				NumericType result;

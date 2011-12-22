@@ -152,6 +152,16 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		return createValue(resultDataType, truncatedResult, FixedPointOperationKind.DIVIDE);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue#basicModulo(org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue, org.eclipselabs.damos.mscript.NumericType)
+	 */
+	@Override
+	protected AbstractNumericValue basicModulo(AbstractNumericValue other, NumericType resultDataType) {
+		FixedPointValue otherFixedPointValue = (FixedPointValue) other;
+		long result = rawValue % otherFixedPointValue.rawValue;
+		return new FixedPointValue(getContext(), resultDataType, getNumberFormat(), result);
+	}
+	
 	@Override
 	protected AbstractNumericValue basicNegate(NumericType resultDataType) {
 		return new FixedPointValue(getContext(), getDataType(), getNumberFormat(), -rawValue);

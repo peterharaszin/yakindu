@@ -4302,6 +4302,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.DIVIDE);
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_MULTIPLY);
 		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.ELEMENT_WISE_DIVIDE);
+		addEEnumLiteral(multiplicativeOperatorEEnum, MultiplicativeOperator.MODULO);
 
 		initEEnum(powerOperatorEEnum, PowerOperator.class, "PowerOperator");
 		addEEnumLiteral(powerOperatorEEnum, PowerOperator.POWER);
@@ -4319,6 +4320,7 @@ public class MscriptPackageImpl extends EPackageImpl implements MscriptPackage {
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.SUBTRACT);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.MULTIPLY);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.DIVIDE);
+		addEEnumLiteral(operatorKindEEnum, OperatorKind.MODULO);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_MULTIPLY);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_DIVIDE);
 		addEEnumLiteral(operatorKindEEnum, OperatorKind.ELEMENT_WISE_POWER);

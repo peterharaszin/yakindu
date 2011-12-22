@@ -43,6 +43,7 @@ public class RealTypeOperations extends PrimitiveTypeOperations {
 		case SUBTRACT:
 		case MULTIPLY:
 		case DIVIDE:
+		case MODULO:
 			Unit unit = realType.getUnit().evaluate(operator, otherNumericType.getUnit());
 			if (unit != null) {
 				NumericType result = MscriptFactory.eINSTANCE.createRealType();

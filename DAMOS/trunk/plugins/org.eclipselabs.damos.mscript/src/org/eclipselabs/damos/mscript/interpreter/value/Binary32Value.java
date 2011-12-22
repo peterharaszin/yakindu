@@ -93,6 +93,16 @@ public class Binary32Value extends AbstractNumericValue implements ISimpleNumeri
 		return new Binary32Value(getContext(), resultDataType, getNumberFormat(), result);
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue#basicModulo(org.eclipselabs.damos.mscript.interpreter.value.AbstractNumericValue, org.eclipselabs.damos.mscript.NumericType)
+	 */
+	@Override
+	protected AbstractNumericValue basicModulo(AbstractNumericValue other, NumericType resultDataType) {
+		Binary32Value otherBinary32Value = (Binary32Value) other;
+		float result = value % otherBinary32Value.value;
+		return new Binary32Value(getContext(), resultDataType, getNumberFormat(), result);
+	}
+	
 	@Override
 	protected AbstractNumericValue basicNegate(NumericType resultDataType) {
 		return new Binary32Value(getContext(), resultDataType, getNumberFormat(), -value);

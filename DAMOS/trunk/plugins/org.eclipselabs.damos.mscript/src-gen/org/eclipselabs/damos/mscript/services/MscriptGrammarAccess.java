@@ -4427,12 +4427,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cElementWiseMultiplyFullStopAsteriskKeyword_2_0 = (Keyword)cElementWiseMultiplyEnumLiteralDeclaration_2.eContents().get(0);
 		private final EnumLiteralDeclaration cElementWiseDivideEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
 		private final Keyword cElementWiseDivideFullStopSolidusKeyword_3_0 = (Keyword)cElementWiseDivideEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cModuloEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cModuloPercentSignKeyword_4_0 = (Keyword)cModuloEnumLiteralDeclaration_4.eContents().get(0);
 		
 		//enum MultiplicativeOperator:
-		//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./";
+		//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%";
 		public EnumRule getRule() { return rule; }
 
-		//Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./"
+		//Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Multiply="*"
@@ -4458,6 +4460,12 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"./"
 		public Keyword getElementWiseDivideFullStopSolidusKeyword_3_0() { return cElementWiseDivideFullStopSolidusKeyword_3_0; }
+
+		//Modulo="%"
+		public EnumLiteralDeclaration getModuloEnumLiteralDeclaration_4() { return cModuloEnumLiteralDeclaration_4; }
+
+		//"%"
+		public Keyword getModuloPercentSignKeyword_4_0() { return cModuloPercentSignKeyword_4_0; }
 	}
 
 	public class PowerOperatorElements extends AbstractEnumRuleElementFinder {
@@ -5202,7 +5210,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum MultiplicativeOperator:
-	//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./";
+	//	Multiply="*" | Divide="/" | ElementWiseMultiply=".*" | ElementWiseDivide="./" | Modulo="%";
 	public MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
 		return (unknownRuleMultiplicativeOperator != null) ? unknownRuleMultiplicativeOperator : (unknownRuleMultiplicativeOperator = new MultiplicativeOperatorElements());
 	}

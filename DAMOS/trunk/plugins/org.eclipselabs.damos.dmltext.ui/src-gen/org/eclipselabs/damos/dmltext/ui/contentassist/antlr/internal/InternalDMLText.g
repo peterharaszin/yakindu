@@ -5073,6 +5073,13 @@ rule__MultiplicativeOperator__Alternatives
 { after(grammarAccess.getMultiplicativeOperatorAccess().getElementWiseDivideEnumLiteralDeclaration_3()); }
 )
 
+    |(
+{ before(grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4()); }
+(	'%' 
+)
+{ after(grammarAccess.getMultiplicativeOperatorAccess().getModuloEnumLiteralDeclaration_4()); }
+)
+
 ;
 finally {
 	restoreStackSize(stackSize);

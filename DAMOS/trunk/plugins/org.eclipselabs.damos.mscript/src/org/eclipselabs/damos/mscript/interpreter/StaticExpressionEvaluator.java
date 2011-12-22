@@ -467,6 +467,9 @@ public class StaticExpressionEvaluator {
 			case DIVIDE:
 				result = leftValue.divide(rightValue);
 				break;
+			case MODULO:
+				result = leftValue.modulo(rightValue);
+				break;
 			default:
 				throw new IllegalArgumentException();
 			}

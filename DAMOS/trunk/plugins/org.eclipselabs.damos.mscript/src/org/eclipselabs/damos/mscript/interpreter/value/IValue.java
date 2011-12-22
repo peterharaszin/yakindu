@@ -31,6 +31,7 @@ public interface IValue {
 	IValue divide(IValue other);
 	IValue elementWiseMultiply(IValue other);
 	IValue elementWiseDivide(IValue other);
+	IValue modulo(IValue other);
 	IValue negate();
 	IValue power(IValue other);
 	IValue transpose();

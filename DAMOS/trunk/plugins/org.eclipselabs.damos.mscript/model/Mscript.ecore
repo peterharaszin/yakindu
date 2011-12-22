@@ -176,6 +176,7 @@
     <eLiterals name="Divide" value="1" literal="/"/>
     <eLiterals name="ElementWiseMultiply" value="2" literal=".*"/>
     <eLiterals name="ElementWiseDivide" value="3" literal="./"/>
+    <eLiterals name="Modulo" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PowerOperator">
     <eLiterals name="Power" literal="^"/>
@@ -440,23 +441,24 @@
     <eLiterals name="Subtract" value="1"/>
     <eLiterals name="Multiply" value="2"/>
     <eLiterals name="Divide" value="3"/>
-    <eLiterals name="ElementWiseMultiply" value="4"/>
-    <eLiterals name="ElementWiseDivide" value="5"/>
-    <eLiterals name="ElementWisePower" value="6"/>
-    <eLiterals name="Negate" value="7"/>
-    <eLiterals name="Power" value="8"/>
-    <eLiterals name="Root" value="9"/>
-    <eLiterals name="Transpose" value="10"/>
-    <eLiterals name="LogicalAnd" value="11"/>
-    <eLiterals name="LogicalOr" value="12"/>
-    <eLiterals name="LogicalNot" value="13"/>
-    <eLiterals name="Implies" value="14"/>
-    <eLiterals name="LessThan" value="15"/>
-    <eLiterals name="LessThanOrEqualTo" value="16"/>
-    <eLiterals name="GreaterThan" value="17"/>
-    <eLiterals name="GreaterThanOrEqualTo" value="18"/>
-    <eLiterals name="EqualTo" value="19"/>
-    <eLiterals name="NotEqualTo" value="20"/>
+    <eLiterals name="Modulo" value="4"/>
+    <eLiterals name="ElementWiseMultiply" value="5"/>
+    <eLiterals name="ElementWiseDivide" value="6"/>
+    <eLiterals name="ElementWisePower" value="7"/>
+    <eLiterals name="Negate" value="8"/>
+    <eLiterals name="Power" value="9"/>
+    <eLiterals name="Root" value="10"/>
+    <eLiterals name="Transpose" value="11"/>
+    <eLiterals name="LogicalAnd" value="12"/>
+    <eLiterals name="LogicalOr" value="13"/>
+    <eLiterals name="LogicalNot" value="14"/>
+    <eLiterals name="Implies" value="15"/>
+    <eLiterals name="LessThan" value="16"/>
+    <eLiterals name="LessThanOrEqualTo" value="17"/>
+    <eLiterals name="GreaterThan" value="18"/>
+    <eLiterals name="GreaterThanOrEqualTo" value="19"/>
+    <eLiterals name="EqualTo" value="20"/>
+    <eLiterals name="NotEqualTo" value="21"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//DataType"/>
   <eClassifiers xsi:type="ecore:EClass" name="NumericType" eSuperTypes="#//PrimitiveType">

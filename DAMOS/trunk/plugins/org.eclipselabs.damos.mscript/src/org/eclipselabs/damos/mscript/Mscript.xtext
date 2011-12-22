@@ -227,7 +227,8 @@ enum MultiplicativeOperator:
 	Multiply='*' |
 	Divide='/' |
 	ElementWiseMultiply='.*' |
-	ElementWiseDivide='./';
+	ElementWiseDivide='./' |
+	Modulo='%';
 	
 PowerExpression returns Expression:
 	UnaryExpression ({PowerExpression.operand=current} operator=PowerOperator exponent=UnaryExpression)?;

@@ -190,11 +190,19 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 		
 		private void writeFloatingPointMultiplicativeExpression(MultiplicativeOperator operator, Expression leftOperand, Expression rightOperand, FloatingPointFormat floatingPointFormat) {
-			castToFloatingPoint(leftOperand, floatingPointFormat);
-			out.print(" ");
-			out.print(operator.getLiteral());
-			out.print(" ");
-			castToFloatingPoint(rightOperand, floatingPointFormat);
+			if (operator == MultiplicativeOperator.MODULO) {
+				out.print("fmod(");
+				castToFloatingPoint(leftOperand, floatingPointFormat);
+				out.print(", ");
+				castToFloatingPoint(rightOperand, floatingPointFormat);
+				out.print(")");
+			} else {
+				castToFloatingPoint(leftOperand, floatingPointFormat);
+				out.print(" ");
+				out.print(operator.getLiteral());
+				out.print(" ");
+				castToFloatingPoint(rightOperand, floatingPointFormat);
+			}
 		}
 		
 		private void writeFixedPointMultiplicativeExpression(MultiplicativeOperator operator, Expression leftOperand, Expression rightOperand, FixedPointFormat fixedPointFormat) {
@@ -204,6 +212,11 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				break;
 			case DIVIDE:
 				writeFixedPointDivisionExpression(leftOperand, rightOperand, fixedPointFormat);
+				break;
+			case MODULO:
+				MscriptGeneratorUtil.castNumericType(context, fixedPointFormat, leftOperand);
+				out.print(" % ");
+				MscriptGeneratorUtil.castNumericType(context, fixedPointFormat, rightOperand);
 				break;
 			default:
 				throw new IllegalArgumentException();

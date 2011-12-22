@@ -83,6 +83,14 @@ public class AnyValue extends AbstractExplicitDataTypeValue {
 	protected IValue doElementWiseDivide(IValue other, DataType resultDataType) {
 		return new AnyValue(getContext(), resultDataType);
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.AbstractValue#doModulo(org.eclipselabs.damos.mscript.interpreter.value.IValue, org.eclipselabs.damos.mscript.DataType)
+	 */
+	@Override
+	protected IValue doModulo(IValue other, DataType resultDataType) {
+		return new AnyValue(getContext(), resultDataType);
+	}
 
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.mscript.interpreter.value.AbstractValue#doNegate(org.eclipselabs.mscript.typesystem.DataType)

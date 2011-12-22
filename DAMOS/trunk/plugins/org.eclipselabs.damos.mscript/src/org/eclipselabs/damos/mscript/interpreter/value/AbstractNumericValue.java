@@ -106,6 +106,18 @@ public abstract class AbstractNumericValue extends AbstractExplicitDataTypeValue
 
 	protected abstract AbstractNumericValue basicDivide(AbstractNumericValue other, NumericType resultDataType);
 
+	protected IValue doModulo(IValue other, DataType resultDataType) {
+		AbstractNumericValue otherRealValue = (AbstractNumericValue) other;
+		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
+		
+		AbstractNumericValue leftOperand = cast(resultNumberFormat);
+		AbstractNumericValue rightOperand = otherRealValue.cast(resultNumberFormat);
+		
+		return leftOperand.basicModulo(rightOperand, (NumericType) resultDataType);
+	}
+
+	protected abstract AbstractNumericValue basicModulo(AbstractNumericValue other, NumericType resultDataType);
+
 	protected IValue doNegate(DataType resultDataType) {
 		NumberFormat resultNumberFormat = getContext().getComputationModel().getNumberFormat(resultDataType);
 		

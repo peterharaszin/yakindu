@@ -326,6 +326,7 @@ public class UnitOperations {
 				}
 			}
 			return unit;
+		case MODULO:
 		case NEGATE:
 			return EcoreUtil.copy(unit);
 		}

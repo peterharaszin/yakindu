@@ -165,6 +165,27 @@ public abstract class AbstractValue implements IValue {
 	protected IValue doElementWiseDivide(IValue other, DataType resultDataType) {
 		return InvalidValue.SINGLETON;
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.mscript.interpreter.value.IValue#modulo(org.eclipselabs.damos.mscript.interpreter.value.IValue)
+	 */
+	public IValue modulo(IValue other) {
+		DataType dataType = getDataType().evaluate(OperatorKind.MODULO, other.getDataType());
+		if (dataType instanceof InvalidDataType) { 
+			return InvalidValue.SINGLETON;
+		}
+		if (other instanceof AnyValue) {
+			return new AnyValue(getContext(), dataType);
+		}
+		if (other instanceof UninitializedValue || other instanceof InvalidValue) {
+			return InvalidValue.SINGLETON;
+		}
+		return doModulo(other, dataType);
+	}
+
+	protected IValue doModulo(IValue other, DataType resultDataType) {
+		return InvalidValue.SINGLETON;
+	}
 
 	public IValue negate() {
 		DataType dataType = getDataType().evaluate(OperatorKind.NEGATE, null);

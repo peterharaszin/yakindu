@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.diagram.ui.editparts;
 
-import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
 import org.eclipselabs.damos.dml.BlockInoutput;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 
 /**
  * @author Andreas Unger
@@ -35,7 +35,7 @@ public class NamedBlockPortHelper {
 		Port port = (Port) editPart.resolveSemanticElement();
 		if (port != null) {
 			BlockInoutput inoutput = (BlockInoutput) port.getInoutput();
-			String name = NameUtil.formatName(inoutput.getName());
+			String name = DMLUtil.safeFormatName(inoutput);
 			if (inoutput.getDefinition().isManyPorts()) {
 				name += " " + Integer.toString(port.getIndex() + 1);
 			}

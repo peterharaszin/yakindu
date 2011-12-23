@@ -12,11 +12,11 @@
 package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.diagram.ui.editpolicies.IEditPolicyRoles;
 import org.eclipselabs.damos.diagram.ui.editpolicies.NonRotatableTransformEditPolicy;
 import org.eclipselabs.damos.diagram.ui.figures.FunctionBlockFigure;
 import org.eclipselabs.damos.dml.Block;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 
 /**
  * @author Andreas Unger
@@ -46,7 +46,7 @@ public class FunctionBlockEditPart extends StandardBlockEditPart {
 	protected void refreshHeader() {
 		Block block = (Block) resolveSemanticElement();
 		if (block != null) {
-			getMainFigure().setHeaderText(NameUtil.formatName(block.getType().getName()));
+			getMainFigure().setHeaderText(DMLUtil.safeFormatName(block.getType()));
 		}
 	}
 

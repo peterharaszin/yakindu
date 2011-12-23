@@ -12,6 +12,8 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -35,6 +37,7 @@ import org.eclipselabs.damos.dml.internal.operations.BlockTypeOperations;
 import org.eclipselabs.damos.dml.internal.operations.CategorizedElementOperations;
 import org.eclipselabs.damos.dml.internal.operations.ParameterableElementOperations;
 import org.eclipselabs.damos.dml.internal.operations.QualifiedElementOperations;
+import org.eclipselabs.damos.dml.internal.util.URIUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -697,6 +700,18 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 		result.append(timing);
 		result.append(')');
 		return result.toString();
+	}
+
+	@Override
+	public EObject eObjectForURIFragmentSegment(String uriFragmentSegment) {
+		EObject eObject = URIUtil.eObjectForURIFragmentSegment(this, uriFragmentSegment);
+		return eObject != null ? eObject : super.eObjectForURIFragmentSegment(uriFragmentSegment);
+	}
+	
+	@Override
+	public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject) {
+		String fragmentSegment = URIUtil.eURIFragmentSegment(eStructuralFeature, eObject);
+		return fragmentSegment != null ? fragmentSegment : super.eURIFragmentSegment(eStructuralFeature, eObject);
 	}
 
 } //BlockTypeImpl

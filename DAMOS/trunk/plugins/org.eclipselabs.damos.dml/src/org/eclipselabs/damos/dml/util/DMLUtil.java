@@ -33,6 +33,7 @@ import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.Connector;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.FragmentElement;
+import org.eclipselabs.damos.dml.INamedElement;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.InputPort;
@@ -302,6 +303,10 @@ public class DMLUtil {
 			}
 		}
 		return null;
+	}
+	
+	public static String safeFormatName(INamedElement element) {
+		return element != null && !element.eIsProxy() && element.getName() != null ? element.getName() : "???";
 	}
 
 }

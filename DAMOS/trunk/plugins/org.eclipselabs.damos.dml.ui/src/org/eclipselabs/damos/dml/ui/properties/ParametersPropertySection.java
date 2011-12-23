@@ -93,7 +93,9 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		
 		if (getModel() instanceof ParameterizedElement) {
 			for (Argument argument : ((ParameterizedElement) getModel()).getArguments()) {
-				initializeParameterWidgets(argument);
+				if (argument.getParameter() != null && !argument.getParameter().eIsProxy()) {
+					initializeParameterWidgets(argument);
+				}
 			}
 		}
 	

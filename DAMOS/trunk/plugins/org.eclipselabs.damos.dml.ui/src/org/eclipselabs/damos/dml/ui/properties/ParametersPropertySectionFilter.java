@@ -17,7 +17,7 @@ public class ParametersPropertySectionFilter implements IFilter {
 		}
 		if (parameterizedElement != null) {
 			for (Argument argument : parameterizedElement.getArguments()) {
-				if (argument.getParameter() != null && argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
+				if (argument.getParameter() != null && !argument.getParameter().eIsProxy() && argument.getParameter().getVisibility() == ParameterVisibilityKind.PUBLIC) {
 					return true;
 				}
 			}

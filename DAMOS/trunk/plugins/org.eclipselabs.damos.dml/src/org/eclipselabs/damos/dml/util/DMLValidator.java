@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -152,6 +153,8 @@ public class DMLValidator extends EObjectValidator {
 	protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
 
 	private static final Pattern IDENTIFIER_PATTERN = Pattern.compile("[a-zA-Z]\\w*");
+	
+	private static final Pattern URI_LAST_ELEMENT_NAME_PATTERN = Pattern.compile("~\\w+\\.\\w+\\z");
 	
 	/**
 	 * Creates an instance of the switch.
@@ -356,6 +359,100 @@ public class DMLValidator extends EObjectValidator {
 			default:
 				return true;
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.ecore.util.EObjectValidator#validate_EveryProxyResolves(org.eclipse.emf.ecore.EObject, org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 */
+	@Override
+	public boolean validate_EveryProxyResolves(EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (eObject instanceof Block) {
+			Block block = (Block) eObject;
+			if (!isResolved(block.getType())) {
+				if (diagnostics != null) {
+					String path = "";
+					if (block.getType() != null) {
+						URI uri = EcoreUtil.getURI(block.getType());
+						if (uri != null && uri.isPlatformResource()) {
+							path = " defined in " + uri.toPlatformString(true);
+						}
+					}
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+							DIAGNOSTIC_SOURCE,
+							0,
+							String.format("The block type of block %s%s could not be resolved", block.getName(), path),
+							new Object[] { block }));
+				}
+				return false;
+			}
+		} else if (eObject instanceof BlockInoutput) {
+			if (!validate_EveryProxyResolves(eObject.eContainer(), null, context)) {
+				return true;
+			}
+			BlockInoutput inoutput = (BlockInoutput) eObject;
+			InoutputDefinition definition = inoutput.getDefinition();
+			if (!isResolved(definition)) {
+				if (diagnostics != null) {
+					Block block = DMLUtil.getOwner(inoutput, Block.class);
+					String blockName = block.getName() != null ? " of block " + block.getName() : "";
+					String blockTypeName = getName(block.getType(), "UNNAMED");
+					String kind = inoutput instanceof Input ? "input" : "output";
+					
+					String message = null;
+					if (definition != null) {
+						String name = extractElementName(EcoreUtil.getURI(definition));
+						if (name != null) {
+							message = String.format("The %s %s%s is undefined for block type %s",
+									kind, name, blockName, blockTypeName);
+						}
+					}
+					
+					if (message == null) {
+						message = String.format("The %d. %s%s is undefined for block type %s",
+								DMLUtil.indexOf(inoutput) + 1, kind, blockName, blockTypeName);
+					}
+					
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
+							new Object[] { inoutput }));
+				}
+				return false;
+			}
+		} else if (eObject instanceof Argument) {
+			if (!validate_EveryProxyResolves(eObject.eContainer(), null, context)) {
+				return true;
+			}
+			Argument argument = (Argument) eObject;
+			Parameter parameter = argument.getParameter();
+			if (!isResolved(parameter)) {
+				if (diagnostics != null) {
+					Block block = DMLUtil.getOwner(argument, Block.class);
+					String blockName = block.getName() != null ? " of block " + block.getName() : "";
+					String blockTypeName = getName(block.getType(), "UNNAMED");
+
+					String message = null;
+					
+					if (parameter != null) {
+						String name = extractElementName(EcoreUtil.getURI(parameter));
+						if (name != null) {
+							message = String.format("The parameter %s%s is undefined for block type %s",
+									name, blockName, blockTypeName);
+						}
+					}
+					
+					if (message == null) {
+						message = String.format("The %d. parameter%s is undefined for block type %s",
+								DMLUtil.indexOf(argument) + 1, blockName, blockTypeName);
+					}
+					
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
+							new Object[] { argument }));
+				}
+				return false;
+			}
+		} else {
+			return super.validate_EveryProxyResolves(eObject, diagnostics, context);
+		}
+		return true;
 	}
 	
 	/* (non-Javadoc)
@@ -1981,9 +2078,24 @@ public class DMLValidator extends EObjectValidator {
 	}
 
 	private String getOwnerName(EObject eObject) {
-		Component component = DMLUtil.getOwner(eObject, Component.class);
-		if (component != null) {
-			return component.getName();
+		INamedElement namedElement = DMLUtil.getOwner(eObject, INamedElement.class);
+		if (namedElement != null) {
+			return namedElement.getName();
+		}
+		return null;
+	}
+	
+	private String getName(INamedElement namedElement, String defaultName) {
+		if (isResolved(namedElement) && namedElement.getName() != null) {
+			return namedElement.getName();
+		}
+		return defaultName;
+	}
+	
+	private String extractElementName(URI uri) {
+		String fragment = uri.fragment();
+		if (URI_LAST_ELEMENT_NAME_PATTERN.matcher(fragment).find()) {
+			return fragment.substring(fragment.lastIndexOf('.') + 1);
 		}
 		return null;
 	}

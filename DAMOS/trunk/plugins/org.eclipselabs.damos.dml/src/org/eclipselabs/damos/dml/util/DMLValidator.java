@@ -449,6 +449,24 @@ public class DMLValidator extends EObjectValidator {
 				}
 				return false;
 			}
+		} else if (eObject instanceof SubsystemRealization) {
+			SubsystemRealization subsystemRealization = (SubsystemRealization) eObject;
+			if (!isResolved(subsystemRealization.getRealizingFragment())) {
+				if (diagnostics != null) {
+					String path = "";
+					if (subsystemRealization.getRealizingFragment() != null) {
+						URI uri = EcoreUtil.getURI(subsystemRealization.getRealizingFragment());
+						if (uri != null && uri.isPlatformResource()) {
+							path = " defined in " + uri.toPlatformString(true);
+						}
+					}
+					String message = String.format("Realizing fragment%s could not be resolved for subsystem %s", path,
+							subsystemRealization.getRealizedSubsystem().getName());
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
+							new Object[] { subsystemRealization.getRealizedSubsystem() }));
+				}
+				return false;
+			}
 		} else {
 			return super.validate_EveryProxyResolves(eObject, diagnostics, context);
 		}

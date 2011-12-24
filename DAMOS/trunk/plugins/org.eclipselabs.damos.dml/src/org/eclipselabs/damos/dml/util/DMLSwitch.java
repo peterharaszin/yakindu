@@ -83,6 +83,7 @@ import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -619,10 +620,19 @@ public class DMLSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLPackage.SUBSYSTEM_INOUTPUT: {
+				SubsystemInoutput subsystemInoutput = (SubsystemInoutput)theEObject;
+				T result = caseSubsystemInoutput(subsystemInoutput);
+				if (result == null) result = caseInoutput(subsystemInoutput);
+				if (result == null) result = caseINamedElement(subsystemInoutput);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLPackage.SUBSYSTEM_INPUT: {
 				SubsystemInput subsystemInput = (SubsystemInput)theEObject;
 				T result = caseSubsystemInput(subsystemInput);
 				if (result == null) result = caseInput(subsystemInput);
+				if (result == null) result = caseSubsystemInoutput(subsystemInput);
 				if (result == null) result = caseInoutput(subsystemInput);
 				if (result == null) result = caseINamedElement(subsystemInput);
 				if (result == null) result = defaultCase(theEObject);
@@ -632,6 +642,7 @@ public class DMLSwitch<T> extends Switch<T> {
 				SubsystemOutput subsystemOutput = (SubsystemOutput)theEObject;
 				T result = caseSubsystemOutput(subsystemOutput);
 				if (result == null) result = caseOutput(subsystemOutput);
+				if (result == null) result = caseSubsystemInoutput(subsystemOutput);
 				if (result == null) result = caseInoutput(subsystemOutput);
 				if (result == null) result = caseINamedElement(subsystemOutput);
 				if (result == null) result = defaultCase(theEObject);
@@ -1683,6 +1694,21 @@ public class DMLSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOutportOutput(OutportOutput object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Subsystem Inoutput</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Subsystem Inoutput</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSubsystemInoutput(SubsystemInoutput object) {
 		return null;
 	}
 

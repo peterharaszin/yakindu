@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Inlet;
+import org.eclipselabs.damos.dml.Inoutlet;
 import org.eclipselabs.damos.dml.SubsystemInput;
 
 /**
@@ -95,6 +96,15 @@ public class SubsystemInputImpl extends InputImpl implements SubsystemInput {
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.SUBSYSTEM_INPUT__INLET, oldInlet, inlet));
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Inoutlet getInoutlet() {
+		return getInlet();
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.impl.InputImpl#getName()
 	 */

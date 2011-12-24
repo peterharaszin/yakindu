@@ -90,6 +90,7 @@ import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -500,6 +501,13 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass outportOutputEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass subsystemInoutputEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1814,6 +1822,15 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getSubsystemInoutput() {
+		return subsystemInoutputEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSubsystemInput() {
 		return subsystemInputEClass;
 	}
@@ -2417,6 +2434,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 
 		outportOutputEClass = createEClass(OUTPORT_OUTPUT);
 
+		subsystemInoutputEClass = createEClass(SUBSYSTEM_INOUTPUT);
+
 		subsystemInputEClass = createEClass(SUBSYSTEM_INPUT);
 		createEReference(subsystemInputEClass, SUBSYSTEM_INPUT__INLET);
 
@@ -2577,8 +2596,11 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		inoutportEClass.getESuperTypes().add(this.getComponent());
 		outportEClass.getESuperTypes().add(this.getInoutport());
 		outportOutputEClass.getESuperTypes().add(this.getOutput());
+		subsystemInoutputEClass.getESuperTypes().add(this.getInoutput());
 		subsystemInputEClass.getESuperTypes().add(this.getInput());
+		subsystemInputEClass.getESuperTypes().add(this.getSubsystemInoutput());
 		subsystemOutputEClass.getESuperTypes().add(this.getOutput());
+		subsystemOutputEClass.getESuperTypes().add(this.getSubsystemInoutput());
 		booleanDirectFeedthroughPolicyEClass.getESuperTypes().add(this.getDirectFeedthroughPolicy());
 		latchEClass.getESuperTypes().add(this.getComponent());
 		latchInputEClass.getESuperTypes().add(this.getInput());
@@ -2893,6 +2915,10 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(outportEClass, Outport.class, "Outport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(outportOutputEClass, OutportOutput.class, "OutportOutput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(subsystemInoutputEClass, SubsystemInoutput.class, "SubsystemInoutput", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(subsystemInoutputEClass, this.getInoutlet(), "getInoutlet", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(subsystemInputEClass, SubsystemInput.class, "SubsystemInput", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSubsystemInput_Inlet(), this.getInlet(), null, "inlet", null, 1, 1, SubsystemInput.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

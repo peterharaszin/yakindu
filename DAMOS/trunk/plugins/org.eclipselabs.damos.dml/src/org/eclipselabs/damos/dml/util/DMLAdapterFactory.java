@@ -84,6 +84,7 @@ import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -377,6 +378,10 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOutportOutput(OutportOutput object) {
 				return createOutportOutputAdapter();
+			}
+			@Override
+			public Adapter caseSubsystemInoutput(SubsystemInoutput object) {
+				return createSubsystemInoutputAdapter();
 			}
 			@Override
 			public Adapter caseSubsystemInput(SubsystemInput object) {
@@ -1283,6 +1288,20 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOutportOutputAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.SubsystemInoutput <em>Subsystem Inoutput</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.SubsystemInoutput
+	 * @generated
+	 */
+	public Adapter createSubsystemInoutputAdapter() {
 		return null;
 	}
 

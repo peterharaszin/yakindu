@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface SubsystemOutput extends Output {
+public interface SubsystemOutput extends Output, SubsystemInoutput {
 	/**
 	 * Returns the value of the '<em><b>Outlet</b></em>' reference.
 	 * <!-- begin-user-doc -->

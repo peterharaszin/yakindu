@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.Inoutlet;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 
@@ -95,6 +96,15 @@ public class SubsystemOutputImpl extends OutputImpl implements SubsystemOutput {
 			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.SUBSYSTEM_OUTPUT__OUTLET, oldOutlet, outlet));
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public Inoutlet getInoutlet() {
+		return getOutlet();
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.impl.OutputImpl#getName()
 	 */

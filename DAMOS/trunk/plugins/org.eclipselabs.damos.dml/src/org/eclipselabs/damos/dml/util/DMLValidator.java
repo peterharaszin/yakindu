@@ -99,6 +99,7 @@ import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SignalSpecification;
 import org.eclipselabs.damos.dml.StringValueSpecification;
 import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.SubsystemInoutput;
 import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
@@ -300,6 +301,8 @@ public class DMLValidator extends EObjectValidator {
 				return validateOutport((Outport)value, diagnostics, context);
 			case DMLPackage.OUTPORT_OUTPUT:
 				return validateOutportOutput((OutportOutput)value, diagnostics, context);
+			case DMLPackage.SUBSYSTEM_INOUTPUT:
+				return validateSubsystemInoutput((SubsystemInoutput)value, diagnostics, context);
 			case DMLPackage.SUBSYSTEM_INPUT:
 				return validateSubsystemInput((SubsystemInput)value, diagnostics, context);
 			case DMLPackage.SUBSYSTEM_OUTPUT:
@@ -380,7 +383,7 @@ public class DMLValidator extends EObjectValidator {
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
 							DIAGNOSTIC_SOURCE,
 							0,
-							String.format("The block type of block %s%s could not be resolved", block.getName(), path),
+							String.format("The block type of %s%s could not be resolved", block.getName(), path),
 							new Object[] { block }));
 				}
 				return false;
@@ -464,6 +467,57 @@ public class DMLValidator extends EObjectValidator {
 							subsystemRealization.getRealizedSubsystem().getName());
 					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
 							new Object[] { subsystemRealization.getRealizedSubsystem() }));
+				}
+				return false;
+			}
+		} else if (eObject instanceof Subsystem) {
+			Subsystem subsystem = (Subsystem) eObject;
+				if (!isResolved(subsystem.getProvidedInterface())) {
+					if (diagnostics != null) {
+						String path = "";
+						if (subsystem.getProvidedInterface() != null) {
+							URI uri = EcoreUtil.getURI(subsystem.getProvidedInterface());
+							if (uri != null && uri.isPlatformResource()) {
+								path = " defined in " + uri.toPlatformString(true);
+							}
+						}
+						diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR,
+								DIAGNOSTIC_SOURCE,
+								0,
+								String.format("The system interface of %s%s could not be resolved", subsystem.getName(), path),
+								new Object[] { subsystem }));
+					}
+					return false;
+				}
+		} else if (eObject instanceof SubsystemInoutput) {
+			if (!validate_EveryProxyResolves(eObject.eContainer(), null, context)) {
+				return true;
+			}
+			SubsystemInoutput inoutput = (SubsystemInoutput) eObject;
+			Inoutlet inoutlet = inoutput.getInoutlet();
+			if (!isResolved(inoutlet)) {
+				if (diagnostics != null) {
+					Subsystem subsystem = DMLUtil.getOwner(inoutput, Subsystem.class);
+					String subsystemName = subsystem.getName() != null ? " of subsystem " + subsystem.getName() : "";
+					String systemInterfaceName = getName(subsystem.getProvidedInterface(), "UNNAMED");
+					String kind = inoutput instanceof Input ? "inlet" : "outlet";
+					
+					String message = null;
+					if (inoutlet != null) {
+						String name = extractElementName(EcoreUtil.getURI(inoutlet));
+						if (name != null) {
+							message = String.format("The %s %s%s is undefined for system interface %s",
+									kind, name, subsystemName, systemInterfaceName);
+						}
+					}
+					
+					if (message == null) {
+						message = String.format("The %d. %s%s is undefined for system interface %s",
+								DMLUtil.indexOf(inoutput) + 1, kind, subsystemName, systemInterfaceName);
+					}
+					
+					diagnostics.add(new BasicDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, message,
+							new Object[] { inoutput }));
 				}
 				return false;
 			}
@@ -1422,6 +1476,15 @@ public class DMLValidator extends EObjectValidator {
 	 */
 	public boolean validateOutportOutput(OutportOutput outportOutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(outportOutput, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateSubsystemInoutput(SubsystemInoutput subsystemInoutput, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(subsystemInoutput, diagnostics, context);
 	}
 
 	/**

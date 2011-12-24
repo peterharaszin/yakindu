@@ -23,7 +23,7 @@ package org.eclipselabs.damos.dml;
  * @model
  * @generated
  */
-public interface SubsystemInput extends Input {
+public interface SubsystemInput extends Input, SubsystemInoutput {
 	/**
 	 * Returns the value of the '<em><b>Inlet</b></em>' reference.
 	 * <!-- begin-user-doc -->

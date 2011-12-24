@@ -536,7 +536,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getINamedElement()
 	 * @generated
 	 */
-	int INAMED_ELEMENT = 80;
+	int INAMED_ELEMENT = 81;
 
 	/**
 	 * The number of structural features of the '<em>INamed Element</em>' class.
@@ -2766,6 +2766,25 @@ public interface DMLPackage extends EPackage {
 	int OUTPORT_OUTPUT_FEATURE_COUNT = OUTPUT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl <em>Subsystem Inoutput</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl
+	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInoutput()
+	 * @generated
+	 */
+	int SUBSYSTEM_INOUTPUT = 57;
+
+	/**
+	 * The number of structural features of the '<em>Subsystem Inoutput</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSYSTEM_INOUTPUT_FEATURE_COUNT = INOUTPUT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInputImpl <em>Subsystem Input</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2773,7 +2792,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInput()
 	 * @generated
 	 */
-	int SUBSYSTEM_INPUT = 57;
+	int SUBSYSTEM_INPUT = 58;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -2819,7 +2838,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemOutput()
 	 * @generated
 	 */
-	int SUBSYSTEM_OUTPUT = 58;
+	int SUBSYSTEM_OUTPUT = 59;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -2865,7 +2884,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getBooleanDirectFeedthroughPolicy()
 	 * @generated
 	 */
-	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 59;
+	int BOOLEAN_DIRECT_FEEDTHROUGH_POLICY = 60;
 
 	/**
 	 * The feature id for the '<em><b>Input Definition</b></em>' container reference.
@@ -2902,7 +2921,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getLatch()
 	 * @generated
 	 */
-	int LATCH = 60;
+	int LATCH = 61;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2993,7 +3012,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getLatchInput()
 	 * @generated
 	 */
-	int LATCH_INPUT = 61;
+	int LATCH_INPUT = 62;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3030,7 +3049,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompound()
 	 * @generated
 	 */
-	int COMPOUND = 62;
+	int COMPOUND = 63;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3085,7 +3104,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundMember()
 	 * @generated
 	 */
-	int COMPOUND_MEMBER = 63;
+	int COMPOUND_MEMBER = 64;
 
 	/**
 	 * The feature id for the '<em><b>Owning Compound</b></em>' reference.
@@ -3113,7 +3132,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundConnector()
 	 * @generated
 	 */
-	int COMPOUND_CONNECTOR = 64;
+	int COMPOUND_CONNECTOR = 65;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3141,7 +3160,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundInputConnector()
 	 * @generated
 	 */
-	int COMPOUND_INPUT_CONNECTOR = 65;
+	int COMPOUND_INPUT_CONNECTOR = 66;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3169,7 +3188,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getCompoundOutputConnector()
 	 * @generated
 	 */
-	int COMPOUND_OUTPUT_CONNECTOR = 66;
+	int COMPOUND_OUTPUT_CONNECTOR = 67;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3197,7 +3216,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoice()
 	 * @generated
 	 */
-	int CHOICE = 67;
+	int CHOICE = 68;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3288,7 +3307,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInput()
 	 * @generated
 	 */
-	int CHOICE_INPUT = 68;
+	int CHOICE_INPUT = 69;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3325,7 +3344,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getChoiceInputPort()
 	 * @generated
 	 */
-	int CHOICE_INPUT_PORT = 69;
+	int CHOICE_INPUT_PORT = 70;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' container reference.
@@ -3362,7 +3381,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getAction()
 	 * @generated
 	 */
-	int ACTION = 70;
+	int ACTION = 71;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3426,7 +3445,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getActionLink()
 	 * @generated
 	 */
-	int ACTION_LINK = 71;
+	int ACTION_LINK = 72;
 
 	/**
 	 * The feature id for the '<em><b>Choice</b></em>' container reference.
@@ -3472,7 +3491,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoin()
 	 * @generated
 	 */
-	int JOIN = 72;
+	int JOIN = 73;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3554,7 +3573,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getJoinInput()
 	 * @generated
 	 */
-	int JOIN_INPUT = 73;
+	int JOIN_INPUT = 74;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3591,7 +3610,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoop()
 	 * @generated
 	 */
-	int WHILE_LOOP = 74;
+	int WHILE_LOOP = 75;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3664,7 +3683,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getWhileLoopCondition()
 	 * @generated
 	 */
-	int WHILE_LOOP_CONDITION = 75;
+	int WHILE_LOOP_CONDITION = 76;
 
 	/**
 	 * The feature id for the '<em><b>Compound</b></em>' reference.
@@ -3692,7 +3711,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemory()
 	 * @generated
 	 */
-	int MEMORY = 76;
+	int MEMORY = 77;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3774,7 +3793,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInitialCondition()
 	 * @generated
 	 */
-	int MEMORY_INITIAL_CONDITION = 77;
+	int MEMORY_INITIAL_CONDITION = 78;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3811,7 +3830,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryInput()
 	 * @generated
 	 */
-	int MEMORY_INPUT = 78;
+	int MEMORY_INPUT = 79;
 
 	/**
 	 * The feature id for the '<em><b>Ports</b></em>' containment reference list.
@@ -3848,7 +3867,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getMemoryOutput()
 	 * @generated
 	 */
-	int MEMORY_OUTPUT = 79;
+	int MEMORY_OUTPUT = 80;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' container reference.
@@ -3885,7 +3904,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getITextualElement()
 	 * @generated
 	 */
-	int ITEXTUAL_ELEMENT = 81;
+	int ITEXTUAL_ELEMENT = 82;
 
 	/**
 	 * The number of structural features of the '<em>ITextual Element</em>' class.
@@ -3904,7 +3923,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getTimingKind()
 	 * @generated
 	 */
-	int TIMING_KIND = 84;
+	int TIMING_KIND = 85;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.ParameterVisibilityKind <em>Parameter Visibility Kind</em>}' enum.
@@ -3914,7 +3933,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getParameterVisibilityKind()
 	 * @generated
 	 */
-	int PARAMETER_VISIBILITY_KIND = 82;
+	int PARAMETER_VISIBILITY_KIND = 83;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dml.PrimitiveTypeKind <em>Primitive Type Kind</em>}' enum.
@@ -3924,7 +3943,7 @@ public interface DMLPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getPrimitiveTypeKind()
 	 * @generated
 	 */
-	int PRIMITIVE_TYPE_KIND = 83;
+	int PRIMITIVE_TYPE_KIND = 84;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.Fragment <em>Fragment</em>}'.
@@ -5134,6 +5153,16 @@ public interface DMLPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOutportOutput();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.SubsystemInoutput <em>Subsystem Inoutput</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Subsystem Inoutput</em>'.
+	 * @see org.eclipselabs.damos.dml.SubsystemInoutput
+	 * @generated
+	 */
+	EClass getSubsystemInoutput();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.SubsystemInput <em>Subsystem Input</em>}'.
@@ -6654,6 +6683,16 @@ public interface DMLPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OUTPORT_OUTPUT = eINSTANCE.getOutportOutput();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl <em>Subsystem Inoutput</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dml.impl.SubsystemInoutputImpl
+		 * @see org.eclipselabs.damos.dml.impl.DMLPackageImpl#getSubsystemInoutput()
+		 * @generated
+		 */
+		EClass SUBSYSTEM_INOUTPUT = eINSTANCE.getSubsystemInoutput();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.SubsystemInputImpl <em>Subsystem Input</em>}' class.

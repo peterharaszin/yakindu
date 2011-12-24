@@ -12,9 +12,9 @@
 package org.eclipselabs.damos.diagram.ui.editparts;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipselabs.damos.common.util.NameUtil;
 import org.eclipselabs.damos.diagram.ui.figures.PortFigure;
 import org.eclipselabs.damos.dml.Port;
+import org.eclipselabs.damos.dml.util.DMLUtil;
 
 /**
  * @author Andreas Unger
@@ -41,7 +41,7 @@ public class SubsystemOutputPortEditPart extends OutputPortEditPart {
 	protected void refreshName() {
 		Port port = (Port) resolveSemanticElement();
 		if (port != null) {
-			((PortFigure) getFigure()).setText(NameUtil.formatName(port.getInoutput().getName()));
+			((PortFigure) getFigure()).setText(DMLUtil.safeFormatName(port.getInoutput()));
 		}
 	}
 

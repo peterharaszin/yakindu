@@ -11,6 +11,8 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -18,6 +20,7 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Inlet;
 import org.eclipselabs.damos.dml.Outlet;
 import org.eclipselabs.damos.dml.SystemInterface;
+import org.eclipselabs.damos.dml.internal.util.URIUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -182,6 +185,18 @@ public class SystemInterfaceImpl extends QualifiedElementImpl implements SystemI
 				return outlets != null && !outlets.isEmpty();
 		}
 		return super.eIsSet(featureID);
+	}
+
+	@Override
+	public EObject eObjectForURIFragmentSegment(String uriFragmentSegment) {
+		EObject eObject = URIUtil.eObjectForURIFragmentSegment(this, uriFragmentSegment);
+		return eObject != null ? eObject : super.eObjectForURIFragmentSegment(uriFragmentSegment);
+	}
+	
+	@Override
+	public String eURIFragmentSegment(EStructuralFeature eStructuralFeature, EObject eObject) {
+		String fragmentSegment = URIUtil.eURIFragmentSegment(eStructuralFeature, eObject);
+		return fragmentSegment != null ? fragmentSegment : super.eURIFragmentSegment(eStructuralFeature, eObject);
 	}
 
 } //SystemInterfaceImpl

@@ -333,11 +333,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Outport" eSuperTypes="#//Inoutport"/>
   <eClassifiers xsi:type="ecore:EClass" name="OutportOutput" eSuperTypes="#//Output"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInput" eSuperTypes="#//Input">
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInoutput" abstract="true" eSuperTypes="#//Inoutput">
+    <eOperations name="getInoutlet" lowerBound="1" eType="#//Inoutlet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemInput" eSuperTypes="#//Input #//SubsystemInoutput">
     <eStructuralFeatures xsi:type="ecore:EReference" name="inlet" ordered="false"
         lowerBound="1" eType="#//Inlet"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubsystemOutput" eSuperTypes="#//Output">
+  <eClassifiers xsi:type="ecore:EClass" name="SubsystemOutput" eSuperTypes="#//Output #//SubsystemInoutput">
     <eStructuralFeatures xsi:type="ecore:EReference" name="outlet" ordered="false"
         lowerBound="1" eType="#//Outlet"/>
   </eClassifiers>

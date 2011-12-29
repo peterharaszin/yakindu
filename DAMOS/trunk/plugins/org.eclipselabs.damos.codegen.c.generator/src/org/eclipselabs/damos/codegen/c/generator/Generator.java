@@ -23,8 +23,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -99,9 +100,12 @@ public class Generator {
 		initializeExecutionFlow(genModel, executionFlow, monitor);
 
 		IPath headerPath = new Path(genModel.getHeaderDirectory());
-		IFolder headerFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(headerPath);
+		IResource headerResource = ResourcesPlugin.getWorkspace().getRoot().findMember(headerPath);
+		if (!(headerResource instanceof IContainer)) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Invalid container path " + genModel.getHeaderDirectory()));
+		}
 		
-		IFile headerFile = headerFolder.getFile(genModel.getMainHeaderFile());
+		IFile headerFile = ((IContainer) headerResource).getFile(new Path(genModel.getMainHeaderFile()));
 		new FileWriter() {
 			
 			@Override
@@ -117,8 +121,12 @@ public class Generator {
 
 		
 		IPath sourcePath = new Path(genModel.getSourceDirectory());
-		IFolder sourceFolder = ResourcesPlugin.getWorkspace().getRoot().getFolder(sourcePath);
-		IFile sourceFile = sourceFolder.getFile(genModel.getMainSourceFile());		
+		IResource sourceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(sourcePath);
+		if (!(sourceResource instanceof IContainer)) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Invalid container path " + genModel.getSourceDirectory()));
+		}
+
+		IFile sourceFile = ((IContainer) sourceResource).getFile(new Path(genModel.getMainSourceFile()));
 		new FileWriter() {
 			
 			@Override

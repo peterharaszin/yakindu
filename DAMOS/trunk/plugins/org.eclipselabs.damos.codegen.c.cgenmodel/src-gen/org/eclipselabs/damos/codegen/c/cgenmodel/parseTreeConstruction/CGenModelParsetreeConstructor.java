@@ -17760,11 +17760,11 @@ protected class ExpressionList_ExpressionsAssignment_1_1 extends AssignmentToken
 /************ begin Rule UnitConstructionOperator ****************
  *
  * UnitConstructionOperator:
- * 	"$" unit=ExplicitUnit;
+ * 	"unitlit" unit=ExplicitUnit;
  *
  **/
 
-// "$" unit=ExplicitUnit
+// "unitlit" unit=ExplicitUnit
 protected class UnitConstructionOperator_Group extends GroupToken {
 	
 	public UnitConstructionOperator_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -17793,16 +17793,16 @@ protected class UnitConstructionOperator_Group extends GroupToken {
 
 }
 
-// "$"
-protected class UnitConstructionOperator_DollarSignKeyword_0 extends KeywordToken  {
+// "unitlit"
+protected class UnitConstructionOperator_UnitlitKeyword_0 extends KeywordToken  {
 	
-	public UnitConstructionOperator_DollarSignKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public UnitConstructionOperator_UnitlitKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0();
+		return grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0();
 	}
 
     @Override
@@ -17854,7 +17854,7 @@ protected class UnitConstructionOperator_UnitAssignment_1 extends AssignmentToke
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new UnitConstructionOperator_DollarSignKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new UnitConstructionOperator_UnitlitKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	

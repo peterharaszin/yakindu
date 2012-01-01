@@ -351,7 +351,7 @@ ExpressionList:
 	expressions+=Expression (',' expressions+=Expression)*;
 	
 UnitConstructionOperator:
-	'$' unit=ExplicitUnit;
+	'unitlit' unit=ExplicitUnit;
 
 ParenthesizedExpression:
 	'(' expressions+=Expression (',' expressions+=Expression)* ')';

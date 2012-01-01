@@ -1648,7 +1648,7 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitConstructionOperator"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Keyword" value="$"/>
+      <elements xsi:type="xtext:Keyword" value="unitlit"/>
       <elements xsi:type="xtext:Assignment" feature="unit" operator="=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.103"/>
       </elements>

@@ -3317,19 +3317,19 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class UnitConstructionOperatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnitConstructionOperator");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cDollarSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cUnitlitKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cUnitAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cUnitExplicitUnitParserRuleCall_1_0 = (RuleCall)cUnitAssignment_1.eContents().get(0);
 		
 		//UnitConstructionOperator:
-		//	"$" unit=ExplicitUnit;
+		//	"unitlit" unit=ExplicitUnit;
 		public ParserRule getRule() { return rule; }
 
-		//"$" unit=ExplicitUnit
+		//"unitlit" unit=ExplicitUnit
 		public Group getGroup() { return cGroup; }
 
-		//"$"
-		public Keyword getDollarSignKeyword_0() { return cDollarSignKeyword_0; }
+		//"unitlit"
+		public Keyword getUnitlitKeyword_0() { return cUnitlitKeyword_0; }
 
 		//unit=ExplicitUnit
 		public Assignment getUnitAssignment_1() { return cUnitAssignment_1; }
@@ -5588,7 +5588,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnitConstructionOperator:
-	//	"$" unit=ExplicitUnit;
+	//	"unitlit" unit=ExplicitUnit;
 	public UnitConstructionOperatorElements getUnitConstructionOperatorAccess() {
 		return (pUnitConstructionOperator != null) ? pUnitConstructionOperator : (pUnitConstructionOperator = new UnitConstructionOperatorElements());
 	}

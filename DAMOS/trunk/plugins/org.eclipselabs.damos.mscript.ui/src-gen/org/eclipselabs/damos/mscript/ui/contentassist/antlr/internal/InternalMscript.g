@@ -15123,11 +15123,11 @@ rule__UnitConstructionOperator__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0()); }
+{ before(grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0()); }
 
-	'$' 
+	'unitlit' 
 
-{ after(grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0()); }
+{ after(grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0()); }
 )
 
 ;

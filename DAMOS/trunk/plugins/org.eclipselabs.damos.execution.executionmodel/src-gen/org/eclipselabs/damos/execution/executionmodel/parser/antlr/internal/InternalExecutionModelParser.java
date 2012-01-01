@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalExecutionModelParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_E", "RULE_STRING", "RULE_N", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'execution'", "'use'", "'for'", "'enum'", "'{'", "','", "'}'", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'='", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'|'", "'+'", "'-'", "'true'", "'false'", "'..'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'*'", "'^'", "'::'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'%'", "'.^'", "'!'", "'\\''"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_E", "RULE_STRING", "RULE_N", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'execution'", "'use'", "'for'", "'enum'", "'{'", "','", "'}'", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'='", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'|'", "'+'", "'-'", "'true'", "'false'", "'..'", "'unitlit'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'*'", "'^'", "'::'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'%'", "'.^'", "'!'", "'\\''"
     };
     public static final int RULE_ID=4;
     public static final int T__29=29;
@@ -16621,7 +16621,7 @@ public class InternalExecutionModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitConstructionOperator"
-    // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5706:1: ruleUnitConstructionOperator returns [EObject current=null] : (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) ;
+    // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5706:1: ruleUnitConstructionOperator returns [EObject current=null] : (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) ;
     public final EObject ruleUnitConstructionOperator() throws RecognitionException {
         EObject current = null;
 
@@ -16632,16 +16632,16 @@ public class InternalExecutionModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5709:28: ( (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) )
-            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5710:1: (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
+            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5709:28: ( (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) )
+            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5710:1: (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
             {
-            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5710:1: (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
-            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5710:3: otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) )
+            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5710:1: (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
+            // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5710:3: otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) )
             {
             otherlv_0=(Token)match(input,69,FOLLOW_69_in_ruleUnitConstructionOperator12638); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0());
                   
             }
             // ../org.eclipselabs.damos.execution.executionmodel/src-gen/org/eclipselabs/damos/execution/executionmodel/parser/antlr/internal/InternalExecutionModel.g:5714:1: ( (lv_unit_1_0= ruleExplicitUnit ) )

@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_STRING", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'simulation'", "'using'", "'fragment'", "'simulationTime'", "'solver'", "'{'", "'}'", "'='", "'enum'", "','", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'|'", "'+'", "'-'", "'true'", "'false'", "'..'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'*'", "'^'", "'::'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'%'", "'.^'", "'!'", "'\\''"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_STRING", "RULE_ONE", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'simulation'", "'using'", "'fragment'", "'simulationTime'", "'solver'", "'{'", "'}'", "'='", "'enum'", "','", "'typedef'", "'struct'", "'func'", "'<'", "'>'", "'('", "')'", "'->'", "'check'", "'static'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'initial'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "';'", "'|'", "'+'", "'-'", "'true'", "'false'", "'..'", "'for'", "'unitlit'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'/'", "'*'", "'^'", "'::'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<='", "'>='", "'.*'", "'./'", "'%'", "'.^'", "'!'", "'\\''"
     };
     public static final int RULE_ID=6;
     public static final int T__29=29;
@@ -17311,7 +17311,7 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUnitConstructionOperator"
-    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5928:1: ruleUnitConstructionOperator returns [EObject current=null] : (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5928:1: ruleUnitConstructionOperator returns [EObject current=null] : (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) ;
     public final EObject ruleUnitConstructionOperator() throws RecognitionException {
         EObject current = null;
 
@@ -17322,16 +17322,16 @@ public class InternalSimulationModelParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5931:28: ( (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5932:1: (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5931:28: ( (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5932:1: (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5932:1: (otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5932:3: otherlv_0= '$' ( (lv_unit_1_0= ruleExplicitUnit ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5932:1: (otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5932:3: otherlv_0= 'unitlit' ( (lv_unit_1_0= ruleExplicitUnit ) )
             {
             otherlv_0=(Token)match(input,72,FOLLOW_72_in_ruleUnitConstructionOperator13233); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-                  	newLeafNode(otherlv_0, grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0());
+                  	newLeafNode(otherlv_0, grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0());
                   
             }
             // ../org.eclipselabs.damos.simulation.simulationmodel/src-gen/org/eclipselabs/damos/simulation/simulationmodel/parser/antlr/internal/InternalSimulationModel.g:5936:1: ( (lv_unit_1_0= ruleExplicitUnit ) )

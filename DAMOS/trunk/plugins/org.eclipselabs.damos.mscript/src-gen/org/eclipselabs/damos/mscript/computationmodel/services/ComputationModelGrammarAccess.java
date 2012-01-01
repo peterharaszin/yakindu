@@ -1475,7 +1475,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//UnitConstructionOperator:
-	//	"$" unit=ExplicitUnit;
+	//	"unitlit" unit=ExplicitUnit;
 	public MscriptGrammarAccess.UnitConstructionOperatorElements getUnitConstructionOperatorAccess() {
 		return gaMscript.getUnitConstructionOperatorAccess();
 	}

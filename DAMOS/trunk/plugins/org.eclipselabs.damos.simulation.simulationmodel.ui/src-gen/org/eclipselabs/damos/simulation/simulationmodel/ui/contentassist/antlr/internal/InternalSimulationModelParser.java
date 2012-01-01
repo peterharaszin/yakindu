@@ -23,7 +23,7 @@ import java.util.HashMap;
 @SuppressWarnings("all")
 public class InternalSimulationModelParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_ONE", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'\\''", "'+'", "'-'", "'false'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<'", "'<='", "'>'", "'>='", "'*'", "'/'", "'.*'", "'./'", "'%'", "'^'", "'.^'", "'!'", "'simulation'", "'using'", "'fragment'", "'simulationTime'", "'solver'", "'{'", "'}'", "'='", "'enum'", "','", "'typedef'", "'struct'", "'func'", "'('", "')'", "'->'", "'check'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "'|'", "';'", "'..'", "'for'", "'$'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'::'", "'static'", "'initial'", "'true'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_N", "RULE_E", "RULE_ID", "RULE_IJ", "RULE_EXPIJ", "RULE_ONE", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'\\''", "'+'", "'-'", "'false'", "'stateful'", "'continuous'", "'info'", "'warning'", "'error'", "'fatal'", "'=='", "'!='", "'<'", "'<='", "'>'", "'>='", "'*'", "'/'", "'.*'", "'./'", "'%'", "'^'", "'.^'", "'!'", "'simulation'", "'using'", "'fragment'", "'simulationTime'", "'solver'", "'{'", "'}'", "'='", "'enum'", "','", "'typedef'", "'struct'", "'func'", "'('", "')'", "'->'", "'check'", "'assert'", "':'", "'var'", "'const'", "'fob'", "'eq'", "'real'", "'int'", "'complex'", "'gauss'", "'bool'", "'string'", "'['", "']'", "'let'", "'in'", "'if'", "'then'", "'else'", "'switch'", "'default'", "'case'", "'=>'", "'||'", "'&&'", "'is'", "'.'", "'|'", "';'", "'..'", "'for'", "'unitlit'", "'end'", "'algo'", "'while'", "'do'", "'continue'", "'break'", "'return'", "'::'", "'static'", "'initial'", "'true'"
     };
     public static final int RULE_ID=6;
     public static final int T__29=29;
@@ -45991,24 +45991,24 @@ public class InternalSimulationModelParser extends AbstractInternalContentAssist
 
 
     // $ANTLR start "rule__UnitConstructionOperator__Group__0__Impl"
-    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15809:1: rule__UnitConstructionOperator__Group__0__Impl : ( '$' ) ;
+    // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15809:1: rule__UnitConstructionOperator__Group__0__Impl : ( 'unitlit' ) ;
     public final void rule__UnitConstructionOperator__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15813:1: ( ( '$' ) )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15814:1: ( '$' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15813:1: ( ( 'unitlit' ) )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15814:1: ( 'unitlit' )
             {
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15814:1: ( '$' )
-            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15815:1: '$'
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15814:1: ( 'unitlit' )
+            // ../org.eclipselabs.damos.simulation.simulationmodel.ui/src-gen/org/eclipselabs/damos/simulation/simulationmodel/ui/contentassist/antlr/internal/InternalSimulationModel.g:15815:1: 'unitlit'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0()); 
+               before(grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0()); 
             }
             match(input,88,FOLLOW_88_in_rule__UnitConstructionOperator__Group__0__Impl32062); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0()); 
+               after(grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0()); 
             }
 
             }

@@ -5929,9 +5929,9 @@ ruleUnitConstructionOperator returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(	otherlv_0='$' 
+(	otherlv_0='unitlit' 
     {
-    	newLeafNode(otherlv_0, grammarAccess.getUnitConstructionOperatorAccess().getDollarSignKeyword_0());
+    	newLeafNode(otherlv_0, grammarAccess.getUnitConstructionOperatorAccess().getUnitlitKeyword_0());
     }
 (
 (

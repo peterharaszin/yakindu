@@ -510,7 +510,7 @@ public class Generator {
 		}
 	}
 
-	public String getTaskContextVariable(GenModel genModel, String taskName, boolean pointer) {
+	private String getTaskContextVariable(GenModel genModel, String taskName, boolean pointer) {
 		StringBuilder sb = new StringBuilder();
 		if (pointer) {
 			sb.append("(&");

@@ -7551,6 +7551,8 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
 
 
 
+
+
 // Entry rule entryRuleValidInt
 entryRuleValidInt returns [String current=null] 
 	:
@@ -7609,36 +7611,80 @@ ruleValidID returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
     newLeafNode(this_N_0, grammarAccess.getValidIDAccess().getNTerminalRuleCall_0()); 
     }
 
-    |    this_IJ_1=RULE_IJ    {
-		$current.merge(this_IJ_1);
+    |    this_E_1=RULE_E    {
+		$current.merge(this_E_1);
     }
 
     { 
-    newLeafNode(this_IJ_1, grammarAccess.getValidIDAccess().getIJTerminalRuleCall_1()); 
+    newLeafNode(this_E_1, grammarAccess.getValidIDAccess().getETerminalRuleCall_1()); 
     }
 
-    |    this_E_2=RULE_E    {
-		$current.merge(this_E_2);
-    }
-
-    { 
-    newLeafNode(this_E_2, grammarAccess.getValidIDAccess().getETerminalRuleCall_2()); 
-    }
-
-    |    this_EXPIJ_3=RULE_EXPIJ    {
-		$current.merge(this_EXPIJ_3);
+    |    this_ID_2=RULE_ID    {
+		$current.merge(this_ID_2);
     }
 
     { 
-    newLeafNode(this_EXPIJ_3, grammarAccess.getValidIDAccess().getEXPIJTerminalRuleCall_3()); 
+    newLeafNode(this_ID_2, grammarAccess.getValidIDAccess().getIDTerminalRuleCall_2()); 
     }
 
-    |    this_ID_4=RULE_ID    {
-		$current.merge(this_ID_4);
+    |    this_IJ_3=RULE_IJ    {
+		$current.merge(this_IJ_3);
     }
 
     { 
-    newLeafNode(this_ID_4, grammarAccess.getValidIDAccess().getIDTerminalRuleCall_4()); 
+    newLeafNode(this_IJ_3, grammarAccess.getValidIDAccess().getIJTerminalRuleCall_3()); 
+    }
+
+    |    this_EXPIJ_4=RULE_EXPIJ    {
+		$current.merge(this_EXPIJ_4);
+    }
+
+    { 
+    newLeafNode(this_EXPIJ_4, grammarAccess.getValidIDAccess().getEXPIJTerminalRuleCall_4()); 
+    }
+)
+    ;
+
+
+
+
+
+// Entry rule entryRuleValidIDNOIJ
+entryRuleValidIDNOIJ returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getValidIDNOIJRule()); } 
+	 iv_ruleValidIDNOIJ=ruleValidIDNOIJ 
+	 { $current=$iv_ruleValidIDNOIJ.current.getText(); }  
+	 EOF 
+;
+
+// Rule ValidIDNOIJ
+ruleValidIDNOIJ returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(    this_N_0=RULE_N    {
+		$current.merge(this_N_0);
+    }
+
+    { 
+    newLeafNode(this_N_0, grammarAccess.getValidIDNOIJAccess().getNTerminalRuleCall_0()); 
+    }
+
+    |    this_E_1=RULE_E    {
+		$current.merge(this_E_1);
+    }
+
+    { 
+    newLeafNode(this_E_1, grammarAccess.getValidIDNOIJAccess().getETerminalRuleCall_1()); 
+    }
+
+    |    this_ID_2=RULE_ID    {
+		$current.merge(this_ID_2);
+    }
+
+    { 
+    newLeafNode(this_ID_2, grammarAccess.getValidIDNOIJAccess().getIDTerminalRuleCall_2()); 
     }
 )
     ;

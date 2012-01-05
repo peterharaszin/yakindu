@@ -89,6 +89,11 @@ public class MscriptTerminalConverters extends DefaultTerminalConverters {
 		return idValueConverter;
 	}
 	
+	@ValueConverter(rule = "ValidIDNOIJ")
+	public IValueConverter<String> ValidIDNOIJ() {
+		return idValueConverter;
+	}
+
 	@ValueConverter(rule = "ValidInt")
 	public IValueConverter<Integer> ValidInt() {
 		return new IValueConverter<Integer>() {
@@ -157,6 +162,11 @@ public class MscriptTerminalConverters extends DefaultTerminalConverters {
 
 	@ValueConverter(rule = "QualifiedName")
 	public IValueConverter<String> QualifiedName() {
+		return qualifiedNameValueConverter;
+	}
+
+	@ValueConverter(rule = "QualifiedNameNOIJ")
+	public IValueConverter<String> QualifiedNameNOIJ() {
 		return qualifiedNameValueConverter;
 	}
 

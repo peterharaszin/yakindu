@@ -430,14 +430,20 @@ UnitExponent returns ecore::EInt:
 	('-')? ValidInt;
 
 QualifiedName:
-  ValidID ('::' ValidID)*;
+	ValidID ('::' ValidID)*;
+
+QualifiedNameNOIJ:
+	ValidIDNOIJ ('::' ValidIDNOIJ)*;
 
 ValidInt returns ecore::EInt:
 	ONE | INT;
 
 ValidID:
-	N | IJ | E | EXPIJ | ID;
+	N | E | ID | IJ | EXPIJ;
 
+ValidIDNOIJ:
+	N | E | ID;
+	
 /*
  * Terminals
  */

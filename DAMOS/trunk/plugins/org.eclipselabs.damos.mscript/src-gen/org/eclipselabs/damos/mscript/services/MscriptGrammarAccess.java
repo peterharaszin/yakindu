@@ -4191,6 +4191,34 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValidIDParserRuleCall_1_1() { return cValidIDParserRuleCall_1_1; }
 	}
 
+	public class QualifiedNameNOIJElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNameNOIJ");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cValidIDNOIJParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final RuleCall cValidIDNOIJParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		
+		//QualifiedNameNOIJ:
+		//	ValidIDNOIJ ("::" ValidIDNOIJ)*;
+		public ParserRule getRule() { return rule; }
+
+		//ValidIDNOIJ ("::" ValidIDNOIJ)*
+		public Group getGroup() { return cGroup; }
+
+		//ValidIDNOIJ
+		public RuleCall getValidIDNOIJParserRuleCall_0() { return cValidIDNOIJParserRuleCall_0; }
+
+		//("::" ValidIDNOIJ)*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//"::"
+		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
+
+		//ValidIDNOIJ
+		public RuleCall getValidIDNOIJParserRuleCall_1_1() { return cValidIDNOIJParserRuleCall_1_1; }
+	}
+
 	public class ValidIntElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidInt");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -4215,32 +4243,56 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidID");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cNTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIJTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cETerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cEXPIJTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cIDTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cIJTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cEXPIJTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		
 		//ValidID:
-		//	N | IJ | E | EXPIJ | ID;
+		//	N | E | ID | IJ | EXPIJ;
 		public ParserRule getRule() { return rule; }
 
-		//N | IJ | E | EXPIJ | ID
+		//N | E | ID | IJ | EXPIJ
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//N
 		public RuleCall getNTerminalRuleCall_0() { return cNTerminalRuleCall_0; }
 
-		//IJ
-		public RuleCall getIJTerminalRuleCall_1() { return cIJTerminalRuleCall_1; }
-
 		//E
-		public RuleCall getETerminalRuleCall_2() { return cETerminalRuleCall_2; }
-
-		//EXPIJ
-		public RuleCall getEXPIJTerminalRuleCall_3() { return cEXPIJTerminalRuleCall_3; }
+		public RuleCall getETerminalRuleCall_1() { return cETerminalRuleCall_1; }
 
 		//ID
-		public RuleCall getIDTerminalRuleCall_4() { return cIDTerminalRuleCall_4; }
+		public RuleCall getIDTerminalRuleCall_2() { return cIDTerminalRuleCall_2; }
+
+		//IJ
+		public RuleCall getIJTerminalRuleCall_3() { return cIJTerminalRuleCall_3; }
+
+		//EXPIJ
+		public RuleCall getEXPIJTerminalRuleCall_4() { return cEXPIJTerminalRuleCall_4; }
+	}
+
+	public class ValidIDNOIJElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidIDNOIJ");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cNTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cETerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//ValidIDNOIJ:
+		//	N | E | ID;
+		public ParserRule getRule() { return rule; }
+
+		//N | E | ID
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//N
+		public RuleCall getNTerminalRuleCall_0() { return cNTerminalRuleCall_0; }
+
+		//E
+		public RuleCall getETerminalRuleCall_1() { return cETerminalRuleCall_1; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_2() { return cIDTerminalRuleCall_2; }
 	}
 	
 	
@@ -4650,8 +4702,10 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private UnitFactorElements pUnitFactor;
 	private UnitExponentElements pUnitExponent;
 	private QualifiedNameElements pQualifiedName;
+	private QualifiedNameNOIJElements pQualifiedNameNOIJ;
 	private ValidIntElements pValidInt;
 	private ValidIDElements pValidID;
+	private ValidIDNOIJElements pValidIDNOIJ;
 	private TerminalRule tN;
 	private TerminalRule tIJ;
 	private TerminalRule tE;
@@ -5821,6 +5875,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return getQualifiedNameAccess().getRule();
 	}
 
+	//QualifiedNameNOIJ:
+	//	ValidIDNOIJ ("::" ValidIDNOIJ)*;
+	public QualifiedNameNOIJElements getQualifiedNameNOIJAccess() {
+		return (pQualifiedNameNOIJ != null) ? pQualifiedNameNOIJ : (pQualifiedNameNOIJ = new QualifiedNameNOIJElements());
+	}
+	
+	public ParserRule getQualifiedNameNOIJRule() {
+		return getQualifiedNameNOIJAccess().getRule();
+	}
+
 	//ValidInt returns ecore::EInt:
 	//	ONE | INT;
 	public ValidIntElements getValidIntAccess() {
@@ -5832,13 +5896,23 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValidID:
-	//	N | IJ | E | EXPIJ | ID;
+	//	N | E | ID | IJ | EXPIJ;
 	public ValidIDElements getValidIDAccess() {
 		return (pValidID != null) ? pValidID : (pValidID = new ValidIDElements());
 	}
 	
 	public ParserRule getValidIDRule() {
 		return getValidIDAccess().getRule();
+	}
+
+	//ValidIDNOIJ:
+	//	N | E | ID;
+	public ValidIDNOIJElements getValidIDNOIJAccess() {
+		return (pValidIDNOIJ != null) ? pValidIDNOIJ : (pValidIDNOIJ = new ValidIDNOIJElements());
+	}
+	
+	public ParserRule getValidIDNOIJRule() {
+		return getValidIDNOIJAccess().getRule();
 	}
 
 	/// *

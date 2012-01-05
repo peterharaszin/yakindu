@@ -2427,6 +2427,16 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return getQualifiedNameAccess().getRule();
 	}
 
+	//QualifiedNameNOIJ:
+	//	ValidIDNOIJ ("::" ValidIDNOIJ)*;
+	public MscriptGrammarAccess.QualifiedNameNOIJElements getQualifiedNameNOIJAccess() {
+		return gaMscript.getQualifiedNameNOIJAccess();
+	}
+	
+	public ParserRule getQualifiedNameNOIJRule() {
+		return getQualifiedNameNOIJAccess().getRule();
+	}
+
 	//ValidInt returns ecore::EInt:
 	//	ONE | INT;
 	public MscriptGrammarAccess.ValidIntElements getValidIntAccess() {
@@ -2438,13 +2448,23 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ValidID:
-	//	N | IJ | E | EXPIJ | ID;
+	//	N | E | ID | IJ | EXPIJ;
 	public MscriptGrammarAccess.ValidIDElements getValidIDAccess() {
 		return gaMscript.getValidIDAccess();
 	}
 	
 	public ParserRule getValidIDRule() {
 		return getValidIDAccess().getRule();
+	}
+
+	//ValidIDNOIJ:
+	//	N | E | ID;
+	public MscriptGrammarAccess.ValidIDNOIJElements getValidIDNOIJAccess() {
+		return gaMscript.getValidIDNOIJAccess();
+	}
+	
+	public ParserRule getValidIDNOIJRule() {
+		return getValidIDNOIJAccess().getRule();
 	}
 
 	/// *

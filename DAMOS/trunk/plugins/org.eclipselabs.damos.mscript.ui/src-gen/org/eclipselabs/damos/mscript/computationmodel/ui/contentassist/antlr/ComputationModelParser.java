@@ -76,7 +76,6 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitDenominatorAccess().getAlternatives(), "rule__UnitDenominator__Alternatives");
 					put(grammarAccess.getValidIntAccess().getAlternatives(), "rule__ValidInt__Alternatives");
 					put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
-					put(grammarAccess.getValidIDNOIJAccess().getAlternatives(), "rule__ValidIDNOIJ__Alternatives");
 					put(grammarAccess.getFloatingPointFormatKindAccess().getAlternatives(), "rule__FloatingPointFormatKind__Alternatives");
 					put(grammarAccess.getFixedPointOperationKindAccess().getAlternatives(), "rule__FixedPointOperationKind__Alternatives");
 					put(grammarAccess.getFunctionKindAccess().getAlternatives(), "rule__FunctionKind__Alternatives");
@@ -241,8 +240,6 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitExponentAccess().getGroup(), "rule__UnitExponent__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup(), "rule__QualifiedNameNOIJ__Group__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup_1(), "rule__QualifiedNameNOIJ__Group_1__0");
 					put(grammarAccess.getComputationModelAccess().getQualifiedNameAssignment_1(), "rule__ComputationModel__QualifiedNameAssignment_1");
 					put(grammarAccess.getComputationModelAccess().getNumberFormatsAssignment_2_0(), "rule__ComputationModel__NumberFormatsAssignment_2_0");
 					put(grammarAccess.getComputationModelAccess().getNumberFormatMappingsAssignment_2_1(), "rule__ComputationModel__NumberFormatMappingsAssignment_2_1");

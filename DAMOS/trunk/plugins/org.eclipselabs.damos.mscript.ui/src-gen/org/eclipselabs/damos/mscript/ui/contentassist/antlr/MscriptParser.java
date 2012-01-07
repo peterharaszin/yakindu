@@ -73,7 +73,6 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitDenominatorAccess().getAlternatives(), "rule__UnitDenominator__Alternatives");
 					put(grammarAccess.getValidIntAccess().getAlternatives(), "rule__ValidInt__Alternatives");
 					put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
-					put(grammarAccess.getValidIDNOIJAccess().getAlternatives(), "rule__ValidIDNOIJ__Alternatives");
 					put(grammarAccess.getFunctionKindAccess().getAlternatives(), "rule__FunctionKind__Alternatives");
 					put(grammarAccess.getAssertionStatusKindAccess().getAlternatives(), "rule__AssertionStatusKind__Alternatives");
 					put(grammarAccess.getEqualityOperatorAccess().getAlternatives(), "rule__EqualityOperator__Alternatives");
@@ -226,8 +225,6 @@ public class MscriptParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitExponentAccess().getGroup(), "rule__UnitExponent__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup(), "rule__QualifiedNameNOIJ__Group__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup_1(), "rule__QualifiedNameNOIJ__Group_1__0");
 					put(grammarAccess.getModuleAccess().getDeclarationsAssignment(), "rule__Module__DeclarationsAssignment");
 					put(grammarAccess.getEnumerationDeclarationAccess().getNameAssignment_1(), "rule__EnumerationDeclaration__NameAssignment_1");
 					put(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_0(), "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0");

@@ -49,34 +49,42 @@ public class MscriptSemanticHighlightingCalculator implements ISemanticHighlight
 		
 		for (TreeIterator<EObject> it = root.eAllContents(); it.hasNext();) {
 			EObject next = it.next();
-			if (next instanceof FunctionDeclaration) {
-				List<INode> nodes = NodeModelUtils.findNodesForFeature(next, MscriptPackage.eINSTANCE.getDeclaration_Name());
-				for (INode node : nodes) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.FUNCTION_ID);
-				}
-			} else if (next instanceof FeatureCall) {
-				FeatureCall featureCall = (FeatureCall) next;
-				if (featureCall.getFeature() instanceof BuiltinDeclaration) {
-					List<INode> nodes = NodeModelUtils.findNodesForFeature(featureCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature());
-					for (INode node : nodes) {
-						acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.BUILTIN_ID);
-					}
-				}
-			} else if (next instanceof IterationCall) {
-				List<INode> nodes = NodeModelUtils.findNodesForFeature(next, MscriptPackage.eINSTANCE.getIterationCall_Identifier());
-				for (INode node : nodes) {
-					acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.ITERATION_ID);
-				}
-			} else if (next instanceof Unit) {
-				INode node = NodeModelUtils.getNode(next);
-				acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.UNIT_ID);
-				it.prune();
-			} else if (next instanceof StepExpression) {
-				INode node = NodeModelUtils.getNode(next);
-				acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.STEP_EXPRESSION_ID);
+			if (!provideHighlightingFor(next, acceptor)) {
 				it.prune();
 			}
 		}
+	}
+	
+	protected boolean provideHighlightingFor(EObject eObject, IHighlightedPositionAcceptor acceptor) {
+		boolean proceed = true;
+		if (eObject instanceof FunctionDeclaration) {
+			List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, MscriptPackage.eINSTANCE.getDeclaration_Name());
+			for (INode node : nodes) {
+				acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.FUNCTION_ID);
+			}
+		} else if (eObject instanceof FeatureCall) {
+			FeatureCall featureCall = (FeatureCall) eObject;
+			if (featureCall.getFeature() instanceof BuiltinDeclaration) {
+				List<INode> nodes = NodeModelUtils.findNodesForFeature(featureCall, MscriptPackage.eINSTANCE.getFeatureCall_Feature());
+				for (INode node : nodes) {
+					acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.BUILTIN_ID);
+				}
+			}
+		} else if (eObject instanceof IterationCall) {
+			List<INode> nodes = NodeModelUtils.findNodesForFeature(eObject, MscriptPackage.eINSTANCE.getIterationCall_Identifier());
+			for (INode node : nodes) {
+				acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.ITERATION_ID);
+			}
+		} else if (eObject instanceof Unit) {
+			INode node = NodeModelUtils.getNode(eObject);
+			acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.UNIT_ID);
+			proceed = false;
+		} else if (eObject instanceof StepExpression) {
+			INode node = NodeModelUtils.getNode(eObject);
+			acceptor.addPosition(node.getOffset(), node.getLength(), MscriptHighlightingConfiguration.STEP_EXPRESSION_ID);
+			proceed = false;
+		}
+		return proceed;
 	}
 
 }

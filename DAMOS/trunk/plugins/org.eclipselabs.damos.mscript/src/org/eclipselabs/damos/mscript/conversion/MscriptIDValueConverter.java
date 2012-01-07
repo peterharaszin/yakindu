@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.conversion;
 
+import org.antlr.runtime.TokenSource;
 import org.eclipse.xtext.conversion.impl.IDValueConverter;
 import org.eclipse.xtext.nodemodel.INode;
 
@@ -40,6 +41,14 @@ public class MscriptIDValueConverter extends IDValueConverter {
 			return null;
 		}
 		return string.startsWith("_") ? string.substring(1) : string;
+	}
+	
+	/* (non-Javadoc)
+	 * @see org.eclipse.xtext.conversion.impl.AbstractLexerBasedConverter#assertTokens(java.lang.Object, org.antlr.runtime.TokenSource, java.lang.String)
+	 */
+	@Override
+	protected void assertTokens(String value, TokenSource tokenSource, String escapedString) {
+		// do nothing
 	}
 	
 }

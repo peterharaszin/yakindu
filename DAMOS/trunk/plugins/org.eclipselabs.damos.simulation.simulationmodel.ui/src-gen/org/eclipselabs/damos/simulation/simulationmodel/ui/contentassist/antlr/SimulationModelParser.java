@@ -74,7 +74,6 @@ public class SimulationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitDenominatorAccess().getAlternatives(), "rule__UnitDenominator__Alternatives");
 					put(grammarAccess.getValidIntAccess().getAlternatives(), "rule__ValidInt__Alternatives");
 					put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
-					put(grammarAccess.getValidIDNOIJAccess().getAlternatives(), "rule__ValidIDNOIJ__Alternatives");
 					put(grammarAccess.getFunctionKindAccess().getAlternatives(), "rule__FunctionKind__Alternatives");
 					put(grammarAccess.getAssertionStatusKindAccess().getAlternatives(), "rule__AssertionStatusKind__Alternatives");
 					put(grammarAccess.getEqualityOperatorAccess().getAlternatives(), "rule__EqualityOperator__Alternatives");
@@ -233,8 +232,6 @@ public class SimulationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitExponentAccess().getGroup(), "rule__UnitExponent__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup(), "rule__QualifiedNameNOIJ__Group__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup_1(), "rule__QualifiedNameNOIJ__Group_1__0");
 					put(grammarAccess.getSimulationModelAccess().getQualifiedNameAssignment_1(), "rule__SimulationModel__QualifiedNameAssignment_1");
 					put(grammarAccess.getSimulationModelAccess().getExecutionModelAssignment_3(), "rule__SimulationModel__ExecutionModelAssignment_3");
 					put(grammarAccess.getSimulationModelAccess().getTopLevelFragmentAssignment_4_0_1(), "rule__SimulationModel__TopLevelFragmentAssignment_4_0_1");

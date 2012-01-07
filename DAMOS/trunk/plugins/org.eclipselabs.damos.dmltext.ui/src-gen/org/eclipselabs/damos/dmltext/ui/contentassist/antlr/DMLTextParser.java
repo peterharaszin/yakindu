@@ -77,7 +77,6 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitDenominatorAccess().getAlternatives(), "rule__UnitDenominator__Alternatives");
 					put(grammarAccess.getValidIntAccess().getAlternatives(), "rule__ValidInt__Alternatives");
 					put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
-					put(grammarAccess.getValidIDNOIJAccess().getAlternatives(), "rule__ValidIDNOIJ__Alternatives");
 					put(grammarAccess.getTimingKindAccess().getAlternatives(), "rule__TimingKind__Alternatives");
 					put(grammarAccess.getParameterVisibilityKindAccess().getAlternatives(), "rule__ParameterVisibilityKind__Alternatives");
 					put(grammarAccess.getFunctionKindAccess().getAlternatives(), "rule__FunctionKind__Alternatives");
@@ -257,8 +256,6 @@ public class DMLTextParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitExponentAccess().getGroup(), "rule__UnitExponent__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup(), "rule__QualifiedNameNOIJ__Group__0");
-					put(grammarAccess.getQualifiedNameNOIJAccess().getGroup_1(), "rule__QualifiedNameNOIJ__Group_1__0");
 					put(grammarAccess.getRootAccess().getBlockTypesAssignment_0(), "rule__Root__BlockTypesAssignment_0");
 					put(grammarAccess.getRootAccess().getSystemInterfacesAssignment_1(), "rule__Root__SystemInterfacesAssignment_1");
 					put(grammarAccess.getBlockTypeAccess().getTimingAssignment_0(), "rule__BlockType__TimingAssignment_0");

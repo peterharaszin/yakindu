@@ -184,8 +184,6 @@ public class ParametersPropertySection extends AbstractModelPropertySection {
 		gridData.horizontalSpan = 2;
 		button.setLayoutData(gridData);
 		
-		getWidgetFactory().createLabel(composite, "");
-
 		IObservableValue buttonObservable = WidgetProperties.selection().observe(button);
 		UpdateValueStrategy updateValueStrategy = new CheckboxUpdateValueStrategy(parameter);
 		IObservableValue argumentObservable = createModelObservable(argument);

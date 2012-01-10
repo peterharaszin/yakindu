@@ -46,22 +46,24 @@ public class EquationCompoundHelper {
 			changed = false;
 			for (Iterator<EquationDescriptor> backlogIt = backlog.iterator(); backlogIt.hasNext();) {
 				EquationDescriptor backlogEquationDescriptor = backlogIt.next();
-				EquationDescriptor next = null;
-				
+				boolean append = false;
+
 				for (ListIterator<EquationDescriptor> it = equationCompound.listIterator(); it.hasNext();) {
-					next = it.next();
+					EquationDescriptor next = it.next();
 					if (InternalFunctionModelUtil.isDefinedBy(next, backlogEquationDescriptor)) {
 						it.previous();
 						it.add(backlogEquationDescriptor);
 						it.next();
 						backlogIt.remove();
 						changed = true;
-						next = null;
+						append = false;
 						break;
+					} else if (InternalFunctionModelUtil.isDefinedBy(backlogEquationDescriptor, next)) {
+						append = true;
 					}
 				}
 				
-				if (next != null && InternalFunctionModelUtil.isDefinedBy(backlogEquationDescriptor, next)) {
+				if (append) {
 					equationCompound.add(backlogEquationDescriptor);
 					backlogIt.remove();
 					changed = true;

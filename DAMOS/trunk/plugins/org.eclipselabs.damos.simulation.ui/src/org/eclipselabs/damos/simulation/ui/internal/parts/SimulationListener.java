@@ -91,9 +91,7 @@ public class SimulationListener implements ISimulationListener {
 						viewPart = (SimulationView) workbenchPage.findView(SimulationView.ID);
 						if (viewPart != null) {
 							viewPart.setProgress(-1);
-							if (event.getKind() == SimulationEvent.FINISH) {
-								viewPart.setSimulation(event.getSimulation());
-							}
+							viewPart.setSimulation(event.getSimulation());
 						}
 						if (!overflowedComponents.isEmpty()) {
 							StringBuilder sb = new StringBuilder("Numeric overflow occurred in ");

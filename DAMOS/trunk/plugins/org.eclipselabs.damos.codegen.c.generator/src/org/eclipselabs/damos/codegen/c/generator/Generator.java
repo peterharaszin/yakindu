@@ -195,6 +195,10 @@ public class Generator {
 		}
 
 		writer.println();
+		writer.println("#ifdef __cplusplus");
+		writer.println("extern \"C\" {");
+		writer.println("#endif /* __cplusplus */");
+		writer.println();
 		
 		if (!executionFlow.getTaskGraphs().isEmpty()) {
 			writer.printf("#define %sTASK_COUNT %d\n", prefix.toUpperCase(), executionFlow.getTaskGraphs().size());
@@ -241,6 +245,10 @@ public class Generator {
 		writer.printf("void %sinitialize(void);\n", prefix);
 		writer.printf("void %sexecute(const %sInput *input, %sOutput *output);\n", prefix, prefix, prefix);
 
+		writer.println();
+		writer.println("#ifdef __cplusplus");
+		writer.println("}");
+		writer.println("#endif /* __cplusplus */");
 		writer.println();
 		writer.printf("#endif /* %s */\n", headerMacro);
 	}

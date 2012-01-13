@@ -26,4 +26,10 @@ public interface BlockInoutput extends Inoutput {
 	 * @generated
 	 */
 	InoutputDefinition getDefinition();
+	
+	/* (non-Javadoc)
+	 * @see org.eclipselabs.damos.dml.Inoutput#createPort()
+	 */
+	BlockPort createPort();
+	
 } // BlockInoutput

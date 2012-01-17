@@ -108,7 +108,15 @@ it is most commonly used in control systems engineering and digital signal proce
 	of hosting at Eclipse Labs?
  -->
 
- 
+<p>Currently, Eclipse does not provide tool support for modeling data flow-oriented systems.
+Engineers and scientists are forced to use commercial tools which do not integrate with other Eclipse technologies very well.
+Furthermore, due to the closed source nature of commercial tools, it is difficult to customize and extend these tools to better
+integrate them with other Eclipse technologies.</p>
+
+<p>This project will benefit from being hosted at Eclipse due to the broader visibility in contrast to other project hosting providers.
+Because of the perceived higher reliability in terms of long-term support,
+it is expected to attract more interest and participation from other parties.
+This will lead to greater market penetration, while improving quality and reducing development costs.</p> 
 
 <h2>Initial Contribution</h2>
 
@@ -131,7 +139,7 @@ There are two main groups of components. The first group contains components pro
 and the diagram editing features of the modeling environment (orange).
 The second group provides simulation and code generation components as well as the standard block library (green).
 This enables other projects to build their own data flow-oriented languages by reusing the structural semantics
-and diagram editing components, and without being required to ship unneeded components.</p>
+and the diagram editing components, and without being required to include unneeded components.</p>
 
 <p></p>
 
@@ -140,7 +148,7 @@ and diagram editing components, and without being required to ship unneeded comp
 <p>The Eclipse extension mechanism can be used to customize and extend various aspects of the tooling, e.g:
 <ul>
 <li>Registering block libraries</li>
-<li>Contributing the visual representation for blocks</li>
+<li>Contributing the visual representation (i.e. symbols) of blocks</li>
 <li>Providing simulation behavior</li>
 <li>Providing additional solvers</li>
 <li>Providing code generators</li>
@@ -156,12 +164,12 @@ This enables users to perform model analysis and transformation using well-known
 
 <p>System models are comprised of models describing the mechanical components and the physical environment of a device,
 and the software model that will later be executed on that device.
-These models are described graphically using block diagrams.</p>
+These models are specified using block diagrams.</p>
 
 <p>When performing model simulation or code generation, an execution flow is first derived from the system model.
 The execution flow contains the execution graphs (i.e. the execution order of system components) of the system model.
-The execution-specific configuration must be provided in an execution model.
-The simulation and the code generation models are used to configure the simulation process (e.g. solver configuration)
+The execution-specific configuration must be provided in an execution configuration model.
+The simulation and code generation configuration models are used to configure the simulation process (e.g. solver configuration)
 and the code generator (e.g. target directories), respectively.
 The computation model specifies the computation algorithms utilized in the target device (e.g. fixed-point arithmetic vs. floating-point arithmetic).</p>
 
@@ -174,7 +182,7 @@ For all other models, textual model editors based on Xtext are provided.</p>
 
 <p>The graphical block diagram editor is used for editing system models.
 It can also be used to visualize real-time simulation results using virtual instruments.
-Block diagram files contain two model types: the semantic model of the system model and
+Block diagram files contain two model types: the semantic model of the system and
 the notation model containing the graphical information of the block diagram.
 When processing block diagrams, the notation model is usually ignored.</p>
 
@@ -191,7 +199,7 @@ Additional solvers can be provided using the Eclipse extension mechanism.
 When real-time simulation is performed, simulation results can be displayed in real-time using virtual instrument blocks.
 The simulation engine incorporates a target-specific computation model,
 so that&mdash;for instance&mdash;overflows can be detected when using fixed-point arithmetic.
-Simulation aspects (e.g. solver configuration) can be configured using a simulation model.</p>
+Simulation aspects (e.g. solver configuration) can be configured using a simulation configuration model.</p>
 
 <h4>Code Generator</h4>
 
@@ -201,7 +209,7 @@ Each system component can provide its own code generator.
 When using Mscript to describe the block behavior, an Mscript-specific code generator is used that
 transforms the Mscript functions into C code.
 The code generators incorporate a target-specific computation model containing information on how arithmetic operations should be handled.
-The code generation process can be configured using a generator model (e.g. target directories).</p>
+The code generation process can be configured using a generator configuration model (e.g. target directories).</p>
 
 <h4>Block Library</h4>
 
@@ -211,9 +219,9 @@ The block behavior can be specified using the declarative programming language M
 
 <h4>Mscript</h4>
 
-<p>Mscript is a declarative programming language where one defines the relationship between the inputs and outputs
+<p>Mscript is a declarative programming language where the user defines the relationship between the inputs and outputs
 of a function using a set of equations.
-In contrast to a functional language, Mscript functions can be stateful.
+In contrast to functional languages, Mscript functions can be stateful.
 Consequently, such functions must be instantiated (function objects).
 Stateful function equations can reference previous input and output values,
 which enable the specification of difference equations.
@@ -235,6 +243,8 @@ allow for specifying time-continuous blocks.
 	absolutely require?
  -->
  
+ All contributions will be distributed under the Eclipse Public License.
+ 
 <h2>Committers</h2>
 
 <!-- 
@@ -246,13 +256,7 @@ allow for specifying time-continuous blocks.
 <p>The following individuals are proposed as initial committers to the project:</p>
 
 <dl>
-	<dt>Committer 1, Affiliation</dt>
-	<dd>Committer 1 is a committer on the *** project where he has made significant contributions over
-	many years. S/he will be contribute to the *** functionality in this new project.</dd>
-	<dt>Committer 2, Affiliation</dt>
-	<dd>Committer 2 has provided significant contributions to the existing code base. S/he will contribute
-	to the *** functionality in this new project.
-	</dd>
+	<dt>Andreas Unger, itemis (Project Lead)</dt>
 </dl>
 
 <p>We welcome additional committers and contributions.</p>
@@ -292,8 +296,10 @@ project:</p>
 expressed interest in this project:</p>
 
 <ul>
-	<li>Somebody, Affiliation</li>
-	<li>Somebody else, Affiliation</li>
+	<li><a href="http://www.ksb.com/">KSB</a></li>
+	<li><a href="http://www.fh-dortmund.de/">University of Applied Sciences Dortmund</a></li>
+	<li><a href="http://www.itemis.com/">itemis</a></li>
+	<li><a href="http://www.sennheiser.com/">Sennheiser</a></li>
 </ul>
 
 <h2>Project Scheduling</h2>
@@ -304,6 +310,8 @@ expressed interest in this project:</p>
 	should be expected, when your first build will be ready, etc. Exact
 	dates are not required.
  -->
+
+Initial contribution is expected in the second quarter of 2012. 
 
 <h2>Changes to this Document</h2>
 

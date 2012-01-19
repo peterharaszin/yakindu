@@ -2077,7 +2077,9 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	public class ArrayElementAccessElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ArrayElementAccess");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cMemberFeatureCallParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final RuleCall cQualifiedFeatureCallParserRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cMemberFeatureCallParserRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cArrayElementAccessArrayAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
@@ -2090,16 +2092,22 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
 		
 		//ArrayElementAccess returns Expression:
-		//	MemberFeatureCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)*
-		//	"]")*;
+		//	(QualifiedFeatureCall | MemberFeatureCall) ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+		//	subscripts+=ArraySubscript)* "]")*;
 		public ParserRule getRule() { return rule; }
 
-		//MemberFeatureCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)*
-		//"]")*
+		//(QualifiedFeatureCall | MemberFeatureCall) ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+		//subscripts+=ArraySubscript)* "]")*
 		public Group getGroup() { return cGroup; }
 
+		//QualifiedFeatureCall | MemberFeatureCall
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//QualifiedFeatureCall
+		public RuleCall getQualifiedFeatureCallParserRuleCall_0_0() { return cQualifiedFeatureCallParserRuleCall_0_0; }
+
 		//MemberFeatureCall
-		public RuleCall getMemberFeatureCallParserRuleCall_0() { return cMemberFeatureCallParserRuleCall_0; }
+		public RuleCall getMemberFeatureCallParserRuleCall_0_1() { return cMemberFeatureCallParserRuleCall_0_1; }
 
 		//({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)* "]")*
 		public Group getGroup_1() { return cGroup_1; }
@@ -2831,7 +2839,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cVariableReferenceAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cFeatureAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cFeatureCallableElementCrossReference_1_0 = (CrossReference)cFeatureAssignment_1.eContents().get(0);
-		private final RuleCall cFeatureCallableElementQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cFeatureCallableElementCrossReference_1_0.eContents().get(1);
+		private final RuleCall cFeatureCallableElementValidIDParserRuleCall_1_0_1 = (RuleCall)cFeatureCallableElementCrossReference_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cLeftCurlyBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cStepExpressionAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
@@ -2839,23 +2847,23 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
 		
 		//VariableReference returns Expression:
-		//	{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
+		//	{VariableReference} feature=[CallableElement|ValidID] ("{" stepExpression=StepExpression "}")?;
 		public ParserRule getRule() { return rule; }
 
-		//{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?
+		//{VariableReference} feature=[CallableElement|ValidID] ("{" stepExpression=StepExpression "}")?
 		public Group getGroup() { return cGroup; }
 
 		//{VariableReference}
 		public Action getVariableReferenceAction_0() { return cVariableReferenceAction_0; }
 
-		//feature=[CallableElement|QualifiedName]
+		//feature=[CallableElement|ValidID]
 		public Assignment getFeatureAssignment_1() { return cFeatureAssignment_1; }
 
-		//[CallableElement|QualifiedName]
+		//[CallableElement|ValidID]
 		public CrossReference getFeatureCallableElementCrossReference_1_0() { return cFeatureCallableElementCrossReference_1_0; }
 
-		//QualifiedName
-		public RuleCall getFeatureCallableElementQualifiedNameParserRuleCall_1_0_1() { return cFeatureCallableElementQualifiedNameParserRuleCall_1_0_1; }
+		//ValidID
+		public RuleCall getFeatureCallableElementValidIDParserRuleCall_1_0_1() { return cFeatureCallableElementValidIDParserRuleCall_1_0_1; }
 
 		//("{" stepExpression=StepExpression "}")?
 		public Group getGroup_2() { return cGroup_2; }
@@ -2879,7 +2887,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cFunctionCallAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cFeatureAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cFeatureCallableElementCrossReference_1_0 = (CrossReference)cFeatureAssignment_1.eContents().get(0);
-		private final RuleCall cFeatureCallableElementQualifiedNameParserRuleCall_1_0_1 = (RuleCall)cFeatureCallableElementCrossReference_1_0.eContents().get(1);
+		private final RuleCall cFeatureCallableElementValidIDParserRuleCall_1_0_1 = (RuleCall)cFeatureCallableElementCrossReference_1_0.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Assignment cArgumentsAssignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
@@ -2891,23 +2899,23 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightParenthesisKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//FunctionCall returns Expression:
-		//	{FunctionCall} feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")";
+		//	{FunctionCall} feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")";
 		public ParserRule getRule() { return rule; }
 
-		//{FunctionCall} feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")"
+		//{FunctionCall} feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")"
 		public Group getGroup() { return cGroup; }
 
 		//{FunctionCall}
 		public Action getFunctionCallAction_0() { return cFunctionCallAction_0; }
 
-		//feature=[CallableElement|QualifiedName]
+		//feature=[CallableElement|ValidID]
 		public Assignment getFeatureAssignment_1() { return cFeatureAssignment_1; }
 
-		//[CallableElement|QualifiedName]
+		//[CallableElement|ValidID]
 		public CrossReference getFeatureCallableElementCrossReference_1_0() { return cFeatureCallableElementCrossReference_1_0; }
 
-		//QualifiedName
-		public RuleCall getFeatureCallableElementQualifiedNameParserRuleCall_1_0_1() { return cFeatureCallableElementQualifiedNameParserRuleCall_1_0_1; }
+		//ValidID
+		public RuleCall getFeatureCallableElementValidIDParserRuleCall_1_0_1() { return cFeatureCallableElementValidIDParserRuleCall_1_0_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_2() { return cLeftParenthesisKeyword_2; }
@@ -2935,6 +2943,128 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 		//")"
 		public Keyword getRightParenthesisKeyword_4() { return cRightParenthesisKeyword_4; }
+	}
+
+	public class QualifiedFeatureCallElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedFeatureCall");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cQualifiedVariableReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cQualifiedFunctionCallParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//QualifiedFeatureCall returns Expression:
+		//	QualifiedVariableReference | QualifiedFunctionCall;
+		public ParserRule getRule() { return rule; }
+
+		//QualifiedVariableReference | QualifiedFunctionCall
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//QualifiedVariableReference
+		public RuleCall getQualifiedVariableReferenceParserRuleCall_0() { return cQualifiedVariableReferenceParserRuleCall_0; }
+
+		//QualifiedFunctionCall
+		public RuleCall getQualifiedFunctionCallParserRuleCall_1() { return cQualifiedFunctionCallParserRuleCall_1; }
+	}
+
+	public class QualifiedVariableReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedVariableReference");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cVariableReferenceAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cFeatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cFeatureCallableElementCrossReference_2_0 = (CrossReference)cFeatureAssignment_2.eContents().get(0);
+		private final RuleCall cFeatureCallableElementQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cFeatureCallableElementCrossReference_2_0.eContents().get(1);
+		
+		//QualifiedVariableReference returns Expression:
+		//	{VariableReference} "::" feature=[CallableElement|QualifiedName];
+		public ParserRule getRule() { return rule; }
+
+		//{VariableReference} "::" feature=[CallableElement|QualifiedName]
+		public Group getGroup() { return cGroup; }
+
+		//{VariableReference}
+		public Action getVariableReferenceAction_0() { return cVariableReferenceAction_0; }
+
+		//"::"
+		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
+
+		//feature=[CallableElement|QualifiedName]
+		public Assignment getFeatureAssignment_2() { return cFeatureAssignment_2; }
+
+		//[CallableElement|QualifiedName]
+		public CrossReference getFeatureCallableElementCrossReference_2_0() { return cFeatureCallableElementCrossReference_2_0; }
+
+		//QualifiedName
+		public RuleCall getFeatureCallableElementQualifiedNameParserRuleCall_2_0_1() { return cFeatureCallableElementQualifiedNameParserRuleCall_2_0_1; }
+	}
+
+	public class QualifiedFunctionCallElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedFunctionCall");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cFunctionCallAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cColonColonKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cFeatureAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final CrossReference cFeatureCallableElementCrossReference_2_0 = (CrossReference)cFeatureAssignment_2.eContents().get(0);
+		private final RuleCall cFeatureCallableElementQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cFeatureCallableElementCrossReference_2_0.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Assignment cArgumentsAssignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
+		private final RuleCall cArgumentsExpressionParserRuleCall_4_0_0 = (RuleCall)cArgumentsAssignment_4_0.eContents().get(0);
+		private final Group cGroup_4_1 = (Group)cGroup_4.eContents().get(1);
+		private final Keyword cCommaKeyword_4_1_0 = (Keyword)cGroup_4_1.eContents().get(0);
+		private final Assignment cArgumentsAssignment_4_1_1 = (Assignment)cGroup_4_1.eContents().get(1);
+		private final RuleCall cArgumentsExpressionParserRuleCall_4_1_1_0 = (RuleCall)cArgumentsAssignment_4_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		
+		//QualifiedFunctionCall returns Expression:
+		//	{FunctionCall} "::" feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)?
+		//	")";
+		public ParserRule getRule() { return rule; }
+
+		//{FunctionCall} "::" feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)?
+		//")"
+		public Group getGroup() { return cGroup; }
+
+		//{FunctionCall}
+		public Action getFunctionCallAction_0() { return cFunctionCallAction_0; }
+
+		//"::"
+		public Keyword getColonColonKeyword_1() { return cColonColonKeyword_1; }
+
+		//feature=[CallableElement|QualifiedName]
+		public Assignment getFeatureAssignment_2() { return cFeatureAssignment_2; }
+
+		//[CallableElement|QualifiedName]
+		public CrossReference getFeatureCallableElementCrossReference_2_0() { return cFeatureCallableElementCrossReference_2_0; }
+
+		//QualifiedName
+		public RuleCall getFeatureCallableElementQualifiedNameParserRuleCall_2_0_1() { return cFeatureCallableElementQualifiedNameParserRuleCall_2_0_1; }
+
+		//"("
+		public Keyword getLeftParenthesisKeyword_3() { return cLeftParenthesisKeyword_3; }
+
+		//(arguments+=Expression ("," arguments+=Expression)*)?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//arguments+=Expression
+		public Assignment getArgumentsAssignment_4_0() { return cArgumentsAssignment_4_0; }
+
+		//Expression
+		public RuleCall getArgumentsExpressionParserRuleCall_4_0_0() { return cArgumentsExpressionParserRuleCall_4_0_0; }
+
+		//("," arguments+=Expression)*
+		public Group getGroup_4_1() { return cGroup_4_1; }
+
+		//","
+		public Keyword getCommaKeyword_4_1_0() { return cCommaKeyword_4_1_0; }
+
+		//arguments+=Expression
+		public Assignment getArgumentsAssignment_4_1_1() { return cArgumentsAssignment_4_1_1; }
+
+		//Expression
+		public RuleCall getArgumentsExpressionParserRuleCall_4_1_1_0() { return cArgumentsExpressionParserRuleCall_4_1_1_0; }
+
+		//")"
+		public Keyword getRightParenthesisKeyword_5() { return cRightParenthesisKeyword_5; }
 	}
 
 	public class StepExpressionElements extends AbstractParserRuleElementFinder {
@@ -4168,24 +4298,24 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cValidIDParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cColonColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cValidIDParserRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//QualifiedName:
-		//	ValidID ("::" ValidID)*;
+		//	ValidID ("." ValidID)*;
 		public ParserRule getRule() { return rule; }
 
-		//ValidID ("::" ValidID)*
+		//ValidID ("." ValidID)*
 		public Group getGroup() { return cGroup; }
 
 		//ValidID
 		public RuleCall getValidIDParserRuleCall_0() { return cValidIDParserRuleCall_0; }
 
-		//("::" ValidID)*
+		//("." ValidID)*
 		public Group getGroup_1() { return cGroup_1; }
 
-		//"::"
-		public Keyword getColonColonKeyword_1_0() { return cColonColonKeyword_1_0; }
+		//"."
+		public Keyword getFullStopKeyword_1_0() { return cFullStopKeyword_1_0; }
 
 		//ValidID
 		public RuleCall getValidIDParserRuleCall_1_1() { return cValidIDParserRuleCall_1_1; }
@@ -4616,6 +4746,9 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private FeatureCallElements pFeatureCall;
 	private VariableReferenceElements pVariableReference;
 	private FunctionCallElements pFunctionCall;
+	private QualifiedFeatureCallElements pQualifiedFeatureCall;
+	private QualifiedVariableReferenceElements pQualifiedVariableReference;
+	private QualifiedFunctionCallElements pQualifiedFunctionCall;
 	private StepExpressionElements pStepExpression;
 	private RangeStepExpressionElements pRangeStepExpression;
 	private AdditiveStepExpressionElements pAdditiveStepExpression;
@@ -5280,8 +5413,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayElementAccess returns Expression:
-	//	MemberFeatureCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)*
-	//	"]")*;
+	//	(QualifiedFeatureCall | MemberFeatureCall) ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+	//	subscripts+=ArraySubscript)* "]")*;
 	public ArrayElementAccessElements getArrayElementAccessAccess() {
 		return (pArrayElementAccess != null) ? pArrayElementAccess : (pArrayElementAccess = new ArrayElementAccessElements());
 	}
@@ -5456,7 +5589,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//VariableReference returns Expression:
-	//	{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
+	//	{VariableReference} feature=[CallableElement|ValidID] ("{" stepExpression=StepExpression "}")?;
 	public VariableReferenceElements getVariableReferenceAccess() {
 		return (pVariableReference != null) ? pVariableReference : (pVariableReference = new VariableReferenceElements());
 	}
@@ -5466,13 +5599,44 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionCall returns Expression:
-	//	{FunctionCall} feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")";
+	//	{FunctionCall} feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")";
 	public FunctionCallElements getFunctionCallAccess() {
 		return (pFunctionCall != null) ? pFunctionCall : (pFunctionCall = new FunctionCallElements());
 	}
 	
 	public ParserRule getFunctionCallRule() {
 		return getFunctionCallAccess().getRule();
+	}
+
+	//QualifiedFeatureCall returns Expression:
+	//	QualifiedVariableReference | QualifiedFunctionCall;
+	public QualifiedFeatureCallElements getQualifiedFeatureCallAccess() {
+		return (pQualifiedFeatureCall != null) ? pQualifiedFeatureCall : (pQualifiedFeatureCall = new QualifiedFeatureCallElements());
+	}
+	
+	public ParserRule getQualifiedFeatureCallRule() {
+		return getQualifiedFeatureCallAccess().getRule();
+	}
+
+	//QualifiedVariableReference returns Expression:
+	//	{VariableReference} "::" feature=[CallableElement|QualifiedName];
+	public QualifiedVariableReferenceElements getQualifiedVariableReferenceAccess() {
+		return (pQualifiedVariableReference != null) ? pQualifiedVariableReference : (pQualifiedVariableReference = new QualifiedVariableReferenceElements());
+	}
+	
+	public ParserRule getQualifiedVariableReferenceRule() {
+		return getQualifiedVariableReferenceAccess().getRule();
+	}
+
+	//QualifiedFunctionCall returns Expression:
+	//	{FunctionCall} "::" feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)?
+	//	")";
+	public QualifiedFunctionCallElements getQualifiedFunctionCallAccess() {
+		return (pQualifiedFunctionCall != null) ? pQualifiedFunctionCall : (pQualifiedFunctionCall = new QualifiedFunctionCallElements());
+	}
+	
+	public ParserRule getQualifiedFunctionCallRule() {
+		return getQualifiedFunctionCallAccess().getRule();
 	}
 
 	//StepExpression:
@@ -5812,7 +5976,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedName:
-	//	ValidID ("::" ValidID)*;
+	//	ValidID ("." ValidID)*;
 	public QualifiedNameElements getQualifiedNameAccess() {
 		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
 	}

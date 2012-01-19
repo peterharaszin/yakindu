@@ -11,7 +11,6 @@ import org.eclipselabs.damos.mscript.computationmodel.conversion.ComputationMode
 import org.eclipselabs.damos.mscript.computationmodel.naming.ComputationModelQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
-import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameConverter;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -39,8 +38,4 @@ public class ComputationModelRuntimeModule extends org.eclipselabs.damos.mscript
 		return ComputationModelQualifiedNameProvider.class;
 	}
 	
-	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		return MscriptQualifiedNameConverter.class;
-	}
-
 }

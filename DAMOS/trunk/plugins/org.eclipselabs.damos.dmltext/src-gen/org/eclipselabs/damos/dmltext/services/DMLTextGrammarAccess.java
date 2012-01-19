@@ -1886,8 +1886,8 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ArrayElementAccess returns Expression:
-	//	MemberFeatureCall ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript ("," subscripts+=ArraySubscript)*
-	//	"]")*;
+	//	(QualifiedFeatureCall | MemberFeatureCall) ({ArrayElementAccess.array=current} "[" subscripts+=ArraySubscript (","
+	//	subscripts+=ArraySubscript)* "]")*;
 	public MscriptGrammarAccess.ArrayElementAccessElements getArrayElementAccessAccess() {
 		return gaMscript.getArrayElementAccessAccess();
 	}
@@ -2062,7 +2062,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//VariableReference returns Expression:
-	//	{VariableReference} feature=[CallableElement|QualifiedName] ("{" stepExpression=StepExpression "}")?;
+	//	{VariableReference} feature=[CallableElement|ValidID] ("{" stepExpression=StepExpression "}")?;
 	public MscriptGrammarAccess.VariableReferenceElements getVariableReferenceAccess() {
 		return gaMscript.getVariableReferenceAccess();
 	}
@@ -2072,13 +2072,44 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FunctionCall returns Expression:
-	//	{FunctionCall} feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")";
+	//	{FunctionCall} feature=[CallableElement|ValidID] "(" (arguments+=Expression ("," arguments+=Expression)*)? ")";
 	public MscriptGrammarAccess.FunctionCallElements getFunctionCallAccess() {
 		return gaMscript.getFunctionCallAccess();
 	}
 	
 	public ParserRule getFunctionCallRule() {
 		return getFunctionCallAccess().getRule();
+	}
+
+	//QualifiedFeatureCall returns Expression:
+	//	QualifiedVariableReference | QualifiedFunctionCall;
+	public MscriptGrammarAccess.QualifiedFeatureCallElements getQualifiedFeatureCallAccess() {
+		return gaMscript.getQualifiedFeatureCallAccess();
+	}
+	
+	public ParserRule getQualifiedFeatureCallRule() {
+		return getQualifiedFeatureCallAccess().getRule();
+	}
+
+	//QualifiedVariableReference returns Expression:
+	//	{VariableReference} "::" feature=[CallableElement|QualifiedName];
+	public MscriptGrammarAccess.QualifiedVariableReferenceElements getQualifiedVariableReferenceAccess() {
+		return gaMscript.getQualifiedVariableReferenceAccess();
+	}
+	
+	public ParserRule getQualifiedVariableReferenceRule() {
+		return getQualifiedVariableReferenceAccess().getRule();
+	}
+
+	//QualifiedFunctionCall returns Expression:
+	//	{FunctionCall} "::" feature=[CallableElement|QualifiedName] "(" (arguments+=Expression ("," arguments+=Expression)*)?
+	//	")";
+	public MscriptGrammarAccess.QualifiedFunctionCallElements getQualifiedFunctionCallAccess() {
+		return gaMscript.getQualifiedFunctionCallAccess();
+	}
+	
+	public ParserRule getQualifiedFunctionCallRule() {
+		return getQualifiedFunctionCallAccess().getRule();
 	}
 
 	//StepExpression:
@@ -2418,7 +2449,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//QualifiedName:
-	//	ValidID ("::" ValidID)*;
+	//	ValidID ("." ValidID)*;
 	public MscriptGrammarAccess.QualifiedNameElements getQualifiedNameAccess() {
 		return gaMscript.getQualifiedNameAccess();
 	}

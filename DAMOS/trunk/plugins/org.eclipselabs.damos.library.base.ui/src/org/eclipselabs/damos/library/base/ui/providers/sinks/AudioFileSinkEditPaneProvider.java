@@ -25,7 +25,7 @@ import org.eclipselabs.damos.library.base.util.sinks.AudioFileSinkConstants;
  */
 public class AudioFileSinkEditPaneProvider implements IParameterEditPaneProvider {
 
-	private static final String BLOCK_TYPE_QUALIFIED_NAME = "damos::library::base::sinks::AudioFileSink";
+	private static final String BLOCK_TYPE_QUALIFIED_NAME = "damos.library.base.sinks.AudioFileSink";
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider#createEditPane(org.eclipselabs.damos.dml.Parameter)

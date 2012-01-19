@@ -1,4 +1,4 @@
-continuous blockType damos::library::base::_continuous::Integrator
+continuous blockType damos.library.base._continuous.Integrator
 
 input _input {
 	directFeedthrough never

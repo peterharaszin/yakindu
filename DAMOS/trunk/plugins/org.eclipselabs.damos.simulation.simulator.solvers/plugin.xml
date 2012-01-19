@@ -2,45 +2,41 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipselabs.damos.simulation.simulationmodel.solverTypes">
-      <solverType
-            qualifiedName="damos::solvers::Euler"
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/EulerSolverType.xmi#/">
-      </solverType>
-      <solverType
-            qualifiedName="damos::solvers::ClassicalRungeKutta"
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/ClassicalRungeKuttaSolverType.xmi#/">
-      </solverType>
-      <solverType
-            qualifiedName="damos::solvers::DormandPrince54"
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/DormandPrince54SolverType.xmi#/">
-      </solverType>
-      <solverType
-            qualifiedName="damos::solvers::DormandPrince83"
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/solverTypes/DormandPrince83SolverType.xmi#/">
-      </solverType>
-   </extension>
-   <extension
          point="org.eclipselabs.damos.simulation.simulator.solvers">
       <solver
-            solverType="damos::solvers::Euler"
+            id="damos.simulation.solvers.Euler"
             class="org.eclipselabs.damos.simulation.simulator.solvers.EulerSolver"
             name="Euler">
       </solver>
       <solver
-            solverType="damos::solvers::ClassicalRungeKutta"
+            id="damos.simulation.solvers.ClassicalRungeKutta"
             class="org.eclipselabs.damos.simulation.simulator.solvers.ClassicalRungeKuttaSolver"
             name="Classical Runge-Kutta">
       </solver>
       <solver
-            solverType="damos::solvers::DormandPrince54"
+            id="damos.simulation.solvers.DormandPrince54"
             class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince54Solver"
             name="Dormand-Prince 5(4)">
       </solver>
       <solver
-            solverType="damos::solvers::DormandPrince83"
+            id="damos.simulation.solvers.DormandPrince853"
             class="org.eclipselabs.damos.simulation.simulator.solvers.DormandPrince853Solver"
             name="Dormand-Prince 8(5,3)">
       </solver>
+   </extension>
+   <extension
+         point="org.eclipselabs.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/ClassicalRungeKuttaSolverOption.xmi#/">
+      </resource>
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/EulerSolverOption.xmi#/">
+      </resource>
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/DormandPrince54SolverOption.xmi#/">
+      </resource>
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/DormandPrince853SolverOption.xmi#/">
+      </resource>
    </extension>
 </plugin>

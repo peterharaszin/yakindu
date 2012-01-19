@@ -11,12 +11,12 @@
 
 package org.eclipselabs.damos.mscript.linking;
 
-import org.eclipse.xtext.linking.impl.Linker;
+import org.eclipse.xtext.linking.lazy.LazyLinker;
 
 /**
  * @author Andreas Unger
  *
  */
-public class MscriptLinker extends Linker {
+public class MscriptLinker extends LazyLinker {
 
 }

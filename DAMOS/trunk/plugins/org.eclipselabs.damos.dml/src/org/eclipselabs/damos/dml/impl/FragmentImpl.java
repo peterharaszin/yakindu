@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.EModelElementImpl;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.common.internal.ecore.util.DerivedSubsetEObjectEList;
+import org.eclipselabs.damos.common.ecore.util.DerivedSubsetEObjectEList;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.dml.Connection;
 import org.eclipselabs.damos.dml.DMLPackage;

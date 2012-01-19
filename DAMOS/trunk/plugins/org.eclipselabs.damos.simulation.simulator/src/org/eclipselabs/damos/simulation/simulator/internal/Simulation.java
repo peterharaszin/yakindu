@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
@@ -29,7 +30,6 @@ import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.core.ISimulationRunnable;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
 
@@ -67,7 +67,7 @@ public class Simulation implements ISimulation {
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.ISimulation#getModel()
 	 */
-	public SimulationModel getModel() {
+	public Configuration getConfiguration() {
 		return context.getSimulationModel();
 	}
 	

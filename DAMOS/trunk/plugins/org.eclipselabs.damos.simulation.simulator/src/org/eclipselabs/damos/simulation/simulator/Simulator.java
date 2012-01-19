@@ -20,7 +20,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.execution.core.DataTypeResolver;
 import org.eclipselabs.damos.execution.core.DataTypeResolverResult;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
@@ -31,7 +33,6 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.build.ExecutionFlowBuilder;
 import org.eclipselabs.damos.simulation.core.ISimulation;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.internal.ComponentOverflowMonitor;
 import org.eclipselabs.damos.simulation.simulator.internal.DefaultSimulationClock;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
@@ -60,15 +61,20 @@ public class Simulator {
 	
 	private SimulationEngine simulationEngine;
 	
-	public void initialize(SimulationModel simulationModel, IProgressMonitor monitor) throws CoreException {
+	public void initialize(Configuration configuration, IProgressMonitor monitor) throws CoreException {
 		SubMonitor subMonitor = SubMonitor.convert(monitor, "Initializing simulator", 5);
 		
-		ExecutionFlow executionFlow = executionFlowBuilder.build(simulationModel.getTopLevelFragment(), subMonitor.newChild(1));
+		Fragment contextFragment = configuration.getContextFragment();
+		if (contextFragment == null) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No root system specification found in configuration"));
+		}
+		
+		ExecutionFlow executionFlow = executionFlowBuilder.build(contextFragment, subMonitor.newChild(1));
 		if (subMonitor.isCanceled()) {
 			return;
 		}
 
-		ISimulationContext context = new SimulationContext(simulationModel, executionFlow);
+		ISimulationContext context = new SimulationContext(configuration, executionFlow);
 		Simulation simulation = new Simulation(context);
 
 		simulationObjectAdaptor.adaptSimulationObjects(context, subMonitor.newChild(1));
@@ -80,7 +86,10 @@ public class Simulator {
 			taskGraph.eAdapters().add(new Task(simulation, taskGraph));
 		}
 
-		String solverQualifiedName = simulationModel.getSolverConfiguration().getType().getQualifiedName();
+		String solverQualifiedName = configuration.getPropertySelectionName("damos.simulation.solver");
+		if (solverQualifiedName == null) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No solver specification found in configuration"));
+		}
 		ISolverDescriptor solverDescriptor = ISolverRegistry.INSTANCE.getSolver(solverQualifiedName);
 		if (solverDescriptor == null) {
 			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Solver '" + solverQualifiedName + "' not found"));
@@ -152,7 +161,7 @@ public class Simulator {
 				ISimulationObject simulationObject = SimulationUtil.getSimulationObject(node);
 				if (simulationObject != null) {
 					IComponentSignature signature = signatures.get(componentNode.getComponent());
-					simulationObject.initialize(new SimulationObjectContext(componentNode, signature, simulation.getModel(), new ComponentOverflowMonitor(simulation, componentNode.getComponent())), monitor);
+					simulationObject.initialize(new SimulationObjectContext(componentNode, signature, simulation.getConfiguration(), new ComponentOverflowMonitor(simulation, componentNode.getComponent())), monitor);
 				}
 			}
 		}

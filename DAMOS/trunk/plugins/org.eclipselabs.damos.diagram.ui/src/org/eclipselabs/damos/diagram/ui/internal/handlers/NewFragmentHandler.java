@@ -26,7 +26,7 @@ public class NewFragmentHandler extends AbstractHandler {
 				Object element = structuredSelection.getFirstElement();
 				if (element instanceof Fragment) {
 					Fragment fragment = (Fragment) element;
-					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Create Fragment", "Qualified name:", "org::example::Unnamed", null);
+					InputDialog d = new InputDialog(HandlerUtil.getActiveShell(event), "Create Fragment", "Qualified name:", "org.example.Unnamed", null);
 					if (d.open() == Dialog.OK) {
 						Fragment newFragment = DMLFactory.eINSTANCE.createFragment();
 						newFragment.setQualifiedName(d.getValue());

@@ -2,4 +2,10 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension-point id="simulationListeners" name="Simulation Listeners" schema="schema/simulationListeners.exsd"/>
+   <extension
+         point="org.eclipselabs.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.core/dconfig/Simulation.xmi#/">
+      </resource>
+   </extension>
 </plugin>

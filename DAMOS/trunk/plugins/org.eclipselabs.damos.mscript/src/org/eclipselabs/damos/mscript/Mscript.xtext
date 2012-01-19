@@ -251,7 +251,7 @@ enum PostfixOperator:
 	Derivative="'";
 
 ArrayElementAccess returns Expression:
-	MemberFeatureCall ({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')*;
+	(QualifiedFeatureCall | MemberFeatureCall) ({ArrayElementAccess.array=current} '[' subscripts+=ArraySubscript (',' subscripts+=ArraySubscript)* ']')*;
 
 MemberFeatureCall returns Expression:
 	PrimaryExpression (({MemberVariableAccess.target=current} '.' memberVariable=[CallableElement|ValidID])
@@ -312,10 +312,19 @@ FeatureCall returns Expression:
 	VariableReference | FunctionCall;
 	
 VariableReference returns Expression:
-	{VariableReference} feature=[CallableElement|QualifiedName] ('{' stepExpression=StepExpression '}')?;
+	{VariableReference} feature=[CallableElement|ValidID] ('{' stepExpression=StepExpression '}')?;
 
 FunctionCall returns Expression:
-	{FunctionCall} feature=[CallableElement|QualifiedName] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
+	{FunctionCall} feature=[CallableElement|ValidID] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
+
+QualifiedFeatureCall returns Expression:
+	QualifiedVariableReference | QualifiedFunctionCall;
+
+QualifiedVariableReference returns Expression:
+	{VariableReference} '::' feature=[CallableElement|QualifiedName];
+
+QualifiedFunctionCall returns Expression:
+	{FunctionCall} '::' feature=[CallableElement|QualifiedName] '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
 
 StepExpression:
 	RangeStepExpression;
@@ -430,7 +439,7 @@ UnitExponent returns ecore::EInt:
 	('-')? ValidInt;
 
 QualifiedName:
-	ValidID ('::' ValidID)*;
+	ValidID ('.' ValidID)*;
 
 ValidInt returns ecore::EInt:
 	ONE | INT;

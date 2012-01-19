@@ -14,13 +14,12 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputConnector;
-import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.execution.executionflow.DataFlowSourceEnd;
 import org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd;
 import org.eclipselabs.damos.execution.executionflow.Edge;
@@ -40,9 +39,9 @@ import org.eclipselabs.damos.execution.executionflow.internal.operations.NodeOpe
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getIncomingEdges <em>Incoming Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getOutgoingEdges <em>Outgoing Edges</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getEnclosingSubsystems <em>Enclosing Subsystems</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getIncomingDataFlows <em>Incoming Data Flows</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getOutgoingDataFlows <em>Outgoing Data Flows</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.impl.SubgraphImpl#getSystemPath <em>System Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -70,16 +69,6 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	protected EList<Edge> outgoingEdges;
 
 	/**
-	 * The cached value of the '{@link #getEnclosingSubsystems() <em>Enclosing Subsystems</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEnclosingSubsystems()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Subsystem> enclosingSubsystems;
-
-	/**
 	 * The cached value of the '{@link #getIncomingDataFlows() <em>Incoming Data Flows</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,6 +87,26 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	 * @ordered
 	 */
 	protected EList<DataFlowSourceEnd> outgoingDataFlows;
+
+	/**
+	 * The default value of the '{@link #getSystemPath() <em>System Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSystemPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SystemPath SYSTEM_PATH_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getSystemPath() <em>System Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSystemPath()
+	 * @generated
+	 * @ordered
+	 */
+	protected SystemPath systemPath = SYSTEM_PATH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -188,18 +197,6 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Subsystem> getEnclosingSubsystems() {
-		if (enclosingSubsystems == null) {
-			enclosingSubsystems = new EObjectResolvingEList<Subsystem>(Subsystem.class, this, ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS);
-		}
-		return enclosingSubsystems;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<DataFlowTargetEnd> getIncomingDataFlows() {
 		if (incomingDataFlows == null) {
 			incomingDataFlows = new EObjectWithInverseResolvingEList<DataFlowTargetEnd>(DataFlowTargetEnd.class, this, ExecutionFlowPackage.SUBGRAPH__INCOMING_DATA_FLOWS, ExecutionFlowPackage.DATA_FLOW_TARGET_END__NODE);
@@ -217,6 +214,27 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 			outgoingDataFlows = new EObjectWithInverseResolvingEList<DataFlowSourceEnd>(DataFlowSourceEnd.class, this, ExecutionFlowPackage.SUBGRAPH__OUTGOING_DATA_FLOWS, ExecutionFlowPackage.DATA_FLOW_SOURCE_END__NODE);
 		}
 		return outgoingDataFlows;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SystemPath getSystemPath() {
+		return systemPath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSystemPath(SystemPath newSystemPath) {
+		SystemPath oldSystemPath = systemPath;
+		systemPath = newSystemPath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionFlowPackage.SUBGRAPH__SYSTEM_PATH, oldSystemPath, systemPath));
 	}
 
 	/**
@@ -361,12 +379,12 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 				return getIncomingEdges();
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES:
 				return getOutgoingEdges();
-			case ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS:
-				return getEnclosingSubsystems();
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_DATA_FLOWS:
 				return getIncomingDataFlows();
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_DATA_FLOWS:
 				return getOutgoingDataFlows();
+			case ExecutionFlowPackage.SUBGRAPH__SYSTEM_PATH:
+				return getSystemPath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -391,10 +409,6 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 				getOutgoingEdges().clear();
 				getOutgoingEdges().addAll((Collection<? extends Edge>)newValue);
 				return;
-			case ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS:
-				getEnclosingSubsystems().clear();
-				getEnclosingSubsystems().addAll((Collection<? extends Subsystem>)newValue);
-				return;
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_DATA_FLOWS:
 				getIncomingDataFlows().clear();
 				getIncomingDataFlows().addAll((Collection<? extends DataFlowTargetEnd>)newValue);
@@ -402,6 +416,9 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_DATA_FLOWS:
 				getOutgoingDataFlows().clear();
 				getOutgoingDataFlows().addAll((Collection<? extends DataFlowSourceEnd>)newValue);
+				return;
+			case ExecutionFlowPackage.SUBGRAPH__SYSTEM_PATH:
+				setSystemPath((SystemPath)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -424,14 +441,14 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES:
 				getOutgoingEdges().clear();
 				return;
-			case ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS:
-				getEnclosingSubsystems().clear();
-				return;
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_DATA_FLOWS:
 				getIncomingDataFlows().clear();
 				return;
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_DATA_FLOWS:
 				getOutgoingDataFlows().clear();
+				return;
+			case ExecutionFlowPackage.SUBGRAPH__SYSTEM_PATH:
+				setSystemPath(SYSTEM_PATH_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -451,12 +468,12 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 				return incomingEdges != null && !incomingEdges.isEmpty();
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES:
 				return outgoingEdges != null && !outgoingEdges.isEmpty();
-			case ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS:
-				return enclosingSubsystems != null && !enclosingSubsystems.isEmpty();
 			case ExecutionFlowPackage.SUBGRAPH__INCOMING_DATA_FLOWS:
 				return incomingDataFlows != null && !incomingDataFlows.isEmpty();
 			case ExecutionFlowPackage.SUBGRAPH__OUTGOING_DATA_FLOWS:
 				return outgoingDataFlows != null && !outgoingDataFlows.isEmpty();
+			case ExecutionFlowPackage.SUBGRAPH__SYSTEM_PATH:
+				return SYSTEM_PATH_EDEFAULT == null ? systemPath != null : !SYSTEM_PATH_EDEFAULT.equals(systemPath);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -473,9 +490,9 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 				case ExecutionFlowPackage.SUBGRAPH__GRAPH: return ExecutionFlowPackage.NODE__GRAPH;
 				case ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES: return ExecutionFlowPackage.NODE__INCOMING_EDGES;
 				case ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES: return ExecutionFlowPackage.NODE__OUTGOING_EDGES;
-				case ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS: return ExecutionFlowPackage.NODE__ENCLOSING_SUBSYSTEMS;
 				case ExecutionFlowPackage.SUBGRAPH__INCOMING_DATA_FLOWS: return ExecutionFlowPackage.NODE__INCOMING_DATA_FLOWS;
 				case ExecutionFlowPackage.SUBGRAPH__OUTGOING_DATA_FLOWS: return ExecutionFlowPackage.NODE__OUTGOING_DATA_FLOWS;
+				case ExecutionFlowPackage.SUBGRAPH__SYSTEM_PATH: return ExecutionFlowPackage.NODE__SYSTEM_PATH;
 				default: return -1;
 			}
 		}
@@ -494,13 +511,29 @@ public abstract class SubgraphImpl extends GraphImpl implements Subgraph {
 				case ExecutionFlowPackage.NODE__GRAPH: return ExecutionFlowPackage.SUBGRAPH__GRAPH;
 				case ExecutionFlowPackage.NODE__INCOMING_EDGES: return ExecutionFlowPackage.SUBGRAPH__INCOMING_EDGES;
 				case ExecutionFlowPackage.NODE__OUTGOING_EDGES: return ExecutionFlowPackage.SUBGRAPH__OUTGOING_EDGES;
-				case ExecutionFlowPackage.NODE__ENCLOSING_SUBSYSTEMS: return ExecutionFlowPackage.SUBGRAPH__ENCLOSING_SUBSYSTEMS;
 				case ExecutionFlowPackage.NODE__INCOMING_DATA_FLOWS: return ExecutionFlowPackage.SUBGRAPH__INCOMING_DATA_FLOWS;
 				case ExecutionFlowPackage.NODE__OUTGOING_DATA_FLOWS: return ExecutionFlowPackage.SUBGRAPH__OUTGOING_DATA_FLOWS;
+				case ExecutionFlowPackage.NODE__SYSTEM_PATH: return ExecutionFlowPackage.SUBGRAPH__SYSTEM_PATH;
 				default: return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (systemPath: ");
+		result.append(systemPath);
+		result.append(')');
+		return result.toString();
 	}
 
 } //SubgraphImpl

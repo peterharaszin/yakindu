@@ -16,5 +16,11 @@
             class="org.eclipselabs.damos.codegen.c.generator.internal.providers.BuiltinComponentGeneratorProvider">
       </provider>
    </extension>
+   <extension
+         point="org.eclipselabs.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.codegen.c.generator/dconfig/CodegenC.xmi#/">
+      </resource>
+   </extension>
 
 </plugin>

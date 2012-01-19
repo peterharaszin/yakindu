@@ -11,11 +11,10 @@ Require-Bundle: org.eclipse.emf.ecore;bundle-version="2.5.0";visibility:=reexpor
  org.eclipselabs.damos.dmltext;bundle-version="0.2.0",
  org.eclipselabs.damos.common;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.core;bundle-version="0.2.0",
- org.eclipselabs.damos.execution.executionmodel;bundle-version="0.2.0",
  org.eclipselabs.damos.execution.executionflow;bundle-version="0.2.0",
  org.eclipselabs.damos.simulation.core;bundle-version="0.2.0";visibility:=reexport,
- org.eclipselabs.damos.simulation.simulationmodel;bundle-version="0.2.0",
- org.eclipselabs.damos.mscript;bundle-version="0.3.0"
+ org.eclipselabs.damos.mscript;bundle-version="0.3.0",
+ org.eclipselabs.damos.dconfig;bundle-version="0.3.0"
 Export-Package: org.eclipselabs.damos.simulation.simulator,
  org.eclipselabs.damos.simulation.simulator.registry,
  org.eclipselabs.damos.simulation.simulator.solver

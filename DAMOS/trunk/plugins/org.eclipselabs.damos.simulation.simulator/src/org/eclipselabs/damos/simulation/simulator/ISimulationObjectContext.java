@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.simulation.simulator;
 
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.mscript.interpreter.IOverflowMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
@@ -24,7 +24,7 @@ public interface ISimulationObjectContext {
 
 	ComponentNode getNode();
 	IComponentSignature getComponentSignature();
-	SimulationModel getSimulationModel();
+	Configuration getConfiguration();
 	IOverflowMonitor getOverflowMonitor();
 	
 }

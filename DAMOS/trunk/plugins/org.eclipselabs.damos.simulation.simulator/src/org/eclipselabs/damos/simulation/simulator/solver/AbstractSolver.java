@@ -19,11 +19,11 @@ package org.eclipselabs.damos.simulation.simulator.solver;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.DiscreteStateComputationHelper;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
@@ -53,7 +53,7 @@ public abstract class AbstractSolver implements ISolver {
 		discreteStateComputationHelper.computeDiscreteStates(graph, t, monitor);
 	}
 
-	protected abstract void configure(SimulationModel simulationModel);
+	protected abstract void configure(Configuration configuration);
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#initialize(org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext, org.eclipselabs.damos.simulation.core.ISimulationMonitor)

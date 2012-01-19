@@ -23,7 +23,7 @@ import org.eclipselabs.damos.simulation.core.ISimulation;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
-import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
+import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
 import org.eclipselabs.damos.simulation.simulator.ISimulationClock;
 import org.eclipselabs.damos.simulation.simulator.ISimulationEngine;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
@@ -65,13 +65,7 @@ public class SimulationEngine implements ISimulationEngine {
 		ISimulationContext context = simulation.getContext();
 		Graph graph = context.getExecutionFlow().getGraph();
 
-		double simulationTime;
-		if (context.getSimulationModel().getSimulationTime() != null) {
-			simulationTime = SimulationModelUtil.getSimulationTime(context.getSimulationModel());
-		} else {
-			simulationTime = -1;
-		}
-		
+		double simulationTime = SimulationConfigurationUtil.getSimulationTime(context.getSimulationModel());
 		ISimulationMonitor monitor = simulation.getMonitor();
 		
 		int simulationEventKind = SimulationEvent.CANCEL;

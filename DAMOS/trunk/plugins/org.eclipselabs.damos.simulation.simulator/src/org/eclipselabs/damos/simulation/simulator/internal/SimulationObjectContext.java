@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.simulation.simulator.internal;
 
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.mscript.interpreter.IOverflowMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObjectContext;
 
 /**
@@ -25,17 +25,17 @@ public class SimulationObjectContext implements ISimulationObjectContext {
 
 	private ComponentNode node;
 	private IComponentSignature componentSignature;
-	private SimulationModel simulationModel;
+	private Configuration configuration;
 	private IOverflowMonitor overflowMonitor;
 	
 	/**
 	 * @param component
 	 * @param componentSignature
 	 */
-	public SimulationObjectContext(ComponentNode node, IComponentSignature componentSignature, SimulationModel simulationModel, IOverflowMonitor overflowMonitor) {
+	public SimulationObjectContext(ComponentNode node, IComponentSignature componentSignature, Configuration configuration, IOverflowMonitor overflowMonitor) {
 		this.node = node;
 		this.componentSignature = componentSignature;
-		this.simulationModel = simulationModel;
+		this.configuration = configuration;
 		this.overflowMonitor = overflowMonitor;
 	}
 	
@@ -54,10 +54,10 @@ public class SimulationObjectContext implements ISimulationObjectContext {
 	}
 	
 	/**
-	 * @return the simulationModel
+	 * @return the configuration
 	 */
-	public SimulationModel getSimulationModel() {
-		return simulationModel;
+	public Configuration getConfiguration() {
+		return configuration;
 	}
 	
 	/**

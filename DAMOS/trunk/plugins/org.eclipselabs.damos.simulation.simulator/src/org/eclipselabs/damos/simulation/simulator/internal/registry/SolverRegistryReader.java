@@ -16,8 +16,6 @@ import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.Platform;
 import org.eclipselabs.damos.common.registry.AbstractRegistryReader;
 import org.eclipselabs.damos.common.registry.IRegistryConstants;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeRegistry;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
 
 /**
@@ -29,7 +27,6 @@ public class SolverRegistryReader extends AbstractRegistryReader implements IReg
 	private static final String EXTENSION_POINT_NAME = "solvers";
 
 	private static final String TAG = "solver";
-	private static final String ATT_SOLVER_TYPE = "solverType";
 
 	private SolverRegistry registry;
 	
@@ -63,21 +60,16 @@ public class SolverRegistryReader extends AbstractRegistryReader implements IReg
 			return false;
 		}
 
-		String solverTypeQualifiedName = getRequiredAttribute(element, ATT_SOLVER_TYPE);
+		String id = getRequiredAttribute(element, ATT_ID);
 		String name = getRequiredAttribute(element, ATT_NAME);
 		String className = getRequiredAttribute(element, ATT_CLASS);
 		
-		ISolverTypeDescriptor solverType = ISolverTypeRegistry.INSTANCE.getSolverType(solverTypeQualifiedName);
-		if (solverType != null) {
-			SolverDescriptor solver = new SolverDescriptor();
-			solver.setSolverType(solverType);
-			solver.setName(name);
-			solver.setClassName(className);
-			solver.setConfigurationElement(element);
-			registry.register(solver);
-		} else {
-			logError(element, "Solver type '" + solverTypeQualifiedName + "' not found");
-		}
+		SolverDescriptor solver = new SolverDescriptor();
+		solver.setId(id);
+		solver.setName(name);
+		solver.setClassName(className);
+		solver.setConfigurationElement(element);
+		registry.register(solver);
 		
 		return true;
 	}

@@ -31,12 +31,12 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.eclipselabs.damos.execution.core.util.ExpressionUtil;
 import org.eclipselabs.damos.library.base.simulation.LibraryBaseSimulationPlugin;
 import org.eclipselabs.damos.library.base.simulation.audio.AudioFileWriter;
 import org.eclipselabs.damos.library.base.util.sources.AudioFileSourceConstants;
 import org.eclipselabs.damos.mscript.interpreter.value.ISimpleNumericValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
 
 /**
@@ -72,8 +72,8 @@ public class AudioFileSinkSimulationObject extends AbstractBlockSimulationObject
 		int channelCount = getComponent().getPrimaryInputPorts().size();
 		inputValues = new double[channelCount];
 		
-		IValue simulationTime = ExpressionUtil.evaluateExpression(getSimulationModel().getSimulationTime());
-		if (!(simulationTime instanceof ISimpleNumericValue)) {
+		double simulationTime = SimulationConfigurationUtil.getSimulationTime(getConfiguration());
+		if (simulationTime <= 0) {
 			throw new CoreException(new Status(IStatus.ERROR, LibraryBaseSimulationPlugin.PLUGIN_ID, "Invalid simulation time"));
 		}
 		
@@ -83,7 +83,7 @@ public class AudioFileSinkSimulationObject extends AbstractBlockSimulationObject
 		
 		float sampleRate = (float) (1.0 / getNode().getSampleTime());
 		
-		length = Math.round((((ISimpleNumericValue) simulationTime).doubleValue() * sampleRate));
+		length = Math.round(simulationTime * sampleRate);
 
 		try {
 			URI fileURI = URI.createURI(fileURIString);

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension-point id="definitions" name="Definitions" schema="schema/definitions.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipselabs.org/damos/2011/Dconfig"
+            class="org.eclipselabs.damos.dconfig.DconfigPackage"
+            genModel="model/Dconfig.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,4 +1,4 @@
-blockType damos::library::base::logic::And
+blockType damos.library.base.logic.And
 
 input _input[2..*]
 output y

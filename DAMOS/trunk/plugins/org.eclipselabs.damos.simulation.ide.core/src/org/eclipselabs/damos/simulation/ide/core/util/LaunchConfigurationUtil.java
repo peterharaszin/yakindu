@@ -11,10 +11,10 @@
 
 package org.eclipselabs.damos.simulation.ide.core.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.StringReader;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -24,20 +24,32 @@ import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.parser.IParseResult;
+import org.eclipselabs.damos.common.util.NameUtil;
+import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.DconfigFactory;
+import org.eclipselabs.damos.dconfig.DconfigPackage;
+import org.eclipselabs.damos.dconfig.PropertyDeclaration;
+import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
+import org.eclipselabs.damos.dconfig.SelectionProperty;
+import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
+import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
+import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
+import org.eclipselabs.damos.dconfig.SimpleProperty;
+import org.eclipselabs.damos.dconfig.SimplePropertyDeclaration;
+import org.eclipselabs.damos.dconfig.util.PropertyEnumerationHelper;
 import org.eclipselabs.damos.dml.Fragment;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModelFactory;
+import org.eclipselabs.damos.mscript.DataTypeSpecifier;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
+import org.eclipselabs.damos.mscript.interpreter.StaticExpressionEvaluator;
+import org.eclipselabs.damos.mscript.interpreter.value.IValue;
+import org.eclipselabs.damos.mscript.interpreter.value.InvalidValue;
+import org.eclipselabs.damos.mscript.parser.antlr.MscriptParser;
 import org.eclipselabs.damos.simulation.ide.core.SimulationIDECorePlugin;
 import org.eclipselabs.damos.simulation.ide.core.internal.launch.SimulationLaunchConfigurationDelegate;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelFactory;
-import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
-import org.eclipselabs.damos.simulation.simulationmodel.SolverType;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeRegistry;
-import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
 
 /**
  * @author Andreas Unger
@@ -45,62 +57,163 @@ import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil
  */
 public class LaunchConfigurationUtil {
 
-	private static final String TEMPORARY_SIMULATIONMODEL_FILE_NAME = "temp.xmi";
-
-	public static SimulationModel loadSimulationModel(ILaunchConfiguration configuration) throws CoreException {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createURI(TEMPORARY_SIMULATIONMODEL_FILE_NAME));
-		ByteArrayInputStream inputStream = new ByteArrayInputStream(configuration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL, "").getBytes());
-
-		try {
-			resource.load(inputStream, Collections.emptyMap());
-		} catch (IOException e) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Loading resource failed", e));
-		}
-
-		if (resource.getContents().isEmpty() || !(resource.getContents().get(0) instanceof SimulationModel)) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid simulation model stored in launch configuration"));
-		}
-
-		return (SimulationModel) resource.getContents().get(0);
-	}
-
-	public static void storeSimulationModel(ILaunchConfigurationWorkingCopy configuration, SimulationModel simulationModel) {
-		try {
-			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.createResource(URI.createURI(TEMPORARY_SIMULATIONMODEL_FILE_NAME));
-			resource.getContents().add(simulationModel);
-			resource.getContents().add(simulationModel.getExecutionModel());
-			ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-			resource.save(outputStream, Collections.emptyMap());
-			configuration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL, outputStream.toString("UTF-8"));
-		} catch (IOException e) {
-			SimulationIDECorePlugin.getDefault().getLog().log(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Storing simulation model failed", e));
-		}
-	}
+	/**
+	 * 
+	 */
+	private static final String PROPERTY__SIMULATION_TIME = "damos.simulation.simulationTime";
 	
-	public static SimulationModel createDefaultSimulationModel(Fragment topLevelFragment) {
-		SimulationModel simulationModel = SimulationModelFactory.eINSTANCE.createSimulationModel();
-		ExecutionModel executionModel = ExecutionModelFactory.eINSTANCE.createExecutionModel();
-		simulationModel.setExecutionModel(executionModel);
-		simulationModel.setTopLevelFragment(topLevelFragment);
-		SimulationModelUtil.setSimulationTime(simulationModel, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
+	public static void initializeLaunchConfiguration(ILaunchConfigurationWorkingCopy launchConfiguration, Fragment contextFragment) {
+		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__OVERRIDE_CONFIGURATION, true);
+		if (contextFragment != null) {
+			launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT, EcoreUtil.getURI(contextFragment).toString());
+		}
+		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, SimulationLaunchConfigurationDelegate.DEFAULT_SIMULATION_TIME);
+		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER, SimulationLaunchConfigurationDelegate.DEFAULT_SOLVER_ID);
+		Map<String, String> solverConfiguration = new HashMap<String, String>();
+		solverConfiguration.put("minimumStepSize", "1e-10(s)");
+		solverConfiguration.put("absoluteTolerance", "1e-10");
+		solverConfiguration.put("relativeTolerance", "1e-10");
+		launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER_CONFIGURATION, solverConfiguration);
+	}
+
+	public static Configuration createConfiguration(ILaunchConfiguration launchConfiguration, PropertyEnumerationHelper helper) throws CoreException {
+		Configuration baseConfiguration = null;
 		
-		ISolverTypeDescriptor solverTypeDescriptor = ISolverTypeRegistry.INSTANCE.getSolverType(SimulationLaunchConfigurationDelegate.DEFAULT_SOLVER_TYPE);
-		if (solverTypeDescriptor != null) {
-			EObject eObject = topLevelFragment.eResource().getResourceSet().getEObject(solverTypeDescriptor.getURI(), true);
-			if (eObject instanceof SolverType) {
-				SolverType solverType = (SolverType) eObject;
-				SolverConfiguration solverConfiguration = SimulationModelFactory.eINSTANCE.createSolverConfiguration();
-				solverConfiguration.setType(solverType);
-				SimulationModelUtil.setSolverArgumentValue(solverConfiguration, "minimumStepSize", 1e-10);
-				SimulationModelUtil.setSolverArgumentValue(solverConfiguration, "absoluteTolerance", 1e-10);
-				SimulationModelUtil.setSolverArgumentValue(solverConfiguration, "relativeTolerance", 1e-10);
-				simulationModel.setSolverConfiguration(solverConfiguration);
+		String baseConfigurationPath = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__BASE_CONFIGURATION_PATH, "").trim();
+		if (baseConfigurationPath.length() > 0) {
+			URI uri = URI.createPlatformResourceURI(baseConfigurationPath, true);
+			Resource baseConfigurationResource = helper.getResourceSet().getResource(uri, true);
+			baseConfiguration = (Configuration) EcoreUtil.getObjectByType(baseConfigurationResource.getContents(), DconfigPackage.eINSTANCE.getConfiguration());
+			if (baseConfiguration == null) {
+				throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid base configuration specified"));
 			}
 		}
 		
-		return simulationModel;
+		boolean overrideConfiguration = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__OVERRIDE_CONFIGURATION, true);
+		if (!overrideConfiguration) {
+			if (baseConfiguration == null) {
+				throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "No simulation configuration specified"));
+			}
+			return baseConfiguration;
+		}
+
+		Configuration configuration = DconfigFactory.eINSTANCE.createConfiguration();
+		configuration.setPackage("__temp");
+		configuration.setName("__temp");
+		configuration.setBaseConfiguration(baseConfiguration);
+		
+		boolean realTimeSimulation = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__REAL_TIME_SIMULATION, false);
+		if (realTimeSimulation) {
+			createSimpleProperty(helper, configuration, PROPERTY__SIMULATION_TIME);
+		} else {
+			String simulationTime = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_TIME, "10(s)");
+			if (simulationTime.trim().length() > 0) {
+				SimpleProperty property = createSimpleProperty(helper, configuration, PROPERTY__SIMULATION_TIME);
+				if (property != null) {
+					setSimplePropertyValue(property, simulationTime);
+				}
+			}
+		}
+		
+		String solverId = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER, "").trim();
+		if (solverId.trim().length() == 0) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "No simulation solver specified"));
+		}
+		
+		PropertyDeclaration propertyDeclaration = helper.getPropertyDeclaration("damos.simulation.solver");
+		if (propertyDeclaration == null) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Solver property not found"));
+		}
+		
+		if (!(propertyDeclaration instanceof SelectionPropertyDeclaration)) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid solver property"));
+		}
+		
+		SelectionPropertyDeclaration solverPropertyDeclaration = (SelectionPropertyDeclaration) propertyDeclaration;
+		SelectionProperty solverProperty = DconfigFactory.eINSTANCE.createSelectionProperty();
+		solverProperty.setDeclaration(solverPropertyDeclaration);
+
+		SelectionPropertyOption solverPropertyOption = helper.getSelectionPropertyOption("damos.simulation.solver", solverId);
+		if (solverPropertyOption == null) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid solver " + solverId));
+		}
+		
+		solverProperty.setSelection(solverPropertyOption);
+		
+		Map<?, ?> solverConfiguration = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SOLVER_CONFIGURATION, Collections.emptyMap());
+		
+		SelectionPropertyBody body = DconfigFactory.eINSTANCE.createSelectionPropertyBody();
+		solverProperty.setBody(body);
+		for (PropertyDeclaration optionPropertyDeclaration : solverPropertyOption.getPropertyDeclarations()) {
+			if (optionPropertyDeclaration instanceof SimplePropertyDeclaration) {
+				SimplePropertyDeclaration simplePropertyDeclaration = (SimplePropertyDeclaration) optionPropertyDeclaration;
+				Object value = solverConfiguration.get(simplePropertyDeclaration.getName());
+				if (value instanceof String) {
+					SimpleProperty property = DconfigFactory.eINSTANCE.createSimpleProperty();
+					property.setDeclaration(simplePropertyDeclaration);
+					setSimplePropertyValue(property, value.toString());
+					body.getProperties().add(property);
+				}
+			}
+		}
+		configuration.getProperties().add(solverProperty);
+		
+		String fragmentURIString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__FRAGMENT, "").trim();
+		if (fragmentURIString.length() == 0) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "No fragment specified"));
+		}
+
+		EObject eObject = helper.getResourceSet().getEObject(URI.createURI(fragmentURIString), true);
+		if (!(eObject instanceof Fragment)) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid fragment specified"));
+		}
+		
+		RootSystemConfiguration rootSystemConfiguration = DconfigFactory.eINSTANCE.createRootSystemConfiguration();
+		rootSystemConfiguration.setContextFragment((Fragment) eObject);
+		configuration.setRootSystemConfiguration(rootSystemConfiguration);
+		
+		return configuration;
+	}
+
+	private static void setSimplePropertyValue(SimpleProperty property, String valueString) throws CoreException {
+		MscriptParser parser = SimulationIDECorePlugin.getDefault().getMscriptParser();
+
+		IParseResult result = parser.parse(parser.getGrammarAccess().getExpressionRule(), new StringReader(valueString));
+		if (result.hasSyntaxErrors()) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Syntax error in " + NameUtil.formatName(property.getDeclaration().getName()) + " expression"));
+		}
+		
+		Expression expression = (Expression) result.getRootASTElement();
+		IStaticEvaluationContext context = new StaticEvaluationContext();
+		IStatus status = new StaticExpressionEvaluator().evaluate(context, expression);
+		if (status.getSeverity() > IStatus.WARNING) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " expression"));
+		}
+		IValue value = context.getValue(expression);
+		if (value instanceof InvalidValue) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " expression"));
+		}
+		
+		DataTypeSpecifier typeSpecifier = property.getDeclaration().getTypeSpecifier();
+		if (typeSpecifier != null && typeSpecifier.getType() != null && !typeSpecifier.getType().isAssignableFrom(value.getDataType())) {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid " + NameUtil.formatName(property.getDeclaration().getName()) + " data type"));
+		}
+		
+		property.setValue(expression);
+	}
+
+	private static SimpleProperty createSimpleProperty(PropertyEnumerationHelper helper, Configuration configuration, String qualifiedName) throws CoreException {
+		SimpleProperty property = null;
+		PropertyDeclaration propertyDeclaration = helper.getPropertyDeclaration(qualifiedName);
+		if (propertyDeclaration instanceof SimplePropertyDeclaration) {
+			SimplePropertyDeclaration simplePropertyDeclaration = (SimplePropertyDeclaration) propertyDeclaration;
+			property = DconfigFactory.eINSTANCE.createSimpleProperty();
+			property.setDeclaration(simplePropertyDeclaration);
+			configuration.getProperties().add(property);
+		} else {
+			throw new CoreException(new Status(IStatus.ERROR, SimulationIDECorePlugin.PLUGIN_ID, "Invalid property " + qualifiedName));
+		}
+		return property;
 	}
 
 }

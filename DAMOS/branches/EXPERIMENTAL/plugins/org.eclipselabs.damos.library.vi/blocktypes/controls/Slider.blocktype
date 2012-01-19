@@ -1,4 +1,4 @@
-blockType damos::library::vi::controls::Slider
+blockType damos.library.vi.controls.Slider
 
 output _output
 

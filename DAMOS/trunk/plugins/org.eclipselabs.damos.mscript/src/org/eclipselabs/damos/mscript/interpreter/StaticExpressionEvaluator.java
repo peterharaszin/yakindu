@@ -62,8 +62,8 @@ import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.builtin.BuiltinFunctionKind;
 import org.eclipselabs.damos.mscript.internal.MscriptPlugin;
 import org.eclipselabs.damos.mscript.internal.builtin.BuiltinFunctionLookupTable;
-import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunctionLookupTable;
 import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunction;
+import org.eclipselabs.damos.mscript.internal.builtin.IBuiltinFunctionLookupTable;
 import org.eclipselabs.damos.mscript.interpreter.value.AnyValue;
 import org.eclipselabs.damos.mscript.interpreter.value.ArrayValue;
 import org.eclipselabs.damos.mscript.interpreter.value.IArrayValue;
@@ -788,6 +788,9 @@ public class StaticExpressionEvaluator {
 		 */
 		@Override
 		public IValue caseVariableReference(VariableReference variableReference) {
+			if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
+				return InvalidValue.SINGLETON;
+			}
 			IValue value = context.getValue(variableReference.getFeature());
 			if (value == null) {
 				status.add(new SyntaxStatus(IStatus.ERROR, MscriptPlugin.PLUGIN_ID, 0, "No value set for " + variableReference.getFeature().getName(), variableReference));

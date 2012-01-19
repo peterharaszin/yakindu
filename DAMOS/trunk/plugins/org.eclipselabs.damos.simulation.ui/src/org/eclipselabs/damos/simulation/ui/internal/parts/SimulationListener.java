@@ -23,7 +23,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.simulation.core.ISimulationListener;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
-import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
+import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
 import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
 
 /**
@@ -32,14 +32,14 @@ import org.eclipselabs.damos.simulation.ui.SimulationUIPlugin;
  */
 public class SimulationListener implements ISimulationListener {
 
-	private boolean realtime;
+	private double simulationTime;
 	private long progress;
 	private Set<Component> overflowedComponents = new LinkedHashSet<Component>();
 	
 	public void handleSimulationEvent(final SimulationEvent event) {
 		switch (event.getKind()) {
 		case SimulationEvent.START:
-			realtime = event.getSimulation().getModel().getSimulationTime() == null;
+			simulationTime = SimulationConfigurationUtil.getSimulationTime(event.getSimulation().getConfiguration());
 			progress = 0;
 			overflowedComponents.clear();
 			break;
@@ -47,14 +47,14 @@ public class SimulationListener implements ISimulationListener {
 			overflowedComponents.add((Component) event.getSource());
 			break;
 		case SimulationEvent.STEP:
-			if (realtime) {
+			if (simulationTime <= 0) {
 				long newTime = (long) event.getTime();
 				if (newTime == progress) {
 					return;
 				}
 				progress = newTime;
 			} else {
-				long newProgress = Math.round(100.0 * event.getTime() / SimulationModelUtil.getSimulationTime(event.getSimulation().getModel()));
+				long newProgress = Math.round(100.0 * event.getTime() / simulationTime);
 				if (newProgress == progress) {
 					return;
 				}
@@ -76,7 +76,7 @@ public class SimulationListener implements ISimulationListener {
 					switch (event.getKind()) {
 					case SimulationEvent.START:
 						viewPart = (SimulationView) workbenchPage.showView(SimulationView.ID);
-						viewPart.setRealtime(realtime);
+						viewPart.setRealtime(simulationTime <= 0);
 						viewPart.setProgress(progress);
 						viewPart.clear();
 						break;

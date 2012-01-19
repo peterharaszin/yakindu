@@ -1,4 +1,4 @@
-continuous blockType damos::library::base::_continuous::Derivative
+continuous blockType damos.library.base._continuous.Derivative
 
 input _input
 output _output

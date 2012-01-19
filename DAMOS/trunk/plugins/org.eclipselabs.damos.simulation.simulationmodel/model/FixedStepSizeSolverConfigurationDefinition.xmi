@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="ASCII"?>
-<simulationmodel:SolverConfigurationDefinition xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:simulationmodel="http://www.eclipselabs.org/damos/2011/SimulationModel" xsi:schemaLocation="http://www.eclipselabs.org/damos/2011/SimulationModel SimulationModel.ecore">
-  <parameters name="stepSize"/>
-</simulationmodel:SolverConfigurationDefinition>

@@ -19,17 +19,17 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.Generator;
+import org.eclipselabs.damos.dconfig.Configuration;
 
 public class GenerateCCodeHandler extends AbstractHandler {
 
 	private static final String ERROR_MESSAGE = "C Code Generation failed";
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final GenModel genModel = getGenModel(event);
+		final Configuration configuration = getGenModel(event);
 		
-		if (genModel == null) {
+		if (configuration == null) {
 			throw new ExecutionException("Selected object must be C generator model");
 		}
 		
@@ -40,7 +40,7 @@ public class GenerateCCodeHandler extends AbstractHandler {
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 					Generator generator = new Generator();
 					try {
-						generator.generate(genModel, monitor);
+						generator.generate(configuration, monitor);
 					} catch (CoreException e) {
 						throw new InvocationTargetException(e);
 					}
@@ -60,13 +60,13 @@ public class GenerateCCodeHandler extends AbstractHandler {
 		return null;
 	}
 	
-	private GenModel getGenModel(ExecutionEvent event) {
+	private Configuration getGenModel(ExecutionEvent event) {
 		ISelection selection = HandlerUtil.getCurrentSelection(event);
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			Object firstElement = structuredSelection.getFirstElement();
-			if (firstElement instanceof GenModel) {
-				return (GenModel) firstElement;
+			if (firstElement instanceof Configuration) {
+				return (Configuration) firstElement;
 			}
 			if (firstElement instanceof IFile) {
 				IFile file = (IFile) firstElement;
@@ -74,8 +74,8 @@ public class GenerateCCodeHandler extends AbstractHandler {
 				ResourceSet resourceSet = new ResourceSetImpl();
 				Resource resource = resourceSet.getResource(uri, true);
 				for (EObject o : resource.getContents()) {
-					if (o instanceof GenModel) {
-						return (GenModel) o;
+					if (o instanceof Configuration) {
+						return (Configuration) o;
 					}
 				}
 			}

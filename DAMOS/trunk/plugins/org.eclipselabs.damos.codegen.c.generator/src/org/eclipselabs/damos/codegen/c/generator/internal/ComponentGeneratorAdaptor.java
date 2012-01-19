@@ -17,11 +17,11 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.CodegenCGeneratorPlugin;
 import org.eclipselabs.damos.codegen.c.generator.ComponentGeneratorStatus;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.registry.ComponentGeneratorProviderRegistry;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -36,7 +36,7 @@ import org.eclipselabs.damos.execution.executionflow.TaskGraph;
  */
 public class ComponentGeneratorAdaptor {
 
-	public void adaptGenerators(GenModel genModel, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
+	public void adaptGenerators(Configuration configuration, ExecutionFlow executionFlow, IProgressMonitor monitor) throws CoreException {
 		List<Component> missingGeneratorComponents = new ArrayList<Component>();
 		
 		for (TaskGraph taskGraph : executionFlow.getTaskGraphs()) {

@@ -11,7 +11,6 @@
 
 package org.eclipselabs.damos.simulation.simulator.registry;
 
-import org.eclipselabs.damos.simulation.simulationmodel.registry.ISolverTypeDescriptor;
 import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
 
 /**
@@ -20,7 +19,7 @@ import org.eclipselabs.damos.simulation.simulator.solver.ISolver;
  */
 public interface ISolverDescriptor {
 
-	ISolverTypeDescriptor getSolverType();
+	String getId();
 	String getName();
 	ISolver createSolver();
 	

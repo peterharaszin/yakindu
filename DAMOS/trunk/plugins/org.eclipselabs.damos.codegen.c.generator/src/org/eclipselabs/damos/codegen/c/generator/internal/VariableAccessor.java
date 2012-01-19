@@ -11,9 +11,9 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal;
 
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
 import org.eclipselabs.damos.codegen.c.generator.internal.util.InternalGeneratorUtil;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Inport;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
@@ -32,15 +32,15 @@ import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
  */
 public class VariableAccessor implements IVariableAccessor {
 
-	private GenModel genModel;
+	private Configuration configuration;
 	private ComponentNode node;
 	
 	/**
 	 * 
 	 */
-	public VariableAccessor(GenModel genModel, ComponentNode node) {
+	public VariableAccessor(Configuration configuration, ComponentNode node) {
 		this.node = node;
-		this.genModel = genModel;
+		this.configuration = configuration;
 	}
 	
 	/* (non-Javadoc)
@@ -51,12 +51,12 @@ public class VariableAccessor implements IVariableAccessor {
 		if (pointer) {
 			sb.append("(&");
 		}
-		String prefix = genModel.getGenTopLevelSystem().getPrefix();
+		String prefix = InternalGeneratorUtil.getPrefix(configuration);
 		if (prefix != null) {
 			sb.append(prefix);
 		}
 		sb.append("context.");
-		sb.append(InternalGeneratorUtil.getPrefix(genModel, node) + node.getComponent().getName());
+		sb.append(InternalGeneratorUtil.getPrefix(configuration, node) + node.getComponent().getName());
 		if (pointer) {
 			sb.append(")");
 		}
@@ -73,9 +73,9 @@ public class VariableAccessor implements IVariableAccessor {
 			TaskInputNode inputNode = (TaskInputNode) sourceEnd.getNode();
 			Input input = inputPort.getInput();
 			if (input.isSocket()) {
-				return InternalGeneratorUtil.getTaskName(genModel, inputNode.getTaskGraph()) + "_message.data." + input.getName();
+				return InternalGeneratorUtil.getTaskName(configuration, inputNode.getTaskGraph()) + "_message.data." + input.getName();
 			}
-			return InternalGeneratorUtil.getTaskInputVariableName(genModel, inputNode);
+			return InternalGeneratorUtil.getTaskInputVariableName(configuration, inputNode);
 		}
 		OutputPort sourcePort = (OutputPort) sourceEnd.getConnector();
 		return getOutputVariable(sourcePort, pointer, sourceEnd.getNode());
@@ -97,7 +97,7 @@ public class VariableAccessor implements IVariableAccessor {
 			sb.append("input->");
 			sb.append(InternalGeneratorUtil.uncapitalize(outputPort.getComponent().getName()));
 		} else {
-			sb.append(InternalGeneratorUtil.getPrefix(genModel, node));
+			sb.append(InternalGeneratorUtil.getPrefix(configuration, node));
 			sb.append(outputPort.getComponent().getName());
 			sb.append("_");
 			sb.append(InternalGeneratorUtil.getOutputPortName(outputPort));
@@ -113,7 +113,7 @@ public class VariableAccessor implements IVariableAccessor {
 		if (pointer) {
 			sb.append("(&");
 		}
-		sb.append(InternalGeneratorUtil.getTaskName(genModel, DMLUtil.getOwner(node, TaskGraph.class)));
+		sb.append(InternalGeneratorUtil.getTaskName(configuration, DMLUtil.getOwner(node, TaskGraph.class)));
 		sb.append("_message.kind");
 		if (pointer) {
 			sb.append(")");

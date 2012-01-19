@@ -45,6 +45,7 @@ import org.eclipselabs.damos.dml.SubsystemInput;
 import org.eclipselabs.damos.dml.SubsystemOutput;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -69,7 +70,7 @@ public class FlattenerHelper {
 	private Map<Node, Graph> nodeGraphs = new HashMap<Node, Graph>();
 	private Map<Graph, Collection<Node>> graphNodes = new LinkedHashMap<Graph, Collection<Node>>();
 	private Map<SubsystemBinding<FragmentElement>, Node> allNodes = new HashMap<SubsystemBinding<FragmentElement>, Node>();
-	private Map<SubsystemPath, SubsystemDescriptor> subsystemDescriptors = new HashMap<SubsystemPath, SubsystemDescriptor>();
+	private Map<SystemPath, SubsystemDescriptor> subsystemDescriptors = new HashMap<SystemPath, SubsystemDescriptor>();
 
 	/**
 	 * 
@@ -103,28 +104,28 @@ public class FlattenerHelper {
 	}
 
 	public void flatten() throws CoreException {
-		flatten(executionFlow.getTopLevelFragment(), new SubsystemPath(), executionFlow.getGraph());
+		flatten(executionFlow.getTopLevelFragment(), SystemPath.create(executionFlow.getTopLevelFragment()), executionFlow.getGraph());
 	}
 	
-	private void flatten(Fragment fragment, SubsystemPath subsystemPath, Graph graph) throws CoreException {
+	private void flatten(Fragment fragment, SystemPath systemPath, Graph graph) throws CoreException {
 		for (FragmentElement element : fragment.getAllFragmentElements()) {
-			flattenFragmentElement(fragment, subsystemPath, graph, element);
+			flattenFragmentElement(fragment, systemPath, graph, element);
 		}
 		
 		initializeActionNodes(graph);
-		initializeDataFlows(fragment, subsystemPath);
+		initializeDataFlows(fragment, systemPath);
 	}
 
 	/**
 	 * @param fragment
-	 * @param subsystemPath
+	 * @param systemPath
 	 * @param element
 	 * @throws CoreException
 	 */
-	private void flattenFragmentElement(Fragment fragment, SubsystemPath subsystemPath, Graph graph, FragmentElement element) throws CoreException {
+	private void flattenFragmentElement(Fragment fragment, SystemPath systemPath, Graph graph, FragmentElement element) throws CoreException {
 		if (element instanceof Subsystem) {
 			Subsystem subsystem = (Subsystem) element;
-			flattenSubsystem(subsystem, fragment, graph, subsystemPath);
+			flattenSubsystem(subsystem, fragment, graph, systemPath);
 		} else if (element instanceof Compound) {
 			Compound compound = (Compound) element;
 			CompoundNode node;
@@ -134,11 +135,11 @@ public class FlattenerHelper {
 				node = ExecutionFlowFactory.eINSTANCE.createCompoundNode();
 			}
 			node.setCompound(compound);
-			node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
+			node.setSystemPath(systemPath);
 			addGraphNode(graph, node);
-			allNodes.put(new SubsystemBinding<FragmentElement>(subsystemPath, compound), node);
-			flattenCompound(fragment, subsystemPath, node, compound);
-		} else if (element instanceof Component && (!(element instanceof Inoutport) || subsystemPath.isRoot())) {
+			allNodes.put(new SubsystemBinding<FragmentElement>(systemPath, compound), node);
+			flattenCompound(fragment, systemPath, node, compound);
+		} else if (element instanceof Component && (!(element instanceof Inoutport) || systemPath.isRoot())) {
 			Component component = (Component) element;
 			ComponentNode node;
 			if (component instanceof Latch) {
@@ -147,19 +148,19 @@ public class FlattenerHelper {
 				node = ExecutionFlowFactory.eINSTANCE.createComponentNode();
 			}
 			node.setComponent(component);
-			node.getEnclosingSubsystems().addAll(subsystemPath.getSubsystems());
+			node.setSystemPath(systemPath.append(node.getComponent()));
 			addGraphNode(graph, node);
-			allNodes.put(new SubsystemBinding<FragmentElement>(subsystemPath, component), node);
+			allNodes.put(new SubsystemBinding<FragmentElement>(systemPath, component), node);
 		}
 	}
 	
-	private void flattenCompound(Fragment fragment, SubsystemPath subsystemPath, Graph graph, Compound compound) throws CoreException {
+	private void flattenCompound(Fragment fragment, SystemPath systemPath, Graph graph, Compound compound) throws CoreException {
 		for (CompoundMember member : compound.getMembers()) {
-			flattenFragmentElement(fragment, subsystemPath, graph, (FragmentElement) member);
+			flattenFragmentElement(fragment, systemPath, graph, (FragmentElement) member);
 		}
 	}
 	
-	private void flattenSubsystem(Subsystem subsystem, Fragment context, Graph graph, SubsystemPath subsystemPath) throws CoreException {
+	private void flattenSubsystem(Subsystem subsystem, Fragment context, Graph graph, SystemPath systemPath) throws CoreException {
 		SubsystemRealization realization = subsystem.getRealization(context);
 		if (realization == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, "No realization specified for subsystem '" + subsystem.getName() + "'"));
@@ -171,8 +172,8 @@ public class FlattenerHelper {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionFlowPlugin.PLUGIN_ID, "No realizing fragment specified for subsystem '" + subsystem.getName() + "'"));
 		}
 
-		subsystemPath = subsystemPath.append(subsystem);
-		SubsystemDescriptor subsystemDescriptor = new SubsystemDescriptor(subsystemPath);
+		systemPath = systemPath.append(subsystem);
+		SubsystemDescriptor subsystemDescriptor = new SubsystemDescriptor(systemPath);
 
 		Map<String, Inport> inports = DMLUtil.getComponentMap(realizingFragment, Inport.class);
 		for (Input input : subsystem.getInputs()) {
@@ -200,46 +201,46 @@ public class FlattenerHelper {
 			}
 		}
 
-		subsystemDescriptors.put(subsystemPath, subsystemDescriptor);
+		subsystemDescriptors.put(systemPath, subsystemDescriptor);
 		
-		flatten(realizingFragment, subsystemPath, graph);
+		flatten(realizingFragment, systemPath, graph);
 	}
 	
-	private SubsystemBinding<OutputConnector> getActualSource(SubsystemPath subsystemPath, OutputConnector source) {
+	private SubsystemBinding<OutputConnector> getActualSource(SystemPath systemPath, OutputConnector source) {
 		while (source instanceof OutputPort && ((OutputPort) source).getOutput() instanceof SubsystemOutput) {
 			OutputPort sourcePort = (OutputPort) source;
-			subsystemPath = subsystemPath.append((Subsystem) sourcePort.getComponent());
-			SubsystemDescriptor subsystemDescriptor = subsystemDescriptors.get(subsystemPath);
+			systemPath = systemPath.append((Subsystem) sourcePort.getComponent());
+			SubsystemDescriptor subsystemDescriptor = subsystemDescriptors.get(systemPath);
 			if (subsystemDescriptor != null) {
 				source = subsystemDescriptor.getOutputs().get(sourcePort.getOutput());
 			} else {
 				return null;
 			}
 		}
-		return new SubsystemBinding<OutputConnector>(subsystemPath, source);
+		return new SubsystemBinding<OutputConnector>(systemPath, source);
 	}
 	
-	private List<SubsystemBinding<InputConnector>> getActualTargets(SubsystemPath subsystemPath, InputConnector target) {
+	private List<SubsystemBinding<InputConnector>> getActualTargets(SystemPath systemPath, InputConnector target) {
 		if (target instanceof InputPort && ((InputPort) target).getInput() instanceof SubsystemInput) {
 			InputPort targetPort = (InputPort) target;
 			List<SubsystemBinding<InputConnector>> actualTargets = new ArrayList<SubsystemBinding<InputConnector>>();
-			getActualTargets(subsystemPath, (SubsystemInput) targetPort.getInput(), actualTargets);
+			getActualTargets(systemPath, (SubsystemInput) targetPort.getInput(), actualTargets);
 			return actualTargets;
 		}
-		return Collections.singletonList(new SubsystemBinding<InputConnector>(subsystemPath, target));
+		return Collections.singletonList(new SubsystemBinding<InputConnector>(systemPath, target));
 	}
 	
-	private void getActualTargets(SubsystemPath subsystemPath, SubsystemInput subsystemInput, List<SubsystemBinding<InputConnector>> actualTargets) {
-		subsystemPath = subsystemPath.append((Subsystem) subsystemInput.getComponent());
-		SubsystemDescriptor subsystemDescriptor = subsystemDescriptors.get(subsystemPath);
+	private void getActualTargets(SystemPath systemPath, SubsystemInput subsystemInput, List<SubsystemBinding<InputConnector>> actualTargets) {
+		systemPath = systemPath.append((Subsystem) subsystemInput.getComponent());
+		SubsystemDescriptor subsystemDescriptor = subsystemDescriptors.get(systemPath);
 		if (subsystemDescriptor != null) {
 			List<InputConnector> targets = subsystemDescriptor.getInputs().get(subsystemInput);
 			for (InputConnector target : targets) {
 				if (target instanceof InputPort && ((InputPort) target).getInput() instanceof SubsystemInput) {
 					InputPort targetPort = (InputPort) target;
-					getActualTargets(subsystemPath, (SubsystemInput) targetPort.getInput(), actualTargets);
+					getActualTargets(systemPath, (SubsystemInput) targetPort.getInput(), actualTargets);
 				} else {
-					actualTargets.add(new SubsystemBinding<InputConnector>(subsystemDescriptor.getSubsystemPath(), target));
+					actualTargets.add(new SubsystemBinding<InputConnector>(subsystemDescriptor.getSystemPath(), target));
 				}
 			}
 		}
@@ -278,12 +279,12 @@ public class FlattenerHelper {
 
 	/**
 	 * @param fragment
-	 * @param subsystemPath
+	 * @param systemPath
 	 */
-	private void initializeDataFlows(Fragment fragment, SubsystemPath subsystemPath) {
+	private void initializeDataFlows(Fragment fragment, SystemPath systemPath) {
 		Map<SubsystemBinding<OutputConnector>, DataFlow> dataFlows = new HashMap<SubsystemBinding<OutputConnector>, DataFlow>();
 		for (Connection connection : fragment.getAllConnections()) {
-			if (!subsystemPath.isRoot()) {
+			if (!systemPath.isRoot()) {
 				if (connection.getSource() instanceof OutputPort) {
 					OutputPort outputPort = (OutputPort) connection.getSource();
 					if (outputPort.getComponent() instanceof Inoutport) {
@@ -298,13 +299,13 @@ public class FlattenerHelper {
 				}
 			}
 						
-			SubsystemBinding<OutputConnector> source = getActualSource(subsystemPath, connection.getSource());
+			SubsystemBinding<OutputConnector> source = getActualSource(systemPath, connection.getSource());
 			DataFlow dataFlow = dataFlows.get(source);
 			if (dataFlow == null) {
 				dataFlow = ExecutionFlowFactory.eINSTANCE.createDataFlow();
 				DataFlowSourceEnd sourceEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowSourceEnd();
 				sourceEnd.setDataFlow(dataFlow);
-				sourceEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(source.getSubsystemPath(), DMLUtil.getOwner(source.getElement(), FragmentElement.class))));
+				sourceEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(source.getSystemPath(), DMLUtil.getOwner(source.getElement(), FragmentElement.class))));
 				sourceEnd.setConnector(source.getElement());
 	
 				if (source.getElement() instanceof OutputPort) {
@@ -319,11 +320,11 @@ public class FlattenerHelper {
 				dataFlows.put(source, dataFlow);
 			}
 	
-			List<SubsystemBinding<InputConnector>> targets = getActualTargets(subsystemPath, connection.getTarget());
+			List<SubsystemBinding<InputConnector>> targets = getActualTargets(systemPath, connection.getTarget());
 			for (SubsystemBinding<InputConnector> target : targets) {
 				DataFlowTargetEnd targetEnd = ExecutionFlowFactory.eINSTANCE.createDataFlowTargetEnd();
 				targetEnd.setDataFlow(dataFlow);
-				targetEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(target.getSubsystemPath(), DMLUtil.getOwner(target.getElement(), FragmentElement.class))));
+				targetEnd.setNode(allNodes.get(new SubsystemBinding<FragmentElement>(target.getSystemPath(), DMLUtil.getOwner(target.getElement(), FragmentElement.class))));
 				targetEnd.setConnector(target.getElement());
 	
 				if (target.getElement() instanceof InputPort) {
@@ -339,19 +340,19 @@ public class FlattenerHelper {
 
 	private static class SubsystemBinding<T> {
 		
-		private SubsystemPath subsystemPath;
+		private SystemPath systemPath;
 		private T element;
 
 		/**
 		 * 
 		 */
-		public SubsystemBinding(SubsystemPath subsystemPath, T element) {
-			this.subsystemPath = subsystemPath;
+		public SubsystemBinding(SystemPath systemPath, T element) {
+			this.systemPath = systemPath;
 			this.element = element;
 		}
 		
-		public SubsystemPath getSubsystemPath() {
-			return subsystemPath;
+		public SystemPath getSystemPath() {
+			return systemPath;
 		}
 		
 		/**
@@ -363,7 +364,7 @@ public class FlattenerHelper {
 		
 		@Override
 		public int hashCode() {
-			return 31 * element.hashCode() + subsystemPath.hashCode();
+			return 31 * element.hashCode() + systemPath.hashCode();
 		}
 		
 		@Override
@@ -373,7 +374,7 @@ public class FlattenerHelper {
 			}
 			if (obj instanceof SubsystemBinding) {
 				SubsystemBinding<?> other = (SubsystemBinding<?>) obj;
-				return other.element.equals(element) && other.subsystemPath.equals(subsystemPath);
+				return other.element.equals(element) && other.systemPath.equals(systemPath);
 			}
 			return false;
 		}
@@ -382,22 +383,22 @@ public class FlattenerHelper {
 
 	private static class SubsystemDescriptor {
 		
-		private SubsystemPath subsystemPath;
+		private SystemPath systemPath;
 		private Map<SubsystemInput, List<InputConnector>> inputs = new HashMap<SubsystemInput, List<InputConnector>>();
 		private Map<SubsystemOutput, OutputConnector> outputs = new HashMap<SubsystemOutput, OutputConnector>();
 		
 		/**
 		 * 
 		 */
-		public SubsystemDescriptor(SubsystemPath subsystemPath) {
-			this.subsystemPath = subsystemPath;
+		public SubsystemDescriptor(SystemPath systemPath) {
+			this.systemPath = systemPath;
 		}
 		
 		/**
-		 * @return the subsystemPath
+		 * @return the systemPath
 		 */
-		public SubsystemPath getSubsystemPath() {
-			return subsystemPath;
+		public SystemPath getSystemPath() {
+			return systemPath;
 		}
 		
 		/**
@@ -414,51 +415,6 @@ public class FlattenerHelper {
 			return outputs;
 		}
 		
-	}
-	
-	private static class SubsystemPath {
-		
-		private List<Subsystem> subsystems = Collections.emptyList();
-		
-		/**
-		 * @return the subsystems
-		 */
-		public List<Subsystem> getSubsystems() {
-			return Collections.unmodifiableList(subsystems);
-		}
-		
-		public boolean isRoot() {
-			return subsystems.isEmpty();
-		}
-		
-		public SubsystemPath append(Subsystem subsystem) {
-			SubsystemPath newSubsystemPath = new SubsystemPath();
-			newSubsystemPath.subsystems = new ArrayList<Subsystem>(subsystems.size() + 1);
-			newSubsystemPath.subsystems.add(subsystem);
-			newSubsystemPath.subsystems.addAll(subsystems);
-			return newSubsystemPath;
-		}
-		
-		/* (non-Javadoc)
-		 * @see java.lang.Object#hashCode()
-		 */
-		@Override
-		public int hashCode() {
-			return subsystems.hashCode();
-		}
-		
-		/* (non-Javadoc)
-		 * @see java.lang.Object#equals(java.lang.Object)
-		 */
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof SubsystemPath) {
-				SubsystemPath other = (SubsystemPath) obj;
-				return subsystems.equals(other.subsystems);
-			}
-			return false;
-		}
-
 	}
 	
 }

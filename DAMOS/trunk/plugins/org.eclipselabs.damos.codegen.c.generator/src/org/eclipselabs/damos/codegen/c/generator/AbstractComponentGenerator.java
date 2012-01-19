@@ -15,13 +15,11 @@ import java.io.IOException;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
-import org.eclipselabs.damos.codegen.c.generator.internal.registry.RuntimeEnvironmentAPIRegistry;
 import org.eclipselabs.damos.codegen.c.generator.rte.IRuntimeEnvironmentAPI;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 
@@ -120,17 +118,13 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 		return context.getVariableAccessor();
 	}
 
-	protected final GenModel getGenModel() {
-		return context.getGenModel();
-	}
-	
-	protected final ExecutionModel getExecutionModel() {
-		return getGenModel().getExecutionModel();
+	protected final Configuration getConfiguration() {
+		return context.getConfiguration();
 	}
 	
 	protected final ComputationModel getComputationModel() {
 		if (cachedComputationModel == null) {
-			cachedComputationModel = getExecutionModel().getComputationModel(getComponent().getOwningFragment());
+			cachedComputationModel = getConfiguration().getComputationModel(getNode().getSystemPath());
 			if (cachedComputationModel == null) {
 				cachedComputationModel = ComputationModelUtil.constructDefaultComputationModel();
 			}
@@ -140,10 +134,10 @@ public abstract class AbstractComponentGenerator implements IComponentGenerator 
 	
 	protected final IRuntimeEnvironmentAPI getRuntimeEnvironmentAPI() {
 		if (cachedRuntimeEnvironmentAPI == null) {
-			String runtimeEnvironmentId = getExecutionModel().getRuntimeEnvironmentId();
-			if (runtimeEnvironmentId != null) {
-				cachedRuntimeEnvironmentAPI = RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeEnvironmentId);
-			}
+//			String runtimeEnvironmentId = getExecutionModel().getRuntimeEnvironmentId();
+//			if (runtimeEnvironmentId != null) {
+//				cachedRuntimeEnvironmentAPI = RuntimeEnvironmentAPIRegistry.getInstance().getRuntimeEnvironmentAPI(runtimeEnvironmentId);
+//			}
 		}
 		return cachedRuntimeEnvironmentAPI;
 	}

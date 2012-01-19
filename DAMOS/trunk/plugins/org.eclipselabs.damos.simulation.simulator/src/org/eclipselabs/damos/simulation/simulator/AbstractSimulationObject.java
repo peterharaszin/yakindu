@@ -13,10 +13,10 @@ package org.eclipselabs.damos.simulation.simulator;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
-import org.eclipselabs.damos.execution.executionmodel.ExecutionModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
@@ -25,7 +25,6 @@ import org.eclipselabs.damos.mscript.interpreter.IOverflowMonitor;
 import org.eclipselabs.damos.mscript.interpreter.value.IValue;
 import org.eclipselabs.damos.simulation.core.ISimulationAgent;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
@@ -130,12 +129,8 @@ public abstract class AbstractSimulationObject implements ISimulationObject {
 		return context.getNode().getComponent();
 	}
 	
-	protected final SimulationModel getSimulationModel() {
-		return context.getSimulationModel();
-	}
-	
-	protected final ExecutionModel getExecutionModel() {
-		return getSimulationModel().getExecutionModel();
+	protected final Configuration getConfiguration() {
+		return context.getConfiguration();
 	}
 	
 	protected final IComputationContext getComputationContext() {
@@ -147,7 +142,7 @@ public abstract class AbstractSimulationObject implements ISimulationObject {
 
 	private final ComputationModel getComputationModel() {
 		if (cachedComputationModel == null) {
-			cachedComputationModel = getExecutionModel().getComputationModel(getComponent().getOwningFragment());
+			cachedComputationModel = getConfiguration().getComputationModel(getNode().getSystemPath());
 			if (cachedComputationModel == null) {
 				cachedComputationModel = ComputationModelUtil.constructDefaultComputationModel();
 			}

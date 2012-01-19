@@ -13,8 +13,8 @@ package org.eclipselabs.damos.simulation.core;
 
 import java.util.Collection;
 
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.Component;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
@@ -24,7 +24,7 @@ public interface ISimulation {
 
 	ISimulationMonitor getMonitor();
 
-	SimulationModel getModel();
+	Configuration getConfiguration();
 	
 	ISimulationAgent getAgent(Component component);
 	

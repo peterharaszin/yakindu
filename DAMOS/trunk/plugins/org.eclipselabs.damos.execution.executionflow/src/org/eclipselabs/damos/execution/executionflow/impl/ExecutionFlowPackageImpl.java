@@ -8,12 +8,14 @@ package org.eclipselabs.damos.execution.executionflow.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipselabs.damos.dml.DMLPackage;
+import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.execution.executionflow.ActionNode;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
@@ -167,6 +169,13 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * @generated
 	 */
 	private EClass portInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType systemPathEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -363,7 +372,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_EnclosingSubsystems() {
+	public EReference getNode_IncomingDataFlows() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -372,7 +381,7 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_IncomingDataFlows() {
+	public EReference getNode_OutgoingDataFlows() {
 		return (EReference)nodeEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -381,8 +390,8 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNode_OutgoingDataFlows() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(5);
+	public EAttribute getNode_SystemPath() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -741,6 +750,15 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getSystemPath() {
+		return systemPathEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExecutionFlowFactory getExecutionFlowFactory() {
 		return (ExecutionFlowFactory)getEFactoryInstance();
 	}
@@ -780,9 +798,9 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		createEReference(nodeEClass, NODE__GRAPH);
 		createEReference(nodeEClass, NODE__INCOMING_EDGES);
 		createEReference(nodeEClass, NODE__OUTGOING_EDGES);
-		createEReference(nodeEClass, NODE__ENCLOSING_SUBSYSTEMS);
 		createEReference(nodeEClass, NODE__INCOMING_DATA_FLOWS);
 		createEReference(nodeEClass, NODE__OUTGOING_DATA_FLOWS);
+		createEAttribute(nodeEClass, NODE__SYSTEM_PATH);
 
 		subgraphEClass = createEClass(SUBGRAPH);
 
@@ -837,6 +855,9 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		portInfoEClass = createEClass(PORT_INFO);
 		createEAttribute(portInfoEClass, PORT_INFO__INOUTPUT_INDEX);
 		createEAttribute(portInfoEClass, PORT_INFO__PORT_INDEX);
+
+		// Create data types
+		systemPathEDataType = createEDataType(SYSTEM_PATH);
 	}
 
 	/**
@@ -912,9 +933,9 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEReference(getNode_Graph(), this.getGraph(), this.getGraph_Nodes(), "graph", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_IncomingEdges(), this.getEdge(), this.getEdge_Target(), "incomingEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_OutgoingEdges(), this.getEdge(), this.getEdge_Source(), "outgoingEdges", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNode_EnclosingSubsystems(), theDMLPackage.getSubsystem(), null, "enclosingSubsystems", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_IncomingDataFlows(), this.getDataFlowTargetEnd(), this.getDataFlowTargetEnd_Node(), "incomingDataFlows", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_OutgoingDataFlows(), this.getDataFlowSourceEnd(), this.getDataFlowSourceEnd_Node(), "outgoingDataFlows", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getNode_SystemPath(), this.getSystemPath(), "systemPath", null, 0, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(nodeEClass, this.getDataFlowTargetEnd(), "getIncomingDataFlow", 1, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theDMLPackage.getInputConnector(), "target", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -996,6 +1017,9 @@ public class ExecutionFlowPackageImpl extends EPackageImpl implements ExecutionF
 		initEClass(portInfoEClass, PortInfo.class, "PortInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPortInfo_InoutputIndex(), ecorePackage.getEInt(), "inoutputIndex", null, 1, 1, PortInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPortInfo_PortIndex(), ecorePackage.getEInt(), "portIndex", null, 1, 1, PortInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(systemPathEDataType, SystemPath.class, "SystemPath", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

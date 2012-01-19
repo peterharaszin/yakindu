@@ -1,4 +1,4 @@
-blockType damos::library::base::sources::Ramp
+blockType damos.library.base.sources.Ramp
 
 output _output
 

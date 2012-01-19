@@ -48,22 +48,22 @@
    <extension
          point="org.eclipselabs.damos.diagram.ui.blockViewFactories">
       <viewFactory
-            blockType="damos::library::base::logic::And"
+            blockType="damos.library.base.logic.And"
             class="org.eclipselabs.damos.library.base.ui.view.factories.logic.LogicGateViewFactory"
             name="And">
       </viewFactory>
       <viewFactory
-            blockType="damos::library::base::logic::Or"
+            blockType="damos.library.base.logic.Or"
             class="org.eclipselabs.damos.library.base.ui.view.factories.logic.LogicGateViewFactory"
             name="Or">
       </viewFactory>
       <viewFactory
-            blockType="damos::library::base::logic::Inverter"
+            blockType="damos.library.base.logic.Inverter"
             class="org.eclipselabs.damos.library.base.ui.view.factories.logic.LogicGateViewFactory"
             name="Inverter">
       </viewFactory>
       <viewFactory
-            blockType="damos::library::base::math::Sum"
+            blockType="damos.library.base.math.Sum"
             class="org.eclipselabs.damos.library.base.ui.view.factories.math.SumViewFactory"
             name="Sum">
          <input
@@ -75,77 +75,77 @@
    <extension
          point="org.eclipselabs.damos.diagram.ui.blockEditParts">
       <editPart
-            blockType="damos::library::base::continuous::Integrator"
+            blockType="damos.library.base.continuous.Integrator"
             class="org.eclipselabs.damos.library.base.ui.editparts.continuous.IntegratorEditPart"
             name="Integrator">
       </editPart>
       <editPart
-            blockType="damos::library::base::continuous::Derivative"
+            blockType="damos.library.base.continuous.Derivative"
             class="org.eclipselabs.damos.library.base.ui.editparts.continuous.DerivativeEditPart"
             name="Derivative">
       </editPart>
       <editPart
-            blockType="damos::library::base::continuous::TransferFunction"
+            blockType="damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.ui.editparts.continuous.TransferFunctionEditPart"
             name="Transfer Function">
       </editPart>
       <editPart
-            blockType="damos::library::base::discontinuities::Saturation"
+            blockType="damos.library.base.discontinuities.Saturation"
             class="org.eclipselabs.damos.library.base.ui.editparts.discontinuities.SaturationEditPart"
             name="Saturation">
       </editPart>
       <editPart
-            blockType="damos::library::base::discrete::Delay"
+            blockType="damos.library.base.discrete.Delay"
             class="org.eclipselabs.damos.library.base.ui.editparts.discrete.DelayEditPart"
             name="Delay">
       </editPart>
       <editPart
-            blockType="damos::library::base::discrete::DiscreteIntegrator"
+            blockType="damos.library.base.discrete.DiscreteIntegrator"
             class="org.eclipselabs.damos.library.base.ui.editparts.discrete.DiscreteIntegratorEditPart"
             name="Discrete Integrator">
       </editPart>
       <editPart
-            blockType="damos::library::base::discrete::DiscreteDerivative"
+            blockType="damos.library.base.discrete.DiscreteDerivative"
             class="org.eclipselabs.damos.library.base.ui.editparts.discrete.DiscreteDerivativeEditPart"
             name="Discrete Derivative">
       </editPart>
       <editPart
-            blockType="damos::library::base::discrete::Counter"
+            blockType="damos.library.base.discrete.Counter"
             class="org.eclipselabs.damos.library.base.ui.editparts.discrete.CounterEditPart"
             name="Counter">
       </editPart>
       <editPart
-            blockType="damos::library::base::logic::And"
+            blockType="damos.library.base.logic.And"
             class="org.eclipselabs.damos.library.base.ui.editparts.logic.AndEditPart"
             name="And">
       </editPart>
       <editPart
-            blockType="damos::library::base::logic::Or"
+            blockType="damos.library.base.logic.Or"
             class="org.eclipselabs.damos.library.base.ui.editparts.logic.OrEditPart"
             name="Or">
       </editPart>
       <editPart
-            blockType="damos::library::base::logic::Inverter"
+            blockType="damos.library.base.logic.Inverter"
             class="org.eclipselabs.damos.library.base.ui.editparts.logic.InverterEditPart"
             name="Inverter">
       </editPart>
       <editPart
-            blockType="damos::library::base::logic::Compare"
+            blockType="damos.library.base.logic.Compare"
             class="org.eclipselabs.damos.library.base.ui.editparts.logic.CompareEditPart"
             name="Compare">
       </editPart>
       <editPart
-            blockType="damos::library::base::logic::SchmittTrigger"
+            blockType="damos.library.base.logic.SchmittTrigger"
             class="org.eclipselabs.damos.library.base.ui.editparts.logic.SchmittTriggerEditPart"
             name="SchmittTrigger">
       </editPart>
       <editPart
-            blockType="damos::library::base::math::Gain"
+            blockType="damos.library.base.math.Gain"
             class="org.eclipselabs.damos.library.base.ui.editparts.math.GainEditPart"
             name="Gain">
       </editPart>
       <editPart
-            blockType="damos::library::base::math::Sum"
+            blockType="damos.library.base.math.Sum"
             class="org.eclipselabs.damos.library.base.ui.editparts.math.SumEditPart"
             name="Sum">
          <input
@@ -154,52 +154,52 @@
          </input>
       </editPart>
       <editPart
-            blockType="damos::library::base::math::Round"
+            blockType="damos.library.base.math.Round"
             class="org.eclipselabs.damos.library.base.ui.editparts.math.RoundEditPart"
             name="Round">
       </editPart>
       <editPart
-            blockType="damos::library::base::signal::Switch"
+            blockType="damos.library.base.signal.Switch"
             class="org.eclipselabs.damos.library.base.ui.editparts.signal.SwitchEditPart"
             name="Switch">
       </editPart>
       <editPart
-            blockType="damos::library::base::sinks::Scope"
+            blockType="damos.library.base.sinks.Scope"
             class="org.eclipselabs.damos.library.base.ui.editparts.sinks.ScopeEditPart"
             name="Scope">
       </editPart>
       <editPart
-            blockType="damos::library::base::sinks::XYScope"
+            blockType="damos.library.base.sinks.XYScope"
             class="org.eclipselabs.damos.library.base.ui.editparts.sinks.XYScopeEditPart"
             name="X-Y Scope">
       </editPart>
       <editPart
-            blockType="damos::library::base::sinks::AudioFileSink"
+            blockType="damos.library.base.sinks.AudioFileSink"
             class="org.eclipselabs.damos.library.base.ui.editparts.sinks.AudioFileSinkEditPart"
             name="Audio File Sink">
       </editPart>
       <editPart
-            blockType="damos::library::base::sources::Constant"
+            blockType="damos.library.base.sources.Constant"
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.ConstantEditPart"
             name="Constant">
       </editPart>
       <editPart
-            blockType="damos::library::base::sources::SineWave"
+            blockType="damos.library.base.sources.SineWave"
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.SineWaveEditPart"
             name="SineWave">
       </editPart>
       <editPart
-            blockType="damos::library::base::sources::Step"
+            blockType="damos.library.base.sources.Step"
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.StepEditPart"
             name="Step">
       </editPart>
       <editPart
-            blockType="damos::library::base::sources::Ramp"
+            blockType="damos.library.base.sources.Ramp"
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.RampEditPart"
             name="Ramp">
       </editPart>
       <editPart
-            blockType="damos::library::base::sources::AudioFileSource"
+            blockType="damos.library.base.sources.AudioFileSource"
             class="org.eclipselabs.damos.library.base.ui.editparts.sources.AudioFileSourceEditPart"
             name="Audio File Source">
       </editPart>
@@ -207,127 +207,127 @@
    <extension
          point="org.eclipselabs.damos.dml.ui.blockImages">
       <image
-            blockType="damos::library::base::continuous::Integrator"
+            blockType="damos.library.base.continuous.Integrator"
             icon16="icons/continuous/Integrator16.png"
             icon24="icons/continuous/Integrator24.png">
       </image>
       <image
-            blockType="damos::library::base::continuous::Derivative"
+            blockType="damos.library.base.continuous.Derivative"
             icon16="icons/continuous/Derivative16.png"
             icon24="icons/continuous/Derivative24.png">
       </image>
       <image
-            blockType="damos::library::base::continuous::TransferFunction"
+            blockType="damos.library.base.continuous.TransferFunction"
             icon16="icons/continuous/TransferFunction16.png"
             icon24="icons/continuous/TransferFunction24.png">
       </image>
       <image
-            blockType="damos::library::base::discontinuities::Saturation"
+            blockType="damos.library.base.discontinuities.Saturation"
             icon16="icons/discontinuities/Saturation16.png"
             icon24="icons/discontinuities/Saturation24.png">
       </image>
       <image
-            blockType="damos::library::base::discrete::Counter"
+            blockType="damos.library.base.discrete.Counter"
             icon16="icons/discrete/Counter16.png"
             icon24="icons/discrete/Counter24.png">
       </image>
       <image
-            blockType="damos::library::base::discrete::Delay"
+            blockType="damos.library.base.discrete.Delay"
             icon16="icons/discrete/Delay16.png"
             icon24="icons/discrete/Delay24.png">
       </image>
       <image
-            blockType="damos::library::base::discrete::DiscreteDerivative"
+            blockType="damos.library.base.discrete.DiscreteDerivative"
             icon16="icons/discrete/DiscreteDerivative16.png"
             icon24="icons/discrete/DiscreteDerivative24.png">
       </image>
       <image
-            blockType="damos::library::base::discrete::DiscreteIntegrator"
+            blockType="damos.library.base.discrete.DiscreteIntegrator"
             icon16="icons/discrete/DiscreteIntegrator16.png"
             icon24="icons/discrete/DiscreteIntegrator24.png">
       </image>
       <image
-            blockType="damos::library::base::logic::And"
+            blockType="damos.library.base.logic.And"
             icon16="icons/logic/And16.png"
             icon24="icons/logic/And24.png">
       </image>
       <image
-            blockType="damos::library::base::logic::Compare"
+            blockType="damos.library.base.logic.Compare"
             icon16="icons/logic/Compare16.png"
             icon24="icons/logic/Compare24.png">
       </image>
       <image
-            blockType="damos::library::base::logic::Inverter"
+            blockType="damos.library.base.logic.Inverter"
             icon16="icons/logic/Inverter16.png"
             icon24="icons/logic/Inverter24.png">
       </image>
       <image
-            blockType="damos::library::base::logic::Or"
+            blockType="damos.library.base.logic.Or"
             icon16="icons/logic/Or16.png"
             icon24="icons/logic/Or24.png">
       </image>
       <image
-            blockType="damos::library::base::logic::SchmittTrigger"
+            blockType="damos.library.base.logic.SchmittTrigger"
             icon16="icons/logic/SchmittTrigger16.png"
             icon24="icons/logic/SchmittTrigger24.png">
       </image>
       <image
-            blockType="damos::library::base::math::Gain"
+            blockType="damos.library.base.math.Gain"
             icon16="icons/math/Gain16.png"
             icon24="icons/math/Gain24.png">
       </image>
       <image
-            blockType="damos::library::base::math::Round"
+            blockType="damos.library.base.math.Round"
             icon16="icons/math/Round16.png"
             icon24="icons/math/Round24.png">
       </image>
       <image
-            blockType="damos::library::base::math::Sum"
+            blockType="damos.library.base.math.Sum"
             icon16="icons/math/Sum16.png"
             icon24="icons/math/Sum24.png">
       </image>
       <image
-            blockType="damos::library::base::signal::Switch"
+            blockType="damos.library.base.signal.Switch"
             icon16="icons/signal/Switch16.png"
             icon24="icons/signal/Switch24.png">
       </image>
       <image
-            blockType="damos::library::base::sinks::Scope"
+            blockType="damos.library.base.sinks.Scope"
             icon16="icons/sinks/Scope16.png"
             icon24="icons/sinks/Scope24.png">
       </image>
       <image
-            blockType="damos::library::base::sinks::XYScope"
+            blockType="damos.library.base.sinks.XYScope"
             icon16="icons/sinks/XYScope16.png"
             icon24="icons/sinks/XYScope24.png">
       </image>
       <image
-            blockType="damos::library::base::sources::Constant"
+            blockType="damos.library.base.sources.Constant"
             icon16="icons/sources/Constant16.png"
             icon24="icons/sources/Constant24.png">
       </image>
       <image
-            blockType="damos::library::base::sources::Ramp"
+            blockType="damos.library.base.sources.Ramp"
             icon16="icons/sources/Ramp16.png"
             icon24="icons/sources/Ramp24.png">
       </image>
       <image
-            blockType="damos::library::base::sources::SineWave"
+            blockType="damos.library.base.sources.SineWave"
             icon16="icons/sources/SineWave16.png"
             icon24="icons/sources/SineWave24.png">
       </image>
       <image
-            blockType="damos::library::base::sources::Step"
+            blockType="damos.library.base.sources.Step"
             icon16="icons/sources/Step16.png"
             icon24="icons/sources/Step24.png">
       </image>
       <image
-            blockType="damos::library::base::sinks::AudioFileSink"
+            blockType="damos.library.base.sinks.AudioFileSink"
             icon16="icons/sinks/AudioFileSink16.png"
             icon24="icons/sinks/AudioFileSink24.png">
       </image>
       <image
-            blockType="damos::library::base::sources::AudioFileSource"
+            blockType="damos.library.base.sources.AudioFileSource"
             icon16="icons/sources/AudioFileSource16.png"
             icon24="icons/sources/AudioFileSource24.png">
       </image>

@@ -17,6 +17,7 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.IStreamsProxy;
+import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.simulation.core.ISimulationListener;
 import org.eclipselabs.damos.simulation.core.SimulationEvent;
 import org.eclipselabs.damos.simulation.core.SimulationManager;
@@ -49,7 +50,8 @@ public class SimulationProcess implements IProcess {
 	}
 	
 	public String getLabel() {
-		return simulationEngine.getSimulation().getModel().getTopLevelFragment().getName();
+		Fragment contextFragment = simulationEngine.getSimulation().getConfiguration().getContextFragment();
+		return contextFragment != null ? contextFragment.getName() : "Unnamed";
 	}
 
 	/**

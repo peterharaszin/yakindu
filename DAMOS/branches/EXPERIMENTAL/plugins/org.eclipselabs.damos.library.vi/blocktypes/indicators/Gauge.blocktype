@@ -1,4 +1,4 @@
-blockType damos::library::vi::indicators::Gauge
+blockType damos.library.vi.indicators.Gauge
 
 input _input
 

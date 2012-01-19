@@ -1,4 +1,4 @@
-blockType damos::library::base::sources::Constant
+blockType damos.library.base.sources.Constant
 
 output y
 

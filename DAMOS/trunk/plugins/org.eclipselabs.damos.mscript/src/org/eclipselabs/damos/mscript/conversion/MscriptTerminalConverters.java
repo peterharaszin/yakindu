@@ -144,8 +144,9 @@ public class MscriptTerminalConverters extends DefaultTerminalConverters {
 				try {
 					return Integer.valueOf(WHITE_SPACE_PATTERN.matcher(string).replaceAll(""));
 				} catch (NumberFormatException e) {
-					throw new ValueConverterException("Couldn't convert '" + string + "' to int", node, e);
+					// Ignore number format exception, return 0
 				}
+				return 0;
 			}
 
 			public String toString(Integer value) {

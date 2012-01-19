@@ -1,4 +1,4 @@
-asynchronous blockType damos::library::base::_discrete::Counter
+asynchronous blockType damos.library.base._discrete.Counter
 
 socket input up {
 	directFeedthrough never

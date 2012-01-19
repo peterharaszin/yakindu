@@ -37,6 +37,9 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.PlatformUI;
 import org.eclipselabs.damos.common.ui.dialogs.SelectFragmentDialog;
+import org.eclipselabs.damos.dconfig.Configuration;
+import org.eclipselabs.damos.dconfig.DconfigPackage;
+import org.eclipselabs.damos.dconfig.util.PropertyEnumerationHelper;
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.DMLUtil;
@@ -46,8 +49,6 @@ import org.eclipselabs.damos.simulation.ide.core.util.LaunchConfigurationUtil;
 import org.eclipselabs.damos.simulation.ide.ui.SimulationIDEUIPlugin;
 import org.eclipselabs.damos.simulation.ide.ui.internal.dialogs.SimulationLaunchConfigurationSelectionDialog;
 import org.eclipselabs.damos.simulation.ide.ui.internal.util.LaunchShortcutUtil;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModelPackage;
 
 public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 
@@ -80,8 +81,7 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 				
 				String name = launchManager.generateLaunchConfigurationName(path.removeFileExtension().lastSegment() + " Simulation");
 				ILaunchConfigurationWorkingCopy launchConfiguration = launchConfigurationType.newInstance(null, name);
-				launchConfiguration.setAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true);
-				LaunchConfigurationUtil.storeSimulationModel(launchConfiguration, LaunchConfigurationUtil.createDefaultSimulationModel(fragment));
+				LaunchConfigurationUtil.initializeLaunchConfiguration(launchConfiguration, fragment);
 				launchConfiguration.doSave();
 				
 				DebugUITools.launch(launchConfiguration, mode);
@@ -156,11 +156,11 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 			if (launchConfigurationType != null) {
 				List<ILaunchConfiguration> launchConfigurations = new ArrayList<ILaunchConfiguration>();
 				for (ILaunchConfiguration launchConfiguration : launchManager.getLaunchConfigurations(launchConfigurationType)) {
-					if (launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__CREATE_SIMULATION_MODEL, true)) {
+					if (launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__OVERRIDE_CONFIGURATION, true)) {
 						try {
-							SimulationModel simulationModel = LaunchConfigurationUtil.loadSimulationModel(launchConfiguration);
-							if (simulationModel.getTopLevelFragment() != null && !simulationModel.getTopLevelFragment().eIsProxy()) {
-								URI topLevelFragmentURI = EcoreUtil.getURI(simulationModel.getTopLevelFragment());
+							Configuration configuration = LaunchConfigurationUtil.createConfiguration(launchConfiguration, new PropertyEnumerationHelper("damos.simulation.solver"));
+							if (configuration.getContextFragment() != null && !configuration.getContextFragment().eIsProxy()) {
+								URI topLevelFragmentURI = EcoreUtil.getURI(configuration.getContextFragment());
 								if (topLevelFragmentURI.equals(uri)) {
 									launchConfigurations.add(launchConfiguration);
 								}
@@ -170,10 +170,10 @@ public class FragmentLaunchShortcut implements ILaunchShortcut2 {
 									"Loading simulation model failed", e)); 
 						}
 					} else {
-						String simulationModelPathString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__SIMULATION_MODEL_PATH, "");
-						SimulationModel simulationModel = (SimulationModel) EcoreUtil.getObjectByType(getResourceContents(simulationModelPathString), SimulationModelPackage.eINSTANCE.getSimulationModel());
-						if (simulationModel != null) {
-							Fragment topLevelFragment = simulationModel.getTopLevelFragment();
+						String configurationPathString = launchConfiguration.getAttribute(SimulationLaunchConfigurationDelegate.ATTRIBUTE__BASE_CONFIGURATION_PATH, "");
+						Configuration configuration = (Configuration) EcoreUtil.getObjectByType(getResourceContents(configurationPathString), DconfigPackage.eINSTANCE.getConfiguration());
+						if (configuration != null) {
+							Fragment topLevelFragment = configuration.getContextFragment();
 							if (topLevelFragment != null && EcoreUtil.getURI(topLevelFragment).equals(uri)) {
 								launchConfigurations.add(launchConfiguration);
 							}

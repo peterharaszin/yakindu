@@ -27,8 +27,8 @@ import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.StepN;
 import org.eclipselabs.damos.mscript.TemplateParameterDeclaration;
-import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.VariableDeclaration;
+import org.eclipselabs.damos.mscript.VariableReference;
 import org.eclipselabs.damos.mscript.interpreter.ComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 import org.eclipselabs.damos.mscript.interpreter.StaticEvaluationContext;
@@ -59,6 +59,9 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	
 	@Check
 	public void checkVariableAccessReferencesVariable(VariableReference variableReference) {
+		if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
+			return;
+		}
 		CallableElement ce = variableReference.getFeature();
 		if (!(ce instanceof ParameterDeclaration
 				|| ce instanceof VariableDeclaration
@@ -69,6 +72,9 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 
 	@Check
 	public void checkVariableAccessStepExpressionApplication(VariableReference variableReference) {
+		if (variableReference.getFeature() == null || variableReference.getFeature().eIsProxy()) {
+			return;
+		}
 		if (variableReference.getStepExpression() != null) {
 			CallableElement ce = variableReference.getFeature();
 			if (!(ce instanceof InputParameterDeclaration
@@ -80,12 +86,15 @@ public class MscriptJavaValidator extends AbstractMscriptJavaValidator {
 	}
 
 	@Check
-	public void checkFunctionCallReferencesVariable(FunctionCall variableAccess) {
-		CallableElement ce = variableAccess.getFeature();
+	public void checkFunctionCallReferencesVariable(FunctionCall functionCall) {
+		if (functionCall.getFeature() == null || functionCall.getFeature().eIsProxy()) {
+			return;
+		}
+		CallableElement ce = functionCall.getFeature();
 		if (!(ce instanceof FunctionDeclaration
 				|| ce instanceof FunctionObjectDeclaration
 				|| ce instanceof BuiltinFunctionDeclaration)) {
-			error("Invalid function call " + variableAccess.getFeature().getName(), null);
+			error("Invalid function call " + functionCall.getFeature().getName(), null);
 		}
 	}
 

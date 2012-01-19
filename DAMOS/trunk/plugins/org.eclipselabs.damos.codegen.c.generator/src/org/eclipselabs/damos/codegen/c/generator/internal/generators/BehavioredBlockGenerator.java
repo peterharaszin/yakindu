@@ -149,7 +149,7 @@ public class BehavioredBlockGenerator extends AbstractBlockGenerator {
 		for (StateVariableDeclaration instanceVariableDeclaration: functionInstance.getFunctionDeclaration().getStateVariableDeclarations()) {
 			writeContextStructureMember(out, monitor, instanceVariableDeclaration);
 		}
-		String prefix = getGenModel().getGenTopLevelSystem().getPrefix();
+		String prefix = InternalGeneratorUtil.getPrefix(getConfiguration());
 		if (prefix == null) {
 			prefix = "";
 		}

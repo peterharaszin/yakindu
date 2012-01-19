@@ -1,4 +1,4 @@
-synchronous blockType damos::library::base::_discrete::DiscreteDerivative
+synchronous blockType damos.library.base._discrete.DiscreteDerivative
 
 input u
 output y

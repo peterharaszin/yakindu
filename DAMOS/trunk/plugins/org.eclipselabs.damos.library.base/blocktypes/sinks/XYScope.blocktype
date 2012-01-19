@@ -1,4 +1,4 @@
-blockType damos::library::base::sinks::XYScope
+blockType damos.library.base.sinks.XYScope
 
 input x
 input y[1..*]

@@ -1,4 +1,4 @@
-blockType damos::library::base::discontinuities::Saturation
+blockType damos.library.base.discontinuities.Saturation
 
 input u
 output y

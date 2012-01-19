@@ -26,10 +26,10 @@
                   <iterate>
                   	<or>
                      <instanceof
-                           value="org.eclipselabs.damos.codegen.c.cgenmodel.GenModel">
+                           value="org.eclipselabs.damos.dconfig.Configuration">
                      </instanceof>
                      <adapt type="org.eclipse.core.resources.IFile">
-                       <test property="org.eclipse.core.resources.name" value="*.cgenmodel"/>
+                       <test property="org.eclipse.core.resources.name" value="*.dconfig"/>
                      </adapt>
                     </or>
                   </iterate>

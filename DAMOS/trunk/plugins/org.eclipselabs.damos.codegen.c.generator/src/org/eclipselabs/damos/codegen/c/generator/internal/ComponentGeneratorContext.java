@@ -11,9 +11,9 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal;
 
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGeneratorContext;
 import org.eclipselabs.damos.codegen.c.generator.IVariableAccessor;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
@@ -26,16 +26,16 @@ public class ComponentGeneratorContext implements IComponentGeneratorContext {
 	private ComponentNode node;
 	private IComponentSignature componentSignature;
 	private IVariableAccessor variableAccessor;
-	private GenModel genModel;
+	private Configuration configuration;
 	
 	/**
 	 * 
 	 */
-	public ComponentGeneratorContext(ComponentNode node, IComponentSignature componentSignature, IVariableAccessor variableAccessor, GenModel genModel) {
+	public ComponentGeneratorContext(ComponentNode node, IComponentSignature componentSignature, IVariableAccessor variableAccessor, Configuration configuration) {
 		this.node = node;
 		this.componentSignature = componentSignature;
 		this.variableAccessor = variableAccessor;
-		this.genModel = genModel;
+		this.configuration = configuration;
 	}
 	
 	/* (non-Javadoc)
@@ -59,11 +59,8 @@ public class ComponentGeneratorContext implements IComponentGeneratorContext {
 		return variableAccessor;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.codegen.c.generator.IComponentGeneratorContext#getGenModel()
-	 */
-	public GenModel getGenModel() {
-		return genModel;
+	public Configuration getConfiguration() {
+		return configuration;
 	}
 
 }

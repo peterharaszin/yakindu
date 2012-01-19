@@ -20,9 +20,9 @@
    <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
-            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.SimulationModelLaunchShortcut"
+            class="org.eclipselabs.damos.simulation.ide.ui.internal.launch.ConfigurationLaunchShortcut"
             icon="icons/Simulation.gif"
-            id="org.eclipselabs.damos.simulation.ide.ui.simulationModelLaunchShortcut"
+            id="org.eclipselabs.damos.simulation.ide.ui.configurationLaunchShortcut"
             label="Damos Simulation"
             modes="run, debug">
          <contextualLaunch>
@@ -36,10 +36,10 @@
                     <or>
                        <test
                              property="org.eclipse.debug.ui.matchesPattern"
-                             value="*.simulationmodel">
+                             value="*.dconfig">
                        </test>
                        <instanceof
-                             value="org.eclipselabs.damos.simulation.simulationmodel.SimulationModel">
+                             value="org.eclipselabs.damos.dconfig.Configuration">
                        </instanceof>
                     </or>
                   </iterate>

@@ -54,6 +54,7 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLetExpressionAssignmentAccess().getAlternatives_0(), "rule__LetExpressionAssignment__Alternatives_0");
 					put(grammarAccess.getRelationalExpressionAccess().getAlternatives_1_0(), "rule__RelationalExpression__Alternatives_1_0");
 					put(grammarAccess.getUnaryExpressionAccess().getAlternatives(), "rule__UnaryExpression__Alternatives");
+					put(grammarAccess.getArrayElementAccessAccess().getAlternatives_0(), "rule__ArrayElementAccess__Alternatives_0");
 					put(grammarAccess.getMemberFeatureCallAccess().getAlternatives_1(), "rule__MemberFeatureCall__Alternatives_1");
 					put(grammarAccess.getArraySubscriptAccess().getAlternatives(), "rule__ArraySubscript__Alternatives");
 					put(grammarAccess.getPrimaryExpressionAccess().getAlternatives(), "rule__PrimaryExpression__Alternatives");
@@ -67,6 +68,7 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRealDataAccess().getAlternatives_1_1_1_1(), "rule__RealData__Alternatives_1_1_1_1");
 					put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
 					put(grammarAccess.getFeatureCallAccess().getAlternatives(), "rule__FeatureCall__Alternatives");
+					put(grammarAccess.getQualifiedFeatureCallAccess().getAlternatives(), "rule__QualifiedFeatureCall__Alternatives");
 					put(grammarAccess.getNegateStepExpressionAccess().getAlternatives(), "rule__NegateStepExpression__Alternatives");
 					put(grammarAccess.getPrimitiveStepExpressionAccess().getAlternatives(), "rule__PrimitiveStepExpression__Alternatives");
 					put(grammarAccess.getArrayConstructionOperatorAccess().getAlternatives_2(), "rule__ArrayConstructionOperator__Alternatives_2");
@@ -193,6 +195,10 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionCallAccess().getGroup(), "rule__FunctionCall__Group__0");
 					put(grammarAccess.getFunctionCallAccess().getGroup_3(), "rule__FunctionCall__Group_3__0");
 					put(grammarAccess.getFunctionCallAccess().getGroup_3_1(), "rule__FunctionCall__Group_3_1__0");
+					put(grammarAccess.getQualifiedVariableReferenceAccess().getGroup(), "rule__QualifiedVariableReference__Group__0");
+					put(grammarAccess.getQualifiedFunctionCallAccess().getGroup(), "rule__QualifiedFunctionCall__Group__0");
+					put(grammarAccess.getQualifiedFunctionCallAccess().getGroup_4(), "rule__QualifiedFunctionCall__Group_4__0");
+					put(grammarAccess.getQualifiedFunctionCallAccess().getGroup_4_1(), "rule__QualifiedFunctionCall__Group_4_1__0");
 					put(grammarAccess.getRangeStepExpressionAccess().getGroup(), "rule__RangeStepExpression__Group__0");
 					put(grammarAccess.getRangeStepExpressionAccess().getGroup_1(), "rule__RangeStepExpression__Group_1__0");
 					put(grammarAccess.getAdditiveStepExpressionAccess().getGroup(), "rule__AdditiveStepExpression__Group__0");
@@ -383,6 +389,10 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFunctionCallAccess().getFeatureAssignment_1(), "rule__FunctionCall__FeatureAssignment_1");
 					put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_3_0(), "rule__FunctionCall__ArgumentsAssignment_3_0");
 					put(grammarAccess.getFunctionCallAccess().getArgumentsAssignment_3_1_1(), "rule__FunctionCall__ArgumentsAssignment_3_1_1");
+					put(grammarAccess.getQualifiedVariableReferenceAccess().getFeatureAssignment_2(), "rule__QualifiedVariableReference__FeatureAssignment_2");
+					put(grammarAccess.getQualifiedFunctionCallAccess().getFeatureAssignment_2(), "rule__QualifiedFunctionCall__FeatureAssignment_2");
+					put(grammarAccess.getQualifiedFunctionCallAccess().getArgumentsAssignment_4_0(), "rule__QualifiedFunctionCall__ArgumentsAssignment_4_0");
+					put(grammarAccess.getQualifiedFunctionCallAccess().getArgumentsAssignment_4_1_1(), "rule__QualifiedFunctionCall__ArgumentsAssignment_4_1_1");
 					put(grammarAccess.getRangeStepExpressionAccess().getEndAssignment_1_2(), "rule__RangeStepExpression__EndAssignment_1_2");
 					put(grammarAccess.getAdditiveStepExpressionAccess().getOperatorAssignment_1_1(), "rule__AdditiveStepExpression__OperatorAssignment_1_1");
 					put(grammarAccess.getAdditiveStepExpressionAccess().getRightOperandAssignment_1_2(), "rule__AdditiveStepExpression__RightOperandAssignment_1_2");

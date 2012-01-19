@@ -1,4 +1,4 @@
-blockType damos::library::base::logic::Compare
+blockType damos.library.base.logic.Compare
 
 input a
 input b

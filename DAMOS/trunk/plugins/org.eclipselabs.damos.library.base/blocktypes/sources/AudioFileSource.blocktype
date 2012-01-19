@@ -1,4 +1,4 @@
-blockType damos::library::base::sources::AudioFileSource
+blockType damos.library.base.sources.AudioFileSource
 
 output _output[1..*]
 

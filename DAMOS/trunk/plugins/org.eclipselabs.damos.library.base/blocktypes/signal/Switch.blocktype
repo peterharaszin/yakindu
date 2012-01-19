@@ -1,4 +1,4 @@
-blockType damos::library::base::signal::Switch
+blockType damos.library.base.signal.Switch
 
 input onTrue
 input control

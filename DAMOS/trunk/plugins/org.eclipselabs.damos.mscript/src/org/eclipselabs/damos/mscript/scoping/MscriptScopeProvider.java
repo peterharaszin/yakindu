@@ -8,9 +8,11 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipselabs.damos.mscript.Compound;
 import org.eclipselabs.damos.mscript.ForStatement;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
@@ -19,6 +21,7 @@ import org.eclipselabs.damos.mscript.IterationCall;
 import org.eclipselabs.damos.mscript.LetExpression;
 import org.eclipselabs.damos.mscript.LetExpressionAssignment;
 import org.eclipselabs.damos.mscript.LocalVariableDeclaration;
+import org.eclipselabs.damos.mscript.MscriptPackage;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.StateVariableDeclaration;
 import org.eclipselabs.damos.mscript.Statement;
@@ -88,7 +91,9 @@ public class MscriptScopeProvider extends AbstractDeclarativeScopeProvider {
 			container = container.eContainer();
 		}
 		
-		return Scopes.scopeFor(elements, getDelegate().getScope(context, reference));
+		Iterable<IEObjectDescription> parentElements = getDelegate().getScope(context, reference).getAllElements();
+		Iterable<IEObjectDescription> filteredParentElements = Scopes.selectCompatible(parentElements, MscriptPackage.eINSTANCE.getCallableElement());
+		return Scopes.scopeFor(elements, new SimpleScope(filteredParentElements));
 	}
 
 }

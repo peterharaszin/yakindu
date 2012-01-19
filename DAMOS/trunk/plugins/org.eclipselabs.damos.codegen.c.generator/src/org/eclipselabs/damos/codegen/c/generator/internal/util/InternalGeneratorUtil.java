@@ -11,22 +11,21 @@
 
 package org.eclipselabs.damos.codegen.c.generator.internal.util;
 
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenSubsystem;
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenSystem;
 import org.eclipselabs.damos.codegen.c.generator.IComponentGenerator;
 import org.eclipselabs.damos.codegen.c.generator.internal.ComponentGeneratorAdapter;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dml.BlockOutput;
 import org.eclipselabs.damos.dml.Output;
 import org.eclipselabs.damos.dml.OutputPort;
 import org.eclipselabs.damos.dml.util.DMLUtil;
+import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.execution.executionflow.TaskInputNode;
+import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.StringLiteral;
 
 /**
  * @author Andreas Unger
@@ -39,42 +38,29 @@ public class InternalGeneratorUtil {
 		return adapter != null ? adapter.getGenerator() : null;
 	}
 	
-	public static String getPrefix(GenModel genModel, Node node) {
-		String prefix = "";
-
-		GenSystem genSystem = null;
-
-		if (node.getEnclosingSubsystems().isEmpty()) {
-			genSystem = genModel.getGenTopLevelSystem();
-		} else {
-			for (TreeIterator<EObject> it = genModel.getGenTopLevelSystem().eAllContents(); it.hasNext();) {
-				EObject next = it.next();
-				if (next instanceof GenSubsystem) {
-					GenSubsystem genSubsystem = (GenSubsystem) next;
-					if (genSubsystem.getSubsystem() == node.getEnclosingSubsystems().get(0)) {
-						genSystem = genSubsystem;
-						break;
-					}
-				}
-			}
+	public static String getPrefix(Configuration configuration) {
+		Expression prefixValue = configuration.getPropertyValue(SystemPath.create(configuration.getContextFragment()), "damos.codegen.c.prefix");
+		if (prefixValue instanceof StringLiteral) {
+			return ((StringLiteral) prefixValue).getValue();
 		}
-		
-		if (genSystem != null) {
-			if (genSystem.getPrefix() != null) {
-				prefix = genSystem.getPrefix();
-			}
+		return "";
+	}
+
+	public static String getPrefix(Configuration configuration, Node node) {
+		Expression prefixValue = configuration.getPropertyValue(node.getSystemPath(), "damos.codegen.c.prefix");
+		if (prefixValue instanceof StringLiteral) {
+			return ((StringLiteral) prefixValue).getValue();
 		}
-		
-		return prefix;
+		return "";
 	}
 	
-	public static String getTaskName(GenModel genModel, TaskGraph taskGraph) {
-		return InternalGeneratorUtil.getPrefix(genModel, taskGraph.getInitialNodes().get(0)) + ((ComponentNode) taskGraph.getInitialNodes().get(0)).getComponent().getName() + "_Task";
+	public static String getTaskName(Configuration configuration, TaskGraph taskGraph) {
+		return InternalGeneratorUtil.getPrefix(configuration, taskGraph.getInitialNodes().get(0)) + ((ComponentNode) taskGraph.getInitialNodes().get(0)).getComponent().getName() + "_Task";
 	}
 	
-	public static String getTaskInputVariableName(GenModel genModel, TaskInputNode inputNode) {
+	public static String getTaskInputVariableName(Configuration configuration, TaskInputNode inputNode) {
 		TaskGraph taskGraph = inputNode.getTaskGraph();
-		String taskInputVariableName = getTaskName(genModel, taskGraph) + "_input";
+		String taskInputVariableName = getTaskName(configuration, taskGraph) + "_input";
 		if (taskGraph.getInputNodes().size() > 1) {
 			taskInputVariableName += taskGraph.getInputNodes().indexOf(inputNode);
 		}

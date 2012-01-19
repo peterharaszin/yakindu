@@ -16,13 +16,13 @@ import java.math.BigDecimal;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.CompoundNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
+import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
@@ -95,8 +95,8 @@ public abstract class RungeKuttaSolver extends AbstractSolver implements ISolver
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.simulation.simulator.solver.ISolver#initialize(org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration)
 	 */
-	public void configure(SimulationModel simulationModel) {
-		this.stepSize = Math.abs(SimulationModelUtil.getSolverArgumentDoubleValue(context.getSimulationModel().getSolverConfiguration(), "stepSize", 1.0));
+	public void configure(Configuration configuration) {
+		this.stepSize = Math.abs(SimulationConfigurationUtil.getSolverPropertyDoubleValue(context.getSimulationModel(), "stepSize", 1.0));
 	}
 	
 	/* (non-Javadoc)

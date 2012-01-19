@@ -190,6 +190,13 @@ public class DMLUtil {
 		return false;
 	}
 	
+	public static boolean isSameOrChildFragment(Fragment childFragment, Fragment parentFragment) {
+		if (childFragment == parentFragment) {
+			return true;
+		}
+		return isChildFragment(childFragment, parentFragment);
+	}
+
 	public static boolean areFragmentsRelated(Fragment fragment1, Fragment fragment2) {
 		return fragment1 == fragment2 || isChildFragment(fragment1, fragment2) || isChildFragment(fragment2, fragment1);
 	}

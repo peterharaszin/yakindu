@@ -1,4 +1,4 @@
-blockType damos::library::base::sinks::AudioFileSink
+blockType damos.library.base.sinks.AudioFileSink
 
 input _input[1..*]
 

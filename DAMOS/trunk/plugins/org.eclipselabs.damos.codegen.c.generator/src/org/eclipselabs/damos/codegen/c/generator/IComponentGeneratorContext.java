@@ -11,7 +11,7 @@
 
 package org.eclipselabs.damos.codegen.c.generator;
 
-import org.eclipselabs.damos.codegen.c.cgenmodel.GenModel;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 
@@ -24,6 +24,6 @@ public interface IComponentGeneratorContext {
 	ComponentNode getNode();
 	IComponentSignature getComponentSignature();
 	IVariableAccessor getVariableAccessor();
-	GenModel getGenModel();
+	Configuration getConfiguration();
 	
 }

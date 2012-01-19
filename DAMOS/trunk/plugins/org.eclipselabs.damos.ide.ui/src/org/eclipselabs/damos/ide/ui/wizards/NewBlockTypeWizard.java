@@ -9,7 +9,7 @@ public class NewBlockTypeWizard extends AbstractNewFileWizard {
 	private WizardNewFileCreationPage newFileCreationPage;
 	
 	private static final String CONTENTS = 
-			"blockType org::example::MyBlockType\n\n" +
+			"blockType org.example.MyBlockType\n\n" +
 			"input x\n" +
 			"output y\n\n" +
 			"parameter gain = 1\n\n" +

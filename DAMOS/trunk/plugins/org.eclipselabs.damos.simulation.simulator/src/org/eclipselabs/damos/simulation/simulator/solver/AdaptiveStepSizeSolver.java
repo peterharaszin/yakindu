@@ -41,14 +41,12 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.executionflow.ComponentNode;
 import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
-import org.eclipselabs.damos.simulation.simulationmodel.SolverArgument;
-import org.eclipselabs.damos.simulation.simulationmodel.SolverConfiguration;
-import org.eclipselabs.damos.simulation.simulationmodel.util.SimulationModelUtil;
+import org.eclipselabs.damos.simulation.core.util.SimulationConfigurationUtil;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.util.SimulationUtil;
@@ -72,31 +70,26 @@ public abstract class AdaptiveStepSizeSolver extends AbstractSolver {
 	/** Maximal step. */
 	private double maximumStepSize;
 
-	public void configure(SimulationModel simulationModel) {
-		SolverConfiguration solverConfiguration = context.getSimulationModel().getSolverConfiguration();
+	public void configure(Configuration configuration) {
+		Configuration solverConfiguration = context.getSimulationModel();
 		
-		minimumStepSize = SimulationModelUtil.getSolverArgumentDoubleValue(solverConfiguration, "minimumStepSize", 1e-10);
+		minimumStepSize = SimulationConfigurationUtil.getSolverPropertyDoubleValue(solverConfiguration, "minimumStepSize", 1e-10);
 		
-		double simulationTime = SimulationModelUtil.getSimulationTime(simulationModel);
+		double simulationTime = SimulationConfigurationUtil.getSimulationTime(configuration);
 		if (simulationTime > 0) {
 			maximumStepSize = simulationTime / 100;
 		} else {
 			maximumStepSize = 0.04; // 25 Hz
 		}
 
-		SolverArgument maximumStepSizeArgument = solverConfiguration.getArgument("maximumStepSize");
-		if (maximumStepSizeArgument != null) {
-			maximumStepSize = SimulationModelUtil.getSolverArgumentDoubleValue(maximumStepSizeArgument, maximumStepSize);
+		double providedMaximumStepSize = SimulationConfigurationUtil.getSolverPropertyDoubleValue(solverConfiguration, "maximumStepSize", Double.NaN);
+		if (!Double.isNaN(providedMaximumStepSize)) {
+			maximumStepSize = providedMaximumStepSize;
 		}
 
-		initialStepSize = -1;
-		SolverArgument initialStepSizeArgument = solverConfiguration.getArgument("initialStepSize");
-		if (initialStepSizeArgument != null) {
-			initialStepSize = SimulationModelUtil.getSolverArgumentDoubleValue(initialStepSizeArgument, initialStepSize);
-		}
-		
-		absoluteTolerance = SimulationModelUtil.getSolverArgumentDoubleValue(solverConfiguration, "absoluteTolerance", 1e-10);
-		relativeTolerance = SimulationModelUtil.getSolverArgumentDoubleValue(solverConfiguration, "relativeTolerance", 1e-10);
+		initialStepSize = SimulationConfigurationUtil.getSolverPropertyDoubleValue(solverConfiguration, "initialStepSize", -1);
+		absoluteTolerance = SimulationConfigurationUtil.getSolverPropertyDoubleValue(solverConfiguration, "absoluteTolerance", 1e-10);
+		relativeTolerance = SimulationConfigurationUtil.getSolverPropertyDoubleValue(solverConfiguration, "relativeTolerance", 1e-10);
 	}
 
 	/**

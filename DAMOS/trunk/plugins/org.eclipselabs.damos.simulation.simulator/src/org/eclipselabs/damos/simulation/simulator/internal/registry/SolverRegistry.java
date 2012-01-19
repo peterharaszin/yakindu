@@ -37,16 +37,16 @@ public class SolverRegistry implements ISolverRegistry {
 		return solvers.values();
 	}
 	
-	public ISolverDescriptor getSolver(String qualifiedName) {
-		return solvers.get(qualifiedName);
+	public ISolverDescriptor getSolver(String id) {
+		return solvers.get(id);
 	}
 
 	public void register(SolverDescriptor solver) {
-		solvers.put(solver.getSolverType().getQualifiedName(), solver);
+		solvers.put(solver.getId(), solver);
 	}
 	
 	public void unregister(SolverDescriptor solver) {
-		solvers.remove(solver.getSolverType().getQualifiedName());
+		solvers.remove(solver.getId());
 	}
 
 	private void initializeFromStorage() {

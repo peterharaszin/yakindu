@@ -53,12 +53,11 @@
         eType="#//Edge" eOpposite="#//Edge/target"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingEdges" upperBound="-1"
         eType="#//Edge" eOpposite="#//Edge/source"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="enclosingSubsystems" upperBound="-1"
-        eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//Subsystem"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incomingDataFlows" upperBound="-1"
         eType="#//DataFlowTargetEnd" eOpposite="#//DataFlowTargetEnd/node"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingDataFlows" upperBound="-1"
         eType="#//DataFlowSourceEnd" eOpposite="#//DataFlowSourceEnd/node"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="systemPath" eType="#//SystemPath"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Subgraph" abstract="true" eSuperTypes="#//Graph #//Node"/>
   <eClassifiers xsi:type="ecore:EClass" name="ComponentNode" eSuperTypes="#//Node">
@@ -140,4 +139,5 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="portIndex" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="SystemPath" instanceClassName="org.eclipselabs.damos.dml.util.SystemPath"/>
 </ecore:EPackage>

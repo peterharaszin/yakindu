@@ -6,12 +6,13 @@ package org.eclipselabs.damos.dmltext;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.conversion.impl.AbstractIDValueConverter;
 import org.eclipse.xtext.conversion.impl.QualifiedNameValueConverter;
+import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 import org.eclipselabs.damos.dmltext.conversion.DMLTextTerminalConverters;
 import org.eclipselabs.damos.mscript.conversion.MscriptIDValueConverter;
 import org.eclipselabs.damos.mscript.conversion.MscriptQualifiedNameValueConverter;
-import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameConverter;
+import org.eclipselabs.damos.mscript.linking.MscriptLinker;
 import org.eclipselabs.damos.mscript.naming.MscriptQualifiedNameProvider;
 import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
 
@@ -20,6 +21,10 @@ import org.eclipselabs.damos.mscript.scoping.MscriptGlobalScopeProvider;
  */
 public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.AbstractDMLTextRuntimeModule {
 
+	public Class<? extends ILinker> bindILinker() {
+		return MscriptLinker.class;
+	}
+	
 	public Class<? extends AbstractIDValueConverter> bindAbstractIDValueConverter() {
 		return MscriptIDValueConverter.class;
 	}
@@ -49,8 +54,4 @@ public class DMLTextRuntimeModule extends org.eclipselabs.damos.dmltext.Abstract
 		return MscriptQualifiedNameProvider.class;
 	}
 	
-	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameConverter> bindIQualifiedNameConverter() {
-		return MscriptQualifiedNameConverter.class;
-	}
-
 }

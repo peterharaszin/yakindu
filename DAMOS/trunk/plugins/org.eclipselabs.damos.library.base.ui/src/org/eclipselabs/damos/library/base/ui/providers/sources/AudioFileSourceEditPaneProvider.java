@@ -25,7 +25,7 @@ import org.eclipselabs.damos.library.base.util.sources.AudioFileSourceConstants;
  */
 public class AudioFileSourceEditPaneProvider implements IParameterEditPaneProvider {
 
-	private static final String BLOCK_TYPE_QUALIFIED_NAME = "damos::library::base::sources::AudioFileSource";
+	private static final String BLOCK_TYPE_QUALIFIED_NAME = "damos.library.base.sources.AudioFileSource";
 	
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.dml.ui.editpane.IParameterEditPaneProvider#createEditPane(org.eclipselabs.damos.dml.Parameter)

@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.InputConnector;
 import org.eclipselabs.damos.dml.OutputConnector;
-import org.eclipselabs.damos.dml.Subsystem;
+import org.eclipselabs.damos.dml.util.SystemPath;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,9 +23,9 @@ import org.eclipselabs.damos.dml.Subsystem;
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getGraph <em>Graph</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getIncomingEdges <em>Incoming Edges</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getOutgoingEdges <em>Outgoing Edges</em>}</li>
- *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getEnclosingSubsystems <em>Enclosing Subsystems</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getIncomingDataFlows <em>Incoming Data Flows</em>}</li>
  *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getOutgoingDataFlows <em>Outgoing Data Flows</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.execution.executionflow.Node#getSystemPath <em>System Path</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,22 +99,6 @@ public interface Node extends EObject {
 	EList<Edge> getOutgoingEdges();
 
 	/**
-	 * Returns the value of the '<em><b>Enclosing Subsystems</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.dml.Subsystem}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Enclosing Subsystems</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enclosing Subsystems</em>' reference list.
-	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getNode_EnclosingSubsystems()
-	 * @model
-	 * @generated
-	 */
-	EList<Subsystem> getEnclosingSubsystems();
-
-	/**
 	 * Returns the value of the '<em><b>Incoming Data Flows</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd}.
 	 * It is bidirectional and its opposite is '{@link org.eclipselabs.damos.execution.executionflow.DataFlowTargetEnd#getNode <em>Node</em>}'.
@@ -149,6 +133,32 @@ public interface Node extends EObject {
 	 * @generated
 	 */
 	EList<DataFlowSourceEnd> getOutgoingDataFlows();
+
+	/**
+	 * Returns the value of the '<em><b>System Path</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>System Path</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>System Path</em>' attribute.
+	 * @see #setSystemPath(SystemPath)
+	 * @see org.eclipselabs.damos.execution.executionflow.ExecutionFlowPackage#getNode_SystemPath()
+	 * @model dataType="org.eclipselabs.damos.execution.executionflow.SystemPath"
+	 * @generated
+	 */
+	SystemPath getSystemPath();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.execution.executionflow.Node#getSystemPath <em>System Path</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>System Path</em>' attribute.
+	 * @see #getSystemPath()
+	 * @generated
+	 */
+	void setSystemPath(SystemPath value);
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -68,203 +68,203 @@
       <blockType
             group="org.eclipselabs.damos.library.base.continuous"
             name="Integrator"
-            qualifiedName="damos::library::base::continuous::Integrator"
+            qualifiedName="damos.library.base.continuous.Integrator"
             uri="http://www.eclipselabs.org/damos/library/continuous/Integrator.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.continuous"
             name="Derivative"
-            qualifiedName="damos::library::base::continuous::Derivative"
+            qualifiedName="damos.library.base.continuous.Derivative"
             uri="http://www.eclipselabs.org/damos/library/continuous/Derivative.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.continuous"
-            qualifiedName="damos::library::base::continuous::TransferFunction"
+            qualifiedName="damos.library.base.continuous.TransferFunction"
             name="Transfer Function"
             uri="http://www.eclipselabs.org/damos/library/continuous/TransferFunction.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.discontinuities"
-            qualifiedName="damos::library::base::discontinuities::Saturation"
+            qualifiedName="damos.library.base.discontinuities.Saturation"
             name="Saturation"
             uri="http://www.eclipselabs.org/damos/library/discontinuities/Saturation.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.discrete"
-            qualifiedName="damos::library::base::discrete::Delay"
+            qualifiedName="damos.library.base.discrete.Delay"
             name="Delay"
             uri="http://www.eclipselabs.org/damos/library/discrete/Delay.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.discrete"
-            qualifiedName="damos::library::base::discrete::DiscreteDerivative"
+            qualifiedName="damos.library.base.discrete.DiscreteDerivative"
             name="Discrete Derivative"
             uri="http://www.eclipselabs.org/damos/library/discrete/DiscreteDerivative.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.discrete"
-            qualifiedName="damos::library::base::discrete::DiscreteIntegrator"
+            qualifiedName="damos.library.base.discrete.DiscreteIntegrator"
             name="Discrete Integrator"
             uri="http://www.eclipselabs.org/damos/library/discrete/DiscreteIntegrator.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.asynchronous"
             name="Counter"
-            qualifiedName="damos::library::base::discrete::Counter"
+            qualifiedName="damos.library.base.discrete.Counter"
             uri="http://www.eclipselabs.org/damos/library/discrete/Counter.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.logic"
-            qualifiedName="damos::library::base::logic::And"
+            qualifiedName="damos.library.base.logic.And"
             name="And"
             uri="http://www.eclipselabs.org/damos/library/logic/And.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.logic"
-            qualifiedName="damos::library::base::logic::Or"
+            qualifiedName="damos.library.base.logic.Or"
             name="Or"
             uri="http://www.eclipselabs.org/damos/library/logic/Or.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.logic"
-            qualifiedName="damos::library::base::logic::Inverter"
+            qualifiedName="damos.library.base.logic.Inverter"
             name="Inverter"
             uri="http://www.eclipselabs.org/damos/library/logic/Inverter.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.logic"
-            qualifiedName="damos::library::base::logic::Compare"
+            qualifiedName="damos.library.base.logic.Compare"
             name="Compare"
             uri="http://www.eclipselabs.org/damos/library/logic/Compare.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.logic"
-            qualifiedName="damos::library::base::logic::SchmittTrigger"
+            qualifiedName="damos.library.base.logic.SchmittTrigger"
             name="Schmitt Trigger"
             uri="http://www.eclipselabs.org/damos/library/logic/SchmittTrigger.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.math"
-            qualifiedName="damos::library::base::math::Gain"
+            qualifiedName="damos.library.base.math.Gain"
             name="Gain"
             uri="http://www.eclipselabs.org/damos/library/math/Gain.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.math"
-            qualifiedName="damos::library::base::math::Sum"
+            qualifiedName="damos.library.base.math.Sum"
             name="Sum"
             uri="http://www.eclipselabs.org/damos/library/math/Sum.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.math"
-            qualifiedName="damos::library::base::math::Round"
+            qualifiedName="damos.library.base.math.Round"
             name="Round"
             uri="http://www.eclipselabs.org/damos/library/math/Round.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.signal"
-            qualifiedName="damos::library::base::signal::Switch"
+            qualifiedName="damos.library.base.signal.Switch"
             name="Switch"
             uri="http://www.eclipselabs.org/damos/library/signal/Switch.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sinks"
-            qualifiedName="damos::library::base::sinks::Scope"
+            qualifiedName="damos.library.base.sinks.Scope"
             name="Scope"
             uri="http://www.eclipselabs.org/damos/library/sinks/Scope.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sinks"
             name="X-Y Scope"
-            qualifiedName="damos::library::base::sinks::XYScope"
+            qualifiedName="damos.library.base.sinks.XYScope"
             uri="http://www.eclipselabs.org/damos/library/sinks/XYScope.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sinks"
             name="Audio File Sink"
-            qualifiedName="damos::library::base::sinks::AudioFileSink"
+            qualifiedName="damos.library.base.sinks.AudioFileSink"
             uri="http://www.eclipselabs.org/damos/library/sinks/AudioFileSink.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sources"
-            qualifiedName="damos::library::base::sources::Constant"
+            qualifiedName="damos.library.base.sources.Constant"
             name="Constant"
             uri="http://www.eclipselabs.org/damos/library/sources/Constant.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sources"
-            qualifiedName="damos::library::base::sources::Ramp"
+            qualifiedName="damos.library.base.sources.Ramp"
             name="Ramp"
             uri="http://www.eclipselabs.org/damos/library/sources/Ramp.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sources"
-            qualifiedName="damos::library::base::sources::SineWave"
+            qualifiedName="damos.library.base.sources.SineWave"
             name="Sine Wave"
             uri="http://www.eclipselabs.org/damos/library/sources/SineWave.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sources"
-            qualifiedName="damos::library::base::sources::Step"
+            qualifiedName="damos.library.base.sources.Step"
             name="Step"
             uri="http://www.eclipselabs.org/damos/library/sources/Step.blocktype#/">
       </blockType>
       <blockType
             group="org.eclipselabs.damos.library.base.sources"
             name="Audio File Source"
-            qualifiedName="damos::library::base::sources::AudioFileSource"
+            qualifiedName="damos.library.base.sources.AudioFileSource"
             uri="http://www.eclipselabs.org/damos/library/sources/AudioFileSource.blocktype#/">
       </blockType>
    </extension>
    <extension
          point="org.eclipselabs.damos.execution.core.blockSignaturePolicies">
       <policy
-            blockType="damos::library::base::continuous::Integrator"
+            blockType="damos.library.base.continuous.Integrator"
             class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.IntegratorSignaturePolicy"
             name="Integrator">
       </policy>
       <policy
-            blockType="damos::library::base::continuous::Derivative"
+            blockType="damos.library.base.continuous.Derivative"
             class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.DerivativeSignaturePolicy"
             name="Derivative">
       </policy>
       <policy
-            blockType="damos::library::base::continuous::TransferFunction"
+            blockType="damos.library.base.continuous.TransferFunction"
             class="org.eclipselabs.damos.library.base.signaturepolicies.continuous.TransferFunctionSignaturePolicy"
             name="Transfer Function">
       </policy>
       <policy
-            blockType="damos::library::base::sinks::Scope"
+            blockType="damos.library.base.sinks.Scope"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sinks.ScopeSignaturePolicy"
             name="Scope">
       </policy>
       <policy
-            blockType="damos::library::base::sinks::XYScope"
+            blockType="damos.library.base.sinks.XYScope"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sinks.XYScopeSignaturePolicy"
             name="X-Y Scope">
       </policy>
       <policy
-            blockType="damos::library::base::sinks::AudioFileSink"
+            blockType="damos.library.base.sinks.AudioFileSink"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sinks.AudioFileSinkSignaturePolicy"
             name="Audio File Sink">
       </policy>
       <policy
-            blockType="damos::library::base::sources::Step"
+            blockType="damos.library.base.sources.Step"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sources.StepSignaturePolicy"
             name="Step">
       </policy>
       <policy
-            blockType="damos::library::base::sources::Ramp"
+            blockType="damos.library.base.sources.Ramp"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sources.RampSignaturePolicy"
             name="Ramp">
       </policy>
       <policy
-            blockType="damos::library::base::sources::SineWave"
+            blockType="damos.library.base.sources.SineWave"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sources.SineWaveSignaturePolicy"
             name="Sine Wave">
       </policy>
       <policy
-            blockType="damos::library::base::sources::AudioFileSource"
+            blockType="damos.library.base.sources.AudioFileSource"
             class="org.eclipselabs.damos.library.base.signaturepolicies.sources.AudioFileSourceSignaturePolicy"
             name="Audio File Source">
       </policy>

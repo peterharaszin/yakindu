@@ -1,4 +1,4 @@
-synchronous blockType damos::library::vi::communication::UDPSource
+synchronous blockType damos.library.vi.communication.UDPSource
 
 output _output[1..*]
 

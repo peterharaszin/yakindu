@@ -11,8 +11,8 @@
 
 package org.eclipselabs.damos.simulation.simulator.internal;
 
+import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.execution.executionflow.ExecutionFlow;
-import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
 
 /**
  * @author Andreas Unger
@@ -20,22 +20,19 @@ import org.eclipselabs.damos.simulation.simulationmodel.SimulationModel;
  */
 public class SimulationContext implements ISimulationContext {
 	
-	private SimulationModel simulationModel;
+	private Configuration configuration;
 	private ExecutionFlow executionFlow;
 
 	/**
 	 * 
 	 */
-	public SimulationContext(SimulationModel simulationModel, ExecutionFlow executionFlow) {
-		this.simulationModel = simulationModel;
+	public SimulationContext(Configuration configuration, ExecutionFlow executionFlow) {
+		this.configuration = configuration;
 		this.executionFlow = executionFlow;
 	}
 	
-	/* (non-Javadoc)
-	 * @see org.eclipselabs.damos.simulation.ISimulationContext#getSimulationModel()
-	 */
-	public SimulationModel getSimulationModel() {
-		return simulationModel;
+	public Configuration getSimulationModel() {
+		return configuration;
 	}
 
 	/**

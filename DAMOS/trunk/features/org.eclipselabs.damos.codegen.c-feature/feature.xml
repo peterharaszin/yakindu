@@ -23,20 +23,6 @@
    </requires>
 
    <plugin
-         id="org.eclipselabs.damos.codegen.c.cgenmodel"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipselabs.damos.codegen.c.cgenmodel.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipselabs.damos.codegen.c.generator"
          download-size="0"
          install-size="0"

@@ -1,34 +1,34 @@
-asynchronous blockType damos.library.base._discrete.Counter
+package damos.library.base._discrete
 
-socket input up {
-	directFeedthrough never
-}
-socket input down {
-	directFeedthrough never
-}
-output y
+asynchronous blockType Counter {
 
-parameter initialValue = 0
-parameter step = 1
-parameter upperLimit = 10
-parameter lowerLimit = 0
-parameter upTrigger = 0 predefined {
-	0 as "Rising",
-	1 as "Falling",
-	2 as "Both"
-}
-parameter downTrigger = 0 predefined {
-	0 as "Rising",
-	1 as "Falling",
-	2 as "Both"
-}
+	socket input up {
+		directFeedthrough never
+	}
+	socket input down {
+		directFeedthrough never
+	}
+	output y
+	
+	parameter initialValue = 0
+	parameter step = 1
+	parameter upperLimit = 10
+	parameter lowerLimit = 0
+	parameter upTrigger = 0 predefined {
+		0 as "Rising",
+		1 as "Falling",
+		2 as "Both"
+	}
+	parameter downTrigger = 0 predefined {
+		0 as "Rising",
+		1 as "Falling",
+		2 as "Both"
+	}
 
-behavior {
-
-	stateful func main<initialValue, step, upperLimit, lowerLimit, upTrigger, downTrigger>(triggerKind, up, down) -> y {
-		check<0, 1, 10, 0, 0, 0>(int, bool, bool) -> int
-		check<0, 1, 10, 0, 1, 1>(int, bool, bool) -> int
-		check<0, 1, 10, 0, 2, 2>(int, bool, bool) -> int
+	stateful function main<initialValue, step, upperLimit, lowerLimit, upTrigger, downTrigger>(triggerKind, up, down) -> y {
+		check<0, 1, 10, 0, 0, 0>(int, boolean, boolean) -> int
+		check<0, 1, 10, 0, 1, 1>(int, boolean, boolean) -> int
+		check<0, 1, 10, 0, 2, 2>(int, boolean, boolean) -> int
 		
 		static assert initialValue is real() :
 			error "Initial value must be numeric"
@@ -51,10 +51,10 @@ behavior {
 		static assert initialValue is real() && lowerLimit is real() => unit(initialValue) == unit(lowerLimit) :
 			error "Initial value and lower limit value must have same unit"
 	
-		static assert up is bool:
+		static assert up is boolean:
 			error "Up input value must be boolean"
 	
-		static assert down is bool:
+		static assert down is boolean:
 			error "Down input value must be boolean"
 	
 		static assert upTrigger is int:

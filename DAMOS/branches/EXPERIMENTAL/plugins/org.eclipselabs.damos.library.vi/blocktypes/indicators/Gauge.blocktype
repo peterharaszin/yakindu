@@ -1,6 +1,10 @@
-blockType damos.library.vi.indicators.Gauge
+package damos.library.vi.indicators
 
-input _input
+blockType Gauge {
 
-parameter scaleMinimum = 0
-parameter scaleMaximum = 1
+	input _input
+	
+	parameter scaleMinimum = 0
+	parameter scaleMaximum = 1
+
+}

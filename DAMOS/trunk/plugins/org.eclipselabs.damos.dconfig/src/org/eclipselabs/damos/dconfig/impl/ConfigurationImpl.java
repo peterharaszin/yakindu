@@ -18,13 +18,13 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.ImportDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
 import org.eclipselabs.damos.dconfig.RunnerSpecifier;
 import org.eclipselabs.damos.dconfig.internal.operations.ConfigurationOperations;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ImportDeclaration;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -34,7 +34,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getBaseConfiguration <em>Base Configuration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getImportDeclarations <em>Import Declarations</em>}</li>
@@ -47,24 +47,24 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public class ConfigurationImpl extends PropertyContainerImpl implements Configuration {
 	/**
-	 * The default value of the '{@link #getPackage() <em>Package</em>}' attribute.
+	 * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPackage()
+	 * @see #getPackageName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String PACKAGE_EDEFAULT = null;
+	protected static final String PACKAGE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPackage() <em>Package</em>}' attribute.
+	 * The cached value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getPackage()
+	 * @see #getPackageName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String package_ = PACKAGE_EDEFAULT;
+	protected String packageName = PACKAGE_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -150,8 +150,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getPackage() {
-		return package_;
+	public String getPackageName() {
+		return packageName;
 	}
 
 	/**
@@ -159,11 +159,11 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPackage(String newPackage) {
-		String oldPackage = package_;
-		package_ = newPackage;
+	public void setPackageName(String newPackageName) {
+		String oldPackageName = packageName;
+		packageName = newPackageName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.CONFIGURATION__PACKAGE, oldPackage, package_));
+			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.CONFIGURATION__PACKAGE_NAME, oldPackageName, packageName));
 	}
 
 	/**
@@ -403,8 +403,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.CONFIGURATION__PACKAGE:
-				return getPackage();
+			case DconfigPackage.CONFIGURATION__PACKAGE_NAME:
+				return getPackageName();
 			case DconfigPackage.CONFIGURATION__NAME:
 				return getName();
 			case DconfigPackage.CONFIGURATION__BASE_CONFIGURATION:
@@ -429,8 +429,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.CONFIGURATION__PACKAGE:
-				setPackage((String)newValue);
+			case DconfigPackage.CONFIGURATION__PACKAGE_NAME:
+				setPackageName((String)newValue);
 				return;
 			case DconfigPackage.CONFIGURATION__NAME:
 				setName((String)newValue);
@@ -460,8 +460,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.CONFIGURATION__PACKAGE:
-				setPackage(PACKAGE_EDEFAULT);
+			case DconfigPackage.CONFIGURATION__PACKAGE_NAME:
+				setPackageName(PACKAGE_NAME_EDEFAULT);
 				return;
 			case DconfigPackage.CONFIGURATION__NAME:
 				setName(NAME_EDEFAULT);
@@ -490,8 +490,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.CONFIGURATION__PACKAGE:
-				return PACKAGE_EDEFAULT == null ? package_ != null : !PACKAGE_EDEFAULT.equals(package_);
+			case DconfigPackage.CONFIGURATION__PACKAGE_NAME:
+				return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
 			case DconfigPackage.CONFIGURATION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case DconfigPackage.CONFIGURATION__BASE_CONFIGURATION:
@@ -516,8 +516,8 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (package: ");
-		result.append(package_);
+		result.append(" (packageName: ");
+		result.append(packageName);
 		result.append(", name: ");
 		result.append(name);
 		result.append(')');

@@ -35,7 +35,6 @@ import org.eclipselabs.damos.mscript.Expression;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.InputParameterDeclaration;
 import org.eclipselabs.damos.mscript.IntegerType;
-import org.eclipselabs.damos.mscript.Module;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.ParameterDeclaration;
 import org.eclipselabs.damos.mscript.TensorType;
@@ -88,9 +87,8 @@ public class BehavioredBlockHelper {
 	}
 	
 	public FunctionDeclaration createFunctionDefinition() throws CoreException {
-		Module module = ((MscriptBehaviorSpecification) block.getType().getBehavior()).getModule();
-
-		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(module, "main");
+		MscriptBehaviorSpecification behaviorSpecification = (MscriptBehaviorSpecification) block.getType().getBehavior();
+		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(behaviorSpecification.getDeclarations(), "main");
 		if (functionDeclaration == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Mscript function 'main' not found"));
 		}

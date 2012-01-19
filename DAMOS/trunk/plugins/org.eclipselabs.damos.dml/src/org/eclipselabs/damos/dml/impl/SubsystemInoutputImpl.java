@@ -7,7 +7,6 @@
 package org.eclipselabs.damos.dml.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dml.Inoutlet;
 import org.eclipselabs.damos.dml.SubsystemInoutput;
@@ -44,11 +43,9 @@ public abstract class SubsystemInoutputImpl extends InoutputImpl implements Subs
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public Inoutlet getInoutlet() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
 	}
 

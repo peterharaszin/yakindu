@@ -1,28 +1,28 @@
-blockType damos.library.base.logic.Compare
+package damos.library.base.logic
 
-input a
-input b
-output y
+blockType Compare {
 
-parameter operator = 0 predefined {
-	0 as "==",
-	1 as "!=",
-	2 as "<",
-	3 as "<=",
-	4 as ">=",
-	5 as ">"
-}
+	input a
+	input b
+	output y
+	
+	parameter operator = 0 predefined {
+		0 as "==",
+		1 as "!=",
+		2 as "<",
+		3 as "<=",
+		4 as ">=",
+		5 as ">"
+	}
 
-behavior {
+	function main<operator>(a, b) -> y {
+		check<3>(real, real) -> boolean
+		check<1>(boolean, boolean) -> boolean
 
-	func main<operator>(a, b) -> y {
-		check<3>(real, real) -> bool
-		check<1>(bool, bool) -> bool
-
-		static assert operator < 2 => a is real() || a is bool :
+		static assert operator < 2 => a is real() || a is boolean :
 			error "Input value A must be numeric or boolean"
 			
-		static assert operator < 2 => b is real() || b is bool :
+		static assert operator < 2 => b is real() || b is boolean :
 			error "Input value B must be numeric or boolean"
 	
 		static assert operator >= 2 => a is real() :

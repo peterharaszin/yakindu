@@ -109,7 +109,7 @@ public class DconfigJavaValidator extends AbstractDconfigJavaValidator {
 	@Check
 	public void checkPropagate(Property property) {
 		if (property.isPropagate() && !(property.eContainer() instanceof SystemConfigurationBody)) {
-			error("Propagate operator can only be used on properties within system configurations", DconfigPackage.eINSTANCE.getProperty_Propagate());
+			error("Propagate modifier can only be used on properties within system configurations", DconfigPackage.eINSTANCE.getProperty_Propagate());
 		}
 	}
 

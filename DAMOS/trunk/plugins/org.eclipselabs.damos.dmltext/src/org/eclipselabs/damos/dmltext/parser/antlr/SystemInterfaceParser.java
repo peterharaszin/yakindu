@@ -23,7 +23,7 @@ public class SystemInterfaceParser extends DMLTextParser {
 	 */
 	@Override
 	protected String getDefaultRuleName() {
-		return getGrammarAccess().getSystemInterfaceRule().getName();
+		return getGrammarAccess().getMscriptSystemInterfaceRule().getName();
 	}
 	
 }

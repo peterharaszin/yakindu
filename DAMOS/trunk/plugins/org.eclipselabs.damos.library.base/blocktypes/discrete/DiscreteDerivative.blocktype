@@ -1,14 +1,14 @@
-synchronous blockType damos.library.base._discrete.DiscreteDerivative
+package damos.library.base._discrete
 
-input u
-output y
+synchronous blockType DiscreteDerivative {
 
-parameter initialCondition = 0
-parameter gain = 1(s) // normalized
+	input u
+	output y
+	
+	parameter initialCondition = 0
+	parameter gain = 1(s) // normalized
 
-behavior {
-
-	stateful func main<initialCondition, gain, fs>(u) -> y {
+	stateful function main<initialCondition, gain, fs>(u) -> y {
 		check<0, 1(s), 1(1/s)>(real) -> real
 		
 		static assert u is real() :

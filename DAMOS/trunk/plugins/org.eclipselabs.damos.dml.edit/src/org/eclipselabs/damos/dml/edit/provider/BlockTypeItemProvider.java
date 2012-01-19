@@ -66,6 +66,7 @@ public class BlockTypeItemProvider
 			super.getPropertyDescriptors(object);
 
 			addQualifiedNamePropertyDescriptor(object);
+			addPackageNamePropertyDescriptor(object);
 			addBelongingCategoriesPropertyDescriptor(object);
 			addTimingPropertyDescriptor(object);
 		}
@@ -86,6 +87,28 @@ public class BlockTypeItemProvider
 				 getString("_UI_QualifiedElement_qualifiedName_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_qualifiedName_feature", "_UI_QualifiedElement_type"),
 				 DMLPackage.Literals.QUALIFIED_ELEMENT__QUALIFIED_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Package Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPackageNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_QualifiedElement_packageName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_QualifiedElement_packageName_feature", "_UI_QualifiedElement_type"),
+				 DMLPackage.Literals.QUALIFIED_ELEMENT__PACKAGE_NAME,
 				 true,
 				 false,
 				 false,
@@ -211,7 +234,7 @@ public class BlockTypeItemProvider
 		switch (notification.getFeatureID(BlockType.class)) {
 			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
 			case DMLPackage.BLOCK_TYPE__NAME:
-			case DMLPackage.BLOCK_TYPE__QUALIFIER:
+			case DMLPackage.BLOCK_TYPE__PACKAGE_NAME:
 			case DMLPackage.BLOCK_TYPE__TIMING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

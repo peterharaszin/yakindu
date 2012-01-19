@@ -38,7 +38,7 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 
 	@Check
 	public void checkMainFunction(MscriptBehaviorSpecification behaviorSpecification) {
-		for (Declaration declaration : behaviorSpecification.getModule().getDeclarations()) {
+		for (Declaration declaration : behaviorSpecification.getDeclarations()) {
 			if (declaration instanceof FunctionDeclaration) {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration) declaration;
 				if (MAIN_FUNCTION_NAME.equals(functionDeclaration.getName())) {
@@ -46,7 +46,7 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 				}
 			}
 		}
-		error("No main function declared", null);
+		error("No main function declared", DMLUtil.getOwner(behaviorSpecification, BlockType.class), DMLPackage.eINSTANCE.getQualifiedElement_Name(), -1);
 	}
 
 	@Check

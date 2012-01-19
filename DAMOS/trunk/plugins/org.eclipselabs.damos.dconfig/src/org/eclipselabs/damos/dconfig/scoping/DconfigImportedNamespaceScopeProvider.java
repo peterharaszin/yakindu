@@ -41,8 +41,8 @@ public class DconfigImportedNamespaceScopeProvider extends ImportedNamespaceAwar
 		}
 		Configuration configuration = (Configuration) context;
 		List<ImportNormalizer> resolvers = super.internalGetImportedNamespaceResolvers(context, ignoreCase);
-		if (!Strings.isEmpty(configuration.getPackage())) {
-			resolvers.add(new ImportNormalizer(qualifiedNameConverter.toQualifiedName(configuration.getPackage()), true,
+		if (!Strings.isEmpty(configuration.getPackageName())) {
+			resolvers.add(new ImportNormalizer(qualifiedNameConverter.toQualifiedName(configuration.getPackageName()), true,
 					ignoreCase));
 		}
 		return resolvers;

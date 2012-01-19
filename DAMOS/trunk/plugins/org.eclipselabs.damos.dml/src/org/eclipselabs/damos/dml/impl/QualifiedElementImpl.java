@@ -23,7 +23,7 @@ import org.eclipselabs.damos.dml.internal.operations.QualifiedElementOperations;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl#getQualifier <em>Qualifier</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.QualifiedElementImpl#getPackageName <em>Package Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,25 +41,6 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	protected static final String QUALIFIED_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQualifiedName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
-
-	/**
-	 * This is true if the Qualified Name attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean qualifiedNameESet;
-
-	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -70,14 +51,34 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getQualifier() <em>Qualifier</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getQualifier()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String QUALIFIER_EDEFAULT = null;
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPackageName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PACKAGE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPackageName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String packageName = PACKAGE_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,65 +102,61 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getQualifiedName() {
-		return qualifiedName;
+		return QualifiedElementOperations.getQualifiedName(this);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setQualifiedName(String newQualifiedName) {
-		String oldQualifiedName = qualifiedName;
-		qualifiedName = newQualifiedName;
-		boolean oldQualifiedNameESet = qualifiedNameESet;
-		qualifiedNameESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME, oldQualifiedName, qualifiedName, !oldQualifiedNameESet));
+		QualifiedElementOperations.setQualifiedName(this, newQualifiedName);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 */
-	public void unsetQualifiedName() {
-		String oldQualifiedName = qualifiedName;
-		boolean oldQualifiedNameESet = qualifiedNameESet;
-		qualifiedName = QUALIFIED_NAME_EDEFAULT;
-		qualifiedNameESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME, oldQualifiedName, QUALIFIED_NAME_EDEFAULT, oldQualifiedNameESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetQualifiedName() {
-		return qualifiedNameESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	public String getName() {
-		return QualifiedElementOperations.getName(this);
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public String getQualifier() {
-		return QualifiedElementOperations.getQualifier(this);
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.QUALIFIED_ELEMENT__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPackageName() {
+		return packageName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPackageName(String newPackageName) {
+		String oldPackageName = packageName;
+		packageName = newPackageName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.QUALIFIED_ELEMENT__PACKAGE_NAME, oldPackageName, packageName));
 	}
 
 	/**
@@ -174,8 +171,8 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 				return getQualifiedName();
 			case DMLPackage.QUALIFIED_ELEMENT__NAME:
 				return getName();
-			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIER:
-				return getQualifier();
+			case DMLPackage.QUALIFIED_ELEMENT__PACKAGE_NAME:
+				return getPackageName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -191,6 +188,12 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
 				return;
+			case DMLPackage.QUALIFIED_ELEMENT__NAME:
+				setName((String)newValue);
+				return;
+			case DMLPackage.QUALIFIED_ELEMENT__PACKAGE_NAME:
+				setPackageName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -204,7 +207,13 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME:
-				unsetQualifiedName();
+				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
+			case DMLPackage.QUALIFIED_ELEMENT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case DMLPackage.QUALIFIED_ELEMENT__PACKAGE_NAME:
+				setPackageName(PACKAGE_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -219,11 +228,11 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME:
-				return isSetQualifiedName();
+				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
 			case DMLPackage.QUALIFIED_ELEMENT__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-			case DMLPackage.QUALIFIED_ELEMENT__QUALIFIER:
-				return QUALIFIER_EDEFAULT == null ? getQualifier() != null : !QUALIFIER_EDEFAULT.equals(getQualifier());
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DMLPackage.QUALIFIED_ELEMENT__PACKAGE_NAME:
+				return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -238,8 +247,10 @@ public abstract class QualifiedElementImpl extends EObjectImpl implements Qualif
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (qualifiedName: ");
-		if (qualifiedNameESet) result.append(qualifiedName); else result.append("<unset>");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", packageName: ");
+		result.append(packageName);
 		result.append(')');
 		return result.toString();
 	}

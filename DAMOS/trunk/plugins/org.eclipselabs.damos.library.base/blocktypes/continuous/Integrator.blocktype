@@ -1,9 +1,13 @@
-continuous blockType damos.library.base._continuous.Integrator
+package damos.library.base._continuous
 
-input _input {
-	directFeedthrough never
+continuous blockType Integrator {
+
+	input _input {
+		directFeedthrough never
+	}
+	output _output
+	
+	parameter initialCondition = 0
+	parameter gain = 1(1/s) // normalized
+
 }
-output _output
-
-parameter initialCondition = 0
-parameter gain = 1(1/s) // normalized

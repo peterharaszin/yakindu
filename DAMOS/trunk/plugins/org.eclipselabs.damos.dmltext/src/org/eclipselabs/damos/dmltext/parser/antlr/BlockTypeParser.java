@@ -23,7 +23,7 @@ public class BlockTypeParser extends DMLTextParser {
 	 */
 	@Override
 	protected String getDefaultRuleName() {
-		return getGrammarAccess().getBlockTypeRule().getName();
+		return getGrammarAccess().getMscriptBlockTypeRule().getName();
 	}
 	
 }

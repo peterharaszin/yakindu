@@ -11,6 +11,16 @@
         eType="ecore:EClass ../../org.eclipselabs.damos.dml/model/DML.ecore#//SystemInterface"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MscriptBlockType" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//BlockType">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//ImportDeclaration"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MscriptSystemInterface" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//SystemInterface">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="importDeclarations" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//ImportDeclaration"
+        containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MscriptDataTypeSpecification" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//DataTypeSpecification">
     <eStructuralFeatures xsi:type="ecore:EReference" name="specifier" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//DataTypeSpecifier"
         containment="true"/>
@@ -18,7 +28,8 @@
         changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MscriptBehaviorSpecification" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//BehaviorSpecification">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="module" eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Module"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declarations" upperBound="-1"
+        eType="ecore:EClass ../../org.eclipselabs.damos.mscript/model/Mscript.ecore#//Declaration"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MscriptValueSpecification" eSuperTypes="../../org.eclipselabs.damos.dml/model/DML.ecore#//ValueSpecification">

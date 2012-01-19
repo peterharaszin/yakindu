@@ -1,6 +1,10 @@
-synchronous blockType damos.library.vi.communication.UDPSink
+package damos.library.vi.communication
 
-input _input[1..*]
+synchronous blockType UDPSink {
 
-opaque parameter host = ""
-opaque parameter port = ""
+	input _input[1..*]
+	
+	opaque parameter host = ""
+	opaque parameter port = ""
+
+}

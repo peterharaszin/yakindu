@@ -59,6 +59,7 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MscriptPackage.MODULE: return createModule();
+			case MscriptPackage.IMPORT_DECLARATION: return createImportDeclaration();
 			case MscriptPackage.ENUMERATION_DECLARATION: return createEnumerationDeclaration();
 			case MscriptPackage.ENUMERATION_LITERAL_DECLARATION: return createEnumerationLiteralDeclaration();
 			case MscriptPackage.TYPEDEF_DECLARATION: return createTypedefDeclaration();
@@ -240,6 +241,16 @@ public class MscriptFactoryImpl extends EFactoryImpl implements MscriptFactory {
 	public Module createModule() {
 		ModuleImpl module = new ModuleImpl();
 		return module;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImportDeclaration createImportDeclaration() {
+		ImportDeclarationImpl importDeclaration = new ImportDeclarationImpl();
+		return importDeclaration;
 	}
 
 	/**

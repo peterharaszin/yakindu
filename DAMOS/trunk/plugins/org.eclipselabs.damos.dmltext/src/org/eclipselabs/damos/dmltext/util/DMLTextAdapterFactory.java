@@ -9,10 +9,18 @@ package org.eclipselabs.damos.dmltext.util;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
+import org.eclipselabs.damos.dml.BlockType;
+import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
+import org.eclipselabs.damos.dml.INamedElement;
+import org.eclipselabs.damos.dml.ParameterableElement;
+import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dmltext.*;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
@@ -80,6 +88,14 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 				return createRootAdapter();
 			}
 			@Override
+			public Adapter caseMscriptBlockType(MscriptBlockType object) {
+				return createMscriptBlockTypeAdapter();
+			}
+			@Override
+			public Adapter caseMscriptSystemInterface(MscriptSystemInterface object) {
+				return createMscriptSystemInterfaceAdapter();
+			}
+			@Override
 			public Adapter caseMscriptDataTypeSpecification(MscriptDataTypeSpecification object) {
 				return createMscriptDataTypeSpecificationAdapter();
 			}
@@ -90,6 +106,34 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseMscriptValueSpecification(MscriptValueSpecification object) {
 				return createMscriptValueSpecificationAdapter();
+			}
+			@Override
+			public Adapter caseEModelElement(EModelElement object) {
+				return createEModelElementAdapter();
+			}
+			@Override
+			public Adapter caseINamedElement(INamedElement object) {
+				return createINamedElementAdapter();
+			}
+			@Override
+			public Adapter caseQualifiedElement(QualifiedElement object) {
+				return createQualifiedElementAdapter();
+			}
+			@Override
+			public Adapter caseCategorizedElement(CategorizedElement object) {
+				return createCategorizedElementAdapter();
+			}
+			@Override
+			public Adapter caseParameterableElement(ParameterableElement object) {
+				return createParameterableElementAdapter();
+			}
+			@Override
+			public Adapter caseBlockType(BlockType object) {
+				return createBlockTypeAdapter();
+			}
+			@Override
+			public Adapter caseSystemInterface(SystemInterface object) {
+				return createSystemInterfaceAdapter();
 			}
 			@Override
 			public Adapter caseDataTypeSpecification(DataTypeSpecification object) {
@@ -138,6 +182,34 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dmltext.MscriptBlockType <em>Mscript Block Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dmltext.MscriptBlockType
+	 * @generated
+	 */
+	public Adapter createMscriptBlockTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dmltext.MscriptSystemInterface <em>Mscript System Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dmltext.MscriptSystemInterface
+	 * @generated
+	 */
+	public Adapter createMscriptSystemInterfaceAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification <em>Mscript Data Type Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -176,6 +248,104 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMscriptValueSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.ecore.EModelElement <em>EModel Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.ecore.EModelElement
+	 * @generated
+	 */
+	public Adapter createEModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.INamedElement <em>INamed Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.INamedElement
+	 * @generated
+	 */
+	public Adapter createINamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.QualifiedElement <em>Qualified Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.QualifiedElement
+	 * @generated
+	 */
+	public Adapter createQualifiedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.CategorizedElement <em>Categorized Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.CategorizedElement
+	 * @generated
+	 */
+	public Adapter createCategorizedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.ParameterableElement <em>Parameterable Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.ParameterableElement
+	 * @generated
+	 */
+	public Adapter createParameterableElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.BlockType <em>Block Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.BlockType
+	 * @generated
+	 */
+	public Adapter createBlockTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.SystemInterface <em>System Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipselabs.damos.dml.SystemInterface
+	 * @generated
+	 */
+	public Adapter createSystemInterfaceAdapter() {
 		return null;
 	}
 

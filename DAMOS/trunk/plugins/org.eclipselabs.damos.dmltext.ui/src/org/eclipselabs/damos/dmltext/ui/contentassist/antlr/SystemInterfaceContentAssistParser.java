@@ -28,7 +28,7 @@ public class SystemInterfaceContentAssistParser extends DMLTextParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			InternalDMLTextParser typedParser = (InternalDMLTextParser) parser;
-			typedParser.entryRuleSystemInterface();
+			typedParser.entryRuleMscriptSystemInterface();
 			return typedParser.getFollowElements();
 		} catch (RecognitionException ex) {
 			throw new RuntimeException(ex);

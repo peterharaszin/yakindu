@@ -6,12 +6,20 @@
  */
 package org.eclipselabs.damos.dmltext.util;
 
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
+import org.eclipselabs.damos.dml.BlockType;
+import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
+import org.eclipselabs.damos.dml.INamedElement;
+import org.eclipselabs.damos.dml.ParameterableElement;
+import org.eclipselabs.damos.dml.QualifiedElement;
+import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
+import org.eclipselabs.damos.dmltext.*;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
@@ -81,6 +89,27 @@ public class DMLTextSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE: {
+				MscriptBlockType mscriptBlockType = (MscriptBlockType)theEObject;
+				T result = caseMscriptBlockType(mscriptBlockType);
+				if (result == null) result = caseBlockType(mscriptBlockType);
+				if (result == null) result = caseEModelElement(mscriptBlockType);
+				if (result == null) result = caseQualifiedElement(mscriptBlockType);
+				if (result == null) result = caseCategorizedElement(mscriptBlockType);
+				if (result == null) result = caseParameterableElement(mscriptBlockType);
+				if (result == null) result = caseINamedElement(mscriptBlockType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE: {
+				MscriptSystemInterface mscriptSystemInterface = (MscriptSystemInterface)theEObject;
+				T result = caseMscriptSystemInterface(mscriptSystemInterface);
+				if (result == null) result = caseSystemInterface(mscriptSystemInterface);
+				if (result == null) result = caseQualifiedElement(mscriptSystemInterface);
+				if (result == null) result = caseINamedElement(mscriptSystemInterface);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION: {
 				MscriptDataTypeSpecification mscriptDataTypeSpecification = (MscriptDataTypeSpecification)theEObject;
 				T result = caseMscriptDataTypeSpecification(mscriptDataTypeSpecification);
@@ -118,6 +147,36 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRoot(Root object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mscript Block Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mscript Block Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMscriptBlockType(MscriptBlockType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Mscript System Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Mscript System Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMscriptSystemInterface(MscriptSystemInterface object) {
 		return null;
 	}
 
@@ -163,6 +222,111 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMscriptValueSpecification(MscriptValueSpecification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEModelElement(EModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>INamed Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseINamedElement(INamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Qualified Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Qualified Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseQualifiedElement(QualifiedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Categorized Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Categorized Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseCategorizedElement(CategorizedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Parameterable Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseParameterableElement(ParameterableElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Block Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Block Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBlockType(BlockType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>System Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>System Interface</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSystemInterface(SystemInterface object) {
 		return null;
 	}
 

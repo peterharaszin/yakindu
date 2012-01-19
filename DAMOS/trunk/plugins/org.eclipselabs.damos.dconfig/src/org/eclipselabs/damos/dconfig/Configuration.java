@@ -10,6 +10,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
 import org.eclipselabs.damos.mscript.Expression;
+import org.eclipselabs.damos.mscript.ImportDeclaration;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 
 /**
@@ -20,7 +21,7 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getPackage <em>Package</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getBaseConfiguration <em>Base Configuration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getImportDeclarations <em>Import Declarations</em>}</li>
@@ -35,30 +36,30 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public interface Configuration extends PropertyContainer {
 	/**
-	 * Returns the value of the '<em><b>Package</b></em>' attribute.
+	 * Returns the value of the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Package</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Package Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Package</em>' attribute.
-	 * @see #setPackage(String)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getConfiguration_Package()
+	 * @return the value of the '<em>Package Name</em>' attribute.
+	 * @see #setPackageName(String)
+	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getConfiguration_PackageName()
 	 * @model
 	 * @generated
 	 */
-	String getPackage();
+	String getPackageName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Configuration#getPackage <em>Package</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Configuration#getPackageName <em>Package Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Package</em>' attribute.
-	 * @see #getPackage()
+	 * @param value the new value of the '<em>Package Name</em>' attribute.
+	 * @see #getPackageName()
 	 * @generated
 	 */
-	void setPackage(String value);
+	void setPackageName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -114,7 +115,7 @@ public interface Configuration extends PropertyContainer {
 
 	/**
 	 * Returns the value of the '<em><b>Import Declarations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.dconfig.ImportDeclaration}.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.ImportDeclaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Import Declarations</em>' containment reference list isn't clear,

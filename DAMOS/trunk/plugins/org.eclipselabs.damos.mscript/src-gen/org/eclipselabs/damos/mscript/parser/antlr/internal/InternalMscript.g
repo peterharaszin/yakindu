@@ -78,25 +78,108 @@ ruleModule returns [EObject current=null]
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
+(	otherlv_0='package' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getModuleAccess().getPackageKeyword_0());
+    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModuleAccess().getDeclarationsDeclarationParserRuleCall_0()); 
+	        newCompositeNode(grammarAccess.getModuleAccess().getPackageNameQualifiedNameParserRuleCall_1_0()); 
 	    }
-		lv_declarations_0_0=ruleDeclaration		{
+		lv_packageName_1_0=ruleQualifiedName		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModuleRule());
+	        }
+       		set(
+       			$current, 
+       			"packageName",
+        		lv_packageName_1_0, 
+        		"QualifiedName");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getModuleAccess().getImportDeclarationsImportDeclarationParserRuleCall_2_0()); 
+	    }
+		lv_importDeclarations_2_0=ruleImportDeclaration		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getModuleRule());
+	        }
+       		add(
+       			$current, 
+       			"importDeclarations",
+        		lv_importDeclarations_2_0, 
+        		"ImportDeclaration");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)*(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getModuleAccess().getDeclarationsDeclarationParserRuleCall_3_0()); 
+	    }
+		lv_declarations_3_0=ruleDeclaration		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModuleRule());
 	        }
        		add(
        			$current, 
        			"declarations",
-        		lv_declarations_0_0, 
+        		lv_declarations_3_0, 
         		"Declaration");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*
+)*)
+;
+
+
+
+
+
+// Entry rule entryRuleImportDeclaration
+entryRuleImportDeclaration returns [EObject current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getImportDeclarationRule()); }
+	 iv_ruleImportDeclaration=ruleImportDeclaration 
+	 { $current=$iv_ruleImportDeclaration.current; } 
+	 EOF 
+;
+
+// Rule ImportDeclaration
+ruleImportDeclaration returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(	otherlv_0='import' 
+    {
+    	newLeafNode(otherlv_0, grammarAccess.getImportDeclarationAccess().getImportKeyword_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getImportDeclarationAccess().getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0()); 
+	    }
+		lv_importedNamespace_1_0=ruleQualifiedNameWithWildcard		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getImportDeclarationRule());
+	        }
+       		set(
+       			$current, 
+       			"importedNamespace",
+        		lv_importedNamespace_1_0, 
+        		"QualifiedNameWithWildcard");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+))
 ;
 
 
@@ -542,9 +625,9 @@ ruleFunctionDeclaration returns [EObject current=null]
 	    }
 
 )
-)?	otherlv_1='func' 
+)?	otherlv_1='function' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getFunctionDeclarationAccess().getFuncKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getFunctionDeclarationAccess().getFunctionKeyword_1());
     }
 (
 (
@@ -1856,9 +1939,9 @@ ruleGaussianType returns [EObject current=null]
             grammarAccess.getGaussianTypeAccess().getGaussianTypeAction_0(),
             $current);
     }
-)	otherlv_1='gauss' 
+)	otherlv_1='gaussian' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getGaussianTypeAccess().getGaussKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getGaussianTypeAccess().getGaussianKeyword_1());
     }
 (
 (
@@ -1905,9 +1988,9 @@ ruleBooleanType returns [EObject current=null]
             grammarAccess.getBooleanTypeAccess().getBooleanTypeAction_0(),
             $current);
     }
-)	otherlv_1='bool' 
+)	otherlv_1='boolean' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getBooleanTypeAccess().getBoolKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getBooleanTypeAccess().getBooleanKeyword_1());
     }
 )
 ;
@@ -5963,9 +6046,9 @@ ruleAlgorithmExpression returns [EObject current=null]
             grammarAccess.getAlgorithmExpressionAccess().getAlgorithmExpressionAction_0(),
             $current);
     }
-)	otherlv_1='algo' 
+)	otherlv_1='algorithm' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getAlgorithmExpressionAccess().getAlgoKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getAlgorithmExpressionAccess().getAlgorithmKeyword_1());
     }
 (
 (
@@ -7246,6 +7329,57 @@ ruleQualifiedName returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
         afterParserOrEnumRuleCall();
     }
 )*)
+    ;
+
+
+
+
+
+// Entry rule entryRuleQualifiedNameWithWildcard
+entryRuleQualifiedNameWithWildcard returns [String current=null] 
+	:
+	{ newCompositeNode(grammarAccess.getQualifiedNameWithWildcardRule()); } 
+	 iv_ruleQualifiedNameWithWildcard=ruleQualifiedNameWithWildcard 
+	 { $current=$iv_ruleQualifiedNameWithWildcard.current.getText(); }  
+	 EOF 
+;
+
+// Rule QualifiedNameWithWildcard
+ruleQualifiedNameWithWildcard returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+    { 
+        newCompositeNode(grammarAccess.getQualifiedNameWithWildcardAccess().getQualifiedNameParserRuleCall_0()); 
+    }
+    this_QualifiedName_0=ruleQualifiedName    {
+		$current.merge(this_QualifiedName_0);
+    }
+
+    { 
+        afterParserOrEnumRuleCall();
+    }
+(
+	kw='.*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopAsteriskKeyword_1_0()); 
+    }
+
+    |(
+	kw='.' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getFullStopKeyword_1_1_0()); 
+    }
+
+	kw='*' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getQualifiedNameWithWildcardAccess().getAsteriskKeyword_1_1_1()); 
+    }
+))?)
     ;
 
 

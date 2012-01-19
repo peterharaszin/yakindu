@@ -35,15 +35,6 @@ public interface DconfigFactory extends EFactory {
 	Configuration createConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Import Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Import Declaration</em>'.
-	 * @generated
-	 */
-	ImportDeclaration createImportDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Runner Specifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

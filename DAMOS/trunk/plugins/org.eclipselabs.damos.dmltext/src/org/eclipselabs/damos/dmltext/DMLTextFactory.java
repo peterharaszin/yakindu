@@ -26,6 +26,24 @@ public interface DMLTextFactory extends EFactory {
 	DMLTextFactory eINSTANCE = org.eclipselabs.damos.dmltext.impl.DMLTextFactoryImpl.init();
 
 	/**
+	 * Returns a new object of class '<em>Mscript Block Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mscript Block Type</em>'.
+	 * @generated
+	 */
+	MscriptBlockType createMscriptBlockType();
+
+	/**
+	 * Returns a new object of class '<em>Mscript System Interface</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Mscript System Interface</em>'.
+	 * @generated
+	 */
+	MscriptSystemInterface createMscriptSystemInterface();
+
+	/**
 	 * Returns a new object of class '<em>Mscript Data Type Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

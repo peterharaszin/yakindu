@@ -47,7 +47,7 @@ public class DataTypeSpecificationEditPane implements IDataTypeSpecificationEdit
 	private static final String[] COMMON_DATA_TYPES = new String[] {
 		"real",
 		"int",
-		"bool"
+		"boolean"
 	};
 
 	private EMFDataBindingContext context;

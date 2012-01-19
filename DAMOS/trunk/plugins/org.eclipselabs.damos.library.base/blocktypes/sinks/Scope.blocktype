@@ -1,5 +1,9 @@
-blockType damos.library.base.sinks.Scope
+package damos.library.base.sinks
 
-input _input[1..*]
+blockType Scope {
 
-parameter dataPointLimit = 20000
+	input _input[1..*]
+	
+	parameter dataPointLimit = 20000
+
+}

@@ -9,7 +9,7 @@
       ecorePackage="Dconfig.ecore#/">
     <genDataTypes ecoreDataType="Dconfig.ecore#//SystemPath"/>
     <genClasses ecoreClass="Dconfig.ecore#//Configuration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/package"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/packageName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/baseConfiguration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/importDeclarations"/>
@@ -33,9 +33,6 @@
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getComputationModel">
         <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getComputationModel/path"/>
       </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="Dconfig.ecore#//ImportDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//ImportDeclaration/importedNamespace"/>
     </genClasses>
     <genClasses ecoreClass="Dconfig.ecore#//RunnerSpecifier">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//RunnerSpecifier/auto"/>

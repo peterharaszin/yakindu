@@ -82,7 +82,12 @@
     <genDataTypes ecoreDataType="Mscript.ecore#//RealData"/>
     <genDataTypes ecoreDataType="Mscript.ecore#//IntegerData"/>
     <genClasses ecoreClass="Mscript.ecore#//Module">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Module/packageName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Module/importDeclarations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mscript.ecore#//Module/declarations"/>
+    </genClasses>
+    <genClasses ecoreClass="Mscript.ecore#//ImportDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//ImportDeclaration/importedNamespace"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Mscript.ecore#//Declaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mscript.ecore#//Declaration/name"/>

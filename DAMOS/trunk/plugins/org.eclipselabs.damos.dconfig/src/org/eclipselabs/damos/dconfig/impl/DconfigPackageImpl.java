@@ -22,7 +22,6 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.ImportDeclaration;
 import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.MappingBody;
 import org.eclipselabs.damos.dconfig.MappingSubscript;
@@ -62,13 +61,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	private EClass configurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass importDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -345,7 +337,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getConfiguration_Package() {
+	public EAttribute getConfiguration_PackageName() {
 		return (EAttribute)configurationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -392,24 +384,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 */
 	public EReference getConfiguration_RootSystemConfiguration() {
 		return (EReference)configurationEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getImportDeclaration() {
-		return importDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getImportDeclaration_ImportedNamespace() {
-		return (EAttribute)importDeclarationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1143,15 +1117,12 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		// Create classes and their features
 		configurationEClass = createEClass(CONFIGURATION);
-		createEAttribute(configurationEClass, CONFIGURATION__PACKAGE);
+		createEAttribute(configurationEClass, CONFIGURATION__PACKAGE_NAME);
 		createEAttribute(configurationEClass, CONFIGURATION__NAME);
 		createEReference(configurationEClass, CONFIGURATION__BASE_CONFIGURATION);
 		createEReference(configurationEClass, CONFIGURATION__IMPORT_DECLARATIONS);
 		createEReference(configurationEClass, CONFIGURATION__RUNNER_SPECIFIER);
 		createEReference(configurationEClass, CONFIGURATION__ROOT_SYSTEM_CONFIGURATION);
-
-		importDeclarationEClass = createEClass(IMPORT_DECLARATION);
-		createEAttribute(importDeclarationEClass, IMPORT_DECLARATION__IMPORTED_NAMESPACE);
 
 		runnerSpecifierEClass = createEClass(RUNNER_SPECIFIER);
 		createEAttribute(runnerSpecifierEClass, RUNNER_SPECIFIER__AUTO);
@@ -1285,8 +1256,8 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		DMLPackage theDMLPackage = (DMLPackage)EPackage.Registry.INSTANCE.getEPackage(DMLPackage.eNS_URI);
 		MscriptPackage theMscriptPackage = (MscriptPackage)EPackage.Registry.INSTANCE.getEPackage(MscriptPackage.eNS_URI);
+		DMLPackage theDMLPackage = (DMLPackage)EPackage.Registry.INSTANCE.getEPackage(DMLPackage.eNS_URI);
 		ComputationModelPackage theComputationModelPackage = (ComputationModelPackage)EPackage.Registry.INSTANCE.getEPackage(ComputationModelPackage.eNS_URI);
 
 		// Create type parameters
@@ -1313,10 +1284,10 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getConfiguration_Package(), ecorePackage.getEString(), "package", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_PackageName(), ecorePackage.getEString(), "packageName", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_BaseConfiguration(), this.getConfiguration(), null, "baseConfiguration", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfiguration_ImportDeclarations(), this.getImportDeclaration(), null, "importDeclarations", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfiguration_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_RunnerSpecifier(), this.getRunnerSpecifier(), null, "runnerSpecifier", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_RootSystemConfiguration(), this.getRootSystemConfiguration(), null, "rootSystemConfiguration", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1338,9 +1309,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		op = addEOperation(configurationEClass, theComputationModelPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(importDeclarationEClass, ImportDeclaration.class, "ImportDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImportDeclaration_ImportedNamespace(), ecorePackage.getEString(), "importedNamespace", null, 0, 1, ImportDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(runnerSpecifierEClass, RunnerSpecifier.class, "RunnerSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRunnerSpecifier_Auto(), ecorePackage.getEBoolean(), "auto", null, 0, 1, RunnerSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

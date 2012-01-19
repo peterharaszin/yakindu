@@ -1,16 +1,16 @@
-blockType damos.library.base._discrete.Delay
+package damos.library.base._discrete
 
-input u {
-	directFeedthrough never
-}
-output y
+blockType Delay {
 
-parameter initialCondition = 0
-parameter delay = 1
+	input u {
+		directFeedthrough never
+	}
+	output y
+	
+	parameter initialCondition = 0
+	parameter delay = 1
 
-behavior {
-
-	stateful func main<initialCondition, delay>(u) -> y {
+	stateful function main<initialCondition, delay>(u) -> y {
 		check<0, 1>(real) -> real
 		
 		static assert delay == 1 :

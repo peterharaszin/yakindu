@@ -17,7 +17,6 @@ import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.DeclaredProperty;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.ImportDeclaration;
 import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.MappingBody;
 import org.eclipselabs.damos.dconfig.MappingSubscript;
@@ -101,12 +100,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 				Configuration configuration = (Configuration)theEObject;
 				T result = caseConfiguration(configuration);
 				if (result == null) result = casePropertyContainer(configuration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DconfigPackage.IMPORT_DECLARATION: {
-				ImportDeclaration importDeclaration = (ImportDeclaration)theEObject;
-				T result = caseImportDeclaration(importDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -305,21 +298,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfiguration(Configuration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Import Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Import Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseImportDeclaration(ImportDeclaration object) {
 		return null;
 	}
 

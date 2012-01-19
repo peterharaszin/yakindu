@@ -1,14 +1,14 @@
-blockType damos.library.base.logic.Inverter
+package damos.library.base.logic
 
-input u
-output y
+blockType Inverter {
 
-behavior {
+	input u
+	output y
 
-	func main(u) -> y {
-		check(bool) -> bool
+	function main(u) -> y {
+		check(boolean) -> boolean
 		
-		static assert u is bool :
+		static assert u is boolean :
 			error "Input value must be boolean"
 			
 		eq y = !u

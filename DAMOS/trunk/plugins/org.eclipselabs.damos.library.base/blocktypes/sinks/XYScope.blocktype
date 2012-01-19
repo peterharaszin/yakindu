@@ -1,6 +1,10 @@
-blockType damos.library.base.sinks.XYScope
+package damos.library.base.sinks
 
-input x
-input y[1..*]
+blockType XYScope {
 
-parameter dataPointLimit = 20000
+	input x
+	input y[1..*]
+	
+	parameter dataPointLimit = 20000
+
+}

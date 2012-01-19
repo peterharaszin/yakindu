@@ -11,6 +11,8 @@
 
 package org.eclipselabs.damos.mscript.util;
 
+import java.util.Collection;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.AdditiveOperator;
 import org.eclipselabs.damos.mscript.AdditiveStepExpression;
@@ -32,7 +34,11 @@ import org.eclipselabs.damos.mscript.interpreter.IStaticEvaluationContext;
 public class MscriptUtil {
 
 	public static FunctionDeclaration getFunctionDefinition(Module module, String qualifiedName) {
-		for (Declaration declaration : module.getDeclarations()) {
+		return getFunctionDefinition(module.getDeclarations(), qualifiedName);
+	}
+	
+	public static FunctionDeclaration getFunctionDefinition(Collection<Declaration> declarations, String qualifiedName) {
+		for (Declaration declaration : declarations) {
 			if (declaration instanceof FunctionDeclaration) {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration) declaration;
 				if (qualifiedName.equals(functionDeclaration.getName())) {
@@ -42,7 +48,7 @@ public class MscriptUtil {
 		}
 		return null;
 	}
-	
+
 	public static VariableReference createVariableAccess(IStaticEvaluationContext context, VariableDeclaration variableDeclaration, int stepIndex, boolean initial) {
 		VariableReference variableReference = MscriptFactory.eINSTANCE.createVariableReference();
 		variableReference.setFeature(variableDeclaration);

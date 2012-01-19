@@ -98,7 +98,7 @@ public class LaunchConfigurationUtil {
 		}
 
 		Configuration configuration = DconfigFactory.eINSTANCE.createConfiguration();
-		configuration.setPackage("__temp");
+		configuration.setPackageName("__temp");
 		configuration.setName("__temp");
 		configuration.setBaseConfiguration(baseConfiguration);
 		

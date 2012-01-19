@@ -212,7 +212,7 @@
     <genClasses image="false" ecoreClass="DML.ecore#//QualifiedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/qualifiedName"/>
       <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/name"/>
-      <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/qualifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//QualifiedElement/packageName"/>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//CategorizedElement">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//CategorizedElement/belongingCategories"/>

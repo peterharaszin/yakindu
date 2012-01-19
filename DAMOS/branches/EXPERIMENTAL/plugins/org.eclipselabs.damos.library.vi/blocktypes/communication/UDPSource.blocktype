@@ -1,6 +1,10 @@
-synchronous blockType damos.library.vi.communication.UDPSource
+package damos.library.vi.communication
 
-output _output[1..*]
+synchronous blockType UDPSource {
 
-opaque parameter host = ""
-opaque parameter port = ""
+	output _output[1..*]
+	
+	opaque parameter host = ""
+	opaque parameter port = ""
+
+}

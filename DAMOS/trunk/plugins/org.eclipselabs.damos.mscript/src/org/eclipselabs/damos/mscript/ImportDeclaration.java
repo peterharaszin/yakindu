@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.dconfig;
+package org.eclipselabs.damos.mscript;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.ImportDeclaration#getImportedNamespace <em>Imported Namespace</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.ImportDeclaration#getImportedNamespace <em>Imported Namespace</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipselabs.damos.dconfig.DconfigPackage#getImportDeclaration()
+ * @see org.eclipselabs.damos.mscript.MscriptPackage#getImportDeclaration()
  * @model
  * @generated
  */
@@ -35,14 +35,14 @@ public interface ImportDeclaration extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Imported Namespace</em>' attribute.
 	 * @see #setImportedNamespace(String)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getImportDeclaration_ImportedNamespace()
+	 * @see org.eclipselabs.damos.mscript.MscriptPackage#getImportDeclaration_ImportedNamespace()
 	 * @model
 	 * @generated
 	 */
 	String getImportedNamespace();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.ImportDeclaration#getImportedNamespace <em>Imported Namespace</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.ImportDeclaration#getImportedNamespace <em>Imported Namespace</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Imported Namespace</em>' attribute.

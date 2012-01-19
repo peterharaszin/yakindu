@@ -1570,7 +1570,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getQualifiedElement_Qualifier() {
+	public EAttribute getQualifiedElement_PackageName() {
 		return (EAttribute)qualifiedElementEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -2382,7 +2382,7 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		qualifiedElementEClass = createEClass(QUALIFIED_ELEMENT);
 		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__QUALIFIED_NAME);
 		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__NAME);
-		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__QUALIFIER);
+		createEAttribute(qualifiedElementEClass, QUALIFIED_ELEMENT__PACKAGE_NAME);
 
 		categorizedElementEClass = createEClass(CATEGORIZED_ELEMENT);
 		createEReference(categorizedElementEClass, CATEGORIZED_ELEMENT__BELONGING_CATEGORIES);
@@ -2854,9 +2854,9 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEParameter(op, ecorePackage.getEString(), "name", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(qualifiedElementEClass, QualifiedElement.class, "QualifiedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQualifiedElement_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 1, 1, QualifiedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getQualifiedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, QualifiedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getQualifiedElement_Qualifier(), ecorePackage.getEString(), "qualifier", null, 1, 1, QualifiedElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getQualifiedElement_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 1, 1, QualifiedElement.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getQualifiedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, QualifiedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getQualifiedElement_PackageName(), ecorePackage.getEString(), "packageName", null, 0, 1, QualifiedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(categorizedElementEClass, CategorizedElement.class, "CategorizedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCategorizedElement_BelongingCategories(), this.getCategory(), null, "belongingCategories", null, 0, -1, CategorizedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

@@ -6,8 +6,9 @@
  */
 package org.eclipselabs.damos.dmltext;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipselabs.damos.dml.BehaviorSpecification;
-import org.eclipselabs.damos.mscript.Module;
+import org.eclipselabs.damos.mscript.Declaration;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +18,7 @@ import org.eclipselabs.damos.mscript.Module;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification#getModule <em>Module</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,29 +28,19 @@ import org.eclipselabs.damos.mscript.Module;
  */
 public interface MscriptBehaviorSpecification extends BehaviorSpecification {
 	/**
-	 * Returns the value of the '<em><b>Module</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Declarations</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipselabs.damos.mscript.Declaration}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Module</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Declarations</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Module</em>' containment reference.
-	 * @see #setModule(Module)
-	 * @see org.eclipselabs.damos.dmltext.DMLTextPackage#getMscriptBehaviorSpecification_Module()
+	 * @return the value of the '<em>Declarations</em>' containment reference list.
+	 * @see org.eclipselabs.damos.dmltext.DMLTextPackage#getMscriptBehaviorSpecification_Declarations()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Module getModule();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification#getModule <em>Module</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Module</em>' containment reference.
-	 * @see #getModule()
-	 * @generated
-	 */
-	void setModule(Module value);
+	EList<Declaration> getDeclarations();
 
 } // MscriptBehaviorSpecification

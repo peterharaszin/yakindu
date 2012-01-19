@@ -14,40 +14,41 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipselabs.damos.dml.impl.BehaviorSpecificationImpl;
+import org.eclipselabs.damos.dml.impl.SystemInterfaceImpl;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
-import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
-import org.eclipselabs.damos.mscript.Declaration;
+import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
+import org.eclipselabs.damos.mscript.ImportDeclaration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Mscript Behavior Specification</b></em>'.
+ * An implementation of the model object '<em><b>Mscript System Interface</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptBehaviorSpecificationImpl#getDeclarations <em>Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptSystemInterfaceImpl#getImportDeclarations <em>Import Declarations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl implements MscriptBehaviorSpecification {
+public class MscriptSystemInterfaceImpl extends SystemInterfaceImpl implements MscriptSystemInterface {
 	/**
-	 * The cached value of the '{@link #getDeclarations() <em>Declarations</em>}' containment reference list.
+	 * The cached value of the '{@link #getImportDeclarations() <em>Import Declarations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDeclarations()
+	 * @see #getImportDeclarations()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Declaration> declarations;
+	protected EList<ImportDeclaration> importDeclarations;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MscriptBehaviorSpecificationImpl() {
+	protected MscriptSystemInterfaceImpl() {
 		super();
 	}
 
@@ -58,7 +59,7 @@ public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DMLTextPackage.Literals.MSCRIPT_BEHAVIOR_SPECIFICATION;
+		return DMLTextPackage.Literals.MSCRIPT_SYSTEM_INTERFACE;
 	}
 
 	/**
@@ -66,11 +67,11 @@ public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Declaration> getDeclarations() {
-		if (declarations == null) {
-			declarations = new EObjectContainmentEList<Declaration>(Declaration.class, this, DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS);
+	public EList<ImportDeclaration> getImportDeclarations() {
+		if (importDeclarations == null) {
+			importDeclarations = new EObjectContainmentEList<ImportDeclaration>(ImportDeclaration.class, this, DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS);
 		}
-		return declarations;
+		return importDeclarations;
 	}
 
 	/**
@@ -81,8 +82,8 @@ public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS:
-				return ((InternalEList<?>)getDeclarations()).basicRemove(otherEnd, msgs);
+			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS:
+				return ((InternalEList<?>)getImportDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -95,8 +96,8 @@ public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS:
-				return getDeclarations();
+			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS:
+				return getImportDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -110,9 +111,9 @@ public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS:
-				getDeclarations().clear();
-				getDeclarations().addAll((Collection<? extends Declaration>)newValue);
+			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS:
+				getImportDeclarations().clear();
+				getImportDeclarations().addAll((Collection<? extends ImportDeclaration>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,8 +127,8 @@ public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS:
-				getDeclarations().clear();
+			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS:
+				getImportDeclarations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,10 +142,10 @@ public class MscriptBehaviorSpecificationImpl extends BehaviorSpecificationImpl 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS:
-				return declarations != null && !declarations.isEmpty();
+			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS:
+				return importDeclarations != null && !importDeclarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
-} //MscriptBehaviorSpecificationImpl
+} //MscriptSystemInterfaceImpl

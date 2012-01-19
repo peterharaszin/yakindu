@@ -99,13 +99,13 @@ public interface DMLPackage extends EPackage {
 	int FRAGMENT__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAGMENT__QUALIFIER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+	int FRAGMENT__PACKAGE_NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
@@ -1596,13 +1596,13 @@ public interface DMLPackage extends EPackage {
 	int BLOCK_TYPE__NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_TYPE__QUALIFIER = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
+	int BLOCK_TYPE__PACKAGE_NAME = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
@@ -1686,13 +1686,13 @@ public interface DMLPackage extends EPackage {
 	int QUALIFIED_ELEMENT__NAME = INAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUALIFIED_ELEMENT__QUALIFIER = INAMED_ELEMENT_FEATURE_COUNT + 2;
+	int QUALIFIED_ELEMENT__PACKAGE_NAME = INAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Qualified Element</em>' class.
@@ -1740,13 +1740,13 @@ public interface DMLPackage extends EPackage {
 	int CATEGORY__NAME = QUALIFIED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CATEGORY__QUALIFIER = QUALIFIED_ELEMENT__QUALIFIER;
+	int CATEGORY__PACKAGE_NAME = QUALIFIED_ELEMENT__PACKAGE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
@@ -1932,13 +1932,13 @@ public interface DMLPackage extends EPackage {
 	int SYSTEM__NAME = FRAGMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM__QUALIFIER = FRAGMENT__QUALIFIER;
+	int SYSTEM__PACKAGE_NAME = FRAGMENT__PACKAGE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
@@ -2013,13 +2013,13 @@ public interface DMLPackage extends EPackage {
 	int MODEL__NAME = SYSTEM__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL__QUALIFIER = SYSTEM__QUALIFIER;
+	int MODEL__PACKAGE_NAME = SYSTEM__PACKAGE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list.
@@ -2287,13 +2287,13 @@ public interface DMLPackage extends EPackage {
 	int SYSTEM_INTERFACE__NAME = QUALIFIED_ELEMENT__NAME;
 
 	/**
-	 * The feature id for the '<em><b>Qualifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_INTERFACE__QUALIFIER = QUALIFIED_ELEMENT__QUALIFIER;
+	int SYSTEM_INTERFACE__PACKAGE_NAME = QUALIFIED_ELEMENT__PACKAGE_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Inlets</b></em>' containment reference list.
@@ -4866,15 +4866,15 @@ public interface DMLPackage extends EPackage {
 	EAttribute getQualifiedElement_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.QualifiedElement#getQualifier <em>Qualifier</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dml.QualifiedElement#getPackageName <em>Package Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Qualifier</em>'.
-	 * @see org.eclipselabs.damos.dml.QualifiedElement#getQualifier()
+	 * @return the meta object for the attribute '<em>Package Name</em>'.
+	 * @see org.eclipselabs.damos.dml.QualifiedElement#getPackageName()
 	 * @see #getQualifiedElement()
 	 * @generated
 	 */
-	EAttribute getQualifiedElement_Qualifier();
+	EAttribute getQualifiedElement_PackageName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dml.CategorizedElement <em>Categorized Element</em>}'.
@@ -6423,12 +6423,12 @@ public interface DMLPackage extends EPackage {
 		EAttribute QUALIFIED_ELEMENT__NAME = eINSTANCE.getQualifiedElement_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Qualifier</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Package Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute QUALIFIED_ELEMENT__QUALIFIER = eINSTANCE.getQualifiedElement_Qualifier();
+		EAttribute QUALIFIED_ELEMENT__PACKAGE_NAME = eINSTANCE.getQualifiedElement_PackageName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dml.impl.CategorizedElementImpl <em>Categorized Element</em>}' class.

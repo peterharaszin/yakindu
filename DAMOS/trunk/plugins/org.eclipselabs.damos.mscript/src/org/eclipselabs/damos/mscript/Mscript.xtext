@@ -16,8 +16,13 @@ import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
 import "platform:/resource/org.eclipselabs.damos.mscript/model/Mscript.ecore"
 
 Module:
+	'package' packageName=QualifiedName
+	(importDeclarations+=ImportDeclaration)*
 	(declarations+=Declaration)*;
 	
+ImportDeclaration:
+	'import' importedNamespace=QualifiedNameWithWildcard;
+
 Declaration:
 	DataTypeDeclaration |
 	FunctionDeclaration;
@@ -67,7 +72,7 @@ StructMemberDeclaration:
  */
  
 FunctionDeclaration:
-	(kind=FunctionKind)? 'func' name=ValidID
+	(kind=FunctionKind)? 'function' name=ValidID
 			('<' templateParameterDeclarations+=TemplateParameterDeclaration (',' templateParameterDeclarations+=TemplateParameterDeclaration)* '>')?
 			'(' (inputParameterDeclarations+=InputParameterDeclaration (',' inputParameterDeclarations+=InputParameterDeclaration)*)? ')'
 			'->' outputParameterDeclarations+=OutputParameterDeclaration (',' outputParameterDeclarations+=OutputParameterDeclaration)* '{'
@@ -141,10 +146,10 @@ ComplexType:
 	{ComplexType} 'complex' unit=Unit;
 
 GaussianType:
-	{GaussianType} 'gauss' unit=Unit;
+	{GaussianType} 'gaussian' unit=Unit;
 
 BooleanType:
-	{BooleanType} 'bool';
+	{BooleanType} 'boolean';
 	
 StringType:
 	{StringType} 'string';
@@ -369,7 +374,7 @@ EndExpression:
 	{EndExpression} 'end';
 	
 AlgorithmExpression returns Expression:
-	{AlgorithmExpression} 'algo' body=Compound;
+	{AlgorithmExpression} 'algorithm' body=Compound;
 
 Compound:
 	{Compound} '{' (statements+=Statement)* '}';
@@ -440,6 +445,9 @@ UnitExponent returns ecore::EInt:
 
 QualifiedName:
 	ValidID ('.' ValidID)*;
+
+QualifiedNameWithWildcard:
+	QualifiedName ('.*' | '.' '*')?;
 
 ValidInt returns ecore::EInt:
 	ONE | INT;

@@ -60,11 +60,11 @@ public class DconfigQualifiedNameProvider extends DefaultDeclarativeQualifiedNam
 		}
 		if (obj instanceof Configuration) {
 			Configuration configuration = (Configuration) obj;
-			String package_ = configuration.getPackage();
-			if (package_ == null) {
+			String packageName = configuration.getPackageName();
+			if (packageName == null) {
 				return null;
 			}
-			return getConverter().toQualifiedName(package_).append(configuration.getName());
+			return getConverter().toQualifiedName(packageName).append(configuration.getName());
 		}
 		return super.getFullyQualifiedName(obj);
 	}

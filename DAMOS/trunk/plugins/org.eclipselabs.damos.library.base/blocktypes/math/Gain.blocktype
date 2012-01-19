@@ -1,13 +1,13 @@
-blockType damos.library.base.math.Gain
+package damos.library.base.math
 
-input u
-output y
+blockType Gain {
 
-parameter gain = 1
+	input u
+	output y
+	
+	parameter gain = 1
 
-behavior {
-
-	func main<gain>(u) -> y {
+	function main<gain>(u) -> y {
 		check<1>(real) -> real
 		
 		static assert u is real() :

@@ -14,7 +14,9 @@ import org.eclipselabs.damos.dml.DMLPackage;
 import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
+import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
+import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -32,6 +34,18 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 	 * @generated
 	 */
 	private EClass rootEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mscriptBlockTypeEClass = null;
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass mscriptSystemInterfaceEClass = null;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -147,6 +161,42 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getMscriptBlockType() {
+		return mscriptBlockTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMscriptBlockType_ImportDeclarations() {
+		return (EReference)mscriptBlockTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getMscriptSystemInterface() {
+		return mscriptSystemInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMscriptSystemInterface_ImportDeclarations() {
+		return (EReference)mscriptSystemInterfaceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getMscriptDataTypeSpecification() {
 		return mscriptDataTypeSpecificationEClass;
 	}
@@ -183,7 +233,7 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getMscriptBehaviorSpecification_Module() {
+	public EReference getMscriptBehaviorSpecification_Declarations() {
 		return (EReference)mscriptBehaviorSpecificationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -237,12 +287,18 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 		createEReference(rootEClass, ROOT__BLOCK_TYPES);
 		createEReference(rootEClass, ROOT__SYSTEM_INTERFACES);
 
+		mscriptBlockTypeEClass = createEClass(MSCRIPT_BLOCK_TYPE);
+		createEReference(mscriptBlockTypeEClass, MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS);
+
+		mscriptSystemInterfaceEClass = createEClass(MSCRIPT_SYSTEM_INTERFACE);
+		createEReference(mscriptSystemInterfaceEClass, MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS);
+
 		mscriptDataTypeSpecificationEClass = createEClass(MSCRIPT_DATA_TYPE_SPECIFICATION);
 		createEReference(mscriptDataTypeSpecificationEClass, MSCRIPT_DATA_TYPE_SPECIFICATION__SPECIFIER);
 		createEReference(mscriptDataTypeSpecificationEClass, MSCRIPT_DATA_TYPE_SPECIFICATION__TYPE);
 
 		mscriptBehaviorSpecificationEClass = createEClass(MSCRIPT_BEHAVIOR_SPECIFICATION);
-		createEReference(mscriptBehaviorSpecificationEClass, MSCRIPT_BEHAVIOR_SPECIFICATION__MODULE);
+		createEReference(mscriptBehaviorSpecificationEClass, MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS);
 
 		mscriptValueSpecificationEClass = createEClass(MSCRIPT_VALUE_SPECIFICATION);
 		createEReference(mscriptValueSpecificationEClass, MSCRIPT_VALUE_SPECIFICATION__EXPRESSION);
@@ -280,6 +336,8 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		mscriptBlockTypeEClass.getESuperTypes().add(theDMLPackage.getBlockType());
+		mscriptSystemInterfaceEClass.getESuperTypes().add(theDMLPackage.getSystemInterface());
 		mscriptDataTypeSpecificationEClass.getESuperTypes().add(theDMLPackage.getDataTypeSpecification());
 		mscriptBehaviorSpecificationEClass.getESuperTypes().add(theDMLPackage.getBehaviorSpecification());
 		mscriptValueSpecificationEClass.getESuperTypes().add(theDMLPackage.getValueSpecification());
@@ -289,12 +347,18 @@ public class DMLTextPackageImpl extends EPackageImpl implements DMLTextPackage {
 		initEReference(getRoot_BlockTypes(), theDMLPackage.getBlockType(), null, "blockTypes", null, 0, -1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getRoot_SystemInterfaces(), theDMLPackage.getSystemInterface(), null, "systemInterfaces", null, 0, -1, Root.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(mscriptBlockTypeEClass, MscriptBlockType.class, "MscriptBlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMscriptBlockType_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, MscriptBlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(mscriptSystemInterfaceEClass, MscriptSystemInterface.class, "MscriptSystemInterface", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMscriptSystemInterface_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, MscriptSystemInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(mscriptDataTypeSpecificationEClass, MscriptDataTypeSpecification.class, "MscriptDataTypeSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMscriptDataTypeSpecification_Specifier(), theMscriptPackage.getDataTypeSpecifier(), null, "specifier", null, 0, 1, MscriptDataTypeSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getMscriptDataTypeSpecification_Type(), theMscriptPackage.getDataType(), null, "type", null, 0, 1, MscriptDataTypeSpecification.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
 		initEClass(mscriptBehaviorSpecificationEClass, MscriptBehaviorSpecification.class, "MscriptBehaviorSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMscriptBehaviorSpecification_Module(), theMscriptPackage.getModule(), null, "module", null, 0, 1, MscriptBehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMscriptBehaviorSpecification_Declarations(), theMscriptPackage.getDeclaration(), null, "declarations", null, 0, -1, MscriptBehaviorSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(mscriptValueSpecificationEClass, MscriptValueSpecification.class, "MscriptValueSpecification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMscriptValueSpecification_Expression(), theMscriptPackage.getExpression(), null, "expression", null, 0, 1, MscriptValueSpecification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -1,14 +1,14 @@
-blockType damos.library.base.discontinuities.Saturation
+package damos.library.base.discontinuities
 
-input u
-output y
+blockType Saturation {
 
-parameter upperLimit = 1
-parameter lowerLimit = -1
+	input u
+	output y
+	
+	parameter upperLimit = 1
+	parameter lowerLimit = -1
 
-behavior {
-
-	func main<upperLimit, lowerLimit>(u) -> y {
+	function main<upperLimit, lowerLimit>(u) -> y {
 		check<1, -1>(real) -> real
 		
 		static assert u is real() :

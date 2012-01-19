@@ -1,13 +1,13 @@
-blockType damos.library.base.math.Sum
+package damos.library.base.math
 
-input _input[2..*] {
-	parameter sign = 1
-}
-output y
+blockType Sum {
 
-behavior {
+	input _input[2..*] {
+		parameter sign = 1
+	}
+	output y
 
-	func main<sign>(_input) -> y {
+	function main<sign>(_input) -> y {
 		check<{1, -1}>(real[2]) -> real
 		
 		static assert _input is real()[] :

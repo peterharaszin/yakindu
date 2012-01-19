@@ -76,6 +76,7 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitAccess().getAlternatives_1(), "rule__Unit__Alternatives_1");
 					put(grammarAccess.getUnitNumeratorAccess().getAlternatives(), "rule__UnitNumerator__Alternatives");
 					put(grammarAccess.getUnitDenominatorAccess().getAlternatives(), "rule__UnitDenominator__Alternatives");
+					put(grammarAccess.getQualifiedNameWithWildcardAccess().getAlternatives_1(), "rule__QualifiedNameWithWildcard__Alternatives_1");
 					put(grammarAccess.getValidIntAccess().getAlternatives(), "rule__ValidInt__Alternatives");
 					put(grammarAccess.getValidIDAccess().getAlternatives(), "rule__ValidID__Alternatives");
 					put(grammarAccess.getFloatingPointFormatKindAccess().getAlternatives(), "rule__FloatingPointFormatKind__Alternatives");
@@ -98,6 +99,8 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFixedPointOperationAccess().getGroup(), "rule__FixedPointOperation__Group__0");
 					put(grammarAccess.getFixedPointOperationAccess().getGroup_2_0(), "rule__FixedPointOperation__Group_2_0__0");
 					put(grammarAccess.getNumberFormatMappingAccess().getGroup(), "rule__NumberFormatMapping__Group__0");
+					put(grammarAccess.getModuleAccess().getGroup(), "rule__Module__Group__0");
+					put(grammarAccess.getImportDeclarationAccess().getGroup(), "rule__ImportDeclaration__Group__0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getGroup(), "rule__EnumerationDeclaration__Group__0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getGroup_3(), "rule__EnumerationDeclaration__Group_3__0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getGroup_3_1(), "rule__EnumerationDeclaration__Group_3_1__0");
@@ -246,6 +249,8 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnitExponentAccess().getGroup(), "rule__UnitExponent__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup(), "rule__QualifiedName__Group__0");
 					put(grammarAccess.getQualifiedNameAccess().getGroup_1(), "rule__QualifiedName__Group_1__0");
+					put(grammarAccess.getQualifiedNameWithWildcardAccess().getGroup(), "rule__QualifiedNameWithWildcard__Group__0");
+					put(grammarAccess.getQualifiedNameWithWildcardAccess().getGroup_1_1(), "rule__QualifiedNameWithWildcard__Group_1_1__0");
 					put(grammarAccess.getComputationModelAccess().getQualifiedNameAssignment_1(), "rule__ComputationModel__QualifiedNameAssignment_1");
 					put(grammarAccess.getComputationModelAccess().getNumberFormatsAssignment_2_0(), "rule__ComputationModel__NumberFormatsAssignment_2_0");
 					put(grammarAccess.getComputationModelAccess().getNumberFormatMappingsAssignment_2_1(), "rule__ComputationModel__NumberFormatMappingsAssignment_2_1");
@@ -261,7 +266,10 @@ public class ComputationModelParser extends AbstractContentAssistParser {
 					put(grammarAccess.getFixedPointOperationAccess().getSaturateAssignment_2_1(), "rule__FixedPointOperation__SaturateAssignment_2_1");
 					put(grammarAccess.getNumberFormatMappingAccess().getTypeSpecifierAssignment_1(), "rule__NumberFormatMapping__TypeSpecifierAssignment_1");
 					put(grammarAccess.getNumberFormatMappingAccess().getNumberFormatAssignment_3(), "rule__NumberFormatMapping__NumberFormatAssignment_3");
-					put(grammarAccess.getModuleAccess().getDeclarationsAssignment(), "rule__Module__DeclarationsAssignment");
+					put(grammarAccess.getModuleAccess().getPackageNameAssignment_1(), "rule__Module__PackageNameAssignment_1");
+					put(grammarAccess.getModuleAccess().getImportDeclarationsAssignment_2(), "rule__Module__ImportDeclarationsAssignment_2");
+					put(grammarAccess.getModuleAccess().getDeclarationsAssignment_3(), "rule__Module__DeclarationsAssignment_3");
+					put(grammarAccess.getImportDeclarationAccess().getImportedNamespaceAssignment_1(), "rule__ImportDeclaration__ImportedNamespaceAssignment_1");
 					put(grammarAccess.getEnumerationDeclarationAccess().getNameAssignment_1(), "rule__EnumerationDeclaration__NameAssignment_1");
 					put(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_0(), "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_0");
 					put(grammarAccess.getEnumerationDeclarationAccess().getLiteralDeclarationsAssignment_3_1_1(), "rule__EnumerationDeclaration__LiteralDeclarationsAssignment_3_1_1");

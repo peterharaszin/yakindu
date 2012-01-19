@@ -20,7 +20,6 @@ import org.eclipselabs.damos.dconfig.DconfigFactory;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.FragmentConfiguration;
 import org.eclipselabs.damos.dconfig.FragmentConfigurationBody;
-import org.eclipselabs.damos.dconfig.ImportDeclaration;
 import org.eclipselabs.damos.dconfig.Mapping;
 import org.eclipselabs.damos.dconfig.MappingBody;
 import org.eclipselabs.damos.dconfig.MappingSubscript;
@@ -84,7 +83,6 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DconfigPackage.CONFIGURATION: return createConfiguration();
-			case DconfigPackage.IMPORT_DECLARATION: return createImportDeclaration();
 			case DconfigPackage.RUNNER_SPECIFIER: return createRunnerSpecifier();
 			case DconfigPackage.RUNNER_DECLARATION: return createRunnerDeclaration();
 			case DconfigPackage.SIMPLE_PROPERTY: return createSimpleProperty();
@@ -149,16 +147,6 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public Configuration createConfiguration() {
 		ConfigurationImpl configuration = new ConfigurationImpl();
 		return configuration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ImportDeclaration createImportDeclaration() {
-		ImportDeclarationImpl importDeclaration = new ImportDeclarationImpl();
-		return importDeclaration;
 	}
 
 	/**

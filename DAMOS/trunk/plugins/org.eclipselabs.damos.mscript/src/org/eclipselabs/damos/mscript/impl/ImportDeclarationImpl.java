@@ -4,14 +4,14 @@
  *
  * $Id$
  */
-package org.eclipselabs.damos.dconfig.impl;
+package org.eclipselabs.damos.mscript.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipselabs.damos.dconfig.DconfigPackage;
-import org.eclipselabs.damos.dconfig.ImportDeclaration;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipselabs.damos.mscript.ImportDeclaration;
+import org.eclipselabs.damos.mscript.MscriptPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -20,13 +20,13 @@ import org.eclipselabs.damos.dconfig.ImportDeclaration;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.ImportDeclarationImpl#getImportedNamespace <em>Imported Namespace</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.impl.ImportDeclarationImpl#getImportedNamespace <em>Imported Namespace</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ImportDeclarationImpl extends EObjectImpl implements ImportDeclaration {
+public class ImportDeclarationImpl extends MinimalEObjectImpl.Container implements ImportDeclaration {
 	/**
 	 * The default value of the '{@link #getImportedNamespace() <em>Imported Namespace</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class ImportDeclarationImpl extends EObjectImpl implements ImportDeclarat
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return DconfigPackage.Literals.IMPORT_DECLARATION;
+		return MscriptPackage.Literals.IMPORT_DECLARATION;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ImportDeclarationImpl extends EObjectImpl implements ImportDeclarat
 		String oldImportedNamespace = importedNamespace;
 		importedNamespace = newImportedNamespace;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE, oldImportedNamespace, importedNamespace));
+			eNotify(new ENotificationImpl(this, Notification.SET, MscriptPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE, oldImportedNamespace, importedNamespace));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class ImportDeclarationImpl extends EObjectImpl implements ImportDeclarat
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case DconfigPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
+			case MscriptPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
 				return getImportedNamespace();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -109,7 +109,7 @@ public class ImportDeclarationImpl extends EObjectImpl implements ImportDeclarat
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case DconfigPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
+			case MscriptPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
 				setImportedNamespace((String)newValue);
 				return;
 		}
@@ -124,7 +124,7 @@ public class ImportDeclarationImpl extends EObjectImpl implements ImportDeclarat
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
+			case MscriptPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
 				setImportedNamespace(IMPORTED_NAMESPACE_EDEFAULT);
 				return;
 		}
@@ -139,7 +139,7 @@ public class ImportDeclarationImpl extends EObjectImpl implements ImportDeclarat
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case DconfigPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
+			case MscriptPackage.IMPORT_DECLARATION__IMPORTED_NAMESPACE:
 				return IMPORTED_NAMESPACE_EDEFAULT == null ? importedNamespace != null : !IMPORTED_NAMESPACE_EDEFAULT.equals(importedNamespace);
 		}
 		return super.eIsSet(featureID);

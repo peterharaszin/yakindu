@@ -28,7 +28,7 @@ public class BlockTypeContentAssistParser extends DMLTextParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			InternalDMLTextParser typedParser = (InternalDMLTextParser) parser;
-			typedParser.entryRuleBlockType();
+			typedParser.entryRuleMscriptBlockType();
 			return typedParser.getFollowElements();
 		} catch (RecognitionException ex) {
 			throw new RuntimeException(ex);

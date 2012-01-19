@@ -1,7 +1,11 @@
-blockType damos.library.base.sources.Step
+package damos.library.base.sources
 
-output _output
+blockType Step {
 
-parameter initialValue = 0
-parameter finalValue = 1
-parameter stepTime = 1(s)
+	output _output
+	
+	parameter initialValue = 0
+	parameter finalValue = 1
+	parameter stepTime = 1(s)
+
+}

@@ -1,3 +1,7 @@
-asynchronous blockType damos.library.vi.controls.Button
+package damos.library.vi.controls
 
-output _output
+asynchronous blockType Button {
+
+	output _output
+
+}

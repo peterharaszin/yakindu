@@ -566,13 +566,23 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//Module:
-	//	declarations+=Declaration*;
+	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
 	public MscriptGrammarAccess.ModuleElements getModuleAccess() {
 		return gaMscript.getModuleAccess();
 	}
 	
 	public ParserRule getModuleRule() {
 		return getModuleAccess().getRule();
+	}
+
+	//ImportDeclaration:
+	//	"import" importedNamespace=QualifiedNameWithWildcard;
+	public MscriptGrammarAccess.ImportDeclarationElements getImportDeclarationAccess() {
+		return gaMscript.getImportDeclarationAccess();
+	}
+	
+	public ParserRule getImportDeclarationRule() {
+		return getImportDeclarationAccess().getRule();
 	}
 
 	//Declaration:
@@ -657,7 +667,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	/// *
 	// * Function
 	// * / FunctionDeclaration:
-	//	kind=FunctionKind? "func" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
+	//	kind=FunctionKind? "function" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
 	//	templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
 	//	(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
 	//	")" "->" outputParameterDeclarations+=OutputParameterDeclaration (","
@@ -848,7 +858,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//GaussianType:
-	//	{GaussianType} "gauss" unit=Unit;
+	//	{GaussianType} "gaussian" unit=Unit;
 	public MscriptGrammarAccess.GaussianTypeElements getGaussianTypeAccess() {
 		return gaMscript.getGaussianTypeAccess();
 	}
@@ -858,7 +868,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//BooleanType:
-	//	{BooleanType} "bool";
+	//	{BooleanType} "boolean";
 	public MscriptGrammarAccess.BooleanTypeElements getBooleanTypeAccess() {
 		return gaMscript.getBooleanTypeAccess();
 	}
@@ -1536,7 +1546,7 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	}
 
 	//AlgorithmExpression returns Expression:
-	//	{AlgorithmExpression} "algo" body=Compound;
+	//	{AlgorithmExpression} "algorithm" body=Compound;
 	public MscriptGrammarAccess.AlgorithmExpressionElements getAlgorithmExpressionAccess() {
 		return gaMscript.getAlgorithmExpressionAccess();
 	}
@@ -1737,6 +1747,16 @@ public class ComputationModelGrammarAccess extends AbstractGrammarElementFinder 
 	
 	public ParserRule getQualifiedNameRule() {
 		return getQualifiedNameAccess().getRule();
+	}
+
+	//QualifiedNameWithWildcard:
+	//	QualifiedName (".*" | "." "*")?;
+	public MscriptGrammarAccess.QualifiedNameWithWildcardElements getQualifiedNameWithWildcardAccess() {
+		return gaMscript.getQualifiedNameWithWildcardAccess();
+	}
+	
+	public ParserRule getQualifiedNameWithWildcardRule() {
+		return getQualifiedNameWithWildcardAccess().getRule();
 	}
 
 	//ValidInt returns ecore::EInt:

@@ -18,18 +18,66 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Module");
-		private final Assignment cDeclarationsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDeclarationsDeclarationParserRuleCall_0 = (RuleCall)cDeclarationsAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cPackageKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cPackageNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cPackageNameQualifiedNameParserRuleCall_1_0 = (RuleCall)cPackageNameAssignment_1.eContents().get(0);
+		private final Assignment cImportDeclarationsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cImportDeclarationsImportDeclarationParserRuleCall_2_0 = (RuleCall)cImportDeclarationsAssignment_2.eContents().get(0);
+		private final Assignment cDeclarationsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cDeclarationsDeclarationParserRuleCall_3_0 = (RuleCall)cDeclarationsAssignment_3.eContents().get(0);
 		
 		//Module:
-		//	declarations+=Declaration*;
+		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
 		public ParserRule getRule() { return rule; }
 
+		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*
+		public Group getGroup() { return cGroup; }
+
+		//"package"
+		public Keyword getPackageKeyword_0() { return cPackageKeyword_0; }
+
+		//packageName=QualifiedName
+		public Assignment getPackageNameAssignment_1() { return cPackageNameAssignment_1; }
+
+		//QualifiedName
+		public RuleCall getPackageNameQualifiedNameParserRuleCall_1_0() { return cPackageNameQualifiedNameParserRuleCall_1_0; }
+
+		//importDeclarations+=ImportDeclaration*
+		public Assignment getImportDeclarationsAssignment_2() { return cImportDeclarationsAssignment_2; }
+
+		//ImportDeclaration
+		public RuleCall getImportDeclarationsImportDeclarationParserRuleCall_2_0() { return cImportDeclarationsImportDeclarationParserRuleCall_2_0; }
+
 		//declarations+=Declaration*
-		public Assignment getDeclarationsAssignment() { return cDeclarationsAssignment; }
+		public Assignment getDeclarationsAssignment_3() { return cDeclarationsAssignment_3; }
 
 		//Declaration
-		public RuleCall getDeclarationsDeclarationParserRuleCall_0() { return cDeclarationsDeclarationParserRuleCall_0; }
+		public RuleCall getDeclarationsDeclarationParserRuleCall_3_0() { return cDeclarationsDeclarationParserRuleCall_3_0; }
+	}
+
+	public class ImportDeclarationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImportDeclaration");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cImportKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cImportedNamespaceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0 = (RuleCall)cImportedNamespaceAssignment_1.eContents().get(0);
+		
+		//ImportDeclaration:
+		//	"import" importedNamespace=QualifiedNameWithWildcard;
+		public ParserRule getRule() { return rule; }
+
+		//"import" importedNamespace=QualifiedNameWithWildcard
+		public Group getGroup() { return cGroup; }
+
+		//"import"
+		public Keyword getImportKeyword_0() { return cImportKeyword_0; }
+
+		//importedNamespace=QualifiedNameWithWildcard
+		public Assignment getImportedNamespaceAssignment_1() { return cImportedNamespaceAssignment_1; }
+
+		//QualifiedNameWithWildcard
+		public RuleCall getImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0() { return cImportedNamespaceQualifiedNameWithWildcardParserRuleCall_1_0; }
 	}
 
 	public class DeclarationElements extends AbstractParserRuleElementFinder {
@@ -267,7 +315,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cKindAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cKindFunctionKindEnumRuleCall_0_0 = (RuleCall)cKindAssignment_0.eContents().get(0);
-		private final Keyword cFuncKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cFunctionKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameValidIDParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
@@ -314,7 +362,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		/// *
 		// * Function
 		// * / FunctionDeclaration:
-		//	kind=FunctionKind? "func" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
+		//	kind=FunctionKind? "function" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
 		//	templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
 		//	(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
 		//	")" "->" outputParameterDeclarations+=OutputParameterDeclaration (","
@@ -323,7 +371,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//	constantDeclarations+=ConstantDeclaration | equations+=Equation)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//kind=FunctionKind? "func" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
+		//kind=FunctionKind? "function" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
 		//templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
 		//(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
 		//")" "->" outputParameterDeclarations+=OutputParameterDeclaration (","
@@ -338,8 +386,8 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		//FunctionKind
 		public RuleCall getKindFunctionKindEnumRuleCall_0_0() { return cKindFunctionKindEnumRuleCall_0_0; }
 
-		//"func"
-		public Keyword getFuncKeyword_1() { return cFuncKeyword_1; }
+		//"function"
+		public Keyword getFunctionKeyword_1() { return cFunctionKeyword_1; }
 
 		//name=ValidID
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
@@ -1050,22 +1098,22 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "GaussianType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cGaussianTypeAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cGaussKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cGaussianKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cUnitAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cUnitUnitParserRuleCall_2_0 = (RuleCall)cUnitAssignment_2.eContents().get(0);
 		
 		//GaussianType:
-		//	{GaussianType} "gauss" unit=Unit;
+		//	{GaussianType} "gaussian" unit=Unit;
 		public ParserRule getRule() { return rule; }
 
-		//{GaussianType} "gauss" unit=Unit
+		//{GaussianType} "gaussian" unit=Unit
 		public Group getGroup() { return cGroup; }
 
 		//{GaussianType}
 		public Action getGaussianTypeAction_0() { return cGaussianTypeAction_0; }
 
-		//"gauss"
-		public Keyword getGaussKeyword_1() { return cGaussKeyword_1; }
+		//"gaussian"
+		public Keyword getGaussianKeyword_1() { return cGaussianKeyword_1; }
 
 		//unit=Unit
 		public Assignment getUnitAssignment_2() { return cUnitAssignment_2; }
@@ -1078,20 +1126,20 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanType");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cBooleanTypeAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cBoolKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cBooleanKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//BooleanType:
-		//	{BooleanType} "bool";
+		//	{BooleanType} "boolean";
 		public ParserRule getRule() { return rule; }
 
-		//{BooleanType} "bool"
+		//{BooleanType} "boolean"
 		public Group getGroup() { return cGroup; }
 
 		//{BooleanType}
 		public Action getBooleanTypeAction_0() { return cBooleanTypeAction_0; }
 
-		//"bool"
-		public Keyword getBoolKeyword_1() { return cBoolKeyword_1; }
+		//"boolean"
+		public Keyword getBooleanKeyword_1() { return cBooleanKeyword_1; }
 	}
 
 	public class StringTypeElements extends AbstractParserRuleElementFinder {
@@ -3536,22 +3584,22 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AlgorithmExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cAlgorithmExpressionAction_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cAlgoKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cAlgorithmKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cBodyAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cBodyCompoundParserRuleCall_2_0 = (RuleCall)cBodyAssignment_2.eContents().get(0);
 		
 		//AlgorithmExpression returns Expression:
-		//	{AlgorithmExpression} "algo" body=Compound;
+		//	{AlgorithmExpression} "algorithm" body=Compound;
 		public ParserRule getRule() { return rule; }
 
-		//{AlgorithmExpression} "algo" body=Compound
+		//{AlgorithmExpression} "algorithm" body=Compound
 		public Group getGroup() { return cGroup; }
 
 		//{AlgorithmExpression}
 		public Action getAlgorithmExpressionAction_0() { return cAlgorithmExpressionAction_0; }
 
-		//"algo"
-		public Keyword getAlgoKeyword_1() { return cAlgoKeyword_1; }
+		//"algorithm"
+		public Keyword getAlgorithmKeyword_1() { return cAlgorithmKeyword_1; }
 
 		//body=Compound
 		public Assignment getBodyAssignment_2() { return cBodyAssignment_2; }
@@ -4321,6 +4369,42 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValidIDParserRuleCall_1_1() { return cValidIDParserRuleCall_1_1; }
 	}
 
+	public class QualifiedNameWithWildcardElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNameWithWildcard");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cQualifiedNameParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Keyword cFullStopAsteriskKeyword_1_0 = (Keyword)cAlternatives_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Keyword cFullStopKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
+		private final Keyword cAsteriskKeyword_1_1_1 = (Keyword)cGroup_1_1.eContents().get(1);
+		
+		//QualifiedNameWithWildcard:
+		//	QualifiedName (".*" | "." "*")?;
+		public ParserRule getRule() { return rule; }
+
+		//QualifiedName (".*" | "." "*")?
+		public Group getGroup() { return cGroup; }
+
+		//QualifiedName
+		public RuleCall getQualifiedNameParserRuleCall_0() { return cQualifiedNameParserRuleCall_0; }
+
+		//(".*" | "." "*")?
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+
+		//".*"
+		public Keyword getFullStopAsteriskKeyword_1_0() { return cFullStopAsteriskKeyword_1_0; }
+
+		//"." "*"
+		public Group getGroup_1_1() { return cGroup_1_1; }
+
+		//"."
+		public Keyword getFullStopKeyword_1_1_0() { return cFullStopKeyword_1_1_0; }
+
+		//"*"
+		public Keyword getAsteriskKeyword_1_1_1() { return cAsteriskKeyword_1_1_1; }
+	}
+
 	public class ValidIntElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidInt");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -4671,6 +4755,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private ModuleElements pModule;
+	private ImportDeclarationElements pImportDeclaration;
 	private DeclarationElements pDeclaration;
 	private DataTypeDeclarationElements pDataTypeDeclaration;
 	private EnumerationDeclarationElements pEnumerationDeclaration;
@@ -4783,6 +4868,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private UnitFactorElements pUnitFactor;
 	private UnitExponentElements pUnitExponent;
 	private QualifiedNameElements pQualifiedName;
+	private QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
 	private ValidIntElements pValidInt;
 	private ValidIDElements pValidID;
 	private TerminalRule tN;
@@ -4812,13 +4898,23 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Module:
-	//	declarations+=Declaration*;
+	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* declarations+=Declaration*;
 	public ModuleElements getModuleAccess() {
 		return (pModule != null) ? pModule : (pModule = new ModuleElements());
 	}
 	
 	public ParserRule getModuleRule() {
 		return getModuleAccess().getRule();
+	}
+
+	//ImportDeclaration:
+	//	"import" importedNamespace=QualifiedNameWithWildcard;
+	public ImportDeclarationElements getImportDeclarationAccess() {
+		return (pImportDeclaration != null) ? pImportDeclaration : (pImportDeclaration = new ImportDeclarationElements());
+	}
+	
+	public ParserRule getImportDeclarationRule() {
+		return getImportDeclarationAccess().getRule();
 	}
 
 	//Declaration:
@@ -4903,7 +4999,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	/// *
 	// * Function
 	// * / FunctionDeclaration:
-	//	kind=FunctionKind? "func" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
+	//	kind=FunctionKind? "function" name=ValidID ("<" templateParameterDeclarations+=TemplateParameterDeclaration (","
 	//	templateParameterDeclarations+=TemplateParameterDeclaration)* ">")? "("
 	//	(inputParameterDeclarations+=InputParameterDeclaration ("," inputParameterDeclarations+=InputParameterDeclaration)*)?
 	//	")" "->" outputParameterDeclarations+=OutputParameterDeclaration (","
@@ -5094,7 +5190,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GaussianType:
-	//	{GaussianType} "gauss" unit=Unit;
+	//	{GaussianType} "gaussian" unit=Unit;
 	public GaussianTypeElements getGaussianTypeAccess() {
 		return (pGaussianType != null) ? pGaussianType : (pGaussianType = new GaussianTypeElements());
 	}
@@ -5104,7 +5200,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanType:
-	//	{BooleanType} "bool";
+	//	{BooleanType} "boolean";
 	public BooleanTypeElements getBooleanTypeAccess() {
 		return (pBooleanType != null) ? pBooleanType : (pBooleanType = new BooleanTypeElements());
 	}
@@ -5782,7 +5878,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//AlgorithmExpression returns Expression:
-	//	{AlgorithmExpression} "algo" body=Compound;
+	//	{AlgorithmExpression} "algorithm" body=Compound;
 	public AlgorithmExpressionElements getAlgorithmExpressionAccess() {
 		return (pAlgorithmExpression != null) ? pAlgorithmExpression : (pAlgorithmExpression = new AlgorithmExpressionElements());
 	}
@@ -5983,6 +6079,16 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getQualifiedNameRule() {
 		return getQualifiedNameAccess().getRule();
+	}
+
+	//QualifiedNameWithWildcard:
+	//	QualifiedName (".*" | "." "*")?;
+	public QualifiedNameWithWildcardElements getQualifiedNameWithWildcardAccess() {
+		return (pQualifiedNameWithWildcard != null) ? pQualifiedNameWithWildcard : (pQualifiedNameWithWildcard = new QualifiedNameWithWildcardElements());
+	}
+	
+	public ParserRule getQualifiedNameWithWildcardRule() {
+		return getQualifiedNameWithWildcardAccess().getRule();
 	}
 
 	//ValidInt returns ecore::EInt:

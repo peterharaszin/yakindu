@@ -11,8 +11,6 @@
 
 package org.eclipselabs.damos.dml.internal.operations;
 
-import java.util.regex.Pattern;
-
 import org.eclipselabs.damos.dml.QualifiedElement;
 
 /**
@@ -21,30 +19,26 @@ import org.eclipselabs.damos.dml.QualifiedElement;
  */
 public class QualifiedElementOperations {
 
-	private static final Pattern QUALIFIED_NAME_SEPARATOR_PATTERN = Pattern.compile("\\.|::");
-	
-	public static String getName(QualifiedElement qualifiedElement) {
-		String qualifiedName = qualifiedElement.getQualifiedName();
-		if (qualifiedName != null) {
-			String[] segments = QUALIFIED_NAME_SEPARATOR_PATTERN.split(qualifiedName);
-			return segments[segments.length - 1];
-		}
-		return null;
+	public static String getQualifiedName(QualifiedElement qualifiedElement) {
+		String packageName = qualifiedElement.getPackageName();
+		return packageName != null ? packageName + "." + qualifiedElement.getName() : qualifiedElement.getName();
 	}
 
-	public static String getQualifier(QualifiedElement qualifiedElement) {
-		String qualifiedName = qualifiedElement.getQualifiedName();
-		if (qualifiedName != null) {
-			int index = qualifiedName.lastIndexOf("::");
+	public static void setQualifiedName(QualifiedElement qualifiedElement, String newQualifiedName) {
+		if (newQualifiedName != null) {
+			int index = newQualifiedName.lastIndexOf(".");
+			int nameIndex = index + 1;
 			if (index == -1) {
-				index = qualifiedName.lastIndexOf(".");
+				index = newQualifiedName.lastIndexOf("::");
+				++nameIndex;
 			}
 			if (index >= 0) {
-				return qualifiedName.substring(0, index);
+				qualifiedElement.setName(newQualifiedName.substring(nameIndex));
+				qualifiedElement.setPackageName(newQualifiedName.substring(0, index));
+			} else {
+				qualifiedElement.setName(newQualifiedName);
 			}
-			return qualifiedName;
 		}
-		return null;
 	}
 
 }

@@ -35,6 +35,15 @@ public interface MscriptFactory extends EFactory {
 	Module createModule();
 
 	/**
+	 * Returns a new object of class '<em>Import Declaration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Import Declaration</em>'.
+	 * @generated
+	 */
+	ImportDeclaration createImportDeclaration();
+
+	/**
 	 * Returns a new object of class '<em>Enumeration Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

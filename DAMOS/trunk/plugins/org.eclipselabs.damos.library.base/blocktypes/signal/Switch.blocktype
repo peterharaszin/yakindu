@@ -1,14 +1,13 @@
-blockType damos.library.base.signal.Switch
+package damos.library.base.signal
+blockType Switch {
 
-input onTrue
-input control
-input onFalse
-output y
+	input onTrue
+	input control
+	input onFalse
+	output y
 
-behavior {
-
-	func main(onTrue, control, onFalse) -> y {
-		check(real, bool, real) -> real
+	function main(onTrue, control, onFalse) -> y {
+		check(real, boolean, real) -> real
 		
 		static assert onTrue is real() :
 			error "On-true input must be numeric"
@@ -19,7 +18,7 @@ behavior {
 		static assert onTrue is real() && onFalse is real() => unit(onTrue) == unit(onFalse) :
 			error "On-true input and on-false input must have same unit"
 	
-		static assert control is bool :
+		static assert control is boolean :
 			error "Control input must be boolean"
 			
 		eq y =

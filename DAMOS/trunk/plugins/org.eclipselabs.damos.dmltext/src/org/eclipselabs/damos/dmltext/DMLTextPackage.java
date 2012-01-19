@@ -97,6 +97,197 @@ public interface DMLTextPackage extends EPackage {
 	int ROOT_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl <em>Mscript Block Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl
+	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptBlockType()
+	 * @generated
+	 */
+	int MSCRIPT_BLOCK_TYPE = 1;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__EANNOTATIONS = DMLPackage.BLOCK_TYPE__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__QUALIFIED_NAME = DMLPackage.BLOCK_TYPE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__NAME = DMLPackage.BLOCK_TYPE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__PACKAGE_NAME = DMLPackage.BLOCK_TYPE__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Belonging Categories</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__BELONGING_CATEGORIES = DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES;
+
+	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__PARAMETERS = DMLPackage.BLOCK_TYPE__PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Input Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__INPUT_DEFINITIONS = DMLPackage.BLOCK_TYPE__INPUT_DEFINITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Output Definitions</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__OUTPUT_DEFINITIONS = DMLPackage.BLOCK_TYPE__OUTPUT_DEFINITIONS;
+
+	/**
+	 * The feature id for the '<em><b>Behavior</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__BEHAVIOR = DMLPackage.BLOCK_TYPE__BEHAVIOR;
+
+	/**
+	 * The feature id for the '<em><b>Timing</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__TIMING = DMLPackage.BLOCK_TYPE__TIMING;
+
+	/**
+	 * The feature id for the '<em><b>Import Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS = DMLPackage.BLOCK_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Mscript Block Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_BLOCK_TYPE_FEATURE_COUNT = DMLPackage.BLOCK_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptSystemInterfaceImpl <em>Mscript System Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.dmltext.impl.MscriptSystemInterfaceImpl
+	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptSystemInterface()
+	 * @generated
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE = 2;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE__QUALIFIED_NAME = DMLPackage.SYSTEM_INTERFACE__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE__NAME = DMLPackage.SYSTEM_INTERFACE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Package Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE__PACKAGE_NAME = DMLPackage.SYSTEM_INTERFACE__PACKAGE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Inlets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE__INLETS = DMLPackage.SYSTEM_INTERFACE__INLETS;
+
+	/**
+	 * The feature id for the '<em><b>Outlets</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE__OUTLETS = DMLPackage.SYSTEM_INTERFACE__OUTLETS;
+
+	/**
+	 * The feature id for the '<em><b>Import Declarations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS = DMLPackage.SYSTEM_INTERFACE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Mscript System Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MSCRIPT_SYSTEM_INTERFACE_FEATURE_COUNT = DMLPackage.SYSTEM_INTERFACE_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptDataTypeSpecificationImpl <em>Mscript Data Type Specification</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -104,7 +295,7 @@ public interface DMLTextPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptDataTypeSpecification()
 	 * @generated
 	 */
-	int MSCRIPT_DATA_TYPE_SPECIFICATION = 1;
+	int MSCRIPT_DATA_TYPE_SPECIFICATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Specifier</b></em>' containment reference.
@@ -142,16 +333,16 @@ public interface DMLTextPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptBehaviorSpecification()
 	 * @generated
 	 */
-	int MSCRIPT_BEHAVIOR_SPECIFICATION = 2;
+	int MSCRIPT_BEHAVIOR_SPECIFICATION = 4;
 
 	/**
-	 * The feature id for the '<em><b>Module</b></em>' containment reference.
+	 * The feature id for the '<em><b>Declarations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MSCRIPT_BEHAVIOR_SPECIFICATION__MODULE = DMLPackage.BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 0;
+	int MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS = DMLPackage.BEHAVIOR_SPECIFICATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Mscript Behavior Specification</em>' class.
@@ -171,7 +362,7 @@ public interface DMLTextPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptValueSpecification()
 	 * @generated
 	 */
-	int MSCRIPT_VALUE_SPECIFICATION = 3;
+	int MSCRIPT_VALUE_SPECIFICATION = 5;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -225,6 +416,48 @@ public interface DMLTextPackage extends EPackage {
 	EReference getRoot_SystemInterfaces();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dmltext.MscriptBlockType <em>Mscript Block Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mscript Block Type</em>'.
+	 * @see org.eclipselabs.damos.dmltext.MscriptBlockType
+	 * @generated
+	 */
+	EClass getMscriptBlockType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dmltext.MscriptBlockType#getImportDeclarations <em>Import Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Import Declarations</em>'.
+	 * @see org.eclipselabs.damos.dmltext.MscriptBlockType#getImportDeclarations()
+	 * @see #getMscriptBlockType()
+	 * @generated
+	 */
+	EReference getMscriptBlockType_ImportDeclarations();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipselabs.damos.dmltext.MscriptSystemInterface <em>Mscript System Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Mscript System Interface</em>'.
+	 * @see org.eclipselabs.damos.dmltext.MscriptSystemInterface
+	 * @generated
+	 */
+	EClass getMscriptSystemInterface();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dmltext.MscriptSystemInterface#getImportDeclarations <em>Import Declarations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Import Declarations</em>'.
+	 * @see org.eclipselabs.damos.dmltext.MscriptSystemInterface#getImportDeclarations()
+	 * @see #getMscriptSystemInterface()
+	 * @generated
+	 */
+	EReference getMscriptSystemInterface_ImportDeclarations();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification <em>Mscript Data Type Specification</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,15 +500,15 @@ public interface DMLTextPackage extends EPackage {
 	EClass getMscriptBehaviorSpecification();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification#getModule <em>Module</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification#getDeclarations <em>Declarations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Module</em>'.
-	 * @see org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification#getModule()
+	 * @return the meta object for the containment reference list '<em>Declarations</em>'.
+	 * @see org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification#getDeclarations()
 	 * @see #getMscriptBehaviorSpecification()
 	 * @generated
 	 */
-	EReference getMscriptBehaviorSpecification_Module();
+	EReference getMscriptBehaviorSpecification_Declarations();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dmltext.MscriptValueSpecification <em>Mscript Value Specification</em>}'.
@@ -347,6 +580,42 @@ public interface DMLTextPackage extends EPackage {
 		EReference ROOT__SYSTEM_INTERFACES = eINSTANCE.getRoot_SystemInterfaces();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl <em>Mscript Block Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl
+		 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptBlockType()
+		 * @generated
+		 */
+		EClass MSCRIPT_BLOCK_TYPE = eINSTANCE.getMscriptBlockType();
+
+		/**
+		 * The meta object literal for the '<em><b>Import Declarations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS = eINSTANCE.getMscriptBlockType_ImportDeclarations();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptSystemInterfaceImpl <em>Mscript System Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.dmltext.impl.MscriptSystemInterfaceImpl
+		 * @see org.eclipselabs.damos.dmltext.impl.DMLTextPackageImpl#getMscriptSystemInterface()
+		 * @generated
+		 */
+		EClass MSCRIPT_SYSTEM_INTERFACE = eINSTANCE.getMscriptSystemInterface();
+
+		/**
+		 * The meta object literal for the '<em><b>Import Declarations</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MSCRIPT_SYSTEM_INTERFACE__IMPORT_DECLARATIONS = eINSTANCE.getMscriptSystemInterface_ImportDeclarations();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptDataTypeSpecificationImpl <em>Mscript Data Type Specification</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -383,12 +652,12 @@ public interface DMLTextPackage extends EPackage {
 		EClass MSCRIPT_BEHAVIOR_SPECIFICATION = eINSTANCE.getMscriptBehaviorSpecification();
 
 		/**
-		 * The meta object literal for the '<em><b>Module</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Declarations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference MSCRIPT_BEHAVIOR_SPECIFICATION__MODULE = eINSTANCE.getMscriptBehaviorSpecification_Module();
+		EReference MSCRIPT_BEHAVIOR_SPECIFICATION__DECLARATIONS = eINSTANCE.getMscriptBehaviorSpecification_Declarations();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dmltext.impl.MscriptValueSpecificationImpl <em>Mscript Value Specification</em>}' class.

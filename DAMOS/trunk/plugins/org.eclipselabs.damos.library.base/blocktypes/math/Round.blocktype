@@ -1,15 +1,15 @@
-blockType damos.library.base.math.Round
+package damos.library.base.math
 
-input u
-output y
+blockType Round {
 
-parameter kind = 0 predefined {
-	0 as "round"
-}
+	input u
+	output y
+	
+	parameter kind = 0 predefined {
+		0 as "round"
+	}
 
-behavior {
-
-	func main<kind>(u) -> y {
+	function main<kind>(u) -> y {
 		check<0>(real) -> int
 		
 		static assert u is real() :

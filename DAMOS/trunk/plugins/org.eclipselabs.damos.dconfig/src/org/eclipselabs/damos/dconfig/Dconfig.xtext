@@ -6,7 +6,7 @@ import "platform:/resource/org.eclipselabs.damos.mscript/model/ComputationModel.
 import 'http://www.eclipse.org/emf/2002/Ecore' as ecore
 
 Configuration:
-	'package' package=QualifiedName
+	'package' packageName=QualifiedName
 	(importDeclarations+=ImportDeclaration)*
 	'configuration' name=ValidID ('extends' baseConfiguration=[Configuration|QualifiedName])? '{'
 		(runnerSpecifier=RunnerSpecifier)?
@@ -14,9 +14,6 @@ Configuration:
 		rootSystemConfiguration=RootSystemConfiguration (properties+=DeclaredProperty)*)?
 	'}';
 	
-ImportDeclaration:
-	'import' importedNamespace=QualifiedNameWithWildcard;
-
 RunnerSpecifier:
 	(auto?='auto')? 'run' runnerDeclaration=[RunnerDeclaration|QualifiedName];
 
@@ -27,10 +24,10 @@ DeclaredProperty:
 	SimpleProperty | SelectionProperty;
 	
 SimpleProperty:
-	(declaration=[SimplePropertyDeclaration|QualifiedNameWithoutIJ] '=' value=Expression | 'unset' declaration=[SimplePropertyDeclaration|QualifiedName]) (propagate?='~>')?;
+	(propagate?='propagate')? (declaration=[SimplePropertyDeclaration|QualifiedNameWithoutIJ] '=' value=Expression | 'unset' declaration=[SimplePropertyDeclaration|QualifiedName]);
 
 SelectionProperty:
-	'select' declaration=[SelectionPropertyDeclaration|QualifiedName] selection=[SelectionPropertyOption|QualifiedName] ('as' name=ValidID)? (propagate?='~>')? (body=SelectionPropertyBody)?;
+	(propagate?='propagate')? 'select' declaration=[SelectionPropertyDeclaration|QualifiedName] selection=[SelectionPropertyOption|QualifiedName] ('as' name=ValidID)? (body=SelectionPropertyBody)?;
 	
 SelectionPropertyBody:
 	{SelectionPropertyBody} '{'
@@ -69,7 +66,7 @@ ComponentConfigurationBody:
 	'}';
 
 ComputationProperty:
-	'computation' computationModel=[ComputationModel|QualifiedName] (propagate?='~>')?;
+	(propagate?='propagate')? 'computation' computationModel=[ComputationModel|QualifiedName];
 	
 Mapping:
 	'map' source=[Component|ValidID] 'to' targetProperty=[SelectionProperty|ValidID]

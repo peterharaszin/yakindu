@@ -1,6 +1,10 @@
-blockType damos.library.vi.controls.Slider
+package damos.library.vi.controls
 
-output _output
+blockType Slider {
 
-parameter minimumValue = 0
-parameter maximumValue = 1
+	output _output
+	
+	parameter minimumValue = 0
+	parameter maximumValue = 1
+
+}

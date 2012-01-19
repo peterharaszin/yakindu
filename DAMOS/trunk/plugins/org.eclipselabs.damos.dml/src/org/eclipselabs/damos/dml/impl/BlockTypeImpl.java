@@ -48,7 +48,7 @@ import org.eclipselabs.damos.dml.internal.util.URIUtil;
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getQualifiedName <em>Qualified Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getQualifier <em>Qualifier</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getPackageName <em>Package Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getBelongingCategories <em>Belonging Categories</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dml.impl.BlockTypeImpl#getInputDefinitions <em>Input Definitions</em>}</li>
@@ -72,25 +72,6 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	protected static final String QUALIFIED_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getQualifiedName() <em>Qualified Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getQualifiedName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
-
-	/**
-	 * This is true if the Qualified Name attribute has been set.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean qualifiedNameESet;
-
-	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,14 +82,34 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	protected static final String NAME_EDEFAULT = null;
 
 	/**
-	 * The default value of the '{@link #getQualifier() <em>Qualifier</em>}' attribute.
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getQualifier()
+	 * @see #getName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String QUALIFIER_EDEFAULT = null;
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPackageName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PACKAGE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPackageName() <em>Package Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPackageName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String packageName = PACKAGE_NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getBelongingCategories() <em>Belonging Categories</em>}' reference list.
@@ -211,65 +212,61 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public String getQualifiedName() {
-		return qualifiedName;
+		return QualifiedElementOperations.getQualifiedName(this);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setQualifiedName(String newQualifiedName) {
-		String oldQualifiedName = qualifiedName;
-		qualifiedName = newQualifiedName;
-		boolean oldQualifiedNameESet = qualifiedNameESet;
-		qualifiedNameESet = true;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__QUALIFIED_NAME, oldQualifiedName, qualifiedName, !oldQualifiedNameESet));
+		QualifiedElementOperations.setQualifiedName(this, newQualifiedName);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
-	 */
-	public void unsetQualifiedName() {
-		String oldQualifiedName = qualifiedName;
-		boolean oldQualifiedNameESet = qualifiedNameESet;
-		qualifiedName = QUALIFIED_NAME_EDEFAULT;
-		qualifiedNameESet = false;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.UNSET, DMLPackage.BLOCK_TYPE__QUALIFIED_NAME, oldQualifiedName, QUALIFIED_NAME_EDEFAULT, oldQualifiedNameESet));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isSetQualifiedName() {
-		return qualifiedNameESet;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
 	 */
 	public String getName() {
-		return QualifiedElementOperations.getName(this);
+		return name;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public String getQualifier() {
-		return QualifiedElementOperations.getQualifier(this);
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPackageName() {
+		return packageName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPackageName(String newPackageName) {
+		String oldPackageName = packageName;
+		packageName = newPackageName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DMLPackage.BLOCK_TYPE__PACKAGE_NAME, oldPackageName, packageName));
 	}
 
 	/**
@@ -495,8 +492,8 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 				return getQualifiedName();
 			case DMLPackage.BLOCK_TYPE__NAME:
 				return getName();
-			case DMLPackage.BLOCK_TYPE__QUALIFIER:
-				return getQualifier();
+			case DMLPackage.BLOCK_TYPE__PACKAGE_NAME:
+				return getPackageName();
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				return getBelongingCategories();
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
@@ -524,6 +521,12 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 		switch (featureID) {
 			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
+				return;
+			case DMLPackage.BLOCK_TYPE__NAME:
+				setName((String)newValue);
+				return;
+			case DMLPackage.BLOCK_TYPE__PACKAGE_NAME:
+				setPackageName((String)newValue);
 				return;
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				getBelongingCategories().clear();
@@ -560,7 +563,13 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
-				unsetQualifiedName();
+				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
+				return;
+			case DMLPackage.BLOCK_TYPE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case DMLPackage.BLOCK_TYPE__PACKAGE_NAME:
+				setPackageName(PACKAGE_NAME_EDEFAULT);
 				return;
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				getBelongingCategories().clear();
@@ -593,11 +602,11 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME:
-				return isSetQualifiedName();
+				return QUALIFIED_NAME_EDEFAULT == null ? getQualifiedName() != null : !QUALIFIED_NAME_EDEFAULT.equals(getQualifiedName());
 			case DMLPackage.BLOCK_TYPE__NAME:
-				return NAME_EDEFAULT == null ? getName() != null : !NAME_EDEFAULT.equals(getName());
-			case DMLPackage.BLOCK_TYPE__QUALIFIER:
-				return QUALIFIER_EDEFAULT == null ? getQualifier() != null : !QUALIFIER_EDEFAULT.equals(getQualifier());
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DMLPackage.BLOCK_TYPE__PACKAGE_NAME:
+				return PACKAGE_NAME_EDEFAULT == null ? packageName != null : !PACKAGE_NAME_EDEFAULT.equals(packageName);
 			case DMLPackage.BLOCK_TYPE__BELONGING_CATEGORIES:
 				return belongingCategories != null && !belongingCategories.isEmpty();
 			case DMLPackage.BLOCK_TYPE__PARAMETERS:
@@ -630,7 +639,7 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			switch (derivedFeatureID) {
 				case DMLPackage.BLOCK_TYPE__QUALIFIED_NAME: return DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME;
 				case DMLPackage.BLOCK_TYPE__NAME: return DMLPackage.QUALIFIED_ELEMENT__NAME;
-				case DMLPackage.BLOCK_TYPE__QUALIFIER: return DMLPackage.QUALIFIED_ELEMENT__QUALIFIER;
+				case DMLPackage.BLOCK_TYPE__PACKAGE_NAME: return DMLPackage.QUALIFIED_ELEMENT__PACKAGE_NAME;
 				default: return -1;
 			}
 		}
@@ -665,7 +674,7 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 			switch (baseFeatureID) {
 				case DMLPackage.QUALIFIED_ELEMENT__QUALIFIED_NAME: return DMLPackage.BLOCK_TYPE__QUALIFIED_NAME;
 				case DMLPackage.QUALIFIED_ELEMENT__NAME: return DMLPackage.BLOCK_TYPE__NAME;
-				case DMLPackage.QUALIFIED_ELEMENT__QUALIFIER: return DMLPackage.BLOCK_TYPE__QUALIFIER;
+				case DMLPackage.QUALIFIED_ELEMENT__PACKAGE_NAME: return DMLPackage.BLOCK_TYPE__PACKAGE_NAME;
 				default: return -1;
 			}
 		}
@@ -694,8 +703,10 @@ public class BlockTypeImpl extends EModelElementImpl implements BlockType {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (qualifiedName: ");
-		if (qualifiedNameESet) result.append(qualifiedName); else result.append("<unset>");
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", packageName: ");
+		result.append(packageName);
 		result.append(", timing: ");
 		result.append(timing);
 		result.append(')');

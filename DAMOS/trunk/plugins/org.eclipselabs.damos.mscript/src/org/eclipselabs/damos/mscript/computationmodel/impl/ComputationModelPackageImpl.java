@@ -18,12 +18,11 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
+import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -44,6 +43,13 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EEnum predefinedFixedPointFormatKindEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass numberFormatEClass = null;
 
 	/**
@@ -52,13 +58,6 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * @generated
 	 */
 	private EClass fixedPointFormatEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass fixedPointOperationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,13 +79,6 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * @generated
 	 */
 	private EEnum floatingPointFormatKindEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum fixedPointOperationKindEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -175,8 +167,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getNumberFormat() {
-		return numberFormatEClass;
+	public EEnum getPredefinedFixedPointFormatKind() {
+		return predefinedFixedPointFormatKindEEnum;
 	}
 
 	/**
@@ -184,8 +176,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNumberFormat_Name() {
-		return (EAttribute)numberFormatEClass.getEStructuralFeatures().get(0);
+	public EClass getNumberFormat() {
+		return numberFormatEClass;
 	}
 
 	/**
@@ -202,7 +194,7 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFixedPointFormat_IntegerLength() {
+	public EAttribute getFixedPointFormat_PredefinedKind() {
 		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -211,7 +203,7 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFixedPointFormat_FractionLength() {
+	public EAttribute getFixedPointFormat_Unsigned() {
 		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -220,7 +212,7 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFixedPointFormat_WordSize() {
+	public EAttribute getFixedPointFormat_IntegerLength() {
 		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -229,8 +221,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFixedPointFormat_Operations() {
-		return (EReference)fixedPointFormatEClass.getEStructuralFeatures().get(3);
+	public EAttribute getFixedPointFormat_FractionLength() {
+		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -238,8 +230,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFixedPointOperation() {
-		return fixedPointOperationEClass;
+	public EAttribute getFixedPointFormat_WordSize() {
+		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -247,8 +239,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFixedPointOperation_Kind() {
-		return (EAttribute)fixedPointOperationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFixedPointFormat_Slope() {
+		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -256,8 +248,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFixedPointOperation_IntermediateWordSize() {
-		return (EAttribute)fixedPointOperationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getFixedPointFormat_Bias() {
+		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -265,8 +257,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFixedPointOperation_Saturate() {
-		return (EAttribute)fixedPointOperationEClass.getEStructuralFeatures().get(2);
+	public EAttribute getFixedPointFormat_Saturate() {
+		return (EAttribute)fixedPointFormatEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -283,17 +275,8 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComputationModel_NumberFormats() {
-		return (EReference)computationModelEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getComputationModel_NumberFormatMappings() {
-		return (EReference)computationModelEClass.getEStructuralFeatures().get(2);
+		return (EReference)computationModelEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -346,15 +329,6 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getFixedPointOperationKind() {
-		return fixedPointOperationKindEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public ComputationModelFactory getComputationModelFactory() {
 		return (ComputationModelFactory)getEFactoryInstance();
 	}
@@ -378,35 +352,32 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		isCreated = true;
 
 		// Create classes and their features
-		floatingPointFormatEClass = createEClass(FLOATING_POINT_FORMAT);
-		createEAttribute(floatingPointFormatEClass, FLOATING_POINT_FORMAT__KIND);
-
-		numberFormatEClass = createEClass(NUMBER_FORMAT);
-		createEAttribute(numberFormatEClass, NUMBER_FORMAT__NAME);
-
-		fixedPointFormatEClass = createEClass(FIXED_POINT_FORMAT);
-		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__INTEGER_LENGTH);
-		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__FRACTION_LENGTH);
-		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__WORD_SIZE);
-		createEReference(fixedPointFormatEClass, FIXED_POINT_FORMAT__OPERATIONS);
-
-		fixedPointOperationEClass = createEClass(FIXED_POINT_OPERATION);
-		createEAttribute(fixedPointOperationEClass, FIXED_POINT_OPERATION__KIND);
-		createEAttribute(fixedPointOperationEClass, FIXED_POINT_OPERATION__INTERMEDIATE_WORD_SIZE);
-		createEAttribute(fixedPointOperationEClass, FIXED_POINT_OPERATION__SATURATE);
-
 		computationModelEClass = createEClass(COMPUTATION_MODEL);
 		createEAttribute(computationModelEClass, COMPUTATION_MODEL__QUALIFIED_NAME);
-		createEReference(computationModelEClass, COMPUTATION_MODEL__NUMBER_FORMATS);
 		createEReference(computationModelEClass, COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS);
 
 		numberFormatMappingEClass = createEClass(NUMBER_FORMAT_MAPPING);
 		createEReference(numberFormatMappingEClass, NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER);
 		createEReference(numberFormatMappingEClass, NUMBER_FORMAT_MAPPING__NUMBER_FORMAT);
 
+		numberFormatEClass = createEClass(NUMBER_FORMAT);
+
+		fixedPointFormatEClass = createEClass(FIXED_POINT_FORMAT);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__PREDEFINED_KIND);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__UNSIGNED);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__INTEGER_LENGTH);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__FRACTION_LENGTH);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__WORD_SIZE);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__SLOPE);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__BIAS);
+		createEAttribute(fixedPointFormatEClass, FIXED_POINT_FORMAT__SATURATE);
+
+		floatingPointFormatEClass = createEClass(FLOATING_POINT_FORMAT);
+		createEAttribute(floatingPointFormatEClass, FLOATING_POINT_FORMAT__KIND);
+
 		// Create enums
+		predefinedFixedPointFormatKindEEnum = createEEnum(PREDEFINED_FIXED_POINT_FORMAT_KIND);
 		floatingPointFormatKindEEnum = createEEnum(FLOATING_POINT_FORMAT_KIND);
-		fixedPointOperationKindEEnum = createEEnum(FIXED_POINT_OPERATION_KIND);
 	}
 
 	/**
@@ -440,46 +411,61 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		floatingPointFormatEClass.getESuperTypes().add(this.getNumberFormat());
 		fixedPointFormatEClass.getESuperTypes().add(this.getNumberFormat());
+		floatingPointFormatEClass.getESuperTypes().add(this.getNumberFormat());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(floatingPointFormatEClass, FloatingPointFormat.class, "FloatingPointFormat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFloatingPointFormat_Kind(), this.getFloatingPointFormatKind(), "kind", null, 1, 1, FloatingPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		initEClass(numberFormatEClass, NumberFormat.class, "NumberFormat", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getNumberFormat_Name(), ecorePackage.getEString(), "name", null, 0, 1, NumberFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = addEOperation(numberFormatEClass, ecorePackage.getEBoolean(), "isEquivalentTo", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getNumberFormat(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(fixedPointFormatEClass, FixedPointFormat.class, "FixedPointFormat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFixedPointFormat_IntegerLength(), ecorePackage.getEInt(), "integerLength", "1", 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFixedPointFormat_FractionLength(), ecorePackage.getEInt(), "fractionLength", null, 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFixedPointFormat_WordSize(), ecorePackage.getEInt(), "wordSize", null, 1, 1, FixedPointFormat.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
-		initEReference(getFixedPointFormat_Operations(), this.getFixedPointOperation(), null, "operations", null, 0, -1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
-		op = addEOperation(fixedPointFormatEClass, this.getFixedPointOperation(), "getOperation", 0, 1, IS_UNIQUE, !IS_ORDERED);
-		addEParameter(op, this.getFixedPointOperationKind(), "kind", 1, 1, IS_UNIQUE, !IS_ORDERED);
-
-		initEClass(fixedPointOperationEClass, FixedPointOperation.class, "FixedPointOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFixedPointOperation_Kind(), this.getFixedPointOperationKind(), "kind", null, 1, 1, FixedPointOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFixedPointOperation_IntermediateWordSize(), ecorePackage.getEInt(), "intermediateWordSize", null, 1, 1, FixedPointOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEAttribute(getFixedPointOperation_Saturate(), ecorePackage.getEBoolean(), "saturate", null, 1, 1, FixedPointOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-
 		initEClass(computationModelEClass, ComputationModel.class, "ComputationModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getComputationModel_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, ComputationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComputationModel_NumberFormats(), this.getNumberFormat(), null, "numberFormats", null, 0, -1, ComputationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEReference(getComputationModel_NumberFormatMappings(), this.getNumberFormatMapping(), null, "numberFormatMappings", null, 0, -1, ComputationModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		EOperation op = addEOperation(computationModelEClass, this.getNumberFormatMapping(), "getNumberFormatMapping", 0, 1, IS_UNIQUE, !IS_ORDERED);
+		addEParameter(op, theMscriptPackage.getDataType(), "dataType", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		op = addEOperation(computationModelEClass, this.getNumberFormat(), "getNumberFormat", 0, 1, IS_UNIQUE, !IS_ORDERED);
 		addEParameter(op, theMscriptPackage.getDataType(), "dataType", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(numberFormatMappingEClass, NumberFormatMapping.class, "NumberFormatMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNumberFormatMapping_TypeSpecifier(), theMscriptPackage.getDataTypeSpecifier(), null, "typeSpecifier", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		initEReference(getNumberFormatMapping_NumberFormat(), this.getNumberFormat(), null, "numberFormat", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEReference(getNumberFormatMapping_NumberFormat(), this.getNumberFormat(), null, "numberFormat", null, 0, 1, NumberFormatMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(numberFormatEClass, NumberFormat.class, "NumberFormat", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = addEOperation(numberFormatEClass, ecorePackage.getEBoolean(), "isEquivalentTo", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNumberFormat(), "other", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(fixedPointFormatEClass, FixedPointFormat.class, "FixedPointFormat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFixedPointFormat_PredefinedKind(), this.getPredefinedFixedPointFormatKind(), "predefinedKind", null, 0, 1, FixedPointFormat.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFixedPointFormat_Unsigned(), ecorePackage.getEBoolean(), "unsigned", null, 0, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFixedPointFormat_IntegerLength(), ecorePackage.getEInt(), "integerLength", "1", 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFixedPointFormat_FractionLength(), ecorePackage.getEInt(), "fractionLength", null, 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFixedPointFormat_WordSize(), ecorePackage.getEInt(), "wordSize", null, 1, 1, FixedPointFormat.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFixedPointFormat_Slope(), ecorePackage.getEDouble(), "slope", "1.0", 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFixedPointFormat_Bias(), ecorePackage.getEDouble(), "bias", "0.0", 1, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+		initEAttribute(getFixedPointFormat_Saturate(), ecorePackage.getEBoolean(), "saturate", null, 0, 1, FixedPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(floatingPointFormatEClass, FloatingPointFormat.class, "FloatingPointFormat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFloatingPointFormat_Kind(), this.getFloatingPointFormatKind(), "kind", null, 1, 1, FloatingPointFormat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		// Initialize enums and add enum literals
+		initEEnum(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.class, "PredefinedFixedPointFormatKind");
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.NONE);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.INT8);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.INT16);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.INT32);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.INT64);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.INT128);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.UINT8);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.UINT16);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.UINT32);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.UINT64);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.UINT128);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.FRACT8);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.FRACT16);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.FRACT32);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.FRACT64);
+		addEEnumLiteral(predefinedFixedPointFormatKindEEnum, PredefinedFixedPointFormatKind.FRACT128);
+
 		initEEnum(floatingPointFormatKindEEnum, FloatingPointFormatKind.class, "FloatingPointFormatKind");
 		addEEnumLiteral(floatingPointFormatKindEEnum, FloatingPointFormatKind.BINARY16);
 		addEEnumLiteral(floatingPointFormatKindEEnum, FloatingPointFormatKind.BINARY32);
@@ -488,14 +474,6 @@ public class ComputationModelPackageImpl extends EPackageImpl implements Computa
 		addEEnumLiteral(floatingPointFormatKindEEnum, FloatingPointFormatKind.DECIMAL32);
 		addEEnumLiteral(floatingPointFormatKindEEnum, FloatingPointFormatKind.DECIMAL64);
 		addEEnumLiteral(floatingPointFormatKindEEnum, FloatingPointFormatKind.DECIMAL128);
-
-		initEEnum(fixedPointOperationKindEEnum, FixedPointOperationKind.class, "FixedPointOperationKind");
-		addEEnumLiteral(fixedPointOperationKindEEnum, FixedPointOperationKind.CONSTRUCT);
-		addEEnumLiteral(fixedPointOperationKindEEnum, FixedPointOperationKind.CAST);
-		addEEnumLiteral(fixedPointOperationKindEEnum, FixedPointOperationKind.ADD);
-		addEEnumLiteral(fixedPointOperationKindEEnum, FixedPointOperationKind.SUBTRACT);
-		addEEnumLiteral(fixedPointOperationKindEEnum, FixedPointOperationKind.MULTIPLY);
-		addEEnumLiteral(fixedPointOperationKindEEnum, FixedPointOperationKind.DIVIDE);
 
 		// Create resource
 		createResource(eNS_URI);

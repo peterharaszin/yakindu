@@ -909,7 +909,7 @@ public interface DconfigPackage extends EPackage {
 	int COMPUTATION_PROPERTY__PROPAGATE = PROPERTY__PROPAGATE;
 
 	/**
-	 * The feature id for the '<em><b>Computation Model</b></em>' reference.
+	 * The feature id for the '<em><b>Computation Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1906,10 +1906,10 @@ public interface DconfigPackage extends EPackage {
 	EClass getComputationProperty();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.ComputationProperty#getComputationModel <em>Computation Model</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.ComputationProperty#getComputationModel <em>Computation Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Computation Model</em>'.
+	 * @return the meta object for the containment reference '<em>Computation Model</em>'.
 	 * @see org.eclipselabs.damos.dconfig.ComputationProperty#getComputationModel()
 	 * @see #getComputationProperty()
 	 * @generated
@@ -2721,7 +2721,7 @@ public interface DconfigPackage extends EPackage {
 		EClass COMPUTATION_PROPERTY = eINSTANCE.getComputationProperty();
 
 		/**
-		 * The meta object literal for the '<em><b>Computation Model</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Computation Model</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

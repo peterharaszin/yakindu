@@ -32,7 +32,6 @@ import org.eclipselabs.damos.mscript.internal.computationmodel.operations.Comput
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl#getQualifiedName <em>Qualified Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl#getNumberFormats <em>Number Formats</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl#getNumberFormatMappings <em>Number Format Mappings</em>}</li>
  * </ul>
  * </p>
@@ -59,16 +58,6 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	 * @ordered
 	 */
 	protected String qualifiedName = QUALIFIED_NAME_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getNumberFormats() <em>Number Formats</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getNumberFormats()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<NumberFormat> numberFormats;
 
 	/**
 	 * The cached value of the '{@link #getNumberFormatMappings() <em>Number Format Mappings</em>}' containment reference list.
@@ -104,23 +93,20 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<NumberFormat> getNumberFormats() {
-		if (numberFormats == null) {
-			numberFormats = new EObjectContainmentEList<NumberFormat>(NumberFormat.class, this, ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMATS);
-		}
-		return numberFormats;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<NumberFormatMapping> getNumberFormatMappings() {
 		if (numberFormatMappings == null) {
 			numberFormatMappings = new EObjectContainmentEList<NumberFormatMapping>(NumberFormatMapping.class, this, ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS);
 		}
 		return numberFormatMappings;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public NumberFormatMapping getNumberFormatMapping(DataType dataType) {
+		return ComputationModelOperations.getNumberFormatMapping(this, dataType);
 	}
 
 	/**
@@ -161,8 +147,6 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMATS:
-				return ((InternalEList<?>)getNumberFormats()).basicRemove(otherEnd, msgs);
 			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				return ((InternalEList<?>)getNumberFormatMappings()).basicRemove(otherEnd, msgs);
 		}
@@ -179,8 +163,6 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 		switch (featureID) {
 			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				return getQualifiedName();
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMATS:
-				return getNumberFormats();
 			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				return getNumberFormatMappings();
 		}
@@ -198,10 +180,6 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 		switch (featureID) {
 			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				setQualifiedName((String)newValue);
-				return;
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMATS:
-				getNumberFormats().clear();
-				getNumberFormats().addAll((Collection<? extends NumberFormat>)newValue);
 				return;
 			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				getNumberFormatMappings().clear();
@@ -222,9 +200,6 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				setQualifiedName(QUALIFIED_NAME_EDEFAULT);
 				return;
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMATS:
-				getNumberFormats().clear();
-				return;
 			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				getNumberFormatMappings().clear();
 				return;
@@ -242,8 +217,6 @@ public class ComputationModelImpl extends EObjectImpl implements ComputationMode
 		switch (featureID) {
 			case ComputationModelPackage.COMPUTATION_MODEL__QUALIFIED_NAME:
 				return QUALIFIED_NAME_EDEFAULT == null ? qualifiedName != null : !QUALIFIED_NAME_EDEFAULT.equals(qualifiedName);
-			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMATS:
-				return numberFormats != null && !numberFormats.isEmpty();
 			case ComputationModelPackage.COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS:
 				return numberFormatMappings != null && !numberFormatMappings.isEmpty();
 		}

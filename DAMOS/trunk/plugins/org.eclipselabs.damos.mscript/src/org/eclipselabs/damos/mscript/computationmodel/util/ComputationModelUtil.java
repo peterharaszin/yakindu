@@ -18,8 +18,6 @@ import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
@@ -36,11 +34,9 @@ public class ComputationModelUtil {
 		
 		FloatingPointFormat floatingPointFormat = ComputationModelFactory.eINSTANCE.createFloatingPointFormat();
 		floatingPointFormat.setKind(FloatingPointFormatKind.BINARY64);
-		computationModel.getNumberFormats().add(floatingPointFormat);
 		
 		FixedPointFormat fixedPointFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
 		fixedPointFormat.setIntegerLength(64);
-		computationModel.getNumberFormats().add(fixedPointFormat);
 		
 		NumberFormatMapping mapping = ComputationModelFactory.eINSTANCE.createNumberFormatMapping();
 		RealType realType = MscriptFactory.eINSTANCE.createRealType();
@@ -61,17 +57,6 @@ public class ComputationModelUtil {
 		computationModel.getNumberFormatMappings().add(mapping);
 
 		return computationModel;
-	}
-	
-	public static FixedPointOperation getFixedPointOperation(FixedPointFormat fixedPointFormat, FixedPointOperationKind kind) {
-		FixedPointOperation operation = fixedPointFormat.getOperation(kind);
-		if (operation == null) {
-			operation = ComputationModelFactory.eINSTANCE.createFixedPointOperation();
-			operation.setKind(kind);
-			operation.setIntermediateWordSize(fixedPointFormat.getWordSize());
-			operation.setSaturate(false);
-		}
-		return operation;
 	}
 	
 	public static NumberFormat getWidestNumberFormat(NumberFormat numberFormat1, NumberFormat numberFormat2) {

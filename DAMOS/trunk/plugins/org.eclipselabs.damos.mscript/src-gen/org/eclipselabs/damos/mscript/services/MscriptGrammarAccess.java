@@ -4874,6 +4874,7 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tN;
 	private TerminalRule tIJ;
 	private TerminalRule tE;
+	private TerminalRule tEXP;
 	private TerminalRule tEXPIJ;
 	private TerminalRule tONE;
 	private TerminalRule tINT;
@@ -6131,8 +6132,14 @@ public class MscriptGrammarAccess extends AbstractGrammarElementFinder {
 		return (tE != null) ? tE : (tE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "E"));
 	} 
 
+	//terminal EXP:
+	//	E "0".."9"+;
+	public TerminalRule getEXPRule() {
+		return (tEXP != null) ? tEXP : (tEXP = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EXP"));
+	} 
+
 	//terminal EXPIJ:
-	//	E "0".."9"+ IJ?;
+	//	EXP IJ;
 	public TerminalRule getEXPIJRule() {
 		return (tEXPIJ != null) ? tEXPIJ : (tEXPIJ = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "EXPIJ"));
 	} 

@@ -117,7 +117,7 @@
                 <type metamodel="/0/@metamodelDeclarations.1">
                   <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/2011/Dconfig#//SimplePropertyDeclaration"/>
                 </type>
-                <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.19"/>
+                <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.26"/>
               </terminal>
             </elements>
             <elements xsi:type="xtext:Keyword" value="="/>
@@ -372,14 +372,11 @@
           <terminal xsi:type="xtext:Keyword" value="propagate"/>
         </elements>
         <elements xsi:type="xtext:Keyword" value="computation"/>
+        <elements xsi:type="xtext:Keyword" value="{"/>
         <elements xsi:type="xtext:Assignment" feature="computationModel" operator="=">
-          <terminal xsi:type="xtext:CrossReference">
-            <type metamodel="/0/@metamodelDeclarations.2">
-              <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//ComputationModel"/>
-            </type>
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.113"/>
-          </terminal>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
         </elements>
+        <elements xsi:type="xtext:Keyword" value="}"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="Mapping">
@@ -451,6 +448,183 @@
         <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
       </alternatives>
     </rules>
+    <rules xsi:type="xtext:ParserRule" name="ComputationModel">
+      <type metamodel="/0/@metamodelDeclarations.2">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//ComputationModel"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Action">
+          <type metamodel="/0/@metamodelDeclarations.2">
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//ComputationModel"/>
+          </type>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="*" feature="numberFormatMappings" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.24"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="NumberFormat">
+      <type metamodel="/0/@metamodelDeclarations.2">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//NumberFormat"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.23"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FloatingPointFormat">
+      <type metamodel="/0/@metamodelDeclarations.2">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormat"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="kind" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.21"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="PredefinedFloatingPointFormatKind">
+      <type metamodel="/0/@metamodelDeclarations.2">
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormatKind"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormatKind/Binary32"/>
+          <literal value="float32"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FloatingPointFormatKind/Binary64"/>
+          <literal value="float64"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="PredefinedFixedPointFormatKind">
+      <type metamodel="/0/@metamodelDeclarations.2">
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int8"/>
+          <literal value="int8"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int16"/>
+          <literal value="int16"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int32"/>
+          <literal value="int32"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int64"/>
+          <literal value="int64"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Int128"/>
+          <literal value="int128"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt8"/>
+          <literal value="uint8"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt16"/>
+          <literal value="uint16"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt32"/>
+          <literal value="uint32"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt64"/>
+          <literal value="uint64"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/UInt128"/>
+          <literal value="uint128"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract8"/>
+          <literal value="fract8"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract16"/>
+          <literal value="fract16"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract32"/>
+          <literal value="fract32"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract64"/>
+          <literal value="fract64"/>
+        </elements>
+        <elements xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//PredefinedFixedPointFormatKind/Fract128"/>
+          <literal value="fract128"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="FixedPointFormat">
+      <type metamodel="/0/@metamodelDeclarations.2">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//FixedPointFormat"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Alternatives">
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Alternatives">
+              <elements xsi:type="xtext:Keyword" value="fix"/>
+              <elements xsi:type="xtext:Assignment" feature="unsigned" operator="?=">
+                <terminal xsi:type="xtext:Keyword" value="ufix"/>
+              </elements>
+            </elements>
+            <elements xsi:type="xtext:Assignment" feature="integerLength" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
+            </elements>
+            <elements xsi:type="xtext:Alternatives">
+              <elements xsi:type="xtext:Group">
+                <elements xsi:type="xtext:Keyword" value="."/>
+                <elements xsi:type="xtext:Assignment" feature="fractionLength" operator="=">
+                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
+                </elements>
+              </elements>
+              <elements xsi:type="xtext:Group">
+                <elements xsi:type="xtext:Group" cardinality="?">
+                  <elements xsi:type="xtext:Keyword" value="slope"/>
+                  <elements xsi:type="xtext:Assignment" feature="slope" operator="=">
+                    <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.28"/>
+                  </elements>
+                </elements>
+                <elements xsi:type="xtext:Group" cardinality="?">
+                  <elements xsi:type="xtext:Keyword" value="bias"/>
+                  <elements xsi:type="xtext:Assignment" feature="bias" operator="=">
+                    <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.28"/>
+                  </elements>
+                </elements>
+              </elements>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Assignment" feature="predefinedKind" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.22"/>
+          </elements>
+        </elements>
+        <elements xsi:type="xtext:Assignment" cardinality="?" feature="saturate" operator="?=">
+          <terminal xsi:type="xtext:Keyword" value="saturate"/>
+        </elements>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="NumberFormatMapping">
+      <type metamodel="/0/@metamodelDeclarations.2">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/ComputationModel#//NumberFormatMapping"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" value="map"/>
+        <elements xsi:type="xtext:Assignment" feature="typeSpecifier" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.21"/>
+        </elements>
+        <elements xsi:type="xtext:Keyword" value="to"/>
+        <elements xsi:type="xtext:Assignment" feature="numberFormat" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.19"/>
+        </elements>
+      </alternatives>
+    </rules>
     <rules xsi:type="xtext:ParserRule" name="QualifiedNameWithWildcard">
       <type metamodel="/0/@metamodelDeclarations.3">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -471,10 +645,10 @@
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
-        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
+        <elements xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
         <elements xsi:type="xtext:Group" cardinality="*">
           <elements xsi:type="xtext:Keyword" value="."/>
-          <elements xsi:type="xtext:RuleCall" rule="/0/@rules.20"/>
+          <elements xsi:type="xtext:RuleCall" rule="/0/@rules.27"/>
         </elements>
       </alternatives>
     </rules>
@@ -485,11 +659,48 @@
       <alternatives xsi:type="xtext:Alternatives">
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.117"/>
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.119"/>
-        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.123"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.124"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="ValidDouble" definesHiddenTokens="true">
+      <type metamodel="/0/@metamodelDeclarations.3">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:Keyword" cardinality="?" value="-"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
+        <elements xsi:type="xtext:Alternatives" cardinality="?">
+          <elements xsi:type="xtext:Group">
+            <elements xsi:type="xtext:Keyword" value="."/>
+            <elements xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
+            <elements xsi:type="xtext:Alternatives" cardinality="?">
+              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.120"/>
+              <elements xsi:type="xtext:Group">
+                <elements xsi:type="xtext:RuleCall" rule="/1/@rules.119"/>
+                <elements xsi:type="xtext:Alternatives">
+                  <elements xsi:type="xtext:Keyword" value="+"/>
+                  <elements xsi:type="xtext:Keyword" value="-"/>
+                </elements>
+                <elements xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
+              </elements>
+            </elements>
+          </elements>
+          <elements xsi:type="xtext:Alternatives">
+            <elements xsi:type="xtext:RuleCall" rule="/1/@rules.120"/>
+            <elements xsi:type="xtext:Group">
+              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.119"/>
+              <elements xsi:type="xtext:Alternatives">
+                <elements xsi:type="xtext:Keyword" value="+"/>
+                <elements xsi:type="xtext:Keyword" value="-"/>
+              </elements>
+              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
+            </elements>
+          </elements>
+        </elements>
       </alternatives>
     </rules>
   </xtext:Grammar>
-  <xtext:Grammar name="org.eclipselabs.damos.mscript.Mscript" definesHiddenTokens="true" hiddenTokens="/1/@rules.127 /1/@rules.125 /1/@rules.126">
+  <xtext:Grammar name="org.eclipselabs.damos.mscript.Mscript" definesHiddenTokens="true" hiddenTokens="/1/@rules.128 /1/@rules.126 /1/@rules.127">
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
       <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </metamodelDeclarations>
@@ -520,7 +731,7 @@
       <alternatives xsi:type="xtext:Group">
         <elements xsi:type="xtext:Keyword" value="import"/>
         <elements xsi:type="xtext:Assignment" feature="importedNamespace" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.18"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.25"/>
         </elements>
       </alternatives>
     </rules>
@@ -1045,7 +1256,7 @@
                   <type metamodel="/1/@metamodelDeclarations.1">
                     <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//DataType"/>
                   </type>
-                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.123"/>
+                  <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.124"/>
                 </terminal>
               </elements>
             </elements>
@@ -1837,7 +2048,7 @@
             <elements xsi:type="xtext:RuleCall" rule="/1/@rules.115"/>
             <elements xsi:type="xtext:Alternatives" cardinality="?">
               <elements xsi:type="xtext:RuleCall" rule="/1/@rules.118"/>
-              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.120"/>
+              <elements xsi:type="xtext:RuleCall" rule="/1/@rules.121"/>
               <elements xsi:type="xtext:Group">
                 <elements xsi:type="xtext:RuleCall" rule="/1/@rules.119"/>
                 <elements xsi:type="xtext:Alternatives">
@@ -1850,7 +2061,7 @@
             </elements>
           </elements>
           <elements xsi:type="xtext:Alternatives">
-            <elements xsi:type="xtext:RuleCall" rule="/1/@rules.120"/>
+            <elements xsi:type="xtext:RuleCall" rule="/1/@rules.121"/>
             <elements xsi:type="xtext:Group">
               <elements xsi:type="xtext:RuleCall" rule="/1/@rules.119"/>
               <elements xsi:type="xtext:Alternatives">
@@ -1909,7 +2120,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//StringLiteral"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.124"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.125"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="FeatureCall">
@@ -2522,7 +2733,7 @@
               <classifier xsi:type="ecore:EClass" href="http://www.eclipselabs.org/damos/mscript/2011/Mscript#//UnitNumerator"/>
             </type>
           </elements>
-          <elements xsi:type="xtext:RuleCall" rule="/1/@rules.121"/>
+          <elements xsi:type="xtext:RuleCall" rule="/1/@rules.122"/>
         </elements>
         <elements xsi:type="xtext:Group">
           <elements xsi:type="xtext:Assignment" feature="factors" operator="+=">
@@ -2627,8 +2838,8 @@
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
-        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.121"/>
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.122"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.123"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="ValidID">
@@ -2639,8 +2850,8 @@
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.117"/>
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.118"/>
         <elements xsi:type="xtext:RuleCall" rule="/1/@rules.119"/>
-        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.120"/>
-        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.123"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.121"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.124"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="N">
@@ -2667,7 +2878,7 @@
         <elements xsi:type="xtext:Keyword" value="E"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:TerminalRule" name="EXPIJ">
+    <rules xsi:type="xtext:TerminalRule" name="EXP">
       <type metamodel="/1/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
@@ -2677,7 +2888,15 @@
           <left value="0"/>
           <right value="9"/>
         </elements>
-        <elements xsi:type="xtext:RuleCall" cardinality="?" rule="/1/@rules.118"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="EXPIJ">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.120"/>
+        <elements xsi:type="xtext:RuleCall" rule="/1/@rules.118"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="ONE">

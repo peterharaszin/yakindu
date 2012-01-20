@@ -1383,7 +1383,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEAttribute(getResourceDeclaration_Count(), ecorePackage.getEInt(), "count", "1", 0, 1, ResourceDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(computationPropertyEClass, ComputationProperty.class, "ComputationProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComputationProperty_ComputationModel(), theComputationModelPackage.getComputationModel(), null, "computationModel", null, 0, 1, ComputationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComputationProperty_ComputationModel(), theComputationModelPackage.getComputationModel(), null, "computationModel", null, 0, 1, ComputationProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(systemConfigurationEClass, SystemConfiguration.class, "SystemConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSystemConfiguration_Body(), this.getSystemConfigurationBody(), this.getSystemConfigurationBody_Owner(), "body", null, 0, 1, SystemConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

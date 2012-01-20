@@ -38,7 +38,7 @@ import org.eclipselabs.damos.dml.Subsystem;
 import org.eclipselabs.damos.dml.SubsystemRealization;
 import org.eclipselabs.damos.dml.util.DMLUtil;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
-import org.eclipselabs.damos.mscript.computationmodel.scoping.ComputationModelScopeProvider;
+import org.eclipselabs.damos.mscript.scoping.MscriptScopeProvider;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -50,7 +50,7 @@ import com.google.common.collect.Iterables;
  * on how and when to use it 
  *
  */
-public class DconfigScopeProvider extends ComputationModelScopeProvider {
+public class DconfigScopeProvider extends MscriptScopeProvider {
 	
 	public IScope scope_Configuration_extendedConfiguration(Configuration context, EReference reference) {
 		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),

@@ -54,26 +54,26 @@ public interface NumberFormatMapping extends EObject {
 	void setTypeSpecifier(DataTypeSpecifier value);
 
 	/**
-	 * Returns the value of the '<em><b>Number Format</b></em>' reference.
+	 * Returns the value of the '<em><b>Number Format</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Number Format</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Number Format</em>' reference.
+	 * @return the value of the '<em>Number Format</em>' containment reference.
 	 * @see #setNumberFormat(NumberFormat)
 	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getNumberFormatMapping_NumberFormat()
-	 * @model ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	NumberFormat getNumberFormat();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getNumberFormat <em>Number Format</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getNumberFormat <em>Number Format</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Number Format</em>' reference.
+	 * @param value the new value of the '<em>Number Format</em>' containment reference.
 	 * @see #getNumberFormat()
 	 * @generated
 	 */

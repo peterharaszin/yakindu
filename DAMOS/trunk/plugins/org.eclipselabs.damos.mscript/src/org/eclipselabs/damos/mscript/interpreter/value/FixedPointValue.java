@@ -19,11 +19,8 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.interpreter.OverflowInfo;
 import org.eclipselabs.damos.mscript.interpreter.util.FixMath;
@@ -76,11 +73,11 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		
 		if (getNumberFormat().getWordSize() > 32) {
 			BigInteger result = BigInteger.valueOf(rawValue).add(BigInteger.valueOf(otherFixedPointValue.rawValue));
-			return createValue(resultDataType, result, FixedPointOperationKind.ADD);
+			return createValue(resultDataType, result);
 		}
 
 		long result = rawValue + otherFixedPointValue.rawValue;
-		return createValue(resultDataType, result, FixedPointOperationKind.ADD);
+		return createValue(resultDataType, result);
 	}
 
 	@Override
@@ -89,11 +86,11 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		
 		if (getNumberFormat().getWordSize() > 32) {
 			BigInteger result = BigInteger.valueOf(rawValue).subtract(BigInteger.valueOf(otherFixedPointValue.rawValue));
-			return createValue(resultDataType, result, FixedPointOperationKind.SUBTRACT);
+			return createValue(resultDataType, result);
 		}
 
 		long result = rawValue - otherFixedPointValue.rawValue;
-		return createValue(resultDataType, result, FixedPointOperationKind.SUBTRACT);
+		return createValue(resultDataType, result);
 	}
 	
 	@Override
@@ -112,16 +109,14 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 			result = rawValue * otherFixedPointValue.rawValue;
 		}
 
-		FixedPointOperation fixedPointOperation = ComputationModelUtil.getFixedPointOperation(getNumberFormat(), FixedPointOperationKind.MULTIPLY);
-		
-		long truncatedResult = truncate(result, fixedPointOperation.getIntermediateWordSize());
+		long truncatedResult = truncate(result, getIntermediateWordSize());
 		if (truncatedResult != result) {
 			getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
 		}
 		
 		truncatedResult >>= getNumberFormat().getFractionLength();
 		
-		return createValue(resultDataType, truncatedResult, FixedPointOperationKind.MULTIPLY);
+		return createValue(resultDataType, truncatedResult);
 	}
 	
 	@Override
@@ -140,16 +135,14 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 			result = rawValue << getNumberFormat().getFractionLength();
 		}
 
-		FixedPointOperation fixedPointOperation = ComputationModelUtil.getFixedPointOperation(getNumberFormat(), FixedPointOperationKind.DIVIDE);
-		
-		long truncatedResult = truncate(result, fixedPointOperation.getIntermediateWordSize());
+		long truncatedResult = truncate(result, getIntermediateWordSize());
 		if (truncatedResult != result) {
 			getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
 		}
 		
 		truncatedResult /= otherFixedPointValue.rawValue;
 		
-		return createValue(resultDataType, truncatedResult, FixedPointOperationKind.DIVIDE);
+		return createValue(resultDataType, truncatedResult);
 	}
 	
 	/* (non-Javadoc)
@@ -389,9 +382,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 	 * @return
 	 */
 	private AbstractNumericValue castToFixedPoint(NumericType numericType, FixedPointFormat fixedPointFormat) {
-		FixedPointOperation operation = ComputationModelUtil.getFixedPointOperation(getNumberFormat(), FixedPointOperationKind.CAST);
-		
-		long truncatedRawValue = truncate(rawValue, operation.getIntermediateWordSize());
+		long truncatedRawValue = truncate(rawValue, getIntermediateWordSize(fixedPointFormat));
 		
 		if (truncatedRawValue != rawValue) {
 			getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
@@ -408,7 +399,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 			shiftedRawValue = truncatedRawValue;
 		}
 		
-		long truncatedShiftedRawValue = truncate(shiftedRawValue, operation.getIntermediateWordSize());
+		long truncatedShiftedRawValue = truncate(shiftedRawValue, getIntermediateWordSize(fixedPointFormat));
 
 		if (truncatedShiftedRawValue != shiftedRawValue) {
 			getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
@@ -419,7 +410,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		
 		long newRawValue;
 		
-		if (operation.isSaturate()) {
+		if (fixedPointFormat.isSaturate()) {
 			if (truncatedShiftedRawValue < minValue) {
 				newRawValue = minValue;
 				getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
@@ -438,23 +429,21 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		
 		return new FixedPointValue(getContext(), numericType, fixedPointFormat, newRawValue);
 	}
-	
+
 	private long truncate(long value, int wordSize) {
 		int shift = Long.SIZE - wordSize;
 		return value << shift >> shift;
 	}
 	
-	private AbstractNumericValue createValue(NumericType dataType, BigInteger rawValue, FixedPointOperationKind fixedPointOperationKind) {
+	private AbstractNumericValue createValue(NumericType dataType, BigInteger rawValue) {
 		if (rawValue.compareTo(LONG_MIN_VALUE) < 0 || rawValue.compareTo(LONG_MAX_VALUE) > 0) {
 			getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
 		}
-		return createValue(dataType, rawValue.longValue(), fixedPointOperationKind);
+		return createValue(dataType, rawValue.longValue());
 	}
 	
-	private AbstractNumericValue createValue(NumericType dataType, long rawValue, FixedPointOperationKind fixedPointOperationKind) {
-		FixedPointOperation operation = ComputationModelUtil.getFixedPointOperation(getNumberFormat(), fixedPointOperationKind);
-
-		long truncatedRawValue = truncate(rawValue, operation.getIntermediateWordSize());
+	private AbstractNumericValue createValue(NumericType dataType, long rawValue) {
+		long truncatedRawValue = truncate(rawValue, getIntermediateWordSize());
 		
 		if (truncatedRawValue != rawValue) {
 			getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
@@ -465,7 +454,7 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 		
 		long newRawValue;
 		
-		if (operation.isSaturate()) {
+		if (getNumberFormat().isSaturate()) {
 			if (truncatedRawValue < minValue) {
 				newRawValue = minValue;
 				getContext().getOverflowMonitor().handleOverflow(new OverflowInfo());
@@ -484,8 +473,26 @@ public class FixedPointValue extends AbstractNumericValue implements ISimpleNume
 
 		return new FixedPointValue(getContext(), dataType, getNumberFormat(), newRawValue);
 	}
+
+	/**
+	 * @return
+	 */
+	private int getIntermediateWordSize() {
+		return getIntermediateWordSize(getNumberFormat());
+	}
 	
-	static void initializeValue(IComputationContext context, FixedPointValue fixedPointValue, FixedPointOperation operation, double value) {
+	/**
+	 * @param fixedPointFormat
+	 * @return
+	 */
+	private int getIntermediateWordSize(FixedPointFormat fixedPointFormat) {
+		if (fixedPointFormat.getFractionLength() != 0) {
+			return 2 * fixedPointFormat.getWordSize();
+		}
+		return fixedPointFormat.getWordSize();
+	}
+
+	static void initializeValue(IComputationContext context, FixedPointValue fixedPointValue, double value) {
 		FixedPointFormat fixedPointFormat = fixedPointValue.getNumberFormat();
 		int wordSize = fixedPointFormat.getWordSize();
 		

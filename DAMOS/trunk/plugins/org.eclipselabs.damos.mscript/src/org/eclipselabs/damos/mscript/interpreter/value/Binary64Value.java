@@ -17,11 +17,8 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.MscriptFactory;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 
 /**
@@ -225,9 +222,7 @@ public class Binary64Value extends AbstractNumericValue implements ISimpleNumeri
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			FixedPointValue fixedPointValue = new FixedPointValue(getContext(), numericType, fixedPointFormat, 0);
-			FixedPointOperation fixedPointOperation = ComputationModelUtil.getFixedPointOperation(fixedPointFormat,
-					FixedPointOperationKind.CAST);
-			FixedPointValue.initializeValue(getContext(), fixedPointValue, fixedPointOperation, value);
+			FixedPointValue.initializeValue(getContext(), fixedPointValue, value);
 			return fixedPointValue;
 		}
 		

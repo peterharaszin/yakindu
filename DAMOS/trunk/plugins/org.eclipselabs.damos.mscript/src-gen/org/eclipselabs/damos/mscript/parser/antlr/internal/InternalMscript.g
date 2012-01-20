@@ -7695,7 +7695,9 @@ RULE_IJ : ('i'|'j');
 
 RULE_E : ('e'|'E');
 
-RULE_EXPIJ : RULE_E ('0'..'9')+ RULE_IJ?;
+RULE_EXP : RULE_E ('0'..'9')+;
+
+RULE_EXPIJ : RULE_EXP RULE_IJ;
 
 RULE_ONE : '1';
 

@@ -1,63 +1,72 @@
-/**
- * <copyright>
- * </copyright>
- *
- * $Id$
- */
 package org.eclipselabs.damos.mscript.internal.computationmodel.operations;
 
 import org.eclipselabs.damos.mscript.DataType;
+import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
+import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
+import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
+import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
+import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
+import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
 
-/**
- * <!-- begin-user-doc -->
- * A static utility class that provides operations related to '<em><b>Computation Model</b></em>' model objects.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following operations are supported:
- * <ul>
- *   <li>{@link org.eclipselabs.mscript.computation.computationmodel.ComputationModel#getNumberFormat(org.eclipselabs.mscript.typesystem.DataType) <em>Get Number Format</em>}</li>
- * </ul>
- * </p>
- *
- * @generated
- */
 public class ComputationModelOperations {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ComputationModelOperations() {
-		super();
-	}
+	
+	private static FixedPointFormat defaultIntegerNumberFormat;
+	private static FloatingPointFormat defaultRealNumberFormat;
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public static  NumberFormat getNumberFormat(ComputationModel computationModel, DataType dataType) {
-		NumberFormat numberFormat = null;
+	public static NumberFormatMapping getNumberFormatMapping(ComputationModel computationModel, DataType dataType) {
+		NumberFormatMapping foundMapping = null;
 		DataType foundDataType = null;
 		for (NumberFormatMapping mapping : computationModel.getNumberFormatMappings()) {
 			DataType mappingDataType = mapping.getTypeSpecifier().getType();
 			if (mappingDataType.isAssignableFrom(dataType)) {
 				if (foundDataType != null) {
 					if (foundDataType.isAssignableFrom(mappingDataType)) {
-						numberFormat = mapping.getNumberFormat();
+						foundMapping = mapping;
 						foundDataType = mappingDataType;
 					}
 				} else {
-					numberFormat = mapping.getNumberFormat();
+					foundMapping = mapping;
 					foundDataType = mappingDataType;
 				}
 			}
 		}
-		return numberFormat;
+		return foundMapping;
 	}
 
-} // ComputationModelOperations
+	public static NumberFormat getNumberFormat(ComputationModel computationModel, DataType dataType) {
+		NumberFormatMapping mapping = getNumberFormatMapping(computationModel, dataType);
+		if (mapping == null) {
+			if (dataType instanceof IntegerType) {
+				return getDefaultIntegerNumberFormat();
+			}
+			return getDefaultRealNumberFormat();
+		}
+		return mapping.getNumberFormat();
+	}
+
+	/**
+	 * @return
+	 */
+	private static NumberFormat getDefaultIntegerNumberFormat() {
+		if (defaultIntegerNumberFormat == null) {
+			defaultIntegerNumberFormat = ComputationModelFactory.eINSTANCE.createFixedPointFormat();
+			defaultIntegerNumberFormat.setPredefinedKind(PredefinedFixedPointFormatKind.INT64);
+		}
+		return defaultIntegerNumberFormat;
+	}
+	
+	/**
+	 * @return
+	 */
+	private static NumberFormat getDefaultRealNumberFormat() {
+		if (defaultRealNumberFormat == null) {
+			defaultRealNumberFormat = ComputationModelFactory.eINSTANCE.createFloatingPointFormat();
+			defaultRealNumberFormat.setKind(FloatingPointFormatKind.BINARY64);
+		}
+		return defaultRealNumberFormat;
+	}
+
+}

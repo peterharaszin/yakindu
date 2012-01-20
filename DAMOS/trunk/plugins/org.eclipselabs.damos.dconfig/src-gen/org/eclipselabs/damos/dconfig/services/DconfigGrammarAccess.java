@@ -751,15 +751,16 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cPropagateAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cPropagatePropagateKeyword_0_0 = (Keyword)cPropagateAssignment_0.eContents().get(0);
 		private final Keyword cComputationKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cComputationModelAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cComputationModelComputationModelCrossReference_2_0 = (CrossReference)cComputationModelAssignment_2.eContents().get(0);
-		private final RuleCall cComputationModelComputationModelQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cComputationModelComputationModelCrossReference_2_0.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cComputationModelAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cComputationModelComputationModelParserRuleCall_3_0 = (RuleCall)cComputationModelAssignment_3.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//ComputationProperty:
-		//	propagate?="propagate"? "computation" computationModel=[ComputationModel|QualifiedName];
+		//	propagate?="propagate"? "computation" "{" computationModel=ComputationModel "}";
 		public ParserRule getRule() { return rule; }
 
-		//propagate?="propagate"? "computation" computationModel=[ComputationModel|QualifiedName]
+		//propagate?="propagate"? "computation" "{" computationModel=ComputationModel "}"
 		public Group getGroup() { return cGroup; }
 
 		//propagate?="propagate"?
@@ -771,14 +772,17 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//"computation"
 		public Keyword getComputationKeyword_1() { return cComputationKeyword_1; }
 
-		//computationModel=[ComputationModel|QualifiedName]
-		public Assignment getComputationModelAssignment_2() { return cComputationModelAssignment_2; }
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 
-		//[ComputationModel|QualifiedName]
-		public CrossReference getComputationModelComputationModelCrossReference_2_0() { return cComputationModelComputationModelCrossReference_2_0; }
+		//computationModel=ComputationModel
+		public Assignment getComputationModelAssignment_3() { return cComputationModelAssignment_3; }
 
-		//QualifiedName
-		public RuleCall getComputationModelComputationModelQualifiedNameParserRuleCall_2_0_1() { return cComputationModelComputationModelQualifiedNameParserRuleCall_2_0_1; }
+		//ComputationModel
+		public RuleCall getComputationModelComputationModelParserRuleCall_3_0() { return cComputationModelComputationModelParserRuleCall_3_0; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class MappingElements extends AbstractParserRuleElementFinder {
@@ -919,6 +923,222 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIndexValidIntParserRuleCall_0() { return cIndexValidIntParserRuleCall_0; }
 	}
 
+	public class ComputationModelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ComputationModel");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cComputationModelAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNumberFormatMappingsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNumberFormatMappingsNumberFormatMappingParserRuleCall_1_0 = (RuleCall)cNumberFormatMappingsAssignment_1.eContents().get(0);
+		
+		//ComputationModel:
+		//	{ComputationModel} numberFormatMappings+=NumberFormatMapping*;
+		public ParserRule getRule() { return rule; }
+
+		//{ComputationModel} numberFormatMappings+=NumberFormatMapping*
+		public Group getGroup() { return cGroup; }
+
+		//{ComputationModel}
+		public Action getComputationModelAction_0() { return cComputationModelAction_0; }
+
+		//numberFormatMappings+=NumberFormatMapping*
+		public Assignment getNumberFormatMappingsAssignment_1() { return cNumberFormatMappingsAssignment_1; }
+
+		//NumberFormatMapping
+		public RuleCall getNumberFormatMappingsNumberFormatMappingParserRuleCall_1_0() { return cNumberFormatMappingsNumberFormatMappingParserRuleCall_1_0; }
+	}
+
+	public class NumberFormatElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumberFormat");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cFloatingPointFormatParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cFixedPointFormatParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//NumberFormat:
+		//	FloatingPointFormat | FixedPointFormat;
+		public ParserRule getRule() { return rule; }
+
+		//FloatingPointFormat | FixedPointFormat
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//FloatingPointFormat
+		public RuleCall getFloatingPointFormatParserRuleCall_0() { return cFloatingPointFormatParserRuleCall_0; }
+
+		//FixedPointFormat
+		public RuleCall getFixedPointFormatParserRuleCall_1() { return cFixedPointFormatParserRuleCall_1; }
+	}
+
+	public class FloatingPointFormatElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FloatingPointFormat");
+		private final Assignment cKindAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cKindPredefinedFloatingPointFormatKindEnumRuleCall_0 = (RuleCall)cKindAssignment.eContents().get(0);
+		
+		//FloatingPointFormat:
+		//	kind=PredefinedFloatingPointFormatKind;
+		public ParserRule getRule() { return rule; }
+
+		//kind=PredefinedFloatingPointFormatKind
+		public Assignment getKindAssignment() { return cKindAssignment; }
+
+		//PredefinedFloatingPointFormatKind
+		public RuleCall getKindPredefinedFloatingPointFormatKindEnumRuleCall_0() { return cKindPredefinedFloatingPointFormatKindEnumRuleCall_0; }
+	}
+
+	public class FixedPointFormatElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FixedPointFormat");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
+		private final Alternatives cAlternatives_0_0_0 = (Alternatives)cGroup_0_0.eContents().get(0);
+		private final Keyword cFixKeyword_0_0_0_0 = (Keyword)cAlternatives_0_0_0.eContents().get(0);
+		private final Assignment cUnsignedAssignment_0_0_0_1 = (Assignment)cAlternatives_0_0_0.eContents().get(1);
+		private final Keyword cUnsignedUfixKeyword_0_0_0_1_0 = (Keyword)cUnsignedAssignment_0_0_0_1.eContents().get(0);
+		private final Assignment cIntegerLengthAssignment_0_0_1 = (Assignment)cGroup_0_0.eContents().get(1);
+		private final RuleCall cIntegerLengthValidIntParserRuleCall_0_0_1_0 = (RuleCall)cIntegerLengthAssignment_0_0_1.eContents().get(0);
+		private final Alternatives cAlternatives_0_0_2 = (Alternatives)cGroup_0_0.eContents().get(2);
+		private final Group cGroup_0_0_2_0 = (Group)cAlternatives_0_0_2.eContents().get(0);
+		private final Keyword cFullStopKeyword_0_0_2_0_0 = (Keyword)cGroup_0_0_2_0.eContents().get(0);
+		private final Assignment cFractionLengthAssignment_0_0_2_0_1 = (Assignment)cGroup_0_0_2_0.eContents().get(1);
+		private final RuleCall cFractionLengthValidIntParserRuleCall_0_0_2_0_1_0 = (RuleCall)cFractionLengthAssignment_0_0_2_0_1.eContents().get(0);
+		private final Group cGroup_0_0_2_1 = (Group)cAlternatives_0_0_2.eContents().get(1);
+		private final Group cGroup_0_0_2_1_0 = (Group)cGroup_0_0_2_1.eContents().get(0);
+		private final Keyword cSlopeKeyword_0_0_2_1_0_0 = (Keyword)cGroup_0_0_2_1_0.eContents().get(0);
+		private final Assignment cSlopeAssignment_0_0_2_1_0_1 = (Assignment)cGroup_0_0_2_1_0.eContents().get(1);
+		private final RuleCall cSlopeValidDoubleParserRuleCall_0_0_2_1_0_1_0 = (RuleCall)cSlopeAssignment_0_0_2_1_0_1.eContents().get(0);
+		private final Group cGroup_0_0_2_1_1 = (Group)cGroup_0_0_2_1.eContents().get(1);
+		private final Keyword cBiasKeyword_0_0_2_1_1_0 = (Keyword)cGroup_0_0_2_1_1.eContents().get(0);
+		private final Assignment cBiasAssignment_0_0_2_1_1_1 = (Assignment)cGroup_0_0_2_1_1.eContents().get(1);
+		private final RuleCall cBiasValidDoubleParserRuleCall_0_0_2_1_1_1_0 = (RuleCall)cBiasAssignment_0_0_2_1_1_1.eContents().get(0);
+		private final Assignment cPredefinedKindAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final RuleCall cPredefinedKindPredefinedFixedPointFormatKindEnumRuleCall_0_1_0 = (RuleCall)cPredefinedKindAssignment_0_1.eContents().get(0);
+		private final Assignment cSaturateAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cSaturateSaturateKeyword_1_0 = (Keyword)cSaturateAssignment_1.eContents().get(0);
+		
+		//FixedPointFormat:
+		//	(("fix" | unsigned?="ufix") integerLength=ValidInt ("." fractionLength=ValidInt | ("slope" slope=ValidDouble)? ("bias"
+		//	bias=ValidDouble)?) | predefinedKind=PredefinedFixedPointFormatKind) saturate?="saturate"?;
+		public ParserRule getRule() { return rule; }
+
+		//(("fix" | unsigned?="ufix") integerLength=ValidInt ("." fractionLength=ValidInt | ("slope" slope=ValidDouble)? ("bias"
+		//bias=ValidDouble)?) | predefinedKind=PredefinedFixedPointFormatKind) saturate?="saturate"?
+		public Group getGroup() { return cGroup; }
+
+		//("fix" | unsigned?="ufix") integerLength=ValidInt ("." fractionLength=ValidInt | ("slope" slope=ValidDouble)? ("bias"
+		//bias=ValidDouble)?) | predefinedKind=PredefinedFixedPointFormatKind
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//("fix" | unsigned?="ufix") integerLength=ValidInt ("." fractionLength=ValidInt | ("slope" slope=ValidDouble)? ("bias"
+		//bias=ValidDouble)?)
+		public Group getGroup_0_0() { return cGroup_0_0; }
+
+		//"fix" | unsigned?="ufix"
+		public Alternatives getAlternatives_0_0_0() { return cAlternatives_0_0_0; }
+
+		//"fix"
+		public Keyword getFixKeyword_0_0_0_0() { return cFixKeyword_0_0_0_0; }
+
+		//unsigned?="ufix"
+		public Assignment getUnsignedAssignment_0_0_0_1() { return cUnsignedAssignment_0_0_0_1; }
+
+		//"ufix"
+		public Keyword getUnsignedUfixKeyword_0_0_0_1_0() { return cUnsignedUfixKeyword_0_0_0_1_0; }
+
+		//integerLength=ValidInt
+		public Assignment getIntegerLengthAssignment_0_0_1() { return cIntegerLengthAssignment_0_0_1; }
+
+		//ValidInt
+		public RuleCall getIntegerLengthValidIntParserRuleCall_0_0_1_0() { return cIntegerLengthValidIntParserRuleCall_0_0_1_0; }
+
+		//"." fractionLength=ValidInt | ("slope" slope=ValidDouble)? ("bias" bias=ValidDouble)?
+		public Alternatives getAlternatives_0_0_2() { return cAlternatives_0_0_2; }
+
+		//"." fractionLength=ValidInt
+		public Group getGroup_0_0_2_0() { return cGroup_0_0_2_0; }
+
+		//"."
+		public Keyword getFullStopKeyword_0_0_2_0_0() { return cFullStopKeyword_0_0_2_0_0; }
+
+		//fractionLength=ValidInt
+		public Assignment getFractionLengthAssignment_0_0_2_0_1() { return cFractionLengthAssignment_0_0_2_0_1; }
+
+		//ValidInt
+		public RuleCall getFractionLengthValidIntParserRuleCall_0_0_2_0_1_0() { return cFractionLengthValidIntParserRuleCall_0_0_2_0_1_0; }
+
+		//("slope" slope=ValidDouble)? ("bias" bias=ValidDouble)?
+		public Group getGroup_0_0_2_1() { return cGroup_0_0_2_1; }
+
+		//("slope" slope=ValidDouble)?
+		public Group getGroup_0_0_2_1_0() { return cGroup_0_0_2_1_0; }
+
+		//"slope"
+		public Keyword getSlopeKeyword_0_0_2_1_0_0() { return cSlopeKeyword_0_0_2_1_0_0; }
+
+		//slope=ValidDouble
+		public Assignment getSlopeAssignment_0_0_2_1_0_1() { return cSlopeAssignment_0_0_2_1_0_1; }
+
+		//ValidDouble
+		public RuleCall getSlopeValidDoubleParserRuleCall_0_0_2_1_0_1_0() { return cSlopeValidDoubleParserRuleCall_0_0_2_1_0_1_0; }
+
+		//("bias" bias=ValidDouble)?
+		public Group getGroup_0_0_2_1_1() { return cGroup_0_0_2_1_1; }
+
+		//"bias"
+		public Keyword getBiasKeyword_0_0_2_1_1_0() { return cBiasKeyword_0_0_2_1_1_0; }
+
+		//bias=ValidDouble
+		public Assignment getBiasAssignment_0_0_2_1_1_1() { return cBiasAssignment_0_0_2_1_1_1; }
+
+		//ValidDouble
+		public RuleCall getBiasValidDoubleParserRuleCall_0_0_2_1_1_1_0() { return cBiasValidDoubleParserRuleCall_0_0_2_1_1_1_0; }
+
+		//predefinedKind=PredefinedFixedPointFormatKind
+		public Assignment getPredefinedKindAssignment_0_1() { return cPredefinedKindAssignment_0_1; }
+
+		//PredefinedFixedPointFormatKind
+		public RuleCall getPredefinedKindPredefinedFixedPointFormatKindEnumRuleCall_0_1_0() { return cPredefinedKindPredefinedFixedPointFormatKindEnumRuleCall_0_1_0; }
+
+		//saturate?="saturate"?
+		public Assignment getSaturateAssignment_1() { return cSaturateAssignment_1; }
+
+		//"saturate"
+		public Keyword getSaturateSaturateKeyword_1_0() { return cSaturateSaturateKeyword_1_0; }
+	}
+
+	public class NumberFormatMappingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "NumberFormatMapping");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cMapKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cTypeSpecifierAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0 = (RuleCall)cTypeSpecifierAssignment_1.eContents().get(0);
+		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNumberFormatAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNumberFormatNumberFormatParserRuleCall_3_0 = (RuleCall)cNumberFormatAssignment_3.eContents().get(0);
+		
+		//NumberFormatMapping:
+		//	"map" typeSpecifier=DataTypeSpecifier "to" numberFormat=NumberFormat;
+		public ParserRule getRule() { return rule; }
+
+		//"map" typeSpecifier=DataTypeSpecifier "to" numberFormat=NumberFormat
+		public Group getGroup() { return cGroup; }
+
+		//"map"
+		public Keyword getMapKeyword_0() { return cMapKeyword_0; }
+
+		//typeSpecifier=DataTypeSpecifier
+		public Assignment getTypeSpecifierAssignment_1() { return cTypeSpecifierAssignment_1; }
+
+		//DataTypeSpecifier
+		public RuleCall getTypeSpecifierDataTypeSpecifierParserRuleCall_1_0() { return cTypeSpecifierDataTypeSpecifierParserRuleCall_1_0; }
+
+		//"to"
+		public Keyword getToKeyword_2() { return cToKeyword_2; }
+
+		//numberFormat=NumberFormat
+		public Assignment getNumberFormatAssignment_3() { return cNumberFormatAssignment_3; }
+
+		//NumberFormat
+		public RuleCall getNumberFormatNumberFormatParserRuleCall_3_0() { return cNumberFormatNumberFormatParserRuleCall_3_0; }
+	}
+
 	public class QualifiedNameWithWildcardElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedNameWithWildcard");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1006,7 +1226,271 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getIDTerminalRuleCall_2() { return cIDTerminalRuleCall_2; }
 	}
+
+	public class ValidDoubleElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ValidDouble");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cHyphenMinusKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cValidIntParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Keyword cFullStopKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
+		private final RuleCall cValidIntParserRuleCall_2_0_1 = (RuleCall)cGroup_2_0.eContents().get(1);
+		private final Alternatives cAlternatives_2_0_2 = (Alternatives)cGroup_2_0.eContents().get(2);
+		private final RuleCall cEXPTerminalRuleCall_2_0_2_0 = (RuleCall)cAlternatives_2_0_2.eContents().get(0);
+		private final Group cGroup_2_0_2_1 = (Group)cAlternatives_2_0_2.eContents().get(1);
+		private final RuleCall cETerminalRuleCall_2_0_2_1_0 = (RuleCall)cGroup_2_0_2_1.eContents().get(0);
+		private final Alternatives cAlternatives_2_0_2_1_1 = (Alternatives)cGroup_2_0_2_1.eContents().get(1);
+		private final Keyword cPlusSignKeyword_2_0_2_1_1_0 = (Keyword)cAlternatives_2_0_2_1_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_2_0_2_1_1_1 = (Keyword)cAlternatives_2_0_2_1_1.eContents().get(1);
+		private final RuleCall cValidIntParserRuleCall_2_0_2_1_2 = (RuleCall)cGroup_2_0_2_1.eContents().get(2);
+		private final Alternatives cAlternatives_2_1 = (Alternatives)cAlternatives_2.eContents().get(1);
+		private final RuleCall cEXPTerminalRuleCall_2_1_0 = (RuleCall)cAlternatives_2_1.eContents().get(0);
+		private final Group cGroup_2_1_1 = (Group)cAlternatives_2_1.eContents().get(1);
+		private final RuleCall cETerminalRuleCall_2_1_1_0 = (RuleCall)cGroup_2_1_1.eContents().get(0);
+		private final Alternatives cAlternatives_2_1_1_1 = (Alternatives)cGroup_2_1_1.eContents().get(1);
+		private final Keyword cPlusSignKeyword_2_1_1_1_0 = (Keyword)cAlternatives_2_1_1_1.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_2_1_1_1_1 = (Keyword)cAlternatives_2_1_1_1.eContents().get(1);
+		private final RuleCall cValidIntParserRuleCall_2_1_1_2 = (RuleCall)cGroup_2_1_1.eContents().get(2);
+		
+		//ValidDouble returns ecore::EDouble hidden():
+		//	"-"? ValidInt ("." ValidInt (EXP | E ("+" | "-") ValidInt)? | (EXP | E ("+" | "-") ValidInt))?;
+		public ParserRule getRule() { return rule; }
+
+		//"-"? ValidInt ("." ValidInt (EXP | E ("+" | "-") ValidInt)? | (EXP | E ("+" | "-") ValidInt))?
+		public Group getGroup() { return cGroup; }
+
+		//"-"?
+		public Keyword getHyphenMinusKeyword_0() { return cHyphenMinusKeyword_0; }
+
+		//ValidInt
+		public RuleCall getValidIntParserRuleCall_1() { return cValidIntParserRuleCall_1; }
+
+		//("." ValidInt (EXP | E ("+" | "-") ValidInt)? | (EXP | E ("+" | "-") ValidInt))?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//"." ValidInt (EXP | E ("+" | "-") ValidInt)?
+		public Group getGroup_2_0() { return cGroup_2_0; }
+
+		//"."
+		public Keyword getFullStopKeyword_2_0_0() { return cFullStopKeyword_2_0_0; }
+
+		//ValidInt
+		public RuleCall getValidIntParserRuleCall_2_0_1() { return cValidIntParserRuleCall_2_0_1; }
+
+		//(EXP | E ("+" | "-") ValidInt)?
+		public Alternatives getAlternatives_2_0_2() { return cAlternatives_2_0_2; }
+
+		//EXP
+		public RuleCall getEXPTerminalRuleCall_2_0_2_0() { return cEXPTerminalRuleCall_2_0_2_0; }
+
+		//E ("+" | "-") ValidInt
+		public Group getGroup_2_0_2_1() { return cGroup_2_0_2_1; }
+
+		//E
+		public RuleCall getETerminalRuleCall_2_0_2_1_0() { return cETerminalRuleCall_2_0_2_1_0; }
+
+		//"+" | "-"
+		public Alternatives getAlternatives_2_0_2_1_1() { return cAlternatives_2_0_2_1_1; }
+
+		//"+"
+		public Keyword getPlusSignKeyword_2_0_2_1_1_0() { return cPlusSignKeyword_2_0_2_1_1_0; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_2_0_2_1_1_1() { return cHyphenMinusKeyword_2_0_2_1_1_1; }
+
+		//ValidInt
+		public RuleCall getValidIntParserRuleCall_2_0_2_1_2() { return cValidIntParserRuleCall_2_0_2_1_2; }
+
+		//EXP | E ("+" | "-") ValidInt
+		public Alternatives getAlternatives_2_1() { return cAlternatives_2_1; }
+
+		//EXP
+		public RuleCall getEXPTerminalRuleCall_2_1_0() { return cEXPTerminalRuleCall_2_1_0; }
+
+		//E ("+" | "-") ValidInt
+		public Group getGroup_2_1_1() { return cGroup_2_1_1; }
+
+		//E
+		public RuleCall getETerminalRuleCall_2_1_1_0() { return cETerminalRuleCall_2_1_1_0; }
+
+		//"+" | "-"
+		public Alternatives getAlternatives_2_1_1_1() { return cAlternatives_2_1_1_1; }
+
+		//"+"
+		public Keyword getPlusSignKeyword_2_1_1_1_0() { return cPlusSignKeyword_2_1_1_1_0; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_2_1_1_1_1() { return cHyphenMinusKeyword_2_1_1_1_1; }
+
+		//ValidInt
+		public RuleCall getValidIntParserRuleCall_2_1_1_2() { return cValidIntParserRuleCall_2_1_1_2; }
+	}
 	
+	
+	public class PredefinedFloatingPointFormatKindElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "PredefinedFloatingPointFormatKind");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cBinary32EnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cBinary32Float32Keyword_0_0 = (Keyword)cBinary32EnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cBinary64EnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cBinary64Float64Keyword_1_0 = (Keyword)cBinary64EnumLiteralDeclaration_1.eContents().get(0);
+		
+		//enum PredefinedFloatingPointFormatKind returns FloatingPointFormatKind:
+		//	Binary32="float32" | Binary64="float64";
+		public EnumRule getRule() { return rule; }
+
+		//Binary32="float32" | Binary64="float64"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//Binary32="float32"
+		public EnumLiteralDeclaration getBinary32EnumLiteralDeclaration_0() { return cBinary32EnumLiteralDeclaration_0; }
+
+		//"float32"
+		public Keyword getBinary32Float32Keyword_0_0() { return cBinary32Float32Keyword_0_0; }
+
+		//Binary64="float64"
+		public EnumLiteralDeclaration getBinary64EnumLiteralDeclaration_1() { return cBinary64EnumLiteralDeclaration_1; }
+
+		//"float64"
+		public Keyword getBinary64Float64Keyword_1_0() { return cBinary64Float64Keyword_1_0; }
+	}
+
+	public class PredefinedFixedPointFormatKindElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "PredefinedFixedPointFormatKind");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cInt8EnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cInt8Int8Keyword_0_0 = (Keyword)cInt8EnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cInt16EnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cInt16Int16Keyword_1_0 = (Keyword)cInt16EnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cInt32EnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cInt32Int32Keyword_2_0 = (Keyword)cInt32EnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cInt64EnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cInt64Int64Keyword_3_0 = (Keyword)cInt64EnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cInt128EnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cInt128Int128Keyword_4_0 = (Keyword)cInt128EnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cUInt8EnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cUInt8Uint8Keyword_5_0 = (Keyword)cUInt8EnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cUInt16EnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cUInt16Uint16Keyword_6_0 = (Keyword)cUInt16EnumLiteralDeclaration_6.eContents().get(0);
+		private final EnumLiteralDeclaration cUInt32EnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
+		private final Keyword cUInt32Uint32Keyword_7_0 = (Keyword)cUInt32EnumLiteralDeclaration_7.eContents().get(0);
+		private final EnumLiteralDeclaration cUInt64EnumLiteralDeclaration_8 = (EnumLiteralDeclaration)cAlternatives.eContents().get(8);
+		private final Keyword cUInt64Uint64Keyword_8_0 = (Keyword)cUInt64EnumLiteralDeclaration_8.eContents().get(0);
+		private final EnumLiteralDeclaration cUInt128EnumLiteralDeclaration_9 = (EnumLiteralDeclaration)cAlternatives.eContents().get(9);
+		private final Keyword cUInt128Uint128Keyword_9_0 = (Keyword)cUInt128EnumLiteralDeclaration_9.eContents().get(0);
+		private final EnumLiteralDeclaration cFract8EnumLiteralDeclaration_10 = (EnumLiteralDeclaration)cAlternatives.eContents().get(10);
+		private final Keyword cFract8Fract8Keyword_10_0 = (Keyword)cFract8EnumLiteralDeclaration_10.eContents().get(0);
+		private final EnumLiteralDeclaration cFract16EnumLiteralDeclaration_11 = (EnumLiteralDeclaration)cAlternatives.eContents().get(11);
+		private final Keyword cFract16Fract16Keyword_11_0 = (Keyword)cFract16EnumLiteralDeclaration_11.eContents().get(0);
+		private final EnumLiteralDeclaration cFract32EnumLiteralDeclaration_12 = (EnumLiteralDeclaration)cAlternatives.eContents().get(12);
+		private final Keyword cFract32Fract32Keyword_12_0 = (Keyword)cFract32EnumLiteralDeclaration_12.eContents().get(0);
+		private final EnumLiteralDeclaration cFract64EnumLiteralDeclaration_13 = (EnumLiteralDeclaration)cAlternatives.eContents().get(13);
+		private final Keyword cFract64Fract64Keyword_13_0 = (Keyword)cFract64EnumLiteralDeclaration_13.eContents().get(0);
+		private final EnumLiteralDeclaration cFract128EnumLiteralDeclaration_14 = (EnumLiteralDeclaration)cAlternatives.eContents().get(14);
+		private final Keyword cFract128Fract128Keyword_14_0 = (Keyword)cFract128EnumLiteralDeclaration_14.eContents().get(0);
+		
+		//enum PredefinedFixedPointFormatKind:
+		//	Int8="int8" | Int16="int16" | Int32="int32" | Int64="int64" | Int128="int128" | UInt8="uint8" | UInt16="uint16" |
+		//	UInt32="uint32" | UInt64="uint64" | UInt128="uint128" | Fract8="fract8" | Fract16="fract16" | Fract32="fract32" |
+		//	Fract64="fract64" | Fract128="fract128";
+		public EnumRule getRule() { return rule; }
+
+		//Int8="int8" | Int16="int16" | Int32="int32" | Int64="int64" | Int128="int128" | UInt8="uint8" | UInt16="uint16" |
+		//UInt32="uint32" | UInt64="uint64" | UInt128="uint128" | Fract8="fract8" | Fract16="fract16" | Fract32="fract32" |
+		//Fract64="fract64" | Fract128="fract128"
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//Int8="int8"
+		public EnumLiteralDeclaration getInt8EnumLiteralDeclaration_0() { return cInt8EnumLiteralDeclaration_0; }
+
+		//"int8"
+		public Keyword getInt8Int8Keyword_0_0() { return cInt8Int8Keyword_0_0; }
+
+		//Int16="int16"
+		public EnumLiteralDeclaration getInt16EnumLiteralDeclaration_1() { return cInt16EnumLiteralDeclaration_1; }
+
+		//"int16"
+		public Keyword getInt16Int16Keyword_1_0() { return cInt16Int16Keyword_1_0; }
+
+		//Int32="int32"
+		public EnumLiteralDeclaration getInt32EnumLiteralDeclaration_2() { return cInt32EnumLiteralDeclaration_2; }
+
+		//"int32"
+		public Keyword getInt32Int32Keyword_2_0() { return cInt32Int32Keyword_2_0; }
+
+		//Int64="int64"
+		public EnumLiteralDeclaration getInt64EnumLiteralDeclaration_3() { return cInt64EnumLiteralDeclaration_3; }
+
+		//"int64"
+		public Keyword getInt64Int64Keyword_3_0() { return cInt64Int64Keyword_3_0; }
+
+		//Int128="int128"
+		public EnumLiteralDeclaration getInt128EnumLiteralDeclaration_4() { return cInt128EnumLiteralDeclaration_4; }
+
+		//"int128"
+		public Keyword getInt128Int128Keyword_4_0() { return cInt128Int128Keyword_4_0; }
+
+		//UInt8="uint8"
+		public EnumLiteralDeclaration getUInt8EnumLiteralDeclaration_5() { return cUInt8EnumLiteralDeclaration_5; }
+
+		//"uint8"
+		public Keyword getUInt8Uint8Keyword_5_0() { return cUInt8Uint8Keyword_5_0; }
+
+		//UInt16="uint16"
+		public EnumLiteralDeclaration getUInt16EnumLiteralDeclaration_6() { return cUInt16EnumLiteralDeclaration_6; }
+
+		//"uint16"
+		public Keyword getUInt16Uint16Keyword_6_0() { return cUInt16Uint16Keyword_6_0; }
+
+		//UInt32="uint32"
+		public EnumLiteralDeclaration getUInt32EnumLiteralDeclaration_7() { return cUInt32EnumLiteralDeclaration_7; }
+
+		//"uint32"
+		public Keyword getUInt32Uint32Keyword_7_0() { return cUInt32Uint32Keyword_7_0; }
+
+		//UInt64="uint64"
+		public EnumLiteralDeclaration getUInt64EnumLiteralDeclaration_8() { return cUInt64EnumLiteralDeclaration_8; }
+
+		//"uint64"
+		public Keyword getUInt64Uint64Keyword_8_0() { return cUInt64Uint64Keyword_8_0; }
+
+		//UInt128="uint128"
+		public EnumLiteralDeclaration getUInt128EnumLiteralDeclaration_9() { return cUInt128EnumLiteralDeclaration_9; }
+
+		//"uint128"
+		public Keyword getUInt128Uint128Keyword_9_0() { return cUInt128Uint128Keyword_9_0; }
+
+		//Fract8="fract8"
+		public EnumLiteralDeclaration getFract8EnumLiteralDeclaration_10() { return cFract8EnumLiteralDeclaration_10; }
+
+		//"fract8"
+		public Keyword getFract8Fract8Keyword_10_0() { return cFract8Fract8Keyword_10_0; }
+
+		//Fract16="fract16"
+		public EnumLiteralDeclaration getFract16EnumLiteralDeclaration_11() { return cFract16EnumLiteralDeclaration_11; }
+
+		//"fract16"
+		public Keyword getFract16Fract16Keyword_11_0() { return cFract16Fract16Keyword_11_0; }
+
+		//Fract32="fract32"
+		public EnumLiteralDeclaration getFract32EnumLiteralDeclaration_12() { return cFract32EnumLiteralDeclaration_12; }
+
+		//"fract32"
+		public Keyword getFract32Fract32Keyword_12_0() { return cFract32Fract32Keyword_12_0; }
+
+		//Fract64="fract64"
+		public EnumLiteralDeclaration getFract64EnumLiteralDeclaration_13() { return cFract64EnumLiteralDeclaration_13; }
+
+		//"fract64"
+		public Keyword getFract64Fract64Keyword_13_0() { return cFract64Fract64Keyword_13_0; }
+
+		//Fract128="fract128"
+		public EnumLiteralDeclaration getFract128EnumLiteralDeclaration_14() { return cFract128EnumLiteralDeclaration_14; }
+
+		//"fract128"
+		public Keyword getFract128Fract128Keyword_14_0() { return cFract128Fract128Keyword_14_0; }
+	}
 	
 	private ConfigurationElements pConfiguration;
 	private RunnerSpecifierElements pRunnerSpecifier;
@@ -1026,9 +1510,17 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	private MappingElements pMapping;
 	private MappingBodyElements pMappingBody;
 	private MappingSubscriptElements pMappingSubscript;
+	private ComputationModelElements pComputationModel;
+	private NumberFormatElements pNumberFormat;
+	private FloatingPointFormatElements pFloatingPointFormat;
+	private PredefinedFloatingPointFormatKindElements unknownRulePredefinedFloatingPointFormatKind;
+	private PredefinedFixedPointFormatKindElements unknownRulePredefinedFixedPointFormatKind;
+	private FixedPointFormatElements pFixedPointFormat;
+	private NumberFormatMappingElements pNumberFormatMapping;
 	private QualifiedNameWithWildcardElements pQualifiedNameWithWildcard;
 	private QualifiedNameWithoutIJElements pQualifiedNameWithoutIJ;
 	private ValidIDWithoutIJElements pValidIDWithoutIJ;
+	private ValidDoubleElements pValidDouble;
 	
 	private final GrammarProvider grammarProvider;
 
@@ -1200,7 +1692,7 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ComputationProperty:
-	//	propagate?="propagate"? "computation" computationModel=[ComputationModel|QualifiedName];
+	//	propagate?="propagate"? "computation" "{" computationModel=ComputationModel "}";
 	public ComputationPropertyElements getComputationPropertyAccess() {
 		return (pComputationProperty != null) ? pComputationProperty : (pComputationProperty = new ComputationPropertyElements());
 	}
@@ -1240,6 +1732,79 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return getMappingSubscriptAccess().getRule();
 	}
 
+	//ComputationModel:
+	//	{ComputationModel} numberFormatMappings+=NumberFormatMapping*;
+	public ComputationModelElements getComputationModelAccess() {
+		return (pComputationModel != null) ? pComputationModel : (pComputationModel = new ComputationModelElements());
+	}
+	
+	public ParserRule getComputationModelRule() {
+		return getComputationModelAccess().getRule();
+	}
+
+	//NumberFormat:
+	//	FloatingPointFormat | FixedPointFormat;
+	public NumberFormatElements getNumberFormatAccess() {
+		return (pNumberFormat != null) ? pNumberFormat : (pNumberFormat = new NumberFormatElements());
+	}
+	
+	public ParserRule getNumberFormatRule() {
+		return getNumberFormatAccess().getRule();
+	}
+
+	//FloatingPointFormat:
+	//	kind=PredefinedFloatingPointFormatKind;
+	public FloatingPointFormatElements getFloatingPointFormatAccess() {
+		return (pFloatingPointFormat != null) ? pFloatingPointFormat : (pFloatingPointFormat = new FloatingPointFormatElements());
+	}
+	
+	public ParserRule getFloatingPointFormatRule() {
+		return getFloatingPointFormatAccess().getRule();
+	}
+
+	//enum PredefinedFloatingPointFormatKind returns FloatingPointFormatKind:
+	//	Binary32="float32" | Binary64="float64";
+	public PredefinedFloatingPointFormatKindElements getPredefinedFloatingPointFormatKindAccess() {
+		return (unknownRulePredefinedFloatingPointFormatKind != null) ? unknownRulePredefinedFloatingPointFormatKind : (unknownRulePredefinedFloatingPointFormatKind = new PredefinedFloatingPointFormatKindElements());
+	}
+	
+	public EnumRule getPredefinedFloatingPointFormatKindRule() {
+		return getPredefinedFloatingPointFormatKindAccess().getRule();
+	}
+
+	//enum PredefinedFixedPointFormatKind:
+	//	Int8="int8" | Int16="int16" | Int32="int32" | Int64="int64" | Int128="int128" | UInt8="uint8" | UInt16="uint16" |
+	//	UInt32="uint32" | UInt64="uint64" | UInt128="uint128" | Fract8="fract8" | Fract16="fract16" | Fract32="fract32" |
+	//	Fract64="fract64" | Fract128="fract128";
+	public PredefinedFixedPointFormatKindElements getPredefinedFixedPointFormatKindAccess() {
+		return (unknownRulePredefinedFixedPointFormatKind != null) ? unknownRulePredefinedFixedPointFormatKind : (unknownRulePredefinedFixedPointFormatKind = new PredefinedFixedPointFormatKindElements());
+	}
+	
+	public EnumRule getPredefinedFixedPointFormatKindRule() {
+		return getPredefinedFixedPointFormatKindAccess().getRule();
+	}
+
+	//FixedPointFormat:
+	//	(("fix" | unsigned?="ufix") integerLength=ValidInt ("." fractionLength=ValidInt | ("slope" slope=ValidDouble)? ("bias"
+	//	bias=ValidDouble)?) | predefinedKind=PredefinedFixedPointFormatKind) saturate?="saturate"?;
+	public FixedPointFormatElements getFixedPointFormatAccess() {
+		return (pFixedPointFormat != null) ? pFixedPointFormat : (pFixedPointFormat = new FixedPointFormatElements());
+	}
+	
+	public ParserRule getFixedPointFormatRule() {
+		return getFixedPointFormatAccess().getRule();
+	}
+
+	//NumberFormatMapping:
+	//	"map" typeSpecifier=DataTypeSpecifier "to" numberFormat=NumberFormat;
+	public NumberFormatMappingElements getNumberFormatMappingAccess() {
+		return (pNumberFormatMapping != null) ? pNumberFormatMapping : (pNumberFormatMapping = new NumberFormatMappingElements());
+	}
+	
+	public ParserRule getNumberFormatMappingRule() {
+		return getNumberFormatMappingAccess().getRule();
+	}
+
 	//QualifiedNameWithWildcard:
 	//	QualifiedName (".*" | "." "*")?;
 	public QualifiedNameWithWildcardElements getQualifiedNameWithWildcardAccess() {
@@ -1268,6 +1833,16 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getValidIDWithoutIJRule() {
 		return getValidIDWithoutIJAccess().getRule();
+	}
+
+	//ValidDouble returns ecore::EDouble hidden():
+	//	"-"? ValidInt ("." ValidInt (EXP | E ("+" | "-") ValidInt)? | (EXP | E ("+" | "-") ValidInt))?;
+	public ValidDoubleElements getValidDoubleAccess() {
+		return (pValidDouble != null) ? pValidDouble : (pValidDouble = new ValidDoubleElements());
+	}
+	
+	public ParserRule getValidDoubleRule() {
+		return getValidDoubleAccess().getRule();
 	}
 
 	//Module:
@@ -2494,8 +3069,14 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		return gaMscript.getERule();
 	} 
 
+	//terminal EXP:
+	//	E "0".."9"+;
+	public TerminalRule getEXPRule() {
+		return gaMscript.getEXPRule();
+	} 
+
 	//terminal EXPIJ:
-	//	E "0".."9"+ IJ?;
+	//	EXP IJ;
 	public TerminalRule getEXPIJRule() {
 		return gaMscript.getEXPIJRule();
 	} 

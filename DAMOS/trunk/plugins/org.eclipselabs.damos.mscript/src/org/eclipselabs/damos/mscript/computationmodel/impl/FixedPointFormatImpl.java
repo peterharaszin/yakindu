@@ -6,21 +6,13 @@
  */
 package org.eclipselabs.damos.mscript.computationmodel.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
+import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
 import org.eclipselabs.damos.mscript.internal.computationmodel.operations.FixedPointFormatOperations;
 
 /**
@@ -30,16 +22,50 @@ import org.eclipselabs.damos.mscript.internal.computationmodel.operations.FixedP
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getPredefinedKind <em>Predefined Kind</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#isUnsigned <em>Unsigned</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getIntegerLength <em>Integer Length</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getFractionLength <em>Fraction Length</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getWordSize <em>Word Size</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getSlope <em>Slope</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#getBias <em>Bias</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl#isSaturate <em>Saturate</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPointFormat {
+	/**
+	 * The default value of the '{@link #getPredefinedKind() <em>Predefined Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getPredefinedKind()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final PredefinedFixedPointFormatKind PREDEFINED_KIND_EDEFAULT = PredefinedFixedPointFormatKind.NONE;
+
+	/**
+	 * The default value of the '{@link #isUnsigned() <em>Unsigned</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnsigned()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean UNSIGNED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUnsigned() <em>Unsigned</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUnsigned()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean unsigned = UNSIGNED_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getIntegerLength() <em>Integer Length</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -91,14 +117,64 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	protected static final int WORD_SIZE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getOperations() <em>Operations</em>}' containment reference list.
+	 * The default value of the '{@link #getSlope() <em>Slope</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOperations()
+	 * @see #getSlope()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FixedPointOperation> operations;
+	protected static final double SLOPE_EDEFAULT = 1.0;
+
+	/**
+	 * The cached value of the '{@link #getSlope() <em>Slope</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSlope()
+	 * @generated
+	 * @ordered
+	 */
+	protected double slope = SLOPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getBias() <em>Bias</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBias()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final double BIAS_EDEFAULT = 0.0;
+
+	/**
+	 * The cached value of the '{@link #getBias() <em>Bias</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getBias()
+	 * @generated
+	 * @ordered
+	 */
+	protected double bias = BIAS_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSaturate() <em>Saturate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSaturate()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SATURATE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSaturate() <em>Saturate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSaturate()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean saturate = SATURATE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,6 +193,45 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	@Override
 	protected EClass eStaticClass() {
 		return ComputationModelPackage.Literals.FIXED_POINT_FORMAT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public PredefinedFixedPointFormatKind getPredefinedKind() {
+		return FixedPointFormatOperations.getPredefinedKind(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void setPredefinedKind(PredefinedFixedPointFormatKind newPredefinedKind) {
+		FixedPointFormatOperations.setPredefinedKind(this, newPredefinedKind);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isUnsigned() {
+		return unsigned;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUnsigned(boolean newUnsigned) {
+		boolean oldUnsigned = unsigned;
+		unsigned = newUnsigned;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED, oldUnsigned, unsigned));
 	}
 
 	/**
@@ -175,22 +290,64 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<FixedPointOperation> getOperations() {
-		if (operations == null) {
-			operations = new EObjectContainmentEList<FixedPointOperation>(FixedPointOperation.class, this, ComputationModelPackage.FIXED_POINT_FORMAT__OPERATIONS);
-		}
-		return operations;
+	public double getSlope() {
+		return slope;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
-	public FixedPointOperation getOperation(FixedPointOperationKind kind) {
-		return FixedPointFormatOperations.getOperation(this, kind);
+	public void setSlope(double newSlope) {
+		double oldSlope = slope;
+		slope = newSlope;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE, oldSlope, slope));
 	}
-	
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public double getBias() {
+		return bias;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setBias(double newBias) {
+		double oldBias = bias;
+		bias = newBias;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__BIAS, oldBias, bias));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isSaturate() {
+		return saturate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSaturate(boolean newSaturate) {
+		boolean oldSaturate = saturate;
+		saturate = newSaturate;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE, oldSaturate, saturate));
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatImpl#isEquivalentTo(org.eclipselabs.damos.mscript.computationmodel.NumberFormat)
 	 */
@@ -205,30 +362,24 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ComputationModelPackage.FIXED_POINT_FORMAT__OPERATIONS:
-				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+				return getPredefinedKind();
+			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+				return isUnsigned();
 			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				return getIntegerLength();
 			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				return getFractionLength();
 			case ComputationModelPackage.FIXED_POINT_FORMAT__WORD_SIZE:
 				return getWordSize();
-			case ComputationModelPackage.FIXED_POINT_FORMAT__OPERATIONS:
-				return getOperations();
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+				return getSlope();
+			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+				return getBias();
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+				return isSaturate();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -238,19 +389,29 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+				setPredefinedKind((PredefinedFixedPointFormatKind)newValue);
+				return;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+				setUnsigned((Boolean)newValue);
+				return;
 			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				setIntegerLength((Integer)newValue);
 				return;
 			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				setFractionLength((Integer)newValue);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__OPERATIONS:
-				getOperations().clear();
-				getOperations().addAll((Collection<? extends FixedPointOperation>)newValue);
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+				setSlope((Double)newValue);
+				return;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+				setBias((Double)newValue);
+				return;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+				setSaturate((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -264,14 +425,26 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+				setPredefinedKind(PREDEFINED_KIND_EDEFAULT);
+				return;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+				setUnsigned(UNSIGNED_EDEFAULT);
+				return;
 			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				setIntegerLength(INTEGER_LENGTH_EDEFAULT);
 				return;
 			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				setFractionLength(FRACTION_LENGTH_EDEFAULT);
 				return;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__OPERATIONS:
-				getOperations().clear();
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+				setSlope(SLOPE_EDEFAULT);
+				return;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+				setBias(BIAS_EDEFAULT);
+				return;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+				setSaturate(SATURATE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -285,14 +458,22 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case ComputationModelPackage.FIXED_POINT_FORMAT__PREDEFINED_KIND:
+				return getPredefinedKind() != PREDEFINED_KIND_EDEFAULT;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__UNSIGNED:
+				return unsigned != UNSIGNED_EDEFAULT;
 			case ComputationModelPackage.FIXED_POINT_FORMAT__INTEGER_LENGTH:
 				return integerLength != INTEGER_LENGTH_EDEFAULT;
 			case ComputationModelPackage.FIXED_POINT_FORMAT__FRACTION_LENGTH:
 				return fractionLength != FRACTION_LENGTH_EDEFAULT;
 			case ComputationModelPackage.FIXED_POINT_FORMAT__WORD_SIZE:
 				return getWordSize() != WORD_SIZE_EDEFAULT;
-			case ComputationModelPackage.FIXED_POINT_FORMAT__OPERATIONS:
-				return operations != null && !operations.isEmpty();
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SLOPE:
+				return slope != SLOPE_EDEFAULT;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__BIAS:
+				return bias != BIAS_EDEFAULT;
+			case ComputationModelPackage.FIXED_POINT_FORMAT__SATURATE:
+				return saturate != SATURATE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -307,10 +488,18 @@ public class FixedPointFormatImpl extends NumberFormatImpl implements FixedPoint
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (integerLength: ");
+		result.append(" (unsigned: ");
+		result.append(unsigned);
+		result.append(", integerLength: ");
 		result.append(integerLength);
 		result.append(", fractionLength: ");
 		result.append(fractionLength);
+		result.append(", slope: ");
+		result.append(slope);
+		result.append(", bias: ");
+		result.append(bias);
+		result.append(", saturate: ");
+		result.append(saturate);
 		result.append(')');
 		return result.toString();
 	}

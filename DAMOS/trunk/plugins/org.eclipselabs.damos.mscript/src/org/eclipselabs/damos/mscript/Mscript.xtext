@@ -468,8 +468,11 @@ terminal IJ:
 terminal E:
 	'e' | 'E';
 
+terminal EXP:
+	E ('0'..'9')+;
+
 terminal EXPIJ:
-	E ('0'..'9')+ IJ?;
+	EXP IJ;
 	
 terminal ONE:
 	'1';

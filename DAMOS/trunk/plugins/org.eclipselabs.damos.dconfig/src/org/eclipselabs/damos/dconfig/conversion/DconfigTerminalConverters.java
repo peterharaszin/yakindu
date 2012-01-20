@@ -13,6 +13,9 @@ package org.eclipselabs.damos.dconfig.conversion;
 
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
+import org.eclipse.xtext.conversion.ValueConverterException;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.util.Strings;
 import org.eclipselabs.damos.mscript.conversion.MscriptTerminalConverters;
 
 /**
@@ -29,6 +32,28 @@ public class DconfigTerminalConverters extends MscriptTerminalConverters {
 	@ValueConverter(rule = "QualifiedNameWithoutIJ")
 	public IValueConverter<String> QualifiedNameWithoutIJ() {
 		return QualifiedName();
+	}
+
+	@ValueConverter(rule = "ValidDouble")
+	public IValueConverter<Double> ValidDouble() {
+		return new IValueConverter<Double>() {
+			
+			public Double toValue(String string, INode node) {
+				if (Strings.isEmpty(string)) {
+					return Double.valueOf(0.0);
+				}
+				try {
+					return Double.valueOf(string);
+				} catch (NumberFormatException e) {
+					throw new ValueConverterException("Couldn't convert '" + string + "' to ValidDouble", node, e);
+				}
+			}
+
+			public String toString(Double value) {
+				return value.toString();
+			}
+
+		};
 	}
 
 }

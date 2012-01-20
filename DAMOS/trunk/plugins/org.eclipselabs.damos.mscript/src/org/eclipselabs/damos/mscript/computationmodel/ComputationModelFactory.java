@@ -44,15 +44,6 @@ public interface ComputationModelFactory extends EFactory {
 	FixedPointFormat createFixedPointFormat();
 
 	/**
-	 * Returns a new object of class '<em>Fixed Point Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Fixed Point Operation</em>'.
-	 * @generated
-	 */
-	FixedPointOperation createFixedPointOperation();
-
-	/**
 	 * Returns a new object of class '<em>Computation Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

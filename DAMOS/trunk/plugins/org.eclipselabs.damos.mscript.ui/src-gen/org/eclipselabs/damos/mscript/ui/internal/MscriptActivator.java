@@ -36,7 +36,6 @@ public class MscriptActivator extends AbstractUIPlugin {
 		INSTANCE = this;
 		try {
 			registerInjectorFor("org.eclipselabs.damos.mscript.Mscript");
-			registerInjectorFor("org.eclipselabs.damos.mscript.computationmodel.ComputationModel");
 			
 		} catch (Exception e) {
 			Logger.getLogger(getClass()).error(e.getMessage(), e);
@@ -64,9 +63,6 @@ public class MscriptActivator extends AbstractUIPlugin {
 		if ("org.eclipselabs.damos.mscript.Mscript".equals(grammar)) {
 		  return new org.eclipselabs.damos.mscript.MscriptRuntimeModule();
 		}
-		if ("org.eclipselabs.damos.mscript.computationmodel.ComputationModel".equals(grammar)) {
-		  return new org.eclipselabs.damos.mscript.computationmodel.ComputationModelRuntimeModule();
-		}
 		
 		throw new IllegalArgumentException(grammar);
 	}
@@ -74,9 +70,6 @@ public class MscriptActivator extends AbstractUIPlugin {
 	protected Module getUiModule(String grammar) {
 		if ("org.eclipselabs.damos.mscript.Mscript".equals(grammar)) {
 		  return new org.eclipselabs.damos.mscript.ui.MscriptUiModule(this);
-		}
-		if ("org.eclipselabs.damos.mscript.computationmodel.ComputationModel".equals(grammar)) {
-		  return new org.eclipselabs.damos.mscript.computationmodel.ui.ComputationModelUiModule(this);
 		}
 		
 		throw new IllegalArgumentException(grammar);

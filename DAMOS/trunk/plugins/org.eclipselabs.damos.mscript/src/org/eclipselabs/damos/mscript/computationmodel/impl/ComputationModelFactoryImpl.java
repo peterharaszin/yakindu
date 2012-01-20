@@ -16,11 +16,10 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelFactory;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
+import org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind;
 
 /**
  * <!-- begin-user-doc -->
@@ -66,11 +65,10 @@ public class ComputationModelFactoryImpl extends EFactoryImpl implements Computa
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ComputationModelPackage.FLOATING_POINT_FORMAT: return createFloatingPointFormat();
-			case ComputationModelPackage.FIXED_POINT_FORMAT: return createFixedPointFormat();
-			case ComputationModelPackage.FIXED_POINT_OPERATION: return createFixedPointOperation();
 			case ComputationModelPackage.COMPUTATION_MODEL: return createComputationModel();
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING: return createNumberFormatMapping();
+			case ComputationModelPackage.FIXED_POINT_FORMAT: return createFixedPointFormat();
+			case ComputationModelPackage.FLOATING_POINT_FORMAT: return createFloatingPointFormat();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -84,10 +82,10 @@ public class ComputationModelFactoryImpl extends EFactoryImpl implements Computa
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case ComputationModelPackage.PREDEFINED_FIXED_POINT_FORMAT_KIND:
+				return createPredefinedFixedPointFormatKindFromString(eDataType, initialValue);
 			case ComputationModelPackage.FLOATING_POINT_FORMAT_KIND:
 				return createFloatingPointFormatKindFromString(eDataType, initialValue);
-			case ComputationModelPackage.FIXED_POINT_OPERATION_KIND:
-				return createFixedPointOperationKindFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -101,10 +99,10 @@ public class ComputationModelFactoryImpl extends EFactoryImpl implements Computa
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case ComputationModelPackage.PREDEFINED_FIXED_POINT_FORMAT_KIND:
+				return convertPredefinedFixedPointFormatKindToString(eDataType, instanceValue);
 			case ComputationModelPackage.FLOATING_POINT_FORMAT_KIND:
 				return convertFloatingPointFormatKindToString(eDataType, instanceValue);
-			case ComputationModelPackage.FIXED_POINT_OPERATION_KIND:
-				return convertFixedPointOperationKindToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -125,9 +123,10 @@ public class ComputationModelFactoryImpl extends EFactoryImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FixedPointFormat createFixedPointFormat() {
-		FixedPointFormatImpl fixedPointFormat = new FixedPointFormatImpl();
-		return fixedPointFormat;
+	public PredefinedFixedPointFormatKind createPredefinedFixedPointFormatKindFromString(EDataType eDataType, String initialValue) {
+		PredefinedFixedPointFormatKind result = PredefinedFixedPointFormatKind.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
 	}
 
 	/**
@@ -135,9 +134,18 @@ public class ComputationModelFactoryImpl extends EFactoryImpl implements Computa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FixedPointOperation createFixedPointOperation() {
-		FixedPointOperationImpl fixedPointOperation = new FixedPointOperationImpl();
-		return fixedPointOperation;
+	public String convertPredefinedFixedPointFormatKindToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FixedPointFormat createFixedPointFormat() {
+		FixedPointFormatImpl fixedPointFormat = new FixedPointFormatImpl();
+		return fixedPointFormat;
 	}
 
 	/**
@@ -177,26 +185,6 @@ public class ComputationModelFactoryImpl extends EFactoryImpl implements Computa
 	 * @generated
 	 */
 	public String convertFloatingPointFormatKindToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public FixedPointOperationKind createFixedPointOperationKindFromString(EDataType eDataType, String initialValue) {
-		FixedPointOperationKind result = FixedPointOperationKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertFixedPointOperationKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

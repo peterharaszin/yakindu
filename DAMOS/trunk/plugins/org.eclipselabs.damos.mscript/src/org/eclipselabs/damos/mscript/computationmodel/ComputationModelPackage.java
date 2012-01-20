@@ -68,25 +68,7 @@ public interface ComputationModelPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getNumberFormat()
 	 * @generated
 	 */
-	int NUMBER_FORMAT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_FORMAT__NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Number Format</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_FORMAT_FEATURE_COUNT = 1;
+	int NUMBER_FORMAT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FloatingPointFormatImpl <em>Floating Point Format</em>}' class.
@@ -96,16 +78,191 @@ public interface ComputationModelPackage extends EPackage {
 	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getFloatingPointFormat()
 	 * @generated
 	 */
-	int FLOATING_POINT_FORMAT = 0;
+	int FLOATING_POINT_FORMAT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind <em>Predefined Fixed Point Format Kind</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getPredefinedFixedPointFormatKind()
+	 * @generated
+	 */
+	int PREDEFINED_FIXED_POINT_FORMAT_KIND = 5;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl <em>Fixed Point Format</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getFixedPointFormat()
+	 * @generated
+	 */
+	int FIXED_POINT_FORMAT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl <em>Computation Model</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getComputationModel()
+	 * @generated
+	 */
+	int COMPUTATION_MODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOATING_POINT_FORMAT__NAME = NUMBER_FORMAT__NAME;
+	int COMPUTATION_MODEL__QUALIFIED_NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Number Format Mappings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Computation Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPUTATION_MODEL_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl <em>Number Format Mapping</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl
+	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getNumberFormatMapping()
+	 * @generated
+	 */
+	int NUMBER_FORMAT_MAPPING = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Number Format</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_FORMAT_MAPPING__NUMBER_FORMAT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Number Format Mapping</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_FORMAT_MAPPING_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Number Format</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMBER_FORMAT_FEATURE_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Predefined Kind</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__PREDEFINED_KIND = NUMBER_FORMAT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Unsigned</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__UNSIGNED = NUMBER_FORMAT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Integer Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__INTEGER_LENGTH = NUMBER_FORMAT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Fraction Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__FRACTION_LENGTH = NUMBER_FORMAT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Word Size</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__WORD_SIZE = NUMBER_FORMAT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Slope</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__SLOPE = NUMBER_FORMAT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Bias</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__BIAS = NUMBER_FORMAT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Saturate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT__SATURATE = NUMBER_FORMAT_FEATURE_COUNT + 7;
+
+	/**
+	 * The number of structural features of the '<em>Fixed Point Format</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FIXED_POINT_FORMAT_FEATURE_COUNT = NUMBER_FORMAT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
@@ -126,199 +283,6 @@ public interface ComputationModelPackage extends EPackage {
 	int FLOATING_POINT_FORMAT_FEATURE_COUNT = NUMBER_FORMAT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl <em>Fixed Point Format</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getFixedPointFormat()
-	 * @generated
-	 */
-	int FIXED_POINT_FORMAT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_FORMAT__NAME = NUMBER_FORMAT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Integer Length</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_FORMAT__INTEGER_LENGTH = NUMBER_FORMAT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Fraction Length</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_FORMAT__FRACTION_LENGTH = NUMBER_FORMAT_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Word Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_FORMAT__WORD_SIZE = NUMBER_FORMAT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_FORMAT__OPERATIONS = NUMBER_FORMAT_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Fixed Point Format</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_FORMAT_FEATURE_COUNT = NUMBER_FORMAT_FEATURE_COUNT + 4;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointOperationImpl <em>Fixed Point Operation</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointOperationImpl
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getFixedPointOperation()
-	 * @generated
-	 */
-	int FIXED_POINT_OPERATION = 3;
-
-	/**
-	 * The feature id for the '<em><b>Kind</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_OPERATION__KIND = 0;
-
-	/**
-	 * The feature id for the '<em><b>Intermediate Word Size</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_OPERATION__INTERMEDIATE_WORD_SIZE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Saturate</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_OPERATION__SATURATE = 2;
-
-	/**
-	 * The number of structural features of the '<em>Fixed Point Operation</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FIXED_POINT_OPERATION_FEATURE_COUNT = 3;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl <em>Computation Model</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getComputationModel()
-	 * @generated
-	 */
-	int COMPUTATION_MODEL = 4;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTATION_MODEL__QUALIFIED_NAME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Number Formats</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTATION_MODEL__NUMBER_FORMATS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Number Format Mappings</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTATION_MODEL__NUMBER_FORMAT_MAPPINGS = 2;
-
-	/**
-	 * The number of structural features of the '<em>Computation Model</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPUTATION_MODEL_FEATURE_COUNT = 3;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl <em>Number Format Mapping</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatMappingImpl
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getNumberFormatMapping()
-	 * @generated
-	 */
-	int NUMBER_FORMAT_MAPPING = 5;
-
-	/**
-	 * The feature id for the '<em><b>Type Specifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Number Format</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_FORMAT_MAPPING__NUMBER_FORMAT = 1;
-
-	/**
-	 * The number of structural features of the '<em>Number Format Mapping</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NUMBER_FORMAT_MAPPING_FEATURE_COUNT = 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormatKind <em>Floating Point Format Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -327,17 +291,6 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 */
 	int FLOATING_POINT_FORMAT_KIND = 6;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind <em>Fixed Point Operation Kind</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind
-	 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getFixedPointOperationKind()
-	 * @generated
-	 */
-	int FIXED_POINT_OPERATION_KIND = 7;
-
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat <em>Floating Point Format</em>}'.
@@ -361,6 +314,16 @@ public interface ComputationModelPackage extends EPackage {
 	EAttribute getFloatingPointFormat_Kind();
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind <em>Predefined Fixed Point Format Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Predefined Fixed Point Format Kind</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind
+	 * @generated
+	 */
+	EEnum getPredefinedFixedPointFormatKind();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormat <em>Number Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -371,17 +334,6 @@ public interface ComputationModelPackage extends EPackage {
 	EClass getNumberFormat();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormat#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.NumberFormat#getName()
-	 * @see #getNumberFormat()
-	 * @generated
-	 */
-	EAttribute getNumberFormat_Name();
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat <em>Fixed Point Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -390,6 +342,28 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getFixedPointFormat();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getPredefinedKind <em>Predefined Kind</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Predefined Kind</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getPredefinedKind()
+	 * @see #getFixedPointFormat()
+	 * @generated
+	 */
+	EAttribute getFixedPointFormat_PredefinedKind();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isUnsigned <em>Unsigned</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unsigned</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isUnsigned()
+	 * @see #getFixedPointFormat()
+	 * @generated
+	 */
+	EAttribute getFixedPointFormat_Unsigned();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getIntegerLength <em>Integer Length</em>}'.
@@ -425,58 +399,37 @@ public interface ComputationModelPackage extends EPackage {
 	EAttribute getFixedPointFormat_WordSize();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getOperations <em>Operations</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getSlope <em>Slope</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Operations</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getOperations()
+	 * @return the meta object for the attribute '<em>Slope</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getSlope()
 	 * @see #getFixedPointFormat()
 	 * @generated
 	 */
-	EReference getFixedPointFormat_Operations();
+	EAttribute getFixedPointFormat_Slope();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation <em>Fixed Point Operation</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getBias <em>Bias</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Fixed Point Operation</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation
+	 * @return the meta object for the attribute '<em>Bias</em>'.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getBias()
+	 * @see #getFixedPointFormat()
 	 * @generated
 	 */
-	EClass getFixedPointOperation();
+	EAttribute getFixedPointFormat_Bias();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation#getKind <em>Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Kind</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation#getKind()
-	 * @see #getFixedPointOperation()
-	 * @generated
-	 */
-	EAttribute getFixedPointOperation_Kind();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation#getIntermediateWordSize <em>Intermediate Word Size</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Intermediate Word Size</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation#getIntermediateWordSize()
-	 * @see #getFixedPointOperation()
-	 * @generated
-	 */
-	EAttribute getFixedPointOperation_IntermediateWordSize();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation#isSaturate <em>Saturate</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isSaturate <em>Saturate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Saturate</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation#isSaturate()
-	 * @see #getFixedPointOperation()
+	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isSaturate()
+	 * @see #getFixedPointFormat()
 	 * @generated
 	 */
-	EAttribute getFixedPointOperation_Saturate();
+	EAttribute getFixedPointFormat_Saturate();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel <em>Computation Model</em>}'.
@@ -487,17 +440,6 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getComputationModel();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getNumberFormats <em>Number Formats</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Number Formats</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getNumberFormats()
-	 * @see #getComputationModel()
-	 * @generated
-	 */
-	EReference getComputationModel_NumberFormats();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getNumberFormatMappings <em>Number Format Mappings</em>}'.
@@ -543,10 +485,10 @@ public interface ComputationModelPackage extends EPackage {
 	EReference getNumberFormatMapping_TypeSpecifier();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getNumberFormat <em>Number Format</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getNumberFormat <em>Number Format</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Number Format</em>'.
+	 * @return the meta object for the containment reference '<em>Number Format</em>'.
 	 * @see org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping#getNumberFormat()
 	 * @see #getNumberFormatMapping()
 	 * @generated
@@ -562,16 +504,6 @@ public interface ComputationModelPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getFloatingPointFormatKind();
-
-	/**
-	 * Returns the meta object for enum '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind <em>Fixed Point Operation Kind</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>Fixed Point Operation Kind</em>'.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind
-	 * @generated
-	 */
-	EEnum getFixedPointOperationKind();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -614,6 +546,16 @@ public interface ComputationModelPackage extends EPackage {
 		EAttribute FLOATING_POINT_FORMAT__KIND = eINSTANCE.getFloatingPointFormat_Kind();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind <em>Predefined Fixed Point Format Kind</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind
+		 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getPredefinedFixedPointFormatKind()
+		 * @generated
+		 */
+		EEnum PREDEFINED_FIXED_POINT_FORMAT_KIND = eINSTANCE.getPredefinedFixedPointFormatKind();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.NumberFormatImpl <em>Number Format</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -624,14 +566,6 @@ public interface ComputationModelPackage extends EPackage {
 		EClass NUMBER_FORMAT = eINSTANCE.getNumberFormat();
 
 		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute NUMBER_FORMAT__NAME = eINSTANCE.getNumberFormat_Name();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointFormatImpl <em>Fixed Point Format</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -640,6 +574,22 @@ public interface ComputationModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass FIXED_POINT_FORMAT = eINSTANCE.getFixedPointFormat();
+
+		/**
+		 * The meta object literal for the '<em><b>Predefined Kind</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIXED_POINT_FORMAT__PREDEFINED_KIND = eINSTANCE.getFixedPointFormat_PredefinedKind();
+
+		/**
+		 * The meta object literal for the '<em><b>Unsigned</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FIXED_POINT_FORMAT__UNSIGNED = eINSTANCE.getFixedPointFormat_Unsigned();
 
 		/**
 		 * The meta object literal for the '<em><b>Integer Length</b></em>' attribute feature.
@@ -666,38 +616,20 @@ public interface ComputationModelPackage extends EPackage {
 		EAttribute FIXED_POINT_FORMAT__WORD_SIZE = eINSTANCE.getFixedPointFormat_WordSize();
 
 		/**
-		 * The meta object literal for the '<em><b>Operations</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Slope</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference FIXED_POINT_FORMAT__OPERATIONS = eINSTANCE.getFixedPointFormat_Operations();
+		EAttribute FIXED_POINT_FORMAT__SLOPE = eINSTANCE.getFixedPointFormat_Slope();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointOperationImpl <em>Fixed Point Operation</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.computationmodel.impl.FixedPointOperationImpl
-		 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getFixedPointOperation()
-		 * @generated
-		 */
-		EClass FIXED_POINT_OPERATION = eINSTANCE.getFixedPointOperation();
-
-		/**
-		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Bias</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FIXED_POINT_OPERATION__KIND = eINSTANCE.getFixedPointOperation_Kind();
-
-		/**
-		 * The meta object literal for the '<em><b>Intermediate Word Size</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute FIXED_POINT_OPERATION__INTERMEDIATE_WORD_SIZE = eINSTANCE.getFixedPointOperation_IntermediateWordSize();
+		EAttribute FIXED_POINT_FORMAT__BIAS = eINSTANCE.getFixedPointFormat_Bias();
 
 		/**
 		 * The meta object literal for the '<em><b>Saturate</b></em>' attribute feature.
@@ -705,7 +637,7 @@ public interface ComputationModelPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute FIXED_POINT_OPERATION__SATURATE = eINSTANCE.getFixedPointOperation_Saturate();
+		EAttribute FIXED_POINT_FORMAT__SATURATE = eINSTANCE.getFixedPointFormat_Saturate();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelImpl <em>Computation Model</em>}' class.
@@ -716,14 +648,6 @@ public interface ComputationModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass COMPUTATION_MODEL = eINSTANCE.getComputationModel();
-
-		/**
-		 * The meta object literal for the '<em><b>Number Formats</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference COMPUTATION_MODEL__NUMBER_FORMATS = eINSTANCE.getComputationModel_NumberFormats();
 
 		/**
 		 * The meta object literal for the '<em><b>Number Format Mappings</b></em>' containment reference list feature.
@@ -760,7 +684,7 @@ public interface ComputationModelPackage extends EPackage {
 		EReference NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER = eINSTANCE.getNumberFormatMapping_TypeSpecifier();
 
 		/**
-		 * The meta object literal for the '<em><b>Number Format</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Number Format</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -776,16 +700,6 @@ public interface ComputationModelPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum FLOATING_POINT_FORMAT_KIND = eINSTANCE.getFloatingPointFormatKind();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind <em>Fixed Point Operation Kind</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind
-		 * @see org.eclipselabs.damos.mscript.computationmodel.impl.ComputationModelPackageImpl#getFixedPointOperationKind()
-		 * @generated
-		 */
-		EEnum FIXED_POINT_OPERATION_KIND = eINSTANCE.getFixedPointOperationKind();
 
 	}
 

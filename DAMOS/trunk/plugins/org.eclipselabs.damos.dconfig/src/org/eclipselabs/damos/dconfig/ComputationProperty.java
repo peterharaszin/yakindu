@@ -26,26 +26,26 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  */
 public interface ComputationProperty extends Property {
 	/**
-	 * Returns the value of the '<em><b>Computation Model</b></em>' reference.
+	 * Returns the value of the '<em><b>Computation Model</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Computation Model</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Computation Model</em>' reference.
+	 * @return the value of the '<em>Computation Model</em>' containment reference.
 	 * @see #setComputationModel(ComputationModel)
 	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getComputationProperty_ComputationModel()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
 	ComputationModel getComputationModel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.ComputationProperty#getComputationModel <em>Computation Model</em>}' reference.
+	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.ComputationProperty#getComputationModel <em>Computation Model</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Computation Model</em>' reference.
+	 * @param value the new value of the '<em>Computation Model</em>' containment reference.
 	 * @see #getComputationModel()
 	 * @generated
 	 */

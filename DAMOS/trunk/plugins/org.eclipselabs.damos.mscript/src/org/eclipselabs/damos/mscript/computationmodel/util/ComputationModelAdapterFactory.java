@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
@@ -75,8 +74,12 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 	protected ComputationModelSwitch<Adapter> modelSwitch =
 		new ComputationModelSwitch<Adapter>() {
 			@Override
-			public Adapter caseFloatingPointFormat(FloatingPointFormat object) {
-				return createFloatingPointFormatAdapter();
+			public Adapter caseComputationModel(ComputationModel object) {
+				return createComputationModelAdapter();
+			}
+			@Override
+			public Adapter caseNumberFormatMapping(NumberFormatMapping object) {
+				return createNumberFormatMappingAdapter();
 			}
 			@Override
 			public Adapter caseNumberFormat(NumberFormat object) {
@@ -87,16 +90,8 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 				return createFixedPointFormatAdapter();
 			}
 			@Override
-			public Adapter caseFixedPointOperation(FixedPointOperation object) {
-				return createFixedPointOperationAdapter();
-			}
-			@Override
-			public Adapter caseComputationModel(ComputationModel object) {
-				return createComputationModelAdapter();
-			}
-			@Override
-			public Adapter caseNumberFormatMapping(NumberFormatMapping object) {
-				return createNumberFormatMappingAdapter();
+			public Adapter caseFloatingPointFormat(FloatingPointFormat object) {
+				return createFloatingPointFormatAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -157,20 +152,6 @@ public class ComputationModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFixedPointFormatAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation <em>Fixed Point Operation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation
-	 * @generated
-	 */
-	public Adapter createFixedPointOperationAdapter() {
 		return null;
 	}
 

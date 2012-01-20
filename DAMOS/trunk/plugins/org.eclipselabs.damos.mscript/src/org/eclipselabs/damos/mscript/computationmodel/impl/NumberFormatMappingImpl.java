@@ -43,7 +43,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	protected DataTypeSpecifier typeSpecifier;
 
 	/**
-	 * The cached value of the '{@link #getNumberFormat() <em>Number Format</em>}' reference.
+	 * The cached value of the '{@link #getNumberFormat() <em>Number Format</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getNumberFormat()
@@ -120,14 +120,6 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * @generated
 	 */
 	public NumberFormat getNumberFormat() {
-		if (numberFormat != null && numberFormat.eIsProxy()) {
-			InternalEObject oldNumberFormat = (InternalEObject)numberFormat;
-			numberFormat = (NumberFormat)eResolveProxy(oldNumberFormat);
-			if (numberFormat != oldNumberFormat) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, oldNumberFormat, numberFormat));
-			}
-		}
 		return numberFormat;
 	}
 
@@ -136,8 +128,14 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NumberFormat basicGetNumberFormat() {
-		return numberFormat;
+	public NotificationChain basicSetNumberFormat(NumberFormat newNumberFormat, NotificationChain msgs) {
+		NumberFormat oldNumberFormat = numberFormat;
+		numberFormat = newNumberFormat;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, oldNumberFormat, newNumberFormat);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -146,10 +144,17 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 	 * @generated
 	 */
 	public void setNumberFormat(NumberFormat newNumberFormat) {
-		NumberFormat oldNumberFormat = numberFormat;
-		numberFormat = newNumberFormat;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, oldNumberFormat, numberFormat));
+		if (newNumberFormat != numberFormat) {
+			NotificationChain msgs = null;
+			if (numberFormat != null)
+				msgs = ((InternalEObject)numberFormat).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, null, msgs);
+			if (newNumberFormat != null)
+				msgs = ((InternalEObject)newNumberFormat).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, null, msgs);
+			msgs = basicSetNumberFormat(newNumberFormat, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT, newNumberFormat, newNumberFormat));
 	}
 
 	/**
@@ -162,6 +167,8 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 		switch (featureID) {
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
 				return basicSetTypeSpecifier(null, msgs);
+			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
+				return basicSetNumberFormat(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -177,8 +184,7 @@ public class NumberFormatMappingImpl extends EObjectImpl implements NumberFormat
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__TYPE_SPECIFIER:
 				return getTypeSpecifier();
 			case ComputationModelPackage.NUMBER_FORMAT_MAPPING__NUMBER_FORMAT:
-				if (resolve) return getNumberFormat();
-				return basicGetNumberFormat();
+				return getNumberFormat();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

@@ -11,6 +11,7 @@
 
 package org.eclipselabs.damos.mscript.internal.computationmodel.operations;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 
@@ -21,7 +22,7 @@ import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 public class FloatingPointFormatOperations {
 
 	public static boolean isEquivalentTo(FloatingPointFormat floatingPointFormat, NumberFormat other) {
-		return new NumberFormatEqualityHelper().equals(floatingPointFormat, other);
+		return EcoreUtil.equals(floatingPointFormat, other);
 	}
 
 }

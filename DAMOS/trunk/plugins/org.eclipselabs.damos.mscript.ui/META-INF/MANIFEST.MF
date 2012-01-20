@@ -17,10 +17,7 @@ Require-Bundle: org.eclipselabs.damos.mscript;visibility:=reexport,
 Import-Package: org.apache.log4j,
  org.apache.commons.logging
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipselabs.damos.mscript.computationmodel.ui,
- org.eclipselabs.damos.mscript.computationmodel.ui.contentassist,
- org.eclipselabs.damos.mscript.computationmodel.ui.contentassist.antlr,
- org.eclipselabs.damos.mscript.ui,
+Export-Package: org.eclipselabs.damos.mscript.ui,
  org.eclipselabs.damos.mscript.ui.autoedit,
  org.eclipselabs.damos.mscript.ui.contentassist,
  org.eclipselabs.damos.mscript.ui.contentassist.antlr,

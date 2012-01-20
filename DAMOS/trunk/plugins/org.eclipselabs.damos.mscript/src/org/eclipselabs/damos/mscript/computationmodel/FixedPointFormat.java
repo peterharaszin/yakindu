@@ -6,7 +6,6 @@
  */
 package org.eclipselabs.damos.mscript.computationmodel;
 
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,10 +15,14 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getPredefinedKind <em>Predefined Kind</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isUnsigned <em>Unsigned</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getIntegerLength <em>Integer Length</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getFractionLength <em>Fraction Length</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getWordSize <em>Word Size</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getOperations <em>Operations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getSlope <em>Slope</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getBias <em>Bias</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isSaturate <em>Saturate</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,6 +31,61 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface FixedPointFormat extends NumberFormat {
+	/**
+	 * Returns the value of the '<em><b>Predefined Kind</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Predefined Kind</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Predefined Kind</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind
+	 * @see #setPredefinedKind(PredefinedFixedPointFormatKind)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getFixedPointFormat_PredefinedKind()
+	 * @model transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	PredefinedFixedPointFormatKind getPredefinedKind();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getPredefinedKind <em>Predefined Kind</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Predefined Kind</em>' attribute.
+	 * @see org.eclipselabs.damos.mscript.computationmodel.PredefinedFixedPointFormatKind
+	 * @see #getPredefinedKind()
+	 * @generated
+	 */
+	void setPredefinedKind(PredefinedFixedPointFormatKind value);
+
+	/**
+	 * Returns the value of the '<em><b>Unsigned</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unsigned</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unsigned</em>' attribute.
+	 * @see #setUnsigned(boolean)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getFixedPointFormat_Unsigned()
+	 * @model
+	 * @generated
+	 */
+	boolean isUnsigned();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isUnsigned <em>Unsigned</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unsigned</em>' attribute.
+	 * @see #isUnsigned()
+	 * @generated
+	 */
+	void setUnsigned(boolean value);
+
 	/**
 	 * Returns the value of the '<em><b>Integer Length</b></em>' attribute.
 	 * The default value is <code>"1"</code>.
@@ -97,27 +155,83 @@ public interface FixedPointFormat extends NumberFormat {
 	int getWordSize();
 
 	/**
-	 * Returns the value of the '<em><b>Operations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation}.
+	 * Returns the value of the '<em><b>Slope</b></em>' attribute.
+	 * The default value is <code>"1.0"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Operations</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Slope</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operations</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getFixedPointFormat_Operations()
-	 * @model containment="true" ordered="false"
+	 * @return the value of the '<em>Slope</em>' attribute.
+	 * @see #setSlope(double)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getFixedPointFormat_Slope()
+	 * @model default="1.0" required="true" ordered="false"
 	 * @generated
 	 */
-	EList<FixedPointOperation> getOperations();
+	double getSlope();
 
 	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getSlope <em>Slope</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model ordered="false" kindRequired="true" kindOrdered="false"
+	 * @param value the new value of the '<em>Slope</em>' attribute.
+	 * @see #getSlope()
 	 * @generated
 	 */
-	FixedPointOperation getOperation(FixedPointOperationKind kind);
+	void setSlope(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Bias</b></em>' attribute.
+	 * The default value is <code>"0.0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Bias</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Bias</em>' attribute.
+	 * @see #setBias(double)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getFixedPointFormat_Bias()
+	 * @model default="0.0" required="true" ordered="false"
+	 * @generated
+	 */
+	double getBias();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#getBias <em>Bias</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Bias</em>' attribute.
+	 * @see #getBias()
+	 * @generated
+	 */
+	void setBias(double value);
+
+	/**
+	 * Returns the value of the '<em><b>Saturate</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Saturate</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Saturate</em>' attribute.
+	 * @see #setSaturate(boolean)
+	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getFixedPointFormat_Saturate()
+	 * @model
+	 * @generated
+	 */
+	boolean isSaturate();
+
+	/**
+	 * Sets the value of the '{@link org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat#isSaturate <em>Saturate</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Saturate</em>' attribute.
+	 * @see #isSaturate()
+	 * @generated
+	 */
+	void setSaturate(boolean value);
 
 } // FixedPointFormat

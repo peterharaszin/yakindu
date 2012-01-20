@@ -19,7 +19,6 @@ import org.eclipselabs.damos.mscript.DataType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getQualifiedName <em>Qualified Name</em>}</li>
- *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getNumberFormats <em>Number Formats</em>}</li>
  *   <li>{@link org.eclipselabs.damos.mscript.computationmodel.ComputationModel#getNumberFormatMappings <em>Number Format Mappings</em>}</li>
  * </ul>
  * </p>
@@ -29,22 +28,6 @@ import org.eclipselabs.damos.mscript.DataType;
  * @generated
  */
 public interface ComputationModel extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Number Formats</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipselabs.damos.mscript.computationmodel.NumberFormat}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Number Formats</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Number Formats</em>' containment reference list.
-	 * @see org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage#getComputationModel_NumberFormats()
-	 * @model containment="true" ordered="false"
-	 * @generated
-	 */
-	EList<NumberFormat> getNumberFormats();
-
 	/**
 	 * Returns the value of the '<em><b>Number Format Mappings</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping}.
@@ -60,6 +43,14 @@ public interface ComputationModel extends EObject {
 	 * @generated
 	 */
 	EList<NumberFormatMapping> getNumberFormatMappings();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model ordered="false" dataTypeRequired="true" dataTypeOrdered="false"
+	 * @generated
+	 */
+	NumberFormatMapping getNumberFormatMapping(DataType dataType);
 
 	/**
 	 * Returns the value of the '<em><b>Qualified Name</b></em>' attribute.

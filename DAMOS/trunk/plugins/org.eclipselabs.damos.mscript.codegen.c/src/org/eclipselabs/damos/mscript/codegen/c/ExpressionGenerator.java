@@ -46,8 +46,6 @@ import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFixedPointHel
 import org.eclipselabs.damos.mscript.codegen.c.internal.util.CastToFloatingPointHelper;
 import org.eclipselabs.damos.mscript.codegen.c.util.MscriptGeneratorUtil;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
@@ -224,9 +222,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 		
 		private void writeFixedPointMultiplicationExpression(Expression leftOperand, Expression rightOperand, FixedPointFormat fixedPointFormat) {
-			FixedPointOperation operation = ComputationModelUtil.getFixedPointOperation(fixedPointFormat, FixedPointOperationKind.MULTIPLY);
-			
-			boolean hasIntermediateWordSize = operation.getIntermediateWordSize() != fixedPointFormat.getWordSize();
+			int intermediateWordSize = getIntermediateWordSize(fixedPointFormat);
+			boolean hasIntermediateWordSize = intermediateWordSize != fixedPointFormat.getWordSize();
 		
 			if (hasIntermediateWordSize) {
 				out.printf("(int%d_t) ", fixedPointFormat.getWordSize());
@@ -236,7 +233,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				out.print("(");
 			}
 			
-			castToFixedPoint(leftOperand, operation.getIntermediateWordSize(), fixedPointFormat.getFractionLength());
+			castToFixedPoint(leftOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
 			
 			out.print(" * ");
 			
@@ -244,7 +241,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				out.print("(");
 			}
 	
-			castToFixedPoint(rightOperand, operation.getIntermediateWordSize(), fixedPointFormat.getFractionLength());
+			castToFixedPoint(rightOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
 			
 			if (fixedPointFormat.getFractionLength() > 0) {
 				out.printf(") >> %d", fixedPointFormat.getFractionLength());
@@ -256,9 +253,8 @@ public class ExpressionGenerator implements IExpressionGenerator {
 		}
 	
 		private void writeFixedPointDivisionExpression(Expression leftOperand, Expression rightOperand, FixedPointFormat fixedPointFormat) {
-			FixedPointOperation operation = ComputationModelUtil.getFixedPointOperation(fixedPointFormat, FixedPointOperationKind.DIVIDE);
-			
-			boolean hasIntermediateWordSize = operation.getIntermediateWordSize() != fixedPointFormat.getWordSize();
+			int intermediateWordSize = getIntermediateWordSize(fixedPointFormat);
+			boolean hasIntermediateWordSize = intermediateWordSize != fixedPointFormat.getWordSize();
 		
 			if (hasIntermediateWordSize) {
 				out.printf("(int%d_t) (", fixedPointFormat.getWordSize());
@@ -268,7 +264,7 @@ public class ExpressionGenerator implements IExpressionGenerator {
 				out.print("((");
 			}
 	
-			castToFixedPoint(leftOperand, operation.getIntermediateWordSize(), fixedPointFormat.getFractionLength());
+			castToFixedPoint(leftOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
 			
 			if (fixedPointFormat.getFractionLength() > 0) {
 				out.printf(") << %d)", fixedPointFormat.getFractionLength());
@@ -276,13 +272,20 @@ public class ExpressionGenerator implements IExpressionGenerator {
 	
 			out.print(" / ");
 			
-			castToFixedPoint(rightOperand, operation.getIntermediateWordSize(), fixedPointFormat.getFractionLength());
+			castToFixedPoint(rightOperand, intermediateWordSize, fixedPointFormat.getFractionLength());
 			
 			if (hasIntermediateWordSize) {
 				out.print(")");
 			}
 		}
 		
+		private int getIntermediateWordSize(FixedPointFormat fixedPointFormat) {
+			if (fixedPointFormat.getFractionLength() != 0) {
+				return 2 * fixedPointFormat.getWordSize();
+			}
+			return fixedPointFormat.getWordSize();
+		}
+
 		private void castToFloatingPoint(final Expression expression, FloatingPointFormat floatingPointFormat) {
 			new CastToFloatingPointHelper(context.getComputationModel(), context.getAppendable(), getDataType(expression), floatingPointFormat) {
 				

@@ -15,11 +15,8 @@ import org.eclipselabs.damos.mscript.IntegerType;
 import org.eclipselabs.damos.mscript.NumericType;
 import org.eclipselabs.damos.mscript.RealType;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperationKind;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
-import org.eclipselabs.damos.mscript.computationmodel.util.ComputationModelUtil;
 import org.eclipselabs.damos.mscript.interpreter.IComputationContext;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 
@@ -69,9 +66,7 @@ public class Values {
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			FixedPointValue fixedPointValue = new FixedPointValue(context, realType, fixedPointFormat, 0);
-			FixedPointOperation fixedPointOperation = ComputationModelUtil.getFixedPointOperation(fixedPointFormat,
-					FixedPointOperationKind.CONSTRUCT);
-			FixedPointValue.initializeValue(context, fixedPointValue, fixedPointOperation, value);
+			FixedPointValue.initializeValue(context, fixedPointValue, value);
 			return fixedPointValue;
 		}
 		throw new IllegalArgumentException();
@@ -82,9 +77,7 @@ public class Values {
 		if (numberFormat instanceof FixedPointFormat) {
 			FixedPointFormat fixedPointFormat = (FixedPointFormat) numberFormat;
 			FixedPointValue integerValue = new FixedPointValue(context, integerType, fixedPointFormat, 0);
-			FixedPointOperation fixedPointOperation = ComputationModelUtil.getFixedPointOperation(fixedPointFormat,
-					FixedPointOperationKind.CONSTRUCT);
-			FixedPointValue.initializeValue(context, integerValue, fixedPointOperation, value);
+			FixedPointValue.initializeValue(context, integerValue, value);
 			return integerValue;
 		}
 		throw new IllegalArgumentException();

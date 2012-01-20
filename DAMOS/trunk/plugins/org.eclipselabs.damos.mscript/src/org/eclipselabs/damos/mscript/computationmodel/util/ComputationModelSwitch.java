@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.util.Switch;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
 import org.eclipselabs.damos.mscript.computationmodel.ComputationModelPackage;
 import org.eclipselabs.damos.mscript.computationmodel.FixedPointFormat;
-import org.eclipselabs.damos.mscript.computationmodel.FixedPointOperation;
 import org.eclipselabs.damos.mscript.computationmodel.FloatingPointFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormat;
 import org.eclipselabs.damos.mscript.computationmodel.NumberFormatMapping;
@@ -74,10 +73,15 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ComputationModelPackage.FLOATING_POINT_FORMAT: {
-				FloatingPointFormat floatingPointFormat = (FloatingPointFormat)theEObject;
-				T result = caseFloatingPointFormat(floatingPointFormat);
-				if (result == null) result = caseNumberFormat(floatingPointFormat);
+			case ComputationModelPackage.COMPUTATION_MODEL: {
+				ComputationModel computationModel = (ComputationModel)theEObject;
+				T result = caseComputationModel(computationModel);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ComputationModelPackage.NUMBER_FORMAT_MAPPING: {
+				NumberFormatMapping numberFormatMapping = (NumberFormatMapping)theEObject;
+				T result = caseNumberFormatMapping(numberFormatMapping);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -94,21 +98,10 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ComputationModelPackage.FIXED_POINT_OPERATION: {
-				FixedPointOperation fixedPointOperation = (FixedPointOperation)theEObject;
-				T result = caseFixedPointOperation(fixedPointOperation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ComputationModelPackage.COMPUTATION_MODEL: {
-				ComputationModel computationModel = (ComputationModel)theEObject;
-				T result = caseComputationModel(computationModel);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ComputationModelPackage.NUMBER_FORMAT_MAPPING: {
-				NumberFormatMapping numberFormatMapping = (NumberFormatMapping)theEObject;
-				T result = caseNumberFormatMapping(numberFormatMapping);
+			case ComputationModelPackage.FLOATING_POINT_FORMAT: {
+				FloatingPointFormat floatingPointFormat = (FloatingPointFormat)theEObject;
+				T result = caseFloatingPointFormat(floatingPointFormat);
+				if (result == null) result = caseNumberFormat(floatingPointFormat);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -158,21 +151,6 @@ public class ComputationModelSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFixedPointFormat(FixedPointFormat object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Fixed Point Operation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Fixed Point Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFixedPointOperation(FixedPointOperation object) {
 		return null;
 	}
 

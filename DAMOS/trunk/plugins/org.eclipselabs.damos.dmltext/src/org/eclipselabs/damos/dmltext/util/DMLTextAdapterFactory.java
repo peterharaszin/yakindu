@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
@@ -20,10 +19,10 @@ import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
-import org.eclipselabs.damos.dmltext.*;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
-import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
+import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
+import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
 
@@ -100,10 +99,6 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 				return createMscriptDataTypeSpecificationAdapter();
 			}
 			@Override
-			public Adapter caseMscriptBehaviorSpecification(MscriptBehaviorSpecification object) {
-				return createMscriptBehaviorSpecificationAdapter();
-			}
-			@Override
 			public Adapter caseMscriptValueSpecification(MscriptValueSpecification object) {
 				return createMscriptValueSpecificationAdapter();
 			}
@@ -138,10 +133,6 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseDataTypeSpecification(DataTypeSpecification object) {
 				return createDataTypeSpecificationAdapter();
-			}
-			@Override
-			public Adapter caseBehaviorSpecification(BehaviorSpecification object) {
-				return createBehaviorSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseValueSpecification(ValueSpecification object) {
@@ -220,20 +211,6 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMscriptDataTypeSpecificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification <em>Mscript Behavior Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification
-	 * @generated
-	 */
-	public Adapter createMscriptBehaviorSpecificationAdapter() {
 		return null;
 	}
 
@@ -360,20 +337,6 @@ public class DMLTextAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataTypeSpecificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.BehaviorSpecification <em>Behavior Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.BehaviorSpecification
-	 * @generated
-	 */
-	public Adapter createBehaviorSpecificationAdapter() {
 		return null;
 	}
 

@@ -18,7 +18,6 @@ import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
-import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -382,13 +381,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * @generated
 	 */
 	private EClass categoryEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass behaviorSpecificationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1525,17 +1517,8 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getBlockType_Behavior() {
-		return (EReference)blockTypeEClass.getEStructuralFeatures().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getBlockType_Timing() {
-		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)blockTypeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -1599,15 +1582,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 	 */
 	public EClass getCategory() {
 		return categoryEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getBehaviorSpecification() {
-		return behaviorSpecificationEClass;
 	}
 
 	/**
@@ -2376,7 +2350,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		blockTypeEClass = createEClass(BLOCK_TYPE);
 		createEReference(blockTypeEClass, BLOCK_TYPE__INPUT_DEFINITIONS);
 		createEReference(blockTypeEClass, BLOCK_TYPE__OUTPUT_DEFINITIONS);
-		createEReference(blockTypeEClass, BLOCK_TYPE__BEHAVIOR);
 		createEAttribute(blockTypeEClass, BLOCK_TYPE__TIMING);
 
 		qualifiedElementEClass = createEClass(QUALIFIED_ELEMENT);
@@ -2388,8 +2361,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		createEReference(categorizedElementEClass, CATEGORIZED_ELEMENT__BELONGING_CATEGORIES);
 
 		categoryEClass = createEClass(CATEGORY);
-
-		behaviorSpecificationEClass = createEClass(BEHAVIOR_SPECIFICATION);
 
 		blockEClass = createEClass(BLOCK);
 		createEReference(blockEClass, BLOCK__TYPE);
@@ -2847,7 +2818,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		initEClass(blockTypeEClass, BlockType.class, "BlockType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlockType_InputDefinitions(), this.getInputDefinition(), null, "inputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlockType_OutputDefinitions(), this.getOutputDefinition(), null, "outputDefinitions", null, 0, -1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getBlockType_Behavior(), this.getBehaviorSpecification(), null, "behavior", null, 0, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getBlockType_Timing(), this.getTimingKind(), "timing", null, 1, 1, BlockType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(blockTypeEClass, this.getBlock(), "newInstance", 1, 1, IS_UNIQUE, !IS_ORDERED);
@@ -2865,8 +2835,6 @@ public class DMLPackageImpl extends EPackageImpl implements DMLPackage {
 		addEParameter(op, ecorePackage.getEString(), "categoryName", 1, 1, IS_UNIQUE, !IS_ORDERED);
 
 		initEClass(categoryEClass, Category.class, "Category", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(behaviorSpecificationEClass, BehaviorSpecification.class, "BehaviorSpecification", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBlock_Type(), this.getBlockType(), null, "type", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);

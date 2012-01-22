@@ -15,7 +15,7 @@ import org.eclipselabs.damos.dml.InputDefinition;
 import org.eclipselabs.damos.dml.OutputDefinition;
 import org.eclipselabs.damos.dml.Parameter;
 import org.eclipselabs.damos.dml.util.DMLUtil;
-import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
+import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.FunctionDeclaration;
 import org.eclipselabs.damos.mscript.MscriptPackage;
@@ -37,8 +37,11 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 	private static final String MAIN_FUNCTION_NAME = "main";
 
 	@Check
-	public void checkMainFunction(MscriptBehaviorSpecification behaviorSpecification) {
-		for (Declaration declaration : behaviorSpecification.getDeclarations()) {
+	public void checkMainFunction(MscriptBlockType blockType) {
+		if (blockType.getDeclarations().isEmpty()) {
+			return;
+		}
+		for (Declaration declaration : blockType.getDeclarations()) {
 			if (declaration instanceof FunctionDeclaration) {
 				FunctionDeclaration functionDeclaration = (FunctionDeclaration) declaration;
 				if (MAIN_FUNCTION_NAME.equals(functionDeclaration.getName())) {
@@ -46,7 +49,7 @@ public class DMLTextJavaValidator extends AbstractDMLTextJavaValidator {
 				}
 			}
 		}
-		error("No main function declared", DMLUtil.getOwner(behaviorSpecification, BlockType.class), DMLPackage.eINSTANCE.getQualifiedElement_Name(), -1);
+		error("No main function declared", blockType, DMLPackage.eINSTANCE.getQualifiedElement_Name(), -1);
 	}
 
 	@Check

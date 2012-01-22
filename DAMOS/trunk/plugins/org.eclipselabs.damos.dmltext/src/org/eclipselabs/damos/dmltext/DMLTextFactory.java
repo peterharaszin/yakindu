@@ -53,15 +53,6 @@ public interface DMLTextFactory extends EFactory {
 	MscriptDataTypeSpecification createMscriptDataTypeSpecification();
 
 	/**
-	 * Returns a new object of class '<em>Mscript Behavior Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Mscript Behavior Specification</em>'.
-	 * @generated
-	 */
-	MscriptBehaviorSpecification createMscriptBehaviorSpecification();
-
-	/**
 	 * Returns a new object of class '<em>Mscript Value Specification</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

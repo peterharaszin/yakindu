@@ -449,41 +449,6 @@ finally {
 
 
 
-// Entry rule entryRuleMscriptBehaviorSpecification
-entryRuleMscriptBehaviorSpecification 
-:
-{ before(grammarAccess.getMscriptBehaviorSpecificationRule()); }
-	 ruleMscriptBehaviorSpecification
-{ after(grammarAccess.getMscriptBehaviorSpecificationRule()); } 
-	 EOF 
-;
-
-// Rule MscriptBehaviorSpecification
-ruleMscriptBehaviorSpecification
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-(
-{ before(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsAssignment()); }
-(rule__MscriptBehaviorSpecification__DeclarationsAssignment)
-{ after(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsAssignment()); }
-)
-(
-{ before(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsAssignment()); }
-(rule__MscriptBehaviorSpecification__DeclarationsAssignment)*
-{ after(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsAssignment()); }
-)
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleMscriptSystemInterface
 entryRuleMscriptSystemInterface 
 :
@@ -5638,9 +5603,9 @@ rule__MscriptBlockType__Group__10__Impl
     }
 :
 (
-{ before(grammarAccess.getMscriptBlockTypeAccess().getBehaviorAssignment_10()); }
-(rule__MscriptBlockType__BehaviorAssignment_10)?
-{ after(grammarAccess.getMscriptBlockTypeAccess().getBehaviorAssignment_10()); }
+{ before(grammarAccess.getMscriptBlockTypeAccess().getDeclarationsAssignment_10()); }
+(rule__MscriptBlockType__DeclarationsAssignment_10)*
+{ after(grammarAccess.getMscriptBlockTypeAccess().getDeclarationsAssignment_10()); }
 )
 
 ;
@@ -23374,14 +23339,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__MscriptBlockType__BehaviorAssignment_10
+rule__MscriptBlockType__DeclarationsAssignment_10
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getMscriptBlockTypeAccess().getBehaviorMscriptBehaviorSpecificationParserRuleCall_10_0()); }
-	ruleMscriptBehaviorSpecification{ after(grammarAccess.getMscriptBlockTypeAccess().getBehaviorMscriptBehaviorSpecificationParserRuleCall_10_0()); }
+{ before(grammarAccess.getMscriptBlockTypeAccess().getDeclarationsDeclarationParserRuleCall_10_0()); }
+	ruleDeclaration{ after(grammarAccess.getMscriptBlockTypeAccess().getDeclarationsDeclarationParserRuleCall_10_0()); }
 )
 
 ;
@@ -23932,21 +23897,6 @@ rule__MscriptValueSpecification__ExpressionAssignment
 (
 { before(grammarAccess.getMscriptValueSpecificationAccess().getExpressionExpressionParserRuleCall_0()); }
 	ruleExpression{ after(grammarAccess.getMscriptValueSpecificationAccess().getExpressionExpressionParserRuleCall_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__MscriptBehaviorSpecification__DeclarationsAssignment
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsDeclarationParserRuleCall_0()); }
-	ruleDeclaration{ after(grammarAccess.getMscriptBehaviorSpecificationAccess().getDeclarationsDeclarationParserRuleCall_0()); }
 )
 
 ;
@@ -26889,7 +26839,9 @@ RULE_IJ : ('i'|'j');
 
 RULE_E : ('e'|'E');
 
-RULE_EXPIJ : RULE_E ('0'..'9')+ RULE_IJ?;
+RULE_EXP : RULE_E ('0'..'9')+;
+
+RULE_EXPIJ : RULE_EXP RULE_IJ;
 
 RULE_ONE : '1';
 

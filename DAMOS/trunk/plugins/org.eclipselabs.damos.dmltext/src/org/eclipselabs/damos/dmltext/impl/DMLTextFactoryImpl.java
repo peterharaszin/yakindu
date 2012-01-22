@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipselabs.damos.dmltext.DMLTextFactory;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
-import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
 import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
@@ -66,7 +65,6 @@ public class DMLTextFactoryImpl extends EFactoryImpl implements DMLTextFactory {
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE: return createMscriptBlockType();
 			case DMLTextPackage.MSCRIPT_SYSTEM_INTERFACE: return createMscriptSystemInterface();
 			case DMLTextPackage.MSCRIPT_DATA_TYPE_SPECIFICATION: return createMscriptDataTypeSpecification();
-			case DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION: return createMscriptBehaviorSpecification();
 			case DMLTextPackage.MSCRIPT_VALUE_SPECIFICATION: return createMscriptValueSpecification();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -101,16 +99,6 @@ public class DMLTextFactoryImpl extends EFactoryImpl implements DMLTextFactory {
 	public MscriptDataTypeSpecification createMscriptDataTypeSpecification() {
 		MscriptDataTypeSpecificationImpl mscriptDataTypeSpecification = new MscriptDataTypeSpecificationImpl();
 		return mscriptDataTypeSpecification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public MscriptBehaviorSpecification createMscriptBehaviorSpecification() {
-		MscriptBehaviorSpecificationImpl mscriptBehaviorSpecification = new MscriptBehaviorSpecificationImpl();
-		return mscriptBehaviorSpecification;
 	}
 
 	/**

@@ -25,7 +25,7 @@ import org.eclipselabs.damos.dml.BlockInput;
 import org.eclipselabs.damos.dml.BlockInputPort;
 import org.eclipselabs.damos.dml.Input;
 import org.eclipselabs.damos.dml.InputPort;
-import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
+import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.execution.core.ExecutionCorePlugin;
 import org.eclipselabs.damos.execution.core.IComponentSignature;
@@ -87,8 +87,8 @@ public class BehavioredBlockHelper {
 	}
 	
 	public FunctionDeclaration createFunctionDefinition() throws CoreException {
-		MscriptBehaviorSpecification behaviorSpecification = (MscriptBehaviorSpecification) block.getType().getBehavior();
-		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(behaviorSpecification.getDeclarations(), "main");
+		MscriptBlockType blockType = (MscriptBlockType) block.getType();
+		FunctionDeclaration functionDeclaration = MscriptUtil.getFunctionDefinition(blockType.getDeclarations(), "main");
 		if (functionDeclaration == null) {
 			throw new CoreException(new Status(IStatus.ERROR, ExecutionCorePlugin.PLUGIN_ID, "Mscript function 'main' not found"));
 		}

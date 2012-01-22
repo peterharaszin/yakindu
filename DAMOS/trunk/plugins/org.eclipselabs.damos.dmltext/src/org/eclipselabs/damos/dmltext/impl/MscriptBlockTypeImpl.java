@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dml.impl.BlockTypeImpl;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
 import org.eclipselabs.damos.dmltext.MscriptBlockType;
+import org.eclipselabs.damos.mscript.Declaration;
 import org.eclipselabs.damos.mscript.ImportDeclaration;
 
 /**
@@ -27,6 +28,7 @@ import org.eclipselabs.damos.mscript.ImportDeclaration;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl#getImportDeclarations <em>Import Declarations</em>}</li>
+ *   <li>{@link org.eclipselabs.damos.dmltext.impl.MscriptBlockTypeImpl#getDeclarations <em>Declarations</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,6 +44,16 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 	 * @ordered
 	 */
 	protected EList<ImportDeclaration> importDeclarations;
+
+	/**
+	 * The cached value of the '{@link #getDeclarations() <em>Declarations</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDeclarations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Declaration> declarations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -79,11 +91,25 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Declaration> getDeclarations() {
+		if (declarations == null) {
+			declarations = new EObjectContainmentEList<Declaration>(Declaration.class, this, DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS);
+		}
+		return declarations;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				return ((InternalEList<?>)getImportDeclarations()).basicRemove(otherEnd, msgs);
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS:
+				return ((InternalEList<?>)getDeclarations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -98,6 +124,8 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 		switch (featureID) {
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				return getImportDeclarations();
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS:
+				return getDeclarations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -115,6 +143,10 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 				getImportDeclarations().clear();
 				getImportDeclarations().addAll((Collection<? extends ImportDeclaration>)newValue);
 				return;
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS:
+				getDeclarations().clear();
+				getDeclarations().addAll((Collection<? extends Declaration>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -130,6 +162,9 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				getImportDeclarations().clear();
 				return;
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS:
+				getDeclarations().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -144,6 +179,8 @@ public class MscriptBlockTypeImpl extends BlockTypeImpl implements MscriptBlockT
 		switch (featureID) {
 			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__IMPORT_DECLARATIONS:
 				return importDeclarations != null && !importDeclarations.isEmpty();
+			case DMLTextPackage.MSCRIPT_BLOCK_TYPE__DECLARATIONS:
+				return declarations != null && !declarations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

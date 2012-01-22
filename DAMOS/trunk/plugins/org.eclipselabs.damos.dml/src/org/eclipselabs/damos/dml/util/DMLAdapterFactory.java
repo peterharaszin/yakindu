@@ -15,7 +15,6 @@ import org.eclipselabs.damos.dml.Action;
 import org.eclipselabs.damos.dml.ActionLink;
 import org.eclipselabs.damos.dml.Argument;
 import org.eclipselabs.damos.dml.AsynchronousTimingConstraint;
-import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.Block;
 import org.eclipselabs.damos.dml.BlockInoutput;
 import org.eclipselabs.damos.dml.BlockInput;
@@ -306,10 +305,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseCategory(Category object) {
 				return createCategoryAdapter();
-			}
-			@Override
-			public Adapter caseBehaviorSpecification(BehaviorSpecification object) {
-				return createBehaviorSpecificationAdapter();
 			}
 			@Override
 			public Adapter caseBlock(Block object) {
@@ -1050,20 +1045,6 @@ public class DMLAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCategoryAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dml.BehaviorSpecification <em>Behavior Specification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dml.BehaviorSpecification
-	 * @generated
-	 */
-	public Adapter createBehaviorSpecificationAdapter() {
 		return null;
 	}
 

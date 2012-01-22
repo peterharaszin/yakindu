@@ -65,19 +65,19 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cOutputDefinitionsOutputDefinitionParserRuleCall_8_0 = (RuleCall)cOutputDefinitionsAssignment_8.eContents().get(0);
 		private final Assignment cParametersAssignment_9 = (Assignment)cGroup.eContents().get(9);
 		private final RuleCall cParametersParameterParserRuleCall_9_0 = (RuleCall)cParametersAssignment_9.eContents().get(0);
-		private final Assignment cBehaviorAssignment_10 = (Assignment)cGroup.eContents().get(10);
-		private final RuleCall cBehaviorMscriptBehaviorSpecificationParserRuleCall_10_0 = (RuleCall)cBehaviorAssignment_10.eContents().get(0);
+		private final Assignment cDeclarationsAssignment_10 = (Assignment)cGroup.eContents().get(10);
+		private final RuleCall cDeclarationsDeclarationParserRuleCall_10_0 = (RuleCall)cDeclarationsAssignment_10.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		
 		//MscriptBlockType:
 		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
 		//	"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-		//	behavior=MscriptBehaviorSpecification? "}";
+		//	declarations+=Declaration* "}";
 		public ParserRule getRule() { return rule; }
 
 		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
 		//"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-		//behavior=MscriptBehaviorSpecification? "}"
+		//declarations+=Declaration* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -131,11 +131,11 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		//Parameter
 		public RuleCall getParametersParameterParserRuleCall_9_0() { return cParametersParameterParserRuleCall_9_0; }
 
-		//behavior=MscriptBehaviorSpecification?
-		public Assignment getBehaviorAssignment_10() { return cBehaviorAssignment_10; }
+		//declarations+=Declaration*
+		public Assignment getDeclarationsAssignment_10() { return cDeclarationsAssignment_10; }
 
-		//MscriptBehaviorSpecification
-		public RuleCall getBehaviorMscriptBehaviorSpecificationParserRuleCall_10_0() { return cBehaviorMscriptBehaviorSpecificationParserRuleCall_10_0; }
+		//Declaration
+		public RuleCall getDeclarationsDeclarationParserRuleCall_10_0() { return cDeclarationsDeclarationParserRuleCall_10_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
@@ -761,22 +761,6 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getExpressionExpressionParserRuleCall_0() { return cExpressionExpressionParserRuleCall_0; }
 	}
 
-	public class MscriptBehaviorSpecificationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MscriptBehaviorSpecification");
-		private final Assignment cDeclarationsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cDeclarationsDeclarationParserRuleCall_0 = (RuleCall)cDeclarationsAssignment.eContents().get(0);
-		
-		//MscriptBehaviorSpecification:
-		//	declarations+=Declaration+;
-		public ParserRule getRule() { return rule; }
-
-		//declarations+=Declaration+
-		public Assignment getDeclarationsAssignment() { return cDeclarationsAssignment; }
-
-		//Declaration
-		public RuleCall getDeclarationsDeclarationParserRuleCall_0() { return cDeclarationsDeclarationParserRuleCall_0; }
-	}
-
 	public class MscriptSystemInterfaceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MscriptSystemInterface");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -1089,7 +1073,6 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	private OpaqueTypeKindElements unknownRuleOpaqueTypeKind;
 	private StringValueSpecificationElements pStringValueSpecification;
 	private MscriptValueSpecificationElements pMscriptValueSpecification;
-	private MscriptBehaviorSpecificationElements pMscriptBehaviorSpecification;
 	private MscriptSystemInterfaceElements pMscriptSystemInterface;
 	private InletElements pInlet;
 	private OutletElements pOutlet;
@@ -1131,7 +1114,7 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	//MscriptBlockType:
 	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* timing=TimingKind? "blockType" name=ValidID
 	//	"{" inputDefinitions+=InputDefinition* outputDefinitions+=OutputDefinition* parameters+=Parameter*
-	//	behavior=MscriptBehaviorSpecification? "}";
+	//	declarations+=Declaration* "}";
 	public MscriptBlockTypeElements getMscriptBlockTypeAccess() {
 		return (pMscriptBlockType != null) ? pMscriptBlockType : (pMscriptBlockType = new MscriptBlockTypeElements());
 	}
@@ -1295,16 +1278,6 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getMscriptValueSpecificationRule() {
 		return getMscriptValueSpecificationAccess().getRule();
-	}
-
-	//MscriptBehaviorSpecification:
-	//	declarations+=Declaration+;
-	public MscriptBehaviorSpecificationElements getMscriptBehaviorSpecificationAccess() {
-		return (pMscriptBehaviorSpecification != null) ? pMscriptBehaviorSpecification : (pMscriptBehaviorSpecification = new MscriptBehaviorSpecificationElements());
-	}
-	
-	public ParserRule getMscriptBehaviorSpecificationRule() {
-		return getMscriptBehaviorSpecificationAccess().getRule();
 	}
 
 	//MscriptSystemInterface:
@@ -2592,8 +2565,14 @@ public class DMLTextGrammarAccess extends AbstractGrammarElementFinder {
 		return gaMscript.getERule();
 	} 
 
+	//terminal EXP:
+	//	E "0".."9"+;
+	public TerminalRule getEXPRule() {
+		return gaMscript.getEXPRule();
+	} 
+
 	//terminal EXPIJ:
-	//	E "0".."9"+ IJ?;
+	//	EXP IJ;
 	public TerminalRule getEXPIJRule() {
 		return gaMscript.getEXPIJRule();
 	} 

@@ -203,7 +203,6 @@
     <genClasses ecoreClass="DML.ecore#//BlockType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/inputDefinitions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/outputDefinitions"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DML.ecore#//BlockType/behavior"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute DML.ecore#//BlockType/timing"/>
       <genOperations ecoreOperation="DML.ecore#//BlockType/newInstance">
         <genParameters ecoreParameter="DML.ecore#//BlockType/newInstance/name"/>
@@ -221,7 +220,6 @@
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="DML.ecore#//Category"/>
-    <genClasses image="false" ecoreClass="DML.ecore#//BehaviorSpecification"/>
     <genClasses ecoreClass="DML.ecore#//Block">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference DML.ecore#//Block/type"/>
     </genClasses>

@@ -13,6 +13,7 @@
     </genClasses>
     <genClasses ecoreClass="DMLText.ecore#//MscriptBlockType">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptBlockType/importDeclarations"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptBlockType/declarations"/>
     </genClasses>
     <genClasses ecoreClass="DMLText.ecore#//MscriptSystemInterface">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptSystemInterface/importDeclarations"/>
@@ -20,9 +21,6 @@
     <genClasses ecoreClass="DMLText.ecore#//MscriptDataTypeSpecification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptDataTypeSpecification/specifier"/>
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptDataTypeSpecification/type"/>
-    </genClasses>
-    <genClasses ecoreClass="DMLText.ecore#//MscriptBehaviorSpecification">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptBehaviorSpecification/declarations"/>
     </genClasses>
     <genClasses ecoreClass="DMLText.ecore#//MscriptValueSpecification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference DMLText.ecore#//MscriptValueSpecification/expression"/>

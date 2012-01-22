@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
-import org.eclipselabs.damos.dml.BehaviorSpecification;
 import org.eclipselabs.damos.dml.BlockType;
 import org.eclipselabs.damos.dml.CategorizedElement;
 import org.eclipselabs.damos.dml.DataTypeSpecification;
@@ -19,10 +18,10 @@ import org.eclipselabs.damos.dml.ParameterableElement;
 import org.eclipselabs.damos.dml.QualifiedElement;
 import org.eclipselabs.damos.dml.SystemInterface;
 import org.eclipselabs.damos.dml.ValueSpecification;
-import org.eclipselabs.damos.dmltext.*;
 import org.eclipselabs.damos.dmltext.DMLTextPackage;
-import org.eclipselabs.damos.dmltext.MscriptBehaviorSpecification;
+import org.eclipselabs.damos.dmltext.MscriptBlockType;
 import org.eclipselabs.damos.dmltext.MscriptDataTypeSpecification;
+import org.eclipselabs.damos.dmltext.MscriptSystemInterface;
 import org.eclipselabs.damos.dmltext.MscriptValueSpecification;
 import org.eclipselabs.damos.dmltext.Root;
 
@@ -117,13 +116,6 @@ public class DMLTextSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case DMLTextPackage.MSCRIPT_BEHAVIOR_SPECIFICATION: {
-				MscriptBehaviorSpecification mscriptBehaviorSpecification = (MscriptBehaviorSpecification)theEObject;
-				T result = caseMscriptBehaviorSpecification(mscriptBehaviorSpecification);
-				if (result == null) result = caseBehaviorSpecification(mscriptBehaviorSpecification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case DMLTextPackage.MSCRIPT_VALUE_SPECIFICATION: {
 				MscriptValueSpecification mscriptValueSpecification = (MscriptValueSpecification)theEObject;
 				T result = caseMscriptValueSpecification(mscriptValueSpecification);
@@ -192,21 +184,6 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMscriptDataTypeSpecification(MscriptDataTypeSpecification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Mscript Behavior Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Mscript Behavior Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMscriptBehaviorSpecification(MscriptBehaviorSpecification object) {
 		return null;
 	}
 
@@ -342,21 +319,6 @@ public class DMLTextSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataTypeSpecification(DataTypeSpecification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Behavior Specification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseBehaviorSpecification(BehaviorSpecification object) {
 		return null;
 	}
 

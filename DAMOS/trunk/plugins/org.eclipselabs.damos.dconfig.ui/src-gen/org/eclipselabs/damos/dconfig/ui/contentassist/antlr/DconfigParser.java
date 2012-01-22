@@ -37,7 +37,6 @@ public class DconfigParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getConfigurationAccess().getAlternatives_8(), "rule__Configuration__Alternatives_8");
 					put(grammarAccess.getPropertyAccess().getAlternatives(), "rule__Property__Alternatives");
 					put(grammarAccess.getDeclaredPropertyAccess().getAlternatives(), "rule__DeclaredProperty__Alternatives");
 					put(grammarAccess.getSimplePropertyAccess().getAlternatives_1(), "rule__SimpleProperty__Alternatives_1");
@@ -104,9 +103,6 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getUnaryOperatorAccess().getAlternatives(), "rule__UnaryOperator__Alternatives");
 					put(grammarAccess.getConfigurationAccess().getGroup(), "rule__Configuration__Group__0");
 					put(grammarAccess.getConfigurationAccess().getGroup_5(), "rule__Configuration__Group_5__0");
-					put(grammarAccess.getConfigurationAccess().getGroup_8_0(), "rule__Configuration__Group_8_0__0");
-					put(grammarAccess.getConfigurationAccess().getGroup_8_1(), "rule__Configuration__Group_8_1__0");
-					put(grammarAccess.getRunnerSpecifierAccess().getGroup(), "rule__RunnerSpecifier__Group__0");
 					put(grammarAccess.getSimplePropertyAccess().getGroup(), "rule__SimpleProperty__Group__0");
 					put(grammarAccess.getSimplePropertyAccess().getGroup_1_0(), "rule__SimpleProperty__Group_1_0__0");
 					put(grammarAccess.getSimplePropertyAccess().getGroup_1_1(), "rule__SimpleProperty__Group_1_1__0");
@@ -297,13 +293,8 @@ public class DconfigParser extends AbstractContentAssistParser {
 					put(grammarAccess.getConfigurationAccess().getImportDeclarationsAssignment_2(), "rule__Configuration__ImportDeclarationsAssignment_2");
 					put(grammarAccess.getConfigurationAccess().getNameAssignment_4(), "rule__Configuration__NameAssignment_4");
 					put(grammarAccess.getConfigurationAccess().getBaseConfigurationAssignment_5_1(), "rule__Configuration__BaseConfigurationAssignment_5_1");
-					put(grammarAccess.getConfigurationAccess().getRunnerSpecifierAssignment_7(), "rule__Configuration__RunnerSpecifierAssignment_7");
-					put(grammarAccess.getConfigurationAccess().getPropertiesAssignment_8_0_0(), "rule__Configuration__PropertiesAssignment_8_0_0");
-					put(grammarAccess.getConfigurationAccess().getRootSystemConfigurationAssignment_8_0_1(), "rule__Configuration__RootSystemConfigurationAssignment_8_0_1");
-					put(grammarAccess.getConfigurationAccess().getRootSystemConfigurationAssignment_8_1_0(), "rule__Configuration__RootSystemConfigurationAssignment_8_1_0");
-					put(grammarAccess.getConfigurationAccess().getPropertiesAssignment_8_1_1(), "rule__Configuration__PropertiesAssignment_8_1_1");
-					put(grammarAccess.getRunnerSpecifierAccess().getAutoAssignment_0(), "rule__RunnerSpecifier__AutoAssignment_0");
-					put(grammarAccess.getRunnerSpecifierAccess().getRunnerDeclarationAssignment_2(), "rule__RunnerSpecifier__RunnerDeclarationAssignment_2");
+					put(grammarAccess.getConfigurationAccess().getPropertiesAssignment_7(), "rule__Configuration__PropertiesAssignment_7");
+					put(grammarAccess.getConfigurationAccess().getRootSystemConfigurationAssignment_8(), "rule__Configuration__RootSystemConfigurationAssignment_8");
 					put(grammarAccess.getSimplePropertyAccess().getPropagateAssignment_0(), "rule__SimpleProperty__PropagateAssignment_0");
 					put(grammarAccess.getSimplePropertyAccess().getDeclarationAssignment_1_0_0(), "rule__SimpleProperty__DeclarationAssignment_1_0_0");
 					put(grammarAccess.getSimplePropertyAccess().getValueAssignment_1_0_2(), "rule__SimpleProperty__ValueAssignment_1_0_2");

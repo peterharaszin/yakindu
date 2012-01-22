@@ -25,10 +25,10 @@ import java.util.TreeMap;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
@@ -96,25 +96,40 @@ public class Generator {
 	private final DataTypeResolver dataTypeResolver = new DataTypeResolver();
 
 	public void generate(final Configuration configuration, final IProgressMonitor monitor) throws CoreException {
-		final ExecutionFlow executionFlow = constructExecutionFlow(configuration, monitor);
+		Fragment contextFragment = configuration.getContextFragment();
+		if (contextFragment == null) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "No system configuration specified"));
+		}
 		
-		initializeExecutionFlow(configuration, executionFlow, monitor);
+		String projectName = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/projectName", null);
+		if (projectName == null) {
+			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Missing configuration property projectName"));
+		}
 
-		String headerDirectory = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "headerDirectory", null);
-		if (headerDirectory == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "No header directory specified"));
-		}
-		IPath headerPath = new Path(headerDirectory);
-		IResource headerResource = ResourcesPlugin.getWorkspace().getRoot().findMember(headerPath);
-		if (!(headerResource instanceof IContainer)) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Invalid container path " + headerDirectory));
-		}
+		String sourceFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/sourceFolder", null);
+		String headerFolder = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/headerFolder", sourceFolder);
 		
-		String mainHeaderFile = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "mainHeaderFile", null);
-		if (mainHeaderFile == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "No main header file specified"));
+		String defaultSourceFile = contextFragment.getName();
+		if (defaultSourceFile == null || defaultSourceFile.trim().length() == 0) {
+			defaultSourceFile = "main.c";
+		} else {
+			defaultSourceFile.replaceAll("\\W", "_");
+			defaultSourceFile += ".c";
 		}
-		IFile headerFile = ((IContainer) headerResource).getFile(new Path(mainHeaderFile));
+		String mainSourceFile = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/mainSourceFile", defaultSourceFile);
+
+		String defaultHeaderFile = mainSourceFile.replaceAll("\\.c\\z", ".h");
+		String mainHeaderFile = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "damos.codegen.generator/mainHeaderFile", defaultHeaderFile);
+
+		IProject project = getProject(projectName, monitor);
+		IContainer sourceContainer = getContainer(monitor, project, sourceFolder);
+		IContainer headerContainer = getContainer(monitor, project, headerFolder);
+
+		IFile headerFile = headerContainer.getFile(new Path(mainHeaderFile));
+
+		final ExecutionFlow executionFlow = constructExecutionFlow(configuration, monitor);
+		initializeExecutionFlow(configuration, executionFlow, monitor);
+		
 		new FileWriter() {
 			
 			@Override
@@ -128,22 +143,7 @@ public class Generator {
 			
 		}.write(headerFile, monitor);
 
-		
-		String sourceDirectory = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "sourceDirectory", null);
-		if (sourceDirectory == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "No source directory specified"));
-		}
-		IPath sourcePath = new Path(sourceDirectory);
-		IResource sourceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(sourcePath);
-		if (!(sourceResource instanceof IContainer)) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Invalid container path " + sourceDirectory));
-		}
-
-		String mainSourceFile = GeneratorConfigurationUtil.getPropertyStringValue(configuration, "mainSourceFile", null);
-		if (mainSourceFile == null) {
-			throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "No main source file specified"));
-		}
-		IFile sourceFile = ((IContainer) sourceResource).getFile(new Path(mainSourceFile));
+		IFile sourceFile = sourceContainer.getFile(new Path(mainSourceFile));
 		new FileWriter() {
 			
 			@Override
@@ -156,6 +156,53 @@ public class Generator {
 			}
 			
 		}.write(sourceFile, monitor);
+	}
+
+	/**
+	 * @param monitor
+	 * @param project
+	 * @param sourceFolder
+	 * @return
+	 * @throws CoreException
+	 */
+	private IContainer getContainer(final IProgressMonitor monitor, IProject project, String sourceFolder)
+			throws CoreException {
+		IContainer sourceContainer;
+		if (sourceFolder != null) {
+			sourceContainer = ensureFolderExists(project.getFolder(sourceFolder), monitor);
+		} else {
+			sourceContainer = project;
+		}
+		return sourceContainer;
+	}
+
+	/**
+	 * @param projectName
+	 * @param monitor
+	 * @return
+	 * @throws CoreException
+	 */
+	private IProject getProject(String projectName, final IProgressMonitor monitor) throws CoreException {
+		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+		if (project.exists()) {
+			if (!project.isOpen()) {
+				throw new CoreException(new Status(IStatus.ERROR, CodegenCGeneratorPlugin.PLUGIN_ID, "Project " + projectName + " closed"));
+			}
+		} else {
+			project.create(monitor);
+			project.open(monitor);
+		}
+		return project;
+	}
+	
+	private IFolder ensureFolderExists(IFolder folder, IProgressMonitor monitor) throws CoreException {
+		if (!folder.exists()) {
+			if (!folder.getParent().exists() && folder.getParent() instanceof IFolder) {
+				ensureFolderExists((IFolder) folder.getParent(), monitor);
+			}
+			folder.create(true, true, monitor);
+		}
+		return folder;
 	}
 
 	/**

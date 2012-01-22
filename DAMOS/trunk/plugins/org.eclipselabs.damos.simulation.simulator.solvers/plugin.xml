@@ -27,16 +27,16 @@
    <extension
          point="org.eclipselabs.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/ClassicalRungeKuttaSolverOption.xmi#/">
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/ClassicalRungeKuttaSolverOption.xmi">
       </resource>
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/EulerSolverOption.xmi#/">
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/EulerSolverOption.xmi">
       </resource>
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/DormandPrince54SolverOption.xmi#/">
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/DormandPrince54SolverOption.xmi">
       </resource>
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/DormandPrince853SolverOption.xmi#/">
+            uri="platform:/plugin/org.eclipselabs.damos.simulation.simulator.solvers/dconfig/DormandPrince853SolverOption.xmi">
       </resource>
    </extension>
 </plugin>

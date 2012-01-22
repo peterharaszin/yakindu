@@ -166,154 +166,44 @@ ruleConfiguration returns [EObject current=null]
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConfigurationAccess().getRunnerSpecifierRunnerSpecifierParserRuleCall_7_0()); 
+	        newCompositeNode(grammarAccess.getConfigurationAccess().getPropertiesDeclaredPropertyParserRuleCall_7_0()); 
 	    }
-		lv_runnerSpecifier_8_0=ruleRunnerSpecifier		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getConfigurationRule());
-	        }
-       		set(
-       			$current, 
-       			"runnerSpecifier",
-        		lv_runnerSpecifier_8_0, 
-        		"RunnerSpecifier");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)?(((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getConfigurationAccess().getPropertiesDeclaredPropertyParserRuleCall_8_0_0_0()); 
-	    }
-		lv_properties_9_0=ruleDeclaredProperty		{
+		lv_properties_8_0=ruleDeclaredProperty		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConfigurationRule());
 	        }
        		add(
        			$current, 
        			"properties",
-        		lv_properties_9_0, 
+        		lv_properties_8_0, 
         		"DeclaredProperty");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+(
+)*(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConfigurationAccess().getRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0_1_0()); 
+	        newCompositeNode(grammarAccess.getConfigurationAccess().getRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0()); 
 	    }
-		lv_rootSystemConfiguration_10_0=ruleRootSystemConfiguration		{
+		lv_rootSystemConfiguration_9_0=ruleRootSystemConfiguration		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConfigurationRule());
 	        }
        		set(
        			$current, 
        			"rootSystemConfiguration",
-        		lv_rootSystemConfiguration_10_0, 
+        		lv_rootSystemConfiguration_9_0, 
         		"RootSystemConfiguration");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?)
-    |((
-(
-		{ 
-	        newCompositeNode(grammarAccess.getConfigurationAccess().getRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_1_0_0()); 
-	    }
-		lv_rootSystemConfiguration_11_0=ruleRootSystemConfiguration		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getConfigurationRule());
-	        }
-       		set(
-       			$current, 
-       			"rootSystemConfiguration",
-        		lv_rootSystemConfiguration_11_0, 
-        		"RootSystemConfiguration");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getConfigurationAccess().getPropertiesDeclaredPropertyParserRuleCall_8_1_1_0()); 
-	    }
-		lv_properties_12_0=ruleDeclaredProperty		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getConfigurationRule());
-	        }
-       		add(
-       			$current, 
-       			"properties",
-        		lv_properties_12_0, 
-        		"DeclaredProperty");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)*))?	otherlv_13='}' 
+)?	otherlv_10='}' 
     {
-    	newLeafNode(otherlv_13, grammarAccess.getConfigurationAccess().getRightCurlyBracketKeyword_9());
+    	newLeafNode(otherlv_10, grammarAccess.getConfigurationAccess().getRightCurlyBracketKeyword_9());
     }
 )
-;
-
-
-
-
-
-// Entry rule entryRuleRunnerSpecifier
-entryRuleRunnerSpecifier returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getRunnerSpecifierRule()); }
-	 iv_ruleRunnerSpecifier=ruleRunnerSpecifier 
-	 { $current=$iv_ruleRunnerSpecifier.current; } 
-	 EOF 
-;
-
-// Rule RunnerSpecifier
-ruleRunnerSpecifier returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-(
-		lv_auto_0_0=	'auto' 
-    {
-        newLeafNode(lv_auto_0_0, grammarAccess.getRunnerSpecifierAccess().getAutoAutoKeyword_0_0());
-    }
- 
-	    {
-	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRunnerSpecifierRule());
-	        }
-       		setWithLastConsumed($current, "auto", true, "auto");
-	    }
-
-)
-)?	otherlv_1='run' 
-    {
-    	newLeafNode(otherlv_1, grammarAccess.getRunnerSpecifierAccess().getRunKeyword_1());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getRunnerSpecifierRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getRunnerSpecifierAccess().getRunnerDeclarationRunnerDeclarationCrossReference_2_0()); 
-	    }
-		ruleQualifiedName		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
 ;
 
 

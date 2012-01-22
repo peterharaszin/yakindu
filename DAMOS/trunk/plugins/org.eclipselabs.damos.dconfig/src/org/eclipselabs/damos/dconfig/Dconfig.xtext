@@ -9,14 +9,10 @@ Configuration:
 	'package' packageName=QualifiedName
 	(importDeclarations+=ImportDeclaration)*
 	'configuration' name=ValidID ('extends' baseConfiguration=[Configuration|QualifiedName])? '{'
-		(runnerSpecifier=RunnerSpecifier)?
-		((properties+=DeclaredProperty)+ (rootSystemConfiguration=RootSystemConfiguration)? |
-		rootSystemConfiguration=RootSystemConfiguration (properties+=DeclaredProperty)*)?
+		(properties+=DeclaredProperty)*
+		(rootSystemConfiguration=RootSystemConfiguration)?
 	'}';
 	
-RunnerSpecifier:
-	(auto?='auto')? 'run' runnerDeclaration=[RunnerDeclaration|QualifiedName];
-
 Property:
 	DeclaredProperty | ComputationProperty;
 	

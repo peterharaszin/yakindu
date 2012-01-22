@@ -27,8 +27,6 @@ import org.eclipselabs.damos.dconfig.PropertyDeclarationContainer;
 import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
-import org.eclipselabs.damos.dconfig.RunnerDeclaration;
-import org.eclipselabs.damos.dconfig.RunnerSpecifier;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
@@ -100,18 +98,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 				Configuration configuration = (Configuration)theEObject;
 				T result = caseConfiguration(configuration);
 				if (result == null) result = casePropertyContainer(configuration);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DconfigPackage.RUNNER_SPECIFIER: {
-				RunnerSpecifier runnerSpecifier = (RunnerSpecifier)theEObject;
-				T result = caseRunnerSpecifier(runnerSpecifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case DconfigPackage.RUNNER_DECLARATION: {
-				RunnerDeclaration runnerDeclaration = (RunnerDeclaration)theEObject;
-				T result = caseRunnerDeclaration(runnerDeclaration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -298,36 +284,6 @@ public class DconfigSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfiguration(Configuration object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Runner Specifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Runner Specifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRunnerSpecifier(RunnerSpecifier object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Runner Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Runner Declaration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRunnerDeclaration(RunnerDeclaration object) {
 		return null;
 	}
 

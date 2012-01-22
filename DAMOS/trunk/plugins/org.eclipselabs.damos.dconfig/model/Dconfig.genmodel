@@ -13,7 +13,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//Configuration/name"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/baseConfiguration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/importDeclarations"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/runnerSpecifier"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//Configuration/rootSystemConfiguration"/>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getContextFragment"/>
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getPropertyValue">
@@ -33,13 +32,6 @@
       <genOperations ecoreOperation="Dconfig.ecore#//Configuration/getComputationModel">
         <genParameters ecoreParameter="Dconfig.ecore#//Configuration/getComputationModel/path"/>
       </genOperations>
-    </genClasses>
-    <genClasses ecoreClass="Dconfig.ecore#//RunnerSpecifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//RunnerSpecifier/auto"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Dconfig.ecore#//RunnerSpecifier/runnerDeclaration"/>
-    </genClasses>
-    <genClasses ecoreClass="Dconfig.ecore#//RunnerDeclaration">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Dconfig.ecore#//RunnerDeclaration/qualifiedName"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Dconfig.ecore#//PropertyContainer">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Dconfig.ecore#//PropertyContainer/properties"/>

@@ -22,7 +22,6 @@ import org.eclipselabs.damos.dconfig.MappingBody;
 import org.eclipselabs.damos.dconfig.Property;
 import org.eclipselabs.damos.dconfig.PropertyContainer;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
-import org.eclipselabs.damos.dconfig.RunnerSpecifier;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
@@ -57,11 +56,6 @@ public class DconfigScopeProvider extends MscriptScopeProvider {
 				DconfigPackage.eINSTANCE.getConfiguration()));
 	}
 	
-	public IScope scope_RunnerSpecifier_runnerDeclaration(RunnerSpecifier context, EReference reference) {
-		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),
-				DconfigPackage.eINSTANCE.getRunnerDeclaration()));
-	}
-
 	public IScope scope_SimpleProperty_declaration(Configuration context, EReference reference) {
 		return new SimpleScope(Scopes.selectCompatible(getDelegate().getScope(context, reference).getAllElements(),
 				DconfigPackage.eINSTANCE.getSimplePropertyDeclaration()));

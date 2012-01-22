@@ -28,8 +28,6 @@ import org.eclipselabs.damos.dconfig.PropertyDeclarationContainer;
 import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
-import org.eclipselabs.damos.dconfig.RunnerDeclaration;
-import org.eclipselabs.damos.dconfig.RunnerSpecifier;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
@@ -99,14 +97,6 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseConfiguration(Configuration object) {
 				return createConfigurationAdapter();
-			}
-			@Override
-			public Adapter caseRunnerSpecifier(RunnerSpecifier object) {
-				return createRunnerSpecifierAdapter();
-			}
-			@Override
-			public Adapter caseRunnerDeclaration(RunnerDeclaration object) {
-				return createRunnerDeclarationAdapter();
 			}
 			@Override
 			public Adapter casePropertyContainer(PropertyContainer object) {
@@ -239,34 +229,6 @@ public class DconfigAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConfigurationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.RunnerSpecifier <em>Runner Specifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.RunnerSpecifier
-	 * @generated
-	 */
-	public Adapter createRunnerSpecifierAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipselabs.damos.dconfig.RunnerDeclaration <em>Runner Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipselabs.damos.dconfig.RunnerDeclaration
-	 * @generated
-	 */
-	public Adapter createRunnerDeclarationAdapter() {
 		return null;
 	}
 

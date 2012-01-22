@@ -26,8 +26,6 @@ import org.eclipselabs.damos.dconfig.MappingSubscript;
 import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
-import org.eclipselabs.damos.dconfig.RunnerDeclaration;
-import org.eclipselabs.damos.dconfig.RunnerSpecifier;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
@@ -83,8 +81,6 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case DconfigPackage.CONFIGURATION: return createConfiguration();
-			case DconfigPackage.RUNNER_SPECIFIER: return createRunnerSpecifier();
-			case DconfigPackage.RUNNER_DECLARATION: return createRunnerDeclaration();
 			case DconfigPackage.SIMPLE_PROPERTY: return createSimpleProperty();
 			case DconfigPackage.SIMPLE_PROPERTY_DECLARATION: return createSimplePropertyDeclaration();
 			case DconfigPackage.SELECTION_PROPERTY: return createSelectionProperty();
@@ -147,26 +143,6 @@ public class DconfigFactoryImpl extends EFactoryImpl implements DconfigFactory {
 	public Configuration createConfiguration() {
 		ConfigurationImpl configuration = new ConfigurationImpl();
 		return configuration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RunnerSpecifier createRunnerSpecifier() {
-		RunnerSpecifierImpl runnerSpecifier = new RunnerSpecifierImpl();
-		return runnerSpecifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public RunnerDeclaration createRunnerDeclaration() {
-		RunnerDeclarationImpl runnerDeclaration = new RunnerDeclarationImpl();
-		return runnerDeclaration;
 	}
 
 	/**

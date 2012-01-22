@@ -34,32 +34,21 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cBaseConfigurationConfigurationCrossReference_5_1_0 = (CrossReference)cBaseConfigurationAssignment_5_1.eContents().get(0);
 		private final RuleCall cBaseConfigurationConfigurationQualifiedNameParserRuleCall_5_1_0_1 = (RuleCall)cBaseConfigurationConfigurationCrossReference_5_1_0.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cRunnerSpecifierAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cRunnerSpecifierRunnerSpecifierParserRuleCall_7_0 = (RuleCall)cRunnerSpecifierAssignment_7.eContents().get(0);
-		private final Alternatives cAlternatives_8 = (Alternatives)cGroup.eContents().get(8);
-		private final Group cGroup_8_0 = (Group)cAlternatives_8.eContents().get(0);
-		private final Assignment cPropertiesAssignment_8_0_0 = (Assignment)cGroup_8_0.eContents().get(0);
-		private final RuleCall cPropertiesDeclaredPropertyParserRuleCall_8_0_0_0 = (RuleCall)cPropertiesAssignment_8_0_0.eContents().get(0);
-		private final Assignment cRootSystemConfigurationAssignment_8_0_1 = (Assignment)cGroup_8_0.eContents().get(1);
-		private final RuleCall cRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0_1_0 = (RuleCall)cRootSystemConfigurationAssignment_8_0_1.eContents().get(0);
-		private final Group cGroup_8_1 = (Group)cAlternatives_8.eContents().get(1);
-		private final Assignment cRootSystemConfigurationAssignment_8_1_0 = (Assignment)cGroup_8_1.eContents().get(0);
-		private final RuleCall cRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_1_0_0 = (RuleCall)cRootSystemConfigurationAssignment_8_1_0.eContents().get(0);
-		private final Assignment cPropertiesAssignment_8_1_1 = (Assignment)cGroup_8_1.eContents().get(1);
-		private final RuleCall cPropertiesDeclaredPropertyParserRuleCall_8_1_1_0 = (RuleCall)cPropertiesAssignment_8_1_1.eContents().get(0);
+		private final Assignment cPropertiesAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cPropertiesDeclaredPropertyParserRuleCall_7_0 = (RuleCall)cPropertiesAssignment_7.eContents().get(0);
+		private final Assignment cRootSystemConfigurationAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0 = (RuleCall)cRootSystemConfigurationAssignment_8.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Configuration:
 		//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* "configuration" name=ValidID ("extends"
-		//	baseConfiguration=[Configuration|QualifiedName])? "{" runnerSpecifier=RunnerSpecifier? (properties+=DeclaredProperty+
-		//	rootSystemConfiguration=RootSystemConfiguration? | rootSystemConfiguration=RootSystemConfiguration
-		//	properties+=DeclaredProperty*)? "}";
+		//	baseConfiguration=[Configuration|QualifiedName])? "{" properties+=DeclaredProperty*
+		//	rootSystemConfiguration=RootSystemConfiguration? "}";
 		public ParserRule getRule() { return rule; }
 
 		//"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* "configuration" name=ValidID ("extends"
-		//baseConfiguration=[Configuration|QualifiedName])? "{" runnerSpecifier=RunnerSpecifier? (properties+=DeclaredProperty+
-		//rootSystemConfiguration=RootSystemConfiguration? | rootSystemConfiguration=RootSystemConfiguration
-		//properties+=DeclaredProperty*)? "}"
+		//baseConfiguration=[Configuration|QualifiedName])? "{" properties+=DeclaredProperty*
+		//rootSystemConfiguration=RootSystemConfiguration? "}"
 		public Group getGroup() { return cGroup; }
 
 		//"package"
@@ -104,84 +93,20 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
 
-		//runnerSpecifier=RunnerSpecifier?
-		public Assignment getRunnerSpecifierAssignment_7() { return cRunnerSpecifierAssignment_7; }
-
-		//RunnerSpecifier
-		public RuleCall getRunnerSpecifierRunnerSpecifierParserRuleCall_7_0() { return cRunnerSpecifierRunnerSpecifierParserRuleCall_7_0; }
-
-		//(properties+=DeclaredProperty+ rootSystemConfiguration=RootSystemConfiguration? |
-		//rootSystemConfiguration=RootSystemConfiguration properties+=DeclaredProperty*)?
-		public Alternatives getAlternatives_8() { return cAlternatives_8; }
-
-		//properties+=DeclaredProperty+ rootSystemConfiguration=RootSystemConfiguration?
-		public Group getGroup_8_0() { return cGroup_8_0; }
-
-		//properties+=DeclaredProperty+
-		public Assignment getPropertiesAssignment_8_0_0() { return cPropertiesAssignment_8_0_0; }
+		//properties+=DeclaredProperty*
+		public Assignment getPropertiesAssignment_7() { return cPropertiesAssignment_7; }
 
 		//DeclaredProperty
-		public RuleCall getPropertiesDeclaredPropertyParserRuleCall_8_0_0_0() { return cPropertiesDeclaredPropertyParserRuleCall_8_0_0_0; }
+		public RuleCall getPropertiesDeclaredPropertyParserRuleCall_7_0() { return cPropertiesDeclaredPropertyParserRuleCall_7_0; }
 
 		//rootSystemConfiguration=RootSystemConfiguration?
-		public Assignment getRootSystemConfigurationAssignment_8_0_1() { return cRootSystemConfigurationAssignment_8_0_1; }
+		public Assignment getRootSystemConfigurationAssignment_8() { return cRootSystemConfigurationAssignment_8; }
 
 		//RootSystemConfiguration
-		public RuleCall getRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0_1_0() { return cRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0_1_0; }
-
-		//rootSystemConfiguration=RootSystemConfiguration properties+=DeclaredProperty*
-		public Group getGroup_8_1() { return cGroup_8_1; }
-
-		//rootSystemConfiguration=RootSystemConfiguration
-		public Assignment getRootSystemConfigurationAssignment_8_1_0() { return cRootSystemConfigurationAssignment_8_1_0; }
-
-		//RootSystemConfiguration
-		public RuleCall getRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_1_0_0() { return cRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_1_0_0; }
-
-		//properties+=DeclaredProperty*
-		public Assignment getPropertiesAssignment_8_1_1() { return cPropertiesAssignment_8_1_1; }
-
-		//DeclaredProperty
-		public RuleCall getPropertiesDeclaredPropertyParserRuleCall_8_1_1_0() { return cPropertiesDeclaredPropertyParserRuleCall_8_1_1_0; }
+		public RuleCall getRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0() { return cRootSystemConfigurationRootSystemConfigurationParserRuleCall_8_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
-	}
-
-	public class RunnerSpecifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RunnerSpecifier");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cAutoAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final Keyword cAutoAutoKeyword_0_0 = (Keyword)cAutoAssignment_0.eContents().get(0);
-		private final Keyword cRunKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRunnerDeclarationAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cRunnerDeclarationRunnerDeclarationCrossReference_2_0 = (CrossReference)cRunnerDeclarationAssignment_2.eContents().get(0);
-		private final RuleCall cRunnerDeclarationRunnerDeclarationQualifiedNameParserRuleCall_2_0_1 = (RuleCall)cRunnerDeclarationRunnerDeclarationCrossReference_2_0.eContents().get(1);
-		
-		//RunnerSpecifier:
-		//	auto?="auto"? "run" runnerDeclaration=[RunnerDeclaration|QualifiedName];
-		public ParserRule getRule() { return rule; }
-
-		//auto?="auto"? "run" runnerDeclaration=[RunnerDeclaration|QualifiedName]
-		public Group getGroup() { return cGroup; }
-
-		//auto?="auto"?
-		public Assignment getAutoAssignment_0() { return cAutoAssignment_0; }
-
-		//"auto"
-		public Keyword getAutoAutoKeyword_0_0() { return cAutoAutoKeyword_0_0; }
-
-		//"run"
-		public Keyword getRunKeyword_1() { return cRunKeyword_1; }
-
-		//runnerDeclaration=[RunnerDeclaration|QualifiedName]
-		public Assignment getRunnerDeclarationAssignment_2() { return cRunnerDeclarationAssignment_2; }
-
-		//[RunnerDeclaration|QualifiedName]
-		public CrossReference getRunnerDeclarationRunnerDeclarationCrossReference_2_0() { return cRunnerDeclarationRunnerDeclarationCrossReference_2_0; }
-
-		//QualifiedName
-		public RuleCall getRunnerDeclarationRunnerDeclarationQualifiedNameParserRuleCall_2_0_1() { return cRunnerDeclarationRunnerDeclarationQualifiedNameParserRuleCall_2_0_1; }
 	}
 
 	public class PropertyElements extends AbstractParserRuleElementFinder {
@@ -1493,7 +1418,6 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	private ConfigurationElements pConfiguration;
-	private RunnerSpecifierElements pRunnerSpecifier;
 	private PropertyElements pProperty;
 	private DeclaredPropertyElements pDeclaredProperty;
 	private SimplePropertyElements pSimpleProperty;
@@ -1545,25 +1469,14 @@ public class DconfigGrammarAccess extends AbstractGrammarElementFinder {
 	
 	//Configuration:
 	//	"package" packageName=QualifiedName importDeclarations+=ImportDeclaration* "configuration" name=ValidID ("extends"
-	//	baseConfiguration=[Configuration|QualifiedName])? "{" runnerSpecifier=RunnerSpecifier? (properties+=DeclaredProperty+
-	//	rootSystemConfiguration=RootSystemConfiguration? | rootSystemConfiguration=RootSystemConfiguration
-	//	properties+=DeclaredProperty*)? "}";
+	//	baseConfiguration=[Configuration|QualifiedName])? "{" properties+=DeclaredProperty*
+	//	rootSystemConfiguration=RootSystemConfiguration? "}";
 	public ConfigurationElements getConfigurationAccess() {
 		return (pConfiguration != null) ? pConfiguration : (pConfiguration = new ConfigurationElements());
 	}
 	
 	public ParserRule getConfigurationRule() {
 		return getConfigurationAccess().getRule();
-	}
-
-	//RunnerSpecifier:
-	//	auto?="auto"? "run" runnerDeclaration=[RunnerDeclaration|QualifiedName];
-	public RunnerSpecifierElements getRunnerSpecifierAccess() {
-		return (pRunnerSpecifier != null) ? pRunnerSpecifier : (pRunnerSpecifier = new RunnerSpecifierElements());
-	}
-	
-	public ParserRule getRunnerSpecifierRule() {
-		return getRunnerSpecifierAccess().getRule();
 	}
 
 	//Property:

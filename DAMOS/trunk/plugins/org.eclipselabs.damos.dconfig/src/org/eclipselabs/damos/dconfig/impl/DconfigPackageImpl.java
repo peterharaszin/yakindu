@@ -32,8 +32,6 @@ import org.eclipselabs.damos.dconfig.PropertyDeclarationContainer;
 import org.eclipselabs.damos.dconfig.PropertyGroup;
 import org.eclipselabs.damos.dconfig.ResourceDeclaration;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
-import org.eclipselabs.damos.dconfig.RunnerDeclaration;
-import org.eclipselabs.damos.dconfig.RunnerSpecifier;
 import org.eclipselabs.damos.dconfig.SelectionProperty;
 import org.eclipselabs.damos.dconfig.SelectionPropertyBody;
 import org.eclipselabs.damos.dconfig.SelectionPropertyDeclaration;
@@ -61,20 +59,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * @generated
 	 */
 	private EClass configurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass runnerSpecifierEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass runnerDeclarationEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -373,62 +357,8 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_RunnerSpecifier() {
-		return (EReference)configurationEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getConfiguration_RootSystemConfiguration() {
-		return (EReference)configurationEClass.getEStructuralFeatures().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRunnerSpecifier() {
-		return runnerSpecifierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRunnerSpecifier_Auto() {
-		return (EAttribute)runnerSpecifierEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getRunnerSpecifier_RunnerDeclaration() {
-		return (EReference)runnerSpecifierEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getRunnerDeclaration() {
-		return runnerDeclarationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getRunnerDeclaration_QualifiedName() {
-		return (EAttribute)runnerDeclarationEClass.getEStructuralFeatures().get(0);
+		return (EReference)configurationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1121,15 +1051,7 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		createEAttribute(configurationEClass, CONFIGURATION__NAME);
 		createEReference(configurationEClass, CONFIGURATION__BASE_CONFIGURATION);
 		createEReference(configurationEClass, CONFIGURATION__IMPORT_DECLARATIONS);
-		createEReference(configurationEClass, CONFIGURATION__RUNNER_SPECIFIER);
 		createEReference(configurationEClass, CONFIGURATION__ROOT_SYSTEM_CONFIGURATION);
-
-		runnerSpecifierEClass = createEClass(RUNNER_SPECIFIER);
-		createEAttribute(runnerSpecifierEClass, RUNNER_SPECIFIER__AUTO);
-		createEReference(runnerSpecifierEClass, RUNNER_SPECIFIER__RUNNER_DECLARATION);
-
-		runnerDeclarationEClass = createEClass(RUNNER_DECLARATION);
-		createEAttribute(runnerDeclarationEClass, RUNNER_DECLARATION__QUALIFIED_NAME);
 
 		propertyContainerEClass = createEClass(PROPERTY_CONTAINER);
 		createEReference(propertyContainerEClass, PROPERTY_CONTAINER__PROPERTIES);
@@ -1288,7 +1210,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 		initEAttribute(getConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_BaseConfiguration(), this.getConfiguration(), null, "baseConfiguration", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_ImportDeclarations(), theMscriptPackage.getImportDeclaration(), null, "importDeclarations", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConfiguration_RunnerSpecifier(), this.getRunnerSpecifier(), null, "runnerSpecifier", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConfiguration_RootSystemConfiguration(), this.getRootSystemConfiguration(), null, "rootSystemConfiguration", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(configurationEClass, theDMLPackage.getFragment(), "getContextFragment", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1309,13 +1230,6 @@ public class DconfigPackageImpl extends EPackageImpl implements DconfigPackage {
 
 		op = addEOperation(configurationEClass, theComputationModelPackage.getComputationModel(), "getComputationModel", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getSystemPath(), "path", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(runnerSpecifierEClass, RunnerSpecifier.class, "RunnerSpecifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRunnerSpecifier_Auto(), ecorePackage.getEBoolean(), "auto", null, 0, 1, RunnerSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRunnerSpecifier_RunnerDeclaration(), this.getRunnerDeclaration(), null, "runnerDeclaration", null, 0, 1, RunnerSpecifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(runnerDeclarationEClass, RunnerDeclaration.class, "RunnerDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRunnerDeclaration_QualifiedName(), ecorePackage.getEString(), "qualifiedName", null, 0, 1, RunnerDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyContainerEClass, PropertyContainer.class, "PropertyContainer", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPropertyContainer_Properties(), this.getProperty(), null, "properties", null, 0, -1, PropertyContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

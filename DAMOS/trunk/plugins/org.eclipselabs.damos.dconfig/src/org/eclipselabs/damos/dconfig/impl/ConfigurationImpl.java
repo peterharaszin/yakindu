@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.DconfigPackage;
 import org.eclipselabs.damos.dconfig.RootSystemConfiguration;
-import org.eclipselabs.damos.dconfig.RunnerSpecifier;
 import org.eclipselabs.damos.dconfig.internal.operations.ConfigurationOperations;
 import org.eclipselabs.damos.dml.Fragment;
 import org.eclipselabs.damos.dml.util.SystemPath;
@@ -38,7 +37,6 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getBaseConfiguration <em>Base Configuration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getImportDeclarations <em>Import Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getRunnerSpecifier <em>Runner Specifier</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.impl.ConfigurationImpl#getRootSystemConfiguration <em>Root System Configuration</em>}</li>
  * </ul>
  * </p>
@@ -105,16 +103,6 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * @ordered
 	 */
 	protected EList<ImportDeclaration> importDeclarations;
-
-	/**
-	 * The cached value of the '{@link #getRunnerSpecifier() <em>Runner Specifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRunnerSpecifier()
-	 * @generated
-	 * @ordered
-	 */
-	protected RunnerSpecifier runnerSpecifier;
 
 	/**
 	 * The cached value of the '{@link #getRootSystemConfiguration() <em>Root System Configuration</em>}' containment reference.
@@ -242,49 +230,6 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RunnerSpecifier getRunnerSpecifier() {
-		return runnerSpecifier;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetRunnerSpecifier(RunnerSpecifier newRunnerSpecifier, NotificationChain msgs) {
-		RunnerSpecifier oldRunnerSpecifier = runnerSpecifier;
-		runnerSpecifier = newRunnerSpecifier;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER, oldRunnerSpecifier, newRunnerSpecifier);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setRunnerSpecifier(RunnerSpecifier newRunnerSpecifier) {
-		if (newRunnerSpecifier != runnerSpecifier) {
-			NotificationChain msgs = null;
-			if (runnerSpecifier != null)
-				msgs = ((InternalEObject)runnerSpecifier).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER, null, msgs);
-			if (newRunnerSpecifier != null)
-				msgs = ((InternalEObject)newRunnerSpecifier).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER, null, msgs);
-			msgs = basicSetRunnerSpecifier(newRunnerSpecifier, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER, newRunnerSpecifier, newRunnerSpecifier));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public RootSystemConfiguration getRootSystemConfiguration() {
 		return rootSystemConfiguration;
 	}
@@ -387,8 +332,6 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 		switch (featureID) {
 			case DconfigPackage.CONFIGURATION__IMPORT_DECLARATIONS:
 				return ((InternalEList<?>)getImportDeclarations()).basicRemove(otherEnd, msgs);
-			case DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER:
-				return basicSetRunnerSpecifier(null, msgs);
 			case DconfigPackage.CONFIGURATION__ROOT_SYSTEM_CONFIGURATION:
 				return basicSetRootSystemConfiguration(null, msgs);
 		}
@@ -412,8 +355,6 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 				return basicGetBaseConfiguration();
 			case DconfigPackage.CONFIGURATION__IMPORT_DECLARATIONS:
 				return getImportDeclarations();
-			case DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER:
-				return getRunnerSpecifier();
 			case DconfigPackage.CONFIGURATION__ROOT_SYSTEM_CONFIGURATION:
 				return getRootSystemConfiguration();
 		}
@@ -442,9 +383,6 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 				getImportDeclarations().clear();
 				getImportDeclarations().addAll((Collection<? extends ImportDeclaration>)newValue);
 				return;
-			case DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER:
-				setRunnerSpecifier((RunnerSpecifier)newValue);
-				return;
 			case DconfigPackage.CONFIGURATION__ROOT_SYSTEM_CONFIGURATION:
 				setRootSystemConfiguration((RootSystemConfiguration)newValue);
 				return;
@@ -472,9 +410,6 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 			case DconfigPackage.CONFIGURATION__IMPORT_DECLARATIONS:
 				getImportDeclarations().clear();
 				return;
-			case DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER:
-				setRunnerSpecifier((RunnerSpecifier)null);
-				return;
 			case DconfigPackage.CONFIGURATION__ROOT_SYSTEM_CONFIGURATION:
 				setRootSystemConfiguration((RootSystemConfiguration)null);
 				return;
@@ -498,8 +433,6 @@ public class ConfigurationImpl extends PropertyContainerImpl implements Configur
 				return baseConfiguration != null;
 			case DconfigPackage.CONFIGURATION__IMPORT_DECLARATIONS:
 				return importDeclarations != null && !importDeclarations.isEmpty();
-			case DconfigPackage.CONFIGURATION__RUNNER_SPECIFIER:
-				return runnerSpecifier != null;
 			case DconfigPackage.CONFIGURATION__ROOT_SYSTEM_CONFIGURATION:
 				return rootSystemConfiguration != null;
 		}

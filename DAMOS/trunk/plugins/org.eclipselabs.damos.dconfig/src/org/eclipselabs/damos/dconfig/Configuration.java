@@ -25,7 +25,6 @@ import org.eclipselabs.damos.mscript.computationmodel.ComputationModel;
  *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getBaseConfiguration <em>Base Configuration</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getImportDeclarations <em>Import Declarations</em>}</li>
- *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getRunnerSpecifier <em>Runner Specifier</em>}</li>
  *   <li>{@link org.eclipselabs.damos.dconfig.Configuration#getRootSystemConfiguration <em>Root System Configuration</em>}</li>
  * </ul>
  * </p>
@@ -128,32 +127,6 @@ public interface Configuration extends PropertyContainer {
 	 * @generated
 	 */
 	EList<ImportDeclaration> getImportDeclarations();
-
-	/**
-	 * Returns the value of the '<em><b>Runner Specifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Runner Specifier</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Runner Specifier</em>' containment reference.
-	 * @see #setRunnerSpecifier(RunnerSpecifier)
-	 * @see org.eclipselabs.damos.dconfig.DconfigPackage#getConfiguration_RunnerSpecifier()
-	 * @model containment="true"
-	 * @generated
-	 */
-	RunnerSpecifier getRunnerSpecifier();
-
-	/**
-	 * Sets the value of the '{@link org.eclipselabs.damos.dconfig.Configuration#getRunnerSpecifier <em>Runner Specifier</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Runner Specifier</em>' containment reference.
-	 * @see #getRunnerSpecifier()
-	 * @generated
-	 */
-	void setRunnerSpecifier(RunnerSpecifier value);
 
 	/**
 	 * Returns the value of the '<em><b>Root System Configuration</b></em>' containment reference.

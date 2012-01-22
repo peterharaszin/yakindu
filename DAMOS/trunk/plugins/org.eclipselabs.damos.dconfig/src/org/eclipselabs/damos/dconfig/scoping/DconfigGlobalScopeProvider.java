@@ -28,7 +28,6 @@ import org.eclipse.xtext.scoping.impl.AbstractScope;
 import org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
 import org.eclipselabs.damos.dconfig.PropertyGroup;
-import org.eclipselabs.damos.dconfig.RunnerDeclaration;
 import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
 import org.eclipselabs.damos.dconfig.internal.registry.DefinitionRegistry;
 
@@ -75,7 +74,7 @@ public class DconfigGlobalScopeProvider extends DefaultGlobalScopeProvider {
 					Resource resource = resourceSet.getResource(uri, true);
 					for (TreeIterator<EObject> it = resource.getAllContents(); it.hasNext();) {
 						EObject next = it.next();
-						if (next instanceof PropertyDeclaration || next instanceof SelectionPropertyOption || next instanceof RunnerDeclaration) {
+						if (next instanceof PropertyDeclaration || next instanceof SelectionPropertyOption) {
 							eObjectDescriptions.add(EObjectDescription.create(qualifiedNameProvider.getFullyQualifiedName(next), next));
 						}
 						if (!(next instanceof PropertyGroup)) {

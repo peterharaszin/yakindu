@@ -19,7 +19,10 @@
    <extension
          point="org.eclipselabs.damos.dconfig.definitions">
       <resource
-            uri="platform:/plugin/org.eclipselabs.damos.codegen.c.generator/dconfig/CodegenC.xmi#/">
+            uri="platform:/plugin/org.eclipselabs.damos.codegen.c.generator/dconfig/CodegenC.xmi">
+      </resource>
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.codegen.c.generator/dconfig/DefaultGeneratorOption.xmi">
       </resource>
    </extension>
 

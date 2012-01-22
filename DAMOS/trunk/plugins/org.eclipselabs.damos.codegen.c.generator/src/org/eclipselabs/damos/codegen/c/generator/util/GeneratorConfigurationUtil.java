@@ -22,7 +22,7 @@ import org.eclipselabs.damos.mscript.StringLiteral;
 public class GeneratorConfigurationUtil {
 
 	public static String getPropertyStringValue(Configuration configuration, String propertyName, String defaultValue) {
-		Expression expression = configuration.getPropertyValue("damos.codegen.c." + propertyName);
+		Expression expression = configuration.getPropertyValue(propertyName);
 		if (expression instanceof StringLiteral) {
 			return ((StringLiteral) expression).getValue();
 		}

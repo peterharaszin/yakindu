@@ -35,24 +35,6 @@ public interface DconfigFactory extends EFactory {
 	Configuration createConfiguration();
 
 	/**
-	 * Returns a new object of class '<em>Runner Specifier</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Runner Specifier</em>'.
-	 * @generated
-	 */
-	RunnerSpecifier createRunnerSpecifier();
-
-	/**
-	 * Returns a new object of class '<em>Runner Declaration</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Runner Declaration</em>'.
-	 * @generated
-	 */
-	RunnerDeclaration createRunnerDeclaration();
-
-	/**
 	 * Returns a new object of class '<em>Simple Property</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

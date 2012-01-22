@@ -71,26 +71,6 @@ public interface DconfigPackage extends EPackage {
 	int CONFIGURATION = 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.RunnerSpecifierImpl <em>Runner Specifier</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dconfig.impl.RunnerSpecifierImpl
-	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getRunnerSpecifier()
-	 * @generated
-	 */
-	int RUNNER_SPECIFIER = 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.RunnerDeclarationImpl <em>Runner Declaration</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipselabs.damos.dconfig.impl.RunnerDeclarationImpl
-	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getRunnerDeclaration()
-	 * @generated
-	 */
-	int RUNNER_DECLARATION = 2;
-
-	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyContainerImpl <em>Property Container</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -98,7 +78,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyContainer()
 	 * @generated
 	 */
-	int PROPERTY_CONTAINER = 3;
+	int PROPERTY_CONTAINER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -164,22 +144,13 @@ public interface DconfigPackage extends EPackage {
 	int CONFIGURATION__IMPORT_DECLARATIONS = PROPERTY_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Runner Specifier</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATION__RUNNER_SPECIFIER = PROPERTY_CONTAINER_FEATURE_COUNT + 4;
-
-	/**
 	 * The feature id for the '<em><b>Root System Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION__ROOT_SYSTEM_CONFIGURATION = PROPERTY_CONTAINER_FEATURE_COUNT + 5;
+	int CONFIGURATION__ROOT_SYSTEM_CONFIGURATION = PROPERTY_CONTAINER_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -188,52 +159,7 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATION_FEATURE_COUNT = PROPERTY_CONTAINER_FEATURE_COUNT + 6;
-
-	/**
-	 * The feature id for the '<em><b>Auto</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNNER_SPECIFIER__AUTO = 0;
-
-	/**
-	 * The feature id for the '<em><b>Runner Declaration</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNNER_SPECIFIER__RUNNER_DECLARATION = 1;
-
-	/**
-	 * The number of structural features of the '<em>Runner Specifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNNER_SPECIFIER_FEATURE_COUNT = 2;
-
-	/**
-	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNNER_DECLARATION__QUALIFIED_NAME = 0;
-
-	/**
-	 * The number of structural features of the '<em>Runner Declaration</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNNER_DECLARATION_FEATURE_COUNT = 1;
+	int CONFIGURATION_FEATURE_COUNT = PROPERTY_CONTAINER_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyImpl <em>Property</em>}' class.
@@ -243,7 +169,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 4;
+	int PROPERTY = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.DeclaredPropertyImpl <em>Declared Property</em>}' class.
@@ -253,7 +179,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getDeclaredProperty()
 	 * @generated
 	 */
-	int DECLARED_PROPERTY = 5;
+	int DECLARED_PROPERTY = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SimplePropertyImpl <em>Simple Property</em>}' class.
@@ -263,7 +189,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSimpleProperty()
 	 * @generated
 	 */
-	int SIMPLE_PROPERTY = 6;
+	int SIMPLE_PROPERTY = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyDeclarationImpl <em>Property Declaration</em>}' class.
@@ -273,7 +199,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyDeclaration()
 	 * @generated
 	 */
-	int PROPERTY_DECLARATION = 12;
+	int PROPERTY_DECLARATION = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SimplePropertyDeclarationImpl <em>Simple Property Declaration</em>}' class.
@@ -283,7 +209,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSimplePropertyDeclaration()
 	 * @generated
 	 */
-	int SIMPLE_PROPERTY_DECLARATION = 7;
+	int SIMPLE_PROPERTY_DECLARATION = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyImpl <em>Selection Property</em>}' class.
@@ -293,7 +219,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionProperty()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY = 8;
+	int SELECTION_PROPERTY = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyBodyImpl <em>Selection Property Body</em>}' class.
@@ -303,7 +229,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionPropertyBody()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY_BODY = 9;
+	int SELECTION_PROPERTY_BODY = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyDeclarationImpl <em>Selection Property Declaration</em>}' class.
@@ -313,7 +239,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionPropertyDeclaration()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY_DECLARATION = 10;
+	int SELECTION_PROPERTY_DECLARATION = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyDeclarationContainerImpl <em>Property Declaration Container</em>}' class.
@@ -323,7 +249,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyDeclarationContainer()
 	 * @generated
 	 */
-	int PROPERTY_DECLARATION_CONTAINER = 13;
+	int PROPERTY_DECLARATION_CONTAINER = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyGroupImpl <em>Property Group</em>}' class.
@@ -333,7 +259,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getPropertyGroup()
 	 * @generated
 	 */
-	int PROPERTY_GROUP = 14;
+	int PROPERTY_GROUP = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipselabs.damos.dconfig.impl.SelectionPropertyOptionImpl <em>Selection Property Option</em>}' class.
@@ -343,7 +269,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSelectionPropertyOption()
 	 * @generated
 	 */
-	int SELECTION_PROPERTY_OPTION = 11;
+	int SELECTION_PROPERTY_OPTION = 9;
 
 	/**
 	 * The feature id for the '<em><b>Propagate</b></em>' attribute.
@@ -722,7 +648,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMapping()
 	 * @generated
 	 */
-	int MAPPING = 15;
+	int MAPPING = 13;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -786,7 +712,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingBody()
 	 * @generated
 	 */
-	int MAPPING_BODY = 16;
+	int MAPPING_BODY = 14;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -823,7 +749,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getMappingSubscript()
 	 * @generated
 	 */
-	int MAPPING_SUBSCRIPT = 17;
+	int MAPPING_SUBSCRIPT = 15;
 
 	/**
 	 * The feature id for the '<em><b>Index</b></em>' attribute.
@@ -851,7 +777,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getResourceDeclaration()
 	 * @generated
 	 */
-	int RESOURCE_DECLARATION = 18;
+	int RESOURCE_DECLARATION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Property Declarations</b></em>' containment reference list.
@@ -897,7 +823,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComputationProperty()
 	 * @generated
 	 */
-	int COMPUTATION_PROPERTY = 19;
+	int COMPUTATION_PROPERTY = 17;
 
 	/**
 	 * The feature id for the '<em><b>Propagate</b></em>' attribute.
@@ -934,7 +860,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemConfiguration()
 	 * @generated
 	 */
-	int SYSTEM_CONFIGURATION = 20;
+	int SYSTEM_CONFIGURATION = 18;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -962,7 +888,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemConfigurationBody()
 	 * @generated
 	 */
-	int SYSTEM_CONFIGURATION_BODY = 21;
+	int SYSTEM_CONFIGURATION_BODY = 19;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1035,7 +961,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getRootSystemConfiguration()
 	 * @generated
 	 */
-	int ROOT_SYSTEM_CONFIGURATION = 22;
+	int ROOT_SYSTEM_CONFIGURATION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1072,7 +998,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSubsystemConfiguration()
 	 * @generated
 	 */
-	int SUBSYSTEM_CONFIGURATION = 23;
+	int SUBSYSTEM_CONFIGURATION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -1118,7 +1044,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getFragmentConfiguration()
 	 * @generated
 	 */
-	int FRAGMENT_CONFIGURATION = 24;
+	int FRAGMENT_CONFIGURATION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Start Fragment</b></em>' reference.
@@ -1174,7 +1100,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getFragmentConfigurationBody()
 	 * @generated
 	 */
-	int FRAGMENT_CONFIGURATION_BODY = 25;
+	int FRAGMENT_CONFIGURATION_BODY = 23;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1211,7 +1137,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentConfiguration()
 	 * @generated
 	 */
-	int COMPONENT_CONFIGURATION = 26;
+	int COMPONENT_CONFIGURATION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Component</b></em>' reference.
@@ -1248,7 +1174,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getComponentConfigurationBody()
 	 * @generated
 	 */
-	int COMPONENT_CONFIGURATION_BODY = 27;
+	int COMPONENT_CONFIGURATION_BODY = 25;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
@@ -1285,7 +1211,7 @@ public interface DconfigPackage extends EPackage {
 	 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getSystemPath()
 	 * @generated
 	 */
-	int SYSTEM_PATH = 28;
+	int SYSTEM_PATH = 26;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.Configuration <em>Configuration</em>}'.
@@ -1342,17 +1268,6 @@ public interface DconfigPackage extends EPackage {
 	EReference getConfiguration_ImportDeclarations();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.Configuration#getRunnerSpecifier <em>Runner Specifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Runner Specifier</em>'.
-	 * @see org.eclipselabs.damos.dconfig.Configuration#getRunnerSpecifier()
-	 * @see #getConfiguration()
-	 * @generated
-	 */
-	EReference getConfiguration_RunnerSpecifier();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipselabs.damos.dconfig.Configuration#getRootSystemConfiguration <em>Root System Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1362,59 +1277,6 @@ public interface DconfigPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getConfiguration_RootSystemConfiguration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.RunnerSpecifier <em>Runner Specifier</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Runner Specifier</em>'.
-	 * @see org.eclipselabs.damos.dconfig.RunnerSpecifier
-	 * @generated
-	 */
-	EClass getRunnerSpecifier();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.RunnerSpecifier#isAuto <em>Auto</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Auto</em>'.
-	 * @see org.eclipselabs.damos.dconfig.RunnerSpecifier#isAuto()
-	 * @see #getRunnerSpecifier()
-	 * @generated
-	 */
-	EAttribute getRunnerSpecifier_Auto();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipselabs.damos.dconfig.RunnerSpecifier#getRunnerDeclaration <em>Runner Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Runner Declaration</em>'.
-	 * @see org.eclipselabs.damos.dconfig.RunnerSpecifier#getRunnerDeclaration()
-	 * @see #getRunnerSpecifier()
-	 * @generated
-	 */
-	EReference getRunnerSpecifier_RunnerDeclaration();
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.RunnerDeclaration <em>Runner Declaration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Runner Declaration</em>'.
-	 * @see org.eclipselabs.damos.dconfig.RunnerDeclaration
-	 * @generated
-	 */
-	EClass getRunnerDeclaration();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipselabs.damos.dconfig.RunnerDeclaration#getQualifiedName <em>Qualified Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Qualified Name</em>'.
-	 * @see org.eclipselabs.damos.dconfig.RunnerDeclaration#getQualifiedName()
-	 * @see #getRunnerDeclaration()
-	 * @generated
-	 */
-	EAttribute getRunnerDeclaration_QualifiedName();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipselabs.damos.dconfig.PropertyContainer <em>Property Container</em>}'.
@@ -2259,64 +2121,12 @@ public interface DconfigPackage extends EPackage {
 		EReference CONFIGURATION__IMPORT_DECLARATIONS = eINSTANCE.getConfiguration_ImportDeclarations();
 
 		/**
-		 * The meta object literal for the '<em><b>Runner Specifier</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATION__RUNNER_SPECIFIER = eINSTANCE.getConfiguration_RunnerSpecifier();
-
-		/**
 		 * The meta object literal for the '<em><b>Root System Configuration</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference CONFIGURATION__ROOT_SYSTEM_CONFIGURATION = eINSTANCE.getConfiguration_RootSystemConfiguration();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.RunnerSpecifierImpl <em>Runner Specifier</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dconfig.impl.RunnerSpecifierImpl
-		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getRunnerSpecifier()
-		 * @generated
-		 */
-		EClass RUNNER_SPECIFIER = eINSTANCE.getRunnerSpecifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Auto</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RUNNER_SPECIFIER__AUTO = eINSTANCE.getRunnerSpecifier_Auto();
-
-		/**
-		 * The meta object literal for the '<em><b>Runner Declaration</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference RUNNER_SPECIFIER__RUNNER_DECLARATION = eINSTANCE.getRunnerSpecifier_RunnerDeclaration();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.RunnerDeclarationImpl <em>Runner Declaration</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipselabs.damos.dconfig.impl.RunnerDeclarationImpl
-		 * @see org.eclipselabs.damos.dconfig.impl.DconfigPackageImpl#getRunnerDeclaration()
-		 * @generated
-		 */
-		EClass RUNNER_DECLARATION = eINSTANCE.getRunnerDeclaration();
-
-		/**
-		 * The meta object literal for the '<em><b>Qualified Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RUNNER_DECLARATION__QUALIFIED_NAME = eINSTANCE.getRunnerDeclaration_QualifiedName();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipselabs.damos.dconfig.impl.PropertyContainerImpl <em>Property Container</em>}' class.

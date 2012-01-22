@@ -16,7 +16,6 @@ import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipselabs.damos.dconfig.Configuration;
 import org.eclipselabs.damos.dconfig.PropertyDeclaration;
-import org.eclipselabs.damos.dconfig.RunnerDeclaration;
 import org.eclipselabs.damos.dconfig.SelectionPropertyOption;
 
 /**
@@ -29,13 +28,6 @@ public class DconfigQualifiedNameProvider extends DefaultDeclarativeQualifiedNam
 	 * @see org.eclipse.xtext.naming.IQualifiedNameProvider#getFullyQualifiedName(org.eclipse.emf.ecore.EObject)
 	 */
 	public QualifiedName getFullyQualifiedName(EObject obj) {
-		if (obj instanceof RunnerDeclaration) {
-			String qualifiedName = ((RunnerDeclaration) obj).getQualifiedName();
-			if (qualifiedName == null) {
-				return null;
-			}
-			return getConverter().toQualifiedName(qualifiedName);
-		}
 		if (obj instanceof PropertyDeclaration) {
 			PropertyDeclaration propertyDeclaration = (PropertyDeclaration) obj;
 			

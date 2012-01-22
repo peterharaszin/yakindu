@@ -26,7 +26,7 @@ import org.eclipselabs.damos.execution.executionflow.Graph;
 import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.execution.executionflow.TaskGraph;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectAdapter;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectStatus;
 import org.eclipselabs.damos.simulation.simulator.internal.registry.SimulationObjectProviderRegistry;
@@ -60,7 +60,7 @@ public class SimulationObjectAdaptor {
 				sb.append("'");
 			}
 			throw new CoreException(new SimulationObjectStatus(
-					IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, 0, sb.toString(), null, missingSimulationObjectComponents));
+					IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, 0, sb.toString(), null, missingSimulationObjectComponents));
 		}
 	}
 

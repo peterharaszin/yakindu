@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="generators" name="Generators" schema="schema/generators.exsd"/>
+   <extension
+         point="org.eclipselabs.damos.dconfig.definitions">
+      <resource
+            uri="platform:/plugin/org.eclipselabs.damos.codegen/dconfig/Codegen.xmi">
+      </resource>
+   </extension>
+
+</plugin>

@@ -215,7 +215,7 @@ public class DiscreteStateComputationHelper {
 			Action action = actionLink.getAction();
 			if (actionLink.getCondition() != null) {
 				if (!(actionLink.getCondition() instanceof MscriptValueSpecification)) {
-					throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Invalid action link condition"));
+					throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Invalid action link condition"));
 				}
 				IValue conditionValue = ExpressionUtil.evaluateExpression(((MscriptValueSpecification) actionLink.getCondition()).getExpression());
 				IValue result = value.equalTo(conditionValue);

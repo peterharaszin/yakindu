@@ -39,7 +39,7 @@ import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.Simulation;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationContext;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationEngine;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 import org.eclipselabs.damos.simulation.simulator.internal.SimulationObjectContext;
 import org.eclipselabs.damos.simulation.simulator.internal.Task;
 import org.eclipselabs.damos.simulation.simulator.registry.ISolverDescriptor;
@@ -66,7 +66,7 @@ public class Simulator {
 		
 		Fragment contextFragment = configuration.getContextFragment();
 		if (contextFragment == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No root system specification found in configuration"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "No root system specification found in configuration"));
 		}
 		
 		ExecutionFlow executionFlow = executionFlowBuilder.build(contextFragment, subMonitor.newChild(1));
@@ -88,11 +88,11 @@ public class Simulator {
 
 		String solverQualifiedName = configuration.getPropertySelectionName("damos.simulation.solver");
 		if (solverQualifiedName == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "No solver specification found in configuration"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "No solver specification found in configuration"));
 		}
 		ISolverDescriptor solverDescriptor = ISolverRegistry.INSTANCE.getSolver(solverQualifiedName);
 		if (solverDescriptor == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Solver '" + solverQualifiedName + "' not found"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Solver '" + solverQualifiedName + "' not found"));
 		}
 		
 		ISolver solver = solverDescriptor.createSolver();

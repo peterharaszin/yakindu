@@ -46,7 +46,7 @@ import org.eclipselabs.damos.execution.executionflow.Node;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.ISimulationObject;
 import org.eclipselabs.damos.simulation.simulator.internal.ISimulationContext;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 
 public abstract class EmbeddedRungeKuttaSolver extends AdaptiveStepSizeSolver implements ISolver {
 
@@ -195,7 +195,7 @@ public abstract class EmbeddedRungeKuttaSolver extends AdaptiveStepSizeSolver im
 			
 			t += currentStepSize;
 		} catch (MinimumStepSizeReachedException e) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, String.format("Minimum step size (%.2e) reached, integration needs %.2e", getMinimumStepSize(), e.getRequiredStepSize()), e));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, String.format("Minimum step size (%.2e) reached, integration needs %.2e", getMinimumStepSize(), e.getRequiredStepSize()), e));
 		}
 	}
 

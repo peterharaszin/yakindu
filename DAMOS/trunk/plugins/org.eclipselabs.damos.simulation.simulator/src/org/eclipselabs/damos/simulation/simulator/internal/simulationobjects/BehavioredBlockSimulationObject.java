@@ -62,7 +62,7 @@ import org.eclipselabs.damos.mscript.interpreter.value.VectorValue;
 import org.eclipselabs.damos.mscript.util.TypeUtil;
 import org.eclipselabs.damos.simulation.core.ISimulationMonitor;
 import org.eclipselabs.damos.simulation.simulator.AbstractBlockSimulationObject;
-import org.eclipselabs.damos.simulation.simulator.internal.SimulationEnginePlugin;
+import org.eclipselabs.damos.simulation.simulator.internal.SimulatorPlugin;
 
 /**
  * @author Andreas Unger
@@ -92,7 +92,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 	 */
 	@Override
 	public void initialize(IProgressMonitor monitor) throws CoreException {
-		MultiStatus status = new MultiStatus(SimulationEnginePlugin.PLUGIN_ID, 0, "Simulation object initialization", null);
+		MultiStatus status = new MultiStatus(SimulatorPlugin.PLUGIN_ID, 0, "Simulation object initialization", null);
 
 		Block block = getComponent();
 
@@ -126,7 +126,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 		}
 		
 		if (inputParameterDataTypes == null) {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID, "Missing input data types"));
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID, "Missing input data types"));
 		}
 		
 		helper.evaluateFunctionDefinition(functionDeclaration, templateArguments, inputParameterDataTypes);
@@ -220,7 +220,7 @@ public class BehavioredBlockSimulationObject extends AbstractBlockSimulationObje
 				variable.setValue(0, new ArrayValue(interpreterContext.getComputationContext(), arrayType, new IValue[TypeUtil.getArraySize(arrayType)]));
 			}
 		} else {
-			throw new CoreException(new Status(IStatus.ERROR, SimulationEnginePlugin.PLUGIN_ID,
+			throw new CoreException(new Status(IStatus.ERROR, SimulatorPlugin.PLUGIN_ID,
 					"Variable declaration type must be array type"));
 		}
 	}

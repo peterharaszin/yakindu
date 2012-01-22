@@ -1,4 +1,4 @@
-package org.eclipselabs.damos.codegen.c.ui.internal.handlers;
+package org.eclipselabs.damos.codegen.ui.internal.handlers;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -8,6 +8,8 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -19,27 +21,45 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.eclipselabs.damos.codegen.c.generator.Generator;
+import org.eclipselabs.damos.codegen.IGenerator;
+import org.eclipselabs.damos.codegen.registry.IGeneratorDescriptor;
+import org.eclipselabs.damos.codegen.registry.IGeneratorRegistry;
+import org.eclipselabs.damos.codegen.ui.CodegenUIPlugin;
 import org.eclipselabs.damos.dconfig.Configuration;
 
-public class GenerateCCodeHandler extends AbstractHandler {
+public class GenerateCodeHandler extends AbstractHandler {
 
-	private static final String ERROR_MESSAGE = "C Code Generation failed";
+	private static final String MESSAGE_DIALOG_TITLE = "Code Generation";
+	private static final String ERROR_MESSAGE = "Code Generation failed";
 
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final Configuration configuration = getGenModel(event);
-		
-		if (configuration == null) {
-			throw new ExecutionException("Selected object must be C generator model");
-		}
-		
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		ProgressMonitorDialog d = new ProgressMonitorDialog(HandlerUtil.getActiveShell(event));
 		try {
 			d.run(true, true, new IRunnableWithProgress() {
 				
 				public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-					Generator generator = new Generator();
 					try {
+						Configuration configuration = getGenModel(event);
+						
+						if (configuration == null) {
+							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Selected object must contain configuration model"));
+						}
+						
+						String generatorId = configuration.getPropertySelectionName("damos.codegen.generator");
+						if (generatorId == null) {
+							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Configuration does not specify generator"));
+						}
+						
+						IGeneratorDescriptor generatorDescriptor = IGeneratorRegistry.INSTANCE.getGenerator(generatorId);
+						if (generatorDescriptor == null) {
+							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Generator " + generatorId + " not found"));
+						}
+						
+						IGenerator generator = generatorDescriptor.createGenerator();
+						if (generator == null) {
+							throw new CoreException(new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, "Generator " + generatorId + " could not be created"));
+						}
+
 						generator.generate(configuration, monitor);
 					} catch (CoreException e) {
 						throw new InvocationTargetException(e);
@@ -48,14 +68,16 @@ public class GenerateCCodeHandler extends AbstractHandler {
 				
 			});
 		} catch (InvocationTargetException e) {
+			IStatus status;
 			if (e.getTargetException() instanceof CoreException) {
 				CoreException targetException = (CoreException) e.getTargetException();
-				ErrorDialog.openError(HandlerUtil.getActiveShell(event), "C Code Generation", ERROR_MESSAGE, targetException.getStatus());
+				status = targetException.getStatus();
 			} else {
-				throw new ExecutionException(ERROR_MESSAGE, e);
+				status = new Status(IStatus.ERROR, CodegenUIPlugin.PLUGIN_ID, ERROR_MESSAGE, e.getTargetException());
 			}
+			ErrorDialog.openError(HandlerUtil.getActiveShell(event), MESSAGE_DIALOG_TITLE, ERROR_MESSAGE, status);
 		} catch (InterruptedException e) {
-			throw new ExecutionException(ERROR_MESSAGE, e);
+			Thread.currentThread().interrupt();
 		}
 		return null;
 	}

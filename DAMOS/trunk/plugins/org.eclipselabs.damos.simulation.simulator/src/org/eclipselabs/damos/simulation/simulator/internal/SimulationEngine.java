@@ -115,7 +115,7 @@ public class SimulationEngine implements ISimulationEngine {
 				simulationEventKind = SimulationEvent.FINISH;
 			}
 		} catch (CoreException e) {
-			status = new Status(e.getStatus().getSeverity(), SimulationEnginePlugin.PLUGIN_ID, "Simulation failed", e);
+			status = new Status(e.getStatus().getSeverity(), SimulatorPlugin.PLUGIN_ID, "Simulation failed", e);
 		} finally {
 			simulation.takeRunnables();
 			

@@ -25,6 +25,6 @@ public interface ISolverRegistry {
 
 	Collection<ISolverDescriptor> getSolvers();
 	
-	ISolverDescriptor getSolver(String qualifiedName);
+	ISolverDescriptor getSolver(String id);
 	
 }
